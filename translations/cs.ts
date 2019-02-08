@@ -731,10 +731,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>New computer</source>
         <translation>Nový počítač</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Vestavěný adresář</translation>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -769,6 +765,58 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Export objects to given file</source>
         <translation>Exportovat objekty do zadaného souboru</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+POUŽITÍ
+
+%1 import &lt;FILE&gt; [mistnost &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regularni_vyraz &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Platné proměnné: %name% %host% %mac% %room%
+
+Příklady:
+
+* Import jednoduchého CSV souboru na jednu místnost:
+
+    %1 import pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV souboru s názvem místnosti v prvním sloupci:
+
+    %1 import pocitace-s-mistnostmi.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import textového souboru s dvojicemi klíč/hodnota pomocí regulárních výrazů:
+
+    %1 import hostlist.txt room &quot;Mistnost 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import libovolných formátovaných dat:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -987,58 +1035,6 @@ Příklady:
     <message>
         <source>Parent UUID</source>
         <translation>Nikde se neopakující identifikátor nadřazeného</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-POUŽITÍ
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Platné proměnné: %type% %name% %host% %mac% %room%
-
-Příklady:
-
-* Import jednoduchého CSV souboru do jedné místnosti:
-
-    %1 import pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV souboru s názvem místnosti v prvním sloupci:
-
-    %1 import pocitace-s-mistnostmi.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import textového souboru s dvojicemi klíč/hodnota pomocí regulárních výrazů:
-
-    %1 import seznamstrojů.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import libovolně formátovaných dat:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
 </context>
 <context>
@@ -1505,79 +1501,6 @@ Příklady:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Soubor „%1“ se nedaří otevřít pro čtení! Zkontrolujte svá oprávnění!</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Přenos souboru</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Volby</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>Pouze přenos</translation>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation>Přenést a otevřít soubory pomocí přiřazeného programu</translation>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation>Přenést a otevřít cílovou složku</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>Soubory</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Spustit</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Přepsat existující soubory</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Přenos souboru</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Kliknutím na toto tlačítko zkopírujete soubory ze svého počítače na všechny ostatní.</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>Vyberte jeden nebo více souborů k přenosu</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Přenést soubory na vzdálený počítač</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Obdržen soubor „%1“.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Není možné přijmout soubor „%1“, protože už existuje.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Není možné přijmout soubor „%1“, protože by ho nebylo možné otevřít pro zápis!</translation>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1685,7 +1608,7 @@ Příklady:
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1718,82 +1641,6 @@ Příklady:
     <message>
         <source>Key file authentication</source>
         <translation>Ověření pomocí souboru s klíčem</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Řízení přístupu k Internetu</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Podpůrná vrstva (backend):</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Obecná nastavení</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Nastavení podpůrné vrstvy</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Blokovat přístup k Internetu</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Umožnit přístup k Internetu</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Zobrazit nápovědu k příkazu</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Blokovat Internet</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Kliknutím na toto tlačítko zablokujete přístup k Internetu.</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Odblokovat Internet</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Kliknutím na toto tlačítko umožníte přístup k Internetu.</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Ovládat přístup k Internetu</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Příkazy pro ovládání přístup k Internetu</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation>Procházet LDAP</translation>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Popis LDAP chyby: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Není k dispozici žádný popis LDAP chyby</translation>
     </message>
 </context>
 <context>
@@ -1832,7 +1679,7 @@ Příklady:
     </message>
     <message>
         <source>Test</source>
-        <translation>Ověřit funkčnost</translation>
+        <translation>Vyzkoušet funkčnost</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2446,6 +2293,17 @@ Příklady:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Popis LDAP chyby: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Není k dispozici žádný popis LDAP chyby</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2474,152 +2332,6 @@ Příklady:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP (načíst uživatele a skupiny z LDAP/AD)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Licencování</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Nainstalované licence</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Přidat nový síťový rozsah</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Odebrat označený síťový rozsah</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>Identif.</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation>Funkce</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Platné do</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Držitel licence</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Nalistovat soubor s licencí</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Soubory s licencí pro Veyon (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Odebrat licenci</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Opravdu chcete odebrat vybranou licenci?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Neplatný soubor s licencí</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>Nedaří se otevřít soubor s licencí pro čtení!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>Zvolený soubor s licencí neobsahuje platná data.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>Zvolený soubor s licencí se nepodařilo ověřit.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>Zvolený soubor s licencí není platný pro tuto instalaci.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>Platnost zvoleného souboru s licencí skončila.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>Tato licence už je nainstalována.</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Zobrazit všechny nainstalované licence</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Přidat licenční soubor</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Odebrat nainstalovanou licenci</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>U daného identif. nenalezen certifikát</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Správa licencí</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Příkazy pro správu licenčních klíčů</translation>
     </message>
 </context>
 <context>
@@ -2826,18 +2538,6 @@ POUŽITÍ
         <source>&amp;Save settings to file</source>
         <translation>Uložit na&amp;stavení do souboru</translation>
     </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;Zobrazení</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standardní</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Pokročilé</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2981,14 +2681,6 @@ POUŽITÍ
         <source>Text color</source>
         <translation>Barva textu</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation>Pořadí řazení</translation>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation>Počítač a uživatelské jméno</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3003,149 +2695,6 @@ POUŽITÍ
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Toto je výchozí režim a umožňuje monitorovat veškeré počítače v jedné a více místnostech.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Prozkoumávání sítě</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Režim</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Skenovat síťové rozsahy</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>např. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Skenovat všechny podsítě počítače</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Skenovat uživatelsky určenou podsíť</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Skenovací relace na tomto počítači</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Vyzkoušet funkčnost</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Síťové rozsahy</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Přidat novou skupinu</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Odebrat označenou skupinu</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Skupiny</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>První adresa</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Poslední adresa</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Přidat nový síťový rozsah</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Odebrat označený síťový rozsah</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Souběžné skeny</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Časový limit skenování</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Limit skenu relace</translation>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>Nová skupina</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Volby</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Překládat objevené IP adresy na názvy strojů</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Skenování…</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Objevené počítače</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Skenovat podsíť</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Adresář síťových objektů který automaticky objevuje počítače v síti</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Průzkum sítě (skenuje přítomnost Veyon klientů na síti)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>Příkazy pro správu adresáře průzkumu sítě</translation>
     </message>
 </context>
 <context>
@@ -3228,30 +2777,6 @@ POUŽITÍ
         <source>Do you really want to power down the selected computer?</source>
         <translation>Opravdu chcete vybrané počítače vypnout?</translation>
     </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Zapnout počítač prostřednictvím probouzení po síti (WoL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC ADRESA</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Tento příkaz vyšle na celou síť probouzecí (WoL) paket, kterými probudí počítač s danou MAC adresou.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Zadejte příkaz pro který chcete zobrazit nápovědu!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Zadána neplatná MAC adresa!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Příkazy pro řízení stavu napájení počítačů</translation>
-    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -3265,7 +2790,7 @@ POUŽITÍ
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Vzdálené ovládání</translation>
+        <translation>Ovládání na dálku</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -3375,32 +2900,6 @@ POUŽITÍ
     <message>
         <source>enter search filter...</source>
         <translation>zadejte vyhledávací filtr…</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Ovládá přístup k Internetu prostřednictvím upravování směrovacích tabulek</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Odebrat výchozí trasy pro blokování přístupu k Internetu</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Přidat uživatelsky určenou trasu pro blokování přístupu k Internetu</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Cíl</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Brána</translation>
     </message>
 </context>
 <context>
@@ -3838,22 +3337,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Modul nebyl určen nebo nalezen – k dispozici jsou moduly:</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>Zásuvný modul není licencován</translation>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation>INFORMACE</translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>CHYBA</translation>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation>licencováno pro</translation>
     </message>
 </context>
 <context>

@@ -731,10 +731,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation>Новый компьютер</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Встроенный каталог</translation>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -769,6 +765,58 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>Экспортировать объекты в указанный файл</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАСС&gt;] [format &lt;СТРОКА ФОРМАТИРОВАНИЯ С ПЕРЕМЕННЫМИ&gt;] [regex &lt;РЕГУЛЯРНОЕ ВЫРАЖЕНИЕ С ПЕРЕМЕННЫМИ&gt;]
+
+Возможные переменные: %name% %host% %mac% %room%
+
+примеры:
+
+* Импорт простого файла CSV из одной записи класса:
+
+%1 import computers.csv room &quot;Класс 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Импорт CSV-файла с названием класса в первом столбце:
+
+%1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%
+
+* Импорт текстового файла с парами ключ-значение с помощью регулярных выражений:
+
+%1 import hostlist.txt room &quot;Класс 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Импортировать в произвольном форматировании:
+
+%1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -984,58 +1032,6 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>Родительский UUID</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАСС&gt;] [format &lt;СТРОКА ФОРМАТИРОВАНИЯ С ПЕРЕМЕННЫМИ&gt;] [regex &lt;РЕГУЛЯРНОЕ ВЫРАЖЕНИЕ С ПЕРЕМЕННЫМИ&gt;]
-
-Возможные переменные: %type% %name% %host% %mac% %room%
-
-примеры:
-
-* Импорт простого файла CSV из одной записи класса:
-
-%1 import computers.csv room &quot;Класс 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Импорт CSV-файла с названием класса в первом столбце:
-
-%1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%
-
-* Импорт текстового файла с парами ключ-значение с помощью регулярных выражений:
-
-%1 import hostlist.txt room &quot;Класс 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Импортировать в произвольном форматировании:
-
-%1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
 </context>
 <context>
@@ -1502,79 +1498,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Не удалось открыть файл &quot;%1&quot; для чтения! Пожалуйста, проверьте, есть ли у вас достаточные права доступа!</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Передача файлов</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Параметры</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>Только передача</translation>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation>Передать и открыть файл(ы) с помощью связанной программы</translation>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation>Передать и открыть папку назначения</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>Файлы</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Начать</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Перезаписать существующие файлы</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Передача файлов</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Нажмите эту кнопку, чтобы передать файлы с компьютера на все компьютеры.</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>Выберите один или несколько файлов для передачи</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Передать файлы на другой компьютер</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Получен файл &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Не удалось получить файл &quot;%1&quot;, поскольку такой файл уже существует.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Не удалось получить файл &quot;%1&quot;, поскольку не удалось открыть соответствующий файл для записи данных!</translation>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1715,82 +1638,6 @@ Examples:
     <message>
         <source>Key file authentication</source>
         <translation>Аутентификация с помощью ключа доступа</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Управление доступом к интернету</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Бэкэнд:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Общие параметры</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Параметры модулей</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Блокировать доступ к интернету</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Разрешить доступ к интернету</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Показать помощь по команде</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Блокировать интернет</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Нажмите эту кнопку, чтобы заблокировать доступ к интернету.</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Разблокировать интернет</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Нажмите эту кнопку, чтобы разрешить доступ к интернету.</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Управление доступом к интернету</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Команды для управления доступом к интернету</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation>Навигация LDAP</translation>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Описание ошибки LDAP: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Нет доступного описания ошибки LDAP</translation>
     </message>
 </context>
 <context>
@@ -2191,7 +2038,7 @@ Examples:
 %2</source>
         <translation>Не удалось опросить ни одну из записей в настроенной %1. Пожалуйста, проверьте, правильно ли указан параметр %1.
 
-% 2</translation>
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2447,6 +2294,17 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Описание ошибки LDAP: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Нет доступного описания ошибки LDAP</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2475,152 +2333,6 @@ Examples:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP (загрузить записи пользователей и групп с LDAP/AD)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Лицензирование</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Установленные лицензии</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Добавить новый диапазон сети</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Удалить выделенный диапазон сети</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>Идентификатор</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation>Функция</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>В силе до</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Лицензиат</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Просмотреть файл лицензии</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>файлы лицензий Veyon (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Удалить лицензию</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Вы действительно хотите удалить выбранную лицензию?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;н/д&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Некорректный файл лицензии</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>Не удалось открыть файл лицензии для чтения!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>В указанном файле лицензии не содержится корректных данных.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>Выделенный файл лицензии не удалось проверить.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>Выделенный файл лицензии не действует для этой установки.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>Срок действия выделенного файла лицензии истек.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>Эта лицензия уже установлена.</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Показать справку по определённой команде</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Показать все установленные лицензии</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Добавить файл лицензии</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Удалить установленную лицензию</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>Не найдено сертификата с указанным идентификатором</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;н/д&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Управление лицензиями</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Команды для управления файлами лицензий</translation>
     </message>
 </context>
 <context>
@@ -2827,18 +2539,6 @@ USAGE
         <source>&amp;Save settings to file</source>
         <translation>&amp;Сохранить параметры в файл</translation>
     </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;Просмотр</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>С&amp;тандартный</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Рвсширенный</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2982,14 +2682,6 @@ USAGE
         <source>Text color</source>
         <translation>Цвет текста</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation>Порядок сортировки</translation>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation>Имя компьютера и пользователя</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3004,149 +2696,6 @@ USAGE
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Это режим по умолчанию. Он предоставляет вам возможность следить за всеми компьютерами в одном или нескольких классах.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Обнаружение сети</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Режим</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Сканировать диапазоны сети</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>Например: 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Сканировать все подсети компьютера</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Сканировать нетипичную подсеть</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Сканировать сеансы на локальном компьютере</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Тестировать</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Диапазоны сети</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Добавить новую группу</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Удалить выделенную группу</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Группы</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Первый адрес</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Последний адрес</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Добавить новый диапазон сети</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Удалить выделенный диапазон сети</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Параллельное сканирование</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Время ожидания сканирования</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>мс</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Ограничение сканирования сеансов</translation>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>Новая группа</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Параметры</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Обратным поиском определены IP-адреса для названий узлов</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Сканирование...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Обнаруженные компьютеры</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Показать справку по определённой команде</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Сканировать подсеть</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Каталог объектов сети, который автоматически обнаруживает компьютеры в сети</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Обнаружение сети (поиск в сети клиентов Veyon)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>Команды для управления каталогом обнаружения сети</translation>
     </message>
 </context>
 <context>
@@ -3228,30 +2777,6 @@ USAGE
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Вы действительно хотите выключить выбранный компьютер?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Включить компьютер через пробуждение по сигналу из локальной сети Wake-on-LAN (WOL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC-АДРЕСА</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Эта команда транслирует пакет Wake-on-LAN (WOL) в сеть с целью включения питания на компьютере с указанным MAC-адресом.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Пожалуйста, укажите команду, для которой следует показать справку!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Указан некорректный MAC-адрес!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Команды для управления состоянием питания компьютеров</translation>
     </message>
 </context>
 <context>
@@ -3364,7 +2889,7 @@ USAGE
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Скриншот</translation>
+        <translation>Скриншот </translation>
     </message>
 </context>
 <context>
@@ -3376,32 +2901,6 @@ USAGE
     <message>
         <source>enter search filter...</source>
         <translation>введите фильтр поиска...</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Управление доступом к интернету путём внесения изменений в таблицы маршрутизации</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Удалить маршруты по-умолчанию для блокировки доступа к интернету</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Добавить нетипичный маршрут для блокировки интернета</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Назначение</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Шлюз</translation>
     </message>
 </context>
 <context>
@@ -3839,22 +3338,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Не указан модуль или модуль не найден. Доступные модули:</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>Плагин не лицензирован</translation>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation>ИНФОРМАЦИЯ</translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>ОШИБКА</translation>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation>лицензировано для</translation>
     </message>
 </context>
 <context>

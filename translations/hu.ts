@@ -253,7 +253,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Egy bejelentkezett felhasználó sincs</translation>
+        <translation>Egy felhasználó sem jelentkezett be</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
@@ -731,10 +731,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>New computer</source>
         <translation>Új számítógép</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Beépített mappa</translation>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -769,6 +765,58 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Export objects to given file</source>
         <translation>Objektumok exportálása a megadott fájlba</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+HASZNÁLATA
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Használható változók: %name% %host% %mac% %room%
+
+Példák:
+
+* Egy egyszerű CSV fájl importálása egy szobába:
+
+    %1 import szamitogepek.csv room &quot;01 szoba&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Az első oszlopban a szobát tartalmazó CSV fájl importálása:
+
+    %1 import szamitogepekSzobakkal.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Reguláris kifejezések megadott kulcs/érték párok importálása:
+
+    %1 import kiszolgaloLista.txt room &quot;01 szoba&quot; regex &quot;^NEV:(%name%:.*)\s+KISZOLGALO:(%host%:.*)$&quot;
+
+* Önkényesen formázott adatok importálása:
+
+    %1 import adat.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -987,58 +1035,6 @@ Példák:
     <message>
         <source>Parent UUID</source>
         <translation>Szülő UUID</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Használható változók: %type% %name% %host% %mac% %room%
-
-Példák:
-
-* Egy egyszerű CSV fájl importálása egy egyszerű szobába:
-
-    %1 import szamitogepek.csv room &quot;Szoba 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Az első oszlopban a szobát tartalmazó CSV fájl importálása:
-
-    %1 import szamitogepekSzobakkal.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Reguláris kifejezések megadott kulcs/érték párokat tartalmazó TXT fájl importálása:
-
-    %1 import kiszolgaloLista.txt room &quot;01 Szoba&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Önkényesen formázott adatok importálása:
-
-    %1 import adat.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
 </context>
 <context>
@@ -1505,79 +1501,6 @@ Példák:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>&quot;%1&quot; fájl nem nyitható meg olvasásra. Kérem, ellenőrizd a jogosultságaidat.</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Fájlátvitel</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Lehetőség</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>Csak átvitel</translation>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation>Átvitel és a fájl(ok) megnyitása a társított programmal</translation>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation>Átvitel és a célmappa megnyitása</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>Fájlok</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Indítás</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Fájlok felülírása</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Fájlátvitel</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Kattints erre gombra, hogy számítógépedről fájlokat küld át az összes számítógépre.</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>Válasszon ki egy vagy több fájlt az átvitelhez</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Fájlok átvitele távoli számítógépre</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; fájl fogadva.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>&quot;%1&quot; fájl nem fogadható, mert már létezik.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>&quot;%1&quot; fájl nem fogadható, mert nem nyitható meg írásra!</translation>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1718,82 +1641,6 @@ Példák:
     <message>
         <source>Key file authentication</source>
         <translation>Kulcsfájl hitelesítés</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Internethozzáférés-vezérlés</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Háttér:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Általános beállítások</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Háttér beállításai</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Internet-hozzáférés blokkolása</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Internet-hozzáférés engedélyezése</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Internet blokkolása</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Az internet-hozzáférés blokkolásához kattintson erre a gombra. </translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Internet blokkolásának feloldása</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Az internet-hozzáférés engedélyezéséhez kattintson erre a gombra. </translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Internethozzáférés-vezérlés</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Internethozzáférés-vezérlés parancsai</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>LDAP hiba leírása: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>LDAP hiba leírása nem érhető el</translation>
     </message>
 </context>
 <context>
@@ -2026,7 +1873,7 @@ Példák:
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Felhasználónév</translation>
+        <translation>Add meg a felhasználónevet</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2450,6 +2297,17 @@ Példák:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP hiba leírása: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>LDAP hiba leírása nem érhető el</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2478,152 +2336,6 @@ Példák:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Licencelés</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Telepített licencek</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Új hálózati tartomány hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation>Szolgáltatás</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Érvényes eddig</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Licencelő</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Licencfájlok böngészése</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon licencfájlok (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Licenc eltávolítása</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Biztos, hogy eltávolítod a kiválasztott licenceket?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Érvénytelen licencfájlok</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>A licencfájl nem nyitható meg olvasásra!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>A kiválasztott licencfájl nem tartalmaz érvényes adatot.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>A kiválasztott licencfájl nem ellenőrizhető.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>A kiválasztott licencfájl nem érvényes ehhez a telepítéshez.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>A kiválasztott licencfájl lejárt.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>A licencet már telepítették.</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Az összes telepített licenc megjelenítése</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Licencfájlok hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Telepített licencek eltávolítása</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-HASZNÁLAT
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-HASZNÁLAT
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>A megadott ID-vel nem található tanúsítvány </translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Licenckezelése</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Licenckulcs-kezelési parancsok</translation>
     </message>
 </context>
 <context>
@@ -2830,18 +2542,6 @@ HASZNÁLAT
         <source>&amp;Save settings to file</source>
         <translation>Beállítások &amp;mentése fájlba</translation>
     </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2985,14 +2685,6 @@ HASZNÁLAT
         <source>Text color</source>
         <translation>Betűszín</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation>Rendezés</translation>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation>Számítógép és felhasználónév</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3007,149 +2699,6 @@ HASZNÁLAT
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Ez az alapértelmezett mód, ami lehetővé teszi, hogy monitorozd az egy vagy több szobában lévő összes számítógépet.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Hálózat felderítése</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Mód</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Hálózati tartományok átvizsgálása</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>pl. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>A számítógép összes alhálózatának átvizsgálása</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Egyéni alhálózat átvizsgálása</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>A helyi számítógép munkameneteinek átvizsgálása</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Tesztelés</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Hálózati tartományok</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Új csoport hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Kiválasztott csoport eltávolítása</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Csoportok</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Első cím</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Utolsó cím</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Új hálózati tartomány hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Párhuzamos átvizsgálások</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Átvizsgálási időtúllépés</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Átvizsgálás munkamenetének korlátja</translation>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>Új csoport</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Lehetőség</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>A fordított keresés IP-címeket talált a kiszolgálónevekhez</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Átvizsgálás...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Felderített számítógépek</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Egy alhálózat átvizsgálása</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Hálózatobjektum-felderítő, ami automatikusan felderíti a hálózat számítógépeit</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Hálózat felderítése (hálózat átvizsgálása Veyon kliens után)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>A hálózatfelderítő-mappát kezelő parancsok</translation>
     </message>
 </context>
 <context>
@@ -3231,30 +2780,6 @@ HASZNÁLATA
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Egy számítógép bekapcsolása hálózati ébresztéssel (WOL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>FIZIKAI CÍM</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Ez a parancs egy hálózati ébresztő jelcsomagot (WOL) szór a hálózaton, hogy a megadott fizikai című számítógépeket bekapcsolja.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>A fizikai cím érvénytelen!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>A számítógépek működési állapotát módosító parancsok </translation>
     </message>
 </context>
 <context>
@@ -3379,32 +2904,6 @@ HASZNÁLATA
     <message>
         <source>enter search filter...</source>
         <translation>írd ide a keresési szűrőt...</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Az internetelérés módosítása az útvonaltábla módosításával</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Az alapértelmezett útvonalak eltávolítása az internetelérés blokkolásáért</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Egyéni útvonal hozzáadása az internet blokkolásáért</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Cél</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Átjáró</translation>
     </message>
 </context>
 <context>
@@ -3763,11 +3262,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Többmonitoros támogatás bekapcsolása</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Asztalduplikációs motor bekapcsolása Windows 8 vagy újabb rendszeren</translation>
     </message>
 </context>
 <context>
@@ -3841,22 +3340,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>A modul nincs megadva vagy nem található - az elérhető modulok:</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>A bővítmény nem licencelt</translation>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation>INFO</translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>HIBA</translation>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation>licencelt</translation>
     </message>
 </context>
 <context>

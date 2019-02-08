@@ -732,10 +732,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation>新计算机</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>内置目录</translation>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -770,6 +766,58 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>导出对象到指定的文件</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+用法
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+可用的变量: %name% %host% %mac% %room%
+
+范例:
+
+* 将单纯的 CSV 文件导入单个房间：:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* 导入第一列中带有房间名称的 CSV 文件:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* 使用正则表达式导入导入键/值对文本文件:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* 导入已格式化的数据:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -987,58 +1035,6 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>Parent UUID</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-用法：
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-可用的变量： %type% %name% %host% %mac% %room%
-
-范例：
-
-* 将简单的 CSV 文件导入单个教室：
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* 导入在第一列中带有房间名称的 CSV 文件：
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* 使用正则表达式导入带有键/值对的文本文件：
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-*导入任意格式的数据：
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
 </context>
 <context>
@@ -1505,79 +1501,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>无法打开文件 &quot;%1&quot; 进行阅读！ 请检查你的权限！</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>文件传输</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>首选项</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>仅传输</translation>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation>传输并用关联的程序打开</translation>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation>传输并打开目标文件夹</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>文件</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>开始</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>覆盖已存在的文件</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>发布文件</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>单击此按钮可将文件从您的计算机发送到所有计算机。</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>选择一个或多个要发送的文件</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>发送文件到远程计算机</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>接收文件 &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>不能接收文件 &quot;%1&quot; ，因为它已经存在。</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>不能接收文件 &quot;%1&quot; ，因为它无法写入。</translation>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1718,82 +1641,6 @@ Examples:
     <message>
         <source>Key file authentication</source>
         <translation>密钥验证</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>互联网访问控制</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>后端：</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>常规设置</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>后台设置</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>阻止访问互联网</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>允许访问互联网</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>显此命令的帮助信息</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>阻止互联网</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>点击此按钮，阻止访问互联网。</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>取消阻止互联网</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>点击此按钮，取消阻止访问互联网。</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>控制访问互联网</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>控制访问互联网的命令</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>LDAP错误描述： %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>没有可用的 LDAP 错误说明</translation>
     </message>
 </context>
 <context>
@@ -2450,6 +2297,17 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP错误描述： %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>没有可用的 LDAP 错误说明</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2478,152 +2336,6 @@ Examples:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP(从 LDAP/AD 加载用户和组)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>许可</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>已安装的许可证</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>添加新的网络范围</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>移除选中的网络范围</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation>特性</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>有效期至</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>被许可人</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>浏览许可证文件</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon  许可证文件</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>删除许可证</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>您确定要删除所选的许可证吗？</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>无效的许可证文件</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>无法打开打开并读取许可证文件！</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>选定的许可证文件不包含有效数据。</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>无法验证所选的许可证文件。</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>选定的许可证文件对此安装无效。</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>选定的许可证文件已过期。</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>许可证已安装。</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>为指定的命令显示帮助</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>显示所有已安装的许可</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>添加许可证文件</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>删除已安装的许可证</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-用法：
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-用法：
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>找不到给定 ID 的许可证书</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>许可管理</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>用于管理许可证密钥的命令</translation>
     </message>
 </context>
 <context>
@@ -2830,18 +2542,6 @@ USAGE
         <source>&amp;Save settings to file</source>
         <translation>&amp;S保存设置到文件</translation>
     </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2985,14 +2685,6 @@ USAGE
         <source>Text color</source>
         <translation>文本颜色</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation>排序</translation>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation>计算机和用户名</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3007,149 +2699,6 @@ USAGE
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>这是默认模式，并允许您监视一个或多个房间中的所有计算机。</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>网络发现</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>模式</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>扫描网络范围</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>例如： 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>扫描计算机的所有子网</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>扫描指定的子网</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>扫描会话在本地计算机上</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>测试</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>网络范围</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>添加新的组</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>移除选中的组</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>组</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>第一个地址</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>最后一个地址</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>添加新的网络范围</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>移除选中的网络范围</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>并行扫描</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>扫描超时</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>毫秒</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>会话扫描限制</translation>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>新建组</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>首选项</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>反向查找已发现的IP地址到主机名</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>正在扫描...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>查找计算机</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>为指定的命令显示帮助</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>扫描一个子网</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-用法：
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>网络中，可自动发现计算机的网络对象目录</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>网络发现(Veyon 客户端的扫描网络)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>用于管理网络发现目录的命令</translation>
     </message>
 </context>
 <context>
@@ -3231,30 +2780,6 @@ USAGE
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>你确定要关闭选定的电脑吗？</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>通过局域网唤醒(WOL)打开计算机电源</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC 地址(网卡物理地)</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>此命令将网络唤醒(WOL)数据包广播到网络，以便使用给定的MAC地址打开计算机的电源。</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>请指定需要显示用法命令！</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>指定的 MAC 地址无效！</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>用于控制计算机电源状态的命令</translation>
     </message>
 </context>
 <context>
@@ -3379,32 +2904,6 @@ USAGE
     <message>
         <source>enter search filter...</source>
         <translation>输入搜索管理器...</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>通过修改路由表来控制 Internet 访问</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>删除默认路由以阻止 Internet 访问</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>通过添加自定义路由来阻止访问互联网</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>目标地址</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>网关</translation>
     </message>
 </context>
 <context>
@@ -3718,7 +3217,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>发送文字消息</translation>
+        <translation>发送消息</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3842,22 +3341,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>没有指定的模块或找不到模块 - 可用模块为：</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>插件没有许可</translation>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation>INFO</translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>ERROR</translation>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation>许可给</translation>
     </message>
 </context>
 <context>

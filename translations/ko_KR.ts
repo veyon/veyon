@@ -731,10 +731,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation>새 컴퓨터</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>게시물 폴더</translation>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -769,6 +765,58 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>지정된 화일로 개체 내보내기</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+사용법
+
+%1 import &lt;FILE&gt; [교실&lt;ROOM&gt;] [형식 &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [정규표현식&lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+유효한 변수들: %name% %host% %mac% %room%
+
+예제:
+
+* 간단한 CSV 화일을 한 교실로 가져오기::
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* 첫째 컬럼에 교실 이름이 있는 CSV 가져오기:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+*정규표현식을 사용하는 키/값 페어를 다음을 이용해서 가져오기 ::
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* 임의 형식으로 된 데이터 가져오기:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -986,58 +1034,6 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>부모 UUID</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-사용법
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-유효한 변수들: %type% %name% %host% %mac% %room%
-
-사용예:
-
-* 싱글룸에 간단한 CSV 파일을 불러 옴:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-*첫 열에 룸 이름과 CSV 파일을 불러 옴:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* 정규 표현식을 이용하여 키/값과 함께 텍스트 화일을 불러 옴:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* 임의의 형식으로 포맷된 데이타를 불러 옴:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
 </context>
 <context>
@@ -1505,79 +1501,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>화일 &quot;%1&quot;을 읽을 수 없습니다! 권한을 점검하기 바랍니다!</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>화일 전송</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>옵션</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>전송만 함</translation>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation>전송한 후 화일과 연결되어 있는 프로그램으로 화일(들) 열기</translation>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation>전송하고 도착 폴더를 열기</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>화일</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>시작</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>기존 화일을 덮어 씀</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>화일 전송</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>다른 모든 컴퓨터로 화일을 전송하려면 이버튼을 클릭하세요</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>전송하려는 하나 또는 여러개의 화일을 선택하세요</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>원격 컴퓨터로 화일 전송</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>받은 화일 &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>화일 &quot;%1&quot; 이 이미 존재하므로 덮어 쓸 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>화일 &quot;%1&quot; 이 쓸수 있도록 열리지 않아 화일을 받을 수 없습니다!</translation>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1718,82 +1641,6 @@ Examples:
     <message>
         <source>Key file authentication</source>
         <translation>키 화일 인증</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>인터넷 연결 제어</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>백엔드:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>일반 설정</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>백엔드 설정</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>인터넷 접근 제한</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>인터넷 접근 허용</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>인터넷 연결제한</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>클릭하여 인터넷 접근을 제한</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>인터넷 연결허용</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>클릭하여 인터넷 접근을 허용</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>인터넷 접근 제어</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>인터넷 접근 제어용 명령어들</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation>LDAP 찾아보기</translation>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>LDAP 에러 설명: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>LDAP 에러 설명이 없음</translation>
     </message>
 </context>
 <context>
@@ -2448,6 +2295,17 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP 에러 설명: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>LDAP 에러 설명이 없음</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2476,152 +2334,6 @@ Examples:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Licensing</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>설치된 라이센스</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>새로운 네트워크 범위 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>선택된 네트워크 범위 삭제</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation>기능</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>다음 기간동안 유효함</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>사용권자</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>라이센스 파일 찾아보기</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon 라이센스 파일 (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>라이센스 제거</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>선택된 라이센스를 제거하시겠습니까 ?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>유효하지 않은 라이센스 파일</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>라이센스 파일을 읽을 수 없습니다!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>선택된 라이센스 파일에 유효한 데이터가 없습니다.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>선택한 라이센스 파일을 검증할 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>선택된 라이센스 파일을 이번 설치에 사용할 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>선택된 라이센스 파일의 유효기간이 지났습니다.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>이 라이센스는 이미 설치 되었습니다.</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>특정 명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>설치된 모든 라이센스를 보여주기</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>라이센스 파일을 추가</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>설치된 라이센스 제거</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-사용법
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-사용법
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>주어진 ID에 해당하는 인증서가 발견되지 않음</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>라이센스 관리</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>라이센스 키 관리용 명령어들</translation>
     </message>
 </context>
 <context>
@@ -2828,18 +2540,6 @@ USAGE
         <source>&amp;Save settings to file</source>
         <translation>&amp;설정을 화일에 저장</translation>
     </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;View 보기</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standard 표준</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Advanced 고급</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2983,14 +2683,6 @@ USAGE
         <source>Text color</source>
         <translation>글자색</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation>정렬 순서</translation>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation>켬퓨터 및 사용자 이름</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3005,149 +2697,6 @@ USAGE
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>이 모드는 기본 모드로서 하나 또는 그 이상의 방의 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>네트워크 발견</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>모드</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>네트워크 범위 검색</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>e.g. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>컴퓨터의 모든 서브넷 검색</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>사용자 서브넷 검색</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>로컬 컴퓨터 스캔 세션</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>테스트</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>네트워크 범위</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>새 그룹 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>선택된 그룹 삭제</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>그룹</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>첫번째 주소</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>마지막 주소</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>새로운 네트워크 범위 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>선택된 네트워크 범위 삭제</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>병행 스캔</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>시간 시간 초과</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>세션 스캔 제한</translation>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>새그룹</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>옵션</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>발견된 IP 주소를 호스트 이름으로 검색하기</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>스캐닝...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>검색된 컴퓨터들</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>특정 명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>서브넷 스캔</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-사용법
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>네트워크의 컴퓨터들을 자동으로 검색하기 위한 네트워크 오브젝트 폴더</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>네트워크 검색(Veyon 클라이언트용 네트워크 검색)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>네트워크 검색 폴더를 제어하기 위한 명령어들</translation>
     </message>
 </context>
 <context>
@@ -3230,30 +2779,6 @@ USAGE
         <source>Do you really want to power down the selected computer?</source>
         <translation>선택된 컴퓨터 파워를 끄시겠습니까 ?</translation>
     </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Wake-on-LAN(WOL)을 사용하여 컴퓨터 파워를 켬</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>맥 어드레스</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>도움말을 표시할 명령어를 지정하세요</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>유효하지 않은 MAC 주소가 선택됨!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>컴퓨터 파워 상태를 제어하기 위한 명령어들</translation>
-    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -3321,7 +2846,7 @@ USAGE
     </message>
     <message>
         <source>Quit</source>
-        <translation>종료하기</translation>
+        <translation>종료</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3377,32 +2902,6 @@ USAGE
     <message>
         <source>enter search filter...</source>
         <translation>검색 필터 입력 ....</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>라우팅 테이블을 수정하여 인터넷 접속 제어</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>인터넷 접속을 제한하기 위해 기본 루트 제거</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>인터넷 제한하기 위한 사용자 루트 추가</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>목적지</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>게이트 웨이</translation>
     </message>
 </context>
 <context>
@@ -3840,22 +3339,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>모듈이 지정되지 않았거나 찾을 수 없음 - 사용가능한 모듈들은:</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>플러그인 라이센스 안됨</translation>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation>정보</translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>에러</translation>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation>에게 사용허가 됨  </translation>
     </message>
 </context>
 <context>

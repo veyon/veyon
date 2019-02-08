@@ -58,7 +58,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation>Preizkusi</translation>
+        <translation>Preizkus</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
@@ -731,10 +731,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>New computer</source>
         <translation>Nov računalnik</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -771,12 +767,64 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Izvozi predmete v dano datoteko</translation>
     </message>
     <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+UPORABA
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Veljavne spremenljivke: %name% %host% %mac% %room%
+
+Primeri:
+
+* Uvozi preprosto datoteko CSV v eno sobo:
+
+     %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Uvozi datoteko CSV z imenom sobe v prvi stolpec:
+
+     %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Uvozi besedilno datoteko s parom ključ/vrednost z uporabo regularnih izrazov:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Uvoz poljubno oblikovanih podatkov:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+	</translation>
+    </message>
+    <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
         <translation>Naveden je neveljaven tip. Veljavne vrednosti so &quot;%1&quot; ali &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Tip</translation>
+        <translation>Vrsta</translation>
     </message>
     <message>
         <source>Name</source>
@@ -988,34 +1036,6 @@ Primeri:
         <source>Parent UUID</source>
         <translation>Starševski UUID</translation>
     </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1071,7 +1091,7 @@ Examples:
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Ni prijavljenih uporabnikov</translation>
+        <translation>Uporabnik ni prijavljen na</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1086,7 +1106,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Napaka avtentifikacije</translation>
+        <translation>Napaka preverjanja pristnosti</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1481,79 +1501,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Žal ne morem odpreti datoteke &quot;%1&quot; za branje! Prosimo, preverite svoja dovoljenja!</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Prenos datoteke</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Možnosti</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>Datoteke</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Začetek</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Prepiši obstoječe datoteke</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Prenos datoteke</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Klikni na ta gumb za prenos datotek iz vašega računalnika na vse računalnike.</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>Izberi eno ali več datotek za prenos</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Prenesi datoteke na oddaljeni računalnik</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Prejeta datoteka &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Ne morem prejeti datoteke &quot;%1&quot;, ker že obstaja.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1697,82 +1644,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Nadzor dostopa do interneta</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Hrbtna:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Splošne nastavitve</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Nastavitve ozadja</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Blokiraj dostop do interneta</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Dovoli dostop do interneta</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Pokaži pomoč o ukazu</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Blokiraj internet</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Kliknite ta gumb, da blokirate dostop do interneta.</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Odblokiraj internet</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Kliknite ta gumb, da omogočite dostop do interneta.</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Nadzor dostopa do interneta</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Ukazi za nadzor dostopa do interneta</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Opis napake LDAP: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Na voljo ni opisa napake LDAP</translation>
-    </message>
-</context>
-<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -1808,7 +1679,7 @@ Examples:
     </message>
     <message>
         <source>Test</source>
-        <translation>Preizkusi</translation>
+        <translation>Preizkus</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2426,6 +2297,17 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Opis napake LDAP: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Na voljo ni opisa napake LDAP</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2454,142 +2336,6 @@ Examples:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP (naloži uporabnike in skupine iz LDAP/AD)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Prikaži pomoč za določen ukaz</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2742,7 +2488,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Zaslonska slika</translation>
+        <translation>Zaslonske slike</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2795,18 +2541,6 @@ USAGE
     <message>
         <source>&amp;Save settings to file</source>
         <translation>&amp;Shrani nastavitve v datoteko</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2951,14 +2685,6 @@ USAGE
         <source>Text color</source>
         <translation>Barva besedila</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2973,144 +2699,6 @@ USAGE
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>To je privzeti način in vam omogoča spremljanje vseh računalnikov v eni ali več sobah.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>npr. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Preizkus</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Dodaj novo skupino</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Odstrani izbrano skupino</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Skupine</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>Nova skupina</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Možnosti</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Odkriti računalniki</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Prikaži pomoč za določen ukaz</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3192,30 +2780,6 @@ USAGE
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Ste prepričani, da želite izklopiti izbrani računalnik?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC naslov</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Navedite ukaz za prikaz pomoči!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Neveljavni MAC naslov</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3340,32 +2904,6 @@ USAGE
     <message>
         <source>enter search filter...</source>
         <translation>vnesi iskalni filter...</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3679,7 +3217,7 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Pošlji besedilno sporočilo</translation>
+        <translation>Pošlji sporočilo</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3803,22 +3341,6 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Ni določenega modula ali modula ni mogoče najti - razpoložljivi moduli so:</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -728,10 +728,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>New computer</source>
         <translation>Neuer Computer</translation>
     </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Integriertes Verzeichnis</translation>
-    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -766,6 +762,58 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Export objects to given file</source>
         <translation>Objekte in angegebene Datei exportieren</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+VERWENDUNG
+
+%1 import &lt;DATEI&gt; [room &lt;RAUM&gt;] [format &lt;FORMATSTRING-MIT-VARIABLEN&gt;] [regex &lt;REGULÄRER-AUSRUCK-MIT-VARIABLEN&gt;]
+
+Gültige Variablen: %name% %host% %mac% %room%
+
+Beispiele:
+
+* Einfache CSV-Datei für einzelnen Raum importieren:
+
+    %1 import computers.csv room &quot;Raum 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* CSV-Datei mit Raumname in erster Spalte importieren:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Textdatei mit Schlüssel/Wert-Paaren mit Hilfe von regulären Ausdrücken importieren:
+
+    %1 import hostlist.txt room &quot;Raum 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Beliebig formatierte Daten importieren:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -984,58 +1032,6 @@ Beispiele:
     <message>
         <source>Parent UUID</source>
         <translation>Eltern-UUID</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-VERWENDUNG
-
-%1 import &lt;DATEI&gt; [room &lt;RAUM&gt;] [format &lt;FORMATSTRING-MIT-VARIABLEN&gt;] [regex &lt;REGULÄRER-AUSRUCK-MIT-VARIABLEN&gt;]
-
-Gültige Variablen: %type% %name% %host% %mac% %room%
-
-Beispiele:
-
-* Einfache CSV-Datei für einzelnen Raum importieren:
-
-    %1 import computers.csv room &quot;Raum 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* CSV-Datei mit Raumname in erster Spalte importieren:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Textdatei mit Schlüssel/Wert-Paaren mit Hilfe von regulären Ausdrücken importieren:
-
-    %1 import hostlist.txt room &quot;Raum 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Beliebig formatierte Daten importieren:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
 </context>
 <context>
@@ -1502,79 +1498,6 @@ Beispiele:
     </message>
 </context>
 <context>
-    <name>FileTransferController</name>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Datei &quot;%1&quot; konnte nicht zum Lesen geöffnet werden! Bitte Berechtigungen überprüfen!</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferDialog</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Dateiübertragung</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Optionen</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>Nur übertragen</translation>
-    </message>
-    <message>
-        <source>Transfer and open file(s) with associated program</source>
-        <translation>Übertragen und Dateie(n) mit verknüpftem Programm öffnen</translation>
-    </message>
-    <message>
-        <source>Transfer and open destination folder</source>
-        <translation>Übertragen und Zielordner öffnen</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation>Dateien</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Start</translation>
-    </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Bestehende Dateien überschreiben</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferPlugin</name>
-    <message>
-        <source>File transfer</source>
-        <translation>Dateiübertragung</translation>
-    </message>
-    <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um Dateien von Ihrem Computer auf alle Computer zu übertragen.</translation>
-    </message>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>Eine oder mehrere Dateien für die Übertragung auswählen</translation>
-    </message>
-    <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Dateien auf entfernte Computer übertragen</translation>
-    </message>
-    <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Datei &quot;%1&quot; empfangen.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie bereits existiert.</translation>
-    </message>
-    <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie nicht zum Schreiben geöffnet werden konnte!</translation>
-    </message>
-</context>
-<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1715,82 +1638,6 @@ Beispiele:
     <message>
         <source>Key file authentication</source>
         <translation>Schlüsseldatei-Authentifizierung</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Internetzugriffskontrolle</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Allgemeine Einstellungen</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Backend-Einstellungen</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Zugriff auf das Internet blockieren</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Zugriff auf das Internet erlauben</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Hilfe über Befehl anzeigen</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Internet sperren</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Klicken Sie auf diesen Button, um den Zugriff auf das Internet zu sperren.</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Internet freigeben</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Klicken Sie auf diesen Button, um den Zugriff auf das Internet wieder freizugeben.</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Internetzugriff steuern</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Befehle zur Steuerung des Internetzugriffs</translation>
-    </message>
-</context>
-<context>
-    <name>LdapBrowseDialog</name>
-    <message>
-        <source>Browse LDAP</source>
-        <translation>LDAP durchsuchen</translation>
-    </message>
-</context>
-<context>
-    <name>LdapClient</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>LDAP-Fehlerbeschreibung: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Keine LDAP-Fehlerbeschreibung verfügbar</translation>
     </message>
 </context>
 <context>
@@ -2447,6 +2294,17 @@ Beispiele:
     </message>
 </context>
 <context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP-Fehlerbeschreibung: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Keine LDAP-Fehlerbeschreibung verfügbar</translation>
+    </message>
+</context>
+<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2475,152 +2333,6 @@ Beispiele:
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
         <translation>LDAP (Benutzer und Gruppen aus LDAP/AD laden)</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Lizenzierung</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Installierte Lizenzen</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Neuen Netzwerkbereich hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Gewählten Netzwerkbereich entfernen</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation>Funktion</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Gültig bis</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Lizenznehmer</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Lizenzfile auswählen</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon-Lizenz-Datei (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Lizenz entfernen</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Möchten Sie wirklich die gewählte Lizenz entfernen?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/V&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Ungültige Lizenzdatei</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>Die Lizenzdatei konnte nicht zum Lesen geöffnet werden!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>Die gewählte Lizenzdatei enthält keine gültigen Daten.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>Die gewählte Lizenzdatei konnte nicht verifiziert werden.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>Die gewählte Lizenzdatei ist nicht gültig für diese Installation.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>Die gewählte Lizenzdatei ist abgelaufen.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>Die Lizenz ist bereits installiert.</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Hilfe für bestimmten Befehl anzeigen</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Alle installierten Lizenzen anzeigen</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Lizenzdatei hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Installierte Lizenz entfernen</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-VERWENDUNG
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-VERWENDUNG
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>Kein Zertifikat mit angegebener ID gefunden</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/V&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Lizenzverwaltung</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Befehle zum Verwalten von Lizenzschlüsseln</translation>
     </message>
 </context>
 <context>
@@ -2827,18 +2539,6 @@ VERWENDUNG
         <source>&amp;Save settings to file</source>
         <translation>Einstellungen in Datei &amp;speichern</translation>
     </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;Ansicht</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Erweitert</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2982,14 +2682,6 @@ VERWENDUNG
         <source>Text color</source>
         <translation>Textfarbe</translation>
     </message>
-    <message>
-        <source>Sort order</source>
-        <translation>Sortierreihenfolge</translation>
-    </message>
-    <message>
-        <source>Computer and user name</source>
-        <translation>Computer- und Benutzername</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3004,148 +2696,6 @@ VERWENDUNG
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Dies ist der Standardmodus und erlaubt es Ihnen, alle Computer in einem oder mehreren Räumen zu beobachten.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Netzwerkerkennung</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Modus</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Netzwerkbereiche scannen</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>z.B. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Alle Subnetze des Computers scannen</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Benutzerdefiniertes Subnetz scannen</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Sitzungen auf lokalem Computer scannen</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testen</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Netzwerkbereiche</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Neue Gruppe hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Gewählte Gruppe entfernen</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Gruppen</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Erste Adresse</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Letzte Adresse</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Neuen Netzwerkbereich hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Gewählten Netzwerkbereich entfernen</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Parallele Scans</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Scan-Timeout</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Limit für Sitzungsscan</translation>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>Neue Gruppe</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Optionen</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Gefundene IP-Adressen in Hostnamen rückwärts auflösen</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Scanne...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Gefundene Computer</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Hilfe für bestimmten Befehl anzeigen</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Ein Subnetz scannen</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-VERWENDUNG
-
-%1 scan [&lt;SUBNETZ&gt;]
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Netzwerkobjektverzeichnis, das automatisch Computer im Netzwerk erkennt</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Netzwerkerkennung (Veyon-Clients im Netzwerk suchen)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>Befehle zur Verwaltung des Netzwerkobjektverzeichnisses</translation>
     </message>
 </context>
 <context>
@@ -3228,30 +2778,6 @@ VERWENDUNG
         <source>Do you really want to power down the selected computer?</source>
         <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
     </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Computer via Wake-on-LAN (WOL) einschalten</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC-ADRESSE</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Dieser Befehl sendet ein Wake-on-LAN (WOL) Paket an das Netzwerk, um den Computer mit der angegebenen MAC-Adresse einzuschalten</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Ungültige MAC-Adresse angegeben!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Befehle zur Steuerung des Einschaltzustands von Computern</translation>
-    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -3265,7 +2791,7 @@ VERWENDUNG
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fernsteuerung</translation>
+        <translation>Fernsteuern</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -3375,32 +2901,6 @@ VERWENDUNG
     <message>
         <source>enter search filter...</source>
         <translation>Suchfilter eingeben...</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Internetzugriff durch Modifizierung der Routingtabelle</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Defaultroute entfernen um Internetzugriff zu sperren</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Benutzerdefinierte Route hinzufügen um Internetzugriff zu sperren</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Ziel</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Gateway</translation>
     </message>
 </context>
 <context>
@@ -3838,22 +3338,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Kein Modul angegeben oder Modul nicht gefunden - verfügbare Module sind:</translation>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>Plugin nicht lizenziert</translation>
-    </message>
-    <message>
-        <source>INFO</source>
-        <translation>INFO</translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>FEHLER</translation>
-    </message>
-    <message>
-        <source>licensed for</source>
-        <translation>lizenziert für</translation>
     </message>
 </context>
 <context>
