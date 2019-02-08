@@ -327,7 +327,7 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="label_29">
+           <widget class="QLabel" name="computerTreeLabel">
             <property name="text">
              <string>Computer tree</string>
             </property>
@@ -341,7 +341,7 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_16">
+           <widget class="QLabel" name="userTreeLabel">
             <property name="text">
              <string>User tree</string>
             </property>
@@ -355,14 +355,14 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="label_28">
+           <widget class="QLabel" name="groupTreeLabel">
             <property name="text">
              <string>Group tree</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="label_40">
+           <widget class="QLabel" name="computerGroupTreeLabel">
             <property name="text">
              <string>Computer group tree</string>
             </property>

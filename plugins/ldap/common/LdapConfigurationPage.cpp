@@ -237,7 +237,8 @@ void LdapConfigurationPage::testUserTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users().count();
 
-		reportLdapTreeQueryResult( tr( "user tree" ), count, ldapDirectory.client().errorDescription() );
+		reportLdapTreeQueryResult( tr( "user tree" ), count, ui->userTreeLabel->text(),
+								   ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -254,7 +255,8 @@ void LdapConfigurationPage::testGroupTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groups().count();
 
-		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.client().errorDescription() );
+		reportLdapTreeQueryResult( tr( "group tree" ), count, ui->groupTreeLabel->text(),
+								   ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -271,7 +273,8 @@ void LdapConfigurationPage::testComputerTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computersByHostName().count();
 
-		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.client().errorDescription() );
+		reportLdapTreeQueryResult( tr( "computer tree" ), count, ui->computerTreeLabel->text(),
+								   ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -288,7 +291,8 @@ void LdapConfigurationPage::testComputerGroupTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computerGroups().count();
 
-		reportLdapTreeQueryResult( tr( "computer group tree" ), count, ldapDirectory.client().errorDescription() );
+		reportLdapTreeQueryResult( tr( "computer group tree" ), count, ui->computerGroupTreeLabel->text(),
+								   ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -685,14 +689,15 @@ bool LdapConfigurationPage::testBind( bool quiet )
 
 
 
-void LdapConfigurationPage::reportLdapTreeQueryResult(const QString &name, int count, const QString &errorDescription)
+void LdapConfigurationPage::reportLdapTreeQueryResult( const QString& name, int count,
+													   const QString& parameter, const QString& errorDescription )
 {
 	if( count <= 0 )
 	{
 		QMessageBox::critical( this, tr( "LDAP %1 test failed").arg( name ),
 							   tr( "Could not query any entries in configured %1. "
 								   "Please check the parameter \"%2\".\n\n"
-								   "%2" ).arg( name, errorDescription ) );
+								   "%3" ).arg( name, parameter, errorDescription ) );
 	}
 	else
 	{

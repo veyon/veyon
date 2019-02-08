@@ -84,7 +84,8 @@ private:
 	}
 
 	bool testBind( bool quiet );
-	void reportLdapTreeQueryResult( const QString& name, int count, const QString& errorDescription );
+	void reportLdapTreeQueryResult( const QString& name, int count, const QString& parameter,
+									const QString& errorDescription );
 	void reportLdapObjectQueryResults( const QString &objectsName, const QStringList& parameterNames,
 									   const QStringList &results, const LdapDirectory& directory );
 	void reportLdapFilterTestResult( const QString &filterObjects, int count, const QString &errorDescription );
