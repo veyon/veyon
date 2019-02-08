@@ -192,10 +192,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation type="unfinished"></translation>
     </message>
@@ -261,6 +257,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is located in</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -681,14 +681,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -705,23 +697,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New room</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -732,31 +712,35 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Builtin directory</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -804,10 +788,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -817,10 +797,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Room</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -844,10 +820,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -864,12 +836,68 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a location or computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>
 USAGE
 
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+%1 import &lt;FILE&gt; [location &lt;LOCATION&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
 
-Valid variables: %type% %name% %host% %mac% %room%
+Valid variables: %type% %name% %host% %mac% %location%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv location &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with location name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%location%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt location &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex &apos;^&quot;(%location%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [location &lt;LOCATION&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %location%
 
 Examples:
 
@@ -877,9 +905,9 @@ Examples:
 
     %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
 
-* Export all computers in a room to a CSV file:
+* Export all computers in a location to a CSV file:
 
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+    %1 export computers.csv location &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
         <translation type="unfinished"></translation>
@@ -896,7 +924,7 @@ Examples:
 
 * Add a room:
 
-    %1 add room &quot;Room 01&quot;
+    %1 add location &quot;Room 01&quot;
 
 * Add a computer to room &quot;Room 01&quot;:
 
@@ -911,7 +939,7 @@ USAGE
 
 %1 remove &lt;OBJECT&gt;
 
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
+Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a location will also remove all related computers.
 
 Examples:
 
@@ -927,39 +955,15 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Object UUID</source>
+        <source>Location &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Parent UUID</source>
+        <source>Builtin (computers and locations in local configuration)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</source>
+        <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1753,10 +1757,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Base DN</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1958,10 +1958,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1971,10 +1967,6 @@ Examples:
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2010,10 +2002,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2023,10 +2011,6 @@ Examples:
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2050,10 +2034,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2071,10 +2051,6 @@ Examples:
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2110,23 +2086,11 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2174,55 +2138,7 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Integration tests</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2230,15 +2146,7 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2251,14 +2159,6 @@ Examples:
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2351,6 +2251,106 @@ Examples:
         <source>Encryption protocol</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2371,15 +2371,61 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDAP (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDAP Pro (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDAP Pro (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2985,15 +3031,15 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New location</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3043,7 +3089,7 @@ USAGE
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
+        <source>Locations/Computers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
