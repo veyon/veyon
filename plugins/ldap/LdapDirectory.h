@@ -32,13 +32,6 @@
 
 class LdapConfiguration;
 
-class LdapClient : public QObject
-{
-	Q_OBJECT
-public:
-	LdapClient() = default;
-};
-
 class LdapDirectory : public QObject
 {
 	Q_OBJECT
