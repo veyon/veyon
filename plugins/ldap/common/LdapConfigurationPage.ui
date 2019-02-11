@@ -3,7 +3,7 @@
  <class>LdapConfigurationPage</class>
  <widget class="QWidget" name="LdapConfigurationPage">
   <property name="windowTitle">
-   <string>LDAP</string>
+   <string notr="true">LDAP Basic</string>
   </property>
   <property name="windowIcon">
    <iconset resource="ldap.qrc">
