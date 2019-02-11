@@ -5,6 +5,7 @@ RUN \
 	apt-get update && \
 	apt-get install --no-install-recommends -y software-properties-common && \
 	add-apt-repository -y "ppa:tobydox/mingw-w64" && \
+	add-apt-repository -y "ppa:veyon/mingw-w64-4.2" && \
 	apt-get update && \
 	apt-get install --no-install-recommends -y \
 		git \
