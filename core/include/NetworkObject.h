@@ -105,11 +105,6 @@ public:
 		return m_name;
 	}
 
-	void setName( const Name& name )
-	{
-		m_name = name;
-	}
-
 	const QString& hostAddress() const
 	{
 		return m_hostAddress;
