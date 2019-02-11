@@ -150,7 +150,7 @@ ${INSTALL_TYPE}
 ClearErrors
 ExecWait '"$INSTDIR\veyon-wcli.exe" service unregister'
 ${If} $0 != 0
-  ExecWait '"$INSTDIR\veyon-cli.exe" service unregister'
+  ExecWait '"$INSTDIR\veyon-ctl.exe" service unregister'
 ${EndIf}
 Delete "$INSTDIR\*.dll"
 Delete "$INSTDIR\install-interception.exe"
