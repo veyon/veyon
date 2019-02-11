@@ -271,7 +271,8 @@ IF(WIN32)
 			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/ddengine/${DLL_DDENGINE} ${TMP}
 			COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe cli/*.exe worker/veyon-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
-			COMMAND find plugins/ -name "*.dll" -exec cp '{}' ${TMP}/plugins/ '\;'
+			COMMAND find plugins/ -name '*.dll' -exec cp '{}' ${TMP}/plugins/ '\;'
+			COMMAND mv ${TMP}/plugins/lib*.dll ${TMP}
 			COMMAND mkdir -p ${TMP}/translations
 			COMMAND cp translations/*qm ${TMP}/translations/
 			COMMAND cp ${DLLDIR}/libjpeg-62.dll ${TMP}
