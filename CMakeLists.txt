@@ -293,7 +293,9 @@ IF(WIN32)
 			COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${TMP}
 			COMMAND mkdir -p ${TMP}/platforms
 			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${TMP}/platforms
-			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*.dll ${TMP}/platforms/*.dll ${TMP}/crypto/*.dll
+			COMMAND mkdir -p ${TMP}/styles
+			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/styles/*.dll ${TMP}/styles
+			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*.dll ${TMP}/platforms/*.dll ${TMP}/styles/*.dll ${TMP}/crypto/*.dll
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
 			COMMAND cp ${CMAKE_SOURCE_DIR}/README.md ${TMP}/README.TXT
