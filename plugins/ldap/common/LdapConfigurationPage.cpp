@@ -762,13 +762,13 @@ void LdapConfigurationPage::reportLdapFilterTestResult( const QString &filterObj
 
 QString LdapConfigurationPage::formatResultsString( const QStringList &results )
 {
-	switch( results.count() )
+	static constexpr auto FirstResult = 0;
+	static constexpr auto MaxResults = 3;
+
+	if( results.count() <= MaxResults )
 	{
-	case 0: return QString();
-	case 1: return results.first();
-	case 2: return QStringLiteral( "%1\n%2" ).arg( results[0], results[1] );
-	default: break;
+		return results.join(QLatin1Char('\n'));
 	}
 
-	return QStringLiteral( "%1\n%2\n[...]" ).arg( results[0], results[1] );
+	return QStringLiteral( "%1\n[...]" ).arg( results.mid( FirstResult, MaxResults ).join( QLatin1Char('\n') ) );
 }
