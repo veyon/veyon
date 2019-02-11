@@ -97,6 +97,11 @@ public:
 		return m_locationNameAttribute;
 	}
 
+	const QString& computerDisplayNameAttribute() const
+	{
+		return m_computerDisplayNameAttribute;
+	}
+
 	const QString& computerHostNameAttribute() const
 	{
 		return m_computerHostNameAttribute;

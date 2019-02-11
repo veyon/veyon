@@ -143,29 +143,38 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
 
 NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* directory, const QString& computerDn )
 {
+	auto displayNameAttribute = directory->computerDisplayNameAttribute();
+	if( displayNameAttribute.isEmpty() )
+	{
+		displayNameAttribute = QStringLiteral("cn");
+	}
+
 	auto hostNameAttribute = directory->computerHostNameAttribute();
 	if( hostNameAttribute.isEmpty() )
 	{
 		hostNameAttribute = QStringLiteral("cn");
 	}
 
-	QStringList computerAttributes{ hostNameAttribute };
-	if( directory->computerMacAddressAttribute().isEmpty() == false )
+	QStringList computerAttributes{ displayNameAttribute, hostNameAttribute };
+
+	auto macAddressAttribute = directory->computerMacAddressAttribute();
+	if( macAddressAttribute.isEmpty() == false )
 	{
-		computerAttributes.append( directory->computerMacAddressAttribute() );
+		computerAttributes.append( macAddressAttribute );
 	}
 
-	const auto macAddressIndex = computerAttributes.indexOf( directory->computerMacAddressAttribute() );
+	computerAttributes.removeDuplicates();
 
 	const auto computers = directory->client().queryObjects( computerDn, computerAttributes,
 															 directory->computersFilter(), LdapClient::Scope::Base );
 	if( computers.isEmpty() == false )
 	{
 		const auto& computer = computers.first();
+		const auto displayName = computer[displayNameAttribute].value( 0 );
 		const auto hostName = computer[hostNameAttribute].value( 0 );
-		const auto macAddress = ( macAddressIndex >= 0 ) ? computer[computerAttributes[macAddressIndex]].value( 0 ) : QString();
+		const auto macAddress = ( macAddressAttribute.isEmpty() == false ) ? computer[macAddressAttribute].value( 0 ) : QString();
 
-		return NetworkObject( NetworkObject::Host, hostName, hostName, macAddress, computer.firstKey() );
+		return NetworkObject( NetworkObject::Host, displayName, hostName, macAddress, computer.firstKey() );
 	}
 
 	return NetworkObject::None;
