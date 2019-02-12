@@ -37,13 +37,13 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	m_configuration(),
 	m_commands( {
 { QStringLiteral("help"), tr( "Show help for specific command" ) },
-{ QStringLiteral("add"), tr( "Add a location or computer" ) },
+{ addCommand(), tr( "Add a location or computer" ) },
 { QStringLiteral("clear"), tr( "Clear all locations and computers" ) },
 { QStringLiteral("dump"), tr( "Dump all or individual locations and computers" ) },
 { QStringLiteral("list"), tr( "List all locations and computers" ) },
-{ QStringLiteral("remove"), tr( "Remove a location or computer" ) },
-{ QStringLiteral("import"), tr( "Import objects from given file" ) },
-{ QStringLiteral("export"), tr( "Export objects to given file" ) },
+{ removeCommand(), tr( "Remove a location or computer" ) },
+{ importCommand(), tr( "Import objects from given file" ) },
+{ exportCommand(), tr( "Export objects to given file" ) },
 				} )
 {
 }
@@ -194,11 +194,11 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 	const auto type = arguments[0];
 	const auto name = arguments[1];
 
-	if( type == QStringLiteral("location") )
+	if( type == typeLocation() )
 	{
 		object = NetworkObject( NetworkObject::Location, name );
 	}
-	else if( type == QStringLiteral("computer") )
+	else if( type == typeComputer() )
 	{
 		auto hostAddress = arguments.value( 2 );
 		if( hostAddress.isEmpty() )
@@ -212,8 +212,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 	}
 	else
 	{
-		error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).
-			   arg( QStringLiteral("computer"), QStringLiteral("location") ) );
+		error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).arg( typeComputer(), typeLocation() ) );
 		return Failed;
 	}
 
@@ -345,15 +344,15 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 
 		const auto key = arguments[i];
 		const auto value = arguments[i+1];
-		if( key == QStringLiteral("location") )
+		if( key == locationArgument() )
 		{
 			location = value;
 		}
-		else if( key == QStringLiteral("format") )
+		else if( key == formatArgument() )
 		{
 			formatString = value;
 		}
-		else if( key == QStringLiteral("regex") )
+		else if( key == regexArgument() )
 		{
 			regularExpression = value;
 		}
@@ -421,11 +420,11 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( con
 
 		const auto key = arguments[i];
 		const auto value = arguments[i+1];
-		if( key == QStringLiteral("location") )
+		if( key == locationArgument() )
 		{
 			location = value;
 		}
-		else if( key == QStringLiteral("format") )
+		else if( key == formatArgument() )
 		{
 			formatString = value;
 		}
