@@ -25,6 +25,7 @@
 #pragma once
 
 #include "CommandLinePluginInterface.h"
+#include "CommandLineIO.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "BuiltinDirectoryConfiguration.h"
 #include "NetworkObject.h"
@@ -36,7 +37,8 @@ class BuiltinDirectoryPlugin : public QObject,
 		PluginInterface,
 		NetworkObjectDirectoryPluginInterface,
 		ConfigurationPagePluginInterface,
-		CommandLinePluginInterface
+		CommandLinePluginInterface,
+		CommandLineIO
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.BuiltinDirectory")
@@ -134,7 +136,7 @@ private:
 	static NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& location );
 	static QString toFormattedString( const NetworkObject& networkObject, const QString& formatString, const QString& location );
 
-	static QStringList fileImportVariables();
+	static QStringList importExportPlaceholders();
 
 	static QString typeNameLocation()
 	{

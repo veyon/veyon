@@ -188,8 +188,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 	}
 	else
 	{
-		CommandLineIO::error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).
-							  arg( QStringLiteral("computer"), QStringLiteral("location") ) );
+		error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).
+			   arg( QStringLiteral("computer"), QStringLiteral("location") ) );
 		return Failed;
 	}
 
@@ -215,8 +215,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( cons
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const QStringList& arguments )
 {
-	CommandLineIO::TableHeader tableHeader( { tr("Object UUID"), tr("Parent UUID"), tr("Type"), tr("Name"), tr("Host address"), tr("MAC address") } );
-	CommandLineIO::TableRows tableRows;
+	TableHeader tableHeader( { tr("Object UUID"), tr("Parent UUID"), tr("Type"), tr("Name"), tr("Host address"), tr("MAC address") } );
+	TableRows tableRows;
 
 	const auto objects = m_configuration.networkObjects();
 
@@ -234,7 +234,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const
 		tableRows.append( dumpNetworkObject( findNetworkObject( arguments.first() ) ) );
 	}
 
-	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );
+	printTable( Table( tableHeader, tableRows ) );
 
 	return NoResult;
 }
@@ -280,7 +280,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_remove( con
 		return saveConfiguration();
 	}
 
-	CommandLineIO::error( tr( "Specified object not found." ) );
+	error( tr( "Specified object not found." ) );
 
 	return Failed;
 }
@@ -299,12 +299,12 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 
 	if( inputFile.exists() == false )
 	{
-		CommandLineIO::error( tr( "File \"%1\" does not exist!" ).arg( inputFileName ) );
+		error( tr( "File \"%1\" does not exist!" ).arg( inputFileName ) );
 		return Failed;
 	}
 	else if( inputFile.open( QFile::ReadOnly | QFile::Text ) == false )
 	{
-		CommandLineIO::error( tr( "Can't open file \"%1\" for reading!" ).arg( inputFileName ) );
+		error( tr( "Can't open file \"%1\" for reading!" ).arg( inputFileName ) );
 		return Failed;
 	}
 
@@ -335,7 +335,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 		}
 		else
 		{
-			CommandLineIO::error( tr( "Unknown argument \"%1\"." ).arg( key ) );
+			error( tr( "Unknown argument \"%1\"." ).arg( key ) );
 			return InvalidArguments;
 		}
 	}
@@ -362,7 +362,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 		return Failed;
 	}
 
-	CommandLineIO::error( tr("No format string or regular expression specified!") );
+	error( tr("No format string or regular expression specified!") );
 
 	return InvalidArguments;
 }
@@ -381,7 +381,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( con
 
 	if( outputFile.open( QFile::WriteOnly | QFile::Truncate | QFile::Text ) == false )
 	{
-		CommandLineIO::error( tr( "Can't open file \"%1\" for writing!" ).arg( outputFileName ) );
+		error( tr( "Can't open file \"%1\" for writing!" ).arg( outputFileName ) );
 		return Failed;
 	}
 
@@ -407,7 +407,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( con
 		}
 		else
 		{
-			CommandLineIO::error( tr( "Unknown argument \"%1\"." ).arg( key ) );
+			error( tr( "Unknown argument \"%1\"." ).arg( key ) );
 			return InvalidArguments;
 		}
 	}
@@ -422,7 +422,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( con
 		return Failed;
 	}
 
-	CommandLineIO::error( tr("No format string specified!") );
+	error( tr("No format string specified!") );
 
 	return InvalidArguments;
 }
@@ -519,7 +519,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::saveConfiguration(
 	ConfigurationManager configurationManager;
 	if( configurationManager.saveConfiguration() == false )
 	{
-		CommandLineIO::error( configurationManager.errorString() );
+		error( configurationManager.errorString() );
 		return Failed;
 	}
 
@@ -549,7 +549,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 		}
 		else
 		{
-			CommandLineIO::error( tr( "Error while parsing line %1." ).arg( lineCount ) );
+			error( tr( "Error while parsing line %1." ).arg( lineCount ) );
 			return false;
 		}
 	}
