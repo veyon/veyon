@@ -148,8 +148,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	else if( command == addCommand() )
 	{
 		printUsage( commandLineModuleName(), addCommand(), { { tr("TYPE"), QString() }, { tr("NAME"), QString() } }, {
-						{ tr("HOST ADDRESSS"), QString() },
-						{ tr("MAC ADDRESSS"), QString() },
+						{ tr("HOST ADDRESS"), QString() },
+						{ tr("MAC ADDRESS"), QString() },
 						{ tr("PARENT"), QString() } } );
 
 		printDescription( tr("Adds an object where %1 can be one of \"%2\" or \"%3\". %4 can be specified by name or UUID.").

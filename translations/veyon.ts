@@ -932,14 +932,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HOST ADDRESSS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MAC ADDRESSS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>PARENT</source>
         <translation type="unfinished"></translation>
     </message>
@@ -977,6 +969,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
