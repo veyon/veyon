@@ -94,61 +94,85 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 {
 	const auto command = arguments.value( 0 );
 
-	if( command == QStringLiteral("import") )
+	if( command == importCommand() )
 	{
-		CommandLineIO::print( tr("\nUSAGE\n\n%1 import <FILE> [location <LOCATION>] [format <FORMAT-STRING-WITH-VARIABLES>] "
-								 "[regex <REGULAR-EXPRESSION-WITH-VARIABLES>]\n\n"
-								 "Valid variables: %type% %name% %host% %mac% %location%\n\n"
-								 "Examples:\n\n"
-								 "* Import simple CSV file to a single room:\n\n"
-								 "    %1 import computers.csv location \"Room 01\" format \"%name%;%host%;%mac%\"\n\n"
-								 "* Import CSV file with location name in first column:\n\n"
-								 "    %1 import computers-with-rooms.csv format \"%location%,%name%,%mac%\"\n\n"
-								 "* Import text file with with key/value pairs using regular expressions:\n\n"
-								 "    %1 import hostlist.txt location \"Room 01\" regex \"^NAME:(%name%:.*)\\s+HOST:(%host%:.*)$\"\n\n"
-								 "* Import arbitrarily formatted data:\n\n"
-								 "    %1 import data.txt regex '^\"(%location%:[^\"]+)\";\"(%host%:[a-z\\d\\.]+)\".*$'\n").
-							  arg( commandLineModuleName() ) );
+		printUsage( commandLineModuleName(), importCommand(), { { tr("FILE"), QString() } }, {
+						{ tr("LOCATION"), locationArgument() },
+						{ tr("FORMAT-STRING-WITH-PLACEHOLDERS"), formatArgument() },
+						{ tr("REGULAR-EXPRESSION-WITH-PLACEHOLDER"), regexArgument() } } );
+
+		printDescription( tr("Imports objects from the specified text file using the given format string or "
+							 "regular expression containing one or multiple placeholders. "
+							 "Valid placeholders are: %1").arg( importExportPlaceholders().join(QLatin1Char(' ') ) ) );
+
+		printExamples( commandLineModuleName(), importCommand(), {
+						   { tr( "Import simple CSV file to a single room" ),
+							 { QStringLiteral("computers.csv"),
+							   locationArgument(), exampleRoom(),
+							   formatArgument(), QStringLiteral("\"%name%;%host%;%mac%\"") } },
+						   { tr( "Import CSV file with location name in first column" ),
+							 { QStringLiteral("computers-with-rooms.csv"),
+							   formatArgument(), QStringLiteral("\"%location%,%name%,%mac%\"") } },
+						   { tr( "Import text file with with key/value pairs using regular expressions" ),
+							 { QStringLiteral("hostlist.txt"),
+							   locationArgument(), exampleRoom(),
+							   regexArgument(), QStringLiteral("\"^NAME:(%name%:.*)\\s+HOST:(%host%:.*)$\"") } },
+						   { tr( "Import arbitrarily formatted data" ),
+							 { QStringLiteral("data.txt"),
+							   regexArgument(), QStringLiteral("'^\"(%location%:[^\"]+)\";\"(%host%:[a-z\\d\\.]+)\".*$'") } }
+					   } );
 
 		return NoResult;
 	}
-	else if( command == QStringLiteral("export") )
+	else if( command == exportCommand() )
 	{
-		CommandLineIO::print( tr("\nUSAGE\n\n%1 export <FILE> [location <LOCATION>] [format <FORMAT-STRING-WITH-VARIABLES>]\n\n"
-								 "Valid variables: %type% %name% %host% %mac% %location%\n\n"
-								 "Examples:\n\n"
-								 "* Export all objects to a CSV file:\n\n"
-								 "    %1 export objects.csv format \"%type%;%name%;%host%;%mac%\"\n\n"
-								 "* Export all computers in a location to a CSV file:\n\n"
-								 "    %1 export computers.csv location \"Room 01\" format \"%name%;%host%;%mac%\"\n\n").
-							  arg( commandLineModuleName() ) );
+		printUsage( commandLineModuleName(), exportCommand(), { { tr("FILE"), QString() } }, {
+						{ tr("LOCATION"), locationArgument() },
+						{ tr("FORMAT-STRING-WITH-PLACEHOLDERS"), formatArgument() } } );
+
+		printDescription( tr("Exports objects to the specified text file using the given format string containing "
+							 "one or multiple placeholders. "
+							 "Valid placeholders are: %1").arg( importExportPlaceholders().join(QLatin1Char(' ') ) ) );
+
+		printExamples( commandLineModuleName(), exportCommand(), {
+						   { tr( "Export all objects to a CSV file" ),
+							 { QStringLiteral("objects.csv"),
+							   formatArgument(), QStringLiteral("\"%type%;%name%;%host%;%mac%\"") } },
+						   { tr( "Export all computers in a specific location to a CSV file" ),
+							 { QStringLiteral("computers.csv"),
+							   formatArgument(), QStringLiteral("\"%name%;%host%;%mac%\"") } }
+					   } );
 
 		return NoResult;
 	}
-	else if( command == QStringLiteral("add") )
+	else if( command == addCommand() )
 	{
-		CommandLineIO::print( tr("\nUSAGE\n\n%1 add <TYPE> <NAME> [<HOST ADDRESS> <MAC ADDRESS> <PARENT>]\n\n"
-								 "Adds an object where TYPE can be one of \"%2\" or \"%3\". PARENT can be specified by name or UUID.\n\n"
-								 "Examples:\n\n"
-								 "* Add a room:\n\n"
-								 "    %1 add location \"Room 01\"\n\n"
-								 "* Add a computer to room \"Room 01\":\n\n"
-								 "    %1 add computer \"Computer 01\" comp01.example.com 11:22:33:44:55:66 \"Room 01\"\n\n").
-							  arg( commandLineModuleName(), QStringLiteral("location"), QStringLiteral("computer") ) );
+		printUsage( commandLineModuleName(), addCommand(), { { tr("TYPE"), QString() }, { tr("NAME"), QString() } }, {
+						{ tr("HOST ADDRESSS"), QString() },
+						{ tr("MAC ADDRESSS"), QString() },
+						{ tr("PARENT"), QString() } } );
+
+		printDescription( tr("Adds an object where %1 can be one of \"%2\" or \"%3\". %4 can be specified by name or UUID.").
+						  arg( tr("TYPE"), typeLocation(), typeComputer(), tr("PARENT") ) );
+
+		printExamples( commandLineModuleName(), addCommand(), {
+						   { tr( "Add a room" ), { typeLocation(), exampleRoom() } },
+						   { tr( "Add a computer to room %1" ).arg( exampleRoom() ), { typeComputer(), exampleComputer(), QStringLiteral("comp01.example.com"), QStringLiteral("11:22:33:44:55:66"), exampleRoom() } }
+					   } );
 
 		return NoResult;
 	}
-	else if( command == QStringLiteral("remove") )
+	else if( command == removeCommand() )
 	{
-		CommandLineIO::print( tr("\nUSAGE\n\n%1 remove <OBJECT>\n\n"
-								 "Removes the specified object from the directory. OBJECT can be specified by name or UUID. "
-								 "Removing a location will also remove all related computers.\n\n"
-								 "Examples:\n\n"
-								 "* Remove a computer by name:\n\n"
-								 "    %1 remove \"Computer 01\"\n\n"
-								 "* Remove an object by UUID:\n\n"
-								 "    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141\n\n").
-							  arg( commandLineModuleName(), QStringLiteral("location"), QStringLiteral("computer") ) );
+		printUsage( commandLineModuleName(), removeCommand(), { { tr("OBJECT"), QString() } } );
+
+		printDescription( tr("Removes the specified object from the directory. %1 can be specified by name or UUID. "
+							 "Removing a location will also remove all related computers.").arg( tr("OBJECT") ) );
+
+		printExamples( commandLineModuleName(), removeCommand(), {
+						   { tr( "Remove a computer by name" ), { exampleComputer() } },
+						   { tr( "Remove an object by UUID" ), { QStringLiteral("068914fc-0f87-45df-a5b9-099a2a6d9141") } }
+					   } );
 
 		return NoResult;
 	}
@@ -344,11 +368,11 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 	{
 		regularExpression = formatString;
 
-		const auto variables = fileImportVariables();
+		const auto placeholders = importExportPlaceholders();
 
-		for( const auto& var : variables )
+		for( const auto& placeholder : placeholders )
 		{
-			regularExpression.replace( var, QStringLiteral("(%1:[^\\n\\r]*)").arg( var ) );
+			regularExpression.replace( placeholder, QStringLiteral("(%1:[^\\n\\r]*)").arg( placeholder ) );
 		}
 	}
 
@@ -529,7 +553,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::saveConfiguration(
 
 
 bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
-										 const QString& regExWithVariables,
+										 const QString& regExWithPlaceholders,
 										 const QString& location )
 {
 	int lineCount = 0;
@@ -541,7 +565,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 		auto targetLocation = location;
 
 		const auto line = inputFile.readLine();
-		const auto networkObject = toNetworkObject( QString::fromUtf8( line ), regExWithVariables, targetLocation );
+		const auto networkObject = toNetworkObject( QString::fromUtf8( line ), regExWithPlaceholders, targetLocation );
 
 		if( networkObject.isValid() )
 		{
@@ -649,20 +673,21 @@ NetworkObject BuiltinDirectoryPlugin::findNetworkObject( const QString& uidOrNam
 
 
 
-NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, const QString& regExWithVariables, QString& location )
+NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, const QString& regExWithPlaceholders,
+													   QString& location )
 {
-	QStringList variables;
+	QStringList placeholders;
 	QRegExp varDetectionRX( QStringLiteral("\\((%\\w+%):[^)]+\\)") );
 	int pos = 0;
 
-	while( ( pos = varDetectionRX.indexIn( regExWithVariables, pos ) ) != -1 )
+	while( ( pos = varDetectionRX.indexIn( regExWithPlaceholders, pos ) ) != -1 )
 	{
-		variables.append( varDetectionRX.cap(1) );
+		placeholders.append( varDetectionRX.cap(1) );
 		pos += varDetectionRX.matchedLength();
 	}
 
-	QString rxString = regExWithVariables;
-	for( const auto& var : qAsConst(variables) )
+	QString rxString = regExWithPlaceholders;
+	for( const auto& var : qAsConst(placeholders) )
 	{
 		rxString.replace( QStringLiteral("%1:").arg( var ), QString() );
 	}
@@ -671,16 +696,16 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 	if( rx.indexIn( line ) != -1 )
 	{
 		auto objectType = NetworkObject::Host;
-		const auto typeIndex = variables.indexOf( QStringLiteral("%type%") );
+		const auto typeIndex = placeholders.indexOf( QStringLiteral("%type%") );
 		if( typeIndex != -1 )
 		{
 			objectType = parseNetworkObjectType( rx.cap( 1 + typeIndex ) );
 		}
 
-		const auto locationIndex = variables.indexOf( QStringLiteral("%location%") );
-		const auto nameIndex = variables.indexOf( QStringLiteral("%name%") );
-		const auto hostIndex = variables.indexOf( QStringLiteral("%host%") );
-		const auto macIndex = variables.indexOf( QStringLiteral("%mac%") );
+		const auto locationIndex = placeholders.indexOf( QStringLiteral("%location%") );
+		const auto nameIndex = placeholders.indexOf( QStringLiteral("%name%") );
+		const auto hostIndex = placeholders.indexOf( QStringLiteral("%host%") );
+		const auto macIndex = placeholders.indexOf( QStringLiteral("%mac%") );
 
 		auto name = ( nameIndex != -1 ) ? rx.cap( 1 + nameIndex ).trimmed() : QString();
 		auto host = ( hostIndex != -1 ) ? rx.cap( 1 + hostIndex ).trimmed() : QString();
@@ -726,9 +751,13 @@ QString BuiltinDirectoryPlugin::toFormattedString( const NetworkObject& networkO
 
 
 
-QStringList BuiltinDirectoryPlugin::fileImportVariables()
+QStringList BuiltinDirectoryPlugin::importExportPlaceholders()
 {
-	return { QStringLiteral("%location%"), QStringLiteral("%name%"), QStringLiteral("%host%"), QStringLiteral("%mac%"), QStringLiteral("%type%") };
+	return { QStringLiteral("%location%"),
+				QStringLiteral("%name%"),
+				QStringLiteral("%host%"),
+				QStringLiteral("%mac%"),
+				QStringLiteral("%type%") };
 }
 
 

@@ -153,6 +153,61 @@ private:
 		return tr( "Root" );
 	}
 
+	static QString importCommand()
+	{
+		return QStringLiteral("import");
+	}
+
+	static QString exportCommand()
+	{
+		return QStringLiteral("export");
+	}
+
+	static QString addCommand()
+	{
+		return QStringLiteral("add");
+	}
+
+	static QString removeCommand()
+	{
+		return QStringLiteral("remove");
+	}
+
+	static QString locationArgument()
+	{
+		return QStringLiteral("location");
+	}
+
+	static QString formatArgument()
+	{
+		return QStringLiteral("format");
+	}
+
+	static QString regexArgument()
+	{
+		return QStringLiteral("regex");
+	}
+
+	static QString typeLocation()
+	{
+		return QStringLiteral("location");
+	}
+
+	static QString typeComputer()
+	{
+		return QStringLiteral("computer");
+	}
+
+	static QString exampleRoom()
+	{
+		return tr( "\"Room 01\"" );
+	}
+
+	static QString exampleComputer()
+	{
+		return tr( "\"Computer 01\"" );
+	}
+
 	BuiltinDirectoryConfiguration m_configuration;
 	QMap<QString, QString> m_commands;
 
