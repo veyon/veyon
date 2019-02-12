@@ -31,7 +31,7 @@ AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
 { QStringLiteral("create"), tr( "Create new authentication key pair" ) },
-{ QLatin1String("delete"), tr( "Delete authentication key" ) },
+{ QStringLiteral("delete"), tr( "Delete authentication key" ) },
 { QStringLiteral("list"), tr( "List authentication keys" ) },
 { QStringLiteral("import"), tr( "Import public or private key" ) },
 { QStringLiteral("export"), tr( "Export public or private key" ) },
