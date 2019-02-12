@@ -32,6 +32,13 @@ void CommandLineIO::print( const QString& message )
 
 
 
+void CommandLineIO::newline()
+{
+	printf( "\n" );
+}
+
+
+
 void CommandLineIO::info( const QString &message )
 {
 	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "INFO" ) ), qUtf8Printable( message ) );
@@ -80,6 +87,65 @@ void CommandLineIO::printTable( const CommandLineIO::Table& table, char horizont
 	}
 
 	printTableRuler( columnWidths, horizontal, corner );
+}
+
+
+
+void CommandLineIO::printUsage( const QString& module, const QString& command,
+								const Arguments& mandatoryArguments, const Arguments& optionalArguments )
+{
+	QStringList arguments;
+	for( auto it = mandatoryArguments.begin(), end = mandatoryArguments.end(); it != end; ++it )
+	{
+		if( it.value().isEmpty() )
+		{
+			arguments.append( QStringLiteral("<%1>").arg( it.key() ) );
+		}
+		else
+		{
+			arguments.append( QStringLiteral("%1 <%2>").arg( it.value(), it.key() ) );
+		}
+	}
+
+	for( auto it = optionalArguments.begin(), end = optionalArguments.end(); it != end; ++it )
+	{
+		if( it.value().isEmpty() )
+		{
+			arguments.append( QStringLiteral("[<%1>]").arg( it.key() ) );
+		}
+		else
+		{
+			arguments.append( QStringLiteral("[%1 <%2>]").arg( it.value(), it.key() ) );
+		}
+	}
+
+	newline();
+	print( VeyonCore::tr( "USAGE") );
+	newline();
+	print( QStringLiteral("    %1 %2 %3\n").arg( module, command, arguments.join(QLatin1Char(' ')) ) );
+}
+
+
+
+void CommandLineIO::printDescription( const QString& description )
+{
+	print( VeyonCore::tr( "DESCRIPTION") );
+	newline();
+	print( QStringLiteral("    %2\n").arg( description ) );
+}
+
+
+
+void CommandLineIO::printExamples( const QString& module, const QString& command, const CommandLineIO::Examples& examples )
+{
+	print( VeyonCore::tr( "EXAMPLES") );
+	newline();
+
+	for( const auto& example : examples )
+	{
+		print( QStringLiteral("    * %1:\n\n        %2 %3 %4\n").arg( example.first, module, command,
+														   example.second.join(QLatin1Char(' ')) ) );
+	}
 }
 
 
