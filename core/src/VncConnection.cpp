@@ -545,10 +545,8 @@ void VncConnection::closeConnection()
 
 void VncConnection::setState( State state )
 {
-	if( state != m_state )
+	if( m_state.exchange( state ) != state )
 	{
-		m_state = state;
-
 		emit stateChanged();
 	}
 }

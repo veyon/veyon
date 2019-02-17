@@ -223,7 +223,7 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	// states and flags
-	volatile State m_state;
+	std::atomic<State> m_state;
 	FramebufferState m_framebufferState;
 	ControlFlags m_controlFlags;
 
