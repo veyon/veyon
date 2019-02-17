@@ -90,6 +90,18 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=]() {
 		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapClient::TLSVerifyCustomCert );
 	} );
+
+	const auto browseButtons = findChildren<QPushButton *>( QRegularExpression( QStringLiteral("browse.*") ) );
+	for( auto button : browseButtons )
+	{
+		button->setToolTip( tr( "Browse" ) );
+	}
+
+	const auto testButtons = findChildren<QPushButton *>( QRegularExpression( QStringLiteral("test.*") ) );
+	for( auto button : testButtons )
+	{
+		button->setToolTip( tr( "Test & validate" ) );
+	}
 }
 
 
