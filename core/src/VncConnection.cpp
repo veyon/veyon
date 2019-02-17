@@ -169,7 +169,7 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_framebufferState( FramebufferState::Invalid ),
 	m_controlFlags(),
 	m_client( nullptr ),
-	m_quality( DefaultQuality ),
+	m_quality( Quality::Default ),
 	m_host(),
 	m_port( -1 ),
 	m_globalMutex(),
@@ -606,14 +606,14 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 
 	switch( quality() )
 	{
-	case ScreenshotQuality:
+	case Quality::Screenshot:
 		// make sure to use lossless raw encoding
 		client->appData.encodingsString = "raw";
 		break;
-	case RemoteControlQuality:
+	case Quality::RemoteControl:
 		client->appData.useRemoteCursor = true;
 		break;
-	case ThumbnailQuality:
+	case Quality::Thumbnail:
 		client->appData.compressLevel = 9;
 		client->appData.qualityLevel = 5;
 		client->appData.enableJPEG = true;

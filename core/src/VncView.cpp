@@ -63,7 +63,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 	if( m_mode == DemoMode )
 	{
-		m_vncConn->setQuality( VncConnection::DefaultQuality );
+		m_vncConn->setQuality( VncConnection::Quality::Default );
 		m_veyonConnection->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
 		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( m_vncConn->host() ),
@@ -73,7 +73,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	}
 	else if( m_mode == RemoteControlMode )
 	{
-		m_vncConn->setQuality( VncConnection::RemoteControlQuality );
+		m_vncConn->setQuality( VncConnection::Quality::RemoteControl );
 	}
 
 	connect( m_vncConn, &VncConnection::imageUpdated, this, &VncView::updateImage );

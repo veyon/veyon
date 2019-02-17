@@ -46,13 +46,12 @@ class VEYON_CORE_EXPORT VncConnection : public QThread
 {
 	Q_OBJECT
 public:
-	enum QualityLevels
+	enum class Quality
 	{
-		ThumbnailQuality,
-		ScreenshotQuality,
-		RemoteControlQuality,
-		DefaultQuality,
-		NumQualityLevels
+		Thumbnail,
+		Screenshot,
+		RemoteControl,
+		Default
 	} ;
 
 	enum class FramebufferState
@@ -103,12 +102,12 @@ public:
 		return m_host;
 	}
 
-	void setQuality( QualityLevels qualityLevel )
+	void setQuality( Quality quality )
 	{
-		m_quality = qualityLevel;
+		m_quality = quality ;
 	}
 
-	QualityLevels quality() const
+	Quality quality() const
 	{
 		return m_quality;
 	}
@@ -227,7 +226,7 @@ private:
 
 	// connection parameters and data
 	rfbClient* m_client;
-	QualityLevels m_quality;
+	Quality m_quality;
 	QString m_host;
 	int m_port;
 

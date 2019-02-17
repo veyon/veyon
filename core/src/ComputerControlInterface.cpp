@@ -78,7 +78,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 	{
 		m_vncConnection = new VncConnection();
 		m_vncConnection->setHost( m_computer.hostAddress() );
-		m_vncConnection->setQuality( VncConnection::ThumbnailQuality );
+		m_vncConnection->setQuality( VncConnection::Quality::Thumbnail );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
 
