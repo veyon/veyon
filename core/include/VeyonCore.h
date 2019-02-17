@@ -28,6 +28,7 @@
 #include <QString>
 #include <QDebug>
 
+#include <atomic>
 #include <functional>
 
 #include "QtCompat.h"
