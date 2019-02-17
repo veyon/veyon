@@ -756,20 +756,21 @@ void VncView::mouseEventHandler( QMouseEvent* event )
 		return;
 	}
 
-	struct buttonXlate
+	struct ButtonTranslation
 	{
 		Qt::MouseButton qt;
 		int rfb;
-	} const map[] =
-	{
-	{ Qt::LeftButton, rfbButton1Mask },
-	{ Qt::MidButton, rfbButton2Mask },
-	{ Qt::RightButton, rfbButton3Mask }
-} ;
+	};
+
+	const ButtonTranslation buttonTranslationMap[] = {
+		{ Qt::LeftButton, rfbButton1Mask },
+		{ Qt::MidButton, rfbButton2Mask },
+		{ Qt::RightButton, rfbButton3Mask }
+	} ;
 
 	if( event->type() != QEvent::MouseMove )
 	{
-		for( auto i : map )
+		for( const auto& i : buttonTranslationMap )
 		{
 			if( event->button() == i.qt )
 			{
