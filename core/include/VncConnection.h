@@ -61,8 +61,9 @@ public:
 		Valid
 	} ;
 
-	enum States
+	enum class State
 	{
+		None,
 		Disconnected,
 		Connecting,
 		HostOffline,
@@ -71,7 +72,7 @@ public:
 		ConnectionFailed,
 		Connected
 	} ;
-	typedef States State;
+	Q_ENUM(State)
 
 	explicit VncConnection( QObject *parent = nullptr );
 	~VncConnection() override;
@@ -94,7 +95,7 @@ public:
 
 	bool isConnected() const
 	{
-		return state() == Connected && isRunning();
+		return state() == State::Connected && isRunning();
 	}
 
 	const QString& host() const

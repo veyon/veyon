@@ -61,7 +61,7 @@ ComputerMonitoringView::~ComputerMonitoringView()
 {
 	if( m_master )
 	{
-		m_master->userConfig().setFilterPoweredOnComputers( listModel().stateFilter() != ComputerControlInterface::None );
+		m_master->userConfig().setFilterPoweredOnComputers( listModel().stateFilter() != ComputerControlInterface::State::None );
 		m_master->userConfig().setComputerPositions( ui->listView->savePositions() );
 		m_master->userConfig().setUseCustomComputerPositions( ui->listView->flexible() );
 	}
@@ -123,7 +123,7 @@ void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
 
 void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
 {
-	listModel().setStateFilter( enabled ? ComputerControlInterface::Connected : ComputerControlInterface::None );
+	listModel().setStateFilter( enabled ? ComputerControlInterface::State::Connected : ComputerControlInterface::State::None );
 }
 
 

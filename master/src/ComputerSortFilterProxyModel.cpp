@@ -32,7 +32,7 @@
 ComputerSortFilterProxyModel::ComputerSortFilterProxyModel( QObject* parent ) :
 	QSortFilterProxyModel( parent ),
 	m_stateRole( -1 ),
-	m_stateFilter( ComputerControlInterface::None )
+	m_stateFilter( ComputerControlInterface::State::None )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
@@ -63,9 +63,10 @@ void ComputerSortFilterProxyModel::setStateFilter( ComputerControlInterface::Sta
 
 bool ComputerSortFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
-	if( m_stateFilter != ComputerControlInterface::None &&
-			m_stateRole >= 0 &&
-			sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ), m_stateRole ).toInt() != m_stateFilter )
+	if( m_stateFilter != ComputerControlInterface::State::None &&
+		m_stateRole >= 0 &&
+		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+							 m_stateRole ).value<ComputerControlInterface::State>() != m_stateFilter )
 	{
 		return false;
 	}

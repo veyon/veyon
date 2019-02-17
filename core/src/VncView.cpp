@@ -850,6 +850,6 @@ void VncView::updateConnectionState()
 {
 	if( m_establishingConnectionWidget )
 	{
-		m_establishingConnectionWidget->setVisible( m_vncConn->state() != VncConnection::Connected );
+		m_establishingConnectionWidget->setVisible( m_vncConn->state() != VncConnection::State::Connected );
 	}
 }

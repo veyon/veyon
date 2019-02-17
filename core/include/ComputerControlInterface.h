@@ -32,6 +32,7 @@
 #include "Computer.h"
 #include "Feature.h"
 #include "VeyonCore.h"
+#include "VncConnection.h"
 
 class QImage;
 
@@ -45,18 +46,7 @@ class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 public:
 	typedef QSharedPointer<ComputerControlInterface> Pointer;
 
-	typedef enum States
-	{
-		None,
-		Disconnected,
-		Offline,
-		ServiceUnreachable,
-		AuthenticationFailed,
-		Connecting,
-		Connected,
-		Unknown,
-		StateCount
-	} State;
+	using State = VncConnection::State;
 
 	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;

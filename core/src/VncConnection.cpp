@@ -165,7 +165,7 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
-	m_state( Disconnected ),
+	m_state( State::Disconnected ),
 	m_framebufferState( FramebufferState::Invalid ),
 	m_controlFlags(),
 	m_client( nullptr ),
@@ -382,12 +382,13 @@ void VncConnection::establishConnection()
 {
 	QMutex sleeperMutex;
 
-	setState( Connecting );
+	setState( State::Connecting );
 	setControlFlag( ControlFlag::RestartConnection, false );
 
 	m_framebufferState = FramebufferState::Invalid;
 
-	while( isControlFlagSet( ControlFlag::TerminateThread ) == false && m_state != Connected ) // try to connect as long as the server allows
+	while( isControlFlagSet( ControlFlag::TerminateThread ) == false &&
+		   state() != State::Connected ) // try to connect as long as the server allows
 	{
 		m_client = rfbGetClient( RfbBitsPerSample, RfbSamplesPerPixel, RfbBytesPerPixel );
 		m_client->MallocFrameBuffer = hookInitFrameBuffer;
@@ -428,7 +429,7 @@ void VncConnection::establishConnection()
 					configureSocketKeepalive( static_cast<PlatformNetworkFunctions::Socket>( m_client->sock ), true,
 											  SocketKeepaliveIdleTime, SocketKeepaliveInterval, SocketKeepaliveCount );
 
-			setState( Connected );
+			setState( State::Connected );
 		}
 		else
 		{
@@ -446,21 +447,21 @@ void VncConnection::establishConnection()
 			{
 				if( VeyonCore::platform().networkFunctions().ping( m_host ) == false )
 				{
-					setState( HostOffline );
+					setState( State::HostOffline );
 				}
 				else
 				{
-					setState( ServiceUnreachable );
+					setState( State::ServiceUnreachable );
 				}
 			}
 			else if( m_framebufferState == FramebufferState::Invalid )
 			{
-				setState( AuthenticationFailed );
+				setState( State::AuthenticationFailed );
 			}
 			else
 			{
 				// failed for an unknown reason
-				setState( ConnectionFailed );
+				setState( State::ConnectionFailed );
 			}
 
 			// wait a bit until next connect
@@ -486,7 +487,7 @@ void VncConnection::handleConnection()
 	QMutex sleeperMutex;
 	QElapsedTimer loopTimer;
 
-	while( state() == Connected &&
+	while( state() == State::Connected &&
 		   isControlFlagSet( ControlFlag::TerminateThread ) == false &&
 		   isControlFlagSet( ControlFlag::RestartConnection ) == false )
 	{
@@ -538,7 +539,7 @@ void VncConnection::closeConnection()
 		m_client = nullptr;
 	}
 
-	setState( Disconnected );
+	setState( State::Disconnected );
 }
 
 
@@ -673,7 +674,7 @@ void VncConnection::sendEvents()
 void VncConnection::enqueueEvent( VncEvent* event)
 {
 	QMutexLocker globalLock( &m_globalMutex );
-	if( m_state != Connected )
+	if( state() != State::Connected )
 	{
 		return;
 	}

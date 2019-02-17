@@ -110,7 +110,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 		return computerControl->computer().networkObjectUid();
 
 	case StateRole:
-		return computerControl->state();
+		return QVariant::fromValue( computerControl->state() );
 
 	default:
 		break;
@@ -311,7 +311,7 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 
 	switch( controlInterface->state() )
 	{
-	case ComputerControlInterface::Connected:
+	case ComputerControlInterface::State::Connected:
 		image = controlInterface->scaledScreen();
 		if( image.isNull() == false )
 		{
@@ -321,8 +321,8 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 		image = m_iconDefault;
 		break;
 
-	case ComputerControlInterface::AuthenticationFailed:
-	case ComputerControlInterface::ServiceUnreachable:
+	case ComputerControlInterface::State::AuthenticationFailed:
+	case ComputerControlInterface::State::ServiceUnreachable:
 		image = m_iconConnectionProblem;
 		break;
 
@@ -357,7 +357,7 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 QString ComputerControlListModel::computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	if( m_displayRoleContent != DisplayComputerName &&
-			controlInterface->state() == ComputerControlInterface::Connected &&
+			controlInterface->state() == ComputerControlInterface::State::Connected &&
 			controlInterface->userLoginName().isEmpty() == false )
 	{
 		auto user = controlInterface->userFullName();
@@ -416,19 +416,19 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 {
 	switch( controlInterface->state() )
 	{
-	case ComputerControlInterface::Connected:
+	case ComputerControlInterface::State::Connected:
 		return tr( "Online and connected" );
 
-	case ComputerControlInterface::Connecting:
+	case ComputerControlInterface::State::Connecting:
 		return tr( "Establishing connection" );
 
-	case ComputerControlInterface::Offline:
+	case ComputerControlInterface::State::HostOffline:
 		return tr( "Computer offline or switched off" );
 
-	case ComputerControlInterface::ServiceUnreachable:
+	case ComputerControlInterface::State::ServiceUnreachable:
 		return tr( "Service unreachable or not running" );
 
-	case ComputerControlInterface::AuthenticationFailed:
+	case ComputerControlInterface::State::AuthenticationFailed:
 		return tr( "Authentication failed or access denied" );
 
 	default:
@@ -442,7 +442,7 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 
 QString ComputerControlListModel::loggedOnUserInformation( const ComputerControlInterface::Pointer& controlInterface )
 {
-	if( controlInterface->state() == ComputerControlInterface::Connected )
+	if( controlInterface->state() == ComputerControlInterface::State::Connected )
 	{
 		if( controlInterface->userLoginName().isEmpty() )
 		{

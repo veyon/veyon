@@ -37,7 +37,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 													QObject* parent ) :
 	QObject( parent ),
 	m_computer( computer ),
-	m_state( Disconnected ),
+	m_state( State::Disconnected ),
 	m_userLoginName(),
 	m_userFullName(),
 	m_scaledScreenSize(),
@@ -129,7 +129,7 @@ void ComputerControlInterface::stop()
 
 	m_connectionWatchdogTimer.stop();
 
-	m_state = Disconnected;
+	m_state = State::Disconnected;
 }
 
 
@@ -248,7 +248,7 @@ void ComputerControlInterface::setScreenUpdateFlag()
 
 void ComputerControlInterface::resetWatchdog()
 {
-	if( state() == Connected )
+	if( state() == State::Connected )
 	{
 		m_connectionWatchdogTimer.start();
 	}
@@ -275,18 +275,18 @@ void ComputerControlInterface::updateState()
 	{
 		switch( m_vncConnection->state() )
 		{
-		case VncConnection::Disconnected: m_state = Disconnected; break;
-		case VncConnection::Connecting: m_state = Connecting; break;
-		case VncConnection::Connected: m_state = Connected; break;
-		case VncConnection::HostOffline: m_state = Offline; break;
-		case VncConnection::ServiceUnreachable: m_state = ServiceUnreachable; break;
-		case VncConnection::AuthenticationFailed: m_state = AuthenticationFailed; break;
-		default: m_state = Unknown; break;
+		case VncConnection::State::Disconnected: m_state = State::Disconnected; break;
+		case VncConnection::State::Connecting: m_state = State::Connecting; break;
+		case VncConnection::State::Connected: m_state = State::Connected; break;
+		case VncConnection::State::HostOffline: m_state = State::HostOffline; break;
+		case VncConnection::State::ServiceUnreachable: m_state = State::ServiceUnreachable; break;
+		case VncConnection::State::AuthenticationFailed: m_state = State::AuthenticationFailed; break;
+		default: m_state = VncConnection::State::Disconnected; break;
 		}
 	}
 	else
 	{
-		m_state = Disconnected;
+		m_state = State::Disconnected;
 	}
 
 	setScreenUpdateFlag();
@@ -296,7 +296,7 @@ void ComputerControlInterface::updateState()
 
 void ComputerControlInterface::updateUser()
 {
-	if( m_vncConnection && m_connection && state() == Connected )
+	if( m_vncConnection && m_connection && state() == State::Connected )
 	{
 		if( userLoginName().isEmpty() )
 		{
@@ -314,7 +314,7 @@ void ComputerControlInterface::updateUser()
 
 void ComputerControlInterface::updateActiveFeatures()
 {
-	if( m_vncConnection && m_connection && state() == Connected )
+	if( m_vncConnection && m_connection && state() == State::Connected )
 	{
 		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
 	}
