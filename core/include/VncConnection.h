@@ -55,12 +55,12 @@ public:
 		NumQualityLevels
 	} ;
 
-	typedef enum FramebufferStates
+	enum class FramebufferState
 	{
-		FramebufferInvalid,
-		FramebufferInitialized,
-		FramebufferValid
-	} FramebufferState;
+		Invalid,
+		Initialized,
+		Valid
+	} ;
 
 	enum States
 	{
@@ -126,7 +126,7 @@ public:
 	/** \brief Returns whether framebuffer data is valid, i.e. at least one full FB update received */
 	bool hasValidFrameBuffer() const
 	{
-		return m_framebufferState == FramebufferValid;
+		return m_framebufferState == FramebufferState::Valid;
 	}
 
 	void setScaledSize( QSize s )
@@ -222,7 +222,7 @@ private:
 
 	// states and flags
 	std::atomic<State> m_state;
-	FramebufferState m_framebufferState;
+	std::atomic<FramebufferState> m_framebufferState;
 	QAtomicInt m_controlFlags;
 
 	// connection parameters and data

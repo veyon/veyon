@@ -166,7 +166,7 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
 	m_state( Disconnected ),
-	m_framebufferState( FramebufferInvalid ),
+	m_framebufferState( FramebufferState::Invalid ),
 	m_controlFlags(),
 	m_client( nullptr ),
 	m_quality( DefaultQuality ),
@@ -385,7 +385,7 @@ void VncConnection::establishConnection()
 	setState( Connecting );
 	setControlFlag( ControlFlag::RestartConnection, false );
 
-	m_framebufferState = FramebufferInvalid;
+	m_framebufferState = FramebufferState::Invalid;
 
 	while( isControlFlagSet( ControlFlag::TerminateThread ) == false && m_state != Connected ) // try to connect as long as the server allows
 	{
@@ -452,7 +452,7 @@ void VncConnection::establishConnection()
 					setState( ServiceUnreachable );
 				}
 			}
-			else if( m_framebufferState == FramebufferInvalid )
+			else if( m_framebufferState == FramebufferState::Invalid )
 			{
 				setState( AuthenticationFailed );
 			}
@@ -514,7 +514,7 @@ void VncConnection::handleConnection()
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
-		if( m_framebufferState == FramebufferValid &&
+		if( m_framebufferState == FramebufferState::Valid &&
 				remainingUpdateInterval > 0 &&
 				isControlFlagSet( ControlFlag::TerminateThread ) == false )
 		{
@@ -622,7 +622,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 		break;
 	}
 
-	m_framebufferState = FramebufferInitialized;
+	m_framebufferState = FramebufferState::Initialized;
 
 	emit framebufferSizeChanged( client->width, client->height );
 
@@ -633,7 +633,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 
 void VncConnection::finishFrameBufferUpdate()
 {
-	m_framebufferState = FramebufferValid;
+	m_framebufferState = FramebufferState::Valid;
 	setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
 
 	emit framebufferUpdateComplete();
