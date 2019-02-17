@@ -134,7 +134,7 @@ public:
 		if( m_scaledSize != s )
 		{
 			m_scaledSize = s;
-			setControlFlag( ScaledScreenNeedsUpdate, true );
+			setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
 		}
 	}
 
@@ -188,14 +188,12 @@ private:
 	static const int RfbSamplesPerPixel = 3;
 	static const int RfbBytesPerPixel = 4;
 
-	enum ControlFlag {
+	enum class ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,
 		ServerReachable = 0x02,
 		TerminateThread = 0x04,
 		RestartConnection = 0x08,
 	};
-
-	Q_DECLARE_FLAGS(ControlFlags, ControlFlag)
 
 	void establishConnection();
 	void handleConnection();
@@ -225,7 +223,7 @@ private:
 	// states and flags
 	std::atomic<State> m_state;
 	FramebufferState m_framebufferState;
-	ControlFlags m_controlFlags;
+	QAtomicInt m_controlFlags;
 
 	// connection parameters and data
 	rfbClient* m_client;
@@ -236,7 +234,6 @@ private:
 	// thread and timing control
 	QMutex m_globalMutex;
 	QMutex m_eventQueueMutex;
-	QMutex m_controlFlagMutex;
 	QWaitCondition m_updateIntervalSleeper;
 	int m_framebufferUpdateInterval;
 
