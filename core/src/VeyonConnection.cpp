@@ -123,8 +123,8 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 	else
 	{
 		qCritical( "VeyonConnection::handleServerMessage(): "
-				"unknown message type %d from server. Closing "
-				"connection. Will re-open it later.", static_cast<int>( msg ) );
+				   "unknown message type %d from server. Closing "
+				   "connection. Will re-open it later.", static_cast<int>( msg ) );
 	}
 
 	return false;

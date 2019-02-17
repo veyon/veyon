@@ -325,9 +325,9 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 void VncConnection::rescaleScreen()
 {
 	if( m_image.size().isValid() == false ||
-			m_scaledSize.isNull() ||
-			hasValidFrameBuffer() == false ||
-			isControlFlagSet( ControlFlag::ScaledScreenNeedsUpdate ) == false )
+		m_scaledSize.isNull() ||
+		hasValidFrameBuffer() == false ||
+		isControlFlagSet( ControlFlag::ScaledScreenNeedsUpdate ) == false )
 	{
 		return;
 	}
@@ -516,8 +516,8 @@ void VncConnection::handleConnection()
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
 		if( m_framebufferState == FramebufferState::Valid &&
-				remainingUpdateInterval > 0 &&
-				isControlFlagSet( ControlFlag::TerminateThread ) == false )
+			remainingUpdateInterval > 0 &&
+			isControlFlagSet( ControlFlag::TerminateThread ) == false )
 		{
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( remainingUpdateInterval ) );
@@ -716,7 +716,7 @@ void VncConnection::clientCut( const QString& text )
 
 
 qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
-												   SocketDevice::SocketOperation operation, void* user )
+											  SocketDevice::SocketOperation operation, void* user )
 {
 	auto client = static_cast<rfbClient *>( user );
 	switch( operation )
