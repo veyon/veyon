@@ -239,7 +239,7 @@ bool AccessControlProvider::isLocatedIn( const QString &computer, const QString 
 
 
 
-bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo ) const
+bool AccessControlProvider::haveGroupsInCommon( const QString &userOne, const QString &userTwo ) const
 {
 	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_queryDomainGroups );
 	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userTwo, m_queryDomainGroups );
@@ -336,7 +336,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		hasConditions = true;
 
 		if( accessingUser.isEmpty() || localUser.isEmpty() ||
-			hasGroupsInCommon( accessingUser, localUser ) != matchResult )
+			haveGroupsInCommon( accessingUser, localUser ) != matchResult )
 		{
 			return false;
 		}
