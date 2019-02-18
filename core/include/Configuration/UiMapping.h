@@ -234,6 +234,5 @@ inline void connectWidgetToProperty( Config* config, void (Config::*setter)( con
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
 	connectWidgetToProperty( &config, &className::set, ui->get );
 
-//inline void mapPropertyFlagsToWidget( QWidget* widget, bool
 #define MAP_PROPERTY_FLAGS_TO_WIDGET(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
 	ui->get->setVisible( flags & Object::AdvancedSettingProperty );
