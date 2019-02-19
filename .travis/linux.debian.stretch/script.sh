@@ -3,14 +3,7 @@
 set -e
 
 /veyon/.travis/common/linux-build.sh /veyon /build
-
-cd /build
-
-# move generated DEB to mounted Docker volume
-rename "s/_amd64/-debian-stretch_amd64/g" *.deb
-
-dpkg -c *.deb
-dpkg -I *.deb
+/veyon/.travis/common/finalize-deb.sh "debian-stretch"
 
 # generate source tarball
 cd /veyon
@@ -26,6 +19,4 @@ cp /build/CONTRIBUTORS .
 cd /
 tar --transform "s,^veyon,veyon-$VERSION," --exclude=".git" --exclude="*.deb" -cjf /build/veyon-$VERSION-src.tar.bz2 veyon
 
-mv -v /build/*.deb /build/*.tar.bz2 /veyon
-
-
+mv -v /build/*.tar.bz2 /veyon
