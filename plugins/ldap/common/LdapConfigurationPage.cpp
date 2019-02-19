@@ -729,6 +729,8 @@ void LdapConfigurationPage::reportLdapObjectQueryResults( const QString &objects
 	if( results.isEmpty() )
 	{
 		QStringList parameters;
+		parameters.reserve( parameterNames.count() );
+
 		for( const auto& parameterName : parameterNames )
 		{
 			parameters += QStringLiteral("\"%1\"").arg( parameterName );
