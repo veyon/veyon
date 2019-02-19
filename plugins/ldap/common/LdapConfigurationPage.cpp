@@ -100,7 +100,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	const auto testButtons = findChildren<QPushButton *>( QRegularExpression( QStringLiteral("test.*") ) );
 	for( auto button : testButtons )
 	{
-		button->setToolTip( tr( "Test & validate" ) );
+		button->setToolTip( tr( "Test" ) );
 	}
 }
 
