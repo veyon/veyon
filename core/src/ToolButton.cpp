@@ -288,7 +288,8 @@ ToolButtonTip::ToolButtonTip( const QIcon& icon, const QString &title,
 	setAttribute( Qt::WA_DeleteOnClose, true );
 	setAttribute( Qt::WA_NoSystemBackground, true );
 
-	resize( sizeHint() );
+	QTimer::singleShot( 0, this, [this]() { resize( sizeHint() ); } );
+
 	updateMask();
 }
 
