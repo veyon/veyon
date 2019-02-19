@@ -48,7 +48,7 @@ public:
 		Legacy = 0x08
 	};
 	Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
-	Q_FLAG(PropertyFlags)
+	Q_ENUM(PropertyFlag) // work around QTBUG-47652 where Q_FLAG() does not work with enum classes with Qt < 5.12
 
 	typedef QMap<QString, QVariant> DataMap;
 
