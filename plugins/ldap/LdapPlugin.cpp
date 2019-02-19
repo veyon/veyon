@@ -83,6 +83,13 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 			m_configuration.setBindPassword( m_configuration.bindPasswordPlain() );
 		}
 	}
+	else if( oldVersion < QVersionNumber( 1, 2 ) )
+	{
+		m_configuration.setComputerLocationsByAttribute( m_configuration.legacyComputerRoomMembersByAttribute() );
+		m_configuration.setComputerLocationsByContainer( m_configuration.legacyComputerRoomMembersByContainer() );
+		m_configuration.setComputerLocationAttribute( m_configuration.legacyComputerRoomAttribute() );
+		m_configuration.setLocationNameAttribute( m_configuration.legacyComputerRoomNameAttribute() );
+	}
 }
 
 
