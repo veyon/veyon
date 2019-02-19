@@ -37,16 +37,16 @@ public:
 	UserConfig( Configuration::Store::Backend backend );
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
-	OP( UserConfig, VeyonMaster::userConfig(), JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI", QJsonArray(), Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI", QJsonArray(), Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI", false, Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), BOOL, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI", false, Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI", ComputerMonitoringView::DefaultComputerScreenSize, Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication", 0, Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI", false, Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI", false, Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), STRING, windowState, setWindowState, "WindowState", "UI", QString(), Configuration::Object::StandardProperty )	\
-	OP( UserConfig, VeyonMaster::userConfig(), STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI", QString(), Configuration::Object::StandardProperty )	\
+	OP( UserConfig, VeyonMaster::userConfig(), JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI", QJsonArray(), Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI", QJsonArray(), Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI", false, Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI", false, Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI", ComputerMonitoringView::DefaultComputerScreenSize, Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication", 0, Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI", false, Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI", false, Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), STRING, windowState, setWindowState, "WindowState", "UI", QString(), Configuration::Object::PropertyFlag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI", QString(), Configuration::Object::PropertyFlag::Standard )	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 

@@ -44,7 +44,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	ui->setupUi(this);
 
 	ui->networkGroupBox->setProperty( CONFIG_UI_PROPERTY_FLAGS, QVariant::fromValue<Configuration::Object::PropertyFlags>(
-										  Configuration::Object::AdvancedProperty ) );
+										  Configuration::Object::PropertyFlag::Advanced ) );
 
 	// TODO: finish multi session support
 	ui->isMultiSessionServiceEnabled->hide();

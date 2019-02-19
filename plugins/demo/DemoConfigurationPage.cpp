@@ -35,7 +35,7 @@ DemoConfigurationPage::DemoConfigurationPage( DemoConfiguration& configuration, 
 {
 	ui->setupUi(this);
 
-	setProperty( CONFIG_UI_PROPERTY_FLAGS, QVariant::fromValue<Configuration::Object::PropertyFlags>( Configuration::Object::AdvancedProperty ) );
+	setProperty( CONFIG_UI_PROPERTY_FLAGS, QVariant::fromValue<Configuration::Object::PropertyFlags>( Configuration::Object::PropertyFlag::Advanced ) );
 
 	// MT not supported yet
 	ui->multithreadingEnabled->setVisible( false );

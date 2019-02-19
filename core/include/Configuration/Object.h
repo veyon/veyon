@@ -41,11 +41,11 @@ class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:
-	enum PropertyFlag {
-		StandardProperty = 0x01,
-		AdvancedProperty = 0x02,
-		HiddenProperty = 0x04,
-		LegacyProperty = 0x08
+	enum class PropertyFlag {
+		Standard = 0x01,
+		Advanced = 0x02,
+		Hidden = 0x04,
+		Legacy = 0x08
 	};
 	Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
 	Q_FLAG(PropertyFlags)

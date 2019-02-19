@@ -28,8 +28,8 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(OP) \
-	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory", QJsonArray(), Configuration::Object::StandardPropertys )	\
+	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory", QJsonArray(), Configuration::Object::PropertyFlag::Standards )	\
 	/* legacy properties required for upgrade */ \
-	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, localDataNetworkObjects, setLocalDataNetworkObjects, "NetworkObjects", "LocalData", QJsonArray(), Configuration::Object::StandardPropertys )	\
+	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, localDataNetworkObjects, setLocalDataNetworkObjects, "NetworkObjects", "LocalData", QJsonArray(), Configuration::Object::PropertyFlag::Standards )	\
 
 DECLARE_CONFIG_PROXY(BuiltinDirectoryConfiguration, FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY)

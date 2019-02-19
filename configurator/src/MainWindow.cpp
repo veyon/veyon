@@ -243,11 +243,11 @@ void MainWindow::switchToStandardView()
 	for( auto widget : widgets )
 	{
 		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
-		if( flags & Configuration::Object::StandardProperty )
+		if( flags & Configuration::Object::PropertyFlag::Standard )
 		{
 			widget->show();
 		}
-		else if( flags & Configuration::Object::AdvancedProperty )
+		else if( flags & Configuration::Object::PropertyFlag::Advanced )
 		{
 			widget->hide();
 		}
@@ -262,7 +262,7 @@ void MainWindow::switchToStandardView()
 		{
 			const auto flags = page->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
 
-			ui->pageSelector->setRowHidden( i, flags & Configuration::Object::AdvancedProperty );
+			ui->pageSelector->setRowHidden( i, flags & Configuration::Object::PropertyFlag::Advanced );
 		}
 	}
 }
@@ -275,7 +275,7 @@ void MainWindow::switchToAdvancedView()
 	for( auto widget : widgets )
 	{
 		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
-		if( flags & Configuration::Object::AdvancedProperty )
+		if( flags & Configuration::Object::PropertyFlag::Advanced )
 		{
 			widget->show();
 		}
