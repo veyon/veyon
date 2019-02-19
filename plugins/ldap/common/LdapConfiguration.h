@@ -61,10 +61,15 @@
 	OP( LdapConfiguration, m_configuration, BOOL, computerLocationsByContainer, setComputerLocationsByContainer, "ComputerLocationsByContainer", "LDAP", false, Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, BOOL, computerLocationsByAttribute, setComputerLocationsByAttribute, "ComputerLocationsByAttribute", "LDAP", false, Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, computerLocationAttribute, setComputerLocationAttribute, "ComputerLocationAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
-/*	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByContainer, setComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP", false, Configuration::Object::StandardProperty )	\
-	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByAttribute, setComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP", false, Configuration::Object::StandardProperty )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerRoomAttribute, setComputerRoomAttribute, "ComputerRoomAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerRoomNameAttribute, setComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )*/	\
 
+#define FOREACH_LDAP_LEGACY_CONFIG_PROPERTY(OP) \
+	OP( LdapConfiguration, m_configuration, BOOL, legacyComputerRoomMembersByContainer, setCompatComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP", false, Configuration::Object::LegacyProperty )	\
+	OP( LdapConfiguration, m_configuration, BOOL, legacyComputerRoomMembersByAttribute, setCompatComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP", false, Configuration::Object::LegacyProperty )	\
+	OP( LdapConfiguration, m_configuration, STRING, legacyComputerRoomAttribute, setCompatComputerRoomAttribute, "ComputerRoomAttribute", "LDAP", QString(), Configuration::Object::LegacyProperty )	\
+	OP( LdapConfiguration, m_configuration, STRING, legacyComputerRoomNameAttribute, setCompatComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP", QString(), Configuration::Object::LegacyProperty )	\
 
-DECLARE_CONFIG_PROXY(LdapConfiguration, FOREACH_LDAP_CONFIG_PROPERTY)
+#define FOREACH_LDAP_PROXIES_CONFIG_PROPERTY(OP) \
+	FOREACH_LDAP_CONFIG_PROPERTY(OP) \
+	FOREACH_LDAP_LEGACY_CONFIG_PROPERTY(OP)
+
+DECLARE_CONFIG_PROXY(LdapConfiguration, FOREACH_LDAP_PROXIES_CONFIG_PROPERTY)
