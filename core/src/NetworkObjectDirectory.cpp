@@ -336,7 +336,7 @@ void NetworkObjectDirectory::setObjectPopulated( const NetworkObject& networkObj
 {
 	const auto objectModelId = networkObject.modelId();
 
-	auto it = m_objects.find( parentId( objectModelId ) );
+	auto it = m_objects.find( parentId( objectModelId ) ); // clazy:exclude=detaching-member
 	if( it != m_objects.end() )
 	{
 		for( auto& entry : *it )
