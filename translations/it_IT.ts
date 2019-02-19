@@ -791,7 +791,29 @@ Examples:
 
     %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 importazione&lt;FILE&gt; [stanza &lt;ROOM&gt;] [formato &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;] 
+
+Variabili valide: %type% % nome% %host% %mac% %stanza% 
+
+Esempi: 
+
+* Importa file CSV semplice in una singola stanza: 
+
+%1 import stanza computers.csv &quot;Stanza 01&quot; formato &quot;%nome%,%host%,%mac%&quot; 
+
+* Importa file CSV con nome stanza nella prima colonna: %1 importazione computer-con-stanze.csv formato &quot;%stanza%,% nome%,%mac%&quot;
+
+ * Importa il file di testo con le coppie chiave / valore usando le espressioni regolari: 
+
+%1 import hostlist.txt room &quot;Stanza 01&quot; regex &quot;^NAME:(%nome%:. *)\s+HOST:(%host%..*)$&quot;
+
+* Importa dati formattati arbitrariamente:
+
+%1 import data.txt regex &apos;^&quot;(%room%:[^]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>

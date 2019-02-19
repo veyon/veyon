@@ -41,7 +41,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Υποστήριξε το Veyon με μία δωρεά</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>Περιόρισε την πρόσβαση σε μέλη μίας συγκεκριμένης ομάδας χρηστών</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -68,15 +68,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Εξουσιοδοτημένοι χρήστες ομάδων με πρόσβαση στον υπολογιστή</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Παρακαλώ επιλέξτε τις ομάδες των οποίων τα μέλη θα έχουν εξουσιοδότηση πρόσβασης σε υπολογιστές του δικού σας δικτύου Veyon. </translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Εξουσιοδοτημένα μέλη ομάδων</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -124,7 +124,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Ο συγκεκριμένος χρήστης δεν έχει δικαίωμα πρόσβασης σε υπολογιστή με αυτή την διαμόρφωση.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -132,7 +132,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Ο συγκεκριμένος χρήστης δεν έχει δικαίωμα πρόσβασης σε υπολογιστή με αυτή την διαμόρφωση.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>

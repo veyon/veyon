@@ -2189,11 +2189,11 @@ Példák:
     </message>
     <message>
         <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Kérem, cseréld a számítógépterem beállításait, hogy a számítógép-csoportokat vagy a számítógép tárolókat használhassuk számítógéptermekként. Ezután a meghatározott attribútumot kérdezzük le a számítógép-csoportok, illetve a tárolóobjektumok neve helyett. Egyéb esetben nem szükséges ennek az attribútumnak a konfigurálása.</translation>
+        <translation>Módosítsa a számítógépterem beállításait, hogy a számítógép-csoportokat vagy a számítógép tárolókat használhassuk számítógéptermekként. Ezután a meghatározott attribútumot kérdezzük le a számítógép-csoportok, illetve a tárolóobjektumok neve helyett. Egyéb esetben nem szükséges ennek az attribútumnak a konfigurálása.</translation>
     </message>
     <message>
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Kérem, cseréld a számítógépterem beállításait alább, hogy a számítógép tárolókat használhassuk számítógéptermekként. Egyéb esetben nem szükséges ennek a szűrőnek konfigurálása.</translation>
+        <translation>Módosítsa a számítógépterem beállításait alább, hogy a számítógép tárolókat használhassuk számítógéptermekként. Egyéb esetben nem szükséges ennek a szűrőnek konfigurálása.</translation>
     </message>
     <message>
         <source>Connection security</source>

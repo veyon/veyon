@@ -35,7 +35,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>현재 한국어 번역이 진행중입니다 (영어에서 한국어로).
 
-Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다. </translation>
+Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -520,7 +520,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>개인키를 공개키로 변환하기 실패.</translation>
+        <translation>개인키를 공개키로 변환하기 실패</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
@@ -583,11 +583,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>• 공개 또는 개인 접근 키 불러오기</translation>
+        <translation>공개 또는 개인 접근 키 불러오기</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>• 공개 또는 개인 접근 키 내보내기</translation>
+        <translation>공개 또는 개인 접근 키 내보내기</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
@@ -595,7 +595,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>키에 접근을 허용할 유저 그룹을 설정하세요.</translation>
+        <translation>키에 접근을 허용할 유저 그룹을 설정하세요</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -627,7 +627,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation> 이 명려어는 인증키 &lt;KEY&gt; 를  &lt;FILE&gt;로 내 보냅니다.  만일  &lt;FILE&gt; 이 지정되지 않으면  &lt;KEY&gt;의 이름 과 형식을 이용해서 이름이 생성됩니다 . .</translation>
+        <translation> 이 명려어는 인증키 &lt;KEY&gt; 를  &lt;FILE&gt;로 내 보냅니다.  만일  &lt;FILE&gt; 이 지정되지 않으면  &lt;KEY&gt;의 이름 과 형식을 이용해서 이름이 생성됩니다 . </translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -1319,7 +1319,7 @@ Examples:
     </message>
     <message>
         <source>Update interval</source>
-        <translation>갱신 간격</translation>
+        <translation>업데이트 간격</translation>
     </message>
     <message>
         <source> s</source>
@@ -1540,7 +1540,7 @@ Examples:
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>심각한 에러 메시지만 남김</translation>
+        <translation>심각한 에러 메시지만 </translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
@@ -1881,7 +1881,7 @@ Examples:
     </message>
     <message>
         <source>user objects</source>
-        <translation>사용자 개체</translation>
+        <translation>사용자 오브젝트</translation>
     </message>
     <message>
         <source>user login attribute</source>
@@ -1993,7 +1993,7 @@ Examples:
     </message>
     <message>
         <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요  </translation>
+        <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2017,7 +2017,7 @@ Examples:
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation>컴퓨터 개체로 변환할 컴퓨터 IP 주소를 입력하세요</translation>
+        <translation>컴퓨터 개체로 변환할 컴퓨터 IP 주소를 입력하세요:</translation>
     </message>
     <message>
         <source>Host name lookup failed</source>
@@ -2049,7 +2049,7 @@ Examples:
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>%1 이 성공적으로 조회되고 %2 입력 값이 검색됨</translation>
+        <translation>%1 이 성공적으로 조회되고 %2 입력 값이 검색됨.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
@@ -2063,7 +2063,7 @@ Examples:
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 가 성공적으로 조회됨
+        <translation>%1 %2 가 성공적으로 조회됨:
 
 %3</translation>
     </message>
@@ -2209,7 +2209,7 @@ Examples:
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>거부(보안 안됨)</translation>
+        <translation>거부(보안 안됨!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2229,15 +2229,15 @@ Examples:
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation>e.g. (objectClass=computer)</translation>
+        <translation>예. (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>e.g. (objectClass=group)</translation>
+        <translation>예. (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>e.g. (objectClass=person)</translation>
+        <translation>예. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
@@ -2378,11 +2378,11 @@ Examples:
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>도움말(&amp;H)</translation>
+        <translation>&amp;Help</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>종료하기(&amp;Q)</translation>
+        <translation>&amp;Quit</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2394,7 +2394,7 @@ Examples:
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>&amp;o 화일에서 설정 불러오기</translation>
+        <translation>L&amp;oad 화일에서 설정 불러오기</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -2470,7 +2470,7 @@ Examples:
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1 Configurator  를 관리자 권한으로 실행하세요</translation>
+        <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1 Configurator  를 관리자 권한으로 실행하세요.</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2482,7 +2482,7 @@ Examples:
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>로컬 설정에 따라 당신은 네트워크상의 컴퓨터에 접근이 거부됩니다. 다른 사용자 이름으로 다시 로그인 하거나 시스템 관리자에게 로컬 설정 확인을 요청하세요</translation>
+        <translation>로컬 설정에 따라 당신은 네트워크상의 컴퓨터에 접근이 거부됩니다. 다른 사용자 이름으로 다시 로그인 하거나 시스템 관리자에게 로컬 설정 확인을 요청하세요.</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2494,7 +2494,7 @@ Examples:
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>기능 &quot;%1&quot; 이 현재 활성화 상태입니다. %2를 닫기 전에 중지시키세요</translation>
+        <translation>기능 &quot;%1&quot; 이 현재 활성화 상태입니다. %2를 닫기 전에 중지시키세요.</translation>
     </message>
     <message>
         <source>Reset configuration</source>
@@ -2522,7 +2522,7 @@ Examples:
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation>%1 설정자</translation>
+        <translation>%1 설정 프로그램</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
@@ -2538,7 +2538,7 @@ Examples:
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>&amp;설정을 화일에 저장</translation>
+        <translation>&amp;Save 설정을 화일에 저장</translation>
     </message>
 </context>
 <context>
@@ -2730,7 +2730,7 @@ Examples:
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>컴퓨터에 접근 하려면 당신의 사용자이름과 패스워드를 입력하세요</translation>
+        <translation>컴퓨터에 접근 하려면 당신의 사용자이름과 패스워드를 입력하세요.</translation>
     </message>
 </context>
 <context>
@@ -2741,7 +2741,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>이버튼 눌러서 모든 컴퓨터의 파워를 켭니다. 따라서 수동으로 한대씩 전원을 켤 필요가 없습니다</translation>
+        <translation>이버튼 눌러서 모든 컴퓨터의 파워를 켭니다. 따라서 수동으로 한대씩 전원을 켤 필요가 없습니다.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2749,7 +2749,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>클릭하면 모든 컴퓨터를 리부팅</translation>
+        <translation>클릭하면 모든 컴퓨터를 리부팅.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2757,7 +2757,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>이버튼 눌러서 모든 컴퓨터의 파워를 끕니다. 따라서 수동으로 한대씩 전원을 끌 필요가 없습니다</translation>
+        <translation>이버튼 눌러서 모든 컴퓨터의 파워를 끕니다. 따라서 수동으로 한대씩 전원을 끌 필요가 없습니다.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -2788,7 +2788,7 @@ Examples:
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>상호 작용없이 원격 컴퓨터의 화면을 열기</translation>
+        <translation>상호 작용없이 원격 컴퓨터의 화면을 열기.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -2796,7 +2796,7 @@ Examples:
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>컴퓨터의 원격제어 윈도우를 열기</translation>
+        <translation>컴퓨터의 원격제어 윈도우를 열기.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -2804,11 +2804,11 @@ Examples:
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>감시화면 또는 컴퓨터 제어</translation>
+        <translation>원격 화면 감시 또는 컴퓨터 제어</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>연결할 컴퓨터의 호스트 이름 또는 IP를 입력하세요</translation>
+        <translation>연결할 컴퓨터의 호스트 이름 또는 IP를 입력하세요:</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -2969,11 +2969,11 @@ Examples:
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation>%1 컴퓨터의 화면캡쳐 성공</translation>
+        <translation>%1 컴퓨터의 화면캡쳐 성공.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation>컴퓨터의 화면을 캡쳐하고 로컬에 저장함</translation>
+        <translation>컴퓨터의 화면을 캡쳐하고 로컬에 저장함.</translation>
     </message>
 </context>
 <context>
@@ -3178,7 +3178,7 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation>명령어행 실행</translation>
+        <translation>명령어 화일 실행</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -3219,7 +3219,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>선택된 사용자에세 메세지를 보내려면 아래 빈칸에 내용을 입력하세요</translation>
+        <translation>선택된 사용자에세 메세지를 보내려면 아래 빈칸에 내용을 입력하세요.</translation>
     </message>
 </context>
 <context>
@@ -3230,7 +3230,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>예를들어 모든 사용자에게 새로운 과제를 부과하는 문자 메세지를 보내려면 이기능을 사용</translation>
+        <translation>예를들어 모든 사용자에게 새로운 과제를 부과하는 문자 메세지를 보내려면 이기능을 사용.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3276,7 +3276,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>개인 설정을 저장할 수 없음. %1 설정자를 이용하여 사용자 설정 화일을 경로를 확인하세요</translation>
+        <translation>개인 설정을 저장할 수 없음. %1 설정 프로그램을 이용하여 사용자 설정 화일을 경로를 확인하세요.</translation>
     </message>
 </context>
 <context>
@@ -3330,7 +3330,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>결과를 알수 없음</translation>
+        <translation>알수 없는 결과!</translation>
     </message>
     <message>
         <source>Available modules:</source>

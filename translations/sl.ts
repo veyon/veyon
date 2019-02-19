@@ -678,7 +678,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Parna ID</translation>
     </message>
 </context>
 <context>
@@ -3263,11 +3263,11 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Omogoči podporo za več monitorjev</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Omogoči pogon za podvajanje namizja računalnika na Windows 8 in novejših</translation>
     </message>
 </context>
 <context>
