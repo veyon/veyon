@@ -42,7 +42,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service", false, Configuration::Object::PropertyFlag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, failedAuthenticationNotificationsEnabled, setFailedAuthenticationNotificationsEnabled, "FailedAuthenticationNotifications", "Service", true, Configuration::Object::PropertyFlag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, remoteConnectionNotificationsEnabled, setRemoteConnectionNotificationsEnabled, "RemoteConnectionNotifications", "Service", false, Configuration::Object::PropertyFlag::Standard )			\
-	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isMultiSessionServiceEnabled, setMultiSessionServiceEnabled, "MultiSession", "Service", false, Configuration::Object::PropertyFlag::Standard )			\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isMultiSessionServiceEnabled, setMultiSessionServiceEnabled, "MultiSession", "Service", false, Configuration::Object::PropertyFlag::Hidden )			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Object::PropertyFlag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Service", true, Configuration::Object::PropertyFlag::Advanced )			\
 

@@ -243,7 +243,11 @@ void MainWindow::switchToStandardView()
 	for( auto widget : widgets )
 	{
 		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
-		if( flags & Configuration::Object::PropertyFlag::Standard )
+		if( flags & Configuration::Object::PropertyFlag::Hidden )
+		{
+			widget->hide();
+		}
+		else if( flags & Configuration::Object::PropertyFlag::Standard )
 		{
 			widget->show();
 		}
