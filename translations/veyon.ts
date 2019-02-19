@@ -2360,6 +2360,14 @@ The public key is used on client computers to authenticate incoming connection r
 %3</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
