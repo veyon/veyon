@@ -51,6 +51,78 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Authentication</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Method:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="authenticationMethod">
+        <item>
+         <property name="text">
+          <string>Logon authentication</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Key file authentication</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_12">
+     <property name="title">
+      <string>Network object directory</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_14" columnstretch="0,1">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Backend:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="networkObjectDirectoryPlugin"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_40">
+        <property name="text">
+         <string>Update interval:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="networkObjectDirectoryUpdateInterval">
+        <property name="suffix">
+         <string> seconds</string>
+        </property>
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>3600</number>
+        </property>
+        <property name="value">
+         <number>600</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox_7">
      <property name="title">
       <string>Logging</string>
@@ -243,78 +315,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_12">
-     <property name="title">
-      <string>Network object directory</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_14" columnstretch="0,1">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Backend:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="networkObjectDirectoryPlugin"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_40">
-        <property name="text">
-         <string>Update interval:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="networkObjectDirectoryUpdateInterval">
-        <property name="suffix">
-         <string> seconds</string>
-        </property>
-        <property name="minimum">
-         <number>10</number>
-        </property>
-        <property name="maximum">
-         <number>3600</number>
-        </property>
-        <property name="value">
-         <number>600</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Authentication</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Method:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="authenticationMethod">
-        <item>
-         <property name="text">
-          <string>Logon authentication</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Key file authentication</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -332,6 +332,9 @@
  <tabstops>
   <tabstop>applicationName</tabstop>
   <tabstop>uiLanguage</tabstop>
+  <tabstop>authenticationMethod</tabstop>
+  <tabstop>networkObjectDirectoryPlugin</tabstop>
+  <tabstop>networkObjectDirectoryUpdateInterval</tabstop>
   <tabstop>logFileDirectory</tabstop>
   <tabstop>openLogFileDirectory</tabstop>
   <tabstop>logLevel</tabstop>
@@ -342,9 +345,6 @@
   <tabstop>logToStdErr</tabstop>
   <tabstop>logToSystem</tabstop>
   <tabstop>clearLogFiles</tabstop>
-  <tabstop>networkObjectDirectoryPlugin</tabstop>
-  <tabstop>networkObjectDirectoryUpdateInterval</tabstop>
-  <tabstop>authenticationMethod</tabstop>
  </tabstops>
  <resources>
   <include location="../../core/resources/core.qrc"/>
