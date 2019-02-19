@@ -267,6 +267,12 @@ void MainWindow::switchToStandardView()
 			const auto flags = page->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
 
 			ui->pageSelector->setRowHidden( i, flags & Configuration::Object::PropertyFlag::Advanced );
+			ui->configPages->widget( i )->setVisible( i == ui->pageSelector->currentRow() );
+			if( flags & Configuration::Object::PropertyFlag::Advanced &&
+				i == ui->pageSelector->currentRow() )
+			{
+				ui->pageSelector->setCurrentRow( 0 );
+			}
 		}
 	}
 }
@@ -288,6 +294,7 @@ void MainWindow::switchToAdvancedView()
 	for( int i = 0; i < ui->pageSelector->count(); ++i )
 	{
 		ui->pageSelector->setRowHidden( i, false );
+		ui->configPages->widget( i )->setVisible( i == ui->pageSelector->currentRow() );
 	}
 }
 
