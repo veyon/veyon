@@ -58,7 +58,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation>Preizkusi</translation>
+        <translation>Preizkus</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
@@ -192,10 +192,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>je član skupine</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>je v sobi</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>Dostopni računalnik je lokalni gostitelj</translation>
     </message>
@@ -262,6 +258,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Dostopni uporabnik ima eno ali več skupnin, skupnih z lokalnim (prijavljenim) uporabnikom</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation>se nahaja v</translation>
     </message>
 </context>
 <context>
@@ -383,7 +383,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Prosim, izberite ključ za brisanje!</translation>
+        <translation>Prosimo, izberite ključ za brisanje!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -391,7 +391,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>Prosim, izberite ključ za izvoz!</translation>
+        <translation>Prosimo, izberite ključ za izvoz!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -436,7 +436,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Prosim, preverite svoja dovoljenja.</translation>
+        <translation>Prosimo, preverite svoja dovoljenja.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -627,11 +627,11 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ta ukaz izvozi ključ za preverjanje pristnosti &lt;KLJUČ&gt; v &lt;DATOTEKA&gt;. Če &lt;DATOTEKA&gt; ni določena, bo ime zgrajeno iz imena in tipa &lt;KLJUČ&gt;.</translation>
+        <translation>Ta ukaz izvozi ključ za preverjanje pristnosti &lt;KEY&gt; to &lt;FILE&gt;. Če &lt;FILE&gt; ni podano ime bo sestavljeno iz imena in vrste&lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ta ukaz uvozi ključ za preverjanje pristnosti &lt;KLJUČ&gt; iz &lt;DATOTEKA&gt;. Če &lt;DATOTEKA&gt; ni določena, bo ime zgrajeno iz imena in tipa &lt;KLJUČ&gt;.</translation>
+        <translation>Ta ukaz uvozi ključ za preverjanje pristnosti &lt;KEY&gt; iz&lt;FILE&gt;. Če &lt;FILE&gt; ni določena, bo ime zgrajeno iz imena in tipa &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
@@ -639,7 +639,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Ta ukaz izvleče del javnega ključa iz zasebnega ključa &lt;KLJUČ&gt; in ga shrani kot ustrezni javni ključ.</translation>
+        <translation>Ta ukaz izvleče del javnega ključa iz zasebnega ključa &lt;KEY&gt; in ga shrani kot ustrezni javni ključ.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -651,7 +651,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>PAIR ID</translation>
+        <translation>PAR ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -678,19 +678,11 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Par ID</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Sobe in računalniki</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>Sobe</translation>
-    </message>
     <message>
         <source>Computers</source>
         <translation>Računalniki</translation>
@@ -708,14 +700,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>MAC naslov</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>Dodaj novo sobo</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Odstrani izbrano sobo</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>Dodaj nov računalnik</translation>
     </message>
@@ -724,16 +708,36 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Odstrani izbrani računalnik</translation>
     </message>
     <message>
-        <source>New room</source>
-        <translation>Nova soba</translation>
-    </message>
-    <message>
         <source>New computer</source>
         <translation>Nov računalnik</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Vgrajen imenik</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Lokacije in računalniki</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Lokacije</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>Dodaj novo lokacijo</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>Odstrani izbrano lokacijo</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>Uvoz datotek CSV je možen prek vmesnika ukazne vrstice. Za več informacij, glejte &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;spletna dokumentacija&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Nova lokacija</translation>
     </message>
 </context>
 <context>
@@ -741,26 +745,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Show help for specific command</source>
         <translation>Prikaži pomoč za določen ukaz</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>Dodaj sobo ali računalnik</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>Počisti vse sobe in računalnike</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>Izprazni vse ali posamezne sobe in računalnike</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>Seznam vseh sob in računalnikov</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>Odstrani sobo ali računalnik</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -776,7 +760,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Type</source>
-        <translation>Tip</translation>
+        <translation>Vrsta</translation>
     </message>
     <message>
         <source>Name</source>
@@ -807,10 +791,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Neznan argument &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>Soba &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>Računalnik &quot;%1&quot; (naslov gostitelja: &quot;%2&quot; MAC naslov: &quot;%3&quot;)</translation>
     </message>
@@ -821,10 +801,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>None</source>
         <translation>Brez</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>Soba</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -847,10 +823,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Imenik omrežnih objektov, ki shranjuje predmete v lokalni konfiguraciji</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>Vgrajeno (računalniki in sobe v lokalni konfiguraciji)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>Ukazi za upravljanje vgrajenega omrežnega imenika</translation>
     </message>
@@ -867,120 +839,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Nobena vrsta niza ni določena!</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-UPORABA
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Veljavne spremenljivke: %type% %name% %host% %mac% %room%
-
-Primeri:
-
-* Izvozi vse predmete v datoteko CSV:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Izvozite vse računalnike v prostoru v datoteko CSV:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-UPORABA
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Doda objekt, kjer je TYPE lahko eden od &quot;%2&quot; ali &quot;%3&quot;. PARENT se lahko navede po imenu ali UUID.
-
-Primeri:
-
-* Dodaj sobo:
-
-    %1 add room &quot;Room 01&quot;
-
-* Dodaj računalnik v sobo &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-UPORABA
-
-%1 remove &lt;OBJECT&gt;
-
-Odstrani navedeni objekt iz imenika. OBJECT lahko določite z imenom ali UUID. Odstranjevanje sobe bo tudi odstranilo vse računalnike znotraj.
-
-Primeri:
-
-* Odstrani računalnik po imenu:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Odstrani predmet po UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>Objekt UUID</translation>
     </message>
@@ -989,32 +847,140 @@ Primeri:
         <translation>Starševski UUID</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
+        <source>Add a location or computer</source>
+        <translation>Dodaj lokacijo ali računalnik</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>Počistite vse lokacije in računalnike</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation>Odstranite vse ali posamezne lokacije in računalnike</translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation>Seznam vseh lokacij in računalnikov</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>Odstrani lokacijo ali računalnik</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Lokacija &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Vgrajeni (računalniki in lokacije v lokalni konfiguraciji)</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Lokacija</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>DATOTEKA</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>VRSTA</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>IME</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC naslov</translation>
     </message>
 </context>
 <context>
@@ -1071,7 +1037,7 @@ Examples:
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Ni prijavljenih uporabnikov</translation>
+        <translation>Uporabnik ni prijavljen na</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1086,7 +1052,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Napaka avtentifikacije</translation>
+        <translation>Napaka preverjanja pristnosti</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1499,15 +1465,15 @@ Examples:
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>Samo prenos</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>Prenesi in odpri datoteko(e) s pripadajočim programom</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Prenesi in odpri ciljno mapo</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1550,7 +1516,7 @@ Examples:
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke &quot;%1&quot; ni bilo mogoče prejeti, ker je ni bilo mogoče odpreti za pisanje!</translation>
     </message>
 </context>
 <context>
@@ -1704,7 +1670,7 @@ Examples:
     </message>
     <message>
         <source>Backend:</source>
-        <translation>Hrbtna:</translation>
+        <translation>Ozadje:</translation>
     </message>
     <message>
         <source>General settings</source>
@@ -1727,7 +1693,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Pokaži pomoč o ukazu</translation>
+        <translation>Prikaži pomoč o ukazu</translation>
     </message>
     <message>
         <source>Block internet</source>
@@ -1758,7 +1724,7 @@ Examples:
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>Brskaj po LDAP</translation>
     </message>
 </context>
 <context>
@@ -1774,10 +1740,6 @@ Examples:
 </context>
 <context>
     <name>LdapConfigurationPage</name>
-    <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
     <message>
         <source>Basic settings</source>
         <translation>Osnovne nastavitve</translation>
@@ -1805,10 +1767,6 @@ Examples:
     <message>
         <source>Use bind credentials</source>
         <translation>Uporabi povezovalne poverilnice</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Preizkusi</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2013,10 +1971,6 @@ Examples:
         <translation>uporabnikovi predmeti</translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation>atribut prijave uporabnika</translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation>Vnesi ime skupine</translation>
     </message>
@@ -2027,10 +1981,6 @@ Examples:
     <message>
         <source>group members</source>
         <translation>člani skupine</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>atribut člana skupine</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2065,10 +2015,6 @@ Examples:
         <translation>računalniški predmeti</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>atribut imena računalniškega gostitelja</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>Vnesite DN računalnika</translation>
     </message>
@@ -2079,10 +2025,6 @@ Examples:
     <message>
         <source>computer MAC addresses</source>
         <translation>računalnik MAC naslovov</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>atribut računalnika MAC naslovov</translation>
     </message>
     <message>
         <source>users</source>
@@ -2105,10 +2047,6 @@ Examples:
         <translation>skupine uporabnika</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>atribut prijave uporabnika ali atribut članstva skupine </translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>Uporabnik ni najden</translation>
     </message>
@@ -2127,10 +2065,6 @@ Examples:
     <message>
         <source>groups of computer</source>
         <translation>skupine računalnika</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>atribut imena računalniškega gostitelja ali atribut skupine članov</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2165,28 +2099,12 @@ Examples:
         <translation>Preizkus LDAP %1 ni uspel</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>Ne morem vnesti nobenih vnosov v poizvedbo v nastavljeno %1. Preverite parameter %1.
-
-%2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>Preizkus LDAP %1 je uspel</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 je bila uspešna poizvedba in ugotovljeno je, da je bilo %2 vnosov.</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>Ni bilo mogoče vprašati nobenega %1. Preverite parameter %2 ali vnesite ime obstoječega predmeta.
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2237,72 +2155,16 @@ Examples:
         <translation>npr. soba ali računalnikLab</translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation>Seznam vseh članov v računalniški sobi</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>Seznam vseh računalniških sob</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>Vnesite ime računalniške sobe</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>Vnesite ime računalniške sobe (dovoljeni so nadomestni znak):</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>računalniške sobe</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>atribut računalniške sobe</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>Vnesite ime računalniške sobe, katere člani lahko poizvedujejo:</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>člani računalniške sobe</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>filtriranje računalniških skupin ali združevanje članov računalniške sobe</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>Računalniške sobe</translation>
-    </message>
-    <message>
         <source>Integration tests</source>
         <translation>Integracijski testi</translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation>Atribut računalniške sobe</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>Združite računalnike v sobi preko:</translation>
     </message>
     <message>
         <source>Computer groups</source>
         <translation>Računalniške skupine</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>Atribut računalniške sobe v računalniških predmetih</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>Preskus ni uporaben</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>Atribut imena računalniške sobe</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2315,14 +2177,6 @@ Examples:
     <message>
         <source>Computer containers or OUs</source>
         <translation>Računalniški vsebniki OU</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Prosimo, spremenite nastavitve računalniške sobe za uporabo računalniških skupin ali računalniških vsebnikov kot računalniške sobe. Nato bo naveden atribut namesto skupnega imena računalniških skupin ali vsebnikov predmetov za poizvedbe. V nasprotnem primeru ne potrebujete nastavitve tega atributa.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Prosimo, spremenite nastavitve računalniške sobe spodaj za uporabo računalniških vsebnikov kot računalniških sob. V nasprotnem primeru ne potrebujete nastavitve tega filtra.</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2424,6 +2278,118 @@ Examples:
         <source>Encryption protocol</source>
         <translation>Protokol šifriranja</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Atribut lokacije računalnika</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Atribut prikaznega imena računalnika</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Atribut imena mesta</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>npr. cn ali prikazno ime</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identifikacija lokacij računalnika</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Prepoznaj lokacije računalnika (npr. sobe) preko:</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Atribut lokacije v računalniških objektih</translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>Seznam vseh vnosov lokacije</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>Seznam vseh lokacij</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation>Vnesi prikazno ime računalnika</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Vnesi prikazno ime računalnika za poizvedbo:</translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>Vnesi ime lokacije računalnika</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Vnesi ime lokacije računalnika (dovoljeni nadomestni znaki):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>lokacije računalnika</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Prosimo, spremenite nastavitve lokacije računalnika za uporabo računalniških skupin ali računalniške vsebnike kot računalniške lokacije. Nato se izvede poizvedba za določen atribut namesto skupnega imena skupin računalnikov ali predmetov vsebnika. V nasprotnem vam ni treba konfigurirati tega atributa.</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Spodnje nastavitve lokacije računalnika spremenite tako, da bodo računalniški vsebniki uporabljeni kot računalniške lokacije. V nasprotnem tega filtra ni treba konfigurirati.</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Vnesi ime lokacije</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Vnesi ime lokacije, katere vnosi so za poizvedbo:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>vnosi lokacije</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Preizkus LDAP ni uspel</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Za noben %1 ni bila mogoča poizvedba. Preverite parametre %2 in vnesite ime obstoječega objekta.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>in</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Test LDAP uspešen</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Ni bila mogoča poizvedba o vnosih v konfiguriranem %1. Preverite parameter &quot;%2&quot;.
+
+%3</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkus</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2444,67 +2410,113 @@ Examples:
         <translation>Ukazi za konfiguriranje in testiranje integracije LDAP/AD</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>Zagotovite integracijo LDAP/AD za Veyon</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Osnovna LDAP/AD podpora za Veyon</translation>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP (naloži računalnike in sobe iz LDAP/AD)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP (naloži uporabnike in skupine iz LDAP/AD)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation>LDAP Pro</translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation>Primerki</translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation>Vnesi ime</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation>Vnesite ime primerka (kasneje ga ni mogoče spremeniti!):</translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation>Odstrani primerek</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation>Ali res želite odstraniti primerek &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation>Konfiguracija za primerek &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation>Profesionalna LDAP/AD integracija za Veyon</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation type="unfinished"/>
+        <translation>Licenciranje</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>Nameščene licence</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>Dodajte novo omrežno območje</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>Odstranite izbrano omrežno območje</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>Funkcija</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>Veljavno do</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>Licenca</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>Brskanje po datoteki licence</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>Veyon licenčne datoteke (*.vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani licenco</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
+        <translation>Ali res želite odstraniti izbrano licenco?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2512,31 +2524,31 @@ Examples:
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation type="unfinished"/>
+        <translation>Neveljavna licenčna datoteka</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke z licenco ni bilo mogoče odpreti za branje!</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
+        <translation>Izbrana licenčna datoteka ne vsebuje veljavnih podatkov.</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
+        <translation>Izbrane datoteke licence ni bilo mogoče preveriti.</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
+        <translation>Izbrana datoteka licence ni veljavna za to namestitev.</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
+        <translation>Izbrana datoteka z licenco je potekla.</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>Licenca je že nameščena.</translation>
     </message>
 </context>
 <context>
@@ -2547,15 +2559,15 @@ Examples:
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>Pokaži vse nameščene licence</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj licenčno datoteko</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani licenčno datoteko</translation>
     </message>
     <message>
         <source>
@@ -2564,7 +2576,12 @@ USAGE
 %1 add &lt;LICENSE FILE&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+UPORABA
+
+%1 dodana &lt;LICENSE FILE&gt;
+
+</translation>
     </message>
     <message>
         <source>
@@ -2573,11 +2590,16 @@ USAGE
 %1 remove &lt;LICENSE ID&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+UPORABA
+
+%1 odstranjena &lt;LICENSE ID&gt;
+
+</translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
+        <translation>Z danim ID-jem ni bilo najdenega nobenega potrdila</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2585,11 +2607,11 @@ USAGE
     </message>
     <message>
         <source>Licensing management</source>
-        <translation type="unfinished"/>
+        <translation>Upravljanje licenc</translation>
     </message>
     <message>
         <source>Commands for managing license keys</source>
-        <translation type="unfinished"/>
+        <translation>Ukazi za upravljanje licenčnih ključev</translation>
     </message>
 </context>
 <context>
@@ -2742,7 +2764,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Zaslonska slika</translation>
+        <translation>Zaslonske slike</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2798,15 +2820,15 @@ USAGE
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pogled</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Standardno</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Napredno</translation>
     </message>
 </context>
 <context>
@@ -2953,11 +2975,11 @@ USAGE
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Vrstni red</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Računalnik in uporabniško ime</translation>
     </message>
 </context>
 <context>
@@ -2979,15 +3001,15 @@ USAGE
     <name>NetworkDiscoveryConfigurationPage</name>
     <message>
         <source>Network discovery</source>
-        <translation type="unfinished"/>
+        <translation>Odkrivanje omrežja</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished"/>
+        <translation>Način</translation>
     </message>
     <message>
         <source>Scan network ranges</source>
-        <translation type="unfinished"/>
+        <translation>Preglej obsege omrežja</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
@@ -2995,15 +3017,15 @@ USAGE
     </message>
     <message>
         <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
+        <translation>Preglej vsa podomrežja računalnika</translation>
     </message>
     <message>
         <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
+        <translation>Preglej podomrežje po meri</translation>
     </message>
     <message>
         <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
+        <translation>Preglej seje na lokalnem računalniku</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3011,7 +3033,7 @@ USAGE
     </message>
     <message>
         <source>Network ranges</source>
-        <translation type="unfinished"/>
+        <translation>Območja omrežja</translation>
     </message>
     <message>
         <source>Add new group</source>
@@ -3027,27 +3049,27 @@ USAGE
     </message>
     <message>
         <source>First address</source>
-        <translation type="unfinished"/>
+        <translation>Prvi naslov</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation type="unfinished"/>
+        <translation>Zadnji naslov</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>Dodajte novo omrežno območje</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>Odstranite izbrano omrežno območje</translation>
     </message>
     <message>
         <source>Parallel scans</source>
-        <translation type="unfinished"/>
+        <translation>Vzporedno skeniranje</translation>
     </message>
     <message>
         <source>Scan timeout</source>
-        <translation type="unfinished"/>
+        <translation>Časovna omejitev skeniranja</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3055,11 +3077,7 @@ USAGE
     </message>
     <message>
         <source>Session scan limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>New group</source>
-        <translation>Nova skupina</translation>
+        <translation>Meja skeniranja seje</translation>
     </message>
     <message>
         <source>Options</source>
@@ -3067,14 +3085,18 @@ USAGE
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
+        <translation>Povratno iskanje je odkrilo naslove IP za imena gostiteljev</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Nova lokacija</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryDirectory</name>
     <message>
         <source>Scanning...</source>
-        <translation type="unfinished"/>
+        <translation>Skeniranje...</translation>
     </message>
     <message>
         <source>Discovered computers</source>
@@ -3089,7 +3111,7 @@ USAGE
     </message>
     <message>
         <source>Scan a subnet</source>
-        <translation type="unfinished"/>
+        <translation>Skeniraj podomrežje</translation>
     </message>
     <message>
         <source>
@@ -3098,26 +3120,31 @@ USAGE
 %1 scan [&lt;SUBNET&gt;]
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+UPORABA
+
+%1 skenirano [&lt;SUBNET&gt;]
+
+</translation>
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation type="unfinished"/>
+        <translation>Imenik omrežnih objektov, ki samodejno odkrije računalnike v omrežju</translation>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
-        <translation type="unfinished"/>
+        <translation>Odkrivanje omrežja (skeniranje omrežja za stranke Veyon)</translation>
     </message>
     <message>
         <source>Commands for managing the network discovery directory</source>
-        <translation type="unfinished"/>
+        <translation>Ukazi za upravljanje imenika za odkrivanje omrežja</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>Soba/računalnik</translation>
+        <source>Locations/Computers</source>
+        <translation>Lokacije/Računalniki</translation>
     </message>
 </context>
 <context>
@@ -3195,7 +3222,7 @@ USAGE
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
+        <translation>Zagon računalnika preko Wake-on-LAN (WOL)</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3203,7 +3230,7 @@ USAGE
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>Ta ukaz oddaja paket Wake-on-LAN (WOL) v omrežje, da bi lahko vklopil računalnik z danim naslovom MAC.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -3215,7 +3242,7 @@ USAGE
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
+        <translation>Ukazi za nadzor stanja napajanja računalnikov</translation>
     </message>
 </context>
 <context>
@@ -3346,26 +3373,26 @@ USAGE
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
-        <translation type="unfinished"/>
+        <translation>Nadzor dostopa do interneta s spreminjanjem usmerjevalne tabele</translation>
     </message>
 </context>
 <context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani privzete poti za blokiranje dostopa do interneta</translation>
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj prilagojeno pot za blokiranje interneta</translation>
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"/>
+        <translation>Destinacija</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Prehod</translation>
     </message>
 </context>
 <context>
@@ -3679,7 +3706,7 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Pošlji besedilno sporočilo</translation>
+        <translation>Pošlji sporočilo</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3725,11 +3752,11 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Omogoči podporo za več monitorjev</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Omogoči pogon za podvajanje namizja računalnika na Windows 8 in novejših</translation>
     </message>
 </context>
 <context>
@@ -3806,18 +3833,30 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Vtičnik ni licenciran</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>NAPAKA</translation>
     </message>
     <message>
         <source>licensed for</source>
+        <translation>licenca za</translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
         <translation type="unfinished"/>
     </message>
 </context>

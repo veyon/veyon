@@ -192,10 +192,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>является членом группы</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>расположен в классе</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>Доступ к компьютеру как localhost</translation>
     </message>
@@ -262,6 +258,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Доступ к пользователю имеет одна или несколько групп, совместно с локальным пользователем (вошедшим в систему)</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation>расположен в</translation>
     </message>
 </context>
 <context>
@@ -684,14 +684,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Классы и компьютеры</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>Классы</translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation>Компьютеры</translation>
     </message>
@@ -708,24 +700,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>MAC-адрес</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>Добавить новый класс</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Удалить выделенный класс</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>Добавить новый компьютер</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>Удалить выбранный компьютер</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Новый класс</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -735,32 +715,36 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Builtin directory</source>
         <translation>Встроенный каталог</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Места и компьютеры</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Места</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>Добавить новое место</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>Удалить выделенное место</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>Импорт файлов CSV можно выполнить с помощью интерфейса командной строки. Подробное описание можно найти в &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;интернет-документации&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Новое место</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Показать справку по определённой команде</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>Добавить класс или компьютер</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>Удалить все записи классов и компьютеров</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>Создать дамп всех или отдельных классов и компьютеров</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>Вывести список всех классов и компьютеров</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>Удалить класс или компьютер</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -807,10 +791,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Неизвестный аргумент &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>Класс &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>Компьютер &quot;%1&quot; (адрес хоста: &quot;%2&quot; MAC-адрес: &quot;%3&quot;)</translation>
     </message>
@@ -821,10 +801,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>None</source>
         <translation>Нет</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>Класс</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -847,10 +823,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Каталог объектов сети, где хранятся объекты в локальной конфигурации</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>Встроенное (компьютеры и классы в локальных настройках)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>Команды для управления каталогом встроенных объектов сети</translation>
     </message>
@@ -867,117 +839,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Не указано строки формата!</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 export &lt;ФАЙЛ&gt; [room &lt;КЛАСС&gt;] [format &lt;СТРОКА ФОРМАТИРОВАНИЯ С ПЕРЕМЕННЫМИ&gt;]
-
-Возможные переменные: %type% %name% %host% %mac% %room%
-
-примеры:
-
-* Экспортировать все объекты в файл CSV:
-
-%1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Экспортировать все записи компьютеров в классе в файл CSV:
-
-%1 export computers.csv room &quot;Класс 01&quot; format &quot;%name%;%host%;%mac%&quot;
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 add &lt;ТИП&gt; &lt;ИМЯ&gt; [&lt;ИМЯ ХОСТА&gt; &lt;МАК АДРЕС&gt; &lt;РОДИТЕЛЬ&gt;]
-
-Добавляет объект, где ТИП может иметь значение &quot;%2&quot; или &quot;%3&quot;. РОДИТЕЛЬ можно указать по названию или UUID.
-
-примеры:
-
-* Добавить класс:
-
-%1 add room &quot;Класс 01&quot;
-
-* Добавить компьютер к классу &quot;Класс 01&quot;:
-
-%1 add computer &quot;Компьютер 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Класс 01&quot;
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 remove &lt;ОБЪЕКТ&gt;
-
-Удалить указанный объект из каталога. ОБЪЕКТ можно указать по названию или UUID. Удаление класса приводит к удалению всех компьютеров в нём.
-
-примеры:
-
-* Удалить компьютер под названием:
-
-%1 remove &quot;Компьютер 01&quot;
-
-* Удалить объект по UUID:
-
-%1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>UUID объекта</translation>
     </message>
@@ -986,56 +847,140 @@ Examples:
         <translation>Родительский UUID</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-ИСПОЛЬЗОВАНИЕ
-
-%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАСС&gt;] [format &lt;СТРОКА ФОРМАТИРОВАНИЯ С ПЕРЕМЕННЫМИ&gt;] [regex &lt;РЕГУЛЯРНОЕ ВЫРАЖЕНИЕ С ПЕРЕМЕННЫМИ&gt;]
-
-Возможные переменные: %type% %name% %host% %mac% %room%
-
-примеры:
-
-* Импорт простого файла CSV из одной записи класса:
-
-%1 import computers.csv room &quot;Класс 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Импорт CSV-файла с названием класса в первом столбце:
-
-%1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%
-
-* Импорт текстового файла с парами ключ-значение с помощью регулярных выражений:
-
-%1 import hostlist.txt room &quot;Класс 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Импортировать в произвольном форматировании:
-
-%1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
+        <source>Add a location or computer</source>
+        <translation>Добавить место или компьютер</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>Удалить все записи мест и компьютеров</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation>Создать дамп всех или отдельных мест и компьютеров</translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation>Вывести список всех мест и компьютеров</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>Удалить запись места или компьютера</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Место &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Встроенное (компьютеры и места в локальных настройках)</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Место</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>ФАЙЛ</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation>МЕСТО</translation>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation>ФОРМАТИРОВАННАЯ-СТРОКА-С-ЗАМЕНИТЕЛЯМИ</translation>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation>РЕГУЛЯРНОЕ-ВЫРАЖЕНИЕ-С-ЗАМЕНИТЕЛЯМИ</translation>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>Импортирует объекты из указанного текстового файла с использованием заданной строки форматирования или регулярного выражения, содержащей один или несколько заменителей. Действующими заменителями являются: %1</translation>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation>Импортировать простой файл CSV в отдельную запись класса</translation>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation>Импортировать файл CSV с названием места в первом столбце</translation>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation>Импортировать текстовый файл с парами ключ-значение на основе регулярных выражений</translation>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation>Импортировать произвольно отформатированные данные</translation>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>Экспортирует объекты в указанный текстовый файл с использованием заданной строки форматирования, содержащей один или несколько заменителей. Действующими заменителями являются: %1</translation>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation>Экспортировать все объекты в файл CSV</translation>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation>Экспортировать все записи компьютеров в указанном месте в файл CSV</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>ТИП</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>ИМЯ</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation>РОДИТЕЛЬ</translation>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation>Добавляет объект, где %1 может быть одной из записей, &quot;%2&quot; или &quot;%3&quot;. %4 можно указать по названию или UUID.</translation>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation>Добавить класс</translation>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation>Добавить компьютер к классу %1</translation>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation>ОБЪЕКТ</translation>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation>Удаляет указанный объект из каталога. %1 можно указать по названию или UUID. Изъятие записи места приводит к изъятию всех связанных с ним записей компьютеров.</translation>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation>Удалить компьютер по названию</translation>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation>Удалить объект по UUID</translation>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation>&quot;Класс 01&quot;</translation>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation>&quot;Компьютер 01&quot;</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>АДРЕСА ХОСТА</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC-АДРЕСА</translation>
     </message>
 </context>
 <context>
@@ -1796,10 +1741,6 @@ Examples:
 <context>
     <name>LdapConfigurationPage</name>
     <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
-    <message>
         <source>Basic settings</source>
         <translation>Основные настройки</translation>
     </message>
@@ -1826,10 +1767,6 @@ Examples:
     <message>
         <source>Use bind credentials</source>
         <translation>Регистрационные данные привязки</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Тестировать</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2034,10 +1971,6 @@ Examples:
         <translation>пользовательские объекты</translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation>атрибут имени пользователя</translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation>Введите имя группы</translation>
     </message>
@@ -2048,10 +1981,6 @@ Examples:
     <message>
         <source>group members</source>
         <translation>участники группы</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>атрибут членства в группе</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2086,10 +2015,6 @@ Examples:
         <translation>объекты компьютеров</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>атрибут имени хоста компьютера</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>Укажите DN компьютера</translation>
     </message>
@@ -2100,10 +2025,6 @@ Examples:
     <message>
         <source>computer MAC addresses</source>
         <translation>MAC-адреса компьютера</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>атрибут MAC-адреса компьютера</translation>
     </message>
     <message>
         <source>users</source>
@@ -2126,10 +2047,6 @@ Examples:
         <translation>группы пользователя</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>атрибут имени пользователя или атрибут участия в группах</translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>Пользователь не найден</translation>
     </message>
@@ -2148,10 +2065,6 @@ Examples:
     <message>
         <source>groups of computer</source>
         <translation>группы компьютера</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>атрибут имени хоста компьютера или атрибут участия в группах</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2186,28 +2099,12 @@ Examples:
         <translation>Ошибка тестирования LDAP %1</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>Не удалось опросить ни одну из записей в настроенной %1. Пожалуйста, проверьте, правильно ли указан параметр %1.
-
-% 2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>Успешное тестирование LDAP %1</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>Успешно опрошено %1, выявлено %2 записей.</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>Не удалось выполнить опрос для одного %1. Пожалуйста, проверьте, правильно ли указан параметр %2, или укажите имя имеющегося обьекта.
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2258,72 +2155,16 @@ Examples:
         <translation>например, room или computerLab</translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation>Список участников компьютерного класса</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>Список компьютерных классов</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>Введите имя компьютерного класса</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>Пожалуйста, введите имя компьютерного класса (можно использовать символы-заменители):</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>компьютерные классы</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>атрибут компьютерного класса</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>Пожалуйста, введите имя компьютерного класса, запрос к участникам которого следует выполнить:</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>участники компьютерного класса</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>фильтр группы компьютеров или сбора участников в компьютерный класс</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>Компьютерные классы</translation>
-    </message>
-    <message>
         <source>Integration tests</source>
         <translation>Тестирования интеграции</translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation>Атрибут компьютерного класса</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>Собирать компьютеры в класс на основе:</translation>
     </message>
     <message>
         <source>Computer groups</source>
         <translation>Группы компьютеров</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>Атрибуты компьютерного класса в объектах компьютеров</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>Тестирование не применимо</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>Атрибут имени компьютерного класса</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2336,14 +2177,6 @@ Examples:
     <message>
         <source>Computer containers or OUs</source>
         <translation>Контейнеры компьютеров или OU</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Пожалуйста, измените настройки компьютерного класса, чтобы использовать как компьютерные классы группы компьютеров или контейнеры компьютеров. Если вы это сделаете, запрос будет выполняться не в отношении общего названия (CN) групп компьютеров или контейнеров, по указанному атрибуту. Если потребности в таких настройках нет, то не следует определять этот атрибут.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Пожалуйста, измените следующие параметры компьютерного класса, чтобы использовать контейнеры компьютеров как компьютерные классы. Если потребности в такой настройке нет, то не определяйте этот фильтр.</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2445,6 +2278,118 @@ Examples:
         <source>Encryption protocol</source>
         <translation>Протокол шифрования</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Атрибут места компьютера</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Атрибут показываемого названия компьютера</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Атрибут названия места</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>например cn или displayName</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Идентификация мест компьютеров</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Идентифицировать места компьютеров (например классы) на основе:</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Атрибут места в объектах компьютеров</translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>Вывести список всех записей места</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>Вывести список всех мест</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation>Введите показываемое название компьютера</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Пожалуйста, укажите показываемое имя компьютера для запроса:</translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>Введите название места компьютера</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Пожалуйста, введите имя места компьютера (можно использовать символы-заменители):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>места компьютеров</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Пожалуйста, измените настройки местоположения компьютеров, чтобы использовать как компьютерные классы группы компьютеров или контейнеры компьютеров. Если вы это сделаете, запрос будет выполняться не в отношении общего названия (CN) групп компьютеров или контейнеров по указанному атрибуту. Если потребности в таких настройки нет, не следует определять этот атрибут.</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Пожалуйста, измените следующие параметры компьютерного места, чтобы использовать контейнеры компьютеров как компьютерные места. Если потребности в такой настройке нет, то не определяйте этот фильтр.</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Введите название места</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Пожалуйста, укажите название места, запрос к участникам которого следует выполнить:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>записи мест</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Ошибка тестирования LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Не удалось выполнить опрос для одного %1. Пожалуйста, проверьте параметр(ы) %2, или укажите имя имеющегося обьекта.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>и</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Успешное тестирование LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Не удалось опросить ни одну из записей в настроенной %1. Пожалуйста, проверьте, правильно ли указан параметр &quot;%2&quot;.
+
+%3</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Тестировать</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2465,16 +2410,62 @@ Examples:
         <translation>Команды для конфигурирования и тестирования интеграции LDAP/AD</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>Предоставляет возможности по интеграции LDAP/AD в Veyon</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Базовая поддержка LDAP/AD в Veyon</translation>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP (загрузить записи компьютеров и классов с LDAP/AD)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (загрузить записи компьютеров и мест с LDAP/AD)</translation>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP (загрузить записи пользователей и групп с LDAP/AD)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (загрузить записи пользователей и групп с LDAP/AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation>LDAP Pro</translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation>Экземпляры</translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation>Введите имя</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation>Пожалуйста, введите название экземпляра (его нельзя будет изменить!):</translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation>Удалить экземпляр</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation>Вы действительно хотите удалить экземпляр &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation>Настройка для экземпляра &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation>Профессиональная интеграция LDAP/AD в Veyon</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (загрузить записи компьютеров и мест с LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (загрузить записи пользователей и групп с LDAP/AD)</translation>
     </message>
 </context>
 <context>
@@ -3089,16 +3080,16 @@ USAGE
         <translation>Ограничение сканирования сеансов</translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation>Новая группа</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>Параметры</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>Обратным поиском определены IP-адреса для названий узлов</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Новое место</translation>
     </message>
 </context>
 <context>
@@ -3152,8 +3143,8 @@ USAGE
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>Класс/Компьютер</translation>
+        <source>Locations/Computers</source>
+        <translation>Места/компьютеры</translation>
     </message>
 </context>
 <context>
@@ -3364,7 +3355,7 @@ USAGE
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Скриншот</translation>
+        <translation>Скриншот </translation>
     </message>
 </context>
 <context>
@@ -3855,6 +3846,18 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>licensed for</source>
         <translation>лицензировано для</translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation>ИСПОЛЬЗОВАНИЕ</translation>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation>ОПИСАНИЕ</translation>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
+        <translation>ПРИМЕРЫ</translation>
     </message>
 </context>
 <context>

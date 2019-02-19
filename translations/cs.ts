@@ -192,10 +192,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>je členem skupiny</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>nachází se v místnosti</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>Přistupující počítač přistupuje sám na sebe</translation>
     </message>
@@ -262,6 +258,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Přistupující uživatel má jednu nebo více skupin společných s uživatelem, který je právě přihlášený k počítači</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation>nachází se v</translation>
     </message>
 </context>
 <context>
@@ -684,14 +684,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Místnosti a počítače</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>Místnosti</translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation>Počítače</translation>
     </message>
@@ -708,24 +700,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Fyzická (MAC) adresa</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>Přidat novou místnost</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Odebrat označenou místnost</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>Přidat nový počítač</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>Odebrat označený počítač</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Nová místnost</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -735,32 +715,36 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Builtin directory</source>
         <translation>Vestavěný adresář</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Umístění a počítače</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Umístění</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>Přidat nové umístění</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>Odebrat označené umístění</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>Import CSV souborů je možný prostřednictvím rozhraní pro příkazový řádek. Další informace jsou k dispozici v &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;dokumentaci na webu&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Nové umístění</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>Přidat místnost nebo počítač</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>Vyčistit všechny místnosti a počítače</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>Vypsat všechny nebo jednotlivé místnosti a počítače</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>Vypsat všechny místnosti a počítače</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>Odebrat místnost nebo počítač</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -807,10 +791,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Neznámý argument „%1“.</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>Místnost „%1“</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>Počítač „%1“ (adresa stroje: „%2“ MAC adresa: „%3“)</translation>
     </message>
@@ -821,10 +801,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>None</source>
         <translation>Žádné</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>Místnost</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -847,10 +823,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Adresář síťových objektů který uchovává objekty v místním nastavení</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>Vestavěné (počítače a místnosti v místním nastavení)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>Příkazy pro správu vestavěného adresáře síťových objektů</translation>
     </message>
@@ -867,120 +839,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Nebyl určený žádný řetězec formátu!</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Platné proměnné: %type% %name% %host% %mac% %room%
-
-Příklady:
-
-* Export všech objektů do CSV souboru:
-
-    %1 export objekty.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export všech počítačů v místnosti do CSV souboru:
-
-    %1 export pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Přidá objekty kde TYPE může být jeden z „%2“ nebo „%3“. PARENT je možné určit názvem nebo nikde se neopakujícím identifikátorem.
-
-Příklady:
-
-* Přidat místnost:
-
-    %1 add room &quot;Mistnost 01&quot;
-
-* Přidat počítač do místnosti &quot;Mistnost 01&quot;:
-
-    %1 add computer &quot;Pocitac 01&quot; poc01.example.com 11:22:33:44:55:66 &quot;Mistnost 01&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 remove &lt;OBJECT&gt;
-
-Odebere určený objekt z adresáře. OBJECT může být určen názvem nebo nikde se neopakujícím identifikátorem. Odebrání místnosti odebere také všechny počítače v ní.
-
-Příklady:
-
-* Odebrat počítač podle názvu:
-
-    %1 remove &quot;Pocitac 01&quot;
-
-* Odebrat objekt podle nikde se neopakujícího se názvu:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>Nikde se neopakující identifikátor objektu</translation>
     </message>
@@ -989,56 +847,140 @@ Příklady:
         <translation>Nikde se neopakující identifikátor nadřazeného</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-POUŽITÍ
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Platné proměnné: %type% %name% %host% %mac% %room%
-
-Příklady:
-
-* Import jednoduchého CSV souboru do jedné místnosti:
-
-    %1 import pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV souboru s názvem místnosti v prvním sloupci:
-
-    %1 import pocitace-s-mistnostmi.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import textového souboru s dvojicemi klíč/hodnota pomocí regulárních výrazů:
-
-    %1 import seznamstrojů.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import libovolně formátovaných dat:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
+        <source>Add a location or computer</source>
+        <translation>Přidat umístění nebo počítač</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>Vyčistit všechna umístění a počítače</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation>Vypsat všechna nebo jednotlivá umístění a počítače</translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation>Vypsat všechna umístění a počítače</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>Odebrat umístění nebo počítač</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Umístění „%1“</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Vestavěné (počítače a umístění v místním nastavení)</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Umístění</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>SOUBOR</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation>UMÍSTĚNÍ</translation>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation>FORMÁTOVACÍ-ŘETĚZEC-SE-ZÁSTUPNÝMI-VYJÁDŘENÍMI</translation>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation>REGULÁRNÍ-VÝRAZ-SE-ZÁSTUPNÝM-VYJÁDŘENÍM</translation>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>Importuje objekty ze zadaného textového souboru pomocí daného formátovacího řetězce nebo regulárního výrazu obsahujícího jeden nebo více zástupných vyjádření. Platná zástupná vyjádření jsou: %1</translation>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation>Importovat jednoduchý CSV soubor do jedné místnosti</translation>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation>Importovat CSV soubor s názvem umístění v prvním sloupci</translation>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation>Importovat textový soubor s dvojicemi klíč-hodnota pomocí regulárních výrazů</translation>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation>Importovat libovolně formátovaná data</translation>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>Exportuje objekty do zadaného textového souboru pomocí daného formátovacího řetězce, obsahujícího jeden nebo více zástupných vyjádření. Platná zástupná vyjádření jsou: %1</translation>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation>Exportovat veškeré objekty do CSV souboru</translation>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation>Exportovat všechny počítače v daném umístění do CSV souboru</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TYP</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NÁZEV</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation>NADŘAZENÉ</translation>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation>Přidá objekt kde %1 může být jedno z „%2“ nebo „%3“. %4 je možné určit pomocí názvu nebo nikde se neopakujícího identifikátoru (UUID).</translation>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation>Přidat místnost</translation>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation>Přidat počítač do místnosti %1</translation>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation>OBJEKT</translation>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation>Odebere daný objekt z adresáře. %1 může být určen názvem nebo nikde se neopakujícím identifikátorem. Odebrání umístění odebere také všechny počítače v něm.</translation>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation>Odebrat počítač podle názvu</translation>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation>Odebrat objekt podle UUID</translation>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation>„Místnost 01“</translation>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation>„Počítač 01“</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>ADRESA STROJE</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADRESA</translation>
     </message>
 </context>
 <context>
@@ -1685,7 +1627,7 @@ Příklady:
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1799,10 +1741,6 @@ Příklady:
 <context>
     <name>LdapConfigurationPage</name>
     <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
-    <message>
         <source>Basic settings</source>
         <translation>Základní nastavení</translation>
     </message>
@@ -1829,10 +1767,6 @@ Příklady:
     <message>
         <source>Use bind credentials</source>
         <translation>Použít spojovací přihlašovací údaje</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Ověřit funkčnost</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2037,10 +1971,6 @@ Příklady:
         <translation>objekty uživatele</translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation>atribut přihlašovací jméno uživatele</translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation>Zadejte název skupiny</translation>
     </message>
@@ -2051,10 +1981,6 @@ Příklady:
     <message>
         <source>group members</source>
         <translation>členové skupiny</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>atribut členství ve skupinách</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2089,10 +2015,6 @@ Příklady:
         <translation>objekty počítačů</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>atribut název počítače</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>Zadejte rozlišený název (DN) počítače</translation>
     </message>
@@ -2103,10 +2025,6 @@ Příklady:
     <message>
         <source>computer MAC addresses</source>
         <translation>Fyzické (MAC) adresy sítových rozhraní počítačů</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>atribut MAC adresa síťového rozhraní počítače</translation>
     </message>
     <message>
         <source>users</source>
@@ -2129,10 +2047,6 @@ Příklady:
         <translation>skupiny uživatelů</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>atribut přihlašovací jméno uživatele nebo členství ve skupině</translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>Uživatel nebyl nalezen</translation>
     </message>
@@ -2151,10 +2065,6 @@ Příklady:
     <message>
         <source>groups of computer</source>
         <translation>skupiny počítačů</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>atribut název počítače nebo členství ve skupině</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2189,28 +2099,12 @@ Příklady:
         <translation>Test LDAP %1 se nezdařil</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>Nedaří se dotázat na žádné položky v nastaveném %1. Zkontrolujte parametr %1.
-
-%2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>Test LDAP %1 úspěšný</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>Úspěšně dotázáno na %1 a nalezeno %2 položek.</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>Nedaří se dotázat na žádné %1. Zkontrolujte parametr %2 nebo zadejte název existujícího objektu.
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2261,72 +2155,16 @@ Příklady:
         <translation>např. room (místnost) nebo computerLab (počítačová laboratoř)</translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation>Vypsat veškeré členy počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>Vypsat veškeré počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>Zadejte název počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>Zadejte název počítačové místnosti (je možné použít i zástupné znaky):</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>atribut počítačová místnost</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>Zadejte název počítačové místnosti na jejíž členy se chcete dotázat:</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>členové počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>filtr skupin počítačů nebo seskupování členů počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>Počítačové místnosti</translation>
-    </message>
-    <message>
         <source>Integration tests</source>
         <translation>Integrační testy</translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation>Atribut počítačová místnost</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>Sloučit počítače v místnosti prostřednictvím:</translation>
     </message>
     <message>
         <source>Computer groups</source>
         <translation>Skupiny počítačů</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>Atribut počítačová místnost v objektech počítačů</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>Test není aplikovatelný</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>Atribut název počítačové místnosti</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2339,14 +2177,6 @@ Příklady:
     <message>
         <source>Computer containers or OUs</source>
         <translation>Kontejnery s počítači nebo organizační jednotky</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tento účel byly používány kontejnery s počítači. Pak bude dotazováno na zadaný atribut namísto běžného názvu (CN) skupiny počítačů nebo nadřazeného objektu. Jinak tento atribut není třeba nastavovat.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tyto účely byly používány kontejnery s počítači. Jinak tento filtr není třeba nastavovat.</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2444,6 +2274,118 @@ Příklady:
         <source>Encryption protocol</source>
         <translation>Šifrovací protokol</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Atribut umístění počítače</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Atribut zobrazovaného názvu počítače</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Atribut názvu umístění</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>např. cn nebo displayName</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identifikace umístění počítače</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Identifikuje umístění počítačů (např. místnosti) prostřednictvím:</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Atribut umístění v objektu počítače</translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>Vypsat všechny položky v daném umístění</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>Vypsat všechna umístění</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation>Zadejte zobrazovaný název počítače</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Zadejte zobrazovaný název počítače na se který dotázat:</translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>Zadejte název umístění počítače</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Zadejte název umístění počítače (je možné použít i zástupné znaky):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>umístění počítačů</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Změňte nastavení umístění počítače pokud chcete aby pro tento účel byly používány kontejnery s počítači. Pak bude dotazováno na zadaný atribut namísto běžného názvu (CN) skupiny počítačů nebo nadřazeného objektu. Jinak tento atribut není třeba nastavovat.</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Změňte nastavení umístění počítače pokud chcete aby pro tyto účely byly používány kontejnery s počítači. Jinak tento filtr není třeba nastavovat.</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Zadejte název umístění</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Zadejte název umístění na jejíž členy se chcete dotázat:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>položky umístění</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Zkouška LDAP neúspěšná</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Nedaří se dotázat na žádné %1. Zkontrolujte parametr(y) %2 a zadejte název existujícího objektu.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>a</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Zkouška LDAP úspěšná</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Nedaří se dotázat na žádné položky v nastaveném %1. Zkontrolujte parametr „%2“.
+
+%3</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Vyzkoušet funkčnost</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2464,16 +2406,62 @@ Příklady:
         <translation>Příkazy pro nastavování a testování napojení na LDAP/AD</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>Poskytnout LDAP/AD začlenění pro Veyon</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Základní podpora pro LDAP/AD ve Veyon</translation>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP (načíst počítače a místnosti z LDAP/AD)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (načíst počítače a umístění z LDAP/AD)</translation>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP (načíst uživatele a skupiny z LDAP/AD)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (načíst uživatele a skupiny z LDAP/AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation>LDAP Pro</translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation>Instance</translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation>Zadejte název</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation>Zadejte název instance (později už nepůjde změnit!):</translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation>Odebrat instanci</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation>Opravdu chcete odebrat instanci „%1“?</translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation>Nastavení pro instanci „%1“</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation>Profesionální začlenění LDAP/AD pro Veyon</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (načíst počítače a umístění z LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (načíst uživatele a skupiny z LDAP/AD)</translation>
     </message>
 </context>
 <context>
@@ -3088,16 +3076,16 @@ POUŽITÍ
         <translation>Limit skenu relace</translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation>Nová skupina</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>Volby</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>Překládat objevené IP adresy na názvy strojů</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Nové umístění</translation>
     </message>
 </context>
 <context>
@@ -3151,8 +3139,8 @@ POUŽITÍ
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>Místnost/počítač</translation>
+        <source>Locations/Computers</source>
+        <translation>Umístění/počítače</translation>
     </message>
 </context>
 <context>
@@ -3265,7 +3253,7 @@ POUŽITÍ
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Vzdálené ovládání</translation>
+        <translation>Ovládání na dálku</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -3854,6 +3842,18 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>licensed for</source>
         <translation>licencováno pro</translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation>POUŽITÍ</translation>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation>POPIS</translation>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
+        <translation>PŘÍKLADY</translation>
     </message>
 </context>
 <context>

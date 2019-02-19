@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Acerca de Veyon</translation>
+        <translation>Sobre o Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -27,28 +27,30 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Website:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Idioma atual ainda não traduzido (ou inglês nativo).
+
+Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma tradução contacte um programador do Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Sobre o %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Suporta o projecto Veyon com um donativo</translation>
+        <translation>Suporte o projeto Veyon com um donativo</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Controlo de acesso ao computador</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
@@ -64,55 +66,55 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Processar regras de controlo de acesso</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Grupos de utilizadores autorizados por acesso ao computador</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Adicione os grupos cujos membros devem estar autorizados a aceder aos computadores na sua rede Veyon.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Grupos de utilizador autorizados</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>Todos os grupos</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Regras de controlo do acesso</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar regra de controlo do acesso</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Remover regra de controlo do acesso</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Mover para baixo a regra selecionada</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Mover para cima a regra selecionada</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Editar a regra selecionada</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Introduza o nome de utilizador</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -120,19 +122,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Acesso permitido</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>O utilizador especificado pode aceder a computadores com esta configuração.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Acesso negado</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>O utilizador especificado não pode aceder a computadores com esta configuração.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
@@ -155,27 +157,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Editar regras de regra de controlo do acesso</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>digite aqui um nome curto para a regra</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Nome da regra:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>digite aqui uma descrição para a regra</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Descrição da regra:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -183,15 +185,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Condições</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>é membro do grupo</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -203,7 +201,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>O utilizador a aceder já está conectado</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -211,15 +209,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Ação</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Permitir acesso</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Negar acesso</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -227,15 +225,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Nenhuma (regras desativadas)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Utilizador a aceder</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Computador a aceder</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -243,11 +241,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Computador local</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Processar sempre as regras e ignorar as condições</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -255,10 +253,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>O acesso ao computador está localizado na mesma sala do computador local</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located in</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -266,19 +268,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Teste das regras de controlo do acesso</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Utilizador a aceder:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Computador local:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Computador a aceder:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -286,11 +288,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Utilizador local:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Utiliadores conectados:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -337,7 +339,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -679,14 +681,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computers</source>
         <translation type="unfinished"/>
     </message>
@@ -703,23 +697,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>New room</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -730,31 +712,35 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Builtin directory</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -802,10 +788,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation type="unfinished"/>
     </message>
@@ -815,10 +797,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Room</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -842,10 +820,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation type="unfinished"/>
     </message>
@@ -862,69 +836,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation type="unfinished"/>
     </message>
@@ -933,31 +844,139 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
+        <source>Add a location or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1525,7 +1544,7 @@ Examples:
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -1719,16 +1738,12 @@ Examples:
 <context>
     <name>LdapConfigurationPage</name>
     <message>
-        <source>LDAP</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Basic settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1749,10 +1764,6 @@ Examples:
     <message>
         <source>Use bind credentials</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Teste</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1945,7 +1956,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Introduza o nome de utilizador</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1953,10 +1964,6 @@ Examples:
     </message>
     <message>
         <source>user objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>user login attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1969,10 +1976,6 @@ Examples:
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>group member attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2008,10 +2011,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation type="unfinished"/>
     </message>
@@ -2021,10 +2020,6 @@ Examples:
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2048,10 +2043,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User not found</source>
         <translation type="unfinished"/>
     </message>
@@ -2069,10 +2060,6 @@ Examples:
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2108,23 +2095,11 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2172,55 +2147,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2228,15 +2155,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Test not applicable</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2249,14 +2168,6 @@ Examples:
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2349,6 +2260,114 @@ Examples:
         <source>Encryption protocol</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Teste</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2369,15 +2388,61 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
+        <source>Basic LDAP/AD support for Veyon</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2551,7 +2616,7 @@ USAGE
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -2627,7 +2692,7 @@ USAGE
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Acerca de Veyon</translation>
+        <translation>Sobre o Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2639,7 +2704,7 @@ USAGE
     </message>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2659,7 +2724,7 @@ USAGE
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Acesso negado</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2742,7 +2807,7 @@ USAGE
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2983,15 +3048,15 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>New group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Options</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New location</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3041,7 +3106,7 @@ USAGE
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
+        <source>Locations/Computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3400,7 +3465,7 @@ USAGE
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>Autostart</source>
@@ -3742,6 +3807,18 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>licensed for</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
         <translation type="unfinished"/>
     </message>
 </context>

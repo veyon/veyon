@@ -192,10 +192,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>è membro del gruppo</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>è nella stanza</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>Il computer in cui si sta entrando è localhost</translation>
     </message>
@@ -262,6 +258,10 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>L&apos;utente a cui si sta accedendo ha uno o più gruppi in comune con l&apos;utente locale (l&apos;utente ora loggato).</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation>si trova in</translation>
     </message>
 </context>
 <context>
@@ -683,14 +683,6 @@ e lo salva come chiave pubblica corrispondente.</translation>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Stanze &amp; computer</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>Stanze</translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation>Computer</translation>
     </message>
@@ -707,24 +699,12 @@ e lo salva come chiave pubblica corrispondente.</translation>
         <translation>indirizzo MAC</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>Aggiungi una nuova stanza</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Rimuovi la stanza selezionata</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>Aggiungi un nuovo computer</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>Rimuovi il computer selezionato</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Nuova stanza</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -734,32 +714,36 @@ e lo salva come chiave pubblica corrispondente.</translation>
         <source>Builtin directory</source>
         <translation>Directory incorporata</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Posizioni e computers</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Posizioni</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>Aggiungi nuova posizione</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>Rimuovi la posizione selezionata</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>L&apos;importazione di file CSV è possibile tramite l&apos;interfaccia della riga di comando. Per ulteriori informazioni, consultare la documentazione online.&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Nuova posizione</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Mostra l&apos;aiuto per un comando specifico</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>Aggiungi una stanza o un computer</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>Cancella tutte le stanze e i computer</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>Scarica tutte le stanze o i singoli computer</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>Elenca tutte le stanze e i computer</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>Rimuovere una stanza o un computer</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -806,10 +790,6 @@ e lo salva come chiave pubblica corrispondente.</translation>
         <translation>Argomento sconosciuto &quot;% 1&quot;.</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>Stanza &quot;% 1&quot;</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>Computer &quot;% 1&quot; (indirizzo host: &quot;% 2&quot; indirizzo MAC: &quot;% 3&quot;)</translation>
     </message>
@@ -820,10 +800,6 @@ e lo salva come chiave pubblica corrispondente.</translation>
     <message>
         <source>None</source>
         <translation>Nessuna</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>Stanza</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -846,10 +822,6 @@ e lo salva come chiave pubblica corrispondente.</translation>
         <translation>Directory dell&apos;oggetto di rete che memorizza gli oggetti nella configurazione locale</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>Built In (computer e stanze nella configurazione locale)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>Comandi per la gestione della directory dell&apos;oggetto di rete incorporato</translation>
     </message>
@@ -866,116 +838,6 @@ e lo salva come chiave pubblica corrispondente.</translation>
         <translation>Nessuna stringa di formato specificata!</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-USO
-
-%1 export &lt;FILE&gt; [stanza &lt;ROOM&gt;] [formato &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Variabili valide: %tipo% %nome% %host% %mac% %room% 
-
-Esempi: 
-
-* Esporta tutti gli oggetti in un file CSV:
-
- %1 export objects.csv format &quot;%type%; %name%;%host%;%mac%&quot;
-
- * Esporta tutti i computer in una stanza in un file CSV: 
-
-%1 export computers.csv room &quot;Room 01&quot; format&quot;%name%;%host%;%mac%&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-USO
-
-%1 aggiungi &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt;&lt;MAC ADDRESS&gt;&lt;PARENT&gt;]
-Aggiunge un oggetto in cui TYPE può essere uno di &quot;%2&quot; o &quot;%3&quot;. PARENT può essere specificato per nome o UUID.
-
-Esempi:
-
- * Aggiungi una stanza:
-
- %1 aggiungi stanza &quot;Stanza 01&quot; 
-
-* Aggiungi un computer alla stanza &quot;Stanza 01&quot;:
-
- %1 aggiungi computer &quot; Computer 01 &quot;comp01.example.com 11: 22: 33: 44: 55: 66 &quot;Stanza 01&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-USO
-%1 rimuovi &lt;OBJECT&gt;
-
-Rimuove l&apos;oggetto specificato dalla directory. OBJECT può essere specificato per nome o UUID. La rimozione di una stanza rimuoverà anche tutti i computer all&apos;interno.
-
-Esempi: 
-
-* Rimuovi un computer per nome: %1 rimuovi &quot;Computer 01&quot;
-
-* Rimuovi un oggetto da UUID:
-
- %1 rimuovi 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>Oggetto UUID</translation>
     </message>
@@ -984,54 +846,140 @@ Esempi:
         <translation>Genitore UUID</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-USO
-
-%1 importazione&lt;FILE&gt; [stanza &lt;ROOM&gt;] [formato &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;] 
-
-Variabili valide: %type% % nome% %host% %mac% %stanza% 
-
-Esempi: 
-
-* Importa file CSV semplice in una singola stanza: 
-
-%1 import stanza computers.csv &quot;Stanza 01&quot; formato &quot;%nome%,%host%,%mac%&quot; 
-
-* Importa file CSV con nome stanza nella prima colonna: %1 importazione computer-con-stanze.csv formato &quot;%stanza%,% nome%,%mac%&quot;
-
- * Importa il file di testo con le coppie chiave / valore usando le espressioni regolari: 
-
-%1 import hostlist.txt room &quot;Stanza 01&quot; regex &quot;^NAME:(%nome%:. *)\s+HOST:(%host%..*)$&quot;
-
-* Importa dati formattati arbitrariamente:
-
-%1 import data.txt regex &apos;^&quot;(%room%:[^]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
+        <source>Add a location or computer</source>
+        <translation>Aggiungi una posizione o un computer</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>Cancella tutte le posizioni e i computer</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation>Scarica tutte le posizioni o i singoli computers</translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation>Elenca tutte le posizioni e i computer</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>Rimuovi una posizione o un computer</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Posizione &quot;% 1&quot;</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>BuiltIn (computer e posizioni nella configurazione locale)</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Posizione</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>FILE</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation>LUOGO</translation>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation>FORMATO-STRINGA-CON-SEGNAPOSTO</translation>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation>ESPRESSIONE-REGOLARE-CON-SEGNAPOSTO</translation>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>Importa oggetti da un determinato file di testo utilizzando una stringa di formattazione o un&apos;espressione regolare contenente una o più segnaposto. Segnaposto validi sono: %1</translation>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation>Importa un file CSV in una singola aula</translation>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation>Importa un file CSV con una destinazione nella prima colonna</translation>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation>Importa un file di testo con coppie di chiave/valore utilizzando espressioni regolari</translation>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation>Importa dati formattati arbitrariamente</translation>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>Esporta oggetti nel file specificato utilizzando un formato stringa contenente uno o più segnaposto. Segnaposto validi sono: %1</translation>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation>Esporta tutti gli oggetti in un file CSV</translation>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation>Esporta tutti i computer di un specifico luogo in un file CSV</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TIPO</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NOME</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation>GENITORE</translation>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation>Aggiunge un oggetto dove %1 può essere uno dei seguenti &quot;%2&quot; o &quot;%3&quot;. %4 può essere individuato dal nome o dal codice UUID.</translation>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation>Aggiunge un&apos;aula</translation>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation>Aggiunge un computer all&apos;aula %1</translation>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation>OGGETTO</translation>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation>Cancella l&apos;oggetto specificato dalla cartella %1 può essere specificato il nome o il codice UUID. Cancellando un ambiente saranno cancellati anche i relativi computer</translation>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation>Cancella un computer identificato dal nome</translation>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation>Cancella un oggetto identificato dal codice UUID</translation>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation>&quot;Aula 01&quot;</translation>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation>&quot;Computer 01&quot;</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>INDIRIZZO COMPUTER</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADDRESS</translation>
     </message>
 </context>
 <context>
@@ -1052,7 +1000,7 @@ Esempi:
     <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation>Stanza: %1</translation>
+        <translation>Aula: %1</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
@@ -1126,7 +1074,7 @@ Esempi:
     </message>
     <message>
         <source>Add room</source>
-        <translation>Aggiungi una stanza</translation>
+        <translation>Aggiungi un&apos;aula</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1173,11 +1121,11 @@ Esempi:
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation>Rilevamento stanza fallito</translation>
+        <translation>Rilevamento dell&apos;aula non riuscito</translation>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Impossibile determinare la stanza a cui questo computer appartiene. Questo indica un problema con la configurazione del sistema. Come alternativa, nella gestione del computer verranno mostrate tutte le stanze.</translation>
+        <translation>Impossibile determinare l&apos;aula a cui questo computer appartiene. Questo indica un problema con la configurazione del sistema. Come alternativa, nella gestione del computer verranno mostrate tutte le stanze.</translation>
     </message>
 </context>
 <context>
@@ -1313,7 +1261,7 @@ Esempi:
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1775,7 +1723,7 @@ Esempi:
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>Sfoglia LDAP</translation>
     </message>
 </context>
 <context>
@@ -1791,10 +1739,6 @@ Esempi:
 </context>
 <context>
     <name>LdapConfigurationPage</name>
-    <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
     <message>
         <source>Basic settings</source>
         <translation>Impostazioni di base</translation>
@@ -1822,10 +1766,6 @@ Esempi:
     <message>
         <source>Use bind credentials</source>
         <translation>Use bind credentials</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2030,10 +1970,6 @@ Esempi:
         <translation>user objects</translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation>user login attribute</translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation>Inserire il nome del gruppo</translation>
     </message>
@@ -2044,10 +1980,6 @@ Esempi:
     <message>
         <source>group members</source>
         <translation>Membri del gruppo</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>group member attribute</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2082,10 +2014,6 @@ Esempi:
         <translation>oggetti computer</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>attributi hostname computer</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>Inserisci il DN del computer</translation>
     </message>
@@ -2096,10 +2024,6 @@ Esempi:
     <message>
         <source>computer MAC addresses</source>
         <translation>indirizzi MAC computer</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>attributo indirizzo MAC computer</translation>
     </message>
     <message>
         <source>users</source>
@@ -2122,10 +2046,6 @@ Esempi:
         <translation>gruppi di utenti</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>attributo di login utente o attributo di appartenenza a gruppo</translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>Utente non trovato</translation>
     </message>
@@ -2144,10 +2064,6 @@ Esempi:
     <message>
         <source>groups of computer</source>
         <translation>gruppi di computer</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>attributo nome host computer o attributo appartenenza gruppo</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2182,28 +2098,12 @@ Esempi:
         <translation>Test %1 LDAP fallito</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>Impossibile interrogare qualsiasi voce nella %1 configurata. Si prega di verificare il parametro &amp;1.
-
-%2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>Test %1 LDAP completato con successo</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>Il %1 e&apos; stato interrogato con successo e sono state trovate %2 voci.</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>Impossibile interrogare qualsiasi %1. Si prega di verificare il parametro %2 oppure inserire il nome di un oggetto esistente.
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2251,75 +2151,19 @@ Esempi:
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>e.g. room o computerLab</translation>
-    </message>
-    <message>
-        <source>List all members of a computer room</source>
-        <translation>Elenca tutti i membri di una stanza computer</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>Lista di tutte le stanze computer</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>Inserisci nome stanza computer</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>Inserisci il nome di una stanza computer (wildcards consentite):</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>stanze computer</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>attributo stanza computer</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>Si prega di inserire il nome della stanza computer di cui interrogarne i membri:</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>membri stanza computer</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>filtro gruppo computer o aggregazione membri di stanza computer</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>Stanze computer</translation>
+        <translation>es. aula o computerLab</translation>
     </message>
     <message>
         <source>Integration tests</source>
         <translation>Test integrazione</translation>
     </message>
     <message>
-        <source>Computer room attribute</source>
-        <translation>Attributi stanza computer</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>Aggrega i computer in una stanza tramite:</translation>
-    </message>
-    <message>
         <source>Computer groups</source>
         <translation>Gruppi computer</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>Attributi stanze computer in oggetti computer</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>Test non applicabile</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>Attributo nome stanza computer</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2332,14 +2176,6 @@ Esempi:
     <message>
         <source>Computer containers or OUs</source>
         <translation>Contenitoru computer o OUs</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container di computer come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e&apos; necessario che tu configuri questo attributo.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Per favore cambia qui sotto le impostazioni di questa stanza computer per usare i container di computer come stanze di computer. Altrimenti non serve che tu configuri questo filtro</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2387,7 +2223,7 @@ Esempi:
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>per esempio: (oggetto Classe=stanza) or (oggetto Classe=Laboratorio computer)</translation>
+        <translation>per esempio: (oggetto Classe=aula) or (oggetto Classe=Laboratorio computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
@@ -2431,6 +2267,118 @@ Esempi:
         <source>Encryption protocol</source>
         <translation>Protocollo di crittografia</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Attributo di posizione del computer</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Attributo del nome di visualizzazione del computer</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Attributo del nome della posizione</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>per esempio. cn o visualizza Nome</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identificazione delle posizioni dei computers</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Identifica le posizioni dei computers (ad es. aule) tramite:</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Attributo di posizione negli oggetti del computer</translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>Elenca tutte le voci di una posizione</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>Elenca tutte le posizioni</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation>Inserisci il nome visualizzato sul computer</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Inserisci un nome visualizzato sul computer per eseguire una query:</translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>Inserisci il nome della posizione del computer</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Si prega di inserire il nome di una posizione del computer (caratteri jolly consentiti):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>posizioni del computer</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e&apos; necessario che tu configuri questo attributo.</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Per favore cambia qui sotto le impostazioni di questa stanza computer per usare i container  come stanze di computer. Altrimenti non serve che tu configuri questo filtro.</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Inserisci il nome della posizione</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Si prega di inserire il nome di una posizione di cui voci per interrogare:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>voci di posizione</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Test LDAP fallito</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Impossibile interrogare alcun% 1. Controlla i parametro(i)% 2 e inserisci il nome di un oggetto esistente.
+
+3%</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>e</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Test LDAP riuscito</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Impossibile interrogare le voci configurate %1. Si prega di controllare il parametro &quot;% 2&quot;.
+
+3%</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Prova</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2444,23 +2392,69 @@ Esempi:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Mostra aiuto sul comando</translation>
+        <translation>Mostra aiuto per i comandi</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Comandi per la configurazione ed il testing dell&apos;integrazione LDAP/AD</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>Fornire l&apos;integrazione LDAP / AD per Veyon</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Supporto LDAP / AD di base per Veyon</translation>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP (carica computer e stanze da LDAP / AD)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (carica computer e posizioni da LDAP / AD)</translation>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP (carica utenti e gruppi da LDAP / AD)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (carica utenti e gruppi da LDAP / AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation>LDAP Pro</translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation>Istanze</translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation>Inserisci il nome</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation>Si prega di inserire un nome per l&apos;istanza (non può essere modificato in seguito!):</translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation>Rimuovi istanza</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation>Vuoi veramente rimuovere l&apos;istanza &quot;% 1&quot;?</translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation>Configurazione per esempio &quot;% 1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation>Integrazione LDAP / AD professionale per Veyon</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (carica computer e posizioni da LDAP / AD)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (carica utenti e gruppi da LDAP / AD)</translation>
     </message>
 </context>
 <context>
@@ -2719,7 +2713,7 @@ USO
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Su Veyon</translation>
+        <translation>Informazioni su Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2727,7 +2721,7 @@ USO
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Stanze computer</translation>
+        <translation>Aule computer</translation>
     </message>
     <message>
         <source>About</source>
@@ -2815,15 +2809,15 @@ USO
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vista</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation> &amp;Standard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation> &amp;Avanzate</translation>
     </message>
 </context>
 <context>
@@ -2846,7 +2840,7 @@ USO
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation>All&apos;avvio, passa automaticamente alla stanza attuale</translation>
+        <translation>All&apos;avvio, passa automaticamente all&apos;aula attuale</translation>
     </message>
     <message>
         <source>Features</source>
@@ -2890,7 +2884,7 @@ USO
     </message>
     <message>
         <source>Only show current room</source>
-        <translation>Mostra solamente la stanza attuale</translation>
+        <translation>Mostra solamente l&apos;aula attuale</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
@@ -2902,7 +2896,7 @@ USO
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation>Nascondi le stanze vuote</translation>
+        <translation>Nascondi le aule vuote</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2958,11 +2952,11 @@ USO
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Stanze computer</translation>
+        <translation>Aule computer</translation>
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation>Apri automaticamente il widget delle stanze dei computer</translation>
+        <translation>Apri automaticamente il widget delle aule dei computer</translation>
     </message>
     <message>
         <source>Text color</source>
@@ -2989,7 +2983,7 @@ USO
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Questa e&apos; la modalita&apos; di default e ti consente di monitorare tutti i computer in una o piu&apos; stanze</translation>
+        <translation>Questa è la modalià di default e ti consente di monitorare tutti i computer in una o più aule</translation>
     </message>
 </context>
 <context>
@@ -3075,16 +3069,16 @@ USO
         <translation>Limite di scansione di sessione</translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation>Nuovo gruppo</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>Opzioni</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>La ricerca inversa ha scoperto gli indirizzi IP nei nomi host</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Nuova posizione</translation>
     </message>
 </context>
 <context>
@@ -3138,8 +3132,8 @@ USO
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>Stanza/Computer</translation>
+        <source>Locations/Computers</source>
+        <translation>Posizioni / Computers</translation>
     </message>
 </context>
 <context>
@@ -3290,7 +3284,7 @@ USO
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Controlla</translation>
+        <translation>Controllo remoto</translation>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -3357,7 +3351,7 @@ USO
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation>Selezione stanza</translation>
+        <translation>Selezione aula</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -3746,11 +3740,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Abilita il supporto per più monitor</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Abilita motore di duplicazione Desktop su versioni di Windows 8 e successive</translation>
     </message>
 </context>
 <context>
@@ -3840,6 +3834,18 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>licensed for</source>
         <translation>concesso in licenza per</translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation>USO</translation>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation>DESCRIZIONE</translation>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
+        <translation>ESEMPI</translation>
     </message>
 </context>
 <context>

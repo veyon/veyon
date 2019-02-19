@@ -192,10 +192,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>是组成员</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>位于教室内</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>正在访问局域网中的计算机</translation>
     </message>
@@ -262,6 +258,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>访问用户有一个或多个与本地（登录）用户相同的组</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -685,14 +685,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation>教室和计算机</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>教室</translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation>计算机</translation>
     </message>
@@ -709,24 +701,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>MAC 地址</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>添加新教室</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>删除选中的教室</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>添加新计算机</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>删除选中的计算机</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>新教室</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -736,32 +716,36 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Builtin directory</source>
         <translation>内置目录</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>为指定的命令显示帮助</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>添加一个新教室或计算机</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>清除所有教室和计算机</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>转储全部或单独的教室和计算机</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>列出所有教室和计算机</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>移除一个教室或计算机</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -808,10 +792,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>未知参数 &quot;%1&quot;。</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>教室 &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>计算机 &quot;%1&quot; (主机地址: &quot;%2&quot; MAC 地址: &quot;%3&quot;)</translation>
     </message>
@@ -822,10 +802,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>None</source>
         <translation>无</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>教室</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -848,10 +824,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>网络对象目录，用于存储本地配置的对象</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>内置(电脑和教室都在本地配置)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>管理内置网络对象目录的命令</translation>
     </message>
@@ -868,119 +840,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>没有指定格式字符串！</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-用法
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-可用变量： %type% %name% %host% %mac% %room%
-
-范例：
-
-* 导出所有对象到一个 CSV 文件：
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* 导出一个教室里的所有计算机到一个 CSV 文件：
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-用法
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-添加一个对象，其中 TYPE 可以是 &quot;%2&quot; 或 &quot;%3&quot; 之一。PARENT 可以通过名称或 UUID 指定。
-范例：
-
-* 添加一个教室：
-
-    %1 add room &quot;Room 01&quot;
-
-* 添加一个计算机到 &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-用法
-
-%1 remove &lt;OBJECT&gt;
-
-从目录中删除指定的对象。OBJECT 可以由名称或 UUID 指定。删除一个教室也会删除其中的所有计算机。
-
-范例：
-
-* 通过名称删除计算机：
-
-    %1 remove &quot;Computer 01&quot;
-
-* 通过 UUID 删除一个对象：
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>对象的 UUID</translation>
     </message>
@@ -989,56 +848,140 @@ Examples:
         <translation>Parent UUID</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-用法：
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-可用的变量： %type% %name% %host% %mac% %room%
-
-范例：
-
-* 将简单的 CSV 文件导入单个教室：
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* 导入在第一列中带有房间名称的 CSV 文件：
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* 使用正则表达式导入带有键/值对的文本文件：
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-*导入任意格式的数据：
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
+        <source>Add a location or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>FILE</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TYPE</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NAME</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC 地址(网卡物理地)</translation>
     </message>
 </context>
 <context>
@@ -1515,7 +1458,7 @@ Examples:
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>文件传输</translation>
+        <translation>发布文件</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1799,10 +1742,6 @@ Examples:
 <context>
     <name>LdapConfigurationPage</name>
     <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
-    <message>
         <source>Basic settings</source>
         <translation>基本设置</translation>
     </message>
@@ -1829,10 +1768,6 @@ Examples:
     <message>
         <source>Use bind credentials</source>
         <translation>使用绑定的证书</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>测试</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2037,10 +1972,6 @@ Examples:
         <translation>用户对象</translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation>用户登录属性</translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation>输入组名称</translation>
     </message>
@@ -2051,10 +1982,6 @@ Examples:
     <message>
         <source>group members</source>
         <translation>组成员</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>组成员属性</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2089,10 +2016,6 @@ Examples:
         <translation>计算机对象</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>计算机主机名属性</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>输入计算机 </translation>
     </message>
@@ -2103,10 +2026,6 @@ Examples:
     <message>
         <source>computer MAC addresses</source>
         <translation>计算机 MAC 地址</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>计算机 MAC 地址属性</translation>
     </message>
     <message>
         <source>users</source>
@@ -2129,10 +2048,6 @@ Examples:
         <translation>用户组</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>用户登录属性或者组成员属性</translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>未找到用户</translation>
     </message>
@@ -2151,10 +2066,6 @@ Examples:
     <message>
         <source>groups of computer</source>
         <translation>计算机组</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>计算机主机名属性或者组成员属性</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2189,28 +2100,12 @@ Examples:
         <translation>LDAP %1 测试失败</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>无法查询配置的 %1 中的任何条目。 请检查 %1 参数。
-
-%2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>LDAP %1 测试成功</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>已成功查询 %1 ，并找到 %2 个条目。</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>无法查询任何 %1。 请检查 %2 参数或输入现有对象的名称.
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2261,72 +2156,16 @@ Examples:
         <translation>例如：计算机教室或实验室</translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation>列出计算机教室里的所有成员</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>列出所有的计算机教室</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>输入计算机教室名称</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>请输入计算机房的名称（允许使用通配符）：</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>计算机教室</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>计算机教室属性</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>请输入要查询其成员的计算机机房的名称：</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>计算机教室成员</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>计算机组过滤器或计算机机房成员汇总</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>计算机教室</translation>
-    </message>
-    <message>
         <source>Integration tests</source>
         <translation>集成测试</translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation>计算机教室属性</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>通过以下方式在一个房间中聚合计算机：</translation>
     </message>
     <message>
         <source>Computer groups</source>
         <translation>计算机组</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>计算机对象中的计算机房属性</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>测试不适用</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>计算机教室名称属性</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2339,14 +2178,6 @@ Examples:
     <message>
         <source>Computer containers or OUs</source>
         <translation>计算机容器或 OU</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>请将计算机机房设置改为使用计算机组或计算机容器作为计算机教室。 然后将查询指定的属性而不是计算机组或容器对象的通用名称。 否则，您不需要配置此属性。</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>请更改下面的计算机教室设置，将计算机容器用作计算机教室。 否则，您不需要配置此过滤器。</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2448,6 +2279,114 @@ Examples:
         <source>Encryption protocol</source>
         <translation>加密协议</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2468,16 +2407,62 @@ Examples:
         <translation>用于配置和测试 LDAP/AD 集成的命令</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>为 Veyon 提供 LDAP/AD 集成</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP(从 LDAP/AD 加载计算机和教室)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP(从 LDAP/AD 加载用户和组)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3092,16 +3077,16 @@ USAGE
         <translation>会话扫描限制</translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation>新建组</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>首选项</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>反向查找已发现的IP地址到主机名</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3155,8 +3140,8 @@ USAGE
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>教室/计算机</translation>
+        <source>Locations/Computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3718,7 +3703,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>发送文字消息</translation>
+        <translation>发送消息</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3858,6 +3843,18 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>licensed for</source>
         <translation>许可给</translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

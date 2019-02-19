@@ -74,7 +74,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Kérem, add meg azokat a csoportokat, melyek tagjainak hozzáférése kellene, hogy legyen a Veyon hálózatában lévő számítógépekhez.</translation>
+        <translation>Adja meg azokat a csoportokat, melyek tagjainak hozzáférése kellene, hogy legyen a Veyon hálózatában lévő számítógépekhez.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -192,10 +192,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>tagja a csoportnak</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>szobában található</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>A hozzáférő számítógép a helyi számítógép</translation>
     </message>
@@ -253,7 +249,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Egy bejelentkezett felhasználó sincs</translation>
+        <translation>Egy felhasználó sem jelentkezett be</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
@@ -262,6 +258,10 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>A hozzáférő felhasználó egy vagy több csoport közös tagja a helyi (bejelentkezett) felhasználóval</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation>itt található: </translation>
     </message>
 </context>
 <context>
@@ -684,14 +684,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Szobák és számítógépek</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>Szobák</translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation>Számítógépek</translation>
     </message>
@@ -708,24 +700,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Fizikai cím</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>Új szoba hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Kiválasztott szoba eltávolítása</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>Új számítógép hozzáadása</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>Kiválasztott számítógép eltávolítása</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Új szoba</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -735,32 +715,36 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Builtin directory</source>
         <translation>Beépített mappa</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Helyszínek és számítógépek</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Helyszínek</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>Új helyszín hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>Kiválasztott helyszín eltávolítása</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>CSV fájlok importálása parancssori interfészen keresztül lehetséges. Bővebb információért látogassa meg az &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online dokumentációt&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Új helyszín</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Konkrét parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>Szoba vagy számítógép hozzáadása</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>Összes szoba és számítógép törlése</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>Az összes vagy néhány szoba és számítógép mentése</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>Összes szoba és számítógép felsorolása</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>Szoba vagy számítógép eltávolítása</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -807,10 +791,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>&quot;%1&quot; ismeretlen argumentum.</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; szoba</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>&quot;%1&quot; számítógép (kiszolgáló címe: &quot;%2&quot; fizikai cím: &quot;%3&quot;)</translation>
     </message>
@@ -821,10 +801,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>None</source>
         <translation>Egyik sem</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>Szoba</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -847,10 +823,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Hálózatobjektum-mappa, ami objektumokat tároló a helyi konfigurációban</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>Beépített (a helyi konfigurációban lévő számítógépek és szobák)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>A beépített hálózatobjektum-mappát kezelő parancsok</translation>
     </message>
@@ -867,120 +839,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Nincs formázott karakterlánc!</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Használható változók: %type% %name% %host% %mac% %room%
-
-Példák:
-
-* Az összes objektum exportálása CSV fájlba:
-
-    %1 export objektumok.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Egy szoba összes számítógépének exportálása CSV fájlba:
-
-    %1 export 01SzobaSzamitogepei.csv room &quot;01 szoba&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Egy objektumot ad hozzá, ahol a típus (TYPE) lehet &quot;%2&quot; vagy &quot;%3&quot;. A szülő (PARENT) megadható névvel vagy UUID-vel.
-
-Példák:
-
-* Egy szoba hozzáadása:
-
-    %1 add room &quot;Szoba 01&quot;
-
-* Egy számítógép hozzáadása a &quot;Szoba 01&quot; szobához:
-
-    %1 add computer &quot;Számítógép 01&quot; pc01.pelda.hu 11:22:33:44:55:66 &quot;Szoba 01&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 remove &lt;OBJECT&gt;
-
-Eltávolítja a kiválasztott objektumot a mappából. Az objektum (OBJECT) megadható névvel vagy UUID-vel. Egy szoba eltávolítása a benne lévő összes számítógépet is eltávolítja.
-
-Példák:
-
-* Számítógép eltávolítása név alapján:
-
-    %1 remove &quot;Számítógép01&quot;
-
-* Objektum eltávolítása UUID alapján:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>Objektum UUID</translation>
     </message>
@@ -989,56 +847,140 @@ Példák:
         <translation>Szülő UUID</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Használható változók: %type% %name% %host% %mac% %room%
-
-Példák:
-
-* Egy egyszerű CSV fájl importálása egy egyszerű szobába:
-
-    %1 import szamitogepek.csv room &quot;Szoba 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Az első oszlopban a szobát tartalmazó CSV fájl importálása:
-
-    %1 import szamitogepekSzobakkal.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Reguláris kifejezések megadott kulcs/érték párokat tartalmazó TXT fájl importálása:
-
-    %1 import kiszolgaloLista.txt room &quot;01 Szoba&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Önkényesen formázott adatok importálása:
-
-    %1 import adat.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
+        <source>Add a location or computer</source>
+        <translation>Egy helyszín vagy számítógép hozzáadása</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>Összes helyszín és számítógép törlése</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation>Az összes vagy néhány helyszín és számítógép mentése </translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation>Összes helyszín és számítógép felsorolása</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>Egy helyszín vagy számítógép eltávolítása</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; helyszín</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Beépített (a helyi konfigurációban lévő számítógépek és helyszínek)</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Helyszín</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>FÁJL</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation>HELYÖRZŐKKEL-FORMÁZOTT-SZTRING</translation>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TÍPUS</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NÉV</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation>SZÜLŐ</translation>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation>Szoba hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>FIZIKAI CÍM</translation>
     </message>
 </context>
 <context>
@@ -1782,7 +1724,7 @@ Példák:
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>LDAP tallózása</translation>
     </message>
 </context>
 <context>
@@ -1798,10 +1740,6 @@ Példák:
 </context>
 <context>
     <name>LdapConfigurationPage</name>
-    <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
     <message>
         <source>Basic settings</source>
         <translation>Alapbeállítások</translation>
@@ -1829,10 +1767,6 @@ Példák:
     <message>
         <source>Use bind credentials</source>
         <translation>Kötéshitelesítés használata</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Tesztelés</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2026,7 +1960,7 @@ Példák:
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Felhasználónév</translation>
+        <translation>Add meg a felhasználónevet</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2035,10 +1969,6 @@ Példák:
     <message>
         <source>user objects</source>
         <translation>felhasználói objektumok</translation>
-    </message>
-    <message>
-        <source>user login attribute</source>
-        <translation>felhasználó bejelentkezési attribútuma</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2051,10 +1981,6 @@ Példák:
     <message>
         <source>group members</source>
         <translation>csoporttagok</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>csoporttag attribútuma</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2089,10 +2015,6 @@ Példák:
         <translation>számítógép-objektumok</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>számítógép kiszolgálónevének attribútuma</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>Add meg a számítógép DN-t</translation>
     </message>
@@ -2103,10 +2025,6 @@ Példák:
     <message>
         <source>computer MAC addresses</source>
         <translation>számítógép fizikai címei</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>számítógép fizikai címének attribútuma</translation>
     </message>
     <message>
         <source>users</source>
@@ -2129,10 +2047,6 @@ Példák:
         <translation>felhasználó csoportjai</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>felhasználói bejelentkezés attribútum vagy csoporttagság attribútum</translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>Felhasználó nem található</translation>
     </message>
@@ -2151,10 +2065,6 @@ Példák:
     <message>
         <source>groups of computer</source>
         <translation>számítógép csoportjai</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>számítógép kiszolgálónevének vagy csoporttagság attribútuma</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2189,28 +2099,12 @@ Példák:
         <translation>%1 LDAP teszt sikertelen</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>Egy bejegyzést sem sikerült lekérdezni %1 konfigurációban. Kérem, ellenőrizd %1 paramétert.
-
-%2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>%1 LDAP teszt sikeres</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 objektum lekérdezése sikeres, %2 jegyezést találtunk.</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>Egy %1 objektumot sem sikerült lekérdezni. Kérem, ellenőrizd %2 paramétert vagy add meg már létező objektum nevét.
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2261,72 +2155,16 @@ Példák:
         <translation>például szoba vagy számítógépLabor</translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation>Egy számítógépterem összes tagját felsorolja</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>Összes számítógépterem felsorolása</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>Add meg a számítógépterem nevét</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>Kérem, add meg egy számítógépterem nevét (helyettesítő karakterek megengedettek):</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>számítógéptermek</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>számítógépterem attribútuma</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>Kérem, add meg annak a számítógépterem nevét, melynek tagjait lekérdezed:</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>számítógépterem tagjai</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>számítógépcsoport szűrője vagy számtógépterem tag aggregációja</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>Számítógéptermek</translation>
-    </message>
-    <message>
         <source>Integration tests</source>
         <translation>Integrációs tesztek</translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation>Számítógépterem attribútuma</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>Számítógépek aggregálása egy szobába: </translation>
     </message>
     <message>
         <source>Computer groups</source>
         <translation>Számítógépcsoportok</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>Számítógépterem attribútuma számítógép-objektumokban</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>Teszt nem alkalmazható</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>Számítógépterem nevének attribútuma</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2339,14 +2177,6 @@ Példák:
     <message>
         <source>Computer containers or OUs</source>
         <translation>Számítógép tárolók vagy szervezeti egységek</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Kérem, cseréld a számítógépterem beállításait, hogy a számítógép-csoportokat vagy a számítógép tárolókat használhassuk számítógéptermekként. Ezután a meghatározott attribútumot kérdezzük le a számítógép-csoportok, illetve a tárolóobjektumok neve helyett. Egyéb esetben nem szükséges ennek az attribútumnak a konfigurálása.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Kérem, cseréld a számítógépterem beállításait alább, hogy a számítógép tárolókat használhassuk számítógéptermekként. Egyéb esetben nem szükséges ennek a szűrőnek konfigurálása.</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2448,6 +2278,118 @@ Példák:
         <source>Encryption protocol</source>
         <translation>Titkosítási protokoll</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Számítógéphelyszín attribútum</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Számítógép megjelenítési név attribútum</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Helyszínnév attribútum</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>pl. cn vagy displayName</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Számítógéphelyszínek azonosítója </translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Azonosítja a számítógép helyszínét (pl. szobák):</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Helyszín attribútuma számítógép-objektumokban</translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>A helyszín összes bejegyzésének felsorolása</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>Helyszínek felsorolása</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation>Adja meg a számítógép megjelenítési nevét</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Adja meg a számítógép megjelenítési nevét a lekérdezéshez:</translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>Adja meg a számítógép helyszínének nevét</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Adja meg egy számítógéphelyszín nevét (helyettesítő karakterek megengedettek):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>számítógéphelyszínek</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Módosítsa a számítógéphelyszín beállításait, hogy a számítógép-csoportokat vagy a számítógéptárolókat használhassuk számítógéphelyszínekként. Ezután a meghatározott attribútumot kérdezzük le a számítógép-csoportok, illetve a tárolóobjektumok neve helyett. Egyéb esetben nem szükséges ennek az attribútumnak a konfigurálása. </translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Módosítsa a számítógéphelyszín beállításait alább, hogy a számítógéptárolókat használhassuk számítógéphelyszínként. Egyéb esetben nem szükséges ennek a szűrőnek konfigurálása.</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Adja meg a helyszín nevét</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Adja meg azon helyszín nevét, amely bejegyzéseit le kívánja kérni:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>Helyszín-bejegyzések</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP tesztelése sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Egy %1 sem kérhető le. Ellenőrizze %2 paraméter(eke)t vagy adja meg a már létező objektum nevét.
+
+%3 </translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>és</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP tesztelése sikeres</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Egy bejegyzést sem sikerült lekérni %1 konfigurációban. Ellenőrizze a  &quot;%2&quot; paramétert.
+
+%3</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Tesztelés</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2468,16 +2410,62 @@ Példák:
         <translation>LDAP/AD integráció konfigurálásának és tesztelésének parancsai</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>LDAP/AD integráció biztosítás a Veyon számára</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Alapvető LDAP/AD támogatás a Veyon számára</translation>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP (számítógépek és szobák betöltése LDAP/AD-ból)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation>LDAP Pro</translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation>Példányok</translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation>Adja meg a nevet</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation>Adja meg a példány nevét (később nem módosítható):</translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation>Példány eltávolítása</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation>Biztos, hogy eltávolítja a &quot;%1&quot; példányt?</translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; példány beállításai</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation>Professzionális LDAP/AD integráció a Veyon számára</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2832,15 +2820,15 @@ HASZNÁLAT
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Megtekint</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Standard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Haladó</translation>
     </message>
 </context>
 <context>
@@ -3092,16 +3080,16 @@ HASZNÁLAT
         <translation>Átvizsgálás munkamenetének korlátja</translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation>Új csoport</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>Lehetőség</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>A fordított keresés IP-címeket talált a kiszolgálónevekhez</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Új helyszín</translation>
     </message>
 </context>
 <context>
@@ -3155,8 +3143,8 @@ HASZNÁLATA
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>Szoba/Számítógép</translation>
+        <source>Locations/Computers</source>
+        <translation>Helyszínek/számítógépek</translation>
     </message>
 </context>
 <context>
@@ -3763,11 +3751,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Többmonitoros támogatás bekapcsolása</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Asztalduplikációs motor bekapcsolása Windows 8 vagy újabb rendszeren</translation>
     </message>
 </context>
 <context>
@@ -3857,6 +3845,18 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>licensed for</source>
         <translation>licencelt</translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation>HASZNÁLAT</translation>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation>LEÍRÁS</translation>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

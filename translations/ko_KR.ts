@@ -102,7 +102,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>선택된 규칙 아래로 이동</translation>
+        <translation>선택된 규칙을 아래로 이동</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
@@ -126,7 +126,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 허가됨</translation>
+        <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 허가됨.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -142,7 +142,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>유저그룹 백엔드</translation>
+        <translation>유저그룹 백엔드:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -190,10 +190,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>is member of group</source>
         <translation>는 그룹의 멤버임</translation>
-    </message>
-    <message>
-        <source>is located in room</source>
-        <translation>는 교실에 있습니다</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -262,6 +258,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>연결하는 사용자는 로컬 사용자(로그온됨)와 하나 또는 그이상의 공통 그룹을 갖고 있습니다</translation>
+    </message>
+    <message>
+        <source>is located in</source>
+        <translation>위치는 </translation>
     </message>
 </context>
 <context>
@@ -387,7 +387,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>접근 키를 불러올 사용자  그룹이나 역할의 이름을 입력하세요.</translation>
+        <translation>접근 키를 불러올 사용자  그룹이나 역할의 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -460,7 +460,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>공개 또는 개인 키 생성 실패.</translation>
+        <translation>공개 또는 개인 키 생성 실패!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
@@ -583,11 +583,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>• 공개 또는 개인 접근 키 불러오기</translation>
+        <translation>공개 또는 개인 접근 키 불러오기</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>• 공개 또는 개인 접근 키 내보내기</translation>
+        <translation>공개 또는 개인 접근 키 내보내기</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
@@ -684,14 +684,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
-        <source>Rooms &amp; computers</source>
-        <translation>컴퓨터 룸과 컴퓨터</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>교실</translation>
-    </message>
-    <message>
         <source>Computers</source>
         <translation>컴퓨터</translation>
     </message>
@@ -708,24 +700,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>MAC주소</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>새교실 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>선택된 교실 삭제</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>새 컴퓨터 추가</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>선택된 컴퓨터 삭제</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>새 교실</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -735,32 +715,36 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Builtin directory</source>
         <translation>게시물 폴더</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>위치 및 컴퓨터들</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>위치</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>새로운 위치 추가</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>선택한 위치 삭제</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>CSV 화일 불러오기는 커맨드라인 인터페이스로 가능합니다.  자세한 정보는, 다음 참조 &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;온라인 문서&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>새로운 위치</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>특정 명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>컴퓨터 교실 추가하기</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>모든 교실과 컴퓨터 삭제</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation>모든 교실들과 컴퓨터 보여주기</translation>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>모든 룸과 컴퓨터를 보여줌</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>교실 또는 컴퓨터 삭제</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -807,10 +791,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>알수 없는 인자 &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>교실 &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>컴퓨터 &quot;%1&quot; (호스트 주소: &quot;%2&quot; MAC 주소: &quot;%3&quot;)</translation>
     </message>
@@ -821,10 +801,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>None</source>
         <translation>없음</translation>
-    </message>
-    <message>
-        <source>Room</source>
-        <translation>교실</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -847,10 +823,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>로컬 설정에 오브젝트를 저장하고 있는 네트워크 오브젝트 폴더</translation>
     </message>
     <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>내장 (로컬 설정내의 컴퓨터와 교실)</translation>
-    </message>
-    <message>
         <source>Commands for managing the builtin network object directory</source>
         <translation>내장 네트워크 오브젝트 폴더를 관리하는 명령어들</translation>
     </message>
@@ -867,119 +839,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>형식 문자열이 지정되지 않음!</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation>
-사용법
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-유효한 변수들: %type% %name% %host% %mac% %room%
-
-예:
-
-* 모든 오브젝트를 CSV 화일로 내보내기:
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* 룸안의 모든 컴퓨터를 CSV 화일로 내보내기:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation>
-사용법
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-TYPE 이 &quot;%2&quot; 또는 &quot;%3&quot; 인 오브젝트를 추가함 . PARENT _부모_는 이름 또는 UUID로 지정할 수 있음.
-
-예:
-
-* 룸 추가:
-
-    %1 add room &quot;Room 01&quot;
-
-* 컴퓨터를 룸이름 &quot;Room 01&quot;로 추가:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation>
-사용법
-
-%1 remove &lt;OBJECT&gt;
-
-지정된 오브젝트를 디렉토리에서 제거함. OBJECT_오브젝튼_는 이름 또는 UUID로 지정할 수 있음. 룸을 제거하면 룸안의 모든 컴퓨터들도 제거됨.
-
-예:
-
-* 이름으로 컴퓨터 제거하기:
-
-    %1 remove &quot;Computer 01&quot;
-
-* UUID로 오브젝트를 제거하기:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</translation>
-    </message>
-    <message>
         <source>Object UUID</source>
         <translation>Object UUID</translation>
     </message>
@@ -988,56 +847,140 @@ Examples:
         <translation>부모 UUID</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-사용법
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-유효한 변수들: %type% %name% %host% %mac% %room%
-
-사용예:
-
-* 싱글룸에 간단한 CSV 파일을 불러 옴:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-*첫 열에 룸 이름과 CSV 파일을 불러 옴:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* 정규 표현식을 이용하여 키/값과 함께 텍스트 화일을 불러 옴:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* 임의의 형식으로 포맷된 데이타를 불러 옴:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
+        <source>Add a location or computer</source>
+        <translation>위치 또는 컴퓨터 추가</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>모든 위치및 컴퓨터 삭제</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
+        <translation>모든 개별 위치및 컴퓨터 표시</translation>
+    </message>
+    <message>
+        <source>List all locations and computers</source>
+        <translation>모든 위치및 컴퓨터 리스트출력</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>위치 또는 컴퓨터 삭제</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>위치 &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>내장 (로컬 설정에 있는 컴퓨터 및 위치)</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>위치</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>화일</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation>위치</translation>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation>FORMAT-STRING-WITH-PLACEHOLDERS</translation>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation>REGULAR-EXPRESSION-WITH-PLACEHOLDER</translation>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>하나 또는 여러개의 placeholders 를 포함하는 포맷지정자 또는 정규표현식을 사용하여 선택한 텍스트 화일에서 오브젝트를 가져옴. 유효한 placeholders 는 : %1</translation>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation>간단한 CSV 화일을 싱글 룸에 불러오기</translation>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation>위치 이름이 있는 CSV 화일을 첫번째 컬럼으로 불러오기</translation>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation>정규표현식을 사용하여 key/value 짝을 가진 텍스트 화일 불러오기</translation>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation>임의 형식의 데이터 불러오기</translation>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation>하나 또는 여러개의 placeholders 를 포함하는 포맷지정자를 사용하여 선택한 텍스트 화일로 오브젝트를 내보냄. 유효한 placeholders 는 : %1</translation>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation>모든 오브젝트를 CSV 화일로 내보내기</translation>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation>특정 위치에 있는 모든 컴퓨터를 CSV 화일로 내보내기</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TYPE</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation>PARENT</translation>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation>오브젝트 %1 가 &quot;%2&quot; 또는 &quot;%3&quot;를 추가함. %4 는 이름 또는 UUID로 지정할 수 있음.</translation>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation>룸 추가</translation>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation>룸  %1 에 컴퓨터 추가하기</translation>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation>OBJECT</translation>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation>선택된 오브젝트를 디렉토리에서 제거함. %1 은 이름 또는 UUID로 지정할 수 있음. 위치를 삭제하면 관련된 모든 컴퓨터도 삭제함.</translation>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation>이름으로 컴퓨터 삭제하기</translation>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation>UUID로 오브젝트 삭제하기</translation>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation>&quot;룸 01&quot;</translation>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation>&quot;컴퓨터 01&quot;</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST ADDRESS</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>맥 어드레스</translation>
     </message>
 </context>
 <context>
@@ -1078,7 +1021,7 @@ Examples:
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>컴퓨터는 오프라인 또는 전원 꺼짐</translation>
+        <translation>컴퓨터 오프라인 또는 전원 꺼짐</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
@@ -1194,7 +1137,7 @@ Examples:
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요</translation>
+        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요.</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
@@ -1210,7 +1153,7 @@ Examples:
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>명령어 라인에서 Veyon 설정</translation>
+        <translation>커맨드 라인에서 Veyon 설정</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
@@ -1323,7 +1266,7 @@ Examples:
     </message>
     <message>
         <source>Update interval</source>
-        <translation>갱신 간격</translation>
+        <translation>업데이트 간격</translation>
     </message>
     <message>
         <source> s</source>
@@ -1444,7 +1387,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 한 웹사이트를 오픈합니다.</translation>
+        <translation>클릭하면 모든 컴퓨터에서 같은 웹사이트를 오픈합니다.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -1681,7 +1624,7 @@ Examples:
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>모든 로그화일을 삭제하지 못함</translation>
+        <translation>모든 로그화일을 삭제하지 못함.</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1799,10 +1742,6 @@ Examples:
 <context>
     <name>LdapConfigurationPage</name>
     <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
-    <message>
         <source>Basic settings</source>
         <translation>기본 설정</translation>
     </message>
@@ -1829,10 +1768,6 @@ Examples:
     <message>
         <source>Use bind credentials</source>
         <translation>인증서 결합 사용</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>테스트</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2037,10 +1972,6 @@ Examples:
         <translation>사용자 개체</translation>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation>사용자 로그인 속성</translation>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation>그룹이름 입력</translation>
     </message>
@@ -2051,10 +1982,6 @@ Examples:
     <message>
         <source>group members</source>
         <translation>그룹 멤버</translation>
-    </message>
-    <message>
-        <source>group member attribute</source>
-        <translation>그룹멤버 속성</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2089,10 +2016,6 @@ Examples:
         <translation>컴퓨터 개체</translation>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation>컴퓨터 호스트 이름 및  속성</translation>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation>컴퓨터 DN  입력</translation>
     </message>
@@ -2103,10 +2026,6 @@ Examples:
     <message>
         <source>computer MAC addresses</source>
         <translation>컴퓨터 MAC 주소</translation>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
-        <translation>컴퓨터 MAC 주소 속성</translation>
     </message>
     <message>
         <source>users</source>
@@ -2129,10 +2048,6 @@ Examples:
         <translation>사용자 그룹</translation>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation>사용자 로그인 속성 또는 그룹 멤버 속성</translation>
-    </message>
-    <message>
         <source>User not found</source>
         <translation>사용자 검색되지 않음</translation>
     </message>
@@ -2151,10 +2066,6 @@ Examples:
     <message>
         <source>groups of computer</source>
         <translation>컴퓨터 그룹</translation>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
-        <translation>컴퓨터 호스트 이름 속성 또는 멤버 속성</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2178,7 +2089,7 @@ Examples:
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 </translation>
+        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 .</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2189,28 +2100,12 @@ Examples:
         <translation>LDAP %1 시험 실패</translation>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation>설정된 %1에서 입력 값을 찾지 못함. %1 파라메터를 점검하세요
-
-%2</translation>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation>LDAP %1 시험 성공</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 이 성공적으로 조회되고 %2 입력 값이 검색됨</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
-        <translation>%1을 조회할 수 없음. %2 파라메터를 점검하거나 또는 기존의 개체의 이름을 입력하세요
-
-%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2261,72 +2156,16 @@ Examples:
         <translation>예. room or computerLab</translation>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation>컴퓨터 교실의 모든 멤버를 보여줌</translation>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation>모든 컴퓨터 교실을 보여줌</translation>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation>컴퓨터 교실에 입장함</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>컴퓨터 교실의 이름을 입력하세요(와일드카드 허용됨):</translation>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation>컴퓨터 교실</translation>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation>컴퓨터 교실 속성</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>조회할 사용자가 속한 컴퓨터 교실 이름을 넣으세요</translation>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation>컴퓨터 교실 멤버</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation>컴퓨터 그룹 필터 또는 컴퓨터 교실 멤버 집단</translation>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation>컴퓨터 교실</translation>
-    </message>
-    <message>
         <source>Integration tests</source>
         <translation>결합 테스트</translation>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation>컴퓨터교실 속성</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
-        <translation>교실의 컴퓨터를 다음을 사용해 묶음:</translation>
     </message>
     <message>
         <source>Computer groups</source>
         <translation>컴퓨터 그룹</translation>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation>컴퓨터 객체중의 컴퓨터 교실의 속성</translation>
-    </message>
-    <message>
         <source>Test not applicable</source>
         <translation>테스트를 할수 없음</translation>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
-        <translation>컴퓨터 교실 이름 속성</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2339,14 +2178,6 @@ Examples:
     <message>
         <source>Computer containers or OUs</source>
         <translation>컴퓨터 컨테이너 또는 OU</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation> 컴퓨터 컨테이너 또는 컴퓨터그룹의 컴퓨터를 컴퓨터 교실로 사용하려면 컴퓨터교실의 설정을 변경하세요. 그러면 컴퓨터 그룹 또는 컨테이너 객체의 공통명칭 대신 설정된 속성을 조회합니다. 그렇지 않으면 이 속성을 설정할 필요가 없습니다.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>컴퓨터 객체의 컴퓨터 켄테이너를 컴퓨터 교실로 사용하려면 아래의 컴퓨터 교실 설정을 변경하세요. 그렇지 않으면 이속성을 설정할 필요가 없습니다.</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2390,7 +2221,7 @@ Examples:
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>e.g. (objectClass=person)</translation>
+        <translation>예. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
@@ -2446,6 +2277,118 @@ Examples:
         <source>Encryption protocol</source>
         <translation>암호화 프로토콜</translation>
     </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>컴퓨터 위치 및 속성</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>컴퓨터 표시 이름 속성</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>위치 이름 및 속성</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>예, cn 또는 displayName</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>컴퓨터 위치 ID</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>를 통해서 컴퓨터 위치 확인하기( 예,   rooms) :</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>컴퓨터 오브젝트에서의 위치 속성</translation>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>모든 위치의 엔트리 출력</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>모든 위치 출력</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation>컴퓨터 표시 이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>검색할 컴퓨터 디스플레이 이름을 입력하세요:</translation>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>컴퓨터 위치 이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>컴퓨터 위치의 이름을 입력하세요(와일드카드 허용됨):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>컴퓨터 위치</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation> 컴퓨터 컨테이너 또는 컴퓨터그룹을 컴퓨터 위치로 사용하려면 컴퓨터위치의 설정을 변경하세요. 그러면 컴퓨터 그룹 또는 컨테이너 객체의 공통명칭 대신 지정된 속성을 조회합니다. 그렇지 않으면 이 속성을 설정할 필요가 없습니다.</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>컴퓨터 컨테이너를 컴퓨터 위치로 사용하려면 아래의 컴퓨터 교실 위치설정을 변경하세요. 아니면 이필터를 설정할 필요가 없습니다.</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>위치 이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>조회할 위치 이름을 넣으세요:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>위치 엔트리</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP 테스트 실패</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>%1을 조회할 수 없음. %2 파라메터(들)을 점검하거나 또는 기존의 개체의 이름을 입력하세요
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>및 </translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP 테스트 성공</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>설정된 %1에서 엔트리 값을 찾지 못함. &quot;%2&quot; 파라메터를 점검하세요.
+
+%3</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>테스트</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2466,16 +2409,62 @@ Examples:
         <translation>LDAP/AD 통합을 설정하거나 제어하는 명령어</translation>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
-        <translation>Veyon용 LDAP/AD  결합을 제공</translation>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Veyon 기본 LDAP/AD 지원</translation>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation>LDAP (LDAP/AD에서 컴퓨터와 교실을 가져옴)</translation>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (LDAP/AD에서 컴퓨터와 위치를 가져옴)</translation>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation>LDAP (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation>LDAP Pro</translation>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation>개체</translation>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation>이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation>개체의 이름을 입력하세요 (나중에 변경불가!):</translation>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation>개체 삭제</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation>정말로 &quot;%1&quot; 개체를 삭제하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; 객체 설정</translation>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation>Veyon용 프로페셔널 LDAP/AD 결합</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (LDAP/AD에서 컴퓨터와 위치를 가져옴)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
     </message>
 </context>
 <context>
@@ -2666,11 +2655,11 @@ USAGE
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>도움말(&amp;H)</translation>
+        <translation>&amp;Help</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>종료하기(&amp;Q)</translation>
+        <translation>&amp;Quit</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2758,7 +2747,7 @@ USAGE
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1 Configurator  를 관리자 권한으로 실행하세요</translation>
+        <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1  Configurator    를 관리자 권한으로 실행하세요.</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -3000,7 +2989,7 @@ USAGE
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation>게시판형 모니토링 모드</translation>
+        <translation>게시판형 모니터링 모드</translation>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
@@ -3090,16 +3079,16 @@ USAGE
         <translation>세션 스캔 제한</translation>
     </message>
     <message>
-        <source>New group</source>
-        <translation>새그룹</translation>
-    </message>
-    <message>
         <source>Options</source>
         <translation>옵션</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>발견된 IP 주소를 호스트 이름으로 검색하기</translation>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>새로운 위치</translation>
     </message>
 </context>
 <context>
@@ -3153,8 +3142,8 @@ USAGE
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>교실/컴퓨터</translation>
+        <source>Locations/Computers</source>
+        <translation>위치/컴퓨터들</translation>
     </message>
 </context>
 <context>
@@ -3200,7 +3189,7 @@ USAGE
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>클릭하면 모든 컴퓨터를 리부팅</translation>
+        <translation>클릭하면 모든 컴퓨터를 리부팅.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3240,7 +3229,7 @@ USAGE
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함</translation>
+        <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -3283,7 +3272,7 @@ USAGE
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>연결할 컴퓨터의 호스트 이름 또는 IP를 입력하세요</translation>
+        <translation>연결할 컴퓨터의 호스트 이름 또는 IP를 입력하세요:</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3321,7 +3310,7 @@ USAGE
     </message>
     <message>
         <source>Quit</source>
-        <translation>종료하기</translation>
+        <translation>종료</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3394,7 +3383,7 @@ USAGE
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation>인터넷 제한하기 위한 사용자 루트 추가</translation>
+        <translation>인터넷 접근 제한하려는 사용자 루트 추가</translation>
     </message>
     <message>
         <source>Destination</source>
@@ -3501,7 +3490,7 @@ USAGE
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>모든 화면 캡쳐 화일이 이곳에 표시됩니다. 컴퓨터 메뉴에서 &quot;화면캡쳐&quot;를 클릭하여 화면캡쳐를 할 수 있습니다. 아래 버튼으로 화면캡쳐를 관리할 수 있습니다</translation>
+        <translation>모든 화면 캡쳐 화일이 이곳에 표시됩니다. 컴퓨터 메뉴에서 &quot;화면캡쳐&quot;를 클릭하여 화면캡쳐를 할 수 있습니다. 아래 버튼으로 화면캡쳐를 관리할 수 있습니다.</translation>
     </message>
     <message>
         <source>Computer:</source>
@@ -3788,7 +3777,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation>클릭하면 사용자를 모든 컴퓨터에서 로그아웃</translation>
+        <translation>클릭하면 사용자를 모든 컴퓨터에서 로그아웃.</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
@@ -3819,7 +3808,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>사용가능한 명령어</translation>
+        <translation>사용가능한 명령어:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -3831,7 +3820,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>결과를 알수 없음</translation>
+        <translation>알수 없는 결과!</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -3856,6 +3845,18 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>licensed for</source>
         <translation>에게 사용허가 됨  </translation>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation>사용법</translation>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation>설명</translation>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
+        <translation>예제</translation>
     </message>
 </context>
 <context>

@@ -54,7 +54,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Berikan akses ke setiap pengguna yang diautentikasi (bawaan)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -62,15 +62,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>Batasi akses ke anggota grup pengguna tertentu</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Memproses aturan kontrol akses</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Grup pengguna yang diotorisasi untuk akses komputer</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
@@ -102,15 +102,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan aturan yang dipilih ke bawah</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan aturan yang dipilih ke atas</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Edit aturan yang dipilih</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -118,7 +118,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Silakan masukkan nama login pengguna yang izin aksesnya untuk diuji:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -126,7 +126,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna yang ditentukan diizinkan untuk mengakses komputer dengan konfigurasi ini.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -138,19 +138,19 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Aktifkan penggunaan grup domain</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Kelompok pengguna backend:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend grup pengguna tidak ada</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ditemukan plugin grup pengguna bawaan. Sila cek instalasi Anda! </translation>
     </message>
 </context>
 <context>
@@ -192,12 +192,8 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <translation>adalah anggota grup</translation>
     </message>
     <message>
-        <source>is located in room</source>
-        <translation>terletak di ruang</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses komputer adalah localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -233,11 +229,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses Pengguna</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses Komputer</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -263,16 +259,20 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>is located in</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Pengujian aturan kontrol akses</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses pengguna:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -280,7 +280,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses komputer:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -308,7 +308,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>GALAT: Aksi tidak diketahui</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -319,11 +319,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Kunci otentikasi</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Perkenalan</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -351,27 +351,27 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Hapus kunci</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Impor kunci</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor kunci</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Setel grup akses</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Berkas kunci (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Nama kunci otentikasi</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -379,11 +379,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Anda yakin ingin mengapus kunci otentikasi &quot;%1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Pilih kunci yang akan dihapus!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -391,7 +391,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Pilih kunci yang akan diekspor!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -403,7 +403,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Silakan lakukan langkah-langkah berikut untuk mengatur otentikasi file utama:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -440,7 +440,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Nama kunci berisi karakter invalid!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -456,11 +456,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Membuat pasangan kunci baru untuk &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membuat kunci public atau private!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
@@ -484,7 +484,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal menulis file keluaran.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -492,7 +492,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membaca file input.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -504,7 +504,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membuat direktori untuk file kunci.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
@@ -575,35 +575,35 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Hapus kunci otentikasi</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Daftar kunci otentikasi</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Impor kunci privat atau publik</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor kunci privat atau publik</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Ekstrak kunci publik dari kunci privat yang ada</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Setel grup pengguna yang diijinkan untuk mengakses kunci</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>KUNCI</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>GRUP AKSES</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -611,7 +611,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NAMA</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
@@ -623,7 +623,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>BERKAS</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -647,11 +647,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPE</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ID PASANGAN</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -678,19 +678,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>ID Pasangan</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Ruang &amp; Komputer</translation>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation>Ruang</translation>
-    </message>
     <message>
         <source>Computers</source>
         <translation>Komputer</translation>
@@ -708,24 +700,12 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation>MAC address</translation>
     </message>
     <message>
-        <source>Add new room</source>
-        <translation>Tambah ruang baru</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Hapus ruang terpilih</translation>
-    </message>
-    <message>
         <source>Add new computer</source>
         <translation>Tambah komputer baru</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
         <translation>Hapus komputer terpilih</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Ruang baru</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -735,32 +715,36 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Builtin directory</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Lokasi &amp; komputer</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Lokasi</translation>
+    </message>
+    <message>
+        <source>Add new location</source>
+        <translation>Tambahkan lokasi baru</translation>
+    </message>
+    <message>
+        <source>Remove selected location</source>
+        <translation>Hapus lokasi terpilih</translation>
+    </message>
+    <message>
+        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Lokasi baru</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Tampilkan bantuan untuk perintah spesifik</translation>
-    </message>
-    <message>
-        <source>Add a room or computer</source>
-        <translation>Tambah ruang atau komputer</translation>
-    </message>
-    <message>
-        <source>Clear all rooms and computers</source>
-        <translation>Bersihkan semua ruang dan komputer</translation>
-    </message>
-    <message>
-        <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all rooms and computers</source>
-        <translation>Daftar semua ruang dan komputer</translation>
-    </message>
-    <message>
-        <source>Remove a room or computer</source>
-        <translation>Hapus ruang atau komputer</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -807,10 +791,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation>Argumen &quot;%1&quot; tidak diketahui.</translation>
     </message>
     <message>
-        <source>Room &quot;%1&quot;</source>
-        <translation>Ruang &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
         <translation>Komputer &quot;%1&quot; (alamat host: &quot;%2&quot; MAC address: &quot;%3&quot;)</translation>
     </message>
@@ -823,10 +803,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation>Tidak ada</translation>
     </message>
     <message>
-        <source>Room</source>
-        <translation>Ruang</translation>
-    </message>
-    <message>
         <source>Computer</source>
         <translation>Komputer</translation>
     </message>
@@ -836,7 +812,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Invalid</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -844,10 +820,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -860,109 +832,154 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka berkas &quot;%1&quot; untuk ditulisi!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Export all objects to a CSV file:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Export all computers in a room to a CSV file:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
-
-Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
-
-Examples:
-
-* Add a room:
-
-    %1 add room &quot;Room 01&quot;
-
-* Add a computer to room &quot;Room 01&quot;:
-
-    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;OBJECT&gt;
-
-Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
-
-Examples:
-
-* Remove a computer by name:
-
-    %1 remove &quot;Computer 01&quot;
-
-* Remove an object by UUID:
-
-    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objek UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
+        <translation>Induk UUID</translation>
+    </message>
+    <message>
+        <source>Add a location or computer</source>
+        <translation>Tambahkan lokasi atau komputer</translation>
+    </message>
+    <message>
+        <source>Clear all locations and computers</source>
+        <translation>Bersihkan semua lokasi dan komputer</translation>
+    </message>
+    <message>
+        <source>Dump all or individual locations and computers</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %type% %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
+        <source>List all locations and computers</source>
+        <translation>Daftar semua lokasi dan komputer</translation>
+    </message>
+    <message>
+        <source>Remove a location or computer</source>
+        <translation>Hapus lokasi atau komputer</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Lokasi  &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Lokasi</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>BERKAS</translation>
+    </message>
+    <message>
+        <source>LOCATION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import simple CSV file to a single room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import CSV file with location name in first column</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import text file with with key/value pairs using regular expressions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import arbitrarily formatted data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all objects to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export all computers in a specific location to a CSV file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TIPE</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NAMA</translation>
+    </message>
+    <message>
+        <source>PARENT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a computer to room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>OBJECT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a computer by name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove an object by UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -992,7 +1009,7 @@ Examples:
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Fitur aktif: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1676,7 +1693,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
     </message>
     <message>
         <source>Block internet</source>
@@ -1714,7 +1731,7 @@ Examples:
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>Deskripsi masalah LDAP: %1</translation>
     </message>
     <message>
         <source>No LDAP error description available</source>
@@ -1723,10 +1740,6 @@ Examples:
 </context>
 <context>
     <name>LdapConfigurationPage</name>
-    <message>
-        <source>LDAP</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Basic settings</source>
         <translation type="unfinished"/>
@@ -1754,10 +1767,6 @@ Examples:
     <message>
         <source>Use bind credentials</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Tes</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1961,10 +1970,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>user login attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter group name</source>
         <translation type="unfinished"/>
     </message>
@@ -1974,10 +1979,6 @@ Examples:
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>group member attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2013,10 +2014,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>computer host name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter computer DN</source>
         <translation type="unfinished"/>
     </message>
@@ -2026,10 +2023,6 @@ Examples:
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer MAC address attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2053,10 +2046,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User not found</source>
         <translation type="unfinished"/>
     </message>
@@ -2074,10 +2063,6 @@ Examples:
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer host name attribute or group membership attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2113,23 +2098,11 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not query any entries in configured %1. Please check the %1 parameter.
-
-%2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>LDAP %1 test successful</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
-
-%3</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2177,55 +2150,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>List all members of a computer room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all computer rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter computer room name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer room attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer room members</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer rooms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer room attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Aggregate computers in a room via:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2233,15 +2158,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer room attribute in computer objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Test not applicable</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer room name attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2257,20 +2174,12 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Keamanan Koneksi</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>Verifikasi sertifikat TLS</translation>
     </message>
     <message>
         <source>System defaults</source>
@@ -2290,11 +2199,11 @@ Examples:
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2336,7 +2245,7 @@ Examples:
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>File sertifikat (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2352,7 +2261,115 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
+        <translation>Protokol enkripsi</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all entries of a location</source>
+        <translation>Tampilkan semua masukan lokasi</translation>
+    </message>
+    <message>
+        <source>List all locations</source>
+        <translation>Daftar semua lokasi</translation>
+    </message>
+    <message>
+        <source>Enter computer display name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer location name</source>
+        <translation>Masukkan nama lokasi komputer</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>lokasi komputer</translation>
+    </message>
+    <message>
+        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Masukkan nama lokasi</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Tes</translation>
     </message>
 </context>
 <context>
@@ -2367,22 +2384,68 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Provide LDAP/AD integration for Veyon</source>
+        <source>Basic LDAP/AD support for Veyon</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProConfigurationPage</name>
+    <message>
+        <source>LDAP Pro</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Instances</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove instance</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove instance &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration for instance &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapProPlugin</name>
+    <message>
+        <source>Professional LDAP/AD integration for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2533,15 +2596,15 @@ USAGE
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Nonaktifkan tooltips balon</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Hanya tampilkan icon</translation>
     </message>
 </context>
 <context>
@@ -2560,23 +2623,23 @@ USAGE
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bantuan</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Keluar</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -2584,43 +2647,43 @@ USAGE
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+0</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"/>
+        <translation>Tentang Qt</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation type="unfinished"/>
+        <translation>Otentikasi tidak dimungkinkan</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi tidak dapat dirubah</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"/>
+        <translation>Memuat pengaturan dari file</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Simpan pengaturan kedalam file</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan belum tersimpan</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Terdapat pengaturan yang belum tersimpan, tetap keluar?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurator Veyon</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Layanan</translation>
     </message>
     <message>
         <source>Master</source>
@@ -2640,7 +2703,7 @@ USAGE
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Ruang Komputer</translation>
     </message>
     <message>
         <source>About</source>
@@ -2652,7 +2715,7 @@ USAGE
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>File JSON (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -2684,15 +2747,15 @@ USAGE
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Pulihkan konfigurasi</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda yakin untuk memulihkan konfigurasi lokal?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Cari pengguna dan komputer</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
@@ -2871,7 +2934,7 @@ USAGE
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Ruang Komputer</translation>
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
@@ -2988,16 +3051,16 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>New group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Options</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New location</source>
+        <translation>Lokasi baru</translation>
     </message>
 </context>
 <context>
@@ -3046,8 +3109,8 @@ USAGE
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Room/Computer</source>
-        <translation>Ruang/Komputer</translation>
+        <source>Locations/Computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3180,7 +3243,7 @@ USAGE
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
     </message>
 </context>
 <context>
@@ -3747,6 +3810,18 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>licensed for</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>USAGE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>DESCRIPTION</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>EXAMPLES</source>
         <translation type="unfinished"/>
     </message>
 </context>
