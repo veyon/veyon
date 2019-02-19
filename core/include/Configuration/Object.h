@@ -44,7 +44,8 @@ public:
 	enum PropertyFlag {
 		StandardProperty = 0x01,
 		AdvancedProperty = 0x02,
-		HiddenProperty = 0x04
+		HiddenProperty = 0x04,
+		LegacyProperty = 0x08
 	};
 	Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
 	Q_FLAG(PropertyFlags)
