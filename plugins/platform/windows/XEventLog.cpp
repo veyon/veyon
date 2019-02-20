@@ -412,10 +412,7 @@ PSID CXEventLog::GetUserSid()
 		CloseHandle(hToken);
 	}
 
-	if (ptiUser)
-	{
-		HeapFree(GetProcessHeap(), 0, ptiUser);
-	}
+	HeapFree(GetProcessHeap(), 0, ptiUser);
 
 	return psid;
 }
@@ -440,9 +437,6 @@ void CXEventLog::SetAppName(LPCTSTR lpszApp)
 	{
 		m_pszAppName = new TCHAR [_MAX_PATH*2];
 	}
-	if (m_pszAppName)
-	{
-		memset(m_pszAppName, 0, _MAX_PATH*2*sizeof(TCHAR));
-		wcsncpy(m_pszAppName, lpszApp, _MAX_PATH*2-2); // Flawfinder: ignore
-	}
+	memset(m_pszAppName, 0, _MAX_PATH*2*sizeof(TCHAR));
+	wcsncpy(m_pszAppName, lpszApp, _MAX_PATH*2-2); // Flawfinder: ignore
 }
