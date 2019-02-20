@@ -83,6 +83,11 @@ Object::~Object()
 
 Object& Object::operator=( const Object& ref )
 {
+	if( &ref == this )
+	{
+		return *this;
+	}
+
 	if( m_customStore == false &&
 			ref.m_customStore == false &&
 			ref.m_store )
