@@ -184,11 +184,11 @@ static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t*
 	if( enabled )
 	{
 		// add service to the list of authorized applications
-		auto hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
-		if( FAILED( hr ) )
+		const auto hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
+		if( hr != S_OK )
 		{
 			// failed because firewall service not running / disabled?
-			if( static_cast<DWORD>( hr ) == 0x800706D9 )
+			if( hr == static_cast<HRESULT>( 0x800706D9 ) )
 			{
 				// then assume this is intended, log a warning and
 				// pretend everything went well
