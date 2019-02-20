@@ -112,6 +112,9 @@ VeyonCore::~VeyonCore()
 	delete m_logger;
 	m_logger = nullptr;
 
+	delete m_builtinFeatures;
+	m_builtinFeatures = nullptr;
+
 	delete m_platformPluginManager;
 	m_platformPluginManager = nullptr;
 
