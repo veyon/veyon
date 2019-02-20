@@ -169,12 +169,13 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 															 directory->computersFilter(), LdapClient::Scope::Base );
 	if( computers.isEmpty() == false )
 	{
+		const auto computerDn = computers.firstKey();
 		const auto& computer = computers.first();
 		const auto displayName = computer[displayNameAttribute].value( 0 );
 		const auto hostName = computer[hostNameAttribute].value( 0 );
 		const auto macAddress = ( macAddressAttribute.isEmpty() == false ) ? computer[macAddressAttribute].value( 0 ) : QString();
 
-		return NetworkObject( NetworkObject::Host, displayName, hostName, macAddress, computer.firstKey() );
+		return NetworkObject( NetworkObject::Host, displayName, hostName, macAddress, computerDn );
 	}
 
 	return NetworkObject::None;
