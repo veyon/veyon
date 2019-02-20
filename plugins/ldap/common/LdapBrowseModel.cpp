@@ -136,6 +136,7 @@ LdapBrowseModel::LdapBrowseModel( Mode mode, const LdapConfiguration& configurat
 
 LdapBrowseModel::~LdapBrowseModel()
 {
+	delete m_root;
 	delete m_client;
 }
 
