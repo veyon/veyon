@@ -77,21 +77,20 @@ void WindowsCoreFunctions::initNativeLoggingSystem( const QString& appName )
 
 void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel )
 {
-	WORD wtype = -1;
+	int messageType = -1;
 
 	switch( loglevel )
 	{
 	case Logger::LogLevelCritical:
-	case Logger::LogLevelError: wtype = EVENTLOG_ERROR_TYPE; break;
-	case Logger::LogLevelWarning: wtype = EVENTLOG_WARNING_TYPE; break;
-		//case LogLevelInfo: wtype = EVENTLOG_INFORMATION_TYPE; break;
+	case Logger::LogLevelError: messageType = EVENTLOG_ERROR_TYPE; break;
+	case Logger::LogLevelWarning: messageType = EVENTLOG_WARNING_TYPE; break;
 	default:
 		break;
 	}
 
-	if( wtype > 0 )
+	if( messageType > 0 )
 	{
-		m_eventLog->Write( wtype, toConstWCharArray( message ) );
+		m_eventLog->Write( messageType, toConstWCharArray( message ) );
 	}
 }
 
