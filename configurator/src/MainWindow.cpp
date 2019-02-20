@@ -242,7 +242,7 @@ void MainWindow::switchToStandardView()
 	// hide widgets with advanced property flag
 	for( auto widget : widgets )
 	{
-		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
+		const auto flags = Configuration::UiMapping::flags( widget );
 		if( flags & Configuration::Object::PropertyFlag::Hidden )
 		{
 			widget->hide();
@@ -264,7 +264,7 @@ void MainWindow::switchToStandardView()
 		auto page = item->data( Qt::UserRole ).value<ConfigurationPage *>();
 		if( page )
 		{
-			const auto flags = page->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
+			const auto flags = Configuration::UiMapping::flags( page );
 
 			ui->pageSelector->setRowHidden( i, flags & Configuration::Object::PropertyFlag::Advanced );
 			ui->configPages->widget( i )->setVisible( i == ui->pageSelector->currentRow() );
@@ -284,7 +284,7 @@ void MainWindow::switchToAdvancedView()
 	const auto widgets = findChildren<QWidget *>();
 	for( auto widget : widgets )
 	{
-		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
+		const auto flags = Configuration::UiMapping::flags( widget );
 		if( flags & Configuration::Object::PropertyFlag::Advanced )
 		{
 			widget->show();

@@ -41,14 +41,19 @@ class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:
-	enum class PropertyFlag {
+	enum class PropertyFlag
+	{
 		Standard = 0x01,
 		Advanced = 0x02,
 		Hidden = 0x04,
 		Legacy = 0x08
 	};
 	Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
-	Q_ENUM(PropertyFlag) // work around QTBUG-47652 where Q_FLAG() does not work with enum classes with Qt < 5.12
+
+	// work around QTBUG-47652 where Q_FLAG() is broken for enum classes when using Qt < 5.12
+#if QT_VERSION >= 0x051200
+	Q_FLAG(PropertyFlags)
+#endif
 
 	typedef QMap<QString, QVariant> DataMap;
 
