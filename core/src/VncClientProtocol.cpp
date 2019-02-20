@@ -138,7 +138,7 @@ bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
 		return false;
 	}
 
-	char buf[sz_rfbSetEncodingsMsg + MAX_ENCODINGS * 4]; // Flawfinder: ignore
+	alignas(rfbSetEncodingsMsg) char buf[sz_rfbSetEncodingsMsg + MAX_ENCODINGS * 4]; // Flawfinder: ignore
 
 	auto setEncodingsMsg = reinterpret_cast<rfbSetEncodingsMsg *>( buf );
 	auto encs = reinterpret_cast<uint32_t *>( &buf[sz_rfbSetEncodingsMsg] );
