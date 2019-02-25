@@ -31,6 +31,8 @@
 class PlatformUserFunctions
 {
 public:
+	virtual ~PlatformUserFunctions() = default;
+
 	virtual QString fullName( const QString& username ) = 0;
 
 	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
