@@ -140,6 +140,10 @@ VEYON_CORE_EXPORT void TypedProperty<Password>::setValue( const Password& value 
 		{ \
 			return m_##name; \
 		} \
+		Configuration::TypedProperty<type>& name##Property() \
+		{ \
+			return m_##name; \
+		} \
 		void setter( Configuration::TypedProperty<type>::Type value )									\
 		{ \
 			m_##name.setValue( value ); \
