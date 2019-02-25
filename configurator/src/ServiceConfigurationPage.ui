@@ -18,45 +18,7 @@
       <string>General</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_12">
-      <item row="0" column="0" colspan="5">
-       <widget class="QCheckBox" name="isTrayIconHidden">
-        <property name="text">
-         <string>Hide tray icon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0" colspan="5">
-       <widget class="QCheckBox" name="autostartService">
-        <property name="text">
-         <string>Autostart</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="4">
-       <widget class="QPushButton" name="stopService">
-        <property name="text">
-         <string>Stop service</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/media-playback-stop.png</normaloff>:/configurator/media-playback-stop.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="2">
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="6" column="1">
+      <item row="7" column="1">
        <widget class="QLabel" name="serviceState">
         <property name="font">
          <font>
@@ -69,25 +31,38 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="5">
-       <widget class="QCheckBox" name="isSoftwareSASEnabled">
+      <item row="7" column="2">
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0" colspan="5">
+       <widget class="QCheckBox" name="failedAuthenticationNotificationsEnabled">
         <property name="text">
-         <string>Enable SAS generation by software (Ctrl+Alt+Del)</string>
+         <string>Show notification on failed authentication attempts</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="3">
-       <widget class="QPushButton" name="startService">
+      <item row="7" column="4">
+       <widget class="QPushButton" name="stopService">
         <property name="text">
-         <string>Start service</string>
+         <string>Stop service</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/media-playback-start.png</normaloff>:/configurator/media-playback-start.png</iconset>
+          <normaloff>:/configurator/media-playback-stop.png</normaloff>:/configurator/media-playback-stop.png</iconset>
         </property>
        </widget>
       </item>
-      <item row="4" column="0" colspan="5">
+      <item row="5" column="0" colspan="5">
        <widget class="QCheckBox" name="isMultiSessionServiceEnabled">
         <property name="toolTip">
          <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -98,6 +73,13 @@ Typically this is required to support terminal servers.</string>
         </property>
        </widget>
       </item>
+      <item row="3" column="0" colspan="5">
+       <widget class="QCheckBox" name="isSoftwareSASEnabled">
+        <property name="text">
+         <string>Enable SAS generation by software (Ctrl+Alt+Del)</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0" colspan="5">
        <widget class="QCheckBox" name="remoteConnectionNotificationsEnabled">
         <property name="text">
@@ -105,17 +87,42 @@ Typically this is required to support terminal servers.</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item row="6" column="0" colspan="5">
+       <widget class="QCheckBox" name="autostartService">
+        <property name="text">
+         <string>Autostart</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QPushButton" name="startService">
+        <property name="text">
+         <string>Start service</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/configurator.qrc">
+          <normaloff>:/configurator/media-playback-start.png</normaloff>:/configurator/media-playback-start.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="5">
+       <widget class="QCheckBox" name="isTrayIconHidden">
+        <property name="text">
+         <string>Hide tray icon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
        <widget class="QLabel" name="label_16">
         <property name="text">
          <string>State:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="5">
-       <widget class="QCheckBox" name="failedAuthenticationNotificationsEnabled">
+      <item row="4" column="0" colspan="5">
+       <widget class="QCheckBox" name="isAlternativeAuthenticationMechanismEnabled">
         <property name="text">
-         <string>Show notification on failed authentication attempts</string>
+         <string>Use alternative user authentication mechanism</string>
         </property>
        </widget>
       </item>
