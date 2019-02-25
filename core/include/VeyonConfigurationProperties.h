@@ -45,6 +45,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isMultiSessionServiceEnabled, setMultiSessionServiceEnabled, "MultiSession", "Service", false, Configuration::Object::PropertyFlag::Hidden )			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Object::PropertyFlag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Service", true, Configuration::Object::PropertyFlag::Advanced )			\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isAlternativeAuthenticationMechanismEnabled, setAlternativeAuthenticationMechanismEnabled, "AlternativeAuthenticationMechanism", "Service", false, Configuration::Object::PropertyFlag::Advanced ) \
 
 #define FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), UUID, networkObjectDirectoryPlugin, setNetworkObjectDirectoryPlugin, "Plugin", "NetworkObjectDirectory", QUuid(), Configuration::Object::PropertyFlag::Standard )			\
