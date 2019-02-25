@@ -26,6 +26,7 @@
 #include <windows.h>
 #include <lm.h>
 
+#include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsUserFunctions.h"
 #include "WtsSessionManager.h"
@@ -183,7 +184,24 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 	auto userWide = WindowsCoreFunctions::toWCharArray( user );
 	auto passwordWide = WindowsCoreFunctions::toWCharArray( password );
 
-	const auto result = SSPLogonUser( domainWide, userWide, passwordWide );
+	bool result = false;
+
+	if( VeyonCore::config().isAlternativeAuthenticationMechanismEnabled() )
+	{
+		HANDLE token = nullptr;
+		result = LogonUserW( userWide, domainWide, passwordWide,
+							 LOGON32_LOGON_NETWORK, LOGON32_PROVIDER_DEFAULT, &token );
+		vDebug() << Q_FUNC_INFO << "LogonUserW()" << result << GetLastError();
+		if( token )
+		{
+			CloseHandle( token );
+		}
+	}
+	else
+	{
+		result = SSPLogonUser( domainWide, userWide, passwordWide );
+		vDebug() << Q_FUNC_INFO << "SSPLogonUser()" << result << GetLastError();
+	}
 
 	delete[] domainWide;
 	delete[] userWide;
