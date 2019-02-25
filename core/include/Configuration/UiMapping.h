@@ -24,249 +24,85 @@
 
 #pragma once
 
-#include <QCheckBox>
-#include <QColorDialog>
-#include <QComboBox>
-#include <QGroupBox>
-#include <QLineEdit>
-#include <QPlainTextEdit>
-#include <QPushButton>
-#include <QRadioButton>
-#include <QSpinBox>
-#include <QUuid>
-
 #include "Configuration/Property.h"
 
+class QCheckBox;
+class QComboBox;
+class QGroupBox;
 class QLabel;
+class QLineEdit;
+class QPushButton;
+class QRadioButton;
+class QSpinBox;
 
 namespace Configuration
 {
 
-class UiMapping
+class VEYON_CORE_EXPORT UiMapping
 {
 public:
-	static constexpr auto WidgetConfigPropertyFlags = "ConfigPropertyFlags";
+	static void initWidgetFromProperty( const Configuration::TypedProperty<bool>& property, QCheckBox* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<bool>& property, QGroupBox* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<bool>& property, QRadioButton* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<QString>& property, QComboBox* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<QString>& property, QLineEdit* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<QColor>& property, QPushButton* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<int>& property, QComboBox* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<int>& property, QSpinBox* widget );
+	static void initWidgetFromProperty( const Configuration::TypedProperty<QUuid>& property, QComboBox* widget );
 
-	template<class Config, typename DataType, class WidgetType>
-	static void initWidgetFromProperty( Config* config, DataType (Config::*getter)() const, WidgetType* widget );
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, bool (Config::*getter)() const, QCheckBox* widget )
+	// overloads for special properties which can't be mapped to widgets
+	static void initWidgetFromProperty( const Configuration::TypedProperty<QJsonArray>& property, QLabel* widget )
 	{
-		widget->setChecked( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, bool (Config::*getter)() const, QGroupBox* widget )
-	{
-		widget->setChecked( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, bool (Config::*getter)() const, QRadioButton* widget )
-	{
-		widget->setChecked( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QComboBox* widget )
-	{
-		widget->setCurrentText( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QLineEdit* widget )
-	{
-		widget->setText( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, Password (Config::*getter)() const, QLineEdit* widget )
-	{
-		widget->setText( (config->*getter)().plainText() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QPlainTextEdit* widget )
-	{
-		widget->setPlainText( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QColor (Config::*getter)() const, QPushButton* widget )
-	{
-		auto palette = widget->palette();
-		palette.setColor( QPalette::Button, (config->*getter)() );
-		widget->setPalette( palette );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, int (Config::*getter)() const, QComboBox* widget )
-	{
-		widget->setCurrentIndex( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, int (Config::*getter)() const, QSpinBox* widget )
-	{
-		widget->setValue( (config->*getter)() );
-	}
-
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QUuid (Config::*getter)() const, QComboBox* widget )
-	{
-		widget->setCurrentIndex( widget->findData( (config->*getter)() ) );
-	}
-
-	// specializations for special properties which can't be mapped to widgets
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QJsonArray (Config::*getter)() const, QLabel* widget)
-	{
-		Q_UNUSED(config)
-		Q_UNUSED(getter)
+		Q_UNUSED(property)
 		Q_UNUSED(widget)
 	}
 
-	template<class Config>
-	static void initWidgetFromProperty( Config* config, QStringList (Config::*getter)() const, QLabel* widget)
+	static void initWidgetFromProperty( const Configuration::TypedProperty<QStringList>& property, QLabel* widget )
 	{
-		Q_UNUSED(config)
-		Q_UNUSED(getter)
+		Q_UNUSED(property)
 		Q_UNUSED(widget)
 	}
 
-	static void setFlags( QObject* object, Configuration::Property::Flags flags )
-	{
-#if QT_VERSION >= 0x051200
-		object->setProperty( WidgetConfigPropertyFlags, QVariant::fromValue( flags ) );
-#else
-		object->setProperty( WidgetConfigPropertyFlags, static_cast<unsigned int>( flags ) );
-#endif
-	}
+	static void setFlags( QObject* object, Configuration::Property::Flags flags );
 
-	static Property::Flags flags( QObject* object )
-	{
-		const auto flagsData = object->property( WidgetConfigPropertyFlags );
-#if QT_VERSION >= 0x051200
-		return flagsData.value<Object::PropertyFlags>();
-#else
-		return static_cast<Property::Flags>( flagsData.toUInt() );
-#endif
-	}
+	static Property::Flags flags( QObject* object );
 
 	// widget initialization
 #define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
-	Configuration::UiMapping::initWidgetFromProperty<>( &config, &className::get, ui->get ); \
+	Configuration::UiMapping::initWidgetFromProperty( config.get##Property(), ui->get ); \
 	Configuration::UiMapping::setFlags( ui->get, flags );
 
 
 	// connect widget signals to configuration property write methods
 
-	template<class Config, typename DataType, class WidgetType>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( DataType ), WidgetType* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QCheckBox* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QGroupBox* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QRadioButton* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<QString>& property, QComboBox* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<QString>& property, QLineEdit* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<Password>& property, QLineEdit* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<QColor>& property, QPushButton* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<int>& property, QComboBox* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<int>& property, QSpinBox* widget );
+	static void connectWidgetToProperty( Configuration::TypedProperty<QUuid>& property, QComboBox* widget );
 
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( bool ), QCheckBox* widget )
+	// overloads for special properties which can't be connected to widgets
+	static void connectWidgetToProperty( Configuration::TypedProperty<QStringList>& property, QLabel* widget )
 	{
-		QObject::connect( widget, &QCheckBox::toggled, config, setter );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( bool ), QGroupBox* widget )
-	{
-		QObject::connect( widget, &QGroupBox::toggled, config, setter );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( bool ), QRadioButton* widget )
-	{
-		QObject::connect( widget, &QCheckBox::toggled, config, setter );
-	}
-
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QComboBox* widget )
-	{
-		QObject::connect( widget, &QComboBox::currentTextChanged, config, setter );
-	}
-
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QLineEdit* widget )
-	{
-		QObject::connect( widget, &QLineEdit::textChanged, config, setter );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const Password& ), QLineEdit* widget )
-	{
-		QObject::connect( widget, &QLineEdit::textChanged, config, [config, setter]( const QString& plainText ) {
-			(config->*setter)( Password::fromPlainText( plainText ) );
-		} );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QPlainTextEdit* widget )
-	{
-		QObject::connect( widget, &QPlainTextEdit::textChanged, config, [=]() {
-			(config->*setter)( widget->toPlainText() ); } );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QColor& ), QPushButton* widget )
-	{
-		QObject::connect( widget, &QAbstractButton::clicked, config, [=]() {
-			auto palette = widget->palette();
-			QColorDialog d( widget->palette().color( QPalette::Button ), widget );
-			if( d.exec() )
-			{
-				(config->*setter)( d.selectedColor() );
-				palette.setColor( QPalette::Button, d.selectedColor() );
-				widget->setPalette( palette );
-			}
-		} );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( int ), QComboBox* widget )
-	{
-		QObject::connect( widget, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), config, setter );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( int ), QSpinBox* widget )
-	{
-		QObject::connect( widget, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), config, setter );
-	}
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( QUuid ), QComboBox* widget )
-	{
-		QObject::connect( widget, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-						  widget, [=] () { (config->*setter)( widget->itemData( widget->currentIndex() ).toUuid() ); } );
-
-	}
-
-	// specializations for special properties which can't be connected to widgets
-
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QStringList& ), QLabel* widget )
-	{
-		Q_UNUSED(config)
-		Q_UNUSED(setter)
+		Q_UNUSED(property)
 		Q_UNUSED(widget)
 	}
 
-	template<class Config>
-	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QJsonArray& ), QLabel* widget )
+	static void connectWidgetToProperty( Configuration::TypedProperty<QJsonArray>& property, QLabel* widget )
 	{
-		Q_UNUSED(config)
-		Q_UNUSED(setter)
+		Q_UNUSED(property)
 		Q_UNUSED(widget)
 	}
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
-	Configuration::UiMapping::connectWidgetToProperty( &config, &className::set, ui->get );
+	Configuration::UiMapping::connectWidgetToProperty( config.get##Property(), ui->get );
 
 };
 
