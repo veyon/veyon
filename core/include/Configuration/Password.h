@@ -1,7 +1,7 @@
 /*
- * ExternalVncServerConfiguration.h - configuration values for external VNC server
+ * Configuration/Property.h - Configuration::Property class
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,11 +24,32 @@
 
 #pragma once
 
-#include "Configuration/Proxy.h"
-#include "Configuration/Property.h"
+#include "VeyonCore.h"
 
-#define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
-	OP( ExternalVncServerConfiguration, m_configuration, int, serverPort, setServerPort, "ServerPort", "ExternalVncServer", 5900, Configuration::Property::Flag::Standard ) \
-	OP( ExternalVncServerConfiguration, m_configuration, Configuration::Password, password, setPassword, "Password", "ExternalVncServer", QString(), Configuration::Property::Flag::Standard )
+namespace Configuration
+{
 
-DECLARE_CONFIG_PROXY(ExternalVncServerConfiguration, FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY)
+class VEYON_CORE_EXPORT Password
+{
+	Q_GADGET
+public:
+	Password();
+
+	QString plainText() const;
+
+	const QString& encrypted() const
+	{
+		return m_encrypted;
+	}
+
+	static Password fromPlainText( const QString& plainText );
+	static Password fromEncrypted( const QString& encrypted );
+
+private:
+	QString m_encrypted;
+
+};
+
+}
+
+Q_DECLARE_METATYPE(Configuration::Password)

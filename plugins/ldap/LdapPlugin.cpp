@@ -77,10 +77,11 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 		m_configuration.setUsersFilter( upgradeFilter( m_configuration.usersFilter() ) );
 
 		// bind password not encrypted yet?
-		if( m_configuration.bindPasswordPlain().size() < MaximumPlaintextPasswordLength )
+		const auto rawBindPassword = m_configuration.bindPasswordProperty().variantValue().toString();
+		if( rawBindPassword.size() < MaximumPlaintextPasswordLength )
 		{
 			// setting it again will encrypt it
-			m_configuration.setBindPassword( m_configuration.bindPasswordPlain() );
+			m_configuration.setBindPassword( Configuration::Password::fromPlainText( rawBindPassword ) );
 		}
 	}
 	else if( oldVersion < QVersionNumber( 1, 2 ) )

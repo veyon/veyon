@@ -43,7 +43,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( ui->networkGroupBox, Configuration::Object::PropertyFlag::Advanced );
+	Configuration::UiMapping::setFlags( ui->networkGroupBox, Configuration::Property::Flag::Advanced );
 
 	// TODO: finish multi session support
 	ui->isMultiSessionServiceEnabled->hide();

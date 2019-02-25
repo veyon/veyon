@@ -446,7 +446,7 @@ bool LdapClient::connectAndBind( const QUrl& url )
 		if( m_configuration.useBindCredentials() )
 		{
 			m_server->setBindDn( m_configuration.bindDn() );
-			m_server->setPassword( m_configuration.bindPassword() );
+			m_server->setPassword( m_configuration.bindPassword().plainText() );
 			m_server->setAuth( KLDAP::LdapServer::Simple );
 		}
 		else

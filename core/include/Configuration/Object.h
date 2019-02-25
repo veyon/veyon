@@ -24,11 +24,6 @@
 
 #pragma once
 
-#include <QColor>
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QUuid>
-
 #include "VeyonCore.h"
 #include "Configuration/Store.h"
 
@@ -41,20 +36,6 @@ class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:
-	enum class PropertyFlag
-	{
-		Standard = 0x01,
-		Advanced = 0x02,
-		Hidden = 0x04,
-		Legacy = 0x08
-	};
-	Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
-
-	// work around QTBUG-47652 where Q_FLAG() is broken for enum classes when using Qt < 5.12
-#if QT_VERSION >= 0x051200
-	Q_FLAG(PropertyFlags)
-#endif
-
 	typedef QMap<QString, QVariant> DataMap;
 
 	Object();
@@ -120,112 +101,5 @@ private:
 	DataMap m_data;
 
 } ;
-
-
-#define DECLARE_CONFIG_STRING_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:											\
-		QString get() const					\
-		{											\
-			return value( key, parentKey, defaultValue ).toString();			\
-		} \
-		void set( const QString &val )						\
-		{																\
-			setValue( key, val,	parentKey );							\
-		}
-
-#define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:													\
-		QStringList get() const						\
-		{													\
-			return value( key, parentKey, defaultValue ).toStringList();	\
-		} \
-		void set( const QStringList &val )					\
-		{																\
-			setValue( key, val,	parentKey );							\
-		}
-
-#define DECLARE_CONFIG_INT_PROPERTY(get,set,key,parentKey,defaultValue)	\
-	public:												\
-		int get() const							\
-		{												\
-			return value( key, parentKey, defaultValue ).toInt();		\
-		} \
-		void set( int val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define DECLARE_CONFIG_BOOL_PROPERTY(get,set,key,parentKey,defaultValue)	\
-	public:												\
-		bool get() const								\
-		{												\
-			return value( key, parentKey, defaultValue ).toBool();	\
-		} \
-		void set( bool val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:											\
-		QJsonObject get() const					\
-		{											\
-			return value( key, parentKey, defaultValue ).toJsonObject();			\
-		} \
-		void set( const QJsonObject& val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:											\
-		QJsonArray get() const					\
-		{											\
-			return value( key, parentKey, defaultValue ).toJsonArray();			\
-		} \
-		void set( const QJsonArray& val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define DECLARE_CONFIG_UUID_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:											\
-		QUuid get() const					\
-		{											\
-			return value( key, parentKey,defaultValue ).toUuid();			\
-		} \
-		void set( QUuid val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define DECLARE_CONFIG_COLOR_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:											\
-		QColor get() const					\
-		{											\
-			return value( key, parentKey, defaultValue ).value<QColor>();			\
-		} \
-		void set( const QColor& val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define DECLARE_CONFIG_PASSWORD_PROPERTY(get,set,key,parentKey,defaultValue)\
-	public:											\
-		QString get() const					\
-		{											\
-			return VeyonCore::cryptoCore().decryptPassword( value( key, parentKey, QVariant() ).toString() );	\
-		}	\
-		QString get##Plain() const					\
-		{											\
-			return value( key, parentKey, QVariant() ).toString();			\
-		}	\
-		void set( const QString& val )									\
-		{																\
-			setValue( key, VeyonCore::cryptoCore().encryptPassword( val ), parentKey );			\
-		}
-
-#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey, defaultValue, flags)			\
-			DECLARE_CONFIG_##type##_PROPERTY(get,set,QStringLiteral(key),QStringLiteral(parentKey),defaultValue)
 
 }

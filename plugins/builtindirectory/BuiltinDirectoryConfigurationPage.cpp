@@ -22,6 +22,8 @@
  *
  */
 
+#include <QJsonObject>
+
 #include "BuiltinDirectoryConfiguration.h"
 #include "BuiltinDirectoryConfigurationPage.h"
 #include "Configuration/UiMapping.h"

@@ -243,15 +243,15 @@ void MainWindow::switchToStandardView()
 	for( auto widget : widgets )
 	{
 		const auto flags = Configuration::UiMapping::flags( widget );
-		if( flags & Configuration::Object::PropertyFlag::Hidden )
+		if( flags & Configuration::Property::Flag::Hidden )
 		{
 			widget->hide();
 		}
-		else if( flags & Configuration::Object::PropertyFlag::Standard )
+		else if( flags & Configuration::Property::Flag::Standard )
 		{
 			widget->show();
 		}
-		else if( flags & Configuration::Object::PropertyFlag::Advanced )
+		else if( flags & Configuration::Property::Flag::Advanced )
 		{
 			widget->hide();
 		}
@@ -266,9 +266,9 @@ void MainWindow::switchToStandardView()
 		{
 			const auto flags = Configuration::UiMapping::flags( page );
 
-			ui->pageSelector->setRowHidden( i, flags & Configuration::Object::PropertyFlag::Advanced );
+			ui->pageSelector->setRowHidden( i, flags & Configuration::Property::Flag::Advanced );
 			ui->configPages->widget( i )->setVisible( i == ui->pageSelector->currentRow() );
-			if( flags & Configuration::Object::PropertyFlag::Advanced &&
+			if( flags & Configuration::Property::Flag::Advanced &&
 				i == ui->pageSelector->currentRow() )
 			{
 				ui->pageSelector->setCurrentRow( 0 );
@@ -285,7 +285,7 @@ void MainWindow::switchToAdvancedView()
 	for( auto widget : widgets )
 	{
 		const auto flags = Configuration::UiMapping::flags( widget );
-		if( flags & Configuration::Object::PropertyFlag::Advanced )
+		if( flags & Configuration::Property::Flag::Advanced )
 		{
 			widget->show();
 		}

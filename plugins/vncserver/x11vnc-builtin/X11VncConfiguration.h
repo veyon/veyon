@@ -25,9 +25,10 @@
 #pragma once
 
 #include "Configuration/Proxy.h"
+#include "Configuration/Property.h"
 
 #define FOREACH_X11VNC_CONFIG_PROPERTY(OP) \
-	OP( X11VncConfiguration, m_configuration, BOOL, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc", false, Configuration::Object::PropertyFlag::Advanced )	\
-	OP( X11VncConfiguration, m_configuration, STRING, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc", QString(), Configuration::Object::PropertyFlag::Advanced )
+	OP( X11VncConfiguration, m_configuration, bool, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc", false, Configuration::Property::Flag::Advanced )	\
+	OP( X11VncConfiguration, m_configuration, QString, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc", QString(), Configuration::Property::Flag::Advanced )
 
 DECLARE_CONFIG_PROXY(X11VncConfiguration, FOREACH_X11VNC_CONFIG_PROPERTY)

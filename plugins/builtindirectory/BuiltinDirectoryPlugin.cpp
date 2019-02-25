@@ -30,6 +30,7 @@
 #include "CommandLineIO.h"
 #include "ConfigurationManager.h"
 #include "ObjectManager.h"
+#include "VeyonConfiguration.h"
 
 
 BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :

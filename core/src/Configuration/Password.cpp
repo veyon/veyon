@@ -1,7 +1,7 @@
 /*
- * ExternalVncServerConfiguration.h - configuration values for external VNC server
+ * Password.cpp - implementation of Configuration::Password
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,13 +22,40 @@
  *
  */
 
-#pragma once
+#include "Configuration/Password.h"
+#include "CryptoCore.h"
 
-#include "Configuration/Proxy.h"
-#include "Configuration/Property.h"
 
-#define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
-	OP( ExternalVncServerConfiguration, m_configuration, int, serverPort, setServerPort, "ServerPort", "ExternalVncServer", 5900, Configuration::Property::Flag::Standard ) \
-	OP( ExternalVncServerConfiguration, m_configuration, Configuration::Password, password, setPassword, "Password", "ExternalVncServer", QString(), Configuration::Property::Flag::Standard )
+namespace Configuration
+{
 
-DECLARE_CONFIG_PROXY(ExternalVncServerConfiguration, FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY)
+Password::Password()
+{
+}
+
+
+
+QString Password::plainText() const
+{
+	return VeyonCore::cryptoCore().decryptPassword( m_encrypted );
+}
+
+
+
+Password Password::fromPlainText( const QString& plaintext )
+{
+	Password password;
+	password.m_encrypted = VeyonCore::cryptoCore().encryptPassword( plaintext );
+	return password;
+}
+
+
+
+Password Password::fromEncrypted( const QString& encrypted )
+{
+	Password password;
+	password.m_encrypted = encrypted;
+	return password;
+}
+
+}

@@ -22,7 +22,9 @@
  *
  */
 
+#include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QSettings>
 
 #include "Configuration/LocalStore.h"

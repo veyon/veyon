@@ -35,7 +35,7 @@ DemoConfigurationPage::DemoConfigurationPage( DemoConfiguration& configuration, 
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( this, Configuration::Object::PropertyFlag::Advanced );
+	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );
 }
 
 

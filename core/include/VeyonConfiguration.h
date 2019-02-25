@@ -27,6 +27,7 @@
 
 #include "VeyonCore.h"
 #include "Configuration/Object.h"
+#include "Configuration/Property.h"
 
 #include "VeyonConfigurationProperties.h"
 

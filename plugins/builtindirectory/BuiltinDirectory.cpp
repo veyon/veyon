@@ -22,6 +22,9 @@
  *
  */
 
+#include <QJsonArray>
+#include <QJsonObject>
+
 #include "BuiltinDirectoryConfiguration.h"
 #include "BuiltinDirectory.h"
 

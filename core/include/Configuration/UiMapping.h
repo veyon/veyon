@@ -35,7 +35,7 @@
 #include <QSpinBox>
 #include <QUuid>
 
-#include "Configuration/Object.h"
+#include "Configuration/Property.h"
 
 class QLabel;
 
@@ -78,6 +78,12 @@ public:
 	static void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QLineEdit* widget )
 	{
 		widget->setText( (config->*getter)() );
+	}
+
+	template<class Config>
+	static void initWidgetFromProperty( Config* config, Password (Config::*getter)() const, QLineEdit* widget )
+	{
+		widget->setText( (config->*getter)().plainText() );
 	}
 
 	template<class Config>
@@ -129,7 +135,7 @@ public:
 		Q_UNUSED(widget)
 	}
 
-	static void setFlags( QObject* object, Configuration::Object::PropertyFlags flags )
+	static void setFlags( QObject* object, Configuration::Property::Flags flags )
 	{
 #if QT_VERSION >= 0x051200
 		object->setProperty( WidgetConfigPropertyFlags, QVariant::fromValue( flags ) );
@@ -138,13 +144,13 @@ public:
 #endif
 	}
 
-	static Object::PropertyFlags flags( QObject* object )
+	static Property::Flags flags( QObject* object )
 	{
 		const auto flagsData = object->property( WidgetConfigPropertyFlags );
 #if QT_VERSION >= 0x051200
 		return flagsData.value<Object::PropertyFlags>();
 #else
-		return static_cast<Object::PropertyFlags>( flagsData.toUInt() );
+		return static_cast<Property::Flags>( flagsData.toUInt() );
 #endif
 	}
 
@@ -189,6 +195,14 @@ public:
 	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QLineEdit* widget )
 	{
 		QObject::connect( widget, &QLineEdit::textChanged, config, setter );
+	}
+
+	template<class Config>
+	static void connectWidgetToProperty( Config* config, void (Config::*setter)( const Password& ), QLineEdit* widget )
+	{
+		QObject::connect( widget, &QLineEdit::textChanged, config, [config, setter]( const QString& plainText ) {
+			(config->*setter)( Password::fromPlainText( plainText ) );
+		} );
 	}
 
 	template<class Config>
