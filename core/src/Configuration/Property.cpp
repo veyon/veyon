@@ -56,6 +56,18 @@ Configuration::Property::Property( Proxy* proxy, const QString& key, const QStri
 
 
 
+QObject* Property::lambdaContext() const
+{
+	if( m_object )
+	{
+		return m_object;
+	}
+
+	return m_proxy;
+}
+
+
+
 QVariant Property::variantValue() const
 {
 	if( m_object )

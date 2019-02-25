@@ -75,6 +75,8 @@ public:
 	Property( Proxy* proxy, const QString& key, const QString& parentKey,
 			  const QVariant& defaultValue, Flags flags );
 
+	QObject* lambdaContext() const;
+
 	QVariant variantValue() const;
 
 	void setVariantValue( const QVariant& value );
