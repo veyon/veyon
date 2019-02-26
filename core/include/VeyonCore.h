@@ -149,12 +149,12 @@ public:
 
 	static bool isAuthenticationKeyNameValid( const QString& authKeyName );
 
-	typedef enum AuthenticationMethods
+	enum class AuthenticationMethod
 	{
 		LogonAuthentication,
 		KeyFileAuthentication,
-		AuthenticationMethodCount
-	} AuthenticationMethod;
+	};
+	Q_ENUM(AuthenticationMethod)
 
 private:
 	void initPlatformPlugin();

@@ -46,12 +46,12 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 
 	authTypes.append( RfbVeyonAuth::HostWhiteList );
 
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
 	{
 		authTypes.append( RfbVeyonAuth::KeyFile );
 	}
 
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::LogonAuthentication )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::LogonAuthentication )
 	{
 		authTypes.append( RfbVeyonAuth::Logon );
 	}

@@ -69,7 +69,7 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 		rfbClientRegisterExtension( __veyonProtocolExt );
 	}
 
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
 	{
 		m_veyonAuthType = RfbVeyonAuth::KeyFile;
 	}

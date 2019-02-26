@@ -218,7 +218,7 @@ bool VeyonCore::initAuthentication( unsigned int credentialTypes )
 	bool success = false;
 
 	if( credentialTypes & AuthenticationCredentials::UserLogon &&
-			config().authenticationMethod() == LogonAuthentication )
+			config().authenticationMethod() == AuthenticationMethod::LogonAuthentication )
 	{
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
@@ -243,7 +243,7 @@ bool VeyonCore::initAuthentication( unsigned int credentialTypes )
 	}
 
 	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
-			config().authenticationMethod() == KeyFileAuthentication )
+			config().authenticationMethod() == AuthenticationMethod::KeyFileAuthentication )
 	{
 		success = initKeyFileAuthentication();
 	}
