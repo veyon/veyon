@@ -33,7 +33,7 @@ class VEYON_CORE_EXPORT Password
 {
 	Q_GADGET
 public:
-	Password();
+	Password() = default;
 
 	QString plainText() const;
 

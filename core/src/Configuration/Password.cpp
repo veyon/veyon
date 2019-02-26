@@ -29,12 +29,6 @@
 namespace Configuration
 {
 
-Password::Password()
-{
-}
-
-
-
 QString Password::plainText() const
 {
 	return VeyonCore::cryptoCore().decryptPassword( m_encrypted );
