@@ -393,7 +393,7 @@ void VeyonCore::initLogging( const QString& appComponentName )
 		m_logger = new Logger( appComponentName );
 	}
 
-	m_debugging = ( m_logger->logLevel() >= Logger::LogLevelDebug );
+	m_debugging = ( m_logger->logLevel() >= Logger::LogLevel::Debug );
 
 	VncConnection::initLogging( isDebugging() );
 }

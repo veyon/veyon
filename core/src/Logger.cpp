@@ -37,9 +37,9 @@ QMutex Logger::s_instanceMutex;
 
 
 Logger::Logger( const QString &appName ) :
-	m_logLevel( LogLevelDefault ),
+	m_logLevel( LogLevel::Default ),
 	m_logMutex(),
-	m_lastMessageLevel( Logger::LogLevelNothing ),
+	m_lastMessageLevel( LogLevel::Nothing ),
 	m_lastMessage(),
 	m_lastMessageCount( 0 ),
 	m_logToSystem( false ),
@@ -58,10 +58,10 @@ Logger::Logger( const QString &appName ) :
 	auto configuredLogLevel = VeyonCore::config().logLevel();
 	if( qEnvironmentVariableIsSet( logLevelEnvironmentVariable() ) )
 	{
-		configuredLogLevel = qEnvironmentVariableIntValue( logLevelEnvironmentVariable() );
+		configuredLogLevel = static_cast<LogLevel>( qEnvironmentVariableIntValue( logLevelEnvironmentVariable() ) );
 	}
 
-	m_logLevel = qBound( LogLevelMin, static_cast<LogLevel>( configuredLogLevel ), LogLevelMax );
+	m_logLevel = qBound( LogLevel::Min, configuredLogLevel, LogLevel::Max );
 	m_logToSystem = VeyonCore::config().logToSystem();
 
 	initLogFile();
@@ -217,11 +217,11 @@ QString Logger::formatMessage( LogLevel ll, const QString& message )
 	QString messageType;
 	switch( ll )
 	{
-	case LogLevelDebug: messageType = QStringLiteral( "DEBUG" ); break;
-	case LogLevelInfo: messageType = QStringLiteral( "INFO" ); break;
-	case LogLevelWarning: messageType = QStringLiteral( "WARN" ); break;
-	case LogLevelError: messageType = QStringLiteral( "ERR" ); break;
-	case LogLevelCritical: messageType = QStringLiteral( "CRIT" ); break;
+	case LogLevel::Debug: messageType = QStringLiteral( "DEBUG" ); break;
+	case LogLevel::Info: messageType = QStringLiteral( "INFO" ); break;
+	case LogLevel::Warning: messageType = QStringLiteral( "WARN" ); break;
+	case LogLevel::Error: messageType = QStringLiteral( "ERR" ); break;
+	case LogLevel::Critical: messageType = QStringLiteral( "CRIT" ); break;
 	default: break;
 	}
 
@@ -244,15 +244,15 @@ void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& cont
 		return;
 	}
 
-	LogLevel logLevel = LogLevelDefault;
+	LogLevel logLevel = LogLevel::Default;
 
 	switch( messageType )
 	{
-	case QtDebugMsg: logLevel = LogLevelDebug; break;
-	case QtInfoMsg: logLevel = LogLevelInfo; break;
-	case QtWarningMsg: logLevel = LogLevelWarning; break;
-	case QtCriticalMsg: logLevel = LogLevelError; break;
-	case QtFatalMsg: logLevel = LogLevelCritical; break;
+	case QtDebugMsg: logLevel = LogLevel::Debug; break;
+	case QtInfoMsg: logLevel = LogLevel::Info; break;
+	case QtWarningMsg: logLevel = LogLevel::Warning; break;
+	case QtCriticalMsg: logLevel = LogLevel::Error; break;
+	case QtFatalMsg: logLevel = LogLevel::Critical; break;
 	}
 
 	if( context.category && strcmp(context.category, "default") != 0 )

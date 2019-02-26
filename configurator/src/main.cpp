@@ -60,7 +60,7 @@ int main( int argc, char **argv )
 	}
 
 	if( !VeyonConfiguration().isStoreWritable() &&
-			VeyonCore::config().logLevel() < Logger::LogLevelDebug )
+			VeyonCore::config().logLevel() != Logger::LogLevel::Debug )
 	{
 		QMessageBox::critical( nullptr,
 							   MainWindow::tr( "Configuration not writable" ),

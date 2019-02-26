@@ -76,7 +76,7 @@ int main( int argc, char **argv )
 	// disable logging at all in order to avoid clobbering
 	if( qEnvironmentVariableIsEmpty( Logger::logLevelEnvironmentVariable() ) )
 	{
-		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( Logger::LogLevelNothing ) );
+		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( static_cast<int>(Logger::LogLevel::Nothing) ) );
 	}
 
 	VeyonCore* core = new VeyonCore( app, QStringLiteral("CLI") );

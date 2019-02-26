@@ -176,7 +176,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 		// started on master computer as well therefore we deny starting a demo on
 		// hosts on which a demo server is running - exception: debug mode
 		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature ) &&
-				VeyonCore::config().logLevel() < Logger::LogLevelDebug )
+				VeyonCore::config().logLevel() < Logger::LogLevel::Debug )
 		{
 			return false;
 		}

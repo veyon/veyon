@@ -81,9 +81,9 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 
 	switch( loglevel )
 	{
-	case Logger::LogLevelCritical:
-	case Logger::LogLevelError: messageType = EVENTLOG_ERROR_TYPE; break;
-	case Logger::LogLevelWarning: messageType = EVENTLOG_WARNING_TYPE; break;
+	case Logger::LogLevel::Critical:
+	case Logger::LogLevel::Error: messageType = EVENTLOG_ERROR_TYPE; break;
+	case Logger::LogLevel::Warning: messageType = EVENTLOG_WARNING_TYPE; break;
 	default:
 		break;
 	}

@@ -58,7 +58,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, disabledFeatures, setDisabledFeatures, "DisabledFeatures", "Features", QStringList(), Configuration::Property::Flag::Standard )			\
 
 #define FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), int, logLevel, setLogLevel, "LogLevel", "Logging", Logger::LogLevelDefault, Configuration::Property::Flag::Standard )								\
+	OP( VeyonConfiguration, VeyonCore::config(), Logger::LogLevel, logLevel, setLogLevel, "LogLevel", "Logging", QVariant::fromValue(Logger::LogLevel::Default), Configuration::Property::Flag::Standard )								\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, logFileSizeLimitEnabled, setLogFileSizeLimitEnabled, "LogFileSizeLimitEnabled", "Logging", false, Configuration::Property::Flag::Advanced )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, logFileRotationEnabled, setLogFileRotationEnabled, "LogFileRotationEnabled", "Logging", false, Configuration::Property::Flag::Advanced )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging", true, Configuration::Property::Flag::Advanced )	\

@@ -35,20 +35,22 @@ class QFile;
 
 class VEYON_CORE_EXPORT Logger
 {
+	Q_GADGET
 public:
-	typedef enum LogLevels
+	enum class LogLevel
 	{
-		LogLevelNothing,
-		LogLevelCritical,
-		LogLevelError,
-		LogLevelWarning,
-		LogLevelInfo,
-		LogLevelDebug,
+		Nothing,
+		Critical,
+		Error,
+		Warning,
+		Info,
+		Debug,
 		NumLogLevels,
-		LogLevelMin = LogLevelNothing+1,
-		LogLevelMax = NumLogLevels-1,
-		LogLevelDefault = LogLevelInfo
-	} LogLevel;
+		Min = Nothing+1,
+		Max = NumLogLevels-1,
+		Default = Info
+	};
+	Q_ENUM(LogLevel)
 
 	static constexpr int DefaultFileSizeLimit = 100;
 	static constexpr int DefaultFileRotationCount = 10;
