@@ -115,6 +115,10 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 			jsonObj[QStringLiteral("JsonStoreObject")] = it.value().toJsonObject();
 			jsonData[it.key()] = jsonObj;
 		}
+		else if( QMetaType( it.value().userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+		{
+			jsonData[it.key()] = QJsonValue( it.value().toInt() );
+		}
 		else
 		{
 			jsonData[it.key()] = QJsonValue::fromVariant( it.value() );

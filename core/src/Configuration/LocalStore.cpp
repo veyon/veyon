@@ -139,6 +139,10 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 		{
 			s->setValue( it.key(), serializeJsonValue( it.value().toJsonObject() ) );
 		}
+		else if( QMetaType( it.value().userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+		{
+			s->setValue( it.key(), it.value().toInt() );
+		}
 		else
 		{
 			s->setValue( it.key(), it.value() );
