@@ -2383,7 +2383,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>찾아보기</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3596,6 +3596,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>인증시도 실패시 알림 보이기</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

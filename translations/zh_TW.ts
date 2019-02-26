@@ -261,7 +261,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is located in</source>
-        <translation type="unfinished"/>
+        <translation>位於</translation>
     </message>
 </context>
 <context>
@@ -717,27 +717,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>位置 &amp; 電腦</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>位置</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>加入新位置</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>刪除選取的位置</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>可以通過命令列介面匯入 CSV 檔。 有關詳細資訊，請參閱 &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;線上文件&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>新位置</translation>
     </message>
 </context>
 <context>
@@ -848,35 +848,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>加入位置或電腦</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>清除所有位置和電腦</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>傾印所有或個別位置和電腦</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>列出所有位置和電腦</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>移除所有位置和電腦</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>位置 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>內建 (本機組態中位置和電腦)</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>位置</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -884,47 +884,47 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>位置</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>格式字串含預留位置</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>正則運算式含預留位置</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>使用包含一個或多個預留位置的給予格式字串或正則運算式，從指定的文字檔匯入物件。 有效的預留位置為: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>將簡單 CSV 檔匯入到單一教室</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>匯入第一列中含有位置名稱的 CSV 檔</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>使用正則運算式匯入含金鑰/值配對的文字檔</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>匯入任意格式的資料</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>使用包含一個或多個預留位置的給予格式字串將物件匯出到指定的文字檔。 有效的預留位置為: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>將所有物件匯出到 CSV 檔</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>將指定位置中所有電腦匯出到 CSV 檔</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -936,47 +936,47 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>上層</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>加入一個物件，其中 %1 可以是 &quot;%2&quot; 或 &quot;%3&quot; 之一。 %4 可以依名稱或 UUID 指定。</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>加入教室</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>將電腦加入到教室 %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>物件</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>從目錄中移除指定的物件。 %1 可以依名稱或 UUID 指定。 移除位置也將移除所有相關電腦。</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>依名稱移除電腦</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>依 UUID 移除物件</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;教室 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;電腦 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>主機位址</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -1293,7 +1293,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo server</source>
-        <translation>展示伺服器</translation>
+        <translation>演示伺服器</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -2280,107 +2280,111 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation type="unfinished"/>
+        <translation>電腦位置屬性</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
+        <translation>電腦顯示名稱屬性</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation type="unfinished"/>
+        <translation>位置名稱屬性</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>例如: cn 或 顯示名稱</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>電腦位置識別</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
+        <translation>透過以下方式識別電腦位置 (例如教室):</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>電腦物件中的位置屬性</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>列出位置的所有項目</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>列出所有位置</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation type="unfinished"/>
+        <translation>輸入電腦顯示名稱</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要查詢的電腦顯示名稱:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>輸入電腦位置名稱</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>請輸入電腦位置的名稱 (允許萬用字元):</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>電腦位置</translation>
     </message>
     <message>
         <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
+        <translation>請變更電腦位置設定，以使用電腦群組或電腦容器作為電腦位置。 然後將查詢指定的屬性，而不是電腦群組或容器物件的通用名稱。 否則，您不需要組態這個屬性。</translation>
     </message>
     <message>
         <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
+        <translation>請變更以下的電腦位置設定，以使用電腦容器作為電腦位置。 否則，您不需要組態這個篩選器。</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>輸入位置名稱</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要查詢其項目的位置名稱:</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation type="unfinished"/>
+        <translation>位置項目</translation>
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 測試失敗</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>無法查詢任何 %1。 請檢查參數 %2 並輸入現有物件的名稱。
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>和</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 測試成功</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>無法查詢組態的 %1 中的任何項目。 請檢查參數 &quot;%2&quot;。
+
+%3</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>瀏覽</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2407,61 +2411,61 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 的基本 LDAP/AD 支援</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (從 LDAP/AD 載入電腦和位置)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (從 LDAP/AD 載入使用者和群組)</translation>
     </message>
 </context>
 <context>
     <name>LdapProConfigurationPage</name>
     <message>
         <source>LDAP Pro</source>
-        <translation type="unfinished"/>
+        <translation>LDAP Pro</translation>
     </message>
     <message>
         <source>Instances</source>
-        <translation type="unfinished"/>
+        <translation>實例</translation>
     </message>
     <message>
         <source>Enter name</source>
-        <translation type="unfinished"/>
+        <translation>輸入名稱</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation type="unfinished"/>
+        <translation>請輸入實例的名稱 (之後無法變更!):</translation>
     </message>
     <message>
         <source>Remove instance</source>
-        <translation type="unfinished"/>
+        <translation>刪除實例</translation>
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>是否確實要刪除實例 &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Configuration for instance &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>實例 &quot;%1&quot; 的組態</translation>
     </message>
 </context>
 <context>
     <name>LdapProPlugin</name>
     <message>
         <source>Professional LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 的專業 LDAP/AD 整合</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (從 LDAP/AD 載入電腦和位置)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (從 LDAP/AD 載入使用者和群組)</translation>
     </message>
 </context>
 <context>
@@ -3085,7 +3089,7 @@ USAGE
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>新位置</translation>
     </message>
 </context>
 <context>
@@ -3119,7 +3123,7 @@ USAGE
         <translation>
 用法
 
-%1 scan [&lt;子網路&gt;]
+%1 scan [&lt;SUBNET&gt;]
 
 </translation>
     </message>
@@ -3140,7 +3144,7 @@ USAGE
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>位置/電腦</translation>
     </message>
 </context>
 <context>
@@ -3594,6 +3598,10 @@ Typically this is required to support terminal servers.</source>
         <source>Show notification on failed authentication attempts</source>
         <translation>嘗試身份驗證失敗時顯示通知</translation>
     </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3732,7 +3740,7 @@ Typically this is required to support terminal servers.</source>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>開啟多層次 (半透明) 視窗擷取</translation>
+        <translation>啟用層次 (半透明) 視窗擷取</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -3748,11 +3756,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>啟用多部顯示器支援</translation>
+        <translation>啟用多顯示器支援</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>在 Windows 8 和以上啟用「桌面複製引擎 (Desktop Duplication Engine)」</translation>
+        <translation>在 Windows 8 和以上啟用「桌面複製引擎」</translation>
     </message>
 </context>
 <context>
@@ -3845,15 +3853,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>使用</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>描述</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>範例</translation>
     </message>
 </context>
 <context>

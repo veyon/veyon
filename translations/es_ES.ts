@@ -2386,7 +2386,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Buscar</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3599,6 +3599,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Mostrar notificación en intentos de autenticación fallidos</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

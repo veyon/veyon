@@ -3594,6 +3594,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>Show notification on failed authentication attempts</source>
         <translation>Benachrichtigung bei fehlgeschlagenen Authentifizierungsversuchen anzeigen</translation>
     </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>Alternativen Mechanismus zur Benutzerauthentifizierung verwenden</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

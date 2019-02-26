@@ -884,7 +884,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>HELYSZÍN</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -892,39 +892,39 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>REGULÁRIS-KIFEJEZÉS-HELYŐRZŐVEL</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Objektumok importálás meghatározott szöveges fájlból egy vagy több helyőrzővel megadott formátum használatával. Érvényes helyőrzők a következők: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>Egyszerű CSV fájl importálása egy szobába</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>CSV fájl importálása a helyszín nevével az első oszlopában</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Szöveges fájl importálása kulcs/érték párokkal reguláris kifejezések használatával</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>Önkényesen formázott adatok importálása</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Objektumok exportálása meghatározott szöveges fájlba egy vagy több helyőrzővel megadott formátum használatával. Érvényes helyőrzők a következők: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Összes objektum exportálása CSV fájlba</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Egy megadott helyszín összes számítógépének exportálása CSV fájlba</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -940,7 +940,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>Egy objektumot ad hozzá, ahol %1 &quot;%2&quot; vagy &quot;%3&quot; egyike lehet. %4 értékét név vagy UUID határozhatja meg.</translation>
     </message>
     <message>
         <source>Add a room</source>
@@ -948,35 +948,35 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>Számítógép hozzáadása %1 szobához</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>OBJEKTUM</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>Eltávolítja a meghatározott objektumot a mappából. %1 értékét a név vagy az UUID határozhatja meg. Egy helyszín eltávolítása a hozzá tartozó összes számítógépet is eltávolítja.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>Számítógép eltávolítása név alapján</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objektum eltávolítása UUID alapján</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;01 szoba&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;01 számítógép&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>HOST ADDRESS</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -2384,7 +2384,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Tallózás</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2415,11 +2415,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (számítógépek és helyszínek betöltése LDAP/AD-ból)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
     </message>
 </context>
 <context>
@@ -2461,11 +2461,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (számítógépek és helyszínek betöltése LDAP/AD-ból)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
     </message>
 </context>
 <context>
@@ -3597,6 +3597,10 @@ Typically this is required to support terminal servers.</source>
         <source>Show notification on failed authentication attempts</source>
         <translation>Sikertelen hitelesítési próbálkozásról értesítés megjelenítése</translation>
     </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3856,7 +3860,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>PÉLDÁK</translation>
     </message>
 </context>
 <context>

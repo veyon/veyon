@@ -2384,7 +2384,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Parcourir</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3597,6 +3597,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Afficher la notification en cas d&apos;échec des tentatives d&apos;authentification</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

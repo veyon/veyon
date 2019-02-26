@@ -2380,7 +2380,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Procházet</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3593,6 +3593,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Zobrazovat upozornění při nezdařených pokusech o ověření</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

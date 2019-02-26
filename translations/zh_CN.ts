@@ -3595,6 +3595,10 @@ Typically this is required to support terminal servers.</source>
         <source>Show notification on failed authentication attempts</source>
         <translation>显示尝试身份验证失败的通知</translation>
     </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

@@ -3598,6 +3598,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>Show notification on failed authentication attempts</source>
         <translation>Prikaži obvestilo o neuspešnih poskusih preverjanja pristnosti</translation>
     </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

@@ -3558,6 +3558,10 @@ Typically this is required to support terminal servers.</source>
         <source>Show notification on failed authentication attempts</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
