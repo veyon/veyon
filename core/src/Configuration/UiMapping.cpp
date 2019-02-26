@@ -24,7 +24,6 @@
 
 #include <QCheckBox>
 #include <QColorDialog>
-#include <QComboBox>
 #include <QGroupBox>
 #include <QLineEdit>
 #include <QPushButton>

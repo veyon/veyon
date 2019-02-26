@@ -24,10 +24,11 @@
 
 #pragma once
 
+#include <QComboBox>
+
 #include "Configuration/Property.h"
 
 class QCheckBox;
-class QComboBox;
 class QGroupBox;
 class QLabel;
 class QLineEdit;
@@ -51,6 +52,14 @@ public:
 	static void initWidgetFromProperty( const Configuration::TypedProperty<int>& property, QComboBox* widget );
 	static void initWidgetFromProperty( const Configuration::TypedProperty<int>& property, QSpinBox* widget );
 	static void initWidgetFromProperty( const Configuration::TypedProperty<QUuid>& property, QComboBox* widget );
+
+	// SFINAE overload for enum classes
+	template<typename T>
+	static typename std::enable_if<std::is_enum<T>::value, void>::type
+	initWidgetFromProperty( const Configuration::TypedProperty<T>& property, QComboBox* widget )
+	{
+		widget->setCurrentIndex( static_cast<int>( property.value() ) );
+	}
 
 	// overloads for special properties which can't be mapped to widgets
 	static void initWidgetFromProperty( const Configuration::TypedProperty<QJsonArray>& property, QLabel* widget )
@@ -87,6 +96,16 @@ public:
 	static void connectWidgetToProperty( Configuration::TypedProperty<int>& property, QComboBox* widget );
 	static void connectWidgetToProperty( Configuration::TypedProperty<int>& property, QSpinBox* widget );
 	static void connectWidgetToProperty( Configuration::TypedProperty<QUuid>& property, QComboBox* widget );
+
+	// SFINAE overload for enum classes
+	template<typename T>
+	static typename std::enable_if<std::is_enum<T>::value, void>::type
+	connectWidgetToProperty( Configuration::TypedProperty<T>& property, QComboBox* widget )
+	{
+		QObject::connect( widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
+						  [&property]( int index ) { property.setValue( static_cast<T>( index ) ); } );
+	}
+
 
 	// overloads for special properties which can't be connected to widgets
 	static void connectWidgetToProperty( Configuration::TypedProperty<QStringList>& property, QLabel* widget )
