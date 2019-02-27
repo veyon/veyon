@@ -5,7 +5,7 @@ set -e
 cd /build
 
 # add distribution name to file name
-rename '.x86_64' '.${1}.x86_64' *.rpm
+rename ".x86_64" ".${1}.x86_64" *.rpm
 
 # show files
 rpm -qlp *.rpm
