@@ -29,8 +29,8 @@
 SasEventListener::SasEventListener()
 {
 	const wchar_t* sasDll = L"\\sas.dll";
-	wchar_t sasPath[MAX_PATH + wcslen(sasDll) + 1 ] = { 0 };
-	if( GetSystemDirectory( sasPath, MAX_PATH ) == 0 )
+	wchar_t sasPath[MAX_PATH] = { 0 }; // Flawfinder: ignore
+	if( GetSystemDirectory( sasPath, MAX_PATH - wcslen(sasDll) - 1 ) == 0 ) // Flawfinder: ignore
 	{
 		qCritical() << Q_FUNC_INFO << "could not determine system directory";
 	}
