@@ -132,7 +132,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 	{
 		const auto len = static_cast<size_t>( it->length() );
 		argv[argc] = new char[len + 1];
-		strncpy( argv[argc], it->toUtf8().constData(), len );
+		strncpy( argv[argc], it->toUtf8().constData(), len ); // Flawfinder: ignore
 		argv[argc][len] = 0;
 	}
 
