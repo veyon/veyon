@@ -14,8 +14,13 @@ cd build
 ../cmake/build_mingw$1
 
 echo Building on $CPUS CPUs
-make -j$((CPUS))
 
-make win-nsi
-mv -v veyon*setup.exe /veyon
+if [ -z "$2" ] ; then
+	make -j$CPUS
+
+	make win-nsi
+	mv -v veyon*setup.exe /veyon
+else
+	make $2 -j$CPUS
+fi
 

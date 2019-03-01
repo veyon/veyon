@@ -12,18 +12,23 @@ cd $BUILD
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr $SRC
 
 echo Building on $CPUS CPUs
-make -j$((CPUS))
 
-fakeroot make package
+if [ -z "$3" ] ; then
+	make -j$CPUS
 
-LIBDIR=$(grep VEYON_LIB_DIR CMakeCache.txt |cut -d "=" -f2)
-BUILD_PWD=$(pwd)
+	fakeroot make package
 
-mkdir -p $LIBDIR
-cd $LIBDIR
-find $BUILD_PWD/plugins -name "*.so" -exec ln -s '{}' ';'
-cd $BUILD_PWD
+	LIBDIR=$(grep VEYON_LIB_DIR CMakeCache.txt |cut -d "=" -f2)
+	BUILD_PWD=$(pwd)
 
-./cli/veyon-cli help
-./cli/veyon-cli about
+	mkdir -p $LIBDIR
+	cd $LIBDIR
+	find $BUILD_PWD/plugins -name "*.so" -exec ln -s '{}' ';'
+	cd $BUILD_PWD
+
+	./cli/veyon-cli help
+	./cli/veyon-cli about
+else
+	make $2 -j$CPUS
+fi
 
