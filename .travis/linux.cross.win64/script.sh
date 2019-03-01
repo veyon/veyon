@@ -2,5 +2,5 @@
 
 set -e
 
-/veyon/.travis/common/windows-build.sh 64
+/veyon/.travis/common/windows-build.sh 64 $1
 
