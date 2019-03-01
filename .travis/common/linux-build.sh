@@ -29,6 +29,6 @@ if [ -z "$3" ] ; then
 	./cli/veyon-cli help
 	./cli/veyon-cli about
 else
-	make $2 -j$CPUS
+	make ${@:3} -j$CPUS
 fi
 

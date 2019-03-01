@@ -21,6 +21,6 @@ if [ -z "$2" ] ; then
 	make win-nsi
 	mv -v veyon*setup.exe /veyon
 else
-	make $2 -j$CPUS
+	make ${@:2} -j$CPUS
 fi
 
