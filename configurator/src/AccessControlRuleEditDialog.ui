@@ -124,7 +124,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Accessing computer is at same location as local computer</string>
+         <string>Accessing computer and local computer are at the same location</string>
         </property>
        </widget>
       </item>
@@ -138,7 +138,7 @@
       <item row="2" column="2">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>is located in</string>
+         <string>is located at</string>
         </property>
        </widget>
       </item>
