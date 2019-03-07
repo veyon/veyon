@@ -70,7 +70,7 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	}
 
 	initNetworkObjectLayer();
-	initRooms();
+	initLocations();
 	initComputerTreeModel();
 }
 
@@ -83,20 +83,20 @@ ComputerManager::~ComputerManager()
 
 
 
-void ComputerManager::addRoom( const QString& room )
+void ComputerManager::addLocation( const QString& location )
 {
-	m_roomFilterList.append( room );
+	m_locationFilterList.append( location );
 
 	updateRoomFilterList();
 }
 
 
 
-void ComputerManager::removeRoom( const QString& room )
+void ComputerManager::removeLocation( const QString& location )
 {
-	if( m_currentRooms.contains( room ) == false )
+	if( m_currentLocations.contains( location ) == false )
 	{
-		m_roomFilterList.removeAll( room );
+		m_locationFilterList.removeAll( location );
 
 		updateRoomFilterList();
 	}
@@ -170,35 +170,35 @@ void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModel
 
 
 
-void ComputerManager::initRooms()
+void ComputerManager::initLocations()
 {
 	for( const auto& hostName : qAsConst( m_localHostNames ) )
 	{
-		vDebug() << "ComputerManager::initRooms(): initializing rooms for host name" << hostName;
+		vDebug() << Q_FUNC_INFO << "initializing locations for host name" << hostName;
 	}
 
 	for( const auto& address : qAsConst( m_localHostAddresses ) )
 	{
-		vDebug() << "ComputerManager::initRooms(): initializing rooms for host address" << address.toString();
+		vDebug() << Q_FUNC_INFO << "initializing locations for host address" << address.toString();
 	}
 
-	m_currentRooms.append( findRoomOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
+	m_currentLocations.append( findRoomOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
 
-	vDebug() << "ComputerManager::initRooms(): found local rooms" << m_currentRooms;
+	vDebug() << Q_FUNC_INFO << "found locations" << m_currentLocations;
 
-	if( VeyonCore::config().onlyCurrentRoomVisible() )
+	if( VeyonCore::config().showCurrentLocationOnly() )
 	{
-		if( m_currentRooms.isEmpty() )
+		if( m_currentLocations.isEmpty() )
 		{
 			QMessageBox::warning( nullptr,
-								  tr( "Room detection failed" ),
-								  tr( "Could not determine the room which this computer belongs to. "
+								  tr( "Location detection failed" ),
+								  tr( "Could not determine the location of this computer. "
 									  "This indicates a problem with the system configuration. "
-									  "All rooms will be shown in the computer management instead." ) );
-			qWarning( "ComputerManager::initRoomFilterList(): room detection failed" );
+									  "All locations will be shown in the computer selection view instead." ) );
+			qWarning() << Q_FUNC_INFO << "location detection failed";
 		}
 
-		m_roomFilterList = m_currentRooms;
+		m_locationFilterList = m_currentLocations;
 		updateRoomFilterList();
 	}
 }
@@ -234,7 +234,7 @@ void ComputerManager::initNetworkObjectLayer()
 		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames );
 	}
 
-	m_networkObjectFilterProxyModel->setEmptyGroupsExcluded( VeyonCore::config().emptyRoomsHidden() );
+	m_networkObjectFilterProxyModel->setEmptyGroupsExcluded( VeyonCore::config().hideEmptyLocations() );
 }
 
 
@@ -242,9 +242,9 @@ void ComputerManager::initNetworkObjectLayer()
 void ComputerManager::initComputerTreeModel()
 {
 	QJsonArray checkedNetworkObjects;
-	if( VeyonCore::config().autoSwitchToCurrentRoom() )
+	if( VeyonCore::config().autoSelectCurrentLocation() )
 	{
-		for( const auto& room : qAsConst( m_currentRooms ) )
+		for( const auto& room : qAsConst( m_currentLocations ) )
 		{
 			const auto computersInRoom = getComputersInRoom( room );
 			for( const auto& computer : computersInRoom )
@@ -277,9 +277,9 @@ void ComputerManager::initComputerTreeModel()
 
 void ComputerManager::updateRoomFilterList()
 {
-	if( VeyonCore::config().onlyCurrentRoomVisible() )
+	if( VeyonCore::config().showCurrentLocationOnly() )
 	{
-		m_networkObjectFilterProxyModel->setGroupFilter( m_roomFilterList );
+		m_networkObjectFilterProxyModel->setGroupFilter( m_locationFilterList );
 	}
 }
 

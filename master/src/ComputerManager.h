@@ -52,8 +52,8 @@ public:
 
 	ComputerList selectedComputers( const QModelIndex& parent );
 
-	void addRoom( const QString& room );
-	void removeRoom( const QString& room );
+	void addLocation( const QString& location );
+	void removeLocation( const QString& room );
 
 	bool saveComputerAndUsersList( const QString& fileName );
 
@@ -67,7 +67,7 @@ private slots:
 	void checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles );
 
 private:
-	void initRooms();
+	void initLocations();
 	void initNetworkObjectLayer();
 	void initComputerTreeModel();
 	void updateRoomFilterList();
@@ -90,8 +90,8 @@ private:
 	CheckableItemProxyModel* m_computerTreeModel;
 	NetworkObjectFilterProxyModel* m_networkObjectFilterProxyModel;
 
-	QStringList m_currentRooms;
-	QStringList m_roomFilterList;
+	QStringList m_currentLocations;
+	QStringList m_locationFilterList;
 
 	QStringList m_localHostNames;
 	QList<QHostAddress> m_localHostAddresses;

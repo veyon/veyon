@@ -84,7 +84,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QToolButton" name="computerManagementButton">
+      <widget class="QToolButton" name="computerSelectionViewButton">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -94,7 +94,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Computer rooms</string>
+        <string>Locations &amp; computers</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/master.qrc">
@@ -110,7 +110,7 @@
         <string notr="true">buttonGroup</string>
        </attribute>
       </widget>
-      <widget class="QToolButton" name="screenshotManagementButton">
+      <widget class="QToolButton" name="screenshotManagementViewButton">
        <property name="geometry">
         <rect>
          <x>260</x>

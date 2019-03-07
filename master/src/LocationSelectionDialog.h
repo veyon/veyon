@@ -1,5 +1,5 @@
 /*
- * ComputerManagementView.h - provides a view for a network object tree
+ * LocationSelectionDialog.h - header file for LocationSelectionDialog
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,36 +24,32 @@
 
 #pragma once
 
-#include <QModelIndexList>
-#include <QWidget>
+#include <QDialog>
+#include <QSortFilterProxyModel>
 
 namespace Ui {
-class ComputerManagementView;
+class LocationSelectionDialog;
 }
 
-class ComputerManager;
-class RecursiveFilterProxyModel;
-
-class ComputerManagementView : public QWidget
+class LocationSelectionDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	ComputerManagementView( ComputerManager& computerManager, QWidget *parent = nullptr );
-	~ComputerManagementView() override;
+	LocationSelectionDialog( QAbstractItemModel* roomListModel, QWidget *parent = nullptr );
+	~LocationSelectionDialog() override;
 
-	bool eventFilter(QObject *watched, QEvent *event) override;
+	const QString& selectedRoom() const
+	{
+		return m_selectedRoom;
+	}
 
 private slots:
-	void addRoom();
-	void removeRoom();
-	void saveList();
-	void updateFilter();
+	void updateSearchFilter();
+	void updateSelection( const QModelIndex& current, const QModelIndex& previous );
 
 private:
-	Ui::ComputerManagementView *ui;
-	ComputerManager& m_computerManager;
-	RecursiveFilterProxyModel* m_filterProxyModel;
-	QString m_previousFilter;
-	QModelIndexList m_expandedGroups;
+	Ui::LocationSelectionDialog *ui;
 
+	QSortFilterProxyModel m_sortFilterProxyModel;
+	QString m_selectedRoom;
 };

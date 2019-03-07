@@ -217,9 +217,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
+           <widget class="QCheckBox" name="autoSelectCurrentLocation">
             <property name="text">
-             <string>Automatically switch to current room at start</string>
+             <string>Automatically select current location at start</string>
             </property>
            </widget>
           </item>
@@ -231,9 +231,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="openComputerManagementAtStart">
+           <widget class="QCheckBox" name="autoOpenComputerSelectionView">
             <property name="text">
-             <string>Automatically open computer rooms widget</string>
+             <string>Automatically open computer selection view</string>
             </property>
            </widget>
           </item>
@@ -243,23 +243,23 @@
        <item>
         <widget class="QGroupBox" name="groupBox_6">
          <property name="title">
-          <string>Computer rooms</string>
+          <string>Computer locations</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QCheckBox" name="onlyCurrentRoomVisible">
+           <widget class="QCheckBox" name="showCurrentLocationOnly">
             <property name="text">
-             <string>Only show current room</string>
+             <string>Show current location only</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="manualRoomAdditionAllowed">
+           <widget class="QCheckBox" name="allowAddingHiddenLocations">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="text">
-             <string>Allow adding rooms manually</string>
+             <string>Allow adding hidden locations manually</string>
             </property>
            </widget>
           </item>
@@ -271,9 +271,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="emptyRoomsHidden">
+           <widget class="QCheckBox" name="hideEmptyLocations">
             <property name="text">
-             <string>Hide empty rooms</string>
+             <string>Hide empty locations</string>
             </property>
            </widget>
           </item>
@@ -437,13 +437,13 @@
   <tabstop>computerDisplayRoleContent</tabstop>
   <tabstop>computerMonitoringSortOrder</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
-  <tabstop>autoSwitchToCurrentRoom</tabstop>
+  <tabstop>autoSelectCurrentLocation</tabstop>
   <tabstop>autoAdjustGridSize</tabstop>
-  <tabstop>openComputerManagementAtStart</tabstop>
-  <tabstop>onlyCurrentRoomVisible</tabstop>
-  <tabstop>manualRoomAdditionAllowed</tabstop>
+  <tabstop>autoOpenComputerSelectionView</tabstop>
+  <tabstop>showCurrentLocationOnly</tabstop>
+  <tabstop>allowAddingHiddenLocations</tabstop>
   <tabstop>localComputerHidden</tabstop>
-  <tabstop>emptyRoomsHidden</tabstop>
+  <tabstop>hideEmptyLocations</tabstop>
   <tabstop>computerFilterHidden</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>confirmDangerousActions</tabstop>
@@ -459,9 +459,9 @@
  </resources>
  <connections>
   <connection>
-   <sender>onlyCurrentRoomVisible</sender>
+   <sender>showCurrentLocationOnly</sender>
    <signal>toggled(bool)</signal>
-   <receiver>manualRoomAdditionAllowed</receiver>
+   <receiver>allowAddingHiddenLocations</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

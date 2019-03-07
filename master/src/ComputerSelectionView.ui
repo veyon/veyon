@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ComputerManagementView</class>
- <widget class="QWidget" name="ComputerManagementView">
+ <class>ComputerSelectionView</class>
+ <widget class="QWidget" name="ComputerSelectionView">
   <property name="windowTitle">
    <string>Computer management</string>
   </property>
@@ -42,7 +42,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="addRoomButton">
+    <widget class="QPushButton" name="addLocationButton">
      <property name="text">
       <string>Add room</string>
      </property>
@@ -60,10 +60,10 @@
  <resources/>
  <connections>
   <connection>
-   <sender>addRoomButton</sender>
+   <sender>addLocationButton</sender>
    <signal>clicked()</signal>
-   <receiver>ComputerManagementView</receiver>
-   <slot>addRoom()</slot>
+   <receiver>ComputerSelectionView</receiver>
+   <slot>addLocation()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>262</x>
@@ -78,7 +78,7 @@
   <connection>
    <sender>saveListButton</sender>
    <signal>clicked()</signal>
-   <receiver>ComputerManagementView</receiver>
+   <receiver>ComputerSelectionView</receiver>
    <slot>saveList()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -93,7 +93,7 @@
   </connection>
  </connections>
  <slots>
-  <slot>addRoom()</slot>
+  <slot>addLocation()</slot>
   <slot>saveList()</slot>
  </slots>
 </ui>

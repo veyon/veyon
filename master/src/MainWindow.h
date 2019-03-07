@@ -30,7 +30,7 @@
 
 class QButtonGroup;
 class VeyonMaster;
-class ComputerManagementView;
+class ComputerSelectionView;
 class ScreenshotManagementView;
 class ToolButton;
 
@@ -64,6 +64,11 @@ private slots:
 	void showAboutDialog();
 
 private:
+	static int buttonId( const Feature& feature )
+	{
+		return static_cast<int>( qHash( feature.uid() ) );
+	}
+
 	void addFeaturesToToolBar();
 	void addSubFeaturesToToolButton( ToolButton* button, Feature::Uid parentFeatureUid );
 
@@ -75,7 +80,7 @@ private:
 
 	QButtonGroup* m_modeGroup;
 
-	ComputerManagementView* m_computerManagementView;
+	ComputerSelectionView* m_computerSelectionView;
 	ScreenshotManagementView* m_screenshotManagementView;
 
 } ;

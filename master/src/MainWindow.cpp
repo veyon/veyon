@@ -36,7 +36,7 @@
 #include "AuthenticationCredentials.h"
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
-#include "ComputerManagementView.h"
+#include "ComputerSelectionView.h"
 #include "ScreenshotManagementView.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
@@ -66,8 +66,8 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->computerMonitoringView->setVeyonMaster( m_master );
 
 	// add widgets to status bar
-	ui->statusBar->addWidget( ui->computerManagementButton );
-	ui->statusBar->addWidget( ui->screenshotManagementButton );
+	ui->statusBar->addWidget( ui->computerSelectionViewButton );
+	ui->statusBar->addWidget( ui->screenshotManagementViewButton );
 	ui->statusBar->addWidget( ui->spacerLabel1 );
 	ui->statusBar->addWidget( ui->filterLineEdit, 2 );
 	ui->statusBar->addWidget( ui->filterPoweredOnComputersButton );
@@ -86,25 +86,25 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	ui->centralLayout->addWidget( splitter );
 
-	m_computerManagementView = new ComputerManagementView( m_master.computerManager(), splitter );
+	m_computerSelectionView = new ComputerSelectionView( m_master.computerManager(), splitter );
 	m_screenshotManagementView = new ScreenshotManagementView( splitter );
 
-	splitter->addWidget( m_computerManagementView );
+	splitter->addWidget( m_computerSelectionView );
 	splitter->addWidget( m_screenshotManagementView );
 	splitter->addWidget( ui->computerMonitoringView );
 
 	// hide views per default and connect related button
-	m_computerManagementView->hide();
+	m_computerSelectionView->hide();
 	m_screenshotManagementView->hide();
 
-	connect( ui->computerManagementButton, &QAbstractButton::toggled,
-			 m_computerManagementView, &QWidget::setVisible );
-	connect( ui->screenshotManagementButton, &QAbstractButton::toggled,
+	connect( ui->computerSelectionViewButton, &QAbstractButton::toggled,
+			 m_computerSelectionView, &QWidget::setVisible );
+	connect( ui->screenshotManagementViewButton, &QAbstractButton::toggled,
 			 m_screenshotManagementView, &QWidget::setVisible );
 
-	if( VeyonCore::config().openComputerManagementAtStart() )
+	if( VeyonCore::config().autoOpenComputerSelectionView() )
 	{
-		ui->computerManagementButton->setChecked( true );
+		ui->computerSelectionViewButton->setChecked( true );
 	}
 
 	// initialize search filter
@@ -150,7 +150,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	addFeaturesToToolBar();
 
-	m_modeGroup->button( qHash( VeyonCore::builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
+	m_modeGroup->button( static_cast<int>( qHash( VeyonCore::builtinFeatures().monitoringMode().feature().uid() ) ) )->setChecked( true );
 
 	// setup system tray icon
 	QIcon icon( QStringLiteral(":/core/icon16.png") );
@@ -290,7 +290,7 @@ void MainWindow::addFeaturesToToolBar()
 		if( feature.testFlag( Feature::Mode ) )
 		{
 			btn->setCheckable( true );
-			m_modeGroup->addButton( btn, qHash( feature.uid() ) );
+			m_modeGroup->addButton( btn, buttonId( feature ) );
 		}
 
 		addSubFeaturesToToolButton( btn, feature.uid() );
@@ -331,10 +331,10 @@ void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid pa
 
 void MainWindow::updateModeButtonGroup()
 {
-	const Feature::Uid& monitoringMode = VeyonCore::builtinFeatures().monitoringMode().feature().uid();
+	const auto& monitoringMode = VeyonCore::builtinFeatures().monitoringMode().feature();
 
-	if( m_master.currentMode() == monitoringMode )
+	if( m_master.currentMode() == monitoringMode.uid() )
 	{
-		m_modeGroup->button( qHash( monitoringMode ) )->setChecked( true );
+		m_modeGroup->button( buttonId( monitoringMode ) )->setChecked( true );
 	}
 }

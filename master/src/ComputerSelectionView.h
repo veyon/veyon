@@ -1,5 +1,5 @@
 /*
- * RoomSelectionDialog.h - header file for RoomSelectionDialog
+ * ComputerSelectionView.h - provides a view for a network object tree
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,32 +24,36 @@
 
 #pragma once
 
-#include <QDialog>
-#include <QSortFilterProxyModel>
+#include <QModelIndexList>
+#include <QWidget>
 
 namespace Ui {
-class RoomSelectionDialog;
+class ComputerSelectionView;
 }
 
-class RoomSelectionDialog : public QDialog
+class ComputerManager;
+class RecursiveFilterProxyModel;
+
+class ComputerSelectionView : public QWidget
 {
 	Q_OBJECT
 public:
-	RoomSelectionDialog( QAbstractItemModel* roomListModel, QWidget *parent = nullptr );
-	~RoomSelectionDialog() override;
+	ComputerSelectionView( ComputerManager& computerManager, QWidget *parent = nullptr );
+	~ComputerSelectionView() override;
 
-	const QString& selectedRoom() const
-	{
-		return m_selectedRoom;
-	}
+	bool eventFilter(QObject *watched, QEvent *event) override;
 
 private slots:
-	void updateSearchFilter();
-	void updateSelection( const QModelIndex& current, const QModelIndex& previous );
+	void addLocation();
+	void removeLocation();
+	void saveList();
+	void updateFilter();
 
 private:
-	Ui::RoomSelectionDialog *ui;
+	Ui::ComputerSelectionView *ui;
+	ComputerManager& m_computerManager;
+	RecursiveFilterProxyModel* m_filterProxyModel;
+	QString m_previousFilter;
+	QModelIndexList m_expandedGroups;
 
-	QSortFilterProxyModel m_sortFilterProxyModel;
-	QString m_selectedRoom;
 };

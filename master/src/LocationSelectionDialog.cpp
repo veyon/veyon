@@ -1,5 +1,5 @@
 /*
- * RoomSelectionDialog.cpp - header file for RoomSelectionDialog
+ * LocationSelectionDialog.cpp - header file for LocationSelectionDialog
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,13 +22,13 @@
  *
  */
 
-#include "RoomSelectionDialog.h"
+#include "LocationSelectionDialog.h"
 
-#include "ui_RoomSelectionDialog.h"
+#include "ui_LocationSelectionDialog.h"
 
-RoomSelectionDialog::RoomSelectionDialog( QAbstractItemModel* roomListModel, QWidget* parent ) :
+LocationSelectionDialog::LocationSelectionDialog( QAbstractItemModel* roomListModel, QWidget* parent ) :
 	QDialog( parent ),
-	ui( new Ui::RoomSelectionDialog ),
+	ui( new Ui::LocationSelectionDialog ),
 	m_sortFilterProxyModel( this )
 {
 	ui->setupUi( this );
@@ -39,21 +39,21 @@ RoomSelectionDialog::RoomSelectionDialog( QAbstractItemModel* roomListModel, QWi
 	ui->listView->setModel( &m_sortFilterProxyModel );
 
 	connect( ui->listView->selectionModel(), &QItemSelectionModel::currentChanged,
-			 this, &RoomSelectionDialog::updateSelection );
+			 this, &LocationSelectionDialog::updateSelection );
 
 	updateSearchFilter();
 }
 
 
 
-RoomSelectionDialog::~RoomSelectionDialog()
+LocationSelectionDialog::~LocationSelectionDialog()
 {
 	delete ui;
 }
 
 
 
-void RoomSelectionDialog::updateSearchFilter()
+void LocationSelectionDialog::updateSearchFilter()
 {
 	m_sortFilterProxyModel.setFilterRegExp( QRegExp( ui->filterLineEdit->text() ) );
 	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
@@ -64,7 +64,7 @@ void RoomSelectionDialog::updateSearchFilter()
 
 
 
-void RoomSelectionDialog::updateSelection( const QModelIndex& current, const QModelIndex& previous )
+void LocationSelectionDialog::updateSelection( const QModelIndex& current, const QModelIndex& previous )
 {
 	Q_UNUSED(previous)
 

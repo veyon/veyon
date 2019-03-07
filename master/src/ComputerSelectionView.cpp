@@ -1,5 +1,5 @@
 /*
- * ComputerManagementView.cpp - provides a view for a network object tree
+ * ComputerSelectionView.cpp - provides a view for a network object tree
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,19 +26,19 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-#include "ComputerManagementView.h"
+#include "ComputerSelectionView.h"
 #include "ComputerManager.h"
 #include "NetworkObjectModel.h"
 #include "RecursiveFilterProxyModel.h"
-#include "RoomSelectionDialog.h"
+#include "LocationSelectionDialog.h"
 #include "VeyonConfiguration.h"
 
-#include "ui_ComputerManagementView.h"
+#include "ui_ComputerSelectionView.h"
 
 
-ComputerManagementView::ComputerManagementView( ComputerManager& computerManager, QWidget *parent ) :
+ComputerSelectionView::ComputerSelectionView( ComputerManager& computerManager, QWidget *parent ) :
 	QWidget(parent),
-	ui(new Ui::ComputerManagementView),
+	ui(new Ui::ComputerSelectionView),
 	m_computerManager( computerManager ),
 	m_filterProxyModel( new RecursiveFilterProxyModel( this ) )
 {
@@ -57,32 +57,32 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 	// set default sort order
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 
-	ui->addRoomButton->setVisible( VeyonCore::config().onlyCurrentRoomVisible() &&
-										VeyonCore::config().manualRoomAdditionAllowed() );
+	ui->addLocationButton->setVisible( VeyonCore::config().showCurrentLocationOnly() &&
+									   VeyonCore::config().allowAddingHiddenLocations() );
 
 	ui->filterLineEdit->setHidden( VeyonCore::config().computerFilterHidden() );
 
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
-			 this, &ComputerManagementView::updateFilter );
+			 this, &ComputerSelectionView::updateFilter );
 }
 
 
 
-ComputerManagementView::~ComputerManagementView()
+ComputerSelectionView::~ComputerSelectionView()
 {
 	delete ui;
 }
 
 
 
-bool ComputerManagementView::eventFilter( QObject *watched, QEvent *event )
+bool ComputerSelectionView::eventFilter( QObject *watched, QEvent *event )
 {
 	if( watched == ui->treeView &&
-			event->type() == QEvent::KeyPress &&
-			dynamic_cast<QKeyEvent*>(event) != nullptr &&
-			dynamic_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete )
+		event->type() == QEvent::KeyPress &&
+		dynamic_cast<QKeyEvent*>(event) != nullptr &&
+		dynamic_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete )
 	{
-		removeRoom();
+		removeLocation();
 		return true;
 	}
 
@@ -91,18 +91,18 @@ bool ComputerManagementView::eventFilter( QObject *watched, QEvent *event )
 
 
 
-void ComputerManagementView::addRoom()
+void ComputerSelectionView::addLocation()
 {
-	RoomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
+	LocationSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
 	if( dialog.exec() && dialog.selectedRoom().isEmpty() == false )
 	{
-		m_computerManager.addRoom( dialog.selectedRoom() );
+		m_computerManager.addLocation( dialog.selectedRoom() );
 	}
 }
 
 
 
-void ComputerManagementView::removeRoom()
+void ComputerSelectionView::removeLocation()
 {
 	auto model = m_computerManager.computerTreeModel();
 	const auto index = ui->treeView->selectionModel()->currentIndex();
@@ -110,19 +110,19 @@ void ComputerManagementView::removeRoom()
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
 	if( index.isValid() &&
-			static_cast<NetworkObject::Type>( model->data( index, NetworkObjectModel::TypeRole ).toInt() ) == NetworkObject::Location )
+		static_cast<NetworkObject::Type>( model->data( index, NetworkObjectModel::TypeRole ).toInt() ) == NetworkObject::Location )
 #else
 	if( index.isValid() &&
-			model->data( index, NetworkObjectModel::TypeRole ).value<NetworkObject::Type>() == NetworkObject::Location )
+		model->data( index, NetworkObjectModel::TypeRole ).value<NetworkObject::Type>() == NetworkObject::Location )
 #endif
 	{
-		m_computerManager.removeRoom( model->data( index, NetworkObjectModel::NameRole ).toString() );
+		m_computerManager.removeLocation( model->data( index, NetworkObjectModel::NameRole ).toString() );
 	}
 }
 
 
 
-void ComputerManagementView::saveList()
+void ComputerSelectionView::saveList()
 {
 	QString fileName = QFileDialog::getSaveFileName( this, tr( "Select output filename" ),
 													 QDir::homePath(), tr( "CSV files (*.csv)" ) );
@@ -139,7 +139,7 @@ void ComputerManagementView::saveList()
 
 
 
-void ComputerManagementView::updateFilter()
+void ComputerSelectionView::updateFilter()
 {
 	const auto filter = ui->filterLineEdit->text();
 	auto model = ui->treeView->model();
