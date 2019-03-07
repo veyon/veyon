@@ -252,15 +252,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -997,10 +997,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1040,6 +1036,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1065,13 +1065,44 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add room</source>
+        <source>Computer search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1092,37 +1123,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2590,6 +2590,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2699,10 +2710,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2798,6 +2805,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2818,10 +2829,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2834,19 +2841,11 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2862,19 +2861,7 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2883,10 +2870,6 @@ USAGE
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2930,14 +2913,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2947,6 +2922,42 @@ USAGE
     </message>
     <message>
         <source>Computer and user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2961,7 +2972,7 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3318,17 +3329,6 @@ USAGE
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
