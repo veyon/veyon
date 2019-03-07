@@ -339,17 +339,17 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 QString ComputerControlListModel::computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	const QString state( computerStateDescription( controlInterface ) );
-	const QString room( tr( "Room: %1" ).arg( controlInterface->computer().room() ) );
+	const QString location( tr( "Location: %1" ).arg( controlInterface->computer().location() ) );
 	const QString host( tr( "Host/IP address: %1" ).arg( controlInterface->computer().hostAddress() ) );
 	const QString user( loggedOnUserInformation( controlInterface ) );
 	const QString features( tr( "Active features: %1" ).arg( activeFeatures( controlInterface ) ) );
 
 	if( user.isEmpty() )
 	{
-		return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, features );
+		return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, location, host, features );
 	}
 
-	return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4<br>%5" ).arg( state, room, host, features, user);
+	return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4<br>%5" ).arg( state, location, host, features, user);
 }
 
 
@@ -391,11 +391,11 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 	switch( m_sortOrder )
 	{
 	case SortByComputerAndUserName:
-		return controlInterface->computer().room() + controlInterface->computer().name() +
+		return controlInterface->computer().location() + controlInterface->computer().name() +
 				controlInterface->computer().hostAddress() + controlInterface->userLoginName();
 
 	case SortByComputerName:
-		return controlInterface->computer().room() + controlInterface->computer().name() +
+		return controlInterface->computer().location() + controlInterface->computer().name() +
 				controlInterface->computer().hostAddress();
 
 	case SortByUserName:

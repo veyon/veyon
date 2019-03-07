@@ -28,11 +28,11 @@ Computer::Computer( NetworkObject::Uid networkObjectUid,
 					const QString& name,
 					const QString& hostAddress,
 					const QString& macAddress,
-					const QString& room ) :
+					const QString& location ) :
 	m_networkObjectUid( networkObjectUid ),
 	m_name( name ),
 	m_hostAddress( hostAddress ),
 	m_macAddress( macAddress ),
-	m_room( room )
+	m_location( location )
 {
 }

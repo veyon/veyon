@@ -38,7 +38,7 @@ public:
 			  const QString& name = QString(),
 			  const QString& hostAddress = QString(),
 			  const QString& macAddress = QString(),
-			  const QString& room = QString() );
+			  const QString& location = QString() );
 
 	bool operator==( const Computer& other ) const
 	{
@@ -85,14 +85,14 @@ public:
 		return m_macAddress;
 	}
 
-	void setRoom( const QString& room )
+	void setLocation( const QString& location )
 	{
-		m_room = room;
+		m_location = location;
 	}
 
-	const QString& room() const
+	const QString& location() const
 	{
-		return m_room;
+		return m_location;
 	}
 
 private:
@@ -100,7 +100,7 @@ private:
 	QString m_name;
 	QString m_hostAddress;
 	QString m_macAddress;
-	QString m_room;
+	QString m_location;
 
 };
 
