@@ -169,7 +169,7 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 															 directory->computersFilter(), LdapClient::Scope::Base );
 	if( computers.isEmpty() == false )
 	{
-		const auto computerDn = computers.firstKey();
+		const auto& computerDn = computers.firstKey();
 		const auto& computer = computers.first();
 		const auto displayName = computer[displayNameAttribute].value( 0 );
 		const auto hostName = computer[hostNameAttribute].value( 0 );
