@@ -94,9 +94,9 @@ bool ComputerSelectionView::eventFilter( QObject *watched, QEvent *event )
 void ComputerSelectionView::addLocation()
 {
 	LocationSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
-	if( dialog.exec() && dialog.selectedRoom().isEmpty() == false )
+	if( dialog.exec() && dialog.selectedLocation().isEmpty() == false )
 	{
-		m_computerManager.addLocation( dialog.selectedRoom() );
+		m_computerManager.addLocation( dialog.selectedLocation() );
 	}
 }
 

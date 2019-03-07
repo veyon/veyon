@@ -44,7 +44,7 @@
    <item>
     <widget class="QPushButton" name="addLocationButton">
      <property name="text">
-      <string>Add room</string>
+      <string>Add location</string>
      </property>
     </widget>
    </item>

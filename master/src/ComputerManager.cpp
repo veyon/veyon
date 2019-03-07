@@ -87,7 +87,7 @@ void ComputerManager::addLocation( const QString& location )
 {
 	m_locationFilterList.append( location );
 
-	updateRoomFilterList();
+	updateLocationFilterList();
 }
 
 
@@ -98,7 +98,7 @@ void ComputerManager::removeLocation( const QString& location )
 	{
 		m_locationFilterList.removeAll( location );
 
-		updateRoomFilterList();
+		updateLocationFilterList();
 	}
 }
 
@@ -182,7 +182,7 @@ void ComputerManager::initLocations()
 		vDebug() << Q_FUNC_INFO << "initializing locations for host address" << address.toString();
 	}
 
-	m_currentLocations.append( findRoomOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
+	m_currentLocations.append( findLocationOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
 
 	vDebug() << Q_FUNC_INFO << "found locations" << m_currentLocations;
 
@@ -199,7 +199,7 @@ void ComputerManager::initLocations()
 		}
 
 		m_locationFilterList = m_currentLocations;
-		updateRoomFilterList();
+		updateLocationFilterList();
 	}
 }
 
@@ -244,10 +244,10 @@ void ComputerManager::initComputerTreeModel()
 	QJsonArray checkedNetworkObjects;
 	if( VeyonCore::config().autoSelectCurrentLocation() )
 	{
-		for( const auto& room : qAsConst( m_currentLocations ) )
+		for( const auto& location : qAsConst( m_currentLocations ) )
 		{
-			const auto computersInRoom = getComputersInRoom( room );
-			for( const auto& computer : computersInRoom )
+			const auto computersAtLocation = getComputersAtLocation( location );
+			for( const auto& computer : computersAtLocation )
 			{
 				checkedNetworkObjects += computer.networkObjectUid().toString();
 			}
@@ -275,7 +275,7 @@ void ComputerManager::initComputerTreeModel()
 
 
 
-void ComputerManager::updateRoomFilterList()
+void ComputerManager::updateLocationFilterList()
 {
 	if( VeyonCore::config().showCurrentLocationOnly() )
 	{
@@ -285,7 +285,7 @@ void ComputerManager::updateRoomFilterList()
 
 
 
-QString ComputerManager::findRoomOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent )
+QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent )
 {
 	QAbstractItemModel* model = networkObjectModel();
 
@@ -299,10 +299,10 @@ QString ComputerManager::findRoomOfComputer( const QStringList& hostNames, const
 
 		if( objectType == NetworkObject::Location )
 		{
-			QString room = findRoomOfComputer( hostNames, hostAddresses, entryIndex );
-			if( room.isEmpty() == false )
+			const auto location = findLocationOfComputer( hostNames, hostAddresses, entryIndex );
+			if( location.isEmpty() == false )
 			{
-				return room;
+				return location;
 			}
 		}
 		else if( objectType == NetworkObject::Host )
@@ -323,7 +323,7 @@ QString ComputerManager::findRoomOfComputer( const QStringList& hostNames, const
 
 
 
-ComputerList ComputerManager::getComputersInRoom( const QString& roomName, const QModelIndex& parent )
+ComputerList ComputerManager::getComputersAtLocation( const QString& locationName, const QModelIndex& parent )
 {
 	QAbstractItemModel* model = computerTreeModel();
 
@@ -340,9 +340,9 @@ ComputerList ComputerManager::getComputersInRoom( const QString& roomName, const
 		switch( objectType )
 		{
 		case NetworkObject::Location:
-			if( model->data( entryIndex, NetworkObjectModel::NameRole ).toString() == roomName )
+			if( model->data( entryIndex, NetworkObjectModel::NameRole ).toString() == locationName )
 			{
-				computers += getComputersInRoom( roomName, entryIndex );
+				computers += getComputersAtLocation( locationName, entryIndex );
 			}
 			break;
 		case NetworkObject::Host:

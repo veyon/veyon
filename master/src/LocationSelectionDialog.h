@@ -35,12 +35,12 @@ class LocationSelectionDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	LocationSelectionDialog( QAbstractItemModel* roomListModel, QWidget *parent = nullptr );
+	LocationSelectionDialog( QAbstractItemModel* locationListModel, QWidget *parent = nullptr );
 	~LocationSelectionDialog() override;
 
-	const QString& selectedRoom() const
+	const QString& selectedLocation() const
 	{
-		return m_selectedRoom;
+		return m_selectedLocation;
 	}
 
 private slots:
@@ -51,5 +51,5 @@ private:
 	Ui::LocationSelectionDialog *ui;
 
 	QSortFilterProxyModel m_sortFilterProxyModel;
-	QString m_selectedRoom;
+	QString m_selectedLocation;
 };

@@ -53,7 +53,7 @@ public:
 	ComputerList selectedComputers( const QModelIndex& parent );
 
 	void addLocation( const QString& location );
-	void removeLocation( const QString& room );
+	void removeLocation( const QString& location );
 
 	bool saveComputerAndUsersList( const QString& fileName );
 
@@ -70,11 +70,11 @@ private:
 	void initLocations();
 	void initNetworkObjectLayer();
 	void initComputerTreeModel();
-	void updateRoomFilterList();
+	void updateLocationFilterList();
 
-	QString findRoomOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent );
+	QString findLocationOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent );
 
-	ComputerList getComputersInRoom( const QString& roomName, const QModelIndex& parent = QModelIndex() );
+	ComputerList getComputersAtLocation( const QString& locationName, const QModelIndex& parent = QModelIndex() );
 
 	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 

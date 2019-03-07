@@ -26,14 +26,14 @@
 
 #include "ui_LocationSelectionDialog.h"
 
-LocationSelectionDialog::LocationSelectionDialog( QAbstractItemModel* roomListModel, QWidget* parent ) :
+LocationSelectionDialog::LocationSelectionDialog( QAbstractItemModel* locationListModel, QWidget* parent ) :
 	QDialog( parent ),
 	ui( new Ui::LocationSelectionDialog ),
 	m_sortFilterProxyModel( this )
 {
 	ui->setupUi( this );
 
-	m_sortFilterProxyModel.setSourceModel( roomListModel );
+	m_sortFilterProxyModel.setSourceModel( locationListModel );
 	m_sortFilterProxyModel.sort( 0 );
 
 	ui->listView->setModel( &m_sortFilterProxyModel );
@@ -68,5 +68,5 @@ void LocationSelectionDialog::updateSelection( const QModelIndex& current, const
 {
 	Q_UNUSED(previous)
 
-	m_selectedRoom = m_sortFilterProxyModel.data( current ).toString();
+	m_selectedLocation = m_sortFilterProxyModel.data( current ).toString();
 }
