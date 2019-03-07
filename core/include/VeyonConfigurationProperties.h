@@ -47,7 +47,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, failedAuthenticationNotificationsEnabled, setFailedAuthenticationNotificationsEnabled, "FailedAuthenticationNotifications", "Service", true, Configuration::Property::Flag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, remoteConnectionNotificationsEnabled, setRemoteConnectionNotificationsEnabled, "RemoteConnectionNotifications", "Service", false, Configuration::Property::Flag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, isMultiSessionServiceEnabled, setMultiSessionServiceEnabled, "MultiSession", "Service", false, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), bool, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Property::Flag::Standard )			\
+	OP( VeyonConfiguration, VeyonCore::config(), bool, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Service", true, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, isAlternativeAuthenticationMechanismEnabled, setAlternativeAuthenticationMechanismEnabled, "AlternativeAuthenticationMechanism", "Service", false, Configuration::Property::Flag::Advanced ) \
 
