@@ -212,21 +212,21 @@
           <item>
            <widget class="QCheckBox" name="accessControlForMasterEnabled">
             <property name="text">
-             <string>Perform access control at program start</string>
+             <string>Perform access control</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="autoSelectCurrentLocation">
             <property name="text">
-             <string>Automatically select current location at start</string>
+             <string>Automatically select current location</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="autoAdjustGridSize">
             <property name="text">
-             <string>Automatically adjust computer thumbnail size at start</string>
+             <string>Automatically adjust computer thumbnail size</string>
             </property>
            </widget>
           </item>
