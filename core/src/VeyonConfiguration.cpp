@@ -56,5 +56,7 @@ void VeyonConfiguration::upgrade()
 		setHideEmptyLocations( legacyEmptyRoomsHidden() );
 		setAutoOpenComputerSelectionView( legacyOpenComputerManagementAtStart() );
 		setConfirmUnsafeActions( legacyConfirmDangerousActions() );
+
+		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_2 );
 	}
 }
