@@ -368,6 +368,7 @@ void VeyonCore::initPlatformPlugin()
 void VeyonCore::initConfiguration()
 {
 	m_config = new VeyonConfiguration();
+	m_config->upgrade();
 
 	if( QUuid( config().installationID() ).isNull() )
 	{

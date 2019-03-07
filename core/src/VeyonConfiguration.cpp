@@ -43,3 +43,17 @@ VeyonConfiguration::VeyonConfiguration( Configuration::Store* store ) :
 	Configuration::Object( store )
 {
 }
+
+
+
+void VeyonConfiguration::upgrade()
+{
+	if( applicationVersion() < VeyonCore::ApplicationVersion::Version_4_2 )
+	{
+		setAutoSelectCurrentLocation( legacyAutoSwitchToCurrentRoom() );
+		setShowCurrentLocationOnly( legacyOnlyCurrentRoomVisible() );
+		setAllowAddingHiddenLocations( legacyManualRoomAdditionAllowed() );
+		setHideEmptyLocations( legacyEmptyRoomsHidden() );
+		setAutoOpenComputerSelectionView( legacyOpenComputerManagementAtStart() );
+	}
+}
