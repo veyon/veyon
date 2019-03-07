@@ -67,7 +67,7 @@ FeatureWorkerManager::~FeatureWorkerManager()
 	// properly shutdown all worker processes
 	while( m_workers.isEmpty() == false )
 	{
-		stopWorker( m_workers.firstKey() );
+		stopWorker( Feature( m_workers.firstKey() ) );
 	}
 }
 

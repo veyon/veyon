@@ -55,7 +55,7 @@ public:
 	Q_DECLARE_FLAGS(Flags, FeatureFlag)
 	Q_FLAG(Flags)
 
-	Feature( Flags flags,
+	explicit Feature( Flags flags,
 			 Uid uid,
 			 Uid parentUid,
 			 const QString& displayName,
@@ -74,7 +74,7 @@ public:
 	{
 	}
 
-	Feature( Uid uid = Uid() ) :
+	explicit Feature( Uid uid = Uid() ) :
 		m_flags( NoFlags ),
 		m_uid( uid ),
 		m_parentUid( QUuid() ),

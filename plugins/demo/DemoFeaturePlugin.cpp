@@ -181,10 +181,10 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			return false;
 		}
 
-		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
+		if( server.featureWorkerManager().isWorkerRunning( Feature( message.featureUid() ) ) == false &&
 				message.command() != StopDemoClient )
 		{
-			server.featureWorkerManager().startWorker( message.featureUid(), FeatureWorkerManager::ManagedSystemProcess );
+			server.featureWorkerManager().startWorker( Feature( message.featureUid() ), FeatureWorkerManager::ManagedSystemProcess );
 		}
 
 		auto socket = qobject_cast<QTcpSocket *>( messageContext.ioDevice() );
