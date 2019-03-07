@@ -124,7 +124,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Accessing computer is located in the same room as local computer</string>
+         <string>Accessing computer is at same location as local computer</string>
         </property>
        </widget>
       </item>
@@ -143,7 +143,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="isInLocationSubjectComboBox">
+       <widget class="QComboBox" name="isAtLocationSubjectComboBox">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -166,7 +166,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QCheckBox" name="isInLocationCheckBox">
+       <widget class="QCheckBox" name="isAtLocationCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -278,8 +278,8 @@
   <tabstop>isMemberOfGroupCheckBox</tabstop>
   <tabstop>isMemberOfGroupSubjectComboBox</tabstop>
   <tabstop>groupsComboBox</tabstop>
-  <tabstop>isInLocationCheckBox</tabstop>
-  <tabstop>isInLocationSubjectComboBox</tabstop>
+  <tabstop>isAtLocationCheckBox</tabstop>
+  <tabstop>isAtLocationSubjectComboBox</tabstop>
   <tabstop>locationsComboBox</tabstop>
   <tabstop>hasCommonLocationsCheckBox</tabstop>
   <tabstop>isLocalHostAccessCheckBox</tabstop>
@@ -343,7 +343,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>isInLocationCheckBox</sender>
+   <sender>isAtLocationCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>locationsComboBox</receiver>
    <slot>setEnabled(bool)</slot>
@@ -375,9 +375,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isInLocationCheckBox</sender>
+   <sender>isAtLocationCheckBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>isInLocationSubjectComboBox</receiver>
+   <receiver>isAtLocationSubjectComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

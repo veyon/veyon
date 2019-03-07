@@ -47,8 +47,8 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->isMemberOfGroupSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalUser], AccessControlRule::SubjectLocalUser );
 
 	// populate computer subject comboboxes
-	ui->isInLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectAccessingComputer], AccessControlRule::SubjectAccessingComputer );
-	ui->isInLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalComputer], AccessControlRule::SubjectLocalComputer );
+	ui->isAtLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectAccessingComputer], AccessControlRule::SubjectAccessingComputer );
+	ui->isAtLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalComputer], AccessControlRule::SubjectLocalComputer );
 
 	// populate groups and locations comboboxes
 	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
@@ -65,7 +65,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	// load condition states
 	ui->isMemberOfGroupCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionMemberOfUserGroup ) );
 	ui->hasCommonGroupsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionGroupsInCommon ) );
-	ui->isInLocationCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedIn ) );
+	ui->isAtLocationCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedAt ) );
 	ui->hasCommonLocationsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionSameLocation ) );
 	ui->isLocalHostAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost ) );
 	ui->isLocalUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser ) );
@@ -74,11 +74,11 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 
 	// load selected condition subjects
 	ui->isMemberOfGroupSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionMemberOfUserGroup ) ) );
-	ui->isInLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionLocatedIn ) ) );
+	ui->isAtLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionLocatedAt ) ) );
 
 	// load condition arguments
 	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionMemberOfUserGroup ) );
-	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionLocatedIn ) );
+	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionLocatedAt ) );
 
 	// load action
 	ui->actionNoneRadioButton->setChecked( rule.action() == AccessControlRule::ActionNone );
@@ -121,15 +121,15 @@ void AccessControlRuleEditDialog::accept()
 	m_rule.setConditionEnabled( AccessControlRule::ConditionGroupsInCommon,
 								ui->hasCommonGroupsCheckBox->isChecked() );
 
-	// located in room
-	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedIn,
-								ui->isInLocationCheckBox->isChecked() );
-	m_rule.setSubject( AccessControlRule::ConditionLocatedIn,
-					   m_subjectNameMap.key( ui->isInLocationSubjectComboBox->currentText() ) );
-	m_rule.setArgument( AccessControlRule::ConditionLocatedIn,
+	// located at
+	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedAt,
+								ui->isAtLocationCheckBox->isChecked() );
+	m_rule.setSubject( AccessControlRule::ConditionLocatedAt,
+					   m_subjectNameMap.key( ui->isAtLocationSubjectComboBox->currentText() ) );
+	m_rule.setArgument( AccessControlRule::ConditionLocatedAt,
 						ui->locationsComboBox->currentText() );
 
-	// located in same room as
+	// same location
 	m_rule.setConditionEnabled( AccessControlRule::ConditionSameLocation,
 								ui->hasCommonLocationsCheckBox->isChecked() );
 

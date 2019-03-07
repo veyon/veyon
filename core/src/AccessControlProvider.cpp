@@ -232,7 +232,7 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 
 
-bool AccessControlProvider::isLocatedIn( const QString &computer, const QString &locationName ) const
+bool AccessControlProvider::isLocatedAt( const QString &computer, const QString &locationName ) const
 {
 	return locationsOfComputer( computer ).contains( locationName );
 }
@@ -342,7 +342,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	condition = AccessControlRule::ConditionLocatedIn;
+	condition = AccessControlRule::ConditionLocatedAt;
 
 	if( rule.isConditionEnabled( condition ) )
 	{
@@ -352,7 +352,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		const auto location = rule.argument( condition );
 
 		if( computer.isEmpty() || location.isEmpty() ||
-			isLocatedIn( computer, location ) != matchResult )
+			isLocatedAt( computer, location ) != matchResult )
 		{
 			return false;
 		}

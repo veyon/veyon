@@ -61,7 +61,7 @@ public:
 
 private:
 	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;
-	bool isLocatedIn( const QString& computer, const QString& roomName ) const;
+	bool isLocatedAt( const QString& computer, const QString& locationName ) const;
 	bool haveGroupsInCommon( const QString& userOne, const QString& userTwo ) const;
 	bool haveSameLocations( const QString& computerOne, const QString& computerTwo ) const;
 	bool isLocalHost( const QString& accessingComputer ) const;

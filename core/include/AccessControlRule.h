@@ -50,7 +50,7 @@ public:
 		ConditionNone,
 		ConditionMemberOfUserGroup,
 		ConditionGroupsInCommon,
-		ConditionLocatedIn,
+		ConditionLocatedAt,
 		ConditionSameLocation,
 		ConditionAccessFromLocalHost,
 		ConditionAccessFromLocalUser,
