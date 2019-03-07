@@ -48,7 +48,7 @@ public:
 		NumLogLevels,
 		Min = Nothing+1,
 		Max = NumLogLevels-1,
-		Default = Info
+		Default = Warning
 	};
 	Q_ENUM(LogLevel)
 
