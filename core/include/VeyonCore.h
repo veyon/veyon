@@ -64,6 +64,13 @@ class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
 	Q_OBJECT
 public:
+	enum class ApplicationVersion {
+		Version_4_0,
+		Version_4_1,
+		Version_4_2,
+	};
+	Q_ENUM(ApplicationVersion)
+
 	VeyonCore( QCoreApplication* application, const QString& appComponentName );
 	~VeyonCore() override;
 
