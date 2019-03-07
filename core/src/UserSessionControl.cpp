@@ -171,7 +171,7 @@ void UserSessionControl::queryUserInformation()
 
 bool UserSessionControl::confirmFeatureExecution( const Feature& feature, QWidget* parent )
 {
-	if( VeyonCore::config().confirmDangerousActions() == false )
+	if( VeyonCore::config().confirmUnsafeActions() == false )
 	{
 		return true;
 	}

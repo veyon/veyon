@@ -100,7 +100,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QUuid, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master", QUuid(), Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, enforceSelectedModeForClients, setEnforceSelectedModeForClients, "EnforceSelectedModeForClients", "Master", false, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, autoOpenComputerSelectionView, setAutoOpenComputerSelectionView, "AutoOpenComputerSelectionView", "Master", false, Configuration::Property::Flag::Standard )	\
-	OP( VeyonConfiguration, VeyonCore::config(), bool, confirmDangerousActions, setConfirmDangerousActions, "ConfirmDangerousActions", "Master", false, Configuration::Property::Flag::Standard )	\
+	OP( VeyonConfiguration, VeyonCore::config(), bool, confirmUnsafeActions, setConfirmUnsafeActions, "ConfirmUnsafeActions", "Master", false, Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::AuthenticationMethod, authenticationMethod, setAuthenticationMethod, "Method", "Authentication", QVariant::fromValue(VeyonCore::AuthenticationMethod::LogonAuthentication), Configuration::Property::Flag::Standard )	\
@@ -123,6 +123,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyOnlyCurrentRoomVisible, setLegacyOnlyCurrentRoomVisible, "OnlyCurrentRoomVisible", "Master", false, Configuration::Property::Flag::Legacy )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyManualRoomAdditionAllowed, setLegacyManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master", false, Configuration::Property::Flag::Legacy )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyEmptyRoomsHidden, setLegacyEmptyRoomsHidden, "EmptyRoomsHidden", "Master", false, Configuration::Property::Flag::Legacy )	\
+	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyConfirmDangerousActions, setLegacyConfirmDangerousActions, "ConfirmDangerousActions", "Master", false, Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)			\

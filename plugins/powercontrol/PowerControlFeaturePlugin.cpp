@@ -180,7 +180,7 @@ CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_on( cons
 
 bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature, QWidget* parent )
 {
-	if( VeyonCore::config().confirmDangerousActions() == false )
+	if( VeyonCore::config().confirmUnsafeActions() == false )
 	{
 		return true;
 	}

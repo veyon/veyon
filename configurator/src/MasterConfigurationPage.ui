@@ -301,12 +301,12 @@
            </widget>
           </item>
           <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="confirmDangerousActions">
+           <widget class="QCheckBox" name="confirmUnsafeActions">
             <property name="toolTip">
              <string>Actions such as rebooting or powering down computers</string>
             </property>
             <property name="text">
-             <string>Show confirmation dialog for potential dangerous actions</string>
+             <string>Show confirmation dialog for potentially unsafe actions</string>
             </property>
            </widget>
           </item>

@@ -55,5 +55,6 @@ void VeyonConfiguration::upgrade()
 		setAllowAddingHiddenLocations( legacyManualRoomAdditionAllowed() );
 		setHideEmptyLocations( legacyEmptyRoomsHidden() );
 		setAutoOpenComputerSelectionView( legacyOpenComputerManagementAtStart() );
+		setConfirmUnsafeActions( legacyConfirmDangerousActions() );
 	}
 }
