@@ -61,10 +61,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation type="unfinished"></translation>
     </message>
@@ -150,6 +146,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
