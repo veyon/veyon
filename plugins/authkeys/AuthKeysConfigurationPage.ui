@@ -92,7 +92,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="keyManagement">
+    <widget class="QGroupBox" name="keyFileDirectories">
      <property name="title">
       <string>Key file directories</string>
      </property>

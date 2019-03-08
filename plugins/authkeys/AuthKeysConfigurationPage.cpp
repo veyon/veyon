@@ -44,6 +44,8 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 {
 	ui->setupUi(this);
 
+	Configuration::UiMapping::setFlags( ui->keyFileDirectories, Configuration::Property::Flag::Advanced );
+
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationPage::name );
 
