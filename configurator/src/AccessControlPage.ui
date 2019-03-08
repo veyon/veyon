@@ -21,7 +21,7 @@
       <item row="3" column="0">
        <widget class="QRadioButton" name="isAccessRestrictedToUserGroups">
         <property name="text">
-         <string>Restrict access to members of certain user groups</string>
+         <string>Restrict access to members of specific user groups</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">accessControlModeGroup</string>
