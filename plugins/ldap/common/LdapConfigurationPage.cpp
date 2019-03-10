@@ -380,29 +380,29 @@ void LdapConfigurationPage::testComputerDisplayNameAttribute()
 void LdapConfigurationPage::testComputerHostNameAttribute()
 {
 	QString computerName = QInputDialog::getText( this, tr( "Enter computer name" ),
-												  tr( "Please enter a computer host name to query:") );
+												  tr( "Please enter a computer hostname to query:") );
 	if( computerName.isEmpty() == false )
 	{
 		if( m_configuration.computerHostNameAsFQDN() &&
 			computerName.contains( QLatin1Char('.') ) == false )
 		{
-			QMessageBox::critical( this, tr( "Invalid host name" ),
-								   tr( "You configured computer host names to be stored "
+			QMessageBox::critical( this, tr( "Invalid hostname" ),
+								   tr( "You configured computer hostnames to be stored "
 									   "as fully qualified domain names (FQDN) but entered "
-									   "a host name without domain." ) );
+									   "a hostname without domain." ) );
 			return;
 		}
 		else if( m_configuration.computerHostNameAsFQDN() == false &&
 				 computerName.contains( QLatin1Char('.') ) )
 		{
-			QMessageBox::critical( this, tr( "Invalid host name" ),
-								   tr( "You configured computer host names to be stored "
-									   "as simple host names without a domain name but "
-									   "entered a host name with a domain name part." ) );
+			QMessageBox::critical( this, tr( "Invalid hostname" ),
+								   tr( "You configured computer hostnames to be stored "
+									   "as simple hostnames without a domain name but "
+									   "entered a hostname with a domain name part." ) );
 			return;
 		}
 
-		vDebug() << "[TEST][LDAP] Testing computer host name attribute";
+		vDebug() << "[TEST][LDAP] Testing computer hostname attribute";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
@@ -555,7 +555,7 @@ void LdapConfigurationPage::testGroupsOfUser()
 		{
 			QMessageBox::warning( this, tr( "User not found" ),
 								  tr( "Could not find a user with the name \"%1\". "
-									  "Please check the user name or the user "
+									  "Please check the username or the user "
 									  "tree parameter.").arg( username ) );
 		}
 	}
@@ -565,8 +565,8 @@ void LdapConfigurationPage::testGroupsOfUser()
 
 void LdapConfigurationPage::testGroupsOfComputer()
 {
-	QString computerHostName = QInputDialog::getText( this, tr( "Enter host name" ),
-													  tr( "Please enter a computer host name whose group memberships to query:") );
+	QString computerHostName = QInputDialog::getText( this, tr( "Enter hostname" ),
+													  tr( "Please enter a computer hostname whose group memberships to query:") );
 	if( computerHostName.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing groups of computer for" << computerHostName;
@@ -584,8 +584,8 @@ void LdapConfigurationPage::testGroupsOfComputer()
 		else
 		{
 			QMessageBox::warning( this, tr( "Computer not found" ),
-								  tr( "Could not find a computer with the host name \"%1\". "
-									  "Please check the host name or the computer tree "
+								  tr( "Could not find a computer with the hostname \"%1\". "
+									  "Please check the hostname or the computer tree "
 									  "parameter.").arg( computerHostName ) );
 		}
 	}
@@ -609,8 +609,8 @@ void LdapConfigurationPage::testComputerObjectByIpAddress()
 
 		if( computerName.isEmpty() )
 		{
-			QMessageBox::critical( this, tr( "Host name lookup failed" ),
-								   tr( "Could not lookup host name for IP address %1. "
+			QMessageBox::critical( this, tr( "Hostname lookup failed" ),
+								   tr( "Could not lookup hostname for IP address %1. "
 									   "Please check your DNS server settings." ).arg( computerIpAddress ) );
 		}
 		else

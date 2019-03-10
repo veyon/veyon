@@ -157,7 +157,7 @@ QStringList LdapDirectory::computersByDisplayName( const QString& filterValue )
 
 /*!
  * \brief Returns list of computer object names matching the given hostname filter
- * \param filterValue A filter value which is used to query the host name attribute
+ * \param filterValue A filter value which is used to query the hostname attribute
  * \return List of DNs of all matching computer objects
  */
 QStringList LdapDirectory::computersByHostName( const QString& filterValue )
@@ -397,11 +397,11 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 				 << host << "to" << hostAddress.toString();
 	}
 
-	// now do a name lookup to get the full host name information
+	// now do a name lookup to get the full hostname information
 	QHostInfo hostInfo = QHostInfo::fromName( hostAddress.toString() );
 	if( hostInfo.error() != QHostInfo::NoError )
 	{
-		qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup host name for IP"
+		qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup hostname for IP"
 				   << hostAddress.toString() << "error:" << hostInfo.errorString();
 		return QString();
 	}
@@ -413,10 +413,10 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 		return hostInfo.hostName();
 	}
 
-	// return first part of host name which should be the actual machine name
+	// return first part of hostname which should be the actual machine name
 	const QString hostName = hostInfo.hostName().split( QLatin1Char('.') ).value( 0 );
 
-	vDebug() << "LdapDirectory::hostToLdapFormat(): resolved host name" << hostName;
+	vDebug() << "LdapDirectory::hostToLdapFormat(): resolved hostname" << hostName;
 	return hostName;
 }
 

@@ -106,7 +106,7 @@ void ComputerManager::removeLocation( const QString& location )
 
 bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 {
-	QStringList lines( tr( "Computer name;Host name;User" ) );
+	QStringList lines( tr( "Computer name;Hostname;User" ) );
 
 	const auto computers = selectedComputers( QModelIndex() );
 
@@ -174,7 +174,7 @@ void ComputerManager::initLocations()
 {
 	for( const auto& hostName : qAsConst( m_localHostNames ) )
 	{
-		vDebug() << Q_FUNC_INFO << "initializing locations for host name" << hostName;
+		vDebug() << Q_FUNC_INFO << "initializing locations for hostname" << hostName;
 	}
 
 	for( const auto& address : qAsConst( m_localHostAddresses ) )

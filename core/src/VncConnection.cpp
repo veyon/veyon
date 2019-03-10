@@ -284,7 +284,7 @@ void VncConnection::setHost( const QString& host )
 	}
 	else if( m_host.count( QLatin1Char(':') ) == 1 )
 	{
-		// host name + port number?
+		// hostname + port number?
 		QRegExp rx2( QStringLiteral("(.*[^:]):(\\d+)$") );
 		if( rx2.indexIn( m_host ) == 0 )
 		{
