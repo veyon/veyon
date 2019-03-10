@@ -69,22 +69,24 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 	const auto command = arguments.value( 0 );
 
 	const QMap<QString, QStringList> commands = {
-		{ QStringLiteral("setaccessgroup"),
-		  QStringList( { QStringLiteral("<%1> <%2>").arg( tr("KEY"), tr("ACCESS GROUP") ),
-						 tr( "This command adjusts file access permissions to <KEY> such that only the "
-						 "user group <ACCESS GROUP> has read access to it." ) } ) },
 		{ QStringLiteral("create"),
 		  QStringList( { QStringLiteral("<%1>").arg( tr("NAME") ),
 						 tr( "This command creates a new authentication key pair with name <NAME> and saves private and "
-						 "public key to the configured key directories." ) } ) },
+						 "public key to the configured key directories. The parameter must be a name for the key, which "
+						 "may only contain letters." ) } ) },
 		{ QStringLiteral("delete"),
 		  QStringList( { QStringLiteral("<%1>").arg( tr("KEY") ),
 						 tr( "This command deletes the authentication key <KEY> from the configured key directory. "
-						 "Please note that a key can't be recovered once deleted." ) } ) },
+						 "Please note that a key can't be recovered once it has been deleted." ) } ) },
 		{ QStringLiteral("export"),
 		  QStringList( { QStringLiteral("<%1> [<%2>]").arg( tr("KEY"), tr("FILE") ),
 						 tr( "This command exports the authentication key <KEY> to <FILE>. "
 						 "If <FILE> is not specified a name will be constructed from name and type of <KEY>." ) } ) },
+		{ QStringLiteral("extract"),
+		  QStringList( { QStringLiteral("<%1>").arg( tr("KEY") ),
+						 tr( "This command extracts the public key part from the private key <KEY> and saves it as the "
+						 "corresponding public key. When setting up another master computer, it is therefore sufficient "
+						 "to transfer the private key only. The public key can then be extracted." ) } ) },
 		{ QStringLiteral("import"),
 		  QStringList( { QStringLiteral("<%1> [<%2>]").arg( tr( "KEY" ), tr( "FILE" ) ),
 						 tr( "This command imports the authentication key <KEY> from <FILE>. "
@@ -94,10 +96,10 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 						 tr( "This command lists all available authentication keys in the configured key directory. "
 						 "If the option \"%1\" is specified a table with key details will be displayed instead. "
 						 "Some details might be missing if a key is not accessible e.g. due to the lack of read permissions." ).arg( QLatin1String("details") ) } ) },
-		{ QStringLiteral("extract"),
-		  QStringList( { QStringLiteral("<%1>").arg( tr("KEY") ),
-						 tr( "This command extracts the public key part from the private key <KEY> and saves it as the "
-						 "corresponding public key." ) } ) },
+		{ QStringLiteral("setaccessgroup"),
+		  QStringList( { QStringLiteral("<%1> <%2>").arg( tr("KEY"), tr("ACCESS GROUP") ),
+						 tr( "This command adjusts file access permissions to <KEY> such that only the "
+						 "user group <ACCESS GROUP> has read access to it." ) } ) },
 	};
 
 	if( commands.contains( command ) )
