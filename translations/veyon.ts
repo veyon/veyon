@@ -611,14 +611,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation type="unfinished"></translation>
     </message>
@@ -632,10 +624,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -656,6 +644,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1079,15 +1079,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer name;Host name;User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Location detection failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1830,10 +1830,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1855,10 +1851,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1887,10 +1879,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1991,22 +1979,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2047,18 +2019,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2067,23 +2027,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2366,6 +2314,58 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
