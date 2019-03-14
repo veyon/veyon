@@ -87,7 +87,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	initCryptoCore();
 
-	initAuthentication( AuthenticationCredentials::None );
+	initAuthenticationCredentials();
 
 	initPlugins();
 
@@ -205,50 +205,15 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-bool VeyonCore::initAuthentication( unsigned int credentialTypes )
+bool VeyonCore::initAuthentication()
 {
-	if( m_authenticationCredentials )
+	switch( config().authenticationMethod() )
 	{
-		delete m_authenticationCredentials;
-		m_authenticationCredentials = nullptr;
+	case AuthenticationMethod::LogonAuthentication: return initLogonAuthentication();
+	case AuthenticationMethod::KeyFileAuthentication: return initKeyFileAuthentication();
 	}
 
-	m_authenticationCredentials = new AuthenticationCredentials;
-
-	bool success = false;
-
-	if( credentialTypes & AuthenticationCredentials::UserLogon &&
-			config().authenticationMethod() == AuthenticationMethod::LogonAuthentication )
-	{
-		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
-		{
-			PasswordDialog dlg( QApplication::activeWindow() );
-			if( dlg.exec() &&
-				dlg.credentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
-			{
-				m_authenticationCredentials->setLogonUsername( dlg.username() );
-				m_authenticationCredentials->setLogonPassword( dlg.password() );
-
-				success = true;
-			}
-			else
-			{
-				success = false;
-			}
-		}
-		else
-		{
-			success = false;
-		}
-	}
-
-	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
-			config().authenticationMethod() == AuthenticationMethod::KeyFileAuthentication )
-	{
-		success = initKeyFileAuthentication();
-	}
-
-	return success;
+	return false;
 }
 
 
@@ -448,6 +413,19 @@ void VeyonCore::initCryptoCore()
 
 
 
+void VeyonCore::initAuthenticationCredentials()
+{
+	if( m_authenticationCredentials )
+	{
+		delete m_authenticationCredentials;
+		m_authenticationCredentials = nullptr;
+	}
+
+	m_authenticationCredentials = new AuthenticationCredentials;
+}
+
+
+
 void VeyonCore::initPlugins()
 {
 	// load all other (non-platform) plugins
@@ -474,6 +452,26 @@ void VeyonCore::initLocalComputerControlInterface()
 								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().primaryServicePort() + sessionId() ) );
 
 	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
+}
+
+
+
+bool VeyonCore::initLogonAuthentication()
+{
+	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
+	{
+		PasswordDialog dlg( QApplication::activeWindow() );
+		if( dlg.exec() &&
+			dlg.credentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
+		{
+			m_authenticationCredentials->setLogonUsername( dlg.username() );
+			m_authenticationCredentials->setLogonPassword( dlg.password() );
+
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

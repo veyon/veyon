@@ -213,7 +213,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	authReplyMessage.write( chosenAuthType );
 
 	// send username which is used when displaying an access confirm dialog
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
 	{
 		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
 	}
@@ -230,7 +230,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	switch( chosenAuthType )
 	{
 	case RfbVeyonAuth::KeyFile:
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::PrivateKey ) )
+		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::PrivateKey ) )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();

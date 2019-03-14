@@ -56,7 +56,7 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 		authTypes.append( RfbVeyonAuth::Logon );
 	}
 
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) )
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::Token ) )
 	{
 		authTypes.append( RfbVeyonAuth::Token );
 	}
@@ -273,7 +273,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 	{
 		const auto token = message.read().toString();  // Flawfinder: ignore
 
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) &&
+		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::Token ) &&
 				token == VeyonCore::authenticationCredentials().token() )
 		{
 			vDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );

@@ -32,7 +32,7 @@
 class VEYON_CORE_EXPORT AuthenticationCredentials
 {
 public:
-	enum TypeFlags
+	enum class Type
 	{
 		None = 0x00,
 		PrivateKey = 0x01,
@@ -40,12 +40,13 @@ public:
 		Token = 0x04,
 		AllTypes = PrivateKey | UserLogon | Token
 	} ;
-	typedef int TypeFlag;
+
+	Q_DECLARE_FLAGS(TypeFlags, Type)
 
 	AuthenticationCredentials();
 	AuthenticationCredentials( const AuthenticationCredentials &other );
 
-	bool hasCredentials( TypeFlags credentialType ) const;
+	bool hasCredentials( Type credentialType ) const;
 
 	// private key auth
 	bool loadPrivateKey( const QString& privateKeyFile );

@@ -46,26 +46,25 @@ AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCreden
 
 
 
-bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
+bool AuthenticationCredentials::hasCredentials( Type type ) const
 {
-	if( credentialType & PrivateKey )
+	switch( type )
 	{
+	case Type::PrivateKey:
 		return m_privateKey.isNull() == false;
-	}
 
-	if( credentialType & UserLogon )
-	{
-		return m_logonUsername.isEmpty() == false &&
-				m_logonPassword.isEmpty() == false;
-	}
+	case Type::UserLogon:
+		return m_logonUsername.isEmpty() == false && m_logonPassword.isEmpty() == false;
 
-	if( credentialType & Token )
-	{
+	case Type::Token:
 		return m_token.isEmpty() == false &&
 				QByteArray::fromBase64( m_token.toUtf8() ).size() == CryptoCore::ChallengeSize;
+
+	default:
+		break;
 	}
 
-	qCritical( "AuthenticationCredentials::hasCredentials(): no valid credential type given: %d", credentialType );
+	qCritical() << Q_FUNC_INFO << "no valid credential type given:" << TypeFlags( type );
 
 	return false;
 }

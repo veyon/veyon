@@ -136,7 +136,7 @@ public:
 	}
 
 	static void setupApplicationParameters();
-	bool initAuthentication( unsigned int credentialTypes );
+	bool initAuthentication();
 
 	static bool hasSessionId();
 	static int sessionId();
@@ -169,9 +169,11 @@ private:
 	void initLogging( const QString& appComponentName );
 	void initLocaleAndTranslation();
 	void initCryptoCore();
+	void initAuthenticationCredentials();
 	void initPlugins();
 	void initManagers();
 	void initLocalComputerControlInterface();
+	bool initLogonAuthentication();
 	bool initKeyFileAuthentication();
 
 	static VeyonCore* s_instance;

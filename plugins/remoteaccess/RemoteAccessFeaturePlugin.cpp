@@ -174,7 +174,7 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( co
 
 bool RemoteAccessFeaturePlugin::initAuthentication()
 {
-	if( VeyonCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) == false )
+	if( VeyonCore::instance()->initAuthentication() == false )
 	{
 		qWarning() << "Could not initialize authentication";
 		return false;

@@ -172,13 +172,13 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initAuthentication()
 {
-	if( VeyonCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) )
+	if( VeyonCore::instance()->initAuthentication() )
 	{
 		return true;
 	}
 
 	// if we have logon credentials, assume they are fine and continue
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
 	{
 		return true;
 	}
@@ -199,7 +199,7 @@ bool MainWindow::initAuthentication()
 bool MainWindow::initAccessControl()
 {
 	if( VeyonCore::config().accessControlForMasterEnabled() &&
-			VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
+			VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
 	{
 		const auto accessControlResult =
 				AccessControlProvider().checkAccess( VeyonCore::authenticationCredentials().logonUsername(),
