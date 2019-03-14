@@ -167,7 +167,7 @@ bool GeneralConfigurationPage::testKeyFileAuthentication()
 void GeneralConfigurationPage::openLogFileDirectory()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->logFileDirectory );
+			exec( ui->logFileDirectory );
 }
 
 
@@ -182,10 +182,10 @@ void GeneralConfigurationPage::clearLogFiles()
 	if( serviceControl.isServiceRunning() )
 	{
 		if( QMessageBox::question( this, tr( "%1 service" ).arg( VeyonCore::applicationName() ),
-				tr( "The %1 service needs to be stopped temporarily "
-					"in order to remove the log files. Continue?"
-					).arg( VeyonCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,
-				QMessageBox::Yes ) == QMessageBox::Yes )
+								   tr( "The %1 service needs to be stopped temporarily "
+									   "in order to remove the log files. Continue?"
+									   ).arg( VeyonCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,
+								   QMessageBox::Yes ) == QMessageBox::Yes )
 		{
 			serviceControl.stopService();
 			serviceStopped = true;
@@ -228,12 +228,12 @@ void GeneralConfigurationPage::clearLogFiles()
 	if( success )
 	{
 		QMessageBox::information( this, tr( "Log files cleared" ),
-			tr( "All log files were cleared successfully." ) );
+								  tr( "All log files were cleared successfully." ) );
 	}
 	else
 	{
 		QMessageBox::critical( this, tr( "Error" ),
-			tr( "Could not remove all log files." ) );
+							   tr( "Could not remove all log files." ) );
 	}
 }
 
