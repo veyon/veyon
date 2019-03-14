@@ -55,7 +55,7 @@
      <property name="title">
       <string>Authentication</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0">
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
@@ -75,6 +75,17 @@
           <string>Key file authentication</string>
          </property>
         </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="testAuthenticationButton">
+        <property name="text">
+         <string>Test</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+        </property>
        </widget>
       </item>
      </layout>
@@ -333,6 +344,7 @@
   <tabstop>applicationName</tabstop>
   <tabstop>uiLanguage</tabstop>
   <tabstop>authenticationMethod</tabstop>
+  <tabstop>testAuthenticationButton</tabstop>
   <tabstop>networkObjectDirectoryPlugin</tabstop>
   <tabstop>networkObjectDirectoryUpdateInterval</tabstop>
   <tabstop>logFileDirectory</tabstop>

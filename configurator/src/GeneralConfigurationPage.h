@@ -39,14 +39,21 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-private slots:
+private:
+	void testAuthentication();
+	bool testLogonAuthentication();
+	bool testKeyFileAuthentication();
+
 	void openLogFileDirectory();
 	void clearLogFiles();
 
-
-private:
 	void populateNetworkObjectDirectories();
 
-	Ui::GeneralConfigurationPage *ui;
+	static QString authenticationTestTitle()
+	{
+		return tr( "Authentication test");
+	}
+
+	Ui::GeneralConfigurationPage* ui;
 
 } ;
