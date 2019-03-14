@@ -70,19 +70,25 @@ static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_res
 
 int main()
 {
-	QString username, password;
+	QString username, password, service;
 	QFile stdIn;
 	stdIn.open( 0, QFile::ReadOnly );
 	QDataStream ds( &stdIn );
 	ds >> username;
 	ds >> password;
+	ds >> service;
+
+	if( service.isEmpty() || service != QStringLiteral("veyon") )
+	{
+		service = QStringLiteral("login");
+	}
 
 	pam_username = qstrdup( username.toUtf8().constData() );
 	pam_password = qstrdup( password.toUtf8().constData() );
 
 	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t *pamh;
-	int err = pam_start( "su", nullptr, &pconv, &pamh );
+	int err = pam_start( service.toUtf8().constData(), nullptr, &pconv, &pamh );
 	if( err == PAM_SUCCESS )
 	{
 		err = pam_authenticate( pamh, PAM_SILENT );

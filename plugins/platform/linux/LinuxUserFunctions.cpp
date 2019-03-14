@@ -29,6 +29,7 @@
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
 #include "LinuxUserFunctions.h"
+#include "VeyonConfiguration.h"
 
 #include <pwd.h>
 #include <unistd.h>
@@ -306,18 +307,30 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 {
 	QProcess p;
 	p.start( QStringLiteral( "veyon-auth-helper" ) );
-	p.waitForStarted();
+	if( p.waitForStarted() == false )
+	{
+		qCritical() << Q_FUNC_INFO << "failed to start VeyonAuthHelper";
+		return false;
+	}
+
+	QString service;
+	if( VeyonCore::config().isAlternativeAuthenticationMechanismEnabled() )
+	{
+		service = QStringLiteral("veyon");
+	}
 
 	QDataStream ds( &p );
 	ds << VeyonCore::stripDomain( username );
 	ds << password;
+	ds << service;
 
 	p.closeWriteChannel();
 	p.waitForFinished();
 
 	if( p.exitCode() != 0 )
 	{
-		qCritical() << "VeyonAuthHelper failed:" << p.readAll().trimmed();
+		qCritical() << Q_FUNC_INFO << "VeyonAuthHelper failed:" << p.exitCode()
+					<< p.readAllStandardOutput().trimmed() << p.readAllStandardError().trimmed();
 		return false;
 	}
 
