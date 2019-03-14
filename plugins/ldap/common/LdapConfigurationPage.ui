@@ -470,7 +470,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="browseUserLoginAttribute">
+           <widget class="QPushButton" name="browseUserLoginNameAttribute">
             <property name="icon">
              <iconset resource="../../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
@@ -488,9 +488,9 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="userLoginAttributeLabel">
+           <widget class="QLabel" name="userLoginNameAttributeLabel">
             <property name="text">
-             <string>User login attribute</string>
+             <string>User login name attribute</string>
             </property>
            </widget>
           </item>
@@ -524,7 +524,7 @@
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QPushButton" name="testUserLoginAttribute">
+           <widget class="QPushButton" name="testUserLoginNameAttribute">
             <property name="icon">
              <iconset resource="../../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
@@ -599,7 +599,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="userLoginAttribute">
+           <widget class="QLineEdit" name="userLoginNameAttribute">
             <property name="placeholderText">
              <string>e.g. uid or sAMAccountName</string>
             </property>
@@ -845,7 +845,7 @@
           <item>
            <widget class="QRadioButton" name="identifyGroupMembersByNameAttribute">
             <property name="text">
-             <string>Configured attribute for user login or computer hostname (OpenLDAP)</string>
+             <string>Configured attribute for user login name or computer hostname (OpenLDAP)</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">groupMemberMatchingGroup</string>
@@ -1033,7 +1033,7 @@
   <tabstop>browseComputerGroupTree</tabstop>
   <tabstop>testComputerGroupTree</tabstop>
   <tabstop>recursiveSearchOperations</tabstop>
-  <tabstop>userLoginAttribute</tabstop>
+  <tabstop>userLoginNameAttribute</tabstop>
   <tabstop>groupMemberAttribute</tabstop>
   <tabstop>computerDisplayNameAttribute</tabstop>
   <tabstop>computerHostNameAttribute</tabstop>
@@ -1041,8 +1041,8 @@
   <tabstop>computerMacAddressAttribute</tabstop>
   <tabstop>computerLocationAttribute</tabstop>
   <tabstop>locationNameAttribute</tabstop>
-  <tabstop>browseUserLoginAttribute</tabstop>
-  <tabstop>testUserLoginAttribute</tabstop>
+  <tabstop>browseUserLoginNameAttribute</tabstop>
+  <tabstop>testUserLoginNameAttribute</tabstop>
   <tabstop>browseGroupMemberAttribute</tabstop>
   <tabstop>testGroupMemberAttribute</tabstop>
   <tabstop>browseComputerDisplayNameAttribute</tabstop>
@@ -1323,9 +1323,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="baseDnConfigGroup"/>
-  <buttongroup name="computerGroupingGroup"/>
+  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>

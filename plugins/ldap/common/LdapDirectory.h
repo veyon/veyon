@@ -128,7 +128,7 @@ private:
 	QString m_computersDn;
 	QString m_computerGroupsDn;
 
-	QString m_userLoginAttribute;
+	QString m_userLoginNameAttribute;
 	QString m_groupMemberAttribute;
 	QString m_computerDisplayNameAttribute;
 	QString m_computerHostNameAttribute;

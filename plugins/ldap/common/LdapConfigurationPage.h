@@ -58,7 +58,7 @@ private:
 	void testGroupTree();
 	void testComputerTree();
 	void testComputerGroupTree();
-	void testUserLoginAttribute();
+	void testUserLoginNameAttribute();
 	void testGroupMemberAttribute();
 	void testComputerDisplayNameAttribute();
 	void testComputerHostNameAttribute();

@@ -49,7 +49,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	connect( ui->browseComputerTree, &QPushButton::clicked, this, [this]() { browseObjectTree( ui->computerTree ); } );
 	connect( ui->browseComputerGroupTree, &QPushButton::clicked, this, [this]() { browseObjectTree( ui->computerGroupTree ); } );
 
-	connect( ui->browseUserLoginAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->userLoginAttribute, m_configuration.userTree() ); } );
+	connect( ui->browseUserLoginNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->userLoginNameAttribute, m_configuration.userTree() ); } );
 	connect( ui->browseGroupMemberAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->groupMemberAttribute, m_configuration.groupTree() ); } );
 	connect( ui->browseComputerDisplayNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerDisplayNameAttribute, m_configuration.computerTree() ); } );
 	connect( ui->browseComputerHostNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerHostNameAttribute, m_configuration.computerTree() ); } );
@@ -65,7 +65,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testComputerTree );
 	CONNECT_BUTTON_SLOT( testComputerGroupTree );
 
-	CONNECT_BUTTON_SLOT( testUserLoginAttribute );
+	CONNECT_BUTTON_SLOT( testUserLoginNameAttribute );
 	CONNECT_BUTTON_SLOT( testGroupMemberAttribute );
 	CONNECT_BUTTON_SLOT( testComputerDisplayNameAttribute );
 	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute );
@@ -310,7 +310,7 @@ void LdapConfigurationPage::testComputerGroupTree()
 
 
 
-void LdapConfigurationPage::testUserLoginAttribute()
+void LdapConfigurationPage::testUserLoginNameAttribute()
 {
 	QString userFilter = QInputDialog::getText( this, tr( "Enter username" ),
 												tr( "Please enter a user login name (wildcards allowed) which to query:") );
@@ -321,7 +321,7 @@ void LdapConfigurationPage::testUserLoginAttribute()
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
 
-		reportLdapObjectQueryResults( tr( "user objects" ), { ui->userLoginAttributeLabel->text() },
+		reportLdapObjectQueryResults( tr( "user objects" ), { ui->userLoginNameAttributeLabel->text() },
 									  ldapDirectory.users( userFilter ), ldapDirectory );
 	}
 }
@@ -547,16 +547,15 @@ void LdapConfigurationPage::testGroupsOfUser()
 
 		if( userObjects.isEmpty() == false )
 		{
-			reportLdapObjectQueryResults( tr( "groups of user" ), { ui->userLoginAttributeLabel->text(),
+			reportLdapObjectQueryResults( tr( "groups of user" ), { ui->userLoginNameAttributeLabel->text(),
 																	ui->groupMemberAttributeLabel->text() },
 										  ldapDirectory.groupsOfUser( userObjects.first() ), ldapDirectory );
 		}
 		else
 		{
 			QMessageBox::warning( this, tr( "User not found" ),
-								  tr( "Could not find a user with the name \"%1\". "
-									  "Please check the username or the user "
-									  "tree parameter.").arg( username ) );
+								  tr( "Could not find a user with the name \"%1\". Please check the username "
+									  "or the user tree parameter.").arg( username ) );
 		}
 	}
 }

@@ -46,7 +46,7 @@
 	OP( LdapConfiguration, m_configuration, QString, computerTree, setComputerTree, "ComputerTree", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerGroupTree, setComputerGroupTree, "ComputerGroupTree", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, bool, recursiveSearchOperations, setRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP", false, Configuration::Property::Flag::Standard )	\
-	OP( LdapConfiguration, m_configuration, QString, userLoginAttribute, setUserLoginAttribute, "UserLoginAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
+	OP( LdapConfiguration, m_configuration, QString, userLoginNameAttribute, setUserLoginNameAttribute, "UserLoginNameAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, groupMemberAttribute, setGroupMemberAttribute, "GroupMemberAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerDisplayNameAttribute, setComputerDisplayNameAttribute, "ComputerDisplayNameAttribute", "LDAP", QStringLiteral("cn"), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerHostNameAttribute, setComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
@@ -64,6 +64,7 @@
 	OP( LdapConfiguration, m_configuration, QString, computerLocationAttribute, setComputerLocationAttribute, "ComputerLocationAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_LDAP_LEGACY_CONFIG_PROPERTY(OP) \
+	OP( LdapConfiguration, m_configuration, QString, legacyUserLoginAttribute, setLegacyUserLoginAttribute, "UserLoginAttribute", "LDAP", QString(), Configuration::Property::Flag::Legacy )	\
 	OP( LdapConfiguration, m_configuration, bool, legacyComputerRoomMembersByContainer, setCompatComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP", false, Configuration::Property::Flag::Legacy )	\
 	OP( LdapConfiguration, m_configuration, bool, legacyComputerRoomMembersByAttribute, setCompatComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP", false, Configuration::Property::Flag::Legacy )	\
 	OP( LdapConfiguration, m_configuration, QString, legacyComputerRoomAttribute, setCompatComputerRoomAttribute, "ComputerRoomAttribute", "LDAP", QString(), Configuration::Property::Flag::Legacy )	\

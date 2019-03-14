@@ -86,6 +86,7 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 	}
 	else if( oldVersion < QVersionNumber( 1, 2 ) )
 	{
+		m_configuration.setUserLoginNameAttribute( m_configuration.legacyUserLoginAttribute() );
 		m_configuration.setComputerLocationsByAttribute( m_configuration.legacyComputerRoomMembersByAttribute() );
 		m_configuration.setComputerLocationsByContainer( m_configuration.legacyComputerRoomMembersByContainer() );
 		m_configuration.setComputerLocationAttribute( m_configuration.legacyComputerRoomAttribute() );
