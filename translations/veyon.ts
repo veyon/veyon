@@ -1658,6 +1658,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1831,10 +1847,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2325,10 +2337,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Configured attribute for user login or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please enter a computer hostname to query:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2366,6 +2374,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
