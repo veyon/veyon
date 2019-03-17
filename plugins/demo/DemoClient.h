@@ -35,13 +35,10 @@ public:
 	DemoClient( const QString& host, bool fullscreen, QObject* parent = nullptr );
 	~DemoClient() override;
 
-
-private slots:
+private:
 	void viewDestroyed( QObject* obj );
 	void resizeToplevelWidget();
 
-
-private:
 	QWidget* m_toplevel;
 	VncView* m_vncView;
 

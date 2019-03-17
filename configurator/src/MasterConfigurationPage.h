@@ -45,12 +45,12 @@ public:
 	void applyConfiguration() override;
 
 private slots:
-	void openUserConfigurationDirectory();
-	void openScreenshotDirectory();
 	void enableFeature();
 	void disableFeature();
 
 private:
+	void openUserConfigurationDirectory();
+	void openScreenshotDirectory();
 	void populateFeatureComboBox();
 	void updateFeatureLists();
 

@@ -41,11 +41,8 @@ public:
 	void run();
 
 private slots:
-	void connectToLoginManager();
 	void startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
-	void stopServer( const QString& sessionPath );
-	void stopAllServers();
 
 private:
 	enum {
@@ -70,6 +67,10 @@ private:
 		QString id;
 		QString path;
 	} LoginDBusSessionSeat;
+
+	void connectToLoginManager();
+	void stopServer( const QString& sessionPath );
+	void stopAllServers();
 
 	QStringList listSessions();
 

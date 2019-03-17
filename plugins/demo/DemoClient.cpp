@@ -66,10 +66,8 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 
 	m_toplevel->setLayout( toplevelLayout );
 
-	connect( m_toplevel, &QObject::destroyed,
-			 this, &DemoClient::viewDestroyed );
-	connect( m_vncView, &VncView::sizeHintChanged,
-			 this, &DemoClient::resizeToplevelWidget );
+	connect( m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed );
+	connect( m_vncView, &VncView::sizeHintChanged, this, &DemoClient::resizeToplevelWidget );
 
 	m_toplevel->move( 0, 0 );
 	if( fullscreen )

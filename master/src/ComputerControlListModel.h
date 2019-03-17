@@ -81,12 +81,11 @@ public slots:
 signals:
 	void activeFeaturesChanged( QModelIndex );
 
-private slots:
+private:
 	void update();
 
 	void updateComputerScreens();
 
-private:
 	void startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface, const QModelIndex& index );
 	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );
 

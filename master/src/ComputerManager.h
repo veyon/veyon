@@ -63,10 +63,9 @@ signals:
 	void computerSelectionReset();
 	void computerSelectionChanged();
 
-private slots:
+private:
 	void checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles );
 
-private:
 	void initLocations();
 	void initNetworkObjectLayer();
 	void initComputerTreeModel();

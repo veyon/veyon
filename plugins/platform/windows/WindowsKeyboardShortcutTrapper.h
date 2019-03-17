@@ -38,13 +38,10 @@ public:
 
 	void setEnabled( bool on ) override;
 
-private slots:
+private:
 	void forwardTrappedShortcuts();
 
-private:
-	enum {
-		PollTimerInterval = 10
-	};
+	static constexpr int PollTimerInterval = 10;
 
 	static QMutex s_refCntMutex;
 	static int s_refCnt;

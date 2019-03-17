@@ -56,14 +56,13 @@ public:
 	bool isWorkerRunning( const Feature& feature );
 	FeatureUidList runningWorkers();
 
-private slots:
+private:
 	void acceptConnection();
 	void processConnection( QTcpSocket* socket );
 	void closeConnection( QTcpSocket* socket );
 
 	void sendPendingMessages();
 
-private:
 	VeyonServerInterface& m_server;
 	FeatureManager& m_featureManager;
 	QTcpServer m_tcpServer;

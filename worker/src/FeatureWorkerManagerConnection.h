@@ -44,11 +44,10 @@ public:
 
 	bool sendMessage( const FeatureMessage& message );
 
-private slots:
+private:
 	void sendInitMessage();
 	void receiveMessage();
 
-private:
 	VeyonWorkerInterface& m_worker;
 	FeatureManager& m_featureManager;
 	QTcpSocket m_socket;

@@ -96,7 +96,7 @@ signals:
 	void sizeHintChanged();
 
 
-private slots:
+private:
 	void handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut );
 	void updateCursorPos( int x, int y );
 	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
@@ -104,7 +104,6 @@ private slots:
 	void updateFramebufferSize( int w, int h );
 	void updateConnectionState();
 
-private:
 	bool eventFilter( QObject* obj, QEvent* event ) override;
 	bool event( QEvent* event ) override;
 	void focusInEvent( QFocusEvent* event ) override;

@@ -51,11 +51,10 @@ public:
 		return m_connections;
 	}
 
-private slots:
+private:
 	void acceptConnection();
 	void closeConnection( VncProxyConnection* );
 
-private:
 	int m_vncServerPort;
 	QString m_vncServerPassword;
 	QHostAddress m_listenAddress;

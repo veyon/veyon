@@ -74,13 +74,12 @@ public:
 		return m_framebufferUpdateMessages;
 	}
 
-private slots:
+private:
 	void acceptPendingConnections();
 	void reconnectToVncServer();
 	void readFromVncServer();
 	void requestFramebufferUpdate();
 
-private:
 	bool receiveVncServerMessage();
 	void enqueueFramebufferUpdateMessage( const QByteArray& message );
 

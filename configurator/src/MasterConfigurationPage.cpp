@@ -42,11 +42,11 @@ MasterConfigurationPage::MasterConfigurationPage() :
 {
 	ui->setupUi(this);
 
-#define CONNECT_BUTTON_SLOT(name) \
-	connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
+	connect( ui->openUserConfigurationDirectory, &QPushButton::clicked,
+			 this, &MasterConfigurationPage::openUserConfigurationDirectory );
 
-	CONNECT_BUTTON_SLOT( openUserConfigurationDirectory );
-	CONNECT_BUTTON_SLOT( openScreenshotDirectory );
+	connect( ui->openScreenshotDirectory, &QPushButton::clicked,
+			 this, &MasterConfigurationPage::openScreenshotDirectory );
 
 	populateFeatureComboBox();
 }
@@ -86,20 +86,6 @@ void MasterConfigurationPage::applyConfiguration()
 
 
 
-void MasterConfigurationPage::openUserConfigurationDirectory()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->userConfigurationDirectory );
-}
-
-
-
-void MasterConfigurationPage::openScreenshotDirectory()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->screenshotDirectory );
-}
-
-
-
 void MasterConfigurationPage::enableFeature()
 {
 	const auto items = ui->disabledFeaturesListWidget->selectedItems();
@@ -130,6 +116,20 @@ void MasterConfigurationPage::disableFeature()
 	VeyonCore::config().setDisabledFeatures( m_disabledFeatures );
 
 	updateFeatureLists();
+}
+
+
+
+void MasterConfigurationPage::openUserConfigurationDirectory()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->userConfigurationDirectory );
+}
+
+
+
+void MasterConfigurationPage::openScreenshotDirectory()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->screenshotDirectory );
 }
 
 

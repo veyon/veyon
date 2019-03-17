@@ -74,11 +74,9 @@ signals:
 	void mouseLeftButton();
 
 
-private slots:
+private:
 	bool checkForLeaveEvent();
 
-
-private:
 	void updateSize();
 
 	static bool s_toolTipsDisabled;

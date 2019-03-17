@@ -32,15 +32,13 @@ class MainToolBar : public QToolBar
 	Q_OBJECT
 public:
 	MainToolBar( QWidget* parent );
-	~MainToolBar() = default;
-
-
-private slots:
-	void toggleToolTips();
-	void toggleIconMode();
+	~MainToolBar() override = default;
 
 
 private:
+	void toggleToolTips();
+	void toggleIconMode();
+
 	void contextMenuEvent( QContextMenuEvent* event ) override;
 	void paintEvent( QPaintEvent* event ) override;
 

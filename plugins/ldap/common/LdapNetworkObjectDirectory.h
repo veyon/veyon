@@ -38,11 +38,10 @@ public:
 
 	static NetworkObject computerToObject( LdapDirectory* directory, const QString& computerDn );
 
-private slots:
+private:
 	void update() override;
 	void updateLocation( const NetworkObject& locationObject );
 
-private:
 	NetworkObjectList queryLocations( const QString& name );
 	NetworkObjectList queryHosts( const QString& name );
 

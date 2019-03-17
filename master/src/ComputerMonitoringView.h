@@ -54,7 +54,6 @@ public:
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
-public slots:
 	void setSearchFilter( const QString& searchFilter );
 	void setFilterPoweredOnComputers( bool enabled );
 	void setComputerScreenSize( int size );
@@ -62,12 +61,11 @@ public slots:
 	void setUseCustomComputerPositions( bool enabled );
 	void alignComputers();
 
-private slots:
+private:
 	void runDoubleClickFeature( const QModelIndex& index );
 	void showContextMenu( QPoint pos );
 	void runFeature( const Feature& feature );
 
-private:
 	ComputerSortFilterProxyModel& listModel();
 
 	void showEvent( QShowEvent* event ) override;
