@@ -61,10 +61,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>테스트</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>특정 유저 그룹 멤버만 접근 허용</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>프로세스 접근제어 규칙</translation>
     </message>
@@ -151,6 +147,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>디폴트 유저 그룹 플러그인이 없습니다. 설치상태를 확인하세요!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -252,16 +252,16 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>로그온된 사용자 없음</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>연결하는 컴퓨터는 로컬컴퓨터와 같은 교실에 있습니다</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>연결하는 사용자는 로컬 사용자(로그온됨)와 하나 또는 그이상의 공통 그룹을 갖고 있습니다</translation>
     </message>
     <message>
-        <source>is located in</source>
-        <translation>위치는 </translation>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -614,14 +614,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>이름</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>이 명령어는 이름 &lt;NAME&gt; 를 가진 새로운 인증 키 페어를  생성하고 개인키와 공개키를 지정된 키 폴더에 저장합니다.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>이 명령어는 키폴더에 설정된 인증키 &lt;KEY&gt;  를 삭제합니다. 이키를 삭제하면 다시 복구할 수 없습니다.</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>화일</translation>
     </message>
@@ -636,10 +628,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>이 명령어는 설정된 키폴더에 있는 모든 인증키를 리스트해 줍니다. 만일 옵션 &quot;%1&quot;가 지정되면 키 상세 테이블이 대신 표시됩니다. 키가 접근 불가할 경우엔 일부 내용이 누락될 수 있습니다. 즉 e.g. 읽기 권한이 없는 경우등.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>이 명령어는 개인키 &lt;KEY&gt; 를 통해서 공개키 파트를 추출하여 개인키에 대한 공개키로 저장합니다.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -660,6 +648,18 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>인증키 조작 명령어들</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1000,10 +1000,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>교실: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>호스트/IP 주소: %1</translation>
     </message>
@@ -1043,6 +1039,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation>로그온된 사용자 : %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1068,14 +1068,45 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>사용자</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>네트워크 개체 디렉토리 플러그인이 없음</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>기본 네트워크 개체 폴더 플러그인 없음. 설치 상태를 점검하거나 또는 %1 설정을 이용하여 다른 네트워크 개체 폴더 백엔드를 설정하세요.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>위치 탐색 실패</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>컴퓨터 관리</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>교실 추가</translation>
+        <source>Computer search</source>
+        <translation>컴퓨터 검색</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>위치 추가</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1096,37 +1127,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>컴퓨터와 사용자 리스트를 %1에 저장하지 못함. 접근 권한을 확인하세요.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>컴퓨터 검색</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>사용자</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>네트워크 개체 디렉토리 플러그인이 없음</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>기본 네트워크 개체 폴더 플러그인 없음. 설치 상태를 점검하거나 또는 %1 설정을 이용하여 다른 네트워크 개체 폴더 백엔드를 설정하세요.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>컴퓨터 이름;호스트 이름;사용자</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>교실 탐색 실패</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>이 컴퓨터가 소속된 교실을 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 모든 교실을 컴퓨터 관리에 표시합니다.</translation>
     </message>
 </context>
 <context>
@@ -1662,6 +1662,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>키 화일 인증</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>테스트</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1834,16 +1850,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>예. hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>컴퓨터 호스트 이름 속성</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>예. member or memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>사용자 로긴 속성</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1860,10 +1868,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>예. uid or sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>호스트 이름이 완전히 인증된 도메인 이름으로 저장되었음 (FQDN, 예 myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1892,10 +1896,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>식별이름 (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>사용자 로그인 또는 컴픂터 호스트 이름의 설정 속성 (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1996,22 +1996,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>그룹이름 입력</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>잘못된 호스트 이름</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>컴퓨터 개체</translation>
     </message>
@@ -2052,18 +2036,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 검색되지 않음</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>사용자 이름 &quot;%1&quot;  검색되지 않음.  사용자 이름 또는 사용자 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>호스트 이름을 입력하세요</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요  </translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>컴퓨터 그룹</translation>
     </message>
@@ -2072,24 +2044,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 발견되지 않음</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>컴퓨터  &quot;%1&quot; 가 검색되지 않음.  호스트 이름 또는 컴퓨터 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>IP 주소를 입력하세요</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>컴퓨터 개체로 변환할 컴퓨터 IP 주소를 입력하세요</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>호스트이름 검색 실패</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 .</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2389,6 +2349,62 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test</source>
         <translation>테스트</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2621,6 +2637,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>검색 필터 입력 ....</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2730,10 +2757,6 @@ USAGE
         <translation>자동</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>컴퓨터 교실</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>정보</translation>
     </message>
@@ -2829,6 +2852,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation>&amp;Advanced 고급</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>위치 및 컴퓨터들</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2849,10 +2876,6 @@ USAGE
         <translation>컴퓨터를 더블 클릭할 때의 기능</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>시작시 현재 교실로 자동으로 전환</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>기능</translation>
     </message>
@@ -2865,20 +2888,12 @@ USAGE
         <translation>기능 비활성화</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>프로그램 시작시 접근 제어 실행</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>화면캡쳐</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>시작할때  컴퓨터 썸네일 사진 크기를 자동조정</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2893,20 +2908,8 @@ USAGE
         <translation>클라이언트 컴퓨터를 선택된 모드로 강제로 실행</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>현재 교실만 보여줌</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>수동으로 교실추가 허용</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>로컬컴퓨터 숨김</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>빈 교실 숨김</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2915,10 +2918,6 @@ USAGE
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>리부팅 또는 컴퓨터 파워 끄기</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>위험한 작동에 대한 확인 대화 창 보여주기</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2961,14 +2960,6 @@ USAGE
         <translation>컴퓨터 썸네일 캡션</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>컴퓨터 교실</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>컴퓨터 룸의 위젯을 자동으로 열기</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>글자색</translation>
     </message>
@@ -2979,6 +2970,42 @@ USAGE
     <message>
         <source>Computer and user name</source>
         <translation>켬퓨터 및 사용자 이름</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>빈 위치 숨김</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2992,8 +3019,8 @@ USAGE
         <translation>게시판형 모니터링 모드</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>이 모드는 기본 모드로서 하나 또는 그 이상의 방의 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3358,17 +3385,6 @@ USAGE
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>교실 선택</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>검색 필터 입력 ....</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3599,7 +3615,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>대체 사용자 인증 메커니즘 사용</translation>
     </message>
 </context>
 <context>

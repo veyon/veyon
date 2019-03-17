@@ -61,12 +61,8 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Tesztelés</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Hozzáférés tiltása bizonyos felhasználói csoport tagjainak</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
-        <translation>Hozzáférés-vezérlési folyamatokra vonatkozó szabályok</translation>
+        <translation>Hozzáférési szabályok feldogozása</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -151,6 +147,10 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>Nincs alapértelmezett felhasználóicsoport-bővítmény. Kérem, ellenőrizd telepítésed! </translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Hozzáférés tiltása meghatározott felhasználói csoport tagjainak</translation>
     </message>
 </context>
 <context>
@@ -252,16 +252,16 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Egy felhasználó sem jelentkezett be</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>A hozzáférő számítógép a helyi számítógéppel egy szobában van</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>A hozzáférő felhasználó egy vagy több csoport közös tagja a helyi (bejelentkezett) felhasználóval</translation>
     </message>
     <message>
-        <source>is located in</source>
-        <translation>itt található: </translation>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>A hozzáférő számítógép a helyi számítógéppel egy helyszínen van</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>helyezkedik el</translation>
     </message>
 </context>
 <context>
@@ -614,14 +614,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>NÉV</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Ez a parancs egy új &lt;NAME&gt; nevű hitelesítési kulcspárt hoz létre és menti a privát és a publikus kulcsot a beállított kulcskönyvtárakba.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>Ez a parancs törli &lt;KEY&gt; hitelesítési kulcsot a beállított kulcskönyvtárból. Kérem, figyelj arra, hogy törlés után a kulcs már nem állítható vissza. </translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>FÁJL</translation>
     </message>
@@ -636,10 +628,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Ez a parancs a beállított kulcskönyvtárban lévő összes elérhető hitelesítési kulcsot felsorolja. Ha &quot;%1&quot; lehetőség meg van adva, egy, a kulcs részleteit tartalmazó táblázat fog megjelenni. Ha a kulcs nem érhető el, például olvasási jogosultságok hiánya miatt, néhány részlete hiányozhat.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Ez a parancs kicsomagolja a nyilvános kulcsrészt &lt;KEY&gt; privát kulcsból és a megfelelő nyilvános kulcsként menti.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -660,6 +648,18 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>A hitelesítési kulcsokat kezelő parancsok</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Ez a parancs egy új &lt;NAME&gt; nevű hitelesítési kulcspárt hoz létre és menti a privát és a publikus kulcsot a beállított kulcskönyvtárakba. A paraméter a kulcs megnevezése, ami csak betűket tartalmazhat.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Ez a parancs törli &lt;KEY&gt; hitelesítési kulcsot a beállított kulcskönyvtárból. Kérem, figyelj arra, hogy törlés után a kulcs már nem állítható vissza. </translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Ez a parancs kicsomagolja a nyilvános kulcsrészt &lt;KEY&gt; privát kulcsból és a megfelelő nyilvános kulcsként menti. Amikor egy másik mesterszámítógépet állítasz be, elegendő csak a privát kulcsot átmásolni. A publikus kulcs ebből már előállítható.</translation>
     </message>
 </context>
 <context>
@@ -1000,10 +1000,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Szoba: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Kiszolgáló/IP cím: %1</translation>
     </message>
@@ -1043,6 +1039,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Logged on user: %1</source>
         <translation>Bejelentkezett felhasználó: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Helyszín: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1068,14 +1068,45 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Felhasználó</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Hiányzik a hálózatobjektummappa-bővítmény</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Hiányzik az alapértelmezett hálózatobjektummappa-bővítmény. Ellenőrizd telepítésed vagy állítsd be egy másik hálózatobjektummappa-hátteret &quot;%1&quot; Konfigurátorral.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>A helyszínérzékelés nem sikerült</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-nézetben az összes helyszínt megjelentjük.</translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation>Számítógépnév;Kiszolgálónév;Felhasználó</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Számítógép-kezelés</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Szoba hozzáadása</translation>
+        <source>Computer search</source>
+        <translation>Számítógép keresése</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>Helyszín hozzáadása:</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1096,37 +1127,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nem sikerült a számítógép- és a felhasználólista kiírása ide: %1. Ellenőrizd a hozzáférési jogosultságaidat.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Számítógép keresése</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Felhasználó</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Hiányzik a hálózatobjektummappa-bővítmény</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Hiányzik az alapértelmezett hálózatobjektummappa-bővítmény. Ellenőrizd telepítésed vagy állítsd be egy másik hálózatobjektummappa-hátteret &quot;%1&quot; Konfigurátorral.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Számítógépnév;Kiszolgálónév;Felhasználó</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Szoba felismerése sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Nem sikerült azt a szobát felismerni, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógép-kezelésben az összes szobát megjelentjük.</translation>
     </message>
 </context>
 <context>
@@ -1661,6 +1661,22 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Key file authentication</source>
         <translation>Kulcsfájl hitelesítés</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Tesztelés</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>A hitelesítés megfelelően van beállítva ezen a számítógépen.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>A hitelesítési kulcsok nem megfelelően vannak beállítva ezen a számtógépen.</translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Hitelesítési teszt</translation>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1833,16 +1849,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>például hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Számítógép kiszolgálónév attribútuma</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>például member vagy memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Felhasználó bejelentkezés attribútuma</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1859,10 +1867,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>például uid vagy sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>A kiszolgálónevet a teljesen minősített domain névként tároljuk (FQDN, például szerver.cegem.hu)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1891,10 +1895,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Megkülönböztetett név (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Felhasználó bejelentkezéshez vagy számítógép kiszolgálónevéhez attribútum konfigurálása (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1934,11 +1934,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation>LDAP névmeghatározási teszt sikertelen</translation>
+        <translation>LDAP névkontextusteszt sikertelen</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation>LDAP névmeghatározási tesztje sikerült</translation>
+        <translation>LDAP névkontextus-teszt sikerült</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
@@ -1995,22 +1995,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Add meg a számítógép nevét</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Kérem, add meg a számítógép kiszolgálónevét, melyet lekérdezel:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Érvénytelen kiszolgálónév</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét teljesen minősített domainnévként (FQDN)  tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét domain nélküli egyszerű névként tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>számítógép-objektumok</translation>
     </message>
@@ -2051,18 +2035,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Felhasználó nem található</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>&quot;%1&quot; nevű felhasználó nem található. Kérem, ellenőrizd a felhasználónevet vagy a felhasználó-fa paramétert.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Add meg a kiszolgálónevet</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Kérem, add meg a számítógép kiszolgálónevét, melynek csoporttagságait lekérdezed:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>számítógép csoportjai</translation>
     </message>
@@ -2071,24 +2043,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Számítógép nem található</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>&quot;%1&quot; nevű kiszolgálónevű számítógép nem található. Kérem, ellenőrizd a kiszolgálónevet vagy a számítógépfa paramétert.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Add meg a számítógép IP címét</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Kérem, add meg a számítógép IP címét, melyet számítógép-objektummá keressünk vissza:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Kiszolgálónév keresése sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>%1 IP címhez nem sikerült lekérdezni a kiszolgálónevet. Kérem, ellenőrizd a DNS szerver beállításait.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2390,6 +2350,62 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Test</source>
         <translation>Tesztelés</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>A kiszolgálónevet a teljesen minősített domain névként tároljuk (FQDN, például szerver.cegem.hu)</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Számítógép kiszolgálónév attribútuma</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Kérem, add meg a számítógép kiszolgálónevét, melyet lekérdezel:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Érvénytelen kiszolgálónév</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét teljesen minősített domainnévként (FQDN)  tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét domain nélküli egyszerű névként tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>&quot;%1&quot; nevű felhasználó nem található. Kérem, ellenőrizd a felhasználónevet vagy a felhasználó-fa paramétert.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Add meg a kiszolgálónevet</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Kérem, add meg a számítógép kiszolgálónevét, melynek csoporttagságait lekérdezed:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>&quot;%1&quot; nevű kiszolgálónevű számítógép nem található. Kérem, ellenőrizd a kiszolgálónevet vagy a számítógépfa paramétert.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Kiszolgálónév keresése sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>%1 IP címhez nem sikerült lekérdezni a kiszolgálónevet. Kérem, ellenőrizd a DNS szerver beállításait.</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>A felhasználó bejelentkezési nevének attribútuma</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>A felhasználó bejelentkezési nevéhez vagy a számítógép kiszolgálónevéhez beállított attribútum (OpenLDAP)</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2622,6 +2638,17 @@ HASZNÁLAT
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation>Helyszín kiválasztása:</translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>írd ide a keresési szűrőt...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2731,10 +2758,6 @@ HASZNÁLAT
         <translation>Automatikus</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Számítógéptermek</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Névjegy</translation>
     </message>
@@ -2830,6 +2853,10 @@ HASZNÁLAT
         <source>&amp;Advanced</source>
         <translation>&amp;Haladó</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Helyszínek és számítógépek</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2850,10 +2877,6 @@ HASZNÁLAT
         <translation>Számítógépen a dupla kattintás:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Automatikusan a jelenlegi szobára váltás induláskor</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Szolgáltatások</translation>
     </message>
@@ -2866,20 +2889,12 @@ HASZNÁLAT
         <translation>Szolgáltatások kikapcsolása</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Hozzáférés-vezérlés végrehajtása a program indulásakor</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Képernyőképek</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;nincs szolgáltatás&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Számítógépek indexképének automatikus méretezése induláskor</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2894,20 +2909,8 @@ HASZNÁLAT
         <translation>Kiválasztott mód rákényszerítése a kliens számítógépekre</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Csak a jelenlegi szoba megjelenítése</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Szobák manuális hozzáadásának engedélyezése</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Helyi számítógép elrejtése</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Üres szobák elrejtése</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2916,10 +2919,6 @@ HASZNÁLAT
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Műveletek, mint a számítógépek újraindítása vagy kikapcsolása</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Megerősítő párbeszédablak megjelentése potenciálisan veszélyes műveleteknél</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2962,14 +2961,6 @@ HASZNÁLAT
         <translation>Számítógép indexképének felirata</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Számítógéptermek</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>Számítógépterem-minialkalmazás automatikus megnyitása</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Betűszín</translation>
     </message>
@@ -2980,6 +2971,42 @@ HASZNÁLAT
     <message>
         <source>Computer and user name</source>
         <translation>Számítógép és felhasználónév</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation>Számítógépkiválasztási-nézet automatikus megnyitása</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Számítógéphelyszínek</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Csak a jelenlegi helyszín megjelenítése</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Rejtett helyszínek kézi hozzáadásának engedélyezése</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Üres helyszínek elrejtése</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Megerősítő párbeszédablak megjelentése potenciálisan veszélyes műveleteknél</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Hozzáférés-vezérlés elvégzése</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Jelenlegi helyszín automatikus kiválasztása</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation>Számítógépek indexképének automatikus méretezése</translation>
     </message>
 </context>
 <context>
@@ -2993,8 +3020,8 @@ HASZNÁLAT
         <translation>Beépített monitorozási mód</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Ez az alapértelmezett mód, ami lehetővé teszi, hogy monitorozd az egy vagy több szobában lévő összes számítógépet.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation>Ez az alapértelmezett mód, ami lehetővé teszi, hogy monitorozd az egy vagy több helyszínen lévő összes számítógépet.</translation>
     </message>
 </context>
 <context>
@@ -3359,17 +3386,6 @@ HASZNÁLATA
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Szoba választása</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>írd ide a keresési szűrőt...</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3599,7 +3615,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Alternatív felhasználói hitelesítési mechanizmus használata</translation>
     </message>
 </context>
 <context>
@@ -3657,15 +3673,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Veyon szolgáltatás újraindítása</translation>
+        <translation>Veyon Szolgáltatás újraindítása</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Veyon szolgáltatás állapotának lekérdezése</translation>
+        <translation>Veyon Szolgáltatás állapotának lekérdezése</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation>Veyon szolgáltatás konfigurációs és felügyeleti parancsai</translation>
+        <translation>Veyon Szolgáltatás konfigurációs és felügyeleti parancsai</translation>
     </message>
 </context>
 <context>

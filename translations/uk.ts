@@ -61,10 +61,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Перевірити</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Обмежити доступ учасниками певних груп користувачів</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>Обробка правил керування доступом</translation>
     </message>
@@ -151,6 +147,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>Не знайдено типового додатка груп користувачів. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Обмежити доступ учасникам вказаних груп користувачів</translation>
     </message>
 </context>
 <context>
@@ -252,15 +252,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Немає користувачів у системі</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Комп’ютер для доступу розташовано у тому самому класі, що і локальний комп’ютер</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Користувач для доступу є учасником однієї або декількох груп, які є спільними із локальним (поточним) користувачем</translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Комп’ютер для доступу розташовано у тому самому місці, що і локальний комп’ютер</translation>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation>розташовано у</translation>
     </message>
 </context>
@@ -611,14 +611,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>НАЗВА</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Ця команда створює нову пару ключів для розпізнавання із назвою &lt;НАЗВА&gt; і зберігає закритий і відкритий ключі до налаштованих каталогів ключів.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>Ця команда вилучає ключ розпізнавання &lt;КЛЮЧ&gt; із налаштованого каталогу ключів. Будь ласка, зауважте, що після вилучення ключ не можна буде відновити.</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>ФАЙЛ</translation>
     </message>
@@ -633,10 +625,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Ця команда виводить список усіх доступних ключів розпізнавання у налаштованому каталозі ключів. Якщо вказано параметр «%1», замість списку буде виведено таблицю із подробицями щодо ключів. Деякі параметри ключа може бути не показано, якщо доступ до ключа обмежено, наприклад через брак прав на читання файла ключа.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Ця команда видобуває частину, пов&apos;язану із відкритим ключем, з закритого ключа &lt;КЛЮЧ&gt; і зберігає її до відповідного файла відкритого ключа.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -657,6 +645,18 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Команди для керування ключами розпізнавання</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Ця команда створює нову пару ключів для розпізнавання із назвою &lt;НАЗВА&gt; і зберігає закритий і відкритий ключі до налаштованих каталогів ключів. Параметром має бути назва ключа, яка має складатися лише з літер.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Ця команда вилучає ключ розпізнавання &lt;КЛЮЧ&gt; із налаштованого каталогу ключів. Будь ласка, зауважте, що після вилучення ключ не можна буде відновити.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Ця команда видобуває частину, пов&apos;язану із відкритим ключем, з закритого ключа &lt;КЛЮЧ&gt; і зберігає її до відповідного файла відкритого ключа. Через це при налаштовуванні додаткового основного комп&apos;ютера достатньо перенести на нього лише закритий ключ. Після перенесення відкритий ключ можна просто видобути.</translation>
     </message>
 </context>
 <context>
@@ -997,10 +997,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Клас: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Вузол/IP-адреса: %1</translation>
     </message>
@@ -1040,6 +1036,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation>Користувач у системі: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Місце: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1065,14 +1065,45 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Користувач</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Не вистачає додатка каталогу мережевих об’єктів</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Не знайдено типового додатка каталогу мережевих об’єктів. Будь ласка, перевірте, чи правильно встановлено програму, або налаштуйте інший модуль каталогу мережевих об’єктів за допомогою засобу налаштовування %1.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Не вдалося визначити місце</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation>Не вдалося визначити місце цього комп&apos;ютера. Це означає, що у налаштуваннях системи є проблеми. На панелі вибору комп&apos;ютера буде показано усі місця.</translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation>Назва комп’ютера;Назва вузла;Користувач</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Керування комп&apos;ютерами</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Додавання кімнати</translation>
+        <source>Computer search</source>
+        <translation>Пошук комп’ютера</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>Додати місце</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1093,37 +1124,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не вдалося записати список комп’ютерів і користувачів до %1! Будь ласка, перевірте, чи є у вас належні права для доступу до цього файла.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Пошук комп’ютера</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Користувач</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Не вистачає додатка каталогу мережевих об’єктів</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Не знайдено типового додатка каталогу мережевих об’єктів. Будь ласка, перевірте, чи правильно встановлено програму, або налаштуйте інший модуль каталогу мережевих об’єктів за допомогою засобу налаштовування %1.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Назва комп’ютера;Назва вузла;Користувач</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Не вдалося визначити клас</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Не вдалося визначити клас, до якого належить цей комп’ютер. Це означає, що у налаштуваннях системи є проблеми. На панелі керування комп’ютерами буде показано усі класи.</translation>
     </message>
 </context>
 <context>
@@ -1658,6 +1658,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Розпізнавання за файлами ключів</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1830,16 +1846,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>наприклад, hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Атрибут назви вузла комп’ютера</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>наприклад, member або memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Атрибут імені користувача</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1856,10 +1864,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>наприклад, uid або sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Назви вузлів збережено як повні доменні назви (FQDN, наприклад myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1888,10 +1892,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Унікальна назва (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1992,22 +1992,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Вкажіть назву комп’ютера</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Будь ласка, вкажіть назву вузла комп’ютера для запиту:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Некоректна назва вузла</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Ви налаштували програму на зберігання повних доменних назв вузлів комп’ютерів (FQDN), але вказали назву вузла без домену.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Ви налаштували програму на зберігання простих назв вузлів комп’ютерів, але вказали назву вузла разом із назвою домену.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>об’єкти комп’ютерів</translation>
     </message>
@@ -2048,18 +2032,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Користувача не знайдено</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>Не вдалося знайти користувача із іменем «%1». Будь ласка, перевірте, чи правильно вказано ім’я користувача або параметр ієрархії користувачів.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Вкажіть назву вузла</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Будь ласка, вкажіть назву вузла комп’ютера, для кого слід отримати дані щодо участі у групах:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>групи комп’ютера</translation>
     </message>
@@ -2068,24 +2040,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Комп’ютер не знайдено</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Не вдалося знайти комп’ютер із назвою вузла «%1». Будь ласка, перевірте, чи правильно вказано назву вузла або параметр ієрархії комп’ютерів.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Вкажіть IP-адресу комп’ютера</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Будь ласка, вкажіть IP-адресу комп’ютера, за якою слід визначити об’єкт комп’ютера:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Помилка пошуку вузла за назвою</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Не вдалося виконати пошук назви вузла для IP-адреси %1. Будь ласка, перевірте, чи правильно вказано параметри вашого сервера DNS.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2389,6 +2349,62 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test</source>
         <translation>Перевірити</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Назви вузлів збережено як повні доменні назви (FQDN, наприклад myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Атрибут назви вузла комп’ютера</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Будь ласка, вкажіть назву вузла комп’ютера для запиту:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Некоректна назва вузла</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Ви налаштували програму на зберігання повних доменних назв вузлів комп’ютерів (FQDN), але вказали назву вузла без домену.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Ви налаштували програму на зберігання простих назв вузлів комп’ютерів, але вказали назву вузла разом із назвою домену.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Не вдалося знайти користувача із іменем «%1». Будь ласка, перевірте, чи правильно вказано ім’я користувача або параметр ієрархії користувачів.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Введіть назву вузла</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Будь ласка, вкажіть назву вузла комп’ютера, для кого слід отримати дані щодо участі у групах:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Не вдалося знайти комп’ютер із назвою вузла «%1». Будь ласка, перевірте, чи правильно вказано назву вузла або параметр ієрархії комп’ютерів.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Помилка пошуку вузла за назвою</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Не вдалося виконати пошук назви вузла для IP-адреси %1. Будь ласка, перевірте, чи правильно вказано параметри вашого сервера DNS.</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2621,6 +2637,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation>Вибрати місце</translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>введіть фільтр пошуку…</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2730,10 +2757,6 @@ USAGE
         <translation>Авто</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Комп’ютерні класи</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Про програму</translation>
     </message>
@@ -2829,6 +2852,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation>&amp;Розширений</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Місця і комп&apos;ютери</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2849,10 +2876,6 @@ USAGE
         <translation>Дія у відповідь на подвійне клацання на комп’ютері:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Автоматично перемикатися на поточний клас після запуску</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Можливості</translation>
     </message>
@@ -2865,20 +2888,12 @@ USAGE
         <translation>Вимкнені можливості</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Виконувати керування доступом під час запуску програми</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Знімки вікон</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Автоматично коригувати розмір мініатюри комп’ютера під час запуску</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2893,20 +2908,8 @@ USAGE
         <translation>Примусовий вибраний режим для комп&apos;ютерів-клієнтів</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Показувати лише поточний клас</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Дозволити додавання класів вручну</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Приховати локальний комп&apos;ютер</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Приховати порожні класи</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2915,10 +2918,6 @@ USAGE
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Дії, зокрема перезавантаження та вимикання комп&apos;ютерів</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Показувати вікно підтвердження для потенційно небезпечних дій</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2961,14 +2960,6 @@ USAGE
         <translation>Підпис мініатюри комп&apos;ютера</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Комп’ютерні класи</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>Автоматично відкривати віджет комп&apos;ютерних класів</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Колір тексту</translation>
     </message>
@@ -2979,6 +2970,42 @@ USAGE
     <message>
         <source>Computer and user name</source>
         <translation>Комп&apos;ютер та ім&apos;я користувача</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation>Автоматично відкрити панель вибору комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Місця комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Показати лише поточне місце</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Дозволити додавання прихованих місць вручну</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Приховати порожні місця</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Показувати вікно підтвердження для потенційно небезпечних дій</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Виконати керування доступом</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Автоматично вибирати поточне місце</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation>Автоматично коригувати розмір мініатюри комп&apos;ютера</translation>
     </message>
 </context>
 <context>
@@ -2992,8 +3019,8 @@ USAGE
         <translation>Вбудований режим стеження</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Це типовий режим. Він надає вам змогу стежити за усіма комп’ютерами у одному або декількох класах.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation>У цьому режимі ви можете спостерігати за усіма комп&apos;ютерами у одному або декількох місцях.</translation>
     </message>
 </context>
 <context>
@@ -3358,17 +3385,6 @@ USAGE
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Вибір класу</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>введіть фільтр пошуку…</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3599,7 +3615,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Альтернативний механізм розпізнавання користувачів</translation>
     </message>
 </context>
 <context>

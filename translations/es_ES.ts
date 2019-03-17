@@ -45,7 +45,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Apoyar al proyecto Veyon con una donación</translation>
+        <translation>Apoyar el proyecto Veyon con una donación</translation>
     </message>
 </context>
 <context>
@@ -61,10 +61,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Test</source>
         <translation>Comprobar</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Restringir el acceso a miembros de determinados grupos de usuarios</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -153,6 +149,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>No se encontró el plugin por defecto para grupos de usuarios. ¡Por favor, compruebe la instalación!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Restringir el acceso a miembros de grupos de usuarios específicos</translation>
     </message>
 </context>
 <context>
@@ -254,15 +254,15 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Ningún usuario ha iniciado sesión</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>El acceso al equipo se encuentra en la misma habitación que el ordenador local</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>El acceso al usuario tiene uno o más grupos en común con el usuario local (conectado)</translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>El acceso al equipo y el equipo local están en la misma ubicación</translation>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation>se encuentra en</translation>
     </message>
 </context>
@@ -616,14 +616,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>NOMBRE</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Este comando crea un nuevo par de claves de autenticación con nombre&lt;NAME&gt; y guarda la clave privada y pública en los directorios de clave configurados.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>Este comando elimina la clave de autenticación &lt;KEY&gt; del directorio de claves configurado. Tenga en cuenta que una clave no se puede recuperar una vez eliminada.</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>ARCHIVO</translation>
     </message>
@@ -638,10 +630,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Este comando enumera todas las claves de autenticación disponibles en el directorio de claves configurado. Si se especifica la opción &quot;%1&quot;, se mostrará una tabla con los detalles de las claves. Es posible que falten algunos detalles si no se puede acceder a una clave, p. ej. debido a la falta de permisos de lectura.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Este comando extrae la clave pública asociada a la clave privada &lt;KEY&gt; y la guarda como la clave pública correspondiente.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -662,6 +650,18 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Comandos para administrar claves de autenticación</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Este comando crea un nuevo par de claves de autenticación con el nombre &lt;NAME&gt; y guarda las claves privada y pública en los directorios de claves configurados. El parámetro debe ser un nombre para la clave, que solo puede contener letras.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Este comando elimina la clave de autenticación &lt;KEY&gt; del directorio de claves configuradas. Tenga en cuenta que una clave no se puede recuperar una vez que se ha eliminado.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Este comando extrae la parte de la clave pública de la clave privada &lt;KEY&gt; y la guarda como la clave pública correspondiente. Al configurar otra computadora maestra, por lo tanto, es suficiente transferir la clave privada solamente. La clave pública puede entonces ser extraída.</translation>
     </message>
 </context>
 <context>
@@ -735,7 +735,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>La importación de archivos CSV es posible a través de la interfaz de línea de comandos. Para más información, consulte la&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;documentación en línea&lt;/a&gt;.</translation>
+        <translation>La importación de archivos CSV es posible a través de la interfaz de línea de comandos. Para más información, consulte la &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;documentación en línea&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
@@ -1002,10 +1002,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Aula: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Equipo/Dirección IP: %1</translation>
     </message>
@@ -1045,6 +1041,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Logged on user: %1</source>
         <translation>Usuario conectado: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Ubicación: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1070,14 +1070,45 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Usuario</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Falta el plugin para el directorio de objetos de red</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>No se encontró ningún plugin predeterminado para el directorio de objetos de red. Compruebe su instalación o configure un backend diferente para el directorio de objetos de red a través del Configurador de %1.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Falló la detección de ubicación</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation>No se pudo determinar la ubicación de este equipo. Esto indica un problema con la configuración del sistema. En su lugar, se mostrarán todas las ubicaciones en la vista de selección de equipo.</translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation>Nombre de equipo;Nombre de host;Usuario</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Gestión de equipo</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Añadir aula</translation>
+        <source>Computer search</source>
+        <translation>Búsqueda de equipos</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>Añadir ubicación</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1098,37 +1129,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>No se pudo escribir la lista de equipos y usuarios en %1. Por favor, compruebe los permisos de acceso al archivo.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Búsqueda de equipos</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Usuario</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Falta el plugin para el directorio de objetos de red</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>No se encontró ningún plugin predeterminado para el directorio de objetos de red. Compruebe su instalación o configure un backend diferente para el directorio de objetos de red a través del Configurador de %1.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Nombre de ordenador;Nombre de equipo;Usuario</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Detección de aula fallida</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>No se pudo determinar el aula a la que pertenece este equipo. Esto indica un problema con la configuración del sistema. Todas las aulas se mostrarán en la gestión de equipos en su lugar.</translation>
     </message>
 </context>
 <context>
@@ -1663,6 +1663,22 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Key file authentication</source>
         <translation>Autenticación mediante archivo de clave</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Comprobar</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>La autenticación está configurada correctamente en esta computadora.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Las claves de autenticación no están configuradas correctamente en esta computadora.</translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Prueba de autenticacion</translation>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1835,16 +1851,8 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>p. ej. hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Atributo de nombre del equipo</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>v.g. member o memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Atributo de inicio de sesión de usuario</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1861,10 +1869,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>v.g. uid o sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Nombres de equipo almacenados como nombres de dominio totalmente calificados (FQDN, v.g. myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1893,10 +1897,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Nombre distinguido (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Atributo configurado para inicio de sesión de usuario o nombre de equipo (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1997,22 +1997,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Introduzca nombre del equipo</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Introduzca un nombre de equipo a consultar:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Nombre de equipo no válido</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Configuró los nombres de equipo para que se almacenen como nombres de dominio totalmente cualificados (FQDN) pero introdujo un nombre de equipo sin dominio.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Configuró los nombres de equipo para que se almacenen como nombres simples sin un nombre de dominio, pero introdujo un nombre de equipo con una parte de nombre de dominio.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>Objetos de equipo</translation>
     </message>
@@ -2053,18 +2037,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Usuario no encontrado</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>No se pudo encontrar un usuario con el nombre &quot;%1&quot;. Compruebe el nombre de usuario o el parámetro de árbol de usuario.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Introduzca nombre de equipo</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Por favor, introduzca el nombre de equipo para consultar los miembros del grupo:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>grupos de equipos</translation>
     </message>
@@ -2073,24 +2045,12 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Equipo no encontrado</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>No se pudo encontrar un equipo con el nombre &quot;%1&quot;. Compruebe el nombre del equipo o el parámetro de árbol de equipo.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Introduzca la dirección IP del equipo</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Introduzca una dirección IP de equipo a resolver a un objeto de equipo:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>La búsqueda de nombre de equipo falló</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>No se pudo encontrar el nombre de equipo para la dirección IP %1. Compruebe la configuración de su servidor DNS.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2392,6 +2352,62 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Test</source>
         <translation>Comprobar</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Nombres de host almacenados como nombres de dominio completos (FQDN, p. ej. myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atributo de nombre de host del equipo</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Por favor introduzca un nombre de host de equipo para consultar:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Nombre de host no válido</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Configuró los nombres de host de los equipos para que se almacenaran como nombres de dominio completos (FQDN) pero ingresó un nombre de host sin dominio.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Configuró los nombres de host de los equipos para ser almacenados como nombres de host simples sin un nombre de dominio, pero ingresó un nombre de host con una parte de nombre de dominio.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>No se pudo encontrar un usuario con el nombre &quot;%1&quot;. Por favor, compruebe el nombre de usuario o el parámetro del árbol de usuarios.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Introduzca el nombre de host</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Por favor introduzca un nombre de host de equipo cuyos miembros de grupo desee consultar:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>No se pudo encontrar un equipo con el nombre de host &quot;%1&quot;. Por favor, compruebe el nombre de host o el parámetro del árbol de equipos.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Error al buscar el nombre de host</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>No se pudo buscar el nombre de host para la dirección IP %1. Por favor, compruebe la configuración de su servidor DNS.</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Atributo de nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>Atributo configurado para el nombre de inicio de sesión del usuario o el nombre de host de la computadora (OpenLDAP)</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2624,6 +2640,17 @@ Eliminar %1 &lt;LICENSE ID&gt;
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation>Seleccionar ubicación</translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>introduzca el filtro de búsqueda ...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2733,10 +2760,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Auto</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Aulas</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
@@ -2832,6 +2855,10 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <source>&amp;Advanced</source>
         <translation>&amp;Avanzado</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Ubicaciones y equipos</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2852,10 +2879,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Función al hacer doble click en equipo:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Cambiar automáticamente al aula actual al inicio</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Características</translation>
     </message>
@@ -2868,20 +2891,12 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Funciones deshabilitadas</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Realizar el control de acceso al inicio del programa</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Capturas</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;ninguna característica&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Ajustar automáticamente el tamaño de la imagen miniatura al inicio</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2896,20 +2911,8 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Aplicar el modo seleccionado para los equipos cliente</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Mostrar sólo el aula actual</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Permitir añadir aulas manualmente</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Ocultar equipo local</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Ocultar aulas vacías</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2918,10 +2921,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Acciones como reiniciar o apagar equipos</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Mostrar diálogo de confirmación de posibles acciones peligrosas</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2964,14 +2963,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Nombre de miniatura</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Aulas</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>Abrir automáticamente el widget de aulas</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Color del texto</translation>
     </message>
@@ -2982,6 +2973,42 @@ Eliminar %1 &lt;LICENSE ID&gt;
     <message>
         <source>Computer and user name</source>
         <translation>Equipo y nombre del usuario</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation>Abrir automáticamente la vista de selección de equipo</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Ubicaciones de equipos</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Mostrar solo la ubicación actual</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Permitir agregar ubicaciones ocultas manualmente</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Ocultar ubicaciones vacías</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Mostrar diálogo de confirmación para acciones potencialmente inseguras</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Realizar control de acceso</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Seleccionar automáticamente la ubicación actual</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation>Ajustar automáticamente el tamaño de la miniatura del equipo</translation>
     </message>
 </context>
 <context>
@@ -2995,8 +3022,8 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Modo de monitorización incorporado</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Este es el modo predeterminado y le permite monitorizar todos los equipos en una o más habitaciones.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation>Este modo le permite monitorear todos los equipos en una o más ubicaciones.</translation>
     </message>
 </context>
 <context>
@@ -3361,17 +3388,6 @@ USO
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Selecciónde aula</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>introduzca el filtro de búsqueda ...</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3602,7 +3618,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar mecanismo de autenticación de usuario alternativo</translation>
     </message>
 </context>
 <context>

@@ -61,10 +61,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Test</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Beperk toegang tot leden van bepaalde groepen</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>Verwerk toegangscontrole regels</translation>
     </message>
@@ -151,6 +147,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>Er werd geen standaard gebruikersgroepplugin gevonden. Controleer de installatie!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -252,15 +252,15 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Geen gebruiker ingelogd</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Toegangzoekende computer bevindt zich in hetzelfde lokaal als lokale computer</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Toegangzoekende gebruiker heeft een of meerdere groepen gemeenschappelijk met de lokale (aangemelde) gebruiker</translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -611,14 +611,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>NAAM</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>BESTAND</translation>
     </message>
@@ -632,10 +624,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -656,6 +644,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -997,10 +997,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Lokaal: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Host/IP adres: %1</translation>
     </message>
@@ -1040,6 +1036,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation>Ingelogde gebruiker: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1065,14 +1065,45 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Gebruiker</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Ontbrekende netwerk object directory plugin</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via% 1 Configurator.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Computer management</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Lokaal toevoegen</translation>
+        <source>Computer search</source>
+        <translation>Computer zoeken</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1093,37 +1124,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Kon de computer en gebruikerslijst niet schrijven naar% 1! Controleer de toegangsrechten voor het bestand.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Computer zoeken</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Gebruiker</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Ontbrekende netwerk object directory plugin</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via% 1 Configurator.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Computernaam;Hostnaam;Gebruiker</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Lokaaldetectie mislukt</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Kon het lokaal niet bepalen waartoe deze computer behoort. Dit geeft een probleem aan met de systeemconfiguratie. Alle lokalen worden in de plaats hiervan in het computerbeheer weergegeven.</translation>
     </message>
 </context>
 <context>
@@ -1658,6 +1658,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Sleutel bestand authenticatie</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1830,16 +1846,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>bv. hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Computer hostnaam attribuut</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>bv. member of memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Gebruikers login attribuut</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1856,10 +1864,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>bv. uid of sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Host namen opgeslagen als volledig gekwalificeerde domeinnamen (FQDN, bv. myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1888,10 +1892,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Onderscheidende naam (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Geconfigureerd attribuut voor gebruikerslogin of computer hostnaam (openLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1992,22 +1992,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Voer de computernaam in</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Vul alstublieft een computer hostnaam in die bevraagd moet worden: </translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Ongeldige hostnaam</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>U heeft geconfigureerd om de computer hostnamen op te slaan als volledig gekwalificeerde domeinnamen (FQDN), maar u heeft een hostnaam ingevoerd zonder domein.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>U heeft geconfigureerd om de computer hostnamen op te slaan als eenvoudige hostnamen zonder een domeinnaam, maar heeft een hostnaam ingevoerd met een domeinnaam.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>computer objecten</translation>
     </message>
@@ -2048,18 +2032,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Gebruiker niet gevonden</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>Kon geen gebruiker vinden met de naam &quot;%1&quot;. Controleer alstublieft de gebruikersnaam of de gebruikersboomstructuurparameter.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Voer hostnaam in</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Vul alstublieft een computer hostnaam in waarvan het groepslidmaatschap moet worden bevraagd:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>groepen van computer</translation>
     </message>
@@ -2068,24 +2040,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Computer niet gevonden</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Kon de computer met de naam &quot;% 1&quot; niet vinden. Kontroleer de computernaam in de PC of AD computerbenaming.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Voer computer IP adres in</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Voer het IP-adres van een computer in dat moet worden omgezet naar een computerobject:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Hostnaam opzoeken mislukt</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Kan de hostnaam niet opzoeken voor IP-adres %1. Kontroleer uw server DNS-instellingen.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2375,6 +2335,62 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test</source>
         <translation>Test</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2597,6 +2613,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>vul zoekfilter in...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2706,10 +2733,6 @@ USAGE
         <translation>Auto</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Computerlokalen</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Over</translation>
     </message>
@@ -2805,6 +2828,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2825,10 +2852,6 @@ USAGE
         <translation>Functie op de computer bij double click:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Schakel automatisch over naar het huidige lokaal bij het starten</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Kenmerken</translation>
     </message>
@@ -2841,20 +2864,12 @@ USAGE
         <translation>Uitgeschakelde functies</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>voer toegangscontrole bij opstart uit</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Schermafbeeldingen</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Automatische grootte instelling van de miniatuur computerafbeeldingen bij opstart</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2869,20 +2884,8 @@ USAGE
         <translation>Forceer de geselecteerde mode voor client computers</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Toon enkel het huidige lokaal</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Sta toe lokalen manueel toe te voegen</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Verberg lokale computer</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Verberg lege lokalen</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2891,10 +2894,6 @@ USAGE
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Acties zoals herstarten of uitschakelen van computers</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Bevestiging dialoogvenster voor potentieel gevaarlijke acties weergeven</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2937,14 +2936,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Computerlokalen</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Tekstkleur</translation>
     </message>
@@ -2954,6 +2945,42 @@ USAGE
     </message>
     <message>
         <source>Computer and user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2968,8 +2995,8 @@ USAGE
         <translation>Ingebouwde monitoring modus</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Dit is de standaardmodus die u toezicht geeft over alle computers in een of meerdere lokalen.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3326,17 +3353,6 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Schermafbeelding</translation>
-    </message>
-</context>
-<context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Lokaalkeuze</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>vul zoekfilter in...</translation>
     </message>
 </context>
 <context>

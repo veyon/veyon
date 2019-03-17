@@ -61,10 +61,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>测试</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>限制访问某些用户组的成员</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>处理访问控制规则</translation>
     </message>
@@ -151,6 +147,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>没有找到默认的用户组插件，请检查您的安装程序！</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -252,15 +252,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>没有用户登录</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>访问计算机作为本地计算机位于同一个教室内</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>访问用户有一个或多个与本地（登录）用户相同的组</translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -615,14 +615,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>NAME</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>这个命令创建一个新的密钥对，名称为 &lt;NAME&gt; ，保存在配置密钥的文件夹里。</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>该命令从配置的密钥目录中删除认证密钥 &lt;KEY&gt; 。 请注意，密钥一旦删除就无法恢复。</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>FILE</translation>
     </message>
@@ -637,10 +629,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>此命令列出配置的密钥目录中的所有可用身份验证密钥。 如果指定了选项 &quot;%1&quot; ，则会显示包含密钥详细信息的表格。 如果无法访问密钥，某些细节可能会丢失，例如，没有读取权限。</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>此命令从私钥 &lt;KEY&gt; 中提取公钥部分并将其保存为相应的公钥。</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -661,6 +649,18 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>管理身份验证密钥的命令</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1001,10 +1001,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>教室: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>主机/IP 地址: %1</translation>
     </message>
@@ -1044,6 +1040,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation>登录用户: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1069,14 +1069,45 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>用户</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>缺少网络对象目录插件</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>没有找到默认的网络对象目录插件。请检查您的安装或通过 %1  配置器配置不同的网络对象目录后端。</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>计算机管理</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>添加教室</translation>
+        <source>Computer search</source>
+        <translation>搜索计算机</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1097,37 +1128,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>无法将计算机和用户列表写入 %1！请检查文件访问权限。</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>搜索计算机</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>用户</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>缺少网络对象目录插件</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>没有找到默认的网络对象目录插件。请检查您的安装或通过 %1  配置器配置不同的网络对象目录后端。</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>计算机名称;主机名;用户</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>教室检测失败</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>无法确定此计算机所属的教室。这表明系统配置存在问题。所有教室都将显示在计算机管理中。</translation>
     </message>
 </context>
 <context>
@@ -1662,6 +1662,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>密钥验证</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1834,16 +1850,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>例如： hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>计算机主机名属性</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>例如 member 或者 memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>用户登录属性</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1860,10 +1868,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>例如： uid 或者 sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>主机名称存储为完全限定的域名（FQDN，例如：myhost.example.org）</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1892,10 +1896,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>专有名称 (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>配置用户登录或计算机主机名属性(OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1996,22 +1996,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>输入计算机名称</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>请输入要查询的计算机主机名称：</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>错误的主机名</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>您将计算机主机名配置为存储为完全限定的域名（FQDN），但输入的是没有域的主机名。</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>您将计算机主机名配置为存储没有域名的简单主机名，但输入了带有域名部分的主机名。</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>计算机对象</translation>
     </message>
@@ -2052,18 +2036,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>未找到用户</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>找不到名称为 &quot;%1&quot; 的用户。 请检查用户名或用户树参数。</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>输入主机名</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>请输入要查询的组成员的计算机主机名称：</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>计算机组</translation>
     </message>
@@ -2072,24 +2044,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>未找到计算机</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>无法找到主机名为 &quot;%1&quot; 的计算机。 请检查主机名或计算机树参数。</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>输入计算机 IP 地址</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>请输入要解析为计算机对象的计算机 IP 地址：</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>主机名查询失败</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>无法查找 IP 地址为 %1 的主机名。 请检查您的DNS服务器设置。</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2387,6 +2347,62 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test</source>
         <translation>测试</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2619,6 +2635,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>输入搜索管理器...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2728,10 +2755,6 @@ USAGE
         <translation>自动</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>计算机教室</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>关于</translation>
     </message>
@@ -2827,6 +2850,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2847,10 +2874,6 @@ USAGE
         <translation>在计算机图标上双击运行的功能：</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>在启动时自动切换到当前教室</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>功能</translation>
     </message>
@@ -2863,20 +2886,12 @@ USAGE
         <translation>禁用的功能</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>在程序启动时执行访问控制</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>屏幕截图</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>在启动时自动调整电脑图标大小</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2891,20 +2906,8 @@ USAGE
         <translation>为客户端计算机强制选择模式</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>仅显示当前教室</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>允许手动添加教室</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>隐藏本地计算机</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>隐藏空教室</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2913,10 +2916,6 @@ USAGE
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>比如重新启动或关闭计算机的操作</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>显示潜在危险操作的确认对话框</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2959,14 +2958,6 @@ USAGE
         <translation>计算机缩略图名称</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>计算机教室</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>自动打开计算机教室组件</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>文本颜色</translation>
     </message>
@@ -2977,6 +2968,42 @@ USAGE
     <message>
         <source>Computer and user name</source>
         <translation>计算机和用户名</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2990,8 +3017,8 @@ USAGE
         <translation>内置监控模式</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>这是默认模式，并允许您监视一个或多个房间中的所有计算机。</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3353,17 +3380,6 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>屏幕截图</translation>
-    </message>
-</context>
-<context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>教室选择</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>输入搜索管理器...</translation>
     </message>
 </context>
 <context>

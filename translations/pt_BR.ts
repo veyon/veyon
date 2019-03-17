@@ -61,10 +61,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Teste</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Restringir acesso para membros de determinados grupos</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>Regras de controle de acesso do processo</translation>
     </message>
@@ -150,6 +146,10 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -252,15 +252,15 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Nenhum usuário logado</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>O acesso ao computador está localizado na mesma sala do computador local</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>O acesso ao usuário tem um ou mais grupos em comum com o usuário local (logado)</translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -611,14 +611,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>NOME</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>ARQUIVO</translation>
     </message>
@@ -632,10 +624,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -656,6 +644,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -997,10 +997,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Sala: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Servidor/endereço IP: %1</translation>
     </message>
@@ -1040,6 +1036,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation>Usuário logado: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1065,14 +1065,45 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Usuário</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Está faltando o plugin de diretório de objetos de rede</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Nenhum plugin de diretório de objetos de rede padrão foi encontrado. Por favor verifique sua instalação ou configure um backend de diretório de objetos de rede diferente via o Configurador %1.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Gerenciamento de computadores</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Adicionar sala</translation>
+        <source>Computer search</source>
+        <translation>Pesquisa de computador</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1093,37 +1124,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Não foi possível salvar a lista de computadores e usuários em %1! Verifique as permissões de acesso ao arquivo.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Pesquisa de computador</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Usuário</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Está faltando o plugin de diretório de objetos de rede</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nenhum plugin de diretório de objetos de rede padrão foi encontrado. Por favor verifique sua instalação ou configure um backend de diretório de objetos de rede diferente via o Configurador %1.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Nome do computador;Nome do host;Usuário</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Falha na detecção de sala</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Não foi possível determinar a sala a que esse computador pertence. Isso indica um problema com a configuração do sistema. Todas as salas serão exibidas no gerenciamento de computadores.</translation>
     </message>
 </context>
 <context>
@@ -1658,6 +1658,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Autenticação de arquivo de chave</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Teste</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1830,16 +1846,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>e.g. hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Atributo de nome de host do computador</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>e.g. member ou memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Atributo de login do usuário</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1856,10 +1864,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>e.g. uid ou sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Nomes de host armazenados como nomes de domínio totalmente qualificados (FQDN, e.g. meuhost.exemplo.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1888,10 +1892,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Nome distinto (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Atributo configurado para login de usuário ou nome de host do computador (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1992,22 +1992,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Digite o nome do computador</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Por favor digite um nome de host para consultar:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Nome de host inválido</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Você configurou os nomes de host dos computadores para serem armazenados como nomes de domínio totalmente qualificados (FQDN) mas digitou um nome de host sem domínio.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Você configurou os nomes de host dos computadores para serem armazenados como nomes de host simples sem um nome de domínio, mas digitou um nome de host com uma parte com nome de domínio.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>objetos do computador</translation>
     </message>
@@ -2048,18 +2032,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Usuário não encontrado</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>Não foi possível encontrar um usuário com o nome &quot;%1&quot;. Por favor verifique o nome de usuário ou o parâmetro de usuário.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Digite o nome do host</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Por favor digite um nome de host cujas associações de grupo devem ser consultadas:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>grupos do computador</translation>
     </message>
@@ -2068,24 +2040,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Computador não encontrado</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Não foi possível encontrar um computador com o nome de host &quot;%1&quot;. Por favor verifique o nome de host ou o parâmetro de árvore do computador.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Digite o endereço IP do computador</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Por favor digite um endereço de IP que deve ser resolvido para um objeto:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Falha ao procurar o nome do Host</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Não foi possível encontrar nome de host para o endereço IP %1. Por favor verifique suas configurações de servidor DNS.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2373,6 +2333,62 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test</source>
         <translation>Teste</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2595,6 +2611,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>insira o filtro de pesquisa...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2704,10 +2731,6 @@ USAGE
         <translation>Auto</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Salas de computador</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
@@ -2803,6 +2826,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2823,10 +2850,6 @@ USAGE
         <translation>No clique duplo:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Trocar para sala atual automaticamente ao iniciar</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Funcionalidades</translation>
     </message>
@@ -2839,20 +2862,12 @@ USAGE
         <translation>Funcionalidades desativadas</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Executar controle de acesso ao iniciar programa</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Capturas de tela</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Ajustar tamanho de thumbnail do computador automaticamente ao iniciar</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2867,20 +2882,8 @@ USAGE
         <translation>Aplicar modo selecionado para computadores cliente</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Exibir apenas a sala atual</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Permitir adicionar salas manualmente</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Ocultar computador local</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Ocultar salas vazias</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2889,10 +2892,6 @@ USAGE
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Ações como reiniciar ou desligar computadores</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Exibir diálogo de confirmação para ações potencialmente perigosas</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2935,14 +2934,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Salas de computador</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Text color</source>
         <translation type="unfinished"/>
     </message>
@@ -2952,6 +2943,42 @@ USAGE
     </message>
     <message>
         <source>Computer and user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2966,8 +2993,8 @@ USAGE
         <translation>Modo de monitoramento embutido</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Esse é o modo padrão e permite que você monitore todos os computadores em uma ou mais salas</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3324,17 +3351,6 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Captura de tela</translation>
-    </message>
-</context>
-<context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Seleção de salas</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>insira o filtro de pesquisa...</translation>
     </message>
 </context>
 <context>

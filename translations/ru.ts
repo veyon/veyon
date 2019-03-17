@@ -61,10 +61,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Тестировать</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Ограничить доступ членам определенных групп пользователей</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>Правила контроля доступа к процессу</translation>
     </message>
@@ -151,6 +147,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>Не был найден плагин по умолчанию для пользовательских групп. Проверьте свою установку!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Ограничить доступ участникам указанных групп пользователей</translation>
     </message>
 </context>
 <context>
@@ -252,15 +252,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Пользователь не вошел</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Доступ к компьютеру, находящемуся в том же классе, что и локальный компьютер</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Доступ к пользователю имеет одна или несколько групп, совместно с локальным пользователем (вошедшим в систему)</translation>
     </message>
     <message>
-        <source>is located in</source>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Компьютер для доступа расположен в том же месте, что и локальный компьютер</translation>
+    </message>
+    <message>
+        <source>is located at</source>
         <translation>расположен в</translation>
     </message>
 </context>
@@ -614,14 +614,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ИМЯ</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Эта команда создаёт новую пару ключей для распознавания под названием &lt;ИМЯ&gt; и сохраняет закрытый и открытый ключи в настроенных каталогах ключей.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>Эта команда удаляет ключ аутентификации &lt;КЛЮЧ&gt; из настроенного каталога ключей. Пожалуйста, обратите внимание, что после удаления ключ нельзя будет восстановить.</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>ФАЙЛ</translation>
     </message>
@@ -636,10 +628,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Эта команда выводит список всех ключей аутентификации в настроенном каталоге ключей. Если выбрана опция &quot;%1&quot;, то вместо списка будет выведена таблица с подробностями про ключи. Некоторые параметры ключа могут быть не показаны, если доступ к ключу ограничен, например из-за нехватки прав на чтение файла ключа.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Эта команда добывает часть, связанную с открытым ключом, из закрытого ключа &lt;КЛЮЧ&gt; и сохраняет её в соответствующий файла открытого ключа.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -660,6 +648,18 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Команды для управления ключами аутентификации</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Эта команда создаёт новую пару ключей для аутентификации под названием &lt;ИМЯ&gt; и сохраняет закрытый и открытый ключи в настроенных каталогах ключей. Параметром должно быть имя ключа, которое должно состоять только из букв.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Эта команда удаляет ключ аутентификации &lt;КЛЮЧ&gt; из настроенного каталога ключей. Пожалуйста, обратите внимание, что после изъятия ключ нельзя будет восстановить.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Эта команда добывает часть, связанную с открытым ключом, из закрытого ключа &lt;КЛЮЧ&gt; и сохраняет её в соответствующий файла открытого ключа. Поэтому при настройке дополнительного основного компьютера достаточно перенести на него только закрытый ключ. После переноса открытый ключ можно просто добыть.</translation>
     </message>
 </context>
 <context>
@@ -1000,10 +1000,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Класс: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Хост/IP-адрес: %1</translation>
     </message>
@@ -1043,6 +1039,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logged on user: %1</source>
         <translation>Вход в систему под пользователем: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Место: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1068,14 +1068,45 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Отсутствует плагин каталога сетевых объектов</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Не найден ни один плагин каталога сетевых объектов по умолчанию. Пожалуйста, проверьте корректность установки или настройте другой сервер каталога объектов сети через конфигуратор %1.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Не удалось определить место</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation>Не удалось определить место этого компьютера. Это означает, что в настройках системы есть проблемы. На панели выбора компьютера будут показаны все места.</translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation>Имя компьютера; Имя хоста; Пользователь</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation> Управление компьютером</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Добавить класс</translation>
+        <source>Computer search</source>
+        <translation>Компьютерный поиск</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>Добавить место</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1096,37 +1127,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не удалось записать список компьютеров и пользователей в %1! Пожалуйста, проверьте права доступа к файлу.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Компьютерный поиск</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Пользователь</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Отсутствует плагин каталога сетевых объектов</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Не найден ни один плагин каталога сетевых объектов по умолчанию. Пожалуйста, проверьте корректность установки или настройте другой сервер каталога объектов сети через конфигуратор %1.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Имя компьютера; Имя хоста; Пользователь</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Не удалось обнаружить класс</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Не удалось определить класс, к которому принадлежит этот компьютер. Это указывает на проблему с настройками системы. Все классы будут отображаться в управлении компьютерами.</translation>
     </message>
 </context>
 <context>
@@ -1661,6 +1661,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Аутентификация с помощью ключа доступа</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Тестировать</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1833,16 +1849,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>например, hwAddress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Атрибут имени хоста компьютера</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>например, member или memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Атрибут имени пользователя</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1859,10 +1867,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>например, uid или sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Имена хостов сохранены как полные доменные имена (FQDN, например myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1891,10 +1895,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Уникальное имя (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Настроенный атрибут для имени пользователя или имени хоста компьютера (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1995,22 +1995,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Введите имя компьютера</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Пожалуйста, укажите имя хоста компьютера для запроса:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Некорректное имя хоста</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Вы настроили программу на хранение полных доменных имён хостов компьютеров (FQDN), но указали имя хоста без домена.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Вы настроили программу на хранение простых имён хостов компьютеров, но указали название хоста вместе с именем домена.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>объекты компьютеров</translation>
     </message>
@@ -2051,18 +2035,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Пользователь не найден</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>Не удалось найти пользователя с именем &quot;%1&quot;. Пожалуйста, проверьте, правильно ли указано имя пользователя или параметр дерева пользователей.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Введите имя хоста</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Пожалуйста, укажите имя хоста компьютера, для кого следует получить данные об участии в группах:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>группы компьютера</translation>
     </message>
@@ -2071,24 +2043,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Компьютер не найден</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Не удалось найти компьютер с именем хоста &quot;%1&quot;. Пожалуйста, проверьте, правильно ли указано имя хоста или параметр дерева компьютеров.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Введите IP адрес компьютера</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Пожалуйста, укажите IP-адрес компьютера, с которой следует определить объект компьютера:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Ошибка поиска имени хоста</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Не удалось выполнить поиск имени хоста для IP-адреса %1. Пожалуйста, проверьте, правильно ли указаны параметры вашего сервера DNS.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2390,6 +2350,62 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test</source>
         <translation>Тестировать</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Имена хостов сохранены как полные доменные имена (FQDN, например myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Атрибут имени хоста компьютера</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Пожалуйста, укажите имя хоста компьютера для запроса:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Некорректное имя хоста</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Вы настроили программу на хранение полных доменных имён хостов компьютеров (FQDN), но указали имя хоста без домена.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Вы настроили программу на хранение простых имён хостов компьютеров, но указали название хоста вместе с именем домена.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Не удалось найти пользователя с именем &quot;%1&quot;. Пожалуйста, проверьте, правильно ли указано имя пользователя или параметр дерева пользователей.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Введите имя хоста</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Пожалуйста, укажите имя хоста компьютера, для кого следует получить данные об участии в группах:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Не удалось найти компьютер с именем хоста &quot;%1&quot;. Пожалуйста, проверьте, правильно ли указано имя хоста или параметр дерева компьютеров.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Ошибка поиска имени хоста</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Не удалось выполнить поиск имени хоста для IP-адреса %1. Пожалуйста, проверьте, правильно ли указаны параметры вашего сервера DNS.</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2622,6 +2638,17 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation>Выбрать место</translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>введите фильтр поиска...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2731,10 +2758,6 @@ USAGE
         <translation>Авто</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Компьютерные классы</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>О программе</translation>
     </message>
@@ -2830,6 +2853,10 @@ USAGE
         <source>&amp;Advanced</source>
         <translation>&amp;Рвсширенный</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Места и компьютеры</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2850,10 +2877,6 @@ USAGE
         <translation>Действие в ответ на двойной щелчок на компьютере:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Автоматически переключаться на текущий класс при запуске</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Функции</translation>
     </message>
@@ -2866,20 +2889,12 @@ USAGE
         <translation>Отключенные функции</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Выполнять управление доступом при запуске программы</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Скриншоты</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;нет функции&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Автоматически корректировать размер миниатюры компьютера при запуске</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2894,20 +2909,8 @@ USAGE
         <translation>Принудительно выбранный режим для компьютеров-клиентов</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Отображать только текущий класс</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Разрешить добавление классов вручную</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Скрыть локальный компьютер</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Скрыть пустые классы</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2916,10 +2919,6 @@ USAGE
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Действия, в частности, перезагрузка и выключение компьютеров</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Показывать окно подтверждения для потенциально опасных действий</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2962,14 +2961,6 @@ USAGE
         <translation>Подпись миниатюры компьютера</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Компьютерные классы</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>Автоматически открывать виджет компьютерных классов</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Цвет текста</translation>
     </message>
@@ -2980,6 +2971,42 @@ USAGE
     <message>
         <source>Computer and user name</source>
         <translation>Имя компьютера и пользователя</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation>Автоматически открыть панель выбора компьютера</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Места компьютеров</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Показать только текущее место</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Разрешить добавление скрытых мест вручную</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Скрыть пустые места</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Показывать окно подтверждения для потенциально опасных действий</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Выполнить управление доступом</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Автоматически выбирать текущее место</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation>Автоматически корректировать размер миниатюры компьютера</translation>
     </message>
 </context>
 <context>
@@ -2993,8 +3020,8 @@ USAGE
         <translation>Встроенный режим мониторинга</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Это режим по умолчанию. Он предоставляет вам возможность следить за всеми компьютерами в одном или нескольких классах.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation>В этом режиме вы можете наблюдать за всеми компьютерами в одном или нескольких местах.</translation>
     </message>
 </context>
 <context>
@@ -3359,17 +3386,6 @@ USAGE
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Выбор класса</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>введите фильтр поиска...</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3600,7 +3616,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Использовать альтернативный механизм аутентификации пользователей</translation>
     </message>
 </context>
 <context>

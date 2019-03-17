@@ -61,10 +61,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Preizkus</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Omeji dostop do članov določenih skupin uporabnikov</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>Pravila za nadzor dostopa do procesov</translation>
     </message>
@@ -151,6 +147,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>Noben privzeti vtičnik uporabniških skupin ni bil najden. Prosimo, preverite namestitev!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Omejite dostop do članov določenih skupin uporabnikov</translation>
     </message>
 </context>
 <context>
@@ -252,16 +252,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Uporabnik ni prijavljen na</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Dostopni računalnik se nahaja v istem prostoru kot lokalni računalnik</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Dostopni uporabnik ima eno ali več skupnin, skupnih z lokalnim (prijavljenim) uporabnikom</translation>
     </message>
     <message>
-        <source>is located in</source>
-        <translation>se nahaja v</translation>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Dostop do računalnika in lokalni računalnik sta na isti lokaciji</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>se nahaja na</translation>
     </message>
 </context>
 <context>
@@ -614,14 +614,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>IME</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Ta ukaz ustvari nov par ključev za preverjanje pristnosti z imenom &lt;IME&gt; in shrani zasebni in javni ključ do nastavljenih ključnih imenikov.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>Ta ukaz izbriše ključ &lt;KLJUČ&gt; za preverjanje pristnosti iz nastavljenega imenika ključa.  Upoštevajte, da ključa po izbrisu ne morete obnoviti.</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>DATOTEKA</translation>
     </message>
@@ -636,10 +628,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Ta ukaz navaja vse razpoložljive ključe za overjanje v nastavljenem imeniku ključev. Če je možnost &quot;%1&quot; določena, bo prikazana tabela s podatki ključa namesto tega. Nekateri podatki morda manjkajo, če ključ ni dostopen, npr. zaradi pomanjkanja dovoljenj za branje.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Ta ukaz izvleče del javnega ključa iz zasebnega ključa &lt;KEY&gt; in ga shrani kot ustrezni javni ključ.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -660,6 +648,18 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Ukazi za upravljanje ključev za preverjanje pristnosti</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Ta ukaz ustvari nov par ključev za preverjanje pristnosti z imenom &lt;NAME&gt; in shrani zasebni in javni ključ v konfigurirane ključne imenike. Parameter mora biti ime za ključ, ki lahko vsebuje le črke.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Ta ukaz izbriše ključ za overjanje &lt;KEY&gt; iz nastavljenega imenika ključev. Upoštevajte, da ključa ni mogoče obnoviti, ko je bil izbrisan.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Ta ukaz izdela del javnega ključa iz zasebnega ključa &lt;KEY&gt; in ga shrani kot ustrezen javni ključ. Pri nastavljanju drugega glavnega računalnika je torej dovolj, da prenesete samo zasebni ključ. Nato se lahko izvleče javni ključ.</translation>
     </message>
 </context>
 <context>
@@ -884,47 +884,47 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>LOKACIJA</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>FORMAT-STRING-WITH-PLACEHOLDERS</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>REGULAR-EXPRESSION-WITH-PLACEHOLDER</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Uvozi predmete iz podane besedilne datoteke z uporabo podanega formata niza ali regularnega izraza, ki vsebuje enega ali več ograd. Veljavne ograde so: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>Uvozite preprosto CSV datoteko v eno sobo</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>Uvozite datoteko CSV z imenom lokacije v prvi stolpec</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Uvozite besedilno datoteko s parom ključ/vrednost z uporabo regularnih izrazov</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>Uvozi poljubno formatirane podatke</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Izvozi predmete v podano besedilno datoteko z uporabo podanega niza formatov, ki vsebuje eno ali več ograd. Veljavne ograde so: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Izvozite vse objekte v datoteko CSV</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Izvozite vse računalnike na določeni lokaciji v datoteko CSV</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -936,47 +936,47 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>STARŠ</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>Dodajte objekt, kjer je lahko %1 eden od &quot;%2&quot; ali &quot;%3&quot;. %4 lahko določite z imenom ali UUID.</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>Dodajte sobo</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>Dodajte računalnik v sobo %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>PREDMET</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani podani predmet iz imenika. %1 lahko določite z imenom ali UUID. Če odstranite lokacijo, boste odstranili tudi vse povezane računalnike.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>Odstranite računalnik po imenu</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>Odstranite predmet z UUID</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Soba 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Računalnik 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>NASLOV GOSTITELJA</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -999,10 +999,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Room: %1</source>
-        <translation>Soba: %1</translation>
-    </message>
     <message>
         <source>Host/IP address: %1</source>
         <translation>Gostitelj/IP naslov: %1</translation>
@@ -1043,6 +1039,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Logged on user: %1</source>
         <translation>Prijavljen uporabnik: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Lokacija: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1068,14 +1068,45 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Uporabnik</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Manjka vtičnik imenika omrežnega objekta</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Nobenega privzetega vtičnika imenika omrežnega objekta ni bilo mogoče najti. Preverite svojo namestitev ali nastavite drugačen imenik ozadja objekta omrežja preko %1 konfiguratorja.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Iskanje lokacije ni uspelo</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation>Ne morem določiti lokacije tega računalnika. To kaže na težavo s konfiguracijo sistema. Namesto tega bodo v prikazu izbire računalnika prikazane vse lokacije.</translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation>Ime računalnika;Ime gostitelja;Uporabnik</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Upravljanje računalnika</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Dodaj sobo</translation>
+        <source>Computer search</source>
+        <translation>Preišči računalnik</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>Dodaj lokacijo</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1096,37 +1127,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Računalnika in uporabnikov ni mogoče vpisati v seznam %1! Preverite dovoljenja za dostop do datotek.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Preišči računalnik</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Uporabnik</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Manjka vtičnik imenika omrežnega objekta</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nobenega privzetega vtičnika imenika omrežnega objekta ni bilo mogoče najti. Preverite svojo namestitev ali nastavite drugačen imenik ozadja objekta omrežja preko %1 konfiguratorja.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Ime računalnika;Ime gostitelja;Uporabnik</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Zaznavanje sobe ni uspelo</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Ni bilo mogoče ugotoviti sobe, v katero spada ta računalnik. To kaže na težave s sistemsko konfiguracijo. Vse sobe bodo namesto tega prikazane v upravljanju računalnika .</translation>
     </message>
 </context>
 <context>
@@ -1661,6 +1661,22 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Key file authentication</source>
         <translation>Preverjanje pristnosti z datotečnim ključem</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkus</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Preverjanje pristnosti je pravilno nastavljeno v tem računalniku.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Ključi za preverjanje pristnosti v tem računalniku niso pravilno nastavljeni.</translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Preverjanje pristnosti</translation>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1833,16 +1849,8 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>npr. hwNaslov</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Atribut gostiteljskega imena računalnika</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>npr. član ali članUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Atribut prijave uporabnika</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1859,10 +1867,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>npr. uid ali sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Imena gostiteljev, shranjena kot popolna imena domen (FQDN, e.g. myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1891,10 +1895,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Razločno ime (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Konfigurirani atribut za prijavo uporabnika ali ime računalniškega gostitelja (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1995,22 +1995,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Vnesite ime računalnika</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Vnesite ime računalnika gostitelja za poizvedbo:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Neveljavno ime gostitelja</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Nastavili ste imena računalniških gostiteljev, ki jih želite shraniti kot popolna imena domen (FQDN), vendar ste vnesli ime gostitelja brez domene.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Nastavili ste imena računalniških gostiteljev, ki jih želite shraniti kot preprosta imena gostiteljev brez imena domene, vendar ste vnesli ime gostitelja z delom imena domene.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>računalniški predmeti</translation>
     </message>
@@ -2051,18 +2035,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Uporabnik ni najden</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>Uporabnika z imenom &quot;%1&quot; ni bilo mogoče najti. Preverite uporabniško ime ali parameter drevesa uporabnika.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Vnesite ime gostitelja</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Vnesite ime računalnika gostitelja, katere člani skupine naj poizvedujejo:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>skupine računalnika</translation>
     </message>
@@ -2071,24 +2043,12 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Računalnika ni bilo mogoče najti</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Ni bilo mogoče najti računalnika z imenom gostitelja &quot;%1&quot;. Preverite ime gostitelja ali parameter drevesa računalnika.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Vnesite računalnikov IP naslov</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Vnesite IP naslov računalnika, ki ga želite razrešiti na računalniški objekt:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Iskanje imena gostitelja ni uspelo</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Ne morem pogledati imena gostitelja za IP naslov %1. Preverite nastavitve strežnika DNS.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2384,11 +2344,67 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Brskanje</translation>
     </message>
     <message>
         <source>Test</source>
         <translation>Preizkus</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Imena gostiteljev so shranjena kot popolna imena domen (FQDN, npr. myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atribut gostiteljskega računalnika</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Vnesite ime gostiteljskega računalnika za poizvedbo:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Neveljavno ime gostitelja</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Konfigurirali ste računalniška imena gostiteljev, ki jih želite shraniti kot popolne domene (FQDN), vendar ste vnesli ime gostitelja brez domene.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Računalniška imena gostiteljev ste konfigurirali za shranjevanje kot preprosta imena gostiteljev brez imena domene, vendar ste vnesli ime gostitelja z delom imena domene.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Uporabnika z imenom &quot;%1&quot; ni bilo mogoče najti. Preverite uporabniško ime ali parameter drevesa uporabnika.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Vnesite ime gostitelja</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Vnesite ime gostitelja računalnika, ki je član v skupini za poizvedbo:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Ni bilo mogoče najti računalnika z imenom gostitelja &quot;%1&quot;. Preverite ime gostitelja ali parameter drevesa računalnika.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Iskanje imena gostitelja ni uspelo</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Ni bilo mogoče iskati imena gostitelja za IP naslov %1. Preverite nastavitve strežnika DNS.</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Atribut uporabniškega imena za prijavo</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>Konfiguriran atribut za uporabniško ime za prijavo ali ime gostitelja računalnika (OpenLDAP)</translation>
     </message>
 </context>
 <context>
@@ -2415,11 +2431,11 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (naložite računalnike in lokacije iz LDAP/AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (naložite uporabnike in skupine iz LDAP/AD)</translation>
     </message>
 </context>
 <context>
@@ -2461,11 +2477,11 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (naložite računalnike in lokacije iz LDAP/AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (naložite uporabnike in skupine iz LDAP/AD)</translation>
     </message>
 </context>
 <context>
@@ -2622,6 +2638,17 @@ UPORABA
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation>Izberite lokacijo</translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>vnesi iskalni filter...</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2731,10 +2758,6 @@ UPORABA
         <translation>Samodejno</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Računalniške sobe</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Vizitka</translation>
     </message>
@@ -2830,6 +2853,10 @@ UPORABA
         <source>&amp;Advanced</source>
         <translation>&amp;Napredno</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Lokacije in računalniki</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2850,10 +2877,6 @@ UPORABA
         <translation>Funkcija dvojnega klika na računalniku:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Samodejno preklopi na trenutno sobo ob zagonu</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Funkcije</translation>
     </message>
@@ -2866,20 +2889,12 @@ UPORABA
         <translation>Onemogoči funkcije</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Izvedi nadzor dostopa ob zagonu programa</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Zaslonske slike</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;brez funkcije&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Samodejno prilagodi velikost sličic računalnika ob zagonu</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2894,20 +2909,8 @@ UPORABA
         <translation>Sproži izbrani način za odjemalske računalnike</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Prikaz samo trenutno sobo</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Dovoli dodajanje prostorov ročno</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Skrij lokalni računalnik</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Skrij prazne sobe</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2916,10 +2919,6 @@ UPORABA
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Ukrepi, kot so ponovni zagon ali izklop računalnikov</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Prikaži potrditveni dialog za potencialno nevarne aktivnosti</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2962,14 +2961,6 @@ UPORABA
         <translation>Napis sličice računalnika</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Računalniške sobe</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>Samodejno odpri pripomoček računalniške sobe</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Barva besedila</translation>
     </message>
@@ -2980,6 +2971,42 @@ UPORABA
     <message>
         <source>Computer and user name</source>
         <translation>Računalnik in uporabniško ime</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation>Samodejno odpiranje pogleda izbire računalnika</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Lokacije računalnika</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Prikaži samo trenutno lokacijo</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Dovolite ročno dodajanje skritih lokacij</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Skrij prazne lokacije</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Pokaži potrditveno okno za morebitna nevarna dejanja</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Opravite nadzor dostopa</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Samodejno izberi trenutno lokacijo</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation>Samodejno prilagodi velikost računalniške sličice</translation>
     </message>
 </context>
 <context>
@@ -2993,8 +3020,8 @@ UPORABA
         <translation>Vgrajen način nadzora </translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>To je privzeti način in vam omogoča spremljanje vseh računalnikov v eni ali več sobah.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation>Ta način omogoča nadzor vseh računalnikov na eni ali več lokacijah.</translation>
     </message>
 </context>
 <context>
@@ -3359,17 +3386,6 @@ UPORABA
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Izbira sobe</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>vnesi iskalni filter...</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3600,7 +3616,7 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Uporabite alternativni mehanizem za preverjanje pristnosti uporabnika</translation>
     </message>
 </context>
 <context>
@@ -3853,15 +3869,15 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>UPORABA</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>OPIS</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>PRIMERI</translation>
     </message>
 </context>
 <context>

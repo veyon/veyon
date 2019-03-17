@@ -61,10 +61,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Vyzkoušet funkčnost</translation>
     </message>
     <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Omezit přístup na členy určitých skupin uživatelů</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation>Zpracovat pravidla řízení přístupu</translation>
     </message>
@@ -151,6 +147,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
         <translation>Nebyl nalezen žádný výchozí zásuvný modul uživatelských skupin. Zkontrolujte svou instalaci!</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Omezit přístup na členy konkrétních skupin uživatelů</translation>
     </message>
 </context>
 <context>
@@ -252,16 +252,16 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Není přihlášený žádný uživatel</translation>
     </message>
     <message>
-        <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Přistupující počítač se nachází ve stejné místnosti jako tento počítač</translation>
-    </message>
-    <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation>Přistupující uživatel má jednu nebo více skupin společných s uživatelem, který je právě přihlášený k počítači</translation>
     </message>
     <message>
-        <source>is located in</source>
-        <translation>nachází se v</translation>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Přistupující počítač a tento počítač se nacházejí ve stejném umístění</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>se nachází v</translation>
     </message>
 </context>
 <context>
@@ -614,14 +614,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>NÁZEV</translation>
     </message>
     <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Tento příkaz vytvoří novou dvojici ověřovacího klíče s názvem &lt;NAME&gt; a uloží jeho soukromou a veřejnou část do nastavených složek s klíči.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation>Tento příkaz maže ověřovací klíč &lt;KEY&gt; z nastavené složky s klíči. Uvědomte si, že klíč nemůže být po smazání obnoven.</translation>
-    </message>
-    <message>
         <source>FILE</source>
         <translation>SOUBOR</translation>
     </message>
@@ -636,10 +628,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Tento příkaz vypíše všechny dostupné ověřovací klíče v nastavené složce s klíči. Pokud je zadaná volba „%1“, bude namísto toho zobrazena tabulka s podrobnostmi o klíči. Některé podrobnosti mohou chybět pokud klíč není dostupný například kvůli chybějícím právům na čtení.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation>Tento příkaz vytáhne veřejnou část klíče ze soukromého klíče &lt;KEY&gt; a uloží jí do odpovídajícího veřejného klíče.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -660,6 +648,18 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Příkazy pro zprávu ověřovacích klíčů</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Tento příkaz vytvoří novou dvojici ověřovacího klíče s názvem &lt;NAME&gt; a uloží jeho soukromou a veřejnou část do nastavených složek s klíči. Je třeba, aby parametr byl název pro klíč a může obsahovat pouze písmena.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Tento příkaz maže ověřovací klíč &lt;KEY&gt; z nastavené složky s klíči. Uvědomte si, že klíč nemůže být po smazání obnoven.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Tento příkaz vytáhne veřejnou část klíče ze soukromého klíče &lt;KEY&gt; a uloží jí do odpovídajícího veřejného klíče. Při nastavování jiného řídícího počítače proto stačí přenést pouze soukromou část klíče. Tu veřejnou z něj lze vytáhnout.</translation>
     </message>
 </context>
 <context>
@@ -1000,10 +1000,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>ComputerControlListModel</name>
     <message>
-        <source>Room: %1</source>
-        <translation>Místnost: %1</translation>
-    </message>
-    <message>
         <source>Host/IP address: %1</source>
         <translation>Stroj / IP adresa: %1</translation>
     </message>
@@ -1043,6 +1039,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Logged on user: %1</source>
         <translation>Přihlášený uživatel: %1</translation>
     </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Umístění: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1068,14 +1068,45 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
 </context>
 <context>
-    <name>ComputerManagementView</name>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Uživatel</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Chybí zásuvný modul pro adresář se síťovými objekty</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Nebyl nalezen žádný výchozí zásuvný modul pro adresář se síťovými objekty. Zkontrolujte svou instalaci nebo v nastavení %1 určete jinou podpůrnou vrstvu (backend) pro takový adresář.</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Zjištění umístění se nezdařilo</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <translation>Umístění počítače se nedaří zjistit. To značí problém s nastavením systému. Náhradně budou v pohledu výběru počítačů zobrazena všechna umístění.</translation>
+    </message>
+    <message>
+        <source>Computer name;Hostname;User</source>
+        <translation>Název počítače;Název stroje;Uživatel</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSelectionView</name>
     <message>
         <source>Computer management</source>
         <translation>Správa počítače</translation>
     </message>
     <message>
-        <source>Add room</source>
-        <translation>Přidat místnost</translation>
+        <source>Computer search</source>
+        <translation>Vyhledání počítače</translation>
+    </message>
+    <message>
+        <source>Add location</source>
+        <translation>Přidat umístění</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1096,37 +1127,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nedaří se zapsat seznam počítačů a uživatelů do %1! Zkontrolujte přístupová práva souboru.</translation>
-    </message>
-    <message>
-        <source>Computer search</source>
-        <translation>Vyhledání počítače</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerManager</name>
-    <message>
-        <source>User</source>
-        <translation>Uživatel</translation>
-    </message>
-    <message>
-        <source>Missing network object directory plugin</source>
-        <translation>Chybí zásuvný modul pro adresář se síťovými objekty</translation>
-    </message>
-    <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nebyl nalezen žádný výchozí zásuvný modul pro adresář se síťovými objekty. Zkontrolujte svou instalaci nebo v nastavení %1 určete jinou podpůrnou vrstvu (backend) pro takový adresář.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Název počítače;Název stroje;Uživatel</translation>
-    </message>
-    <message>
-        <source>Room detection failed</source>
-        <translation>Zjištění místnosti se nezdařilo</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Nedaří se zjistit do které místnosti tento počítač přísluší. To značí problém s nastavením systému. Náhradně budou ve správě počítače zobrazeny všechny místnosti.</translation>
     </message>
 </context>
 <context>
@@ -1661,6 +1661,22 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Key file authentication</source>
         <translation>Ověření pomocí souboru s klíčem</translation>
     </message>
+    <message>
+        <source>Test</source>
+        <translation>Vyzkoušet funkčnost</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
@@ -1833,16 +1849,8 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>např. hwAdress</translation>
     </message>
     <message>
-        <source>Computer host name attribute</source>
-        <translation>Atribut název počítače</translation>
-    </message>
-    <message>
         <source>e.g. member or memberUid</source>
         <translation>Např. member nebo memberUid</translation>
-    </message>
-    <message>
-        <source>User login attribute</source>
-        <translation>Atribut přihlašovací jméno uživatele</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1859,10 +1867,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>např. uid nebo sAMAccountName</translation>
-    </message>
-    <message>
-        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Názvy strojů ukládané jako úplné doménové názvy (FQDN), např. mujstroj.example.org</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1891,10 +1895,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Rozlišený název (Samba/AD)</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Atribut nastavený jako uživatelské jméno nebo název počítače (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1995,22 +1995,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte název počítače</translation>
     </message>
     <message>
-        <source>Please enter a computer host name to query:</source>
-        <translation>Zadejte název počítače na se který dotázat:</translation>
-    </message>
-    <message>
-        <source>Invalid host name</source>
-        <translation>Neplatný název stroje</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě úplných doménových názvů (FQDN), ale nyní jste zadali pouze název stroje bez domény.</translation>
-    </message>
-    <message>
-        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě krátkých názvů bez doménové části, ale nyní jste zadali název stroje včetně domény.</translation>
-    </message>
-    <message>
         <source>computer objects</source>
         <translation>objekty počítačů</translation>
     </message>
@@ -2051,18 +2035,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Uživatel nebyl nalezen</translation>
     </message>
     <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>Nedaří se nalézt uživatele se jménem „%1“. Zkontrolujte uživatelské jméno nebo parametr strom uživatelů.</translation>
-    </message>
-    <message>
-        <source>Enter host name</source>
-        <translation>Zadejte název stroje</translation>
-    </message>
-    <message>
-        <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation>Zadejte název počítače na jehož členství ve skupinách se dotázat:</translation>
-    </message>
-    <message>
         <source>groups of computer</source>
         <translation>skupiny počítačů</translation>
     </message>
@@ -2071,24 +2043,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Počítač nenalezen</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Nedaří se nalézt počítač nazvaný „%1“. Zkontrolujte název stroje nebo parametr strom počítačů.</translation>
-    </message>
-    <message>
         <source>Enter computer IP address</source>
         <translation>Zadejte IP adresu počítače</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
         <translation>Zadejte IP adresu počítače kterou přeložit na objekt počítače:</translation>
-    </message>
-    <message>
-        <source>Host name lookup failed</source>
-        <translation>Vyhledání názvu stroje se nezdařilo</translation>
-    </message>
-    <message>
-        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Nedaří se zjistit název stroje pro IP adresu %1. Zkontrolujte nastavení pro DNS server.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2386,6 +2346,62 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Test</source>
         <translation>Vyzkoušet funkčnost</translation>
     </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Názvy strojů ukládané jako úplné doménové názvy (FQDN), např. mujstroj.example.org</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atribut název počítače</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Zadejte název počítače na se který dotázat:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Neplatný název stroje</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě úplných doménových názvů (FQDN), ale nyní jste zadali pouze název stroje bez domény.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě krátkých názvů bez doménové části, ale nyní jste zadali název stroje včetně domény.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Nedaří se nalézt uživatele se jménem „%1“. Zkontrolujte uživatelské jméno nebo parametr strom uživatelů.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Zadejte název stroje</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Zadejte název počítače na jehož členství ve skupinách se dotázat:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Nedaří se nalézt počítač nazvaný „%1“. Zkontrolujte název stroje nebo parametr strom počítačů.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Vyhledání názvu stroje se nezdařilo</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Nedaří se zjistit název stroje pro IP adresu %1. Zkontrolujte nastavení pro DNS server.</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2618,6 +2634,17 @@ POUŽITÍ
     </message>
 </context>
 <context>
+    <name>LocationSelectionDialog</name>
+    <message>
+        <source>Select location</source>
+        <translation>Vybrat umístění</translation>
+    </message>
+    <message>
+        <source>enter search filter...</source>
+        <translation>zadejte vyhledávací filtr…</translation>
+    </message>
+</context>
+<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2727,10 +2754,6 @@ POUŽITÍ
         <translation>Automaticky</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Počítačové místnosti</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>O aplikaci</translation>
     </message>
@@ -2826,6 +2849,10 @@ POUŽITÍ
         <source>&amp;Advanced</source>
         <translation>&amp;Pokročilé</translation>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Umístění a počítače</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2846,10 +2873,6 @@ POUŽITÍ
         <translation>Funkce při dvojkliku na počítač:</translation>
     </message>
     <message>
-        <source>Automatically switch to current room at start</source>
-        <translation>Při spuštění automaticky přepnout do stávající místnosti</translation>
-    </message>
-    <message>
         <source>Features</source>
         <translation>Funkce</translation>
     </message>
@@ -2862,20 +2885,12 @@ POUŽITÍ
         <translation>Vypnuté funkce</translation>
     </message>
     <message>
-        <source>Perform access control at program start</source>
-        <translation>Provádět při spouštění aplikace řízení přístupu</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Snímky obrazovky</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;žádná funkce&gt;</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Při spouštění automaticky přizpůsobit velikost náhledu počítače</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2890,20 +2905,8 @@ POUŽITÍ
         <translation>Vynutit vybraný režim pro klientské počítače</translation>
     </message>
     <message>
-        <source>Only show current room</source>
-        <translation>Zobrazit pouze stávající mísntost</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms manually</source>
-        <translation>Umožnit ruční přidávání místností</translation>
-    </message>
-    <message>
         <source>Hide local computer</source>
         <translation>Skrýt tento počítač</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms</source>
-        <translation>Skrýt prázdné místnosti</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2912,10 +2915,6 @@ POUŽITÍ
     <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Akce jako například restart nebo vypnutí počítačů</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation>Zobrazovat potvrzovací dialog pro potenciálně nebezpečné akce</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2958,14 +2957,6 @@ POUŽITÍ
         <translation>Titulek náhledu počítače</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Počítačové místnosti</translation>
-    </message>
-    <message>
-        <source>Automatically open computer rooms widget</source>
-        <translation>Automaticky otevřít ovládací prvek počítačových místností</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Barva textu</translation>
     </message>
@@ -2976,6 +2967,42 @@ POUŽITÍ
     <message>
         <source>Computer and user name</source>
         <translation>Počítač a uživatelské jméno</translation>
+    </message>
+    <message>
+        <source>Automatically open computer selection view</source>
+        <translation>Automaticky otevřít pohled výběru počítače</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Umístění počítačů</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Zobrazit pouze stávající umístění</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Umožnit ruční přidávání skrytých umístění</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Skrýt prázdná umístění</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>U potenciálně nebezpečných akcí zobrazovat potvrzovací dialog</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Provádět řízení přístupu</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Automaticky vybrat stávající umístění</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size</source>
+        <translation>Automaticky přizpůsobit velikost náhledu počítače</translation>
     </message>
 </context>
 <context>
@@ -2989,8 +3016,8 @@ POUŽITÍ
         <translation>Režim vestavěného dohledování</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Toto je výchozí režim a umožňuje monitorovat veškeré počítače v jedné a více místnostech.</translation>
+        <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation>Tento režim umožňuje monitorovat veškeré počítače v jednom a více umístěních.</translation>
     </message>
 </context>
 <context>
@@ -3355,17 +3382,6 @@ POUŽITÍ
     </message>
 </context>
 <context>
-    <name>RoomSelectionDialog</name>
-    <message>
-        <source>Room selection</source>
-        <translation>Výběr místnosti</translation>
-    </message>
-    <message>
-        <source>enter search filter...</source>
-        <translation>zadejte vyhledávací filtr…</translation>
-    </message>
-</context>
-<context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
@@ -3596,7 +3612,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Použít alternativní mechanizmus ověřování uživatelů</translation>
     </message>
 </context>
 <context>
