@@ -1,5 +1,5 @@
 /*
- * ComputerMonitoringView.h - provides a view with computer monitor thumbnails
+ * ComputerMonitoringWidget.h - provides a view with computer monitor thumbnails
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -31,13 +31,13 @@
 class QMenu;
 
 namespace Ui {
-class ComputerMonitoringView;
+class ComputerMonitoringWidget;
 }
 
 class ComputerSortFilterProxyModel;
 class VeyonMaster;
 
-class ComputerMonitoringView : public QWidget
+class ComputerMonitoringWidget : public QWidget
 {
 	Q_OBJECT
 public:
@@ -47,8 +47,8 @@ public:
 		DefaultComputerScreenSize = 150
 	};
 
-	ComputerMonitoringView( QWidget *parent = nullptr );
-	~ComputerMonitoringView() override;
+	ComputerMonitoringWidget( QWidget *parent = nullptr );
+	~ComputerMonitoringWidget() override;
 
 	void setVeyonMaster( VeyonMaster& masterCore );
 
@@ -77,7 +77,7 @@ private:
 	void addFeatureToMenu( const Feature& feature, const QString& label );
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 
-	Ui::ComputerMonitoringView *ui;
+	Ui::ComputerMonitoringWidget *ui;
 
 	VeyonMaster* m_master;
 	QMenu* m_featureMenu;

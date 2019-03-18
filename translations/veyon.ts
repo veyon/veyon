@@ -1083,16 +1083,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation type="unfinished"></translation>
@@ -2606,7 +2606,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"></translation>
@@ -2941,10 +2941,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2974,6 +2970,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3447,9 +3447,17 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>User:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3466,14 +3474,6 @@ USAGE
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

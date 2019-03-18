@@ -1,7 +1,7 @@
 /*
- * ScreenshotManagementView.h - declaration of screenshot management view
+ * LocationDialog.h - header file for LocationDialog
  *
- * Copyright (c) 2004-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,36 +24,32 @@
 
 #pragma once
 
-#include <QFileSystemModel>
-#include <QWidget>
-
-class QModelIndex;
+#include <QDialog>
+#include <QSortFilterProxyModel>
 
 namespace Ui {
-class ScreenshotManagementView;
+class LocationDialog;
 }
 
-class ScreenshotManagementView : public QWidget
+class LocationDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	ScreenshotManagementView( QWidget *parent );
-	~ScreenshotManagementView() override;
+	LocationDialog( QAbstractItemModel* locationListModel, QWidget *parent = nullptr );
+	~LocationDialog();
 
-
-protected:
-	void resizeEvent( QResizeEvent* event ) override;
+	const QString& selectedLocation() const
+	{
+		return m_selectedLocation;
+	}
 
 private slots:
-	void screenshotSelected( const QModelIndex &idx );
-	void screenshotDoubleClicked( const QModelIndex &idx );
-
-	void showScreenshot();
-	void deleteScreenshot();
-
+	void updateSearchFilter();
+	void updateSelection( const QModelIndex& current, const QModelIndex& previous );
 
 private:
-	Ui::ScreenshotManagementView* ui;
-	QFileSystemModel m_fsModel;
+	Ui::LocationDialog *ui;
 
-} ;
+	QSortFilterProxyModel m_sortFilterProxyModel;
+	QString m_selectedLocation;
+};

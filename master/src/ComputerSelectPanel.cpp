@@ -1,5 +1,5 @@
 /*
- * ComputerSelectionView.cpp - provides a view for a network object tree
+ * ComputerSelectPanel.cpp - provides a view for a network object tree
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,19 +26,19 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-#include "ComputerSelectionView.h"
+#include "ComputerSelectPanel.h"
 #include "ComputerManager.h"
 #include "NetworkObjectModel.h"
 #include "RecursiveFilterProxyModel.h"
-#include "LocationSelectionDialog.h"
+#include "LocationDialog.h"
 #include "VeyonConfiguration.h"
 
-#include "ui_ComputerSelectionView.h"
+#include "ui_ComputerSelectPanel.h"
 
 
-ComputerSelectionView::ComputerSelectionView( ComputerManager& computerManager, QWidget *parent ) :
+ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent ) :
 	QWidget(parent),
-	ui(new Ui::ComputerSelectionView),
+	ui(new Ui::ComputerSelectPanel),
 	m_computerManager( computerManager ),
 	m_filterProxyModel( new RecursiveFilterProxyModel( this ) )
 {
@@ -63,19 +63,19 @@ ComputerSelectionView::ComputerSelectionView( ComputerManager& computerManager, 
 	ui->filterLineEdit->setHidden( VeyonCore::config().computerFilterHidden() );
 
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
-			 this, &ComputerSelectionView::updateFilter );
+			 this, &ComputerSelectPanel::updateFilter );
 }
 
 
 
-ComputerSelectionView::~ComputerSelectionView()
+ComputerSelectPanel::~ComputerSelectPanel()
 {
 	delete ui;
 }
 
 
 
-bool ComputerSelectionView::eventFilter( QObject *watched, QEvent *event )
+bool ComputerSelectPanel::eventFilter( QObject *watched, QEvent *event )
 {
 	if( watched == ui->treeView &&
 		event->type() == QEvent::KeyPress &&
@@ -91,9 +91,9 @@ bool ComputerSelectionView::eventFilter( QObject *watched, QEvent *event )
 
 
 
-void ComputerSelectionView::addLocation()
+void ComputerSelectPanel::addLocation()
 {
-	LocationSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
+	LocationDialog dialog( m_computerManager.networkObjectModel(), this );
 	if( dialog.exec() && dialog.selectedLocation().isEmpty() == false )
 	{
 		m_computerManager.addLocation( dialog.selectedLocation() );
@@ -102,7 +102,7 @@ void ComputerSelectionView::addLocation()
 
 
 
-void ComputerSelectionView::removeLocation()
+void ComputerSelectPanel::removeLocation()
 {
 	auto model = m_computerManager.computerTreeModel();
 	const auto index = ui->treeView->selectionModel()->currentIndex();
@@ -122,7 +122,7 @@ void ComputerSelectionView::removeLocation()
 
 
 
-void ComputerSelectionView::saveList()
+void ComputerSelectPanel::saveList()
 {
 	QString fileName = QFileDialog::getSaveFileName( this, tr( "Select output filename" ),
 													 QDir::homePath(), tr( "CSV files (*.csv)" ) );
@@ -139,7 +139,7 @@ void ComputerSelectionView::saveList()
 
 
 
-void ComputerSelectionView::updateFilter()
+void ComputerSelectPanel::updateFilter()
 {
 	const auto filter = ui->filterLineEdit->text();
 	auto model = ui->treeView->model();

@@ -194,7 +194,7 @@ void ComputerManager::initLocations()
 								  tr( "Location detection failed" ),
 								  tr( "Could not determine the location of this computer. "
 									  "This indicates a problem with the system configuration. "
-									  "All locations will be shown in the computer selection view instead." ) );
+									  "All locations will be shown in the computer select panel instead." ) );
 			qWarning() << Q_FUNC_INFO << "location detection failed";
 		}
 

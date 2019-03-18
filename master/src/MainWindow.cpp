@@ -36,8 +36,8 @@
 #include "AuthenticationCredentials.h"
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
-#include "ComputerSelectionView.h"
-#include "ScreenshotManagementView.h"
+#include "ComputerSelectPanel.h"
+#include "ScreenshotManagementPanel.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "NetworkObjectDirectory.h"
@@ -63,11 +63,11 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	restoreState( QByteArray::fromBase64( m_master.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_master.userConfig().windowGeometry().toUtf8() ) );
 
-	ui->computerMonitoringView->setVeyonMaster( m_master );
+	ui->computerMonitoringWidget->setVeyonMaster( m_master );
 
 	// add widgets to status bar
-	ui->statusBar->addWidget( ui->computerSelectionViewButton );
-	ui->statusBar->addWidget( ui->screenshotManagementViewButton );
+	ui->statusBar->addWidget( ui->computerSelectPanelButton );
+	ui->statusBar->addWidget( ui->screenshotManagementPanelButton );
 	ui->statusBar->addWidget( ui->spacerLabel1 );
 	ui->statusBar->addWidget( ui->filterLineEdit, 2 );
 	ui->statusBar->addWidget( ui->filterPoweredOnComputersButton );
@@ -86,60 +86,60 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	ui->centralLayout->addWidget( splitter );
 
-	m_computerSelectionView = new ComputerSelectionView( m_master.computerManager(), splitter );
-	m_screenshotManagementView = new ScreenshotManagementView( splitter );
+	m_computerSelectPanel = new ComputerSelectPanel( m_master.computerManager(), splitter );
+	m_screenshotManagementPanel = new ScreenshotManagementPanel( splitter );
 
-	splitter->addWidget( m_computerSelectionView );
-	splitter->addWidget( m_screenshotManagementView );
-	splitter->addWidget( ui->computerMonitoringView );
+	splitter->addWidget( m_computerSelectPanel );
+	splitter->addWidget( m_screenshotManagementPanel );
+	splitter->addWidget( ui->computerMonitoringWidget );
 
 	// hide views per default and connect related button
-	m_computerSelectionView->hide();
-	m_screenshotManagementView->hide();
+	m_computerSelectPanel->hide();
+	m_screenshotManagementPanel->hide();
 
-	connect( ui->computerSelectionViewButton, &QAbstractButton::toggled,
-			 m_computerSelectionView, &QWidget::setVisible );
-	connect( ui->screenshotManagementViewButton, &QAbstractButton::toggled,
-			 m_screenshotManagementView, &QWidget::setVisible );
+	connect( ui->computerSelectPanelButton, &QAbstractButton::toggled,
+			 m_computerSelectPanel, &QWidget::setVisible );
+	connect( ui->screenshotManagementPanelButton, &QAbstractButton::toggled,
+			 m_screenshotManagementPanel, &QWidget::setVisible );
 
-	if( VeyonCore::config().autoOpenComputerSelectionView() )
+	if( VeyonCore::config().autoOpenComputerSelectPanel() )
 	{
-		ui->computerSelectionViewButton->setChecked( true );
+		ui->computerSelectPanelButton->setChecked( true );
 	}
 
 	// initialize search filter
 	ui->filterPoweredOnComputersButton->setChecked( m_master.userConfig().filterPoweredOnComputers() );
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
-			 ui->computerMonitoringView, &ComputerMonitoringView::setSearchFilter );
+			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setSearchFilter );
 	connect( ui->filterPoweredOnComputersButton, &QToolButton::toggled,
-			 ui->computerMonitoringView, &ComputerMonitoringView::setFilterPoweredOnComputers );
+			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setFilterPoweredOnComputers );
 
 	// initialize monitoring screen size slider
-	ui->gridSizeSlider->setMinimum( ComputerMonitoringView::MinimumComputerScreenSize );
-	ui->gridSizeSlider->setMaximum( ComputerMonitoringView::MaximumComputerScreenSize );
+	ui->gridSizeSlider->setMinimum( ComputerMonitoringWidget::MinimumComputerScreenSize );
+	ui->gridSizeSlider->setMaximum( ComputerMonitoringWidget::MaximumComputerScreenSize );
 
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
-			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
-	connect( ui->computerMonitoringView, &ComputerMonitoringView::computerScreenSizeAdjusted,
+			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setComputerScreenSize );
+	connect( ui->computerMonitoringWidget, &ComputerMonitoringWidget::computerScreenSizeAdjusted,
 			 ui->gridSizeSlider, &QSlider::setValue );
 	connect( ui->autoFitButton, &QToolButton::clicked,
-			 ui->computerMonitoringView, &ComputerMonitoringView::autoAdjustComputerScreenSize );
+			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::autoAdjustComputerScreenSize );
 
-	int size = ComputerMonitoringView::DefaultComputerScreenSize;
-	if( m_master.userConfig().monitoringScreenSize() >= ComputerMonitoringView::MinimumComputerScreenSize )
+	int size = ComputerMonitoringWidget::DefaultComputerScreenSize;
+	if( m_master.userConfig().monitoringScreenSize() >= ComputerMonitoringWidget::MinimumComputerScreenSize )
 	{
 		size = m_master.userConfig().monitoringScreenSize();
 	}
 
 	ui->gridSizeSlider->setValue( size );
-	ui->computerMonitoringView->setComputerScreenSize( size );
+	ui->computerMonitoringWidget->setComputerScreenSize( size );
 
 	// initialize computer placement controls
 	ui->useCustomComputerPlacementButton->setChecked( m_master.userConfig().useCustomComputerPositions() );
 	connect( ui->useCustomComputerPlacementButton, &QToolButton::toggled,
-			 ui->computerMonitoringView, &ComputerMonitoringView::setUseCustomComputerPositions );
+			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setUseCustomComputerPositions );
 	connect( ui->alignComputersButton, &QToolButton::clicked,
-			 ui->computerMonitoringView, &ComputerMonitoringView::alignComputers );
+			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::alignComputers );
 
 
 	// create the main toolbar

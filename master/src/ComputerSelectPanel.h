@@ -1,5 +1,5 @@
 /*
- * LocationSelectionDialog.h - header file for LocationSelectionDialog
+ * ComputerSelectPanel.h - provides a view for a network object tree
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,32 +24,36 @@
 
 #pragma once
 
-#include <QDialog>
-#include <QSortFilterProxyModel>
+#include <QModelIndexList>
+#include <QWidget>
 
 namespace Ui {
-class LocationSelectionDialog;
+class ComputerSelectPanel;
 }
 
-class LocationSelectionDialog : public QDialog
+class ComputerManager;
+class RecursiveFilterProxyModel;
+
+class ComputerSelectPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	LocationSelectionDialog( QAbstractItemModel* locationListModel, QWidget *parent = nullptr );
-	~LocationSelectionDialog();
+	ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent = nullptr );
+	~ComputerSelectPanel() override;
 
-	const QString& selectedLocation() const
-	{
-		return m_selectedLocation;
-	}
+	bool eventFilter(QObject *watched, QEvent *event) override;
 
 private slots:
-	void updateSearchFilter();
-	void updateSelection( const QModelIndex& current, const QModelIndex& previous );
+	void addLocation();
+	void removeLocation();
+	void saveList();
+	void updateFilter();
 
 private:
-	Ui::LocationSelectionDialog *ui;
+	Ui::ComputerSelectPanel *ui;
+	ComputerManager& m_computerManager;
+	RecursiveFilterProxyModel* m_filterProxyModel;
+	QString m_previousFilter;
+	QModelIndexList m_expandedGroups;
 
-	QSortFilterProxyModel m_sortFilterProxyModel;
-	QString m_selectedLocation;
 };

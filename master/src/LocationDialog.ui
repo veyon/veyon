@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LocationSelectionDialog</class>
- <widget class="QDialog" name="LocationSelectionDialog">
+ <class>LocationDialog</class>
+ <widget class="QDialog" name="LocationDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -54,7 +54,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>LocationSelectionDialog</receiver>
+   <receiver>LocationDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -70,7 +70,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>LocationSelectionDialog</receiver>
+   <receiver>LocationDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -86,7 +86,7 @@
   <connection>
    <sender>filterLineEdit</sender>
    <signal>textChanged(QString)</signal>
-   <receiver>LocationSelectionDialog</receiver>
+   <receiver>LocationDialog</receiver>
    <slot>updateSearchFilter()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -102,7 +102,7 @@
   <connection>
    <sender>filterLineEdit</sender>
    <signal>returnPressed()</signal>
-   <receiver>LocationSelectionDialog</receiver>
+   <receiver>LocationDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -118,7 +118,7 @@
   <connection>
    <sender>listView</sender>
    <signal>activated(QModelIndex)</signal>
-   <receiver>LocationSelectionDialog</receiver>
+   <receiver>LocationDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">

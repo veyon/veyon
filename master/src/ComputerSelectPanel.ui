@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ComputerSelectionView</class>
- <widget class="QWidget" name="ComputerSelectionView">
+ <class>ComputerSelectPanel</class>
+ <widget class="QWidget" name="ComputerSelectPanel">
   <property name="windowTitle">
    <string>Computer management</string>
   </property>
@@ -62,7 +62,7 @@
   <connection>
    <sender>addLocationButton</sender>
    <signal>clicked()</signal>
-   <receiver>ComputerSelectionView</receiver>
+   <receiver>ComputerSelectPanel</receiver>
    <slot>addLocation()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -78,7 +78,7 @@
   <connection>
    <sender>saveListButton</sender>
    <signal>clicked()</signal>
-   <receiver>ComputerSelectionView</receiver>
+   <receiver>ComputerSelectPanel</receiver>
    <slot>saveList()</slot>
    <hints>
     <hint type="sourcelabel">

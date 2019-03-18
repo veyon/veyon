@@ -54,7 +54,7 @@ void VeyonConfiguration::upgrade()
 		setShowCurrentLocationOnly( legacyOnlyCurrentRoomVisible() );
 		setAllowAddingHiddenLocations( legacyManualRoomAdditionAllowed() );
 		setHideEmptyLocations( legacyEmptyRoomsHidden() );
-		setAutoOpenComputerSelectionView( legacyOpenComputerManagementAtStart() );
+		setAutoOpenComputerSelectPanel( legacyOpenComputerManagementAtStart() );
 		setConfirmUnsafeActions( legacyConfirmDangerousActions() );
 
 		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_2 );

@@ -30,8 +30,8 @@
 
 class QButtonGroup;
 class VeyonMaster;
-class ComputerSelectionView;
-class ScreenshotManagementView;
+class ComputerSelectPanel;
+class ScreenshotManagementPanel;
 class ToolButton;
 
 namespace Ui {
@@ -80,7 +80,7 @@ private:
 
 	QButtonGroup* m_modeGroup;
 
-	ComputerSelectionView* m_computerSelectionView;
-	ScreenshotManagementView* m_screenshotManagementView;
+	ComputerSelectPanel* m_computerSelectPanel;
+	ScreenshotManagementPanel* m_screenshotManagementPanel;
 
 } ;

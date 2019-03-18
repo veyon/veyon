@@ -1,7 +1,7 @@
 /*
- * ComputerSelectionView.h - provides a view for a network object tree
+ * ScreenshotManagementPanel.h - declaration of screenshot management view
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2004-2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,36 +24,36 @@
 
 #pragma once
 
-#include <QModelIndexList>
+#include <QFileSystemModel>
 #include <QWidget>
 
+class QModelIndex;
+
 namespace Ui {
-class ComputerSelectionView;
+class ScreenshotManagementPanel;
 }
 
-class ComputerManager;
-class RecursiveFilterProxyModel;
-
-class ComputerSelectionView : public QWidget
+class ScreenshotManagementPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerSelectionView( ComputerManager& computerManager, QWidget *parent = nullptr );
-	~ComputerSelectionView() override;
+	ScreenshotManagementPanel( QWidget *parent );
+	~ScreenshotManagementPanel() override;
 
-	bool eventFilter(QObject *watched, QEvent *event) override;
+
+protected:
+	void resizeEvent( QResizeEvent* event ) override;
 
 private slots:
-	void addLocation();
-	void removeLocation();
-	void saveList();
-	void updateFilter();
+	void screenshotSelected( const QModelIndex &idx );
+	void screenshotDoubleClicked( const QModelIndex &idx );
+
+	void showScreenshot();
+	void deleteScreenshot();
+
 
 private:
-	Ui::ComputerSelectionView *ui;
-	ComputerManager& m_computerManager;
-	RecursiveFilterProxyModel* m_filterProxyModel;
-	QString m_previousFilter;
-	QModelIndexList m_expandedGroups;
+	Ui::ScreenshotManagementPanel* ui;
+	QFileSystemModel m_fsModel;
 
-};
+} ;

@@ -35,7 +35,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="ComputerMonitoringView" name="computerMonitoringView" native="true">
+     <widget class="ComputerMonitoringWidget" name="computerMonitoringWidget" native="true">
       <widget class="QToolButton" name="autoFitButton">
        <property name="geometry">
         <rect>
@@ -84,7 +84,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QToolButton" name="computerSelectionViewButton">
+      <widget class="QToolButton" name="computerSelectPanelButton">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -110,7 +110,7 @@
         <string notr="true">buttonGroup</string>
        </attribute>
       </widget>
-      <widget class="QToolButton" name="screenshotManagementViewButton">
+      <widget class="QToolButton" name="screenshotManagementPanelButton">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -299,9 +299,9 @@
    <header>MainToolBar.h</header>
   </customwidget>
   <customwidget>
-   <class>ComputerMonitoringView</class>
+   <class>ComputerMonitoringWidget</class>
    <extends>QWidget</extends>
-   <header>ComputerMonitoringView.h</header>
+   <header>ComputerMonitoringWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

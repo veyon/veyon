@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ScreenshotManagementView</class>
- <widget class="QWidget" name="ScreenshotManagementView">
+ <class>ScreenshotManagementPanel</class>
+ <widget class="QWidget" name="ScreenshotManagementPanel">
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QListView" name="list">

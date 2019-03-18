@@ -1,5 +1,5 @@
 /*
- * LocationSelectionDialog.cpp - header file for LocationSelectionDialog
+ * LocationDialog.cpp - header file for LocationDialog
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,13 +22,13 @@
  *
  */
 
-#include "LocationSelectionDialog.h"
+#include "LocationDialog.h"
 
-#include "ui_LocationSelectionDialog.h"
+#include "ui_LocationDialog.h"
 
-LocationSelectionDialog::LocationSelectionDialog( QAbstractItemModel* locationListModel, QWidget* parent ) :
+LocationDialog::LocationDialog( QAbstractItemModel* locationListModel, QWidget* parent ) :
 	QDialog( parent ),
-	ui( new Ui::LocationSelectionDialog ),
+	ui( new Ui::LocationDialog ),
 	m_sortFilterProxyModel( this )
 {
 	ui->setupUi( this );
@@ -39,21 +39,21 @@ LocationSelectionDialog::LocationSelectionDialog( QAbstractItemModel* locationLi
 	ui->listView->setModel( &m_sortFilterProxyModel );
 
 	connect( ui->listView->selectionModel(), &QItemSelectionModel::currentChanged,
-			 this, &LocationSelectionDialog::updateSelection );
+			 this, &LocationDialog::updateSelection );
 
 	updateSearchFilter();
 }
 
 
 
-LocationSelectionDialog::~LocationSelectionDialog()
+LocationDialog::~LocationDialog()
 {
 	delete ui;
 }
 
 
 
-void LocationSelectionDialog::updateSearchFilter()
+void LocationDialog::updateSearchFilter()
 {
 	m_sortFilterProxyModel.setFilterRegExp( QRegExp( ui->filterLineEdit->text() ) );
 	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
@@ -64,7 +64,7 @@ void LocationSelectionDialog::updateSearchFilter()
 
 
 
-void LocationSelectionDialog::updateSelection( const QModelIndex& current, const QModelIndex& previous )
+void LocationDialog::updateSelection( const QModelIndex& current, const QModelIndex& previous )
 {
 	Q_UNUSED(previous)
 

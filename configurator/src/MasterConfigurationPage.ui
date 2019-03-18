@@ -231,9 +231,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="autoOpenComputerSelectionView">
+           <widget class="QCheckBox" name="autoOpenComputerSelectPanel">
             <property name="text">
-             <string>Automatically open computer selection view</string>
+             <string>Automatically open computer select panel</string>
             </property>
            </widget>
           </item>
@@ -439,14 +439,13 @@
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSelectCurrentLocation</tabstop>
   <tabstop>autoAdjustGridSize</tabstop>
-  <tabstop>autoOpenComputerSelectionView</tabstop>
+  <tabstop>autoOpenComputerSelectPanel</tabstop>
   <tabstop>showCurrentLocationOnly</tabstop>
   <tabstop>allowAddingHiddenLocations</tabstop>
   <tabstop>localComputerHidden</tabstop>
   <tabstop>hideEmptyLocations</tabstop>
   <tabstop>computerFilterHidden</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
-  <tabstop>confirmDangerousActions</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>

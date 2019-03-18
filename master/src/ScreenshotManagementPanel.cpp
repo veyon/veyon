@@ -1,5 +1,5 @@
 /*
- * ScreenshotManagementView.cpp - implementation of screenshot management view
+ * ScreenshotManagementPanel.cpp - implementation of screenshot management view
  *
  * Copyright (c) 2004-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -28,17 +28,17 @@
 #include <QScrollArea>
 
 #include "Filesystem.h"
-#include "ScreenshotManagementView.h"
+#include "ScreenshotManagementPanel.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "Screenshot.h"
 
-#include "ui_ScreenshotManagementView.h"
+#include "ui_ScreenshotManagementPanel.h"
 
 
-ScreenshotManagementView::ScreenshotManagementView( QWidget *parent ) :
+ScreenshotManagementPanel::ScreenshotManagementPanel( QWidget *parent ) :
 	QWidget( parent ),
-	ui( new Ui::ScreenshotManagementView ),
+	ui( new Ui::ScreenshotManagementPanel ),
 	m_fsModel( this )
 {
 	ui->setupUi( this );
@@ -52,24 +52,24 @@ ScreenshotManagementView::ScreenshotManagementView( QWidget *parent ) :
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );
 
-	connect( ui->list, &QListView::clicked, this, &ScreenshotManagementView::screenshotSelected );
-	connect( ui->list, &QListView::doubleClicked, this, &ScreenshotManagementView::showScreenshot );
+	connect( ui->list, &QListView::clicked, this, &ScreenshotManagementPanel::screenshotSelected );
+	connect( ui->list, &QListView::doubleClicked, this, &ScreenshotManagementPanel::showScreenshot );
 
-	connect( ui->showBtn, &QPushButton::clicked, this, &ScreenshotManagementView::showScreenshot );
-	connect( ui->deleteBtn, &QPushButton::clicked, this, &ScreenshotManagementView::deleteScreenshot );
+	connect( ui->showBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::showScreenshot );
+	connect( ui->deleteBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::deleteScreenshot );
 }
 
 
 
 
-ScreenshotManagementView::~ScreenshotManagementView()
+ScreenshotManagementPanel::~ScreenshotManagementPanel()
 {
 	delete ui;
 }
 
 
 
-void ScreenshotManagementView::resizeEvent( QResizeEvent* event )
+void ScreenshotManagementPanel::resizeEvent( QResizeEvent* event )
 {
 	int maxWidth = contentsRect().width();
 	int maxHeight = maxWidth * 9 / 16;
@@ -82,7 +82,7 @@ void ScreenshotManagementView::resizeEvent( QResizeEvent* event )
 
 
 
-void ScreenshotManagementView::screenshotSelected( const QModelIndex &idx )
+void ScreenshotManagementPanel::screenshotSelected( const QModelIndex &idx )
 {
 	Screenshot s( m_fsModel.filePath( idx ) );
 
@@ -97,7 +97,7 @@ void ScreenshotManagementView::screenshotSelected( const QModelIndex &idx )
 
 
 
-void ScreenshotManagementView::screenshotDoubleClicked( const QModelIndex &idx )
+void ScreenshotManagementPanel::screenshotDoubleClicked( const QModelIndex &idx )
 {
 	auto imgLabel = new QLabel;
 	imgLabel->setPixmap( m_fsModel.filePath( idx ) );
@@ -118,7 +118,7 @@ void ScreenshotManagementView::screenshotDoubleClicked( const QModelIndex &idx )
 
 
 
-void ScreenshotManagementView::showScreenshot()
+void ScreenshotManagementPanel::showScreenshot()
 {
 	if( ui->list->currentIndex().isValid() )
 	{
@@ -129,7 +129,7 @@ void ScreenshotManagementView::showScreenshot()
 
 
 
-void ScreenshotManagementView::deleteScreenshot()
+void ScreenshotManagementPanel::deleteScreenshot()
 {
 	if( ui->list->currentIndex().isValid() )
 	{

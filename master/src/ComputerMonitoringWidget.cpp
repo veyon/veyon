@@ -1,5 +1,5 @@
 /*
- * ComputerMonitoringView.cpp - provides a view with computer monitor thumbnails
+ * ComputerMonitoringWidget.cpp - provides a view with computer monitor thumbnails
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -29,18 +29,18 @@
 
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
-#include "ComputerMonitoringView.h"
+#include "ComputerMonitoringWidget.h"
 #include "ComputerSortFilterProxyModel.h"
 #include "VeyonMaster.h"
 #include "FeatureManager.h"
 #include "VeyonConfiguration.h"
 #include "UserConfig.h"
 
-#include "ui_ComputerMonitoringView.h"
+#include "ui_ComputerMonitoringWidget.h"
 
-ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
+ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	QWidget(parent),
-	ui(new Ui::ComputerMonitoringView),
+	ui(new Ui::ComputerMonitoringWidget),
 	m_master( nullptr ),
 	m_featureMenu( new QMenu( this ) )
 {
@@ -49,15 +49,15 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	ui->listView->setUidRole( ComputerControlListModel::UidRole );
 
 	connect( ui->listView, &QListView::doubleClicked,
-			 this, &ComputerMonitoringView::runDoubleClickFeature );
+			 this, &ComputerMonitoringWidget::runDoubleClickFeature );
 
 	connect( ui->listView, &QListView::customContextMenuRequested,
-			 this, &ComputerMonitoringView::showContextMenu );
+			 this, &ComputerMonitoringWidget::showContextMenu );
 }
 
 
 
-ComputerMonitoringView::~ComputerMonitoringView()
+ComputerMonitoringWidget::~ComputerMonitoringWidget()
 {
 	if( m_master )
 	{
@@ -71,7 +71,7 @@ ComputerMonitoringView::~ComputerMonitoringView()
 
 
 
-void ComputerMonitoringView::setVeyonMaster( VeyonMaster& masterCore )
+void ComputerMonitoringWidget::setVeyonMaster( VeyonMaster& masterCore )
 {
 	if( m_master )
 	{
@@ -95,7 +95,7 @@ void ComputerMonitoringView::setVeyonMaster( VeyonMaster& masterCore )
 
 
 
-ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInterfaces()
+ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlInterfaces()
 {
 	const auto& computerControlListModel = m_master->computerControlListModel();
 	ComputerControlInterfaceList computerControlInterfaces;
@@ -114,21 +114,21 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 
 
 
-void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
+void ComputerMonitoringWidget::setSearchFilter( const QString& searchFilter )
 {
 	listModel().setFilterRegExp( searchFilter );
 }
 
 
 
-void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
+void ComputerMonitoringWidget::setFilterPoweredOnComputers( bool enabled )
 {
 	listModel().setStateFilter( enabled ? ComputerControlInterface::State::Connected : ComputerControlInterface::State::None );
 }
 
 
 
-void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
+void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 {
 	const Feature& feature = m_master->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
 
@@ -141,7 +141,7 @@ void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 
 
 
-void ComputerMonitoringView::showContextMenu( QPoint pos )
+void ComputerMonitoringWidget::showContextMenu( QPoint pos )
 {
 	populateFeatureMenu( activeFeatures( selectedComputerControlInterfaces() ) );
 
@@ -150,7 +150,7 @@ void ComputerMonitoringView::showContextMenu( QPoint pos )
 
 
 
-void ComputerMonitoringView::setComputerScreenSize( int size )
+void ComputerMonitoringWidget::setComputerScreenSize( int size )
 {
 	if( m_master )
 	{
@@ -164,7 +164,7 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 
 
-void ComputerMonitoringView::autoAdjustComputerScreenSize()
+void ComputerMonitoringWidget::autoAdjustComputerScreenSize()
 {
 	int size = ui->listView->iconSize().width();
 
@@ -199,21 +199,21 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 
 
 
-void ComputerMonitoringView::setUseCustomComputerPositions( bool enabled )
+void ComputerMonitoringWidget::setUseCustomComputerPositions( bool enabled )
 {
 	ui->listView->setFlexible( enabled );
 }
 
 
 
-void ComputerMonitoringView::alignComputers()
+void ComputerMonitoringWidget::alignComputers()
 {
 	ui->listView->alignToGrid();
 }
 
 
 
-void ComputerMonitoringView::runFeature( const Feature& feature )
+void ComputerMonitoringWidget::runFeature( const Feature& feature )
 {
 	if( m_master == nullptr )
 	{
@@ -249,19 +249,19 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 
 
 
-ComputerSortFilterProxyModel& ComputerMonitoringView::listModel()
+ComputerSortFilterProxyModel& ComputerMonitoringWidget::listModel()
 {
 	return m_master->computerSortFilterProxyModel();
 }
 
 
 
-void ComputerMonitoringView::showEvent( QShowEvent* event )
+void ComputerMonitoringWidget::showEvent( QShowEvent* event )
 {
 	if( event->spontaneous() == false &&
 			VeyonCore::config().autoAdjustGridSize() )
 	{
-		QTimer::singleShot( 250, this, &ComputerMonitoringView::autoAdjustComputerScreenSize );
+		QTimer::singleShot( 250, this, &ComputerMonitoringWidget::autoAdjustComputerScreenSize );
 	}
 
 	QWidget::showEvent( event );
@@ -269,7 +269,7 @@ void ComputerMonitoringView::showEvent( QShowEvent* event )
 
 
 
-void ComputerMonitoringView::wheelEvent( QWheelEvent* event )
+void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 {
 	if( event->modifiers().testFlag( Qt::ControlModifier ) )
 	{
@@ -289,7 +289,7 @@ void ComputerMonitoringView::wheelEvent( QWheelEvent* event )
 
 
 
-FeatureUidList ComputerMonitoringView::activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
+FeatureUidList ComputerMonitoringWidget::activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	FeatureUidList featureUidList;
 
@@ -305,7 +305,7 @@ FeatureUidList ComputerMonitoringView::activeFeatures( const ComputerControlInte
 
 
 
-void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFeatures )
+void ComputerMonitoringWidget::populateFeatureMenu( const FeatureUidList& activeFeatures )
 {
 	Plugin::Uid previousPluginUid;
 
@@ -346,7 +346,7 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 
 
 
-void ComputerMonitoringView::addFeatureToMenu( const Feature& feature, const QString& label )
+void ComputerMonitoringWidget::addFeatureToMenu( const Feature& feature, const QString& label )
 {
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
@@ -361,7 +361,7 @@ void ComputerMonitoringView::addFeatureToMenu( const Feature& feature, const QSt
 
 
 
-void ComputerMonitoringView::addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label )
+void ComputerMonitoringWidget::addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label )
 {
 	auto menu = m_featureMenu->addMenu( QIcon( parentFeature.iconUrl() ), label );
 
