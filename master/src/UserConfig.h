@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QJsonArray>
+
 #include "Configuration/Object.h"
 #include "Configuration/Property.h"
 #include "ComputerMonitoringWidget.h"
