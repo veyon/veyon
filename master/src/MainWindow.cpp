@@ -75,7 +75,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
 	ui->statusBar->addWidget( ui->spacerLabel3 );
-	ui->statusBar->addWidget( ui->useCustomComputerPlacementButton );
+	ui->statusBar->addWidget( ui->useCustomComputerArrangementButton );
 	ui->statusBar->addWidget( ui->alignComputersButton );
 	ui->statusBar->addWidget( ui->spacerLabel4 );
 	ui->statusBar->addWidget( ui->aboutButton );
@@ -135,8 +135,8 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->computerMonitoringWidget->setComputerScreenSize( size );
 
 	// initialize computer placement controls
-	ui->useCustomComputerPlacementButton->setChecked( m_master.userConfig().useCustomComputerPositions() );
-	connect( ui->useCustomComputerPlacementButton, &QToolButton::toggled,
+	ui->useCustomComputerArrangementButton->setChecked( m_master.userConfig().useCustomComputerPositions() );
+	connect( ui->useCustomComputerArrangementButton, &QToolButton::toggled,
 			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setUseCustomComputerPositions );
 	connect( ui->alignComputersButton, &QToolButton::clicked,
 			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::alignComputers );

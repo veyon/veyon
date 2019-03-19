@@ -2786,10 +2786,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2823,6 +2819,10 @@ USAGE
     </message>
     <message>
         <source>Locations &amp; computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -225,7 +225,7 @@
          <normaloff>:/master/align-grid.png</normaloff>:/master/align-grid.png</iconset>
        </property>
       </widget>
-      <widget class="QToolButton" name="useCustomComputerPlacementButton">
+      <widget class="QToolButton" name="useCustomComputerArrangementButton">
        <property name="geometry">
         <rect>
          <x>960</x>
@@ -235,7 +235,7 @@
         </rect>
        </property>
        <property name="toolTip">
-        <string>Use custom computer placement</string>
+        <string>Use custom computer arrangement</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/master.qrc">
@@ -327,7 +327,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>useCustomComputerPlacementButton</sender>
+   <sender>useCustomComputerArrangementButton</sender>
    <signal>toggled(bool)</signal>
    <receiver>alignComputersButton</receiver>
    <slot>setEnabled(bool)</slot>
