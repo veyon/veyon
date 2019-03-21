@@ -5,8 +5,6 @@ SET(qm_targets "")
 FILE(GLOB_RECURSE veyon_SOURCES ${CMAKE_SOURCE_DIR}/*.cpp ${CMAKE_SOURCE_DIR}/*.h ${CMAKE_SOURCE_DIR}/*.ui)
 STRING(REGEX REPLACE "${CMAKE_SOURCE_DIR}/3rdparty[^;]+;?" "" veyon_SOURCES "${veyon_SOURCES}")
 
-ADD_CUSTOM_TARGET(download-translations)
-
 FOREACH(ts_file ${veyon_LOCALES})
     STRING(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/" "" ts_target "${ts_file}")
 	STRING(REPLACE ".ts" ".qm" qm_target "${ts_target}")
@@ -20,14 +18,6 @@ FOREACH(ts_file ${veyon_LOCALES})
 	LIST(APPEND qm_targets "${qm_target}")
 
 	INSTALL(FILES ${qm_file} DESTINATION ${VEYON_INSTALL_DATADIR}/translations)
-
-	# add target for downloading translation file from Transifex
-	STRING(REPLACE ".ts" "" _translation "${ts_target}")
-	IF(NOT ${_translation} STREQUAL "veyon")
-	    SET(_download_translation_target "download-${_translation}")
-		ADD_CUSTOM_TARGET(${_download_translation_target} COMMAND curl --user api:$ENV{TRANSIFEX_API_TOKEN} -o ${ts_file} -X GET "https://www.transifex.com/api/2/project/veyon/resource/veyon_42/translation/${_translation}/?mode=default\\&file")
-		ADD_DEPENDENCIES(download-translations ${_download_translation_target})
-	ENDIF()
 ENDFOREACH()
 
 ADD_CUSTOM_TARGET(update-locales)
