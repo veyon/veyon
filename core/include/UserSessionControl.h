@@ -91,7 +91,7 @@ private:
 	{
 		GetInfo,
 		LogonUser,
-		LogoutUser
+		LogoffUser
 	};
 
 	enum Arguments
@@ -104,7 +104,7 @@ private:
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 
 	const Feature m_userSessionInfoFeature;
-	const Feature m_userLogoutFeature;
+	const Feature m_userLogoffFeature;
 	const FeatureList m_features;
 
 	QThread* m_userInfoQueryThread;

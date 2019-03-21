@@ -41,13 +41,13 @@ UserSessionControl::UserSessionControl( QObject* parent ) :
 									   Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
 									   Feature::Uid(),
 									   tr( "User session control" ), QString(), QString() ) ),
-	m_userLogoutFeature( Feature::Action | Feature::Master | Feature::Service,
+	m_userLogoffFeature( Feature::Action | Feature::Master | Feature::Service,
 						 Feature::Uid( "7311d43d-ab53-439e-a03a-8cb25f7ed526" ),
 						 Feature::Uid(),
-						 tr( "Logout" ), QString(),
-						 tr( "Click this button to logout users from all computers." ),
+						 tr( "Log off" ), QString(),
+						 tr( "Click this button to log off users from all computers." ),
 						 QStringLiteral( ":/core/system-suspend-hibernate.png" ) ),
-	m_features( { m_userSessionInfoFeature, m_userLogoutFeature } ),
+	m_features( { m_userSessionInfoFeature, m_userLogoffFeature } ),
 	m_userInfoQueryThread( new QThread ),
 	m_userInfoQueryTimer( new QTimer )
 {
@@ -84,9 +84,9 @@ bool UserSessionControl::startFeature( VeyonMasterInterface& master, const Featu
 		return false;
 	}
 
-	if( feature == m_userLogoutFeature )
+	if( feature == m_userLogoffFeature )
 	{
-		return sendFeatureMessage( FeatureMessage( m_userLogoutFeature.uid(), FeatureMessage::DefaultCommand ),
+		return sendFeatureMessage( FeatureMessage( m_userLogoffFeature.uid(), FeatureMessage::DefaultCommand ),
 								   computerControlInterfaces );
 	}
 
@@ -137,7 +137,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server,
 
 		return server.sendFeatureMessageReply( messageContext, reply );
 	}
-	else if( m_userLogoutFeature.uid() == message.featureUid() )
+	else if( m_userLogoffFeature.uid() == message.featureUid() )
 	{
 		VeyonCore::platform().userFunctions().logout();
 		return true;
@@ -176,7 +176,7 @@ bool UserSessionControl::confirmFeatureExecution( const Feature& feature, QWidge
 		return true;
 	}
 
-	if( feature == m_userLogoutFeature )
+	if( feature == m_userLogoffFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm user logout" ),
 									  tr( "Do you really want to logout the selected users?" ) ) ==
