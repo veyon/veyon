@@ -1086,16 +1086,16 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>A helyszínérzékelés nem sikerült</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-nézetben az összes helyszínt megjelentjük.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Számítógépnév;Kiszolgálónév;Felhasználó</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Számítógép-kezelés</translation>
@@ -2638,7 +2638,7 @@ HASZNÁLAT
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Helyszín kiválasztása:</translation>
@@ -2818,10 +2818,6 @@ HASZNÁLAT
         <translation>Számítógépek rácsba illesztése</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Egyéni számítógép-elhelyezés használata</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>%1 Konfigurátor</translation>
     </message>
@@ -2856,6 +2852,10 @@ HASZNÁLAT
     <message>
         <source>Locations &amp; computers</source>
         <translation>Helyszínek és számítógépek</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2973,10 +2973,6 @@ HASZNÁLAT
         <translation>Számítógép és felhasználónév</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Számítógépkiválasztási-nézet automatikus megnyitása</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Számítógéphelyszínek</translation>
     </message>
@@ -3007,6 +3003,10 @@ HASZNÁLAT
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Számítógépek indexképének automatikus méretezése</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3337,10 +3337,6 @@ HASZNÁLATA
         <translation>Ablak</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Kilépés</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3383,6 +3379,10 @@ HASZNÁLATA
     <message>
         <source>Screenshot</source>
         <translation>Képernyőkép</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3484,10 +3484,18 @@ HASZNÁLATA
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Az összes képernyőképet felsoroljuk itt. Képernyőképet a számítógép helyi menüjében lévő &quot;Képernyőkép&quot; gombra kattintva készíthetsz. A képernyőképeket az alul lévő gombokkal tudod kezelni.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Felhasználó:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Számítógép:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3504,14 +3512,6 @@ HASZNÁLATA
     <message>
         <source>Delete</source>
         <translation>Törlés</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Az összes képernyőképet felsoroljuk itt. Képernyőképet a számítógép helyi menüjében lévő &quot;Képernyőkép&quot; gombra kattintva készíthetsz. A képernyőképeket az alul lévő gombokkal tudod kezelni.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Számítógép:</translation>
     </message>
 </context>
 <context>
@@ -3796,10 +3796,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Felhasználói munkamenet-vezérlés</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Felhasználó kijelentkeztetésének megerősítése</translation>
     </message>
@@ -3808,8 +3804,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Kijelentkezés</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

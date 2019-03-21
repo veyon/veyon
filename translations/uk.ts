@@ -1083,16 +1083,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Не вдалося визначити місце</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Не вдалося визначити місце цього комп&apos;ютера. Це означає, що у налаштуваннях системи є проблеми. На панелі вибору комп&apos;ютера буде показано усі місця.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Назва комп’ютера;Назва вузла;Користувач</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Не вдалося визначити місце цього комп&apos;ютера. Це означає, що у налаштуваннях системи є проблеми. На панелі вибору комп&apos;ютера буде показано усі місця.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Керування комп&apos;ютерами</translation>
@@ -1664,15 +1664,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>На цьому комп&apos;ютері належним чином налаштовано розпізнавання.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>На цьому комп&apos;ютері ключі розпізнавання налаштовано не так, як слід.</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Перевірка розпізнавання</translation>
     </message>
 </context>
 <context>
@@ -2399,11 +2399,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Атрибут імені користувача</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
     </message>
 </context>
 <context>
@@ -2637,7 +2637,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Вибрати місце</translation>
@@ -2817,10 +2817,6 @@ USAGE
         <translation>Вирівнювати комп&apos;ютери за ґраткою</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Нетипове розташування комп&apos;ютерів</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Засіб налаштовування %1</translation>
     </message>
@@ -2855,6 +2851,10 @@ USAGE
     <message>
         <source>Locations &amp; computers</source>
         <translation>Місця і комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Нетипове розташування комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -2972,10 +2972,6 @@ USAGE
         <translation>Комп&apos;ютер та ім&apos;я користувача</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Автоматично відкрити панель вибору комп&apos;ютера</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Місця комп&apos;ютерів</translation>
     </message>
@@ -3006,6 +3002,10 @@ USAGE
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Автоматично коригувати розмір мініатюри комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Автоматично відкрити панель вибору комп&apos;ютера</translation>
     </message>
 </context>
 <context>
@@ -3336,10 +3336,6 @@ USAGE
         <translation>У вікні</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Вийти</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3382,6 +3378,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Знімок вікна</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3483,10 +3483,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Тут наведено список усіх зроблених вами знімків вікон. Ви моете створювати знімки вікон, вибираючи пункт «Знімок вікна» у меню запису комп’ютера. Керувати знімками вікон можна за допомогою розташованих нижче кнопок.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Користувач:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Комп’ютер:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3503,14 +3511,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>Вилучити</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Тут наведено список усіх зроблених вами знімків вікон. Ви моете створювати знімки вікон, вибираючи пункт «Знімок вікна» у меню запису комп’ютера. Керувати знімками вікон можна за допомогою розташованих нижче кнопок.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Комп’ютер:</translation>
     </message>
 </context>
 <context>
@@ -3796,10 +3796,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Керування сеансами користувачів</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Натисніть цю кнопку, щоб примусово виконати вихід користувачів на усіх комп’ютерах.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Підтвердження виходу користувачів</translation>
     </message>
@@ -3808,8 +3804,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Вийти</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

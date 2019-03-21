@@ -1086,16 +1086,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>위치 탐색 실패</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>컴퓨터 관리</translation>
@@ -2637,7 +2637,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
@@ -2817,10 +2817,6 @@ USAGE
         <translation>컴퓨터를 그리드에 맞춤</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>사용자가 정의한 컴퓨터 위치를 사용</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>%1 설정자</translation>
     </message>
@@ -2855,6 +2851,10 @@ USAGE
     <message>
         <source>Locations &amp; computers</source>
         <translation>위치 및 컴퓨터들</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2972,10 +2972,6 @@ USAGE
         <translation>켬퓨터 및 사용자 이름</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -3005,6 +3001,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3336,10 +3336,6 @@ USAGE
         <translation>윈도우</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>종료</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3382,6 +3378,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>화면캡쳐</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3483,10 +3483,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>모든 화면 캡쳐 화일이 이곳에 표시됩니다. 컴퓨터 메뉴에서 &quot;화면캡쳐&quot;를 클릭하여 화면캡쳐를 할 수 있습니다. 아래 버튼으로 화면캡쳐를 관리할 수 있습니다.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>사용자:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>컴퓨터:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3503,14 +3511,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>삭제</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>모든 화면 캡쳐 화일이 이곳에 표시됩니다. 컴퓨터 메뉴에서 &quot;화면캡쳐&quot;를 클릭하여 화면캡쳐를 할 수 있습니다. 아래 버튼으로 화면캡쳐를 관리할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>컴퓨터:</translation>
     </message>
 </context>
 <context>
@@ -3796,10 +3796,6 @@ Typically this is required to support terminal servers.</source>
         <translation>사용자 세션제어</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>클릭하면 사용자를 모든 컴퓨터에서 로그아웃.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>유저 로그아웃 확인</translation>
     </message>
@@ -3808,8 +3804,12 @@ Typically this is required to support terminal servers.</source>
         <translation>선택된 컴퓨터를 로그아웃하시겠습니까 ?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>로그아웃</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

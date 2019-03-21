@@ -1086,16 +1086,16 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zjištění umístění se nezdařilo</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Umístění počítače se nedaří zjistit. To značí problém s nastavením systému. Náhradně budou v pohledu výběru počítačů zobrazena všechna umístění.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Název počítače;Název stroje;Uživatel</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Umístění počítače se nedaří zjistit. To značí problém s nastavením systému. Náhradně budou v panelu výběru počítačů zobrazena všechna umístění.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Správa počítače</translation>
@@ -1667,15 +1667,15 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Ověřování je na tomto počítači nastaveno správně</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Ověřování není na tomto počítači nastaveno správně</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Vyzkoušení ověřování</translation>
     </message>
 </context>
 <context>
@@ -2396,11 +2396,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atribut obsahující přihlašovací jméno uživatele</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Nastavený atribut pro uživatelské jméno nebo název počítače (OpenLDAP)</translation>
     </message>
 </context>
 <context>
@@ -2634,7 +2634,7 @@ POUŽITÍ
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Vybrat umístění</translation>
@@ -2814,10 +2814,6 @@ POUŽITÍ
         <translation>Zarovnat počítače do mřížky</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Použít uživatelsky určené umístění počítače</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Nastavení %1</translation>
     </message>
@@ -2852,6 +2848,10 @@ POUŽITÍ
     <message>
         <source>Locations &amp; computers</source>
         <translation>Umístění a počítače</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Použít uživatelsky určené uspořádání počítačů</translation>
     </message>
 </context>
 <context>
@@ -2969,10 +2969,6 @@ POUŽITÍ
         <translation>Počítač a uživatelské jméno</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Automaticky otevřít pohled výběru počítače</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Umístění počítačů</translation>
     </message>
@@ -3003,6 +2999,10 @@ POUŽITÍ
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Automaticky přizpůsobit velikost náhledu počítače</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Automaticky otevřít panel výběru počítače</translation>
     </message>
 </context>
 <context>
@@ -3333,10 +3333,6 @@ POUŽITÍ
         <translation>Okno</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Ukončit</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3379,6 +3375,10 @@ POUŽITÍ
     <message>
         <source>Screenshot</source>
         <translation>Snímek obrazovky</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3480,10 +3480,18 @@ POUŽITÍ
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Zde jsou vypsány veškeré snímky obrazovky, které jste pořídili. Snímky je možné pořídit kliknutím na položku „Snímek obrazovky“ v kontextové nabídce počítače. Snímky obrazovky je možné spravovat pomocí níže se nacházejícího tlačítka.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Uživatel:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Počítač:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3500,14 +3508,6 @@ POUŽITÍ
     <message>
         <source>Delete</source>
         <translation>Smazat</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Zde jsou vypsány veškeré snímky obrazovky, které jste pořídili. Snímky je možné pořídit kliknutím na položku „Snímek obrazovky“ v kontextové nabídce počítače. Snímky obrazovky je možné spravovat pomocí níže se nacházejícího tlačítka.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Počítač:</translation>
     </message>
 </context>
 <context>
@@ -3793,10 +3793,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Ovládání relace uživatele</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Potvrdit odhlášení uživatele</translation>
     </message>
@@ -3805,8 +3801,12 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Opravdu chcete označené uživatele odhlásit?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Odhlásit</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

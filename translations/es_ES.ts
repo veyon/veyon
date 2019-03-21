@@ -1088,16 +1088,16 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Falló la detección de ubicación</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>No se pudo determinar la ubicación de este equipo. Esto indica un problema con la configuración del sistema. En su lugar, se mostrarán todas las ubicaciones en la vista de selección de equipo.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Nombre de equipo;Nombre de host;Usuario</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>No se pudo determinar la ubicación de este equipo. Esto indica un problema con la configuración del sistema. En su lugar, se mostrarán todas las ubicaciones en el panel de selección del equipo.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Gestión de equipo</translation>
@@ -2640,7 +2640,7 @@ Eliminar %1 &lt;LICENSE ID&gt;
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Seleccionar ubicación</translation>
@@ -2820,10 +2820,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Alinear equipos a la rejilla</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Usar ubicación de equipos personalizada</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Configurador %1</translation>
     </message>
@@ -2858,6 +2854,10 @@ Eliminar %1 &lt;LICENSE ID&gt;
     <message>
         <source>Locations &amp; computers</source>
         <translation>Ubicaciones y equipos</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Usar disposición de equipos personalizada</translation>
     </message>
 </context>
 <context>
@@ -2975,10 +2975,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Equipo y nombre del usuario</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Abrir automáticamente la vista de selección de equipo</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Ubicaciones de equipos</translation>
     </message>
@@ -3009,6 +3005,10 @@ Eliminar %1 &lt;LICENSE ID&gt;
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Ajustar automáticamente el tamaño de la miniatura del equipo</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Abrir automáticamente el panel de selección de equipo</translation>
     </message>
 </context>
 <context>
@@ -3339,10 +3339,6 @@ USO
         <translation>Ventana</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Salir</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3385,6 +3381,10 @@ USO
     <message>
         <source>Screenshot</source>
         <translation>Captura</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3486,10 +3486,18 @@ USO
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Todas las capturas de pantalla tomadas se muestran aquí. Puede tomar capturas de pantalla haciendo clic en &quot;Captura&quot; en el menú contextual de un equipo. Las capturas de pantalla se pueden gestionar mediante los botones de abajo.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Usuario:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Equipo:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3506,14 +3514,6 @@ USO
     <message>
         <source>Delete</source>
         <translation>Borrar</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Todas las capturas de pantalla tomadas se muestran aquí. Puede tomar capturas de pantalla haciendo clic en &quot;Captura&quot; en el menú contextual de un equipo. Las capturas de pantalla se pueden gestionar mediante los botones de abajo.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Equipo:</translation>
     </message>
 </context>
 <context>
@@ -3799,10 +3799,6 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Control de sesión de usuario</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Haga clic en este botón para cerrar sesión a los usuarios de todos los equipos.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Confirmar el cierre de sesión del usuario</translation>
     </message>
@@ -3811,8 +3807,12 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>¿Realmente desea cerrar la sesión con los usuarios seleccionados?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Desconectar</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

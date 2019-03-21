@@ -3300,10 +3300,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3345,6 +3341,10 @@ USAGE
     </message>
     <message>
         <source>Screenshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3759,10 +3759,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3771,7 +3767,11 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logout</source>
+        <source>Log off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

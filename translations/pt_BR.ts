@@ -1083,16 +1083,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Gerenciamento de computadores</translation>
@@ -2611,7 +2611,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
@@ -2791,10 +2791,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Configurador %1</translation>
     </message>
@@ -2828,6 +2824,10 @@ USAGE
     </message>
     <message>
         <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2946,10 +2946,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -2979,6 +2975,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3305,10 +3305,6 @@ USAGE
         <translation>Janela</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Sair</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3351,6 +3347,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Captura de tela</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3452,10 +3452,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Todas as capturas de tela tiradas por você estão listadas aqui. Você pode tirar capturas de tela clicando no item &quot;Captura de tela&quot; em um menu de contexto de um computador. As capturas de tela podem ser gerenciadas usando os botões abaixo.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Usuário:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Computador:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3472,14 +3480,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>Excluir</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Todas as capturas de tela tiradas por você estão listadas aqui. Você pode tirar capturas de tela clicando no item &quot;Captura de tela&quot; em um menu de contexto de um computador. As capturas de tela podem ser gerenciadas usando os botões abaixo.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Computador:</translation>
     </message>
 </context>
 <context>
@@ -3764,10 +3764,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Controle de sessão do usuário.</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Clique nesse botão para fazer o logoff de todos os usuários dos computadores.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Confirmar logout de usuário</translation>
     </message>
@@ -3776,7 +3772,11 @@ Typically this is required to support terminal servers.</source>
         <translation>Tem certeza que quer fazer logout dos usuários selecionados?</translation>
     </message>
     <message>
-        <source>Logout</source>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
         <translation type="unfinished"/>
     </message>
 </context>

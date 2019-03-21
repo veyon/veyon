@@ -1083,16 +1083,16 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Standorterkennung fehlgeschlagen</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Der Standort dieses Computers konnte nicht ermittelt werden. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Standorte in der Computerauswahlansicht angezeigt.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Computername;Hostname;Benutzer</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Der Standort dieses Computers konnte nicht ermittelt werden. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Standorte im Computerauswahlbedienfeld angezeigt.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Computerverwaltung</translation>
@@ -2635,7 +2635,7 @@ VERWENDUNG
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Standort auswählen</translation>
@@ -2815,10 +2815,6 @@ VERWENDUNG
         <translation>Computer an Gitter ausrichten</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Benutzerdefinierte Computeranordnung verwenden</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>%1 Configurator</translation>
     </message>
@@ -2853,6 +2849,10 @@ VERWENDUNG
     <message>
         <source>Locations &amp; computers</source>
         <translation>Standorte &amp; Computer</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Benutzerdefinierte Computeranordnung verwenden</translation>
     </message>
 </context>
 <context>
@@ -2970,10 +2970,6 @@ VERWENDUNG
         <translation>Computer- und Benutzername</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Automatisch Computerauswahlansicht öffnen</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Computerstandorte</translation>
     </message>
@@ -3004,6 +3000,10 @@ VERWENDUNG
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Automatisch Computerauswahlbedienfeld öffnen</translation>
     </message>
 </context>
 <context>
@@ -3333,10 +3333,6 @@ VERWENDUNG
         <translation>Fenster</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Beenden</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Strg+Alt+Entf</translation>
     </message>
@@ -3379,6 +3375,10 @@ VERWENDUNG
     <message>
         <source>Screenshot</source>
         <translation>Bildschirmfoto</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Beenden</translation>
     </message>
 </context>
 <context>
@@ -3480,10 +3480,18 @@ VERWENDUNG
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Hier sind alle Bildschirmfotos aufgelistet, die Sie erstellt haben. Sie können Bildschirmfotos erstellen, indem Sie den Eintrag &quot;Bildschirmfoto&quot; im Kontextmenü eines Computers anklicken. Die Bildschirmfotos können mit Hilfe der unterhalb befindlichen Schaltflächen verwaltet werden.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Benutzer:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Computer:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3500,14 +3508,6 @@ VERWENDUNG
     <message>
         <source>Delete</source>
         <translation>Löschen</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Hier sind alle Bildschirmfotos aufgelistet, die Sie erstellt haben. Sie können Bildschirmfotos erstellen, indem Sie den Eintrag &quot;Bildschirmfoto&quot; im Kontextmenü eines Computers anklicken. Die Bildschirmfotos können mit Hilfe der unterhalb befindlichen Schaltflächen verwaltet werden.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Computer:</translation>
     </message>
 </context>
 <context>
@@ -3793,10 +3793,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Benutzersitzungssteuerung</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Benutzerabmeldung bestätigen</translation>
     </message>
@@ -3805,8 +3801,12 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
     </message>
     <message>
-        <source>Logout</source>
+        <source>Log off</source>
         <translation>Abmelden</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
     </message>
 </context>
 <context>

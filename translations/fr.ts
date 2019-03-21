@@ -1086,16 +1086,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>La détection de l&apos;emplacement a échoué</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Impossible de déterminer l&apos;emplacement de cet ordinateur. Cela indique un problème de configuration du système. A la place, tous les emplacements seront affichées dans la vue sélection des ordinateurs.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Nom de l&apos;ordinateur;Nom de l’hôte;Utilisateur</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Impossible de déterminer l&apos;emplacement de cet ordinateur. Cela indique un problème de configuration du système. A la place, tous les emplacements seront affichés dans le panneau de sélection de l&apos;ordinateur.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Gestion ordinateur</translation>
@@ -2638,7 +2638,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Sélectionner un emplacement</translation>
@@ -2818,10 +2818,6 @@ USAGE
         <translation>Aligner les ordinateurs sur la grille</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Personnaliser la disposition des d&apos;ordinateurs</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Console de gestion %1</translation>
     </message>
@@ -2856,6 +2852,10 @@ USAGE
     <message>
         <source>Locations &amp; computers</source>
         <translation>Emplacements &amp; ordinateurs</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Utiliser une disposition personnalisé pour les ordinateurs</translation>
     </message>
 </context>
 <context>
@@ -2973,10 +2973,6 @@ USAGE
         <translation>Ordinateur et nom d&apos;utilisateur</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Ouvrir automatiquement la vue de sélection de l&apos;ordinateur</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Emplacements d&apos;ordinateur</translation>
     </message>
@@ -3007,6 +3003,10 @@ USAGE
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Ajuster automatiquement la taille des prévues ordinateurs</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Ouvrir automatiquement le panneau de sélection ordinateur</translation>
     </message>
 </context>
 <context>
@@ -3337,10 +3337,6 @@ USAGE
         <translation>Fenêtre</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Quitter</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3383,6 +3379,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Capture d&apos;écran</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3484,10 +3484,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Toutes les captures d&apos;écrans que vous avez effectuées sont listé ici. Vous pouvez prendre des captures d&apos;écran en cliquant sur &quot;capture d&apos;écran&quot; dans le menu contextuel d&apos;un ordinateur. Les captures d&apos;écran peuvent être gérées en utilisant les boutons ci-dessous.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Utilisateur:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Ordinateur:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3504,14 +3512,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>Supprimer</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Toutes les captures d&apos;écrans que vous avez effectuées sont listé ici. Vous pouvez prendre des captures d&apos;écran en cliquant sur &quot;capture d&apos;écran&quot; dans le menu contextuel d&apos;un ordinateur. Les captures d&apos;écran peuvent être gérées en utilisant les boutons ci-dessous.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Ordinateur:</translation>
     </message>
 </context>
 <context>
@@ -3797,10 +3797,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Contrôle de session utilisateur</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Cliquer sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Confirmer la déconnexion utilisateur</translation>
     </message>
@@ -3809,8 +3805,12 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Souhaitez-vous réellement déconnecter les utilisateurs sélectionnés ?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Déconnexion</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

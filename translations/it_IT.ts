@@ -1083,16 +1083,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Gestione del computer</translation>
@@ -2625,7 +2625,7 @@ USO
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
@@ -2805,10 +2805,6 @@ USO
         <translation>Allinea i computer alla griglia</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Usa il posizionamento del computer personalizzato</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Opzioni di %1 </translation>
     </message>
@@ -2843,6 +2839,10 @@ USO
     <message>
         <source>Locations &amp; computers</source>
         <translation>Posizioni e computers</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2960,10 +2960,6 @@ USO
         <translation>Computer e nome utente</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -2993,6 +2989,10 @@ USO
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3298,7 +3298,7 @@ USO
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>% 1 -% 2 Accesso remoto</translation>
+        <translation>% 1 -%2 Accesso remoto</translation>
     </message>
 </context>
 <context>
@@ -3322,10 +3322,6 @@ USO
     <message>
         <source>Window</source>
         <translation>Finestra</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Esci</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3370,6 +3366,10 @@ USO
     <message>
         <source>Screenshot</source>
         <translation>Screenshot</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3471,10 +3471,18 @@ USO
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Tutte le screenshot da te effettuate sono elencate qui. Puoi effettuare screenshot cliccando l&apos;elemento &quot;Screenshot&quot; nel menu di un computer. Le screenshot possono essere gestite utilizzando i pulsanti qui sotto.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Utente:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Computer</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3491,14 +3499,6 @@ USO
     <message>
         <source>Delete</source>
         <translation>Elimina</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Tutte le screenshot da te effettuate sono elencate qui. Puoi effettuare screenshot cliccando l&apos;elemento &quot;Screenshot&quot; nel menu di un computer. Le screenshot possono essere gestite utilizzando i pulsanti qui sotto.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Computer</translation>
     </message>
 </context>
 <context>
@@ -3783,10 +3783,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Controllo sessione utente</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Clicca questo pulsante per far fare logout a tutti gli utenti da tutti i computer</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Conferma logout utente</translation>
     </message>
@@ -3795,8 +3791,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Disconnetti</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

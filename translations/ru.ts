@@ -1086,16 +1086,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Не удалось определить место</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Не удалось определить место этого компьютера. Это означает, что в настройках системы есть проблемы. На панели выбора компьютера будут показаны все места.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Имя компьютера; Имя хоста; Пользователь</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Не удалось определить место этого компьютера. Это означает, что в настройках системы есть проблемы. На панели выбора компьютера будут показаны все места.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation> Управление компьютером</translation>
@@ -1667,15 +1667,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>На этом компьютере аутентификация установлена правильно.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Ключи аутентификации на этом компьютере установлены неправильно.</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Тест аутентификации</translation>
     </message>
 </context>
 <context>
@@ -2400,11 +2400,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Атрибут имени пользователя для входа</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Настроенный атрибут для имени пользователя для входа или имени хоста компьютера (OpenLDAP)</translation>
     </message>
 </context>
 <context>
@@ -2638,7 +2638,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Выбрать место</translation>
@@ -2818,10 +2818,6 @@ USAGE
         <translation>Выравнивать компьютеры по сетке</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Использовать необычное расположение компьютеров</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>Конфигуратор %1</translation>
     </message>
@@ -2856,6 +2852,10 @@ USAGE
     <message>
         <source>Locations &amp; computers</source>
         <translation>Места и компьютеры</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Использовать необычное расположение компьютеров</translation>
     </message>
 </context>
 <context>
@@ -2973,10 +2973,6 @@ USAGE
         <translation>Имя компьютера и пользователя</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Автоматически открыть панель выбора компьютера</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Места компьютеров</translation>
     </message>
@@ -3007,6 +3003,10 @@ USAGE
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Автоматически корректировать размер миниатюры компьютера</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Автоматически открыть панель выбора компьютера</translation>
     </message>
 </context>
 <context>
@@ -3337,10 +3337,6 @@ USAGE
         <translation>В окне</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Выход</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3383,6 +3379,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Скриншот </translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3484,10 +3484,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Здесь приведен список всех сделанных вами снимков окон. Вы можете создавать снимки экрана, выбирая пункт &quot;Снимок экрана&quot; в контекстном меню компьютера. Управлять снимками окон можно с помощью расположенных ниже кнопок.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Пользователь:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Компьютер:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3504,14 +3512,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Здесь приведен список всех сделанных вами снимков окон. Вы можете создавать снимки экрана, выбирая пункт &quot;Снимок экрана&quot; в контекстном меню компьютера. Управлять снимками окон можно с помощью расположенных ниже кнопок.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Компьютер:</translation>
     </message>
 </context>
 <context>
@@ -3797,10 +3797,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Управление сеансами пользователей</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Нажмите эту кнопку для выхода пользователей со всех компьютеров.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Потверждение выхода пользователя</translation>
     </message>
@@ -3809,8 +3805,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Выйти</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

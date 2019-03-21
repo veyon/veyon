@@ -419,7 +419,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Prosimo, obiščite &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; za več informacij.</translation>
+        <translation>Prosimo, obiščite &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon skrbniški priročnik&lt;/a&gt; za več informacij.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -733,7 +733,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Uvoz datotek CSV je možen prek vmesnika ukazne vrstice. Za več informacij, glejte &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;spletna dokumentacija&lt;/a&gt;.</translation>
+        <translation>Uvoz CSV datotek je možen prek vmesnika ukazne vrstice. Za več informacij, glejte &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;spletna dokumentacija&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
@@ -1086,16 +1086,16 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Iskanje lokacije ni uspelo</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
-        <translation>Ne morem določiti lokacije tega računalnika. To kaže na težavo s konfiguracijo sistema. Namesto tega bodo v prikazu izbire računalnika prikazane vse lokacije.</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Ime računalnika;Ime gostitelja;Uporabnik</translation>
     </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Ne morem določiti lokacije tega računalnika. To kaže na težavo s konfiguracijo sistema. Namesto tega bodo v izbranem oknu računalnika prikazane vse lokacije.</translation>
+    </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Upravljanje računalnika</translation>
@@ -1238,11 +1238,11 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Demo strežnik</translation>
+        <translation>Demonstracijski strežnik</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Tuneli</translation>
+        <translation>Nastavki</translation>
     </message>
     <message>
         <source> ms</source>
@@ -1293,7 +1293,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Demo strežnik</translation>
+        <translation>Demonstracijski strežnik</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1786,7 +1786,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Base DN</translation>
+        <translation>Osnovni DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
@@ -1943,7 +1943,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>Ozadje imena poimenovanja LDAP je bilo uspešno preverjeno. Ugotovljena je bila naslednja base DN:
+        <translation>Ozadje imena poimenovanja LDAP je bilo uspešno preverjeno. Najden je bil naslednji osnovni DN:
 %1</translation>
     </message>
     <message>
@@ -2638,7 +2638,7 @@ UPORABA
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation>Izberite lokacijo</translation>
@@ -2818,10 +2818,6 @@ UPORABA
         <translation>Poravnaj računalnike z mrežo</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>Uporabi postavitev računalnika po meri</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>%1 konfigurator</translation>
     </message>
@@ -2856,6 +2852,10 @@ UPORABA
     <message>
         <source>Locations &amp; computers</source>
         <translation>Lokacije in računalniki</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Uporabite urejanje računalnika po meri</translation>
     </message>
 </context>
 <context>
@@ -2973,10 +2973,6 @@ UPORABA
         <translation>Računalnik in uporabniško ime</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation>Samodejno odpiranje pogleda izbire računalnika</translation>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation>Lokacije računalnika</translation>
     </message>
@@ -3007,6 +3003,10 @@ UPORABA
     <message>
         <source>Automatically adjust computer thumbnail size</source>
         <translation>Samodejno prilagodi velikost računalniške sličice</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Samodejno odpri izbrano okno računalnika</translation>
     </message>
 </context>
 <context>
@@ -3337,10 +3337,6 @@ UPORABA
         <translation>Okno</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Končaj</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Delete</translation>
     </message>
@@ -3383,6 +3379,10 @@ UPORABA
     <message>
         <source>Screenshot</source>
         <translation>Zaslonska slika</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3484,10 +3484,18 @@ UPORABA
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Vsi posnetke zaslona, ki ste jih naredili, so navedeni tukaj. Lahko snamate posnetke zaslona s klikom na postavko &quot;Posnetek zaslona&quot; v kontekstnem meniju računalnika. S posnetki zaslonov lahko upravljate z uporabo spodnjih gumbov.</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>Uporabnik:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Računalnik:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3504,14 +3512,6 @@ UPORABA
     <message>
         <source>Delete</source>
         <translation>Briši</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Vsi posnetke zaslona, ki ste jih naredili, so navedeni tukaj. Lahko snamate posnetke zaslona s klikom na postavko &quot;Posnetek zaslona&quot; v kontekstnem meniju računalnika. S posnetki zaslonov lahko upravljate z uporabo spodnjih gumbov.</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Računalnik:</translation>
     </message>
 </context>
 <context>
@@ -3666,7 +3666,7 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Začni Veyon storitev</translation>
+        <translation>Zaženi Veyon storitev</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
@@ -3797,10 +3797,6 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <translation>Nadzor seje uporabnika</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Kliknite ta gumb, če želite odjaviti uporabnike iz vseh računalnikov.</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>Potrdi odjavo uporabnika</translation>
     </message>
@@ -3809,8 +3805,12 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <translation>Ali res želite odjaviti izbrane uporabnike?</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>Odjava</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1087,16 +1087,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>计算机管理</translation>
@@ -2635,7 +2635,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
@@ -2815,10 +2815,6 @@ USAGE
         <translation>将计算机图标与网格对齐</translation>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation>手动排列计算机图标</translation>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation>%1 配置器</translation>
     </message>
@@ -2852,6 +2848,10 @@ USAGE
     </message>
     <message>
         <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2970,10 +2970,6 @@ USAGE
         <translation>计算机和用户名</translation>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -3003,6 +2999,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3334,10 +3334,6 @@ USAGE
         <translation>窗口</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>退出</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3380,6 +3376,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>屏幕截图</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3481,10 +3481,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>这里列出了您抓取的所有屏幕截图。 您可以通过单击计算机上下文菜单中的“屏幕截图”菜单来抓取屏幕截图。 截图可以使用下面的按钮进行管理。</translation>
+    </message>
     <message>
         <source>User:</source>
         <translation>用户：</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>计算机：</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3501,14 +3509,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>删除</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>这里列出了您抓取的所有屏幕截图。 您可以通过单击计算机上下文菜单中的“屏幕截图”菜单来抓取屏幕截图。 截图可以使用下面的按钮进行管理。</translation>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>计算机：</translation>
     </message>
 </context>
 <context>
@@ -3794,10 +3794,6 @@ Typically this is required to support terminal servers.</source>
         <translation>用户会话控制</translation>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>点击此按钮所有计算机执行注销命令。</translation>
-    </message>
-    <message>
         <source>Confirm user logout</source>
         <translation>确认用户登出/注销</translation>
     </message>
@@ -3806,8 +3802,12 @@ Typically this is required to support terminal servers.</source>
         <translation>您确定要注销选定的用户？</translation>
     </message>
     <message>
-        <source>Logout</source>
-        <translation>退出</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
