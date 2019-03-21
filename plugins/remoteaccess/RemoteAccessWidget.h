@@ -68,7 +68,7 @@ private:
 	ToolButton* m_sendShortcutButton;
 	ToolButton* m_screenshotButton;
 	ToolButton* m_fullScreenButton;
-	ToolButton* m_quitButton;
+	ToolButton* m_exitButton;
 
 	static constexpr int ShowHideAnimationDuration = 300;
 	static constexpr int DisappearDelay = 500;

@@ -50,7 +50,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
 	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
 	m_fullScreenButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/view-fullscreen.png") ), tr( "Fullscreen" ), tr( "Window" ) ) ),
-	m_quitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Quit" ) ) )
+	m_exitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Exit" ) ) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
@@ -70,7 +70,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	connect( m_viewOnlyButton, &QAbstractButton::toggled, parent, &RemoteAccessWidget::toggleViewOnly );
 	connect( m_fullScreenButton, &QAbstractButton::toggled, parent, &RemoteAccessWidget::toggleFullScreen );
 	connect( m_screenshotButton, &QAbstractButton::clicked, parent, &RemoteAccessWidget::takeScreenshot );
-	connect( m_quitButton, &QAbstractButton::clicked, parent, &QWidget::close );
+	connect( m_exitButton, &QAbstractButton::clicked, parent, &QWidget::close );
 
 	auto vncView = parent->vncView();
 
@@ -115,12 +115,12 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->addWidget( m_viewOnlyButton );
 	layout->addWidget( m_screenshotButton );
 	layout->addWidget( m_fullScreenButton );
-	layout->addWidget( m_quitButton );
+	layout->addWidget( m_exitButton );
 	layout->addSpacing( 5 );
 	connect( vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
 	connect( vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
-	setFixedHeight( m_quitButton->height() );
+	setFixedHeight( m_exitButton->height() );
 
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
 
