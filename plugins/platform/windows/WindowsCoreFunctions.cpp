@@ -33,7 +33,7 @@
 #include "XEventLog.h"
 
 
-#define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
+#define SHUTDOWN_FLAGS (SHUTDOWN_FORCE_OTHERS | SHUTDOWN_FORCE_SELF)
 #define SHUTDOWN_REASON (SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_FLAG_PLANNED)
 
 static const int screenSaverSettingsCount = 3;
@@ -99,7 +99,7 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 void WindowsCoreFunctions::reboot()
 {
 	enablePrivilege( SE_SHUTDOWN_NAME, true );
-	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	InitiateShutdown( nullptr, nullptr, 0, SHUTDOWN_FLAGS | SHUTDOWN_RESTART, SHUTDOWN_REASON );
 }
 
 
@@ -107,7 +107,7 @@ void WindowsCoreFunctions::reboot()
 void WindowsCoreFunctions::powerDown()
 {
 	enablePrivilege( SE_SHUTDOWN_NAME, true );
-	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	InitiateShutdown( nullptr, nullptr, 0, SHUTDOWN_FLAGS | SHUTDOWN_POWEROFF, SHUTDOWN_REASON );
 }
 
 
