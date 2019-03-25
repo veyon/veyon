@@ -157,7 +157,7 @@ void WindowsUserFunctions::logon( const QString& username, const QString& passwo
 
 
 
-void WindowsUserFunctions::logout()
+void WindowsUserFunctions::logoff()
 {
 	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
 }

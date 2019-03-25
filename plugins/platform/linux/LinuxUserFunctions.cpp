@@ -273,7 +273,7 @@ void LinuxUserFunctions::logon( const QString& username, const QString& password
 
 
 
-void LinuxUserFunctions::logout()
+void LinuxUserFunctions::logoff()
 {
 	// logout via common session managers
 	LinuxCoreFunctions::kdeSessionManager()->asyncCall( QStringLiteral("logout"),

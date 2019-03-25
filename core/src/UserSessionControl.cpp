@@ -139,7 +139,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server,
 	}
 	else if( m_userLogoffFeature.uid() == message.featureUid() )
 	{
-		VeyonCore::platform().userFunctions().logout();
+		VeyonCore::platform().userFunctions().logoff();
 		return true;
 	}
 
@@ -178,8 +178,8 @@ bool UserSessionControl::confirmFeatureExecution( const Feature& feature, QWidge
 
 	if( feature == m_userLogoffFeature )
 	{
-		return QMessageBox::question( parent, tr( "Confirm user logout" ),
-									  tr( "Do you really want to logout the selected users?" ) ) ==
+		return QMessageBox::question( parent, tr( "Confirm user logoff" ),
+									  tr( "Do you really want to log off the selected users?" ) ) ==
 				QMessageBox::Yes;
 	}
 

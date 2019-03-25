@@ -40,7 +40,7 @@ public:
 	QStringList loggedOnUsers() override;
 
 	void logon( const QString& username, const QString& password ) override;
-	void logout() override;
+	void logoff() override;
 
 	bool authenticate( const QString& username, const QString& password ) override;
 

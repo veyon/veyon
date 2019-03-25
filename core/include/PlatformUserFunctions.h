@@ -42,7 +42,7 @@ public:
 	virtual QStringList loggedOnUsers() = 0;
 
 	virtual void logon( const QString& username, const QString& password ) = 0;
-	virtual void logout() = 0;
+	virtual void logoff() = 0;
 
 	virtual bool authenticate( const QString& username, const QString& password ) = 0;
 
