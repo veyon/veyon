@@ -144,6 +144,7 @@ public:
 	{
 		LogonAuthentication,
 		KeyFileAuthentication,
+		SmartCardAuthentication,
 		AuthenticationMethodCount
 	} AuthenticationMethod;
 

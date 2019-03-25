@@ -40,6 +40,7 @@
 #include "Logger.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PasswordDialog.h"
+#include "SmartCardDialog.h"
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformServiceCore.h"
@@ -210,6 +211,33 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 	m_authenticationCredentials = new AuthenticationCredentials;
 
 	bool success = false;
+
+	if( credentialTypes & AuthenticationCredentials::SmartCard &&
+			config().authenticationMethod() == SmartCardAuthentication )
+	{
+		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
+		{
+			SmartCardDialog dlg( QApplication::activeWindow() );
+			if( dlg.exec() &&
+				dlg.credentials().hasCredentials( AuthenticationCredentials::SmartCard ) )
+			{
+				m_authenticationCredentials->setLogonUsername( dlg.userPrincipalName() );
+				m_authenticationCredentials->setLogonPassword( dlg.pin() );
+				m_authenticationCredentials->setSmartCardCertificate( dlg.certificatePem() );
+				m_authenticationCredentials->setSmartCardKeyIdentifier( dlg.keyIdentifier() );
+
+				success = true;	
+			}
+			else
+			{
+				success = false;
+			}
+		}
+		else
+		{
+			success = false;
+		}
+	}
 
 	if( credentialTypes & AuthenticationCredentials::UserLogon &&
 			config().authenticationMethod() == LogonAuthentication )

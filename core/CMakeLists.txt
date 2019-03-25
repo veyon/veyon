@@ -56,7 +56,7 @@ TARGET_LINK_LIBRARIES(veyon-core
 
 IF(VEYON_BUILD_WIN32)
 	# add Windows Socket library required by libvncclient
-	TARGET_LINK_LIBRARIES(veyon-core -lws2_32)
+	TARGET_LINK_LIBRARIES(veyon-core -lws2_32 -lcrypt32)
 	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
 	INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
 ELSE()

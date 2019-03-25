@@ -28,6 +28,7 @@ AuthenticationCredentials::AuthenticationCredentials() :
 	m_privateKey(),
 	m_logonUsername(),
 	m_logonPassword(),
+	m_smartCardCertificate(),
 	m_token(),
 	m_internalVncServerPassword()
 {
@@ -39,6 +40,7 @@ AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCreden
 	m_privateKey(),
 	m_logonUsername( other.logonUsername() ),
 	m_logonPassword( other.logonPassword() ),
+	m_smartCardCertificate(other.smartCardCertificate() ),
 	m_token( other.token() ),
 	m_internalVncServerPassword( other.internalVncServerPassword() )
 {
@@ -56,6 +58,13 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 	if( credentialType & UserLogon )
 	{
 		return m_logonUsername.isEmpty() == false &&
+				m_logonPassword.isEmpty() == false;
+	}
+
+	if( credentialType & SmartCard )
+	{
+		return m_smartCardCertificate.isEmpty() == false &&
+				m_smartCardKeyIdentifier.isNull() == false &&
 				m_logonPassword.isEmpty() == false;
 	}
 

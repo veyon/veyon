@@ -325,8 +325,6 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 	return true;
 }
 
-
-
 uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 {
 	const auto pw_entry = getpwnam( username.toUtf8().constData() );

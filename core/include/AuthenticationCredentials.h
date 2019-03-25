@@ -39,7 +39,8 @@ public:
 		PrivateKey = 0x01,
 		UserLogon = 0x02,
 		Token = 0x04,
-		AllTypes = PrivateKey | UserLogon | Token
+		SmartCard = 0x08,
+		AllTypes = PrivateKey | UserLogon | Token | SmartCard
 	} ;
 	typedef int TypeFlag;
 
@@ -76,6 +77,26 @@ public:
 		return m_logonPassword;
 	}
 
+	void setSmartCardCertificate( const QString &smartCardCertificate )
+	{
+		m_smartCardCertificate = smartCardCertificate;
+	}
+
+	const QString &smartCardCertificate() const
+	{
+		return m_smartCardCertificate;
+	}
+
+	void setSmartCardKeyIdentifier( const QVariant &smartCardKeyIdentifier )
+	{
+		m_smartCardKeyIdentifier = smartCardKeyIdentifier;
+	}
+
+	const QVariant &smartCardKeyIdentifier() const
+	{
+		return m_smartCardKeyIdentifier;
+	}
+
 	void setToken( const QString &token )
 	{
 		m_token = token;
@@ -101,6 +122,8 @@ private:
 
 	QString m_logonUsername;
 	QString m_logonPassword;
+	QString m_smartCardCertificate;
+	QVariant m_smartCardKeyIdentifier;
 
 	QString m_token;
 

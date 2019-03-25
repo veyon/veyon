@@ -44,7 +44,11 @@ public:
 	void logout() override;
 
 	bool authenticate( const QString& username, const QString& password ) override;
+	bool smartCardAuthenticate( const QVariant& certificateId, const QString& pin ) override;
 
+	QMap<QString,QVariant> smartCardCertificateIds() override;
+
+	QByteArray signWithSmartCardKey(QByteArray data, CryptoCore::SignatureAlgorithm alg, const QVariant& smartCardKeyIdentifier, const QString& pin ) override;
 
 private:
 	static QString domainController();
@@ -54,6 +58,7 @@ private:
 	static QStringList localUserGroups();
 	static QStringList localGroupsOfUser( const QString& username );
 
+	static QString certificate;
 };
 
 #endif // WINDOWS_USER_FUNCTIONS_H

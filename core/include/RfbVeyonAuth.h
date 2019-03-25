@@ -53,6 +53,9 @@ public:
 		// client has to prove its authenticity by knowing common token
 		Token,
 
+		// authentication is performed using Smart Card
+		SmartCard,
+
 		AuthTypeCount
 
 	} Type;
