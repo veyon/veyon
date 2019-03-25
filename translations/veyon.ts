@@ -3759,19 +3759,19 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Log off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

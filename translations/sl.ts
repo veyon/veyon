@@ -3797,19 +3797,19 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <translation>Nadzor seje uporabnika</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Potrdi odjavo uporabnika</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Ali res želite odjaviti izbrane uporabnike?</translation>
-    </message>
-    <message>
         <source>Log off</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>

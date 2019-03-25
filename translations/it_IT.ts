@@ -150,7 +150,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Limita l&apos;accesso a specifici membri di gruppi utenti </translation>
     </message>
 </context>
 <context>
@@ -261,7 +261,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>si trova a</translation>
     </message>
 </context>
 <context>
@@ -648,15 +648,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>Questo comando crea una nuova coppia di chiavi di autenticazione con nome &lt;NAME&gt; e salva la chiave privata e pubblica per le directory chiave configurate. Il parametro deve essere un nome per la chiave, che può contenere solo lettere.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Questo comando cancella la chiave di autenticazione &lt;KEY&gt; dalla directory delle chiavi configurata. Si prega di notare che una chiave non può essere recuperata una volta che è stata cancellata.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Questo comando estrae la parte della chiave pubblica dalla chiave privata &lt;KEY&gt; e lo salva come chiave pubblica corrispondente. Quando si configura un altro computer master, è quindi sufficiente trasferire solo la chiave privata. La chiave pubblica può quindi essere estratta.</translation>
     </message>
 </context>
 <context>
@@ -1038,7 +1038,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>Posizione: %1</translation>
     </message>
 </context>
 <context>
@@ -1080,15 +1080,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Rilevazione della posizione fallita</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>Nome del computer; Nome host; Utente</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile determinare la posizione di questo computer. Questo indica un problema con la configurazione del sistema. Tutte le posizioni verranno visualizzate nel pannello di selezione del computer.</translation>
     </message>
 </context>
 <context>
@@ -1103,7 +1103,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi posizione</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1664,15 +1664,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;autenticazione è configurata correttamente su questo computer.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Le chiavi di autenticazione non sono configurate correttamente su questo computer.</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Test di autenticazione</translation>
     </message>
 </context>
 <context>
@@ -2339,59 +2339,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Nomi host memorizzati come nomi di dominio completi (FQDN, ad es. Myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo hostname del computer</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>Inserire un nome host del computer da interrogare:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>Hostname non valido</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Hai configurato i nomi host dei computer da memorizzare come nomi di dominio completi (FQDN), ma hai inserito un nome host senza dominio.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Hai configurato i nomi host dei computer da memorizzare come semplici nomi host senza un nome di dominio, ma hai inserito un nome host con una parte del nome di dominio.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile trovare un utente con il nome &quot;% 1&quot;. Si prega di controllare il nome utente o il parametro dell&apos;albero utente.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il nome host</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Immettere un nome host del computer di cui si desidera eseguire la ricerca per appartenenza al gruppo:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile trovare un computer con il nome host &quot;% 1&quot;. Si prega di controllare il nome host o il parametro dell&apos;albero del computer.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>Ricerca del nome host fallita</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile cercare il nome host per l&apos;indirizzo IP% 1. Si prega di verificare le impostazioni del server DNS.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo del nome di accesso dell&apos;utente</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Attributo configurato per il nome di accesso dell&apos;utente o il nome host del computer (OpenLDAP)</translation>
     </message>
 </context>
 <context>
@@ -2628,7 +2628,7 @@ USO
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona la posizione</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2842,7 +2842,7 @@ USO
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>Usa la disposizione personalizzata del computer </translation>
     </message>
 </context>
 <context>
@@ -2961,39 +2961,39 @@ USO
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Ubicazioni del computer</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>Mostra solo la posizione corrente</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>Consenti l&apos;aggiunta di posizioni nascoste manualmente</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi posizioni vuote</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>Mostra la finestra di dialogo di conferma per le azioni potenzialmente pericolose</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>Eseguire il controllo degli accessi</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona automaticamente la posizione corrente</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
+        <translation>Regola automaticamente le dimensioni della miniatura del computer</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>Apri automaticamente il pannello di selezione del computer</translation>
     </message>
 </context>
 <context>
@@ -3008,7 +3008,7 @@ USO
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>Questa modalità consente di monitorare tutti i computer in una o più posizioni.</translation>
     </message>
 </context>
 <context>
@@ -3369,7 +3369,7 @@ USO
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Uscita</translation>
     </message>
 </context>
 <context>
@@ -3783,19 +3783,19 @@ Typically this is required to support terminal servers.</source>
         <translation>Controllo sessione utente</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Conferma logout utente</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
-    </message>
-    <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Disconnetti</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
+        <translation>Fare clic su questo pulsante per disconnettere gli utenti da tutti i computer.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>

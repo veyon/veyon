@@ -3382,7 +3382,7 @@ USAGE
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Quitter</translation>
     </message>
 </context>
 <context>
@@ -3797,20 +3797,20 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Contrôle de session utilisateur</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Confirmer la déconnexion utilisateur</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Souhaitez-vous réellement déconnecter les utilisateurs sélectionnés ?</translation>
-    </message>
-    <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Déconnexion</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Appuyer sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Confirmer la déconnexion utilisateur</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Souhaitez-vous vraiment déconnecter l&apos;utilisateur sélectionné ?</translation>
     </message>
 </context>
 <context>

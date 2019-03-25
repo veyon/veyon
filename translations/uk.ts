@@ -3381,7 +3381,7 @@ USAGE
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Вийти</translation>
     </message>
 </context>
 <context>
@@ -3796,20 +3796,20 @@ Typically this is required to support terminal servers.</source>
         <translation>Керування сеансами користувачів</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Підтвердження виходу користувачів</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
-    </message>
-    <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Викинути</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Натисніть цю кнопку, щоб виконати примусовий вихід користувачів з систем усіх комп&apos;ютерів.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Підтвердження виходу користувачів</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
     </message>
 </context>
 <context>

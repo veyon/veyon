@@ -3384,7 +3384,7 @@ USO
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Salir</translation>
     </message>
 </context>
 <context>
@@ -3799,20 +3799,20 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Control de sesión de usuario</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Confirmar el cierre de sesión del usuario</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>¿Realmente desea cerrar la sesión con los usuarios seleccionados?</translation>
-    </message>
-    <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Desconectar</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Haga clic en este botón para desconectar los usuarios de todas las computadoras.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Confirmar desconectar usuario</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>¿Realmente quieres desconectar a los usuarios seleccionados?</translation>
     </message>
 </context>
 <context>

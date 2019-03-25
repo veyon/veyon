@@ -3793,20 +3793,20 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Benutzersitzungssteuerung</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Benutzerabmeldung bestätigen</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
-    </message>
-    <message>
         <source>Log off</source>
         <translation>Abmelden</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
         <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Benutzerabmeldung bestätigen</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
     </message>
 </context>
 <context>

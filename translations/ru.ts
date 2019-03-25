@@ -3382,7 +3382,7 @@ USAGE
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Выход</translation>
     </message>
 </context>
 <context>
@@ -3797,20 +3797,20 @@ Typically this is required to support terminal servers.</source>
         <translation>Управление сеансами пользователей</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Потверждение выхода пользователя</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
-    </message>
-    <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Разлогиниться</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Нажмите эту кнопку для разлогинивания пользователей со всех компьютеров.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Потверждение выхода пользователя</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
     </message>
 </context>
 <context>

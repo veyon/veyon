@@ -3378,7 +3378,7 @@ POUŽITÍ
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Ukončit</translation>
     </message>
 </context>
 <context>
@@ -3793,20 +3793,20 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Ovládání relace uživatele</translation>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Potvrdit odhlášení uživatele</translation>
-    </message>
-    <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Opravdu chcete označené uživatele odhlásit?</translation>
-    </message>
-    <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Odhlásit</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Potvrdit odhlášení uživatele</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Opravdu chcete označené uživatele odhlásit?</translation>
     </message>
 </context>
 <context>
