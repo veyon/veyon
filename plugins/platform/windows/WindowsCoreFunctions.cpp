@@ -34,7 +34,7 @@
 
 
 #define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
-#define SHUTDOWN_REASON SHTDN_REASON_MAJOR_OTHER
+#define SHUTDOWN_REASON (SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_FLAG_PLANNED)
 
 static const int screenSaverSettingsCount = 3;
 static const UINT screenSaverSettingsGetList[screenSaverSettingsCount] =
