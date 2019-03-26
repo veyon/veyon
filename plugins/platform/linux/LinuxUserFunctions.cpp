@@ -336,3 +336,25 @@ uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 
 	return 0;
 }
+
+bool LinuxUserFunctions::smartCardAuthenticate( const QVariant& certificateId, const QString& pin ) 
+{
+	qDebug( "smartCardAuthenticate not supported on Linux" );
+	return false;
+}
+
+QMap<QString,QVariant> LinuxUserFunctions::smartCardCertificateIds() 
+{
+	QMap<QString,QVariant> map;
+	qDebug( "smartCardCertificateIds not supported on Linux" );
+	return map;
+}
+
+QByteArray LinuxUserFunctions::signWithSmartCardKey(QByteArray data, CryptoCore::SignatureAlgorithm alg, const QVariant& smartCardKeyIdentifier, const QString& pin ) 
+{
+	QByteArray signature;
+	qDebug( "signWithSmartCardKey not supported on Linux" );
+	return signature;
+}
+
+
