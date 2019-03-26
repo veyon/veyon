@@ -33,6 +33,7 @@
 #include "VeyonConfiguration.h"
 
 #include <QtCrypto>
+#include <QDir>
 
 ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 	QObject( parent ),
@@ -236,7 +237,17 @@ VncServerClient::AuthState ServerAuthenticationManager::performSmartCardAuthenti
 		}
 		
 		QCA::CertificateCollection intermediateCAs = QCA::CertificateCollection();
-		//TODO add configuration method to load ICAs
+		const auto certificatePath = VeyonCore::filesystem().certificatePath();
+		const auto certificateFiles = QDir( certificatePath ).entryInfoList( QDir::Files | QDir::Readable, QDir::Name );
+		for(const auto& certificateFile : certificateFiles)
+		{
+			if (certificateFile.suffix() == "pem"){
+				QCA::Certificate icaCertificate = QCA::Certificate::fromPEMFile(certificateFile.absoluteFilePath(), &importResult,QString());
+				if (importResult == QCA::ConvertGood){
+					intermediateCAs.addCertificate(icaCertificate);
+				}
+			}
+		}
 		
 		QCA::Validity validity = certificate.validate(QCA::systemStore(),intermediateCAs);
 		if (validity != QCA::ValidityGood) {

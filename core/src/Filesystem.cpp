@@ -147,6 +147,23 @@ QString Filesystem::publicKeyPath( const QString& name ) const
 }
 
 
+QString Filesystem::certificatePath() const
+{
+	const auto d = VeyonCore::filesystem().expandPath( VeyonCore::config().certificateBaseDir() ) +
+			QDir::separator();
+
+	return QDir::toNativeSeparators( d );
+}
+
+QString Filesystem::certificatePath( const QString& name) const
+{
+	const auto d = VeyonCore::filesystem().expandPath( VeyonCore::config().certificateBaseDir() ) +
+			QDir::separator() + name + QStringLiteral( ".pem" );
+
+	return QDir::toNativeSeparators( d );
+}
+
+
 
 QString Filesystem::serverFilePath() const
 {

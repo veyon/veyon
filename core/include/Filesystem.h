@@ -42,6 +42,9 @@ public:
 	QString serverFilePath() const;
 	QString workerFilePath() const;
 
+	QString certificatePath() const;
+	QString certificatePath( const QString& name ) const;
+
 };
 
 #endif

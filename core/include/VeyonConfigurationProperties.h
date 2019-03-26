@@ -107,6 +107,10 @@
 	OP( VeyonConfiguration, VeyonCore::config(), STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
+#define FOREACH_VEYON_CERTIFICATE_CONFIG_PROPERTY(OP) \
+	OP( VeyonConfiguration, VeyonCore::config(), STRING, certificateBaseDir, setCertificateBaseDir, "CertificateBaseDir", "Authentication" );	\
+
+
 #define FOREACH_VEYON_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)			\
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
@@ -121,5 +125,6 @@
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP)	\
 	FOREACH_VEYON_KEY_AUTHENTICATION_CONFIG_PROPERTY(OP)	\
 	FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(OP)	\
+	FOREACH_VEYON_CERTIFICATE_CONFIG_PROPERTY(OP)	\
 
 #endif

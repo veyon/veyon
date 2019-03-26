@@ -107,6 +107,8 @@ public slots:
 	void setAuthorizedUserGroups( const QStringList& );
 	void setAccessControlRules( const QJsonArray& );
 
+	void setCertificateBaseDir( const QString & );
+
 } ;
 
 #endif
