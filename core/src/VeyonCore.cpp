@@ -404,13 +404,12 @@ void VeyonCore::initLocaleAndTranslation()
 
 	if( configuredLocale.language() != QLocale::English )
 	{
-
 		auto tr = new QTranslator;
 		if( configuredLocale == QLocale::C ||
 				tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
 		{
 			configuredLocale = QLocale::system(); // Flawfinder: ignore
-			tr->load( QStringLiteral( "%1.qm" ).arg( QLocale::system().name() ), translationsDirectory() ); // Flawfinder: ignore
+			tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() );
 		}
 
 		QLocale::setDefault( configuredLocale );
