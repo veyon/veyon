@@ -55,6 +55,7 @@ public:
 
 	QByteArray signWithSmartCardKey(QByteArray data, CryptoCore::SignatureAlgorithm alg, const QVariant& smartCardKeyIdentifier, const QString& pin ) override;
 
+	QString upnToUsername( const QString& upn ) override;
 
 private:
 	enum {

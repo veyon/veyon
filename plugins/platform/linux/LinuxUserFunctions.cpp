@@ -33,6 +33,16 @@
 #include <pwd.h>
 #include <unistd.h>
 
+QString LinuxUserFunctions::upnToUsername( const QString& upn ){
+	QString username = upn;
+	
+	const auto nameParts = upn.split( '\\' );
+	if( nameParts.size() > 1 )
+	{
+		username = nameParts[0];
+	}
+	return username;
+}
 
 QString LinuxUserFunctions::fullName( const QString& username )
 {

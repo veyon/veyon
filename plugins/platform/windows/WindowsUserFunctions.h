@@ -50,15 +50,20 @@ public:
 
 	QByteArray signWithSmartCardKey(QByteArray data, CryptoCore::SignatureAlgorithm alg, const QVariant& smartCardKeyIdentifier, const QString& pin ) override;
 
+	QString upnToUsername( const QString& upn ) override;
+
 private:
 	static QString domainController();
 	static QStringList domainUserGroups();
 	static QStringList domainGroupsOfUser( const QString& username );
+	static QString upnToUsernameStatic( const QString& upn );
 
 	static QStringList localUserGroups();
 	static QStringList localGroupsOfUser( const QString& username );
 
 	static QString certificate;
+
+	static bool UpnToNT4W(LPCWSTR lpwUpnName, LPWSTR lpwNT4Name, LPDWORD cchNT4Name);
 };
 
 #endif // WINDOWS_USER_FUNCTIONS_H

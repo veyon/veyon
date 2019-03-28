@@ -29,6 +29,7 @@
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
 #include "LdapDirectory.h"
+#include "PlatformUserFunctions.h"
 
 
 LdapPlugin::LdapPlugin( QObject* parent ) :
@@ -126,7 +127,7 @@ QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainG
 {
 	Q_UNUSED(queryDomainGroups);
 
-	const auto strippedUsername = VeyonCore::stripDomain( username );
+	const auto strippedUsername = VeyonCore::stripDomain( VeyonCore::platform().userFunctions().upnToUsername(username) );
 
 	const QString userDn = ldapDirectory().users( strippedUsername ).value( 0 );
 

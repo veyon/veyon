@@ -27,6 +27,7 @@
 #include <wincrypt.h>
 #include <wincred.h>
 #include <winscard.h>
+#include <winbase.h>
 #include <lm.h>
 
 #include <cstring>
@@ -45,16 +46,39 @@
 static char szOID_SmartCardLogin[] = "1.3.6.1.4.1.311.20.2.2";
 static WCHAR szCryptoProvider[] = L"Microsoft Base Smart Card Crypto Provider";
 
+QString WindowsUserFunctions::upnToUsername( const QString& upn ){
+	return upnToUsernameStatic(upn);
+}
 
+QString WindowsUserFunctions::upnToUsernameStatic( const QString& upn ){
+	QString username = upn;
+	
+	if (upn.contains("@")){
+		LPWSTR lpwNT4Name = nullptr;
+		DWORD  cchNT4Name = 0;
+		if (UpnToNT4W(WindowsCoreFunctions::toConstWCharArray( upn ), NULL, &cchNT4Name)) {
+			if ((lpwNT4Name = (LPWSTR)malloc(cchNT4Name))){
+				if (UpnToNT4W(WindowsCoreFunctions::toConstWCharArray( upn ), lpwNT4Name, &cchNT4Name)) {
+					username = QString::fromWCharArray(lpwNT4Name,-1);
+				}
+				free(lpwNT4Name);
+			}	
+		}
+	}
+	
+	return username;
+}
 
 QString WindowsUserFunctions::fullName( const QString& username )
 {
 	QString fullName;
+	QString nt4Name = upnToUsernameStatic(username);
+	
 
-	QString realUsername = username;
+	QString realUsername = nt4Name;
 	PBYTE domainController = nullptr;
 
-	const auto nameParts = username.split( '\\' );
+	const auto nameParts = nt4Name.split( '\\' );
 	if( nameParts.size() > 1 )
 	{
 		realUsername = nameParts[1];
@@ -107,11 +131,13 @@ QStringList WindowsUserFunctions::userGroups( bool queryDomainGroups )
 
 QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	auto groupList = localGroupsOfUser( username );
+	QString nt4Name = upnToUsernameStatic(username);
+
+	auto groupList = localGroupsOfUser( nt4Name );
 
 	if( queryDomainGroups )
 	{
-		groupList.append( domainGroupsOfUser( username ) );
+		groupList.append( domainGroupsOfUser( nt4Name ) );
 	}
 
 	groupList.removeDuplicates();
@@ -365,6 +391,8 @@ bool WindowsUserFunctions::smartCardAuthenticate( const QVariant& certificateId,
 {
 	int cNumOIDs = 0;
 	LPSTR* rghOIDs = NULL;
+	
+	WCHAR pszUpnString[1024];
 
 	CERT_ISSUER_SERIAL_NUMBER cisn;
 	QByteArray baCISN = certificateId.toByteArray();
@@ -468,6 +496,17 @@ bool WindowsUserFunctions::smartCardAuthenticate( const QVariant& certificateId,
 												//PEM ENCODE CERTIFICATE if Successful
 												if (result)
 												{
+													if (CertGetNameStringW(
+													pCertContext,
+													CERT_NAME_UPN_TYPE,
+													0,
+													NULL,
+													pszUpnString,
+													512))
+													{
+														setCertificateUpn(QString::fromUtf16( (const ushort *) pszUpnString ));					
+													}
+												
 													if (pCertContext->dwCertEncodingType == X509_ASN_ENCODING) 
 													{
 														X509* x509Cert = X509_new();
@@ -713,8 +752,10 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
+	
+	QString nt4Name = upnToUsernameStatic(username);
 
-	const auto usernameWithoutDomain = VeyonCore::stripDomain( username );
+	const auto usernameWithoutDomain = VeyonCore::stripDomain( nt4Name );
 
 	if( NetUserGetGroups( WindowsCoreFunctions::toConstWCharArray( dc ),
 						  WindowsCoreFunctions::toConstWCharArray( usernameWithoutDomain ),
@@ -790,8 +831,10 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
-
-	if( NetUserGetLocalGroups( nullptr, WindowsCoreFunctions::toConstWCharArray( username ),
+	
+	QString nt4Name = upnToUsernameStatic(username);
+	
+	if( NetUserGetLocalGroups( nullptr, WindowsCoreFunctions::toConstWCharArray( nt4Name ),
 							   0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
 							   &entriesRead, &totalEntries ) == NERR_Success )
 	{
@@ -817,4 +860,91 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 	}
 
 	return groupList;
+}
+
+bool WindowsUserFunctions::UpnToNT4W(LPCWSTR lpwUpnName, LPWSTR lpwNT4Name, LPDWORD cchNT4Name) {
+	DWORD cbSid = 0;
+	DWORD cchReferencedDomainName = 0;
+	DWORD cchName = 0;
+	SID_NAME_USE eUse = SidTypeUnknown;
+	PSID sid;
+	LPWSTR        ReferencedDomainName;
+	LPWSTR        Name;
+
+	LookupAccountNameW(
+		NULL,
+		lpwUpnName,
+		NULL,
+		&cbSid,
+		NULL,
+		&cchReferencedDomainName,
+		&eUse);
+
+	if ((sid = (PSID)malloc(cbSid))) {
+		if ((ReferencedDomainName = (LPWSTR)malloc((cchReferencedDomainName + 1) * 2))) {
+			if (LookupAccountNameW(
+				NULL,
+				lpwUpnName,
+				sid,
+				&cbSid,
+				ReferencedDomainName,
+				&cchReferencedDomainName,
+				&eUse)) {
+				LookupAccountSidW(
+					NULL,
+					sid,
+					NULL,
+					&cchName,
+					ReferencedDomainName,
+					&cchReferencedDomainName,
+					&eUse
+				);
+				if ((Name = (LPWSTR)malloc((cchName + 1) * 2))) {
+					if (LookupAccountSidW(
+						NULL,
+						sid,
+						Name,
+						&cchName,
+						ReferencedDomainName,
+						&cchReferencedDomainName,
+						&eUse
+					)) {
+						if (lpwNT4Name == NULL) {
+							*cchNT4Name = (cchReferencedDomainName + cchName + 2) * 2;
+							return true;
+						}
+						else {
+							if ((2 * (cchReferencedDomainName + cchName + 2)) > *cchNT4Name) {
+								free(Name);
+								free(ReferencedDomainName);
+								free(sid);
+								SetLastError(ERROR_INSUFFICIENT_BUFFER);
+							}
+							else {
+								for (DWORD i = 0; i < cchReferencedDomainName; i++)
+								{
+									lpwNT4Name[i] = ReferencedDomainName[i];
+								}
+								lpwNT4Name[cchReferencedDomainName] = L'\\';
+								for (DWORD i = 0; i < cchName; i++)
+								{
+									lpwNT4Name[cchReferencedDomainName + 1 + i] = Name[i];
+								}
+								lpwNT4Name[cchReferencedDomainName + cchName + 1] = 0;
+								*cchNT4Name = (cchReferencedDomainName + cchName + 2) * 2 ;
+								free(Name);
+								free(ReferencedDomainName);
+								free(sid);
+								return true;
+							}
+						}
+					}
+					free(Name);
+				}
+			}
+			free(ReferencedDomainName);
+		}
+		free(sid);
+	}
+	return false;
 }

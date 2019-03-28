@@ -60,8 +60,7 @@ SmartCardDialog::~SmartCardDialog()
 
 QString SmartCardDialog::userPrincipalName() const
 {
-//Need to change to actual lookup
-	return ui->certificateList->currentText();
+	return VeyonCore::platform().userFunctions().smartCardCertificateUpn();
 }
 
 QVariant SmartCardDialog::certificateId() const
