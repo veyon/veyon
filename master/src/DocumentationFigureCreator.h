@@ -37,6 +37,8 @@ public:
 	void run();
 
 private:
+	void createFeatureFigures( QWidget* mainWindow );
+	void createContextMenuFigure( QWidget* mainWindow );
 	void createFigure( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
 
 	VeyonMaster* m_master;

@@ -22,6 +22,9 @@
  *
  */
 
+#include <QMenu>
+
+#include "ComputerMonitoringWidget.h"
 #include "DocumentationFigureCreator.h"
 #include "FeatureManager.h"
 #include "MainToolBar.h"
@@ -44,16 +47,25 @@ DocumentationFigureCreator::DocumentationFigureCreator() :
 void DocumentationFigureCreator::run()
 {
 	auto mainWindow = m_master->mainWindow();
-	auto toolbar = mainWindow->findChild<MainToolBar *>();
 
 	mainWindow->resize( 3000, 1000 );
 	mainWindow->show();
 
+	createFeatureFigures( mainWindow );
+	createContextMenuFigure( mainWindow );
+}
+
+
+
+void DocumentationFigureCreator::createFeatureFigures( QWidget* mainWindow )
+{
 	Plugin::Uid previousPluginUid;
 	Feature const* previousFeature = nullptr;
 
 	int x = -1;
 	int w = 0;
+
+	auto toolbar = mainWindow->findChild<MainToolBar *>();
 
 	const QStringList separatedPluginFeatures( { QStringLiteral("a54ee018-42bf-4569-90c7-0d8470125ccf"),
 												 QStringLiteral("80580500-2e59-4297-9e35-e53959b028cd")
@@ -106,6 +118,21 @@ void DocumentationFigureCreator::run()
 
 		previousFeature = &feature;
 	}
+}
+
+
+
+void DocumentationFigureCreator::createContextMenuFigure(QWidget* mainWindow)
+{
+	auto view = mainWindow->findChild<ComputerMonitoringWidget *>();
+	auto menu = view->findChild<QMenu *>();
+
+	connect( menu, &QMenu::aboutToShow, this, [this, menu]() {
+		createFigure( menu, QPoint(), menu->size(), QStringLiteral("ContextMenu.png") );
+		menu->close();
+	}, Qt::QueuedConnection );
+
+	view->showContextMenu( QPoint( 200, 200 ) );
 }
 
 
