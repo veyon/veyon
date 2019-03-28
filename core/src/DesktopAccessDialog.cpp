@@ -38,10 +38,11 @@
 
 DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
 	QObject( parent ),
-	m_desktopAccessDialogFeature( Feature( Feature::Dialog | Feature::Service | Feature::Worker | Feature::Builtin,
+	m_desktopAccessDialogFeature( Feature( QLatin1String( staticMetaObject.className() ),
+										   Feature::Dialog | Feature::Service | Feature::Worker | Feature::Builtin,
 										   Feature::Uid( "3dd8ec3e-7004-4936-8f2a-70699b9819be" ),
 										   Feature::Uid(),
-										   tr( "Desktop access dialog" ), QString(), QString() ) ),
+										   tr( "Desktop access dialog" ), {}, {} ) ),
 	m_features( { m_desktopAccessDialogFeature } ),
 	m_choice( ChoiceNone ),
 	m_abortTimer( this )
@@ -92,7 +93,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 	Q_UNUSED(messageContext)
 
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
-			message.command() == ReportDesktopAccessChoice )
+		message.command() == ReportDesktopAccessChoice )
 	{
 		m_choice = message.argument( ChoiceArgument ).value<Choice>();
 
@@ -113,7 +114,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( message.featureUid() != m_desktopAccessDialogFeature.uid() ||
-			message.command() != RequestDesktopAccess )
+		message.command() != RequestDesktopAccess )
 	{
 		return false;
 	}
@@ -135,7 +136,7 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QSt
 
 	const QHostAddress address( host );
 	if( address.protocol() == QAbstractSocket::IPv4Protocol ||
-			address.protocol() == QAbstractSocket::IPv6Protocol )
+		address.protocol() == QAbstractSocket::IPv6Protocol )
 	{
 		hostName = QHostInfo::fromName( host ).hostName();
 		if( hostName.isEmpty() )

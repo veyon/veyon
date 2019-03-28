@@ -40,13 +40,15 @@
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration(),
-	m_runProgramFeature( Feature::Action | Feature::AllComponents,
+	m_runProgramFeature( QStringLiteral( "RunProgram" ),
+						 Feature::Action | Feature::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
 						 Feature::Uid(),
 						 tr( "Run program" ), QString(),
 						 tr( "Click this button to run a program on all computers." ),
 						 QStringLiteral(":/desktopservices/preferences-desktop-launch-feedback.png") ),
-	m_openWebsiteFeature( Feature::Action | Feature::AllComponents,
+	m_openWebsiteFeature( QStringLiteral( "OpenWebsite" ),
+						  Feature::Action | Feature::AllComponents,
 						  Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ),
 						  Feature::Uid(),
 						  tr( "Open website" ), QString(),
@@ -254,7 +256,8 @@ FeatureList DesktopServicesFeaturePlugin::predefinedPrograms() const
 		for( const auto& program : programs )
 		{
 			const auto programObject = DesktopServiceObject( program.toObject() );
-			programFeatures.append( Feature( Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
+			programFeatures.append( Feature( m_runProgramFeature.name(),
+											 Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
 											 programObject.name(), QString(), tr("Run program \"%1\"").arg( programObject.name() ) ) );
 		}
 
@@ -282,7 +285,8 @@ FeatureList DesktopServicesFeaturePlugin::predefinedWebsites() const
 		for( const auto& website : websites )
 		{
 			const auto websiteObject = DesktopServiceObject( website.toObject() );
-			websiteFeatures.append( Feature( Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
+			websiteFeatures.append( Feature( m_openWebsiteFeature.name(),
+											 Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
 											 websiteObject.name(), QString(),
 											 tr("Open website \"%1\"").arg( websiteObject.name() ) ) );
 		}

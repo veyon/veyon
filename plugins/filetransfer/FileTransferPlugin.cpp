@@ -41,12 +41,12 @@
 
 FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 	QObject( parent ),
-	m_fileTransferFeature( Feature::Action | Feature::AllComponents,
+	m_fileTransferFeature( QStringLiteral( "FileTransfer" ),
+						   Feature::Action | Feature::AllComponents,
 						   Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ),
 						   Feature::Uid(),
 						   tr( "File transfer" ), QString(),
-						   tr( "Click this button to transfer files from your computer to all "
-							   "computers." ),
+						   tr( "Click this button to transfer files from your computer to all computers." ),
 						   QStringLiteral(":/filetransfer/applications-office.png") ),
 	m_features( { m_fileTransferFeature } ),
 	m_fileTransferController( nullptr ),

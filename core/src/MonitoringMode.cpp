@@ -26,7 +26,8 @@
 
 MonitoringMode::MonitoringMode( QObject* parent ) :
 	QObject( parent ),
-	m_monitoringModeFeature( Feature::Mode | Feature::Master | Feature::Builtin,
+	m_monitoringModeFeature( QLatin1String( staticMetaObject.className() ),
+							 Feature::Mode | Feature::Master | Feature::Builtin,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
 							 Feature::Uid(),
 							 tr( "Monitoring" ), tr( "Monitoring" ),

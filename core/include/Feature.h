@@ -55,14 +55,16 @@ public:
 	Q_DECLARE_FLAGS(Flags, FeatureFlag)
 	Q_FLAG(Flags)
 
-	explicit Feature( Flags flags,
-			 Uid uid,
-			 Uid parentUid,
-			 const QString& displayName,
-			 const QString& displayNameActive,
-			 const QString& description,
-			 const QString& iconUrl = QString(),
-			 const QKeySequence& shortcut = QKeySequence() ) :
+	explicit Feature( const QString& name,
+					  Flags flags,
+					  Uid uid,
+					  Uid parentUid,
+					  const QString& displayName,
+					  const QString& displayNameActive,
+					  const QString& description,
+					  const QString& iconUrl = {},
+					  const QKeySequence& shortcut = {} ) :
+		m_name( name ),
 		m_flags( flags ),
 		m_uid( uid ),
 		m_parentUid( parentUid ),
@@ -75,6 +77,7 @@ public:
 	}
 
 	explicit Feature( Uid uid = Uid() ) :
+		m_name(),
 		m_flags( NoFlags ),
 		m_uid( uid ),
 		m_parentUid( QUuid() ),
@@ -87,6 +90,7 @@ public:
 	}
 
 	Feature( const Feature& other ) :
+		m_name( other.name() ),
 		m_flags( other.flags() ),
 		m_uid( other.uid() ),
 		m_parentUid( other.parentUid() ),
@@ -98,10 +102,11 @@ public:
 	{
 	}
 
-	~Feature() {}
+	~Feature() = default;
 
 	Feature& operator=( const Feature& other )
 	{
+		m_name = other.name();
 		m_flags = other.flags();
 		m_uid = other.uid();
 		m_parentUid = other.parentUid();
@@ -132,6 +137,11 @@ public:
 	bool testFlag( FeatureFlag flag ) const
 	{
 		return m_flags.testFlag( flag );
+	}
+
+	const QString& name() const
+	{
+		return m_name;
 	}
 
 	const Uid& uid() const
@@ -190,6 +200,7 @@ private:
 		return m_flags;
 	}
 
+	QString m_name;
 	Flags m_flags;
 	Uid m_uid;
 	Uid m_parentUid;

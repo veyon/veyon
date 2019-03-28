@@ -34,7 +34,8 @@
 
 TextMessageFeaturePlugin::TextMessageFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
-	m_textMessageFeature( Feature( Feature::Action | Feature::AllComponents,
+	m_textMessageFeature( Feature( QStringLiteral( "TextMessage" ),
+								   Feature::Action | Feature::AllComponents,
 								   Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ),
 								   Feature::Uid(),
 								   tr( "Text message" ), QString(),

@@ -33,13 +33,15 @@
 
 RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
-	m_remoteViewFeature( Feature::Session | Feature::Master,
+	m_remoteViewFeature( QStringLiteral( "RemoteView" ),
+						 Feature::Session | Feature::Master,
 						 Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ),
 						 Feature::Uid(),
 						 tr( "Remote view" ), QString(),
 						 tr( "Open a remote view for a computer without interaction." ),
 						 QStringLiteral(":/remoteaccess/kmag.png") ),
-	m_remoteControlFeature( Feature::Session | Feature::Master,
+	m_remoteControlFeature( QStringLiteral( "RemoteControl" ),
+							Feature::Session | Feature::Master,
 							Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ),
 							Feature::Uid(),
 							tr( "Remote control" ), QString(),

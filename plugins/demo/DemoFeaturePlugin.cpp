@@ -39,7 +39,8 @@
 
 DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
-	m_fullscreenDemoFeature( Feature::Mode | Feature::AllComponents,
+	m_fullscreenDemoFeature( QStringLiteral( "FullscreenDemo" ),
+							 Feature::Mode | Feature::AllComponents,
 							 Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
 							 Feature::Uid(),
 							 tr( "Fullscreen demo" ), tr( "Stop demo" ),
@@ -47,7 +48,8 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 								 "fullscreen mode on all computers while input "
 								 "devices of the users are locked." ),
 							 QStringLiteral(":/demo/presentation-fullscreen.png") ),
-	m_windowDemoFeature( Feature::Mode | Feature::AllComponents,
+	m_windowDemoFeature( QStringLiteral( "WindowDemo" ),
+						 Feature::Mode | Feature::AllComponents,
 						 Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
 						 Feature::Uid(),
 						 tr( "Window demo" ), tr( "Stop demo" ),
@@ -55,7 +57,8 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 							 "window on all computers. The users are "
 							 "able to switch to other windows as needed." ),
 						 QStringLiteral(":/demo/presentation-window.png") ),
-	m_demoServerFeature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
+	m_demoServerFeature( QStringLiteral( "DemoServer" ),
+						 Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 Feature::Uid(),
 						 tr( "Demo server" ), QString(), QString() ),
