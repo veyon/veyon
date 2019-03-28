@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <QSplashScreen>
 
+#include "DocumentationFigureCreator.h"
 #include "VeyonMaster.h"
 #include "MainWindow.h"
 
@@ -37,6 +38,12 @@ int main( int argc, char * * argv )
 	app.connect( &app, &QApplication::lastWindowClosed, &QApplication::quit );
 
 	VeyonCore core( &app, QStringLiteral("Master") );
+
+	if( qEnvironmentVariableIsSet( "VEYON_MASTER_CREATE_DOC_FIGURES") )
+	{
+		DocumentationFigureCreator().run();
+		return 0;
+	}
 
 	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
 	splashScreen.show();

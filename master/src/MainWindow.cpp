@@ -285,6 +285,7 @@ void MainWindow::addFeaturesToToolBar()
 			m_master.runFeature( feature );
 			updateModeButtonGroup();
 		} );
+		btn->setObjectName( feature.name() );
 		btn->addTo( ui->toolBar );
 
 		if( feature.testFlag( Feature::Mode ) )
