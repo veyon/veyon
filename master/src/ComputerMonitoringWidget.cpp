@@ -128,28 +128,6 @@ void ComputerMonitoringWidget::setFilterPoweredOnComputers( bool enabled )
 
 
 
-void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
-{
-	const Feature& feature = m_master->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
-
-	if( index.isValid() && feature.isValid() )
-	{
-		ui->listView->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
-		runFeature( feature );
-	}
-}
-
-
-
-void ComputerMonitoringWidget::showContextMenu( QPoint pos )
-{
-	populateFeatureMenu( activeFeatures( selectedComputerControlInterfaces() ) );
-
-	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
-}
-
-
-
 void ComputerMonitoringWidget::setComputerScreenSize( int size )
 {
 	if( m_master )
@@ -209,6 +187,28 @@ void ComputerMonitoringWidget::setUseCustomComputerPositions( bool enabled )
 void ComputerMonitoringWidget::alignComputers()
 {
 	ui->listView->alignToGrid();
+}
+
+
+
+void ComputerMonitoringWidget::showContextMenu( QPoint pos )
+{
+	populateFeatureMenu( activeFeatures( selectedComputerControlInterfaces() ) );
+
+	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
+}
+
+
+
+void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
+{
+	const Feature& feature = m_master->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
+
+	if( index.isValid() && feature.isValid() )
+	{
+		ui->listView->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		runFeature( feature );
+	}
 }
 
 

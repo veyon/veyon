@@ -61,9 +61,10 @@ public:
 	void setUseCustomComputerPositions( bool enabled );
 	void alignComputers();
 
+	void showContextMenu( QPoint pos );
+
 private:
 	void runDoubleClickFeature( const QModelIndex& index );
-	void showContextMenu( QPoint pos );
 	void runFeature( const Feature& feature );
 
 	ComputerSortFilterProxyModel& listModel();
