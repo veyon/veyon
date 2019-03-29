@@ -22,13 +22,22 @@
  *
  */
 
+#include <QApplication>
+#include <QInputDialog>
+#include <QLineEdit>
 #include <QMenu>
+#include <QScreen>
+#include <QStringListModel>
+#include <QTextEdit>
+#include <QWindow>
 
 #include "ComputerMonitoringWidget.h"
 #include "DocumentationFigureCreator.h"
 #include "FeatureManager.h"
+#include "LocationDialog.h"
 #include "MainToolBar.h"
 #include "MainWindow.h"
+#include "PasswordDialog.h"
 #include "Plugin.h"
 #include "PluginManager.h"
 #include "ToolButton.h"
@@ -51,13 +60,19 @@ void DocumentationFigureCreator::run()
 	mainWindow->resize( 3000, 1000 );
 	mainWindow->show();
 
-	createFeatureFigures( mainWindow );
-	createContextMenuFigure( mainWindow );
+	createFeatureFigures();
+	createContextMenuFigure();
+	createLogonDialogFigure();
+	createLocationDialogFigure();
+	createTextMessageDialogFigure();
+	createOpenWebsiteDialogFigure();
+	createRunProgramDialogFigure();
+	createRemoteAccessHostDialogFigure();
 }
 
 
 
-void DocumentationFigureCreator::createFeatureFigures( QWidget* mainWindow )
+void DocumentationFigureCreator::createFeatureFigures()
 {
 	Plugin::Uid previousPluginUid;
 	Feature const* previousFeature = nullptr;
@@ -65,7 +80,7 @@ void DocumentationFigureCreator::createFeatureFigures( QWidget* mainWindow )
 	int x = -1;
 	int w = 0;
 
-	auto toolbar = mainWindow->findChild<MainToolBar *>();
+	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
 
 	const QStringList separatedPluginFeatures( { QStringLiteral("a54ee018-42bf-4569-90c7-0d8470125ccf"),
 												 QStringLiteral("80580500-2e59-4297-9e35-e53959b028cd")
@@ -94,7 +109,7 @@ void DocumentationFigureCreator::createFeatureFigures( QWidget* mainWindow )
 			{
 				fileName = previousFeature->name();
 			}
-			createFigure( toolbar, QPoint( x-2, btn->y()-1 ), QSize( w, btn->height() + 2 ),
+			grabWidget( toolbar, QPoint( x-2, btn->y()-1 ), QSize( w, btn->height() + 2 ),
 						  QStringLiteral("Feature%1.png").arg( fileName ) );
 			previousPluginUid = pluginUid;
 			x = btn->x();
@@ -112,7 +127,7 @@ void DocumentationFigureCreator::createFeatureFigures( QWidget* mainWindow )
 			{
 				fileName = feature.name();
 			}
-			createFigure( toolbar, QPoint( x-2, btn->y()-1 ), QSize( w, btn->height() + 2 ),
+			grabWidget( toolbar, QPoint( x-2, btn->y()-1 ), QSize( w, btn->height() + 2 ),
 						  QStringLiteral("Feature%1.png").arg( fileName ) );
 		}
 
@@ -122,13 +137,13 @@ void DocumentationFigureCreator::createFeatureFigures( QWidget* mainWindow )
 
 
 
-void DocumentationFigureCreator::createContextMenuFigure(QWidget* mainWindow)
+void DocumentationFigureCreator::createContextMenuFigure()
 {
-	auto view = mainWindow->findChild<ComputerMonitoringWidget *>();
+	auto view = m_master->mainWindow()->findChild<ComputerMonitoringWidget *>();
 	auto menu = view->findChild<QMenu *>();
 
-	connect( menu, &QMenu::aboutToShow, this, [this, menu]() {
-		createFigure( menu, QPoint(), menu->size(), QStringLiteral("ContextMenu.png") );
+	connect( menu, &QMenu::aboutToShow, this, [menu]() {
+		grabWidget( menu, QPoint(), menu->size(), QStringLiteral("ContextMenu.png") );
 		menu->close();
 	}, Qt::QueuedConnection );
 
@@ -137,10 +152,152 @@ void DocumentationFigureCreator::createContextMenuFigure(QWidget* mainWindow)
 
 
 
-void DocumentationFigureCreator::createFigure(QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::createLogonDialogFigure()
+{
+	PasswordDialog dialog( m_master->mainWindow() );
+	dialog.show();
+	dialog.findChild<QLineEdit *>( QStringLiteral("password") )->setText( QStringLiteral( "TeacherPassword") );
+	dialog.findChild<QLineEdit *>( QStringLiteral("password") )->cursorForward( false );
+	dialog.findChild<QLineEdit *>( QStringLiteral("username") )->setText( tr( "Teacher") );
+
+	grabDialog( &dialog, {}, QStringLiteral("LogonDialog.png") );
+}
+
+
+
+void DocumentationFigureCreator::createLocationDialogFigure()
+{
+	QStringList locations;
+	locations.reserve( 3 );
+
+	for( int i = 0; i < 3; ++i )
+	{
+		locations.append( tr( "Room %1").arg( 101 + i ) );
+	}
+
+	QStringListModel locationsModel( locations, this );
+	LocationDialog dialog( &locationsModel, m_master->mainWindow() );
+
+	grabDialog( &dialog, QSize( 300, 200 ), QStringLiteral("LocationDialog.png") );
+}
+
+
+
+void DocumentationFigureCreator::createTextMessageDialogFigure()
+{
+	QTimer::singleShot( DialogDelay, this, [this]() {
+		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
+
+		dialog->findChild<QTextEdit *>()->setText( tr( "Please complete all tasks within the next 5 minutes." ) );
+		dialog->setFocus();
+		dialog->move( 0, 0 );
+
+		QTimer::singleShot( DialogDelay, this, [dialog]() {
+			grabWindow( dialog, QStringLiteral("TextMessageDialog.png") );
+			dialog->close();
+		} );
+	});
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ) ) );
+}
+
+
+
+void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
+{
+	QTimer::singleShot( DialogDelay, this, [this]() {
+		auto dialog = qobject_cast<QInputDialog *>( QApplication::activeWindow() );
+		dialog->setTextValue( QStringLiteral("https://veyon.io") );
+		dialog->setFocus();
+		dialog->move( 0, 0 );
+
+		QTimer::singleShot( DialogDelay, this, [dialog]() {
+			grabWindow( dialog, QStringLiteral("OpenWebsiteDialog.png") );
+			dialog->close();
+		} );
+	});
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ) ) );
+}
+
+
+
+void DocumentationFigureCreator::createRunProgramDialogFigure()
+{
+	QTimer::singleShot( DialogDelay, this, [this]() {
+		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
+		dialog->findChild<QTextEdit *>()->setText( QStringLiteral("notepad") );
+		dialog->setFocus();
+		dialog->move( 0, 0 );
+
+		QTimer::singleShot( DialogDelay, this, [dialog]() {
+			grabWindow( dialog, QStringLiteral("RunProgramDialog.png") );
+			dialog->close();
+		} );
+	});
+
+	auto view = m_master->mainWindow()->findChild<ComputerMonitoringWidget *>();
+	view->setSearchFilter( QStringLiteral("XXXXXX") );
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
+}
+
+
+
+void DocumentationFigureCreator::createRemoteAccessHostDialogFigure()
+{
+	QTimer::singleShot( DialogDelay, this, [this]() {
+		auto dialog = qobject_cast<QInputDialog *>( QApplication::activeWindow() );
+		dialog->setTextValue( QStringLiteral("pc27") );
+		dialog->setFocus();
+		dialog->move( 0, 0 );
+
+		QTimer::singleShot( DialogDelay, this, [dialog]() {
+			grabWindow( dialog, QStringLiteral("RemoteAccessHostDialog.png") );
+			dialog->close();
+		} );
+	});
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ) ) );
+}
+
+
+
+void DocumentationFigureCreator::grabWidget(QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName)
 {
 	QPixmap pixmap( size );
 	widget->render( &pixmap, QPoint(), QRegion( QRect( pos, size ) ) );
 	pixmap.save( fileName );
-	qCritical() << widget << pos << size << fileName;
+}
+
+
+
+void DocumentationFigureCreator::grabDialog(QDialog* dialog, const QSize& size, const QString& fileName)
+{
+	dialog->show();
+	dialog->move( 0, 0 );
+
+	if( size.isValid() )
+	{
+		dialog->setFixedSize( size );
+	}
+
+	QTimer::singleShot( DialogDelay, dialog, [dialog, fileName]() {
+		grabWindow( dialog, fileName );
+		dialog->close();
+	} );
+
+	dialog->exec();
+}
+
+
+
+void DocumentationFigureCreator::grabWindow(QWidget* widget, const QString& fileName)
+{
+	widget->repaint();
+	QGuiApplication::sync();
+
+	auto window = widget->window();
+	const auto rect = window->frameGeometry();
+	window->windowHandle()->screen()->grabWindow( 0, rect.x(), rect.y(), rect.width(), rect.height() ).save( fileName );
 }

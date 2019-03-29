@@ -37,9 +37,20 @@ public:
 	void run();
 
 private:
-	void createFeatureFigures( QWidget* mainWindow );
-	void createContextMenuFigure( QWidget* mainWindow );
-	void createFigure( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
+	static constexpr int DialogDelay = 250;
+
+	void createFeatureFigures();
+	void createContextMenuFigure();
+	void createLogonDialogFigure();
+	void createLocationDialogFigure();
+	void createTextMessageDialogFigure();
+	void createOpenWebsiteDialogFigure();
+	void createRunProgramDialogFigure();
+	void createRemoteAccessHostDialogFigure();
+
+	static void grabWidget( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
+	static void grabDialog( QDialog* dialog, const QSize& size, const QString& fileName );
+	static void grabWindow( QWidget* widget, const QString& fileName );
 
 	VeyonMaster* m_master;
 
