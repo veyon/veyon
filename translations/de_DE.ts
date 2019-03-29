@@ -1415,6 +1415,21 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
 </context>
 <context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation>Lehrer</translation>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation>Raum %1</translation>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
+        <translation>Bitte alle Aufgaben in den nächsten 5 Minuten fertigstellen.</translation>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -3194,7 +3209,7 @@ VERWENDUNG
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer zuzugreifen.</translation>
+        <translation>Bitte geben Sie Ihren Benutzernamen und Passwort ein, um auf Computer zuzugreifen.</translation>
     </message>
 </context>
 <context>

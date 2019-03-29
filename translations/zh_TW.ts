@@ -150,7 +150,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>限制對指定使用者群組成員的存取</translation>
     </message>
 </context>
 <context>
@@ -257,11 +257,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>存取電腦和本機電腦位於同一位置</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>位於</translation>
     </message>
 </context>
 <context>
@@ -651,15 +651,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令建立一個名稱為 &lt;NAME&gt; 的新身份驗證金鑰組，並將私密金鑰和公開金鑰儲存到組態的金鑰目錄。 參數必須是金鑰名稱，金鑰可以只包含字母。</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令從組態的金鑰目錄中刪除身份驗證金鑰 &lt;KEY&gt;。 請注意，金鑰刪除後將無法恢復。</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令從私密金鑰 &lt;KEY&gt; 中提取公開金鑰部分，並將其儲存為相應的公開金鑰。 因此，在設定另一部主機電腦時，只需要傳輸私密金鑰。接著可以提取公開金鑰。</translation>
     </message>
 </context>
 <context>
@@ -1041,7 +1041,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>位置: %1</translation>
     </message>
 </context>
 <context>
@@ -1083,15 +1083,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>位置偵測失敗</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>電腦名稱;主機名稱,使用者</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>無法確定這部電腦的位置。 這表示系統組態有問題。 所有位置將顯示在電腦選取面板中。</translation>
     </message>
 </context>
 <context>
@@ -1106,7 +1106,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>加入位置</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1216,11 +1216,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>無法組態 %1 工人的防火牆設定。</translation>
+        <translation>無法組態 %1 Worker 的防火牆設定。</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>軟體無法變更 SAS 產生的設定。 透過遠端控制傳送 Ctrl+Alt+Del 將無法動作!</translation>
+        <translation>軟體無法變更 SAS 世代的設定。 透過遠端控制傳送 Ctrl+Alt+Del 將無法動作!</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
@@ -1231,7 +1231,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 演示</translation>
+        <translation>%1 展示</translation>
     </message>
 </context>
 <context>
@@ -1277,23 +1277,23 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>全螢幕演示</translation>
+        <translation>全螢幕展示</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>停止演示</translation>
+        <translation>停止展示</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>視窗演示</translation>
+        <translation>視窗展示</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>通過螢幕廣播給予演示</translation>
+        <translation>通過螢幕廣播給予展示</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>演示伺服器</translation>
+        <translation>展示伺服器</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1316,11 +1316,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>永不在這個工作階段</translation>
+        <translation>永不對這個工作階段</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>始終在這個工作階段</translation>
+        <translation>始終對這個工作階段</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1415,6 +1415,21 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Custom website</source>
         <translation>自訂網站</translation>
+    </message>
+</context>
+<context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation>教師</translation>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation>教室 %1</translation>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1667,15 +1682,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>在這部電腦中正確設定身份驗證。</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>這部電腦中的身份驗證金鑰設定不正確。</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>身份驗證測試</translation>
     </message>
 </context>
 <context>
@@ -2252,7 +2267,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation>例如: cn 或 顯示名稱</translation>
+        <translation>例如: cn 或 displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2352,59 +2367,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>主機名稱存儲為完全限定網域名稱 (FQDN, 例如: myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>電腦主機名稱屬性</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要查詢的電腦主機名稱:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>主機名稱無效</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>您將電腦主機名組態為以完全限定網域名稱 (FQDN) 存儲，但輸入了不含網域的主機名稱。</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>您將電腦主機名組態為以不含域名的簡單主機名稱存儲，但輸入了含有域名部分的主機名稱。</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>找不到名為「%1」的使用者。 請檢查使用者名稱或使用者樹參數。</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>輸入主機名稱</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要查詢其群組成員身份的電腦主機名稱:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>找不到主機名稱為「%1」的電腦。請檢查主機名稱或電腦樹參數。</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>主機名稱查找失敗</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>無法查找 IP 位址 %1 的主機名稱。 請檢查您的 DNS 伺服器設定。</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>使用者登入屬性</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>為使用者登入名稱或電腦主機名稱組態的屬性 (OpenLDAP)</translation>
     </message>
 </context>
 <context>
@@ -2458,7 +2473,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove instance</source>
-        <translation>刪除實例</translation>
+        <translation>移除實例</translation>
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
@@ -2641,11 +2656,11 @@ USAGE
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>選取位置</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>請輸入搜尋篩選器...</translation>
+        <translation>輸入搜尋篩選器...</translation>
     </message>
 </context>
 <context>
@@ -2855,7 +2870,7 @@ USAGE
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>使用自訂電腦排列</translation>
     </message>
 </context>
 <context>
@@ -2874,7 +2889,7 @@ USAGE
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>功能在電腦上按兩下:</translation>
+        <translation>電腦上按兩下時功能:</translation>
     </message>
     <message>
         <source>Features</source>
@@ -2974,39 +2989,39 @@ USAGE
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>電腦位置</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>只顯示目前位置</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>允許手動加入隱藏位置</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>隱藏空位置</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>顯示潛在不安全動作的確認對話方塊</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>執行存取控制</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>自動選取目前位置</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
+        <translation>自動調整電腦縮圖大小</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>自動開啟電腦選取面板</translation>
     </message>
 </context>
 <context>
@@ -3021,7 +3036,7 @@ USAGE
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>這個模式允許您監視在一個或數個位置的所有電腦。</translation>
     </message>
 </context>
 <context>
@@ -3150,7 +3165,7 @@ USAGE
         <translation>
 用法
 
-%1 scan [&lt;SUBNET&gt;]
+%1 scan [&lt;子網路&gt;]
 
 </translation>
     </message>
@@ -3382,7 +3397,7 @@ USAGE
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>結束</translation>
     </message>
 </context>
 <context>
@@ -3616,7 +3631,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>使用替代使用者身份驗證機制</translation>
     </message>
 </context>
 <context>
@@ -3772,7 +3787,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>啟用多顯示器支援</translation>
+        <translation>啟用多部顯示器支援</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
@@ -3787,7 +3802,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>無法儲存您的個人設定 ! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
+        <translation>無法儲存您的個人設定! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
     </message>
 </context>
 <context>
@@ -3798,19 +3813,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>登出</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>按一下這個按鈕以登出所有電腦中的使用者。</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>確認使用者登出</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要登出選取的使用者?</translation>
     </message>
 </context>
 <context>

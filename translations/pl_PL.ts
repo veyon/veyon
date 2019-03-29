@@ -1415,6 +1415,21 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation>Nauczyciel</translation>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>

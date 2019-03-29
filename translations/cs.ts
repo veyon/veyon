@@ -1418,6 +1418,21 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
 </context>
 <context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation>Vyučující</translation>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation>Místnost %1</translation>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>

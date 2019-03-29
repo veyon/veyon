@@ -1386,7 +1386,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Cliquer sur ce bouton pour ouvrir un site internet sur tous les ordinateurs.</translation>
+        <translation>Cliquez sur ce bouton pour ouvrir un site internet sur tous les ordinateurs.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -1398,7 +1398,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>Cliquer sur ce bouton pour exécuter un programme sur tous les ordinateurs.</translation>
+        <translation>Cliquez sur ce bouton pour exécuter un programme sur tous les ordinateurs.</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
@@ -1415,6 +1415,21 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Custom website</source>
         <translation>Site internet personnalisé</translation>
+    </message>
+</context>
+<context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation>Enseignant</translation>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation>Salle %1</translation>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1496,7 +1511,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Cliquer sur ce bouton pour transférer des fichiers de votre ordinateur vers tous les ordinateurs.</translation>
+        <translation>Cliquez sur ce bouton pour transférer des fichiers de votre ordinateur vers tous les ordinateurs.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1717,7 +1732,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation>Cliquer sur ce bouton pour bloquer l&apos;accès à internet.</translation>
+        <translation>Cliquez sur ce bouton pour bloquer l&apos;accès à internet.</translation>
     </message>
     <message>
         <source>Unblock internet</source>
@@ -1725,7 +1740,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation>Cliquer sur ce bouton pour permettre l&apos;accès à internet.</translation>
+        <translation>Cliquez sur ce bouton pour permettre l&apos;accès à internet.</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
@@ -3217,7 +3232,7 @@ USAGE
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Cliquer sur ce bouton pour redémarrer tous les ordinateurs.</translation>
+        <translation>Cliquez sur ce bouton pour redémarrer tous les ordinateurs.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3802,7 +3817,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Appuyer sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
+        <translation>Cliquez sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
