@@ -106,6 +106,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	m_sendShortcutButton->setMenu( shortcutMenu );
 	m_sendShortcutButton->setPopupMode( QToolButton::InstantPopup );
+	m_sendShortcutButton->setObjectName( QStringLiteral("shortcuts") );
 
 	auto layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
