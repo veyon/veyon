@@ -409,7 +409,11 @@ void VeyonCore::initLocaleAndTranslation()
 				tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
 		{
 			configuredLocale = QLocale::system(); // Flawfinder: ignore
-			tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() );
+
+			if( tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
+			{
+				tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.language() ), translationsDirectory() );
+			}
 		}
 
 		QLocale::setDefault( configuredLocale );
@@ -417,7 +421,10 @@ void VeyonCore::initLocaleAndTranslation()
 		QCoreApplication::installTranslator( tr );
 
 		auto qtTr = new QTranslator;
-		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), qtTranslationsDirectory() );
+		if( qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), qtTranslationsDirectory() ) == false )
+		{
+			qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.language() ), qtTranslationsDirectory() );
+		}
 
 		QCoreApplication::installTranslator( qtTr );
 	}
