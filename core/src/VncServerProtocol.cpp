@@ -224,7 +224,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 			return true;
 		}
 
-		const QString username = message.read().toString();
+		const auto username = message.read().toString();
 
 		m_client->setAuthType( chosenAuthType );
 		m_client->setUsername( username );
