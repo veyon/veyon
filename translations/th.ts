@@ -1,21 +1,21 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="th" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Käännös</translation>
+        <translation>การแปลภาษา</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Lisenssi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>เวอร์ชั่น:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>เว็บไซต์:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -37,11 +37,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>สนับสนุนโครงการ Veyon ด้วยการบริจาค</translation>
     </message>
 </context>
 <context>
@@ -56,7 +56,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>ทดสอบ</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
@@ -80,11 +80,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>กลุ่มทั้งหมด</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -108,11 +108,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>แก้ไขกฏที่เลือก</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>ใส่ชื่อผู้ใช้</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -120,7 +120,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>การเข้าถึงได้รับอนุญาต</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -128,7 +128,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>การเข้าถึงถูกปฏิเสธ</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -159,7 +159,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>ทั่วไป</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
@@ -167,7 +167,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อกฏ:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
@@ -175,7 +175,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>คำอธิบายกฏ:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -187,7 +187,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>เป็นสมาชิกของกลุ่ม</translation>
     </message>
     <message>
         <source>is located in room</source>
@@ -211,15 +211,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>การกระทำ</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>อนุญาตเข้าถึง</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>ปฏิเสธการเข้าถึง</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -227,7 +227,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>ไม่มี (ปิดการใช้งานกฏ)</translation>
     </message>
     <message>
         <source>Accessing user</source>
@@ -290,7 +290,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้ที่เชื่อมต่ออยู่:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -306,11 +306,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาด: การกระทำที่ไม่รู้จัก</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>ผลการทดสอบ</translation>
     </message>
 </context>
 <context>
@@ -337,7 +337,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -345,19 +345,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>สร้างคู่กุญแจ</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>ลบกุญแจ</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>นำเข้ากุญแจ</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>ส่งออกกุญแจ</translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -365,7 +365,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์กุญแจ (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -389,7 +389,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>กรุณาเลือกกุญแจที่จะส่งออกก่อน!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -555,7 +555,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -661,11 +661,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>ประเภท</translation>
     </message>
     <message>
         <source>Access group</source>
@@ -688,11 +688,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Host address/IP</source>
@@ -712,19 +712,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มคอมพิวเตอร์ใหม่</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>ลบคอมพิวเตอร์ที่เลือก</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>ห้องใหม่</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ใหม่</translation>
     </message>
 </context>
 <context>
@@ -795,11 +795,11 @@ Examples:
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>ประเภท</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -815,7 +815,7 @@ Examples:
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -839,7 +839,7 @@ Examples:
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>ไม่มี</translation>
     </message>
     <message>
         <source>Room</source>
@@ -987,7 +987,7 @@ Examples:
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>ออนไลน์และเชื่อมต่อแล้ว</translation>
     </message>
     <message>
         <source>Establishing connection</source>
@@ -1030,7 +1030,7 @@ Examples:
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>การเข้าถึงระยะไกล</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1045,7 +1045,7 @@ Examples:
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>การจัดการคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Add room</source>
@@ -1061,7 +1061,7 @@ Examples:
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์ CSV (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
@@ -1205,14 +1205,14 @@ Examples:
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิต %1</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์สาธิต</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1236,7 +1236,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1244,14 +1244,14 @@ Examples:
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation>วิ</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิตแบบเต็มจอ</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1267,11 +1267,11 @@ Examples:
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์สาธิต</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>ในโหมดนี้ หน้าจอของคุณจะถูกแสดงในแบบเต็มจอบนเครื่องคอมพิวเตอร์ทั้งหมดในขณะที่อุปกรณ์นำเข้าของผู้ใช้งานจะถูกล็อกไว้</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1313,7 +1313,7 @@ Examples:
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1321,11 +1321,11 @@ Examples:
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มโปรแกรมใหม่</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>ลบโปรแกรมที่เลือก</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1337,7 +1337,7 @@ Examples:
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1406,11 +1406,11 @@ Examples:
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>พอร์ท:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>รหัสผ่าน:</translation>
     </message>
 </context>
 <context>
@@ -1428,15 +1428,15 @@ Examples:
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>ภาษา:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>ใช้การตั้งค่าภาษาตามระบบ</translation>
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1448,7 +1448,7 @@ Examples:
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -1528,7 +1528,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1536,11 +1536,11 @@ Examples:
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished"/>
+        <translation>วินาที</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1571,11 +1571,11 @@ Examples:
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าพื้นฐาน</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>ทั่วไป</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1599,7 +1599,7 @@ Examples:
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>ทดสอบ</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1611,7 +1611,7 @@ Examples:
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>เช่น dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -1792,7 +1792,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>ใส่ชื่อผู้ใช้</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1824,7 +1824,7 @@ Examples:
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>ไม่พบกลุ่ม</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -1952,7 +1952,7 @@ Examples:
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>การทดสอบ LDAP %1 ล้มเหลว</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
@@ -1962,7 +1962,7 @@ Examples:
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>การทดสอบ LDAP %1 สำเร็จลุล่วง</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
@@ -2120,7 +2120,7 @@ Examples:
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>ไม่เลย (ไม่ปลอดภัย!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2128,35 +2128,35 @@ Examples:
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>ไม่มี</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>เช่น (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>เช่น (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>เช่น (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>เช่น (objectClass=room) หรือ (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>เช่น (objectClass=container) หรือ (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2273,7 +2273,7 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>ทั่วไป</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -2289,11 +2289,11 @@ Examples:
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -2301,11 +2301,11 @@ Examples:
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ Qt</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -2349,7 +2349,7 @@ Examples:
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2361,7 +2361,7 @@ Examples:
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2369,7 +2369,7 @@ Examples:
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์ JSON (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -2381,7 +2381,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>การเข้าถึงถูกปฏิเสธ</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2437,7 +2437,7 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>แสดงเฉพาะคอมพิวเตอร์ที่เปิดอยู่เท่านั้น</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
@@ -2452,7 +2452,7 @@ Examples:
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2488,7 +2488,7 @@ Examples:
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
@@ -2496,7 +2496,7 @@ Examples:
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าพื้นฐาน</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -2564,11 +2564,11 @@ Examples:
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>เฉพาะชื่อผู้ใช้</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>เฉพาะชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2613,11 +2613,11 @@ Examples:
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อผู้ใช้</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>รหัสผ่าน</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -2640,23 +2640,23 @@ Examples:
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation type="unfinished"/>
+        <translation>เปิดเครื่อง</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกที่นี่เพื่อเปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่ต้องเดินไปเปิดเครื่องทีละเครื่อง</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>รีบู๊ต</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกปุ่มนี้ เพื่อทำการรีบู๊ตคอมพิวเตอร์ทุกเครื่อง</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>ปิดเครื่อง</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -2668,11 +2668,11 @@ Examples:
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>ยืนยันการรีบู๊ต</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>ยืนยันการปิดเครื่อง</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -2687,7 +2687,7 @@ Examples:
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>มองระยะไกล</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -2695,7 +2695,7 @@ Examples:
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>ควบคุมระยะไกล</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -2703,7 +2703,7 @@ Examples:
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>การเข้าถึงระยะไกล</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -2729,51 +2729,51 @@ Examples:
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished"/>
+        <translation>ดูเท่านั้น</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>ควบคุมระยะไกล</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>ส่งคีย์ลัด</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished"/>
+        <translation>เต็มหน้าจอ</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
+        <translation>หน้าต่าง</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>ออก</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -2781,19 +2781,19 @@ Examples:
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>กำลังเชื่อมต่อ %1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>เชื่อมต่อแล้ว</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>ภาพหน้าจอ</translation>
     </message>
 </context>
 <context>
@@ -2819,18 +2819,18 @@ Examples:
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>เช่น &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>ล็อก</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>ปลดล็อก</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -2845,7 +2845,7 @@ Examples:
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>ไม่รู้จัก</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2853,14 +2853,14 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>ภาพหน้าจอ</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>ภาพหน้าจอ</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2868,7 +2868,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>ถ่ายภาพหน้าจอแล้ว</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
@@ -2883,23 +2883,23 @@ Examples:
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>วันที่:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>เวลา:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>แสดง</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>ลบ</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2907,14 +2907,14 @@ Examples:
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์:</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>ทั่วไป</translation>
     </message>
     <message>
         <source>Autostart</source>
@@ -2946,7 +2946,7 @@ Examples:
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>เครือข่าย</translation>
     </message>
     <message>
         <source>Demo server port</source>
@@ -3003,7 +3003,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
@@ -3084,7 +3084,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3117,7 +3117,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"/>
+        <translation>ส่งข้อความอักษร</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3128,11 +3128,11 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation type="unfinished"/>
+        <translation>ข้อความอักษร</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>ใช้ฟังก์ชั่นนี้เพื่อส่งข้อความอักษระให้ผู้ใช้ทุกคน เช่น การสั่งงานใหม่ เป็นต้น</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3201,7 +3201,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"/>
+        <translation>ออกจากระบบ</translation>
     </message>
 </context>
 <context>
@@ -3232,7 +3232,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>ผลลัพธ์ที่ไม่รู้จัก!</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -3307,7 +3307,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>ห้ามใช่ส่วนเสริม X Damage เป็นอันขาด</translation>
     </message>
 </context>
 </TS>

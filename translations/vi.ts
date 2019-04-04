@@ -1,88 +1,88 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="id_ID" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Tentang</translation>
+        <translation>Giới thiệu</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Terjemahan</translation>
+        <translation>Dịch thuật</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Lisensi</translation>
+        <translation>Giấy phép</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Tentang Veyon</translation>
+        <translation>Về Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Kontributor</translation>
+        <translation>Những người đóng góp</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versi:</translation>
+        <translation>Phiên bản:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Situs web:</translation>
+        <translation>Website:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Bahasa sekarang belum diterjemahkan (atau native Bahasa Inggris)
+        <translation>Ngôn ngữ hiện tại chưa được dịch (hoặc tiếng Anh bản địa).
 
-Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain atau anda ingin meningkatkan terjemahan yang telah ada, silakan hubungi pengembang Veyon!</translation>
+Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa của bạn, ngôn ngữ khác hoặc muốn cải tiến bản dịch đang tồn tại, vui lòng liên hệ với một nhà phát triển Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>Tentang %1 %2</translation>
+        <translation>Về %1%2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Dukung proyek Veyon dengan donasi</translation>
+        <translation>Hỗ trợ dự án Veyon bằng cách quyên góp</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>Akses kontrol komputer</translation>
+        <translation>Điều khiển truy cập máy tính</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Berikan akses ke setiap pengguna yang diautentikasi (bawaan)</translation>
+        <translation>Cấp truy cập cho mọi người dùng xác thực (mặc định)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Tes</translation>
+        <translation>Kiểm tra</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation>Batasi akses ke anggota grup pengguna tertentu</translation>
+        <translation>Hạn chế truy cập với thành viên của nhóm người dùng nào đó</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Memproses aturan kontrol akses</translation>
+        <translation>Xử lý quy tắc điều khiển truy cập</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Grup pengguna yang diotorisasi untuk akses komputer</translation>
+        <translation>Nhóm người dùng được cấp quyền truy cập máy tính</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Silakan tambahkan grup yang anggotanya harus diotorisasi untuk mengakses komputer di jaringan Veyon Anda.</translation>
+        <translation>Vui lòng thêm nhóm mà các thành viên sẽ được cấp quyền truy cập máy tính trong mạng Veyon của bạn.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Kelompok pengguna yang diotorisasi</translation>
+        <translation>Nhóm người dùng được cấp quyền</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Semua grup</translation>
+        <translation>Tất cả các nhóm</translation>
     </message>
     <message>
         <source>...</source>
@@ -90,252 +90,252 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Aturan kontrol akses</translation>
+        <translation>Quy tắc điều khiển truy cập</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>Tambah aturan kontrol akses</translation>
+        <translation>Thêm quy tắc điều khiển truy cập</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>Hapus aturan kontrol akses</translation>
+        <translation>Xóa quy tắc điều khiển truy cập</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Pindahkan aturan yang dipilih ke bawah</translation>
+        <translation>Đưa quy tắc đã chọn xuống</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Pindahkan aturan yang dipilih ke atas</translation>
+        <translation>Đưa quy tắc đã chọn lên</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>Edit aturan yang dipilih</translation>
+        <translation>Sửa quy tắc được chọn</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Masukkan nama pengguna</translation>
+        <translation>Nhập tên người dùng</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Silakan masukkan nama login pengguna yang izin aksesnya untuk diuji:</translation>
+        <translation>Vui lòng nhập tên đăng nhập của người dùng có quyền truy cập để kiểm tra:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>Akses diijinkan</translation>
+        <translation>Truy cập được cho phép</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Pengguna yang ditentukan diizinkan untuk mengakses komputer dengan konfigurasi ini.</translation>
+        <translation>Người dùng đã chỉ định được phép truy cập máy tính với cấu hình này.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Akses ditolak</translation>
+        <translation>Truy cập bị từ chối</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Pengguna yang ditentukan tidak diizinkan mengakses komputer dengan konfigurasi ini.</translation>
+        <translation>Người dùng đã chỉ định không được phép truy cập máy tính với cấu hình này.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation>Aktifkan penggunaan grup domain</translation>
+        <translation>Cho phép sử dụng nhóm miền</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Kelompok pengguna backend:</translation>
+        <translation>Backend nhóm người dùng:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Backend grup pengguna tidak ada</translation>
+        <translation>Thiếu backend nhóm người dùng</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Tidak ditemukan plugin grup pengguna bawaan. Sila cek instalasi Anda! </translation>
+        <translation>Không tìm thấy plugin nhóm người dùng mặc định. Vui lòng kiểm tra bản cài đặt của bạn!</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>Edit aturan kontrol akses</translation>
+        <translation>Sửa quy tắc điều khiển truy cập</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Umum</translation>
+        <translation>Chung</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>masukkan nama singkat untuk aturan di sini</translation>
+        <translation>nhập tên ngắn cho quy tắc ở đây</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Nama aturan:</translation>
+        <translation>Tên quy tắc:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>masukkan penjelasan untuk aturan di sini</translation>
+        <translation>nhập mô tả cho quy tắc ở đây</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Penjelasan aturan:</translation>
+        <translation>Mô tả quy tắc:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Đảo ngược tất cả các điều kiện (có được hiểu là không)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>Kondisi</translation>
+        <translation>Điều kiện</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>adalah anggota grup</translation>
+        <translation>là thành viên của nhóm</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation>terletak di ruang</translation>
+        <translation>nằm trong phòng</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Mengakses komputer adalah localhost</translation>
+        <translation>Máy tính đang truy cập là localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>Người dùng đang truy cập là người dùng đã đăng nhập</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>Người dùng đang truy cập đã được kết nối</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Jika lebih dari satu kondisi diaktifkan, setiap kondisi harus dipenuhi untuk membuat aturan berlaku (logika AND). Jika hanya satu dari beberapa kondisi yang harus dipenuhi (OR logis), buat beberapa aturan kontrol akses.</translation>
+        <translation>Nếu có nhiều hơn một điều kiện kích hoạt, mỗi điều kiện phải thỏa mãn để áp dụng quy tắc (AND logic). Nếu chỉ một trong số nhiều điều kiện phải thoải mãn (OR logic) vui lòng tạo nhiều quy tắc điều khiển truy cập.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Aksi</translation>
+        <translation>Hành động</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>Ijinkan akses</translation>
+        <translation>Cho phép truy cập</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Larang akses</translation>
+        <translation>Từ chối truy cập</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Đề nghị người dùng đã đăng nhập cấp quyền</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Không (quy tắc bị vô hiệu lực)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Mengakses Pengguna</translation>
+        <translation>Người dùng đang truy cập</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Mengakses Komputer</translation>
+        <translation>Máy tính đang truy cập</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Người dùng cục bộ (đã đăng nhập)</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Komputer lokal</translation>
+        <translation>Máy tính cục bộ</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Selalu proses aturan dan abaikan kondisi</translation>
+        <translation>Luôn xử lý quy tắc và bỏ qua các điều kiện</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Tidak ada pengguna masuk</translation>
+        <translation>Không có người dùng đã đăng nhập</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Mengakses komputer pada` ruangan yang sama dengan komputer lokal</translation>
+        <translation>Máy tính đang truy cập nằm trong cùng phòng với máy tính cục bộ</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Người dùng đang truy cập có một hoặc nhiều nhóm chung với người dùng cục bộ (đã đăng nhập)</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>Pengujian aturan kontrol akses</translation>
+        <translation>Kiểm tra quy tắc điều khiển truy cập</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Mengakses pengguna:</translation>
+        <translation>Người dùng đang truy cập:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Komputer lokal</translation>
+        <translation>Máy tính cục bộ:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Mengakses komputer:</translation>
+        <translation>Máy tính đang truy cập:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Masukkan informasi pengguna dan komputer berikut untuk menguji kumpulan aturan yang dikonfigurasi.</translation>
+        <translation>Vui lòng nhập thông tin người dùng và máy tính sau để kiểm tra tập quy tắc đã cấu hình.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Pengguna lokal:</translation>
+        <translation>Người dùng cục bộ:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Pengguna terhubung:</translation>
+        <translation>Người dùng đã kết nối:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Truy cập trong tình huống đã cho được cho phép.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Truy cập trong tình huống đã cho bị từ chối.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Truy cập trong tình huống đã cho cần quyền của người dùng đã đăng nhập.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>GALAT: Aksi tidak diketahui</translation>
+        <translation>LỖI: Hành động không xác định</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation>Hasil test</translation>
+        <translation>Kết quả kiểm tra</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>Kunci otentikasi</translation>
+        <translation>Khóa xác thực</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>Perkenalan</translation>
+        <translation>Giới thiệu</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Thư mục tập tin khóa</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Thư mục cơ sở tập tin khóa công</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Thư mục cơ sở tập tin khóa riêng</translation>
     </message>
     <message>
         <source>...</source>
@@ -343,408 +343,408 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Khóa xác thực khả dụng</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Tặp cặp khóa</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>Hapus kunci</translation>
+        <translation>Xóa khóa</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>Impor kunci</translation>
+        <translation>Nhập khóa</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>Ekspor kunci</translation>
+        <translation>Xuất khóa</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation>Setel grup akses</translation>
+        <translation>Đặt nhóm truy cập</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>Berkas kunci (*.pem)</translation>
+        <translation>Tập tin khóa (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>Nama kunci otentikasi</translation>
+        <translation>Tên khóa xác thực</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Vui lòng nhập tên của nhóm người dùng hoặc vai trò để tạo một cặp khóa xác thực:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>Anda yakin ingin mengapus kunci otentikasi &quot;%1/%2&quot;?</translation>
+        <translation>Bạn có thực sự muốn xóa khóa xác thực &quot;%1/%2&quot; không?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Pilih kunci yang akan dihapus!</translation>
+        <translation>Vui lòng chọn một khóa để xóa!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Vui lòng nhập tên của nhóm người dùng hoặc vai trò để nhập khóa xác thực:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>Pilih kunci yang akan diekspor!</translation>
+        <translation>Vui lòng chọn một khóa để xuất!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Vui lòng chọn một nhóm người dùng để cấp truy cập cho khóa &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Vui lòng chọn một khóa để đặt nhóm truy cập!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Silakan lakukan langkah-langkah berikut untuk mengatur otentikasi file utama:</translation>
+        <translation>Vui lòng thực hiện các bước sau để thiết lập xác thực tập tin khóa:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Buat pasangan kunci di komputer master.</translation>
+        <translation>1) Tạo một cặp khóa trên máy tính chủ.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Tetapkan grup akses yang anggotanya harus diizinkan untuk mengakses komputer lain.</translation>
+        <translation>2) Thiết lập một nhóm truy cập mà các thành viên sẽ được phép truy cập vào các máy tính khác.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Ekspor kunci publik dan impor pada semua komputer klien dengan nama yang sama.</translation>
+        <translation>3) Xuất khóa công và nhập nó trên tất cả các máy tính khách với cùng tên.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Vui lòng tham khảo &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Hướng dẫn quản trị Veyon&lt;/a&gt;để biết thêm thông tin.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Sepasang kunci otentikasi terdiri dari dua kunci kriptografi yang digabungkan, kunci pribadi dan kunci publik. 
-Kunci privat memungkinkan pengguna pada komputer master untuk mengakses komputer klien. 
-Penting bahwa hanya pengguna yang berwenang yang memiliki akses baca ke file kunci pribadi. 
-Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan koneksi masuk.</translation>
+        <translation>Một cặp khóa xác thực bao gồm hai khóa mật mã, một khóa riêng và một khóa công.
+Một khóa riêng cho phép người dùng trên máy tính chủ truy cập vào các máy tính khách.
+Điều quan trọng đó là chỉ những người dùng được cấp quyền mới có truy cập đọc vào tập tin khóa riêng.
+Khóa công được sử dụng trên các máy tính khách để xác thực yêu cầu kết nối đến.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Bahasa:</translation>
+        <translation>Vui lòng kiểm tra quyền của bạn.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>Nama kunci berisi karakter invalid!</translation>
+        <translation>Tên khóa chứa ký tự không hợp lệ!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Đã chỉ định kiểu khóa không hợp lệ! Vui lòng chỉ định &quot;%1&quot; hoặc &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Khóa đã chỉ định không tồn tại! Vui lòng sử dụng lệnh &quot;list&quot; để liệt kê tất cả các khóa đã cài đặt.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Một hoặc nhiều tập tin khóa đã tồn tại! Vui lòng xóa chúng sử dụng lệnh &quot;delete&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Membuat pasangan kunci baru untuk &quot;% 1&quot;</translation>
+        <translation>Tạo cặp khóa mới cho &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>Gagal membuat kunci public atau private!</translation>
+        <translation>Thất bại khi tạo khóa công hoặc khóa riêng!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Cặp khóa mới được tạo đã được lưu vào &quot;%1&quot; và &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Không thể xóa tập tin khóa &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Không thể xóa thư mục tập tin khóa &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi tạo thư mục cho tệp ra.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Tập tin &quot;%1&quot; đã tồn tại.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>Gagal menulis file keluaran.</translation>
+        <translation>Thất bại khi ghi tập tin ra.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Khóa &quot;%1/%2&quot; đã được xuất ra &quot;%3&quot; thành công.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>Gagal membaca file input.</translation>
+        <translation>Thất bại khi đọc tập tin vào</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>Tập tin &quot;%1&quot; không chứa khóa riêng hợp lệ!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>Tập tin &quot;%1&quot; không chứa khóa công hợp lệ!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>Gagal membuat kunci public atau private!</translation>
+        <translation>Thất bại khi tạo thư mục cho tập tin khóa.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi ghi tập tin khóa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi thiết lập quyền cho tập tin khóa &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>Khóa &quot;%1/%2&quot; đã được nhập thành công. Vui lòng kiểm tra quyền tập tin của &quot;%3&quot; để ngăn các truy cập trái phép.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi chuyển đổi khóa riêng thành khóa công</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi tạo thư mục cho tập tin khóa riêng &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi lưu khóa riêng trong tập tin &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi thiết lập quyền cho tập tin khóa riêng &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi tạo thư mục cho tập tin khóa công &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi lưu khóa công trong tập tin &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi thiết lập quyền cho tập tin khóa công &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi thiết lập người sở hữu của tập tin khóa &quot;%1&quot; thành &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi thiết lập quyền cho tập tin khóa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Khóa &quot;%1&quot; bây giờ có thể truy cập được bởi nhóm người dùng &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Không&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Thất bại khi đọc tập tin khóa.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>Tạo cặp khóa xác thực mới</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>Hapus kunci otentikasi</translation>
+        <translation>Xóa khóa xác thực</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>Daftar kunci otentikasi</translation>
+        <translation>Liệt kê các khóa xác thực</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>Impor kunci privat atau publik</translation>
+        <translation>Nhập khóa công hoặc riêng</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>Ekspor kunci privat atau publik</translation>
+        <translation>Xuất khóa công hoặc riêng</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation>Ekstrak kunci publik dari kunci privat yang ada</translation>
+        <translation>Trích xuất khóa công từ khóa riêng đang tồn tại</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>Setel grup pengguna yang diijinkan untuk mengakses kunci</translation>
+        <translation>Đặt nhóm người dùng được phép truy cập một khóa</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation>KUNCI</translation>
+        <translation>KHÓA</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation>GRUP AKSES</translation>
+        <translation>NHÓM TRUY CẬP</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này điều chỉnh quyền truy cập tập tin thành &lt;KEY&gt; để chỉ nhóm người dùng &lt;ACCESS GROUP&gt; có truy cập đọc vào nó.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NAMA</translation>
+        <translation>TÊN</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này tạo một cặp khóa xác thực mới với tên &lt;NAME&gt; và lưu khóa riêng và công vào các thư mục khóa đã cấu hình.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này xóa khóa xác thực &lt;KEY&gt; khỏi thư mục khóa đã cấu hình. Vui lòng lưu ý rằng khóa không thể được phục hồi khi đã bị xóa.</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>BERKAS</translation>
+        <translation>TẬP TIN</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này xuất khóa xác thực &lt;KEY&gt; thành &lt;FILE&gt;. Nếu &lt;FILE&gt; không được chỉ định, một tên sẽ được xây dựng từ tên và kiểu của &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này nhập khóa xác thực &lt;KEY&gt; từ &lt;FILE&gt;. Nếu &lt;FILE&gt; không được chỉ định, một tên sẽ được xây dựng từ tên và kiểu của &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này liệt kê tất cả các khóa xác thực khả dụng trong thư mục khóa đã cấu hinh. Nếu tùy chọn &quot;%1&quot; được chỉ định, một bảng với chi tiết khóa sẽ được hiển thị để thay thế. Một số chi tiết có thể bị thiếu nếu một khóa không thể truy cập được ví dụ do thiếu quyền đọc.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh này trích xuất phần khóa công từ khóa riêng &lt;KEY&gt; và lưu nó thành khóa công tương ứng.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Vui lòng chỉ định lệnh để hiển thị trợ giúp!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TIPE</translation>
+        <translation>KIỂU</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>ID PASANGAN</translation>
+        <translation>ID CẶP</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Hỗ trợ dòng lệnh để quản lý các khóa xác thực</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh để quản lý các khóa xác thực</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>Nama</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Jenis</translation>
+        <translation>Kiểu</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>Grup akses</translation>
+        <translation>Nhóm truy cập</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation>ID Pasangan</translation>
+        <translation>ID cặp</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Rooms &amp; computers</source>
-        <translation>Ruang &amp; Komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rooms</source>
-        <translation>Ruang</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computers</source>
-        <translation>Komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nama</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Alamat host/IP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC address</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add new room</source>
-        <translation>Tambah ruang baru</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation>Hapus ruang terpilih</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Tambah komputer baru</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Hapus komputer terpilih</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New room</source>
-        <translation>Ruang baru</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New computer</source>
-        <translation>Komputer baru</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Tampilkan bantuan untuk perintah spesifik</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation>Tambah ruang atau komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation>Bersihkan semua ruang dan komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
@@ -752,15 +752,15 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation>Daftar semua ruang dan komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation>Hapus ruang atau komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>Impor obyek dari berkas yang diberikan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Export objects to given file</source>
@@ -800,43 +800,43 @@ Examples:
     </message>
     <message>
         <source>Type</source>
-        <translation>Jenis</translation>
+        <translation>Kiểu</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nama</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Alamat host</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC address</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>Obyek yang dimaksud tidak ditemukan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Berkas &quot;%1&quot; tidak ada!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Tidak dapat membuka berkas &quot;%1&quot; untuk dibaca!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Argumen &quot;%1&quot; tidak diketahui.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation>Ruang &quot;%1&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Komputer &quot;%1&quot; (alamat host: &quot;%2&quot; MAC address: &quot;%3&quot;)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
@@ -844,15 +844,15 @@ Examples:
     </message>
     <message>
         <source>None</source>
-        <translation>Tidak ada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Room</source>
-        <translation>Ruang</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer</source>
-        <translation>Komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Root</source>
@@ -860,7 +860,7 @@ Examples:
     </message>
     <message>
         <source>Invalid</source>
-        <translation>Invalid</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -884,7 +884,7 @@ Examples:
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Tidak dapat membuka berkas &quot;%1&quot; untuk ditulisi!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -955,11 +955,11 @@ Examples:
     </message>
     <message>
         <source>Object UUID</source>
-        <translation>Objek UUID</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation>Induk UUID</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -980,19 +980,19 @@ Examples:
     <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation>Ruang: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation>Host/Alamat IP: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation>Fitur aktif: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Daring dan terhubung</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Establishing connection</source>
@@ -1012,11 +1012,11 @@ Examples:
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Terputus</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Tidak ada pengguna masuk</translation>
+        <translation>Không có người dùng đã đăng nhập</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1031,7 +1031,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Otentikasi gagal</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
@@ -1054,7 +1054,7 @@ Examples:
     </message>
     <message>
         <source>Add room</source>
-        <translation>Tambah ruang</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1085,7 +1085,7 @@ Examples:
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Pengguna</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1097,7 +1097,7 @@ Examples:
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation>Nama komputer;Nama host;Pengguna</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Room detection failed</source>
@@ -1136,11 +1136,11 @@ Examples:
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Berkas keluaran tidak dapat ditulisi!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Direktori keluaran tidak dapat ditulisi!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -1217,7 +1217,7 @@ Examples:
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Server demo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tunables</source>
@@ -1241,7 +1241,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update interval</source>
@@ -1272,7 +1272,7 @@ Examples:
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Server demo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1291,15 +1291,15 @@ Examples:
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Konfirmasi akses desktop</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Tidak pernah untuk sesi ini</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Selalu untuk sesi ini</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1318,7 +1318,7 @@ Examples:
     </message>
     <message>
         <source>Name</source>
-        <translation>Nama</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1533,7 +1533,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1580,7 +1580,7 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation>Umum</translation>
+        <translation>Chung</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1604,7 +1604,7 @@ Examples:
     </message>
     <message>
         <source>Test</source>
-        <translation>Tes</translation>
+        <translation>Kiểm tra</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1797,7 +1797,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Masukkan nama pengguna</translation>
+        <translation>Nhập tên người dùng</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2061,7 +2061,7 @@ Examples:
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Ruang Komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Integration tests</source>
@@ -2113,11 +2113,11 @@ Examples:
     </message>
     <message>
         <source>Connection security</source>
-        <translation>Keamanan Koneksi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation>Verifikasi sertifikat TLS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>System defaults</source>
@@ -2133,15 +2133,15 @@ Examples:
     </message>
     <message>
         <source>None</source>
-        <translation>Tidak ada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>SSL</source>
-        <translation>SSL</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2183,7 +2183,7 @@ Examples:
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation>File sertifikat (*.pem)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2199,14 +2199,14 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation>Protokol enkripsi</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>LdapDirectory</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation>Deskripsi masalah LDAP: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No LDAP error description available</source>
@@ -2225,7 +2225,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Tunjukkan bantuan tentang perintah</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2255,15 +2255,15 @@ Examples:
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>Konfigurasi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation>Nonaktifkan tooltips balon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>Hanya tampilkan icon</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2278,27 +2278,27 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation>Umum</translation>
+        <translation>Chung</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Bantuan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Keluar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -2306,43 +2306,43 @@ Examples:
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+0</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Tentang Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation>Otentikasi tidak dimungkinkan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Konfigurasi tidak dapat dirubah</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Memuat pengaturan dari file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Simpan pengaturan kedalam file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Pengaturan belum tersimpan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Terdapat pengaturan yang belum tersimpan, tetap keluar?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Konfigurator Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service</source>
-        <translation>Layanan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Master</source>
@@ -2354,7 +2354,7 @@ Examples:
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Tentang Veyon</translation>
+        <translation>Về Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2362,11 +2362,11 @@ Examples:
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Ruang Komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About</source>
-        <translation>Tentang</translation>
+        <translation>Giới thiệu</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2374,7 +2374,7 @@ Examples:
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>File JSON (*.json)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -2386,7 +2386,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Akses ditolak</translation>
+        <translation>Truy cập bị từ chối</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2406,15 +2406,15 @@ Examples:
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>Pulihkan konfigurasi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Apakah anda yakin untuk memulihkan konfigurasi lokal?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>Cari pengguna dan komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Adjust optimal size</source>
@@ -2581,7 +2581,7 @@ Examples:
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Ruang Komputer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
@@ -2611,26 +2611,26 @@ Examples:
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Room/Computer</source>
-        <translation>Ruang/Komputer</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Nama Pengguna</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Kata sandi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation>Masuk Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Otentikasi gagal</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -2645,7 +2645,7 @@ Examples:
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Nyalakan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -2653,15 +2653,15 @@ Examples:
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Nyalakan Ulang</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Klik tombol ini untuk menyalakan ulang semua komputer.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down</source>
-        <translation>Matikan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -2720,7 +2720,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Tunjukkan bantuan tentang perintah</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2746,47 +2746,47 @@ Examples:
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Layar penuh</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Window</source>
-        <translation>Jendela</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Keluar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Ctrl+Esc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation>Alt+Tab</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation>Alt+F4</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation>Win+Tab</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Win</source>
-        <translation>Win</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Menu</source>
-        <translation>Menu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Ctrl+F1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -2794,11 +2794,11 @@ Examples:
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Tersambung.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Tangkapan layar</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2820,7 +2820,7 @@ Examples:
     </message>
     <message>
         <source>Run programs</source>
-        <translation>Jalankan program</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -2831,11 +2831,11 @@ Examples:
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Kunci</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Buka kunci</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -2858,14 +2858,14 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Tangkapan layar</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Tangkapan layar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2888,23 +2888,23 @@ Examples:
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation>Pengguna:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Tanggal:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Waktu:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show</source>
-        <translation>Tampilkan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Hapus</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2912,38 +2912,38 @@ Examples:
     </message>
     <message>
         <source>Computer:</source>
-        <translation>Komputer:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Umum</translation>
+        <translation>Chung</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Mulai otomatis</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Sembunyikan ikon baki</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Mulai layanan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Dihentikan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Hentikan layanan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>State:</source>
-        <translation>Status:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -2951,7 +2951,7 @@ Examples:
     </message>
     <message>
         <source>Network</source>
-        <translation>Jaringan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server port</source>
@@ -2959,7 +2959,7 @@ Examples:
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Aktifkan pengecualian firewall</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -2987,7 +2987,7 @@ Examples:
     </message>
     <message>
         <source>Running</source>
-        <translation>Berjalan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3019,58 +3019,58 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation>Mulai layanan %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation>Matikan layanan %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation>Daftarkan layanan %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation>Batalkan pendaftaran layanan %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service control</source>
-        <translation>Kontrol Layanan</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation>Layanan berjalan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Layanan tidak berjalan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>Konfigurasi dan kontrol layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation>Daftarkan Layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Batalkan Pendaftaran Layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Mulai Layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Hentikan Layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Restart Layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3089,7 +3089,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Berkas &quot;%1&quot; tidak ada!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3104,7 +3104,7 @@ Typically this is required to support terminal servers.</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>Ikon baki sistem</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3122,7 +3122,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Kirim pesan teks</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3141,11 +3141,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Pesan dari guru</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Kirim pesan pada pengguna</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3206,26 +3206,26 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Logout</source>
-        <translation>Keluar</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[OK]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[GAGAL]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Perintah salah!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>Perintah yang tersedia:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -3237,11 +3237,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>Hasil tidak diketahui</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation>Modul yang tersedia:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -3252,7 +3252,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Layanan Veyon</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

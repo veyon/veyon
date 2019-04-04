@@ -327,7 +327,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>Imeniki ključne datoteke</translation>
+        <translation>Imeniki datoteke ključa </translation>
     </message>
     <message>
         <source>Public key file base directory</source>
