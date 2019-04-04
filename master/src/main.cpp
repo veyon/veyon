@@ -39,11 +39,13 @@ int main( int argc, char * * argv )
 
 	VeyonCore core( &app, QStringLiteral("Master") );
 
+#ifdef VEYON_DEBUG
 	if( qEnvironmentVariableIsSet( "VEYON_MASTER_CREATE_DOC_FIGURES") )
 	{
 		DocumentationFigureCreator().run();
 		return 0;
 	}
+#endif
 
 	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
 	splashScreen.show();

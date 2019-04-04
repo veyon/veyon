@@ -24,9 +24,12 @@
 
 #pragma once
 
+#include <QEventLoop>
 #include <QObject>
 
 #include "VeyonMaster.h"
+
+#ifdef VEYON_DEBUG
 
 class DocumentationFigureCreator : public QObject
 {
@@ -43,15 +46,25 @@ private:
 	void createContextMenuFigure();
 	void createLogonDialogFigure();
 	void createLocationDialogFigure();
+	void createScreenshotManagementPanelFigure();
 	void createTextMessageDialogFigure();
 	void createOpenWebsiteDialogFigure();
 	void createRunProgramDialogFigure();
 	void createRemoteAccessHostDialogFigure();
+	void createRemoteAccessWindowFigure();
+
+	void hideComputers();
+
+	void scheduleUiOperation( const std::function<void(void)>& operation );
 
 	static void grabWidget( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
 	static void grabDialog( QDialog* dialog, const QSize& size, const QString& fileName );
 	static void grabWindow( QWidget* widget, const QString& fileName );
+	static void grabWindow( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
 
 	VeyonMaster* m_master;
+	QEventLoop m_eventLoop;
 
 } ;
+
+#endif

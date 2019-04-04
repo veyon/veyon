@@ -94,7 +94,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Locations &amp; computers</string>
+        <string>Locations &amp;&amp; computers</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/master.qrc">
