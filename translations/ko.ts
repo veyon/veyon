@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko_KR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2864,11 +2864,11 @@ USAGE
         <translation>&amp;Advanced 고급</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>위치 및 컴퓨터들</translation>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
+        <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
     </message>
 </context>

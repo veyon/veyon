@@ -2865,12 +2865,12 @@ USAGE
         <translation>進階(&amp;A)</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>位置 &amp; 電腦</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>使用自訂電腦排列</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>位置 &amp;&amp; 電腦</translation>
     </message>
 </context>
 <context>

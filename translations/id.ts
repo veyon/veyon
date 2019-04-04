@@ -1,82 +1,84 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja_JP" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="id" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>詳細</translation>
+        <translation>Tentang</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>翻訳</translation>
+        <translation>Terjemahan</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>ライセンス</translation>
+        <translation>Lisensi</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Tentang Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Kontributor</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Versi:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Situs web:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Bahasa sekarang belum diterjemahkan (atau native Bahasa Inggris)
+
+Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain atau anda ingin meningkatkan terjemahan yang telah ada, silakan hubungi pengembang Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Tentang %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Dukung proyek Veyon dengan donasi</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Akses kontrol komputer</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Berikan akses ke setiap pengguna yang diautentikasi (bawaan)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Memproses aturan kontrol akses</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Grup pengguna yang diotorisasi untuk akses komputer</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Silakan tambahkan grup yang anggotanya harus diotorisasi untuk mengakses komputer di jaringan Veyon Anda.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Kelompok pengguna yang diotorisasi</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>すべてのグループ</translation>
+        <translation>Semua grup</translation>
     </message>
     <message>
         <source>...</source>
@@ -84,98 +86,98 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Aturan kontrol akses</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Tambah aturan kontrol akses</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Hapus aturan kontrol akses</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan aturan yang dipilih ke bawah</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan aturan yang dipilih ke atas</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Edit aturan yang dipilih</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan nama pengguna</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Silakan masukkan nama login pengguna yang izin aksesnya untuk diuji:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Akses diijinkan</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna yang ditentukan diizinkan untuk mengakses komputer dengan konfigurasi ini.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Akses ditolak</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna yang ditentukan tidak diizinkan mengakses komputer dengan konfigurasi ini.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Aktifkan penggunaan grup domain</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Kelompok pengguna backend:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend grup pengguna tidak ada</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ditemukan plugin grup pengguna bawaan. Sila cek instalasi Anda! </translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Batasi akses ke pengguna dari grup pengguna tertentu</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Edit aturan kontrol akses</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>masukkan nama singkat untuk aturan di sini</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Nama aturan:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>masukkan penjelasan untuk aturan di sini</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Penjelasan aturan:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -183,15 +185,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Kondisi</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>adalah anggota grup</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses komputer adalah localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -203,19 +205,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Jika lebih dari satu kondisi diaktifkan, setiap kondisi harus dipenuhi untuk membuat aturan berlaku (logika AND). Jika hanya satu dari beberapa kondisi yang harus dipenuhi (OR logis), buat beberapa aturan kontrol akses.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Aksi</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Ijinkan akses</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Larang akses</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -223,15 +225,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada (aturan dimatikan)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses Pengguna</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses Komputer</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -239,15 +241,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Komputer lokal</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Selalu proses aturan dan abaikan kondisi</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada pengguna masuk</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -266,31 +268,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Pengujian aturan kontrol akses</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses pengguna:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Komputer lokal</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses komputer:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan informasi pengguna dan komputer berikut untuk menguji kumpulan aturan yang dikonfigurasi.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna lokal:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna terhubung:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -306,22 +308,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>GALAT: Aksi tidak diketahui</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Hasil test</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Kunci otentikasi</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Perkenalan</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -349,27 +351,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Hapus kunci</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Impor kunci</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor kunci</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Setel grup akses</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Berkas kunci (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Nama kunci otentikasi</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -377,11 +379,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Anda yakin ingin mengapus kunci otentikasi &quot;%1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Pilih kunci yang akan dihapus!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -389,7 +391,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Pilih kunci yang akan diekspor!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -401,19 +403,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Silakan lakukan langkah-langkah berikut untuk mengatur otentikasi file utama:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Buat pasangan kunci di komputer master.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Tetapkan grup akses yang anggotanya harus diizinkan untuk mengakses komputer lain.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Ekspor kunci publik dan impor pada semua komputer klien dengan nama yang sama.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -424,18 +426,21 @@ If you&apos;re interested in translating Veyon into your local or another langua
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Sepasang kunci otentikasi terdiri dari dua kunci kriptografi yang digabungkan, kunci pribadi dan kunci publik. 
+Kunci privat memungkinkan pengguna pada komputer master untuk mengakses komputer klien. 
+Penting bahwa hanya pengguna yang berwenang yang memiliki akses baca ke file kunci pribadi. 
+Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan koneksi masuk.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Bahasa:</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Nama kunci berisi karakter invalid!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -451,11 +456,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Membuat pasangan kunci baru untuk &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membuat kunci public atau private!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
@@ -479,7 +484,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal menulis file keluaran.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -487,7 +492,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membaca file input.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -499,7 +504,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membuat direktori untuk file kunci.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
@@ -570,35 +575,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Hapus kunci otentikasi</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Daftar kunci otentikasi</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Impor kunci privat atau publik</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor kunci privat atau publik</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Ekstrak kunci publik dari kunci privat yang ada</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Setel grup pengguna yang diijinkan untuk mengakses kunci</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>KUNCI</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>GRUP AKSES</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -606,11 +611,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NAMA</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>BERKAS</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -630,11 +635,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPE</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ID PASANGAN</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -661,50 +666,50 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation>Nama</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>タイプ</translation>
+        <translation>Jenis</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Grup akses</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>ID Pasangan</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Komputer</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation>Nama</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>Alamat host/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MACアドレス</translation>
+        <translation>MAC address</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Tambah komputer baru</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Hapus komputer terpilih</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Komputer baru</translation>
     </message>
     <message>
         <source>Builtin directory</source>
@@ -712,19 +717,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi &amp; komputer</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan lokasi baru</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>Hapus lokasi terpilih</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -732,18 +737,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi baru</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan bantuan untuk perintah spesifik</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Impor obyek dari berkas yang diberikan</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
@@ -755,39 +760,39 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Type</source>
-        <translation>タイプ</translation>
+        <translation>Jenis</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation>Nama</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Alamat host</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MACアドレス</translation>
+        <translation>MAC address</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Obyek yang dimaksud tidak ditemukan</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Berkas &quot;%1&quot; tidak ada!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka berkas &quot;%1&quot; untuk dibaca!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Argumen &quot;%1&quot; tidak diketahui.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Komputer &quot;%1&quot; (alamat host: &quot;%2&quot; MAC address: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
@@ -795,11 +800,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Komputer</translation>
     </message>
     <message>
         <source>Root</source>
@@ -807,7 +812,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Invalid</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -827,7 +832,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka berkas &quot;%1&quot; untuk ditulisi!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -835,19 +840,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objek UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Induk UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan lokasi atau komputer</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Bersihkan semua lokasi dan komputer</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -855,15 +860,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Daftar semua lokasi dan komputer</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Hapus lokasi atau komputer</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi  &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
@@ -871,11 +876,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>BERKAS</translation>
     </message>
     <message>
         <source>LOCATION</source>
@@ -923,11 +928,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPE</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NAMA</translation>
     </message>
     <message>
         <source>PARENT</source>
@@ -996,15 +1001,15 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Host/Alamat IP: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Fitur aktif: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>Daring dan terhubung</translation>
     </message>
     <message>
         <source>Establishing connection</source>
@@ -1024,11 +1029,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Terputus</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada pengguna masuk</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1047,7 +1052,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>認証エラー</translation>
+        <translation>Otentikasi gagal</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1066,7 +1071,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1081,16 +1086,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation type="unfinished"/>
@@ -1152,11 +1157,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Berkas keluaran tidak dapat ditulisi!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Direktori keluaran tidak dapat ditulisi!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -1233,7 +1238,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>デモサーバー</translation>
+        <translation>Server demo</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1257,7 +1262,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1272,7 +1277,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>フルスクリーンデモ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1280,7 +1285,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Window demo</source>
-        <translation>ウィンドウデモ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1288,7 +1293,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo server</source>
-        <translation>デモサーバー</translation>
+        <translation>Server demo</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1307,15 +1312,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>デスクトップアクセスの確認</translation>
+        <translation>Konfirmasi akses desktop</translation>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation type="unfinished"/>
+        <translation>Tidak pernah untuk sesi ini</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation type="unfinished"/>
+        <translation>Selalu untuk sesi ini</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1334,7 +1339,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation>Nama</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1409,6 +1414,21 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1518,7 +1538,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>ユーザーインターフェイス</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Language:</source>
@@ -1538,7 +1558,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>ログファイルのディレクトリ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -1546,23 +1566,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Log level</source>
-        <translation>ログレベル</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>無し</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>致命的なエラーのみ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>エラーと致命的なエラー</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>警告とエラー</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Information, warnings and errors</source>
@@ -1622,7 +1642,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1634,7 +1654,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> seconds</source>
-        <translation>秒</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1642,7 +1662,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication</source>
-        <translation>認証</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Method:</source>
@@ -1658,7 +1678,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
@@ -1704,7 +1724,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
     </message>
     <message>
         <source>Block internet</source>
@@ -1742,7 +1762,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>Deskripsi masalah LDAP: %1</translation>
     </message>
     <message>
         <source>No LDAP error description available</source>
@@ -1757,7 +1777,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1954,7 +1974,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan nama pengguna</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2130,11 +2150,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Keamanan Koneksi</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>Verifikasi sertifikat TLS</translation>
     </message>
     <message>
         <source>System defaults</source>
@@ -2150,15 +2170,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2200,7 +2220,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>File sertifikat (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2216,7 +2236,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protokol enkripsi</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
@@ -2248,11 +2268,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan semua masukan lokasi</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>Daftar semua lokasi</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
@@ -2264,7 +2284,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan nama lokasi komputer</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
@@ -2272,7 +2292,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>lokasi komputer</translation>
     </message>
     <message>
         <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
@@ -2284,7 +2304,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan nama lokasi</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
@@ -2324,7 +2344,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2395,7 +2415,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2547,7 +2567,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LicensingPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan bantuan untuk perintah spesifik</translation>
     </message>
     <message>
         <source>Show all installed licenses</source>
@@ -2604,7 +2624,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
@@ -2618,50 +2638,50 @@ USAGE
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Nonaktifkan tooltips balon</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Hanya tampilkan icon</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation>メインウィンドウ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>ツールバー</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bantuan</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Keluar</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -2669,43 +2689,43 @@ USAGE
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+0</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"/>
+        <translation>Tentang Qt</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation type="unfinished"/>
+        <translation>Otentikasi tidak dimungkinkan</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi tidak dapat dirubah</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"/>
+        <translation>Memuat pengaturan dari file</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Simpan pengaturan kedalam file</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan belum tersimpan</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Terdapat pengaturan yang belum tersimpan, tetap keluar?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurator Veyon</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Layanan</translation>
     </message>
     <message>
         <source>Master</source>
@@ -2717,7 +2737,7 @@ USAGE
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Tentang Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2725,7 +2745,7 @@ USAGE
     </message>
     <message>
         <source>About</source>
-        <translation>詳細</translation>
+        <translation>Tentang</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2733,7 +2753,7 @@ USAGE
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>File JSON (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -2745,7 +2765,7 @@ USAGE
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Akses ditolak</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2765,15 +2785,15 @@ USAGE
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Pulihkan konfigurasi</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda yakin untuk memulihkan konfigurasi lokal?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Cari pengguna dan komputer</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
@@ -2781,10 +2801,6 @@ USAGE
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use custom computer placement</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2820,7 +2836,11 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2828,7 +2848,7 @@ USAGE
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation>ディレクトリ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -2888,7 +2908,7 @@ USAGE
     </message>
     <message>
         <source>User interface</source>
-        <translation>ユーザーインターフェイス</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Background color</source>
@@ -2939,10 +2959,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -2972,6 +2988,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3022,7 +3042,7 @@ USAGE
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Network ranges</source>
@@ -3082,7 +3102,7 @@ USAGE
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi baru</translation>
     </message>
 </context>
 <context>
@@ -3100,7 +3120,7 @@ USAGE
     <name>NetworkDiscoveryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan bantuan untuk perintah spesifik</translation>
     </message>
     <message>
         <source>Scan a subnet</source>
@@ -3139,19 +3159,19 @@ USAGE
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nama Pengguna</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Masuk Veyon</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>認証エラー</translation>
+        <translation>Otentikasi gagal</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -3166,7 +3186,7 @@ USAGE
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation type="unfinished"/>
+        <translation>Nyalakan</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -3174,15 +3194,15 @@ USAGE
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Nyalakan Ulang</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Klik tombol ini untuk menyalakan ulang semua komputer.</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Matikan</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3245,7 +3265,7 @@ USAGE
     </message>
     <message>
         <source>Remote control</source>
-        <translation>リモート操作</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -3265,7 +3285,7 @@ USAGE
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
     </message>
 </context>
 <context>
@@ -3283,7 +3303,7 @@ USAGE
     </message>
     <message>
         <source>Remote control</source>
-        <translation>リモート操作</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -3291,47 +3311,43 @@ USAGE
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>フルスクリーン</translation>
+        <translation>Layar penuh</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Jendela</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -3339,10 +3355,14 @@ USAGE
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>Tersambung.</translation>
     </message>
     <message>
         <source>Screenshot</source>
+        <translation>Tangkapan layar</translation>
+    </message>
+    <message>
+        <source>Exit</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3380,7 +3400,7 @@ USAGE
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Jalankan program</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -3391,11 +3411,11 @@ USAGE
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Kunci</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Buka kunci</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3418,14 +3438,14 @@ USAGE
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -3445,65 +3465,65 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
-    <message>
-        <source>User:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Time:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>User:</source>
+        <translation>Pengguna:</translation>
+    </message>
+    <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Komputer:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation>Tanggal:</translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation>Waktu:</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Tampilkan</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Hapus</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>自動起動</translation>
+        <translation>Mulai otomatis</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>通知領域のアイコンを非表示</translation>
+        <translation>Sembunyikan ikon baki</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>サービスを起動</translation>
+        <translation>Mulai layanan</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>停止</translation>
+        <translation>Dihentikan</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>サービスを停止</translation>
+        <translation>Hentikan layanan</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>状態: </translation>
+        <translation>Status:</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -3511,15 +3531,15 @@ USAGE
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Jaringan</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>デモサーバーのポート</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>Aktifkan pengecualian firewall</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3547,7 +3567,7 @@ USAGE
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"/>
+        <translation>Berjalan</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3583,58 +3603,58 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Mulai layanan %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Matikan layanan %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Daftarkan layanan %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan pendaftaran layanan %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>Kontrol Layanan</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>Layanan berjalan</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>Layanan tidak berjalan</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi dan kontrol layanan Veyon</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Daftarkan Layanan Veyon</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan Pendaftaran Layanan Veyon</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Mulai Layanan Veyon</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Hentikan Layanan Veyon</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Restart Layanan Veyon</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3653,7 +3673,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Berkas &quot;%1&quot; tidak ada!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3668,7 +3688,7 @@ Typically this is required to support terminal servers.</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikon baki sistem</translation>
     </message>
 </context>
 <context>
@@ -3686,7 +3706,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"/>
+        <translation>Kirim pesan teks</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3705,11 +3725,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>先生からのメッセージ</translation>
+        <translation>Pesan dari guru</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Kirim pesan pada pengguna</translation>
     </message>
 </context>
 <context>
@@ -3757,19 +3777,19 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
+        <source>Log off</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Confirm user logout</source>
+        <source>Click this button to log off users from all computers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to logout the selected users?</source>
+        <source>Confirm user logoff</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logout</source>
+        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3777,19 +3797,19 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[GAGAL]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>Perintah salah!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Perintah yang tersedia:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -3801,11 +3821,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Hasil tidak diketahui</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Modul yang tersedia:</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -3844,7 +3864,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Layanan Veyon</translation>
     </message>
 </context>
 <context>

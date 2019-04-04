@@ -1091,7 +1091,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-panelen az összes helyszínt megjelentjük.</translation>
     </message>
 </context>
 <context>
@@ -1429,7 +1429,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Kérjük, fejezze be az összes feladatot a következő 5 percen belül. </translation>
     </message>
 </context>
 <context>
@@ -2865,12 +2865,12 @@ HASZNÁLAT
         <translation>&amp;Haladó</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Helyszínek és számítógépek</translation>
+        <source>Use custom computer arrangement</source>
+        <translation>Egyéni számítógép-elhelyezés használata</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Helyszínek &amp;&amp; számítógépek</translation>
     </message>
 </context>
 <context>
@@ -3021,7 +3021,7 @@ HASZNÁLAT
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépkiválasztási-panel automatikus megnyitása</translation>
     </message>
 </context>
 <context>
@@ -3397,7 +3397,7 @@ HASZNÁLATA
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Kilépés</translation>
     </message>
 </context>
 <context>
@@ -3812,19 +3812,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Kijelentkezés</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználó kijelentkeztetésének megerősítése</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
     </message>
 </context>
 <context>

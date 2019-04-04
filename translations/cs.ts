@@ -1429,7 +1429,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Dokončete všechny úkoly během příštích 5 minut.</translation>
     </message>
 </context>
 <context>
@@ -2861,12 +2861,12 @@ POUŽITÍ
         <translation>&amp;Pokročilé</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Umístění a počítače</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>Použít uživatelsky určené uspořádání počítačů</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Umístění &amp;&amp; počítače</translation>
     </message>
 </context>
 <context>

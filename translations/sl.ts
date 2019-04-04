@@ -2865,12 +2865,12 @@ UPORABA
         <translation>&amp;Napredno</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Lokacije in računalniki</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>Uporabite urejanje računalnika po meri</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Lokacije &amp;&amp; računalniki</translation>
     </message>
 </context>
 <context>

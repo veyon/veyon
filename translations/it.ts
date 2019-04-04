@@ -1,82 +1,84 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Informazioni su</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Übersetzung</translation>
+        <translation>Traduzione</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Lizenz</translation>
+        <translation>Licenza</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Über Veyon</translation>
+        <translation>Informazioni su Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Mitwirkende</translation>
+        <translation>Contributori</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>Versione:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Website:</translation>
+        <translation>Sito Web:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Deutsche Übersetzung von Tobias Junghans.</translation>
+        <translation>La lingua corrente non è ancora stata tradotta completamente (dall&apos;inglese).
+
+Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche altra lingua o vuoi migliorare una traduzione esistente, contatta uno sviluppatore Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>Über %1 %2</translation>
+        <translation>Informazioni su %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Unterstützen Sie das Veyon-Projekt mit einer Spende</translation>
+        <translation>Supporta il progetto Veyon con una donazione</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>Computerzugriffskontrolle</translation>
+        <translation>Controllo accesso al computer</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Jedem authentifizierten Benutzer Zugriff erlauben (Standard)</translation>
+        <translation>Garantire l&apos;accesso a tutti gli utenti autenticati (predefinito)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Testen</translation>
+        <translation>Prova</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Zugriffskontrollregeln abarbeiten</translation>
+        <translation>Elabora le regole di controllo di accesso</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Autorisierte Benutzergruppen für Computerzugriff</translation>
+        <translation>Gruppi di utenti autorizzati all&apos;accesso al computer</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Bitte geben Sie die Gruppen an, deren Mitgliedern es erlaubt sein soll, auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
+        <translation>Aggiungere i gruppi i cui membri dovrebbero essere autorizzati ad accedere ai computer della rete Veyon.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Autorisierte Benutzergruppen</translation>
+        <translation>Gruppi di utenti autorizzati</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Alle Gruppen</translation>
+        <translation>Tutti i gruppi</translation>
     </message>
     <message>
         <source>...</source>
@@ -84,256 +86,256 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Zugriffskontrollregeln</translation>
+        <translation>Regole di controllo d&apos;accesso</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>Zugriffskontrollregel hinzufügen</translation>
+        <translation>Aggiungi regola di controllo d&apos;accesso</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>Zugriffskontrollregel entfernen</translation>
+        <translation>Rimuovi tutte le regole di controllo d&apos;accesso</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Gewählte Regel nach unten schieben</translation>
+        <translation>Sposta la regola selezionata in basso</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Gewählte Regel nach oben schieben</translation>
+        <translation>Sposta la regola selezionata in alto</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>Gewählte Regel bearbeiten</translation>
+        <translation>Modifica la regola selezionata</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Benutzername eingeben</translation>
+        <translation>Inserire il nome utente</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Bitte geben Sie einen Benutzername ein, dessen Zugriffsberechtigungen getestet werden sollen:</translation>
+        <translation>Inserire un nome utente di login per provarne i permessi di accesso:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>Zugriff erlaubt</translation>
+        <translation>Accesso consentito</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Der angegebene Benutzer darf mit dieser Konfiguration auf Computer zugreifen.</translation>
+        <translation>All&apos;utente specificato è consentito accedere ai computer con questa configurazione.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Zugriff verweigert</translation>
+        <translation>Accesso negato</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Der angegebene Benutzer darf mit dieser Konfiguration nicht auf Computer zugreifen.</translation>
+        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa confiugurazione.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation>Verwendung von Domaingruppen aktivieren</translation>
+        <translation>Abilitare l&apos;utilizzo di gruppi di dominio</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Benutzergruppen-Backend:</translation>
+        <translation>Backend del gruppo utenti:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Fehlendes Benutzergruppen-Backend</translation>
+        <translation>Backend dei gruppi utente non presente</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Es wurde kein Benutzergruppen-Plugin gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
+        <translation>Non è stato trovato alcun plug-in predefinito per gruppi di utenti. Per favore controlla la tua installazione!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation>Zugriff auf Mitglieder bestimmter Benutzergruppen einschränken</translation>
+        <translation>Limita l&apos;accesso a specifici membri di gruppi utenti </translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>Zugriffskontrollregel bearbeiten</translation>
+        <translation>Modifica la regola di controllo d&apos;accesso</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allgemein</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>Kurznamen für Regel eingeben</translation>
+        <translation>inserire qui un nome compatto per la regola</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Regelname:</translation>
+        <translation>Nome regola:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>Beschreibung für Regel eingeben</translation>
+        <translation>inserire qui una descrizione per la regola</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Regelbeschreibung:</translation>
+        <translation>Descrizione della regola:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Alle Bedingungen umkehren (&quot;ist/hat&quot; wird als &quot;ist/hat nicht&quot; interpretiert)</translation>
+        <translation>Inverti tutte le condizioni (&quot;è/ha&quot; interpretato come &quot;non è/ha&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>Bedingungen</translation>
+        <translation>Condizioni</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>ist Mitglied von Gruppe</translation>
+        <translation>è membro del gruppo</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Zugreifender Computer ist localhost</translation>
+        <translation>Il computer in cui si sta entrando è localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Zugreifender Benutzer ist angemeldeter Benutzer</translation>
+        <translation>L&apos;utente che sta entrando è registrato sull&apos;utente</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Zugreifender Benutzer ist bereits verbunden</translation>
+        <translation>L&apos;utente che sta entrando è già connesso</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Wenn mehr als eine Bedingung aktiviert wird muss jede Bedingung zutreffen, damit die Regel angewendet wird (logisches UND). Wenn nur eine von mehreren Regeln zutreffen soll (logisches ODER) erstellen Sie bitte mehrere Zugriffskontrollregeln.</translation>
+        <translation>Se è attivata più di una condizione, ciascuna condizione deve essere soddisfatta affinchè la regola venga applicata (AND logico). Se invece solo una condizione è richiesta (OR logico), allora per favore creare regole multiple di controllo accesso.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Aktion</translation>
+        <translation>Azione</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>Zugriff erlauben</translation>
+        <translation>Permette l&apos;accesso</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Zugriff verweigern</translation>
+        <translation>Nega l&apos;accesso</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Angemeldeten Benutzer um Erlaubnis fragen</translation>
+        <translation>Chiedi permesso all&apos;utente collegato </translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Keine (Regel deaktiviert)</translation>
+        <translation>Nessuna (regola disabilitata)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Zugreifender Benutzer</translation>
+        <translation>L&apos;utente che sta entrando</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Zugreifender Computer</translation>
+        <translation>Il computer che sta entrando</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Lokaler (angemeldeter) Benutzer</translation>
+        <translation>Utente locale (collegato)</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Lokaler Computer</translation>
+        <translation>Computer locale</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Regel immer verarbeiten und Bedingungen ignorieren</translation>
+        <translation>Elabora sempre la regola ed ignora le condizioni</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Kein Benutzer angemeldet</translation>
+        <translation>Nessun utente connesso</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Zugreifender Benutzer hat eine oder mehrere gemeinsame Gruppen mit lokalem (angemeldeten) Benutzer</translation>
+        <translation>L&apos;utente a cui si sta accedendo ha uno o più gruppi in comune con l&apos;utente locale (l&apos;utente ora loggato).</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>Zugreifender Computer und lokaler Computer befinden sich am selben Standort</translation>
+        <translation>L&apos;accesso al computer e al computer locale si trovano nella stessa posizione</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation>befindet sich in</translation>
+        <translation>si trova a</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>Test Zugriffskontrollregeln</translation>
+        <translation>Verifica regole di controllo d&apos;accesso</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Zugreifender Benutzer:</translation>
+        <translation>Utente che sta entrando:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Lokaler Computer:</translation>
+        <translation>Computer locale:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Zugreifender Computer:</translation>
+        <translation>Computer che sta entrando:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Bitte geben Sie die folgenden Benutzer- und Computerinformationen ein, um das konfigurierte Regelwerk zu testen.</translation>
+        <translation>Per favore immettere le seguenti informazioni su utente e computer per procedere al test dell&apos;insieme di regole configurate.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Lokaler Benutzer:</translation>
+        <translation>Utente locale:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Verbundene Benutzer:</translation>
+        <translation>Utenti connessi:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>Der Zugriff wird im angegebenen Szenario erlaubt.</translation>
+        <translation>L&apos;accesso allo scenario fornito è consentito.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>Der Zugriff wird im angegebenen Szenario verweigert.</translation>
+        <translation>L&apos;accesso allo scenario fornito è negato.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Der Zugriff benötigt im angegebenen Szenario die Erlaubnis des angemeldeten Benutzers.</translation>
+        <translation>L&apos;accesso allo scenario fornito richiede l&apos;autorizzazione dell&apos;utente connesso.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>FEHLER: Unbekannte Aktion</translation>
+        <translation>ERRORE: azione sconosciuta</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation>Testergebnis</translation>
+        <translation>Risultati del test</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>Authentifizierungsschlüssel</translation>
+        <translation>Chiavi di autenticazione</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>Einführung</translation>
+        <translation>Introduzione</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>Schlüsseldateiverzeichnis</translation>
+        <translation>Cartelle per i file delle chiavi</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Basisverzeichnis für öffentliche Schlüsseldateien</translation>
+        <translation>Cartella chiave Pubblica</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Basisverzeichnis für private Schlüsseldateien</translation>
+        <translation>Cartella chiave Privata</translation>
     </message>
     <message>
         <source>...</source>
@@ -341,341 +343,339 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>Verfügbare Authentifizierungsschlüssel</translation>
+        <translation>Chiavi di autenticazione disponibili</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>Schlüsselpaar erzeugen</translation>
+        <translation>Crea una coppia di chiavi</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>Schlüssel löschen</translation>
+        <translation>Cancella la chiave</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>Schlüssel importieren</translation>
+        <translation>Importa la chiave</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>Schlüssel exportieren</translation>
+        <translation>Esporta la chiave</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation>Zugriffsgruppe setzen</translation>
+        <translation>Imposta il gruppo di accesso</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>Schlüsseldateien (*.pem)</translation>
+        <translation>File di chiave (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>Authentifizierungsschlüsselname</translation>
+        <translation>Nome della chiave di autenticazione</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Bitte geben Sie den Namen der Benutzergruppe oder -rolle ein, für die ein Authentifizierungsschlüsselpaar erzeugt werden soll:</translation>
+        <translation>Inserire il nome del gruppo utenti o del ruolo per cui si vuole creare una coppia di chiavi di autenticazione:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>Möchten Sie den Authentifizierungsschlüssel &quot;%1/%2&quot; wirklich löschen?</translation>
+        <translation>Vuoi davvero eliminare la chiave di autenticazione %1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Bitte wählen Sie den zu löschenden Schlüssel!</translation>
+        <translation>Seleziona la chiave da eliminare! </translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Bitte geben Sie den Namen der Benutzergruppe oder -rolle ein, für die ein Authentifizierungsschlüssel importiert werden soll:</translation>
+        <translation>Inserire il nome del gruppo o ruolo dell&apos;utente per il quale importare la chiave di autenticazione:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>Bitte wählen Sie den zu exportierenden Schlüssel!</translation>
+        <translation>Seleziona la chiave da esportare!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Bitte wählen Sie eine Benutzergruppe, der der Zugriff auf den Schlüssel &quot;%1&quot; gewährt werden soll:</translation>
+        <translation>Seleziona un gruppo di utenti per concedere l&apos;accesso alla chiave &quot;% 1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation>Bitte wählen Sie den Schlüssel, für den die Zugriffsgruppe gesetzt werden soll!</translation>
+        <translation>Si prega di selezionare una chiave per impostare il gruppo di accesso!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Bitte führen Sie die folgenden Schritte durch, um die Schlüsseldatei-Authentifizierung einzurichten:</translation>
+        <translation>Effettuare le seguenti operazioni per configurare l&apos;autenticazione del file chiave:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Schlüsselpaar auf dem Master-Computer erzeugen.</translation>
+        <translation>1) Creare una coppia di chiavi sul computer master.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Zugriffsgruppe festlegen, deren Mitgliedern der Zugriff auf andere Computer erlaubt werden soll.</translation>
+        <translation>2) Impostare un gruppo di accesso i cui membri dovrebbero poter accedere ad altri computer.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Öffentlichen Schlüssel exportieren und auf allen Client-Computern mit dem selben Namen importieren.</translation>
+        <translation>3) Esportare la chiave pubblica e importarla su tutti i computer client con lo stesso nome.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Weitere Informationen entnehmen Sie bitte dem &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon-Administrationshandbuch&lt;/a&gt;.</translation>
+        <translation>Per ulteriori informazioni, consultare il &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manuale dell&apos;amministratore di Veyon&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Ein Authentifizierungsschlüsselpaar besteht aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
-Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
-Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
+        <translation>Una coppia di chiavi di autenticazione è composta da due chiavi crittografiche accoppiate, una privata e una chiave pubblica. Una chiave privata consente agli utenti del computer master di accedere ai computer client. È importante che solo gli utenti autorizzati abbiano accesso in lettura al file della chiave privata. La chiave pubblica viene utilizzata sui computer client per autenticare la richiesta di connessione in entrata.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Bitte überprüfen Sie Ihre Berechtigungen.</translation>
+        <translation>Per favore controlla le tue autorizzazioni.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>Schlüsselname enthält ungültige Zeichen!</translation>
+        <translation>Il nome della chiave contiene caratteri non validi!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Ungültiger Schlüsseltyp angegeben. Bitte geben Sie &quot;%1&quot; oder &quot;%2&quot; an.</translation>
+        <translation>Tipo di chiave non valido specificato! Si prega di specificare &quot;% 1&quot; o &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>Der angegebene Schlüssel existiert nicht! Bitte benutzen Sie den &quot;list&quot;-Befehl, um alle installierten Schlüssel anzuzeigen.</translation>
+        <translation>La chiave specificata non esiste! Si prega di utilizzare il comando &quot;lista&quot; per elencare tutte le chiavi installate.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>Ein oder mehrere Schlüsseldateien existieren bereits! Bitte löschen Sie diese mit Hilfe des &quot;delete&quot;-Befehls.</translation>
+        <translation>Uno o più file chiave esistono già! Per favore cancellali usando il comando &quot;cancella&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Erzeuge neues Schlüsselpaar für &quot;%1&quot;</translation>
+        <translation>Creazione di una nuova coppia di chiavi per &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>Erzeugung des öffentlichen oder privaten Schlüssels fehlgeschlagen!</translation>
+        <translation>Impossibile creare una chiave pubblica o privata!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>Das neu erzeugte Schlüsselpaar wurde nach &quot;%1&quot; und &quot;%2&quot; gespeichert.</translation>
+        <translation>La coppia di chiavi appena creata è stata salvata in &quot;% 1&quot; e &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Die Schlüsseldatei &quot;%1&quot; konnte nicht gelöscht werden!</translation>
+        <translation>Impossibile rimuovere il file chiave &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Das Schlüsseldateiverzeichnis &quot;%1&quot; konnte nicht gelöscht werden!</translation>
+        <translation>Impossibile rimuovere la directory del file di chiavi &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation>Erzeugung des Verzeichnisses für die Ausgabedatei fehlgeschlagen.</translation>
+        <translation>Impossibile creare la directory per il file di output.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>Datei &quot;%1&quot; existiert bereits.</translation>
+        <translation>Il file &quot;% 1&quot; esiste già.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>Schreiben der Ausgabedatei fehlgeschlagen.</translation>
+        <translation>Impossibile scrivere il file di output.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>Der Schlüssel &quot;%1/%2&quot; wurde erfolgreich nach &quot;%3&quot; exportiert.</translation>
+        <translation>Il tasto &quot;% 1 /% 2&quot; è stato esportato correttamente in &quot;% 3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>Lesen der Eingabedatei fehlgeschlagen.</translation>
+        <translation>File di input di lettura non riuscito.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>Die Datei &quot;%1&quot; enthält keinen gültigen privaten Schlüssel!</translation>
+        <translation>Il file &quot;% 1&quot; non contiene una chiave privata valida!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>Die Datei &quot;%1&quot; enthält keinen gültigen öffentlichen Schlüssel!</translation>
+        <translation>Il file &quot;% 1&quot; non contiene una chiave pubblica valida!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>Erzeugung des Verzeichnisses für Schlüsseldatei fehlgeschlagen.</translation>
+        <translation>Impossibile creare la directory per il file chiave.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>Schreiben der Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+        <translation>Impossibile scrivere il file chiave &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>Setzen der Berechtigungen für Schlüsseldatei &quot;%1&quot; fehlgeschlagen!</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file chiave &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>Der Schlüssel &quot;%1/%2&quot; wurde erfolgreich importiert. Bitte überprüfen Sie die Dateiberechtigungen von &quot;%3&quot;, um unerlaubten Zugriff zu verhindern.</translation>
+        <translation>Il tasto &quot;% 1 /% 2&quot; è stato importato correttamente. Controlla i permessi dei file di &quot;% 3&quot; per impedire accessi non autorizzati.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>Konvertierung des privaten Schlüssels in einen öffentlichen Schlüssel fehlgeschlagen</translation>
+        <translation>Impossibile convertire la chiave privata in chiave pubblica</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>Erzeugung des Verzeichnisses für die private Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+        <translation>Impossibile creare la directory per il file di chiave privata &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation>Speichern des privaten Schlüssels in Datei &quot;%1&quot; fehlgeschlagen!</translation>
+        <translation>Impossibile salvare la chiave privata nel file &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation>Setzen der Berechtigungen für private Schlüsseldatei &quot;%1&quot; fehlgeschlagen!</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file della chiave privata &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>Erzeugung des Verzeichnisses für die öffentliche Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+        <translation>Impossibile creare la directory per il file di chiave pubblica &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation>Speichern des öffentlichen Schlüssels in Datei &quot;%1&quot; fehlgeschlagen!</translation>
+        <translation>Impossibile salvare la chiave pubblica nel file &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation>Setzen der Berechtigungen für öffentliche Schlüsseldatei &quot;%1&quot; fehlgeschlagen!</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file di chiave pubblica &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Setzen des Besitzers der Schlüsseldatei &quot;%1&quot; auf &quot;%2&quot; fehlgeschlagen.</translation>
+        <translation>Impossibile impostare il proprietario del file chiave &quot;% 1&quot; su &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation>Setzen der Berechtigungen für Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file chiave &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>Die Benutzergruppe &quot;%2&quot; kann nun auf den Schlüssel &quot;%1&quot; zugreifen.</translation>
+        <translation>Il tasto &quot;% 1&quot; è ora accessibile dal gruppo di utenti &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/V&gt;</translation>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>Lesen der Schlüsseldatei fehlgeschlagen.</translation>
+        <translation>Impossibile leggere il file chiave.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation>Neues Authentifizierungsschlüsselpaar erzeugen</translation>
+        <translation>Crea una nuova coppia di chiavi di autenticazione</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>Authentifizierungsschlüssel löschen</translation>
+        <translation>Elimina la chiave di autenticazione</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>Authentifizierungsschlüssel auflisten</translation>
+        <translation>Elenca le chiavi di autenticazione</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>Öffentlichen oder privaten Schlüssel importieren</translation>
+        <translation>Importa chiave pubblica o privata</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>Öffentlichen oder privaten Schlüssel exportieren</translation>
+        <translation>Esporta chiave pubblica o privata</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation>Öffentlichen Schlüssel aus bestehendem privaten Schlüssel extrahieren</translation>
+        <translation>Estrai la chiave pubblica dalla chiave privata esistente</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>Benutzergruppe setzen, die auf einen Schlüssel zugreifen darf</translation>
+        <translation>Imposta il gruppo utente autorizzato ad accedere a una chiave</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation>SCHLÜSSEL</translation>
+        <translation>CHIAVE</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation>ZUGRIFFSGRUPPE</translation>
+        <translation>GRUPPO DI ACCESSO</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Dieser Befehl passt die Dateizugriffsberechtigungen auf den Schlüssel &lt;SCHLÜSSEL&gt; so an, dass nur die Benutzergruppe &lt;ZUGRIFFSGRUPPE&gt; Lesezugriff darauf hat.</translation>
+        <translation>Questo comando regola le autorizzazioni di accesso ai file in modo tale che solo il gruppo di utenti abbia accesso in lettura ad esso.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NAME</translation>
+        <translation>NOME</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>DATEI</translation>
+        <translation>FILE</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Dieser Befehl exportiert den Authentifizierungsschlüssel &lt;SCHLÜSEL&gt; nach &lt;DATEI&gt;. Wenn &lt;DATEI&gt; nicht angegeben wird, wird der Dateiname aus Name und Typ von &lt;SCHLÜSSEL&gt; abgeleitet.</translation>
+        <translation>Questo comando esporta la chiave di autenticazione&lt;KEY&gt; su &lt;FILE&gt;. Se &lt;FILE&gt;non viene specificato un nome sarà costruito dal nome e tipo di &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Dieser Befehl importiert den Authentifizierungsschlüssel &lt;SCHLÜSSEL&gt; aus &lt;DATEI&gt;. Wenn &lt;DATEI&gt; nicht angeben wird, wird der Dateiname aus Name und Typ von &lt;SCHLÜSSEL&gt; abgeleitet.</translation>
+        <translation>Questo comando importa la chiave di autenticazione. Se non viene specificato un nome sarà costruito dal nome e tipo.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Dieser Befehl listet alle verfügbaren Authentifizierungsschlüssel im konfigurierten Schlüsselverzeichnis auf. Wenn die Option &quot;%1&quot; angegeben wird, wird stattdessen eine Tabelle mit Schlüsseldetails ausgegeben. Einige Details können fehlen, wenn auf einen Schlüssel nicht zugegriffen werden kann, z.B. aufgrund fehlender Leserechte.</translation>
+        <translation>Questo comando elenca tutte le chiavi di autenticazione disponibili nella directory delle chiavi configurate. Se viene specificata l&apos;opzione &quot;% 1&quot;, verrà visualizzata una tabella con i dettagli chiave. Alcuni dettagli potrebbero mancare se una chiave non è accessibile, ad es. a causa della mancanza di permessi di lettura.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll!</translation>
+        <translation>Si prega di specificare il comando per visualizzare la guida per!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TYP</translation>
+        <translation>TIPO</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>PAAR-ID</translation>
+        <translation>COPPIA ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation>Kommandozeilenunterstützung zur Verwaltung von Authentifizierungsschlüsseln</translation>
+        <translation>Supporto da riga di comando per la gestione delle chiavi di autenticazione</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation>Befehle zur Verwaltung von Authentifizierungsschlüsseln</translation>
+        <translation>Comandi per la gestione delle chiavi di autenticazione</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation> Dieser Befehl erzeugt ein neues Authentifizierungsschlüsselpaar mit dem Namen &lt;NAME&gt; und speichert den privaten und öffentlichen Schlüssel im konfigurierten Schlüsselverzeichnis. Als Argument muss ein Name für den Schlüssel angegeben werden, der nur auch Buchstaben bestehen darf.</translation>
+        <translation>Questo comando crea una nuova coppia di chiavi di autenticazione con nome &lt;NAME&gt; e salva la chiave privata e pubblica per le directory chiave configurate. Il parametro deve essere un nome per la chiave, che può contenere solo lettere.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Dieser Befehl löscht den Authentifizierungsschlüssel ``&lt;SCHLÜSSEL&gt;`` aus dem konfigurierten Schlüsselverzeichnis. Bitte beachten Sie, dass ein Schlüssel nicht wiederhergestellt werden kann, sobald er gelöscht wurde.</translation>
+        <translation>Questo comando cancella la chiave di autenticazione &lt;KEY&gt; dalla directory delle chiavi configurata. Si prega di notare che una chiave non può essere recuperata una volta che è stata cancellata.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation> Dieser Befehl extrahiert den öffentlichen Schlüsselteil aus dem privaten Schlüssel ``&lt;SCHLÜSSEL&gt;`` und speichert ihn als den zugehörigen öffentlichen Schlüssel. Bei der Einrichtung eines weiteren Mastercomputers genügt somit die Übertragung des privaten Schlüssels. Anschließend kann der öffentliche Schlüssel extrahiert werden.</translation>
+        <translation>Questo comando estrae la parte della chiave pubblica dalla chiave privata &lt;KEY&gt; e lo salva come chiave pubblica corrispondente. Quando si configura un altro computer master, è quindi sufficiente trasferire solo la chiave privata. La chiave pubblica può quindi essere estratta.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>Zugriffsgruppe</translation>
+        <translation>Gruppo di accesso</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation>Paar-ID</translation>
+        <translation>Coppia ID</translation>
     </message>
 </context>
 <context>
@@ -686,118 +686,118 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Hostadresse/IP</translation>
+        <translation>Indirizzo host/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC-Adresse</translation>
+        <translation>indirizzo MAC</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Neuen Computer hinzufügen</translation>
+        <translation>Aggiungi un nuovo computer</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Gewählten Computer entfernen</translation>
+        <translation>Rimuovi il computer selezionato</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>Neuer Computer</translation>
+        <translation>Nuovo computer</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation>Integriertes Verzeichnis</translation>
+        <translation>Directory incorporata</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>Standorte &amp; Computer</translation>
+        <translation>Posizioni e computers</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>Standorte</translation>
+        <translation>Posizioni</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>Neuen Standort hinzufügen</translation>
+        <translation>Aggiungi nuova posizione</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>Gewählten Standort entfernen</translation>
+        <translation>Rimuovi la posizione selezionata</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Der Import von CSV-Dateien ist über die Kommandozeilenschnittstelle möglich. Weitere Informationen finden Sie in der &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;Online-Dokumentation&lt;/a&gt;.</translation>
+        <translation>L&apos;importazione di file CSV è possibile tramite l&apos;interfaccia della riga di comando. Per ulteriori informazioni, consultare la documentazione online.&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation>Neuer Standort</translation>
+        <translation>Nuova posizione</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Hilfe für bestimmten Befehl anzeigen</translation>
+        <translation>Mostra l&apos;aiuto per un comando specifico</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>Objekte aus angegebener Datei importieren</translation>
+        <translation>Importa oggetti dal file specificato</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>Objekte in angegebene Datei exportieren</translation>
+        <translation>Esportare oggetti nel file specificato</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Ungültiger Typ angegeben. Gültige Werte sind &quot;%1&quot; oder &quot;%2&quot;.</translation>
+        <translation>Tipo non valido specificato. I valori validi sono &quot;% 1&quot; o &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Hostadresse</translation>
+        <translation>Indirizzo dell&apos;host</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC-Adresse</translation>
+        <translation>indirizzo MAC</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>Angegebenes Objekt nicht gefunden.</translation>
+        <translation>Oggetto specificato non trovato.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Datei &quot;%1 existiert nicht!</translation>
+        <translation>Il file &quot;% 1&quot; non esiste!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Datei &quot;%1&quot; kann nicht zum Lesen geöffnet werden!</translation>
+        <translation>Impossibile aprire il file &quot;% 1&quot; per la lettura!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Unbekanntes Argument &quot;%1&quot;.</translation>
+        <translation>Argomento sconosciuto &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Computer &quot;%1&quot; (Hostadresse: %2 MAC-Adresse: &quot;%3&quot;)</translation>
+        <translation>Computer &quot;% 1&quot; (indirizzo host: &quot;% 2&quot; indirizzo MAC: &quot;% 3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Unbestimmtes Object &quot;%1&quot; mit ID &quot;%2&quot;</translation>
+        <translation>Oggetto non classificato &quot;% 1&quot; con ID &quot;% 2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation>Nessuna</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -805,167 +805,167 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Root</source>
-        <translation>Wurzel</translation>
+        <translation>Root</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>Ungültig</translation>
+        <translation>Non valido</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Fehler beim Parsen von Zeile %1.</translation>
+        <translation>Errore durante l&apos;analisi della riga% 1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation>Netzwerkobjektverzeichnis, das Objekte in lokaler Konfiguration speichert</translation>
+        <translation>Directory dell&apos;oggetto di rete che memorizza gli oggetti nella configurazione locale</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation>Befehle zur Verwaltung des eingebauten Netzwerkobjektverzeichnisses</translation>
+        <translation>Comandi per la gestione della directory dell&apos;oggetto di rete incorporato</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation>Kein Format-String oder regulärer Ausdruck angegeben!</translation>
+        <translation>Nessuna stringa di formato o espressione regolare specificata!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Datei &quot;%1&quot; kann nicht zum Schreiben geöffnet werden!</translation>
+        <translation>Impossibile aprire il file &quot;% 1&quot; per la scrittura!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation>Kein Format-String angegeben!</translation>
+        <translation>Nessuna stringa di formato specificata!</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation>Objekt-UUID</translation>
+        <translation>Oggetto UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation>Eltern-UUID</translation>
+        <translation>Genitore UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>Standort oder Computer hinzufügen</translation>
+        <translation>Aggiungi una posizione o un computer</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>Alle Standorte und Computer löschen</translation>
+        <translation>Cancella tutte le posizioni e i computer</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation>Alle oder einzelne Standorte und Computer anzeigen</translation>
+        <translation>Scarica tutte le posizioni o i singoli computers</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation>Alle Standorte und Computer auflisten</translation>
+        <translation>Elenca tutte le posizioni e i computer</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation>Einen Standort oder Computer löschen</translation>
+        <translation>Rimuovi una posizione o un computer</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation>Standort &quot;%1&quot;</translation>
+        <translation>Posizione &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Eingebaut (Computer und Standorte in lokaler Konfiguration)</translation>
+        <translation>BuiltIn (computer e posizioni nella configurazione locale)</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Standort</translation>
+        <translation>Posizione</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>DATEI</translation>
+        <translation>FILE</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation>STANDORT</translation>
+        <translation>LUOGO</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>FORMATSTRING-MIT-PLATZHALTERN</translation>
+        <translation>FORMATO-STRINGA-CON-SEGNAPOSTO</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation>REGULÄRER-AUSRUCK-MIT-PLATZHALTERN</translation>
+        <translation>ESPRESSIONE-REGOLARE-CON-SEGNAPOSTO</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Importiert Objekte aus der angegebenen Textdatei mit Hilfe des angegebenen Formatstrings oder regulären Ausdrucks, die eine oder mehrere Platzhalter enthalten. Gültige Platzhalter sind: %1</translation>
+        <translation>Importa oggetti da un determinato file di testo utilizzando una stringa di formattazione o un&apos;espressione regolare contenente una o più segnaposto. Segnaposto validi sono: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation>Einfache CSV-Datei in einen einzelnen Raum importieren</translation>
+        <translation>Importa un file CSV in una singola aula</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation>CSV-Datei mit Standortname in erster Spalte importieren</translation>
+        <translation>Importa un file CSV con una destinazione nella prima colonna</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation>Textdatei mit Schlüssel-/Wert-Paaren mit Hilfe von regulären Ausdrücken importieren</translation>
+        <translation>Importa un file di testo con coppie di chiave/valore utilizzando espressioni regolari</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation>Beliebig formatierte Daten importieren</translation>
+        <translation>Importa dati formattati arbitrariamente</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Exportiert Objekte in die angegebene Textdatei mit Hilfe des angegebenen Formatstrings, der einen oder mehrere Platzhalter enthält. Gültige Platzhalter sind: %1</translation>
+        <translation>Esporta oggetti nel file specificato utilizzando un formato stringa contenente uno o più segnaposto. Segnaposto validi sono: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation>Alle Objekte in eine CSV-Datei exportieren</translation>
+        <translation>Esporta tutti gli oggetti in un file CSV</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation>Alle Computer eines bestimmten Standortes in eine CSV-Datei exportieren</translation>
+        <translation>Esporta tutti i computer di un specifico luogo in un file CSV</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TYP</translation>
+        <translation>TIPO</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NAME</translation>
+        <translation>NOME</translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation>PARENT</translation>
+        <translation>GENITORE</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>Fügt ein Objekt hinzu, wobei %1 &quot;%2&quot; oder &quot;%3&quot; sein kann. %4 kann als Name oder UUID angegeben werden.</translation>
+        <translation>Aggiunge un oggetto dove %1 può essere uno dei seguenti &quot;%2&quot; o &quot;%3&quot;. %4 può essere individuato dal nome o dal codice UUID.</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation>Einen Raum hinzufügen</translation>
+        <translation>Aggiunge un&apos;aula</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>Einen Computer zu Raum %1 hinzufügen</translation>
+        <translation>Aggiunge un computer all&apos;aula %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation>OBJEKT</translation>
+        <translation>OGGETTO</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation>Entfernt das angegebene Objekt aus dem Verzeichnis. %1 kann als Name oder UUID angegeben werden. Wenn ein Standort entfernt wird, werden alle darin befindlichen Computer ebenfalls entfernt.</translation>
+        <translation>Cancella l&apos;oggetto specificato dalla cartella %1 può essere specificato il nome o il codice UUID. Cancellando un ambiente saranno cancellati anche i relativi computer</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation>Einen Computer über seinen Namen entfernen</translation>
+        <translation>Cancella un computer identificato dal nome</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation>Ein Objekt über seine UUID entfernen</translation>
+        <translation>Cancella un oggetto identificato dal codice UUID</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>&quot;Raum 01&quot;</translation>
+        <translation>&quot;Aula 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
@@ -973,255 +973,255 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>HOST-ADRESSE</translation>
+        <translation>INDIRIZZO COMPUTER</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>MAC-ADRESSE</translation>
+        <translation>MAC ADDRESS</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation>Eingebauter VNC-Server (UltraVNC)</translation>
+        <translation>Server VNC incorporato (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>Eingebauter VNC-Server (x11vnc)</translation>
+        <translation>Server VNC incorporato (x11vnc)</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation>Host-/IP-Adresse: %1</translation>
+        <translation>Host/indirizzo IP: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation>Aktive Funktionen: %1</translation>
+        <translation>Funzioni attive: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Online und verbunden</translation>
+        <translation>Connessi e online</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>Verbindung wird hergestellt</translation>
+        <translation>Connessione in corso</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>Computer offline oder ausgeschalten</translation>
+        <translation>Computer disconnesso o spento</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>Dienst nicht erreichbar oder läuft nicht</translation>
+        <translation>Servizio irraggiungibile o non in esecuzione</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>Authentifizierung fehgeschlagen oder Zugriff verweigert</translation>
+        <translation>Autenticazione fallita o accesso negato</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Nicht verbunden</translation>
+        <translation>Disconnesso</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Kein Benutzer angemeldet</translation>
+        <translation>Nessun utente connesso</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Angemeldeter Benutzer: %1</translation>
+        <translation>Utente connesso: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation>Standort: %1</translation>
+        <translation>Posizione: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Dienst %2 auf %3:%4</translation>
+        <translation>%1 Servizio %2 alle %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Authentifizierungsfehler</translation>
+        <translation>Errore di autenticazione</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Fernzugriff</translation>
+        <translation>Accesso remoto</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Der Benutzer &quot;%1&quot; am Computer %2&quot; greift jetzt auf diesen Computer zu.</translation>
+        <translation>L&apos;utente &quot;% 1&quot; sull&apos;host &quot;% 2&quot; sta ora accedendo a questo computer.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren!</translation>
+        <translation>L&apos;utente &quot;% 1&quot; sull&apos;host &quot;% 2&quot; ha tentato di accedere a questo computer ma non è riuscito ad autenticarsi correttamente!</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Benutzer</translation>
+        <translation>Utente</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>Fehlendes Netzwerkobjektverzeichnis-Plugin</translation>
+        <translation>Manca il plugin per l&apos;elencazione degli oggetti di rete</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Es wurde kein Standard-Netzwerkobjektverzeichnis-Plugin gefunden. Bitte überprüfen Sie Ihre Installation oder stellen ein anderes Netzwerkobjektverzeichnis-Backend mit Hilfe des %1 Configurators ein.</translation>
+        <translation>Non è stato trovato alcun plugin predefinito per l&apos;elencazione degli oggetti di rete. Per favore controllare l&apos;installazione o configurare un diverso backend per l&apos;elenco degli oggetti di rete attraverso %1 Configurator.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation>Standorterkennung fehlgeschlagen</translation>
+        <translation>Rilevazione della posizione fallita</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>Computername;Hostname;Benutzer</translation>
+        <translation>Nome del computer; Nome host; Utente</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Der Standort dieses Computers konnte nicht ermittelt werden. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Standorte im Computerauswahlbedienfeld angezeigt.</translation>
+        <translation>Impossibile determinare la posizione di questo computer. Questo indica un problema con la configurazione del sistema. Tutte le posizioni verranno visualizzate nel pannello di selezione del computer.</translation>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
-        <translation>Computerverwaltung</translation>
+        <translation>Gestione del computer</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation>Computersuche</translation>
+        <translation>Ricerca computer</translation>
     </message>
     <message>
         <source>Add location</source>
-        <translation>Standort hinzufügen</translation>
+        <translation>Aggiungi posizione</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Computer-/Benutzerliste speichern</translation>
+        <translation>Salva la lista di computer/utenti</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>Ausgabedateiname wählen</translation>
+        <translation>Seleziona il nome del file d&apos;uscita</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>CSV-Dateien (*.csv)</translation>
+        <translation>File CSV (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>Dateifehler</translation>
+        <translation>Errore nel file</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Die Computer- und Benutzerliste konnte nicht in die Datei %1 geschrieben werden. Bitte überprüfen Sie die Dateizugriffsrechte.</translation>
+        <translation>Impossibile scrivere l&apos;elenco computer e utenti su %1! Controllare i permessi di accesso al file.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Bitte geben Sie eine existierende Konfigurationsdatei für den Import an.</translation>
+        <translation>Per favore indicare un file di configurazione esistente da importare.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Bitte geben Sie einen gültigen Dateinamen für den Konfigurationsexport an.</translation>
+        <translation>Per favore indicare un nome di file valido per esportare la configurazione.</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Bitte geben Sie einen gültigen Schlüssel ein.</translation>
+        <translation>Per favore indicare una chiave valida.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>Der angegebene Schlüssel existiert in der derzeitigen Konfiguration nicht!</translation>
+        <translation>La chiave indicata non esiste nella configurazione corrente!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>Bitte geben Sie einen gültigen Wert ein.</translation>
+        <translation>Per favore indicare un valore valido.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>Veyon auf der Kommandozeile konfigurieren</translation>
+        <translation>Non è possibile modificare gli argomenti passati a %1</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Ausgabedatei ist nicht schreibbar!</translation>
+        <translation>Non si dispone dei permessi di scrittura per il file di destinazione.</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Ausgabeverzeichnis ist nicht schreibbar!</translation>
+        <translation>Non si dispone dei permessi di scrittura nella cartella di destinazione</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>Konfigurationsdatei ist nicht lesbar!</translation>
+        <translation>Non è possibile leggere il file di configurazione!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation>Systemweite Veyon-Konfiguration löschen</translation>
+        <translation>Eliminazione della configurazione di Veyon su tutto il sistema.</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>Alle Konfigurationsschlüssel und -werte auflisten</translation>
+        <translation>Lista di tutte le chiavi di configurazione e dei loro valori.</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>Konfiguration aus angegebener Datei importieren</translation>
+        <translation>Importa una configurazione da file.</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation>Konfiguration in angegebene Datei exportieren</translation>
+        <translation>Esporta una configurazione su file.</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation>Konfigurationswert für gegebenen Schlüssel lesen und ausgeben</translation>
+        <translation>Leggi e stampa i valori di configurazione delle chiavi date</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation>Angegebenen Wert in angegebenen Konfigurationsschlüssel schreiben</translation>
+        <translation>Imposta il valore della chiave di configurazione</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Angegebenen Konfigurationsschlüssel zurücksetzen (löschen)</translation>
+        <translation>Dimentica (rimuovi) la chiave di configurazione data</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Befehle zur Verwaltung der Veyon-Konfiguration</translation>
+        <translation>Comandi di configurazione</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation>Konfiguration von Programm und Plugins aktualisieren und speichern</translation>
+        <translation>Aggiorna e salva la configurazione del programma e dei plugin</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
+        <translation>Impossibile modificare la proprietà autostart per il %1 Service.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Die Firewall-Einstellungen für den %1 Server konnten nicht geändert werden.</translation>
+        <translation>Impossibile configurare la configurazione del firewall per% 1 Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Die Firewall-Einstellungen für den %1 Worker konnten nicht geändert werden.</translation>
+        <translation>Impossibile configurare la configurazione del firewall per% 1 operatore.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
+        <translation>Non è possibile cambiare i settaggi del SAS via software. L&apos;invio della combinazione Ctrl+Alt+Del da terminale remoto non produrrà risultati.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Konfiguration ist nicht schreibbar. Bitte überprüfen Sie Ihre Berechtigungen!</translation>
+        <translation>La configurazione non è scrivibile. Per favore controlla le tue autorizzazioni!</translation>
     </message>
 </context>
 <context>
@@ -1235,27 +1235,27 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Demo-Server</translation>
+        <translation>Server per la modalità Presentazione</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Feineinstellungen</translation>
+        <translation>Modificabili</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation>Key-Frame-Intervall</translation>
+        <translation>Intervallo del Key frame</translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>Speicherlimit</translation>
+        <translation>Limite memoria</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation>Multithreading benutzen (experimentell)</translation>
+        <translation>Utilizzo multithreading (sperimentale)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1263,7 +1263,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Update interval</source>
-        <translation>Update-Intervall</translation>
+        <translation>Intervallo di aggiornamento</translation>
     </message>
     <message>
         <source> s</source>
@@ -1274,89 +1274,89 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Vollbild-Demo</translation>
+        <translation>Presenta su schermo intero</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Demo beenden</translation>
+        <translation>Ferma Presentazione</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Fenster-Demo</translation>
+        <translation>Presenta in finestra</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Eine Präsentation durch Bildschirmübertragung</translation>
+        <translation>Esemplificare trasmettendo il proprio schermo</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Demo-Server</translation>
+        <translation>Server per la modalità Presentazione</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>In diesem Modus wird Ihr Bildschirm als Vollbild auf allen Computern angezeigt während die Eingabegeräte der Benutzer gesperrt werden.</translation>
+        <translation>In questa modalità il tuo schermo sarà visualizzato su tutti i computer client a tutto schermo. Inoltre gli utenti non saranno in grado di svolgere altre azioni, in quanto le periferiche di input saranno bloccate.</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>In diesem Modus wird Ihr Bildschirm in einem Fenster auf allen Computern angezeigt. Die Benutzer können bei Bedarf zu anderen Fenstern wechseln.</translation>
+        <translation>In questa modalità il tuo schermo sarà visualizzato in una finestra su tutti i computer client. Gli utenti, pertanto, potranno cambiare finestra e continuare il loro lavoro.</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation>Desktopzugriffsdialog</translation>
+        <translation>Finestra di accesso al Desktop</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Arbeitsflächenzugriff bestätigen</translation>
+        <translation>Conferma l&apos;accesso</translation>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Nie für diese Sitzung</translation>
+        <translation>Mai per questa sessione</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Immer für diese Sitzung</translation>
+        <translation>Sempre per questa sessione</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Der Benutzer %1 am Computer %2 möchte auf Ihre Arbeitsfläche zugreifen. Möchten Sie den Zugriff erlauben?</translation>
+        <translation>L&apos; utente %1 desidera collegarsi al tuo PC dal PC %2. Desideri concedergli l&apos;accesso?</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation>Programme &amp; Websites</translation>
+        <translation>Programmi e siti Web</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation>Vordefinierte Programme</translation>
+        <translation>Programmi predefiniti</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation>Pfad</translation>
+        <translation>Percorso</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation>Neues Programm hinzufügen</translation>
+        <translation>Aggiungi un nuovo programma</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation>Ausgewähltes Programm entfernen</translation>
+        <translation>Rimuovi il programma selezionato</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Vordefinierte Websites</translation>
+        <translation>Siti Web predefiniti</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Ausgewählte Website entfernen</translation>
+        <translation>Rimuovi il sito Web selezionato</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1364,186 +1364,186 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>New program</source>
-        <translation>Neues Programm</translation>
+        <translation>Nuovo programma</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>Neue Website</translation>
+        <translation>Nuovo sito web</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation>Programm starten</translation>
+        <translation>Apri un programma</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Website öffnen</translation>
+        <translation>Collegamento ad un sito internet</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um eine Website auf allen Computern zu öffnen.</translation>
+        <translation>Clicca su questo pulsante per aprire un sito internet su tutti i PC.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Bitte geben Sie die URL der zu öffnenden Website ein:</translation>
+        <translation>Inserisci l&apos;indirizzo del sito da aprire:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation>Programme und Dienste im Benutzerdesktop starten</translation>
+        <translation>Attiva il programma sul PC remoto</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um Programme auf allen Computern zu starten.</translation>
+        <translation>Clicca su questo pulsante per lanciare un programma su tutti i PC</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation>Programm &quot;%1&quot; ausführen</translation>
+        <translation>Esegui il programma &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation>Benutzerdefiniertes Programm</translation>
+        <translation>Programma personalizzato</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Website &quot;%1&quot; öffnen</translation>
+        <translation>Apri il sito web &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Benutzerdefinierte Website</translation>
+        <translation>Sito web personalizzato</translation>
     </message>
 </context>
 <context>
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>Lehrer</translation>
+        <translation>Insegnante</translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>Raum %1</translation>
+        <translation>Stanza %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation>Bitte alle Aufgaben in den nächsten 5 Minuten fertigstellen.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>Externer VNC-Server</translation>
+        <translation>Server VNC esterno</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>Konfiguration des externen VNC-Servers</translation>
+        <translation>Parametri del server VNC esterno</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation>Porta:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Passwort:</translation>
+        <translation>Password:</translation>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation>Funktionssteuerung</translation>
+        <translation>Controllo delle opzioni</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Datei &quot;%1&quot; konnte nicht zum Lesen geöffnet werden! Bitte Berechtigungen überprüfen!</translation>
+        <translation>Impossibile aprire il file &quot;% 1&quot; per la lettura! Per favore controlla le tue autorizzazioni!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Dateiübertragung</translation>
+        <translation>Trasferimento di file</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Optionen</translation>
+        <translation>Opzioni</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation>Nur übertragen</translation>
+        <translation>Solo trasferimento</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>Übertragen und Dateie(n) mit verknüpftem Programm öffnen</translation>
+        <translation>Trasferisci e apri i file(s) con il programma associato</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation>Übertragen und Zielordner öffnen</translation>
+        <translation>Trasferisci e apri la cartella di destinazione</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Dateien</translation>
+        <translation>Files</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation>Inizio</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation>Bestehende Dateien überschreiben</translation>
+        <translation>Sovrascrivi i file esistenti</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation>Dateiübertragung</translation>
+        <translation>Trasferimento di file</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um Dateien von Ihrem Computer auf alle Computer zu übertragen.</translation>
+        <translation>Fare clic su questo pulsante per trasferire i file dal computer a tutti i computer.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>Eine oder mehrere Dateien für die Übertragung auswählen</translation>
+        <translation>Seleziona uno o più file da trasferire</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation>Dateien auf entfernte Computer übertragen</translation>
+        <translation>Trasferisci i file sul computer remoto</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation>Datei &quot;%1&quot; empfangen.</translation>
+        <translation>File ricevuto &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie bereits existiert.</translation>
+        <translation>Impossibile ricevere il file &quot;% 1&quot; già esiste.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie nicht zum Schreiben geöffnet werden konnte!</translation>
+        <translation>Impossibile ricevere il file &quot;% 1&quot; in quanto non può essere aperto per la scrittura!</translation>
     </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Benutzeroberfläche</translation>
+        <translation>Interfaccia Utente</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Sprache:</translation>
+        <translation>Linguaggio:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>Spracheinstellung des Systems verwenden</translation>
+        <translation>Utilizza la lingua predefinita</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1551,11 +1551,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Logging</source>
-        <translation>Logaufzeichnung</translation>
+        <translation>Fase di autenticazione</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Logdateiverzeichnis</translation>
+        <translation>Cartella per il Log file</translation>
     </message>
     <message>
         <source>...</source>
@@ -1563,47 +1563,47 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Log level</source>
-        <translation>Loglevel</translation>
+        <translation>Livello di Log</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Nichts</translation>
+        <translation>Nessun log</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Nur kritische Nachrichten</translation>
+        <translation>Solo i messaggi critici</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Fehler und kritische Nachrichten</translation>
+        <translation>Errori e messaggi critici</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Warnungen und Fehler</translation>
+        <translation>Avvisi (warnings) ed errori</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Informationen, Warnungen und Fehler</translation>
+        <translation>Informazioni, avvisi e errori</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Debugmeldungen und alles andere</translation>
+        <translation>Messaggi di debug e quant&apos;altro</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Logdateigröße begrenzen</translation>
+        <translation>Limite per il file di log</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Alle Logdateien leeren</translation>
+        <translation>Cancella tutti i file di log</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Nach Standardfehlerausgabe loggen</translation>
+        <translation>Log sullo standard error output</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>Netzwerkobjektverzeichnis</translation>
+        <translation>Directory dell&apos;oggetto di rete</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1611,31 +1611,31 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Aktualisierungsintervall:</translation>
+        <translation>Intervallo di aggiornamento:</translation>
     </message>
     <message>
         <source>%1 service</source>
-        <translation>%1-Dienst</translation>
+        <translation>Servizio %1</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Der %1-Dienst muss temporär beendet werden, um die Logdateien zu löschen. Fortfahren?</translation>
+        <translation>Il servizio %1 deve essere riavviato per consentire la rimozione dei file di log. Continuare?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation>Logdateien gelöscht</translation>
+        <translation>File di Log cancellati</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>Alle Logdateien wurden erfolgreich gelöscht.</translation>
+        <translation>Tutti i file di Log sono stati cancellati.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Fehler</translation>
+        <translation>Errore</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>Konnte nicht alle Logdateien entfernen.</translation>
+        <translation>Impossibile cancellare tutti i file di Log.</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1643,7 +1643,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation>Logdateien rotieren</translation>
+        <translation>Ruotare i file di registro</translation>
     </message>
     <message>
         <source>x</source>
@@ -1651,50 +1651,50 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source> seconds</source>
-        <translation> Sekunden</translation>
+        <translation> secondi</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation>In Ereignisprotokollierung des Betriebssystems schreiben</translation>
+        <translation>Scrivi nel sistema di log del sistema operativo</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Authentifizierung</translation>
+        <translation>Autenticazione</translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation>Methode:</translation>
+        <translation>Metodo:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Anmelde-Authentifizierung</translation>
+        <translation>Autenticazione di accesso (Logon)</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Schlüsseldatei-Authentifizierung</translation>
+        <translation>Autenticazione con File chiave</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Testen</translation>
+        <translation>Prova</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation>Authentifizierung ist auf diesem Computer ordnungsgemäß eingerichtet.</translation>
+        <translation>L&apos;autenticazione è configurata correttamente su questo computer.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Authentifizierungsschlüssel sind auf diesem Computer nicht ordnungsgemäß eingerichtet.</translation>
+        <translation>Le chiavi di autenticazione non sono configurate correttamente su questo computer.</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>Authentifizierungstest</translation>
+        <translation>Test di autenticazione</translation>
     </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation>Internetzugriffskontrolle</translation>
+        <translation>Controllo dell&apos;accesso a Internet</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1702,477 +1702,477 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>General settings</source>
-        <translation>Allgemeine Einstellungen</translation>
+        <translation>Impostazioni generali</translation>
     </message>
     <message>
         <source>Backend settings</source>
-        <translation>Backend-Einstellungen</translation>
+        <translation>Impostazioni back-end</translation>
     </message>
 </context>
 <context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation>Zugriff auf das Internet blockieren</translation>
+        <translation>Blocca l&apos;accesso a Internet</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation>Zugriff auf das Internet erlauben</translation>
+        <translation>Consentire l&apos;accesso a Internet</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Hilfe über Befehl anzeigen</translation>
+        <translation>Mostra aiuto per i comandi</translation>
     </message>
     <message>
         <source>Block internet</source>
-        <translation>Internet sperren</translation>
+        <translation>Blocca internet</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation>Klicken Sie auf diesen Button, um den Zugriff auf das Internet zu sperren.</translation>
+        <translation>Fare clic su questo pulsante per bloccare l&apos;accesso a Internet.</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation>Internet freigeben</translation>
+        <translation>Sblocca internet</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation>Klicken Sie auf diesen Button, um den Zugriff auf das Internet wieder freizugeben.</translation>
+        <translation>Fare clic su questo pulsante per consentire l&apos;accesso a Internet.</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation>Internetzugriff steuern</translation>
+        <translation>Controlla l&apos;accesso a Internet</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation>Befehle zur Steuerung des Internetzugriffs</translation>
+        <translation>Comandi per il controllo dell&apos;accesso a Internet</translation>
     </message>
 </context>
 <context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation>LDAP durchsuchen</translation>
+        <translation>Sfoglia LDAP</translation>
     </message>
 </context>
 <context>
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation>LDAP-Fehlerbeschreibung: %1</translation>
+        <translation>Descrizione errore LDAP: %1</translation>
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation>Keine LDAP-Fehlerbeschreibung verfügbar</translation>
+        <translation>Nessuna descrizione dell&apos;errore LDAP disponibile</translation>
     </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Grundeinstellungen</translation>
+        <translation>Impostazioni di base</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allgemein</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation>LDAP-Server und Port</translation>
+        <translation>Indirizzo e porta del server LDAP</translation>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Bind-DN</translation>
+        <translation>Bind DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Bind-Passwort</translation>
+        <translation>Bind password</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Anonymer Bind</translation>
+        <translation>Anonymous bind</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Bind-Zugangsdaten verwenden</translation>
+        <translation>Use bind credentials</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Base-DN</translation>
+        <translation>Base DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation>Fester Base-DN</translation>
+        <translation>Fixed base DN</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>z.B. dc=example,dc=org</translation>
+        <translation>e.g. dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation>Base-DN über Naming-Context ermitteln</translation>
+        <translation>Discover base DN by naming context</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation>z.B. namingContexts oder defaultNamingContext</translation>
+        <translation>e.g. namingContexts or defaultNamingContext</translation>
     </message>
     <message>
         <source>Environment settings</source>
-        <translation>Umgebungseinstellungen</translation>
+        <translation>Impostazioni ambiente</translation>
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Objektbäume</translation>
+        <translation>Alberatura oggetti</translation>
     </message>
     <message>
         <source>Computer tree</source>
-        <translation>Computerbaum</translation>
+        <translation>Alberatura Pc</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>z.B. OU=Groups</translation>
+        <translation>e.g. OU=Groups</translation>
     </message>
     <message>
         <source>User tree</source>
-        <translation>Benutzerbaum</translation>
+        <translation>Alberatura utenti</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>z.B. OU=Users</translation>
+        <translation>e.g. OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>z.B. OU=Computers</translation>
+        <translation>e.g. OU=Computers</translation>
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Gruppenbaum</translation>
+        <translation>Alberatura gruppi</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation>Rekursive Suchoperationen in Objektbäumen durchführen</translation>
+        <translation>Ricerca anche nelle sottocartelle</translation>
     </message>
     <message>
         <source>Object attributes</source>
-        <translation>Objektattribute</translation>
+        <translation>Attributi degli oggetti</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>z.B. hwAddress</translation>
+        <translation>e.g. hwAddress</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation>z.B. member oder memberUid</translation>
+        <translation>Per esempio membro o membroUid</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation>z.B. dNSHostName</translation>
+        <translation>Per esempio dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation>Attribut Computer-MAC-Adresse</translation>
+        <translation>Attributo dell&apos;indirizzo MAC del computer</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Attribut Gruppenmitglied</translation>
+        <translation>Attributo del gruppo del membro</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation>z.B. uid oder sAMAccountName</translation>
+        <translation>Per esempio uid o sAMAccountName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>Erweiterte Einstellungen</translation>
+        <translation>Impostazioni avanzate</translation>
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation>Optionale Objektfilter</translation>
+        <translation>Filtro per oggetti opzionale</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation>Filter für Benutzergruppen</translation>
+        <translation>Filtro per gruppo utenti</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Filter für Benutzer</translation>
+        <translation>Filtro Users</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Filter für Computergruppen</translation>
+        <translation>Filtro Gruppo computer</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation>Identifizierung von Gruppenmitgliedern</translation>
+        <translation>Identificazione membro del gruppo</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation>Distinguished name (Samba/AD)</translation>
+        <translation>Nome distinto (Samba/AD)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Alle Gruppen eines Benutzers auflisten</translation>
+        <translation>Visualizza i gruppi a cui appartiene un User</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation>Alle Gruppen eines Computers auflisten</translation>
+        <translation>Visualizza i gruppi a cui appartiene un computer</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation>Computerobjekt über IP-Adresse ermitteln</translation>
+        <translation>Identifica il computer mediante indirizzo IP</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation>LDAP-Verbindung fehlgeschlagen</translation>
+        <translation>Connessione al server LDAP fallita</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>LDAP-Bind fehlgeschlagen</translation>
+        <translation>Il bind con il server LDAP è fallito. Verificare la sintassi delle credenziali</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>LDAP-Bind erfolgreich</translation>
+        <translation>Il bind con il server LDAP è riuscito.</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Der Verbindungsaufbau zum LDAP-Server und LDAP-Bind waren erfolgreich. Die grundlegenden LDAP-Einstellungen sind korrekt eingerichtet.</translation>
+        <translation>Collegato correttamente al server LDAP ed eseguito un binding LDAP. Le impostazioni LDAP di base sono configurate correttamente.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>LDAP-Base-DN-Test fehlgeschlagen</translation>
+        <translation>Test LDAP base DN fallito</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>LDAP-Base-DN-erfolgreich getestet</translation>
+        <translation>Test LDAP base DN riuscito</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation>LDAP-Naming-Context-Test fehlgeschlagen</translation>
+        <translation>Test per contesto nominazione LDAP fallito</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation>LDAP-Naming-Context-erfolgreich getestet</translation>
+        <translation>Test di contesto di denominazione LDAP riuscito</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>Der LDAP-Naming-Context wurde erfolgreich abgefragt. Die folgende Base-DN wurde gefunden:
+        <translation>LDAP interrogato con successo. Il seguente base DN è stato trovato:
 %1</translation>
     </message>
     <message>
         <source>user tree</source>
-        <translation>Benutzerbaum</translation>
+        <translation>albero utenti</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation>Gruppenbaum</translation>
+        <translation>albero gruppi</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation>Computerbaum</translation>
+        <translation>albero computer</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Benutzername eingeben</translation>
+        <translation>Inserire il nome utente</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Bitte geben Sie den abzufragenden Benutzername ein (Platzhalter erlaubt):</translation>
+        <translation>Inserire un nome utente di login (caratteri speciali ammessi) per il quale effettuare la query</translation>
     </message>
     <message>
         <source>user objects</source>
-        <translation>Benutzerobjekte</translation>
+        <translation>user objects</translation>
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Grupenname eingeben</translation>
+        <translation>Inserire il nome del gruppo</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Bitte geben Sie den Namen der Gruppe ein, deren Mitglieder abgefragt werden sollen:</translation>
+        <translation>Inserire il nome di un gruppo in cui ricercare i membri</translation>
     </message>
     <message>
         <source>group members</source>
-        <translation>Gruppenmitglieder</translation>
+        <translation>Membri del gruppo</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>Gruppe nicht gefunden</translation>
+        <translation>Gruppo non trovato</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Es wurde keine Gruppe mit dem Name &quot;%1&quot; gefunden. Bitte überprüfen Sie den Gruppenname oder den Gruppenbaum-Parameter.</translation>
+        <translation>Non è possibile trovare il gruppo %1. Verificare il nome del gruppo inserito e i parametri LDAP dei gruppi.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>Computername eingeben</translation>
+        <translation>Inserire il nome del computer</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation>Computerobjekte</translation>
+        <translation>oggetti computer</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation>Computer-DN eingeben</translation>
+        <translation>Inserisci il DN del computer</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>Bitte geben Sie den DN von einem Computer ein, dessen MAC-Adresse abgefragt werden soll:</translation>
+        <translation>Inserisci il DN di un computer il cui indirizzo MAC e&apos; da ricercare</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation>Computer-MAC-Adressen</translation>
+        <translation>indirizzi MAC computer</translation>
     </message>
     <message>
         <source>users</source>
-        <translation>Benutzer</translation>
+        <translation>utenti</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>Benutzergruppen</translation>
+        <translation>gruppi di utenti</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation>Computergruppen</translation>
+        <translation>gruppi computer</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Bitte geben Sie den Benutzerlogin-Name ein, dessen Gruppenmitgliedschaften abgefragt werden sollen:</translation>
+        <translation>Si prega di inserire un nome utente di accesso di appartenenza al gruppo da interrogare:</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation>Gruppen des Benutzers</translation>
+        <translation>gruppi di utenti</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation>Benutzer nicht gefunden</translation>
+        <translation>Utente non trovato</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation>Gruppen des Computers</translation>
+        <translation>gruppi di computer</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation>Computer nicht gefunden</translation>
+        <translation>Computer non trovato</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation>Computer-IP-Adresse eingeben</translation>
+        <translation>Inserisci indirizzo IP del computer</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation>Bitte geben Sie eine Computer-IP-Adresse ein, die in ein Computerobjekt aufgelöst werden soll:</translation>
+        <translation>Si prega di inserire un indirizzo IP del computer da risolvere a un oggetto computer:</translation>
     </message>
     <message>
         <source>computers</source>
-        <translation>Computer</translation>
+        <translation>computer</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>LDAP %1 Test fehlgeschlagen</translation>
+        <translation>Test %1 LDAP fallito</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>LDAP %1 Test erfolgreich</translation>
+        <translation>Test %1 LDAP completato con successo</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>Der %1 wurde erfolgreich abgefragt und %2 Einträge wurden gefunden.</translation>
+        <translation>Il %1 e&apos; stato interrogato con successo e sono state trovate %2 voci.</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 wurden erfolgreich abgefragt:
+        <translation>%1 %2 sono stati interrogati con successo:
 
 %3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation>LDAP-Filter-Test fehlgeschlagen</translation>
+        <translation>Test filtro LDAP falllito</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation>Es konnten keine %1 mit dem eingestellten Filter abfragen. Bitte überprüfen Sie den LDAP-Filter für %1.
+        <translation>Impossibile interrogare qualsiasi %1 usando il filtro configurato. Si prega di verificare il filtro LPAP per %1.
 
 %2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation>LDAP-Filter-Test erfolgreich</translation>
+        <translation>Test filtro LDAP completato con successo</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2 wurden mit dem konfigurierten Filter erfolgreich abgefragt.</translation>
+        <translation>%1 %2 sono stati interrogati con successo usando il filtro configurato.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation>(nur wenn anders als Gruppenbaum)</translation>
+        <translation>(solo se diverso dall&apos;albero gruppo)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>Computergruppenbaum</translation>
+        <translation>Albero gruppo computer</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation>Computergruppenbaum</translation>
+        <translation>albero gruppo computer</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation>Filter für Computer</translation>
+        <translation>Filtra per computer</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>z.B. room oder computerLab</translation>
+        <translation>es. aula o computerLab</translation>
     </message>
     <message>
         <source>Integration tests</source>
-        <translation>Integrationstests</translation>
+        <translation>Test integrazione</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation>Computergruppen</translation>
+        <translation>Gruppi computer</translation>
     </message>
     <message>
         <source>Test not applicable</source>
-        <translation>Test nicht anwendbar</translation>
+        <translation>Test non applicabile</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation>z.B. name oder description</translation>
+        <translation>es. nome o descrizione</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation>Filter für Computercontainer</translation>
+        <translation>Filtra per contenitori computer</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation>Computercontainer oder OUs</translation>
+        <translation>Contenitoru computer o OUs</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation>Verbindungssicherheit</translation>
+        <translation>Sicurezza della connessione</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation>TLS-Zertifikatsüberprüfung</translation>
+        <translation>Verifica del certificato TLS</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation>Systemstandard</translation>
+        <translation>Impostazioni di sistema</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>Nie (unsicher!)</translation>
+        <translation>Mai (insicuro!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation>Benutzerdefinierte CA-Zertifikatsdatei</translation>
+        <translation>File certificato CA personalizzato</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation>Nessuna</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2184,270 +2184,260 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation>z.B. (objectClass=computer)</translation>
+        <translation>per esempio. (OgettoClasse = computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>z.B. (objectClass=group)</translation>
+        <translation>per esempio:(Oggetto Classe = gruppo)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>z.B. (objectClass=person)</translation>
+        <translation>per esempio: (oggetto Classe=persona)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>z.B. (objectClass=room) oder (objectClass=computerLab)</translation>
+        <translation>per esempio: (oggetto Classe=aula) or (oggetto Classe=Laboratorio computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>z.B. (objectClass=container) oder (objectClass=organizationalUnit)</translation>
+        <translation>per esempio (oggetto Classe=container) o (oggetto Classe=Unità Organizzativa)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>Die konfigurierte Base-DN konnte nicht abgefragt werden. Bitte überprüfen Sie den Base-DN-Parameter.
-
-%1</translation>
+        <translation>Impossibile interrogare il DN base configurato. Controlla il parametro DN di base.% 1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation>Die LDAP-Base-DN wurde erfolgreich abgefragt. Die folgenden Einträge wurden gefunden:
-
-%1</translation>
+        <translation>Il DN base LDAP è stato interrogato correttamente. Sono state trovate le seguenti voci: % 1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation>Die Base-DN konnte nicht mittels Naming-Contexts abgefragt werden. Bitte überprüfen Sie den Naming-Context-Attribut-Parameter.
-
-%1</translation>
+        <translation>Impossibile interrogare il DN di base tramite i contesti di denominazione. Controlla il parametro dell&apos;attributo del contesto di denominazione.% 1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation>Zertifikatsdateien (*.pem)</translation>
+        <translation>File di certificato (* .pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation>Verbindung zum LDAP-Server konnte nicht hergestellt werden. Bitte überprüfen Sie die Servereinstellungen.
-
-%1</translation>
+        <translation>Impossibile connettersi al server LDAP. Controlla i parametri del server.% 1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>Bind zum LDAP-Server fehlgeschlagen. Bitte überprüfen Sie die Serverparameter und Bind-Zugangsdaten.
-
-%1</translation>
+        <translation>Impossibile collegarsi al server LDAP. Controlla i parametri del server e associa le credenziali.% 1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation>Verschlüsselungsprotokoll</translation>
+        <translation>Protocollo di crittografia</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation>Attribut Computerstandort</translation>
+        <translation>Attributo di posizione del computer</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation>Attribut Computeranzeigename</translation>
+        <translation>Attributo del nome di visualizzazione del computer</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation>Attribut Standortname</translation>
+        <translation>Attributo del nome della posizione</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation>z.B. cn oder displayName</translation>
+        <translation>per esempio. cn o visualizza Nome</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation>Identifizierung von Computerstandorten</translation>
+        <translation>Identificazione delle posizioni dei computers</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Computerstandorte (z.B. Räume) identifizieren über:</translation>
+        <translation>Identifica le posizioni dei computers (ad es. aule) tramite:</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation>Attribut Standort in Computerobjekten</translation>
+        <translation>Attributo di posizione negli oggetti del computer</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation>Alle Einträge eines Standortes auflisten</translation>
+        <translation>Elenca tutte le voci di una posizione</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation>Alle Standorte auflisten</translation>
+        <translation>Elenca tutte le posizioni</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation>Computeranzeigename eingeben</translation>
+        <translation>Inserisci il nome visualizzato sul computer</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>Bitte geben Sie den abzufragenden Computeranzeigename ein:</translation>
+        <translation>Inserisci un nome visualizzato sul computer per eseguire una query:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation>Computerstandortname eingeben</translation>
+        <translation>Inserisci il nome della posizione del computer</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Bitte geben Sie den Namen eines Computerstandortes ein (Platzhalter möglich):</translation>
+        <translation>Si prega di inserire il nome di una posizione del computer (caratteri jolly consentiti):</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation>Computerstandorte</translation>
+        <translation>posizioni del computer</translation>
     </message>
     <message>
         <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Bitte ändern Sie die Computerstandorteinstellungen, so dass Computergruppen oder Computercontainer als Computerstandort verwendet werden. Dann wird das angegebene Attribut anstatt des Common Names von Computergruppen oder übergeordneten Objekten abgefragt. Andernfalls müssen Sie dieses Attribut nicht konfigurieren.</translation>
+        <translation>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e&apos; necessario che tu configuri questo attributo.</translation>
     </message>
     <message>
         <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Bitte ändern Sie die Computerstandorteinstellungen unterhalb, so dass Computercontainer als Computerstandorte verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
+        <translation>Per favore cambia qui sotto le impostazioni di questa stanza computer per usare i container  come stanze di computer. Altrimenti non serve che tu configuri questo filtro.</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation>Standortname eingeben</translation>
+        <translation>Inserisci il nome della posizione</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Bitte geben Sie den Namen eines Standortes ein, dessen Einträge abgefragt werden sollen:</translation>
+        <translation>Si prega di inserire il nome di una posizione di cui voci per interrogare:</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation>Standorteinträge</translation>
+        <translation>voci di posizione</translation>
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation>LDAP-Test fehlgeschlagen</translation>
+        <translation>Test LDAP fallito</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation>Es konnte keine %1 abgefragt werden. Bitte überprüfen Sie den/die Parameter &quot;%2&quot; und geben Sie den Namen eines existierenden Objekts ein.
+        <translation>Impossibile interrogare alcun% 1. Controlla i parametro(i)% 2 e inserisci il nome di un oggetto esistente.
 
-%3</translation>
+3%</translation>
     </message>
     <message>
         <source>and</source>
-        <translation>und</translation>
+        <translation>e</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation>LDAP-Test erfolgreich</translation>
+        <translation>Test LDAP riuscito</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation>Es konnten keine Enträge im konfigurierten %1 abgefragt werden. Bitte überprüfen Sie den Parameter &quot;%2&quot;.
+        <translation>Impossibile interrogare le voci configurate %1. Si prega di controllare il parametro &quot;% 2&quot;.
 
-%3</translation>
+3%</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>Durchsuchen</translation>
+        <translation>Naviga</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Testen</translation>
+        <translation>Prova</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Hostnamen sind als vollqualifizierte Domainnamen gespeichert (FQDN, z.B. myhost.example.org)</translation>
+        <translation>Nomi host memorizzati come nomi di dominio completi (FQDN, ad es. Myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation>Attribut Computerhostname</translation>
+        <translation>Attributo hostname del computer</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>Bitte geben Sie den abzufragenden Computerhostnamen ein:</translation>
+        <translation>Inserire un nome host del computer da interrogare:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation>Ungültiger Hostname</translation>
+        <translation>Hostname non valido</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Sie haben eingestellt, dass Computerhostnamen als vollqualifizierte Domainnamen (FQDN) gespeichert sind, haben aber einen Hostnamen ohne Domain eingegeben.</translation>
+        <translation>Hai configurato i nomi host dei computer da memorizzare come nomi di dominio completi (FQDN), ma hai inserito un nome host senza dominio.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Sie haben eingestellt, dass Computerhostnamen als einfache Hostnamen ohne Domainnamen gespeichert sind, haben aber einen Hostnamen mit Domain eingegeben.</translation>
+        <translation>Hai configurato i nomi host dei computer da memorizzare come semplici nomi host senza un nome di dominio, ma hai inserito un nome host con una parte del nome di dominio.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Es wurde kein Benutzer mit dem Name &quot;%1&quot; gefunden! Bitte überprüfen Sie den Benutzername oder den Benutzergruppenbaum-Parameter.</translation>
+        <translation>Impossibile trovare un utente con il nome &quot;% 1&quot;. Si prega di controllare il nome utente o il parametro dell&apos;albero utente.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation>Hostname eingeben</translation>
+        <translation>Inserisci il nome host</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Bitte geben Sie den Computerhostnamen ein, dessen Gruppenmitgliedschaften abgefragt werden sollen:</translation>
+        <translation>Immettere un nome host del computer di cui si desidera eseguire la ricerca per appartenenza al gruppo:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Es wurde kein Computer mit dem Hostname &quot;%1&quot; gefunden. Bitte überprüfen Sie den Hostnamen oder den Computerbaum-Parameter.</translation>
+        <translation>Impossibile trovare un computer con il nome host &quot;% 1&quot;. Si prega di controllare il nome host o il parametro dell&apos;albero del computer.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation>Hostname-Lookup fehlgeschlagen</translation>
+        <translation>Ricerca del nome host fallita</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Der Hostname für die IP-Adresse %1 konnte nicht ermittelt werden. Bitte überprüfen Sie Ihre DNS-Server-Einstellungen.</translation>
+        <translation>Impossibile cercare il nome host per l&apos;indirizzo IP% 1. Si prega di verificare le impostazioni del server DNS.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>Attribut Benutzeranmeldename</translation>
+        <translation>Attributo del nome di accesso dell&apos;utente</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Konfiguriertes Attribut für Benutzeranmeldename oder Computerhostname (OpenLDAP)</translation>
+        <translation>Attributo configurato per il nome di accesso dell&apos;utente o il nome host del computer (OpenLDAP)</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation>Basis-DN mittels Naming-Context automatisch konfigurieren</translation>
+        <translation>Configura automaticamente la base DN tramite contesto di denominazione</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation>Objekte aus LDAP-Verzeichnis abfragen</translation>
+        <translation>Interrogare oggetti dalla directory LDAP</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Hilfe über Befehl anzeigen</translation>
+        <translation>Mostra aiuto per i comandi</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Befehle zum Konfigurieren und Testen der LDAP-/AD-Integration</translation>
+        <translation>Comandi per la configurazione ed il testing dell&apos;integrazione LDAP/AD</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Einfache LDAP/AD-Unterstützung für Veyon</translation>
+        <translation>Supporto LDAP / AD di base per Veyon</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (Computer und Standorte aus LDAP/AD laden)</translation>
+        <translation>%1 (carica computer e posizioni da LDAP / AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (Benutzer und Gruppen aus LDAP/AD laden)</translation>
+        <translation>%1 (carica utenti e gruppi da LDAP / AD)</translation>
     </message>
 </context>
 <context>
@@ -2458,61 +2448,61 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Instances</source>
-        <translation>Instanzen</translation>
+        <translation>Istanze</translation>
     </message>
     <message>
         <source>Enter name</source>
-        <translation>Name eingeben</translation>
+        <translation>Inserisci il nome</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>Bitte geben Sie einen Namen für die Instanz (kann später nicht geändert werden!):</translation>
+        <translation>Si prega di inserire un nome per l&apos;istanza (non può essere modificato in seguito!):</translation>
     </message>
     <message>
         <source>Remove instance</source>
-        <translation>Instanz entfernen</translation>
+        <translation>Rimuovi istanza</translation>
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>Möchten Sie wirklich die Instanz &quot;%1&quot; entfernen?</translation>
+        <translation>Vuoi veramente rimuovere l&apos;istanza &quot;% 1&quot;?</translation>
     </message>
     <message>
         <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>Konfiguration für Instanz &quot;%1&quot;</translation>
+        <translation>Configurazione per esempio &quot;% 1&quot;</translation>
     </message>
 </context>
 <context>
     <name>LdapProPlugin</name>
     <message>
         <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Professionelle LDAP/AD-Anbindung für Veyon</translation>
+        <translation>Integrazione LDAP / AD professionale per Veyon</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (Computer und Standorte aus LDAP/AD laden)</translation>
+        <translation>%1 (carica computer e posizioni da LDAP / AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (Benutzer und Gruppen aus LDAP/AD laden)</translation>
+        <translation>%1 (carica utenti e gruppi da LDAP / AD)</translation>
     </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation>Lizenzierung</translation>
+        <translation>Licenze</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation>Installierte Lizenzen</translation>
+        <translation>Licenze installate</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation>Neuen Netzwerkbereich hinzufügen</translation>
+        <translation>Aggiungi un nuovo intervallo di rete</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>Gewählten Netzwerkbereich entfernen</translation>
+        <translation>Rimuovi l&apos;intervallo di rete selezionato</translation>
     </message>
     <message>
         <source>ID</source>
@@ -2520,82 +2510,82 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Feature</source>
-        <translation>Funktion</translation>
+        <translation>Funzionalità</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation>Gültig bis</translation>
+        <translation>Valido fino a</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation>Lizenznehmer</translation>
+        <translation>Licenziatario</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation>Lizenzfile auswählen</translation>
+        <translation>Sfoglia il file di licenza</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon-Lizenz-Datei (*.vlf)</translation>
+        <translation>File di licenza Veyon (* .vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation>Lizenz entfernen</translation>
+        <translation>Rimuovi la licenza</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation>Möchten Sie wirklich die gewählte Lizenz entfernen?</translation>
+        <translation>Vuoi veramente rimuovere la licenza selezionata?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/V&gt;</translation>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation>Ungültige Lizenzdatei</translation>
+        <translation>File di licenza non valido</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation>Die Lizenzdatei konnte nicht zum Lesen geöffnet werden!</translation>
+        <translation>Impossibile aprire il file di licenza per la lettura!</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation>Die gewählte Lizenzdatei enthält keine gültigen Daten.</translation>
+        <translation>Il file di licenza selezionato non contiene dati validi.</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation>Die gewählte Lizenzdatei konnte nicht verifiziert werden.</translation>
+        <translation>Non è stato possibile verificare il file di licenza selezionato.</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation>Die gewählte Lizenzdatei ist nicht gültig für diese Installation.</translation>
+        <translation>Il file di licenza selezionato non è valido per questa installazione.</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation>Die gewählte Lizenzdatei ist abgelaufen.</translation>
+        <translation>Il file di licenza selezionato è scaduto.</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation>Die Lizenz ist bereits installiert.</translation>
+        <translation>La licenza è già installata.</translation>
     </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Hilfe für bestimmten Befehl anzeigen</translation>
+        <translation>Mostra l&apos;aiuto per un comando specifico</translation>
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation>Alle installierten Lizenzen anzeigen</translation>
+        <translation>Mostra tutte le licenze installate</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation>Lizenzdatei hinzufügen</translation>
+        <translation>Aggiungi il file di licenza</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation>Installierte Lizenz entfernen</translation>
+        <translation>Rimuovere la licenza installata</translation>
     </message>
     <message>
         <source>
@@ -2605,9 +2595,9 @@ USAGE
 
 </source>
         <translation>
-VERWENDUNG
+USO
 
-%1 add &lt;LICENSE FILE&gt;
+ %1 aggiungi &lt;LICENSE FILE&gt;
 
 </translation>
     </message>
@@ -2619,262 +2609,262 @@ USAGE
 
 </source>
         <translation>
-VERWENDUNG
+USO
 
-%1 remove &lt;LICENSE ID&gt;
+%1 rimuovi &lt;LICENSE ID&gt;
 
 </translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation>Kein Zertifikat mit angegebener ID gefunden</translation>
+        <translation>Nessun certificato trovato con un dato ID</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/V&gt;</translation>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Licensing management</source>
-        <translation>Lizenzverwaltung</translation>
+        <translation>Gestione delle licenze</translation>
     </message>
     <message>
         <source>Commands for managing license keys</source>
-        <translation>Befehle zum Verwalten von Lizenzschlüsseln</translation>
+        <translation>Comandi per la gestione delle chiavi di licenza</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation>Plugin zur Implementierung abstrakter Funktionen für die Linux-Plattform</translation>
+        <translation>Plugin che implementa funzioni astratte per la piattaforma Linux.</translation>
     </message>
 </context>
 <context>
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation>Standort auswählen</translation>
+        <translation>Seleziona la posizione</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>Suchfilter eingeben...</translation>
+        <translation>inserisci filtro di ricerca...</translation>
     </message>
 </context>
 <context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>Konfiguration</translation>
+        <translation>Configurazione</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation>Balloon-Tooltips deaktivieren</translation>
+        <translation>Disabilita tooltip dei palloncini</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>Nur Icons anzeigen</translation>
+        <translation>Mostra solamente le icone</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation>Hauptfenster</translation>
+        <translation>FinestraPrincipale</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>Werkzeugleiste</translation>
+        <translation>BarraStrumenti</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allgemein</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Datei</translation>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hilfe</translation>
+        <translation>&amp;Aiuto</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Beenden</translation>
+        <translation>&amp;Esci</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Strg+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Strg+S</translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>Einstellungen aus Datei &amp;laden</translation>
+        <translation>C&amp;arica impostazioni dal file</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Strg+O</translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Über Qt</translation>
+        <translation>Informazioni su Qt</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation>Authentifizierung nicht möglich</translation>
+        <translation>Autenticazione impossibile</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Konfiguration nicht schreibbar</translation>
+        <translation>Il file di configurazione non è scrivibile</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Einstellungen aus Datei laden</translation>
+        <translation>Carica impostazioni da file</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Einstellungen in Datei speichern</translation>
+        <translation>Salva impostazioni su file</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Ungespeicherte Einstellungen</translation>
+        <translation>Impostazioni non salvate</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Einige Einstellungen sind nicht gespeichert. Trotzdem beenden?</translation>
+        <translation>Alcune impostazioni non sono state salvate. Esco comunque?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
+        <translation>Configurazione Veyon</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Dienst</translation>
+        <translation>Servizio</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Master</translation>
+        <translation>Principale</translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation>Zugriffskontrolle</translation>
+        <translation>Controllo accessi</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Über Veyon</translation>
+        <translation>Informazioni su Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation>Automatico</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Informazioni su</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation>%1 Configurator %2</translation>
+        <translation>%1 Configuratore %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>JSON-Dateien (*.json)</translation>
+        <translation>File JSON (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
+        <translation>La configurazione locale backend ha riportato che la configurazione non e&apos; salvabile! Si prega di eseguire il configuratore %1 con privilegi maggiori.</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind nicht mehr aktuell. Bitte erzeugen Sie neue Schlüsseldateien mit Hilfe des %1 Configurators. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe des %1 Configurators einrichten. Andernfalls werden Sie nicht in der Lage sein, mit %1 auf Computer zuzugreifen.</translation>
+        <translation>Nessun file di chiave di autenticazione e&apos; stato trovato o i correnti sono antiquati. Si prega di creare un nuovi file di chiave usandi il Configuratore %1. In alternativa, imposta l&apos;autenticazione di accesso usando il Configuratore %1. Altrimenti non sarai in grado ad accedere ai computer usando %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Zugriff verweigert</translation>
+        <translation>Accesso negato</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>Gemäß der lokalen Konfiguration sind Sie nicht berechtigt, auf Computer im Netzwerk zuzugreifen. Bitte melden Sie sich mit einem anderen Konto an oder lassen Ihren Systemadministrator die lokale Konfiguration überprüfen.</translation>
+        <translation>Secondo la configurazione locale non ti e&apos; permesso accedere ai computer nella rete. Si prega di effettuare il login con un account diverso o lasciar controllare al tuo amministatore di sistema la configurazione locale.</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Bildschirmfotos</translation>
+        <translation>Catture dello schermo</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation>Funktion aktiv</translation>
+        <translation>Funzione attiva</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
+        <translation>La funzionalità &quot;%1&quot; e&apos; ancora attiva. Arrestala prima di chiudere %2.</translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>Konfiguration zurücksetzen</translation>
+        <translation>Reimposta configurazione</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
+        <translation>Vuoi veramente reimpostare la configurazione locale e riportare tutte le impostazioni valori originali?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>Benutzer und Computer suchen</translation>
+        <translation>Cerca utenti e computer</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation>Optimale Größe einstellen</translation>
+        <translation>Sistema dimensione ottimale</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation>Computer an Gitter ausrichten</translation>
+        <translation>Allinea i computer alla griglia</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
+        <translation>Opzioni di %1 </translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation>Ungenügende Rechte</translation>
+        <translation>Privilegi insufficienti</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Programmstart mit administrativen Rechten nicht möglich. Bitte stellen Sie sicher, dass ein sudo-ähnliches Programm für Ihre Desktop-Umgebung installiert ist! Das Programm wird nun mit normalen Benutzerrechten ausgeführt.</translation>
+        <translation>Impossibile iniziare con i privilegi di amministratore. Assicurati che sia installato un programma simile a sudo per il tuo ambiente desktop! Il programma verrà eseguito con i normali privilegi dell&apos;utente</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation>Nur eingeschaltete Computer anzeigen</translation>
+        <translation>Mostra solo i computer alimentati</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>Einstellungen in Datei &amp;speichern</translation>
+        <translation>&amp; Salva le impostazioni nel file</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Ansicht</translation>
+        <translation>&amp;Vista</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
+        <translation> &amp;Standard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>&amp;Erweitert</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>Standorte &amp; Computer</translation>
+        <translation> &amp;Avanzate</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation>Benutzerdefinierte Computeranordnung verwenden</translation>
+        <translation>Usa la disposizione personalizzata del computer </translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Posizioni &amp;&amp; computers</translation>
     </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation>Verzeichnisse</translation>
+        <translation>Cartelle</translation>
     </message>
     <message>
         <source>...</source>
@@ -2882,275 +2872,275 @@ VERWENDUNG
     </message>
     <message>
         <source>User configuration</source>
-        <translation>Benutzerkonfiguration</translation>
+        <translation>Configurazione utente</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>Funktion bei Doppelklick:</translation>
+        <translation>Funzionalita&apos; sul doppio clic del computer:</translation>
     </message>
     <message>
         <source>Features</source>
-        <translation>Funktionen</translation>
+        <translation>Funzionalita&apos;</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation>Alle Funktionen</translation>
+        <translation>Tutte le funzionalita&apos;</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation>Deaktivierte Funktionen</translation>
+        <translation>Funzionalita&apos; disabilitate</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Bildschirmfotos</translation>
+        <translation>Catture dello schermo</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation>&lt;Keine Funktion&gt;</translation>
+        <translation>&lt;nessuna funzionalita&apos;&gt;</translation>
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>Grundeinstellungen</translation>
+        <translation>Impostazioni di base</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation>Verhalten</translation>
+        <translation>Comportamento</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation>Gewählten Modus für Client-Computer durchsetzen</translation>
+        <translation>Applicare la modalita&apos; selezionata per i client computer</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation>Lokalen Computer ausblenden</translation>
+        <translation>Nascondi il computer locale</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation>Filterfeld für Computer ausblenden</translation>
+        <translation>Nascondi il campo filtri computer</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>Aktionen wie Computer neustarten oder ausschalten</translation>
+        <translation>Azioni come il riavvio o lo spegnimetno dei computer</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Benutzeroberfläche</translation>
+        <translation>Interfaccia Utente</translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation>Hintergrundfarbe</translation>
+        <translation>Colore di sfondo</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>Aktualisierungsintervall Vorschaubilder</translation>
+        <translation>Intervallo di aggiornamento delle miniature</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Program start</source>
-        <translation>Programmstart</translation>
+        <translation>Avvio del programma</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation>Modi und Funktionen</translation>
+        <translation>Modalità e caratteristiche</translation>
     </message>
     <message>
         <source>User and computer name</source>
-        <translation>Benutzer- und Computername</translation>
+        <translation>Nome dell&apos;utente e del computer</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Nur Benutzername</translation>
+        <translation>Solo il nome utente</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation>Nur Computername</translation>
+        <translation>Solo il nome del computer</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation>Computerminiaturbild-Beschriftung</translation>
+        <translation>Miniatura anteprima computer</translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>Textfarbe</translation>
+        <translation>Colore del testo</translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation>Sortierreihenfolge</translation>
+        <translation>Ordinamento</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>Computer- und Benutzername</translation>
+        <translation>Computer e nome utente</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation>Computerstandorte</translation>
+        <translation>Ubicazioni del computer</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation>Nur aktuellen Standort anzeigen</translation>
+        <translation>Mostra solo la posizione corrente</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation>Manuelles Hinzufügen von ausgeblendeten Standorten erlauben</translation>
+        <translation>Consenti l&apos;aggiunta di posizioni nascoste manualmente</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation>Leere Standorte ausblenden</translation>
+        <translation>Nascondi posizioni vuote</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Bestätigungsdialog für möglicherweise unsichere Aktionen anzeigen</translation>
+        <translation>Mostra la finestra di dialogo di conferma per le azioni potenzialmente pericolose</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation>Zugriffskontrolle durchführen</translation>
+        <translation>Eseguire il controllo degli accessi</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation>Automatisch aktuellen Standort auswählen</translation>
+        <translation>Seleziona automaticamente la posizione corrente</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
+        <translation>Regola automaticamente le dimensioni della miniatura del computer</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation>Automatisch Computerauswahlbedienfeld öffnen</translation>
+        <translation>Apri automaticamente il pannello di selezione del computer</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>Beobachten</translation>
+        <translation>Monitoraggio</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation>Eingebauter Beobachtungsmodus</translation>
+        <translation>Modalita&apos; di monitoraggio integrata</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation>Dieser Modus erlaubt es Ihnen, alle Computer an einem oder mehreren Standorten zu beobachten.</translation>
+        <translation>Questa modalità consente di monitorare tutti i computer in una o più posizioni.</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryConfigurationPage</name>
     <message>
         <source>Network discovery</source>
-        <translation>Netzwerkerkennung</translation>
+        <translation>Individuazione della rete</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Modus</translation>
+        <translation>Modalità</translation>
     </message>
     <message>
         <source>Scan network ranges</source>
-        <translation>Netzwerkbereiche scannen</translation>
+        <translation>Scansione intervalli di rete</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
-        <translation>z.B. 192.168.1.0/24</translation>
+        <translation>per esempio: 192.168.1.0/24</translation>
     </message>
     <message>
         <source>Scan all subnets of computer</source>
-        <translation>Alle Subnetze des Computers scannen</translation>
+        <translation>Analizza tutte le subnet del computer</translation>
     </message>
     <message>
         <source>Scan custom subnet</source>
-        <translation>Benutzerdefiniertes Subnetz scannen</translation>
+        <translation>Scansione subnet personalizzata</translation>
     </message>
     <message>
         <source>Scan sessions on local computer</source>
-        <translation>Sitzungen auf lokalem Computer scannen</translation>
+        <translation>Scansione delle sessioni sul computer locale</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Testen</translation>
+        <translation>Prova</translation>
     </message>
     <message>
         <source>Network ranges</source>
-        <translation>Netzwerkbereiche</translation>
+        <translation>Gamme di rete</translation>
     </message>
     <message>
         <source>Add new group</source>
-        <translation>Neue Gruppe hinzufügen</translation>
+        <translation>Aggiungi nuovo gruppo</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation>Gewählte Gruppe entfernen</translation>
+        <translation>Rimuovi il gruppo selezionato</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation>Gruppen</translation>
+        <translation>Gruppi</translation>
     </message>
     <message>
         <source>First address</source>
-        <translation>Erste Adresse</translation>
+        <translation>Primo indirizzo</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation>Letzte Adresse</translation>
+        <translation>Ultimo indirizzo</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation>Neuen Netzwerkbereich hinzufügen</translation>
+        <translation>Aggiungi un nuovo intervallo di rete</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>Gewählten Netzwerkbereich entfernen</translation>
+        <translation>Rimuovi l&apos;intervallo di rete selezionato</translation>
     </message>
     <message>
         <source>Parallel scans</source>
-        <translation>Parallele Scans</translation>
+        <translation>Scansioni parallele</translation>
     </message>
     <message>
         <source>Scan timeout</source>
-        <translation>Scan-Timeout</translation>
+        <translation>Scansione terminata</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
-        <translation>Limit für Sitzungsscan</translation>
+        <translation>Limite di scansione di sessione</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Optionen</translation>
+        <translation>Opzioni</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Gefundene IP-Adressen in Hostnamen rückwärts auflösen</translation>
+        <translation>La ricerca inversa ha scoperto gli indirizzi IP nei nomi host</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation>Neuer Standort</translation>
+        <translation>Nuova posizione</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryDirectory</name>
     <message>
         <source>Scanning...</source>
-        <translation>Scanne...</translation>
+        <translation>Scansione...</translation>
     </message>
     <message>
         <source>Discovered computers</source>
-        <translation>Gefundene Computer</translation>
+        <translation>Computers trovati</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Hilfe für bestimmten Befehl anzeigen</translation>
+        <translation>Mostra l&apos;aiuto per un comando specifico</translation>
     </message>
     <message>
         <source>Scan a subnet</source>
-        <translation>Ein Subnetz scannen</translation>
+        <translation>Scansione di una sotto rete</translation>
     </message>
     <message>
         <source>
@@ -3160,200 +3150,201 @@ USAGE
 
 </source>
         <translation>
-VERWENDUNG
+USO 
 
-%1 scan [&lt;SUBNETZ&gt;]
+ % 1 scansione[&lt;SUBNET&gt;]
+
 </translation>
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Netzwerkobjektverzeichnis, das automatisch Computer im Netzwerk erkennt</translation>
+        <translation>Directory dell&apos;oggetto di rete che rileva automaticamente i computer nella rete</translation>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Netzwerkerkennung (Veyon-Clients im Netzwerk suchen)</translation>
+        <translation>Ricerca della rete (rete di scansione per i client Veyon)</translation>
     </message>
     <message>
         <source>Commands for managing the network discovery directory</source>
-        <translation>Befehle zur Verwaltung des Netzwerkobjektverzeichnisses</translation>
+        <translation>Comandi per la gestione della directory di ricerca della rete</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>Standorte/Computer</translation>
+        <translation>Posizioni / Computers</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Benutzername</translation>
+        <translation>Nome Utente</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Passwort</translation>
+        <translation>Password</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation>Veyon-Anmeldung</translation>
+        <translation>Logon Veyon</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Authentifizierungsfehler</translation>
+        <translation>Errore di autenticazione</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Die Anmeldung mit dem angegebenen Benutzername und Passwort ist fehlgeschlagen. Bitte versuchen Sie es erneut!</translation>
+        <translation>Logon fallito con le credenziali fornite. Riprova!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Bitte geben Sie Ihren Benutzernamen und Passwort ein, um auf Computer zuzugreifen.</translation>
+        <translation>Inserisci il tuo username e password per accedere ai computer</translation>
     </message>
 </context>
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Einschalten</translation>
+        <translation>Accendi</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>Klicken Sie diesen Button an, um alle Computer einzuschalten. Auf diesem Wege müssen Sie nicht jeden Computer per Hand einschalten.</translation>
+        <translation>Premi questo bottone per accendere tutti i computer. In questo modo non devi accendere ogni computer a mano.</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Neustarten</translation>
+        <translation>Riavvia il PC</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um alle Computer neuzustarten.</translation>
+        <translation>Clicca questo bottone per riavviare tutti i computer.</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation>Herunterfahren</translation>
+        <translation>Spegni</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>Klicken Sie diesen Button an, um alle Computer herunterzufahren. Auf diesem Wege müssen Sie nicht jeden Computer per Hand herunterfahren.</translation>
+        <translation>Clicca questo bottone per spegnere tutti i computer. In questo modo non devi spegnere ogni computer a mano.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Computer ein-/ausschalten oder neustarten</translation>
+        <translation>Accendi/spegni o riavvia un computer</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>Neustart bestätigen</translation>
+        <translation>Conferma riavvio</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>Herunterfahren bestätigen</translation>
+        <translation>Conferma spegnimento</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>Möchten Sie wirklich die gewählten Computer neustarten?</translation>
+        <translation>Vuoi veramente riavviare i computer selezionati?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
+        <translation>Vuoi veramente spegnere il computer selezionato?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Computer via Wake-on-LAN (WOL) einschalten</translation>
+        <translation>Accendi un computer tramite Wake-on-LAN (WOL)</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>MAC-ADRESSE</translation>
+        <translation>MAC ADDRESS</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Dieser Befehl sendet ein Wake-on-LAN (WOL) Paket an das Netzwerk, um den Computer mit der angegebenen MAC-Adresse einzuschalten</translation>
+        <translation>Questo comando trasmette un pacchetto Wake-on-LAN (WOL) alla rete per accendere il computer con l&apos;indirizzo MAC specificato.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll!</translation>
+        <translation>Si prega di specificare il comando per visualizzare la guida per!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation>Ungültige MAC-Adresse angegeben!</translation>
+        <translation>Indirizzo MAC specificato non valido!</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation>Befehle zur Steuerung des Einschaltzustands von Computern</translation>
+        <translation>Comandi per il controllo dello stato di alimentazione dei computers</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>Fernansicht</translation>
+        <translation>Vista remota</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>Eine Fernansicht ohne Interaktion/Bedienung für einen Computer öffnen.</translation>
+        <translation>Apri una vista remota per un computer senza interazione</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fernsteuern</translation>
+        <translation>Controllo remoto</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>Eine Fernsteuerung für einen Computer öffnen.</translation>
+        <translation>Apri una finestra di controllo remoto per un computer</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Fernzugriff</translation>
+        <translation>Accesso remoto</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Fernansicht oder -Steuerung eines Computers</translation>
+        <translation>Vista o controllo remoto di un computer</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Bitte geben Sie den Hostnamen oder IP-Adresse des Computers ein, auf den Sie zugreifen möchten:</translation>
+        <translation>Inserisci l&apos;hostname o l&apos;indirizzo IP del computer al quale vuoi accedere:</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Hilfe über Befehl anzeigen</translation>
+        <translation>Mostra aiuto per i comandi</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 Fernzugriff</translation>
+        <translation>%1 - %2 Accesso remoto</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Nur beobachten</translation>
+        <translation>Osserva solo</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fernsteuern</translation>
+        <translation>Controllo remoto</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation>Tastaturkürzel senden</translation>
+        <translation>Invia scorciatoia</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Vollbild</translation>
+        <translation>Schermo intero</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>Fenster</translation>
+        <translation>Finestra</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Strg+Alt+Entf</translation>
+        <translation>Ctrl+Alt+Canc</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Strg+Esc</translation>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
@@ -3373,49 +3364,49 @@ VERWENDUNG
     </message>
     <message>
         <source>Menu</source>
-        <translation>Menü</translation>
+        <translation>Menu</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Strg+F1</translation>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>Verbindung wird hergestellt %1</translation>
+        <translation>Connessione con %1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Verbindung hergestellt.</translation>
+        <translation>Connesso.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Bildschirmfoto</translation>
+        <translation>Screenshot</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Beenden</translation>
+        <translation>Uscita</translation>
     </message>
 </context>
 <context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
-        <translation>Internetzugriff durch Modifizierung der Routingtabelle</translation>
+        <translation>Controlla l&apos;accesso a Internet modificando la tabella di routing</translation>
     </message>
 </context>
 <context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
-        <translation>Defaultroute entfernen um Internetzugriff zu sperren</translation>
+        <translation>Rimuovi percorsi predefiniti per bloccare l&apos;accesso a Internet</translation>
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation>Benutzerdefinierte Route hinzufügen um Internetzugriff zu sperren</translation>
+        <translation>Aggiungi un percorso personalizzato per bloccare Internet</translation>
     </message>
     <message>
         <source>Destination</source>
-        <translation>Ziel</translation>
+        <translation>Destinazione</translation>
     </message>
     <message>
         <source>Gateway</source>
@@ -3426,162 +3417,162 @@ VERWENDUNG
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Bitte geben Sie die Programme oder die Befehle ein, die auf den gewählten Computern gestartet werden sollen. Sie können mehrere Programme/Befehle über einzelne Zeilen angeben.</translation>
+        <translation>Inserisci i programmi o i comandi da eseguire nei computer selezionati. Puoi separare programmi/comandi multipli andando a capo.</translation>
     </message>
     <message>
         <source>Run programs</source>
-        <translation>Programme starten</translation>
+        <translation>Esegui programmi</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>z.B. &quot;C:\Programme\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation>es. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Sperren</translation>
+        <translation>Blocca</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Entsperren</translation>
+        <translation>Sbloccca</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation>Bildschirm und Eingabegeräte eines Computers sperren</translation>
+        <translation>Blocca schermo e dispositivi di input di un computer</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>Mit diesem Button können Sie alle Computer sperren und die volle Aufmerksamkeit der Benutzer zurückerhalten. In diesem Modus werden alle Eingabegeräte gesperrt und die Bildschirme der Benutzer schwarz eingefärbt.</translation>
+        <translation>Per richiamare la completa attenzione di tutti gli utenti, puoi bloccare i loro computer utilizzando questo pulsante. In questo modo tutti i dispositivi di input saranno bloccati e gli schermi saranno colorati di nero.</translation>
     </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>unbekannt</translation>
+        <translation>sconosciuto</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Es konnte kein Bildschirmfoto erstellt werden, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
+        <translation>Non e&apos; stato possibile effettuare una screenshot in quanto la directory %1 non esiste e non e&apos; stato possibile crearla.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Bildschirmfoto</translation>
+        <translation>Screenshot</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Bildschirmfoto</translation>
+        <translation>Screenshot</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>Nutzen Sie diese Funktion, um ein Bildschirmfoto der gewählten Computer aufzunehmen.</translation>
+        <translation>Usa questa funzione per fare una screenshot dei computer selezionati.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>Bildschirmfotos aufgenommen</translation>
+        <translation>Screenshot eseguiti</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation>Bildschirmfotos von %1 Computern wurden erfolgreich aufgenommen.</translation>
+        <translation>Screenshot di %1 computer sono stati effettuati con successo.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation>Bildschirmfotos von Computern aufnehmen und lokal speichern.</translation>
+        <translation>Effettua screenshot dei computer e salvali in locale.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Hier sind alle Bildschirmfotos aufgelistet, die Sie erstellt haben. Sie können Bildschirmfotos erstellen, indem Sie den Eintrag &quot;Bildschirmfoto&quot; im Kontextmenü eines Computers anklicken. Die Bildschirmfotos können mit Hilfe der unterhalb befindlichen Schaltflächen verwaltet werden.</translation>
+        <translation>Tutte le screenshot da te effettuate sono elencate qui. Puoi effettuare screenshot cliccando l&apos;elemento &quot;Screenshot&quot; nel menu di un computer. Le screenshot possono essere gestite utilizzando i pulsanti qui sotto.</translation>
     </message>
     <message>
         <source>User:</source>
-        <translation>Benutzer:</translation>
+        <translation>Utente:</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>Computer:</translation>
+        <translation>Computer</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Datum:</translation>
+        <translation>Data:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Zeit:</translation>
+        <translation>Ora:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>Anzeigen</translation>
+        <translation>Mostra</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation>Elimina</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Allgemein</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Autostart</translation>
+        <translation>Avvio automatico</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Icon im Infobereich verstecken</translation>
+        <translation>Nascondi l&apos;icona tray</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Dienst starten</translation>
+        <translation>Avvia il servizio</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Beendet</translation>
+        <translation>Fermato</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Dienst stoppen</translation>
+        <translation>ferma il servizio</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>Status:</translation>
+        <translation>Stato:</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>SAS-Generierung in Software aktivieren (Strg+Alt+Entf)</translation>
+        <translation>Abilita generazione SAS via software (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>Netzwerk</translation>
+        <translation>Rete</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>Demoserver-Port</translation>
+        <translation>Porta per la modalità Presentazione</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Firewall-Ausnahme aktivieren</translation>
+        <translation>Abilita le eccezioni del firewall</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Nur Verbindungen vom lokalen Computer erlauben</translation>
+        <translation>Consenti connessioni solo da questo computer &apos;localhost&apos;</translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation>Port des internen VNC-Servers</translation>
+        <translation>Porta interna server VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>VNC-Server</translation>
+        <translation>Server VNC</translation>
     </message>
     <message>
         <source>Plugin:</source>
@@ -3589,282 +3580,281 @@ VERWENDUNG
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>%1 Dienst neustarten</translation>
+        <translation>Riavvia Servizio %1</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
+        <translation>Tutte le impostazioni sono state salvate. Per farle funzionare, il servizio %1 deve essere riavviato. Riavviarlo ora?</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation>Läuft</translation>
+        <translation>In esecuzione</translation>
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation>Funktionsverwalter-Port</translation>
+        <translation>Porta manager funzionalita&apos;</translation>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation>Primärer Dienst-Port</translation>
+        <translation>Porta servizio primario</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation>Wenn diese Option aktiviert wird, startet der Dienst einen Serverprozess für jede interaktive Sitzung auf einem Computer.
-Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</translation>
+        <translation>Abilitando questa opzione, il servizio avvierà un processo server per ogni sessione interattiva su un computer. In genere ciò è necessario per supportare i server terminal.</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation>Unterstützung von Merfachsitzungen (experimentell)</translation>
+        <translation>Supporto multi sessione (sperimentale)</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>Benachrichtigung bei Fernzugriff anzeigen</translation>
+        <translation>Mostra notifica sulla connessione remota</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation>Benachrichtigung bei fehlgeschlagenen Authentifizierungsversuchen anzeigen</translation>
+        <translation>Mostra notifica sui tentativi di autenticazione falliti</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>Alternativen Mechanismus zur Benutzerauthentifizierung verwenden</translation>
+        <translation>Utilizzare un meccanismo di autenticazione utente alternativo</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation>Starte Dienst %1</translation>
+        <translation>Avvio del servizio% 1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation>Beende Dienst %1</translation>
+        <translation>Arresto del servizio% 1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation>Registriere Dienst %1</translation>
+        <translation>Registrazione del servizio% 1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation>Deregistriere Dienst %1</translation>
+        <translation>Servizio di annullamento della registrazione% 1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation>Dienststeuerung</translation>
+        <translation>Controllo del servizio</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation>Dienst läuft</translation>
+        <translation>Servizio in esecuzione</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Dienst läuft nicht</translation>
+        <translation>Servizio non in esecuzione</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>Veyon-Dienst konfigurieren und steuern</translation>
+        <translation>Configura e controlla il servizio Veyon</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation>Veyon-Dienst registrieren</translation>
+        <translation>Registra Servizio Veyon</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Veyon-Dienst deregistrieren</translation>
+        <translation>Annullamento della registrazione del Servizio Veyon</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Veyon-Dienst starten</translation>
+        <translation>Avvia Servizio Veyon</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Veyon-Dienst beenden</translation>
+        <translation>Arresta Servizio Veyon</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Veyon-Dienst neustarten</translation>
+        <translation>Riavvia Servizio Veyon</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Status des Veyon-Diensts abfragen</translation>
+        <translation>Stato del query del Servizio Veyon</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation>Befehle zur Konfiguration und Steuerung des Veyon-Diensts</translation>
+        <translation>Comandi per configurare e controllare il Servizio Veyon</translation>
     </message>
 </context>
 <context>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation>Befehlsdatei ausführen</translation>
+        <translation>Esegui il file di comando</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Datei &quot;%1 existiert nicht!</translation>
+        <translation>Il file &quot;% 1&quot; non esiste!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktive Shell und Scriptausführung für Veyon Control</translation>
+        <translation>Esecuzione interattiva di shell e script per controllo Veyon</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation>Befehle für Shellfunktionalitäten</translation>
+        <translation>Comandi per le funzionalità della shell</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>Icon im Infobereich</translation>
+        <translation>Icona barra di sistema</translation>
     </message>
 </context>
 <context>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation>Benutzergruppenbackend für Systembenutzergruppen</translation>
+        <translation>Backend gruppi di utenti per gruppi di utenti di sistema</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation>Standard (Systembenutzergruppen)</translation>
+        <translation>Predefinito (gruppi utenti di sistema)</translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Textnachricht übermitteln</translation>
+        <translation>Invia un messaggio di testo</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Nutzen Sie das Feld unterhalb, um Ihre Nachricht zu tippen, die an alle Benutzer übermittelt wird.</translation>
+        <translation>Utilizza il campo qui sotto per scrivere il messaggio che vuoi inviare agli utenti selezionati.</translation>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Textnachricht</translation>
+        <translation>Invia messaggio</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Nutzen Sie diese Funktion, um eine Textnachricht an alle Benutzer zu übermitteln, z. B. um ihnen neue Aufgaben zuzuweisen.</translation>
+        <translation>Utilizza questa funzione per inviare un messaggio di testo a tutti gli utenti. Ad esempio per assegnargli nuovi compiti.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Nachricht vom Lehrer</translation>
+        <translation>Messaggio dall&apos;insegnante</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Eine Nachricht an einen Benutzer senden</translation>
+        <translation>Invia un messaggio ad un utente</translation>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Halbdurchsichtige Fenster (layered windows) aufzeichnen</translation>
+        <translation>Abilita cattura di finestre in livelli (semi-trasparente)</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Vollen Bildschirm abfragen (standardmäßig aktiviert lassen)</translation>
+        <translation>Schermo pieno (lasciarlo abilitato per default)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Niedrige Genauigkeit (Turbomodus)</translation>
+        <translation>Bassa qualità (modalità turbo)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>Konfiguration des eingebauten UltraVNC-Servers</translation>
+        <translation>Configurazione del server UltraVNC integrato</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>Multi-Monitor-Unterstützung aktivieren</translation>
+        <translation>Abilita il supporto per più monitor</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>Desktop-Duplication-Engine unter Windows 8 und neuer aktivieren</translation>
+        <translation>Abilita motore di duplicazione Desktop su versioni di Windows 8 e successive</translation>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation>Kein Schreibzugriff</translation>
+        <translation>Nessun accesso in scrittura</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Ihre persönlichen Einstellungen konnten nicht gespeichert werden! Bitte überprüfen Sie den Pfad für die Benutzerkonfiguration mit Hilfe des %1 Configurators.</translation>
+        <translation>Impossibile salvare le tue impostazioni personali. Controlla il percorso file di configurazione utente utilizzando il Configuratore %1</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
-        <translation>Benutzersitzungssteuerung</translation>
+        <translation>Controllo sessione utente</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation>Abmelden</translation>
+        <translation>Disconnetti</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
+        <translation>Fare clic su questo pulsante per disconnettere gli utenti da tutti i computer.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>Benutzerabmeldung bestätigen</translation>
+        <translation>Conferma logout utente</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
+        <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[IN ORDNUNG]</translation>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[FEHLGESCHLAGEN]</translation>
+        <translation>[FALLITO]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Ungültiger Befehl!</translation>
+        <translation>Comando non valido!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>Verfügbare Befehle:</translation>
+        <translation>Comandi disponibili:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Ungültige Argumente angegeben</translation>
+        <translation>Argomenti dati non validi</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>Nicht genügend Argumente angegeben - benutzen Sie &quot;%1 help&quot; für mehr Informationen</translation>
+        <translation>Non sono stati dati abbastanza argomenti - usa &quot;%1 help&quot; per maggiori informazioni</translation>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>Unbekanntes Ergebnis!</translation>
+        <translation>Risultato sconosciuto!</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation>Verfügbare Module:</translation>
+        <translation>Moduli disponibili:</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation>Kein Modul angegeben oder Modul nicht gefunden - verfügbare Module sind:</translation>
+        <translation>Nessun modulo specificato o modulo non trovato - i moduli disponibili sono:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>Plugin nicht lizenziert</translation>
+        <translation>Plugin non concesso in licenza</translation>
     </message>
     <message>
         <source>INFO</source>
@@ -3872,90 +3862,90 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>ERROR</source>
-        <translation>FEHLER</translation>
+        <translation>ERRORE</translation>
     </message>
     <message>
         <source>licensed for</source>
-        <translation>lizenziert für</translation>
+        <translation>concesso in licenza per</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>VERWENDUNG</translation>
+        <translation>USO</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>BESCHREIBUNG</translation>
+        <translation>DESCRIZIONE</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation>BEISPIELE</translation>
+        <translation>ESEMPI</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon-Dienst</translation>
+        <translation>Servizio Veyon</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Verbindung zu %1 wird hergestellt ...</translation>
+        <translation>Connessione a %1 ...</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
+        <translation>Plugin che implementa funzioni astratte per la piattaforma Windows</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; ist bereits installiert.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; è già installato.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; konnte nicht installiert werden.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non può essere installato.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde erfolgreich installiert.</translation>
+        <translation>Controllo servizi di Windows: il servizio1 &quot;è stato installato correttamente.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; konnte nicht deinstalliert werden.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non può essere disinstallato.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde erfolgreich deinstalliert.</translation>
+        <translation>Controllo servizi di Windows: il servizio 1 &quot;è stato disinstallato correttamente.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden.</translation>
+        <translation>Controllo servizi di Windows: non è stato possibile modificare il tipo di avvio del servizio &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde nicht gefunden.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non è stato trovato.</translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation>Konfiguration des eingebauten x11vnc-Servers</translation>
+        <translation>Configurazione del server x11vnc integrata</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>Benutzerdefinierte x11vnc-Parameter:</translation>
+        <translation>Parametri per x11vnc personalizzati:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>X-Damage-Erweiterung nicht nutzen</translation>
+        <translation>Non usare l&apos;estensione X Damage</translation>
     </message>
 </context>
 </TS>

@@ -1426,7 +1426,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Будь ласка, завершіть усі завдання протягом наступних 5 хвилин.</translation>
     </message>
 </context>
 <context>
@@ -2864,12 +2864,12 @@ USAGE
         <translation>&amp;Розширений</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Місця і комп&apos;ютери</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>Нетипове розташування комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Місця &amp;&amp; комп&apos;ютери</translation>
     </message>
 </context>
 <context>

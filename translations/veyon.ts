@@ -2833,11 +2833,11 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
+        <source>Use custom computer arrangement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
+        <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1081,16 +1081,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
         <translation>Διαχείριση υπολογιστή</translation>
@@ -1409,6 +1409,21 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation>Εκπαιδευτικός</translation>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2604,7 +2619,7 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
@@ -2784,10 +2799,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1 Configurator</source>
         <translation type="unfinished"/>
     </message>
@@ -2820,7 +2831,11 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2939,10 +2954,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -2972,6 +2983,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3298,10 +3313,6 @@ USAGE
         <translation>Παράθυρο</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Έξοδος</translation>
-    </message>
-    <message>
         <source>Ctrl+Alt+Del</source>
         <translation>Ctrl+Alt+Del</translation>
     </message>
@@ -3344,6 +3355,10 @@ USAGE
     <message>
         <source>Screenshot</source>
         <translation>Στιγμιότυπο</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3445,10 +3460,18 @@ USAGE
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
+    <name>ScreenshotManagementPanel</name>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>User:</source>
         <translation>Χρήστης:</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Υπολογιστής:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3465,14 +3488,6 @@ USAGE
     <message>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
-    </message>
-    <message>
-        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer:</source>
-        <translation>Υπολογιστής:</translation>
     </message>
 </context>
 <context>
@@ -3757,19 +3772,19 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
-        <translation>Πατήστε το κουμπί για να αποσυνδέσετε τους χρήστες από τους υπολογιστές.</translation>
+        <source>Log off</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Confirm user logout</source>
-        <translation>Επιβεβαίωση της αποσύνδεσης χρήστη</translation>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to logout the selected users?</source>
-        <translation>Είστε σίγουρος/η ότι θέλετε να αποσυνδέσετε τους επιλεγμένους χρήστες;</translation>
+        <source>Confirm user logoff</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logout</source>
+        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>

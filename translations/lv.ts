@@ -1,130 +1,132 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="lv" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Par</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Käännös</translation>
+        <translation>Tulkojumi</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Lisenssi</translation>
+        <translation>Licenze</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Par Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Atbalstītāji</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Versija:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Mājas lapa:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Pašreizējā valoda vēl nav pārtulkota.
+
+Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, lūdzu sazinieties ar Veyon veidotājiem.</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Par %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Atbalsti Veyon projektu ar ziedojumu</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Datora piekļuves kontrole</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Piešķirt piekļuvi katram autentificētam lietotājam (noklusējuma)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tests</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Procesa piekļuves kontroles noteikumi</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Lietotāju grupas, kurām ir atļauta piekļuve datoram</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu pievienojiet grupu, kuras lietotājiem vajadzētu būt autorizētām piekļūt datoriem Jūsu Veyon tīklā.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Autorizētās lietotāju grupas</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>Visas grupas</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuves kontroles noteikumi</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot piekļuves kontroles noteikumu</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Noņemt piekļuves kontroles noteikumu</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Pazemināt izvēlēto noteikumu</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Paaugstināt izvēlēto noteikumu</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Labot izvēlētās lomas</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi lietotājvārdu</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu ievadi lietotājvārdus, kuriem ļaut piekļuvi testam:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve atļauta</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Izvēlētajam lietotājam ir atļauja piekļūt datoriem ar šiem iestatījumiem.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve liegta</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -155,27 +157,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Labot piekļuves kontroles noteikumu</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>ievadi nosaukumu noteikumam šeit</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Noteikuma nosaukums:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>ievadu aprakstu noteikumam šeit</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Noteikuma apraksts:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -183,11 +185,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Nosacījumi</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>ir biedrs grupai</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -207,39 +209,39 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Darbības</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Atļaut piekļuvi</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Liegt atļauju</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Vaicāt lietotājam atļauju</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Nav (noteikumi izslēgti)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Piekļūstošais lietotājs</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Piekļūstošais dators</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Vietējais (pieslēdzies) lietotājs</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Vietējais dators</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -247,7 +249,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Nav lietotājs pieslēdzies</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -266,19 +268,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuves kontroles noteikuma tests</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Piekļūstošais lietotājs:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Vietējais dators:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Piekļūstošais dators:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -286,19 +288,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Vietējie lietotāji:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēgušies lietotāji:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve izvēlētajam scenārijam ir atļauta.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve izvēlētajam scenārijam ir liegta.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
@@ -306,70 +308,70 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>Errors: Nezināma darbība</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Testa rezultāti</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Autorizācijas atslēga</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Ievads</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgfaila mapes</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Publisko atslēgfailu atrašanās mape</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Privāto atslēgfailu atrašanās mape</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Pieejamās autentifikācijas atslēgas</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Izveidot atslēgu</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Dzēst atslēgu</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Iegult atslēgu</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Izgult atslēgu</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Veidot piekļuves grupu</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgu faili (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas atslēgas nosaukums</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -381,7 +383,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, izvēlieties atslēgu kuru izdzēst!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -389,7 +391,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, izvēlieties atslēgfailu, kuru izvadīt!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -431,7 +433,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, pārbaudiet atļaujas.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -475,11 +477,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Fails &quot;%1&quot; jau eksistē.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās izveidot failu.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -487,7 +489,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās nolasīt failu.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -499,15 +501,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās izveidot mapi atslēgas failam.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās ierakstīt atslēgas failā &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās piešķirt atļaujas atslēgas failam &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -555,11 +557,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Kļūda lasot atslēgfailu.</translation>
     </message>
 </context>
 <context>
@@ -570,7 +572,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Izdzēst autentifikācijas failu</translation>
     </message>
     <message>
         <source>List authentication keys</source>
@@ -594,11 +596,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>ATSLĒGA</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>PIEKĻUVES GURPA</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -606,11 +608,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>VĀRDS</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAILS</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -630,11 +632,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPS</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>Pāra ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -661,54 +663,54 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tips</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuves grupas</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Pāra ID</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Datori</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>Dalībnieku adreses un IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>MAC adrese</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot jaunu datoru</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Izdzēst izvēlēto datoru</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Jauns dators</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Iebūvētās mapes</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
@@ -739,7 +741,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt palīdzību izvēlētajai komandai</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -755,27 +757,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tips</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Dalībnieku adreses</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>MAC adrese</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Izvēlētais mērķis nav atrasts.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Fails &quot;%1&quot; neeksistē!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -795,23 +797,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nav</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Dators</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Sākums</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Neatbilstošs</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>Kļūda nolasot %1 līniju.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
@@ -835,11 +837,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objekta UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Vecāka UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -875,7 +877,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAILS</translation>
     </message>
     <message>
         <source>LOCATION</source>
@@ -923,11 +925,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPS</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>VĀRDS</translation>
     </message>
     <message>
         <source>PARENT</source>
@@ -975,7 +977,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC adrese</translation>
     </message>
 </context>
 <context>
@@ -996,19 +998,19 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Dalībnieku adreses/IP: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Aktīvās iespējas: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>Tiešsaistē un pieslēdzies</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>Veido savienojumu</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -1024,11 +1026,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Atslēdzies</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Nav lietotājs pieslēdzies</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1047,11 +1049,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas kļūda</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta piekļuve</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1066,7 +1068,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājs</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1081,23 +1083,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer selection view instead.</source>
+        <source>Computer name;Hostname;User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer name;Hostname;User</source>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ComputerSelectionView</name>
+    <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Datora pārvaldība</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Datora meklēšana</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1105,19 +1107,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>Saglabāt datoru/lietotāju sarakstu</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>Izvēlies izejas faila nosaukumu</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>CSV faili (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>Faila kļūda</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1226,22 +1228,22 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation type="unfinished"/>
+        <translation>%1 demonstrējums</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Demonstrējuma serveris</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>Noregulējumi</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1249,7 +1251,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>Atmiņas limits</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
@@ -1257,38 +1259,38 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>Atjaunot intervālu</translation>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation>s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished"/>
+        <translation>Pilnekrāna demonstrējums</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>Apturēt demonstrējumu</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished"/>
+        <translation>Logā demonstrējums</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>Dot demonstrējumu caur ekrāna raidīšanu</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Demonstrējuma serveris</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1334,19 +1336,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Ceļš</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot jaunu programmu</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Noņemt izvēlēto programmu</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1358,7 +1360,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1377,7 +1379,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Atvērt vietni</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
@@ -1397,7 +1399,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Palaist programmu &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1409,6 +1411,21 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DocumentationFigureCreator</name>
+    <message>
+        <source>Teacher</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please complete all tasks within the next 5 minutes.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1431,7 +1448,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Parole:</translation>
     </message>
 </context>
 <context>
@@ -1456,7 +1473,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Iespējas</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1522,7 +1539,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>Valodas:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
@@ -1530,19 +1547,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Žurnalēšana</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"/>
+        <translation>Žurnālfaila mape</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -1574,7 +1591,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation type="unfinished"/>
+        <translation>Žurnālfaila izmēra ierobežojums</translation>
     </message>
     <message>
         <source>Clear all log files</source>
@@ -1598,7 +1615,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 service</source>
-        <translation type="unfinished"/>
+        <translation>%1 pakalpojums</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1614,7 +1631,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Ķļūda</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -1622,7 +1639,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1630,11 +1647,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished"/>
+        <translation>sekundes</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1642,7 +1659,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācija</translation>
     </message>
     <message>
         <source>Method:</source>
@@ -1658,7 +1675,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tests</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
@@ -1696,19 +1713,19 @@ The public key is used on client computers to authenticate incoming connection r
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Liegt interneta piekļuvi</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Atļaut interneta piekļuvi</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt palīdzību par komandu</translation>
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgt internetu</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
@@ -1716,7 +1733,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēgt internetu</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -1757,7 +1774,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1954,7 +1971,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi lietotājvārdu</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1966,7 +1983,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi grupas nosaukumu</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -1974,11 +1991,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>grupas dalībnieki</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>Grupa nav atrasta</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -1986,7 +2003,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi datora nosaukumu</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -2006,15 +2023,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>lietotāji</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>lietotāju grupas</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>datoru grupas</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2026,7 +2043,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājs nav atrasts</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2046,7 +2063,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>datori</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2110,7 +2127,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Datoru grupas</translation>
     </message>
     <message>
         <source>Test not applicable</source>
@@ -2138,7 +2155,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Sistēmas noklusējums</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
@@ -2150,7 +2167,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nav</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2324,7 +2341,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tests</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2395,7 +2412,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt palīdzību par komandu</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2512,7 +2529,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Invalid license file</source>
@@ -2547,7 +2564,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LicensingPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt palīdzību izvēlētajai komandai</translation>
     </message>
     <message>
         <source>Show all installed licenses</source>
@@ -2585,7 +2602,7 @@ USAGE
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Licensing management</source>
@@ -2604,14 +2621,14 @@ USAGE
     </message>
 </context>
 <context>
-    <name>LocationSelectionDialog</name>
+    <name>LocationDialog</name>
     <message>
         <source>Select location</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>ievadi meklēšanas filtru...</translation>
     </message>
 </context>
 <context>
@@ -2641,27 +2658,27 @@ USAGE
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fails</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Palīdzība</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Iziet</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -2669,7 +2686,7 @@ USAGE
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About Qt</source>
@@ -2705,7 +2722,7 @@ USAGE
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojums</translation>
     </message>
     <message>
         <source>Master</source>
@@ -2717,7 +2734,7 @@ USAGE
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Par Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2725,7 +2742,7 @@ USAGE
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Par</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2745,7 +2762,7 @@ USAGE
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve liegta</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2753,7 +2770,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekranšāviņi</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2777,15 +2794,11 @@ USAGE
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
+        <translation>Pielāgot labākajam izmēram</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
+        <translation>Sakārtot datorus režģī</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -2820,7 +2833,11 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2828,11 +2845,11 @@ USAGE
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Mapes</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2844,23 +2861,23 @@ USAGE
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Iespējas</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Visas iespējas</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgt iespējas</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekranšāviņi</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2900,7 +2917,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2939,10 +2956,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically open computer selection view</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer locations</source>
         <translation type="unfinished"/>
     </message>
@@ -2972,6 +2985,10 @@ USAGE
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3022,7 +3039,7 @@ USAGE
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tests</translation>
     </message>
     <message>
         <source>Network ranges</source>
@@ -3066,7 +3083,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
@@ -3074,7 +3091,7 @@ USAGE
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Iespējas</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3089,22 +3106,22 @@ USAGE
     <name>NetworkDiscoveryDirectory</name>
     <message>
         <source>Scanning...</source>
-        <translation type="unfinished"/>
+        <translation>Skenējas...</translation>
     </message>
     <message>
         <source>Discovered computers</source>
-        <translation type="unfinished"/>
+        <translation>Atklātie datori</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt palīdzību izvēlētajai komandai</translation>
     </message>
     <message>
         <source>Scan a subnet</source>
-        <translation type="unfinished"/>
+        <translation>Skenēt apakštīklu</translation>
     </message>
     <message>
         <source>
@@ -3139,11 +3156,11 @@ USAGE
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājvārds</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Parole</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -3151,7 +3168,7 @@ USAGE
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas kļūda</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -3166,7 +3183,7 @@ USAGE
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation type="unfinished"/>
+        <translation>Ieslēgt</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -3174,7 +3191,7 @@ USAGE
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Restartēt</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -3182,7 +3199,7 @@ USAGE
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Izslēgt</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3190,23 +3207,23 @@ USAGE
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>Ieslēgt/Izslēgt vai restartēt datoru</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Apstiprināt restartēšanu</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Apstriprināt izslēgšanu</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai Tu tiešām vēlies restartēt izvēlētos datorus?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Vai Tu tiešām vēlies izslēgt izvēlētos datorus?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3214,7 +3231,7 @@ USAGE
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC adrese</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -3237,23 +3254,23 @@ USAGE
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Attālināts skats</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>Atvērt attālinātu skatu datoram bez iejaukšanās</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta kontrole</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Atvērt attālinātu kontroles logu datoram</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta piekļuve</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3265,84 +3282,84 @@ USAGE
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt palīdzību par komandu</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Attālināta piekļuve</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished"/>
+        <translation>Skats tikai</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta kontrole</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Nosūtīt saīsni</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished"/>
+        <translation>Pilnekrāns</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Logs</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Izvēlne</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēdzas %1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēdzies.</translation>
     </message>
     <message>
         <source>Screenshot</source>
+        <translation>Ekrānšāviņš</translation>
+    </message>
+    <message>
+        <source>Exit</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3361,15 +3378,15 @@ USAGE
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot papildus ceļu lai bloķētu internetu</translation>
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"/>
+        <translation>Mērķis</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Vārteja</translation>
     </message>
 </context>
 <context>
@@ -3380,7 +3397,7 @@ USAGE
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Palaist programmas</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -3391,11 +3408,11 @@ USAGE
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Slēgt</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgt</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3410,7 +3427,7 @@ USAGE
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>nezināms</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -3418,88 +3435,88 @@ USAGE
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>Lieto šo funkciju lai uzņemtu ekrānšāviņu izvēlētajiem datoriem.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš veikts</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņs veiksmīgi uzņemts datoram %1.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>Uzņemt datora ekrānšāviņu un saglabāt lokāli.</translation>
     </message>
 </context>
 <context>
-    <name>ScreenshotManagementView</name>
-    <message>
-        <source>User:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Time:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>User:</source>
+        <translation>Lietotājs:</translation>
+    </message>
+    <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Dators:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation>Datums:</translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation>Laiks:</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Parādīt</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Izdzēst</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"/>
+        <translation>Automātiskā palaišana</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Paslēpt palodzes ikonu</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"/>
+        <translation>Palaist pakalpojumu</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>Apstādināts</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"/>
+        <translation>Apstādināt pakalpojumu</translation>
     </message>
     <message>
         <source>State:</source>
@@ -3511,15 +3528,15 @@ USAGE
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Tīkls</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation type="unfinished"/>
+        <translation>Demonstrējuma servera ports</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>Iespējot ugunsmūra izņēmumu</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3527,19 +3544,19 @@ USAGE
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>Iekšējais VNC servera ports</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>VNC serveris</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Spraudņi:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Restartēt %1 pakalpojumu</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3547,7 +3564,7 @@ USAGE
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"/>
+        <translation>Darbojas</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3583,34 +3600,34 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Palaižas pakalpojums %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Apstājas pakalpojums %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Reģistrēt pakalpojumu %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Atcelt reģistrāciju pakalpojumam %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojuma kontrole</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojums darbojas</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojums nedarbojas</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -3618,23 +3635,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Reģistrēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Atcelt reģistrāciju Veyon pakalpojumam</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Sāknēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Apturēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Restartēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3649,11 +3666,11 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>Palaist komandu failu</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Fails &quot;%1&quot; neeksistē!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3668,7 +3685,7 @@ Typically this is required to support terminal servers.</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Sistēmas teknes ikona</translation>
     </message>
 </context>
 <context>
@@ -3686,7 +3703,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"/>
+        <translation>Nosūtīt teksta ziņojumu</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3697,7 +3714,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation type="unfinished"/>
+        <translation>Teksta ziņojums</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -3705,11 +3722,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished"/>
+        <translation>Ziņojums no skolotāja</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Nosūtīt ziņojumu lietotājam</translation>
     </message>
 </context>
 <context>
@@ -3724,7 +3741,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"/>
+        <translation>Zemu precizitāti (turbo režīms)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
@@ -3743,7 +3760,7 @@ Typically this is required to support terminal servers.</source>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"/>
+        <translation>Nav rakstīšanas atļauja</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
@@ -3757,19 +3774,19 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to logout users from all computers.</source>
+        <source>Log off</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Confirm user logout</source>
+        <source>Click this button to log off users from all computers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to logout the selected users?</source>
+        <source>Confirm user logoff</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logout</source>
+        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3777,19 +3794,19 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[FAIL]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>Neatbilstoša komanda!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Pieejamās komandas:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -3801,11 +3818,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Nezināms rezultāts!</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Pieejamie moduļi:</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -3813,19 +3830,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Spraudnis nav licenzēts</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>Info</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>Kļūda</translation>
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>licenzēts uz</translation>
     </message>
     <message>
         <source>USAGE</source>
@@ -3844,14 +3861,14 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon pakalpojums</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation type="unfinished"/>
+        <translation>Veido savienojumu ar %1 ...</translation>
     </message>
 </context>
 <context>

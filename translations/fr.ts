@@ -1429,7 +1429,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>S&apos;il vous plaît, veuillez terminer toutes vos tâches d&apos;ici les 5 prochaines minutes.</translation>
     </message>
 </context>
 <context>
@@ -2865,12 +2865,12 @@ USAGE
         <translation>&amp;Confirmé</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Emplacements &amp; ordinateurs</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>Utiliser une disposition personnalisé pour les ordinateurs</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Emplacements &amp;&amp; ordinateurs</translation>
     </message>
 </context>
 <context>

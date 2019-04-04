@@ -1425,11 +1425,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>Класс %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, завершите все задачи в течение следующих 5 минут.</translation>
     </message>
 </context>
 <context>
@@ -2865,12 +2865,12 @@ USAGE
         <translation>&amp;Рвсширенный</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Места и компьютеры</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>Использовать необычное расположение компьютеров</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Места &amp;&amp; компьютеры</translation>
     </message>
 </context>
 <context>

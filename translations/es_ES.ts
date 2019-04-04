@@ -1431,7 +1431,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor complete todas las tareas en los próximos 5 minutos.</translation>
     </message>
 </context>
 <context>
@@ -2867,12 +2867,12 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>&amp;Avanzado</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Ubicaciones y equipos</translation>
-    </message>
-    <message>
         <source>Use custom computer arrangement</source>
         <translation>Usar disposición de equipos personalizada</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Ubicaciones &amp;&amp; equipos</translation>
     </message>
 </context>
 <context>
