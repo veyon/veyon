@@ -28,6 +28,7 @@
 #include <QWidget>
 
 class QModelIndex;
+class Screenshot;
 
 namespace Ui {
 class ScreenshotManagementPanel;
@@ -40,19 +41,18 @@ public:
 	ScreenshotManagementPanel( QWidget *parent );
 	~ScreenshotManagementPanel() override;
 
+	void setPreview( const Screenshot& screenshot );
 
 protected:
 	void resizeEvent( QResizeEvent* event ) override;
 
-private slots:
-	void screenshotSelected( const QModelIndex &idx );
+private:
+	void updateScreenshot( const QModelIndex &idx );
 	void screenshotDoubleClicked( const QModelIndex &idx );
 
 	void showScreenshot();
 	void deleteScreenshot();
 
-
-private:
 	Ui::ScreenshotManagementPanel* ui;
 	QFileSystemModel m_fsModel;
 

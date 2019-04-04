@@ -52,7 +52,7 @@ ScreenshotManagementPanel::ScreenshotManagementPanel( QWidget *parent ) :
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );
 
-	connect( ui->list, &QListView::clicked, this, &ScreenshotManagementPanel::screenshotSelected );
+	connect( ui->list, &QListView::clicked, this, &ScreenshotManagementPanel::updateScreenshot );
 	connect( ui->list, &QListView::doubleClicked, this, &ScreenshotManagementPanel::showScreenshot );
 
 	connect( ui->showBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::showScreenshot );
@@ -61,10 +61,21 @@ ScreenshotManagementPanel::ScreenshotManagementPanel( QWidget *parent ) :
 
 
 
-
 ScreenshotManagementPanel::~ScreenshotManagementPanel()
 {
 	delete ui;
+}
+
+
+
+void ScreenshotManagementPanel::setPreview( const Screenshot& screenshot )
+{
+	ui->previewLbl->setPixmap( QPixmap::fromImage( screenshot.image() ) );
+
+	ui->userLbl->setText( screenshot.user() );
+	ui->hostLbl->setText( screenshot.host() );
+	ui->dateLbl->setText( screenshot.date() );
+	ui->timeLbl->setText( screenshot.time() );
 }
 
 
@@ -81,19 +92,10 @@ void ScreenshotManagementPanel::resizeEvent( QResizeEvent* event )
 
 
 
-
-void ScreenshotManagementPanel::screenshotSelected( const QModelIndex &idx )
+void ScreenshotManagementPanel::updateScreenshot( const QModelIndex &idx )
 {
-	Screenshot s( m_fsModel.filePath( idx ) );
-
-	ui->previewLbl->setPixmap( s.pixmap() );
-
-	ui->userLbl->setText( s.user() );
-	ui->hostLbl->setText( s.host() );
-	ui->dateLbl->setText( s.date() );
-	ui->timeLbl->setText( s.time() );
+	setPreview( Screenshot( m_fsModel.filePath( idx ) ) );
 }
-
 
 
 
@@ -117,7 +119,6 @@ void ScreenshotManagementPanel::screenshotDoubleClicked( const QModelIndex &idx 
 
 
 
-
 void ScreenshotManagementPanel::showScreenshot()
 {
 	if( ui->list->currentIndex().isValid() )
@@ -125,7 +126,6 @@ void ScreenshotManagementPanel::showScreenshot()
 		screenshotDoubleClicked( ui->list->currentIndex() );
 	}
 }
-
 
 
 
