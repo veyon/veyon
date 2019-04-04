@@ -142,7 +142,6 @@ bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
 
 	auto setEncodingsMsg = reinterpret_cast<rfbSetEncodingsMsg *>( buf );
 	auto encs = reinterpret_cast<uint32_t *>( &buf[sz_rfbSetEncodingsMsg] );
-	int len = 0;
 
 	setEncodingsMsg->type = rfbSetEncodings;
 	setEncodingsMsg->pad = 0;
@@ -153,7 +152,7 @@ bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
 		encs[setEncodingsMsg->nEncodings++] = qFromBigEndian<uint32_t>( encoding );
 	}
 
-	len = sz_rfbSetEncodingsMsg + setEncodingsMsg->nEncodings * 4;
+	const auto len = sz_rfbSetEncodingsMsg + setEncodingsMsg->nEncodings * 4;
 
 	setEncodingsMsg->nEncodings = qFromBigEndian(setEncodingsMsg->nEncodings);
 
@@ -275,7 +274,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 			return false;
 		}
 
-		auto securityTypeList = m_socket->read( securityTypeCount );
+		const auto securityTypeList = m_socket->read( securityTypeCount );
 		if( securityTypeList.count() != securityTypeCount )
 		{
 			qCritical( "VncClientProtocol::receiveSecurityTypes(): could not read security types!" );
@@ -284,7 +283,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 			return false;
 		}
 
-		char securityType = rfbSecTypeVncAuth;
+		const char securityType = rfbSecTypeVncAuth;
 
 		if( securityTypeList.contains( securityType ) == false )
 		{
@@ -367,7 +366,7 @@ bool VncClientProtocol::receiveServerInitMessage()
 	if( m_socket->bytesAvailable() >= sz_rfbServerInitMsg &&
 			m_socket->peek( reinterpret_cast<char *>( &message ), sz_rfbServerInitMsg ) == sz_rfbServerInitMsg )
 	{
-		auto nameLength = qFromBigEndian( message.nameLength );
+		const auto nameLength = qFromBigEndian( message.nameLength );
 
 		if( nameLength > 255 )
 		{
@@ -403,7 +402,7 @@ bool VncClientProtocol::receiveServerInitMessage()
 bool VncClientProtocol::receiveFramebufferUpdateMessage()
 {
 	// peek all available data and work on a local buffer so we can continously read from it
-	QByteArray data = m_socket->peek( m_socket->bytesAvailable() );
+	auto data = m_socket->peek( m_socket->bytesAvailable() );
 
 	QBuffer buffer( &data );
 	buffer.open( QBuffer::ReadOnly ); // Flawfinder: ignore
@@ -416,7 +415,7 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 
 	QRegion updatedRegion;
 
-	int nRects = qFromBigEndian( message.nRects );
+	const auto nRects = qFromBigEndian( message.nRects );
 
 	for( int i = 0; i < nRects; ++i )
 	{
