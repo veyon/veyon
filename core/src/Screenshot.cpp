@@ -70,12 +70,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	}
 
 	// construct filename
-	m_fileName =  QString( QStringLiteral( "_%1_%2_%3.png" ) ).arg( computerControlInterface->computer().hostAddress(),
-						QDate( QDate::currentDate() ).toString( Qt::ISODate ),
-						QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
-					replace( QLatin1Char(':'), QLatin1Char('-') );
-
-	m_fileName = dir + QDir::separator() + userLogin + m_fileName;
+	m_fileName = dir + QDir::separator() + constructFileName( userLogin, computerControlInterface->computer().hostAddress() );
 
 	// construct caption
 	auto user = userLogin;
@@ -120,6 +115,17 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	p.drawText( tx, ty, caption );
 
 	m_image.save( m_fileName, "PNG", 50 );
+}
+
+
+
+QString Screenshot::constructFileName( const QString& user, const QString& hostAddress )
+{
+	return QStringLiteral( "%1_%2_%3_%4.png" ).arg( user,
+													hostAddress,
+													QDate( QDate::currentDate() ).toString( Qt::ISODate ),
+													QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
+			replace( QLatin1Char(':'), QLatin1Char('-') );
 }
 
 

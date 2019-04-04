@@ -44,20 +44,22 @@ public:
 		return !fileName().isEmpty() && !image().isNull();
 	}
 
-	const QString &fileName() const
+	const QString& fileName() const
 	{
 		return m_fileName;
 	}
 
-	const QImage &image() const
+	void setImage( const QImage& image )
+	{
+		m_image = image;
+	}
+
+	const QImage& image() const
 	{
 		return m_image;
 	}
 
-	QPixmap pixmap() const
-	{
-		return QPixmap::fromImage( image() );
-	}
+	static QString constructFileName( const QString& user, const QString& hostAddress );
 
 	QString user() const;
 	QString host() const;
