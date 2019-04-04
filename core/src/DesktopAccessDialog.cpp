@@ -22,7 +22,7 @@
  *
  */
 
-#include <QCoreApplication>
+#include <QGuiApplication>
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QMessageBox>
@@ -143,6 +143,8 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QSt
 			hostName = QStringLiteral( "%1 (%2)" ).arg( hostName, host );
 		}
 	}
+
+	qApp->setQuitOnLastWindowClosed( false );
 
 	QMessageBox m( QMessageBox::Question,
 				   tr( "Confirm desktop access" ),
