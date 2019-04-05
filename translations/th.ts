@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>ลิขสิทธิ์</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>ผู้มีส่วนช่วยเหลือ</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -132,7 +132,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>เปิดอนุญาตการให้ใช้งานกลุ่มโดเมน</translation>
     </message>
     <message>
         <source>User groups backend:</source>
@@ -219,7 +219,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>ถามผู้ใช้ที่อยู่ในระบบเพื่อขออนุญาต</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -227,19 +227,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้ที่เข้าถึง</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ที่เข้าถึง</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้ท้องที่ (อยู่ในระบบ)</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ท้องที่</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -247,7 +247,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -325,7 +325,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>ไดเรกทอรีเก็บไฟล์กุญแจ</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -381,7 +381,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>โปรดเลือกกุญแจที่จะลบก่อน!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -405,15 +405,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ (Public) และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -435,7 +435,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อไฟล์กุญแจประกอบด้วยตัวอักษรที่ไม่สามารถใช้ได้</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -463,7 +463,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถลบไฟล์กุญแจ &quot;%1&quot; ได้!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -475,7 +475,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์ &quot;%1&quot; มีอยู่แล้ว</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -559,7 +559,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถอ่านไฟล์กุญแจได้</translation>
     </message>
 </context>
 <context>
@@ -669,7 +669,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>กลุ่มการเข้าถึง</translation>
     </message>
     <message>
         <source>Pair ID</source>
@@ -688,11 +688,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>โฮสแอดแดรส/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>MAC แอดแดรส</translation>
     </message>
     <message>
         <source>Add new computer</source>
@@ -763,11 +763,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>โฮสแอดแดรส</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>MAC แอดแดรส</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -799,7 +799,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Root</source>
@@ -939,11 +939,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มห้อง</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มคอมพิวเตอร์ไปยังห้อง %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
@@ -1012,7 +1012,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ออฟไลน์หรือปิดเครื่องอยู่</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
@@ -1024,11 +1024,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>ถูกตัดการเชื่อมต่อ</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1066,7 +1066,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1097,7 +1097,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>การค้นหาคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1241,7 +1241,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1276,15 +1276,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>หยุดการสาธิต</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิตแบบมีหน้าต่าง</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>อธิบายสาธิตด้วยการถ่ายทอดสดจากหน้าจอ</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -1836,11 +1836,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation type="unfinished"/>
+        <translation>เช่น OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation type="unfinished"/>
+        <translation>เช่น OU=Computers</translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -1936,11 +1936,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>การทดสอบ LDAP base DN ล้มเหลว</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>การทดสอบ LDAP base DN สำเร็จลุล่วง</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
@@ -1989,7 +1989,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>สมาชิกกลุ่ม</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2441,7 +2441,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter name</source>
-        <translation type="unfinished"/>
+        <translation>ใส่ชื่อ</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
@@ -2483,7 +2483,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>ใบอนุญาตที่ติดตั้งอยู่</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -2495,7 +2495,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Feature</source>
@@ -2507,19 +2507,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ขอรับใบอนุญาต</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>เปิดหาไฟล์ใบอนุญาต</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์ใบอนุญาต Veyon (*.vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>ลบใบอนุญาต</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
@@ -2660,15 +2660,15 @@ USAGE
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>ไ&amp;ฟล์ </translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>วิ&amp;ธีใช้</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ออก</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2680,7 +2680,7 @@ USAGE
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation type="unfinished"/>
+        <translation>โ&amp;หลดการตั้งค่าจากไฟล์</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -2768,7 +2768,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>ภาพถ่ายหน้าจอ</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2871,7 +2871,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>ภาพถ่ายหน้าจอ</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2891,7 +2891,7 @@ USAGE
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>ซ่อนคอมพิวเตอร์ท้องที่</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2915,7 +2915,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2943,7 +2943,7 @@ USAGE
     </message>
     <message>
         <source>Text color</source>
-        <translation type="unfinished"/>
+        <translation>สีของข้อความ</translation>
     </message>
     <message>
         <source>Sort order</source>
@@ -3045,15 +3045,15 @@ USAGE
     </message>
     <message>
         <source>Add new group</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มกลุ่มใหม่</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation type="unfinished"/>
+        <translation>ลบกลุ่มที่เลือก</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation type="unfinished"/>
+        <translation>กลุ่ม</translation>
     </message>
     <message>
         <source>First address</source>
@@ -3073,15 +3073,15 @@ USAGE
     </message>
     <message>
         <source>Parallel scans</source>
-        <translation type="unfinished"/>
+        <translation>สแกนคู่ขนาน</translation>
     </message>
     <message>
         <source>Scan timeout</source>
-        <translation type="unfinished"/>
+        <translation>กำหนดการหมดเวลาการสแกน</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
@@ -3108,7 +3108,7 @@ USAGE
     </message>
     <message>
         <source>Discovered computers</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ที่พบ</translation>
     </message>
 </context>
 <context>
@@ -3338,7 +3338,7 @@ USAGE
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>เมนู</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
@@ -3358,7 +3358,7 @@ USAGE
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>ออก</translation>
     </message>
 </context>
 <context>
@@ -3395,7 +3395,7 @@ USAGE
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>สั่งเปิดโปรแกรม</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -3414,7 +3414,7 @@ USAGE
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>ล็อกหน้าจอและอุปกรณ์นำเข้าของคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -3498,7 +3498,7 @@ USAGE
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"/>
+        <translation>เริ่มอัตโนมัติ</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -3506,15 +3506,15 @@ USAGE
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"/>
+        <translation>เริ่ม service</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>หยุดแล้ว</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"/>
+        <translation>หยุด service</translation>
     </message>
     <message>
         <source>State:</source>
@@ -3550,7 +3550,7 @@ USAGE
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>ปลั๊กอิน:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
@@ -3562,7 +3562,7 @@ USAGE
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"/>
+        <translation>กำลังทำงาน</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3633,23 +3633,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>ลงทะเบียน Veyon Service</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>ถอนการลงทะเบียน Veyon Service</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>เริ่ม Veyon Service</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>หยุด Veyon Service</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>เริ่ม Veyon Service ใหม่</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3724,7 +3724,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>ส่งข้อความไปยังผู้ใช้</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3840,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>ได้รับอนุญาต สำหรับ</translation>
     </message>
     <message>
         <source>USAGE</source>
@@ -3859,7 +3859,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service</translation>
     </message>
 </context>
 <context>

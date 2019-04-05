@@ -714,7 +714,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Locaties &amp; computers</translation>
     </message>
     <message>
         <source>Locations</source>
@@ -2964,7 +2964,7 @@ USAGE
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Computerlocaties</translation>
     </message>
     <message>
         <source>Show current location only</source>
@@ -3868,7 +3868,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service</translation>
     </message>
 </context>
 <context>
