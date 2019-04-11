@@ -52,7 +52,7 @@ static const UINT screenSaverSettingsSetList[screenSaverSettingsCount] =
 	SPI_SETSCREENSAVETIMEOUT
 };
 
-static int screenSaverSettings[screenSaverSettingsCount];
+static UINT screenSaverSettings[screenSaverSettingsCount];
 
 
 WindowsCoreFunctions::WindowsCoreFunctions() :
@@ -91,7 +91,7 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 
 	if( messageType > 0 )
 	{
-		m_eventLog->Write( messageType, toConstWCharArray( message ) );
+		m_eventLog->Write( static_cast<WORD>( messageType ), toConstWCharArray( message ) );
 	}
 }
 
@@ -127,7 +127,7 @@ static QWindow* windowForWidget( const QWidget* widget )
 		return nativeParent->windowHandle();
 	}
 
-	return 0;
+	return nullptr;
 }
 
 
