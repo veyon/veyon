@@ -88,8 +88,10 @@ void LinuxCoreFunctions::reboot()
 
 
 
-void LinuxCoreFunctions::powerDown()
+void LinuxCoreFunctions::powerDown( bool installUpdates )
 {
+	Q_UNUSED(installUpdates)
+
 	if( isRunningAsAdmin() )
 	{
 		QProcess::startDetached( QStringLiteral("poweroff") );

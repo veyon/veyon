@@ -105,10 +105,12 @@ void WindowsCoreFunctions::reboot()
 
 
 
-void WindowsCoreFunctions::powerDown()
+void WindowsCoreFunctions::powerDown( bool installUpdates )
 {
 	enablePrivilege( SE_SHUTDOWN_NAME, true );
-	InitiateShutdown( nullptr, nullptr, 0, SHUTDOWN_FLAGS | SHUTDOWN_POWEROFF, SHUTDOWN_REASON );
+	InitiateShutdown( nullptr, nullptr, 0,
+					  SHUTDOWN_FLAGS | SHUTDOWN_POWEROFF | ( installUpdates ? SHUTDOWN_INSTALL_UPDATES : 0 ),
+					  SHUTDOWN_REASON );
 }
 
 

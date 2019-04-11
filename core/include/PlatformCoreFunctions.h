@@ -40,7 +40,7 @@ public:
 	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
 
 	virtual void reboot() = 0;
-	virtual void powerDown() = 0;
+	virtual void powerDown( bool installUpdates ) = 0;
 
 	virtual void raiseWindow( QWidget* widget ) = 0;
 

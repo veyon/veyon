@@ -39,7 +39,7 @@ public:
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
 	void reboot() override;
-	void powerDown() override;
+	void powerDown( bool installUpdates ) override;
 
 	void raiseWindow( QWidget* widget ) override;
 
