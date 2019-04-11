@@ -22,7 +22,8 @@
  *
  */
 
-#include <QWindow>
+#include <QGuiApplication>
+#include <QWidget>
 #include <qpa/qplatformnativeinterface.h>
 
 #include <shlobj.h>
