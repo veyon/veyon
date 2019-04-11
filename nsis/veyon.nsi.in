@@ -156,6 +156,7 @@ Delete "$INSTDIR\*.dll"
 Delete "$INSTDIR\*.exe"
 Delete "$INSTDIR\plugins\*.dll"
 RmDir /r "$INSTDIR\plugins"
+RmDir /r "$INSTDIR\translations"
 SetOverwrite on
 SetOutPath "$INSTDIR"
 # core components
