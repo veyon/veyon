@@ -24,14 +24,19 @@
 
 #include <QMessageBox>
 #include <QNetworkInterface>
+#include <QProgressBar>
+#include <QProgressDialog>
 #include <QUdpSocket>
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
+#include "FeatureWorkerManager.h"
 #include "PlatformCoreFunctions.h"
 #include "PowerControlFeaturePlugin.h"
+#include "PowerDownTimeInputDialog.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
+#include "VeyonServerInterface.h"
 
 
 PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
@@ -62,7 +67,28 @@ PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
 						tr( "Click this button to power down all computers. "
 							"This way you do not have to power down each computer by hand." ),
 						QStringLiteral(":/powercontrol/system-shutdown.png") ),
-	m_features( { m_powerOnFeature, m_rebootFeature, m_powerDownFeature } )
+	m_powerDownNowFeature( QStringLiteral( "PowerDownNow" ),
+								   Feature::Action | Feature::AllComponents,
+								   Feature::Uid( "a88039f2-6716-40d8-b4e1-9f5cd48e91ed" ),
+								   m_powerDownFeature.uid(),
+								   tr( "Power down now" ), {}, {} ),
+	m_installUpdatesAndPowerDownFeature( QStringLiteral( "InstallUpdatesAndPowerDown" ),
+								   Feature::Action | Feature::AllComponents,
+								   Feature::Uid( "09bcb3a1-fc11-4d03-8cf1-efd26be8655b" ),
+								   m_powerDownFeature.uid(),
+								   tr( "Install updates and power down" ), {}, {} ),
+	m_powerDownConfirmedFeature( QStringLiteral( "PowerDownConfirmed" ),
+								   Feature::Action | Feature::AllComponents,
+								   Feature::Uid( "ea2406be-d5c7-42b8-9f04-53469d3cc34c" ),
+								   m_powerDownFeature.uid(),
+								   tr( "Power down after user confirmation" ), {}, {} ),
+	m_powerDownDelayedFeature( QStringLiteral( "PowerDownDelayed" ),
+								   Feature::Action | Feature::AllComponents,
+								   Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ),
+								   m_powerDownFeature.uid(),
+								   tr( "Power down after timeout" ), {}, {} ),
+	m_features( { m_powerOnFeature, m_rebootFeature, m_powerDownFeature, m_powerDownNowFeature,
+				m_installUpdatesAndPowerDownFeature, m_powerDownConfirmedFeature, m_powerDownDelayedFeature } )
 {
 }
 
@@ -104,6 +130,17 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 			broadcastWOLPacket( controlInterface->computer().macAddress() );
 		}
 	}
+	else if( feature == m_powerDownDelayedFeature )
+	{
+		PowerDownTimeInputDialog dialog( master.mainWindow() );
+
+		if( dialog.exec() )
+		{
+			sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ).
+								addArgument( ShutdownTimeout, dialog.seconds() ),
+								computerControlInterfaces );
+		}
+	}
 	else
 	{
 		if( confirmFeatureExecution( feature, master.mainWindow() ) == false )
@@ -123,12 +160,26 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 													  const MessageContext& messageContext,
 													  const FeatureMessage& message )
 {
-	Q_UNUSED(server)
 	Q_UNUSED(messageContext)
 
-	if( message.featureUid() == m_powerDownFeature.uid() )
+	auto& featureWorkerManager = server.featureWorkerManager();
+
+	if( message.featureUid() == m_powerDownFeature.uid() ||
+		message.featureUid() == m_powerDownNowFeature.uid() ||
+		message.featureUid() == m_installUpdatesAndPowerDownFeature.uid() )
 	{
-		VeyonCore::platform().coreFunctions().powerDown();
+		const auto installUpdates = message.featureUid() == m_installUpdatesAndPowerDownFeature.uid();
+		VeyonCore::platform().coreFunctions().powerDown( installUpdates );
+	}
+	else if( message.featureUid() == m_powerDownConfirmedFeature.uid() )
+	{
+		featureWorkerManager.startWorker( m_powerDownConfirmedFeature, FeatureWorkerManager::ManagedSystemProcess );
+		featureWorkerManager.sendMessage( message );
+	}
+	else if( message.featureUid() == m_powerDownDelayedFeature.uid() )
+	{
+		featureWorkerManager.startWorker( m_powerDownDelayedFeature, FeatureWorkerManager::ManagedSystemProcess );
+		featureWorkerManager.sendMessage( message );
 	}
 	else if( message.featureUid() == m_rebootFeature.uid() )
 	{
@@ -140,6 +191,26 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 	}
 
 	return true;
+}
+
+
+
+bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
+{
+	Q_UNUSED(worker)
+
+	if( message.featureUid() == m_powerDownConfirmedFeature.uid() )
+	{
+		confirmShutdown();
+		return true;
+	}
+	else if( message.featureUid() == m_powerDownDelayedFeature.uid() )
+	{
+		displayShutdownTimeout( message.argument( ShutdownTimeout ).toInt() );
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -194,7 +265,11 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 									  tr( "Do you really want to reboot the selected computers?" ) ) ==
 				QMessageBox::Yes;
 	}
-	else if( feature == m_powerDownFeature )
+	else if( feature == m_powerDownFeature ||
+			 feature == m_powerDownNowFeature ||
+			 feature == m_installUpdatesAndPowerDownFeature ||
+			 feature == m_powerDownConfirmedFeature ||
+			 feature == m_powerDownDelayedFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm power down" ),
 									  tr( "Do you really want to power down the selected computer?" ) ) ==
@@ -265,4 +340,69 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 	}
 
 	return success;
+}
+
+
+
+void PowerControlFeaturePlugin::confirmShutdown()
+{
+	QMessageBox m( QMessageBox::Question, tr( "Confirm power down" ),
+				   tr( "The computer was remotely requested to power down. Do you want to power down the computer now?" ),
+				   QMessageBox::Yes | QMessageBox::No );
+	m.show();
+	VeyonCore::platform().coreFunctions().raiseWindow( &m );
+
+	if( m.exec() == QMessageBox::Yes )
+	{
+		VeyonCore::platform().coreFunctions().powerDown( false );
+	}
+}
+
+
+
+static void updateDialog( QProgressDialog* dialog, int newValue )
+{
+	dialog->setValue( newValue );
+
+	const auto remainingSeconds = dialog->maximum() - newValue;
+
+	dialog->setLabelText( PowerControlFeaturePlugin::tr(
+							  "The computer will be powered down in %1 minutes, %2 seconds.\n\n"
+							  "Please save your work and close all programs.").
+						 arg( remainingSeconds / 60, 2, 10, QLatin1Char('0') ).
+						 arg( remainingSeconds % 60, 2, 10, QLatin1Char('0') ) );
+
+	if( remainingSeconds <= 0 )
+	{
+		VeyonCore::platform().coreFunctions().powerDown( false );
+	}
+
+}
+
+void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
+{
+	QProgressDialog dialog;
+	dialog.setAutoReset( false );
+	dialog.setMinimum( 0 );
+	dialog.setMaximum( shutdownTimeout );
+
+	auto progressBar = dialog.findChild<QProgressBar *>();
+	if( progressBar )
+	{
+		progressBar->setTextVisible( false );
+	}
+
+	updateDialog( &dialog, 0 );
+
+	dialog.show();
+	VeyonCore::platform().coreFunctions().raiseWindow( &dialog );
+
+	QTimer powerdownTimer;
+	powerdownTimer.start( 1000 );
+
+	connect( &powerdownTimer, &QTimer::timeout, this, [&dialog]() {
+		updateDialog( &dialog, dialog.value()+1 );
+	} );
+
+	dialog.exec();
 }

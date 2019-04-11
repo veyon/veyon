@@ -49,7 +49,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber( 1, 2 );
 	}
 
 	QString name() const override
@@ -94,19 +94,32 @@ public:
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
 
+	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+
 public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_on( const QStringList& arguments );
 
 private:
+	enum Arguments {
+		ShutdownTimeout
+	};
+
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 	static bool broadcastWOLPacket( QString macAddress );
+
+	void confirmShutdown();
+	void displayShutdownTimeout( int shutdownTimeout );
 
 	QMap<QString, QString> m_commands;
 
 	const Feature m_powerOnFeature;
 	const Feature m_rebootFeature;
 	const Feature m_powerDownFeature;
+	const Feature m_powerDownNowFeature;
+	const Feature m_installUpdatesAndPowerDownFeature;
+	const Feature m_powerDownConfirmedFeature;
+	const Feature m_powerDownDelayedFeature;
 	const FeatureList m_features;
 
 };
