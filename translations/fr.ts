@@ -3286,6 +3286,53 @@ USAGE
         <source>Commands for controlling power status of computers</source>
         <translation>Commandes pour contrôler l&apos;état d&apos;allumage des ordinateurs</translation>
     </message>
+    <message>
+        <source>Power down now</source>
+        <translation>Éteindre maintenant</translation>
+    </message>
+    <message>
+        <source>Install updates and power down</source>
+        <translation>Installer les mises à jour et éteindre</translation>
+    </message>
+    <message>
+        <source>Power down after user confirmation</source>
+        <translation>Éteindre après la confirmation de l&apos;utilisateur</translation>
+    </message>
+    <message>
+        <source>Power down after timeout</source>
+        <translation>Éteindre après l&apos;expiration d&apos;un délai</translation>
+    </message>
+    <message>
+        <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
+        <translation>L&apos;ordinateur a été invité à s&apos;éteindre à distance. Voulez-vous éteindre l&apos;ordinateur maintenant?</translation>
+    </message>
+    <message>
+        <source>The computer will be powered down in %1 minutes, %2 seconds.
+
+Please save your work and close all programs.</source>
+        <translation>L&apos;ordinateur s&apos;éteindra dans %1 minutes, %2 secondes.
+
+Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
+    </message>
+</context>
+<context>
+    <name>PowerDownTimeInputDialog</name>
+    <message>
+        <source>Power down</source>
+        <translation>Éteindre</translation>
+    </message>
+    <message>
+        <source>Please specify a timeout for powering down the selected computers:</source>
+        <translation>Veuillez spécifier un délai d&apos;attente pour éteindre les ordinateurs sélectionnés:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>minutes</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>seconds</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>

@@ -3285,6 +3285,53 @@ USAGE
         <source>Commands for controlling power status of computers</source>
         <translation>Команди для керування станом живлення комп&apos;ютерів</translation>
     </message>
+    <message>
+        <source>Power down now</source>
+        <translation>Вимкнути зараз</translation>
+    </message>
+    <message>
+        <source>Install updates and power down</source>
+        <translation>Встановити оновлення і вимкнути</translation>
+    </message>
+    <message>
+        <source>Power down after user confirmation</source>
+        <translation>Вимкнути після підтвердження</translation>
+    </message>
+    <message>
+        <source>Power down after timeout</source>
+        <translation>Вимкнути по завершенню часу очікування</translation>
+    </message>
+    <message>
+        <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
+        <translation>Комп&apos;ютер отримав віддалену команду щодо вимикання. Хочете вимкнути комп&apos;ютер зараз?</translation>
+    </message>
+    <message>
+        <source>The computer will be powered down in %1 minutes, %2 seconds.
+
+Please save your work and close all programs.</source>
+        <translation>Комп&apos;ютер буде вимкнено за %1 хвилин, %2 секунд.
+
+Будь ласка, збережіть результати вашої роботи і завершіть роботу усіх програм.</translation>
+    </message>
+</context>
+<context>
+    <name>PowerDownTimeInputDialog</name>
+    <message>
+        <source>Power down</source>
+        <translation>Вимкнути</translation>
+    </message>
+    <message>
+        <source>Please specify a timeout for powering down the selected computers:</source>
+        <translation>Будь ласка, вкажіть час очікування на вимикання вибраного комп&apos;ютера.</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>хвилин</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>секунд</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>

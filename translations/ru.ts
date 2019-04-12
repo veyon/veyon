@@ -3286,6 +3286,53 @@ USAGE
         <source>Commands for controlling power status of computers</source>
         <translation>Команды для управления состоянием питания компьютеров</translation>
     </message>
+    <message>
+        <source>Power down now</source>
+        <translation>Отключить сейчас</translation>
+    </message>
+    <message>
+        <source>Install updates and power down</source>
+        <translation>Установить обновления и выключить</translation>
+    </message>
+    <message>
+        <source>Power down after user confirmation</source>
+        <translation>Отключить после подтверждения</translation>
+    </message>
+    <message>
+        <source>Power down after timeout</source>
+        <translation>Выключить по истечении времени ожидания</translation>
+    </message>
+    <message>
+        <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
+        <translation>Компьютер получил удалённую команду по выключению. Хотите выключить компьютер сейчас?</translation>
+    </message>
+    <message>
+        <source>The computer will be powered down in %1 minutes, %2 seconds.
+
+Please save your work and close all programs.</source>
+        <translation>Компьютер выключится через %1 минут, %2 секунд.
+
+Пожалуйста, сохраните результаты вашей работы и завершите работу всех программ.</translation>
+    </message>
+</context>
+<context>
+    <name>PowerDownTimeInputDialog</name>
+    <message>
+        <source>Power down</source>
+        <translation>Выключить</translation>
+    </message>
+    <message>
+        <source>Please specify a timeout for powering down the selected computers:</source>
+        <translation>Пожалуйста, укажите время ожидания выключения выбранного компьютера:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>минут</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>секунд</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>

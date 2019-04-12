@@ -3286,6 +3286,51 @@ HASZNÁLATA
         <source>Commands for controlling power status of computers</source>
         <translation>A számítógépek működési állapotát módosító parancsok </translation>
     </message>
+    <message>
+        <source>Power down now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Install updates and power down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power down after user confirmation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power down after timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The computer will be powered down in %1 minutes, %2 seconds.
+
+Please save your work and close all programs.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PowerDownTimeInputDialog</name>
+    <message>
+        <source>Power down</source>
+        <translation>Kikapcsolás</translation>
+    </message>
+    <message>
+        <source>Please specify a timeout for powering down the selected computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>

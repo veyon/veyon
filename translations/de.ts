@@ -3282,6 +3282,53 @@ VERWENDUNG
         <source>Commands for controlling power status of computers</source>
         <translation>Befehle zur Steuerung des Einschaltzustands von Computern</translation>
     </message>
+    <message>
+        <source>Power down now</source>
+        <translation>Jetzt herunterfahren</translation>
+    </message>
+    <message>
+        <source>Install updates and power down</source>
+        <translation>Updates installieren und herunterfahren</translation>
+    </message>
+    <message>
+        <source>Power down after user confirmation</source>
+        <translation>Nach Benutzerbestätigung herunterfahren</translation>
+    </message>
+    <message>
+        <source>Power down after timeout</source>
+        <translation>Nach Zeitablauf herunterfahren</translation>
+    </message>
+    <message>
+        <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
+        <translation>Der Computer wurde aus der Ferne aufgefordert, herunterzufahren. Möchten Sie den Computer jetzt herunterfahren?</translation>
+    </message>
+    <message>
+        <source>The computer will be powered down in %1 minutes, %2 seconds.
+
+Please save your work and close all programs.</source>
+        <translation>Der Computer wird in %1 Minuten, %2 Sekunden heruntergefahren.
+
+Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
+    </message>
+</context>
+<context>
+    <name>PowerDownTimeInputDialog</name>
+    <message>
+        <source>Power down</source>
+        <translation>Herunterfahren</translation>
+    </message>
+    <message>
+        <source>Please specify a timeout for powering down the selected computers:</source>
+        <translation>Bitte geben Sie eine Zeit an, nach deren Ablauf die gewählten Computer heruntergefahren werden sollen:</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>Minuten</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>Sekunden</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
