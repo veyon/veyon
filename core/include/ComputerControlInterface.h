@@ -148,12 +148,15 @@ private:
 	VncConnection* m_vncConnection;
 	VeyonConnection* m_connection;
 	QTimer m_connectionWatchdogTimer;
+	QTimer m_userUpdateTimer;
+	QTimer m_activeFeaturesUpdateTimer;
 
 	bool m_screenUpdated;
 
 signals:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
 	void userChanged();
+	void stateChanged();
 	void activeFeaturesChanged();
 
 };
