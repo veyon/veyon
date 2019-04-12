@@ -241,7 +241,7 @@ void VncConnection::stop()
 {
 	setClientData( VncConnectionTag, nullptr );
 
-	m_scaledScreen = QImage();
+	m_scaledScreen = {};
 
 	setControlFlag( ControlFlag::TerminateThread, true );
 
@@ -346,15 +346,24 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 
 void VncConnection::rescaleScreen()
 {
-	if( m_image.size().isValid() == false ||
-		m_scaledSize.isNull() ||
-		hasValidFrameBuffer() == false ||
-		isControlFlagSet( ControlFlag::ScaledScreenNeedsUpdate ) == false )
+	if( hasValidFrameBuffer() == false || m_scaledSize.isNull() )
+	{
+		m_scaledScreen = {};
+		return;
+	}
+
+	if( isControlFlagSet( ControlFlag::ScaledScreenNeedsUpdate ) == false )
 	{
 		return;
 	}
 
 	QReadLocker locker( &m_imgLock );
+
+	if( m_image.size().isValid() == false )
+	{
+		return;
+	}
+
 	m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
 	setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, false );
