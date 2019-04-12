@@ -63,12 +63,7 @@ bool FeatureMessage::receive( QIODevice* ioDevice )
 		if( message.receive() )
 		{
 			m_featureUid = message.read().toUuid(); // Flawfinder: ignore
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-			m_command = static_cast<Command>( message.read().toInt() ); // Flawfinder: ignore
-#else
-			m_command = message.read().value<Command>(); // Flawfinder: ignore
-#endif
+			m_command = QVariantHelper<Command>::value( message.read() ); // Flawfinder: ignore
 			m_arguments = message.read().toMap(); // Flawfinder: ignore
 			return true;
 		}

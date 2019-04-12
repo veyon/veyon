@@ -372,12 +372,7 @@ ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 	{
 		QModelIndex entryIndex = model->index( i, 0, parent );
 
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		if( static_cast<Qt::CheckState>( model->data( entryIndex, NetworkObjectModel::CheckStateRole ).toInt() ) == Qt::Unchecked )
-#else
-		if( model->data( entryIndex, NetworkObjectModel::CheckStateRole ).value<Qt::CheckState>() == Qt::Unchecked )
-#endif
+		if( QVariantHelper<Qt::CheckState>::value( model->data( entryIndex, NetworkObjectModel::CheckStateRole ) ) == Qt::Unchecked )
 		{
 			continue;
 		}

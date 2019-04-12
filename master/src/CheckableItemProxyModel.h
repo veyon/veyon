@@ -28,6 +28,8 @@
 #include <QIdentityProxyModel>
 #include <QUuid>
 
+#include "QtCompat.h"
+
 class CheckableItemProxyModel : public QIdentityProxyModel
 {
 	Q_OBJECT
@@ -53,15 +55,9 @@ private:
 	bool setChildData( const QModelIndex &index, Qt::CheckState checkState );
 	void setParentData( const QModelIndex &index, Qt::CheckState checkState );
 
-	Qt::CheckState checkStateFromVariant( const QVariant& data )
+	Qt::CheckState checkStateFromVariant( const QVariant& data ) const
 	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		// work around broken conversion for Q_ENUMs in QVariant of Qt 5.5
-		return static_cast<Qt::CheckState>( data.toInt() );
-#else
-		return data.value<Qt::CheckState>();
-#endif
+		return QVariantHelper<Qt::CheckState>::value( data );
 	}
 
 	int m_uidRole;

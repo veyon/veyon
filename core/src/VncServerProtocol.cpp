@@ -202,12 +202,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 	if( message.isReadyForReceive() && message.receive() )
 	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		const auto chosenAuthType = static_cast<RfbVeyonAuth::Type>( message.read().toInt() );
-#else
-		const auto chosenAuthType = message.read().value<RfbVeyonAuth::Type>();
-#endif
+		const auto chosenAuthType = QVariantHelper<RfbVeyonAuth::Type>::value( message.read() );
 
 		if( supportedAuthTypes().contains( chosenAuthType ) == false )
 		{

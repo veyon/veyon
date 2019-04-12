@@ -178,12 +178,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		authTypes.append( static_cast<RfbVeyonAuth::Type>( message.read().toInt() ) );
-#else
-		authTypes.append( message.read().value<RfbVeyonAuth::Type>() );
-#endif
+		authTypes.append( QVariantHelper<RfbVeyonAuth::Type>::value( message.read() ) );
 	}
 
 	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "received authentication types:" << authTypes;
