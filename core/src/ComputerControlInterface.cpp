@@ -60,13 +60,6 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
-{
-	return Pointer( this, []( ComputerControlInterface* ) { } );
-}
-
-
-
 void ComputerControlInterface::start( QSize scaledScreenSize )
 {
 	// make sure we do not leak
@@ -236,6 +229,13 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 	}
 
 	return true;
+}
+
+
+
+ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
+{
+	return Pointer( this, []( ComputerControlInterface* ) { } );
 }
 
 

@@ -51,8 +51,6 @@ public:
 	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
-	Pointer weakPointer();
-
 	void start( QSize scaledScreenSize );
 	void stop();
 
@@ -120,6 +118,8 @@ public:
 
 
 private:
+	Pointer weakPointer();
+
 	void setScreenUpdateFlag();
 
 	void resetWatchdog();
