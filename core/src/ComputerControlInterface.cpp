@@ -44,11 +44,16 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 	m_vncConnection( nullptr ),
 	m_connection( nullptr ),
 	m_connectionWatchdogTimer( this ),
+	m_userUpdateTimer( this ),
+	m_activeFeaturesUpdateTimer( this ),
 	m_screenUpdated( false )
 {
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
 	connect( &m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection );
+
+	connect( &m_userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
+	connect( &m_activeFeaturesUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateActiveFeatures );
 }
 
 
@@ -73,7 +78,8 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 		m_vncConnection->setHost( m_computer.hostAddress() );
 		m_vncConnection->setQuality( VncConnection::Quality::Thumbnail );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
-		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
+
+		enableUpdates();
 
 		m_connection = new VeyonConnection( m_vncConnection );
 
@@ -89,14 +95,6 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
-
-		auto userUpdateTimer = new QTimer( m_connection );
-		connect( userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
-		userUpdateTimer->start( UserUpdateInterval );
-
-		auto activeFeaturesUpdateTimer = new QTimer( m_connection );
-		connect( activeFeaturesUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateActiveFeatures );
-		activeFeaturesUpdateTimer->start( ActiveFeaturesUpdateInterval );
 	}
 	else
 	{
@@ -121,6 +119,8 @@ void ComputerControlInterface::stop()
 		m_vncConnection = nullptr;
 	}
 
+	m_activeFeaturesUpdateTimer.stop();
+	m_userUpdateTimer.stop();
 	m_connectionWatchdogTimer.stop();
 
 	m_state = State::Disconnected;
@@ -233,6 +233,33 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 
 
 
+void ComputerControlInterface::enableUpdates()
+{
+	if( m_vncConnection )
+	{
+		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
+	}
+
+	m_userUpdateTimer.start( UserUpdateInterval );
+	m_activeFeaturesUpdateTimer.start( ActiveFeaturesUpdateInterval );
+
+}
+
+
+
+void ComputerControlInterface::disableUpdates()
+{
+	if( m_vncConnection )
+	{
+		m_vncConnection->setFramebufferUpdateInterval( UpdateIntervalWhenDisabled );
+	}
+
+	m_userUpdateTimer.stop();
+	m_activeFeaturesUpdateTimer.start( UpdateIntervalWhenDisabled );
+}
+
+
+
 ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 {
 	return Pointer( this, []( ComputerControlInterface* ) { } );
@@ -306,8 +333,8 @@ void ComputerControlInterface::updateUser()
 	}
 	else
 	{
-		setUserLoginName( QString() );
-		setUserFullName( QString() );
+		setUserLoginName( {} );
+		setUserFullName( {} );
 	}
 }
 

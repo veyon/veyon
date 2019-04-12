@@ -116,6 +116,9 @@ public:
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 	bool isMessageQueueEmpty();
 
+	void enableUpdates();
+	void disableUpdates();
+
 
 private:
 	Pointer weakPointer();
@@ -134,6 +137,7 @@ private:
 	static constexpr int ActiveFeaturesUpdateInterval = 1000;
 	static constexpr int UserUpdateInterval = 10000;
 	static constexpr int ConnectionWatchdogTimeout = 10000;
+	static constexpr int UpdateIntervalWhenDisabled = 5000;
 
 	Computer m_computer;
 
