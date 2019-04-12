@@ -28,8 +28,10 @@
 #include <QListView>
 #include <QMenu>
 #include <QScreen>
+#include <QSpinBox>
 #include <QStringListModel>
 #include <QTextEdit>
+#include <QTimeLine>
 #include <QWindow>
 
 #include "ComputerMonitoringWidget.h"
@@ -64,19 +66,24 @@ void DocumentationFigureCreator::run()
 {
 	auto mainWindow = m_master->mainWindow();
 
+	mainWindow->move( 0, 0 );
 	mainWindow->resize( 3000, 1000 );
 	mainWindow->show();
+
+	hideComputers();
 
 	createFeatureFigures();
 	createContextMenuFigure();
 	createLogonDialogFigure();
 	createLocationDialogFigure();
+	createScreenshotManagementPanelFigure();
 	createTextMessageDialogFigure();
 	createOpenWebsiteDialogFigure();
 	createRunProgramDialogFigure();
 	createRemoteAccessHostDialogFigure();
 	createRemoteAccessWindowFigure();
-	createScreenshotManagementPanelFigure();
+	createPowerDownOptionsFigure();
+	createPowerDownTimeInputDialogFigure();
 }
 
 
@@ -170,6 +177,8 @@ void DocumentationFigureCreator::createLogonDialogFigure()
 	dialog.findChild<QLineEdit *>( QStringLiteral("username") )->setText( tr( "Teacher") );
 
 	grabDialog( &dialog, {}, QStringLiteral("LogonDialog.png") );
+
+	dialog.exec();
 }
 
 
@@ -188,6 +197,8 @@ void DocumentationFigureCreator::createLocationDialogFigure()
 	LocationDialog dialog( &locationsModel, m_master->mainWindow() );
 
 	grabDialog( &dialog, QSize( 300, 200 ), QStringLiteral("LocationDialog.png") );
+
+	dialog.exec();
 }
 
 
@@ -199,11 +210,14 @@ void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 	auto panelButton = window->findChild<QToolButton *>( QStringLiteral("screenshotManagementPanelButton") );
 	auto list = panel->findChild<QListView *>();
 
+	const QDate date( 2019, 4, 4 );
+	const QTime time( 9, 36, 27 );
+
 	QStringList screenshots({
-								Screenshot::constructFileName( QStringLiteral("Albert Einstein"), QStringLiteral("mars") ),
-								Screenshot::constructFileName( QStringLiteral("Blaise Pascal"), QStringLiteral("venus") ),
-								Screenshot::constructFileName( QStringLiteral("Caroline Herschel"), QStringLiteral("saturn") ),
-								Screenshot::constructFileName( QStringLiteral("Dorothy Hodgkin"), QStringLiteral("pluto") )
+								Screenshot::constructFileName( QStringLiteral("Albert Einstein"), QStringLiteral("mars"), date, time ),
+								Screenshot::constructFileName( QStringLiteral("Blaise Pascal"), QStringLiteral("venus"), date, time ),
+								Screenshot::constructFileName( QStringLiteral("Caroline Herschel"), QStringLiteral("saturn"), date, time ),
+								Screenshot::constructFileName( QStringLiteral("Dorothy Hodgkin"), QStringLiteral("pluto"), date, time )
 						   });
 
 
@@ -235,22 +249,57 @@ void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 
 
 
+void DocumentationFigureCreator::createPowerDownOptionsFigure()
+{
+	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto powerDownButton = toolbar->findChild<ToolButton *>( QStringLiteral("PowerDown") );
+
+	scheduleUiOperation( [this, powerDownButton]() {
+		scheduleUiOperation( [this, powerDownButton]() {
+			auto menu = powerDownButton->menu();
+
+			grabWindow( m_master->mainWindow(), powerDownButton->mapTo( m_master->mainWindow(), QPoint( 0, 0 ) ),
+						QSize( qMax( powerDownButton->width(), menu->width() ),
+							   powerDownButton->height() + menu->height() ),
+						QStringLiteral("PowerDownOptions.png") );
+			menu->close();
+		} );
+		auto menu = powerDownButton->menu();
+		menu->close();
+
+		powerDownButton->click();
+
+	} );
+
+	powerDownButton->showMenu();
+}
+
+
+
+void DocumentationFigureCreator::createPowerDownTimeInputDialogFigure()
+{
+	scheduleUiOperation( []() {
+		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
+
+		dialog->findChild<QSpinBox *>( QStringLiteral("minutesSpinBox") )->setValue( 3 );
+
+		grabDialog( dialog, {}, QStringLiteral("PowerDownTimeInputDialog.png") );
+	});
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ) ) );
+}
+
+
+
 void DocumentationFigureCreator::createTextMessageDialogFigure()
 {
-	scheduleUiOperation( [this]() {
+	scheduleUiOperation( []() {
 		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
 
 		dialog->findChild<QTextEdit *>()->setText( tr( "Please complete all tasks within the next 5 minutes." ) );
-		dialog->setFocus();
-		dialog->move( 0, 0 );
 
-		scheduleUiOperation( [dialog]() {
-			grabWindow( dialog, QStringLiteral("TextMessageDialog.png") );
-			dialog->close();
-		} );
+		grabDialog( dialog, {}, QStringLiteral("TextMessageDialog.png") );
 	});
-
-	hideComputers();
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ) ) );
 }
@@ -259,19 +308,12 @@ void DocumentationFigureCreator::createTextMessageDialogFigure()
 
 void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 {
-	scheduleUiOperation( [this]() {
+	scheduleUiOperation( []() {
 		auto dialog = qobject_cast<QInputDialog *>( QApplication::activeWindow() );
 		dialog->setTextValue( QStringLiteral("https://veyon.io") );
-		dialog->setFocus();
-		dialog->move( 0, 0 );
 
-		scheduleUiOperation( [dialog]() {
-			grabWindow( dialog, QStringLiteral("OpenWebsiteDialog.png") );
-			dialog->close();
-		} );
+		grabDialog( dialog, {}, QStringLiteral("OpenWebsiteDialog.png") );
 	});
-
-	hideComputers();
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ) ) );
 }
@@ -280,19 +322,13 @@ void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 
 void DocumentationFigureCreator::createRunProgramDialogFigure()
 {
-	scheduleUiOperation( [this]() {
+	scheduleUiOperation( []() {
 		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
 		dialog->findChild<QTextEdit *>()->setText( QStringLiteral("notepad") );
 		dialog->setFocus();
-		dialog->move( 0, 0 );
 
-		scheduleUiOperation( [dialog]() {
-			grabWindow( dialog, QStringLiteral("RunProgramDialog.png") );
-			dialog->close();
-		} );
+		grabDialog( dialog, {}, QStringLiteral("RunProgramDialog.png") );
 	});
-
-	hideComputers();
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
 }
@@ -301,19 +337,12 @@ void DocumentationFigureCreator::createRunProgramDialogFigure()
 
 void DocumentationFigureCreator::createRemoteAccessHostDialogFigure()
 {
-	scheduleUiOperation( [this]() {
+	scheduleUiOperation( []() {
 		auto dialog = qobject_cast<QInputDialog *>( QApplication::activeWindow() );
 		dialog->setTextValue( QStringLiteral("pc27") );
-		dialog->setFocus();
-		dialog->move( 0, 0 );
 
-		scheduleUiOperation( [dialog]() {
-			grabWindow( dialog, QStringLiteral("RemoteAccessHostDialog.png") );
-			dialog->close();
-		} );
+		grabDialog( dialog, {}, QStringLiteral("RemoteAccessHostDialog.png") );
 	} );
-
-	hideComputers();
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ) ) );
 }
@@ -335,6 +364,12 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 				auto window = QApplication::activeWindow();
 				auto vncView = window->findChild<VncView *>();
 				Q_ASSERT(vncView != nullptr);
+
+				for( auto timeline : window->findChildren<QTimeLine *>() )
+				{
+					timeline->stop();
+					timeline->setCurrentTime( 0 );
+				}
 
 				window->showNormal();
 				window->setFixedSize( 1000, 450 );
@@ -397,6 +432,7 @@ void DocumentationFigureCreator::grabWidget(QWidget* widget, const QPoint& pos, 
 void DocumentationFigureCreator::grabDialog(QDialog* dialog, const QSize& size, const QString& fileName)
 {
 	dialog->show();
+	dialog->setFocus();
 	dialog->move( 0, 0 );
 
 	if( size.isValid() )
@@ -408,8 +444,6 @@ void DocumentationFigureCreator::grabDialog(QDialog* dialog, const QSize& size, 
 		grabWindow( dialog, fileName );
 		dialog->close();
 	} );
-
-	dialog->exec();
 }
 
 
