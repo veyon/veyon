@@ -131,7 +131,6 @@ private:
 
 	void handleFeatureMessage( const FeatureMessage& message );
 
-private:
 	static constexpr int ActiveFeaturesUpdateInterval = 1000;
 	static constexpr int UserUpdateInterval = 10000;
 	static constexpr int ConnectionWatchdogTimeout = 10000;

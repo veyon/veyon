@@ -108,20 +108,10 @@ public:
 		m_quality = quality ;
 	}
 
-	Quality quality() const
-	{
-		return m_quality;
-	}
-
 	void setServerReachable();
 
 	void enqueueEvent( VncEvent* event );
 	bool isEventQueueEmpty();
-
-	QSize framebufferSize() const
-	{
-		return m_image.size();
-	}
 
 	/** \brief Returns whether framebuffer data is valid, i.e. at least one full FB update received */
 	bool hasValidFrameBuffer() const

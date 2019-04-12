@@ -606,7 +606,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 	client->appData.qualityLevel = 9;
 	client->appData.enableJPEG = false;
 
-	switch( quality() )
+	switch( m_quality )
 	{
 	case Quality::Screenshot:
 		// make sure to use lossless raw encoding
