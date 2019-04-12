@@ -44,7 +44,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	QWidget( parent ),
 	m_parent( parent ),
 	m_showHideTimeLine( ShowHideAnimationDuration, this ),
-	m_iconStateTimeLine(),
+	m_iconStateTimeLine( 0, this ),
 	m_connecting( false ),
 	m_viewOnlyButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) ),
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
