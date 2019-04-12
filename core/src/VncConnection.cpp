@@ -695,7 +695,6 @@ void VncConnection::sendEvents()
 
 void VncConnection::enqueueEvent( VncEvent* event)
 {
-	QMutexLocker globalLock( &m_globalMutex );
 	if( state() != State::Connected )
 	{
 		return;
