@@ -87,6 +87,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
 			m_demoClientHosts += computerControlInterface->computer().hostAddress();
+			computerControlInterface->disableUpdates();
 		}
 
 		vDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
@@ -112,6 +113,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
 			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
+			computerControlInterface->enableUpdates();
 		}
 
 		vDebug() << "DemoFeaturePlugin::stopMasterFeature(): clients:" << m_demoClientHosts;
