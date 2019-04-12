@@ -74,8 +74,6 @@ public:
 	Qt::DropActions supportedDragActions() const override;
 	Qt::DropActions supportedDropActions() const override;
 
-
-public slots:
 	void reload();
 
 signals:
@@ -85,6 +83,9 @@ private:
 	void update();
 
 	void updateComputerScreens();
+	void updateState( const QModelIndex& index );
+	void updateActiveFeatures( const QModelIndex& index );
+	void updateUser( const QModelIndex& index );
 
 	void startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface, const QModelIndex& index );
 	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );

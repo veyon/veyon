@@ -230,12 +230,38 @@ void ComputerControlListModel::updateComputerScreens()
 		{
 			controlInterface->clearScreenUpdateFlag();
 
-			emit dataChanged( index( computerIndex, 0 ),
-							  index( computerIndex, 0 ),
-							  QVector<int>( { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } ) );
+			emit dataChanged( index( computerIndex, 0 ), index( computerIndex, 0 ), { Qt::DecorationRole } );
 		}
 
 		++computerIndex;
+	}
+}
+
+
+
+void ComputerControlListModel::updateState( const QModelIndex& index )
+{
+	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } );
+}
+
+
+
+void ComputerControlListModel::updateActiveFeatures( const QModelIndex& index )
+{
+	emit dataChanged( index, index, { Qt::ToolTipRole } );
+	emit activeFeaturesChanged( index );
+}
+
+
+
+void ComputerControlListModel::updateUser( const QModelIndex& index )
+{
+	emit dataChanged( index, index, { Qt::DisplayRole, Qt::ToolTipRole } );
+
+	auto controlInterface = computerControlInterface( index );
+	if( controlInterface.isNull() == false )
+	{
+		m_master->computerManager().updateUser( controlInterface );
 	}
 }
 
@@ -252,14 +278,13 @@ void ComputerControlListModel::startComputerControlInterface( const ComputerCont
 	} );
 
 	connect( controlInterface.data(), &ComputerControlInterface::activeFeaturesChanged,
-			 this, [=] () { emit activeFeaturesChanged( index ); } );
+			 this, [=] () { updateActiveFeatures( index ); } );
 
-	// pass weak pointer to lambda function as otherwise the original shared pointer
-	// gets referenced once more all the time and thus the object never gets deleted
-	auto controlInterfaceWeakRef = controlInterface->weakPointer();
+	connect( controlInterface.data(), &ComputerControlInterface::stateChanged,
+			 this, [=] () { updateState( index ); } );
+
 	connect( controlInterface.data(), &ComputerControlInterface::userChanged,
-			 &m_master->computerManager(),
-			 [=] () { m_master->computerManager().updateUser( controlInterfaceWeakRef ); } );
+			 this, [=]() { updateUser( index ); } );
 }
 
 
@@ -270,8 +295,8 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 
 	controlInterface->disconnect( &m_master->computerManager() );
 
-	controlInterface->setUserLoginName( QString() );
-	controlInterface->setUserFullName( QString() );
+	controlInterface->setUserLoginName( {} );
+	controlInterface->setUserFullName( {} );
 	m_master->computerManager().updateUser( controlInterface );
 }
 
