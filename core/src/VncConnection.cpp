@@ -385,14 +385,12 @@ void* VncConnection::clientData( rfbClient* client, int tag )
 
 void VncConnection::setClientData( int tag, void* data )
 {
-	m_globalMutex.lock();
+	QMutexLocker globalLock( &m_globalMutex );
 
 	if( m_client )
 	{
 		rfbClientSetClientData( m_client, reinterpret_cast<void *>( tag ), data );
 	}
-
-	m_globalMutex.unlock();
 }
 
 
@@ -709,8 +707,9 @@ void VncConnection::enqueueEvent( VncEvent* event)
 		return;
 	}
 
-	QMutexLocker queueLock( &m_eventQueueMutex );
+	m_eventQueueMutex.lock();
 	m_eventQueue.enqueue( event );
+	m_eventQueueMutex.unlock();
 
 	m_updateIntervalSleeper.wakeAll();
 }
