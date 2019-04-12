@@ -214,7 +214,7 @@ private:
 	QMutex m_globalMutex;
 	QMutex m_eventQueueMutex;
 	QWaitCondition m_updateIntervalSleeper;
-	int m_framebufferUpdateInterval;
+	QAtomicInt m_framebufferUpdateInterval;
 
 	// queue for RFB and custom events
 	QQueue<VncEvent *> m_eventQueue;
