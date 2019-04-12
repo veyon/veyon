@@ -176,17 +176,17 @@ protected:
 
 private:
 	// intervals and timeouts
-	static const int ThreadTerminationTimeout = 30000;
-	static const int ConnectionRetryInterval = 1000;
-	static const int MessageWaitTimeout = 500;
-	static const int SocketKeepaliveIdleTime = 1000;
-	static const int SocketKeepaliveInterval = 500;
-	static const int SocketKeepaliveCount = 5;
+	static constexpr int ThreadTerminationTimeout = 30000;
+	static constexpr int ConnectionRetryInterval = 1000;
+	static constexpr int MessageWaitTimeout = 500;
+	static constexpr int SocketKeepaliveIdleTime = 1000;
+	static constexpr int SocketKeepaliveInterval = 500;
+	static constexpr int SocketKeepaliveCount = 5;
 
 	// RFB parameters
-	static const int RfbBitsPerSample = 8;
-	static const int RfbSamplesPerPixel = 3;
-	static const int RfbBytesPerPixel = 4;
+	static constexpr int RfbBitsPerSample = 8;
+	static constexpr int RfbSamplesPerPixel = 3;
+	static constexpr int RfbBytesPerPixel = 4;
 
 	enum class ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,
