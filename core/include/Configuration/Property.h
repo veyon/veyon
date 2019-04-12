@@ -26,6 +26,7 @@
 
 #include <QUuid>
 
+#include "QtCompat.h"
 #include "VeyonCore.h"
 #include "Configuration/Password.h"
 
@@ -111,8 +112,7 @@ public:
 
 	T value() const
 	{
-		QVariant v = variantValue();
-		return v.value<T>();
+		return QVariantHelper<T>::value( variantValue() );
 	}
 
 	void setValue( Type value )
