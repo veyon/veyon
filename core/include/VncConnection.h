@@ -119,20 +119,9 @@ public:
 		return m_framebufferState == FramebufferState::Valid;
 	}
 
-	void setScaledSize( QSize s )
-	{
-		if( m_scaledSize != s )
-		{
-			m_scaledSize = s;
-			setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
-		}
-	}
+	void setScaledSize( QSize s );
 
-	QImage scaledScreen()
-	{
-		rescaleScreen();
-		return m_scaledScreen;
-	}
+	QImage scaledScreen();
 
 	void setFramebufferUpdateInterval( int interval );
 

@@ -314,8 +314,30 @@ void VncConnection::setServerReachable()
 
 
 
+void VncConnection::setScaledSize( QSize s )
+{
+	QMutexLocker globalLock( &m_globalMutex );
+
+	if( m_scaledSize != s )
+	{
+		m_scaledSize = s;
+		setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
+	}
+}
+
+
+
+QImage VncConnection::scaledScreen()
+{
+	rescaleScreen();
+	return m_scaledScreen;
+}
+
+
+
 void VncConnection::setFramebufferUpdateInterval( int interval )
 {
+	QMutexLocker locker( &m_globalMutex );
 	m_framebufferUpdateInterval = interval;
 }
 
