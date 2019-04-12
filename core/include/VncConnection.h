@@ -79,7 +79,7 @@ public:
 
 	static void initLogging( bool debug );
 
-	QImage image() const;
+	QImage image();
 
 	void restart();
 	void stop();
@@ -244,6 +244,6 @@ private:
 	QImage m_image;
 	QImage m_scaledScreen;
 	QSize m_scaledSize;
-	mutable QReadWriteLock m_imgLock;
+	QReadWriteLock m_imgLock;
 
 } ;

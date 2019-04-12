@@ -222,7 +222,7 @@ void VncConnection::initLogging( bool debug )
 
 
 
-QImage VncConnection::image() const
+QImage VncConnection::image()
 {
 	QReadLocker locker( &m_imgLock );
 	return m_image;
