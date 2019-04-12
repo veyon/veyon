@@ -26,6 +26,7 @@
 
 #include <QtGlobal>
 #include <QSet>
+#include <QVariant>
 
 template<class A, class B>
 static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
@@ -347,4 +348,25 @@ struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
 #define QDeadlineTimer(x) static_cast<unsigned long int>(x)
 #else
 #include <QDeadlineTimer>
+#endif
+
+
+template<typename T, typename = void>
+struct QVariantHelper
+{
+	static T value( const QVariant& variant )
+	{
+		return variant.value<T>();
+	}
+};
+
+#if QT_VERSION < 0x050600
+template<typename T>
+struct QVariantHelper<T, typename std::enable_if<std::is_enum<T>::value >::type>
+{
+	static T value( const QVariant& variant )
+	{
+		return static_cast<T>( variant.toInt() );
+	}
+};
 #endif
