@@ -26,8 +26,8 @@
 #include "ComputerControlInterface.h"
 #include "VeyonCore.h"
 
+#include <QDate>
 #include <QImage>
-#include <QPixmap>
 
 class ComputerControlInterface;
 
@@ -59,7 +59,9 @@ public:
 		return m_image;
 	}
 
-	static QString constructFileName( const QString& user, const QString& hostAddress );
+	static QString constructFileName( const QString& user, const QString& hostAddress,
+									  const QDate& date = QDate::currentDate(),
+									  const QTime& time = QTime::currentTime() );
 
 	QString user() const;
 	QString host() const;

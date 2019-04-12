@@ -119,12 +119,13 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 
 
-QString Screenshot::constructFileName( const QString& user, const QString& hostAddress )
+QString Screenshot::constructFileName( const QString& user, const QString& hostAddress,
+									   const QDate& date, const QTime& time )
 {
 	return QStringLiteral( "%1_%2_%3_%4.png" ).arg( user,
 													hostAddress,
-													QDate( QDate::currentDate() ).toString( Qt::ISODate ),
-													QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
+													date.toString( Qt::ISODate ),
+													time.toString( Qt::ISODate ) ).
 			replace( QLatin1Char(':'), QLatin1Char('-') );
 }
 
