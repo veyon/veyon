@@ -32,6 +32,7 @@
 #include "ComputerControlInterface.h"
 #include "FeatureWorkerManager.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformUserFunctions.h"
 #include "PowerControlFeaturePlugin.h"
 #include "PowerDownTimeInputDialog.h"
 #include "VeyonConfiguration.h"
@@ -173,8 +174,15 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 	}
 	else if( message.featureUid() == m_powerDownConfirmedFeature.uid() )
 	{
-		featureWorkerManager.startWorker( m_powerDownConfirmedFeature, FeatureWorkerManager::ManagedSystemProcess );
-		featureWorkerManager.sendMessage( message );
+		if( VeyonCore::platform().userFunctions().loggedOnUsers().isEmpty() )
+		{
+			VeyonCore::platform().coreFunctions().powerDown( false );
+		}
+		else
+		{
+			featureWorkerManager.startWorker( m_powerDownConfirmedFeature, FeatureWorkerManager::ManagedSystemProcess );
+			featureWorkerManager.sendMessage( message );
+		}
 	}
 	else if( message.featureUid() == m_powerDownDelayedFeature.uid() )
 	{
