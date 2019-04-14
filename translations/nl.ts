@@ -3258,7 +3258,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service</translation>
     </message>
 </context>
 <context>
