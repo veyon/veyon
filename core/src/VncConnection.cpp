@@ -565,9 +565,9 @@ void VncConnection::handleConnection()
 			m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( remainingUpdateInterval ) );
 			sleeperMutex.unlock();
 		}
-	}
 
-	sendEvents();
+		sendEvents();
+	}
 }
 
 
