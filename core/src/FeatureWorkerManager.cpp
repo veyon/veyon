@@ -78,7 +78,8 @@ void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMod
 	if( thread() != QThread::currentThread() )
 	{
 		QMetaObject::invokeMethod( this, "startWorker", Qt::BlockingQueuedConnection,
-								   Q_ARG( Feature, feature ) );
+								   Q_ARG( Feature, feature ),
+								   Q_ARG( WorkerProcessMode, workerProcessMode ) );
 		return;
 	}
 
