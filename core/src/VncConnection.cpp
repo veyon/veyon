@@ -28,7 +28,6 @@
 #include <rfb/rfbclient.h>
 
 #include <QBitmap>
-#include <QElapsedTimer>
 #include <QHostAddress>
 #include <QMutexLocker>
 #include <QPixmap>
@@ -343,7 +342,6 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 
 
 
-
 void VncConnection::rescaleScreen()
 {
 	if( hasValidFrameBuffer() == false || m_scaledSize.isNull() )
@@ -452,6 +450,8 @@ void VncConnection::establishConnection()
 		if( rfbInitClient( m_client, nullptr, nullptr ) &&
 			isControlFlagSet( ControlFlag::TerminateThread ) == false )
 		{
+			m_framebufferUpdateWatchdog.restart();
+
 			emit connectionEstablished();
 
 			VeyonCore::platform().networkFunctions().
@@ -545,7 +545,19 @@ void VncConnection::handleConnection()
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
-		if( m_framebufferState == FramebufferState::Valid &&
+		if( m_framebufferState == FramebufferState::Initialized ||
+			m_framebufferUpdateWatchdog.elapsed() >=
+			qMax( 2*m_framebufferUpdateInterval, FramebufferUpdateWatchdogTimeout ) )
+		{
+			SendFramebufferUpdateRequest( m_client, 0, 0, m_client->width, m_client->height, false );
+
+			const auto remainingFastUpdateInterval = FastFramebufferUpdateInterval - loopTimer.elapsed();
+
+			sleeperMutex.lock();
+			m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( remainingFastUpdateInterval ) );
+			sleeperMutex.unlock();
+		}
+		else if( m_framebufferState == FramebufferState::Valid &&
 			remainingUpdateInterval > 0 &&
 			isControlFlagSet( ControlFlag::TerminateThread ) == false )
 		{
@@ -664,11 +676,12 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 
 void VncConnection::finishFrameBufferUpdate()
 {
+	m_framebufferUpdateWatchdog.restart();
+
 	m_framebufferState = FramebufferState::Valid;
 	setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
 
 	emit framebufferUpdateComplete();
-
 }
 
 

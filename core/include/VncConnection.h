@@ -27,13 +27,14 @@
 
 #pragma once
 
+#include <QElapsedTimer>
+#include <QImage>
 #include <QMutex>
 #include <QQueue>
 #include <QReadWriteLock>
 #include <QThread>
 #include <QTimer>
 #include <QWaitCondition>
-#include <QImage>
 
 #include "VeyonCore.h"
 #include "SocketDevice.h"
@@ -158,6 +159,8 @@ private:
 	static constexpr int ThreadTerminationTimeout = 30000;
 	static constexpr int ConnectionRetryInterval = 1000;
 	static constexpr int MessageWaitTimeout = 500;
+	static constexpr int FastFramebufferUpdateInterval = 100;
+	static constexpr int FramebufferUpdateWatchdogTimeout = 10000;
 	static constexpr int SocketKeepaliveIdleTime = 1000;
 	static constexpr int SocketKeepaliveInterval = 500;
 	static constexpr int SocketKeepaliveCount = 5;
@@ -215,6 +218,7 @@ private:
 	QMutex m_eventQueueMutex;
 	QWaitCondition m_updateIntervalSleeper;
 	QAtomicInt m_framebufferUpdateInterval;
+	QElapsedTimer m_framebufferUpdateWatchdog;
 
 	// queue for RFB and custom events
 	QQueue<VncEvent *> m_eventQueue;
