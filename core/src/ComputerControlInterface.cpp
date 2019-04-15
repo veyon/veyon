@@ -234,14 +234,15 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 
 void ComputerControlInterface::enableUpdates()
 {
+	const auto updateInterval = VeyonCore::config().computerMonitoringUpdateInterval();
+
 	if( m_vncConnection )
 	{
-		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
+		m_vncConnection->setFramebufferUpdateInterval( updateInterval );
 	}
 
-	m_userUpdateTimer.start( UserUpdateInterval );
-	m_activeFeaturesUpdateTimer.start( ActiveFeaturesUpdateInterval );
-
+	m_userUpdateTimer.start( updateInterval );
+	m_activeFeaturesUpdateTimer.start( updateInterval );
 }
 
 
