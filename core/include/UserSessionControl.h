@@ -107,9 +107,6 @@ private:
 	const Feature m_userLogoffFeature;
 	const FeatureList m_features;
 
-	QThread* m_userInfoQueryThread;
-	QTimer* m_userInfoQueryTimer;
-
 	QReadWriteLock m_userDataLock;
 	QString m_userLoginName;
 	QString m_userFullName;

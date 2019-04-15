@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QTimer>
+#include <QtConcurrent>
 
 #include "UserSessionControl.h"
 #include "FeatureWorkerManager.h"
@@ -49,21 +50,14 @@ UserSessionControl::UserSessionControl( QObject* parent ) :
 						 tr( "Log off" ), QString(),
 						 tr( "Click this button to log off users from all computers." ),
 						 QStringLiteral( ":/core/system-suspend-hibernate.png" ) ),
-	m_features( { m_userSessionInfoFeature, m_userLogoffFeature } ),
-	m_userInfoQueryThread( new QThread ),
-	m_userInfoQueryTimer( new QTimer )
+	m_features( { m_userSessionInfoFeature, m_userLogoffFeature } )
 {
-	// initialize user info query timer and thread
-	m_userInfoQueryTimer->moveToThread( m_userInfoQueryThread );
-	connect( m_userInfoQueryThread, &QThread::finished, m_userInfoQueryThread, &QObject::deleteLater );
 }
 
 
 
 UserSessionControl::~UserSessionControl()
 {
-	m_userInfoQueryThread->quit();
-	m_userInfoQueryTimer->deleteLater();
 }
 
 
@@ -152,14 +146,9 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server,
 
 void UserSessionControl::queryUserInformation()
 {
-	if( m_userInfoQueryThread->isRunning() == false )
-	{
-		m_userInfoQueryThread->start();
-	}
-
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
-	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
+	QtConcurrent::run( [=]() {
 		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
 		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
 		m_userDataLock.lockForWrite();
