@@ -44,7 +44,7 @@ FeatureControl::FeatureControl( QObject* parent ) :
 bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	return sendFeatureMessage( FeatureMessage( m_featureControlFeature.uid(), QueryActiveFeatures ),
-							   computerControlInterfaces );
+							   computerControlInterfaces, false );
 }
 
 

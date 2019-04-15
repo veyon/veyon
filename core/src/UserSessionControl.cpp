@@ -71,7 +71,7 @@ UserSessionControl::~UserSessionControl()
 bool UserSessionControl::getUserSessionInfo( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	return sendFeatureMessage( FeatureMessage( m_userSessionInfoFeature.uid(), GetInfo ),
-							   computerControlInterfaces );
+							   computerControlInterfaces, false );
 }
 
 

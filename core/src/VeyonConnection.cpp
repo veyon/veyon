@@ -86,7 +86,7 @@ VeyonConnection::~VeyonConnection()
 
 
 
-void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
+void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage, bool wake )
 {
 	if( m_vncConnection.isNull() )
 	{
@@ -94,7 +94,7 @@ void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 		return;
 	}
 
-	m_vncConnection->enqueueEvent( new VncFeatureMessageEvent( featureMessage ) );
+	m_vncConnection->enqueueEvent( new VncFeatureMessageEvent( featureMessage ), wake );
 }
 
 

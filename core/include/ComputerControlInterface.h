@@ -113,7 +113,7 @@ public:
 
 	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
 
-	void sendFeatureMessage( const FeatureMessage& featureMessage );
+	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 	bool isMessageQueueEmpty();
 
 	void enableUpdates();

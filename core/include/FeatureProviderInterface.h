@@ -94,11 +94,12 @@ public:
 
 protected:
 	bool sendFeatureMessage( const FeatureMessage& message,
-							 const ComputerControlInterfaceList& computerControlInterfaces )
+							 const ComputerControlInterfaceList& computerControlInterfaces,
+							 bool wake = true )
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
-			controlInterface->sendFeatureMessage( message );
+			controlInterface->sendFeatureMessage( message, wake );
 		}
 
 		return true;

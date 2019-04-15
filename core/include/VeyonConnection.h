@@ -74,7 +74,7 @@ public:
 		return m_veyonAuthType;
 	}
 
-	void sendFeatureMessage( const FeatureMessage& featureMessage );
+	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 

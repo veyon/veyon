@@ -211,11 +211,11 @@ void ComputerControlInterface::setDesignatedModeFeature( Feature::Uid designated
 
 
 
-void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
+void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage, bool wake )
 {
 	if( m_connection && m_connection->isConnected() )
 	{
-		m_connection->sendFeatureMessage( featureMessage );
+		m_connection->sendFeatureMessage( featureMessage, wake );
 	}
 }
 

@@ -700,7 +700,7 @@ void VncConnection::sendEvents()
 
 
 
-void VncConnection::enqueueEvent( VncEvent* event)
+void VncConnection::enqueueEvent( VncEvent* event, bool wake )
 {
 	if( state() != State::Connected )
 	{
@@ -711,7 +711,10 @@ void VncConnection::enqueueEvent( VncEvent* event)
 	m_eventQueue.enqueue( event );
 	m_eventQueueMutex.unlock();
 
-	m_updateIntervalSleeper.wakeAll();
+	if( wake )
+	{
+		m_updateIntervalSleeper.wakeAll();
+	}
 }
 
 
@@ -726,21 +729,21 @@ bool VncConnection::isEventQueueEmpty()
 
 void VncConnection::mouseEvent( int x, int y, int buttonMask )
 {
-	enqueueEvent( new VncPointerEvent( x, y, buttonMask ) );
+	enqueueEvent( new VncPointerEvent( x, y, buttonMask ), true );
 }
 
 
 
 void VncConnection::keyEvent( unsigned int key, bool pressed )
 {
-	enqueueEvent( new VncKeyEvent( key, pressed ) );
+	enqueueEvent( new VncKeyEvent( key, pressed ), true );
 }
 
 
 
 void VncConnection::clientCut( const QString& text )
 {
-	enqueueEvent( new VncClientCutEvent( text ) );
+	enqueueEvent( new VncClientCutEvent( text ), true );
 }
 
 

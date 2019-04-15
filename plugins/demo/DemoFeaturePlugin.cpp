@@ -82,7 +82,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		FeatureMessage featureMessage( m_demoServerFeature.uid(), StartDemoServer );
 		featureMessage.addArgument( DemoAccessToken, m_demoAccessToken );
 
-		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage );
+		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
 
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
@@ -123,7 +123,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		{
 			// then we can stop the server
 			const FeatureMessage featureMessage( m_demoServerFeature.uid(), StopDemoServer );
-			VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage );
+			VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
 		}
 
 		return true;
