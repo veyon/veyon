@@ -87,10 +87,10 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::screenUpdated );
 
-		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
+		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
