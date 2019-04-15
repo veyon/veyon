@@ -51,7 +51,7 @@ public:
 	Q_INVOKABLE void startWorker( const Feature& feature, WorkerProcessMode workerProcessMode );
 	Q_INVOKABLE void stopWorker( const Feature& feature );
 
-	Q_INVOKABLE void sendMessage( const FeatureMessage& message );
+	void sendMessage( const FeatureMessage& message );
 
 	bool isWorkerRunning( const Feature& feature );
 	FeatureUidList runningWorkers();
