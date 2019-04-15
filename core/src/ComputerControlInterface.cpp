@@ -45,8 +45,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 	m_connection( nullptr ),
 	m_connectionWatchdogTimer( this ),
 	m_userUpdateTimer( this ),
-	m_activeFeaturesUpdateTimer( this ),
-	m_screenUpdated( false )
+	m_activeFeaturesUpdateTimer( this )
 {
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
@@ -85,8 +84,8 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 
 		m_vncConnection->start();
 
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::screenUpdated );
 
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
@@ -137,7 +136,7 @@ void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 	}
 
-	setScreenUpdateFlag();
+	emit screenUpdated();
 }
 
 
@@ -267,13 +266,6 @@ ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 
 
 
-void ComputerControlInterface::setScreenUpdateFlag()
-{
-	m_screenUpdated = true;
-}
-
-
-
 void ComputerControlInterface::resetWatchdog()
 {
 	if( state() == State::Connected )
@@ -316,8 +308,6 @@ void ComputerControlInterface::updateState()
 	{
 		m_state = State::Disconnected;
 	}
-
-	setScreenUpdateFlag();
 }
 
 

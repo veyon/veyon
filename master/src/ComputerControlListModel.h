@@ -82,8 +82,8 @@ signals:
 private:
 	void update();
 
-	void updateComputerScreens();
 	void updateState( const QModelIndex& index );
+	void updateScreen( const QModelIndex& index );
 	void updateActiveFeatures( const QModelIndex& index );
 	void updateUser( const QModelIndex& index );
 

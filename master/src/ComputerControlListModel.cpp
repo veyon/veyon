@@ -23,7 +23,6 @@
  */
 
 #include <QPainter>
-#include <QTimer>
 
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
@@ -56,10 +55,6 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 			 this, &ComputerControlListModel::reload );
 	connect( &m_master->computerManager(), &ComputerManager::computerSelectionChanged,
 			 this, &ComputerControlListModel::update );
-
-	auto computerScreenUpdateTimer = new QTimer( this );
-	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerControlListModel::updateComputerScreens );
-	computerScreenUpdateTimer->start( VeyonCore::config().computerMonitoringUpdateInterval() );
 
 	reload();
 }
@@ -220,28 +215,16 @@ void ComputerControlListModel::update()
 
 
 
-void ComputerControlListModel::updateComputerScreens()
+void ComputerControlListModel::updateState( const QModelIndex& index )
 {
-	int computerIndex = 0;
-
-	for( auto& controlInterface : m_computerControlInterfaces )
-	{
-		if( controlInterface->hasScreenUpdates() )
-		{
-			controlInterface->clearScreenUpdateFlag();
-
-			emit dataChanged( index( computerIndex, 0 ), index( computerIndex, 0 ), { Qt::DecorationRole } );
-		}
-
-		++computerIndex;
-	}
+	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } );
 }
 
 
 
-void ComputerControlListModel::updateState( const QModelIndex& index )
+void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } );
+	emit dataChanged( index, index, { Qt::DecorationRole } );
 }
 
 
@@ -276,6 +259,9 @@ void ComputerControlListModel::startComputerControlInterface( const ComputerCont
 			 [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
 		m_master->featureManager().handleFeatureMessage( *m_master, featureMessage, computerControlInterface );
 	} );
+
+	connect( controlInterface.data(), &ComputerControlInterface::screenUpdated,
+			 this, [=] () { updateScreen( index ); } );
 
 	connect( controlInterface.data(), &ComputerControlInterface::activeFeaturesChanged,
 			 this, [=] () { updateActiveFeatures( index ); } );

@@ -75,16 +75,6 @@ public:
 
 	QImage screen() const;
 
-	bool hasScreenUpdates() const
-	{
-		return m_screenUpdated;
-	}
-
-	void clearScreenUpdateFlag()
-	{
-		m_screenUpdated = false;
-	}
-
 	const QString& userLoginName() const
 	{
 		return m_userLoginName;
@@ -123,8 +113,6 @@ public:
 private:
 	Pointer weakPointer();
 
-	void setScreenUpdateFlag();
-
 	void resetWatchdog();
 	void restartConnection();
 
@@ -155,10 +143,9 @@ private:
 	QTimer m_userUpdateTimer;
 	QTimer m_activeFeaturesUpdateTimer;
 
-	bool m_screenUpdated;
-
 signals:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
+	void screenUpdated();
 	void userChanged();
 	void stateChanged();
 	void activeFeaturesChanged();
