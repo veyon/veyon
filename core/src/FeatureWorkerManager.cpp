@@ -77,9 +77,13 @@ void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMod
 {
 	if( thread() != QThread::currentThread() )
 	{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+		QMetaObject::invokeMethod( this, [=]() { startWorker( feature, workerProcessMode ); }, Qt::BlockingQueuedConnection );
+#else
 		QMetaObject::invokeMethod( this, "startWorker", Qt::BlockingQueuedConnection,
 								   Q_ARG( Feature, feature ),
 								   Q_ARG( WorkerProcessMode, workerProcessMode ) );
+#endif
 		return;
 	}
 
@@ -119,8 +123,12 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 {
 	if( thread() != QThread::currentThread() )
 	{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+		QMetaObject::invokeMethod( this, [=]() { stopWorker( feature ); }, Qt::BlockingQueuedConnection );
+#else
 		QMetaObject::invokeMethod( this, "stopWorker", Qt::BlockingQueuedConnection,
 								   Q_ARG( Feature, feature ) );
+#endif
 		return;
 	}
 
