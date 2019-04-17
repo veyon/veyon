@@ -72,6 +72,13 @@ void Proxy::reloadFromStore()
 
 
 
+void Proxy::flushStore()
+{
+	m_object->flushStore();
+}
+
+
+
 void Proxy::removeInstance( const QString& parentKey )
 {
 	m_object->removeValue( instanceId(), parentKey );

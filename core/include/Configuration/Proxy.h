@@ -45,6 +45,7 @@ public:
 	void removeValue( const QString &key, const QString &parentKey );
 
 	void reloadFromStore();
+	void flushStore();
 
 	const QString& instanceId() const
 	{
