@@ -33,46 +33,46 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>השפה הנוכחית אינה תורגמה עדיין. אם את/ה מעוניין לתרגם את Veyon לשפה שלך או שפה אחרת או רוצה לשפר תרגום הנוכחי נא תפנה למיישם Veyon.</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>אודות %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>לתמיכה כספית</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>בקרת גישה מחשב</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>תן גישה לכל משתמש רשום (ברירת מחדל)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>בדיקה</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>הרצת בקרה כללי גישה</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>קבוצת משתמשים רשאים לבצע גישה למחשבים</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>נא להוסיף קבוצות חברים בהם יהיו רשאים לגשת למחשבים ברשת Veyon שלך</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>קבוצות משתמשים רשומים</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -96,15 +96,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>הזזת כלל נבחר מטה</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>הזזת כלל נבחר מעלה</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>שינוי כלל נבחר</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -112,7 +112,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>נא הכנס שם משתמש עם הרשאות לבדיקה:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -120,7 +120,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>המשתמש הזה רשאי לבצע גישה למחשבים עם הגדרה נוכחית</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -128,11 +128,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>המשתמש הזה אינו רשאי לבצע גישה למחשבים עם הגדרה נוכחית</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>אפשר שימוש בקבוצות בתחום</translation>
     </message>
     <message>
         <source>User groups backend:</source>
@@ -159,23 +159,23 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>כללי</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>הכנס שם מקוצר לכלל כאן</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>שם כלל :</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>הכנס תיאור עבור כלל כאן</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>תיאור כלל:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -207,7 +207,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>פעולה</translation>
     </message>
     <message>
         <source>Allow access</source>
@@ -219,7 +219,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>בקש אישור משתמש מחובר לגישה</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -1673,7 +1673,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>בדיקה</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
@@ -1772,7 +1772,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>כללי</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2339,7 +2339,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>בדיקה</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2656,7 +2656,7 @@ USAGE
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>כללי</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -3037,7 +3037,7 @@ USAGE
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>בדיקה</translation>
     </message>
     <message>
         <source>Network ranges</source>
@@ -3539,7 +3539,7 @@ Please save your work and close all programs.</source>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>כללי</translation>
     </message>
     <message>
         <source>Autostart</source>

@@ -1426,7 +1426,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Si prega di completare tutte le attività entro i prossimi 5 minuti.</translation>
     </message>
 </context>
 <context>
@@ -3275,29 +3275,31 @@ USO
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Spegni ora</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Installa gli aggiornamenti e spegni </translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Spegni dopo la conferma dell&apos;utente</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Spegni dopo il timeout</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Al computer è stato richiesto a distanza di spegnersi. Vuoi spegnere il computer adesso?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>Il computer verrà spento in% 1 minuti,% 2 secondi. 
+
+Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
 </context>
 <context>
@@ -3308,15 +3310,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Si prega di specificare un timeout per spegnere i computer selezionati:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>minuti</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>secondi</translation>
     </message>
 </context>
 <context>
