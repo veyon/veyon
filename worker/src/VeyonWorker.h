@@ -37,6 +37,11 @@ public:
 
 	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
 
+	VeyonCore& core()
+	{
+		return m_core;
+	}
+
 private:
 	VeyonCore m_core;
 	FeatureManager m_featureManager;

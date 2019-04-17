@@ -163,6 +163,8 @@ public:
 	};
 	Q_ENUM(AuthenticationMethod)
 
+	int exec();
+
 private:
 	void initPlatformPlugin();
 	void initConfiguration();
@@ -195,6 +197,9 @@ private:
 	QString m_applicationName;
 	QString m_authenticationKeyName;
 	bool m_debugging;
+
+signals:
+	void applicationLoaded();
 
 };
 

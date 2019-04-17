@@ -317,6 +317,21 @@ bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 
 
 
+int VeyonCore::exec()
+{
+	emit applicationLoaded();
+
+	vDebug() << Q_FUNC_INFO << "Running";
+
+	const auto result = QCoreApplication::instance()->exec();
+
+	vDebug() << Q_FUNC_INFO << "Exit";
+
+	return result;
+}
+
+
+
 void VeyonCore::initPlatformPlugin()
 {
 	// initialize plugin manager and load platform plugins first

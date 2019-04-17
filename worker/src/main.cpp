@@ -47,5 +47,5 @@ int main( int argc, char **argv )
 
 	VeyonWorker worker( featureUid );
 
-	return app.exec();
+	return worker.core().exec();
 }

@@ -86,10 +86,7 @@ int main( int argc, char **argv )
 
 	// now create the main window
 	auto mainWindow = new MainWindow;
-
 	mainWindow->show();
 
-	qInfo( "App.Exec" );
-
-	return app.exec();
+	return core.exec();
 }

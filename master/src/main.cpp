@@ -63,7 +63,5 @@ int main( int argc, char** argv )
 
 	masterCore.mainWindow()->show();
 
-	qInfo( "Master: running" );
-
-	return app.exec();
+	return core.exec();
 }
