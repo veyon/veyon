@@ -64,17 +64,17 @@ public:
 		return m_objects;
 	}
 
-	const QJsonArray& remove( const T& object, bool recursive = false )
+	const QJsonArray& remove( typename T::Uid objectUid, bool recursive = false )
 	{
 		if( recursive )
 		{
-			removeChildren( object );
+			removeChildren( objectUid );
 		}
 
 		for( auto it = m_objects.begin(); it != m_objects.end(); )
 		{
 			T currentObject( it->toObject() );
-			if( currentObject.uid() == object.uid() )
+			if( currentObject.uid() == objectUid )
 			{
 				it = m_objects.erase( it );
 			}
@@ -87,14 +87,14 @@ public:
 		return m_objects;
 	}
 
-	void removeChildren( const T& object )
+	void removeChildren( typename T::Uid objectUid )
 	{
 		for( auto it = m_objects.begin(); it != m_objects.end(); )
 		{
 			T currentObject( it->toObject() );
-			if( currentObject.parentUid() == object.uid() )
+			if( currentObject.parentUid() == objectUid )
 			{
-				removeChildren( currentObject );
+				removeChildren( currentObject.uid() );
 				it = m_objects.erase( it );
 			}
 			else

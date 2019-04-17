@@ -167,7 +167,7 @@ void DesktopServicesConfigurationPage::updateServiceObject( QTableWidget* tableW
 void DesktopServicesConfigurationPage::removeServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type, QJsonArray& objects )
 {
 	ObjectManager<DesktopServiceObject> objectManager( objects );
-	objectManager.remove( currentServiceObject( tableWidget, type ) );
+	objectManager.remove( currentServiceObject( tableWidget, type ).uid() );
 	objects = objectManager.objects();
 
 	loadObjects( objects, tableWidget );

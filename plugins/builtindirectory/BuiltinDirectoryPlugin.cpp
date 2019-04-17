@@ -297,7 +297,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_remove( con
 	if( object.isValid() )
 	{
 		ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-		objectManager.remove( object, true );
+		objectManager.remove( object.uid(), true );
 		m_configuration.setNetworkObjects( objectManager.objects() );
 
 		return saveConfiguration();

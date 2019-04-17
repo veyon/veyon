@@ -111,7 +111,7 @@ void BuiltinDirectoryConfigurationPage::updateLocation()
 void BuiltinDirectoryConfigurationPage::removeLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.remove( currentLocationObject(), true );
+	objectManager.remove( currentLocationObject().uid(), true );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateLocations();
@@ -163,7 +163,7 @@ void BuiltinDirectoryConfigurationPage::updateComputer()
 void BuiltinDirectoryConfigurationPage::removeComputer()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.remove( currentComputerObject() );
+	objectManager.remove( currentComputerObject().uid() );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
