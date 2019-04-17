@@ -317,6 +317,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 {
 	if( button->menu() )
 	{
+		button->menu()->close();
 		button->menu()->deleteLater();
 		button->setMenu( nullptr );
 	}
