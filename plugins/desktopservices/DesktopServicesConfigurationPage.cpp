@@ -70,7 +70,7 @@ void DesktopServicesConfigurationPage::addProgram()
 {
 	auto programs = m_configuration.predefinedPrograms();
 
-	addServiceObject( ui->programTable, DesktopServiceObject::Program, tr( "New program" ), programs );
+	addServiceObject( ui->programTable, DesktopServiceObject::Type::Program, tr( "New program" ), programs );
 
 	m_configuration.setPredefinedPrograms( programs );
 }
@@ -81,7 +81,7 @@ void DesktopServicesConfigurationPage::updateProgram()
 {
 	auto programs = m_configuration.predefinedPrograms();
 
-	updateServiceObject( ui->programTable, DesktopServiceObject::Program, programs );
+	updateServiceObject( ui->programTable, DesktopServiceObject::Type::Program, programs );
 
 	m_configuration.setPredefinedPrograms( programs );
 }
@@ -92,7 +92,7 @@ void DesktopServicesConfigurationPage::removeProgram()
 {
 	auto programs = m_configuration.predefinedPrograms();
 
-	removeServiceObject( ui->programTable, DesktopServiceObject::Program, programs );
+	removeServiceObject( ui->programTable, DesktopServiceObject::Type::Program, programs );
 
 	m_configuration.setPredefinedPrograms( programs );
 }
@@ -103,7 +103,7 @@ void DesktopServicesConfigurationPage::addWebsite()
 {
 	auto websites = m_configuration.predefinedWebsites();
 
-	addServiceObject( ui->websiteTable, DesktopServiceObject::Website, tr( "New website" ), websites );
+	addServiceObject( ui->websiteTable, DesktopServiceObject::Type::Website, tr( "New website" ), websites );
 
 	m_configuration.setPredefinedWebsites( websites );
 
@@ -113,7 +113,7 @@ void DesktopServicesConfigurationPage::updateWebsite()
 {
 	auto websites = m_configuration.predefinedWebsites();
 
-	updateServiceObject( ui->websiteTable, DesktopServiceObject::Website, websites );
+	updateServiceObject( ui->websiteTable, DesktopServiceObject::Type::Website, websites );
 
 	m_configuration.setPredefinedWebsites( websites );
 }
@@ -124,7 +124,7 @@ void DesktopServicesConfigurationPage::removeWebsite()
 {
 	auto websites = m_configuration.predefinedWebsites();
 
-	removeServiceObject( ui->websiteTable, DesktopServiceObject::Website, websites );
+	removeServiceObject( ui->websiteTable, DesktopServiceObject::Type::Website, websites );
 
 	m_configuration.setPredefinedWebsites( websites );
 }

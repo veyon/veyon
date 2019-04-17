@@ -74,7 +74,7 @@ bool DesktopServiceObject::operator==( const DesktopServiceObject& other ) const
 QJsonObject DesktopServiceObject::toJson() const
 {
 	QJsonObject json;
-	json[QStringLiteral("Type")] = type();
+	json[QStringLiteral("Type")] = static_cast<int>( type() );
 	json[QStringLiteral("Name")] = name();
 	json[QStringLiteral("Path")] = path();
 	json[QStringLiteral("Uid")] = uid().toString();

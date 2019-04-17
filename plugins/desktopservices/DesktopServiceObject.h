@@ -36,16 +36,15 @@ public:
 	typedef QUuid Uid;
 	typedef QString Name;
 
-	typedef enum Types
+	enum class Type
 	{
 		None,
 		Program,
 		Website,
-		TypeCount
-	} Type;
+	} ;
 
 	DesktopServiceObject( const DesktopServiceObject& other );
-	DesktopServiceObject( Type type = None,
+	DesktopServiceObject( Type type = Type::None,
 						  const Name& name = QString(),
 						  const QString& path = QString(),
 						  Uid uid = Uid() );
