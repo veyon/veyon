@@ -72,7 +72,7 @@ private:
 	}
 
 	void addFeaturesToToolBar();
-	void addSubFeaturesToToolButton( QToolButton* button, Feature::Uid parentFeatureUid );
+	void addSubFeaturesToToolButton( QToolButton* button, const Feature& parentFeature );
 
 	void updateModeButtonGroup();
 

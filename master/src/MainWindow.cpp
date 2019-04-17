@@ -149,6 +149,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	addToolBar( Qt::TopToolBarArea, ui->toolBar );
 
 	addFeaturesToToolBar();
+	reloadSubFeatures();
 
 	m_modeGroup->button( static_cast<int>( qHash( VeyonCore::builtinFeatures().monitoringMode().feature().uid() ) ) )->setChecked( true );
 
@@ -230,7 +231,7 @@ void MainWindow::reloadSubFeatures()
 		auto button = ui->toolBar->findChild<QToolButton *>( feature.name() );
 		if( button )
 		{
-			addSubFeaturesToToolButton( button, feature.uid() );
+			addSubFeaturesToToolButton( button, feature );
 		}
 	}
 }
@@ -307,14 +308,12 @@ void MainWindow::addFeaturesToToolBar()
 			btn->setCheckable( true );
 			m_modeGroup->addButton( btn, buttonId( feature ) );
 		}
-
-		addSubFeaturesToToolButton( btn, feature.uid() );
 	}
 }
 
 
 
-void MainWindow::addSubFeaturesToToolButton( QToolButton* button, Feature::Uid parentFeatureUid )
+void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature& parentFeature )
 {
 	if( button->menu() )
 	{
@@ -322,7 +321,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, Feature::Uid p
 		button->setMenu( nullptr );
 	}
 
-	const auto subFeatures = m_master.subFeatures( parentFeatureUid );
+	const auto subFeatures = m_master.subFeatures( parentFeature.uid() );
 
 	if( subFeatures.isEmpty() )
 	{
