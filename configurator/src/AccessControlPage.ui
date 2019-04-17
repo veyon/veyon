@@ -256,8 +256,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/document-edit.png</normaloff>:/configurator/document-edit.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-edit.png</normaloff>:/core/document-edit.png</iconset>
         </property>
        </widget>
       </item>

@@ -35,6 +35,7 @@
     <file>edit-find.png</file>
     <file>help-about.png</file>
     <file>dialog-ok-apply.png</file>
+    <file>document-edit.png</file>
     <file>default-pkey.pem</file>
   </qresource>
 </RCC>
