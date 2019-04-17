@@ -39,9 +39,9 @@
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
 	VeyonMasterInterface( parent ),
+	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
-	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_computerSortFilterProxyModel( new ComputerSortFilterProxyModel( this ) ),

@@ -98,9 +98,9 @@ public slots:
 private:
 	FeatureList featureList() const;
 
+	UserConfig* m_userConfig;
 	FeatureManager* m_featureManager;
 	const FeatureList m_features;
-	UserConfig* m_userConfig;
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;
 	ComputerSortFilterProxyModel* m_computerSortFilterProxyModel;
