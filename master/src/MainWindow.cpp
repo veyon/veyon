@@ -331,6 +331,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 
 	auto menu = new QMenu( button );
 	menu->setObjectName( parentFeature.name() );
+	menu->setToolTipsVisible( true );
 
 	for( const auto& subFeature : subFeatures )
 	{
@@ -343,6 +344,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
 									   [=]() { m_master.runFeature( subFeature ); }, subFeature.shortcut() );
 #endif
+		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
 	}
 
