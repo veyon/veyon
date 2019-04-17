@@ -225,6 +225,7 @@ bool DesktopServicesFeaturePlugin::openWebsite( const QString& urlString )
 
 	if( url.isEmpty() || url.isValid() == false )
 	{
+		qWarning() << Q_FUNC_INFO << "empty or invalid URL";
 		return false;
 	}
 
