@@ -330,6 +330,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 	}
 
 	auto menu = new QMenu( button );
+	menu->setObjectName( parentFeature.name() );
 
 	for( const auto& subFeature : subFeatures )
 	{
