@@ -22,6 +22,8 @@
  *
  */
 
+#include <QPushButton>
+
 #include "RunProgramDialog.h"
 
 #include "ui_RunProgramDialog.h"
@@ -29,9 +31,17 @@
 RunProgramDialog::RunProgramDialog( QWidget* parent ) :
 	QDialog( parent ),
 	ui( new Ui::RunProgramDialog ),
-	m_programs()
+	m_programs(),
+	m_remember( false ),
+	m_presetName()
 {
 	ui->setupUi( this );
+
+	connect( ui->programInputTextEdit, &QTextEdit::textChanged, this, &RunProgramDialog::validate );
+	connect( ui->rememberCheckBox, &QCheckBox::toggled, this, &RunProgramDialog::validate );
+	connect( ui->presetNameEdit, &QLineEdit::textChanged, this, &RunProgramDialog::validate );
+
+	validate();
 }
 
 
@@ -43,9 +53,20 @@ RunProgramDialog::~RunProgramDialog()
 
 
 
+void RunProgramDialog::validate()
+{
+	ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled(
+				ui->programInputTextEdit->toPlainText().isEmpty() == false &&
+				( ui->rememberCheckBox->isChecked() == false || ui->presetNameEdit->text().isEmpty() == false ) );
+}
+
+
+
 void RunProgramDialog::accept()
 {
-	m_programs = ui->programInputTextEdit->toPlainText().split( QLatin1Char('\n') );
+	m_programs = ui->programInputTextEdit->toPlainText();
+	m_remember = ui->rememberCheckBox->isChecked();
+	m_presetName = ui->presetNameEdit->text();
 
 	QDialog::accept();
 }

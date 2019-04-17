@@ -10,8 +10,59 @@
    <iconset resource="desktopservices.qrc">
     <normaloff>:/desktopservices/preferences-desktop-launch-feedback.png</normaloff>:/desktopservices/preferences-desktop-launch-feedback.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="6" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QTextEdit" name="programInputTextEdit">
+     <property name="placeholderText">
+      <string>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="rememberCheckBox">
+     <property name="text">
+      <string>Remember and add to program menu</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="presetNameEdit">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="placeholderText">
+      <string>e.g. VLC</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</string>
@@ -21,19 +72,18 @@
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QTextEdit" name="programInputTextEdit">
-     <property name="placeholderText">
-      <string>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</string>
+   <item row="5" column="0" colspan="2">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>15</height>
+      </size>
      </property>
-    </widget>
+    </spacer>
    </item>
   </layout>
  </widget>
@@ -70,6 +120,22 @@
     <hint type="destinationlabel">
      <x>199</x>
      <y>206</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rememberCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>presetNameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>225</x>
+     <y>273</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>225</x>
+     <y>315</y>
     </hint>
    </hints>
   </connection>

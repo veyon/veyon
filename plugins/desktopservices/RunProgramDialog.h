@@ -33,16 +33,28 @@ public:
 	RunProgramDialog( QWidget *parent );
 	~RunProgramDialog() override;
 
-	const QStringList& programs() const
+	const QString& programs() const
 	{
 		return m_programs;
 	}
 
-private slots:
-	void accept() override;
+	bool remember() const
+	{
+		return m_remember;
+	}
+
+	const QString& presetName() const
+	{
+		return m_presetName;
+	}
 
 private:
+	void validate();
+	void accept() override;
+
 	Ui::RunProgramDialog* ui;
-	QStringList m_programs;
+	QString m_programs;
+	bool m_remember;
+	QString m_presetName;
 
 } ;
