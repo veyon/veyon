@@ -340,9 +340,10 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 		action->setShortcut( subFeature.shortcut() );
 		connect( action, &QAction::triggered, this, [=] () { m_master.runFeature( subFeature ); } );
 #else
-		menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
-						 [=]() { m_master.runFeature( subFeature ); }, subFeature.shortcut() );
+		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
+									   [=]() { m_master.runFeature( subFeature ); }, subFeature.shortcut() );
 #endif
+		action->setObjectName( subFeature.uid().toString() );
 	}
 
 	button->setMenu( menu );
