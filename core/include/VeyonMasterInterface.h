@@ -25,11 +25,12 @@
 #pragma once
 
 #include "Configuration/Object.h"
+#include "VeyonCore.h"
 
 class BuiltinFeatures;
 class QWidget;
 
-class VeyonMasterInterface : public QObject
+class VEYON_CORE_EXPORT VeyonMasterInterface : public QObject
 {
 	Q_OBJECT
 public:
