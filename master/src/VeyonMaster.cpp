@@ -38,7 +38,7 @@
 
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
-	QObject( parent ),
+	VeyonMasterInterface( parent ),
 	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),

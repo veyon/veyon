@@ -29,9 +29,15 @@
 class BuiltinFeatures;
 class QWidget;
 
-class VeyonMasterInterface
+class VeyonMasterInterface : public QObject
 {
+	Q_OBJECT
 public:
+	VeyonMasterInterface( QObject* parent ) :
+		QObject( parent )
+	{
+	}
+
 	virtual ~VeyonMasterInterface() = default;
 
 	virtual QWidget* mainWindow() = 0;
