@@ -223,6 +223,20 @@ bool MainWindow::initAccessControl()
 
 
 
+void MainWindow::reloadSubFeatures()
+{
+	for( const auto& feature : m_master.features() )
+	{
+		auto button = ui->toolBar->findChild<QToolButton *>( feature.name() );
+		if( button )
+		{
+			addSubFeaturesToToolButton( button, feature.uid() );
+		}
+	}
+}
+
+
+
 void MainWindow::closeEvent( QCloseEvent* event )
 {
 	if( m_master.currentMode() != VeyonCore::builtinFeatures().monitoringMode().feature().uid() )

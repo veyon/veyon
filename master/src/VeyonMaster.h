@@ -87,6 +87,7 @@ public:
 
 	QWidget* mainWindow() override;
 	Configuration::Object* userConfigurationObject() override;
+	void reloadSubFeatures() override;
 
 	ComputerControlInterfaceList filteredComputerControlInterfaces();
 

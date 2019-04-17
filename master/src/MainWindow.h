@@ -55,6 +55,7 @@ public:
 		return m_master;
 	}
 
+	void reloadSubFeatures();
 
 protected:
 	void closeEvent( QCloseEvent* event ) override;

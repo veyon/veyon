@@ -127,6 +127,13 @@ Configuration::Object* VeyonMaster::userConfigurationObject()
 
 
 
+void VeyonMaster::reloadSubFeatures()
+{
+	m_mainWindow->reloadSubFeatures();
+}
+
+
+
 ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 {
 	const auto rowCount = m_computerSortFilterProxyModel->rowCount();
