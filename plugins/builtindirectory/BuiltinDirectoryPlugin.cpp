@@ -35,7 +35,7 @@
 
 BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
-	m_configuration(),
+	m_configuration( &VeyonCore::config() ),
 	m_commands( {
 { QStringLiteral("help"), tr( "Show help for specific command" ) },
 { addCommand(), tr( "Add a location or computer" ) },
@@ -761,4 +761,4 @@ QStringList BuiltinDirectoryPlugin::importExportPlaceholders()
 
 
 
-IMPLEMENT_CONFIG_PROXY(BuiltinDirectoryConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(BuiltinDirectoryConfiguration)

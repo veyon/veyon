@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QJsonArray>
+
 #include "Configuration/Proxy.h"
 #include "Configuration/Property.h"
 

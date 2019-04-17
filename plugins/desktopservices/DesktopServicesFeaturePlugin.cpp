@@ -39,7 +39,7 @@
 
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
-	m_configuration(),
+	m_configuration( &VeyonCore::config() ),
 	m_runProgramFeature( QStringLiteral( "RunProgram" ),
 						 Feature::Action | Feature::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
@@ -320,4 +320,4 @@ QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFea
 }
 
 
-IMPLEMENT_CONFIG_PROXY(DesktopServicesConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(DesktopServicesConfiguration)

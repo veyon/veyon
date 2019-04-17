@@ -32,7 +32,7 @@
 
 ExternalVncServer::ExternalVncServer( QObject* parent ) :
 	QObject( parent ),
-	m_configuration()
+	m_configuration( &VeyonCore::config() )
 {
 }
 
@@ -91,4 +91,4 @@ QString ExternalVncServer::configuredPassword()
 
 
 
-IMPLEMENT_CONFIG_PROXY(ExternalVncServerConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(ExternalVncServerConfiguration)

@@ -36,7 +36,7 @@ extern "C" int x11vnc_main( int argc, char * * argv );
 
 BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
 	QObject( parent ),
-	m_configuration()
+	m_configuration( &VeyonCore::config() )
 {
 }
 
@@ -149,4 +149,4 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 }
 
 
-IMPLEMENT_CONFIG_PROXY(X11VncConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(X11VncConfiguration)

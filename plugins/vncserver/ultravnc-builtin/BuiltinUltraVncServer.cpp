@@ -154,7 +154,7 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 
 
 BuiltinUltraVncServer::BuiltinUltraVncServer() :
-	m_configuration(),
+	m_configuration( &VeyonCore::config() ),
 	m_serverPort( DefaultServerPort ),
 	m_logoffEventFilter( nullptr )
 {
@@ -226,5 +226,5 @@ void BuiltinUltraVncServer::runServer( int serverPort, const QString& password )
 
 
 
-IMPLEMENT_CONFIG_PROXY(UltraVncConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(UltraVncConfiguration)
 

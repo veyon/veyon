@@ -70,11 +70,11 @@ private:
 #define DECLARE_CONFIG_PROXY(name, ops) \
 	class name : public Configuration::Proxy { \
 	public: \
-		name( QObject* parent = nullptr ); \
+		name( Configuration::Object* object, QObject* parent = nullptr ); \
 		ops(DECLARE_CONFIG_PROPERTY) \
 	};
 
-#define IMPLEMENT_CONFIG_PROXY(name, object) \
-	name::name( QObject* parent ) : Configuration::Proxy( object, parent ) { }
+#define IMPLEMENT_CONFIG_PROXY(name) \
+	name::name( Configuration::Object* object, QObject* parent ) : Configuration::Proxy( object, parent ) { }
 
 }

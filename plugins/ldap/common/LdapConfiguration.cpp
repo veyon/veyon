@@ -25,4 +25,4 @@
 #include "VeyonConfiguration.h"
 #include "LdapConfiguration.h"
 
-IMPLEMENT_CONFIG_PROXY(LdapConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(LdapConfiguration)

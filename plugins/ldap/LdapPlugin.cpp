@@ -28,11 +28,12 @@
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
 #include "LdapDirectory.h"
+#include "VeyonConfiguration.h"
 
 
 LdapPlugin::LdapPlugin( QObject* parent ) :
 	QObject( parent ),
-	m_configuration(),
+	m_configuration( &VeyonCore::config() ),
 	m_ldapClient( nullptr ),
 	m_ldapDirectory( nullptr ),
 	m_commands( {

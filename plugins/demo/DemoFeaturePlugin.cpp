@@ -65,6 +65,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	m_features( { m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
 	m_demoAccessToken( QString::fromLatin1( CryptoCore::generateChallenge().toBase64() ) ),
 	m_demoClientHosts(),
+	m_configuration( &VeyonCore::config() ),
 	m_demoServer( nullptr ),
 	m_demoClient( nullptr )
 {
@@ -292,4 +293,4 @@ ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
 
 
 
-IMPLEMENT_CONFIG_PROXY(DemoConfiguration, &VeyonCore::config())
+IMPLEMENT_CONFIG_PROXY(DemoConfiguration)
