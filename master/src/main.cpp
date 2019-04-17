@@ -30,7 +30,7 @@
 #include "MainWindow.h"
 
 
-int main( int argc, char * * argv )
+int main( int argc, char** argv )
 {
 	VeyonCore::setupApplicationParameters();
 
@@ -56,7 +56,7 @@ int main( int argc, char * * argv )
 		return -1;
 	}
 
-	VeyonMaster masterCore;
+	VeyonMaster masterCore( &core );
 
 	// hide splash-screen as soon as main-window is shown
 	splashScreen.finish( masterCore.mainWindow() );

@@ -41,7 +41,7 @@ class FeatureManager;
 class MainWindow;
 class UserConfig;
 
-class VeyonMaster : public QObject, public VeyonMasterInterface
+class VeyonMaster : public VeyonMasterInterface
 {
 	Q_OBJECT
 public:
