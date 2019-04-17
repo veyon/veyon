@@ -29,10 +29,11 @@
 #include "Feature.h"
 
 class QButtonGroup;
-class VeyonMaster;
+class QToolButton;
+
 class ComputerSelectPanel;
 class ScreenshotManagementPanel;
-class ToolButton;
+class VeyonMaster;
 
 namespace Ui {
 class MainWindow;
@@ -70,7 +71,7 @@ private:
 	}
 
 	void addFeaturesToToolBar();
-	void addSubFeaturesToToolButton( ToolButton* button, Feature::Uid parentFeatureUid );
+	void addSubFeaturesToToolButton( QToolButton* button, Feature::Uid parentFeatureUid );
 
 	void updateModeButtonGroup();
 

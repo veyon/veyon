@@ -300,8 +300,14 @@ void MainWindow::addFeaturesToToolBar()
 
 
 
-void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid parentFeatureUid )
+void MainWindow::addSubFeaturesToToolButton( QToolButton* button, Feature::Uid parentFeatureUid )
 {
+	if( button->menu() )
+	{
+		button->menu()->deleteLater();
+		button->setMenu( nullptr );
+	}
+
 	const auto subFeatures = m_master.subFeatures( parentFeatureUid );
 
 	if( subFeatures.isEmpty() )
