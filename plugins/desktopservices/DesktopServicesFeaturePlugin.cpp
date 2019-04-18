@@ -23,18 +23,22 @@
  */
 
 #include <QDesktopServices>
-#include <QInputDialog>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QToolButton>
 #include <QUrl>
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "DesktopServicesConfigurationPage.h"
 #include "DesktopServicesFeaturePlugin.h"
-#include "VeyonMasterInterface.h"
-#include "RunProgramDialog.h"
+#include "ObjectManager.h"
+#include "OpenWebsiteDialog.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "RunProgramDialog.h"
 #include "VeyonConfiguration.h"
+#include "VeyonMasterInterface.h"
 
 
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
@@ -54,10 +58,12 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 						  tr( "Open website" ), QString(),
 						  tr( "Click this button to open a website on all computers." ),
 						  QStringLiteral(":/desktopservices/internet-web-browser.png") ),
-	m_predefinedProgramsFeatures( predefinedPrograms() ),
-	m_predefinedWebsitesFeatures( predefinedWebsites() ),
-	m_features( FeatureList( { m_runProgramFeature, m_openWebsiteFeature } ) + m_predefinedProgramsFeatures + m_predefinedWebsitesFeatures )
+	m_predefinedProgramsFeatures(),
+	m_predefinedWebsitesFeatures(),
+	m_features()
 {
+	connect( VeyonCore::instance(), &VeyonCore::applicationLoaded,
+			 this, &DesktopServicesFeaturePlugin::updateFeatures );
 }
 
 
@@ -65,32 +71,13 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 												 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( m_features.contains( feature ) == false )
-	{
-		return false;
-	}
-
 	if( feature == m_runProgramFeature )
 	{
-		RunProgramDialog runProgramDialog( master.mainWindow() );
-
-		if( runProgramDialog.exec() == QDialog::Accepted &&
-				runProgramDialog.programs().isEmpty() == false )
-		{
-			sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ).
-								addArgument( ProgramsArgument, runProgramDialog.programs() ), computerControlInterfaces );
-		}
+		runProgram( master, computerControlInterfaces );
 	}
 	else if( feature == m_openWebsiteFeature )
 	{
-		const auto urlString = QInputDialog::getText( master.mainWindow(),
-													tr( "Open website" ),
-													tr( "Please enter the URL of the website to open:" ) );
-		if( urlString.isEmpty() == false )
-		{
-			sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ).
-								addArgument( WebsiteUrlArgument, urlString ), computerControlInterfaces );
-		}
+		openWebsite( master, computerControlInterfaces );
 	}
 	else if( m_predefinedProgramsFeatures.contains( feature ) )
 	{
@@ -103,6 +90,10 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
 							addArgument( WebsiteUrlArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
 
+	}
+	else
+	{
+		return false;
 	}
 
 	return true;
@@ -181,6 +172,147 @@ ConfigurationPage* DesktopServicesFeaturePlugin::createConfigurationPage()
 
 
 
+bool DesktopServicesFeaturePlugin::eventFilter( QObject* object, QEvent* event )
+{
+	auto menu = qobject_cast<QMenu *>( object );
+	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+
+	if( master != nullptr &&
+		menu != nullptr &&
+		menu->activeAction() != nullptr &&
+		event->type() == QEvent::KeyPress &&
+		static_cast<QKeyEvent *>( event )->key() == Qt::Key_Delete )
+	{
+		DesktopServicesConfiguration userConfig( master->userConfigurationObject() );
+
+		if( menu->objectName() == m_runProgramFeature.name() )
+		{
+			ObjectManager<DesktopServiceObject> objectManager( userConfig.predefinedPrograms() );
+			objectManager.remove( DesktopServiceObject::Uid( menu->activeAction()->objectName() ) );
+			userConfig.setPredefinedPrograms( objectManager.objects() );
+		}
+		else if( menu->objectName() == m_openWebsiteFeature.name() )
+		{
+			ObjectManager<DesktopServiceObject> objectManager( userConfig.predefinedWebsites() );
+			objectManager.remove( DesktopServiceObject::Uid( menu->activeAction()->objectName() ) );
+			userConfig.setPredefinedWebsites( objectManager.objects() );
+		}
+
+		userConfig.flushStore();
+
+		QTimer::singleShot( 0, this, &DesktopServicesFeaturePlugin::updateFeatures );
+		QTimer::singleShot( 0, this, [=]() { openMenu( menu->objectName() ); } );
+
+		return true;
+	}
+
+	return QObject::eventFilter( object, event );
+}
+
+
+
+void DesktopServicesFeaturePlugin::updateFeatures()
+{
+	updatePredefinedProgramFeatures();
+	updatePredefinedWebsiteFeatures();
+
+	m_features = FeatureList( { m_runProgramFeature, m_openWebsiteFeature } ) +
+			m_predefinedProgramsFeatures + m_predefinedWebsitesFeatures;
+
+	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	if( master )
+	{
+		master->reloadSubFeatures();
+
+		auto runProgramButton = master->mainWindow()->findChild<QToolButton *>( m_runProgramFeature.name() );
+		if( runProgramButton && runProgramButton->menu() )
+		{
+			runProgramButton->menu()->installEventFilter( this );
+		}
+
+		auto openWebsiteButton = master->mainWindow()->findChild<QToolButton *>( m_openWebsiteFeature.name() );
+		if( openWebsiteButton && openWebsiteButton->menu() )
+		{
+			openWebsiteButton->menu()->installEventFilter( this );
+		}
+	}
+}
+
+
+
+void DesktopServicesFeaturePlugin::openMenu( const QString& objectName )
+{
+	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	if( master )
+	{
+		auto button = master->mainWindow()->findChild<QToolButton *>( objectName );
+		if( button && button->menu() )
+		{
+			button->showMenu();
+		}
+	}
+}
+
+
+
+void DesktopServicesFeaturePlugin::runProgram( VeyonMasterInterface& master,
+											   const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	RunProgramDialog runProgramDialog( master.mainWindow() );
+
+	if( runProgramDialog.exec() == QDialog::Accepted )
+	{
+		sendFeatureMessage( FeatureMessage( m_runProgramFeature.uid(), FeatureMessage::DefaultCommand ).
+							addArgument( ProgramsArgument, runProgramDialog.programs().split( QLatin1Char('\n') ) ),
+							computerControlInterfaces );
+
+		if( runProgramDialog.remember() )
+		{
+			DesktopServicesConfiguration userConfig( master.userConfigurationObject() );
+
+			ObjectManager<DesktopServiceObject> objectManager( userConfig.predefinedPrograms() );
+			objectManager.add( DesktopServiceObject( DesktopServiceObject::Type::Program,
+													 runProgramDialog.presetName(),
+													 runProgramDialog.programs() ) );
+			userConfig.setPredefinedPrograms( objectManager.objects() );
+			userConfig.flushStore();
+
+			updateFeatures();
+		}
+	}
+}
+
+
+
+void DesktopServicesFeaturePlugin::openWebsite( VeyonMasterInterface& master,
+												const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	OpenWebsiteDialog openWebsiteDialog( master.mainWindow() );
+
+	if( openWebsiteDialog.exec() == QDialog::Accepted )
+	{
+		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
+							addArgument( WebsiteUrlArgument, openWebsiteDialog.website() ),
+							computerControlInterfaces );
+
+		if( openWebsiteDialog.remember() )
+		{
+			DesktopServicesConfiguration userConfig( master.userConfigurationObject() );
+
+			ObjectManager<DesktopServiceObject> objectManager( userConfig.predefinedWebsites() );
+			objectManager.add( DesktopServiceObject( DesktopServiceObject::Type::Website,
+													 openWebsiteDialog.presetName(),
+													 openWebsiteDialog.website() ) );
+			userConfig.setPredefinedWebsites( objectManager.objects() );
+			userConfig.flushStore();
+
+			updateFeatures();
+		}
+	}
+}
+
+
+
 void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& commandLine )
 {
 	vDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching" << commandLine;
@@ -244,68 +376,101 @@ bool DesktopServicesFeaturePlugin::openWebsite( const QString& urlString )
 
 
 
-FeatureList DesktopServicesFeaturePlugin::predefinedPrograms() const
+void DesktopServicesFeaturePlugin::updatePredefinedPrograms()
 {
-	FeatureList programFeatures;
+	m_predefinedPrograms = m_configuration.predefinedPrograms();
 
-	const auto programs = m_configuration.predefinedPrograms();
-
-	if( programs.size() > 0 )
+	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	if( master )
 	{
-		programFeatures.reserve( programs.size() + 1 );
-
-		for( const auto& program : programs )
+		const auto userPrograms = DesktopServicesConfiguration( master->userConfigurationObject() ).predefinedPrograms();
+		for( const auto& userProgram : userPrograms )
 		{
-			const auto programObject = DesktopServiceObject( program.toObject() );
-			programFeatures.append( Feature( m_runProgramFeature.name(),
-											 Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
-											 programObject.name(), QString(), tr("Run program \"%1\"").arg( programObject.name() ) ) );
+			m_predefinedPrograms.append( userProgram );
 		}
-
-		auto primaryFeature = m_runProgramFeature;
-		primaryFeature.setParentUid( m_runProgramFeature.uid() );
-		primaryFeature.setDisplayName( tr("Custom program") );
-		programFeatures.append( primaryFeature );
 	}
-
-	return programFeatures;
 }
 
 
 
-FeatureList DesktopServicesFeaturePlugin::predefinedWebsites() const
+void DesktopServicesFeaturePlugin::updatePredefinedWebsites()
 {
-	FeatureList websiteFeatures;
+	m_predefinedWebsites = m_configuration.predefinedWebsites();
 
-	const auto websites = m_configuration.predefinedWebsites();
-
-	if( websites.size() > 0 )
+	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	if( master )
 	{
-		websiteFeatures.reserve( websites.size() + 1 );
+		const auto userWebsites = DesktopServicesConfiguration( master->userConfigurationObject() ).predefinedWebsites();
+		for( const auto& userWebsite : userWebsites )
+		{
+			m_predefinedWebsites.append( userWebsite );
+		}
+	}
+}
 
-		for( const auto& website : websites )
+
+
+void DesktopServicesFeaturePlugin::updatePredefinedProgramFeatures()
+{
+	m_predefinedProgramsFeatures.clear();
+
+	updatePredefinedPrograms();
+
+	if( m_predefinedPrograms.isEmpty() == false )
+	{
+		m_predefinedProgramsFeatures.reserve( m_predefinedPrograms.size()+1 );
+
+		for( const auto& program : qAsConst(m_predefinedPrograms) )
+		{
+			const auto programObject = DesktopServiceObject( program.toObject() );
+			m_predefinedProgramsFeatures.append( Feature( m_runProgramFeature.name(), Feature::Action | Feature::Master,
+														 programObject.uid(), m_runProgramFeature.uid(),
+														 programObject.name(), QString(),
+														 tr("Run program \"%1\"").arg( programObject.path() ) ) );
+		}
+
+		auto primaryFeature = m_runProgramFeature;
+		primaryFeature.setIconUrl( QStringLiteral(":/core/document-edit.png") );
+		primaryFeature.setParentUid( m_runProgramFeature.uid() );
+		primaryFeature.setDisplayName( tr("Custom program") );
+		m_predefinedProgramsFeatures.append( primaryFeature );
+	}
+}
+
+
+
+void DesktopServicesFeaturePlugin::updatePredefinedWebsiteFeatures()
+{
+	m_predefinedWebsitesFeatures.clear();
+
+	updatePredefinedWebsites();
+
+	if( m_predefinedWebsites.isEmpty() == false )
+	{
+		m_predefinedWebsitesFeatures.reserve( m_predefinedWebsites.size()+1 );
+
+		for( const auto& website : qAsConst(m_predefinedWebsites) )
 		{
 			const auto websiteObject = DesktopServiceObject( website.toObject() );
-			websiteFeatures.append( Feature( m_openWebsiteFeature.name(),
-											 Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
-											 websiteObject.name(), QString(),
-											 tr("Open website \"%1\"").arg( websiteObject.name() ) ) );
+			m_predefinedWebsitesFeatures.append( Feature( m_openWebsiteFeature.name(), Feature::Action | Feature::Master,
+														 websiteObject.uid(), m_openWebsiteFeature.uid(),
+														 websiteObject.name(), QString(),
+														 tr("Open website \"%1\"").arg( websiteObject.path() ) ) );
 		}
 
 		auto primaryFeature = m_openWebsiteFeature;
+		primaryFeature.setIconUrl( QStringLiteral(":/core/document-edit.png") );
 		primaryFeature.setParentUid( m_openWebsiteFeature.uid() );
 		primaryFeature.setDisplayName( tr("Custom website") );
-		websiteFeatures.append( primaryFeature );
+		m_predefinedWebsitesFeatures.append( primaryFeature );
 	}
-
-	return websiteFeatures;
 }
 
 
 
 QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFeatureUid ) const
 {
-	for( const auto& services : { m_configuration.predefinedPrograms(), m_configuration.predefinedWebsites() } )
+	for( const auto& services : { m_predefinedPrograms, m_predefinedWebsites } )
 	{
 		for( const auto& service : services )
 		{

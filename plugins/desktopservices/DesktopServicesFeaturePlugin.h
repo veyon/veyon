@@ -26,6 +26,7 @@
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DesktopServicesConfiguration.h"
+#include "DesktopServiceObject.h"
 #include "FeatureProviderInterface.h"
 
 class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
@@ -94,11 +95,22 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
+	bool eventFilter( QObject* object, QEvent* event ) override;
+
+	void updateFeatures();
+	void openMenu( const QString& objectName );
+
+	void runProgram( VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
+	void openWebsite( VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
+
 	void runProgramAsUser( const QString& commandLine );
 	bool openWebsite( const QString& urlString );
 
-	FeatureList predefinedPrograms() const;
-	FeatureList predefinedWebsites() const;
+	void updatePredefinedPrograms();
+	void updatePredefinedWebsites();
+
+	void updatePredefinedProgramFeatures();
+	void updatePredefinedWebsiteFeatures();
 
 	QString predefinedServicePath( Feature::Uid subFeatureUid ) const;
 
@@ -109,10 +121,15 @@ private:
 
 	DesktopServicesConfiguration m_configuration;
 
+	QJsonArray m_predefinedPrograms;
+	QJsonArray m_predefinedWebsites;
+
 	const Feature m_runProgramFeature;
 	const Feature m_openWebsiteFeature;
-	const FeatureList m_predefinedProgramsFeatures;
-	const FeatureList m_predefinedWebsitesFeatures;
-	const FeatureList m_features;
+
+	FeatureList m_predefinedProgramsFeatures;
+	FeatureList m_predefinedWebsitesFeatures;
+
+	FeatureList m_features;
 
 };
