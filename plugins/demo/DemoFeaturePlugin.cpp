@@ -85,10 +85,15 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
 
+		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
+
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
 			m_demoClientHosts += computerControlInterface->computer().hostAddress();
-			computerControlInterface->disableUpdates();
+			if( disableUpdates )
+			{
+				computerControlInterface->disableUpdates();
+			}
 		}
 
 		vDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
@@ -111,10 +116,15 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 	{
 		sendFeatureMessage( FeatureMessage( feature.uid(), StopDemoClient ), computerControlInterfaces );
 
+		const auto enableUpdates = m_configuration.slowDownThumbnailUpdates();
+
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
 			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
-			computerControlInterface->enableUpdates();
+			if( enableUpdates )
+			{
+				computerControlInterface->enableUpdates();
+			}
 		}
 
 		vDebug() << "DemoFeaturePlugin::stopMasterFeature(): clients:" << m_demoClientHosts;
