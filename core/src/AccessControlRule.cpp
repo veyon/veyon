@@ -22,7 +22,6 @@
  *
  */
 
-#include <QDebug>
 #include <QJsonArray>
 
 #include "AccessControlRule.h"

@@ -22,8 +22,6 @@
  *
  */
 
-#include <QDebug>
-
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "PluginInterface.h"
