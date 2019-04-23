@@ -90,6 +90,8 @@ private:
 	bool setVncServerEncodings();
 
 	const DemoConfiguration& m_configuration;
+	const qint64 m_memoryLimit;
+	const int m_keyFrameInterval;
 	const int m_vncServerPort;
 	const QString m_demoAccessToken;
 

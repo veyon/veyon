@@ -36,6 +36,8 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 						const DemoConfiguration& configuration, QObject *parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),
+	m_memoryLimit( m_configuration.memoryLimit() * 1024*1024 ),
+	m_keyFrameInterval( m_configuration.keyFrameInterval() * 1000 ),
 	m_vncServerPort( vncServerPort ),
 	m_demoAccessToken( demoAccessToken ),
 	m_tcpServer( new QTcpServer( this ) ),
@@ -146,8 +148,9 @@ void DemoServer::requestFramebufferUpdate()
 	}
 
 	if( m_requestFullFramebufferUpdate ||
-			m_lastFullFramebufferUpdate.elapsed() >= m_configuration.keyFrameInterval() * 1000 )
+		m_lastFullFramebufferUpdate.elapsed() >= m_keyFrameInterval )
 	{
+		vDebug() << Q_FUNC_INFO << "Requesting full framebuffer update";
 		m_vncClientProtocol.requestFramebufferUpdate( false );
 		m_lastFullFramebufferUpdate.restart();
 		m_requestFullFramebufferUpdate = false;
@@ -184,29 +187,28 @@ bool DemoServer::receiveVncServerMessage()
 
 void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 {
-	bool isFullUpdate = false;
 	const auto lastUpdatedRect = m_vncClientProtocol.lastUpdatedRect();
-
-	if( lastUpdatedRect.x() == 0 && lastUpdatedRect.y() == 0 &&
-			lastUpdatedRect.width() == m_vncClientProtocol.framebufferWidth() &&
-			lastUpdatedRect.height() == m_vncClientProtocol.framebufferHeight() )
-	{
-		isFullUpdate = true;
-	}
 
 	m_dataLock.lockForWrite();
 
-	if( isFullUpdate || framebufferUpdateMessageQueueSize() > m_configuration.memoryLimit()*2*1024*1024  )
+	const bool isFullUpdate = ( lastUpdatedRect.x() == 0 && lastUpdatedRect.y() == 0 &&
+								lastUpdatedRect.width() == m_vncClientProtocol.framebufferWidth() &&
+								lastUpdatedRect.height() == m_vncClientProtocol.framebufferHeight() );
+
+	const auto queueSize = framebufferUpdateMessageQueueSize();
+
+	if( isFullUpdate || queueSize > m_memoryLimit*2 )
 	{
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
-			const auto memTotal = framebufferUpdateMessageQueueSize() / 1024;
+			const auto memTotal = queueSize / 1024;
 			vDebug() << Q_FUNC_INFO
 					 << "   MEMTOTAL:" << memTotal
 					 << "   KB/s:" << ( memTotal * 1000 ) / m_keyFrameTimer.elapsed();
 		}
 		m_keyFrameTimer.restart();
 		++m_keyFrame;
+
 		m_framebufferUpdateMessages.clear();
 	}
 
@@ -215,7 +217,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 	m_dataLock.unlock();
 
 	// we're about to reach memory limits?
-	if( framebufferUpdateMessageQueueSize() > m_configuration.memoryLimit() * 1024 * 1024 )
+	if( framebufferUpdateMessageQueueSize() > m_memoryLimit )
 	{
 		// then request a full update so we can clear our queue
 		m_requestFullFramebufferUpdate = true;
