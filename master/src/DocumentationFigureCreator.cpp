@@ -309,8 +309,9 @@ void DocumentationFigureCreator::createTextMessageDialogFigure()
 void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 {
 	scheduleUiOperation( []() {
-		auto dialog = qobject_cast<QInputDialog *>( QApplication::activeWindow() );
-		dialog->setTextValue( QStringLiteral("https://veyon.io") );
+		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
+		dialog->findChild<QLineEdit *>( QStringLiteral("websiteLineEdit") )->
+				setText( QStringLiteral("https://veyon.io") );
 
 		grabDialog( dialog, {}, QStringLiteral("OpenWebsiteDialog.png") );
 	});
