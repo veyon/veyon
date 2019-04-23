@@ -93,6 +93,22 @@ DemoServer::~DemoServer()
 
 
 
+void DemoServer::lockDataForRead()
+{
+	QElapsedTimer readLockTimer;
+	readLockTimer.restart();
+
+	m_dataLock.lockForRead();
+
+	if( readLockTimer.elapsed() > 100 )
+	{
+		vDebug() << Q_FUNC_INFO << "locking for read took" << readLockTimer.elapsed() << "ms in thread"
+				 << QThread::currentThreadId();
+	}
+}
+
+
+
 void DemoServer::acceptPendingConnections()
 {
 	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
@@ -187,9 +203,17 @@ bool DemoServer::receiveVncServerMessage()
 
 void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 {
-	const auto lastUpdatedRect = m_vncClientProtocol.lastUpdatedRect();
+	QElapsedTimer writeLockTime;
+	writeLockTime.start();
 
 	m_dataLock.lockForWrite();
+
+	if( writeLockTime.elapsed() > 10 )
+	{
+		vDebug() << Q_FUNC_INFO << "locking for write took" << writeLockTime.elapsed() << "ms";
+	}
+
+	const auto lastUpdatedRect = m_vncClientProtocol.lastUpdatedRect();
 
 	const bool isFullUpdate = ( lastUpdatedRect.x() == 0 && lastUpdatedRect.y() == 0 &&
 								lastUpdatedRect.width() == m_vncClientProtocol.framebufferWidth() &&

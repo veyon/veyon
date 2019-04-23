@@ -54,10 +54,7 @@ public:
 		return m_vncClientProtocol.serverInitMessage();
 	}
 
-	void lockDataForRead()
-	{
-		m_dataLock.lockForRead();
-	}
+	void lockDataForRead();
 
 	void unlockData()
 	{
