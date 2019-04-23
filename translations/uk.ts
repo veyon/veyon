@@ -2829,7 +2829,7 @@ USAGE
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation>Вирівнювати комп&apos;ютери за ґраткою</translation>
+        <translation>Вирівняти комп&apos;ютери за ґраткою</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
