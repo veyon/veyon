@@ -25,7 +25,6 @@
 #pragma once
 
 #include "Configuration/Proxy.h"
-#include "Configuration/Property.h"
 
 #define FOREACH_ULTRAVNC_CONFIG_PROPERTY(OP) \
 	OP( UltraVncConfiguration, m_configuration, bool, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC", true, Configuration::Property::Flag::Advanced )	\

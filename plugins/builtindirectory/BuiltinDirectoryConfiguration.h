@@ -27,7 +27,6 @@
 #include <QJsonArray>
 
 #include "Configuration/Proxy.h"
-#include "Configuration/Property.h"
 
 #define FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(OP) \
 	OP( BuiltinDirectoryConfiguration, m_configuration, QJsonArray, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory", QJsonArray(), Configuration::Property::Flag::Standard )	\

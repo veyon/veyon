@@ -24,7 +24,8 @@
 
 #pragma once
 
-#include "Object.h"
+#include "Configuration/Object.h"
+#include "Configuration/Property.h"
 
 namespace Configuration
 {

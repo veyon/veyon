@@ -25,7 +25,6 @@
 #pragma once
 
 #include "Configuration/Proxy.h"
-#include "Configuration/Property.h"
 #include "CryptoCore.h"
 #include "LdapClient.h"
 

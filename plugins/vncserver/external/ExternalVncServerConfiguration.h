@@ -25,7 +25,6 @@
 #pragma once
 
 #include "Configuration/Proxy.h"
-#include "Configuration/Property.h"
 
 #define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
 	OP( ExternalVncServerConfiguration, m_configuration, int, serverPort, setServerPort, "ServerPort", "ExternalVncServer", 5900, Configuration::Property::Flag::Standard ) \
