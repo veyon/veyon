@@ -38,6 +38,8 @@ public:
 	WindowsCoreFunctions();
 	~WindowsCoreFunctions();
 
+	bool applyConfiguration() override;
+
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 

@@ -51,6 +51,13 @@ LinuxCoreFunctions::LinuxCoreFunctions() :
 
 
 
+bool LinuxCoreFunctions::applyConfiguration()
+{
+	return true;
+}
+
+
+
 void LinuxCoreFunctions::initNativeLoggingSystem( const QString& appName )
 {
 	Q_UNUSED(appName)

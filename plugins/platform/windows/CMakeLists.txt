@@ -18,6 +18,7 @@ BUILD_PLUGIN(windows-platform
 	XEventLog.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp
+	WindowsPlatformConfiguration.h
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
 	WindowsFilesystemFunctions.h

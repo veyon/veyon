@@ -35,6 +35,8 @@ class LinuxCoreFunctions : public PlatformCoreFunctions
 public:
 	LinuxCoreFunctions();
 
+	bool applyConfiguration() override;
+
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 

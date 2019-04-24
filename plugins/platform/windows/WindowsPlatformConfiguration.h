@@ -1,5 +1,5 @@
 /*
- * LinuxInputDeviceFunctions.h - declaration of LinuxInputDeviceFunctions class
+ * WindowsPlatformConfiguration.h - configuration values for WindowsPlatform plugin
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,30 +24,10 @@
 
 #pragma once
 
-#include "PlatformInputDeviceFunctions.h"
+#include "Configuration/Proxy.h"
 
-// clazy:excludeall=copyable-polymorphic
+#define FOREACH_WINDOWS_PLATFORM_CONFIG_PROPERTY(OP) \
+	OP( WindowsPlatformConfiguration, m_configuration, bool, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Windows", true, Configuration::Property::Flag::Advanced ) \
 
-class LinuxInputDeviceFunctions : public PlatformInputDeviceFunctions
-{
-public:
-	LinuxInputDeviceFunctions();
-	virtual ~LinuxInputDeviceFunctions() = default;
 
-	void enableInputDevices() override;
-	void disableInputDevices() override;
-
-	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
-
-private:
-	void setEmptyKeyMapTable();
-	void restoreKeyMapTable();
-
-	bool m_inputDevicesDisabled;
-	void* m_origKeyTable;
-	int m_keyCodeMin;
-	int m_keyCodeMax;
-	int m_keyCodeCount;
-	int m_keySymsPerKeyCode;
-
-};
+DECLARE_CONFIG_PROXY(WindowsPlatformConfiguration, FOREACH_WINDOWS_PLATFORM_CONFIG_PROPERTY)

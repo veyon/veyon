@@ -25,6 +25,7 @@
 #include "Configuration/LocalStore.h"
 #include "ConfigurationManager.h"
 #include "Filesystem.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformInputDeviceFunctions.h"
 #include "PlatformNetworkFunctions.h"
 #include "VeyonConfiguration.h"
@@ -76,10 +77,9 @@ bool ConfigurationManager::applyConfiguration()
 		return false;
 	}
 
-	if( VeyonCore::platform().inputDeviceFunctions().configureSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
+	if( VeyonCore::platform().coreFunctions().applyConfiguration() == false )
 	{
-		m_errorString =  tr( "Could not change the setting for SAS generation by software. "
-							 "Sending Ctrl+Alt+Del via remote control will not work!" );
+		m_errorString =  tr( "Could not apply platform-specific configuration settings." );
 		return false;
 	}
 

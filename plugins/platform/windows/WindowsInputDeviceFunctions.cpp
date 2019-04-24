@@ -93,37 +93,6 @@ KeyboardShortcutTrapper* WindowsInputDeviceFunctions::createKeyboardShortcutTrap
 
 
 
-bool WindowsInputDeviceFunctions::configureSoftwareSAS(bool enabled)
-{
-	HKEY hkLocal, hkLocalKey;
-	DWORD dw;
-	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
-						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
-						0, REG_NONE, REG_OPTION_NON_VOLATILE,
-						KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
-	{
-		return false;
-	}
-
-	if( RegOpenKeyEx( hkLocal,
-					  L"System",
-					  0, KEY_WRITE | KEY_READ,
-					  &hkLocalKey ) != ERROR_SUCCESS )
-	{
-		RegCloseKey( hkLocal );
-		return false;
-	}
-
-	LONG pref = enabled ? 1 : 0;
-	RegSetValueEx( hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref) );
-	RegCloseKey( hkLocalKey );
-	RegCloseKey( hkLocal );
-
-	return true;
-}
-
-
-
 void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 {
 	const auto context = interception_create_context();

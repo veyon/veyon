@@ -36,6 +36,8 @@ class PlatformCoreFunctions
 public:
 	virtual ~PlatformCoreFunctions() = default;
 
+	virtual bool applyConfiguration() = 0;
+
 	virtual void initNativeLoggingSystem( const QString& appName ) = 0;
 	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
 

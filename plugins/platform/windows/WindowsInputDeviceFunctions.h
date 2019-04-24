@@ -41,8 +41,6 @@ public:
 
 	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
 
-	bool configureSoftwareSAS( bool enabled ) override;
-
 	static void checkInterceptionInstallation();
 
 private:

@@ -38,6 +38,4 @@ public:
 
 	virtual KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) = 0;
 
-	virtual bool configureSoftwareSAS( bool enabled ) = 0;
-
 };
