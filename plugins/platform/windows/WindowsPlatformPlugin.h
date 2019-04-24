@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "ConfigurationPagePluginInterface.h"
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "WindowsCoreFunctions.h"
@@ -33,11 +34,11 @@
 #include "WindowsServiceFunctions.h"
 #include "WindowsUserFunctions.h"
 
-class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
+class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.WindowsPlatform")
-	Q_INTERFACES(PluginInterface PlatformPluginInterface)
+	Q_INTERFACES(PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
 public:
 	WindowsPlatformPlugin( QObject* parent = nullptr );
 	~WindowsPlatformPlugin() = default;
@@ -106,6 +107,8 @@ public:
 	{
 		return m_windowsUserFunctions;
 	}
+
+	ConfigurationPage* createConfigurationPage() override;
 
 private:
 	WindowsCoreFunctions m_windowsCoreFunctions;

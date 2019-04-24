@@ -1,7 +1,7 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * WindowsPlatformConfigurationPage.h - header for the WindowsPlatformConfigurationPage class
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,26 +22,28 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
-#include "WindowsPlatformConfigurationPage.h"
+#pragma once
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_windowsCoreFunctions(),
-	m_windowsFilesystemFunctions(),
-	m_windowsInputDeviceFunctions(),
-	m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-	m_windowsUserFunctions()
-{
+#include "ConfigurationPage.h"
+#include "WindowsPlatformConfiguration.h"
+
+namespace Ui {
+class WindowsPlatformConfigurationPage;
 }
 
-
-
-ConfigurationPage* WindowsPlatformPlugin::createConfigurationPage()
+class WindowsPlatformConfigurationPage : public ConfigurationPage
 {
-	return new WindowsPlatformConfigurationPage();
-}
+	Q_OBJECT
+public:
+	WindowsPlatformConfigurationPage();
+	~WindowsPlatformConfigurationPage() override;
 
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
-IMPLEMENT_CONFIG_PROXY(WindowsPlatformConfiguration)
+private:
+	Ui::WindowsPlatformConfigurationPage *ui;
+	WindowsPlatformConfiguration m_configuration;
+
+};

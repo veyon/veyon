@@ -4,6 +4,9 @@ ADD_DEFINITIONS(-DULTRAVNC_VEYON_SUPPORT -DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0
 
 BUILD_PLUGIN(windows-platform
 	WindowsPlatformPlugin.cpp
+	WindowsPlatformConfigurationPage.h
+	WindowsPlatformConfigurationPage.cpp
+	WindowsPlatformConfigurationPage.ui
 	WindowsCoreFunctions.cpp
 	WindowsFilesystemFunctions.cpp
 	WindowsInputDeviceFunctions.cpp
@@ -32,6 +35,7 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.h
 	SasEventListener.h
 	XEventLog.h
+	windows.qrc
 )
 
 INCLUDE_DIRECTORIES(${ultravnc_DIR}/addon/ms-logon/authSSP)

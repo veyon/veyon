@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WindowsPlatformConfigurationPage</class>
+ <widget class="QWidget" name="WindowsPlatformConfigurationPage">
+  <property name="windowTitle">
+   <string>Windows</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="windows.qrc">
+    <normaloff>:/windows/windows-logo.png</normaloff>:/windows/windows-logo.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>General</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="isSoftwareSASEnabled">
+        <property name="text">
+         <string>Enable SAS generation by software (Ctrl+Alt+Del)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="disableSSPIBasedUserAuthentication">
+        <property name="text">
+         <string>Disable SSPI-based user authentication</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Screen lock</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="hideTaskbarForScreenLock">
+        <property name="text">
+         <string>Hide taskbar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="hideStartMenuForScreenLock">
+        <property name="text">
+         <string>Hide start menu</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="hideDesktopForScreenLock">
+        <property name="text">
+         <string>Hide desktop</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>isSoftwareSASEnabled</tabstop>
+  <tabstop>disableSSPIBasedUserAuthentication</tabstop>
+  <tabstop>hideTaskbarForScreenLock</tabstop>
+  <tabstop>hideStartMenuForScreenLock</tabstop>
+  <tabstop>hideDesktopForScreenLock</tabstop>
+ </tabstops>
+ <resources>
+  <include location="windows.qrc"/>
+ </resources>
+ <connections/>
+ <slots>
+  <slot>updateVncServerPluginConfigurationWidget()</slot>
+  <slot>startWindowsPlatform()</slot>
+  <slot>stopWindowsPlatform()</slot>
+ </slots>
+</ui>
