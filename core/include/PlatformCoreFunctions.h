@@ -49,6 +49,8 @@ public:
 	virtual void disableScreenSaver() = 0;
 	virtual void restoreScreenSaverSettings() = 0;
 
+	virtual void setSystemUiState( bool enabled ) = 0;
+
 	virtual QString activeDesktopName() = 0;
 
 	virtual bool isRunningAsAdmin() const = 0;

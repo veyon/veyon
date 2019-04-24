@@ -48,6 +48,8 @@ public:
 	void disableScreenSaver() override;
 	void restoreScreenSaverSettings() override;
 
+	void setSystemUiState( bool enabled ) override;
+
 	QString activeDesktopName() override;
 
 	bool isRunningAsAdmin() const override;

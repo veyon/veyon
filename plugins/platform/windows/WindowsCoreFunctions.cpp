@@ -224,11 +224,33 @@ void WindowsCoreFunctions::restoreScreenSaverSettings()
 
 
 
+void WindowsCoreFunctions::setSystemUiState( bool enabled )
+{
+	WindowsPlatformConfiguration config( &VeyonCore::config() );
+
+	if( config.hideTaskbarForScreenLock() )
+	{
+		setTaskbarState( enabled );
+	}
+
+	if( config.hideStartMenuForScreenLock() )
+	{
+		setStartMenuState( enabled );
+	}
+
+	if( config.hideDesktopForScreenLock() )
+	{
+		setDesktopState( enabled );
+	}
+}
+
+
+
 QString WindowsCoreFunctions::activeDesktopName()
 {
 	QString desktopName;
 
-	HDESK desktopHandle = OpenInputDesktop( 0, true, DESKTOP_READOBJECTS );
+	auto desktopHandle = OpenInputDesktop( 0, true, DESKTOP_READOBJECTS );
 
 	wchar_t inputDesktopName[256]; // Flawfinder: ignore
 	inputDesktopName[0] = 0;
@@ -252,12 +274,12 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 	// allocate and initialize a SID of the administrators group.
 	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
 	if( AllocateAndInitializeSid(
-				&NtAuthority,
-				2,
-				SECURITY_BUILTIN_DOMAIN_RID,
-				DOMAIN_ALIAS_RID_ADMINS,
-				0, 0, 0, 0, 0, 0,
-				&adminGroupSid ) )
+			&NtAuthority,
+			2,
+			SECURITY_BUILTIN_DOMAIN_RID,
+			DOMAIN_ALIAS_RID_ADMINS,
+			0, 0, 0, 0, 0, 0,
+			&adminGroupSid ) )
 	{
 		// determine whether the SID of administrators group is enabled in
 		// the primary access token of the process.
@@ -470,4 +492,50 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	}
 
 	return nullptr;
+}
+
+
+
+void WindowsCoreFunctions::setTaskbarState( bool enabled )
+{
+	auto taskbar = FindWindow( L"Shell_TrayWnd", nullptr );
+	auto startButton = FindWindow( L"Start", L"Start" );
+	if( startButton == nullptr )
+	{
+		// Win 7
+		startButton = FindWindow( L"Button", L"Start" );
+	}
+
+	ShowWindow( taskbar, enabled ? SW_SHOW : SW_HIDE );
+	ShowWindow( startButton, enabled ? SW_SHOW : SW_HIDE );
+
+	EnableWindow( taskbar, enabled );
+	EnableWindow( startButton, enabled );
+}
+
+
+
+void WindowsCoreFunctions::setStartMenuState( bool enabled )
+{
+	auto startMenu = FindWindow( L"Windows.UI.Core.CoreWindow", L"Start" );
+	if( startMenu )
+	{
+		ShowWindow( startMenu, enabled ? SW_SHOWDEFAULT : SW_HIDE );
+	}
+	else
+	{
+		startMenu = FindWindow( L"DV2ControlHost", nullptr );
+		if( enabled == false )
+		{
+			ShowWindow( startMenu, SW_HIDE );
+		}
+		EnableWindow( startMenu, enabled );
+	}
+}
+
+
+
+void WindowsCoreFunctions::setDesktopState( bool enabled )
+{
+	ShowWindow( FindWindow( L"Progman", nullptr ), enabled ? SW_SHOW : SW_HIDE );
 }

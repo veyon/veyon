@@ -51,6 +51,8 @@ public:
 	void disableScreenSaver() override;
 	void restoreScreenSaverSettings() override;
 
+	void setSystemUiState( bool enabled ) override;
+
 	QString activeDesktopName() override;
 
 	bool isRunningAsAdmin() const override;
@@ -74,6 +76,10 @@ public:
 									   const QString& desktop = QString() );
 
 private:
+	static void setTaskbarState( bool enabled );
+	static void setStartMenuState( bool enabled );
+	static void setDesktopState( bool enabled );
+
 	CXEventLog* m_eventLog;
 
 };

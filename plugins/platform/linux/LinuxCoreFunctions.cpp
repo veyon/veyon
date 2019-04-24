@@ -192,6 +192,13 @@ void LinuxCoreFunctions::restoreScreenSaverSettings()
 
 
 
+void LinuxCoreFunctions::setSystemUiState( bool enabled )
+{
+	Q_UNUSED(enabled)
+}
+
+
+
 QString LinuxCoreFunctions::activeDesktopName()
 {
 	return QString();
