@@ -35,6 +35,7 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 	m_background( background ),
 	m_mode( mode )
 {
+	VeyonCore::platform().coreFunctions().setSystemUiState( false );
 	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
 
 	if( mode == DesktopVisible )
@@ -62,6 +63,7 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 LockWidget::~LockWidget()
 {
 	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
+	VeyonCore::platform().coreFunctions().setSystemUiState( true );
 
 	QGuiApplication::restoreOverrideCursor();
 }
