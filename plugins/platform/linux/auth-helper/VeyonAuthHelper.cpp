@@ -78,7 +78,7 @@ int main()
 	ds >> password;
 	ds >> service;
 
-	if( service.isEmpty() || service != QStringLiteral("veyon") )
+	if( service.isEmpty() )
 	{
 		service = QStringLiteral("login");
 	}

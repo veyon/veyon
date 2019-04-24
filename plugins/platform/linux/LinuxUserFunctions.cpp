@@ -28,6 +28,7 @@
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
+#include "LinuxPlatformConfiguration.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
 
@@ -313,16 +314,12 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 		return false;
 	}
 
-	QString service;
-	if( VeyonCore::config().isAlternativeAuthenticationMechanismEnabled() )
-	{
-		service = QStringLiteral("veyon");
-	}
+	const auto pamService = LinuxPlatformConfiguration( &VeyonCore::config() ).pamServiceName();
 
 	QDataStream ds( &p );
 	ds << VeyonCore::stripDomain( username );
 	ds << password;
-	ds << service;
+	ds << pamService;
 
 	p.closeWriteChannel();
 	p.waitForFinished();

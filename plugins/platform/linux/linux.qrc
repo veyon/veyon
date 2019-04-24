@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/linux" >
+        <file>tux.png</file>
+    </qresource>
+</RCC>

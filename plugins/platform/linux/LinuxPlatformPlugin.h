@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "ConfigurationPagePluginInterface.h"
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "LinuxCoreFunctions.h"
@@ -33,11 +34,11 @@
 #include "LinuxServiceFunctions.h"
 #include "LinuxUserFunctions.h"
 
-class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
+class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.LinuxPlatform")
-	Q_INTERFACES(PluginInterface PlatformPluginInterface)
+	Q_INTERFACES(PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
 public:
 	LinuxPlatformPlugin( QObject* parent = nullptr );
 	~LinuxPlatformPlugin() override;
@@ -106,6 +107,8 @@ public:
 	{
 		return m_linuxUserFunctions;
 	}
+
+	ConfigurationPage* createConfigurationPage() override;
 
 private:
 	LinuxCoreFunctions m_linuxCoreFunctions;

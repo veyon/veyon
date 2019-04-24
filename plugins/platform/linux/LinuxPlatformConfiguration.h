@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * LinuxPlatformConfiguration.h - configuration values for LinuxPlatform plugin
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,36 +22,12 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
-#include "LinuxPlatformConfiguration.h"
-#include "LinuxPlatformConfigurationPage.h"
+#pragma once
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_linuxCoreFunctions(),
-	m_linuxFilesystemFunctions(),
-	m_linuxInputDeviceFunctions(),
-	m_linuxNetworkFunctions(),
-	m_linuxServiceFunctions(),
-	m_linuxUserFunctions()
-{
-	// make sure to load global config from default config dirs independent of environment variables
-	qunsetenv( "XDG_CONFIG_DIRS" );
-}
+#include "Configuration/Proxy.h"
+
+#define FOREACH_LINUX_PLATFORM_CONFIG_PROPERTY(OP) \
+	OP( LinuxPlatformConfiguration, m_configuration, QString, pamServiceName, setPamServiceName, "PamServiceName", "Linux", QString(), Configuration::Property::Flag::Advanced ) \
 
 
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-	m_linuxInputDeviceFunctions.enableInputDevices();
-}
-
-
-
-ConfigurationPage* LinuxPlatformPlugin::createConfigurationPage()
-{
-	return new LinuxPlatformConfigurationPage();
-}
-
-
-IMPLEMENT_CONFIG_PROXY(LinuxPlatformConfiguration)
+DECLARE_CONFIG_PROXY(LinuxPlatformConfiguration, FOREACH_LINUX_PLATFORM_CONFIG_PROPERTY)

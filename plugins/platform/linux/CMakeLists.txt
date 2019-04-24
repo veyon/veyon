@@ -12,6 +12,9 @@ INCLUDE_DIRECTORIES(${procps_INCLUDE_DIRS})
 BUILD_PLUGIN(linux-platform
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
+	LinuxPlatformConfigurationPage.h
+	LinuxPlatformConfigurationPage.cpp
+	LinuxPlatformConfigurationPage.ui
 	LinuxFilesystemFunctions.cpp
 	LinuxInputDeviceFunctions.cpp
 	LinuxNetworkFunctions.cpp
@@ -19,6 +22,7 @@ BUILD_PLUGIN(linux-platform
 	LinuxServiceFunctions.cpp
 	LinuxUserFunctions.cpp
 	LinuxPlatformPlugin.h
+	LinuxPlatformConfiguration.h
 	LinuxCoreFunctions.h
 	LinuxDesktopIntegration.h
 	LinuxFilesystemFunctions.h
@@ -28,6 +32,7 @@ BUILD_PLUGIN(linux-platform
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
 	LinuxUserFunctions.h
+	linux.qrc
 )
 
 TARGET_LINK_LIBRARIES(linux-platform
