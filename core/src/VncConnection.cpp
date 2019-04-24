@@ -336,7 +336,6 @@ QImage VncConnection::scaledScreen()
 
 void VncConnection::setFramebufferUpdateInterval( int interval )
 {
-	QMutexLocker locker( &m_globalMutex );
 	m_framebufferUpdateInterval = interval;
 }
 
