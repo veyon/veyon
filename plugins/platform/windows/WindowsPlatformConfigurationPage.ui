@@ -29,10 +29,19 @@
         </property>
        </widget>
       </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>User authentication</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QCheckBox" name="disableSSPIBasedUserAuthentication">
         <property name="text">
-         <string>Disable SSPI-based user authentication</string>
+         <string>Use alternative user authentication mechanism</string>
         </property>
        </widget>
       </item>
