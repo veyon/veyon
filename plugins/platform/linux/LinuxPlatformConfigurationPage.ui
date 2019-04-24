@@ -19,7 +19,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>General</string>
+      <string>User authentication</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="1" column="0">
