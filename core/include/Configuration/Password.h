@@ -1,5 +1,5 @@
 /*
- * Configuration/Property.h - Configuration::Property class
+ * Configuration/Password.h - Configuration::Password class
  *
  * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
