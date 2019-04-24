@@ -28,6 +28,7 @@
 
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
+#include "WindowsPlatformConfiguration.h"
 #include "WindowsUserFunctions.h"
 #include "WtsSessionManager.h"
 
@@ -186,7 +187,9 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 
 	bool result = false;
 
-	if( VeyonCore::config().isAlternativeAuthenticationMechanismEnabled() )
+	WindowsPlatformConfiguration config( &VeyonCore::config() );
+
+	if( config.disableSSPIBasedUserAuthentication() )
 	{
 		HANDLE token = nullptr;
 		result = LogonUserW( userWide, domainWide, passwordWide,

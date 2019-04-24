@@ -28,6 +28,7 @@
 
 #define FOREACH_WINDOWS_PLATFORM_CONFIG_PROPERTY(OP) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Windows", true, Configuration::Property::Flag::Advanced ) \
+	OP( WindowsPlatformConfiguration, m_configuration, bool, disableSSPIBasedUserAuthentication, setDisableSSPIBasedUserAuthentication, "DisableSSPIBasedUserAuthentication", "Windows", false, Configuration::Property::Flag::Advanced ) \
 
 
 DECLARE_CONFIG_PROXY(WindowsPlatformConfiguration, FOREACH_WINDOWS_PLATFORM_CONFIG_PROPERTY)
