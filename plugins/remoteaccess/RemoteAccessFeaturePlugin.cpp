@@ -88,12 +88,9 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		customComputer.setName( hostName );
 		remoteAccessComputer = ComputerControlInterface::Pointer::create( customComputer );
 	}
-	else
+	else if( computerControlInterfaces.count() >= 1 )
 	{
-		if( computerControlInterfaces.count() >= 1 )
-		{
-			remoteAccessComputer = computerControlInterfaces.first();
-		}
+		remoteAccessComputer = computerControlInterfaces.first();
 	}
 
 	if( remoteAccessComputer.isNull() )
