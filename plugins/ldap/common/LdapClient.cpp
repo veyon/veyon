@@ -87,7 +87,7 @@ QString LdapClient::errorDescription() const
 		return tr( "LDAP error description: %1" ).arg( string );
 	}
 
-	return tr( "No LDAP error description available");
+	return {};
 }
 
 
