@@ -118,6 +118,8 @@ public:
 	}
 
 private:
+	LdapClient::Scope computerSearchScope() const;
+
 	const LdapConfiguration& m_configuration;
 	LdapClient m_client;
 

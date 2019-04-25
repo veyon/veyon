@@ -150,7 +150,7 @@ QStringList LdapDirectory::computersByDisplayName( const QString& filterValue )
 {
 	return m_client.queryDistinguishedNames( m_computersDn,
 											 LdapClient::constructQueryFilter( m_computerDisplayNameAttribute, filterValue, m_computersFilter ),
-											 m_defaultSearchScope );
+											 computerSearchScope() );
 }
 
 
@@ -164,7 +164,7 @@ QStringList LdapDirectory::computersByHostName( const QString& filterValue )
 {
 	return m_client.queryDistinguishedNames( m_computersDn,
 											 LdapClient::constructQueryFilter( m_computerHostNameAttribute, filterValue, m_computersFilter ),
-											 m_defaultSearchScope );
+											 computerSearchScope() );
 }
 
 
@@ -440,4 +440,17 @@ QString LdapDirectory::computerObjectFromHost( const QString& host )
 	// return empty result if not exactly one object was found
 	qWarning( "LdapDirectory::computerObjectFromHost(): more than one computer object found, returning empty computer object!" );
 	return QString();
+}
+
+
+
+LdapClient::Scope LdapDirectory::computerSearchScope() const
+{
+	// when using containers/OUs as locations computer objects are not located directly below the configured computer DN
+	if( m_computerLocationsByContainer )
+	{
+		return LdapClient::Scope::Sub;
+	}
+
+	return m_defaultSearchScope;
 }
