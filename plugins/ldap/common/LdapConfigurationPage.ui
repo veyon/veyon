@@ -620,7 +620,7 @@
            </widget>
           </item>
           <item row="7" column="0">
-           <widget class="QLabel" name="label_42">
+           <widget class="QLabel" name="locationNameAttributeLabel">
             <property name="text">
              <string>Location name attribute</string>
             </property>

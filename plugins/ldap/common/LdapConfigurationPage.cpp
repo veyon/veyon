@@ -454,18 +454,17 @@ void LdapConfigurationPage::testComputerLocationAttribute()
 
 void LdapConfigurationPage::testLocationNameAttribute()
 {
-	if( m_configuration.computerLocationsByAttribute() )
+	const auto locationName = QInputDialog::getText( this, tr( "Enter location name" ),
+													 tr( "Please enter the name of a computer location (wildcards allowed):") );
+	if( locationName.isEmpty() == false )
 	{
-		QMessageBox::information( this, tr( "Test not applicable" ),
-								  tr( "Please change the computer location settings to use computer groups "
-									  "or computer containers as computer locations. Then the "
-									  "specified attribute instead of the common name of computer groups "
-									  "or container objects will be queried. "
-									  "Otherwise you don't need to configure this attribute." ) );
-		return;
-	}
+		vDebug() << "[TEST][LDAP] Testing location name attribute for" << locationName;
 
-	testComputerLocationAttribute();
+		LdapDirectory ldapDirectory( m_configuration );
+
+		reportLdapObjectQueryResults( tr( "computer locations" ), { ui->locationNameAttributeLabel->text() },
+									  ldapDirectory.computerLocations( locationName ), ldapDirectory );
+	}
 }
 
 
