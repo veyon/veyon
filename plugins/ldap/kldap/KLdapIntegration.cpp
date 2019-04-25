@@ -24,4 +24,4 @@
 
 #include "ldap_debug.h"
 
-Q_LOGGING_CATEGORY(LDAP_LOG, "LDAP");
+Q_LOGGING_CATEGORY(LDAP_LOG, "KLDAP");
