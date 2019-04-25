@@ -46,6 +46,13 @@ void CommandLineIO::info( const QString &message )
 
 
 
+void CommandLineIO::warning( const QString &message )
+{
+	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "WARNING" ) ), qUtf8Printable( message ) );
+}
+
+
+
 void CommandLineIO::error( const QString& message )
 {
 	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "ERROR" ) ), qUtf8Printable( message ) );

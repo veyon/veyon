@@ -45,6 +45,7 @@ public:
 	static void print( const QString& message );
 	static void newline();
 	static void info( const QString& message );
+	static void warning( const QString& message );
 	static void error( const QString& message );
 	static void printTable( const Table& table, char horizontal = '-', char vertical = '|', char corner = '+' );
 	static void printUsage( const QString& module, const QString& command,
