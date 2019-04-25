@@ -146,6 +146,8 @@ public:
 
 	static bool isDebugging();
 
+	static QByteArray cleanupFuncinfo( QByteArray info );
+
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
 
@@ -203,4 +205,9 @@ signals:
 
 };
 
-#define vDebug if( VeyonCore::isDebugging()==false ); else qDebug
+#define V_FUNC_INFO VeyonCore::cleanupFuncinfo(Q_FUNC_INFO).constData()
+
+#define vDebug() if( VeyonCore::isDebugging()==false ); else qDebug() << V_FUNC_INFO
+#define vInfo() qInfo() << V_FUNC_INFO
+#define vWarning() qWarning() << V_FUNC_INFO
+#define vCritical() qCritical() << V_FUNC_INFO

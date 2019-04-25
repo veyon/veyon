@@ -58,7 +58,7 @@ VeyonWorker::VeyonWorker( const QString& featureUid, QObject* parent ) :
 
 	m_workerManagerConnection = new FeatureWorkerManagerConnection( *this, m_featureManager, featureUid, this );
 
-	qInfo() << "Running worker for feature" << workerFeature->name();
+	vInfo() << "Running worker for feature" << workerFeature->name();
 }
 
 

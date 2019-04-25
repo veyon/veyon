@@ -179,7 +179,7 @@ bool RemoteAccessFeaturePlugin::initAuthentication()
 {
 	if( VeyonCore::instance()->initAuthentication() == false )
 	{
-		qWarning() << "Could not initialize authentication";
+		vWarning() << "Could not initialize authentication";
 		return false;
 	}
 

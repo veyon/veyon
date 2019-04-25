@@ -91,7 +91,7 @@ bool VncServerProtocol::read()
 		return processFramebufferInit();
 
 	case Close:
-		vDebug( "VncServerProtocol::read(): closing connection per protocol state" );
+		vDebug() << "closing connection per protocol state";
 		m_socket->close();
 		break;
 
@@ -119,7 +119,7 @@ bool VncServerProtocol::readProtocol()
 
 		if( protocol.size() != sz_rfbProtocolVersionMsg )
 		{
-			qCritical( "VncServerProtocol:::readProtocol(): protocol initialization failed" );
+			vCritical() << "protocol initialization failed";
 			m_socket->close();
 			return false;
 		}
@@ -128,7 +128,7 @@ bool VncServerProtocol::readProtocol()
 
 		if( protocolRX.indexIn( QString::fromUtf8( protocol ) ) != 0 )
 		{
-			qCritical( "VncServerProtocol:::readProtocol(): invalid protocol version" );
+			vCritical() << "invalid protocol version";
 			m_socket->close();
 			return false;
 		}
@@ -163,7 +163,7 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 		if( m_socket->read( &chosenSecurityType, sizeof(chosenSecurityType) ) != sizeof(chosenSecurityType) ||
 				chosenSecurityType != rfbSecTypeVeyon )
 		{
-			qCritical( "VncServerProtocol:::receiveSecurityTypeResponse(): protocol initialization failed" );
+			vCritical() << "protocol initialization failed";
 			m_socket->close();
 
 			return false;
@@ -206,7 +206,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 		if( supportedAuthTypes().contains( chosenAuthType ) == false )
 		{
-			qCritical( "VncServerProtocol:::receiveAuthenticationTypeResponse(): unsupported authentication type chosen by client!" );
+			vCritical() << "unsupported authentication type chosen by client!";
 			m_socket->close();
 
 			return false;
@@ -214,7 +214,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 		if( chosenAuthType == RfbVeyonAuth::None )
 		{
-			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): skipping authentication." );
+			vWarning() << "skipping authentication.";
 			setState( AccessControl );
 			return true;
 		}
@@ -270,7 +270,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 	}
 
 	case VncServerClient::AuthFinishedFail:
-		qCritical( "VncServerProtocol:::receiveAuthenticationMessage(): authentication failed - closing connection" );
+		vCritical() << "authentication failed - closing connection";
 		m_socket->close();
 
 		return false;
@@ -299,7 +299,7 @@ bool VncServerProtocol::processAccessControl()
 		break;
 
 	default:
-		qCritical( "VncServerProtocol:::processAccessControl(): access control failed - closing connection" );
+		vCritical() << "access control failed - closing connection";
 		m_socket->close();
 		break;
 	}

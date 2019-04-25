@@ -97,7 +97,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 	}
 	else
 	{
-		qWarning( "ComputerControlInterface::start(): computer host address is empty!" );
+		vWarning() << "computer host address is empty!";
 	}
 }
 
@@ -281,7 +281,7 @@ void ComputerControlInterface::restartConnection()
 {
 	if( m_vncConnection )
 	{
-		vDebug() << Q_FUNC_INFO;
+		vDebug();
 		m_vncConnection->restart();
 
 		m_connectionWatchdogTimer.stop();

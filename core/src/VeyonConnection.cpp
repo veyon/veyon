@@ -90,7 +90,7 @@ void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage, 
 {
 	if( m_vncConnection.isNull() )
 	{
-		qCritical( "VeyonConnection::sendFeatureMessage(): cannot call enqueueEvent as m_vncConnection is invalid" );
+		vCritical() << "cannot enqueue event as VNC connection is invalid";
 		return;
 	}
 
@@ -107,14 +107,13 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 		FeatureMessage featureMessage;
 		if( featureMessage.receive( &socketDev ) == false )
 		{
-			vDebug( "VeyonConnection: could not receive feature message" );
+			vDebug() << "could not receive feature message";
 
 			return false;
 		}
 
-		vDebug() << "VeyonConnection: received feature message"
-				 << featureMessage.command()
-				 << "with arguments" << featureMessage.arguments();
+		vDebug() << "received feature message" << featureMessage.command()
+			   << "with arguments" << featureMessage.arguments();
 
 		emit featureMessageReceived( featureMessage );
 
@@ -122,9 +121,8 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 	}
 	else
 	{
-		qCritical( "VeyonConnection::handleServerMessage(): "
-				   "unknown message type %d from server. Closing "
-				   "connection. Will re-open it later.", static_cast<int>( msg ) );
+		vCritical() << "unknown message type" << static_cast<int>( msg )
+					<< "from server. Closing connection. Will re-open it later.";
 	}
 
 	return false;
@@ -181,7 +179,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		authTypes.append( QVariantHelper<RfbVeyonAuth::Type>::value( message.read() ) );
 	}
 
-	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "received authentication types:" << authTypes;
+	vDebug() << QThread::currentThreadId() << "received authentication types:" << authTypes;
 
 	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
 	if( authTypes.count() > 0 )
@@ -201,7 +199,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		}
 	}
 
-	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "chose authentication type:" << authTypes;
+	vDebug() << QThread::currentThreadId() << "chose authentication type:" << authTypes;
 
 	VariantArrayMessage authReplyMessage( &socketDevice );
 
@@ -233,7 +231,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 			if( challenge.size() != CryptoCore::ChallengeSize )
 			{
-				qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "challenge size mismatch!";
+				vCritical() << QThread::currentThreadId() << "challenge size mismatch!";
 				return FALSE;
 			}
 
@@ -241,7 +239,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			auto key = VeyonCore::authenticationCredentials().privateKey();
 			if( key.isNull() || key.canSign() == false )
 			{
-				qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "invalid private key!";
+				vCritical() << QThread::currentThreadId() << "invalid private key!";
 				return FALSE;
 			}
 
@@ -267,7 +265,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 		if( publicKey.canEncrypt() == false )
 		{
-			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "can't encrypt with given public key!";
+			vCritical() << QThread::currentThreadId() << "can't encrypt with given public key!";
 			return FALSE;
 		}
 
@@ -275,7 +273,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
-			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "password encryption failed!";
+			vCritical() << QThread::currentThreadId() << "password encryption failed!";
 			return FALSE;
 		}
 

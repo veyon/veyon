@@ -156,7 +156,7 @@ void LinuxCoreFunctions::disableScreenSaver()
 	}
 	else
 	{
-		qWarning() << Q_FUNC_INFO << "DPMS extension not supported!";
+		vWarning() << "DPMS extension not supported!";
 	}
 
 	XFlush( display );

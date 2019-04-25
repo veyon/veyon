@@ -24,6 +24,7 @@
 
 #include <QCoreApplication>
 
+#include "VeyonCore.h"
 #include "LogoffEventFilter.h"
 
 LogoffEventFilter::LogoffEventFilter() :
@@ -35,14 +36,14 @@ LogoffEventFilter::LogoffEventFilter() :
 		// control of the veyon service supervisor?
 		if( GetLastError() == ERROR_FILE_NOT_FOUND )
 		{
-			qWarning( "Creating session event" );
+			vWarning() << "Creating session event";
 			// then create our own event as otherwise the VNC server main loop
 			// will eat 100% CPU due to failing WaitForSingleObject() calls
 			m_shutdownEventHandle = CreateEvent( nullptr, false, false, "Global\\SessionEventUltra" );
 		}
 		else
 		{
-			qWarning( "Could not open or create session event" );
+			vWarning() << "Could not open or create session event";
 		}
 	}
 
@@ -60,7 +61,7 @@ bool LogoffEventFilter::nativeEventFilter( const QByteArray& eventType, void* me
 
 	if( winMsg == WM_QUERYENDSESSION )
 	{
-		qInfo( "Got WM_QUERYENDSESSION - initiating server shutdown" );
+		vInfo() << "Got WM_QUERYENDSESSION - initiating server shutdown";
 
 		// tell UltraVNC server to quit
 		SetEvent( m_shutdownEventHandle );

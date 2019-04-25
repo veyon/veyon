@@ -208,8 +208,7 @@ bool MainWindow::initAccessControl()
 													 QStringList() );
 		if( accessControlResult == AccessControlProvider::AccessDeny )
 		{
-			qWarning() << "MainWindow::initAccessControl(): user"
-					   << VeyonCore::authenticationCredentials().logonUsername()
+			vWarning() << "user" << VeyonCore::authenticationCredentials().logonUsername()
 					   << "is not allowed to access computers";
 			QMessageBox::critical( nullptr, tr( "Access denied" ),
 								   tr( "According to the local configuration you're not allowed "

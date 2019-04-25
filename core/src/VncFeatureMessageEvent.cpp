@@ -36,7 +36,7 @@ VncFeatureMessageEvent::VncFeatureMessageEvent( const FeatureMessage& featureMes
 
 void VncFeatureMessageEvent::fire( rfbClient* client )
 {
-	vDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
+	vDebug() << "sending message" << m_featureMessage.featureUid()
 			 << "command" << m_featureMessage.command()
 			 << "arguments" << m_featureMessage.arguments();
 

@@ -79,7 +79,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
 	if( secInfoResult != ERROR_SUCCESS )
 	{
-		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
+		vCritical() << "GetSecurityInfo() failed:" << secInfoResult;
 		return QString();
 	}
 
@@ -91,7 +91,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 
 	if( nameSize == 0 || domainSize == 0)
 	{
-		qCritical() << Q_FUNC_INFO << "Failed to retrieve buffer sizes:" << GetLastError();
+		vCritical() << "Failed to retrieve buffer sizes:" << GetLastError();
 		return QString();
 	}
 
@@ -100,7 +100,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 
 	if( LookupAccountSid( nullptr, ownerSID, name, &nameSize, domain, &domainSize, &sidNameUse ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "LookupAccountSid() (2) failed:" << GetLastError();
+		vCritical() << "LookupAccountSid() (2) failed:" << GetLastError();
 		return QString();
 	}
 
@@ -127,7 +127,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 						   ownerGroupSID, &sidLen,
 						   domain, &domainLen, &sidNameUse ) == false )
 	{
-		qCritical() << "Could not look up SID structure:" << GetLastError();
+		vCritical() << "Could not look up SID structure:" << GetLastError();
 		return false;
 	}
 
@@ -143,7 +143,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 
 	if( result != ERROR_SUCCESS )
 	{
-		qCritical() << Q_FUNC_INFO << "SetNamedSecurityInfo() failed:" << result;
+		vCritical() << "SetNamedSecurityInfo() failed:" << result;
 	}
 
 	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, false );
@@ -166,7 +166,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 
 	if( secInfoResult != ERROR_SUCCESS )
 	{
-		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
+		vCritical() << "GetSecurityInfo() failed:" << secInfoResult;
 		delete[] filePathWide;
 		return false;
 	}
@@ -216,7 +216,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	PACL acl = nullptr;
 	if( SetEntriesInAcl( NUM_ACES, ea, nullptr, &acl ) != ERROR_SUCCESS )
 	{
-		qCritical() << Q_FUNC_INFO << "SetEntriesInAcl() failed";
+		vCritical() << "SetEntriesInAcl() failed";
 		delete[] filePathWide;
 		FreeSid( adminSID );
 		return false;
@@ -228,7 +228,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 
 	if( result != ERROR_SUCCESS )
 	{
-		qCritical() << Q_FUNC_INFO << "SetNamedSecurityInfo() failed:" << result;
+		vCritical() << "SetNamedSecurityInfo() failed:" << result;
 	}
 
 	delete[] filePathWide;

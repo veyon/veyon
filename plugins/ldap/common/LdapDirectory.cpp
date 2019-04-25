@@ -383,7 +383,7 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 		QHostInfo hostInfo = QHostInfo::fromName( host );
 		if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
 		{
-			qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup IP address of host"
+			vWarning() << "could not lookup IP address of host"
 					   << host << "error:" << hostInfo.errorString();
 			return QString();
 		}
@@ -393,30 +393,28 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 #else
 		hostAddress = hostInfo.addresses().constFirst();
 #endif
-		vDebug() << "LdapDirectory::hostToLdapFormat(): no valid IP address given, resolved IP address of host"
-				 << host << "to" << hostAddress.toString();
+		vDebug() << "no valid IP address given, resolved IP address of host" << host << "to" << hostAddress.toString();
 	}
 
 	// now do a name lookup to get the full hostname information
 	QHostInfo hostInfo = QHostInfo::fromName( hostAddress.toString() );
 	if( hostInfo.error() != QHostInfo::NoError )
 	{
-		qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup hostname for IP"
-				   << hostAddress.toString() << "error:" << hostInfo.errorString();
-		return QString();
+		vWarning() << "could not lookup hostname for IP" << hostAddress.toString() << "error:" << hostInfo.errorString();
+		return {};
 	}
 
 	// are we working with fully qualified domain name?
 	if( m_computerHostNameAsFQDN )
 	{
-		vDebug() << "LdapDirectory::hostToLdapFormat(): Resolved FQDN" << hostInfo.hostName();
+		vDebug() << "resolved FQDN" << hostInfo.hostName();
 		return hostInfo.hostName();
 	}
 
 	// return first part of hostname which should be the actual machine name
 	const QString hostName = hostInfo.hostName().split( QLatin1Char('.') ).value( 0 );
 
-	vDebug() << "LdapDirectory::hostToLdapFormat(): resolved hostname" << hostName;
+	vDebug() << "resolved hostname" << hostName;
 	return hostName;
 }
 
@@ -427,8 +425,8 @@ QString LdapDirectory::computerObjectFromHost( const QString& host )
 	QString hostName = hostToLdapFormat( host );
 	if( hostName.isEmpty() )
 	{
-		qWarning( "LdapDirectory::computerObjectFromHost(): could not resolve hostname, returning empty computer object" );
-		return QString();
+		vWarning() << "could not resolve hostname, returning empty computer object";
+		return {};
 	}
 
 	QStringList computerObjects = computersByHostName( hostName );
@@ -438,8 +436,8 @@ QString LdapDirectory::computerObjectFromHost( const QString& host )
 	}
 
 	// return empty result if not exactly one object was found
-	qWarning( "LdapDirectory::computerObjectFromHost(): more than one computer object found, returning empty computer object!" );
-	return QString();
+	vWarning() << "more than one computer object found, returning empty computer object!";
+	return {};
 }
 
 

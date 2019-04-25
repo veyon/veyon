@@ -224,7 +224,7 @@ static Object::DataMap setValueRecursive( Object::DataMap data,
 		}
 		else
 		{
-			qWarning( "cannot replace sub data map with a value!" );
+			vWarning() << "cannot replace sub data map with a value!";
 		}
 
 		return data;
@@ -235,7 +235,7 @@ static Object::DataMap setValueRecursive( Object::DataMap data,
 	{
 		if( data[level].type() != QVariant::Map )
 		{
-			qWarning( "parent key points doesn't point to a data map!" );
+			vWarning() << "parent key points doesn't point to a data map!";
 			return data;
 		}
 	}
@@ -351,7 +351,7 @@ Store* Object::createStore( Store::Backend backend, Store::Scope scope )
 	case Store::NoBackend:
 		break;
 	default:
-		qCritical() << Q_FUNC_INFO << "invalid store" << backend << "selected";
+		vCritical() << "invalid store" << backend << "selected";
 		break;
 	}
 

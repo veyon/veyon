@@ -73,11 +73,11 @@ VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( Varia
 	case VncServerClient::AuthToken:
 		if( message.read().toString() == m_demoAccessToken )
 		{
-			vDebug( "DemoServerProtocol::performTokenAuthentication(): SUCCESS" );
+			vDebug() << "SUCCESS";
 			return VncServerClient::AuthFinishedSuccess;
 		}
 
-		vDebug( "DemoServerProtocol::performTokenAuthentication(): FAIL" );
+		vDebug() << "FAIL";
 		return VncServerClient::AuthFinishedFail;
 
 	default:

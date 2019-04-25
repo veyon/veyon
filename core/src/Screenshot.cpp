@@ -60,7 +60,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	if( VeyonCore::filesystem().ensurePathExists( dir ) == false )
 	{
 		const auto msg = tr( "Could not take a screenshot as directory %1 doesn't exist and couldn't be created." ).arg( dir );
-		qCritical() << msg.toUtf8().constData();
+		vCritical() << msg.toUtf8().constData();
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
 			QMessageBox::critical( nullptr, tr( "Screenshot" ), msg );

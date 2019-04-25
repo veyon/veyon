@@ -82,7 +82,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 	if( index.row() >= m_computerControlInterfaces.count() )
 	{
-		qCritical( "ComputerListModel::data(): index out of range!" );
+		vCritical() << "index out of range!";
 	}
 
 	const auto computerControl = m_computerControlInterfaces[index.row()];
@@ -132,7 +132,7 @@ ComputerControlInterface::Pointer ComputerControlListModel::computerControlInter
 {
 	if( index.isValid() == false || index.row() >= m_computerControlInterfaces.count() )
 	{
-		qCritical( "ComputerListModel::computerControlInterface(): invalid ComputerControlInterface requested!" );
+		vCritical() << "invalid ComputerControlInterface requested!";
 		return ComputerControlInterface::Pointer();
 	}
 

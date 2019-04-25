@@ -307,7 +307,7 @@ bool MainWindow::applyConfiguration()
 	if( configurationManager.saveConfiguration() == false ||
 		configurationManager.applyConfiguration() == false )
 	{
-		qCritical() << Q_FUNC_INFO << configurationManager.errorString().toUtf8().constData();
+		vCritical() << configurationManager.errorString().toUtf8().constData();
 
 		QMessageBox::critical( nullptr,
 							   tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ),

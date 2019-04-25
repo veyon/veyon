@@ -73,21 +73,21 @@ bool VariantArrayMessage::receive()
 
 	if( m_ioDevice->read( reinterpret_cast<char *>( &messageSize ), sizeof(messageSize) ) != sizeof(messageSize) ) // Flawfinder: ignore
 	{
-		qWarning( "VariantArrayMessage::receive(): could not read message size!" );
+		vWarning() << "could not read message size!";
 		return false;
 	}
 
 	messageSize = qFromBigEndian(messageSize);
 	if( messageSize > MaxMessageSize )
 	{
-		qCritical() << Q_FUNC_INFO << "invalid message size" << messageSize;
+		vCritical() << "invalid message size" << messageSize;
 		return false;
 	}
 
 	const auto data = m_ioDevice->read( messageSize ); // Flawfinder: ignore
 	if( data.size() != static_cast<qint64>( messageSize ) )
 	{
-		qWarning( "VariantArrayMessage::receive(): could not read message data!" );
+		vWarning() << "could not read message data!";
 		return false;
 	}
 

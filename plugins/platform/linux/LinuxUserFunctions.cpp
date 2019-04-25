@@ -310,7 +310,7 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 	p.start( QStringLiteral( "veyon-auth-helper" ) );
 	if( p.waitForStarted() == false )
 	{
-		qCritical() << Q_FUNC_INFO << "failed to start VeyonAuthHelper";
+		vCritical() << "failed to start VeyonAuthHelper";
 		return false;
 	}
 
@@ -326,12 +326,12 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 
 	if( p.exitCode() != 0 )
 	{
-		qCritical() << Q_FUNC_INFO << "VeyonAuthHelper failed:" << p.exitCode()
+		vCritical() << "VeyonAuthHelper failed:" << p.exitCode()
 					<< p.readAllStandardOutput().trimmed() << p.readAllStandardError().trimmed();
 		return false;
 	}
 
-	vDebug( "User authenticated successfully" );
+	vDebug() << "User authenticated successfully";
 	return true;
 }
 

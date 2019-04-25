@@ -259,7 +259,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 {
 	if( m_objects.contains( parent.modelId() ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "parent" << parent.toJson() << "does not exist for object" << networkObject.toJson();
+		vCritical() << "parent" << parent.toJson() << "does not exist for object" << networkObject.toJson();
 		return;
 	}
 

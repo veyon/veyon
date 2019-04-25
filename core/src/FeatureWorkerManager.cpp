@@ -49,7 +49,7 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, Featur
 	if( !m_tcpServer.listen( QHostAddress::LocalHost,
 							 static_cast<quint16>( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() ) ) )
 	{
-		qCritical( "FeatureWorkerManager: can't listen on localhost!" );
+		vCritical() << "can't listen on localhost!";
 	}
 
 	auto pendingMessagesTimer = new QTimer( this );
@@ -207,7 +207,7 @@ FeatureUidList FeatureWorkerManager::runningWorkers()
 
 void FeatureWorkerManager::acceptConnection()
 {
-	vDebug( "FeatureWorkerManager: accepting connection" );
+	vDebug() << "accepting connection";
 
 	QTcpSocket* socket = m_tcpServer.nextPendingConnection();
 
@@ -248,7 +248,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 	{
 		m_workersMutex.unlock();
 
-		qCritical() << "FeatureWorkerManager: got data from non-existing worker!" << message.featureUid();
+		vCritical() << "got data from non-existing worker!" << message.featureUid();
 	}
 }
 
@@ -262,7 +262,7 @@ void FeatureWorkerManager::closeConnection( QTcpSocket* socket )
 	{
 		if( it.value().socket == socket )
 		{
-			vDebug() << "FeatureWorkerManager::closeConnection(): removing worker after socket has been closed";
+			vDebug() << "removing worker after socket has been closed";
 			it = m_workers.erase( it );
 		}
 		else

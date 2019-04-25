@@ -93,7 +93,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 	QTemporaryFile tempFile;
 	if( tempFile.open() == false ) // Flawfinder: ignore
 	{
-		qCritical() << Q_FUNC_INFO << "Could not create temporary file!";
+		vCritical() << "Could not create temporary file!";
 		return;
 	}
 	tempFile.write( password.toLocal8Bit() );
@@ -111,8 +111,8 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 	x11vnc.start( QStringLiteral("x11vnc"), cmdline );
 	if( x11vnc.waitForStarted() == false )
 	{
-		qCritical() << "Could not start external x11vnc:" << x11vnc.errorString();
-		qCritical() << "Please make sure x11vnc is installed and installation directory is in PATH!";
+		vCritical() << "Could not start external x11vnc:" << x11vnc.errorString();
+		vCritical() << "Please make sure x11vnc is installed and installation directory is in PATH!";
 		QThread::msleep( 5000 );
 	}
 	else

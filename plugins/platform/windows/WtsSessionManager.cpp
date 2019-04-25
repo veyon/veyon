@@ -76,7 +76,7 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 	case SessionInfoWinStationName: infoClass = WTSWinStationName; break;
 	case SessionInfoDomainName: infoClass = WTSDomainName; break;
 	default:
-		qCritical() << Q_FUNC_INFO << "invalid session info" << sessionInfo << "requested";
+		vCritical() << "invalid session info" << sessionInfo << "requested";
 		return QString();
 	}
 
@@ -148,7 +148,7 @@ DWORD WtsSessionManager::findProcessId( const QString& userName )
 						   &domainLen,
 						   &sidNameUse ) == false )
 	{
-		qCritical( "Could not look up SID structure" );
+		vCritical() << "could not look up SID structure";
 		return -1;
 	}
 

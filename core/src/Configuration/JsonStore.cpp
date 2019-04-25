@@ -22,7 +22,6 @@
  *
  */
 
-#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QJsonDocument>
@@ -82,7 +81,7 @@ void JsonStore::load( Object* obj )
 	QFile jsonFile( configurationFilePath() );
 	if( !jsonFile.open( QFile::ReadOnly ) )
 	{
-		qWarning() << "JsonStore::load(): could not open" << jsonFile.fileName();
+		vWarning() << "could not open" << jsonFile.fileName();
 		return;
 	}
 
@@ -135,8 +134,7 @@ void JsonStore::flush( const Object* obj )
 	QFile outfile( configurationFilePath() );
 	if( !outfile.open( QIODevice::WriteOnly | QIODevice::Truncate ) )
 	{
-		qCritical() << "JsonStore::flush(): could not write to configuration file"
-					<< configurationFilePath();
+		vCritical() << "could not write to configuration file" << configurationFilePath();
 		return;
 	}
 

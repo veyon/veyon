@@ -61,28 +61,28 @@ bool LinuxNetworkFunctions::configureSocketKeepalive( Socket socket, bool enable
 	optval = enabled ? 1 : 0;
 	if( setsockopt( fd, SOL_SOCKET, SO_KEEPALIVE, &optval, optlen ) < 0 )
 	{
-		qWarning() << Q_FUNC_INFO << "could not set SO_KEEPALIVE";
+		vWarning() << "could not set SO_KEEPALIVE";
 		return false;
 	}
 
 	optval = std::max<int>( 1, idleTime / 1000 );
 	if( setsockopt( fd, IPPROTO_TCP, TCP_KEEPIDLE, &optval, optlen ) < 0 )
 	{
-		qWarning() << Q_FUNC_INFO << "could not set TCP_KEEPIDLE";
+		vWarning() << "could not set TCP_KEEPIDLE";
 		return false;
 	}
 
 	optval = std::max<int>( 1, interval / 1000 );
 	if( setsockopt( fd, IPPROTO_TCP, TCP_KEEPINTVL, &optval, optlen ) < 0 )
 	{
-		qWarning() << Q_FUNC_INFO << "could not set TCP_KEEPINTVL";
+		vWarning() << "could not set TCP_KEEPINTVL";
 		return false;
 	}
 
 	optval = probes;
 	if( setsockopt( fd, IPPROTO_TCP, TCP_KEEPCNT, &optval, optlen ) < 0 )
 	{
-		qWarning() << Q_FUNC_INFO << "could not set TCP_KEEPCNT";
+		vWarning() << "could not set TCP_KEEPCNT";
 		return false;
 	}
 

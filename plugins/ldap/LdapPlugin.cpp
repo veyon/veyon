@@ -145,7 +145,7 @@ QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainG
 
 	if( userDn.isEmpty() )
 	{
-		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << strippedUsername;
+		vWarning() << "empty user DN for user" << strippedUsername;
 		return QStringList();
 	}
 
@@ -168,7 +168,8 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 	if( ldapUrl.isValid() == false || ldapUrl.host().isEmpty() )
 	{
-		qCritical() << "Please specify a valid LDAP url following the schema \"ldap[s]://[user[:password]@]hostname[:port]\"";
+		CommandLineIO::error( tr("Please specify a valid LDAP url following the schema "
+								 "\"ldap[s]://[user[:password]@]hostname[:port]\"") );
 		return InvalidArguments;
 	}
 
@@ -176,7 +177,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 	if( namingContextAttribute.isEmpty() )
 	{
-		qWarning( "No naming context attribute name given - falling back to configured value." );
+		CommandLineIO::warning( tr("No naming context attribute name given - falling back to configured value." ) );
 	}
 	else
 	{
@@ -188,11 +189,11 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 	if( baseDn.isEmpty() )
 	{
-		qCritical( "Could not query base DN. Please check your LDAP configuration." );
+		CommandLineIO::error( tr("Could not query base DN. Please check your LDAP configuration." ) );
 		return Failed;
 	}
 
-	qInfo() << "Configuring" << baseDn << "as base DN and disabling naming context queries.";
+	CommandLineIO::info( tr( "Configuring %1 as base DN and disabling naming context queries." ).arg( baseDn ) );
 
 	m_configuration.setBaseDn( baseDn );
 	m_configuration.setQueryNamingContext( false );

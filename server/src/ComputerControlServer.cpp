@@ -66,7 +66,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 
 ComputerControlServer::~ComputerControlServer()
 {
-	vDebug(Q_FUNC_INFO);
+	vDebug();
 
 	m_vncProxyServer.stop();
 }
@@ -103,7 +103,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 	char messageType;
 	if( socket->getChar( &messageType ) == false )
 	{
-		qWarning( "ComputerControlServer::handleFeatureMessage(): could not read feature message!" );
+		vWarning() << "could not read feature message!";
 		return false;
 	}
 
@@ -124,7 +124,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply )
 {
-	vDebug() << Q_FUNC_INFO << reply.featureUid() << reply.command() << reply.arguments();
+	vDebug() << reply.featureUid() << reply.command() << reply.arguments();
 
 	char rfbMessageType = FeatureMessage::RfbMessageType;
 	context.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
@@ -138,7 +138,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 {
 	if( result == ServerAuthenticationManager::AuthResultSuccessful )
 	{
-		qInfo() << "ComputerControlServer: successfully authenticated" << user << "at host" << host;
+		vInfo() << "successfully authenticated" << user << "at host" << host;
 
 		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
 		{
@@ -150,7 +150,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 	}
 	else if( result == ServerAuthenticationManager::AuthResultFailed )
 	{
-		qWarning() << "ComputerControlServer: failed authenticating client" << host << user;
+		vWarning() << "failed authenticating client" << host << user;
 
 		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
 		{
@@ -169,6 +169,6 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 	}
 	else
 	{
-		qCritical() << Q_FUNC_INFO << "Invalid auth result" << result;
+		vCritical() << "Invalid auth result" << result;
 	}
 }

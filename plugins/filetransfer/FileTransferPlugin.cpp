@@ -194,7 +194,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			}
 			else
 			{
-				qWarning() << Q_FUNC_INFO << "received chunk for unknown transfer ID";
+				vWarning() << "received chunk for unknown transfer ID";
 			}
 			return true;
 
@@ -205,7 +205,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			}
 			else
 			{
-				qWarning() << Q_FUNC_INFO << "received chunk for unknown transfer ID";
+				vWarning() << "received chunk for unknown transfer ID";
 			}
 			return true;
 

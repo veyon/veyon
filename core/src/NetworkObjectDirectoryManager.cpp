@@ -101,6 +101,6 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory()
 		}
 	}
 
-	qCritical() << "NetworkObjectDirectoryManager: no default plugin available! configured plugin:" << configuredPluginUuid;
+	vCritical() << "no default plugin available! configured plugin:" << configuredPluginUuid;
 	return nullptr;
 }

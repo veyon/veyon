@@ -63,11 +63,11 @@ bool VncProxyServer::start( int vncServerPort, const QString& vncServerPassword 
 	if( m_listenPort < 0 ||
 			m_server->listen( m_listenAddress, static_cast<quint16>( m_listenPort ) ) == false )
 	{
-		qWarning() << "VncProxyServer: could not listen on port" << m_listenPort << m_server->errorString();
+		vWarning() << "could not listen on port" << m_listenPort << m_server->errorString();
 		return false;
 	}
 
-	vDebug( "VncProxyServer started on port %d", m_listenPort );
+	vDebug() << "started on port" << m_listenPort;
 	return true;
 }
 

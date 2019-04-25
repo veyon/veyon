@@ -47,7 +47,7 @@ CryptoCore::CryptoCore() :
 
 CryptoCore::~CryptoCore()
 {
-	vDebug( "CryptoCore instance destroyed" );
+	vDebug();
 }
 
 
@@ -58,7 +58,7 @@ QByteArray CryptoCore::generateChallenge()
 
 	if( challengeBigNum == nullptr )
 	{
-		qCritical( "CryptoCore::generateChallenge(): BN_new() failed" );
+		vCritical() << "BN_new() failed";
 		return QByteArray();
 	}
 
@@ -91,7 +91,7 @@ QString CryptoCore::decryptPassword( const QString& encryptedPassword ) const
 		return QString::fromUtf8( decryptedPassword.toByteArray() );
 	}
 
-	qCritical("CryptoCore: failed to decrypt password!" );
+	vCritical() << "failed to decrypt password!";
 
 	return QString();
 }

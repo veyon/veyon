@@ -284,6 +284,167 @@ bool VeyonCore::isDebugging()
 }
 
 
+// taken from qtbase/src/corelib/global/qlogging.cpp
+
+QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
+{
+	if( isDebugging() == false )
+	{
+		return {};
+	}
+
+	// Strip the function info down to the base function name
+	// note that this throws away the template definitions,
+	// the parameter types (overloads) and any const/volatile qualifiers.
+
+	if (info.isEmpty())
+		return info;
+
+	int pos;
+
+	// Skip trailing [with XXX] for templates (gcc), but make
+	// sure to not affect Objective-C message names.
+	pos = info.size() - 1;
+	if (info.endsWith(']') && !(info.startsWith('+') || info.startsWith('-'))) {
+		while (--pos) {
+			if (info.at(pos) == '[')
+				info.truncate(pos);
+		}
+	}
+
+	// operator names with '(', ')', '<', '>' in it
+	static const char operator_call[] = "operator()";
+	static const char operator_lessThan[] = "operator<";
+	static const char operator_greaterThan[] = "operator>";
+	static const char operator_lessThanEqual[] = "operator<=";
+	static const char operator_greaterThanEqual[] = "operator>=";
+
+	// canonize operator names
+	info.replace("operator ", "operator");
+
+	// remove argument list
+	forever {
+		int parencount = 0;
+		pos = info.lastIndexOf(')');
+		if (pos == -1) {
+			// Don't know how to parse this function name
+			return info;
+		}
+
+		// find the beginning of the argument list
+		--pos;
+		++parencount;
+		while (pos && parencount) {
+			if (info.at(pos) == ')')
+				++parencount;
+			else if (info.at(pos) == '(')
+				--parencount;
+			--pos;
+		}
+		if (parencount != 0)
+			return info;
+
+		info.truncate(++pos);
+
+		if (info.at(pos - 1) == ')') {
+			if (info.indexOf(operator_call) == pos - (int)strlen(operator_call))
+				break;
+
+			// this function returns a pointer to a function
+			// and we matched the arguments of the return type's parameter list
+			// try again
+			info.remove(0, info.indexOf('('));
+			info.chop(1);
+			continue;
+		} else {
+			break;
+		}
+	}
+
+	// find the beginning of the function name
+	int parencount = 0;
+	int templatecount = 0;
+	--pos;
+
+	// make sure special characters in operator names are kept
+	if (pos > -1) {
+		switch (info.at(pos)) {
+		case ')':
+			if (info.indexOf(operator_call) == pos - (int)strlen(operator_call) + 1)
+				pos -= 2;
+			break;
+		case '<':
+			if (info.indexOf(operator_lessThan) == pos - (int)strlen(operator_lessThan) + 1)
+				--pos;
+			break;
+		case '>':
+			if (info.indexOf(operator_greaterThan) == pos - (int)strlen(operator_greaterThan) + 1)
+				--pos;
+			break;
+		case '=': {
+			int operatorLength = (int)strlen(operator_lessThanEqual);
+			if (info.indexOf(operator_lessThanEqual) == pos - operatorLength + 1)
+				pos -= 2;
+			else if (info.indexOf(operator_greaterThanEqual) == pos - operatorLength + 1)
+				pos -= 2;
+			break;
+		}
+		default:
+			break;
+		}
+	}
+
+	while (pos > -1) {
+		if (parencount < 0 || templatecount < 0)
+			return info;
+
+		char c = info.at(pos);
+		if (c == ')')
+			++parencount;
+		else if (c == '(')
+			--parencount;
+		else if (c == '>')
+			++templatecount;
+		else if (c == '<')
+			--templatecount;
+		else if (c == ' ' && templatecount == 0 && parencount == 0)
+			break;
+
+		--pos;
+	}
+	info = info.mid(pos + 1);
+
+	// remove trailing '*', '&' that are part of the return argument
+	while ((info.at(0) == '*')
+		   || (info.at(0) == '&'))
+		info = info.mid(1);
+
+	// we have the full function name now.
+	// clean up the templates
+	while ((pos = info.lastIndexOf('>')) != -1) {
+		if (!info.contains('<'))
+			break;
+
+		// find the matching close
+		int end = pos;
+		templatecount = 1;
+		--pos;
+		while (pos && templatecount) {
+			char c = info.at(pos);
+			if (c == '>')
+				++templatecount;
+			else if (c == '<')
+				--templatecount;
+			--pos;
+		}
+		++pos;
+		info.remove(pos, end - pos + 1);
+	}
+
+	return info;
+}
+
+
 
 QString VeyonCore::stripDomain( const QString& username )
 {
@@ -321,11 +482,11 @@ int VeyonCore::exec()
 {
 	emit applicationLoaded();
 
-	vDebug() << Q_FUNC_INFO << "Running";
+	vDebug() << "Running";
 
 	const auto result = QCoreApplication::instance()->exec();
 
-	vDebug() << Q_FUNC_INFO << "Exit";
+	vDebug() << "Exit";
 
 	return result;
 }
@@ -395,7 +556,7 @@ void VeyonCore::initLocaleAndTranslation()
 	{
 		auto tr = new QTranslator;
 		if( configuredLocale == QLocale::C ||
-				tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
+			tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
 		{
 			configuredLocale = QLocale::system(); // Flawfinder: ignore
 

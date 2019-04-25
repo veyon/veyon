@@ -64,7 +64,7 @@ VncServer::VncServer( QObject* parent ) :
 	{
 		if( defaultVncServerPlugins.isEmpty() )
 		{
-			qCritical( "VncServer::VncServer(): no VNC server plugins found!" );
+			vCritical() << "no VNC server plugins found!";
 		}
 		else
 		{
@@ -77,14 +77,14 @@ VncServer::VncServer( QObject* parent ) :
 
 VncServer::~VncServer()
 {
-	vDebug(Q_FUNC_INFO);
+	vDebug();
 }
 
 
 
 void VncServer::prepare()
 {
-	vDebug(Q_FUNC_INFO);
+	vDebug();
 
 	if( m_pluginInterface )
 	{
@@ -122,7 +122,7 @@ void VncServer::run()
 {
 	if( m_pluginInterface )
 	{
-		vDebug() << Q_FUNC_INFO << "running";
+		vDebug() << "running";
 
 		if( m_pluginInterface->configuredServerPort() > 0 )
 		{
@@ -136,6 +136,6 @@ void VncServer::run()
 
 		m_pluginInterface->runServer( serverPort(), password() );
 
-		vDebug() << Q_FUNC_INFO << "finished";
+		vDebug() << "finished";
 	}
 }

@@ -78,7 +78,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	if( sessionType == QStringLiteral("wayland") )
 	{
-		qCritical() << "Can't start Veyon Server in Wayland sessions as this is not yet supported. Please switch to X11-based sessions!";
+		vCritical() << "Can't start Veyon Server in Wayland sessions as this is not yet supported. Please switch to X11-based sessions!";
 		return;
 	}
 
@@ -91,7 +91,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	const auto sessionLeader = getSessionLeaderPid( sessionPath );
 	if( sessionLeader < 0 )
 	{
-		qCritical() << "No leader available for session" << sessionPath;
+		vCritical() << "No leader available for session" << sessionPath;
 		return;
 	}
 
@@ -99,7 +99,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	if( sessionEnvironment.isEmpty() )
 	{
-		qWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
+		vWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
 				   << SessionEnvironmentProbingInterval << "msecs";
 		QTimer::singleShot( SessionEnvironmentProbingInterval, this,
 							[=]() { startServer( login1SessionId, sessionObjectPath ); } );
@@ -124,7 +124,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	const auto seat = getSessionSeat( sessionPath );
 	const auto display = getSessionDisplay( sessionPath );
 
-	qInfo() << "Starting server for new session" << sessionPath
+	vInfo() << "Starting server for new session" << sessionPath
 			<< "with display" << display
 			<< "at seat" << seat.path;
 
@@ -173,12 +173,12 @@ void LinuxServiceCore::connectToLoginManager()
 
 	if( success == false )
 	{
-		qWarning() << Q_FUNC_INFO << "could not connect to login manager! retrying in" << LoginManagerReconnectInterval << "msecs";
+		vWarning() << "could not connect to login manager! retrying in" << LoginManagerReconnectInterval << "msecs";
 		QTimer::singleShot( LoginManagerReconnectInterval, this, &LinuxServiceCore::connectToLoginManager );
 	}
 	else
 	{
-		vDebug( "LinuxServiceCore: connected to login manager" );
+		vDebug() << "connected to login manager";
 	}
 }
 
@@ -191,7 +191,7 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 		return;
 	}
 
-	qInfo() << "Stopping server for removed session" << sessionPath;
+	vInfo() << "stopping server for removed session" << sessionPath;
 
 	auto process = qAsConst(m_serverProcesses)[sessionPath];
 	process->terminate();
@@ -203,7 +203,7 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 	{
 		if( serverStopTimer.elapsed() >= ServerTerminateTimeout )
 		{
-			qWarning() << "Server for session" << sessionPath << "still running - killing now";
+			vWarning() << "server for session" << sessionPath << "still running - killing now";
 			process->kill();
 			QThread::msleep( ServerKillDelayTime );
 			break;
@@ -258,7 +258,7 @@ QStringList LinuxServiceCore::listSessions()
 	}
 	else
 	{
-		qCritical() << Q_FUNC_INFO << "Could not query sessions:" << reply.error().message();
+		vCritical() << "Could not query sessions:" << reply.error().message();
 	}
 
 	return sessions;
@@ -279,7 +279,7 @@ QVariant LinuxServiceCore::getSessionProperty( const QString& session, const QSt
 
 	if( reply.isValid() == false )
 	{
-		qCritical() << "Could not query session property" << property << reply.error().message();
+		vCritical() << "Could not query session property" << property << reply.error().message();
 		return QVariant();
 	}
 

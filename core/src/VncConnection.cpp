@@ -96,7 +96,7 @@ void VncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, i
 {
 	if( bpp != 4 )
 	{
-		qWarning() << Q_FUNC_INFO << QThread::currentThreadId() << "bytes per pixel != 4";
+		vWarning() << QThread::currentThreadId() << "bytes per pixel != 4";
 		return;
 	}
 
@@ -141,7 +141,7 @@ void VncConnection::rfbClientLogDebug( const char* format, ... )
 
 	va_end(args);
 
-	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << message;
+	vDebug() << QThread::currentThreadId() << message;
 }
 
 
@@ -190,13 +190,13 @@ VncConnection::~VncConnection()
 
 	if( isRunning() )
 	{
-		qWarning( "Waiting for VNC connection thread to finish." );
+		vWarning() << "Waiting for VNC connection thread to finish.";
 		wait( ThreadTerminationTimeout );
 	}
 
 	if( isRunning() )
 	{
-		qWarning( "Terminating hanging VNC connection thread!" );
+		vWarning() << "Terminating hanging VNC connection thread!";
 
 		terminate();
 		wait();

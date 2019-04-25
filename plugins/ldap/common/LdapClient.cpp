@@ -95,23 +95,23 @@ QString LdapClient::errorDescription() const
 LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringList& attributes,
 													 const QString& filter, LdapClient::Scope scope )
 {
-	vDebug() << Q_FUNC_INFO << "called with" << dn << attributes << filter << scope;
+	vDebug() << "called with" << dn << attributes << filter << scope;
 
 	if( m_state != Bound && reconnect() == false )
 	{
-		qCritical() << Q_FUNC_INFO << "not bound to server!";
+		vCritical() << "not bound to server!";
 		return {};
 	}
 
 	if( dn.isEmpty() )
 	{
-		qCritical() << Q_FUNC_INFO << "DN is empty!";
+		vCritical() << "DN is empty!";
 		return {};
 	}
 
 	if( attributes.isEmpty() )
 	{
-		qCritical() << Q_FUNC_INFO << "attributes empty!";
+		vCritical() << "attributes empty!";
 		return {};
 	}
 
@@ -164,12 +164,12 @@ LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringLi
 			}
 		}
 
-		vDebug() << Q_FUNC_INFO << "results:" << entries;
+		vDebug() << "results:" << entries;
 	}
 
 	if( result == -1 )
 	{
-		qWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
+		vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
 
 		if( m_state == Bound && m_queryRetry == false )
 		{
@@ -192,24 +192,24 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 {
 	QStringList entries;
 
-	vDebug() << Q_FUNC_INFO << "called with" << dn << attribute << filter << scope;
+	vDebug() << "called with" << dn << attribute << filter << scope;
 
 	if( m_state != Bound && reconnect() == false )
 	{
-		qCritical() << Q_FUNC_INFO << "not bound to server!";
+		vCritical() << "not bound to server!";
 		return entries;
 	}
 
 	if( dn.isEmpty() && attribute != m_namingContextAttribute &&
 		attribute.contains( QLatin1String("namingcontext"), Qt::CaseInsensitive ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "DN is empty!";
+		vCritical() << "DN is empty!";
 		return entries;
 	}
 
 	if( attribute.isEmpty() )
 	{
-		qCritical( "LdapClient::queryAttributeValues(): attribute is empty!" );
+		vCritical() << "attribute is empty!";
 		return entries;
 	}
 
@@ -248,12 +248,12 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 			}
 		}
 
-		vDebug() << Q_FUNC_INFO << "results:" << entries;
+		vDebug() << "results:" << entries;
 	}
 
 	if( result == -1 )
 	{
-		qWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
+		vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
 
 		if( m_state == Bound && m_queryRetry == false )
 		{
@@ -274,17 +274,17 @@ QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QStrin
 {
 	QStringList distinguishedNames;
 
-	vDebug() << Q_FUNC_INFO << dn << filter << scope;
+	vDebug() << dn << filter << scope;
 
 	if( m_state != Bound && reconnect() == false )
 	{
-		qCritical() << Q_FUNC_INFO << "not bound to server!";
+		vCritical() << "not bound to server!";
 		return distinguishedNames;
 	}
 
 	if( dn.isEmpty() )
 	{
-		qCritical() << Q_FUNC_INFO << "DN is empty!";
+		vCritical() << "DN is empty!";
 
 		return distinguishedNames;
 	}
@@ -298,12 +298,12 @@ QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QStrin
 		{
 			distinguishedNames += m_operation->object().dn().toString();
 		}
-		vDebug() << Q_FUNC_INFO << "results" << distinguishedNames;
+		vDebug() << "results" << distinguishedNames;
 	}
 
 	if( result == -1 )
 	{
-		qWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
+		vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
 
 		if( m_state == Bound && m_queryRetry == false )
 		{
@@ -322,17 +322,17 @@ QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QStrin
 
 QStringList LdapClient::queryObjectAttributes( const QString& dn )
 {
-	vDebug() << Q_FUNC_INFO << "called with" << dn;
+	vDebug() << "called with" << dn;
 
 	if( m_state != Bound && reconnect() == false )
 	{
-		qCritical() << Q_FUNC_INFO << "not bound to server!";
+		vCritical() << "not bound to server!";
 		return {};
 	}
 
 	if( dn.isEmpty() )
 	{
-		qCritical() << Q_FUNC_INFO << "DN is empty!";
+		vCritical() << "DN is empty!";
 		return {};
 	}
 
@@ -348,7 +348,7 @@ QStringList LdapClient::queryObjectAttributes( const QString& dn )
 	if( m_operation->waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 	{
 		const auto keys = m_operation->object().attributes().keys();
-		vDebug() << Q_FUNC_INFO << "results" << keys;
+		vDebug() << "results" << keys;
 		return keys;
 	}
 
@@ -518,7 +518,7 @@ void LdapClient::initTLS()
 		m_server->setTLSCACertFile( m_configuration.tlsCACertificateFile() );
 		break;
 	default:
-		qCritical( "LdapClient: invalid TLS verify mode specified!" );
+		vCritical() << "invalid TLS verify mode specified!";
 		m_server->setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertDefault );
 		break;
 	}
@@ -535,7 +535,7 @@ bool LdapClient::reconnect()
 
 	if( m_connection->connect() != 0 )
 	{
-		qWarning() << "LDAP connect failed:" << errorString();
+		vWarning() << "LDAP connect failed:" << errorString();
 		return false;
 	}
 
@@ -544,7 +544,7 @@ bool LdapClient::reconnect()
 	m_operation->setConnection( *m_connection );
 	if( m_operation->bind_s() != 0 )
 	{
-		qWarning() << "LDAP bind failed:" << errorString();
+		vWarning() << "LDAP bind failed:" << errorString();
 		return false;
 	}
 

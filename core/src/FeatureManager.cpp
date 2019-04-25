@@ -119,7 +119,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
 								   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	vDebug() << Q_FUNC_INFO << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
+	vDebug() << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -141,7 +141,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 								  const Feature& feature,
 								  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	vDebug() << Q_FUNC_INFO << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
+	vDebug() << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
 
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -162,8 +162,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 bool FeatureManager::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   const ComputerControlInterface::Pointer& computerControlInterface )
 {
-	vDebug() << Q_FUNC_INFO
-			 << "feature" << message.featureUid()
+	vDebug() << "feature" << message.featureUid()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
 
@@ -186,15 +185,13 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
 										   const FeatureMessage& message )
 {
-	vDebug() << Q_FUNC_INFO
-			 << "feature" << message.featureUid()
+	vDebug() << "feature" << message.featureUid()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
 
 	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
 	{
-		qWarning() << Q_FUNC_INFO << " ignoring message as feature"
-				   << message.featureUid() << "is disabled by configuration!";
+		vWarning() << "ignoring message as feature" << message.featureUid() << "is disabled by configuration!";
 		return false;
 	}
 
@@ -215,8 +212,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 
 bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	vDebug() << Q_FUNC_INFO
-			 << "feature" << message.featureUid()
+	vDebug() << "feature" << message.featureUid()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
 

@@ -174,17 +174,17 @@ void ComputerManager::initLocations()
 {
 	for( const auto& hostName : qAsConst( m_localHostNames ) )
 	{
-		vDebug() << Q_FUNC_INFO << "initializing locations for hostname" << hostName;
+		vDebug() << "initializing locations for hostname" << hostName;
 	}
 
 	for( const auto& address : qAsConst( m_localHostAddresses ) )
 	{
-		vDebug() << Q_FUNC_INFO << "initializing locations for host address" << address.toString();
+		vDebug() << "initializing locations for host address" << address.toString();
 	}
 
 	m_currentLocations.append( findLocationOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
 
-	vDebug() << Q_FUNC_INFO << "found locations" << m_currentLocations;
+	vDebug() << "found locations" << m_currentLocations;
 
 	if( VeyonCore::config().showCurrentLocationOnly() )
 	{
@@ -195,7 +195,7 @@ void ComputerManager::initLocations()
 								  tr( "Could not determine the location of this computer. "
 									  "This indicates a problem with the system configuration. "
 									  "All locations will be shown in the computer select panel instead." ) );
-			qWarning() << Q_FUNC_INFO << "location detection failed";
+			vWarning() << "location detection failed";
 		}
 
 		m_locationFilterList = m_currentLocations;
@@ -229,7 +229,7 @@ void ComputerManager::initNetworkObjectLayer()
 			localHostNames.append( address.toString() ); // clazy:exclude=reserve-candidates
 		}
 
-		vDebug() << "ComputerManager::initNetworkObjectLayer(): excluding local computer via" << localHostNames;
+		vDebug() << "excluding local computer via" << localHostNames;
 
 		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames );
 	}

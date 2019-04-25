@@ -43,7 +43,7 @@ static HRESULT WindowsFirewallInitialize2( INetFwPolicy2** fwPolicy2 )
 							IID_INetFwPolicy2, reinterpret_cast<void**>( fwPolicy2 ) );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "CoCreateInstance() returned" << hr;
+		vCritical() << "CoCreateInstance() returned" << hr;
 	}
 
 	return hr;
@@ -77,7 +77,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 	hr = fwPolicy2->get_Rules( &pFwRules );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "get_Rules() returned" << hr;
+		vCritical() << "get_Rules() returned" << hr;
 		goto cleanup;
 	}
 
@@ -87,7 +87,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 							IID_INetFwRule, reinterpret_cast<void**>( &pFwRule ) );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "CoCreateInstance() returned" << hr;
+		vCritical() << "CoCreateInstance() returned" << hr;
 		goto cleanup;
 	}
 
@@ -112,7 +112,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 	hr = pFwRules->Add( pFwRule );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "Add() returned" << hr;
+		vCritical() << "Add() returned" << hr;
 		goto cleanup;
 	}
 
@@ -150,7 +150,7 @@ static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
 	hr = fwPolicy2->get_Rules( &pFwRules );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "get_Rules() returned" << hr;
+		vCritical() << "get_Rules() returned" << hr;
 		goto cleanup;
 	}
 
@@ -158,7 +158,7 @@ static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
 	hr = pFwRules->Remove( fwBstrRuleName );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "Remove() returned" << hr;
+		vCritical() << "Remove() returned" << hr;
 		goto cleanup;
 	}
 
@@ -192,11 +192,11 @@ static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t*
 			{
 				// then assume this is intended, log a warning and
 				// pretend everything went well
-				qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
+				vWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
 				return true;
 			}
 
-			qCritical() << Q_FUNC_INFO << "WindowsFirewallAddApp2() returned" << hr;
+			vCritical() << "WindowsFirewallAddApp2() returned" << hr;
 			return false;
 		}
 	}
@@ -232,7 +232,7 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 		hr = comInit;
 		if( FAILED( hr ) )
 		{
-			qCritical() << Q_FUNC_INFO << "CoInitializeEx() returned" << hr;
+			vCritical() << "CoInitializeEx() returned" << hr;
 			return false;
 		}
 	}
@@ -242,7 +242,7 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 	hr = WindowsFirewallInitialize2( &fwPolicy2 );
 	if( FAILED( hr ) )
 	{
-		qCritical() << Q_FUNC_INFO << "WindowsFirewallInitialize2() returned" << hr;
+		vCritical() << "WindowsFirewallInitialize2() returned" << hr;
 		return false;
 	}
 
@@ -275,7 +275,7 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 	if( setsockopt( socket, SOL_SOCKET, SO_KEEPALIVE, reinterpret_cast<const char *>( &optval ), optlen ) != 0 )
 	{
 		int error = WSAGetLastError();
-		qWarning() << Q_FUNC_INFO << "could not set SO_KEEPALIVE" << error;
+		vWarning() << "could not set SO_KEEPALIVE" << error;
 		return false;
 	}
 
@@ -290,7 +290,7 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 				  &bytesReturned, nullptr, nullptr ) != 0 )
 	{
 		int error = WSAGetLastError();
-		qWarning() << Q_FUNC_INFO << "could not set keepalive parameters" << error;
+		vWarning() << "could not set keepalive parameters" << error;
 		return false;
 	}
 

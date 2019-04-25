@@ -39,7 +39,7 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 		return message.send();
 	}
 
-	qCritical( "FeatureMessage::send(): no IO device!" );
+	vCritical() << "no IO device!";
 
 	return false;
 }
@@ -68,11 +68,11 @@ bool FeatureMessage::receive( QIODevice* ioDevice )
 			return true;
 		}
 
-		qWarning( "FeatureMessage::receive(): could not receive message!" );
+		vWarning() << "could not receive message!";
 	}
 	else
 	{
-		qCritical( "FeatureMessage::receive(): no IO device!" );
+		vCritical() << "no IO device!";
 	}
 
 	return false;

@@ -107,7 +107,7 @@ bool Filesystem::ensurePathExists( const QString &path ) const
 		return true;
 	}
 
-	vDebug() << "Filesystem::ensurePathExists(): creating " << path << "=>" << expandedPath;
+	vDebug() << "creating " << path << "=>" << expandedPath;
 
 	QString p = expandedPath;
 

@@ -65,14 +65,14 @@ bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const
 	struct stat statBuffer{};
 	if( stat( filePath.toUtf8().constData(), &statBuffer ) != 0 )
 	{
-		qCritical() << Q_FUNC_INFO << "failed to stat file" << filePath;
+		vCritical() << "failed to stat file" << filePath;
 		return false;
 	}
 
 	const auto grp = getgrnam( ownerGroup.toUtf8().constData() );
 	if( grp == nullptr )
 	{
-		qCritical() << Q_FUNC_INFO << "failed to get gid for" << ownerGroup;
+		vCritical() << "failed to get gid for" << ownerGroup;
 		return false;
 	}
 
@@ -80,7 +80,7 @@ bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const
 
 	if( chown( filePath.toUtf8().constData(), statBuffer.st_uid, gid ) != 0 ) // Flawfinder:ignore
 	{
-		qCritical() << Q_FUNC_INFO << "failed to change owner group of file" << filePath;
+		vCritical() << "failed to change owner group of file" << filePath;
 		return false;
 	}
 

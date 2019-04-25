@@ -96,7 +96,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 			}
 		}
 
-		vDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
+		vDebug() << "clients:" << m_demoClientHosts;
 
 		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).addArgument( DemoAccessToken, m_demoAccessToken ),
 								   computerControlInterfaces );
@@ -127,7 +127,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 			}
 		}
 
-		vDebug() << "DemoFeaturePlugin::stopMasterFeature(): clients:" << m_demoClientHosts;
+		vDebug() << "clients:" << m_demoClientHosts;
 
 		// no demo clients left?
 		if( m_demoClientHosts.isEmpty() )
@@ -206,7 +206,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 		auto socket = qobject_cast<QTcpSocket *>( messageContext.ioDevice() );
 		if( socket == nullptr )
 		{
-			qCritical( "DemoFeaturePlugin::handleFeatureMessage( VeyonServer& server,): socket is NULL!" );
+			vCritical() << "invalid socket";
 			return false;
 		}
 
@@ -273,7 +273,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 				const auto demoServerHost = message.argument( DemoServerHost ).toString();
 				const auto isFullscreenDemo = message.featureUid() == m_fullscreenDemoFeature.uid();
 
-				vDebug() << "DemoClient: connecting with master" << demoServerHost;
+				vDebug() << "connecting with master" << demoServerHost;
 				m_demoClient = new DemoClient( demoServerHost, isFullscreenDemo );
 			}
 			return true;

@@ -64,7 +64,7 @@ bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message 
 
 void FeatureWorkerManagerConnection::sendInitMessage()
 {
-	vDebug() << Q_FUNC_INFO << m_featureUid;
+	vDebug() << m_featureUid;
 
 	FeatureMessage( m_featureUid, FeatureMessage::InitCommand ).send( &m_socket );
 }

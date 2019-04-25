@@ -89,7 +89,7 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 		if( prevClient->accessControlState() != VncServerClient::AccessControlSuccessful &&
 				prevClient->accessControlState() != VncServerClient::AccessControlPending )
 		{
-			vDebug( "ServerAccessControlManager::removeClient(): closing connection as client does not pass access control any longer" );
+			vDebug() << "closing connection as client does not pass access control any longer";
 			prevClient->setProtocolState( VncServerProtocol::Close );
 		}
 	}
@@ -188,7 +188,7 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 	if( m_desktopAccessDialog.disconnect( client ) == false ||
 			client->disconnect( this ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "could not break object connections";
+		vCritical() << "could not break object connections";
 	}
 
 	const auto choice = m_desktopAccessDialog.choice();

@@ -76,7 +76,7 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 			}
 			else
 			{
-				qCritical( "LocalStore: trying to load unknown JSON value type!" );
+				vCritical() << "trying to load unknown JSON value type!";
 			}
 		}
 		else
@@ -111,8 +111,7 @@ static QString serializeJsonValue( const QJsonValue& jsonValue )
 	}
 	else
 	{
-		qCritical( "LocalStore: trying to save unknown JSON value type %d!",
-				   static_cast<int>( jsonValue.type() ) );
+		vCritical() << "trying to save unknown JSON value type" << jsonValue.type();
 	}
 
 	return QStringLiteral("@JsonValue(%1)").arg(

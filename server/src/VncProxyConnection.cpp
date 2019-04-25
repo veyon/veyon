@@ -198,7 +198,7 @@ bool VncProxyConnection::receiveClientMessage()
 				const auto nEncodings = qFromBigEndian(setEncodingsMessage.nEncodings);
 				if( nEncodings > MAX_ENCODINGS )
 				{
-					qCritical( "VncProxyConnection::receiveClientMessage(): received too many encodings from client" );
+					vCritical() << "received too many encodings from client";
 					socket->close();
 					return false;
 				}
@@ -210,7 +210,7 @@ bool VncProxyConnection::receiveClientMessage()
 	default:
 		if( m_rfbClientToServerMessageSizes.contains( messageType ) == false )
 		{
-			qCritical( "VncProxyConnection::receiveClientMessage(): received unknown message type: %d", static_cast<int>( messageType ) );
+			vCritical() << "received unknown message type:" << static_cast<int>( messageType );
 			socket->close();
 			return false;
 		}

@@ -316,7 +316,7 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 				&mac[5] ) != MAC_SIZE )
 	{
 		CommandLineIO::error( tr( "Invalid MAC address specified!" ) );
-		qWarning() << "PowerControlFeaturePlugin::broadcastWOLPacket(): invalid MAC address" << originalMacAddress;
+		vWarning() << "invalid MAC address" << originalMacAddress;
 		return false;
 	}
 

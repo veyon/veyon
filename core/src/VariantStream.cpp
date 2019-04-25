@@ -39,7 +39,7 @@ QVariant VariantStream::read() // Flawfinder: ignore
 
 	if( v.isValid() == false || v.isNull() )
 	{
-		qWarning( "VariantStream: none or invalid data read" );
+		vWarning() << "none or invalid data read";
 	}
 
 	return v;

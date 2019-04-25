@@ -194,7 +194,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 		HANDLE token = nullptr;
 		result = LogonUserW( userWide, domainWide, passwordWide,
 							 LOGON32_LOGON_NETWORK, LOGON32_PROVIDER_DEFAULT, &token );
-		vDebug() << Q_FUNC_INFO << "LogonUserW()" << result << GetLastError();
+		vDebug() << "LogonUserW()" << result << GetLastError();
 		if( token )
 		{
 			CloseHandle( token );
@@ -203,7 +203,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 	else
 	{
 		result = SSPLogonUser( domainWide, userWide, passwordWide );
-		vDebug() << Q_FUNC_INFO << "SSPLogonUser()" << result << GetLastError();
+		vDebug() << "SSPLogonUser()" << result << GetLastError();
 	}
 
 	delete[] domainWide;
@@ -228,7 +228,7 @@ QString WindowsUserFunctions::domainController()
 	}
 	else
 	{
-		qWarning() << Q_FUNC_INFO << "could not query domain controller name!";
+		vWarning() << "could not query domain controller name!";
 	}
 
 	return dcName;
@@ -259,14 +259,14 @@ QStringList WindowsUserFunctions::domainUserGroups()
 
 		if( entriesRead < totalEntries )
 		{
-			qWarning() << Q_FUNC_INFO << "not all domain groups fetched";
+			vWarning() << "not all domain groups fetched";
 		}
 
 		NetApiBufferFree( outBuffer );
 	}
 	else
 	{
-		qWarning() << Q_FUNC_INFO << "could not fetch domain groups";
+		vWarning() << "could not fetch domain groups";
 	}
 
 	return groupList;
@@ -302,14 +302,14 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 
 		if( entriesRead < totalEntries )
 		{
-			qWarning() << Q_FUNC_INFO << "not all domain groups fetched for user" << username;
+			vWarning() << "not all domain groups fetched for user" << username;
 		}
 
 		NetApiBufferFree( outBuffer );
 	}
 	else
 	{
-		qWarning() << Q_FUNC_INFO << "could not fetch domain groups for user" << username;
+		vWarning() << "could not fetch domain groups for user" << username;
 	}
 
 	return groupList;
@@ -338,14 +338,14 @@ QStringList WindowsUserFunctions::localUserGroups()
 
 		if( entriesRead < totalEntries )
 		{
-			qWarning() << Q_FUNC_INFO << "not all local groups fetched";
+			vWarning() << "not all local groups fetched";
 		}
 
 		NetApiBufferFree( outBuffer );
 	}
 	else
 	{
-		qWarning() << Q_FUNC_INFO << "could not fetch local groups";
+		vWarning() << "could not fetch local groups";
 	}
 
 	return groupList;
@@ -376,14 +376,14 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 
 		if( entriesRead < totalEntries )
 		{
-			qWarning() << Q_FUNC_INFO << "not all local groups fetched for user" << username;
+			vWarning() << "not all local groups fetched for user" << username;
 		}
 
 		NetApiBufferFree( outBuffer );
 	}
 	else
 	{
-		qWarning() << Q_FUNC_INFO << "could not fetch local groups for user" << username;
+		vWarning() << "could not fetch local groups for user" << username;
 	}
 
 	return groupList;

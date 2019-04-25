@@ -51,7 +51,7 @@ UserGroupsBackendManager::UserGroupsBackendManager( QObject* parent ) :
 
 	if( m_defaultBackend == nullptr )
 	{
-		qCritical( "UserGroupsBackendManager: no default plugin available!" );
+		vCritical() << "no default plugin available!";
 	}
 
 	reloadConfiguration();

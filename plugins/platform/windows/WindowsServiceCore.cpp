@@ -53,14 +53,14 @@ public:
 	{
 		stop();
 
-		qInfo() << "Starting server for WTS session" << wtsSessionId
+		vInfo() << "Starting server for WTS session" << wtsSessionId
 				<< "with user" << VeyonCore::platform().userFunctions().currentUser();
 
 		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), { },
 																		WtsSessionManager::findWinlogonProcessId( wtsSessionId ) );
 		if( m_subProcessHandle == nullptr )
 		{
-			qCritical( "Failed to start server!" );
+			vCritical() << "Failed to start server!";
 		}
 	}
 
@@ -68,10 +68,10 @@ public:
 	{
 		if( m_subProcessHandle )
 		{
-			qInfo( "Waiting for server to shutdown" );
+			vInfo() << "Waiting for server to shutdown";
 			if( WaitForSingleObject( m_subProcessHandle, 10000 ) == WAIT_TIMEOUT )
 			{
-				qWarning( "Terminating server" );
+				vWarning() << "Terminating server";
 				TerminateProcess( m_subProcessHandle, 0 );
 			}
 			CloseHandle( m_subProcessHandle );
@@ -143,7 +143,7 @@ bool WindowsServiceCore::runAsService()
 
 	if( !StartServiceCtrlDispatcher( dispatchTable ) )
 	{
-		qCritical( "WindowsServiceCore::runAsService(): StartServiceCtrlDispatcher failed." );
+		vCritical() << "StartServiceCtrlDispatcher failed.";
 		return false;
 	}
 
@@ -206,7 +206,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 		}
 	}
 
-	qInfo( "Service shutdown" );
+	vInfo() << "Service shutdown";
 
 	SetEvent( m_serverShutdownEvent );
 
@@ -233,7 +233,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 		const auto wtsSessionId = WtsSessionManager::activeConsoleSession();
 		if( oldWtsSessionId != wtsSessionId || sessionChanged )
 		{
-			qInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
+			vInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
 
 			if( oldWtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
@@ -265,7 +265,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 		}
 	} while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT );
 
-	qInfo( "Service shutdown" );
+	vInfo() << "Service shutdown";
 
 	SetEvent( m_serverShutdownEvent );
 	veyonServerProcess.stop();
@@ -356,11 +356,11 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 		switch( eventType )
 		{
 		case WTS_SESSION_LOGOFF:
-			qInfo( "Session change event: WTS_SESSION_LOGOFF" );
+			vInfo() << "Session change event: WTS_SESSION_LOGOFF";
 			m_sessionChangeEvent = 1;
 			break;
 		case WTS_SESSION_LOGON:
-			qInfo( "Session change event: WTS_SESSION_LOGON" );
+			vInfo() << "Session change event: WTS_SESSION_LOGON";
 			m_sessionChangeEvent = 1;
 			break;
 		}
@@ -412,12 +412,12 @@ bool WindowsServiceCore::reportStatus( DWORD state, DWORD exitCode, DWORD waitHi
 		m_status.dwCheckPoint = checkpoint++;
 	}
 
-	vDebug( "Reporting service status: %d", (int) state );
+	vDebug() << "reporting service status:" << static_cast<int>( state );
 
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( m_statusHandle, &m_status ) ) )
 	{
-		qCritical( "WindowsServiceCore::reportStatus(...): SetServiceStatus failed." );
+		vCritical() << "SetServiceStatus failed.";
 	}
 
 	return result;

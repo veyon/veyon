@@ -174,7 +174,7 @@ void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 
 	if( m_socket->write( reinterpret_cast<const char *>( &updateRequest ), sz_rfbFramebufferUpdateRequestMsg ) != sz_rfbFramebufferUpdateRequestMsg )
 	{
-		vDebug( "VncClientProtocol::requestFramebufferUpdate(): could not write to socket - closing connection" );
+		vDebug() << "could not write to socket - closing connection";
 		m_socket->close();
 	}
 }
@@ -210,8 +210,7 @@ bool VncClientProtocol::receiveMessage()
 		return receiveXvpMessage();
 
 	default:
-		qCritical( "VncClientProtocol::receiveMessage(): received unknown message type: %d",
-				   static_cast<int>( messageType ) );
+		vCritical() << "received unknown message type" << static_cast<int>( messageType );
 		m_socket->close();
 	}
 
@@ -228,7 +227,7 @@ bool VncClientProtocol::readProtocol()
 
 		if( protocol.size() != sz_rfbProtocolVersionMsg )
 		{
-			qCritical( "VncClientProtocol:::readProtocol(): protocol initialization failed" );
+			vCritical() << "protocol initialization failed";
 			m_socket->close();
 
 			return false;
@@ -240,7 +239,7 @@ bool VncClientProtocol::readProtocol()
 			protocolRX.cap( 1 ).toInt() != 3 ||
 			protocolRX.cap( 2 ).toInt() < 7 )
 		{
-			qCritical( "VncClientProtocol:::readProtocol(): invalid protocol version" );
+			vCritical() << "invalid protocol version";
 			m_socket->close();
 
 			return false;
@@ -268,7 +267,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 		if( securityTypeCount == 0 )
 		{
-			qCritical( "VncClientProtocol::receiveSecurityTypes(): invalid number of security types received!" );
+			vCritical() << "invalid number of security types received!";
 			m_socket->close();
 
 			return false;
@@ -277,7 +276,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 		const auto securityTypeList = m_socket->read( securityTypeCount );
 		if( securityTypeList.count() != securityTypeCount )
 		{
-			qCritical( "VncClientProtocol::receiveSecurityTypes(): could not read security types!" );
+			vCritical() << "could not read security types!";
 			m_socket->close();
 
 			return false;
@@ -287,7 +286,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 		if( securityTypeList.contains( securityType ) == false )
 		{
-			qCritical( "VncClientProtocol::receiveSecurityTypes(): no supported security type!" );
+			vCritical() << "no supported security type!";
 			m_socket->close();
 
 			return false;
@@ -336,12 +335,12 @@ bool VncClientProtocol::receiveSecurityResult()
 
 		if( qFromBigEndian( authResult ) != rfbVncAuthOK )
 		{
-			qCritical( "VncClientProtocol::receiveSecurityResult(): authentication failed!" );
+			vCritical() << "authentication failed!";
 			m_socket->close();
 			return false;
 		}
 
-		vDebug( "VncClientProtocol::receiveSecurityResult(): authentication successful" );
+		vDebug() << "authentication successful";
 
 		// finally send client init message
 		rfbClientInitMsg clientInitMessage;
@@ -370,7 +369,7 @@ bool VncClientProtocol::receiveServerInitMessage()
 
 		if( nameLength > 255 )
 		{
-			qCritical() << Q_FUNC_INFO << "size of desktop name > 255!";
+			vCritical() << "size of desktop name > 255!";
 			m_socket->close();
 			return false;
 		}
@@ -528,7 +527,7 @@ bool VncClientProtocol::readMessage( int size )
 		return true;
 	}
 
-	qWarning() << "VncClientProtocol::readMessage(): only received" << message.size() << "of" << size << "bytes";
+	vWarning() << "only received" << message.size() << "of" << size << "bytes";
 
 	return false;
 }
@@ -597,7 +596,7 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 		return true;
 
 	default:
-		qCritical() << Q_FUNC_INFO << "Unsupported rect encoding" << rectHeader.encoding;
+		vCritical() << "Unsupported rect encoding" << rectHeader.encoding;
 		m_socket->close();
 		break;
 	}

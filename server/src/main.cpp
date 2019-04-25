@@ -37,7 +37,7 @@ int main( int argc, char **argv )
 	ComputerControlServer server( &core );
 	if( server.start() == false )
 	{
-		qCritical( "Failed to start server" );
+		vCritical() << "Failed to start server";
 		return -1;
 	}
 

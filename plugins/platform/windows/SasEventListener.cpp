@@ -32,7 +32,7 @@ SasEventListener::SasEventListener()
 	wchar_t sasPath[MAX_PATH] = { 0 }; // Flawfinder: ignore
 	if( GetSystemDirectory( sasPath, MAX_PATH - wcslen(sasDll) - 1 ) == 0 ) // Flawfinder: ignore
 	{
-		qCritical() << Q_FUNC_INFO << "could not determine system directory";
+		vCritical() << "could not determine system directory";
 	}
 	wcscat( sasPath, sasDll );
 
@@ -41,7 +41,7 @@ SasEventListener::SasEventListener()
 
 	if( m_sendSas == nullptr )
 	{
-		qWarning( "SendSAS is not supported by operating system!" );
+		vWarning() << "SendSAS is not supported by operating system!";
 	}
 
 	m_sasEvent = CreateEvent( nullptr, false, false, L"Global\\VeyonServiceSasEvent" );

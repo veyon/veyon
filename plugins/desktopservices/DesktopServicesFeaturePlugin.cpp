@@ -315,7 +315,7 @@ void DesktopServicesFeaturePlugin::openWebsite( VeyonMasterInterface& master,
 
 void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& commandLine )
 {
-	vDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching" << commandLine;
+	vDebug() << "launching" << commandLine;
 
 	QString program;
 	QStringList parameters;
@@ -357,14 +357,13 @@ bool DesktopServicesFeaturePlugin::openWebsite( const QString& urlString )
 
 	if( url.isEmpty() || url.isValid() == false )
 	{
-		qWarning() << Q_FUNC_INFO << "empty or invalid URL";
+		vWarning() << "empty or invalid URL";
 		return false;
 	}
 
 	if( QDesktopServices::openUrl( url ) == false )
 	{
-		qWarning() << "DesktopServicesFeaturePlugin: could not open URL" << url
-				   << "via QDesktopServices - trying native generic URL handler";
+		vWarning() << "could not open URL" << url << "via QDesktopServices - trying native generic URL handler";
 
 		runProgramAsUser( QStringLiteral("%1 %2").arg(
 							  VeyonCore::platform().coreFunctions().genericUrlHandler(),

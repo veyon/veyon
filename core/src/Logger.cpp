@@ -86,7 +86,7 @@ Logger::Logger( const QString &appName ) :
 
 Logger::~Logger()
 {
-	vDebug( "Shutdown" );
+	vDebug() << "Shutdown";
 
 	QMutexLocker l( &m_logMutex );
 

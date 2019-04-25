@@ -253,7 +253,7 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 		unpressKey( XK_Control_L );
 		break;
 	default:
-		qWarning( "VncView::sendShortcut(): unknown shortcut %d", static_cast<int>( shortcut ) );
+		vWarning() << "unknown shortcut" << static_cast<int>( shortcut );
 		break;
 	}
 }

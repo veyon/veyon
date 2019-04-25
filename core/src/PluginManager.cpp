@@ -182,7 +182,7 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 		{
 			if( m_noDebugMessages == false )
 			{
-				vDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
+				vDebug() << "discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
 			}
 			m_pluginInterfaces += pluginInterface;	// clazy:exclude=reserve-candidates
 			m_pluginObjects += pluginObject;		// clazy:exclude=reserve-candidates

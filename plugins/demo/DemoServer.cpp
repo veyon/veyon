@@ -57,7 +57,7 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 
 	if( m_tcpServer->listen( QHostAddress::Any, static_cast<quint16>( VeyonCore::config().demoServerPort() ) ) == false )
 	{
-		qCritical( "DemoServer: could not listen to demo server port!" );
+		vCritical() << "could not listen to demo server port";
 		return;
 	}
 
@@ -70,11 +70,11 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 
 DemoServer::~DemoServer()
 {
-	vDebug() << Q_FUNC_INFO << "disconnecting signals";
+	vDebug() << "disconnecting signals";
 	m_vncServerSocket->disconnect( this );
 	m_tcpServer->disconnect( this );
 
-	vDebug() << Q_FUNC_INFO << "deleting connections";
+	vDebug() << "deleting connections";
 
 	QList<DemoServerConnection *> l;
 	while( !( l = findChildren<DemoServerConnection *>() ).isEmpty() )
@@ -82,13 +82,13 @@ DemoServer::~DemoServer()
 		delete l.front();
 	}
 
-	vDebug() << Q_FUNC_INFO << "deleting server socket";
+	vDebug() << "deleting server socket";
 	delete m_vncServerSocket;
 
-	vDebug() << Q_FUNC_INFO << "deleting TCP server";
+	vDebug() << "deleting TCP server";
 	delete m_tcpServer;
 
-	vDebug() << Q_FUNC_INFO << "finished";
+	vDebug() << "finished";
 }
 
 
@@ -102,7 +102,7 @@ void DemoServer::lockDataForRead()
 
 	if( readLockTimer.elapsed() > 100 )
 	{
-		vDebug() << Q_FUNC_INFO << "locking for read took" << readLockTimer.elapsed() << "ms in thread"
+		vDebug() << "locking for read took" << readLockTimer.elapsed() << "ms in thread"
 				 << QThread::currentThreadId();
 	}
 }
@@ -166,7 +166,7 @@ void DemoServer::requestFramebufferUpdate()
 	if( m_requestFullFramebufferUpdate ||
 		m_lastFullFramebufferUpdate.elapsed() >= m_keyFrameInterval )
 	{
-		vDebug() << Q_FUNC_INFO << "Requesting full framebuffer update";
+		vDebug() << "Requesting full framebuffer update";
 		m_vncClientProtocol.requestFramebufferUpdate( false );
 		m_lastFullFramebufferUpdate.restart();
 		m_requestFullFramebufferUpdate = false;
@@ -189,8 +189,7 @@ bool DemoServer::receiveVncServerMessage()
 		}
 		else
 		{
-			qWarning( "DemoServer: skipping server message of type %d",
-					  static_cast<int>( m_vncClientProtocol.lastMessageType() ) );
+			vWarning() << "skipping server message of type" << static_cast<int>( m_vncClientProtocol.lastMessageType() );
 		}
 
 		return true;
@@ -210,7 +209,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 
 	if( writeLockTime.elapsed() > 10 )
 	{
-		vDebug() << Q_FUNC_INFO << "locking for write took" << writeLockTime.elapsed() << "ms";
+		vDebug() << "locking for write took" << writeLockTime.elapsed() << "ms";
 	}
 
 	const auto lastUpdatedRect = m_vncClientProtocol.lastUpdatedRect();
@@ -226,7 +225,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
 			const auto memTotal = queueSize / 1024;
-			vDebug() << Q_FUNC_INFO
+			vDebug()
 					 << "   MEMTOTAL:" << memTotal
 					 << "   KB/s:" << ( memTotal * 1000 ) / m_keyFrameTimer.elapsed();
 		}

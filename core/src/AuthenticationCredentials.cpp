@@ -64,7 +64,7 @@ bool AuthenticationCredentials::hasCredentials( Type type ) const
 		break;
 	}
 
-	qCritical() << Q_FUNC_INFO << "no valid credential type given:" << TypeFlags( type );
+	vCritical() << "no valid credential type given:" << TypeFlags( type );
 
 	return false;
 }
@@ -73,7 +73,7 @@ bool AuthenticationCredentials::hasCredentials( Type type ) const
 
 bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
 {
-	vDebug() << "AuthenticationCredentials: loading private key" << privateKeyFile;
+	vDebug() << privateKeyFile;
 
 	if( privateKeyFile.isEmpty() )
 	{

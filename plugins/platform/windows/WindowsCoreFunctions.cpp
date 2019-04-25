@@ -107,7 +107,7 @@ bool WindowsCoreFunctions::applyConfiguration()
 
 	if( configureSoftwareSAS( config.isSoftwareSASEnabled() ) == false )
 	{
-		qCritical() << WindowsPlatformConfiguration::tr( "Could not change the setting for SAS generation by software. "
+		vCritical() << WindowsPlatformConfiguration::tr( "Could not change the setting for SAS generation by software. "
 														 "Sending Ctrl+Alt+Del via remote control will not work!" );
 		return false;
 	}
@@ -404,7 +404,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	HANDLE userProcessToken = nullptr;
 	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "OpenProcessToken()" << GetLastError();
+		vCritical() << "OpenProcessToken()" << GetLastError();
 		CloseHandle( userProcessHandle );
 		return nullptr;
 	}
@@ -412,7 +412,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	LPVOID userEnvironment = nullptr;
 	if( CreateEnvironmentBlock( &userEnvironment, userProcessToken, false ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "CreateEnvironmentBlock()" << GetLastError();
+		vCritical() << "CreateEnvironmentBlock()" << GetLastError();
 		CloseHandle( userProcessHandle );
 		CloseHandle( userProcessToken );
 		return nullptr;
@@ -421,7 +421,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	PWSTR profileDir = nullptr;
 	if( SHGetKnownFolderPath( FOLDERID_Profile, 0, userProcessToken, &profileDir ) != S_OK )
 	{
-		qCritical() << Q_FUNC_INFO << "SHGetKnownFolderPath()" << GetLastError();
+		vCritical() << "SHGetKnownFolderPath()" << GetLastError();
 		DestroyEnvironmentBlock( userEnvironment );
 		CloseHandle( userProcessHandle );
 		CloseHandle( userProcessToken );
@@ -430,7 +430,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 	if( ImpersonateLoggedOnUser( userProcessToken ) == false )
 	{
-		qCritical() << Q_FUNC_INFO << "ImpersonateLoggedOnUser()" << GetLastError();
+		vCritical() << "ImpersonateLoggedOnUser()" << GetLastError();
 		CoTaskMemFree( profileDir );
 		DestroyEnvironmentBlock( userEnvironment );
 		CloseHandle( userProcessHandle );
@@ -470,7 +470,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 	if( createProcessResult == false )
 	{
-		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
+		vCritical() << "CreateProcessAsUser()" << GetLastError();
 	}
 
 	delete[] commandLine;

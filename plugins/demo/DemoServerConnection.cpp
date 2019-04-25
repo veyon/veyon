@@ -115,7 +115,7 @@ bool DemoServerConnection::receiveClientMessage()
 	default:
 		if( m_rfbClientToServerMessageSizes.contains( messageType ) == false )
 		{
-			qCritical( "DemoServerConnection::receiveMessageFromClient(): received unknown message type: %d", (int) messageType );
+			vCritical() << "received unknown message type:" << static_cast<int>( messageType );
 			m_socket->close();
 			return false;
 		}
