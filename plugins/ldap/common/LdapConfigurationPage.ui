@@ -775,6 +775,9 @@
           </item>
           <item row="4" column="1">
            <widget class="QLineEdit" name="computerContainersFilter">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="placeholderText">
              <string>e.g. (objectClass=container) or (objectClass=organizationalUnit)</string>
             </property>
@@ -814,6 +817,9 @@
           </item>
           <item row="4" column="2">
            <widget class="QPushButton" name="testComputerContainersFilter">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="icon">
              <iconset resource="../../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
@@ -1318,6 +1324,38 @@
     <hint type="destinationlabel">
      <x>815</x>
      <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerLocationsByContainer</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>computerContainersFilter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>436</x>
+     <y>616</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>551</x>
+     <y>292</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerLocationsByContainer</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testComputerContainersFilter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>436</x>
+     <y>616</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>810</x>
+     <y>292</y>
     </hint>
    </hints>
   </connection>
