@@ -1221,12 +1221,12 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>No se pudo establecer la configuración del cortafuegos para el Worker %1.</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>No se pudo cambiar la configuración para la generación de SAS por software. ¡El envío de Ctrl+Alt+Del a través del control remoto no funcionará!</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>La configuración no es escribible. ¡Por favor revise sus permisos!</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation>No se pudieron aplicar los ajustes de configuración específicos de la plataforma.</translation>
     </message>
 </context>
 <context>
@@ -1273,6 +1273,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source> s</source>
         <translation> s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation>Ralentizar las actualizaciones de miniaturas mientras se ejecuta la demostración</translation>
     </message>
 </context>
 <context>
@@ -1389,10 +1393,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>Haga clic en este botón para abrir un sitio web en todos los equipos.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>Por favor, introduzca la URL del sitio web a abrir:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2648,6 +2648,21 @@ Eliminar %1 &lt;LICENSE ID&gt;
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation>Linux</translation>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Servicio PAM personalizado para autenticación de usuario</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Autenticacion de usuario</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3192,6 +3207,33 @@ USO
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>Abrir sitio web</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation>p.ej. Veyon</translation>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation>Recordar y añadir al menú del sitio web</translation>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation>p.ej. www.veyon.io</translation>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Por favor, introduzca la URL del sitio web a abrir:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nombre:</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3489,6 +3531,18 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>v.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nombre:</translation>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation>Recordar y añadir al menú del programa</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>p.ej. VLC</translation>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3609,10 +3663,6 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <translation>Estado:</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Habilitar la generación de SAS por software (Ctrl+Alt+Del)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Red</translation>
     </message>
@@ -3677,10 +3727,6 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Mostrar notificación en intentos de autenticación fallidos</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>Utilizar mecanismo de autenticación de usuario alternativo</translation>
     </message>
 </context>
 <context>
@@ -3956,6 +4002,52 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Estableciendo conexión con %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>No se pudo cambiar la configuración para la generación de SAS por software. ¡El envío de Ctrl+Alt+Del a través del control remoto no funcionará!</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation>Windows</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>Habilitar la generación de SAS por software (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation>Bloqueo de pantalla</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Ocultar barra de tareas</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Ocultar menú de inicio</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Ocultar escritorio</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Autenticacion de usuario</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>Utilizar mecanismo de autenticación de usuario alternativo</translation>
     </message>
 </context>
 <context>

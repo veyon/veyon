@@ -1219,12 +1219,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Impossible de configurer les paramètres du pare-feu pour la personne %1.</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Impossible de changer le paramétrage de manière logicielle pour la génération SAS. L&apos;exécution de Ctrl+Alt+Suppr via le contrôle distant ne fonctionnera pas!</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>La configuration n&apos;est pas accessible en écriture. Veuillez vérifier vos autorisations !</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1271,6 +1271,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source> s</source>
         <translation>s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1387,10 +1391,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>Cliquez sur ce bouton pour ouvrir un site internet sur tous les ordinateurs.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>Veuillez entrer l&apos;URL du site internet à ouvrir:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2646,6 +2646,21 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3190,6 +3205,33 @@ USAGE
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>Ouvrir une page internet</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Veuillez entrer l&apos;URL du site internet à ouvrir:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3487,6 +3529,18 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>ex: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3607,10 +3661,6 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>État :</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Activer la génération SAS de manière logicielle (Ctrl+Alt+Suppr)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Réseau</translation>
     </message>
@@ -3675,10 +3725,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Afficher la notification en cas d&apos;échec des tentatives d&apos;authentification</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>Utiliser une autre méthode pour l&apos;authentification de l&apos;utilisateur</translation>
     </message>
 </context>
 <context>
@@ -3954,6 +4000,52 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Établissement de la connexion à %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Impossible de changer le paramétrage de manière logicielle pour la génération SAS. L&apos;exécution de Ctrl+Alt+Suppr via le contrôle distant ne fonctionnera pas!</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Général</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>Activer la génération de touche SAS de manière logicielle (Ctrl+Alt+Suppr)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation>Verrouillage d&apos;écran</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>Utiliser une autre méthode pour l&apos;authentification de l&apos;utilisateur</translation>
     </message>
 </context>
 <context>

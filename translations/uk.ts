@@ -1216,12 +1216,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Не вдалося налаштувати брандмауер для робочої станції %1.</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>Файл налаштувань непридатний до запису. Будь ласка, перевірте права доступу до нього!</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation>Не вдалося застосувати специфічні для платформи параметри налаштувань.</translation>
     </message>
 </context>
 <context>
@@ -1268,6 +1268,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source> s</source>
         <translation>с</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation>Уповільнити оновлення мініатюр, доки запущено демонстрацію</translation>
     </message>
 </context>
 <context>
@@ -1384,10 +1388,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>Натисніть цю кнопку, щоб відкрити сайт на усіх комп’ютерах.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>Будь ласка, вкажіть адресу сайта, який слід відкрити:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2645,6 +2645,21 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation>Linux</translation>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Нетипова служба PAM для розпізнавання користувачів</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Розпізнавання користувача</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3189,6 +3204,33 @@ USAGE
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>Відкрити сайт</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation>наприклад Veyon</translation>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation>Запам&apos;ятати і додати до меню сайтів</translation>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation>наприклад www.veyon.io</translation>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Будь ласка, вкажіть адресу сайта, який слід відкрити:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Назва:</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3486,6 +3528,18 @@ Please save your work and close all programs.</source>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>наприклад, «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation>Назва:</translation>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation>Запам&apos;ятати і додати до меню програм</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>наприклад VLC</translation>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3606,10 +3660,6 @@ Please save your work and close all programs.</source>
         <translation>Стан:</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Увімкнути програмне створення SAS (Ctrl+Alt+Del)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Мережа</translation>
     </message>
@@ -3674,10 +3724,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Показувати сповіщення щодо невдалих спроб пройти розпізнавання</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>Альтернативний механізм розпізнавання користувачів</translation>
     </message>
 </context>
 <context>
@@ -3953,6 +3999,52 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Встановлення зв’язку з %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation>Windows</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>Увімкнути програмне створення SAS (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation>Блокування екрана</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Приховати панель задач</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Приховати меню запуску</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Приховати стільницю</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Розпізнавання користувача</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>Альтернативний механізм розпізнавання користувачів</translation>
     </message>
 </context>
 <context>

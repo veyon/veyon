@@ -1219,12 +1219,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Nedaří se nastavit bránu firewall pro worker %1.</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes ovládání na dálku nebude fungovat!</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>Nastavení nejsou přístupná pro zápis. Zkontrolujte svá oprávnění!</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation>Nedaří se uplatnit změny nastavení pro konkrétní platformu.</translation>
     </message>
 </context>
 <context>
@@ -1271,6 +1271,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source> s</source>
         <translation> s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation>Zpomalit aktualizace náhledů při běhu ukázky</translation>
     </message>
 </context>
 <context>
@@ -1387,10 +1391,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>Kliknutím na toto tlačítko otevřete webovou stránku na všech počítačích.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>Zadejte URL adresu webové stránky, kterou otevřít:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2642,6 +2642,21 @@ POUŽITÍ
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation>GNU/Linux</translation>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Uživatelsky určená PAM služba pro ověřování uživatelů</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Ověření uživatele</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3186,6 +3201,33 @@ POUŽITÍ
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>Otevřít webovou stránku</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation>např. Veyon</translation>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation>Zapamatovat a přidat do nabídky webu</translation>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation>např. www.veyon.io</translation>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Zadejte URL adresu webové stránky, kterou otevřít:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Název:</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3284,29 +3326,31 @@ POUŽITÍ
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Vypnout nyní</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalovat aktualizace a vypnout</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Vypnout po po potvrzení uživatelem</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Vypnout po uplynutí časového limitu</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Na dálku bylo vyžádáno vypnutí počítače. Chcete ho vypnout nyní?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>Počítač bude z %1 minut, %2 sekund vypnut.
+
+Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
 </context>
 <context>
@@ -3317,15 +3361,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte časový limit pro vypnutí označených počítačů:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>minut</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>sekund</translation>
     </message>
 </context>
 <context>
@@ -3481,6 +3525,18 @@ Please save your work and close all programs.</source>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>např.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation>Název:</translation>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation>Zapamatovat a přidat do nabídky programů</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>např. VLC</translation>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3601,10 +3657,6 @@ Please save your work and close all programs.</source>
         <translation>Stav:</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Zapnout vytváření SAS pomocí software (Ctrl+Alt+Del)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Síť</translation>
     </message>
@@ -3669,10 +3721,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Zobrazovat upozornění při nezdařených pokusech o ověření</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>Použít alternativní mechanizmus ověřování uživatelů</translation>
     </message>
 </context>
 <context>
@@ -3948,6 +3996,52 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Připojování k %1…</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes ovládání na dálku nebude fungovat!</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation>Windows</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Obecné</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>Zapnout vytváření SAS pomocí software (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation>Uzamčení obrazovky</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Skrýt lištu úloh</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Skrýt nabídku start</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Skrýt plochu</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Ověření uživatele</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>Použít alternativní mechanizmus ověřování uživatelů</translation>
     </message>
 </context>
 <context>

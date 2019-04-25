@@ -1216,11 +1216,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Não foi possível mudar a configuração para geração SAS por software. Enviar Ctrl+Alt+Del via controle remoto não vai funcionar!</translation>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
+        <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1268,6 +1268,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source> s</source>
         <translation>s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1384,10 +1388,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>Clique neste botão para abrir um website em todos os computadores.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>Por favor digite o URL do website a ser aberto:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2619,6 +2619,21 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3158,6 +3173,33 @@ USAGE
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>Abrir website</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Por favor digite o URL do website a ser aberto:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3453,6 +3495,18 @@ Please save your work and close all programs.</source>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>e.g. &quot;C:\Arquivos de Programas\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3573,10 +3627,6 @@ Please save your work and close all programs.</source>
         <translation>Estado:</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Permitir geração SAS por software (Ctrl+Alt+Del)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Rede</translation>
     </message>
@@ -3639,10 +3689,6 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3919,6 +3965,52 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Estabelecendo conexão para %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Não foi possível mudar a configuração para geração SAS por software. Enviar Ctrl+Alt+Del via controle remoto não vai funcionar!</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Geral</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>Permitir geração SAS por software (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

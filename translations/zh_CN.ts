@@ -1220,12 +1220,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>无法为 %1 程序配置防火墙配置。</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>无法通过软件更改 SAS 生成的设置。通过远程控制发送 Ctrl+Alt+Del 将不起作用！</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>配置不可写，请检查您的权限！</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1272,6 +1272,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source> s</source>
         <translation> s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1388,10 +1392,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>点击此按钮，将在所有计算机上打开一个网站</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>请输入要打开站点的网址：</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2643,6 +2643,21 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3187,6 +3202,33 @@ USAGE
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>打开网站</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>请输入要打开站点的网址：</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3482,6 +3524,18 @@ Please save your work and close all programs.</source>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>例如 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3602,10 +3656,6 @@ Please save your work and close all programs.</source>
         <translation>状态：</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>通过软件启用 SAS 生成（Ctrl + Alt + Del）</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>网络</translation>
     </message>
@@ -3670,10 +3720,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>显示尝试身份验证失败的通知</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3949,6 +3995,52 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>正在建立到 %1 的连接...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>无法通过软件更改 SAS 生成的设置。通过远程控制发送 Ctrl+Alt+Del 将不起作用！</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>常规</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>通过软件启用 SAS 生成（Ctrl + Alt + Del）</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

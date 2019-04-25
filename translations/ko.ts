@@ -1219,12 +1219,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>%1 워커용 방화벽 설정을 변경할 수 없습니다.</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>SAS 생성 설정을 소프트웨어로 변경할 수 없습니다. 원격제어로 Ctrl+Alt+Del 를 전송할 수 없습니다 !</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>설정을 쓸수 없습니다. 권한을 점검하기 바랍니다!</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1271,6 +1271,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source> s</source>
         <translation> s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1388,10 +1392,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>클릭하면 모든 컴퓨터에서 같은 웹사이트를 오픈합니다.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>열어 볼 사이트의 주소 URL 을 입력하세요:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2645,6 +2645,21 @@ USAGE
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3189,6 +3204,33 @@ USAGE
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>웹사이트 열기</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>열어 볼 사이트의 주소 URL 을 입력하세요:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3484,6 +3526,18 @@ Please save your work and close all programs.</source>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>예. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3604,10 +3658,6 @@ Please save your work and close all programs.</source>
         <translation>상태:</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>소프트웨어로 SAS (Ctrl+Alt+Del)  생성 허용</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>네트워크</translation>
     </message>
@@ -3672,10 +3722,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>인증시도 실패시 알림 보이기</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>대체 사용자 인증 메커니즘 사용</translation>
     </message>
 </context>
 <context>
@@ -3951,6 +3997,52 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>... %1 로 연결 중입니다</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>SAS 생성 설정을 소프트웨어로 변경할 수 없습니다. 원격제어로 Ctrl+Alt+Del 를 전송할 수 없습니다 !</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>일반사항</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>소프트웨어로 SAS (Ctrl+Alt+Del)  생성 허용</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>대체 사용자 인증 메커니즘 사용</translation>
     </message>
 </context>
 <context>

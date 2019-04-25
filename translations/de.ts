@@ -1216,12 +1216,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Die Firewall-Einstellungen für den %1 Worker konnten nicht geändert werden.</translation>
     </message>
     <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
-    </message>
-    <message>
         <source>Configuration is not writable. Please check your permissions!</source>
         <translation>Konfiguration ist nicht schreibbar. Bitte überprüfen Sie Ihre Berechtigungen!</translation>
+    </message>
+    <message>
+        <source>Could not apply platform-specific configuration settings.</source>
+        <translation>Die plattformspezifischen Konfigurationseinstellungen konnten nicht angewendet werden.</translation>
     </message>
 </context>
 <context>
@@ -1268,6 +1268,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source> s</source>
         <translation> s</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates while demo is running</source>
+        <translation>Miniaturbildaktualisierungen während laufender Demo verlangsamen</translation>
     </message>
 </context>
 <context>
@@ -1384,10 +1388,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Click this button to open a website on all computers.</source>
         <translation>Klicken Sie auf diesen Button, um eine Website auf allen Computern zu öffnen.</translation>
-    </message>
-    <message>
-        <source>Please enter the URL of the website to open:</source>
-        <translation>Bitte geben Sie die URL der zu öffnenden Website ein:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -2643,6 +2643,21 @@ VERWENDUNG
     </message>
 </context>
 <context>
+    <name>LinuxPlatformConfigurationPage</name>
+    <message>
+        <source>Linux</source>
+        <translation>Linux</translation>
+    </message>
+    <message>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Benutzerdefinierter PAM-Dienst für Benutzerauthentifizierung</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Benutzerauthentifizierung</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -3186,6 +3201,33 @@ VERWENDUNG
     </message>
 </context>
 <context>
+    <name>OpenWebsiteDialog</name>
+    <message>
+        <source>Open website</source>
+        <translation>Website öffnen</translation>
+    </message>
+    <message>
+        <source>e.g. Veyon</source>
+        <translation>z.B. Veyon</translation>
+    </message>
+    <message>
+        <source>Remember and add to website menu</source>
+        <translation>Merken und zum Webseitenmenü hinzufügen</translation>
+    </message>
+    <message>
+        <source>e.g. www.veyon.io</source>
+        <translation>z.B. www.veyon.io</translation>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Bitte geben Sie die URL der zu öffnenden Website ein:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Name:</translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
@@ -3483,6 +3525,18 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation>z.B. &quot;C:\Programme\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation>Name:</translation>
+    </message>
+    <message>
+        <source>Remember and add to program menu</source>
+        <translation>Merken und zum Programmmenü hinzufügen</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>z.B. VLC</translation>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3603,10 +3657,6 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Status:</translation>
     </message>
     <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>SAS-Generierung in Software aktivieren (Strg+Alt+Entf)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Netzwerk</translation>
     </message>
@@ -3671,10 +3721,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Benachrichtigung bei fehlgeschlagenen Authentifizierungsversuchen anzeigen</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>Alternativen Mechanismus zur Benutzerauthentifizierung verwenden</translation>
     </message>
 </context>
 <context>
@@ -3950,6 +3996,52 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Verbindung zu %1 wird hergestellt ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfiguration</name>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformConfigurationPage</name>
+    <message>
+        <source>Windows</source>
+        <translation>Windows</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>SAS-Generierung in Software aktivieren (Strg+Alt+Entf)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation>Bildschirmsperre</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Taskleiste verbergen</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Startmenü verbergen</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Desktop verbergen</translation>
+    </message>
+    <message>
+        <source>User authentication</source>
+        <translation>Benutzerauthentifizierung</translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation>Alternativen Mechanismus zur Benutzerauthentifizierung verwenden</translation>
     </message>
 </context>
 <context>
