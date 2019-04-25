@@ -519,15 +519,12 @@ void LdapConfigurationPage::testComputerGroupsFilter()
 
 void LdapConfigurationPage::testComputerContainersFilter()
 {
-	if( m_configuration.computerLocationsByContainer() == false )
-	{
-		QMessageBox::information( this, tr( "Test not applicable" ),
-								  tr( "Please change the computer location settings below to use computer containers "
-									  "as computer locations. Otherwise you don't need to configure this filter." ) );
-		return;
-	}
+	vDebug() << "[TEST][LDAP] Testing computer containers filter";
 
-	testLocations();
+	LdapDirectory ldapDirectory( m_configuration );
+	const auto count = ldapDirectory.computerLocations().count();
+
+	reportLdapFilterTestResult( tr( "computer containers" ), count, ldapDirectory.client().errorDescription() );
 }
 
 
