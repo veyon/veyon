@@ -377,12 +377,15 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 
 	if( node->isPopulated() == false )
 	{
-		const auto dns = m_client->queryDistinguishedNames( node->name(), QString(), LdapClient::Scope::One );
+		auto dns = m_client->queryDistinguishedNames( node->name(), QString(), LdapClient::Scope::One );
+		dns.sort();
+
 		QStringList attributes;
 
 		if( m_mode == BrowseAttributes )
 		{
 			attributes = m_client->queryObjectAttributes( node->name() );
+			attributes.sort();
 		}
 
 		const auto itemCount = ( dns + attributes ).size();
