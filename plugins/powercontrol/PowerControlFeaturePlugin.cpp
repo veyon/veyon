@@ -393,6 +393,7 @@ void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
 	dialog.setAutoReset( false );
 	dialog.setMinimum( 0 );
 	dialog.setMaximum( shutdownTimeout );
+	dialog.setCancelButton( nullptr );
 
 	auto progressBar = dialog.findChild<QProgressBar *>();
 	if( progressBar )
