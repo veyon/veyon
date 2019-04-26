@@ -297,6 +297,7 @@ Delete "$INSTDIR\*.url"
 RmDir /r "$INSTDIR\crypto"
 RmDir /r "$INSTDIR\plugins"
 RmDir /r "$INSTDIR\platforms"
+RmDir /r "$INSTDIR\styles"
 RmDir /r "$INSTDIR\translations"
 RmDir /r "$INSTDIR\interception"
 
