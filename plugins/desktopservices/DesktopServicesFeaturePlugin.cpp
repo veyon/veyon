@@ -60,7 +60,7 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 						  QStringLiteral(":/desktopservices/internet-web-browser.png") ),
 	m_predefinedProgramsFeatures(),
 	m_predefinedWebsitesFeatures(),
-	m_features()
+	m_features( { m_runProgramFeature, m_openWebsiteFeature } )
 {
 	connect( VeyonCore::instance(), &VeyonCore::applicationLoaded,
 			 this, &DesktopServicesFeaturePlugin::updateFeatures );
