@@ -1765,10 +1765,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>LDAP error description: %1</source>
         <translation>LDAP 에러 설명: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>LDAP 에러 설명이 없음</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2139,10 +2135,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 그룹</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>테스트를 할수 없음</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>예. 이름 또는 설명</translation>
     </message>
@@ -2309,14 +2301,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 위치</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation> 컴퓨터 컨테이너 또는 컴퓨터그룹을 컴퓨터 위치로 사용하려면 컴퓨터위치의 설정을 변경하세요. 그러면 컴퓨터 그룹 또는 컨테이너 객체의 공통명칭 대신 지정된 속성을 조회합니다. 그렇지 않으면 이 속성을 설정할 필요가 없습니다.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>컴퓨터 컨테이너를 컴퓨터 위치로 사용하려면 아래의 컴퓨터 교실 위치설정을 변경하세요. 아니면 이필터를 설정할 필요가 없습니다.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>위치 이름 입력</translation>
     </message>
@@ -2420,6 +2404,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2450,6 +2438,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3984,6 +3988,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation>예제</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4055,32 +4063,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 가 이미 설치되어 있음.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 를 설치할 수 없음.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 가 성공적으로 설치됨.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 를 제거할 수 없음.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 가 성공적으로 제거됨.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 의 시작 형태를 변경할 수 없음.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 를 찾을 수 없음.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1764,10 +1764,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>LDAP error description: %1</source>
         <translation>Popis LDAP chyby: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Není k dispozici žádný popis LDAP chyby</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2138,10 +2134,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Skupiny počítačů</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Test není aplikovatelný</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>např. název nebo popis</translation>
     </message>
@@ -2306,14 +2298,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>umístění počítačů</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Změňte nastavení umístění počítače pokud chcete aby pro tento účel byly používány kontejnery s počítači. Pak bude dotazováno na zadaný atribut namísto běžného názvu (CN) skupiny počítačů nebo nadřazeného objektu. Jinak tento atribut není třeba nastavovat.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Změňte nastavení umístění počítače pokud chcete aby pro tyto účely byly používány kontejnery s počítači. Jinak tento filtr není třeba nastavovat.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Zadejte název umístění</translation>
     </message>
@@ -2417,6 +2401,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Nastavený atribut pro uživatelské jméno nebo název počítače (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2447,6 +2435,22 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (načíst uživatele a skupiny z LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3983,6 +3987,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>EXAMPLES</source>
         <translation>PŘÍKLADY</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4054,32 +4062,32 @@ Typicky je toto třeba na terminálových serverech.</translation>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>Řízení služeb Windows: služba „%1“ je už nainstalovaná.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>Řízení služeb Windows: službu „%1“ není možné nainstalovat.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Řízení služeb Windows: služba „%1“ byla úspěšně nainstalována.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Řízení služeb Windows: služba „%1“ nemůže být odinstalována.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Řízení služeb Windows: služba „%1“ byla úspěšně odinstalována.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Řízení služeb Windows: typ spouštění služby „%1“ nemůže být změněn.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>Řízení služeb Windows: služba „%1“ nebyla nalezena.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1764,10 +1764,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>LDAP error description: %1</source>
         <translation>LDAP hiba leírása: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>LDAP hiba leírása nem érhető el</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2138,10 +2134,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Számítógépcsoportok</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Teszt nem alkalmazható</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>például név vagy leírás</translation>
     </message>
@@ -2310,14 +2302,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>számítógéphelyszínek</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Módosítsa a számítógéphelyszín beállításait, hogy a számítógép-csoportokat vagy a számítógéptárolókat használhassuk számítógéphelyszínekként. Ezután a meghatározott attribútumot kérdezzük le a számítógép-csoportok, illetve a tárolóobjektumok neve helyett. Egyéb esetben nem szükséges ennek az attribútumnak a konfigurálása. </translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Módosítsa a számítógéphelyszín beállításait alább, hogy a számítógéptárolókat használhassuk számítógéphelyszínként. Egyéb esetben nem szükséges ennek a szűrőnek konfigurálása.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Adja meg a helyszín nevét</translation>
     </message>
@@ -2421,6 +2405,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>A felhasználó bejelentkezési nevéhez vagy a számítógép kiszolgálónevéhez beállított attribútum (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2451,6 +2439,22 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3984,6 +3988,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation>PÉLDÁK</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4055,32 +4063,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás már telepítve van.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás nem telepíthető.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatást sikeresen telepítette.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás nem távolítható el.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatást sikeresen eltávolította.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás típusa nem módosítható.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás nem található.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

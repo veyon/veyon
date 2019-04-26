@@ -1764,10 +1764,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>LDAP error description: %1</source>
         <translation>LDAP 錯誤描述: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>沒有可用的 LDAP 錯誤描述</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2138,10 +2134,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>電腦群組</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>文字不適用</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>例如: 名稱或描述</translation>
     </message>
@@ -2310,14 +2302,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>電腦位置</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>請變更電腦位置設定，以使用電腦群組或電腦容器作為電腦位置。 然後將查詢指定的屬性，而不是電腦群組或容器物件的通用名稱。 否則，您不需要組態這個屬性。</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>請變更以下的電腦位置設定，以使用電腦容器作為電腦位置。 否則，您不需要組態這個篩選器。</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>輸入位置名稱</translation>
     </message>
@@ -2421,6 +2405,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>為使用者登入名稱或電腦主機名稱組態的屬性 (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2451,6 +2439,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (從 LDAP/AD 載入使用者和群組)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3985,6 +3989,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation>範例</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4056,32 +4064,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: 服務 &quot;%1&quot; 已經安裝。</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: 無法安裝服務 &quot;%1&quot;。</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: 服務 &quot;%1&quot; 安裝成功。</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: 無法解除安裝服務 &quot;%1&quot;。</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: 服務 &quot;%1&quot; 解除安裝成功。</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: 無法變更服務 &quot;%1&quot; 的啟動類型。</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: 找不到服務 &quot;%1&quot;。</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1764,10 +1764,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>LDAP error description: %1</source>
         <translation>Описание ошибки LDAP: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Нет доступного описания ошибки LDAP</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2138,10 +2134,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Группы компьютеров</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Тестирование не применимо</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>например, имя или описание</translation>
     </message>
@@ -2310,14 +2302,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>места компьютеров</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Пожалуйста, измените настройки местоположения компьютеров, чтобы использовать как компьютерные классы группы компьютеров или контейнеры компьютеров. Если вы это сделаете, запрос будет выполняться не в отношении общего названия (CN) групп компьютеров или контейнеров по указанному атрибуту. Если потребности в таких настройки нет, не следует определять этот атрибут.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Пожалуйста, измените следующие параметры компьютерного места, чтобы использовать контейнеры компьютеров как компьютерные места. Если потребности в такой настройке нет, то не определяйте этот фильтр.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Введите название места</translation>
     </message>
@@ -2421,6 +2405,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Настроенный атрибут для имени пользователя для входа или имени хоста компьютера (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation>контейнеры компьютеров</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2451,6 +2439,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (загрузить записи пользователей и групп с LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation>Пожалуйста, укажите корректный адрес LDAP в следующем формате: &quot;ldap[s]://[пользователь[:пароль]@]название_узла[:порт]&quot;</translation>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation>Не указан атрибут контекста именования - возвращаемся к настроенному значению.</translation>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation>Не удалось обработать запрос по корневому DN. Пожалуйста, проверьте, правильно ли настроен LDAP.</translation>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation>Настраиваем %1 как корневой DN и выключаем запросы по контексту именования.</translation>
     </message>
 </context>
 <context>
@@ -3987,6 +3991,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation>ПРИМЕРЫ</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ПРЕДУПРЕЖДЕНИЕ</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4058,32 +4066,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: сервис &quot;%1&quot; уже установлен.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation>Служба «%1» уже установлена.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: не удалось установить сервис &quot;%1&quot;.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation>Не удалось установить службу «%1».</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: сервис &quot;%1&quot; успешно установлен.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>Служба «%1» была успешно установлена.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: не удалось удалить сервис &quot;%1&quot;.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>Не удалось деинсталлировать службу «%1».</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: сервис &quot;%1&quot; успешно удалён.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>Служба «%1» была успешно деинсталирована.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: не удалось изменить тип запуска сервиса &quot;%1&quot;.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>Не удалось изменить тип запуска службы «%1».</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: не удалось найти сервис &quot;%1&quot;.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Не удалось найти службу «%1».</translation>
     </message>
 </context>
 <context>

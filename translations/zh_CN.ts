@@ -1765,10 +1765,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>LDAP error description: %1</source>
         <translation>LDAP错误描述： %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>没有可用的 LDAP 错误说明</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2139,10 +2135,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>计算机组</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>测试不适用</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>例如：名称或描述</translation>
     </message>
@@ -2311,14 +2303,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation type="unfinished"/>
     </message>
@@ -2418,6 +2402,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2447,6 +2435,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3982,6 +3986,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4053,32 +4061,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl:  服务 &quot;%1&quot; 已经安装。</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl:  服务 &quot;%1&quot; 未能安装。</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 已成功安装。</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 不能被卸载。</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 已成功卸载。</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 的启动类型无法更改。</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 未能找到。</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

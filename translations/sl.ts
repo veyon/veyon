@@ -1764,10 +1764,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>LDAP error description: %1</source>
         <translation>Opis napake LDAP: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Na voljo ni opisa napake LDAP</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2138,10 +2134,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Računalniške skupine</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Preskus ni uporaben</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>npr. ime ali opis</translation>
     </message>
@@ -2310,14 +2302,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>lokacije računalnika</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Prosimo, spremenite nastavitve lokacije računalnika za uporabo računalniških skupin ali računalniške vsebnike kot računalniške lokacije. Nato se izvede poizvedba za določen atribut namesto skupnega imena skupin računalnikov ali predmetov vsebnika. V nasprotnem vam ni treba konfigurirati tega atributa.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Spodnje nastavitve lokacije računalnika spremenite tako, da bodo računalniški vsebniki uporabljeni kot računalniške lokacije. V nasprotnem tega filtra ni treba konfigurirati.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Vnesi ime lokacije</translation>
     </message>
@@ -2421,6 +2405,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Konfiguriran atribut za uporabniško ime za prijavo ali ime gostitelja računalnika (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2451,6 +2439,22 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (naložite uporabnike in skupine iz LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3985,6 +3989,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>EXAMPLES</source>
         <translation>PRIMERI</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4056,32 +4064,32 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>Nadzor storitve Windows: storitev &quot;%1&quot; je že nameščena.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>Nadzor storitve Windows: storitev &quot;%1&quot; še ni nameščena.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Nadzor storitve Windows: storitev &quot;%1&quot; je bila uspešno nameščena.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Nadzor storitve Windows: storitve &quot;%1&quot; ni bilo mogoče odstraniti.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Nadzor storitve Windows: storitev &quot;%1&quot; je bila uspešno odstranjena.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Nadzor storitve Windows: vrste začetka storitve &quot;%1&quot; ni bilo mogoče spremeniti.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>Nadzor storitve Windows: storitve &quot;%1&quot; ni bilo mogoče najti.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

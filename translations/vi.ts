@@ -1764,10 +1764,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>LDAP error description: %1</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2133,10 +2129,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation type="unfinished"/>
     </message>
@@ -2295,14 +2287,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation type="unfinished"/>
     </message>
@@ -2402,6 +2386,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2431,6 +2419,22 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3950,6 +3954,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4021,31 +4029,31 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
+        <source>The service &quot;%1&quot; is already installed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
+        <source>The service &quot;%1&quot; could not be installed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
+        <source>Service &quot;%1&quot; could not be found.</source>
         <translation type="unfinished"/>
     </message>
 </context>

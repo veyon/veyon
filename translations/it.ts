@@ -1221,7 +1221,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile applicare le impostazioni di configurazione specifiche della piattaforma.</translation>
     </message>
 </context>
 <context>
@@ -1271,7 +1271,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Rallenta gli aggiornamenti delle miniature mentre la demo è in esecuzione</translation>
     </message>
 </context>
 <context>
@@ -1761,10 +1761,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>LDAP error description: %1</source>
         <translation>Descrizione errore LDAP: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Nessuna descrizione dell&apos;errore LDAP disponibile</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2135,10 +2131,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Gruppi computer</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Test non applicabile</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>es. nome o descrizione</translation>
     </message>
@@ -2297,14 +2289,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>posizioni del computer</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e&apos; necessario che tu configuri questo attributo.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Per favore cambia qui sotto le impostazioni di questa stanza computer per usare i container  come stanze di computer. Altrimenti non serve che tu configuri questo filtro.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Inserisci il nome della posizione</translation>
     </message>
@@ -2408,6 +2392,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Attributo configurato per il nome di accesso dell&apos;utente o il nome host del computer (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation>computer containers</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2438,6 +2426,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (carica utenti e gruppi da LDAP / AD)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation>Specifica un URL LDAP valido seguendo lo schema &quot;ldap [s]: ://[user[:password]@]hostname[:port]&quot;</translation>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation>Nessun nome attributo al contesto di denominazione assegnato, che ricade sul valore configurato.</translation>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation>Impossibile interrogare il DN di base. Si prega di verificare la configurazione LDAP.</translation>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation>Configurazione di% 1 come DN di base e disabilitazione delle query di contesto dei nomi.</translation>
     </message>
 </context>
 <context>
@@ -2640,11 +2644,11 @@ USO
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>Servizio PAM personalizzato per l&apos;autenticazione dell&apos;utente</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticazione utente</translation>
     </message>
 </context>
 <context>
@@ -3199,15 +3203,15 @@ USO
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>per esempio, Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Ricorda e aggiungi al menu del sito web</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>per esempio, www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3215,7 +3219,7 @@ USO
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nome:</translation>
     </message>
 </context>
 <context>
@@ -3518,15 +3522,15 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>Ricorda e aggiungi al menu del programma</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>per esempio, VLC</translation>
     </message>
 </context>
 <context>
@@ -3973,6 +3977,10 @@ Typically this is required to support terminal servers.</source>
         <source>EXAMPLES</source>
         <translation>ESEMPI</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ATTENZIONE</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -3999,7 +4007,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4011,23 +4019,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Blocco schermo</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi la barra delle applicazioni</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi il menu di avvio</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi desktop</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticazione utente</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4044,32 +4052,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; è già installato.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation>Il servizio &quot;% 1&quot; è già installato.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non può essere installato.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation>Il servizio &quot;% 1&quot; non può essere installato.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Controllo servizi di Windows: il servizio1 &quot;è stato installato correttamente.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>Il servizio &quot;% 1&quot; è stato installato correttamente.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non può essere disinstallato.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>Il servizio &quot;% 1&quot; non può essere disinstallato.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Controllo servizi di Windows: il servizio 1 &quot;è stato disinstallato correttamente.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>Il servizio &quot;% 1&quot; è stato disinstallato correttamente.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Controllo servizi di Windows: non è stato possibile modificare il tipo di avvio del servizio &quot;% 1&quot;.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>Non è stato possibile modificare il tipo di avvio del servizio &quot;% 1&quot;.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non è stato trovato.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Il servizio &quot;% 1&quot; non è stato trovato.</translation>
     </message>
 </context>
 <context>

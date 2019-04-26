@@ -1766,10 +1766,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>LDAP error description: %1</source>
         <translation>Descripción del error LDAP: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>No hay descripción de error de LDAP disponible</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2140,10 +2136,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Grupos de equipos</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Prueba no aplicable</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>v.g. nombre o descripción</translation>
     </message>
@@ -2312,14 +2304,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>ubicaciones de equipos</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Cambie la configuración de ubicación del equipo para usar grupos de equipos o contenedores de equipo como ubicaciones de equipo. Luego se consultará el atributo especificado en lugar del nombre común de los grupos de equipos u objetos contenedores. De lo contrario no es necesario configurar este atributo.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Cambie la configuración de la ubicación del equipo a continuación para usar los contenedores del equipo como ubicaciones del equipo. De lo contrario no es necesario configurar este filtro.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Introduzca el nombre de ubicación</translation>
     </message>
@@ -2423,6 +2407,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Atributo configurado para el nombre de inicio de sesión del usuario o el nombre de host de la computadora (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation>contenedores de computadoras</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2453,6 +2441,22 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (cargar usuarios y grupos desde LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation>Por favor, especifique una url LDAP válida siguiendo el esquema  &quot;ldap[s]://[usuario[:contraseña]@]hostname[:puerto]&quot;</translation>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation>No se ha dado un nombre de atributo de contexto de nombres - volvemos al valor configurado.</translation>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation>No se pudo consultar el DN base. Por favor, compruebe su configuración LDAP.</translation>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation>Configurando %1 como DN base y deshabilitando las consultas de contexto de nombres.</translation>
     </message>
 </context>
 <context>
@@ -3989,6 +3993,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <source>EXAMPLES</source>
         <translation>EJEMPLOS</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ADVERTENCIA</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4060,32 +4068,32 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: el servicio &quot;%1&quot; ya está instalado.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation>El servicio &quot;%1&quot; ya está instalado.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: el servicio &quot;%1&quot; no se pudo instalar.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation>No se pudo instalar el servicio &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: el servicio &quot;%1&quot; se ha instalado correctamente.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>El servicio &quot;%1&quot; se ha instalado correctamente.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: el servicio &quot;%1&quot; no se pudo desinstalar.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>El servicio &quot;%1&quot; no se pudo desinstalar.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: el servicio &quot;%1&quot; se ha desinstalado correctamente.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>El servicio &quot;%1&quot; se ha desinstalado correctamente.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: el tipo de servicio de inicio &quot;%1&quot; no se pudo cambiar.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>El tipo de inicio de servicio &quot;%1&quot; no se pudo cambiar.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: el servicio &quot;%1&quot; no se pudo encontrar.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>No se pudo encontrar el servicio &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>

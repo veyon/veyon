@@ -1274,7 +1274,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Ralentir la mise à jour des vignettes lorsque qu&apos;une démo est en cours d&apos;exécution</translation>
     </message>
 </context>
 <context>
@@ -1764,10 +1764,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>LDAP error description: %1</source>
         <translation>Description de l&apos;erreur LDAP: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Aucune description de l&apos;erreur LDAP disponible</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2138,10 +2134,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Groupe d&apos;ordinateurs</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Test non applicable</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>Ex: nom ou description </translation>
     </message>
@@ -2310,14 +2302,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Emplacements d&apos;ordinateur</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Veuillez modifier les paramètres d&apos;emplacement de l&apos;ordinateur pour utiliser des groupes d&apos;ordinateurs ou des conteneurs d&apos;ordinateurs en tant qu&apos;emplacement d&apos;ordinateur. Par la suite, l&apos;attribut spécifié au lieu du nom commun de groupes d&apos;ordinateurs ou d&apos;objets conteneur sera interrogé. Dans le cas contraire, vous n&apos;avez pas besoin de configurer cet attribut.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Veuillez modifier les paramètres d&apos;emplacement d&apos;ordinateur ci-dessous pour utiliser des conteneurs d&apos;ordinateur en tant qu&apos;emplacement d&apos;ordinateur. Dans le cas contraire, vous n&apos;avez pas besoin de configurer ce filtre.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Entrer le nom de l&apos;emplacement</translation>
     </message>
@@ -2421,6 +2405,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Attribut configuré pour l&apos;identifiant utilisateur ou le nom d&apos;hôte de l&apos;ordinateur (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2451,6 +2439,22 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (charger les utilisateurs et les groupes depuis LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2649,7 +2653,7 @@ USAGE
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2657,7 +2661,7 @@ USAGE
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Authentification utilisateur</translation>
     </message>
 </context>
 <context>
@@ -3212,15 +3216,15 @@ USAGE
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>ex : Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Mémoriser et ajouter au menu des sites internet</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>ex: www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3228,7 +3232,7 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nom:</translation>
     </message>
 </context>
 <context>
@@ -3531,15 +3535,15 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nom:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>Mémoriser et ajouter au menu du programme</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>ex: VLC</translation>
     </message>
 </context>
 <context>
@@ -3987,6 +3991,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>EXAMPLES</source>
         <translation>EXEMPLES</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ATTENTION</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4013,7 +4021,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4029,19 +4037,19 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Masquer la barre des tâches</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Masquer le menu de démarrage</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Masquer le bureau</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Authentification utilisateur</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4058,32 +4066,32 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: Le service &quot;%1&quot; est déjà installé.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: Le service &quot;%1&quot; n&apos;a pas pu être installé.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: Le service &quot;%1&quot; a été installé avec succès.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: Le service &quot;%1&quot; n&apos;a pas pu être désinstallé.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: Le service &quot;%1&quot; a été désinstallé avec succès.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: Le type de démarrage du service &quot;%1&quot; ne peut pas être changé.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: Le service &quot;%1&quot; est introuvable.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

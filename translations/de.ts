@@ -1761,10 +1761,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>LDAP error description: %1</source>
         <translation>LDAP-Fehlerbeschreibung: %1</translation>
     </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Keine LDAP-Fehlerbeschreibung verfügbar</translation>
-    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
@@ -2135,10 +2131,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computergruppen</translation>
     </message>
     <message>
-        <source>Test not applicable</source>
-        <translation>Test nicht anwendbar</translation>
-    </message>
-    <message>
         <source>e.g. name or description</source>
         <translation>z.B. name oder description</translation>
     </message>
@@ -2307,14 +2299,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computerstandorte</translation>
     </message>
     <message>
-        <source>Please change the computer location settings to use computer groups or computer containers as computer locations. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Bitte ändern Sie die Computerstandorteinstellungen, so dass Computergruppen oder Computercontainer als Computerstandort verwendet werden. Dann wird das angegebene Attribut anstatt des Common Names von Computergruppen oder übergeordneten Objekten abgefragt. Andernfalls müssen Sie dieses Attribut nicht konfigurieren.</translation>
-    </message>
-    <message>
-        <source>Please change the computer location settings below to use computer containers as computer locations. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Bitte ändern Sie die Computerstandorteinstellungen unterhalb, so dass Computercontainer als Computerstandorte verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Standortname eingeben</translation>
     </message>
@@ -2334,7 +2318,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation>Es konnte keine %1 abgefragt werden. Bitte überprüfen Sie den/die Parameter &quot;%2&quot; und geben Sie den Namen eines existierenden Objekts ein.
+        <translation>Es konnte keine %1 abgefragt werden. Bitte überprüfen Sie den/die Parameter %2 und geben Sie den Namen eines existierenden Objekts ein.
 
 %3</translation>
     </message>
@@ -2418,6 +2402,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Konfiguriertes Attribut für Benutzeranmeldename oder Computerhostname (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>computer containers</source>
+        <translation>Computercontainer</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2448,6 +2436,22 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (Benutzer und Gruppen aus LDAP/AD laden)</translation>
+    </message>
+    <message>
+        <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
+        <translation>Bitte geben Sie eine gültige LDAP-URL an, die dem Schema &quot;ldap[s]://[Benutzer[:Passwort]@]Hostname[:Port]&quot; folgt</translation>
+    </message>
+    <message>
+        <source>No naming context attribute name given - falling back to configured value.</source>
+        <translation>Es wurde kein Naming-Context-Attribut angegeben - falle auf konfigurierten Wert zurück.</translation>
+    </message>
+    <message>
+        <source>Could not query base DN. Please check your LDAP configuration.</source>
+        <translation>Base-DN konnte nicht abgefragt werden. Bitte überprüfen Sie Ihre LDAP-Konfiguration.</translation>
+    </message>
+    <message>
+        <source>Configuring %1 as base DN and disabling naming context queries.</source>
+        <translation>Konfiguriere %1 als Base-DN und deaktiviere Naming-Context-Abfragen.</translation>
     </message>
 </context>
 <context>
@@ -3983,6 +3987,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>EXAMPLES</source>
         <translation>BEISPIELE</translation>
     </message>
+    <message>
+        <source>WARNING</source>
+        <translation>WARNUNG</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4054,32 +4062,32 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
 <context>
     <name>WindowsServiceControl</name>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; ist bereits installiert.</translation>
+        <source>The service &quot;%1&quot; is already installed.</source>
+        <translation>Der Dienst &quot;%1&quot; ist bereits installiert.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; konnte nicht installiert werden.</translation>
+        <source>The service &quot;%1&quot; could not be installed.</source>
+        <translation>Der Dienst &quot;%1&quot; konnte nicht installiert werden.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde erfolgreich installiert.</translation>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>Der Dienst &quot;%1&quot; wurde erfolgreich installiert.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; konnte nicht deinstalliert werden.</translation>
+        <source>The service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>Der Dienst &quot;%1&quot; konnte nicht deinstalliert werden.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde erfolgreich deinstalliert.</translation>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>Der Dienst &quot;%1&quot; wurde erfolgreich deinstalliert.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>WindowsServiceControl: der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden.</translation>
+        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>Der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden.</translation>
     </message>
     <message>
-        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde nicht gefunden.</translation>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Der Dienst &quot;%1&quot; wurde nicht gefunden.</translation>
     </message>
 </context>
 <context>
