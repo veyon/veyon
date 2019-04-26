@@ -284,15 +284,25 @@ bool VeyonCore::isDebugging()
 }
 
 
+
+QByteArray VeyonCore::shortenFuncinfo( QByteArray info )
+{
+	const auto funcinfo = cleanupFuncinfo( info );
+
+	if( isDebugging() )
+	{
+		return funcinfo + QByteArrayLiteral( "():" );
+	}
+
+	return funcinfo.split( ':' ).first() + QByteArrayLiteral(":");
+}
+
+
+
 // taken from qtbase/src/corelib/global/qlogging.cpp
 
 QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 {
-	if( isDebugging() == false )
-	{
-		return {};
-	}
-
 	// Strip the function info down to the base function name
 	// note that this throws away the template definitions,
 	// the parameter types (overloads) and any const/volatile qualifiers.

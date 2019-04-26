@@ -146,6 +146,7 @@ public:
 
 	static bool isDebugging();
 
+	static QByteArray shortenFuncinfo( QByteArray info );
 	static QByteArray cleanupFuncinfo( QByteArray info );
 
 	static QString stripDomain( const QString& username );
@@ -205,7 +206,7 @@ signals:
 
 };
 
-#define V_FUNC_INFO VeyonCore::cleanupFuncinfo(Q_FUNC_INFO).constData()
+#define V_FUNC_INFO VeyonCore::shortenFuncinfo(Q_FUNC_INFO).constData()
 
 #define vDebug() if( VeyonCore::isDebugging()==false ); else qDebug() << V_FUNC_INFO
 #define vInfo() qInfo() << V_FUNC_INFO
