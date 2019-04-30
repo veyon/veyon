@@ -31,6 +31,7 @@ INCLUDE(CheckSymbolExists)
 INCLUDE(CheckTypeSize)
 INCLUDE(GNUInstallDirs)
 INCLUDE(CotireVeyon)
+INCLUDE(ConfigureFiles)
 
 FIND_PACKAGE(Git)
 
@@ -194,13 +195,6 @@ ENDIF()
 
 ### END: libvncclient configuration
 
-# configure files for Veyon
-SET(VEYONCONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h)
-
-SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc server/veyon-server.rc service/veyon-service.rc master/data/veyon-master.desktop master/veyon-master.rc configurator/data/veyon-configurator.desktop configurator/data/io.veyon.veyon-configurator.policy configurator/veyon-configurator.rc cli/veyon-cli.rc cli/veyon-wcli.rc worker/veyon-worker.rc)
-FOREACH(f ${IN_FILES})
-    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
-ENDFOREACH(f ${IN_FILES})
 
 IF(SANITIZE)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
@@ -223,6 +217,9 @@ IF(NOT VEYON_BUILD_WIN32)
 ENDIF()
 
 ADD_DEFINITIONS(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050600 -D_FORTIFY_SOURCE=2 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY)
+
+FILE(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "*config.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
+CONFIGURE_FILES(${IN_FILES})
 
 SET(CMAKE_AUTOMOC TRUE)
 SET(CMAKE_AUTOUIC TRUE)
