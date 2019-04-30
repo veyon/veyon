@@ -2403,7 +2403,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>kontejnery s počítači</translation>
     </message>
 </context>
 <context>
@@ -2438,19 +2438,19 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte platnou LDAP url následující toto schéma „ldap[s]://[uzivatel[:heslo]@]stroj[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Nebyl zadán žádný název pro atribut jmenného kontextu – náhradně bude použita nastavená hodnota.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Nedaří se dotázat na nastavený základ rozlišeného názvu. Zkontrolujte nastavení svého LDAP.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>%1 je nastavováno jako základ rozlišeného názvu a vypínají se dotazy na jmenný kontext.</translation>
     </message>
 </context>
 <context>
@@ -3989,7 +3989,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>VAROVÁNÍ</translation>
     </message>
 </context>
 <context>
@@ -4063,31 +4063,31 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>Služba „%1“ je už nainstalovaná.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Službu „%1“ se nepodařilo nainstalovat</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Služba „%1“ byla úspěšně nainstalována.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>Službu „%1“ se nepodařilo odinstalovat.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Služba „%1“ byla úspěšně odinstalována.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Typ spouštění služby „%1“ nemůže být změněn.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Službu „%1“ se nedaří najít.</translation>
     </message>
 </context>
 <context>

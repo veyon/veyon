@@ -1224,7 +1224,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;appliquer les paramètres de configuration spécifiques à la plateforme.</translation>
     </message>
 </context>
 <context>
@@ -2407,7 +2407,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Conteneurs d&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -2442,19 +2442,19 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez spécifier une url LDAP valide en suivant ce schéma &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Aucun attribut de nom de contexte de nommage n&apos;a été donné - retour à la valeur configurée.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;interroger la base DN (Nom Domaine). Veuillez vérifier votre configuration LDAP.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>Configuration de %1 en tant que base DN et désactivation des requêtes de contexte de dénomination.</translation>
     </message>
 </context>
 <context>
@@ -2657,7 +2657,7 @@ USAGE
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>Service PAM personnalisé pour l&apos;authentification de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -4067,31 +4067,31 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>Le service &quot;%1&quot; est déjà installé.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Le service &quot;%1&quot; ne peut pas être installé.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Le service &quot;%1&quot; a été installé avec succès.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>Le service &quot;%1&quot; ne peut pas être désinstallé.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Le service &quot;%1&quot; a été désinstallé avec succès.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Le type de démarrage du service &quot;%1&quot; ne peut pas être changé.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Service &quot;%1&quot; impossible à trouvé.</translation>
     </message>
 </context>
 <context>
