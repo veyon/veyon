@@ -1,6 +1,8 @@
 veyonconfiguratoricon ICON data/veyon-configurator.ico
 #include <windows.h>
 
+ID_MANIFEST RT_MANIFEST data/veyon-configurator.exe.manifest
+
 VS_VERSION_INFO	VERSIONINFO
   FILEVERSION	@VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@,@VERSION_BUILD@
   FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
