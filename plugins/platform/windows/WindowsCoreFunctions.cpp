@@ -300,9 +300,8 @@ bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStr
 {
 	const auto parametersJoined = parameters.join( QLatin1Char(' ') );
 
-	SHELLEXECUTEINFO sei;
+	SHELLEXECUTEINFO sei{0};
 	sei.cbSize = sizeof(sei);
-	sei.fMask = SEE_MASK_DEFAULT;
 	sei.lpVerb = L"runas";
 	sei.lpFile = toConstWCharArray( program );
 	sei.hwnd = GetForegroundWindow();
