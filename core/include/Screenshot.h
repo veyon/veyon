@@ -68,8 +68,10 @@ public:
 	QString date() const;
 	QString time() const;
 
-
 private:
+	QString property( const QString& key, int section ) const;
+	QString fileNameSection( int n ) const;
+
 	QString m_fileName;
 	QImage m_image;
 

@@ -79,10 +79,11 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 		user = QStringLiteral( "%1 (%2)" ).arg( userLogin, computerControlInterface->userFullName() );
 	}
 
-	const auto caption = QStringLiteral( "%1@%2 %3 %4" ).arg( user,
-															  computerControlInterface->computer().hostAddress(),
-															  QDate::currentDate().toString( Qt::ISODate ),
-															  QTime::currentTime().toString( Qt::ISODate ) );
+	const auto host = computerControlInterface->computer().hostAddress();
+	const auto date = QDate::currentDate().toString( Qt::ISODate );
+	const auto time = QTime::currentTime().toString( Qt::ISODate );
+
+	const auto caption = QStringLiteral( "%1@%2 %3 %4" ).arg( user, host, date, time );
 
 	const int FONT_SIZE = 14;
 	const int RECT_MARGIN = 10;
@@ -114,6 +115,11 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	p.drawPixmap( ix, iy, icon );
 	p.drawText( tx, ty, caption );
 
+	m_image.setText( QStringLiteral("User"), user );
+	m_image.setText( QStringLiteral("Host"), host );
+	m_image.setText( QStringLiteral("Date"), date );
+	m_image.setText( QStringLiteral("Time"), time );
+
 	m_image.save( m_fileName, "PNG", 50 );
 }
 
@@ -136,21 +142,21 @@ QString Screenshot::constructFileName( const QString& user, const QString& hostA
 
 QString Screenshot::user() const
 {
-	return QFileInfo( fileName() ).fileName().section( QLatin1Char('_'), 0, 0 );
+	return property( QStringLiteral("User"), 0 );
 }
 
 
 
 QString Screenshot::host() const
 {
-	return fileName().section( QLatin1Char('_'), 1, 1 );
+	return property( QStringLiteral("Host"), 1 );
 }
 
 
 
 QString Screenshot::date() const
 {
-	return QDate::fromString( fileName().section( QLatin1Char('_'), 2, 2 ),
+	return QDate::fromString( property( QStringLiteral("Date"), 2 ),
 										Qt::ISODate ).toString( Qt::LocalDate );
 }
 
@@ -158,5 +164,25 @@ QString Screenshot::date() const
 
 QString Screenshot::time() const
 {
-	return fileName().section( QLatin1Char('_'), 3, 3 ).section( QLatin1Char('.'), 0, 0 ).replace( QLatin1Char('-'), QLatin1Char(':') );
+	return property( QStringLiteral("Time"), 3 ).section( QLatin1Char('.'), 0, 0 ).replace( QLatin1Char('-'), QLatin1Char(':') );
+}
+
+
+
+QString Screenshot::property( const QString& key, int section ) const
+{
+	const auto embeddedProperty = m_image.text( key );
+	if( embeddedProperty.isEmpty() )
+	{
+		return fileNameSection( section );
+	}
+
+	return embeddedProperty;
+}
+
+
+
+QString Screenshot::fileNameSection( int n ) const
+{
+	return QFileInfo( fileName() ).fileName().section( QLatin1Char('_'), n, n );
 }
