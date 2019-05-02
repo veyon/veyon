@@ -51,8 +51,9 @@ ScreenshotManagementPanel::ScreenshotManagementPanel( QWidget *parent ) :
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );
 
-	connect( ui->list, &QListView::clicked, this, &ScreenshotManagementPanel::updateScreenshot );
-	connect( ui->list, &QListView::doubleClicked, this, &ScreenshotManagementPanel::showScreenshot );
+	connect( ui->list->selectionModel(), &QItemSelectionModel::currentRowChanged,
+			 this, &ScreenshotManagementPanel::updateScreenshot );
+	connect( ui->list, &QListView::activated, this, &ScreenshotManagementPanel::showScreenshot );
 
 	connect( ui->showBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::showScreenshot );
 	connect( ui->deleteBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::deleteScreenshot );
