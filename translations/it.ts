@@ -395,7 +395,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Seleziona un gruppo di utenti per concedere l&apos;accesso alla chiave &quot;% 1&quot;:</translation>
+        <translation>Seleziona un gruppo di utenti per concedere l&apos;accesso alla chiave &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -441,7 +441,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Tipo di chiave non valido specificato! Si prega di specificare &quot;% 1&quot; o &quot;% 2&quot;.</translation>
+        <translation>Tipo di chiave non valido specificato! Si prega di specificare &quot;%1&quot; o &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
@@ -453,7 +453,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Creazione di una nuova coppia di chiavi per &quot;% 1&quot;</translation>
+        <translation>Creazione di una nuova coppia di chiavi per &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -461,15 +461,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>La coppia di chiavi appena creata è stata salvata in &quot;% 1&quot; e &quot;% 2&quot;.</translation>
+        <translation>La coppia di chiavi appena creata è stata salvata in &quot;%1&quot; e &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Impossibile rimuovere il file chiave &quot;% 1&quot;!</translation>
+        <translation>Impossibile rimuovere il file chiave &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Impossibile rimuovere la directory del file di chiavi &quot;% 1&quot;!</translation>
+        <translation>Impossibile rimuovere la directory del file di chiavi &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
@@ -477,7 +477,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>Il file &quot;% 1&quot; esiste già.</translation>
+        <translation>Il file &quot;%1&quot; esiste già.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -485,7 +485,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>Il tasto &quot;% 1 /% 2&quot; è stato esportato correttamente in &quot;% 3&quot;.</translation>
+        <translation>Il tasto &quot;%1 /%2&quot; è stato esportato correttamente in &quot;%3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
@@ -493,11 +493,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>Il file &quot;% 1&quot; non contiene una chiave privata valida!</translation>
+        <translation>Il file &quot;%1&quot; non contiene una chiave privata valida!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>Il file &quot;% 1&quot; non contiene una chiave pubblica valida!</translation>
+        <translation>Il file &quot;%1&quot; non contiene una chiave pubblica valida!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
@@ -505,15 +505,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>Impossibile scrivere il file chiave &quot;% 1&quot;.</translation>
+        <translation>Impossibile scrivere il file chiave &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>Impossibile impostare le autorizzazioni per il file chiave &quot;% 1&quot;!</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file chiave &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>Il tasto &quot;% 1 /% 2&quot; è stato importato correttamente. Controlla i permessi dei file di &quot;% 3&quot; per impedire accessi non autorizzati.</translation>
+        <translation>Il tasto &quot;%1 /%2&quot; è stato importato correttamente. Controlla i permessi dei file di &quot;%3&quot; per impedire accessi non autorizzati.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -521,39 +521,39 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>Impossibile creare la directory per il file di chiave privata &quot;% 1&quot;.</translation>
+        <translation>Impossibile creare la directory per il file di chiave privata &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation>Impossibile salvare la chiave privata nel file &quot;% 1&quot;!</translation>
+        <translation>Impossibile salvare la chiave privata nel file &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation>Impossibile impostare le autorizzazioni per il file della chiave privata &quot;% 1&quot;!</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file della chiave privata &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>Impossibile creare la directory per il file di chiave pubblica &quot;% 1&quot;.</translation>
+        <translation>Impossibile creare la directory per il file di chiave pubblica &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation>Impossibile salvare la chiave pubblica nel file &quot;% 1&quot;!</translation>
+        <translation>Impossibile salvare la chiave pubblica nel file &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation>Impossibile impostare le autorizzazioni per il file di chiave pubblica &quot;% 1&quot;!</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file di chiave pubblica &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Impossibile impostare il proprietario del file chiave &quot;% 1&quot; su &quot;% 2&quot;.</translation>
+        <translation>Impossibile impostare il proprietario del file chiave &quot;%1&quot; su &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation>Impossibile impostare le autorizzazioni per il file chiave &quot;% 1&quot;.</translation>
+        <translation>Impossibile impostare le autorizzazioni per il file chiave &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>Il tasto &quot;% 1&quot; è ora accessibile dal gruppo di utenti &quot;% 2&quot;.</translation>
+        <translation>Il tasto &quot;%1&quot; è ora accessibile dal gruppo di utenti &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -633,7 +633,7 @@ e salva la chiave privata e pubblica per le directory chiave configurate.</trans
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Questo comando elenca tutte le chiavi di autenticazione disponibili nella directory delle chiavi configurate. Se viene specificata l&apos;opzione &quot;% 1&quot;, verrà visualizzata una tabella con i dettagli chiave. Alcuni dettagli potrebbero mancare se una chiave non è accessibile, ad es. a causa della mancanza di permessi di lettura.</translation>
+        <translation>Questo comando elenca tutte le chiavi di autenticazione disponibili nella directory delle chiavi configurate. Se viene specificata l&apos;opzione &quot;%1&quot;, verrà visualizzata una tabella con i dettagli chiave. Alcuni dettagli potrebbero mancare se una chiave non è accessibile, ad es. a causa della mancanza di permessi di lettura.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
@@ -817,7 +817,7 @@ Esempi:
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Tipo non valido specificato. I valori validi sono &quot;% 1&quot; o &quot;% 2&quot;.</translation>
+        <translation>Tipo non valido specificato. I valori validi sono &quot;%1&quot; o &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
@@ -841,27 +841,27 @@ Esempi:
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Il file &quot;% 1&quot; non esiste!</translation>
+        <translation>Il file &quot;%1&quot; non esiste!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Impossibile aprire il file &quot;% 1&quot; per la lettura!</translation>
+        <translation>Impossibile aprire il file &quot;%1&quot; per la lettura!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Argomento sconosciuto &quot;% 1&quot;.</translation>
+        <translation>Argomento sconosciuto &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation>Stanza &quot;% 1&quot;</translation>
+        <translation>Stanza &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Computer &quot;% 1&quot; (indirizzo host: &quot;% 2&quot; indirizzo MAC: &quot;% 3&quot;)</translation>
+        <translation>Computer &quot;%1&quot; (indirizzo host: &quot;%2&quot; indirizzo MAC: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Oggetto non classificato &quot;% 1&quot; con ID &quot;% 2&quot;</translation>
+        <translation>Oggetto non classificato &quot;%1&quot; con ID &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
@@ -885,7 +885,7 @@ Esempi:
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Errore durante l&apos;analisi della riga% 1.</translation>
+        <translation>Errore durante l&apos;analisi della riga%1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
@@ -905,7 +905,7 @@ Esempi:
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Impossibile aprire il file &quot;% 1&quot; per la scrittura!</translation>
+        <translation>Impossibile aprire il file &quot;%1&quot; per la scrittura!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -1107,11 +1107,11 @@ Esempi:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>L&apos;utente &quot;% 1&quot; sull&apos;host &quot;% 2&quot; sta ora accedendo a questo computer.</translation>
+        <translation>L&apos;utente &quot;%1&quot; sull&apos;host &quot;%2&quot; sta ora accedendo a questo computer.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation>L&apos;utente &quot;% 1&quot; sull&apos;host &quot;% 2&quot; ha tentato di accedere a questo computer ma non è riuscito ad autenticarsi correttamente!</translation>
+        <translation>L&apos;utente &quot;%1&quot; sull&apos;host &quot;%2&quot; ha tentato di accedere a questo computer ma non è riuscito ad autenticarsi correttamente!</translation>
     </message>
 </context>
 <context>
@@ -1259,11 +1259,11 @@ Esempi:
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Impossibile configurare la configurazione del firewall per% 1 Server.</translation>
+        <translation>Impossibile configurare la configurazione del firewall per%1 Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Impossibile configurare la configurazione del firewall per% 1 operatore.</translation>
+        <translation>Impossibile configurare la configurazione del firewall per%1 operatore.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1449,7 +1449,7 @@ Esempi:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation>Esegui il programma &quot;% 1&quot;</translation>
+        <translation>Esegui il programma &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1457,7 +1457,7 @@ Esempi:
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Apri il sito web &quot;% 1&quot;</translation>
+        <translation>Apri il sito web &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -2244,19 +2244,19 @@ Esempi:
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>Impossibile interrogare il DN base configurato. Controlla il parametro DN di base.% 1</translation>
+        <translation>Impossibile interrogare il DN base configurato. Controlla il parametro DN di base.%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation>Il DN base LDAP è stato interrogato correttamente. Sono state trovate le seguenti voci: % 1</translation>
+        <translation>Il DN base LDAP è stato interrogato correttamente. Sono state trovate le seguenti voci: %1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation>Impossibile interrogare il DN di base tramite i contesti di denominazione. Controlla il parametro dell&apos;attributo del contesto di denominazione.% 1</translation>
+        <translation>Impossibile interrogare il DN di base tramite i contesti di denominazione. Controlla il parametro dell&apos;attributo del contesto di denominazione.%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2266,13 +2266,13 @@ Esempi:
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation>Impossibile connettersi al server LDAP. Controlla i parametri del server.% 1</translation>
+        <translation>Impossibile connettersi al server LDAP. Controlla i parametri del server.%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>Impossibile collegarsi al server LDAP. Controlla i parametri del server e associa le credenziali.% 1</translation>
+        <translation>Impossibile collegarsi al server LDAP. Controlla i parametri del server e associa le credenziali.%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2804,7 +2804,7 @@ Esempi:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>% 1 -% 2 Accesso remoto</translation>
+        <translation>%1 -%2 Accesso remoto</translation>
     </message>
 </context>
 <context>
@@ -3096,19 +3096,19 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation>Avvio del servizio% 1</translation>
+        <translation>Avvio del servizio%1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation>Arresto del servizio% 1</translation>
+        <translation>Arresto del servizio%1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation>Registrazione del servizio% 1</translation>
+        <translation>Registrazione del servizio%1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation>Servizio di annullamento della registrazione% 1</translation>
+        <translation>Servizio di annullamento della registrazione%1</translation>
     </message>
     <message>
         <source>Service control</source>
@@ -3166,7 +3166,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Il file &quot;% 1&quot; non esiste!</translation>
+        <translation>Il file &quot;%1&quot; non esiste!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3350,11 +3350,11 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; è già installato.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;%1&quot; è già installato.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non può essere installato.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;%1&quot; non può essere installato.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
@@ -3362,7 +3362,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non può essere disinstallato.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;%1&quot; non può essere disinstallato.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
@@ -3370,11 +3370,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Controllo servizi di Windows: non è stato possibile modificare il tipo di avvio del servizio &quot;% 1&quot;.</translation>
+        <translation>Controllo servizi di Windows: non è stato possibile modificare il tipo di avvio del servizio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation>Controllo servizi di Windows: il servizio &quot;% 1&quot; non è stato trovato.</translation>
+        <translation>Controllo servizi di Windows: il servizio &quot;%1&quot; non è stato trovato.</translation>
     </message>
 </context>
 <context>

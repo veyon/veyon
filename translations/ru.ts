@@ -615,7 +615,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Эта команда создаёт новую пару ключей для распознавания под названием &lt;ИМЯ&gt; и сохраняет закрытый и открытый ключи в настроенных каталогах ключей.</translation>
+        <translation>Эта команда создаёт новую пару ключей для аутентификации под названием &lt;ИМЯ&gt; и сохраняет закрытый и открытый ключи в настроенных каталогах ключей.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
