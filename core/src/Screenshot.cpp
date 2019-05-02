@@ -97,13 +97,20 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	painter.setFont( font );
 
 	const QFontMetrics fontMetrics( painter.font() );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	const auto captionWidth = fontMetrics.horizontalAdvance( caption );
 	const auto captionHeight = fontMetrics.boundingRect( caption ).height();
+#else
+	const auto boundingRect = fontMetrics.boundingRect( caption );
+	const auto captionWidth = boundingRect.width();
+	const auto captionHeight = boundingRect.height();
+#endif
 
 	const auto MARGIN = 14;
 	const auto PADDING = 7;
 	const QRect rect{ MARGIN,
 				m_image.height() - MARGIN - 2 * PADDING - captionHeight,
-				4 * PADDING + fontMetrics.horizontalAdvance( caption ) + icon.width(),
+				4 * PADDING + captionWidth + icon.width(),
 				2 * PADDING + captionHeight };
 	const auto iconX = rect.x() + PADDING + 1;
 	const auto iconY = rect.y() + ( rect.height() - icon.height() ) / 2;
