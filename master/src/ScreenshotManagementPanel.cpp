@@ -24,7 +24,6 @@
 
 #include <QDir>
 #include <QDate>
-#include <QFileSystemModel>
 #include <QScrollArea>
 
 #include "Filesystem.h"
