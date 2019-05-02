@@ -100,8 +100,9 @@ FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
-					feature.parentUid() == parentFeatureUid &&
-					disabledFeatures.contains( parentFeatureUid.toString() ) == false )
+				feature.parentUid() == parentFeatureUid &&
+				disabledFeatures.contains( parentFeatureUid.toString() ) == false &&
+				disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;
 			}
