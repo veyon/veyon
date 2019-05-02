@@ -39,23 +39,25 @@ QString WindowsUserFunctions::fullName( const QString& username )
 {
 	QString fullName;
 
-	QString realUsername = username;
-	PBYTE domainController = nullptr;
+	auto realUsername = username;
+	LPWSTR domainController = nullptr;
 
 	const auto nameParts = username.split( QLatin1Char('\\') );
 	if( nameParts.size() > 1 )
 	{
 		realUsername = nameParts[1];
-		if( NetGetDCName( nullptr, WindowsCoreFunctions::toConstWCharArray( nameParts[0] ), &domainController ) != NERR_Success )
+		if( NetGetDCName( nullptr, WindowsCoreFunctions::toConstWCharArray( nameParts[0] ),
+						  reinterpret_cast<LPBYTE *>( &domainController ) ) != NERR_Success )
 		{
 			domainController = nullptr;
 		}
 	}
 
 	LPUSER_INFO_2 buf = nullptr;
-	NET_API_STATUS nStatus = NetUserGetInfo( reinterpret_cast<LPCWSTR>( domainController ),
-											 WindowsCoreFunctions::toConstWCharArray( realUsername ),
-											 2, reinterpret_cast<LPBYTE *>( &buf ) );
+	const auto nStatus = NetUserGetInfo( domainController,
+										 WindowsCoreFunctions::toConstWCharArray( realUsername ),
+										 2, reinterpret_cast<LPBYTE *>( &buf ) );
+
 	if( nStatus == NERR_Success && buf != nullptr )
 	{
 		fullName = QString::fromWCharArray( buf->usri2_full_name );
