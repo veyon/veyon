@@ -85,35 +85,34 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 	const auto caption = QStringLiteral( "%1@%2 %3 %4" ).arg( user, host, date, time );
 
-	const int FONT_SIZE = 14;
-	const int RECT_MARGIN = 10;
-	const int RECT_INNER_MARGIN = 5;
-
-	m_image = QImage( computerControlInterface->screen() );
+	m_image = computerControlInterface->screen();
 
 	QPixmap icon( QStringLiteral( ":/core/icon16.png" ) );
 
-	QPainter p( &m_image );
-	QFont fnt = p.font();
-	fnt.setPointSize( FONT_SIZE );
-	fnt.setBold( true );
-	p.setFont( fnt );
+	QPainter painter( &m_image );
 
-	QFontMetrics fm( p.font() );
+	auto font = painter.font();
+	font.setPointSize( 14 );
+	font.setBold( true );
+	painter.setFont( font );
 
-	const int rx = RECT_MARGIN;
-	const int ry = m_image.height() - RECT_MARGIN - 2 * RECT_INNER_MARGIN - FONT_SIZE;
-	const int rw = RECT_MARGIN + 4 * RECT_INNER_MARGIN +
-					fm.size( Qt::TextSingleLine, caption ).width() + icon.width();
-	const int rh = 2 * RECT_INNER_MARGIN + FONT_SIZE;
-	const int ix = rx + RECT_INNER_MARGIN + 1;
-	const int iy = ry + RECT_INNER_MARGIN - 2;
-	const int tx = ix + icon.width() + 2 * RECT_INNER_MARGIN;
-	const int ty = ry + RECT_INNER_MARGIN + FONT_SIZE - 2;
+	const QFontMetrics fontMetrics( painter.font() );
+	const auto captionHeight = fontMetrics.boundingRect( caption ).height();
 
-	p.fillRect( rx, ry, rw, rh, QColor( 255, 255, 255, 160 ) );
-	p.drawPixmap( ix, iy, icon );
-	p.drawText( tx, ty, caption );
+	const auto MARGIN = 14;
+	const auto PADDING = 7;
+	const QRect rect{ MARGIN,
+				m_image.height() - MARGIN - 2 * PADDING - captionHeight,
+				4 * PADDING + fontMetrics.horizontalAdvance( caption ) + icon.width(),
+				2 * PADDING + captionHeight };
+	const auto iconX = rect.x() + PADDING + 1;
+	const auto iconY = rect.y() + ( rect.height() - icon.height() ) / 2;
+	const auto textX = iconX + icon.width() + PADDING;
+	const auto textY = rect.y() + PADDING + fontMetrics.ascent();
+
+	painter.fillRect( rect, QColor( 255, 255, 255, 160 ) );
+	painter.drawPixmap( iconX, iconY, icon );
+	painter.drawText( textX, textY, caption );
 
 	m_image.setText( QStringLiteral("User"), user );
 	m_image.setText( QStringLiteral("Host"), host );
