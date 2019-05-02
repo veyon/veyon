@@ -178,19 +178,17 @@ bool MainWindow::initAuthentication()
 		return true;
 	}
 
-	// if we have logon credentials, assume they are fine and continue
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
 	{
-		return true;
-	}
+		QMessageBox::information( nullptr,
+				tr( "Authentication impossible" ),
+				tr(	"No authentication key files were found or your current ones "
+					"are outdated. Please create new key files using the %1 "
+					"Configurator. Alternatively set up logon authentication "
+					"using the %1 Configurator. Otherwise you won't be "
+					"able to access computers using %1." ).arg( VeyonCore::applicationName() ) );
 
-	QMessageBox::information( nullptr,
-			tr( "Authentication impossible" ),
-			tr(	"No authentication key files were found or your current ones "
-				"are outdated. Please create new key files using the %1 "
-				"Configurator. Alternatively set up logon authentication "
-				"using the %1 Configurator. Otherwise you won't be "
-				"able to access computers using %1." ).arg( VeyonCore::applicationName() ) );
+	}
 
 	return false;
 }
