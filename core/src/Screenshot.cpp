@@ -122,7 +122,10 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 QString Screenshot::constructFileName( const QString& user, const QString& hostAddress,
 									   const QDate& date, const QTime& time )
 {
-	return QStringLiteral( "%1_%2_%3_%4.png" ).arg( user,
+	const auto userSimplified = VeyonCore::stripDomain( user ).toLower().remove(
+				QRegularExpression( QStringLiteral("[^a-z0-9.]") ) );
+
+	return QStringLiteral( "%1_%2_%3_%4.png" ).arg( userSimplified,
 													hostAddress,
 													date.toString( Qt::ISODate ),
 													time.toString( Qt::ISODate ) ).
