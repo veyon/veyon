@@ -32,6 +32,8 @@
 #include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
 
+#include <QtCrypto>
+#include <QDir>
 
 ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 	QObject( parent ),
@@ -58,6 +60,11 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::LogonAuthentication )
 	{
 		authTypes.append( RfbVeyonAuth::Logon );
+	}
+
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::SmartCardAuthentication )
+	{
+		authTypes.append( RfbVeyonAuth::SmartCard );
 	}
 
 	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) )
@@ -98,6 +105,10 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 
 	case RfbVeyonAuth::Logon:
 		client->setAuthState( performLogonAuthentication( client, message ) );
+		break;
+
+	case RfbVeyonAuth::SmartCard:
+		client->setAuthState( performSmartCardAuthentication( client, message ) );
 		break;
 
 	case RfbVeyonAuth::Token:
@@ -183,7 +194,125 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 	return VncServerClient::AuthFinishedFail;
 }
 
+VncServerClient::AuthState ServerAuthenticationManager::performSmartCardAuthentication( VncServerClient* client,
+																					VariantArrayMessage& message )
+{
+	switch( client->authState() )
+	{
+	case VncServerClient::AuthInit:
+	{
+		CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
 
+		client->setPrivateKey( privateKey.toPEM() );
+
+		CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
+
+		if( VariantArrayMessage( message.ioDevice() ).write( publicKey.toPEM() ).send() )
+		{
+			return VncServerClient::AuthSmartCardCertificate;
+		}
+
+		qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): failed to send public key" );
+		return VncServerClient::AuthFinishedFail;
+	}
+
+	case VncServerClient::AuthSmartCardCertificate: {
+		if ( !QCA::isSupported( "cert" ) ) {
+			qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): no PKI certificate support" );
+			VariantArrayMessage( message.ioDevice() ).write( QString("Fail") ).send();
+			return VncServerClient::AuthFinishedFail;
+		}
+		if ( !QCA::haveSystemStore() ) {
+			qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): System certificates not available" );
+			VariantArrayMessage( message.ioDevice() ).write( QString("Fail") ).send();
+			return VncServerClient::AuthFinishedFail;
+		}
+		QString certificatePem = message.read().toString();
+		QCA::ConvertResult importResult;
+		QCA::Certificate certificate = QCA::Certificate::fromPEM(certificatePem,&importResult);
+		if (importResult != QCA::ConvertGood){
+			qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): PEM import Failed" );
+			VariantArrayMessage( message.ioDevice() ).write( QString("Fail") ).send();
+			return VncServerClient::AuthFinishedFail;
+		}
+		
+		QCA::CertificateCollection intermediateCAs = QCA::CertificateCollection();
+		const auto certificatePath = VeyonCore::filesystem().certificatePath();
+		const auto certificateFiles = QDir( certificatePath ).entryInfoList( QDir::Files | QDir::Readable, QDir::Name );
+		for(const auto& certificateFile : certificateFiles)
+		{
+			if (certificateFile.suffix() == "pem"){
+				QCA::Certificate icaCertificate = QCA::Certificate::fromPEMFile(certificateFile.absoluteFilePath(), &importResult,QString());
+				if (importResult == QCA::ConvertGood){
+					intermediateCAs.addCertificate(icaCertificate);
+				}
+			}
+		}
+		
+		QCA::Validity validity = certificate.validate(QCA::systemStore(),intermediateCAs);
+		if (validity != QCA::ValidityGood) {
+			qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): Invalid Certificate" );
+			VariantArrayMessage( message.ioDevice() ).write( QString("Fail") ).send();
+			return VncServerClient::AuthFinishedFail;
+		}
+		
+		QCA::PublicKey certificatePublicKey = certificate.subjectPublicKey();
+		if( certificatePublicKey.canVerify() == false )
+		{
+			qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): can't verify with Certificate public key!" );
+			VariantArrayMessage( message.ioDevice() ).write( QString("Fail") ).send();
+			return VncServerClient::AuthFinishedFail;
+		}
+
+		client->setSmartCardPublicKey( certificatePublicKey.toPEM() );
+		client->setChallenge( CryptoCore::generateChallenge() );
+
+		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() == false )
+		{
+			qWarning( "ServerAuthenticationManager::performSmartCardAuthentication(): failed to send challenge" );
+			return VncServerClient::AuthFinishedFail;
+		}
+		return VncServerClient::AuthSmartCardChallenge;
+	}
+	case VncServerClient::AuthSmartCardChallenge:
+	{
+		
+		CryptoCore::PrivateKey privateKey = CryptoCore::PrivateKey::fromPEM( client->privateKey() );
+		CryptoCore::PublicKey certificatePublicKey = CryptoCore::PublicKey::fromPEM( client->smartCardPublicKey() );
+
+		CryptoCore::SecureArray encryptedSignature( message.read().toByteArray() ); // Flawfinder: ignore
+		
+		CryptoCore::SecureArray decryptedSignature;
+
+		if( privateKey.decrypt( encryptedSignature,
+								&decryptedSignature,
+								CryptoCore::DefaultEncryptionAlgorithm ) == false )
+		{
+			qWarning( "ServerAuthenticationManager::performSmartCardAuthentication(): failed to decrypt signature" );
+			return VncServerClient::AuthFinishedFail;
+		}
+		
+		qInfo() << "ServerAuthenticationManager::performSmartCardAuthentication(): verifying signature" << client->username();
+
+		QByteArray signature = decryptedSignature.toByteArray();
+		
+		if( certificatePublicKey.isNull() || certificatePublicKey.isPublic() == false ||
+			certificatePublicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm) == false )
+		{
+			qWarning( "ServerAuthenticationManager::performSmartCardAuthentication(): FAIL" );
+			return VncServerClient::AuthFinishedFail;
+		}
+
+		qDebug( "ServerAuthenticationManager::performSmartCardAuthentication(): SUCCESS" );
+		return VncServerClient::AuthFinishedSuccess;		
+	}
+
+	default:
+		break;
+	}
+
+	return VncServerClient::AuthFinishedFail;
+}
 
 VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthentication( VncServerClient* client,
 																					VariantArrayMessage& message )

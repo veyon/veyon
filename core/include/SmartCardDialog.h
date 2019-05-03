@@ -1,7 +1,7 @@
 /*
- * Filesystem.h - filesystem related query and manipulation functions
+ * PasswordDialog.h - declaration of password dialog
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2016 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,29 +22,42 @@
  *
  */
 
-#ifndef FILESYSTEM_H
-#define FILESYSTEM_H
+#ifndef SMARTCARD_DIALOG_H
+#define SMARTCARD_DIALOG_H
 
-#include "VeyonCore.h"
+#include "AuthenticationCredentials.h"
 
-// clazy:excludeall=rule-of-three
+#include <QDialog>
 
-class VEYON_CORE_EXPORT Filesystem
+namespace Ui { class SmartCardDialog; }
+
+class VEYON_CORE_EXPORT SmartCardDialog : public QDialog
 {
+	Q_OBJECT
 public:
-	QString expandPath( QString path ) const;
-	QString shrinkPath( QString path ) const;
-	bool ensurePathExists( const QString &path ) const;
+	SmartCardDialog( QWidget *parent );
+	~SmartCardDialog() override;
 
-	QString privateKeyPath( const QString& name ) const;
-	QString publicKeyPath( const QString& name ) const;
+	QString userPrincipalName() const;
+	QString certificatePem() const;
+	QVariant keyIdentifier() const;
+	QString pin() const;
 
-	QString serverFilePath() const;
-	QString workerFilePath() const;
+	AuthenticationCredentials credentials() const;
 
-	QString certificatePath() const;
-	QString certificatePath( const QString& name ) const;
+	void accept() override;
+	void reset();
 
-};
+private slots:
+	void updateOkButton();
+	void reloadCertificateList();
+	int certificateIndex() const;
+	QVariant certificateId() const;
+
+
+private:
+	Ui::SmartCardDialog *ui;
+
+} ;
 
 #endif

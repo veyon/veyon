@@ -332,7 +332,12 @@
           <string>Key file authentication</string>
          </property>
         </item>
-       </widget>
+        <item>
+         <property name="text">
+          <string>Smart Card authentication (Windows Only)</string>
+         </property>
+        </item>       
+	</widget>
       </item>
      </layout>
     </widget>

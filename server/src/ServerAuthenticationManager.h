@@ -59,6 +59,7 @@ signals:
 private:
 	VncServerClient::AuthState performKeyAuthentication( VncServerClient* client, VariantArrayMessage& message );
 	VncServerClient::AuthState performLogonAuthentication( VncServerClient* client, VariantArrayMessage& message );
+	VncServerClient::AuthState performSmartCardAuthentication( VncServerClient* client, VariantArrayMessage& message );
 	VncServerClient::AuthState performHostWhitelistAuth( VncServerClient* client, VariantArrayMessage& message );
 	VncServerClient::AuthState performTokenAuthentication( VncServerClient* client, VariantArrayMessage& message );
 

@@ -38,6 +38,7 @@ public:
 	typedef QCA::PrivateKey PrivateKey;
 	typedef QCA::PublicKey PublicKey;
 	typedef QCA::SecureArray SecureArray;
+	typedef QCA::SignatureAlgorithm SignatureAlgorithm;
 
 	enum {
 		RsaKeySize = 4096,

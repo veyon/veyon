@@ -257,6 +257,11 @@ VncConnection::VncConnection( QObject* parent ) :
 	{
 		m_veyonAuthType = RfbVeyonAuth::KeyFile;
 	}
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::SmartCardAuthentication )
+	{
+		m_veyonAuthType = RfbVeyonAuth::SmartCard;
+	}
+
 }
 
 
@@ -828,6 +833,10 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 	{
 		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
 	}
+	else if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::SmartCard ) )
+	{
+		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
+	}
 	else
 	{
 		authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
@@ -874,6 +883,42 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 		// nothing to do - we just get accepted because the host white list contains our IP
 		break;
 
+	case RfbVeyonAuth::SmartCard: {
+		VariantArrayMessage publicKeyMessage( &socketDevice );
+		publicKeyMessage.receive();
+
+		CryptoCore::PublicKey publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
+
+		VariantArrayMessage certificateResponse( &socketDevice );
+		certificateResponse.write( VeyonCore::authenticationCredentials().smartCardCertificate() );
+		certificateResponse.send();
+
+		VariantArrayMessage challengeReceiveMessage( &socketDevice );
+		challengeReceiveMessage.receive();
+		QByteArray challenge = challengeReceiveMessage.read().toByteArray();
+		if( challenge.size() != CryptoCore::ChallengeSize )
+		{
+			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "challenge size mismatch!";
+			break;
+		}
+		QByteArray challengeSignature = VeyonCore::platform().userFunctions().signWithSmartCardKey(challenge, CryptoCore::DefaultSignatureAlgorithm, VeyonCore::authenticationCredentials().smartCardKeyIdentifier(), VeyonCore::authenticationCredentials().logonPassword() );
+
+		CryptoCore::SecureArray plainTextChallengeResponse( challengeSignature );
+		CryptoCore::SecureArray encryptedChallengeResponse = publicKey.encrypt( plainTextChallengeResponse, CryptoCore::DefaultEncryptionAlgorithm );
+		
+		if( encryptedChallengeResponse.isEmpty() )
+		{
+			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "challenge Response encryption failed!";
+			VariantArrayMessage( message.ioDevice() ).write( QString("Fail") ).send();
+			break;
+		}
+
+		VariantArrayMessage challengeResponseMessage( &socketDevice );
+		challengeResponseMessage.write( encryptedChallengeResponse.toByteArray() );
+		challengeResponseMessage.send();
+		
+		break;
+	}
 	case RfbVeyonAuth::Logon:
 	{
 		VariantArrayMessage publicKeyMessage( &socketDevice );

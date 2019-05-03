@@ -49,6 +49,14 @@ public:
 
 	static uid_t userIdFromName( const QString& username );
 
+	bool smartCardAuthenticate( const QVariant& certificateId, const QString& pin ) override;
+
+	QMap<QString,QVariant> smartCardCertificateIds() override;
+
+	QByteArray signWithSmartCardKey(QByteArray data, CryptoCore::SignatureAlgorithm alg, const QVariant& smartCardKeyIdentifier, const QString& pin ) override;
+
+	QString upnToUsername( const QString& upn ) override;
+
 private:
 	enum {
 		WhoProcessTimeout = 3000

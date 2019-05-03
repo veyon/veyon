@@ -38,6 +38,8 @@ public:
 		AuthChallenge,
 		AuthPassword,
 		AuthToken,
+		AuthSmartCardCertificate,
+		AuthSmartCardChallenge,
 		AuthFinishedSuccess,
 		AuthFinishedFail,
 	} AuthState;
@@ -148,6 +150,16 @@ public:
 		m_privateKey = privateKey;
 	}
 
+	const QString& smartCardPublicKey() const
+	{
+		return m_smartCardPublicKey;
+	}
+
+	void setSmartCardPublicKey( const QString& smartCardPublicKey )
+	{
+		m_smartCardPublicKey = smartCardPublicKey;
+	}
+
 public slots:
 	void finishAccessControl()
 	{
@@ -167,7 +179,7 @@ private:
 	QString m_hostAddress;
 	QByteArray m_challenge;
 	QString m_privateKey;
-
+	QString m_smartCardPublicKey;
 } ;
 
 typedef QList<VncServerClient *> VncServerClientList;

@@ -89,6 +89,8 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setPrivateKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ) );
 	c.setPublicKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ) );
 
+	c.setPublicKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/certificates" ) ) );
+
 	c.setAuthorizedUserGroups( QStringList() );
 
 	return c;

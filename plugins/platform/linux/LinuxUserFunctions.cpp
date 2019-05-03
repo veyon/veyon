@@ -33,6 +33,16 @@
 #include <pwd.h>
 #include <unistd.h>
 
+QString LinuxUserFunctions::upnToUsername( const QString& upn ){
+	QString username = upn;
+	
+	const auto nameParts = upn.split( '\\' );
+	if( nameParts.size() > 1 )
+	{
+		username = nameParts[0];
+	}
+	return username;
+}
 
 QString LinuxUserFunctions::fullName( const QString& username )
 {
@@ -325,8 +335,6 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 	return true;
 }
 
-
-
 uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 {
 	const auto pw_entry = getpwnam( username.toUtf8().constData() );
@@ -338,3 +346,25 @@ uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 
 	return 0;
 }
+
+bool LinuxUserFunctions::smartCardAuthenticate( const QVariant& certificateId, const QString& pin ) 
+{
+	qDebug( "smartCardAuthenticate not supported on Linux" );
+	return false;
+}
+
+QMap<QString,QVariant> LinuxUserFunctions::smartCardCertificateIds() 
+{
+	QMap<QString,QVariant> map;
+	qDebug( "smartCardCertificateIds not supported on Linux" );
+	return map;
+}
+
+QByteArray LinuxUserFunctions::signWithSmartCardKey(QByteArray data, CryptoCore::SignatureAlgorithm alg, const QVariant& smartCardKeyIdentifier, const QString& pin ) 
+{
+	QByteArray signature;
+	qDebug( "signWithSmartCardKey not supported on Linux" );
+	return signature;
+}
+
+

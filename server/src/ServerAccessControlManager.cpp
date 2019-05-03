@@ -50,6 +50,7 @@ void ServerAccessControlManager::addClient( VncServerClient* client )
 	{
 	case RfbVeyonAuth::KeyFile:
 	case RfbVeyonAuth::Logon:
+	case RfbVeyonAuth::SmartCard:
 		performAccessControl( client );
 		break;
 
