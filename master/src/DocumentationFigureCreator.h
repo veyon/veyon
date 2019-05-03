@@ -51,7 +51,9 @@ private:
 	void createPowerDownTimeInputDialogFigure();
 	void createTextMessageDialogFigure();
 	void createOpenWebsiteDialogFigure();
+	void createWebsiteMenuFigure();
 	void createRunProgramDialogFigure();
+	void createProgramMenuFigure();
 	void createRemoteAccessHostDialogFigure();
 	void createRemoteAccessWindowFigure();
 

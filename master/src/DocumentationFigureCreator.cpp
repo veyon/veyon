@@ -79,7 +79,9 @@ void DocumentationFigureCreator::run()
 	createScreenshotManagementPanelFigure();
 	createTextMessageDialogFigure();
 	createOpenWebsiteDialogFigure();
+	createWebsiteMenuFigure();
 	createRunProgramDialogFigure();
+	createProgramMenuFigure();
 	createRemoteAccessHostDialogFigure();
 	createRemoteAccessWindowFigure();
 	createPowerDownOptionsFigure();
@@ -321,6 +323,36 @@ void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 
 
 
+void DocumentationFigureCreator::createWebsiteMenuFigure()
+{
+	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto openWebsiteButton = toolbar->findChild<ToolButton *>( QStringLiteral("OpenWebsite") );
+
+	auto menu = new QMenu;
+	menu->addAction( QStringLiteral("Intranet") );
+	menu->addAction( QStringLiteral("Wikipedia") );
+	menu->addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom website") );
+
+	scheduleUiOperation( [this, openWebsiteButton, menu]() {
+		scheduleUiOperation( [this, openWebsiteButton, menu]() {
+
+			grabWindow( m_master->mainWindow(), openWebsiteButton->mapTo( m_master->mainWindow(), QPoint( 0, 0 ) ),
+						QSize( qMax( openWebsiteButton->width(), menu->width() ),
+							   openWebsiteButton->height() + menu->height() ),
+						QStringLiteral("OpenWebsiteMenu.png") );
+			menu->close();
+		} );
+
+		menu->close();
+		openWebsiteButton->showMenu();
+	} );
+
+	openWebsiteButton->setMenu( menu );
+	openWebsiteButton->showMenu();
+}
+
+
+
 void DocumentationFigureCreator::createRunProgramDialogFigure()
 {
 	scheduleUiOperation( []() {
@@ -332,6 +364,37 @@ void DocumentationFigureCreator::createRunProgramDialogFigure()
 	});
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
+}
+
+
+
+void DocumentationFigureCreator::createProgramMenuFigure()
+{
+	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto runProgramButton = toolbar->findChild<ToolButton *>( QStringLiteral("RunProgram") );
+
+	auto menu = new QMenu;
+	menu->addAction( tr("Open file manager") );
+	menu->addAction( tr("Start learning tool") );
+	menu->addAction( tr("Play tutorial video") );
+	menu->addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom program") );
+
+	scheduleUiOperation( [this, runProgramButton, menu]() {
+		scheduleUiOperation( [this, runProgramButton, menu]() {
+
+			grabWindow( m_master->mainWindow(), runProgramButton->mapTo( m_master->mainWindow(), QPoint( 0, 0 ) ),
+						QSize( qMax( runProgramButton->width(), menu->width() ),
+							   runProgramButton->height() + menu->height() ),
+						QStringLiteral("RunProgramMenu.png") );
+			menu->close();
+		} );
+
+		menu->close();
+		runProgramButton->showMenu();
+	} );
+
+	runProgramButton->setMenu( menu );
+	runProgramButton->showMenu();
 }
 
 
