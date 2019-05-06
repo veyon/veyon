@@ -1431,6 +1431,26 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Spletna stran po meri</translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Program po meri</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>

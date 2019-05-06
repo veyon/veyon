@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation>Website:</translation>
+        <translation>Webseite:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -1332,7 +1332,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation>Programme &amp; Websites</translation>
+        <translation>Programme &amp; Webseiten</translation>
     </message>
     <message>
         <source>Predefined programs</source>
@@ -1356,11 +1356,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Vordefinierte Websites</translation>
+        <translation>Vordefinierte Webseiten</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Ausgewählte Website entfernen</translation>
+        <translation>Ausgewählte Webseite entfernen</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1372,7 +1372,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>New website</source>
-        <translation>Neue Website</translation>
+        <translation>Neue Webseite</translation>
     </message>
 </context>
 <context>
@@ -1383,11 +1383,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Open website</source>
-        <translation>Website öffnen</translation>
+        <translation>Webseite öffnen</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um eine Website auf allen Computern zu öffnen.</translation>
+        <translation>Klicken Sie auf diesen Button, um eine Webseite auf allen Computern zu öffnen.</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -1407,11 +1407,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Website &quot;%1&quot; öffnen</translation>
+        <translation>Webseite &quot;%1&quot; öffnen</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Benutzerdefinierte Website</translation>
+        <translation>Benutzerdefinierte Webseite</translation>
     </message>
 </context>
 <context>
@@ -1427,6 +1427,26 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation>Bitte alle Aufgaben in den nächsten 5 Minuten fertigstellen.</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Benutzerdefinierte Webseite</translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation>Dateimanager öffnen</translation>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation>Lernwerkzeug starten</translation>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation>Tutorial-Video abspielen</translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Benutzerdefiniertes Programm</translation>
     </message>
 </context>
 <context>
@@ -3208,7 +3228,7 @@ VERWENDUNG
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Website öffnen</translation>
+        <translation>Webseite öffnen</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3224,7 +3244,7 @@ VERWENDUNG
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Bitte geben Sie die URL der zu öffnenden Website ein:</translation>
+        <translation>Bitte geben Sie die URL der zu öffnenden Webseite ein:</translation>
     </message>
     <message>
         <source>Name:</source>

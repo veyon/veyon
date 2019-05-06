@@ -1431,6 +1431,26 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation>Dokončete všechny úkoly během příštích 5 minut.</translation>
     </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Uživatelsky určené webová stránka</translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation>Otevřít správu souborů</translation>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation>Spustit nástroj pro učení</translation>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation>Přehrát výukové video</translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Uživatelem určená aplikace</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>

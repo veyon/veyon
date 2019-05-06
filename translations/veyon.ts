@@ -1428,6 +1428,26 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Custom website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>

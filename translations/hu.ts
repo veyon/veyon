@@ -1431,6 +1431,26 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation>Kérjük, fejezze be az összes feladatot a következő 5 percen belül. </translation>
     </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Egyéni weboldal</translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Egyéni program</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>

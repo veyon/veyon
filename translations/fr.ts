@@ -1431,6 +1431,26 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation>S&apos;il vous plaît, veuillez terminer toutes vos tâches d&apos;ici les 5 prochaines minutes.</translation>
     </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Site internet personnalisé</translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Programme personnalisé</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>

@@ -1433,6 +1433,26 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Please complete all tasks within the next 5 minutes.</source>
         <translation>Por favor complete todas las tareas en los próximos 5 minutos.</translation>
     </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Sitio web personalizado</translation>
+    </message>
+    <message>
+        <source>Open file manager</source>
+        <translation>Abrir gestor de archivos</translation>
+    </message>
+    <message>
+        <source>Start learning tool</source>
+        <translation>Iniciar herramienta de aprendizaje</translation>
+    </message>
+    <message>
+        <source>Play tutorial video</source>
+        <translation>Reproducir video tutorial</translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Programa personalizado</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
