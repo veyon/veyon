@@ -21,11 +21,12 @@
  *  USA.
  */
 
+#include <QApplication>
 #include <QDateTime>
 #include <QDir>
 #include <QFileInfo>
-#include <QApplication>
 #include <QMessageBox>
+#include <QMetaEnum>
 #include <QPainter>
 
 #include "Screenshot.h"
@@ -121,10 +122,10 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	painter.drawPixmap( iconX, iconY, icon );
 	painter.drawText( textX, textY, caption );
 
-	m_image.setText( QStringLiteral("User"), user );
-	m_image.setText( QStringLiteral("Host"), host );
-	m_image.setText( QStringLiteral("Date"), date );
-	m_image.setText( QStringLiteral("Time"), time );
+	m_image.setText( metaDataKey( MetaData::User ), user );
+	m_image.setText( metaDataKey( MetaData::Host ), host );
+	m_image.setText( metaDataKey( MetaData::Date ), date );
+	m_image.setText( metaDataKey( MetaData::Time ), time );
 
 	m_image.save( m_fileName, "PNG", 50 );
 }
@@ -148,21 +149,21 @@ QString Screenshot::constructFileName( const QString& user, const QString& hostA
 
 QString Screenshot::user() const
 {
-	return property( QStringLiteral("User"), 0 );
+	return property( metaDataKey( MetaData::User ), 0 );
 }
 
 
 
 QString Screenshot::host() const
 {
-	return property( QStringLiteral("Host"), 1 );
+	return property( metaDataKey( MetaData::Host ), 1 );
 }
 
 
 
 QString Screenshot::date() const
 {
-	return QDate::fromString( property( QStringLiteral("Date"), 2 ),
+	return QDate::fromString( property( metaDataKey( MetaData::Date ), 2 ),
 										Qt::ISODate ).toString( Qt::LocalDate );
 }
 
@@ -170,7 +171,14 @@ QString Screenshot::date() const
 
 QString Screenshot::time() const
 {
-	return property( QStringLiteral("Time"), 3 ).section( QLatin1Char('.'), 0, 0 ).replace( QLatin1Char('-'), QLatin1Char(':') );
+	return property( metaDataKey( MetaData::Time ), 3 ).section( QLatin1Char('.'), 0, 0 ).replace( QLatin1Char('-'), QLatin1Char(':') );
+}
+
+
+
+QString Screenshot::metaDataKey( MetaData key )
+{
+	return QLatin1String( QMetaEnum::fromType<MetaData>().valueToKey( static_cast<int>( key ) ) );
 }
 
 

@@ -35,6 +35,15 @@ class VEYON_CORE_EXPORT Screenshot : public QObject
 {
 	Q_OBJECT
 public:
+	enum class MetaData
+	{
+		User,
+		Host,
+		Date,
+		Time
+	};
+	Q_ENUM(MetaData)
+
 	Screenshot( const QString &fileName = QString(), QObject* parent = nullptr );
 
 	void take( const ComputerControlInterface::Pointer& computerControlInterface );
@@ -67,6 +76,8 @@ public:
 	QString host() const;
 	QString date() const;
 	QString time() const;
+
+	static QString metaDataKey( MetaData key );
 
 private:
 	QString property( const QString& key, int section ) const;
