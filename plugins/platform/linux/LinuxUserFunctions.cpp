@@ -307,7 +307,7 @@ void LinuxUserFunctions::logoff()
 bool LinuxUserFunctions::authenticate( const QString& username, const QString& password )
 {
 	QProcess p;
-	p.start( QStringLiteral( "veyon-auth-helper" ) );
+	p.start( QStringLiteral( "veyon-auth-helper" ), QProcess::ReadWrite | QProcess::Unbuffered );
 	if( p.waitForStarted() == false )
 	{
 		vCritical() << "failed to start VeyonAuthHelper";
@@ -321,7 +321,6 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 	ds << password;
 	ds << pamService;
 
-	p.closeWriteChannel();
 	p.waitForFinished();
 
 	if( p.exitCode() != 0 )

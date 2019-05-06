@@ -72,7 +72,7 @@ int main()
 {
 	QString username, password, service;
 	QFile stdIn;
-	stdIn.open( 0, QFile::ReadOnly );
+	stdIn.open( 0, QFile::ReadOnly | QFile::Unbuffered );
 	QDataStream ds( &stdIn );
 	ds >> username;
 	ds >> password;
