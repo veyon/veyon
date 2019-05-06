@@ -212,25 +212,41 @@ void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 	auto panelButton = window->findChild<QToolButton *>( QStringLiteral("screenshotManagementPanelButton") );
 	auto list = panel->findChild<QListView *>();
 
+	const QStringList exampleUsers({
+									   QStringLiteral("Albert Einstein"),
+									   QStringLiteral("Blaise Pascal"),
+									   QStringLiteral("Caroline Herschel"),
+									   QStringLiteral("Dorothy Hodgkin")
+								   });
+
+	const QStringList exampleHosts({
+									   QStringLiteral("mars"),
+									   QStringLiteral("venus"),
+									   QStringLiteral("saturn"),
+									   QStringLiteral("pluto")
+								   });
+
 	const QDate date( 2019, 4, 4 );
 	const QTime time( 9, 36, 27 );
 
 	QStringList screenshots({
-								Screenshot::constructFileName( QStringLiteral("Albert Einstein"), QStringLiteral("mars"), date, time ),
-								Screenshot::constructFileName( QStringLiteral("Blaise Pascal"), QStringLiteral("venus"), date, time ),
-								Screenshot::constructFileName( QStringLiteral("Caroline Herschel"), QStringLiteral("saturn"), date, time ),
-								Screenshot::constructFileName( QStringLiteral("Dorothy Hodgkin"), QStringLiteral("pluto"), date, time )
+								Screenshot::constructFileName( exampleUsers[0], exampleHosts[0], date, time ),
+								Screenshot::constructFileName( exampleUsers[1], exampleHosts[1], date, time ),
+								Screenshot::constructFileName( exampleUsers[2], exampleHosts[2], date, time ),
+								Screenshot::constructFileName( exampleUsers[3], exampleHosts[3], date, time )
 						   });
 
+	constexpr int exampleScreenshotIndex = 1;
 
 	QStringListModel screenshotsModel( screenshots, this );
 	list->setModel( &screenshotsModel );
-
-	constexpr int exampleScreenshotIndex = 1;
 	list->selectionModel()->setCurrentIndex( screenshotsModel.index( exampleScreenshotIndex ), QItemSelectionModel::SelectCurrent );
 
-	Screenshot exampleScreenshot( screenshots[exampleScreenshotIndex] );
-	exampleScreenshot.setImage( QImage( QStringLiteral(":/examples/example-screenshot.png" ) ) );
+	QImage exampleScreenshotImage{ QStringLiteral(":/examples/example-screenshot.png" ) };
+	exampleScreenshotImage.setText( Screenshot::metaDataKey( Screenshot::MetaData::User ), exampleUsers[exampleScreenshotIndex] );
+
+	Screenshot exampleScreenshot{ screenshots[exampleScreenshotIndex] };
+	exampleScreenshot.setImage( exampleScreenshotImage );
 	panel->setPreview( exampleScreenshot );
 
 	window->setMaximumHeight( 600 );
