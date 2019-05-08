@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QMetaEnum>
 #include <QPainter>
+#include <QRegularExpression>
 
 #include "Screenshot.h"
 #include "VeyonConfiguration.h"
