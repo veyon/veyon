@@ -27,9 +27,9 @@
 
 #include <security/pam_appl.h>
 
-
 static char* pam_username = nullptr;
 static char* pam_password = nullptr;
+static char* pam_service = nullptr;
 
 static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_response** resp, void * )
 {
@@ -85,10 +85,11 @@ int main()
 
 	pam_username = qstrdup( username.toUtf8().constData() );
 	pam_password = qstrdup( password.toUtf8().constData() );
+	pam_service = qstrdup( service.toUtf8().constData() );
 
 	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t *pamh;
-	int err = pam_start( service.toUtf8().constData(), nullptr, &pconv, &pamh );
+	auto err = pam_start( pam_service, nullptr, &pconv, &pamh );
 	if( err == PAM_SUCCESS )
 	{
 		err = pam_authenticate( pamh, PAM_SILENT );
@@ -106,6 +107,7 @@ int main()
 
 	delete[] pam_username;
 	delete[] pam_password;
+	delete[] pam_service;
 
 	return err == PAM_SUCCESS ? 0 : -1;
 }
