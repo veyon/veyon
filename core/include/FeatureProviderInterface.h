@@ -97,7 +97,7 @@ protected:
 							 const ComputerControlInterfaceList& computerControlInterfaces,
 							 bool wake = true )
 	{
-		for( auto controlInterface : computerControlInterfaces )
+		for( const auto& controlInterface : computerControlInterfaces )
 		{
 			controlInterface->sendFeatureMessage( message, wake );
 		}
