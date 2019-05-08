@@ -32,7 +32,7 @@ class ComputerSortFilterProxyModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:
-	ComputerSortFilterProxyModel( QObject* parent );
+	explicit ComputerSortFilterProxyModel( QObject* parent );
 
 	int stateRole() const
 	{

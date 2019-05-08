@@ -36,7 +36,7 @@ class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInter
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FileTransfer")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
-	FileTransferPlugin( QObject* parent = nullptr );
+	explicit FileTransferPlugin( QObject* parent = nullptr );
 	~FileTransferPlugin() override;
 
 	Plugin::Uid uid() const override

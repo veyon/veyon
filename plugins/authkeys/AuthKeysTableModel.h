@@ -40,7 +40,7 @@ public:
 		ColumnCount
 	};
 
-	AuthKeysTableModel( QObject* parent = nullptr );
+	explicit AuthKeysTableModel( QObject* parent = nullptr );
 	virtual ~AuthKeysTableModel();
 
 	void reload();

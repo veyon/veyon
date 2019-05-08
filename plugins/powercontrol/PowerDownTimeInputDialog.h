@@ -35,7 +35,7 @@ class PowerDownTimeInputDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	PowerDownTimeInputDialog( QWidget *parent );
+	explicit PowerDownTimeInputDialog( QWidget *parent );
 	~PowerDownTimeInputDialog() override;
 
 	int seconds() const;

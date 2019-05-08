@@ -30,7 +30,7 @@ class OpenWebsiteDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	OpenWebsiteDialog( QWidget *parent );
+	explicit OpenWebsiteDialog( QWidget *parent );
 	~OpenWebsiteDialog() override;
 
 	const QString& website() const

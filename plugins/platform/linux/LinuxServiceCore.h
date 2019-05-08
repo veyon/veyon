@@ -35,7 +35,7 @@ class LinuxServiceCore : public QObject, PlatformServiceCore
 {
 	Q_OBJECT
 public:
-	LinuxServiceCore( QObject* parent = nullptr );
+	explicit LinuxServiceCore( QObject* parent = nullptr );
 	~LinuxServiceCore();
 
 	void run();

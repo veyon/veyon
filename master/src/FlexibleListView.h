@@ -30,7 +30,7 @@ class FlexibleListView : public QListView
 {
 	Q_OBJECT
 public:
-	FlexibleListView( QWidget *parent = nullptr );
+	explicit FlexibleListView( QWidget *parent = nullptr );
 	~FlexibleListView() override = default;
 
 	void setUidRole( int role );

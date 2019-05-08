@@ -33,7 +33,7 @@ class VncServer : public QThread
 {
 	Q_OBJECT
 public:
-	VncServer( QObject* parent = nullptr );
+	explicit VncServer( QObject* parent = nullptr );
 	virtual ~VncServer();
 
 	void prepare();

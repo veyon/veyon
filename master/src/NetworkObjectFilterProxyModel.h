@@ -30,7 +30,7 @@ class NetworkObjectFilterProxyModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectFilterProxyModel( QObject* parent );
+	explicit NetworkObjectFilterProxyModel( QObject* parent );
 
 	void setGroupFilter( const QStringList& groupList );
 	void setComputerExcludeFilter( const QStringList& computerExcludeList );

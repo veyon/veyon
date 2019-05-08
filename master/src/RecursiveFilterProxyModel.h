@@ -29,6 +29,6 @@
 class RecursiveFilterProxyModel : public KRecursiveFilterProxyModel
 {
 public:
-	RecursiveFilterProxyModel( QObject* parent );
+	explicit RecursiveFilterProxyModel( QObject* parent );
 
 };

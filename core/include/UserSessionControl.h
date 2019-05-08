@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT UserSessionControl : public QObject, public SimpleFeatur
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	UserSessionControl( QObject* parent = nullptr );
+	explicit UserSessionControl( QObject* parent = nullptr );
 	~UserSessionControl() override;
 
 	bool getUserSessionInfo( const ComputerControlInterfaceList& computerControlInterfaces );

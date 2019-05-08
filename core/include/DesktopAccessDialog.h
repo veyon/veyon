@@ -46,7 +46,7 @@ public:
 	} ;
 	Q_ENUM(Choice)
 
-	DesktopAccessDialog( QObject* parent = nullptr );
+	explicit DesktopAccessDialog( QObject* parent = nullptr );
 	~DesktopAccessDialog() override {}
 
 	bool isBusy( FeatureWorkerManager* featureWorkerManager ) const;

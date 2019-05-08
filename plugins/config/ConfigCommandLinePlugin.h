@@ -33,7 +33,7 @@ class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, Plug
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ConfigCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	ConfigCommandLinePlugin( QObject* parent = nullptr );
+	explicit ConfigCommandLinePlugin( QObject* parent = nullptr );
 	~ConfigCommandLinePlugin() = default;
 
 	Plugin::Uid uid() const override

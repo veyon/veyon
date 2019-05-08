@@ -87,7 +87,7 @@ public:
 
 	AccessControlRule();
 	AccessControlRule( const AccessControlRule& other );
-	AccessControlRule( const QJsonValue& jsonValue );
+	explicit AccessControlRule( const QJsonValue& jsonValue );
 
 	~AccessControlRule() {}
 

@@ -32,7 +32,7 @@ template<class T>
 class ObjectManager
 {
 public:
-	ObjectManager( const QJsonArray& objects ) :
+	explicit ObjectManager( const QJsonArray& objects ) :
 		m_objects( objects )
 	{
 	}

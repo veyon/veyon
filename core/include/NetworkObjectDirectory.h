@@ -41,7 +41,7 @@ public:
 		MaximumUpdateInterval = 3600
 	};
 
-	NetworkObjectDirectory( QObject* parent );
+	explicit NetworkObjectDirectory( QObject* parent );
 
 	void setUpdateInterval( int interval );
 

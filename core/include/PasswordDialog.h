@@ -34,7 +34,7 @@ class VEYON_CORE_EXPORT PasswordDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	PasswordDialog( QWidget *parent );
+	explicit PasswordDialog( QWidget *parent );
 	~PasswordDialog() override;
 
 	QString username() const;

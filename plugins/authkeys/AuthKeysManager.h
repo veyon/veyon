@@ -30,7 +30,7 @@ class AuthKeysManager : public QObject
 {
 	Q_OBJECT
 public:
-	AuthKeysManager( QObject* parent = nullptr );
+	explicit AuthKeysManager( QObject* parent = nullptr );
 	~AuthKeysManager() = default;
 
 	const QString& resultMessage() const

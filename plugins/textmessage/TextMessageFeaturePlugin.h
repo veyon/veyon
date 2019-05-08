@@ -33,7 +33,7 @@ class TextMessageFeaturePlugin : public QObject, FeatureProviderInterface, Plugi
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.TextMessage")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
-	TextMessageFeaturePlugin( QObject* parent = nullptr );
+	explicit TextMessageFeaturePlugin( QObject* parent = nullptr );
 	~TextMessageFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override

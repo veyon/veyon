@@ -29,7 +29,7 @@
 class ConfigurationTestController
 {
 public:
-	ConfigurationTestController( const QStringList& testArguments );
+	explicit ConfigurationTestController( const QStringList& testArguments );
 
 	int run();
 

@@ -40,7 +40,7 @@ public:
 
 	Object();
 	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = QString() );
-	Object( Store* store );
+	explicit Object( Store* store );
 	Object( const Object& );
 	~Object() override;
 

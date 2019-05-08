@@ -39,7 +39,7 @@ class PowerControlFeaturePlugin : public QObject,
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.PowerControl")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface FeatureProviderInterface)
 public:
-	PowerControlFeaturePlugin( QObject* parent = nullptr );
+	explicit PowerControlFeaturePlugin( QObject* parent = nullptr );
 	~PowerControlFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override

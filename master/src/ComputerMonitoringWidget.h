@@ -47,7 +47,7 @@ public:
 		DefaultComputerScreenSize = 150
 	};
 
-	ComputerMonitoringWidget( QWidget *parent = nullptr );
+	explicit ComputerMonitoringWidget( QWidget *parent = nullptr );
 	~ComputerMonitoringWidget() override;
 
 	void setVeyonMaster( VeyonMaster& masterCore );

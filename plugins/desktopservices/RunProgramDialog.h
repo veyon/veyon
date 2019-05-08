@@ -30,7 +30,7 @@ class RunProgramDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	RunProgramDialog( QWidget *parent );
+	explicit RunProgramDialog( QWidget *parent );
 	~RunProgramDialog() override;
 
 	const QString& programs() const

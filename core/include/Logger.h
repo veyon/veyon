@@ -56,7 +56,7 @@ public:
 	static constexpr int DefaultFileRotationCount = 10;
 	static constexpr const char* DefaultLogFileDirectory = "$TEMP";
 
-	Logger( const QString &appName );
+	explicit Logger( const QString &appName );
 	~Logger();
 
 	static const char* logLevelEnvironmentVariable()

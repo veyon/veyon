@@ -40,7 +40,7 @@ class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInter
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.LinuxPlatform")
 	Q_INTERFACES(PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
 public:
-	LinuxPlatformPlugin( QObject* parent = nullptr );
+	explicit LinuxPlatformPlugin( QObject* parent = nullptr );
 	~LinuxPlatformPlugin() override;
 
 	Plugin::Uid uid() const override

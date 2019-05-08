@@ -41,7 +41,7 @@ class ComputerControlServer : public QObject, VncProxyConnectionFactory, VeyonSe
 {
 	Q_OBJECT
 public:
-	ComputerControlServer( QObject* parent = nullptr );
+	explicit ComputerControlServer( QObject* parent = nullptr );
 	~ComputerControlServer() override;
 
 	bool start();

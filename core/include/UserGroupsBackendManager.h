@@ -30,7 +30,7 @@ class VEYON_CORE_EXPORT UserGroupsBackendManager : public QObject
 {
 	Q_OBJECT
 public:
-	UserGroupsBackendManager( QObject* parent = nullptr );
+	explicit UserGroupsBackendManager( QObject* parent = nullptr );
 
 	QMap<Plugin::Uid, QString> availableBackends();
 

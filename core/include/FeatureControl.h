@@ -31,7 +31,7 @@ class VEYON_CORE_EXPORT FeatureControl : public QObject, public SimpleFeaturePro
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	FeatureControl( QObject* parent = nullptr );
+	explicit FeatureControl( QObject* parent = nullptr );
 	~FeatureControl() override = default;
 
 	bool queryActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces );

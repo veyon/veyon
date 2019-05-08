@@ -34,7 +34,7 @@ class VEYON_CORE_EXPORT VeyonMasterInterface : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonMasterInterface( QObject* parent ) :
+	explicit VeyonMasterInterface( QObject* parent ) :
 		QObject( parent )
 	{
 	}

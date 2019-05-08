@@ -40,7 +40,7 @@ public:
 	} ;
 	typedef BrowseModes BrowseMode;
 
-	FileSystemBrowser( BrowseMode m ) :
+	explicit FileSystemBrowser( BrowseMode m ) :
 		m_browseMode( m ),
 		m_expandPath( true ),
 		m_shrinkPath( true )

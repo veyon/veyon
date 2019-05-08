@@ -38,7 +38,7 @@ class VEYON_CORE_EXPORT VeyonConfiguration : public Configuration::Object
 	Q_OBJECT
 public:
 	VeyonConfiguration();
-	VeyonConfiguration( Configuration::Store* store );
+	explicit VeyonConfiguration( Configuration::Store* store );
 
 	void upgrade();
 

@@ -32,7 +32,7 @@ class VEYON_CORE_EXPORT NetworkObjectModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectModel( QObject* parent = nullptr) :
+	explicit NetworkObjectModel( QObject* parent = nullptr) :
 		QAbstractItemModel( parent )
 	{
 	}

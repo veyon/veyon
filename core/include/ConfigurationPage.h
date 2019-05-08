@@ -32,7 +32,7 @@ class VEYON_CORE_EXPORT ConfigurationPage : public QWidget
 {
 	Q_OBJECT
 public:
-	ConfigurationPage( QWidget* parent = nullptr );
+	explicit ConfigurationPage( QWidget* parent = nullptr );
 	~ConfigurationPage() = default;
 
 	virtual void resetWidgets() = 0;

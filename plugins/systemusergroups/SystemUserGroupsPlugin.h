@@ -32,7 +32,7 @@ class SystemUserGroupsPlugin : public QObject, PluginInterface, UserGroupsBacken
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.SystemUserGroups")
 	Q_INTERFACES(PluginInterface UserGroupsBackendInterface)
 public:
-	SystemUserGroupsPlugin( QObject* paren = nullptr );
+	explicit SystemUserGroupsPlugin( QObject* paren = nullptr );
 	~SystemUserGroupsPlugin() override = default;
 
 	Plugin::Uid uid() const override

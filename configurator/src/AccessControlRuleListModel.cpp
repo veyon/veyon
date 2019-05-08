@@ -47,7 +47,7 @@ void AccessControlRuleListModel::reload()
 
 	for( const auto& accessControlRule : accessControlRules )
 	{
-		m_accessControlRules.append( accessControlRule );
+		m_accessControlRules.append( AccessControlRule( accessControlRule ) );
 	}
 
 	endResetModel();

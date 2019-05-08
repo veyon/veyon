@@ -249,7 +249,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const
 	{
 		for( const auto& networkObjectValue : objects )
 		{
-			tableRows.append( dumpNetworkObject( networkObjectValue.toObject() ) );
+			tableRows.append( dumpNetworkObject( NetworkObject( networkObjectValue.toObject() ) ) );
 		}
 	}
 	else

@@ -33,7 +33,7 @@ class ScreenshotFeaturePlugin : public QObject, SimpleFeatureProvider, PluginInt
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Screenshot")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
-	ScreenshotFeaturePlugin( QObject* parent = nullptr );
+	explicit ScreenshotFeaturePlugin( QObject* parent = nullptr );
 	~ScreenshotFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override

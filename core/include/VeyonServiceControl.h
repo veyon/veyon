@@ -32,7 +32,7 @@ class VEYON_CORE_EXPORT VeyonServiceControl : public ServiceControl
 {
 	Q_OBJECT
 public:
-	VeyonServiceControl( QWidget* parent = nullptr );
+	explicit VeyonServiceControl( QWidget* parent = nullptr );
 
 	bool setAutostart( bool enabled );
 

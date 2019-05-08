@@ -37,7 +37,7 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Demo")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
-	DemoFeaturePlugin( QObject* parent = nullptr );
+	explicit DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override

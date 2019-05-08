@@ -31,7 +31,7 @@ class MonitoringMode : public QObject, SimpleFeatureProvider, PluginInterface
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	MonitoringMode( QObject* parent = nullptr );
+	explicit MonitoringMode( QObject* parent = nullptr );
 
 	const Feature& feature() const
 	{

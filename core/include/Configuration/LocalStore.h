@@ -36,7 +36,7 @@ namespace Configuration
 class VEYON_CORE_EXPORT LocalStore : public Store
 {
 public:
-	LocalStore( Scope scope );
+	explicit LocalStore( Scope scope );
 
 	void load( Object *obj ) override;
 	void flush( const Object *obj ) override;

@@ -42,7 +42,7 @@ public:
 		AuthResultCount
 	} AuthResult;
 
-	ServerAuthenticationManager( QObject* parent );
+	explicit ServerAuthenticationManager( QObject* parent );
 
 	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const;
 

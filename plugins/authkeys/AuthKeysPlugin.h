@@ -42,7 +42,7 @@ class AuthKeysPlugin : public QObject,
 				 CommandLinePluginInterface
 				 ConfigurationPagePluginInterface)
 public:
-	AuthKeysPlugin( QObject* parent = nullptr );
+	explicit AuthKeysPlugin( QObject* parent = nullptr );
 	~AuthKeysPlugin() override = default;
 
 	Plugin::Uid uid() const override

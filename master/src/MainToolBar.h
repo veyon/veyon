@@ -31,7 +31,7 @@ class MainToolBar : public QToolBar
 {
 	Q_OBJECT
 public:
-	MainToolBar( QWidget* parent );
+	explicit MainToolBar( QWidget* parent );
 	~MainToolBar() override = default;
 
 

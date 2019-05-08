@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT VariantArrayMessage
 public:
 	typedef quint32 MessageSize;
 
-	VariantArrayMessage( QIODevice* ioDevice );
+	explicit VariantArrayMessage( QIODevice* ioDevice );
 
 	bool send();
 

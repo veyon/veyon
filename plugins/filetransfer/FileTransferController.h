@@ -44,7 +44,7 @@ public:
 	Q_DECLARE_FLAGS(Flags, Flag)
 	Q_FLAG(Flags)
 
-	FileTransferController( FileTransferPlugin* plugin );
+	explicit FileTransferController( FileTransferPlugin* plugin );
 	~FileTransferController() override;
 
 	void setFiles( const QStringList& files );

@@ -39,7 +39,7 @@ class VEYON_CORE_EXPORT FeatureManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureManager( QObject* parent = nullptr );
+	explicit FeatureManager( QObject* parent = nullptr );
 
 	const FeatureList& features() const
 	{

@@ -43,7 +43,7 @@ public:
 	} ;
 	Q_ENUM(Shortcut)
 
-	KeyboardShortcutTrapper( QObject* parent = nullptr ) :
+	explicit KeyboardShortcutTrapper( QObject* parent = nullptr ) :
 		QObject( parent )
 	{
 	}

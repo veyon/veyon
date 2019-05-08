@@ -35,7 +35,7 @@
 class FileTransferUserConfiguration : public Configuration::Proxy
 {
 public:
-	FileTransferUserConfiguration( Configuration::Object* object ) :
+	explicit FileTransferUserConfiguration( Configuration::Object* object ) :
 		Configuration::Proxy( object )
 	{
 	}

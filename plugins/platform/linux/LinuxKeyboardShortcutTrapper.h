@@ -30,7 +30,7 @@ class LinuxKeyboardShortcutTrapper : public KeyboardShortcutTrapper
 {
 	Q_OBJECT
 public:
-	LinuxKeyboardShortcutTrapper( QObject* parent = nullptr ) :
+	explicit LinuxKeyboardShortcutTrapper( QObject* parent = nullptr ) :
 	    KeyboardShortcutTrapper( parent )
 	{
 	}

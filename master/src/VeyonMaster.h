@@ -45,7 +45,7 @@ class VeyonMaster : public VeyonMasterInterface
 {
 	Q_OBJECT
 public:
-	VeyonMaster( QObject* parent = nullptr );
+	explicit VeyonMaster( QObject* parent = nullptr );
 	~VeyonMaster() override;
 
 	FeatureManager& featureManager()

@@ -55,7 +55,7 @@ public:
 				   const QString& directoryAddress = QString(),
 				   Uid uid = Uid(),
 				   Uid parentUid = Uid() );
-	NetworkObject( const QJsonObject& jsonObject );
+	explicit NetworkObject( const QJsonObject& jsonObject );
 	~NetworkObject() = default;
 
 	NetworkObject& operator=( const NetworkObject& other );

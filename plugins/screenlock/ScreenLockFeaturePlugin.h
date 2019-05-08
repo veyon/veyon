@@ -34,7 +34,7 @@ class ScreenLockFeaturePlugin : public QObject, FeatureProviderInterface, Plugin
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ScreenLock")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
-	ScreenLockFeaturePlugin( QObject* parent = nullptr );
+	explicit ScreenLockFeaturePlugin( QObject* parent = nullptr );
 	~ScreenLockFeaturePlugin() override;
 
 	Plugin::Uid uid() const override

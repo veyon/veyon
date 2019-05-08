@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT VeyonConnection : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonConnection( VncConnection* vncConnection );
+	explicit VeyonConnection( VncConnection* vncConnection );
 	~VeyonConnection() override;
 
 	VncConnection* vncConnection()

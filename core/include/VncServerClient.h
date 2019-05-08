@@ -51,7 +51,7 @@ public:
 		AccessControlStateCount
 	} AccessControlState;
 
-	VncServerClient( QObject* parent = nullptr ) :
+	explicit VncServerClient( QObject* parent = nullptr ) :
 		QObject( parent ),
 		m_protocolState( VncServerProtocol::Disconnected ),
 		m_authState( AuthInit ),
