@@ -38,7 +38,7 @@ public:
 	};
 
 	SasEventListener();
-	~SasEventListener() override;
+	~SasEventListener();
 
 	void stop();
 
