@@ -77,8 +77,8 @@ public:
 
 	struct ConditionParameters
 	{
-		bool enabled;
-		Subject subject;
+		bool enabled{false};
+		Subject subject{SubjectNone};
 		ConditionArgument argument;
 	};
 
