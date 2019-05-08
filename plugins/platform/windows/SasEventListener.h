@@ -29,7 +29,7 @@
 class SasEventListener : public QThread
 {
 public:
-	typedef void (WINAPI *SendSas)(BOOL asUser);
+	using SendSas = void (WINAPI *)(BOOL asUser);
 
 	enum {
 		WaitPeriod = 1000

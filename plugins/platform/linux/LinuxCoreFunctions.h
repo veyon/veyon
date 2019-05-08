@@ -61,7 +61,7 @@ public:
 
 	QString genericUrlHandler() const override;
 
-	typedef QSharedPointer<QDBusInterface> DBusInterfacePointer;
+	using DBusInterfacePointer = QSharedPointer<QDBusInterface>;
 
 	static DBusInterfacePointer kdeSessionManager();
 	static DBusInterfacePointer gnomeSessionManager();

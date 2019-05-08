@@ -33,12 +33,12 @@ class VEYON_CORE_EXPORT LockWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	typedef enum Modes
+	enum Mode
 	{
 		DesktopVisible,
 		BackgroundPixmap,
 		NoBackground
-	} Mode;
+	} ;
 
 	LockWidget( Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr );
 	~LockWidget() override;

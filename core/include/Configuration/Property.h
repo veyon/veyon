@@ -36,21 +36,21 @@ namespace Configuration
 class Object;
 class Proxy;
 
-template<typename T, typename = void> struct CheapestType          { typedef const T & Type; };
-template<typename T> struct CheapestType<T, typename std::enable_if<std::is_enum<T>::value >::type> { typedef T Type; };
-template<>           struct CheapestType<bool>    { typedef bool      Type; };
-template<>           struct CheapestType<quint8>  { typedef quint8    Type; };
-template<>           struct CheapestType<quint16> { typedef quint16   Type; };
-template<>           struct CheapestType<quint32> { typedef quint32   Type; };
-template<>           struct CheapestType<quint64> { typedef quint64   Type; };
-template<>           struct CheapestType<qint8>   { typedef qint8     Type; };
-template<>           struct CheapestType<qint16>  { typedef qint16    Type; };
-template<>           struct CheapestType<qint32>  { typedef qint32    Type; };
-template<>           struct CheapestType<qint64>  { typedef qint64    Type; };
-template<>           struct CheapestType<float>   { typedef float     Type; };
-template<>           struct CheapestType<double>  { typedef double    Type; };
-template<>           struct CheapestType<QUuid>   { typedef QUuid     Type; };
-template<typename T> struct CheapestType<T *>     { typedef T *       Type; };
+template<typename T, typename = void> struct CheapestType          { using Type = const T &; };
+template<typename T> struct CheapestType<T, typename std::enable_if<std::is_enum<T>::value >::type> { using Type = T; };
+template<>           struct CheapestType<bool>    { using Type = bool; };
+template<>           struct CheapestType<quint8>  { using Type = quint8; };
+template<>           struct CheapestType<quint16> { using Type = quint16; };
+template<>           struct CheapestType<quint32> { using Type = quint32; };
+template<>           struct CheapestType<quint64> { using Type = quint64; };
+template<>           struct CheapestType<qint8>   { using Type = qint8; };
+template<>           struct CheapestType<qint16>  { using Type = qint16; };
+template<>           struct CheapestType<qint32>  { using Type = qint32; };
+template<>           struct CheapestType<qint64>  { using Type = qint64; };
+template<>           struct CheapestType<float>   { using Type = float; };
+template<>           struct CheapestType<double>  { using Type = double; };
+template<>           struct CheapestType<QUuid>   { using Type = QUuid; };
+template<typename T> struct CheapestType<T *>     { using Type = T *; };
 
 
 class VEYON_CORE_EXPORT Property : public QObject
@@ -96,7 +96,7 @@ private:
 template<class T>
 class VEYON_CORE_EXPORT TypedProperty : public Property {
 public:
-	typedef typename CheapestType<T>::Type Type;
+	using Type = typename CheapestType<T>::Type;
 
 	TypedProperty( Object* object, const QString& key, const QString& parentKey,
 				   const QVariant& defaultValue, Flags flags ) :

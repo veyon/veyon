@@ -33,7 +33,7 @@ class QIODevice;
 class VEYON_CORE_EXPORT MessageContext
 {
 public:
-	typedef QPointer<QIODevice> IODevice;
+	using IODevice = QPointer<QIODevice>;
 
 	explicit MessageContext( QIODevice* ioDevice ) :
 		m_ioDevice( ioDevice )

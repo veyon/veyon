@@ -39,11 +39,11 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	typedef enum WorkerProcessModes {
+	enum WorkerProcessMode {
 		ManagedSystemProcess,
 		UnmanagedSessionProcess,
 		WorkerProcessModeCount
-	} WorkerProcessMode;
+	} ;
 
 	FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
@@ -99,7 +99,7 @@ private:
 		}
 	};
 
-	typedef QMap<Feature::Uid, Worker> WorkerMap;
+	using WorkerMap = QMap<Feature::Uid, Worker>;
 	WorkerMap m_workers;
 
 	QMutex m_workersMutex;

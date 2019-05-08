@@ -104,4 +104,4 @@ private:
 
 };
 
-typedef QVector<Computer> ComputerList;
+using ComputerList = QVector<Computer>;

@@ -37,7 +37,7 @@ public:
 
 };
 
-typedef QList<ConfigurationPagePluginInterface> ConfigurationPagePluginInterfaceList;
+using ConfigurationPagePluginInterfaceList = QList<ConfigurationPagePluginInterface>;
 
 #define ConfigurationPagePluginInterface_iid "io.veyon.Veyon.Plugins.ConfigurationPagePluginInterface"
 

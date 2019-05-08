@@ -39,7 +39,7 @@ public:
 
 };
 
-typedef QList<NetworkObjectDirectoryPluginInterface> NetworkObjectDirectoryPluginInterfaceList;
+using NetworkObjectDirectoryPluginInterfaceList = QList<NetworkObjectDirectoryPluginInterface>;
 
 #define NetworkObjectDirectoryPluginInterface_iid "io.veyon.Veyon.Plugins.NetworkObjectPluginInterface"
 

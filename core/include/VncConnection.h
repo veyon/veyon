@@ -39,7 +39,7 @@
 #include "VeyonCore.h"
 #include "SocketDevice.h"
 
-typedef struct _rfbClient rfbClient;
+using rfbClient = struct _rfbClient;
 
 class VncEvent;
 

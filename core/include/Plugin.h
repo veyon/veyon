@@ -32,7 +32,7 @@ class Plugin
 {
 	Q_GADGET
 public:
-	typedef QUuid Uid;
+	using Uid = QUuid;
 
 	enum PluginFlags
 	{
@@ -45,4 +45,4 @@ public:
 
 };
 
-typedef QList<Plugin::Uid> PluginUidList;
+using PluginUidList = QList<Plugin::Uid>;

@@ -33,8 +33,8 @@ class QJsonObject;
 class DesktopServiceObject
 {
 public:
-	typedef QUuid Uid;
-	typedef QString Name;
+	using Uid = QUuid;
+	using Name = QString;
 
 	enum class Type
 	{

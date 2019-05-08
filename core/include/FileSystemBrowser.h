@@ -38,7 +38,7 @@ public:
 		SaveFile,
 		NumBrowseModes
 	} ;
-	typedef BrowseModes BrowseMode;
+	using BrowseMode = BrowseModes;
 
 	explicit FileSystemBrowser( BrowseMode m ) :
 		m_browseMode( m ),

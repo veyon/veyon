@@ -298,7 +298,7 @@ Q_DECLARE_METATYPE(QVersionNumber)
 #endif
 
 #if QT_VERSION < 0x050700
-template <typename T> struct QAddConst { typedef const T Type; };
+template <typename T> struct QAddConst { using Type = const T; };
 template <typename T> constexpr typename QAddConst<T>::Type &qAsConst(T &t) { return t; }
 template <typename T> void qAsConst(const T &&) = delete;
 

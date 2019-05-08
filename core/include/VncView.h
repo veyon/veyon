@@ -47,9 +47,9 @@ public:
 		DemoMode,
 		NumModes
 	} ;
-	typedef Modes Mode;
+	using Mode = Modes;
 
-	typedef enum Shortcut
+	enum Shortcut
 	{
 		ShortcutCtrlAltDel,
 		ShortcutCtrlEscape,
@@ -60,7 +60,7 @@ public:
 		ShortcutMenu,
 		ShortcutAltCtrlF1,
 		ShortcutCount
-	} Shortcut;
+	} ;
 
 	VncView( const QString &host, int port, QWidget *parent, Mode mode );
 	~VncView() override;

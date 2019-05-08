@@ -62,7 +62,7 @@ public:
 	virtual void fetchObjects( const NetworkObject& object );
 
 protected:
-	typedef std::function<bool(const NetworkObject &)> NetworkObjectFilter;
+	using NetworkObjectFilter = std::function<bool (const NetworkObject &)>;
 
 	void addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent );
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );

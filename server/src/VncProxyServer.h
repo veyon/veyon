@@ -35,7 +35,7 @@ class VncProxyServer : public QObject
 {
 	Q_OBJECT
 public:
-	typedef QVector<VncProxyConnection *> VncProxyConnectionList;
+	using VncProxyConnectionList = QVector<VncProxyConnection *>;
 
 	VncProxyServer( const QHostAddress& listenAddress,
 					int listenPort,

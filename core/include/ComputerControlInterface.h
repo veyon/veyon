@@ -44,7 +44,7 @@ class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:
-	typedef QSharedPointer<ComputerControlInterface> Pointer;
+	using Pointer = QSharedPointer<ComputerControlInterface>;
 
 	using State = VncConnection::State;
 
@@ -150,4 +150,4 @@ signals:
 
 };
 
-typedef QVector<ComputerControlInterface::Pointer> ComputerControlInterfaceList;
+using ComputerControlInterfaceList = QVector<ComputerControlInterface::Pointer>;

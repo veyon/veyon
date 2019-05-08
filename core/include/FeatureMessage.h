@@ -34,10 +34,10 @@ class QIODevice;
 class VEYON_CORE_EXPORT FeatureMessage
 {
 public:
-	typedef quint32 MessageSize;
-	typedef Feature::Uid FeatureUid;
-	typedef qint32 Command;
-	typedef QMap<QString, QVariant> Arguments;
+	using MessageSize = quint32;
+	using FeatureUid = Feature::Uid;
+	using Command = qint32;
+	using Arguments = QMap<QString, QVariant>;
 
 	static constexpr unsigned char RfbMessageType = 41;
 

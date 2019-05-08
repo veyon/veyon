@@ -182,7 +182,7 @@ void Logger::rotateLogFile()
 
 #if QT_VERSION < 0x050600
 #warning Building compat code for unsupported version of Qt
-	typedef std::reverse_iterator<QStringList::const_iterator> QStringListReverseIterator;
+	using QStringListReverseIterator = std::reverse_iterator<QStringList::const_iterator>;
 	for( auto it = QStringListReverseIterator(rotatedLogFiles.cend()),
 		 end = QStringListReverseIterator(rotatedLogFiles.cbegin()); it != end; ++it )
 #else

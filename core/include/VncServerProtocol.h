@@ -36,7 +36,7 @@ class VncServerClient;
 class VEYON_CORE_EXPORT VncServerProtocol
 {
 public:
-	typedef enum States {
+	enum State {
 		Disconnected,
 		Protocol,
 		SecurityInit,
@@ -47,7 +47,7 @@ public:
 		Running,
 		Close,
 		StateCount
-	} State;
+	} ;
 
 	VncServerProtocol( QTcpSocket* socket,
 					   VncServerClient* client );

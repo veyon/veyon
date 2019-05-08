@@ -51,7 +51,7 @@ public:
 
 } ;
 
-typedef QList<VncServerPluginInterface *> VncServerPluginInterfaceList;
+using VncServerPluginInterfaceList = QList<VncServerPluginInterface *>;
 
 #define VncServerPluginInterface_iid "io.veyon.Veyon.Plugins.VncServerPluginInterface"
 

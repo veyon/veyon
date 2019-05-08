@@ -52,7 +52,7 @@ public:
 
 
 private:
-	typedef QFuture<void> Operation;
+	using Operation = QFuture<void>;
 	void serviceControl( const QString& title, const Operation& operation );
 	void graphicalFeedback( const QString &title, const Operation& operation );
 	void textFeedback( const QString &title, const Operation& operation );

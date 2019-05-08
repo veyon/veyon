@@ -33,7 +33,7 @@ class VEYON_CORE_EXPORT RfbVeyonAuth
 {
 	Q_GADGET
 public:
-	typedef enum Types
+	enum Type
 	{
 		// invalid/null authentication type
 		Invalid,
@@ -55,7 +55,7 @@ public:
 
 		AuthTypeCount
 
-	} Type;
+	} ;
 
 	Q_ENUM(Type)
 

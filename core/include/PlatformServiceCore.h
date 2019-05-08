@@ -31,7 +31,7 @@
 class VEYON_CORE_EXPORT PlatformServiceCore
 {
 public:
-	typedef int SessionId;
+	using SessionId = int;
 
 	enum {
 		SessionIdInvalid = -1,

@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:
-	typedef QMap<QString, QVariant> DataMap;
+	using DataMap = QMap<QString, QVariant>;
 
 	Object();
 	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = QString() );

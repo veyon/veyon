@@ -107,7 +107,7 @@ protected:
 
 };
 
-typedef QList<FeatureProviderInterface *> FeatureProviderInterfaceList;
+using FeatureProviderInterfaceList = QList<FeatureProviderInterface *>;
 
 #define FeatureProviderInterface_iid "io.veyon.Veyon.FeatureProviderInterface"
 

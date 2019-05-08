@@ -26,7 +26,7 @@
 
 #include <QString>
 
-typedef struct _rfbClient rfbClient;
+using rfbClient = struct _rfbClient;
 
 // clazy:excludeall=copyable-polymorphic
 

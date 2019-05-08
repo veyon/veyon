@@ -33,11 +33,11 @@
 class VEYON_CORE_EXPORT NetworkObject
 {
 public:
-	typedef QUuid Uid;
-	typedef QString Name;
-	typedef quintptr ModelId;
+	using Uid = QUuid;
+	using Name = QString;
+	using ModelId = quintptr;
 
-	typedef enum Types
+	enum Type
 	{
 		None,
 		Root,
@@ -45,7 +45,7 @@ public:
 		Host,
 		Label,
 		TypeCount
-	} Type;
+	} ;
 
 	NetworkObject( const NetworkObject& other );
 	NetworkObject( Type type = None,
@@ -141,5 +141,5 @@ private:
 
 Q_DECLARE_METATYPE(NetworkObject::Type)
 
-typedef QList<NetworkObject> NetworkObjectList;
-typedef HashList<NetworkObject::Uid> NetworkObjectUidList;
+using NetworkObjectList = QList<NetworkObject>;
+using NetworkObjectUidList = HashList<NetworkObject::Uid>;

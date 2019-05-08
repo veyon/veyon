@@ -33,10 +33,10 @@
 class VEYON_CORE_EXPORT CryptoCore
 {
 public:
-	typedef QCA::KeyGenerator KeyGenerator;
-	typedef QCA::PrivateKey PrivateKey;
-	typedef QCA::PublicKey PublicKey;
-	typedef QCA::SecureArray SecureArray;
+	using KeyGenerator = QCA::KeyGenerator;
+	using PrivateKey = QCA::PrivateKey;
+	using PublicKey = QCA::PublicKey;
+	using SecureArray = QCA::SecureArray;
 
 	enum {
 		RsaKeySize = 4096,

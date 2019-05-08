@@ -37,7 +37,7 @@ public:
 	{
 	}
 
-	typedef enum Roles
+	enum Role
 	{
 		CheckStateRole = Qt::CheckStateRole,
 		NameRole = Qt::DisplayRole,
@@ -47,6 +47,6 @@ public:
 		MacAddressRole,
 		DirectoryAddressRole,
 		ParentUidRole
-	} Role;
+	} ;
 
 };

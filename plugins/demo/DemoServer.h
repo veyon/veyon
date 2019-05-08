@@ -38,7 +38,7 @@ class DemoServer : public QObject
 {
 	Q_OBJECT
 public:
-	typedef QVector<QByteArray> MessageList;
+	using MessageList = QVector<QByteArray>;
 
 	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
 				const DemoConfiguration& configuration, QObject *parent );

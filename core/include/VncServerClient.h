@@ -33,23 +33,23 @@ class VEYON_CORE_EXPORT VncServerClient : public QObject
 {
 	Q_OBJECT
 public:
-	typedef enum AuthStates {
+	enum AuthState {
 		AuthInit,
 		AuthChallenge,
 		AuthPassword,
 		AuthToken,
 		AuthFinishedSuccess,
 		AuthFinishedFail,
-	} AuthState;
+	} ;
 
-	typedef enum AccessControlStates {
+	enum AccessControlState {
 		AccessControlInit,
 		AccessControlSuccessful,
 		AccessControlPending,
 		AccessControlWaiting,
 		AccessControlFailed,
 		AccessControlStateCount
-	} AccessControlState;
+	} ;
 
 	explicit VncServerClient( QObject* parent = nullptr ) :
 		QObject( parent ),
@@ -170,4 +170,4 @@ private:
 
 } ;
 
-typedef QList<VncServerClient *> VncServerClientList;
+using VncServerClientList = QList<VncServerClient *>;

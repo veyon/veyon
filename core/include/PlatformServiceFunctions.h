@@ -31,12 +31,12 @@
 class PlatformServiceFunctions
 {
 public:
-	typedef enum StartModes {
+	enum StartMode {
 		StartModeDisabled,
 		StartModeManual,
 		StartModeAuto,
 		StartModeCount
-	} StartMode;
+	} ;
 
 	virtual QString veyonServiceName() const = 0;
 

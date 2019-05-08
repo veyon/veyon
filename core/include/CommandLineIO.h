@@ -31,16 +31,16 @@
 class VEYON_CORE_EXPORT CommandLineIO
 {
 public:
-	typedef QString TableCell;
-	typedef QList<TableCell> TableHeader;
-	typedef QList<TableCell> TableRow;
-	typedef QVector<TableRow> TableRows;
-	typedef QVector<int> TableColumnWidths;
-	typedef QPair<TableHeader, TableRows> Table;
-	typedef QString ArgumentValue;
-	typedef QString ArgumentSpecifier;
-	typedef QMap<ArgumentValue, ArgumentSpecifier> Arguments;
-	typedef QList<QPair<QString, QStringList> > Examples;
+	using TableCell = QString;
+	using TableHeader = QList<TableCell>;
+	using TableRow = QList<TableCell>;
+	using TableRows = QVector<TableRow>;
+	using TableColumnWidths = QVector<int>;
+	using Table = QPair<TableHeader, TableRows>;
+	using ArgumentValue = QString;
+	using ArgumentSpecifier = QString;
+	using Arguments = QMap<ArgumentValue, ArgumentSpecifier>;
+	using Examples = QList<QPair<QString, QStringList> >;
 
 	static void print( const QString& message );
 	static void newline();

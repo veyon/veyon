@@ -61,8 +61,8 @@ private:
 
 	VncServerClientList m_clients;
 
-	typedef QPair<QString, QString> HostUserPair;
-	typedef QMap<HostUserPair, DesktopAccessDialog::Choice> DesktopAccessChoiceMap;
+	using HostUserPair = QPair<QString, QString>;
+	using DesktopAccessChoiceMap = QMap<HostUserPair, DesktopAccessDialog::Choice>;
 
 	DesktopAccessChoiceMap m_desktopAccessChoices;
 

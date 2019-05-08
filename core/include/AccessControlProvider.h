@@ -33,12 +33,12 @@ class NetworkObjectDirectory;
 class VEYON_CORE_EXPORT AccessControlProvider
 {
 public:
-	typedef enum AccessResults {
+	enum AccessResult {
 		AccessDeny,
 		AccessAllow,
 		AccessToBeConfirmed,
 		AccessResultCount
-	} AccessResult;
+	} ;
 
 	AccessControlProvider();
 

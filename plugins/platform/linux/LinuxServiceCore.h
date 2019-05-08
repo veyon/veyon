@@ -55,18 +55,18 @@ private:
 		SessionUptimeProbingInterval = 1000,
 	};
 
-	typedef struct {
+	using LoginDBusSession = struct {
 		QString id;
 		quint32 uid;
 		QString name;
 		QString seatId;
 		QDBusObjectPath path;
-	} LoginDBusSession;
+	} ;
 
-	typedef struct {
+	using LoginDBusSessionSeat = struct {
 		QString id;
 		QString path;
-	} LoginDBusSessionSeat;
+	} ;
 
 	void connectToLoginManager();
 	void stopServer( const QString& sessionPath );

@@ -64,7 +64,7 @@ public:
 	};
 	Q_ENUM(TLSVerifyMode)
 
-	typedef QMap<QString, QMap<QString, QStringList> > Objects;
+	using Objects = QMap<QString, QMap<QString, QStringList> >;
 
 	LdapClient( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
 	~LdapClient();

@@ -29,8 +29,8 @@
 class WtsSessionManager
 {
 public:
-	typedef DWORD SessionId;
-	typedef QList<DWORD> SessionList;
+	using SessionId = DWORD;
+	using SessionList = QList<DWORD>;
 
 	enum SessionInfo {
 		SessionInfoNone,

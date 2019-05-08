@@ -40,7 +40,7 @@ public:
 
 };
 
-typedef QList<UserGroupsBackendInterface> UserGroupsBackendInterfaceList;
+using UserGroupsBackendInterfaceList = QList<UserGroupsBackendInterface>;
 
 #define UserGroupsBackendInterface_iid "io.veyon.Veyon.Plugins.UserGroupsBackendInterface"
 

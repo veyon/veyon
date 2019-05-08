@@ -30,14 +30,13 @@ class SocketDevice : public QIODevice
 {
 	Q_OBJECT
 public:
-	typedef enum SocketOperations
+	enum SocketOperation
 	{
 		SocketOpRead,
 		SocketOpWrite
-	} SocketOperation;
+	} ;
 
-	typedef qint64 (* Dispatcher )( char* buffer, const qint64 bytes,
-									SocketOperation operation, void* user );
+	using Dispatcher = qint64 (*)(char *, const qint64, SocketOperation, void *);
 
 	SocketDevice( Dispatcher dispatcher, void *user = nullptr, QObject* parent = nullptr ) :
 		QIODevice( parent ),

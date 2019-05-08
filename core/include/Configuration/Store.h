@@ -46,14 +46,14 @@ public:
 		JsonFile,
 		NoBackend
 	} ;
-	typedef Backends Backend;
+	using Backend = Backends;
 
 	enum Scopes
 	{
 		User,		// for current user
 		System,		// system-wide (service settings etc.)
 	} ;
-	typedef Scopes Scope;
+	using Scope = Scopes;
 
 
 	Store( Backend backend, Scope scope ) :

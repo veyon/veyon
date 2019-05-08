@@ -352,7 +352,7 @@ void LdapBrowseModel::populateRoot() const
 		const auto dns = namingContext.split( QLatin1Char(',') );
 #if QT_VERSION < 0x050600
 #warning Building compat code for unsupported version of Qt
-		typedef std::reverse_iterator<QStringList::const_iterator> QStringListReverseIterator;
+		using QStringListReverseIterator = std::reverse_iterator<QStringList::const_iterator>;
 		for( auto it = QStringListReverseIterator(dns.cend()),
 			 end = QStringListReverseIterator(dns.cbegin()); it != end; ++it )
 #else

@@ -34,14 +34,14 @@ class VEYON_CORE_EXPORT AccessControlRule
 {
 	Q_GADGET
 public:
-	typedef enum Actions
+	enum Action
 	{
 		ActionNone,
 		ActionAllow,
 		ActionDeny,
 		ActionAskForPermission,
 		ActionCount
-	} Action;
+	} ;
 
 	Q_ENUM(Action)
 
@@ -61,7 +61,7 @@ public:
 
 	Q_ENUM(Condition)
 
-	typedef enum Subjects
+	enum Subject
 	{
 		SubjectNone,
 		SubjectAccessingUser,
@@ -69,11 +69,11 @@ public:
 		SubjectLocalUser,
 		SubjectLocalComputer,
 		SubjectCount
-	} Subject;
+	} ;
 
 	Q_ENUM(Subject)
 
-	typedef QString ConditionArgument;
+	using ConditionArgument = QString;
 
 	struct ConditionParameters
 	{
@@ -82,7 +82,7 @@ public:
 		ConditionArgument argument;
 	};
 
-	typedef QMap<Condition, ConditionParameters> ConditionParameterMap;
+	using ConditionParameterMap = QMap<Condition, ConditionParameters>;
 
 
 	AccessControlRule();

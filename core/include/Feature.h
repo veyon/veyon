@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT Feature
 {
 	Q_GADGET
 public:
-	typedef QUuid Uid;
+	using Uid = QUuid;
 
 	enum FeatureFlag
 	{
@@ -214,5 +214,5 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Feature::Flags)
 
-typedef QList<Feature> FeatureList;
-typedef QStringList FeatureUidList;
+using FeatureList = QList<Feature>;
+using FeatureUidList = QStringList;
