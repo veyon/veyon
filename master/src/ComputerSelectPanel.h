@@ -38,7 +38,7 @@ class ComputerSelectPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent = nullptr );
+	explicit ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent = nullptr );
 	~ComputerSelectPanel() override;
 
 	bool eventFilter(QObject *watched, QEvent *event) override;

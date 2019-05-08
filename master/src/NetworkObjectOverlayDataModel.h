@@ -31,7 +31,7 @@ class NetworkObjectOverlayDataModel : public KExtraColumnsProxyModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectOverlayDataModel( const QString& overlayDataHeader,
+	explicit NetworkObjectOverlayDataModel( const QString& overlayDataHeader,
 								   QObject *parent = nullptr );
 
 	QVariant extraColumnData( const QModelIndex &parent, int row, int extraColumn, int role ) const override;

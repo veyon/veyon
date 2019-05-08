@@ -40,7 +40,7 @@ public:
 		NoBackground
 	} ;
 
-	LockWidget( Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr );
+	explicit LockWidget( Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr );
 	~LockWidget() override;
 
 

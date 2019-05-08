@@ -34,7 +34,7 @@ class CheckableItemProxyModel : public QIdentityProxyModel
 {
 	Q_OBJECT
 public:
-	CheckableItemProxyModel( int uidRole, QObject *parent = nullptr );
+	explicit CheckableItemProxyModel( int uidRole, QObject *parent = nullptr );
 
 	void setException( int exceptionRole, const QVariant& exceptionFilterData );
 

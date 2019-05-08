@@ -54,7 +54,7 @@ public:
 	};
 	Q_ENUM(SortOrder)
 
-	ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
+	explicit ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
 
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
 

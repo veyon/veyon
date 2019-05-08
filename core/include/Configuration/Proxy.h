@@ -34,7 +34,7 @@ class VEYON_CORE_EXPORT Proxy : public QObject
 {
 	Q_OBJECT
 public:
-	Proxy( Object* object, QObject* parent = nullptr );
+	explicit Proxy( Object* object, QObject* parent = nullptr );
 	~Proxy() = default;
 
 	bool hasValue( const QString& key, const QString& parentKey ) const;
@@ -71,7 +71,7 @@ private:
 #define DECLARE_CONFIG_PROXY(name, ops) \
 	class name : public Configuration::Proxy { \
 	public: \
-		name( Configuration::Object* object, QObject* parent = nullptr ); \
+		explicit name( Configuration::Object* object, QObject* parent = nullptr ); \
 		ops(DECLARE_CONFIG_PROPERTY) \
 	};
 

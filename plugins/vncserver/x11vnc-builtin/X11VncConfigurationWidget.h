@@ -37,7 +37,7 @@ class X11VncConfigurationWidget : public QWidget
 	Q_OBJECT
 
 public:
-	X11VncConfigurationWidget( X11VncConfiguration& configuration, QWidget* parent = nullptr );
+	explicit X11VncConfigurationWidget( X11VncConfiguration& configuration, QWidget* parent = nullptr );
 	~X11VncConfigurationWidget() override;
 
 private:

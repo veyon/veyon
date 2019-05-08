@@ -38,7 +38,7 @@ public:
 
 	using Dispatcher = qint64 (*)(char *, const qint64, SocketOperation, void *);
 
-	SocketDevice( Dispatcher dispatcher, void *user = nullptr, QObject* parent = nullptr ) :
+	explicit SocketDevice( Dispatcher dispatcher, void *user = nullptr, QObject* parent = nullptr ) :
 		QIODevice( parent ),
 		m_dispatcher( dispatcher ),
 		m_user( user )

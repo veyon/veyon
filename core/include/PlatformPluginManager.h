@@ -30,7 +30,7 @@ class VEYON_CORE_EXPORT PlatformPluginManager : public QObject
 {
 	Q_OBJECT
 public:
-	PlatformPluginManager( PluginManager& pluginManager, QObject* parent = nullptr );
+	explicit PlatformPluginManager( PluginManager& pluginManager, QObject* parent = nullptr );
 
 	PlatformPluginInterface* platformPlugin()
 	{

@@ -48,7 +48,7 @@ public:
 
 	using State = VncConnection::State;
 
-	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
+	explicit ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
 	void start( QSize scaledScreenSize );

@@ -44,7 +44,7 @@ public:
 	} ;
 
 	DesktopServiceObject( const DesktopServiceObject& other );
-	DesktopServiceObject( Type type = Type::None,
+	explicit DesktopServiceObject( Type type = Type::None,
 						  const Name& name = QString(),
 						  const QString& path = QString(),
 						  Uid uid = Uid() );

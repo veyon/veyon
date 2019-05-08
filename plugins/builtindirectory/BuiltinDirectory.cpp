@@ -53,13 +53,13 @@ void BuiltinDirectory::update()
 		{
 			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
-			addOrUpdateObject( networkObject, NetworkObject::Root );
+			addOrUpdateObject( networkObject, NetworkObject( NetworkObject::Root ) );
 
 			updateLocation( networkObject, networkObjects );
 		}
 	}
 
-	removeObjects( NetworkObject::Root, [groupUids]( const NetworkObject& object ) {
+	removeObjects( NetworkObject( NetworkObject::Root ), [groupUids]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Location && groupUids.contains( object.uid() ) == false; } );
 }
 

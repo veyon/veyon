@@ -37,7 +37,7 @@ class ExternalVncServerConfigurationWidget : public QWidget
 	Q_OBJECT
 
 public:
-	ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration, QWidget* parent = nullptr );
+	explicit ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration, QWidget* parent = nullptr );
 	~ExternalVncServerConfigurationWidget() override;
 
 private:

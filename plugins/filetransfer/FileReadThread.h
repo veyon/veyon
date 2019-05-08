@@ -33,7 +33,7 @@ class FileReadThread : public QObject
 {
 	Q_OBJECT
 public:
-	FileReadThread( const QString& fileName, QObject* parent = nullptr );
+	explicit FileReadThread( const QString& fileName, QObject* parent = nullptr );
 	~FileReadThread() override;
 
 	bool start();

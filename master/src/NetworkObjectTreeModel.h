@@ -32,7 +32,7 @@ class NetworkObjectTreeModel : public NetworkObjectModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectTreeModel( NetworkObjectDirectory* directory, QObject *parent = nullptr);
+	explicit NetworkObjectTreeModel( NetworkObjectDirectory* directory, QObject *parent = nullptr);
 
 	QModelIndex index( int row, int column,
 					   const QModelIndex& parent = QModelIndex() ) const override;

@@ -34,7 +34,7 @@ class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	LdapDirectory( const LdapConfiguration& configuration, QObject* parent = nullptr );
+	explicit LdapDirectory( const LdapConfiguration& configuration, QObject* parent = nullptr );
 	~LdapDirectory() = default;
 
 	const QString& configInstanceId() const;

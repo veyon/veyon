@@ -38,7 +38,7 @@ class DesktopServicesConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	DesktopServicesConfigurationPage( DesktopServicesConfiguration& configuration, QWidget* parent = nullptr );
+	explicit DesktopServicesConfigurationPage( DesktopServicesConfiguration& configuration, QWidget* parent = nullptr );
 	~DesktopServicesConfigurationPage() override;
 
 	void resetWidgets() override;

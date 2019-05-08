@@ -48,13 +48,13 @@ public:
 	} ;
 
 	NetworkObject( const NetworkObject& other );
-	NetworkObject( Type type = None,
-				   const Name& name = Name(),
-				   const QString& hostAddress = QString(),
-				   const QString& macAddress = QString(),
-				   const QString& directoryAddress = QString(),
-				   Uid uid = Uid(),
-				   Uid parentUid = Uid() );
+	explicit NetworkObject( Type type = None,
+							const Name& name = Name(),
+							const QString& hostAddress = QString(),
+							const QString& macAddress = QString(),
+							const QString& directoryAddress = QString(),
+							Uid uid = Uid(),
+							Uid parentUid = Uid() );
 	explicit NetworkObject( const QJsonObject& jsonObject );
 	~NetworkObject() = default;
 

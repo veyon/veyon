@@ -34,7 +34,7 @@
 class VEYON_CORE_EXPORT Computer
 {
 public:
-	Computer( NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
+	explicit Computer( NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
 			  const QString& name = QString(),
 			  const QString& hostAddress = QString(),
 			  const QString& macAddress = QString(),

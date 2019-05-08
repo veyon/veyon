@@ -36,7 +36,7 @@ class DemoConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	DemoConfigurationPage( DemoConfiguration& configuration, QWidget* parent = nullptr );
+	explicit DemoConfigurationPage( DemoConfiguration& configuration, QWidget* parent = nullptr );
 	~DemoConfigurationPage() override;
 
 	void resetWidgets() override;

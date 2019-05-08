@@ -268,7 +268,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const
 {
 	if( arguments.isEmpty() )
 	{
-		listObjects( m_configuration.networkObjects(), NetworkObject::None );
+		listObjects( m_configuration.networkObjects(), NetworkObject( NetworkObject::None ) );
 	}
 	else
 	{
@@ -731,7 +731,7 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 		return NetworkObject( NetworkObject::Host, name, host, mac );
 	}
 
-	return NetworkObject::None;
+	return NetworkObject( NetworkObject::None );
 }
 
 

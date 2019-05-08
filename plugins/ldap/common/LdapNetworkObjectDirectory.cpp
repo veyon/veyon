@@ -58,12 +58,12 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject&
 		return { NetworkObject( NetworkObject::Location,
 								m_ldapDirectory.locationsOfComputer( object.directoryAddress() ).value( 0 ) ) };
 	case NetworkObject::Location:
-		return { NetworkObject::Root };
+		return { NetworkObject( NetworkObject::Root ) };
 	default:
 		break;
 	}
 
-	return { NetworkObject::None };
+	return { NetworkObject( NetworkObject::None ) };
 }
 
 
@@ -82,7 +82,7 @@ void LdapNetworkObjectDirectory::update()
 		updateLocation( locationObject );
 	}
 
-	removeObjects( NetworkObject::Root, [locations]( const NetworkObject& object ) {
+	removeObjects( NetworkObject( NetworkObject::Root ), [locations]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Location && locations.contains( object.name() ) == false; } );
 }
 
@@ -178,5 +178,5 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 		return NetworkObject( NetworkObject::Host, displayName, hostName, macAddress, computerDn );
 	}
 
-	return NetworkObject::None;
+	return NetworkObject( NetworkObject::None );
 }

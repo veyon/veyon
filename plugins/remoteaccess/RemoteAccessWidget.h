@@ -83,7 +83,7 @@ class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidget( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly = false );
+	explicit RemoteAccessWidget( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly = false );
 	~RemoteAccessWidget() override;
 
 	VncView* vncView() const

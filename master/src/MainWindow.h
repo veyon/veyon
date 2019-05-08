@@ -44,7 +44,7 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MainWindow( VeyonMaster& masterCore, QWidget* parent = nullptr );
+	explicit MainWindow( VeyonMaster& masterCore, QWidget* parent = nullptr );
 	~MainWindow() override;
 
 	static bool initAuthentication();
