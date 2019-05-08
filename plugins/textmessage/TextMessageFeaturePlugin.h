@@ -34,7 +34,7 @@ class TextMessageFeaturePlugin : public QObject, FeatureProviderInterface, Plugi
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	explicit TextMessageFeaturePlugin( QObject* parent = nullptr );
-	~TextMessageFeaturePlugin() override {}
+	~TextMessageFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{

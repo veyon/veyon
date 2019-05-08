@@ -72,31 +72,6 @@ private:
 		QPointer<QTcpSocket> socket;
 		QPointer<QProcess> process;
 		QList<FeatureMessage> pendingMessages;
-
-		Worker() :
-			socket( nullptr ),
-			process( nullptr ),
-			pendingMessages()
-		{
-		}
-
-		Worker( const Worker &ref ) :
-			socket( ref.socket ),
-			process( ref.process ),
-			pendingMessages( ref.pendingMessages )
-		{
-		}
-
-		~Worker() {}
-
-		Worker& operator=( const Worker& ref )
-		{
-			socket = ref.socket;
-			process = ref.process;
-			pendingMessages = ref.pendingMessages;
-
-			return *this;
-		}
 	};
 
 	using WorkerMap = QMap<Feature::Uid, Worker>;

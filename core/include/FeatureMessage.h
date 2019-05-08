@@ -69,7 +69,7 @@ public:
 	{
 	}
 
-	~FeatureMessage() {}
+	~FeatureMessage() = default;
 
 	FeatureMessage& operator=( const FeatureMessage& other )
 	{

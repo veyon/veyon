@@ -62,9 +62,7 @@ public:
 	{
 	}
 
-	virtual ~Store()
-	{
-	}
+	virtual ~Store() = default;
 
 	Backend backend() const
 	{

@@ -35,9 +35,7 @@ public:
 	{
 	}
 
-	~LinuxKeyboardShortcutTrapper() override
-	{
-	}
+	~LinuxKeyboardShortcutTrapper() override = default;
 
 	void setEnabled( bool on ) override
 	{

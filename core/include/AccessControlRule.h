@@ -89,7 +89,7 @@ public:
 	AccessControlRule( const AccessControlRule& other );
 	explicit AccessControlRule( const QJsonValue& jsonValue );
 
-	~AccessControlRule() {}
+	~AccessControlRule() = default;
 
 	AccessControlRule& operator=( const AccessControlRule& other );
 

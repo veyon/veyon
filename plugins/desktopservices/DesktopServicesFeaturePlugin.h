@@ -40,7 +40,7 @@ class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
 				 ConfigurationPagePluginInterface)
 public:
 	explicit DesktopServicesFeaturePlugin( QObject* parent = nullptr );
-	~DesktopServicesFeaturePlugin() override {}
+	~DesktopServicesFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{

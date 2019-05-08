@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public SimpleFeaturePro
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
 	explicit SystemTrayIcon( QObject* parent = nullptr );
-	~SystemTrayIcon() override {}
+	~SystemTrayIcon() override = default;
 
 	void setToolTip( const QString& toolTipText,
 					 FeatureWorkerManager& featureWorkerManager );

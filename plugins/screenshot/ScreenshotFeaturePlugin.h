@@ -34,7 +34,7 @@ class ScreenshotFeaturePlugin : public QObject, SimpleFeatureProvider, PluginInt
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	explicit ScreenshotFeaturePlugin( QObject* parent = nullptr );
-	~ScreenshotFeaturePlugin() override {}
+	~ScreenshotFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
