@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QThread>
+
 #include "VeyonCore.h"
 
 class SasEventListener : public QThread

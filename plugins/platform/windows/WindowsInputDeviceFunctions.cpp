@@ -24,6 +24,9 @@
 
 #include <windows.h>
 
+#include <QCoreApplication>
+#include <QProcess>
+
 #include "ConfigurationManager.h"
 #include "PlatformServiceFunctions.h"
 #include "WindowsInputDeviceFunctions.h"

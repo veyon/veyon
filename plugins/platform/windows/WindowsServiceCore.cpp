@@ -25,6 +25,7 @@
 #include <windows.h>
 
 #include <QElapsedTimer>
+#include <QThread>
 
 #include "Filesystem.h"
 #include "WindowsServiceCore.h"
