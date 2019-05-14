@@ -8,8 +8,6 @@ sudo: required
 matrix:
     include:
         - env: TARGET_OS=centos.74
-        - env: TARGET_OS=cross.win32
-        - env: TARGET_OS=cross.win64
         - env: TARGET_OS=debian.stretch
         - env: TARGET_OS=debian.buster
         - env: TARGET_OS=fedora.28
@@ -20,8 +18,8 @@ matrix:
         - env: TARGET_OS=sast
 script:
     - wget http://archive.ubuntu.com/ubuntu/pool/main/libs/libseccomp/libseccomp2_2.3.3-3ubuntu1_amd64.deb && sudo dpkg -i libseccomp2*deb
-    - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:latest || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
-    - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} /bin/sh /veyon/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
+    - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:latest || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.ci/${TRAVIS_OS_NAME}.${TARGET_OS}/
+    - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} /bin/sh /veyon/.ci/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
 deploy:
     provider: releases
     api_key:

@@ -1,2 +1,0 @@
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/modules/Win32Toolchain.cmake -DCMAKE_MODULE_PATH=`pwd`/../cmake/modules/
-

@@ -1,32 +1,26 @@
 image: docker:latest
 
 stages:
-  - prepare
   - build
-
-create-build-env:
-  stage: prepare
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build --pull -t $IMAGE .travis/linux.cross.win64/
-    - docker push $IMAGE
-  variables:
-    GIT_SUBMODULE_STRATEGY: none
 
 build-win32-installer:
   stage: build
   image: $IMAGE
   script:
-    - ln -s $(pwd) /veyon
-    - .travis/linux.cross.win32/script.sh
+    - .ci/windows/build.sh 32
+  artifacts:
+    paths: [ "*.exe" ]
+    expire_in: 1 day
 
 build-win64-installer:
   stage: build
   image: $IMAGE
   script:
-    - ln -s $(pwd) /veyon
-    - .travis/linux.cross.win64/script.sh
+    - .ci/windows/build.sh 64
+  artifacts:
+    paths: [ "*.exe" ]
+    expire_in: 1 day
 
 variables:
   GIT_SUBMODULE_STRATEGY: normal
-  IMAGE: $CI_REGISTRY/veyon/veyon:4.2-win64
+  IMAGE: $CI_REGISTRY/veyon/ci-mingw-w64:4.2
