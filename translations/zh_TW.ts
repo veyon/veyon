@@ -1224,7 +1224,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>無法套用特定平臺的組態設定。</translation>
     </message>
 </context>
 <context>
@@ -1274,7 +1274,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>展示執行時，縮圖更新速度變慢</translation>
     </message>
 </context>
 <context>
@@ -1421,7 +1421,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>教師</translation>
+        <translation>老師</translation>
     </message>
     <message>
         <source>Room %1</source>
@@ -1429,7 +1429,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>請在接下來的 5 分鐘內完成所有任務。</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1437,15 +1437,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>開啟檔案管理員</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>開始學習工具</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>播放教程視訊</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -2427,7 +2427,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>電腦容器</translation>
     </message>
 </context>
 <context>
@@ -2462,19 +2462,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>請指定一個有效的 LDAP url，其架構如下 &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>沒有給予命名內容屬性名稱 - 返回到組態的值。</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>無法查詢基本 DN。 請檢查您的 LDAP 組態。</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>將 %1 組態為基本 DN 並停用命名內容查詢。</translation>
     </message>
 </context>
 <context>
@@ -2673,15 +2673,15 @@ USAGE
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>用於使用者身份驗證的自訂 PAM 服務</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>使用者身份驗證</translation>
     </message>
 </context>
 <context>
@@ -2909,7 +2909,7 @@ USAGE
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>位置 &amp;&amp; 電腦</translation>
+        <translation>地點 &amp;&amp; 電腦</translation>
     </message>
 </context>
 <context>
@@ -3236,15 +3236,15 @@ USAGE
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>例如: Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>記住並加入到網站功能表</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>例如: www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3252,7 +3252,7 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>名稱:</translation>
     </message>
 </context>
 <context>
@@ -3354,29 +3354,31 @@ USAGE
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>立即關閉電源</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>安裝更新和關閉電源</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>使用者確認後關機</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>逾時後關機</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>遠端請求電腦關閉電源。 您要立即關閉電腦電源嗎?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>電腦將在 %1 分鐘 %2 秒內關閉電源。
+
+請儲存您的工作並關閉所有程式。</translation>
     </message>
 </context>
 <context>
@@ -3387,15 +3389,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>請指定關閉選取電腦電源的逾時:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>分鐘</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>秒</translation>
     </message>
 </context>
 <context>
@@ -3553,15 +3555,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>名稱:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>記住並加入到程式功能表</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>例如: VLC</translation>
     </message>
 </context>
 <context>
@@ -4011,7 +4013,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>警告</translation>
     </message>
 </context>
 <context>
@@ -4039,7 +4041,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4047,27 +4049,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>透過軟體啟用 SAS 世代 (Ctrl+Alt+Del)</translation>
+        <translation>以軟體啟用 SAS 世代 (Ctrl + Alt + Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>螢幕鎖定</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>隱藏工作列</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>隱藏 [開始] 功能表</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>隱藏桌面</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>使用者身份驗證</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4085,31 +4087,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>服務「%1」已經安裝。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>無法安裝服務「%1」。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>服務「%1」安裝成功。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>無法解除安裝服務「%1」。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>服務「%1」解除安裝成功。</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>無法變更服務「%1」的啟動類型。</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>找不到服務「%1」。</translation>
     </message>
 </context>
 <context>
