@@ -592,7 +592,11 @@ void VeyonCore::initLocaleAndTranslation()
 	if( configuredLocale.language() == QLocale::Hebrew ||
 		configuredLocale.language() == QLocale::Arabic )
 	{
-		QApplication::setLayoutDirection( Qt::RightToLeft );
+		auto app = qobject_cast<QApplication *>( QCoreApplication::instance() );
+		if( app )
+		{
+			QApplication::setLayoutDirection( Qt::RightToLeft );
+		}
 	}
 }
 
