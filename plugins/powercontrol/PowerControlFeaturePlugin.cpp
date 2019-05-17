@@ -394,6 +394,7 @@ void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
 	dialog.setMinimum( 0 );
 	dialog.setMaximum( shutdownTimeout );
 	dialog.setCancelButton( nullptr );
+	dialog.setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint );
 
 	auto progressBar = dialog.findChild<QProgressBar *>();
 	if( progressBar )
