@@ -28,6 +28,7 @@
 
 #define FOREACH_LINUX_PLATFORM_CONFIG_PROPERTY(OP) \
 	OP( LinuxPlatformConfiguration, m_configuration, QString, pamServiceName, setPamServiceName, "PamServiceName", "Linux", QString(), Configuration::Property::Flag::Advanced ) \
+	OP( LinuxPlatformConfiguration, m_configuration, QString, displayManagerUsers, setDisplayManagerUsers, "DisplayManagerUsers", "Linux", QStringLiteral("gdm,lightdm,sddm,mdm"), Configuration::Property::Flag::Advanced ) \
 
 
 DECLARE_CONFIG_PROXY(LinuxPlatformConfiguration, FOREACH_LINUX_PLATFORM_CONFIG_PROPERTY)
