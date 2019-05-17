@@ -59,4 +59,7 @@ private:
 	HANDLE m_serverShutdownEvent;
 	QAtomicInt m_sessionChangeEvent;
 
+	static constexpr auto SessionPollingInterval = 100;
+	static constexpr auto MinimumServerUptimeTime = 10000;
+
 } ;

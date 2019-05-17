@@ -70,20 +70,22 @@ public:
 		if( m_subProcessHandle )
 		{
 			vInfo() << "Waiting for server to shutdown";
-			if( WaitForSingleObject( m_subProcessHandle, 10000 ) == WAIT_TIMEOUT )
+			if( WaitForSingleObject( m_subProcessHandle, ServerWaitTime ) == WAIT_TIMEOUT )
 			{
 				vWarning() << "Terminating server";
 				TerminateProcess( m_subProcessHandle, 0 );
 			}
 			CloseHandle( m_subProcessHandle );
 			m_subProcessHandle = nullptr;
+
+			Sleep( ServerPostStopWaitTime );
 		}
 	}
 
 	bool isRunning() const
 	{
 		if( m_subProcessHandle &&
-				WaitForSingleObject( m_subProcessHandle, 5000 ) == WAIT_TIMEOUT )
+				WaitForSingleObject( m_subProcessHandle, ServerQueryTime ) == WAIT_TIMEOUT )
 		{
 			return true;
 		}
@@ -93,7 +95,12 @@ public:
 
 
 private:
+	static constexpr auto ServerQueryTime = 100;
+	static constexpr auto ServerWaitTime = 10000;
+	static constexpr auto ServerPostStopWaitTime = 1000;
+
 	HANDLE m_subProcessHandle;
+
 } ;
 
 
@@ -178,7 +185,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 {
 	QMap<WtsSessionManager::SessionId, VeyonServerProcess*> serverProcesses;
 
-	while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
+	while( WaitForSingleObject( m_stopServiceEvent, SessionPollingInterval ) == WAIT_TIMEOUT )
 	{
 		const auto wtsSessionIds = WtsSessionManager::activeSessions();
 
@@ -225,35 +232,33 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 
 	auto oldWtsSessionId = WtsSessionManager::InvalidSession;
 
-	QElapsedTimer lastServiceStart;
+	QElapsedTimer lastServerStart;
 
-	do
+	while( WaitForSingleObject( m_stopServiceEvent, SessionPollingInterval ) == WAIT_TIMEOUT )
 	{
-		bool sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
-
+		const auto sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 		const auto wtsSessionId = WtsSessionManager::activeConsoleSession();
+
 		if( oldWtsSessionId != wtsSessionId || sessionChanged )
 		{
 			vInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
 
 			if( oldWtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
-				// workaround for situations where service is stopped
-				// while it is still starting up
+				// workaround for situations where server is stopped while it is still starting up
 				do
 				{
 					SetEvent( m_serverShutdownEvent );
 				}
-				while( lastServiceStart.elapsed() < 10000 && veyonServerProcess.isRunning() );
+				while( lastServerStart.elapsed() < MinimumServerUptimeTime && veyonServerProcess.isRunning() );
 
 				veyonServerProcess.stop();
-
-				Sleep( 5000 );
 			}
+
 			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
 				veyonServerProcess.start( wtsSessionId );
-				lastServiceStart.restart();
+				lastServerStart.restart();
 			}
 
 			oldWtsSessionId = wtsSessionId;
@@ -262,9 +267,9 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 		{
 			veyonServerProcess.start( wtsSessionId );
 			oldWtsSessionId = wtsSessionId;
-			lastServiceStart.restart();
+			lastServerStart.restart();
 		}
-	} while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT );
+	}
 
 	vInfo() << "Service shutdown";
 
