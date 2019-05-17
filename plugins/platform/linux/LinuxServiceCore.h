@@ -45,15 +45,13 @@ private slots:
 	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 
 private:
-	enum {
-		LoginManagerReconnectInterval = 3000,
-		ServerTerminateTimeout = 3000,
-		ServerStopSleepInterval = 100,
-		ServerKillDelayTime = 1000,
-		SessionEnvironmentProbingInterval = 1000,
-		SessionUptimeSecondsMinimum = 3,
-		SessionUptimeProbingInterval = 1000,
-	};
+	static constexpr auto LoginManagerReconnectInterval = 3000;
+	static constexpr auto ServerTerminateTimeout = 3000;
+	static constexpr auto ServerStopSleepInterval = 100;
+	static constexpr auto ServerKillDelayTime = 1000;
+	static constexpr auto SessionEnvironmentProbingInterval = 1000;
+	static constexpr auto SessionUptimeSecondsMinimum = 3;
+	static constexpr auto SessionUptimeProbingInterval = 1000;
 
 	using LoginDBusSession = struct {
 		QString id;
