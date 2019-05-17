@@ -199,10 +199,8 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
 		if( rule.action() == AccessControlRule::ActionDeny &&
-			matchConditions( rule, QString(), QString(),
-							 VeyonCore::platform().userFunctions().currentUser(),
-							 QHostInfo::localHostName(),
-							 QStringList() ) )
+			matchConditions( rule, {}, {},
+							 VeyonCore::platform().userFunctions().currentUser(), QHostInfo::localHostName(), {} ) )
 		{
 			return true;
 		}
@@ -291,7 +289,7 @@ QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject
 	default: break;
 	}
 
-	return QString();
+	return {};
 }
 
 
@@ -316,7 +314,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	{
 		hasConditions = true;
 
-		const auto user = lookupSubject( rule.subject( condition ), accessingUser, QString(), localUser, QString() );
+		const auto user = lookupSubject( rule.subject( condition ), accessingUser, {}, localUser, {} );
 		const auto group = rule.argument( condition );
 
 		if( user.isEmpty() || group.isEmpty() ||
@@ -345,7 +343,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	{
 		hasConditions = true;
 
-		const auto computer = lookupSubject( rule.subject( condition ), QString(), accessingComputer, QString(), localComputer );
+		const auto computer = lookupSubject( rule.subject( condition ), {}, accessingComputer, {}, localComputer );
 		const auto location = rule.argument( condition );
 
 		if( computer.isEmpty() || location.isEmpty() ||
