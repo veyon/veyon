@@ -42,6 +42,8 @@ RunProgramDialog::RunProgramDialog( QWidget* parent ) :
 	connect( ui->presetNameEdit, &QLineEdit::textChanged, this, &RunProgramDialog::validate );
 
 	validate();
+
+	ui->programInputTextEdit->setFocus();
 }
 
 
