@@ -84,6 +84,11 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>websiteLineEdit</tabstop>
+  <tabstop>rememberCheckBox</tabstop>
+  <tabstop>presetNameEdit</tabstop>
+ </tabstops>
  <resources>
   <include location="desktopservices.qrc"/>
  </resources>
