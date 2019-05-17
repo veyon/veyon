@@ -195,6 +195,32 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 
 
 
+bool LinuxUserFunctions::isAnyUserLoggedOn()
+{
+	QProcess whoProcess;
+	whoProcess.start( QStringLiteral("who") );
+	whoProcess.waitForFinished( WhoProcessTimeout );
+
+	if( whoProcess.exitCode() != 0 )
+	{
+		return false;
+	}
+
+	const auto lines = whoProcess.readAll().split( '\n' );
+	for( const auto& line : lines )
+	{
+		const auto user = QString::fromUtf8( line.split( ' ' ).value( 0 ) );
+		if( user.isEmpty() == false )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+
 QString LinuxUserFunctions::currentUser()
 {
 	QString username;
@@ -232,34 +258,6 @@ QString LinuxUserFunctions::currentUser()
 	}
 
 	return username;
-}
-
-
-
-QStringList LinuxUserFunctions::loggedOnUsers()
-{
-	QStringList users;
-
-	QProcess whoProcess;
-	whoProcess.start( QStringLiteral("who") );
-	whoProcess.waitForFinished( WhoProcessTimeout );
-
-	if( whoProcess.exitCode() != 0 )
-	{
-		return users;
-	}
-
-	const auto lines = whoProcess.readAll().split( '\n' );
-	for( const auto& line : lines )
-	{
-		const auto user = QString::fromUtf8( line.split( ' ' ).value( 0 ) );
-		if( user.isEmpty() == false && users.contains( user ) == false )
-		{
-			users.append( user ); // clazy:exclude=reserve-candidates
-		}
-	}
-
-	return users;
 }
 
 

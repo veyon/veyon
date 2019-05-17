@@ -38,8 +38,8 @@ public:
 	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
 	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
 
+	virtual bool isAnyUserLoggedOn() = 0;
 	virtual QString currentUser() = 0;
-	virtual QStringList loggedOnUsers() = 0;
 
 	virtual void logon( const QString& username, const QString& password ) = 0;
 	virtual void logoff() = 0;

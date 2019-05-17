@@ -174,7 +174,7 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 	}
 	else if( message.featureUid() == m_powerDownConfirmedFeature.uid() )
 	{
-		if( VeyonCore::platform().userFunctions().loggedOnUsers().isEmpty() )
+		if( VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false )
 		{
 			VeyonCore::platform().coreFunctions().powerDown( false );
 		}

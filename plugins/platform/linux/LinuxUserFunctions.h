@@ -38,8 +38,8 @@ public:
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
 
+	bool isAnyUserLoggedOn() override;
 	QString currentUser() override;
-	QStringList loggedOnUsers() override;
 
 	void logon( const QString& username, const QString& password ) override;
 	void logoff() override;
@@ -49,7 +49,6 @@ public:
 	static uid_t userIdFromName( const QString& username );
 
 private:
-	enum {
-		WhoProcessTimeout = 3000
-	};
+	static constexpr auto WhoProcessTimeout = 3000;
+
 };

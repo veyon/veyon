@@ -112,6 +112,13 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 
 
 
+bool WindowsUserFunctions::isAnyUserLoggedOn()
+{
+	return WtsSessionManager::loggedOnUsers().isEmpty() == false;
+}
+
+
+
 QString WindowsUserFunctions::currentUser()
 {
 	auto sessionId = WtsSessionManager::activeConsoleSession();
@@ -139,13 +146,6 @@ QString WindowsUserFunctions::currentUser()
 	}
 
 	return domainName + QLatin1Char('\\') + username;
-}
-
-
-
-QStringList WindowsUserFunctions::loggedOnUsers()
-{
-	return WtsSessionManager::loggedOnUsers();
 }
 
 

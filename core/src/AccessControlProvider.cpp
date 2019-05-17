@@ -271,7 +271,7 @@ bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QSt
 
 bool AccessControlProvider::isNoUserLoggedOn() const
 {
-	return VeyonCore::platform().userFunctions().loggedOnUsers().isEmpty();
+	return VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false;
 }
 
 
