@@ -184,6 +184,26 @@ void LinuxServiceCore::connectToLoginManager()
 
 
 
+static bool waitForProcess( QProcess* process, int timeout, int sleepInterval )
+{
+	QElapsedTimer timeoutTimer;
+	timeoutTimer.start();
+
+	while( process->state() != QProcess::NotRunning )
+	{
+		if( timeoutTimer.elapsed() >= timeout )
+		{
+			return false;
+		}
+
+		QThread::msleep( sleepInterval );
+	}
+
+	return true;
+}
+
+
+
 void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
 	if( m_serverProcesses.contains( sessionPath ) == false )
@@ -196,20 +216,11 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 	auto process = qAsConst(m_serverProcesses)[sessionPath];
 	process->terminate();
 
-	QElapsedTimer serverStopTimer;
-	serverStopTimer.start();
-
-	while( process->state() != QProcess::NotRunning )
+	if( waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
 	{
-		if( serverStopTimer.elapsed() >= ServerTerminateTimeout )
-		{
-			vWarning() << "server for session" << sessionPath << "still running - killing now";
-			process->kill();
-			QThread::msleep( ServerKillDelayTime );
-			break;
-		}
-
-		QThread::msleep( ServerStopSleepInterval );
+		vWarning() << "server for session" << sessionPath << "still running - killing now";
+		process->kill();
+		waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
 	}
 
 	if( m_multiSession )

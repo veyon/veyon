@@ -47,8 +47,8 @@ private slots:
 private:
 	static constexpr auto LoginManagerReconnectInterval = 3000;
 	static constexpr auto ServerTerminateTimeout = 3000;
-	static constexpr auto ServerStopSleepInterval = 100;
-	static constexpr auto ServerKillDelayTime = 1000;
+	static constexpr auto ServerKillTimeout = 10000;
+	static constexpr auto ServerWaitSleepInterval = 100;
 	static constexpr auto SessionEnvironmentProbingInterval = 1000;
 	static constexpr auto SessionUptimeSecondsMinimum = 3;
 	static constexpr auto SessionUptimeProbingInterval = 1000;
