@@ -265,7 +265,8 @@ bool AccessControlProvider::isLocalHost( const QString &accessingComputer ) cons
 
 bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QString &localUser ) const
 {
-	return accessingUser == localUser;
+	return accessingUser.isEmpty() == false &&
+			accessingUser == localUser;
 }
 
 
