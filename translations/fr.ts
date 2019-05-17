@@ -1437,15 +1437,15 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir le gestionnaire de fichiers</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Démarrer l&apos;outil d&apos;apprentissage</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>Lire le didacticiel vidéo</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -2682,6 +2682,14 @@ USAGE
     <message>
         <source>User authentication</source>
         <translation>Authentification utilisateur</translation>
+    </message>
+    <message>
+        <source>Session management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display manager users</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

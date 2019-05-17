@@ -2650,6 +2650,14 @@ USAGE
         <source>User authentication</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display manager users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

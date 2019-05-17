@@ -2685,6 +2685,14 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <source>User authentication</source>
         <translation>Autenticacion de usuario</translation>
     </message>
+    <message>
+        <source>Session management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display manager users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

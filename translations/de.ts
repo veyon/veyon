@@ -2680,6 +2680,14 @@ VERWENDUNG
         <source>User authentication</source>
         <translation>Benutzerauthentifizierung</translation>
     </message>
+    <message>
+        <source>Session management</source>
+        <translation>Sitzungsverwaltung</translation>
+    </message>
+    <message>
+        <source>Display manager users</source>
+        <translation>Displaymanager-Benutzer</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

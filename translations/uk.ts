@@ -2682,6 +2682,14 @@ USAGE
         <source>User authentication</source>
         <translation>Розпізнавання користувача</translation>
     </message>
+    <message>
+        <source>Session management</source>
+        <translation>Керування сеансами</translation>
+    </message>
+    <message>
+        <source>Display manager users</source>
+        <translation>Користувачі керування дисплеєм</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
