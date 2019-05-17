@@ -206,11 +206,15 @@ bool LinuxUserFunctions::isAnyUserLoggedOn()
 		return false;
 	}
 
+	const auto displayManagerUsers = LinuxPlatformConfiguration( &VeyonCore::config() ).displayManagerUsers().
+			split( QLatin1Char(',') );
+
 	const auto lines = whoProcess.readAll().split( '\n' );
 	for( const auto& line : lines )
 	{
 		const auto user = QString::fromUtf8( line.split( ' ' ).value( 0 ) );
-		if( user.isEmpty() == false )
+		if( user.isEmpty() == false &&
+			displayManagerUsers.contains( user ) == false )
 		{
 			return true;
 		}
