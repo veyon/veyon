@@ -101,20 +101,12 @@ void ScreenshotManagementPanel::updateScreenshot( const QModelIndex &idx )
 
 void ScreenshotManagementPanel::screenshotDoubleClicked( const QModelIndex &idx )
 {
-	auto imgLabel = new QLabel;
-	imgLabel->setPixmap( m_fsModel.filePath( idx ) );
-	if( imgLabel->pixmap() != nullptr )
-	{
-		imgLabel->setFixedSize( imgLabel->pixmap()->width(),
-								imgLabel->pixmap()->height() );
-	}
-
-	auto sa = new QScrollArea;
-	sa->setAttribute( Qt::WA_DeleteOnClose, true );
-	sa->move( 0, 0 );
-	sa->setWidget( imgLabel );
-	sa->setWindowTitle( m_fsModel.fileName( idx ) );
-	sa->show();
+	auto screenshotWindow = new QLabel;
+	screenshotWindow->setPixmap( m_fsModel.filePath( idx ) );
+	screenshotWindow->setScaledContents( true );
+	screenshotWindow->setWindowTitle( m_fsModel.fileName( idx ) );
+	screenshotWindow->setAttribute( Qt::WA_DeleteOnClose, true );
+	screenshotWindow->showNormal();
 }
 
 
