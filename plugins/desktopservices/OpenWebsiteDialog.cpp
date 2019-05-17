@@ -43,6 +43,8 @@ OpenWebsiteDialog::OpenWebsiteDialog( QWidget* parent ) :
 	connect( ui->presetNameEdit, &QLineEdit::textChanged, this, &OpenWebsiteDialog::validate );
 
 	validate();
+
+	ui->websiteLineEdit->setFocus();
 }
 
 
