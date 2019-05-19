@@ -2685,11 +2685,11 @@ USAGE
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Управление сеансами</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Пользователи управления дисплеем</translation>
     </message>
 </context>
 <context>

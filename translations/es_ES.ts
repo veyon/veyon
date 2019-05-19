@@ -2687,11 +2687,11 @@ Eliminar %1 &lt;LICENSE ID&gt;
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Gestión de sesiones</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Usuarios del gestor de pantalla</translation>
     </message>
 </context>
 <context>

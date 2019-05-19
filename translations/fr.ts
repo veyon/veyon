@@ -2685,11 +2685,11 @@ USAGE
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Gestion de session</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Gestionnaire d&apos;affichage utilisateurs</translation>
     </message>
 </context>
 <context>
