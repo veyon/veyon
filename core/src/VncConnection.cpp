@@ -156,7 +156,7 @@ void VncConnection::rfbClientLogNone( const char* format, ... )
 
 void VncConnection::framebufferCleanup( void* framebuffer )
 {
-	delete[] static_cast<uchar *>( framebuffer );
+	delete[] static_cast<RfbPixel *>( framebuffer );
 }
 
 
@@ -620,11 +620,17 @@ bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
 
 bool VncConnection::initFrameBuffer( rfbClient* client )
 {
-	const auto size = static_cast<uint32_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
+	if( client->format.bitsPerPixel != RfbBitsPerSample * RfbBytesPerPixel )
+	{
+		vCritical() << "Bits per pixel does not match" << client->format.bitsPerPixel;
+		return false;
+	}
 
-	client->frameBuffer = new uint8_t[size];
+	const auto pixelCount = static_cast<uint32_t>( client->width ) * client->height;
 
-	memset( client->frameBuffer, '\0', size );
+	client->frameBuffer = reinterpret_cast<uint8_t *>( new RfbPixel[pixelCount] );
+
+	memset( client->frameBuffer, '\0', pixelCount*RfbBytesPerPixel );
 
 	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
 	// image copy using the framebuffer gets destroyed
@@ -633,7 +639,6 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 	m_imgLock.unlock();
 
 	// set up pixel format according to QImage
-	client->format.bitsPerPixel = 32;
 	client->format.redShift = 16;
 	client->format.greenShift = 8;
 	client->format.blueShift = 0;

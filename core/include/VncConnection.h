@@ -166,9 +166,10 @@ private:
 	static constexpr int SocketKeepaliveCount = 5;
 
 	// RFB parameters
+	using RfbPixel = uint32_t;
 	static constexpr int RfbBitsPerSample = 8;
 	static constexpr int RfbSamplesPerPixel = 3;
-	static constexpr int RfbBytesPerPixel = 4;
+	static constexpr int RfbBytesPerPixel = sizeof(RfbPixel);
 
 	enum class ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,
