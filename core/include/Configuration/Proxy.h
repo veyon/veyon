@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT Proxy : public QObject
 	Q_OBJECT
 public:
 	explicit Proxy( Object* object, QObject* parent = nullptr );
-	~Proxy() = default;
+	~Proxy() override = default;
 
 	bool hasValue( const QString& key, const QString& parentKey ) const;
 

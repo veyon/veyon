@@ -36,7 +36,7 @@ class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginIn
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
 	BuiltinUltraVncServer();
-	virtual ~BuiltinUltraVncServer();
+	~BuiltinUltraVncServer() override;
 
 	Plugin::Uid uid() const override
 	{

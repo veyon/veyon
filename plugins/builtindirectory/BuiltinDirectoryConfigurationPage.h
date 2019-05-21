@@ -38,7 +38,7 @@ class BuiltinDirectoryConfigurationPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	explicit BuiltinDirectoryConfigurationPage( BuiltinDirectoryConfiguration& configuration, QWidget* parent = nullptr );
-	~BuiltinDirectoryConfigurationPage();
+	~BuiltinDirectoryConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

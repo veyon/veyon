@@ -36,7 +36,7 @@ class WindowsCoreFunctions : public PlatformCoreFunctions
 {
 public:
 	WindowsCoreFunctions();
-	~WindowsCoreFunctions();
+	~WindowsCoreFunctions() override;
 
 	bool applyConfiguration() override;
 

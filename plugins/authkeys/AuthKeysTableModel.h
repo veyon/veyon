@@ -41,7 +41,7 @@ public:
 	};
 
 	explicit AuthKeysTableModel( QObject* parent = nullptr );
-	virtual ~AuthKeysTableModel();
+	~AuthKeysTableModel() override;
 
 	void reload();
 

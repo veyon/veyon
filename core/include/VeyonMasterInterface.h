@@ -39,7 +39,7 @@ public:
 	{
 	}
 
-	virtual ~VeyonMasterInterface() = default;
+	~VeyonMasterInterface() override = default;
 
 	virtual QWidget* mainWindow() = 0;
 	virtual Configuration::Object* userConfigurationObject() = 0;

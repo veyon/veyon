@@ -34,7 +34,7 @@ class VncServer : public QThread
 	Q_OBJECT
 public:
 	explicit VncServer( QObject* parent = nullptr );
-	virtual ~VncServer();
+	~VncServer() override;
 
 	void prepare();
 
@@ -43,7 +43,7 @@ public:
 	QString password() const;
 
 private:
-	virtual void run();
+	void run() override;
 
 	VncServerPluginInterface* m_pluginInterface;
 

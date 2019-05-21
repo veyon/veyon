@@ -33,7 +33,7 @@ class WindowsServiceControl : public QObject
 	Q_OBJECT
 public:
 	WindowsServiceControl( const QString& name );
-	~WindowsServiceControl();
+	~WindowsServiceControl() override;
 
 	bool isRegistered();
 	bool isRunning();

@@ -36,7 +36,7 @@ class LocationDialog : public QDialog
 	Q_OBJECT
 public:
 	explicit LocationDialog( QAbstractItemModel* locationListModel, QWidget *parent = nullptr );
-	~LocationDialog();
+	~LocationDialog() override;
 
 	const QString& selectedLocation() const
 	{

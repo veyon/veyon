@@ -67,7 +67,7 @@ public:
 	using Objects = QMap<QString, QMap<QString, QStringList> >;
 
 	explicit LdapClient( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
-	~LdapClient();
+	~LdapClient() override;
 
 	const LdapConfiguration& configuration() const
 	{

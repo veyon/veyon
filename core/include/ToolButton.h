@@ -41,7 +41,7 @@ public:
 				const QString& altLabel = QString(),
 				const QString& description = QString(),
 				const QKeySequence& shortcut = QKeySequence() );
-	~ToolButton() = default;
+	~ToolButton() override = default;
 
 	static void setIconOnlyMode( QWidget* mainWindow, bool enabled );
 

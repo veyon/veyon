@@ -72,12 +72,12 @@ public:
 	}
 
 protected:
-	qint64 readData( char *buf, qint64 bytes )
+	qint64 readData( char *buf, qint64 bytes ) override
 	{
 		return m_dispatcher( buf, bytes, SocketOpRead, m_user );
 	}
 
-	qint64 writeData( const char *buf, qint64 bytes )
+	qint64 writeData( const char *buf, qint64 bytes ) override
 	{
 		return m_dispatcher( const_cast<char *>( buf ), bytes,
 												SocketOpWrite, m_user );

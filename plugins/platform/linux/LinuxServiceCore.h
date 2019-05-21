@@ -36,7 +36,7 @@ class LinuxServiceCore : public QObject, PlatformServiceCore
 	Q_OBJECT
 public:
 	explicit LinuxServiceCore( QObject* parent = nullptr );
-	~LinuxServiceCore();
+	~LinuxServiceCore() override;
 
 	void run();
 
@@ -55,7 +55,7 @@ private:
 
 	using LoginDBusSession = struct {
 		QString id;
-		quint32 uid;
+		quint32 uid{0};
 		QString name;
 		QString seatId;
 		QDBusObjectPath path;

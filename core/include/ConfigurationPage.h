@@ -33,7 +33,7 @@ class VEYON_CORE_EXPORT ConfigurationPage : public QWidget
 	Q_OBJECT
 public:
 	explicit ConfigurationPage( QWidget* parent = nullptr );
-	~ConfigurationPage() = default;
+	~ConfigurationPage() override = default;
 
 	virtual void resetWidgets() = 0;
 	virtual void connectWidgetsToProperties() = 0;

@@ -40,7 +40,7 @@ class LdapBrowseDialog : public QDialog
 	Q_OBJECT
 public:
 	explicit LdapBrowseDialog( const LdapConfiguration& configuration, QWidget* parent = nullptr );
-	~LdapBrowseDialog();
+	~LdapBrowseDialog() override;
 
 	QString browseBaseDn( const QString& dn );
 	QString browseDn( const QString& dn );
