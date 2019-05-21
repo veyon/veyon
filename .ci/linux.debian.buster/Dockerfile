@@ -4,9 +4,9 @@ MAINTAINER Tobias Junghans <tobydox@veyon.io>
 RUN \
 	apt-get update && \
 	apt-get install --no-install-recommends -y --force-yes \
-		git binutils gcc g++ make cmake dpkg-dev rename file fakeroot \
+		git binutils gcc g++ make cmake rename file fakeroot \
 		qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
-		xorg-dev libxtst-dev \
+		xorg-dev \
 		libjpeg-dev \
 		zlib1g-dev \
 		libssl-dev \
@@ -14,6 +14,7 @@ RUN \
 		libprocps-dev \
 		libldap2-dev \
 		libsasl2-dev \
+		libpng-dev \
 		liblzo2-dev \
 		libqca-qt5-2-dev libqca-qt5-2-plugins \
 		&& \
