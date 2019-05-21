@@ -347,7 +347,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>key pair aanmaken</translation>
     </message>
     <message>
         <source>Delete key</source>
@@ -367,7 +367,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Key bestanden (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -395,7 +395,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer een gebruikersgroep die je toegang wil geven tot key &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -407,7 +407,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Maak een key pair op de master computer.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
@@ -415,7 +415,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Exporteer de publieke key en importeer deze op alle client computers met dezelfde naam.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -437,7 +437,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Key naam bevat niet toegestane karakters</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -453,7 +453,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Maak een nieuw key pair voor &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -461,11 +461,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Het nieuwe key pair is opgeslagen op &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Kan key bestand &quot;%1&quot; niet verwijderen!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -493,19 +493,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>Bestand &quot;%1&quot; bevat geen geldige private sleutel!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>Bestand &quot;%1&quot; bevat geen geldige publieke sleutel!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Maken van de map voor sleutelbestand is mislukt.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Schrijven van sleutelbestand &quot;%1&quot; is mislukt.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
@@ -525,7 +525,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Schrijven van private sleutel in bestand &quot;%1&quot; is mislukt.</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
@@ -572,7 +572,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder authenticatie sleutel</translation>
     </message>
     <message>
         <source>List authentication keys</source>
@@ -580,11 +580,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Importeer publieke of private sleutel</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Exporteer publieke of private sleutels</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
@@ -671,11 +671,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Toegangsgroep</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Paar ID</translation>
     </message>
 </context>
 <context>
@@ -745,11 +745,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Importeer objecten van opgegeven bestand</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Exporteer objecten van opgegeven bestand</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -773,19 +773,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Gevraagd object niet gevonnden.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Bestand &quot;%1&quot; bestaat niet!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Kan bestand &quot;%1&quot; niet lezen!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Onbekend argument &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -1403,7 +1403,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Aangepast programma</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1411,7 +1411,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Aangepaste website</translation>
     </message>
 </context>
 <context>
@@ -1430,7 +1430,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Aangepaste website</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1446,7 +1446,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Aangepast programma</translation>
     </message>
 </context>
 <context>
@@ -1683,7 +1683,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>Methode:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -2164,15 +2164,16 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Verbindingsbeveiliging</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS certificaatverificatie
+</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Systeem standaard</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
@@ -2180,7 +2181,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Aangepast CA certificaatbestand</translation>
     </message>
     <message>
         <source>None</source>
@@ -2234,7 +2235,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Certificaatbestanden (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2252,7 +2253,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Encryptie protocol</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
@@ -2967,7 +2968,7 @@ USAGE
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>Miniatuurweergave update interval</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2995,7 +2996,7 @@ USAGE
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Bijschrift van de computerminiatuur</translation>
     </message>
     <message>
         <source>Text color</source>
@@ -3415,7 +3416,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Externe toegang</translation>
     </message>
 </context>
 <context>
@@ -3719,7 +3720,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>Toon melding op externe verbinding</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
@@ -3730,15 +3731,15 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Service %1 wordt gestart</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Service %1 wordt gestopt</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Service %1 wordt geregistreerd</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
@@ -3800,7 +3801,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Bestand &quot;%1&quot; bestaat niet!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
