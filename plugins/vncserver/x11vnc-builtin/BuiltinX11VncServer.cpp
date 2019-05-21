@@ -60,7 +60,9 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 	QStringList cmdline = { QStringLiteral("-localhost"),
 							QStringLiteral("-nosel"),			// do not exchange clipboard-contents
 							QStringLiteral("-nosetclipboard"),	// do not exchange clipboard-contents
-							QStringLiteral("-rfbport"), QString::number( serverPort ) // set port at which the VNC server should listen
+							QStringLiteral("-rfbport"), QString::number( serverPort ), // set port at which the VNC server should listen
+							QStringLiteral("-rfbportv6"), QString::number( serverPort ), // set IPv6 port at which the VNC server should listen
+							QStringLiteral("-no6"),
 						  } ;
 
 	const auto extraArguments = m_configuration.extraArguments();
