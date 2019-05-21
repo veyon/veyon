@@ -107,9 +107,17 @@ void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMod
 	else
 	{
 		vDebug() << "Starting worker (unmanaged session process) for feature" << feature.name() << featureUid;
-		VeyonCore::platform().coreFunctions().runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { featureUid },
-																VeyonCore::platform().userFunctions().currentUser(),
-																VeyonCore::platform().coreFunctions().activeDesktopName() );
+		const auto ret = VeyonCore::platform().coreFunctions().
+				runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { featureUid },
+								  VeyonCore::platform().userFunctions().currentUser(),
+								  VeyonCore::platform().coreFunctions().activeDesktopName() );
+		if( ret == false )
+		{
+			vDebug() << "User session likely not yet available - retrying worker start";
+			QTimer::singleShot( UnmanagedSessionProcessRetryInterval, this,
+								[=]() { startWorker( feature, workerProcessMode ); } );
+			return;
+		}
 	}
 
 	m_workersMutex.lock();

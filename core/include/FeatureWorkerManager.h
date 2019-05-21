@@ -63,6 +63,8 @@ private:
 
 	void sendPendingMessages();
 
+	static constexpr auto UnmanagedSessionProcessRetryInterval = 5000;
+
 	VeyonServerInterface& m_server;
 	FeatureManager& m_featureManager;
 	QTcpServer m_tcpServer;
