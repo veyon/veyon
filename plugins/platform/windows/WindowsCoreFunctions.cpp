@@ -323,7 +323,13 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 											 const QString& username,
 											 const QString& desktop )
 {
-	auto processHandle = runProgramInSession( program, parameters, WtsSessionManager::findProcessId( username ), desktop );
+	const auto baseProcessId = WtsSessionManager::findProcessId( username );
+	if( baseProcessId == static_cast<DWORD>( -1 ) )
+	{
+		return false;
+	}
+
+	auto processHandle = runProgramInSession( program, parameters, baseProcessId, desktop );
 	if( processHandle )
 	{
 		CloseHandle( processHandle );
