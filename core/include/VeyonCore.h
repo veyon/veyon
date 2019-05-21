@@ -180,6 +180,7 @@ private:
 	void initLocalComputerControlInterface();
 	bool initLogonAuthentication();
 	bool initKeyFileAuthentication();
+	void initSystemInfo();
 
 	static VeyonCore* s_instance;
 

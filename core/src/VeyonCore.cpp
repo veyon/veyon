@@ -32,8 +32,10 @@
 #include <QDir>
 #include <QGroupBox>
 #include <QHostAddress>
+#include <QHostInfo>
 #include <QLabel>
 #include <QProcessEnvironment>
+#include <QSysInfo>
 
 #include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
@@ -94,6 +96,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	initManagers();
 
 	initLocalComputerControlInterface();
+
+	initSystemInfo();
 }
 
 
@@ -701,4 +705,12 @@ bool VeyonCore::initKeyFileAuthentication()
 	}
 
 	return false;
+}
+
+
+
+void VeyonCore::initSystemInfo()
+{
+	vDebug() << QHostInfo::localHostName() << QSysInfo::kernelType() << QSysInfo::kernelVersion()
+			 << QSysInfo::prettyProductName() << QSysInfo::productType() << QSysInfo::productVersion();
 }
