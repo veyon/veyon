@@ -40,7 +40,6 @@ public:
 		ActionAllow,
 		ActionDeny,
 		ActionAskForPermission,
-		ActionCount
 	} ;
 
 	Q_ENUM(Action)
@@ -56,7 +55,6 @@ public:
 		ConditionAccessFromLocalUser,
 		ConditionAccessFromAlreadyConnectedUser,
 		ConditionNoUserLoggedOn,
-		ConditionCount
 	} ;
 
 	Q_ENUM(Condition)
@@ -68,7 +66,6 @@ public:
 		SubjectAccessingComputer,
 		SubjectLocalUser,
 		SubjectLocalComputer,
-		SubjectCount
 	} ;
 
 	Q_ENUM(Subject)
