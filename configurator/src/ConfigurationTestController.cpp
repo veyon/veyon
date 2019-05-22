@@ -65,10 +65,10 @@ int ConfigurationTestController::run()
 																   testArgument( 3 ), testArgument( 4 ),
 																   QStringList( testArgument( 5 ) ) ) )
 		{
-		case AccessControlRule::ActionAllow: printf( "[TEST]: AccessControlRules: ALLOW\n" ); return 0;
-		case AccessControlRule::ActionDeny: printf( "[TEST]: AccessControlRules: DENY\n" ); return 0;
-		case AccessControlRule::ActionNone: printf( "[TEST]: AccessControlRules: NONE\n" ); return 0;
-		case AccessControlRule::ActionAskForPermission: printf( "[TEST]: AccessControlRules: ASK FOR PERMISSION\n" ); return 0;
+		case AccessControlRule::Action::Allow: printf( "[TEST]: AccessControlRules: ALLOW\n" ); return 0;
+		case AccessControlRule::Action::Deny: printf( "[TEST]: AccessControlRules: DENY\n" ); return 0;
+		case AccessControlRule::Action::None: printf( "[TEST]: AccessControlRules: NONE\n" ); return 0;
+		case AccessControlRule::Action::AskForPermission: printf( "[TEST]: AccessControlRules: ASK FOR PERMISSION\n" ); return 0;
 		default: printf( "[TEST]: AccessControlRules: FAIL\n" ); return -1;
 		}
 	}

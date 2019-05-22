@@ -72,13 +72,13 @@ void AccessControlRulesTestDialog::accept()
 
 	switch( result )
 	{
-	case AccessControlRule::ActionAllow:
+	case AccessControlRule::Action::Allow:
 		resultText = tr( "The access in the given scenario is allowed." );
 		break;
-	case AccessControlRule::ActionDeny:
+	case AccessControlRule::Action::Deny:
 		resultText = tr( "The access in the given scenario is denied." );
 		break;
-	case AccessControlRule::ActionAskForPermission:
+	case AccessControlRule::Action::AskForPermission:
 		resultText = tr( "The access in the given scenario needs permission of the logged on user." );
 		break;
 	default:

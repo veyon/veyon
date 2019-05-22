@@ -29,7 +29,7 @@
 AccessControlRule::AccessControlRule() :
 	m_name(),
 	m_description(),
-	m_action( ActionNone ),
+	m_action( Action::None ),
 	m_parameters(),
 	m_invertConditions( false ),
 	m_ignoreConditions( false )
@@ -53,7 +53,7 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 	m_name(),
 	m_description(),
-	m_action( ActionNone ),
+	m_action( Action::None ),
 	m_parameters(),
 	m_invertConditions( false ),
 	m_ignoreConditions( false )
@@ -104,7 +104,7 @@ QJsonObject AccessControlRule::toJson() const
 
 	json[QStringLiteral("Name")] = m_name;
 	json[QStringLiteral("Description")] = m_description;
-	json[QStringLiteral("Action")] = m_action;
+	json[QStringLiteral("Action")] = static_cast<int>( m_action );
 	json[QStringLiteral("InvertConditions")] = m_invertConditions;
 	json[QStringLiteral("IgnoreConditions")] = m_ignoreConditions;
 
@@ -115,9 +115,9 @@ QJsonObject AccessControlRule::toJson() const
 		if( isConditionEnabled( it.key() ) )
 		{
 			QJsonObject parametersObject;
-			parametersObject[QStringLiteral("Condition")] = it.key();
+			parametersObject[QStringLiteral("Condition")] = static_cast<int>( it.key() );
 			parametersObject[QStringLiteral("Enabled")] = true;
-			parametersObject[QStringLiteral("Subject")] = subject( it.key() );
+			parametersObject[QStringLiteral("Subject")] = static_cast<int>( subject( it.key() ) );
 			parametersObject[QStringLiteral("Argument")] = argument( it.key() );
 			parameters.append( parametersObject );
 		}

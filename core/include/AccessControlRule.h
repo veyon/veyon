@@ -34,38 +34,38 @@ class VEYON_CORE_EXPORT AccessControlRule
 {
 	Q_GADGET
 public:
-	enum Action
+	enum class Action
 	{
-		ActionNone,
-		ActionAllow,
-		ActionDeny,
-		ActionAskForPermission,
+		None,
+		Allow,
+		Deny,
+		AskForPermission,
 	} ;
 
 	Q_ENUM(Action)
 
-	enum Condition
+	enum class Condition
 	{
-		ConditionNone,
-		ConditionMemberOfUserGroup,
-		ConditionGroupsInCommon,
-		ConditionLocatedAt,
-		ConditionSameLocation,
-		ConditionAccessFromLocalHost,
-		ConditionAccessFromLocalUser,
-		ConditionAccessFromAlreadyConnectedUser,
-		ConditionNoUserLoggedOn,
+		None,
+		MemberOfUserGroup,
+		GroupsInCommon,
+		LocatedAt,
+		SameLocation,
+		AccessFromLocalHost,
+		AccessFromLocalUser,
+		AccessFromAlreadyConnectedUser,
+		NoUserLoggedOn,
 	} ;
 
 	Q_ENUM(Condition)
 
-	enum Subject
+	enum class Subject
 	{
-		SubjectNone,
-		SubjectAccessingUser,
-		SubjectAccessingComputer,
-		SubjectLocalUser,
-		SubjectLocalComputer,
+		None,
+		AccessingUser,
+		AccessingComputer,
+		LocalUser,
+		LocalComputer,
 	} ;
 
 	Q_ENUM(Subject)
@@ -75,7 +75,7 @@ public:
 	struct ConditionParameters
 	{
 		bool enabled{false};
-		Subject subject{SubjectNone};
+		Subject subject{Subject::None};
 		ConditionArgument argument;
 	};
 

@@ -122,9 +122,9 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 												 connectedUsers );
 		switch( action )
 		{
-		case AccessControlRule::ActionAllow:
+		case AccessControlRule::Action::Allow:
 			return AccessAllow;
-		case AccessControlRule::ActionAskForPermission:
+		case AccessControlRule::Action::AskForPermission:
 			return AccessToBeConfirmed;
 		default: break;
 		}
@@ -166,7 +166,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
 		// rule disabled?
-		if( rule.action() == AccessControlRule::ActionNone )
+		if( rule.action() == AccessControlRule::Action::None )
 		{
 			// then continue with next rule
 			continue;
@@ -182,7 +182,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 
 	vDebug() << "no matching rule, denying access";
 
-	return AccessControlRule::ActionDeny;
+	return AccessControlRule::Action::Deny;
 }
 
 
@@ -203,10 +203,10 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 		{
 			switch( rule.action() )
 			{
-			case AccessControlRule::ActionDeny:
+			case AccessControlRule::Action::Deny:
 				return true;
-			case AccessControlRule::ActionAllow:
-			case AccessControlRule::ActionAskForPermission:
+			case AccessControlRule::Action::Allow:
+			case AccessControlRule::Action::AskForPermission:
 				return false;
 			default:
 				break;
@@ -290,10 +290,10 @@ QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject
 {
 	switch( subject )
 	{
-	case AccessControlRule::SubjectAccessingUser: return accessingUser;
-	case AccessControlRule::SubjectAccessingComputer: return accessingComputer;
-	case AccessControlRule::SubjectLocalUser: return localUser;
-	case AccessControlRule::SubjectLocalComputer: return localComputer;
+	case AccessControlRule::Subject::AccessingUser: return accessingUser;
+	case AccessControlRule::Subject::AccessingComputer: return accessingComputer;
+	case AccessControlRule::Subject::LocalUser: return localUser;
+	case AccessControlRule::Subject::LocalComputer: return localComputer;
 	default: break;
 	}
 
@@ -316,12 +316,11 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	vDebug() << rule.toJson() << matchResult;
 
-	auto condition = AccessControlRule::ConditionMemberOfUserGroup;
-
-	if( rule.isConditionEnabled( condition ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup ) )
 	{
 		hasConditions = true;
 
+		const auto condition = AccessControlRule::Condition::MemberOfUserGroup;
 		const auto user = lookupSubject( rule.subject( condition ), accessingUser, {}, localUser, {} );
 		const auto group = rule.argument( condition );
 
@@ -332,9 +331,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	condition = AccessControlRule::ConditionGroupsInCommon;
-
-	if( rule.isConditionEnabled( condition ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::GroupsInCommon ) )
 	{
 		hasConditions = true;
 
@@ -345,12 +342,11 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	condition = AccessControlRule::ConditionLocatedAt;
-
-	if( rule.isConditionEnabled( condition ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::LocatedAt ) )
 	{
 		hasConditions = true;
 
+		const auto condition = AccessControlRule::Condition::LocatedAt;
 		const auto computer = lookupSubject( rule.subject( condition ), {}, accessingComputer, {}, localComputer );
 		const auto location = rule.argument( condition );
 
@@ -361,10 +357,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-
-	condition = AccessControlRule::ConditionSameLocation;
-
-	if( rule.isConditionEnabled( condition ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::SameLocation ) )
 	{
 		hasConditions = true;
 
@@ -375,7 +368,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost ) )
 	{
 		hasConditions = true;
 
@@ -385,7 +378,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalUser ) )
 	{
 		hasConditions = true;
 
@@ -395,7 +388,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser ) )
 	{
 		hasConditions = true;
 
@@ -405,7 +398,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::ConditionNoUserLoggedOn ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedOn ) )
 	{
 		hasConditions = true;
 
