@@ -198,11 +198,19 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
-		if( rule.action() == AccessControlRule::ActionDeny &&
-			matchConditions( rule, {}, {},
+		if( matchConditions( rule, {}, {},
 							 VeyonCore::platform().userFunctions().currentUser(), QHostInfo::localHostName(), {} ) )
 		{
-			return true;
+			switch( rule.action() )
+			{
+			case AccessControlRule::ActionDeny:
+				return true;
+			case AccessControlRule::ActionAllow:
+			case AccessControlRule::ActionAskForPermission:
+				return false;
+			default:
+				break;
+			}
 		}
 	}
 
