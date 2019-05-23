@@ -455,7 +455,11 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	PROCESS_INFORMATION pi;
 	ZeroMemory( &si, sizeof( STARTUPINFO ) );
 	si.cb = sizeof( STARTUPINFO );
-	if( desktop.isEmpty() == false )
+	if( desktop.isEmpty() )
+	{
+		si.lpDesktop = toWCharArray( QStringLiteral("Winsta0\\Default") );
+	}
+	else
 	{
 		si.lpDesktop = toWCharArray( desktop );
 	}
