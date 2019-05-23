@@ -95,7 +95,7 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 	case SessionInfoDomainName: infoClass = WTSDomainName; break;
 	default:
 		vCritical() << "invalid session info" << sessionInfo << "requested";
-		return QString();
+		return {};
 	}
 
 	QString result;
@@ -209,15 +209,15 @@ WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& us
 
 QStringList WtsSessionManager::loggedOnUsers()
 {
-	QStringList users;
-
 	PWTS_SESSION_INFO sessionInfo = nullptr;
 	DWORD sessionCount = 0;
 
 	if( WTSEnumerateSessions( WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessionInfo, &sessionCount ) == false )
 	{
-		return users;
+		return {};
 	}
+
+	QStringList users;
 
 	for( DWORD session = 0; session < sessionCount; ++session )
 	{
@@ -230,7 +230,7 @@ QStringList WtsSessionManager::loggedOnUsers()
 		DWORD bytesReturned = 0;
 		if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionInfo[session].SessionId, WTSUserName,
 										&userBuffer, &bytesReturned ) == false ||
-				userBuffer == nullptr )
+			userBuffer == nullptr )
 		{
 			continue;
 		}
