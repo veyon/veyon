@@ -81,6 +81,12 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 
 QString WtsSessionManager::querySessionInformation( SessionId sessionId, SessionInfo sessionInfo )
 {
+	if( sessionId == InvalidSession )
+	{
+		vCritical() << "called with invalid session ID";
+		return {};
+	}
+
 	WTS_INFO_CLASS infoClass = WTSInitialProgram;
 
 	switch( sessionInfo )
@@ -104,6 +110,8 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 	}
 
 	WTSFreeMemory( pBuffer );
+
+	vDebug() << sessionId << sessionInfo << result;
 
 	return result;
 }
