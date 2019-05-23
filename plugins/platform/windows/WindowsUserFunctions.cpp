@@ -136,7 +136,7 @@ QString WindowsUserFunctions::currentUser()
 		if( domainName == QString::fromWCharArray( computerName ) )
 		{
 			// reset domain name as we do not need to store local computer name
-			domainName = QString();
+			domainName.clear();
 		}
 	}
 
