@@ -29,6 +29,19 @@
 #include "WtsSessionManager.h"
 
 
+WtsSessionManager::SessionId WtsSessionManager::currentSession()
+{
+	auto sessionId = InvalidSession;
+	if( ProcessIdToSessionId( GetCurrentProcessId(), &sessionId ) == 0 )
+	{
+		vWarning() << GetLastError();
+		return InvalidSession;
+	}
+
+	return sessionId;
+}
+
+
 
 WtsSessionManager::SessionId WtsSessionManager::activeConsoleSession()
 {

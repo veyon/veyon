@@ -48,6 +48,8 @@ public:
 	static constexpr SessionId InvalidSession = static_cast<SessionId>( -1 );
 	static constexpr ProcessId InvalidProcess = static_cast<ProcessId>( -1 );
 
+	static SessionId currentSession();
+
 	static SessionId activeConsoleSession();
 
 	static SessionList activeSessions();
