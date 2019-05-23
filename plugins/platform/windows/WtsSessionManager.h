@@ -36,9 +36,7 @@ public:
 	enum SessionInfo {
 		SessionInfoNone,
 		SessionInfoUserName,
-		SessionInfoWinStationName,
 		SessionInfoDomainName,
-		SessionInfoCount
 	};
 
 	enum {
