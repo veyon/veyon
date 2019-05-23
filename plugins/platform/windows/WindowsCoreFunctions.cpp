@@ -322,9 +322,12 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 											 const QString& username,
 											 const QString& desktop )
 {
+	vDebug() << program << parameters << username << desktop;
+
 	const auto baseProcessId = WtsSessionManager::findProcessId( username );
-	if( baseProcessId == static_cast<DWORD>( -1 ) )
+	if( baseProcessId == WtsSessionManager::InvalidProcess )
 	{
+		vCritical() << "could not determine base process ID for user" << username;
 		return false;
 	}
 
@@ -404,6 +407,11 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 
 	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, baseProcessId );
+	if( userProcessHandle == nullptr )
+	{
+		vCritical() << "OpenProcess()" << GetLastError();
+		return nullptr;
+	}
 
 	HANDLE userProcessToken = nullptr;
 	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
