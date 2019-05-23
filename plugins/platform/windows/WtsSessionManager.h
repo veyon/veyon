@@ -45,7 +45,7 @@ public:
 		SessionUpdateInterval = 1000
 	};
 
-	static const SessionId InvalidSession = 0xFFFFFFFF;
+	static constexpr SessionId InvalidSession = static_cast<SessionId>( -1 );
 	static constexpr ProcessId InvalidProcess = static_cast<ProcessId>( -1 );
 
 	static SessionId activeConsoleSession();
