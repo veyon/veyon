@@ -711,6 +711,7 @@ bool VeyonCore::initKeyFileAuthentication()
 
 void VeyonCore::initSystemInfo()
 {
-	vDebug() << QHostInfo::localHostName() << QSysInfo::kernelType() << QSysInfo::kernelVersion()
+	vDebug() << version() << QHostInfo::localHostName()
+			 << QSysInfo::kernelType() << QSysInfo::kernelVersion()
 			 << QSysInfo::prettyProductName() << QSysInfo::productType() << QSysInfo::productVersion();
 }
