@@ -54,11 +54,21 @@ public:
 	{
 		stop();
 
-		vInfo() << "Starting server for WTS session" << wtsSessionId
-				<< "with user" << VeyonCore::platform().userFunctions().currentUser();
+		const auto baseProcessId = WtsSessionManager::findWinlogonProcessId( wtsSessionId );
+		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfoUserName );
 
-		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), { },
-																		WtsSessionManager::findWinlogonProcessId( wtsSessionId ) );
+		QStringList extraEnv;
+		if( VeyonCore::config().isMultiSessionServiceEnabled() )
+		{
+			extraEnv.append( QStringLiteral("%1=%2").
+							 arg( VeyonCore::sessionIdEnvironmentVariable() ).
+							 arg( wtsSessionId % 100 ) );
+		}
+
+		vInfo() << "Starting server for session" << wtsSessionId << "with user" << user;
+		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), {},
+																		extraEnv,
+																		baseProcessId, {} );
 		if( m_subProcessHandle == nullptr )
 		{
 			vCritical() << "Failed to start server!";
@@ -241,7 +251,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 
 		if( oldWtsSessionId != wtsSessionId || sessionChanged )
 		{
-			vInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
+			vInfo() << "Session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
 
 			if( oldWtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
