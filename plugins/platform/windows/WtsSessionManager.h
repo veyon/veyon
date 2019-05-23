@@ -31,6 +31,7 @@ class WtsSessionManager
 public:
 	using SessionId = DWORD;
 	using SessionList = QList<DWORD>;
+	using ProcessId = DWORD;
 
 	enum SessionInfo {
 		SessionInfoNone,
@@ -45,6 +46,7 @@ public:
 	};
 
 	static const SessionId InvalidSession = 0xFFFFFFFF;
+	static constexpr ProcessId InvalidProcess = static_cast<ProcessId>( -1 );
 
 	static SessionId activeConsoleSession();
 
@@ -52,8 +54,8 @@ public:
 
 	static QString querySessionInformation( SessionId sessionId, SessionInfo sessionInfo );
 
-	static DWORD findWinlogonProcessId( SessionId sessionId );
-	static DWORD findProcessId( const QString& userName );
+	static ProcessId findWinlogonProcessId( SessionId sessionId );
+	static ProcessId findProcessId( const QString& userName );
 
 	static QStringList loggedOnUsers();
 

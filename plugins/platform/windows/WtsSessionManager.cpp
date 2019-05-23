@@ -97,17 +97,23 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 
 
 
-DWORD WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
+WtsSessionManager::ProcessId WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
 {
+	if( sessionId == InvalidSession )
+	{
+		vCritical() << "called with invalid session ID";
+		return InvalidProcess;
+	}
+
 	PWTS_PROCESS_INFO processInfo = nullptr;
 	DWORD processCount = 0;
-	auto pid = static_cast<DWORD>( -1 );
 
 	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
 	{
-		return pid;
+		return InvalidProcess;
 	}
 
+	auto pid = InvalidProcess;
 	const auto processName = QStringLiteral("winlogon.exe");
 
 	for( DWORD proc = 0; proc < processCount; ++proc )
@@ -118,7 +124,7 @@ DWORD WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
 		}
 
 		if( processName.compare( QString::fromWCharArray( processInfo[proc].pProcessName ), Qt::CaseInsensitive ) == 0 &&
-				sessionId == processInfo[proc].SessionId )
+			sessionId == processInfo[proc].SessionId )
 		{
 			pid = processInfo[proc].ProcessId;
 			break;
@@ -131,7 +137,8 @@ DWORD WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
 }
 
 
-DWORD WtsSessionManager::findProcessId( const QString& userName )
+
+WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& userName )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
 	char userSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
@@ -149,7 +156,7 @@ DWORD WtsSessionManager::findProcessId( const QString& userName )
 						   &sidNameUse ) == false )
 	{
 		vCritical() << "could not look up SID structure";
-		return -1;
+		return InvalidProcess;
 	}
 
 	PWTS_PROCESS_INFO processInfo;
@@ -157,10 +164,11 @@ DWORD WtsSessionManager::findProcessId( const QString& userName )
 
 	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
 	{
-		return -1;
+		vWarning() << "WTSEnumerateProcesses() failed:" << GetLastError();
+		return InvalidProcess;
 	}
 
-	DWORD pid = -1;
+	auto pid = InvalidProcess;
 
 	for( DWORD proc = 0; proc < processCount; ++proc )
 	{
