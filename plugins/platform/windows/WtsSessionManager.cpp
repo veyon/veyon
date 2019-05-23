@@ -193,7 +193,8 @@ WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& us
 	for( DWORD proc = 0; proc < processCount; ++proc )
 	{
 		if( processInfo[proc].ProcessId > 0 &&
-				EqualSid( processInfo[proc].pUserSid, userSID ) )
+			processInfo[proc].pUserSid != nullptr &&
+			EqualSid( processInfo[proc].pUserSid, userSID ) )
 		{
 			pid = processInfo[proc].ProcessId;
 			break;
