@@ -508,6 +508,20 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 
 
+QStringList WindowsCoreFunctions::sessionIdEnvironment()
+{
+	if( VeyonCore::config().isMultiSessionServiceEnabled() )
+	{
+		return { QStringLiteral("%1=%2").
+					arg( VeyonCore::sessionIdEnvironmentVariable() ).
+					arg( WtsSessionManager::currentSession() % 100 ) };
+	}
+
+	return {};
+}
+
+
+
 wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings )
 {
 	static constexpr auto ENV_POS_MAX = 1024*1024;

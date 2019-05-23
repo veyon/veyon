@@ -76,6 +76,8 @@ public:
 									   DWORD baseProcessId,
 									   const QString& desktop );
 
+	static QStringList sessionIdEnvironment();
+
 private:
 	static wchar_t* appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings );
 	static void setTaskbarState( bool enabled );
