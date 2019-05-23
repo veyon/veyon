@@ -121,7 +121,7 @@ bool WindowsUserFunctions::isAnyUserLoggedOn()
 
 QString WindowsUserFunctions::currentUser()
 {
-	auto sessionId = WtsSessionManager::activeConsoleSession();
+	auto sessionId = WtsSessionManager::currentSession();
 
 	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfoUserName );
 	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfoDomainName );
