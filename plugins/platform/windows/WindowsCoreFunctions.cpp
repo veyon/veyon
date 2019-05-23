@@ -250,7 +250,7 @@ QString WindowsCoreFunctions::activeDesktopName()
 {
 	QString desktopName;
 
-	auto desktopHandle = OpenInputDesktop( 0, true, DESKTOP_READOBJECTS );
+	auto desktopHandle = GetThreadDesktop( GetCurrentThreadId() );
 
 	wchar_t inputDesktopName[256]; // Flawfinder: ignore
 	inputDesktopName[0] = 0;
@@ -259,7 +259,6 @@ QString WindowsCoreFunctions::activeDesktopName()
 	{
 		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName ) );
 	}
-	CloseDesktop( desktopHandle );
 
 	return desktopName;
 }
