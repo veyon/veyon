@@ -508,6 +508,41 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 
 
+wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings )
+{
+	static constexpr auto ENV_POS_MAX = 1024*1024;
+
+	int envPos = 0;
+	while( envPos < ENV_POS_MAX-1 && !(env[envPos] == 0 && env[envPos+1] == 0) )
+	{
+		++envPos;
+	}
+
+	++envPos;
+
+	if( envPos >= ENV_POS_MAX-1 )
+	{
+		return nullptr;
+	}
+
+	auto newEnv = new wchar_t[envPos+strings.join( QLatin1Char(' ') ).size()+2];
+	memcpy( newEnv, env, envPos*2 );
+
+	for( const auto& string : strings )
+	{
+		memcpy( &newEnv[envPos], toConstWCharArray( string ), string.size()*2 );
+		envPos += string.size();
+		newEnv[envPos] = 0;
+		++envPos;
+	}
+
+	newEnv[envPos] = 0;
+
+	return newEnv;
+}
+
+
+
 void WindowsCoreFunctions::setTaskbarState( bool enabled )
 {
 	auto taskbar = FindWindow( L"Shell_TrayWnd", nullptr );

@@ -72,10 +72,12 @@ public:
 
 	static HANDLE runProgramInSession( const QString& program,
 									   const QStringList& parameters,
+									   const QStringList& extraEnvironment,
 									   DWORD baseProcessId,
-									   const QString& desktop = QString() );
+									   const QString& desktop );
 
 private:
+	static wchar_t* appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings );
 	static void setTaskbarState( bool enabled );
 	static void setStartMenuState( bool enabled );
 	static void setDesktopState( bool enabled );
