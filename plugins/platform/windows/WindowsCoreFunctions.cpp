@@ -331,7 +331,7 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 		return false;
 	}
 
-	auto processHandle = runProgramInSession( program, parameters, baseProcessId, desktop );
+	auto processHandle = runProgramInSession( program, parameters, sessionIdEnvironment(), baseProcessId, desktop );
 	if( processHandle )
 	{
 		CloseHandle( processHandle );
@@ -400,9 +400,12 @@ const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 
 HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 												  const QStringList& parameters,
+												  const QStringList& extraEnvironment,
 												  DWORD baseProcessId,
 												  const QString& desktop )
 {
+	vDebug() << program << parameters << extraEnvironment << baseProcessId;
+
 	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 	enablePrivilege( SE_TCB_NAME, true );
@@ -464,6 +467,8 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 		si.lpDesktop = toWCharArray( desktop );
 	}
 
+	auto fullEnvironment = appendToEnvironmentBlock( reinterpret_cast<const wchar_t *>( userEnvironment ), extraEnvironment );
+
 	HANDLE newToken = nullptr;
 
 	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
@@ -479,7 +484,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
 				false,			 // handles are not inheritable
 				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
-				userEnvironment,			  // pointer to new environment block
+				fullEnvironment ? fullEnvironment : userEnvironment,			  // pointer to new environment block
 				profileDir,			  // name of current directory
 				&si,			   // pointer to STARTUPINFO structure
 				&pi				// receives information about new process
@@ -490,6 +495,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 		vCritical() << "CreateProcessAsUser()" << GetLastError();
 	}
 
+	delete[] fullEnvironment;
 	delete[] commandLine;
 
 	delete[] si.lpDesktop;
