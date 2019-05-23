@@ -405,6 +405,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 {
 	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
+	enablePrivilege( SE_TCB_NAME, true );
 
 	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, baseProcessId );
 	if( userProcessHandle == nullptr )
