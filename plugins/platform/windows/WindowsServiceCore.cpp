@@ -228,10 +228,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 
 	SetEvent( m_serverShutdownEvent );
 
-	for( auto it = serverProcesses.begin(), end = serverProcesses.end(); it != end; ++it )
-	{
-		delete it.value();
-	}
+	qDeleteAll(serverProcesses);
 }
 
 
