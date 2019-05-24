@@ -38,6 +38,7 @@ public:
 	{
 		NoFlags,
 		ProvidesDefaultImplementation = 0x0001,
+		RequiresLicensing = 0x002,
 	} ;
 
 	Q_DECLARE_FLAGS(Flags, PluginFlags)
