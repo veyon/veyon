@@ -523,9 +523,13 @@ QStringList WindowsCoreFunctions::sessionIdEnvironment()
 {
 	if( VeyonCore::config().multiSessionModeEnabled() )
 	{
-		return { QStringLiteral("%1=%2").
-					arg( VeyonCore::sessionIdEnvironmentVariable() ).
-					arg( WtsSessionManager::currentSession() % 100 ) };
+		auto currentSession = WtsSessionManager::currentSession();
+		if( currentSession != WtsSessionManager::activeConsoleSession() )
+		{
+			return { QStringLiteral("%1=%2").
+						arg( VeyonCore::sessionIdEnvironmentVariable() ).
+						arg( currentSession % 100 ) };
+		}
 	}
 
 	return {};
