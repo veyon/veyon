@@ -2605,6 +2605,22 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>The license is already installed.</source>
         <translation>La licence est déjà installée.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation>Information</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Identité installation</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Extensions disponibles pour licence</translation>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation>Extension</translation>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3747,16 +3763,16 @@ Typically this is required to support terminal servers.</source>
 Généralement, ceci est nécessaire pour prendre en charge les serveurs de terminaux.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Support multi-session (expérimental)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Afficher la notification sur la connexion à distance</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Afficher la notification en cas d&apos;échec des tentatives d&apos;authentification</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation>Mode multi-session (pour les serveurs de bureau terminaux et distants)</translation>
     </message>
 </context>
 <context>

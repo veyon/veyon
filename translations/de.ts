@@ -2602,6 +2602,22 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>The license is already installed.</source>
         <translation>Die Lizenz ist bereits installiert.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation>Informationen</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Installations-ID</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Lizenzierbare Erweiterungen</translation>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation>Erweiterung</translation>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3743,16 +3759,16 @@ Typically this is required to support terminal servers.</source>
 Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Unterstützung von Merfachsitzungen (experimentell)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Benachrichtigung bei Fernzugriff anzeigen</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Benachrichtigung bei fehlgeschlagenen Authentifizierungsversuchen anzeigen</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation>Mehrfachsitzungs-Modus (für Terminal- und Remote-Desktop-Server)</translation>
     </message>
 </context>
 <context>
