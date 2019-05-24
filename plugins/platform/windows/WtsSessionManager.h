@@ -43,10 +43,6 @@ public:
 
 	Q_ENUM(SessionInfo)
 
-	enum {
-		SessionUpdateInterval = 1000
-	};
-
 	static constexpr SessionId InvalidSession = static_cast<SessionId>( -1 );
 	static constexpr ProcessId InvalidProcess = static_cast<ProcessId>( -1 );
 
