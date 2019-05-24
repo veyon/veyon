@@ -197,7 +197,14 @@ void WindowsServiceCore::manageServersForAllSessions()
 
 	while( WaitForSingleObject( m_stopServiceEvent, SessionPollingInterval ) == WAIT_TIMEOUT )
 	{
-		const auto wtsSessionIds = WtsSessionManager::activeSessions();
+		auto wtsSessionIds = WtsSessionManager::activeSessions();
+
+		const auto consoleSessionId = WtsSessionManager::activeConsoleSession();
+		if( consoleSessionId != WtsSessionManager::InvalidSession &&
+			wtsSessionIds.contains( consoleSessionId ) == false )
+		{
+			wtsSessionIds.append( consoleSessionId );
+		}
 
 		for( auto it = serverProcesses.begin(), end = serverProcesses.end(); it != end; )
 		{
@@ -217,7 +224,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
 				auto serverProcess = new VeyonServerProcess;
-				serverProcess->start( wtsSessionId, multiSession() );
+				serverProcess->start( wtsSessionId, multiSession() && wtsSessionId != consoleSessionId );
 
 				serverProcesses[wtsSessionId] = serverProcess;
 			}
