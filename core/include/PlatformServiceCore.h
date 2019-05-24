@@ -33,10 +33,8 @@ class VEYON_CORE_EXPORT PlatformServiceCore
 public:
 	using SessionId = int;
 
-	enum {
-		SessionIdInvalid = -1,
-		SessionIdMax = 99
-	};
+	constexpr static SessionId SessionIdInvalid = -1;
+	constexpr static SessionId SessionIdMax = 99;
 
 	PlatformServiceCore();
 

@@ -26,6 +26,7 @@
 #include "VeyonConfiguration.h"
 
 
+
 PlatformServiceCore::PlatformServiceCore() :
 	m_multiSession( VeyonCore::config().multiSessionModeEnabled() )
 {
@@ -65,5 +66,5 @@ QVariant PlatformServiceCore::sessionDataFromId( PlatformServiceCore::SessionId 
 
 PlatformServiceCore::SessionId PlatformServiceCore::sessionIdFromData( const QVariant& data ) const
 {
-	return m_sessions.key( data, SessionIdInvalid );
+	return m_sessions.key( data, static_cast<SessionId>( SessionIdInvalid ) );
 }
