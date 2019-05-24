@@ -64,17 +64,6 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="5">
-       <widget class="QCheckBox" name="isMultiSessionServiceEnabled">
-        <property name="toolTip">
-         <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</string>
-        </property>
-        <property name="text">
-         <string>Multi session support (experimental)</string>
-        </property>
-       </widget>
-      </item>
       <item row="5" column="4">
        <widget class="QPushButton" name="stopService">
         <property name="text">
@@ -109,6 +98,17 @@ Typically this is required to support terminal servers.</string>
         </property>
         <property name="text">
          <string>Stopped</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="5">
+       <widget class="QCheckBox" name="multiSessionModeEnabled">
+        <property name="toolTip">
+         <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</string>
+        </property>
+        <property name="text">
+         <string>Multi session mode (for terminal and remote desktop servers)</string>
         </property>
        </widget>
       </item>
@@ -255,7 +255,7 @@ Typically this is required to support terminal servers.</string>
   <tabstop>isTrayIconHidden</tabstop>
   <tabstop>failedAuthenticationNotificationsEnabled</tabstop>
   <tabstop>remoteConnectionNotificationsEnabled</tabstop>
-  <tabstop>isMultiSessionServiceEnabled</tabstop>
+  <tabstop>multiSessionModeEnabled</tabstop>
   <tabstop>autostartService</tabstop>
   <tabstop>startService</tabstop>
   <tabstop>stopService</tabstop>

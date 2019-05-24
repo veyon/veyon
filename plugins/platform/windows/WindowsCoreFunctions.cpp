@@ -521,7 +521,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 QStringList WindowsCoreFunctions::sessionIdEnvironment()
 {
-	if( VeyonCore::config().isMultiSessionServiceEnabled() )
+	if( VeyonCore::config().multiSessionModeEnabled() )
 	{
 		return { QStringLiteral("%1=%2").
 					arg( VeyonCore::sessionIdEnvironmentVariable() ).

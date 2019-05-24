@@ -35,13 +35,11 @@
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxServiceCore.h"
-#include "VeyonConfiguration.h"
 
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 	QObject( parent ),
-	m_loginManager( LinuxCoreFunctions::systemdLoginManager() ),
-	m_multiSession( VeyonCore::config().isMultiSessionServiceEnabled() )
+	m_loginManager( LinuxCoreFunctions::systemdLoginManager() )
 {
 	connectToLoginManager();
 }
@@ -106,7 +104,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
-	if( m_multiSession == false && m_serverProcesses.isEmpty() == false )
+	if( multiSession() == false && m_serverProcesses.isEmpty() == false )
 	{
 		// make sure no other server is still running
 		stopAllServers();
@@ -128,7 +126,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 			<< "with display" << display
 			<< "at seat" << seat.path;
 
-	if( m_multiSession )
+	if( multiSession() )
 	{
 		const auto sessionId = openSession( QStringList( { sessionPath, display, seat.path } ) );
 		sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
@@ -223,7 +221,7 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 		waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
 	}
 
-	if( m_multiSession )
+	if( multiSession() )
 	{
 		closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
 	}

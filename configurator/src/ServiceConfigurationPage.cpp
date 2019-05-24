@@ -45,9 +45,6 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 
 	Configuration::UiMapping::setFlags( ui->networkGroupBox, Configuration::Property::Flag::Advanced );
 
-	// TODO: finish multi session support
-	ui->isMultiSessionServiceEnabled->hide();
-
 	updateServiceControl();
 	populateVncServerPluginComboBox();
 

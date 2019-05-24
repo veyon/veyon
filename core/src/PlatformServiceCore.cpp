@@ -23,6 +23,14 @@
  */
 
 #include "PlatformServiceCore.h"
+#include "VeyonConfiguration.h"
+
+
+PlatformServiceCore::PlatformServiceCore() :
+	m_multiSession( VeyonCore::config().multiSessionModeEnabled() )
+{
+}
+
 
 
 PlatformServiceCore::SessionId PlatformServiceCore::openSession( const QVariant& sessionData )

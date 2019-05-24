@@ -50,7 +50,7 @@ public:
 		stop();
 	}
 
-	void start( DWORD wtsSessionId )
+	void start( DWORD wtsSessionId, bool multiSession )
 	{
 		stop();
 
@@ -58,7 +58,7 @@ public:
 		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfoUserName );
 
 		QStringList extraEnv;
-		if( VeyonCore::config().isMultiSessionServiceEnabled() )
+		if( multiSession )
 		{
 			extraEnv.append( QStringLiteral("%1=%2").
 							 arg( VeyonCore::sessionIdEnvironmentVariable() ).
@@ -177,7 +177,7 @@ void WindowsServiceCore::manageServerInstances()
 	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
 	ResetEvent( m_serverShutdownEvent );
 
-	if( VeyonCore::config().isMultiSessionServiceEnabled() )
+	if( multiSession() )
 	{
 		manageServersForAllSessions();
 	}
@@ -217,7 +217,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
 				auto serverProcess = new VeyonServerProcess;
-				serverProcess->start( wtsSessionId );
+				serverProcess->start( wtsSessionId, multiSession() );
 
 				serverProcesses[wtsSessionId] = serverProcess;
 			}
@@ -267,7 +267,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 
 			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
-				veyonServerProcess.start( wtsSessionId );
+				veyonServerProcess.start( wtsSessionId, multiSession() );
 				lastServerStart.restart();
 			}
 
@@ -275,7 +275,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 		}
 		else if( veyonServerProcess.isRunning() == false )
 		{
-			veyonServerProcess.start( wtsSessionId );
+			veyonServerProcess.start( wtsSessionId, multiSession() );
 			oldWtsSessionId = wtsSessionId;
 			lastServerStart.restart();
 		}
