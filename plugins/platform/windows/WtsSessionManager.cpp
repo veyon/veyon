@@ -91,8 +91,8 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 
 	switch( sessionInfo )
 	{
-	case SessionInfoUserName: infoClass = WTSUserName; break;
-	case SessionInfoDomainName: infoClass = WTSDomainName; break;
+	case SessionInfo::UserName: infoClass = WTSUserName; break;
+	case SessionInfo::DomainName: infoClass = WTSDomainName; break;
 	default:
 		vCritical() << "invalid session info" << sessionInfo << "requested";
 		return {};

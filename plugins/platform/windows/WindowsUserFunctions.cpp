@@ -121,10 +121,10 @@ bool WindowsUserFunctions::isAnyUserLoggedOn()
 
 QString WindowsUserFunctions::currentUser()
 {
-	auto sessionId = WtsSessionManager::currentSession();
+	const auto sessionId = WtsSessionManager::currentSession();
 
-	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfoUserName );
-	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfoDomainName );
+	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::UserName );
+	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::DomainName );
 
 	// check whether we just got the name of the local computer
 	if( !domainName.isEmpty() )

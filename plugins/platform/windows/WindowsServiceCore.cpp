@@ -55,7 +55,7 @@ public:
 		stop();
 
 		const auto baseProcessId = WtsSessionManager::findWinlogonProcessId( wtsSessionId );
-		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfoUserName );
+		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfo::UserName );
 
 		QStringList extraEnv;
 		if( multiSession )

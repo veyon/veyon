@@ -26,18 +26,22 @@
 
 #include <windows.h>
 
+#include <QObject>
+
 class WtsSessionManager
 {
+	Q_GADGET
 public:
 	using SessionId = DWORD;
 	using SessionList = QList<DWORD>;
 	using ProcessId = DWORD;
 
-	enum SessionInfo {
-		SessionInfoNone,
-		SessionInfoUserName,
-		SessionInfoDomainName,
+	enum class SessionInfo {
+		UserName,
+		DomainName,
 	};
+
+	Q_ENUM(SessionInfo)
 
 	enum {
 		SessionUpdateInterval = 1000
