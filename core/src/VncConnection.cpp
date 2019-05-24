@@ -544,11 +544,8 @@ void VncConnection::handleConnection()
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
-		// work around bug in GCC which doesn't honor constexpr when used with qMax and -O0
-		const auto timeout = FramebufferUpdateWatchdogTimeout;
-
 		if( m_framebufferState == FramebufferState::Initialized ||
-			m_framebufferUpdateWatchdog.elapsed() >= qMax<qint64>( 2*m_framebufferUpdateInterval, timeout ) )
+			m_framebufferUpdateWatchdog.elapsed() >= qMax<qint64>( 2*m_framebufferUpdateInterval, FramebufferUpdateWatchdogTimeout ) )
 		{
 			SendFramebufferUpdateRequest( m_client, 0, 0, m_client->width, m_client->height, false );
 
