@@ -105,9 +105,5 @@ int main()
 
 	pam_end( pamh, err );
 
-	delete[] pam_username;
-	delete[] pam_password;
-	delete[] pam_service;
-
 	return err == PAM_SUCCESS ? 0 : -1;
 }
