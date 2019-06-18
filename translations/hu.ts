@@ -1224,7 +1224,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>A platformfüggő konfigurációs beállítások nem alkalmazhatóak.</translation>
     </message>
 </context>
 <context>
@@ -1274,7 +1274,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Indexképek frissítésének lassítása a demó futása alatt.</translation>
     </message>
 </context>
 <context>
@@ -1437,15 +1437,15 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>Fájlkezelő megnyitása</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Tanulási eszköz indítása</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>Bemutató videó lejátszása</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -2427,7 +2427,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>számítógép tárolók</translation>
     </message>
 </context>
 <context>
@@ -2462,19 +2462,19 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Add meg a következő sémának megfelelő, érvényes LDAP url-t: &quot;ldap[s]://[felhasználó[:jelszó]@]kiszolgáló[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Hiányzik a névmeghatározás attribútum - visszaállunk  a beállított értékekre.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Nem sikerült az alap DN lekérdezése. Ellenőrizd az LDAP beállításait.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>%1 beállítása alap DN-nek és a névmeghatározás-lekérdezések kikapcsolása.</translation>
     </message>
 </context>
 <context>
@@ -2605,6 +2605,22 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>The license is already installed.</source>
         <translation>A licencet már telepítették.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation>Információ</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Telepítésazonosító</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Licencelhető</translation>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation>Bővítmény</translation>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -2673,23 +2689,23 @@ HASZNÁLAT
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>Személyre szabott felhasználó-hitelesítő PAM szolgáltatás</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználó hitelesítés</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Munkamenet-kezelés</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Kezelő felhasználók megjelenítése</translation>
     </message>
 </context>
 <context>
@@ -3244,15 +3260,15 @@ HASZNÁLATA
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>pl. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Emlékezz és add a weboldal-menühöz</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>pl. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3260,7 +3276,7 @@ HASZNÁLATA
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Név:</translation>
     </message>
 </context>
 <context>
@@ -3362,29 +3378,29 @@ HASZNÁLATA
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Leállítás azonnal</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Frissítések telepítése és leállítás</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Leállítás a felhasználó jóváhagyása után</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Leállítás a megadott idő lejárta után</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>A számítógép leállítását távolról kezdeményezték. Leállítja most a számítógépet?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>A számítógép %1 perc %2 másodperc múlva automatikusan le fog állni.  Kérjük, mentse el munkáját és zárja be az összes futó programot.</translation>
     </message>
 </context>
 <context>
@@ -3395,15 +3411,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Kérem, add meg, hogy kiválasztott számítógépek leállításának mennyi legyen az időtúllépése:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>perc</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>másodperc</translation>
     </message>
 </context>
 <context>
@@ -3561,15 +3577,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Név:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>Emlékezz és add a programmenühöz</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>pl. VLC</translation>
     </message>
 </context>
 <context>
@@ -3744,16 +3760,16 @@ Typically this is required to support terminal servers.</source>
         <translation>A funkció bekapcsolása esetén a szerver minden egyes számítógépen létrejövő interaktív munkamenethez külön szerverfolyamatot indít.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Több munkamenet támogatása (kísérleti)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Távoli csatlakozás esetén értesítés megjelenítése</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Sikertelen hitelesítési próbálkozásról értesítés megjelenítése</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation>Többmunka-menetes mód (terminál és távoli asztal szerverekhez)</translation>
     </message>
 </context>
 <context>
@@ -4018,7 +4034,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>FIGYELMEZTETÉS</translation>
     </message>
 </context>
 <context>
@@ -4046,7 +4062,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4058,23 +4074,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Képernyő zárolása</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Tálca elrejtése</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Start menü elrejtése</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Asztal elrejtése</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználó hitelesítés</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4092,31 +4108,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás már telepítve van.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás nem telepíthető.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatást sikeresen telepítette.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás nem távolítható el.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatást sikeresen eltávolította.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás indítási típusa nem módosítható. </translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás nem található.</translation>
     </message>
 </context>
 <context>

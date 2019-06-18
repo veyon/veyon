@@ -2586,6 +2586,22 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>The license is already installed.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3710,15 +3726,15 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation type="unfinished"/>
     </message>
 </context>

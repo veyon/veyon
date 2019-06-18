@@ -2605,6 +2605,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The license is already installed.</source>
         <translation>Эта лицензия уже установлена.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Ид. установки</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Дополнения, доступные для лицензирования</translation>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation>Дополнение</translation>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3747,16 +3763,16 @@ Typically this is required to support terminal servers.</source>
 По умолчанию эта настройка требуется для реализации поддержки терминальных серверов.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Поддержка нескольких сеансов (экспериментальная)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Показывать оповещение по удалённому доступу</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Показывать оповещение о неудачных попыткам пройти аутентификацию</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation>Режим со многими сеансами (для сервера-терминала и сервера удалённого рабочего стола)</translation>
     </message>
 </context>
 <context>

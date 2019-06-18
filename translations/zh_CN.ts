@@ -150,7 +150,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>限制特定用户组成员的访问权限</translation>
     </message>
 </context>
 <context>
@@ -257,11 +257,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>访问计算机和本地计算机位于同一地点</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>位于</translation>
     </message>
 </context>
 <context>
@@ -718,19 +718,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>地点及计算机</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>地点</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>添加新地点</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>移除选中的地点</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -738,7 +738,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>新地点</translation>
     </message>
 </context>
 <context>
@@ -849,27 +849,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>添加地点或计算机</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>清除所有地点和计算机</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>转储全部和单独的地点和计算机</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>列出所有地点和计算机</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>移除地点或计算机</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>地点 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
@@ -877,7 +877,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>地点</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -885,7 +885,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>地点</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -2602,6 +2602,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The license is already installed.</source>
         <translation>许可证已安装。</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3175,7 +3191,7 @@ USAGE
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>新地点</translation>
     </message>
 </context>
 <context>
@@ -3742,16 +3758,16 @@ Typically this is required to support terminal servers.</source>
 通常这是支持终端服务器所必需的。</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>多会话支持（实验）</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>在远程连接上显示通知</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>显示尝试身份验证失败的通知</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3907,11 +3923,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>启用多显示器支持</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>启用Windows 8及更新操作系统上的桌面拷贝引擎</translation>
     </message>
 </context>
 <context>

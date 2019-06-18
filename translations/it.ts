@@ -2592,6 +2592,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The license is already installed.</source>
         <translation>La licenza è già installata.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3733,16 +3749,16 @@ Typically this is required to support terminal servers.</source>
         <translation>Abilitando questa opzione, il servizio avvierà un processo server per ogni sessione interattiva su un computer. In genere ciò è necessario per supportare i server terminal.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Supporto multi sessione (sperimentale)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Mostra notifica sulla connessione remota</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Mostra notifica sui tentativi di autenticazione falliti</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

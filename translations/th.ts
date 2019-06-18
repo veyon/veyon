@@ -72,7 +72,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>กลุ่มผู้ใช้ที่ได้รับอนุญาต</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -183,7 +183,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>เงื่อนไข</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -413,7 +413,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ (Public) และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
+        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -424,14 +424,17 @@ If you&apos;re interested in translating Veyon into your local or another langua
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
+กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
+ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
+ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>กรุณาตรวจสอบสิทธิ์อนุญาตของคุณ</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -451,15 +454,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>กำลังสร้างคู่กุญแจใหม่สำหรับ &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>ล้มเหลวในการสร้างกุญแจสาธารณะหรือส่วนตัว</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>คู่กุญแจที่ถูกสร้างขึ้นใหม่ได้บันทึกลงใน &quot;%1&quot; และ &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
@@ -566,11 +569,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>สร้างคู่กุญแจยืนยันตัวตนใหม่</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>ลบกุญแจยืนยันตัวตน</translation>
     </message>
     <message>
         <source>List authentication keys</source>
@@ -712,7 +715,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>สถานที่และคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Locations</source>
@@ -807,7 +810,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>ไม่ถูกต้อง</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -963,11 +966,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;ห้อง 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;คอมพิวเตอร์ 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1008,7 +1011,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>กำลังสร้างการเชื่อมต่อ</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -1016,7 +1019,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถเข้าถึงเซอร์วิสได้ หรือไม่ได้ทำงาน</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1032,7 +1035,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้ที่เข้าสู่ระบบ: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1047,7 +1050,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนผิดพลาด</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1101,7 +1104,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มสถานที่</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1249,7 +1252,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>จำกัดหน่วยความจำ</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
@@ -1366,26 +1369,26 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมใหม่</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>เว็บไซต์ใหม่</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>สั่งเปิดโปรแกรม</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>เปิดเว็บไซต์</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกที่ปุ่มนี้เพื่อเปิดเว็บไซต์ทั้งหมด</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -1393,42 +1396,42 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกปุ่มนี้เพื่อสั่งเปิดโปรแกรมบนเครื่องคอมพิวเตอร์ทุกเครื่อง</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>สั่งเปิดโปรแกรม &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมกำหนดเอง</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>เปิดเว็บไซต์ &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>เว็บไซต์กำหนดเอง</translation>
     </message>
 </context>
 <context>
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished"/>
+        <translation>ครู</translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>ห้อง %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>กรุณาทำงานตามที่ได้มอบหมายที่ให้ไว้ภายใน 5 นาทีข้างหน้า</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>เว็บไซต์กำหนดเอง</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1444,7 +1447,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมกำหนดเอง</translation>
     </message>
 </context>
 <context>
@@ -1487,42 +1490,42 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>การถ่ายโอนไฟล์</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>ตัวเลือก</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>ถ่ายโอนไฟล์เท่านั้น</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>ถ่ายโอนและเปิดไฟล์ด้วยโปรแกรมที่เกี่ยวข้อง</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>ถ่ายโอนและเปิดโฟลเดอร์ที่เก็บปลายทาง</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>เริ่ม</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>บันทึกทับไฟล์ที่มีอยู่แล้ว</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>การถ่ายโอนไฟล์</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -1585,7 +1588,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"/>
+        <translation>ไม่มี</translation>
     </message>
     <message>
         <source>Only critical messages</source>
@@ -1677,19 +1680,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตน</translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>วิธีการ:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1697,15 +1700,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนถูกติดตั้งบนคอมพิวเตอร์ได้อย่างถูกต้องแล้ว</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนยังไม่ได้รับถูกติดตั้งบนคอมพิวเตอร์อย่างถูกต้อง</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>การทดสอบการยืนยันตัวตน</translation>
     </message>
 </context>
 <context>
@@ -1720,7 +1723,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าทั่วไป</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -1751,7 +1754,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>ปลดบล็อกอินเทอร์เน็ต</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -1896,7 +1899,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าขั้นสูง</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2057,7 +2060,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>ไม่พบผู้ใช้</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2279,7 +2282,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>แสดงรายชื่อสถานที่ทั้งหมด</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
@@ -2295,7 +2298,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>กรุณากรอกชื่อของสถานที่ของคอมพิวเตอร์ (อนุญาตใช้อักขระแทนได้ เช่น ดอกจัน):</translation>
     </message>
     <message>
         <source>computer locations</source>
@@ -2581,6 +2584,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The license is already installed.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -2647,7 +2666,7 @@ USAGE
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนผู้ใช้</translation>
     </message>
     <message>
         <source>Session management</source>
@@ -2669,7 +2688,7 @@ USAGE
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>เลือกสถานที่</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2688,7 +2707,7 @@ USAGE
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>แสดงไอคอนเท่านั้น</translation>
     </message>
 </context>
 <context>
@@ -2747,11 +2766,11 @@ USAGE
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"/>
+        <translation>โหลดการตั้งค่าจากไฟล์</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>บันทึกการตั้งค่าลงในไฟล์</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -2763,7 +2782,7 @@ USAGE
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2851,7 +2870,7 @@ USAGE
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>สิทธิไม่เพียงพอ</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
@@ -2879,7 +2898,7 @@ USAGE
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>ใช้การจัดเรียงคอมพิวเตอร์แบบกำหนดเอง</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
@@ -2954,7 +2973,7 @@ USAGE
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>สีพื้นหลัง</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -2974,7 +2993,7 @@ USAGE
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>ผู้ใช้และชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -2994,19 +3013,19 @@ USAGE
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>การจัดเรียงลำดับ</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์และชื่อผู้ใช้</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>สถานที่ของคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>แสดงสถานที่ปัจจุบันเท่านั้น</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
@@ -3014,7 +3033,7 @@ USAGE
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>ซ่อนสถานที่ว่างเปล่า</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
@@ -3041,7 +3060,7 @@ USAGE
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>สังเกตการณ์</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3056,15 +3075,15 @@ USAGE
     <name>NetworkDiscoveryConfigurationPage</name>
     <message>
         <source>Network discovery</source>
-        <translation type="unfinished"/>
+        <translation>การค้นพบเครือข่าย</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished"/>
+        <translation>โหมด</translation>
     </message>
     <message>
         <source>Scan network ranges</source>
-        <translation type="unfinished"/>
+        <translation>สแกนระยะเครือข่าย</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
@@ -3088,7 +3107,7 @@ USAGE
     </message>
     <message>
         <source>Network ranges</source>
-        <translation type="unfinished"/>
+        <translation>ระยะเครือข่าย</translation>
     </message>
     <message>
         <source>Add new group</source>
@@ -3104,11 +3123,11 @@ USAGE
     </message>
     <message>
         <source>First address</source>
-        <translation type="unfinished"/>
+        <translation>ที่อยู่แรก</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation type="unfinished"/>
+        <translation>ที่อยู่สุดท้าย</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -3136,7 +3155,7 @@ USAGE
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>ตัวเลือก</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3194,34 +3213,34 @@ USAGE
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>สถานที่/คอมพิวเตอร์</translation>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>เปิดเว็บไซต์</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>เช่น Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>จำไว้และเพิ่มไปยังเมนูเว็บไซต์</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>เช่น www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>กรุณากรอก URL ของเว็บไซต์ที่ต้องการเปิด:</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อ:</translation>
     </message>
 </context>
 <context>
@@ -3240,7 +3259,7 @@ USAGE
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนผิดพลาด</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -3279,7 +3298,7 @@ USAGE
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>เปิด/ปิดเครื่อง หรือรีสตาร์ทคอมพิวเตอร์ใหม่</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3323,19 +3342,19 @@ USAGE
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>ปิดเครื่องตอนนี้</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>ติดตั้งอัปเดตแล้วปิดเครื่อง</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>ปิดเครื่องหลังจากการยืนยันของผู้ใช้</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>ปิดเครื่องหลังจากหมดเวลา</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3360,11 +3379,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>นาที</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>วินาที</translation>
     </message>
 </context>
 <context>
@@ -3375,7 +3394,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>เปิดการดูจากระยะไกลโดยไม่ต้องมีการควบคุมอะไร</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -3391,7 +3410,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>ดูจากระยะไกลหรือเข้าควบคุมคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -3495,15 +3514,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
+        <translation>ตั้งเส้นทางกำหนดเองเพื่อบล็อกอินเทอร์เน็ต</translation>
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"/>
+        <translation>ปลายทาง</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>เกตเวย์</translation>
     </message>
 </context>
 <context>
@@ -3522,15 +3541,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อ:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>จำไว้และเพิ่มไปยังเมนูโปรแกรม</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>เช่น VLC</translation>
     </message>
 </context>
 <context>
@@ -3673,7 +3692,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC</translation>
     </message>
     <message>
         <source>Plugin:</source>
@@ -3681,7 +3700,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>เริ่มต้นเซอร์วิส %1 ใหม่</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3705,10 +3724,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
     </message>
@@ -3716,39 +3731,43 @@ Typically this is required to support terminal servers.</source>
         <source>Show notification on failed authentication attempts</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>กำลังเริ่มเซอร์วิส %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>กำลังหยุดเซอร์วิส %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>กำลังลงทะเบียนเซอร์วิส %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>กำลังถอนการลงทะเบียนเซอร์วิส %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>การควบคุมเซอร์วิส</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิสกำลังทำงาน</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิสไม่ได้ทำงาน</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -3843,7 +3862,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished"/>
+        <translation>ข้อความจากครูผู้สอน</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
@@ -3896,34 +3915,34 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>ล็อกออฟ</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกปุ่มนี้เพื่อล็อกออฟผู้ใช้จากคอมพิวเตอร์ทุกเครื่อง</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>ยืนยันการล็อกออฟผู้ใช้</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[เรียบร้อย]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[ล้มเหลว]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>คำสั่งไม่ถูกต้อง!</translation>
     </message>
     <message>
         <source>Available commands:</source>
@@ -3993,7 +4012,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation type="unfinished"/>
+        <translation>กำลังสร้างการเชื่อมต่อไปยัง %1 ...</translation>
     </message>
 </context>
 <context>
@@ -4019,7 +4038,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>ล็อกจอ</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
@@ -4031,11 +4050,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>ซ่อนเดสก์ท็อป</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>การยืนยันตัวตนผู้ใช้</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4053,23 +4072,23 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิส &quot;%1&quot; ถูกติดตั้งอยู่ก่อนแล้ว</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิส &quot;%1&quot; ไม่สามารถทำการติดตั้งได้</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิส &quot;%1&quot; ได้รับการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิส &quot;%1&quot; ไม่สามารถทำการยกเลิกการติดตั้งได้</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>เซอร์วิส &quot;%1&quot; ได้รับการยกเลิกการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>

@@ -150,7 +150,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>특정 그룹 사용자의 접근 제한</translation>
     </message>
 </context>
 <context>
@@ -261,7 +261,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>에 위치함</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>인증키</translation>
+        <translation>인증 키</translation>
     </message>
     <message>
         <source>Introduction</source>
@@ -327,7 +327,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>키 화일 폴더</translation>
+        <translation>키 파일 폴더</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -367,7 +367,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>키 화일 (*.pem)</translation>
+        <translation>키 파일 (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -403,7 +403,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>키 화일 인증을 설정하기 위해 다음 단계들을 실행하세요:</translation>
+        <translation>키 파일 인증을 설정하기 위해 다음 단계들을 실행하세요:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -2604,6 +2604,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The license is already installed.</source>
         <translation>이 라이센스는 이미 설치 되었습니다.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3744,16 +3760,16 @@ Typically this is required to support terminal servers.</source>
 일반적으로 터미널 서버를 지원하는데 필요합니다.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>멀티 세션 지원(시험적으로 사용)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>원격 연결이면 알림 보이기</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>인증시도 실패시 알림 보이기</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

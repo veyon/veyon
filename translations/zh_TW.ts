@@ -2605,6 +2605,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The license is already installed.</source>
         <translation>授權已安裝。</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation>資訊</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>安裝 ID</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>授權的附加元件可用</translation>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation>附加元件</translation>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -2677,7 +2693,7 @@ USAGE
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation>用於使用者身份驗證的自訂 PAM 服務</translation>
+        <translation>自訂使用者身份驗證的 PAM 服務</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -2685,11 +2701,11 @@ USAGE
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>工作階段管理</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>顯示管理員使用者</translation>
     </message>
 </context>
 <context>
@@ -3747,16 +3763,16 @@ Typically this is required to support terminal servers.</source>
 通常，這是支援終端機伺服器所必需的。</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>多工作階段支援 (實驗性)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>遠端連線時顯示通知</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>嘗試身份驗證失敗時顯示通知</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation>多工作階段模式 (適用於終端機和遠端桌面伺服器)</translation>
     </message>
 </context>
 <context>

@@ -2605,6 +2605,22 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>The license is already installed.</source>
         <translation>Licenca je že nameščena.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -3745,16 +3761,16 @@ Typically this is required to support terminal servers.</source>
 Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Podpora za več sej (eksperimentalno)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Prikaži obvestilo o oddaljeni povezavi</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Prikaži obvestilo o neuspešnih poskusih preverjanja pristnosti</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

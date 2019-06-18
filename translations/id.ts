@@ -146,7 +146,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Tidak ditemukan plugin grup pengguna bawaan. Sila cek instalasi Anda! </translation>
+        <translation>Tidak ditemukan pengaya grup pengguna bawaan. Sila cek instalasi Anda! </translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
@@ -181,7 +181,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Balikkan semua kondisi (&quot;adalah/telah&quot; diartikan sebagai &quot;adalah/belum&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
@@ -197,11 +197,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna yang mengakses dicatat sebagai pengguna</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses pengguna sudah terhubung</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -221,7 +221,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Minta izin pengguna yang masuk untuk login</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -237,7 +237,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna lokal (masuk log)</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -253,15 +253,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna yang mengakses memiliki satu atau beberapa grup yang sama dengan pengguna lokal (masuk)</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses komputer dan komputer lokal berada di lokasi yang sama</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>berlokasi</translation>
     </message>
 </context>
 <context>
@@ -296,15 +296,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Akses dalam skenario yang diberikan diizinkan.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Akses dalam skenario yang diberikan ditolak.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Akses dalam skenario yang diberikan membutuhkan izin dari pengguna yang masuk.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -327,15 +327,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Direktori berkas kunci</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Direktori basis berkas kunci publik</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Direktori basis file kunci pribadi</translation>
     </message>
     <message>
         <source>...</source>
@@ -347,7 +347,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Buat pasangan kunci</translation>
     </message>
     <message>
         <source>Delete key</source>
@@ -375,7 +375,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Silakan masukkan nama grup pengguna atau peran yang akan dibuat pasangan kunci otentikasi:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -733,7 +733,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Impor berkas CSV  dimungkinkan melalui antarmuka baris perintah. Informasi lebih lanjut, lihat &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;dokumentasi daring&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
@@ -820,11 +820,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Direktori objek jaringan yang menyimpan objek dalam konfigurasi lokal</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Perintah untuk mengelola direktori objek jaringan terpasang</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
@@ -872,7 +872,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Terpasang (komputer dan lokasi dalam konfigurasi lokal)</translation>
     </message>
     <message>
         <source>Location</source>
@@ -1075,11 +1075,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>Pengaya direktori objek jaringan tidak ada</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada pengaya direktori objek jaringan bawaan yang ditemukan. Silakan periksa instalasi Anda atau konfigurasikan backend direktori objek jaringan yang berbeda melalui konfigurator %1.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1091,7 +1091,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menentukan lokasi komputer ini. Ini menunjukkan masalah dengan konfigurasi sistem. Semua lokasi akan ditampilkan di panel pilih komputer sebagai gantinya.</translation>
     </message>
 </context>
 <context>
@@ -1133,11 +1133,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>Silakan tentukan berkas konfigurasi yang ada untuk diimpor.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation type="unfinished"/>
+        <translation>Silakan tentukan nama berkas yang valid untuk ekspor konfigurasi.</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
@@ -1145,7 +1145,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>Kunci yang ditentukan tidak ada dalam konfigurasi saat ini!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
@@ -1165,43 +1165,43 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>Berkas konfigurasi tidak terbaca!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation type="unfinished"/>
+        <translation>Hapus konfigurasi Veyon di seluruh sistem</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation type="unfinished"/>
+        <translation>Daftar semua konfigurasi kunci dan nilai</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation type="unfinished"/>
+        <translation>Impor konfigurasi dari berkas yang diberikan</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor konfigurasi ke berkas yang diberikan</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>Baca dan hasilkan nilai konfigurasi untuk kunci yang diberikan</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Baca dan hasilkan nilai konfigurasi untuk kunci yang diberikan</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan (hapus) kunci konfigurasi yang diberikan</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Perintah untuk mengelola konfigurasi Veyon</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Tingkatkan dan simpan konfigurasi program dan pengaya</translation>
     </message>
 </context>
 <context>
@@ -1246,7 +1246,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1558,7 +1558,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>Antarmuka pengguna</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -1626,7 +1626,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Direktori objek jaringan</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1789,7 +1789,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Setelan dasar</translation>
     </message>
     <message>
         <source>General</source>
@@ -1953,7 +1953,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <translation>Berhasil terhubung ke server LDAP dan melakukan ikatan LDAP. Pengaturan LDAP dasar dikonfigurasikan dengan benar.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2516,11 +2516,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan rentang jaringan baru</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>Hapus rentang jaringan terpilih</translation>
     </message>
     <message>
         <source>ID</source>
@@ -2584,6 +2584,22 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>The license is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addon</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2667,7 +2683,7 @@ USAGE
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Pengaya menerapkan fungsi abstrak untuk platform Linux</translation>
     </message>
 </context>
 <context>
@@ -2816,11 +2832,11 @@ USAGE
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Menurut konfigurasi lokal Anda tidak diperbolehkan mengakses komputer di jaringan. Silakan masuk dengan akun lain atau biarkan administrator sistem Anda memeriksa konfigurasi lokal.</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2860,7 +2876,7 @@ USAGE
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat memulai dengan hak administratif. Pastikan program seperti sudo diinstal untuk lingkungan desktop Anda! Program ini akan dijalankan dengan hak pengguna normal.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
@@ -2895,7 +2911,7 @@ USAGE
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Direktori</translation>
     </message>
     <message>
         <source>...</source>
@@ -2903,27 +2919,27 @@ USAGE
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi pengguna</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Fitur pada komputer klik ganda:</translation>
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Fitur</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Semua fitur</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Nonaktifkan fitur</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2931,11 +2947,11 @@ USAGE
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Setelan dasar</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Perilaku</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
@@ -2943,23 +2959,23 @@ USAGE
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan komputer lokal</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan ruas filter komputer</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>Tindakan seperti menyalakan ulang atau mematikan komputer</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>Antarmuka pengguna</translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Warna Latar belakang</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -2967,7 +2983,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2975,19 +2991,19 @@ USAGE
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Mode dan fitur</translation>
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna dan nama komputer</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Hanya nama pengguna</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Hanya nama komputer</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2995,23 +3011,23 @@ USAGE
     </message>
     <message>
         <source>Text color</source>
-        <translation type="unfinished"/>
+        <translation>Warna teks</translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Urutkan</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Komputer dan nama pengguna</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Lokasi komputer</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>Hanya tampilkan lokasi sekarang</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
@@ -3019,7 +3035,7 @@ USAGE
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan lokasi kosong</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
@@ -3061,31 +3077,31 @@ USAGE
     <name>NetworkDiscoveryConfigurationPage</name>
     <message>
         <source>Network discovery</source>
-        <translation type="unfinished"/>
+        <translation>Pendeteksian jaringan</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished"/>
+        <translation>Mode</translation>
     </message>
     <message>
         <source>Scan network ranges</source>
-        <translation type="unfinished"/>
+        <translation>Pindai rentang jaringan</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
+        <translation>contoh: 192.168.1.0/24</translation>
     </message>
     <message>
         <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
+        <translation>Pindai semua subnet komputer</translation>
     </message>
     <message>
         <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
+        <translation>Pindai subnet tertentu</translation>
     </message>
     <message>
         <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
+        <translation>Pindai sesi pada komputer lokal</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3093,35 +3109,35 @@ USAGE
     </message>
     <message>
         <source>Network ranges</source>
-        <translation type="unfinished"/>
+        <translation>Rentang jaringan</translation>
     </message>
     <message>
         <source>Add new group</source>
-        <translation type="unfinished"/>
+        <translation>Tambah grup baru</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation type="unfinished"/>
+        <translation>Hapus grup terpilih</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation type="unfinished"/>
+        <translation>Grup</translation>
     </message>
     <message>
         <source>First address</source>
-        <translation type="unfinished"/>
+        <translation>Alamat pertama</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation type="unfinished"/>
+        <translation>Alamat terakhir</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan rentang jaringan baru</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>Hapus rentang jaringan terpilih</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -3133,7 +3149,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
@@ -3184,15 +3200,15 @@ USAGE
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation type="unfinished"/>
+        <translation>Direktori objek jaringan yang secara otomatis menemukan komputer dalam jaringan</translation>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
-        <translation type="unfinished"/>
+        <translation>Pendeteksian jaringan (memindai jaringan untuk klien Veyon)</translation>
     </message>
     <message>
         <source>Commands for managing the network discovery directory</source>
-        <translation type="unfinished"/>
+        <translation>Perintah untuk mengelola direktori pendeteksian jaringan</translation>
     </message>
 </context>
 <context>
@@ -3312,7 +3328,7 @@ USAGE
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>Perintah ini menyiarkan paket Wake-on-LAN (WOL) ke jaringan untuk menghidupkan komputer dengan alamat MAC yang diberikan.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -3682,7 +3698,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Pengaya:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
@@ -3710,15 +3726,15 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3956,7 +3972,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Pengaya tidak berlisensi</translation>
     </message>
     <message>
         <source>INFO</source>
@@ -4051,7 +4067,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Pengaya menerapkan fungsi abstrak untuk platform Windows</translation>
     </message>
 </context>
 <context>

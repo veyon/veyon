@@ -2601,6 +2601,22 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>The license is already installed.</source>
         <translation>Tato licence už je nainstalována.</translation>
     </message>
+    <message>
+        <source>Information</source>
+        <translation>Informace</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Identifikátor instalace</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Doplňky které je možné si licencovat</translation>
+    </message>
+    <message>
+        <source>Addon</source>
+        <translation>Doplněk</translation>
+    </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
@@ -2681,11 +2697,11 @@ POUŽITÍ
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Správa relace</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit uživatele-správce</translation>
     </message>
 </context>
 <context>
@@ -3743,16 +3759,16 @@ Typically this is required to support terminal servers.</source>
 Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
-        <source>Multi session support (experimental)</source>
-        <translation>Podpora vícero sezení (experimentální)</translation>
-    </message>
-    <message>
         <source>Show notification on remote connection</source>
         <translation>Zobrazovat upozornění na připojení na dálku</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
         <translation>Zobrazovat upozornění při nezdařených pokusech o ověření</translation>
+    </message>
+    <message>
+        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <translation>Režim vícero relací (pro terminály a servery pro vzdálenou plochu)</translation>
     </message>
 </context>
 <context>
