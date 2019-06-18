@@ -27,9 +27,9 @@
 
 #include <security/pam_appl.h>
 
-static char* pam_username = nullptr;
-static char* pam_password = nullptr;
-static char* pam_service = nullptr;
+static QByteArray pam_username;
+static QByteArray pam_password;
+static QByteArray pam_service;
 
 static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_response** resp, void * )
 {
@@ -46,11 +46,11 @@ static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_res
 		{
 			case PAM_PROMPT_ECHO_ON:
 				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = pam_username;
+				reply[replies].resp = strdup( pam_username.constData() );
 				break;
 			case PAM_PROMPT_ECHO_OFF:
 				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = pam_password;
+				reply[replies].resp = strdup( pam_password.constData() );
 				break;
 			case PAM_TEXT_INFO:
 			case PAM_ERROR_MSG:
@@ -83,13 +83,13 @@ int main()
 		service = QStringLiteral("login");
 	}
 
-	pam_username = qstrdup( username.toUtf8().constData() );
-	pam_password = qstrdup( password.toUtf8().constData() );
-	pam_service = qstrdup( service.toUtf8().constData() );
+	pam_username = username.toUtf8();
+	pam_password = password.toUtf8();
+	pam_service = service.toUtf8();
 
 	struct pam_conv pconv = { &pam_conv, nullptr };
-	pam_handle_t *pamh;
-	auto err = pam_start( pam_service, nullptr, &pconv, &pamh );
+	pam_handle_t* pamh = nullptr;
+	auto err = pam_start( pam_service.constData(), nullptr, &pconv, &pamh );
 	if( err == PAM_SUCCESS )
 	{
 		err = pam_authenticate( pamh, PAM_SILENT );
@@ -104,10 +104,6 @@ int main()
 	}
 
 	pam_end( pamh, err );
-
-	delete[] pam_username;
-	delete[] pam_password;
-	delete[] pam_service;
 
 	return err == PAM_SUCCESS ? 0 : -1;
 }
