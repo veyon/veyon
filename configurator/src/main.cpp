@@ -25,7 +25,6 @@
 #include <QApplication>
 #include <QMessageBox>
 
-#include "ConfigurationTestController.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "MainWindow.h"
@@ -68,20 +67,6 @@ int main( int argc, char **argv )
 											   "configuration is not writable! Please run the %1 "
 											   "Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
 		return -1;
-	}
-
-	// parse arguments
-	QStringListIterator argIt( app.arguments() );
-	argIt.next();
-
-	while( argc > 1 && argIt.hasNext() )
-	{
-		const QString a = argIt.next().toLower();
-
-		if( a == QStringLiteral("-test") )
-		{
-			return ConfigurationTestController( app.arguments().mid( 2 ) ).run();
-		}
 	}
 
 	// now create the main window
