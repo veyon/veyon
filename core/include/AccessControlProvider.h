@@ -33,11 +33,10 @@ class NetworkObjectDirectory;
 class VEYON_CORE_EXPORT AccessControlProvider
 {
 public:
-	enum AccessResult {
-		AccessDeny,
-		AccessAllow,
-		AccessToBeConfirmed,
-		AccessResultCount
+	enum class Access {
+		Deny,
+		Allow,
+		ToBeConfirmed,
 	} ;
 
 	AccessControlProvider();
@@ -46,8 +45,8 @@ public:
 	QStringList locations() const;
 	QStringList locationsOfComputer( const QString& computer ) const;
 
-	AccessResult checkAccess( const QString& accessingUser, const QString& accessingComputer,
-							  const QStringList& connectedUsers );
+	Access checkAccess( const QString& accessingUser, const QString& accessingComputer,
+						const QStringList& connectedUsers );
 
 	bool processAuthorizedGroups( const QString& accessingUser );
 

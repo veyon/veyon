@@ -102,15 +102,15 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 
 
 
-AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QString& accessingUser,
-																		const QString& accessingComputer,
-																		const QStringList& connectedUsers )
+AccessControlProvider::Access AccessControlProvider::checkAccess( const QString& accessingUser,
+																  const QString& accessingComputer,
+																  const QStringList& connectedUsers )
 {
 	if( VeyonCore::config().isAccessRestrictedToUserGroups() )
 	{
 		if( processAuthorizedGroups( accessingUser ) )
 		{
-			return AccessAllow;
+			return Access::Allow;
 		}
 	}
 	else if( VeyonCore::config().isAccessControlRulesProcessingEnabled() )
@@ -123,9 +123,9 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 		switch( action )
 		{
 		case AccessControlRule::Action::Allow:
-			return AccessAllow;
+			return Access::Allow;
 		case AccessControlRule::Action::AskForPermission:
-			return AccessToBeConfirmed;
+			return Access::ToBeConfirmed;
 		default: break;
 		}
 	}
@@ -134,13 +134,13 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 		vDebug() << "no access control method configured, allowing access.";
 
 		// no access control method configured, therefore grant access
-		return AccessAllow;
+		return Access::Allow;
 	}
 
 	vDebug() << "configured access control method did not succeed, denying access.";
 
 	// configured access control method did not succeed, therefore deny access
-	return AccessDeny;
+	return Access::Deny;
 }
 
 

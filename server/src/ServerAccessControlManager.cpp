@@ -124,11 +124,11 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 
 	switch( accessResult )
 	{
-	case AccessControlProvider::AccessAllow:
+	case AccessControlProvider::Access::Allow:
 		client->setAccessControlState( VncServerClient::AccessControlSuccessful );
 		break;
 
-	case AccessControlProvider::AccessToBeConfirmed:
+	case AccessControlProvider::Access::ToBeConfirmed:
 		client->setAccessControlState( confirmDesktopAccess( client ) );
 		break;
 

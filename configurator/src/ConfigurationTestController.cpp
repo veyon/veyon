@@ -41,9 +41,9 @@ int ConfigurationTestController::run()
 		switch( AccessControlProvider().checkAccess( testArgument( 1 ), testArgument( 2 ),
 													 QStringList( testArgument( 3 ) ) ) )
 		{
-		case AccessControlProvider::AccessAllow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return 0;
-		case AccessControlProvider::AccessDeny: printf( "[TEST]: CheckAccess: DENY\n" ); return 0;
-		case AccessControlProvider::AccessToBeConfirmed: printf( "[TEST]: CheckAccess: TO BE CONFIRMED\n" ); return 0;
+		case AccessControlProvider::Access::Allow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return 0;
+		case AccessControlProvider::Access::Deny: printf( "[TEST]: CheckAccess: DENY\n" ); return 0;
+		case AccessControlProvider::Access::ToBeConfirmed: printf( "[TEST]: CheckAccess: TO BE CONFIRMED\n" ); return 0;
 		default: printf( "[TEST]: CheckAccess: FAIL\n" ); return -1;
 		}
 	}

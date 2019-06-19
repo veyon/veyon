@@ -204,7 +204,7 @@ bool MainWindow::initAccessControl()
 				AccessControlProvider().checkAccess( VeyonCore::authenticationCredentials().logonUsername(),
 													 QHostAddress( QHostAddress::LocalHost ).toString(),
 													 QStringList() );
-		if( accessControlResult == AccessControlProvider::AccessDeny )
+		if( accessControlResult == AccessControlProvider::Access::Deny )
 		{
 			vWarning() << "user" << VeyonCore::authenticationCredentials().logonUsername()
 					   << "is not allowed to access computers";
