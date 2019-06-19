@@ -198,10 +198,11 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
 	}
 
+	const auto valueType = VeyonCore::config().value( key, parentKey, {} ).userType();
 	QVariant configValue = value;
 
 	if( type == QStringLiteral("json") ||
-			VeyonCore::config().value( key, parentKey, QVariant() ).userType() == QMetaType::type( "QJsonArray" ) )
+		valueType == QMetaType::QJsonArray )
 	{
 		configValue = QJsonDocument::fromJson( value.toUtf8() ).array();
 	}
