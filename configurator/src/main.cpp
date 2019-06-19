@@ -44,7 +44,7 @@ int main( int argc, char **argv )
 
 	// make sure to run as admin
 	if( qEnvironmentVariableIntValue( "VEYON_CONFIGURATOR_NO_ELEVATION" ) == 0 &&
-			VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
+		VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
 	{
 		if( VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
 																	 app.arguments().mid( 1 ) ) )
@@ -59,8 +59,8 @@ int main( int argc, char **argv )
 											  "be run with normal user privileges.") );
 	}
 
-	if( !VeyonConfiguration().isStoreWritable() &&
-			VeyonCore::config().logLevel() != Logger::LogLevel::Debug )
+	if( VeyonConfiguration().isStoreWritable() == false &&
+		VeyonCore::config().logLevel() != Logger::LogLevel::Debug )
 	{
 		QMessageBox::critical( nullptr,
 							   MainWindow::tr( "Configuration not writable" ),
