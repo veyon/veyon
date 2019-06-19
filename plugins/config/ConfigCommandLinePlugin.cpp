@@ -201,13 +201,13 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 	const auto valueType = VeyonCore::config().value( key, parentKey, {} ).userType();
 	QVariant configValue = value;
 
-	if( type == QStringLiteral("json") ||
+	if( type == QLatin1String("json") ||
 		valueType == QMetaType::QJsonArray )
 	{
 		configValue = QJsonDocument::fromJson( value.toUtf8() ).array();
 	}
 	else if( key.contains( QStringLiteral("password"), Qt::CaseInsensitive ) ||
-			 type == QStringLiteral("password") )
+			 type == QLatin1String("password") )
 	{
 		configValue = VeyonCore::cryptoCore().encryptPassword( value );
 	}

@@ -277,7 +277,7 @@ void VncConnection::setHost( const QString& host )
 		// IPv6-mapped IPv4 addresses on Windows properly
 		m_host = rx.cap( 1 );
 	}
-	else if( m_host == QStringLiteral( "::1" ) )
+	else if( m_host == QLatin1String( "::1" ) )
 	{
 		m_host = QHostAddress( QHostAddress::LocalHost ).toString();
 	}

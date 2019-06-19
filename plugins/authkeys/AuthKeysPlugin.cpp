@@ -258,7 +258,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_list( const QStringList& arguments )
 {
-	if( arguments.value( 0 ) == QStringLiteral("details") )
+	if( arguments.value( 0 ) == QLatin1String("details") )
 	{
 		printAuthKeyTable();
 	}

@@ -204,7 +204,7 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	for( const auto& f : localLogFiles )
 	{
-		if( f != QStringLiteral("VeyonConfigurator.log") )
+		if( f != QLatin1String("VeyonConfigurator.log") )
 		{
 			success &= d.remove( f );
 		}
@@ -214,7 +214,7 @@ void GeneralConfigurationPage::clearLogFiles()
 	const auto globalLogFiles = d.entryList( logFilesFilter );
 	for( const auto& f : globalLogFiles )
 	{
-		if( f != QStringLiteral("VeyonConfigurator.log") )
+		if( f != QLatin1String("VeyonConfigurator.log") )
 		{
 			success &= d.remove( f );
 		}

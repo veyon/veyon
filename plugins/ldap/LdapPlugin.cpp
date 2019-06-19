@@ -217,19 +217,19 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 	QString filter = arguments.value( 1 );
 	QStringList results;
 
-	if( objectType == QStringLiteral("locations") )
+	if( objectType == QLatin1String("locations") )
 	{
 		results = ldapDirectory().computerLocations( filter );
 	}
-	else if( objectType == QStringLiteral("computers") )
+	else if( objectType == QLatin1String("computers") )
 	{
 		results = ldapDirectory().computersByHostName( filter );
 	}
-	else if( objectType == QStringLiteral("groups") )
+	else if( objectType == QLatin1String("groups") )
 	{
 		results = ldapDirectory().groups( filter );
 	}
-	else if( objectType == QStringLiteral("users") )
+	else if( objectType == QLatin1String("users") )
 	{
 		results = ldapDirectory().users( filter );
 	}
@@ -253,7 +253,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 {
 	QString command = arguments.value( 0 );
 
-	if( command == QStringLiteral("autoconfigurebasedn") )
+	if( command == QLatin1String("autoconfigurebasedn") )
 	{
 		printf( "\n"
 				"ldap autoconfigurebasedn <LDAP URL> [<naming context attribute name>]\n"
@@ -265,7 +265,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 				"  ldap[s]://[user[:password]@]hostname[:port]\n\n" );
 		return NoResult;
 	}
-	else if( command == QStringLiteral("query") )
+	else if( command == QLatin1String("query") )
 	{
 		printf( "\n"
 				"ldap query <object type> [filter]\n"

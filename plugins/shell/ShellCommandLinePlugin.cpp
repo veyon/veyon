@@ -63,7 +63,7 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_main()
 		printf("VEYON> ");
 
 		QString line;
-		if( stream.readLineInto( &line ) && line != QStringLiteral("exit") )
+		if( stream.readLineInto( &line ) && line != QLatin1String("exit") )
 		{
 			runCommand( line );
 		}

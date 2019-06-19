@@ -54,13 +54,13 @@ int main( int argc, char **argv )
 
 	if( arguments.count() == 2 )
 	{
-		if( arguments.last() == QStringLiteral("-v") || arguments.last() == QStringLiteral("--version") )
+		if( arguments.last() == QLatin1String("-v") || arguments.last() == QLatin1String("--version") )
 		{
 			CommandLineIO::print( VeyonCore::version() );
 			delete app;
 			return 0;
 		}
-		else if( arguments.last() == QStringLiteral("about") )
+		else if( arguments.last() == QLatin1String("about") )
 		{
 			CommandLineIO::print( QStringLiteral("Veyon: %1 (%2)").arg( VeyonCore::version() ).arg( QLatin1String(__DATE__) ) );
 			CommandLineIO::print( QStringLiteral("Qt: %1 (built against %2/%3)").
@@ -111,7 +111,7 @@ int main( int argc, char **argv )
 							Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
 							Q_ARG( QStringList, arguments.mid( 3 ) ) );
 				}
-				else if( arguments[2] != QStringLiteral("help") )
+				else if( arguments[2] != QLatin1String("help") )
 				{
 					runResult = CommandLinePluginInterface::InvalidCommand;
 				}
@@ -176,7 +176,7 @@ int main( int argc, char **argv )
 
 	int rc = -1;
 
-	if( module == QStringLiteral("help") )
+	if( module == QLatin1String("help") )
 	{
 		CommandLineIO::print( VeyonCore::tr( "Available modules:" ) );
 		rc = 0;

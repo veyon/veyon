@@ -156,12 +156,12 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 
 CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( const QStringList& arguments )
 {
-	if( arguments.value( 0 ) == QStringLiteral("view") )
+	if( arguments.value( 0 ) == QLatin1String("view") )
 	{
 		printf( "\nremoteaccess view <host>\n\n" );
 		return NoResult;
 	}
-	else if( arguments.value( 0 ) == QStringLiteral("control") )
+	else if( arguments.value( 0 ) == QLatin1String("control") )
 	{
 		printf( "\nremoteaccess control <host>\n}n" );
 		return NoResult;
