@@ -43,10 +43,11 @@ int main( int argc, char **argv )
 
 	// make sure to run as admin
 	if( qEnvironmentVariableIntValue( "VEYON_CONFIGURATOR_NO_ELEVATION" ) == 0 &&
-		VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
+		VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false &&
+		app.arguments().size() <= 1 )
 	{
-		if( VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
-																	 app.arguments().mid( 1 ) ) )
+		if( VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(), {
+																	 QStringLiteral("-elevated") } ) )
 		{
 			return 0;
 		}
