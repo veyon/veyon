@@ -211,6 +211,11 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 	{
 		configValue = VeyonCore::cryptoCore().encryptPassword( value );
 	}
+	else if( type == QLatin1String("list") ||
+			 valueType == QMetaType::QStringList )
+	{
+		configValue = value.split( QLatin1Char( ';' ) );
+	}
 
 	VeyonCore::config().setValue( key, configValue, parentKey );
 
@@ -308,19 +313,14 @@ QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& va
 	}
 	else if( value.type() == QVariant::StringList )
 	{
-		QStringList list = value.toStringList();
-		for( auto& str : list )
-		{
-			str = QLatin1Char('"') + str + QLatin1Char('"');
-		}
-		return QLatin1Char('(') + list.join( QLatin1Char(',') ) + QLatin1Char(')');
+		return value.toStringList().join( QLatin1Char(';') );
 	}
 	else if( value.userType() == QMetaType::type( "QJsonArray" ) )
 	{
 		return QString::fromUtf8( QJsonDocument( value.toJsonArray() ).toJson( QJsonDocument::Compact ) );
 	}
 
-	return QString();
+	return {};
 }
 
 
