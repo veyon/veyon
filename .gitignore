@@ -1,7 +1,6 @@
 .vagrant/*
-b/*
 .DS_Store
-*.qm
 svg
 Makefile
 plugins/addons
+plugins/extra
