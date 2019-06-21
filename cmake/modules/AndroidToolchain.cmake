@@ -1,0 +1,8 @@
+SET(ANDROID_ABI "armeabi-v7a")
+SET(ANDROID_STL "c++_shared")
+SET(ANDROID_TOOLCHAIN "clang")
+SET(ANDROID_API "16")
+SET(ANDROID_PLATFORM "android-${ANDROID_API}")
+SET(CMAKE_FIND_ROOT_PATH "/usr/arm-linux-androideabi")
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ANDROID_NDK}/build/cmake)
+INCLUDE(android.toolchain)
