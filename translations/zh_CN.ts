@@ -371,7 +371,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>密钥文件名</translation>
+        <translation>验证密钥文件名</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -403,7 +403,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>请按以下步骤设置密钥文件认证：</translation>
+        <translation>请按以下步骤设置密钥文件验证：</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -644,7 +644,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation>用于管理认证密钥的命令行支持</translation>
+        <translation>用于管理验证密钥的命令行支持</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -652,15 +652,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>此命令创建一个名为&lt;NAME&gt;的新的验证密钥对，并将密钥保存到已设置的密钥文件夹里。此参数必须是密钥的名称，名称只允许包含英文字母。</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>此命令将把验证密钥&lt;KEY&gt;从已设置的密钥文件夹中删除。请注意，密钥一旦删除就无法恢复。</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>此命令从私钥&lt;KEY&gt;中抽取公钥部分并将其保存为相应的公钥。因此当设置另一台主计算机时，只传输私钥就可以了。公钥可以被抽取出来。</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>通过命令行界面可导入CSV文件。更多信息，请参看&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;在线文档&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>New location</source>
@@ -873,7 +873,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>内置（计算机和地点都在本地配置中）</translation>
     </message>
     <message>
         <source>Location</source>
@@ -889,11 +889,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>使用占位符格式化字符串</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>使用占位符的正则表达式</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
@@ -901,19 +901,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>将简单的CSV文件导入到单独教室</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>导入CSV文件，地点名称放在第一列</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>使用正则表达式导入含键值对的文本文件</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>导入任意格式化的数据</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
@@ -921,11 +921,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>导出所有对象到一个CSV文件</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>导出特定地点中的所有计算机到一个CSV文件</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -937,7 +937,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>父母</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -945,15 +945,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>添加一个教室</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>添加一个计算机到教室 %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>对象</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -961,23 +961,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>按名称移除计算机</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>按UUID移除一个对象</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;教室 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;计算机 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>主机地址</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -1042,7 +1042,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>地点：%1</translation>
     </message>
 </context>
 <context>
@@ -1084,15 +1084,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>地点检测失败</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>计算机名称；主机名；用户</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>无法确定此计算机的地点。这表明系统配置存在问题。所有地点都将显示在计算机选择面板中。</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1107,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>添加地点</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1225,7 +1225,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>无法应用平台相关的配置。</translation>
     </message>
 </context>
 <context>
@@ -1275,7 +1275,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>当演示正在运行时降低缩略图更新频率</translation>
     </message>
 </context>
 <context>
@@ -1426,11 +1426,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>教室 %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>请在接下来的5分钟内完成所有任务。</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1438,15 +1438,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>打开文件管理器</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>启动学习工具</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>播放教程视频</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1703,15 +1703,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>身份验证已在此计算机上正确配置。</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>验证密钥在此计算机上没有正确配置。</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>验证测试</translation>
     </message>
 </context>
 <context>
@@ -1776,7 +1776,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>浏览LDAP</translation>
     </message>
 </context>
 <context>
@@ -2268,75 +2268,75 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机地点属性</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机显示名称属性</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation type="unfinished"/>
+        <translation>地点名称属性</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>例如 cn 或者 displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>计算机地点标识</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
+        <translation>通过以下方式标识计算机地点（例如教室）：</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>计算机对象中的地点属性</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>列出一个地点中的所有条目</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>列出所有地点</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation type="unfinished"/>
+        <translation>输入计算机显示名称</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询的计算机显示名称：</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>输入计算机地点名称</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>请输入计算机地点名称（允许使用通配符）：</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>计算机地点</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>输入地点名称</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询其条目的地点名称：</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation type="unfinished"/>
+        <translation>地点条目</translation>
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP测试失败</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
@@ -2346,11 +2346,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>和</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP测试成功</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
@@ -2360,7 +2360,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>浏览</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2372,15 +2372,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机主机名属性</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询的计算机主机名：</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>无效的主机名</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -2396,11 +2396,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>输入主机名</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询其组成员的计算机主机名：</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -2408,7 +2408,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>主机名查询失败</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
@@ -2416,7 +2416,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>用户登录名属性</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2424,7 +2424,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>计算机容器</translation>
     </message>
 </context>
 <context>
@@ -2447,7 +2447,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>对Veyon的基本LDAP/AD支持</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
@@ -2455,7 +2455,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1（从LDAP/AD加载用户和组）</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2478,15 +2478,15 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LdapProConfigurationPage</name>
     <message>
         <source>LDAP Pro</source>
-        <translation type="unfinished"/>
+        <translation>LDAP Pro</translation>
     </message>
     <message>
         <source>Instances</source>
-        <translation type="unfinished"/>
+        <translation>实例</translation>
     </message>
     <message>
         <source>Enter name</source>
-        <translation type="unfinished"/>
+        <translation>输入名称</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
@@ -2494,7 +2494,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove instance</source>
-        <translation type="unfinished"/>
+        <translation>移除实例</translation>
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
@@ -2517,7 +2517,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1（从LDAP/AD加载用户和组）</translation>
     </message>
 </context>
 <context>
@@ -2604,11 +2604,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>信息</translation>
     </message>
     <message>
         <source>Installation ID</source>
-        <translation type="unfinished"/>
+        <translation>安装ID</translation>
     </message>
     <message>
         <source>Addons available for licensing</source>
@@ -2616,7 +2616,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Addon</source>
-        <translation type="unfinished"/>
+        <translation>插件</translation>
     </message>
 </context>
 <context>
@@ -2686,23 +2686,23 @@ USAGE
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>用于用户验证的自定义PAM服务</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>用户验证</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>会话管理</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>显示管理员用户</translation>
     </message>
 </context>
 <context>
@@ -2716,7 +2716,7 @@ USAGE
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>选择地点</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2786,7 +2786,7 @@ USAGE
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation>无法认证</translation>
+        <translation>无法验证</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -2850,7 +2850,7 @@ USAGE
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>没有找到密钥认证文件或者您当前的文件已过期。 请使用 %1 配置程序创建新的密钥文件。 或者使用 %1 配置器设置登录认证。 否则，您将无法使用 %1 访问计算机。</translation>
+        <translation>没有找到密钥验证文件或者您当前的文件已过期。 请使用 %1 配置程序创建新的密钥文件。 或者使用 %1 配置器设置登录验证。 否则，您将无法使用 %1 访问计算机。</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2914,23 +2914,23 @@ USAGE
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;视图</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;标准</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;高级</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>使用自定义的计算机排序</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>地点及计算机</translation>
     </message>
 </context>
 <context>
@@ -3049,39 +3049,39 @@ USAGE
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>计算机地点</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>只显示当前地点</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>允许手动添加隐藏地点</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>隐藏空地点</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>显示潜在危险操作的确认对话框</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>执行访问控制</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>自动选择当前地点</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
+        <translation>自动调整计算机缩略图大小</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>自动打开计算机选择面板</translation>
     </message>
 </context>
 <context>
@@ -3096,7 +3096,7 @@ USAGE
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>此模式允许您在一个或多个地点监控所有计算机。</translation>
     </message>
 </context>
 <context>
@@ -3246,7 +3246,7 @@ USAGE
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>地点/计算机</translation>
     </message>
 </context>
 <context>
@@ -3257,7 +3257,7 @@ USAGE
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>例如 Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
@@ -3265,7 +3265,7 @@ USAGE
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>例如 www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3273,7 +3273,7 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>名称：</translation>
     </message>
 </context>
 <context>
@@ -3375,19 +3375,19 @@ USAGE
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>立即关机</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>安装更新并关机</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>用户确认后关机</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>超时后关机</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3412,11 +3412,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>分钟</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>秒</translation>
     </message>
 </context>
 <context>
@@ -3529,7 +3529,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>退出</translation>
     </message>
 </context>
 <context>
@@ -3574,15 +3574,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>名称：</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>记住并添加到程序菜单</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>例如 VLC</translation>
     </message>
 </context>
 <context>
@@ -3949,7 +3949,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>注销</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
@@ -3957,7 +3957,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>确认用户注销</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4020,19 +4020,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>使用情况</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>描述</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>示例</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>警告</translation>
     </message>
 </context>
 <context>
@@ -4060,7 +4060,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4072,23 +4072,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>屏幕锁</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>隐藏任务栏</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>隐藏开始菜单</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>隐藏桌面</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>用户验证</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
