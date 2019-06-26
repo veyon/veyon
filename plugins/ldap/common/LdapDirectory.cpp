@@ -377,7 +377,8 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 	QHostAddress hostAddress( host );
 
 	// no valid IP address given?
-	if( hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol )
+	if( hostAddress.isNull() ||
+		hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol )
 	{
 		// then try to resolve ist first
 		QHostInfo hostInfo = QHostInfo::fromName( host );
