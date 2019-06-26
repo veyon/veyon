@@ -28,7 +28,7 @@
       <item row="1" column="0" colspan="5">
        <widget class="QCheckBox" name="failedAuthenticationNotificationsEnabled">
         <property name="text">
-         <string>Show notification on failed authentication attempts</string>
+         <string>Show notification when an unauthorized access is blocked</string>
         </property>
        </widget>
       </item>
