@@ -78,7 +78,20 @@ QStringList AccessControlProvider::locations() const
 
 QStringList AccessControlProvider::locationsOfComputer( const QString& computer ) const
 {
-	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Host, computer );
+	auto hostName = computer;
+
+	// computer is an IP address?
+	if( QHostAddress( hostName ).isNull() == false )
+	{
+		hostName = QHostInfo::fromName( hostName ).hostName();
+	}
+
+	if( hostName.isEmpty() )
+	{
+		return {};
+	}
+
+	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Host, hostName );
 	if( computers.isEmpty() )
 	{
 		return {};
