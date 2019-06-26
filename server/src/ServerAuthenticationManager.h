@@ -53,7 +53,7 @@ public:
 
 
 signals:
-	void authenticationDone( AuthResult result, const QString& host, const QString& user );
+	void finished( VncServerClient* client );
 
 private:
 	VncServerClient::AuthState performKeyAuthentication( VncServerClient* client, VariantArrayMessage& message );

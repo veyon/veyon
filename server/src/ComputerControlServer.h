@@ -74,7 +74,7 @@ public:
 
 
 private:
-	void showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user );
+	void showAuthenticationMessage( VncServerClient* client );
 	void showAccessControlMessage( VncServerClient* client );
 
 	QMutex m_dataMutex;

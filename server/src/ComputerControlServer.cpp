@@ -58,7 +58,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	// make app terminate once the VNC server thread has finished
 	connect( &m_vncServer, &VncServer::finished, QCoreApplication::instance(), &QCoreApplication::quit );
 
-	connect( &m_serverAuthenticationManager, &ServerAuthenticationManager::authenticationDone,
+	connect( &m_serverAuthenticationManager, &ServerAuthenticationManager::finished,
 			 this, &ComputerControlServer::showAuthenticationMessage );
 
 	connect( &m_serverAccessControlManager, &ServerAccessControlManager::finished,
@@ -137,23 +137,23 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 
 
 
-void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user )
+void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
 {
-	if( result == ServerAuthenticationManager::AuthResult::Failed )
+	if( client->authState() == VncServerClient::AuthState::Failed )
 	{
-		vWarning() << "Authentication failed for" << host << user;
+		vWarning() << "Authentication failed for" << client->hostAddress() << client->username();
 
 		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
 		{
 			QMutexLocker l( &m_dataMutex );
 
-			if( m_failedAuthHosts.contains( host ) == false )
+			if( m_failedAuthHosts.contains( client->hostAddress() ) == false )
 			{
-				m_failedAuthHosts += host;
+				m_failedAuthHosts += client->hostAddress();
 				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 							tr( "Authentication error" ),
 							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
-								"but could not authenticate successfully." ).arg( user, host ),
+								"but could not authenticate successfully." ).arg( client->username(), client->hostAddress() ),
 							m_featureWorkerManager );
 			}
 		}
