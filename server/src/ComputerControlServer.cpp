@@ -60,6 +60,9 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 
 	connect( &m_serverAuthenticationManager, &ServerAuthenticationManager::authenticationDone,
 			 this, &ComputerControlServer::showAuthenticationMessage );
+
+	connect( &m_serverAccessControlManager, &ServerAccessControlManager::finished,
+			 this, &ComputerControlServer::showAccessControlMessage );
 }
 
 
@@ -136,21 +139,9 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 
 void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user )
 {
-	if( result == ServerAuthenticationManager::AuthResult::Successful )
+	if( result == ServerAuthenticationManager::AuthResult::Failed )
 	{
-		vInfo() << "successfully authenticated" << user << "at host" << host;
-
-		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
-		{
-			VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
-						tr( "Remote access" ),
-						tr( "User \"%1\" at host \"%2\" is now accessing this computer." ).arg( user, host ),
-						m_featureWorkerManager );
-		}
-	}
-	else if( result == ServerAuthenticationManager::AuthResult::Failed )
-	{
-		vWarning() << "failed authenticating client" << host << user;
+		vWarning() << "Authentication failed for" << host << user;
 
 		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
 		{
@@ -162,13 +153,48 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 							tr( "Authentication error" ),
 							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
-								"but could not authenticate successfully!" ).arg( user, host ),
+								"but could not authenticate successfully." ).arg( user, host ),
 							m_featureWorkerManager );
 			}
 		}
 	}
-	else
+}
+
+
+
+void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
+{
+	if( client->accessControlState() == VncServerClient::AccessControlState::Successful )
 	{
-		vCritical() << "Invalid auth result" << result;
+		vInfo() << "Access control successful for" << client->hostAddress() << client->username();
+
+		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
+		{
+			VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
+						tr( "Remote access" ),
+						tr( "User \"%1\" at host \"%2\" is now accessing this computer." ).
+						arg( client->username(), client->hostAddress() ),
+						m_featureWorkerManager );
+		}
+	}
+	else if( client->accessControlState() == VncServerClient::AccessControlState::Failed )
+	{
+		vWarning() << "Access control failed for" << client->hostAddress() << client->username();
+
+		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
+		{
+			QMutexLocker l( &m_dataMutex );
+
+			if( m_failedAccessControlHosts.contains( client->hostAddress() ) == false )
+			{
+				m_failedAccessControlHosts += client->hostAddress();
+				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
+							tr( "Access control error" ),
+							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
+								"but has been blocked due to access control settings." ).
+							arg( client->username(), client->hostAddress() ),
+							m_featureWorkerManager );
+			}
+		}
 	}
 }

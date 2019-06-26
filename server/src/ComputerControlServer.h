@@ -75,11 +75,13 @@ public:
 
 private:
 	void showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user );
+	void showAccessControlMessage( VncServerClient* client );
 
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;
 
 	QStringList m_failedAuthHosts;
+	QStringList m_failedAccessControlHosts;
 
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
