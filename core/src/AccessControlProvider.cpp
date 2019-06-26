@@ -86,6 +86,8 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 		hostName = QHostInfo::fromName( hostName ).hostName();
 	}
 
+	vDebug() << "Searching for locations of computer" << computer << hostName;
+
 	if( hostName.isEmpty() )
 	{
 		return {};
@@ -94,6 +96,7 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Host, hostName );
 	if( computers.isEmpty() )
 	{
+		vWarning() << "Could not query any network objects for host name" << hostName;
 		return {};
 	}
 
@@ -110,6 +113,8 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 	}
 
 	std::sort( locationList.begin(), locationList.end() );
+
+	vDebug() << "Found locations:" << locationList;
 
 	return locationList;
 }
