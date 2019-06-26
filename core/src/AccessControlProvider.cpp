@@ -22,8 +22,9 @@
  *
  */
 
-#include <QRegularExpression>
 #include <QHostInfo>
+#include <QNetworkInterface>
+#include <QRegularExpression>
 
 #include "UserGroupsBackendManager.h"
 #include "AccessControlProvider.h"
@@ -264,7 +265,33 @@ bool AccessControlProvider::haveSameLocations( const QString &computerOne, const
 
 bool AccessControlProvider::isLocalHost( const QString &accessingComputer ) const
 {
-	return QHostAddress( accessingComputer ).isLoopback();
+	if( accessingComputer.isEmpty() )
+	{
+		return false;
+	}
+
+	const auto allLocalAddresses = QNetworkInterface::allAddresses();
+
+	QHostAddress hostAddress( accessingComputer );
+
+	// not a valid IP address?
+	if( hostAddress.isNull() )
+	{
+		auto addresses = QHostInfo::fromName( accessingComputer ).addresses();
+		for( const auto& address : addresses )
+		{
+			if( address.isLoopback() || allLocalAddresses.contains( address ) )
+			{
+				return true;
+			}
+		}
+	}
+	else
+	{
+		return hostAddress.isLoopback() || allLocalAddresses.contains( hostAddress );
+	}
+
+	return false;
 }
 
 
