@@ -137,6 +137,8 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 		client->setProtocolState( VncServerProtocol::Close );
 		break;
 	}
+
+	emit finished( client );
 }
 
 

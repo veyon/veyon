@@ -43,7 +43,7 @@ public:
 
 
 signals:
-	void accessControlError( const QString& host, const QString& user );
+	void finished( VncServerClient* client );
 
 private:
 	static constexpr int ClientWaitInterval = 1000;
