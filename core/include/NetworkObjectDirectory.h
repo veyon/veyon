@@ -64,6 +64,7 @@ public:
 protected:
 	using NetworkObjectFilter = std::function<bool (const NetworkObject &)>;
 
+	bool hasObjects() const;
 	void addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent );
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
 	void setObjectPopulated( const NetworkObject& networkObject );

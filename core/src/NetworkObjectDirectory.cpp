@@ -187,7 +187,7 @@ NetworkObject::ModelId NetworkObjectDirectory::rootId() const
 
 NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
 {
-	if( m_objects.isEmpty() )
+	if( hasObjects() == false )
 	{
 		update();
 	}
@@ -215,7 +215,7 @@ NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type
 
 NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& child )
 {
-	if( m_objects.isEmpty() )
+	if( hasObjects() == false )
 	{
 		update();
 	}
@@ -251,6 +251,13 @@ void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
 	}
 
 	setObjectPopulated( object );
+}
+
+
+
+bool NetworkObjectDirectory::hasObjects() const
+{
+	return m_objects.size() > 1;
 }
 
 
