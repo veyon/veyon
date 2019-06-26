@@ -136,7 +136,7 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 
 void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user )
 {
-	if( result == ServerAuthenticationManager::AuthResultSuccessful )
+	if( result == ServerAuthenticationManager::AuthResult::Successful )
 	{
 		vInfo() << "successfully authenticated" << user << "at host" << host;
 
@@ -148,7 +148,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 						m_featureWorkerManager );
 		}
 	}
-	else if( result == ServerAuthenticationManager::AuthResultFailed )
+	else if( result == ServerAuthenticationManager::AuthResult::Failed )
 	{
 		vWarning() << "failed authenticating client" << host << user;
 

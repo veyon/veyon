@@ -36,11 +36,11 @@ class ServerAuthenticationManager : public QObject
 {
 	Q_OBJECT
 public:
-	enum AuthResult {
-		AuthResultSuccessful,
-		AuthResultFailed,
-		AuthResultCount
+	enum class AuthResult {
+		Successful,
+		Failed
 	} ;
+	Q_ENUM(AuthResult)
 
 	explicit ServerAuthenticationManager( QObject* parent );
 

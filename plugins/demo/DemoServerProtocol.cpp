@@ -50,7 +50,7 @@ void DemoServerProtocol::processAuthenticationMessage( VariantArrayMessage& mess
 	}
 	else
 	{
-		client()->setAuthState( VncServerClient::AuthFinishedFail );
+		client()->setAuthState( VncServerClient::AuthState::Failed );
 	}
 }
 
@@ -58,7 +58,7 @@ void DemoServerProtocol::processAuthenticationMessage( VariantArrayMessage& mess
 
 void DemoServerProtocol::performAccessControl()
 {
-	client()->setAccessControlState( VncServerClient::AccessControlSuccessful );
+	client()->setAccessControlState( VncServerClient::AccessControlState::Successful );
 }
 
 
@@ -67,22 +67,22 @@ VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( Varia
 {
 	switch( client()->authState() )
 	{
-	case VncServerClient::AuthInit:
-		return VncServerClient::AuthToken;
+	case VncServerClient::AuthState::Init:
+		return VncServerClient::AuthState::Token;
 
-	case VncServerClient::AuthToken:
+	case VncServerClient::AuthState::Token:
 		if( message.read().toString() == m_demoAccessToken )
 		{
 			vDebug() << "SUCCESS";
-			return VncServerClient::AuthFinishedSuccess;
+			return VncServerClient::AuthState::Successful;
 		}
 
 		vDebug() << "FAIL";
-		return VncServerClient::AuthFinishedFail;
+		return VncServerClient::AuthState::Failed;
 
 	default:
 		break;
 	}
 
-	return VncServerClient::AuthFinishedFail;
+	return VncServerClient::AuthState::Failed;
 }

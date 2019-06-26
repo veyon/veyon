@@ -40,7 +40,7 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 	m_client( client ),
 	m_serverInitMessage()
 {
-	m_client->setAccessControlState( VncServerClient::AccessControlInit );
+	m_client->setAccessControlState( VncServerClient::AccessControlState::Init );
 }
 
 
@@ -260,7 +260,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 
 	switch( m_client->authState() )
 	{
-	case VncServerClient::AuthFinishedSuccess:
+	case VncServerClient::AuthState::Successful:
 	{
 		const auto authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
 		m_socket->write( reinterpret_cast<const char *>( &authResult ), sizeof(authResult) );
@@ -269,7 +269,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 		return true;
 	}
 
-	case VncServerClient::AuthFinishedFail:
+	case VncServerClient::AuthState::Failed:
 		vCritical() << "authentication failed - closing connection";
 		m_socket->close();
 
@@ -290,12 +290,12 @@ bool VncServerProtocol::processAccessControl()
 
 	switch( m_client->accessControlState() )
 	{
-	case VncServerClient::AccessControlSuccessful:
+	case VncServerClient::AccessControlState::Successful:
 		setState( FramebufferInit );
 		return true;
 
-	case VncServerClient::AccessControlPending:
-	case VncServerClient::AccessControlWaiting:
+	case VncServerClient::AccessControlState::Pending:
+	case VncServerClient::AccessControlState::Waiting:
 		break;
 
 	default:

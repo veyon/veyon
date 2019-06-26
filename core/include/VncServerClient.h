@@ -33,30 +33,31 @@ class VEYON_CORE_EXPORT VncServerClient : public QObject
 {
 	Q_OBJECT
 public:
-	enum AuthState {
-		AuthInit,
-		AuthChallenge,
-		AuthPassword,
-		AuthToken,
-		AuthFinishedSuccess,
-		AuthFinishedFail,
+	enum class AuthState {
+		Init,
+		Challenge,
+		Password,
+		Token,
+		Successful,
+		Failed,
 	} ;
+	Q_ENUM(AuthState)
 
-	enum AccessControlState {
-		AccessControlInit,
-		AccessControlSuccessful,
-		AccessControlPending,
-		AccessControlWaiting,
-		AccessControlFailed,
-		AccessControlStateCount
+	enum class AccessControlState {
+		Init,
+		Successful,
+		Pending,
+		Waiting,
+		Failed
 	} ;
+	Q_ENUM(AccessControlState)
 
 	explicit VncServerClient( QObject* parent = nullptr ) :
 		QObject( parent ),
 		m_protocolState( VncServerProtocol::Disconnected ),
-		m_authState( AuthInit ),
+		m_authState( AuthState::Init ),
 		m_authType( RfbVeyonAuth::Invalid ),
-		m_accessControlState( AccessControlInit ),
+		m_accessControlState( AccessControlState::Init ),
 		m_username(),
 		m_hostAddress(),
 		m_challenge()
