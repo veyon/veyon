@@ -423,14 +423,14 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 
 QString LdapDirectory::computerObjectFromHost( const QString& host )
 {
-	QString hostName = hostToLdapFormat( host );
+	const auto hostName = hostToLdapFormat( host );
 	if( hostName.isEmpty() )
 	{
 		vWarning() << "could not resolve hostname, returning empty computer object";
 		return {};
 	}
 
-	QStringList computerObjects = computersByHostName( hostName );
+	const auto computerObjects = computersByHostName( hostName );
 	if( computerObjects.count() == 1 )
 	{
 		return computerObjects.first();
