@@ -897,7 +897,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>使用包含一个或多个占位符的给定格式化字符串或正则表达式来从特定文本文件导入对象。合法的占位符有：%1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -917,7 +917,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>使用包含一个或多个占位符的给定格式化字符串来导出对象到特定的文本文件。合法的占位符有：%1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -941,7 +941,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>添加一个对象，%1可以是 &quot;%2&quot; 或 &quot;%3&quot; 的其中之一。%4 可以通过名称或UUID指定。</translation>
     </message>
     <message>
         <source>Add a room</source>
@@ -957,7 +957,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>从目录中特定对象。%1 可以通过名称或UUID指定。移除一个地点也会移除所有相关的计算机。</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
@@ -2342,7 +2342,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>无法查询任何 %1。 请检查参数 %2 或输入现有对象的名称。
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
@@ -2356,7 +2358,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Could not query any entries in configured %1.无法查询已配置的 %1 中的任何条目。请检查参数 &quot;%2&quot;。
+
+%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2368,7 +2372,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>主机名称存储为完全限定域名（FQDN，例如 myhost.example.org）</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2384,15 +2388,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>您将计算机主机名配置为存储为完全限定域名（FQDN），但输入的是没有域名部分的主机名。</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>您将计算机主机名配置为存储没有域名的简单主机名，但输入了带有域名部分的主机名。</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>无法找到名称为 &quot;%1&quot; 的用户。 请检查用户名或用户树参数。</translation>
     </message>
     <message>
         <source>Enter hostname</source>
@@ -2404,7 +2408,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>无法找到主机名为 &quot;%1&quot; 的计算机。 请检查主机名或计算机树参数。</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
@@ -2412,7 +2416,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>无法查找IP地址为 %1 的主机名。请检查您的DNS服务器设置。</translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2420,7 +2424,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>用户登录名或计算机主机名的配置属性（OpenLDAP）</translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -2451,7 +2455,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 （从LDAP/AD加载计算机和地点）</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
@@ -2459,19 +2463,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>请参照此示例指定一个合法的LDAP url &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>没有提供命名上下文属性名称 - 回退到已配置的值。</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>无法查询base DN。请检查您的LDAP配置。</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>正配置 %1 为base DN，并禁用命名上下文查询。</translation>
     </message>
 </context>
 <context>
@@ -2490,7 +2494,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation type="unfinished"/>
+        <translation>请输入此实例的名称（设置后无法更改！）：</translation>
     </message>
     <message>
         <source>Remove instance</source>
@@ -2498,22 +2502,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要移除实例 &quot;%1&quot; 吗？</translation>
     </message>
     <message>
         <source>Configuration for instance &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>实例 &quot;%1&quot; 的配置</translation>
     </message>
 </context>
 <context>
     <name>LdapProPlugin</name>
     <message>
         <source>Professional LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>为Veyon提供LDAP/AD专业集成</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 （从LDAP/AD加载计算机和地点）</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
@@ -2612,7 +2616,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
+        <translation>需要许可证的可用插件</translation>
     </message>
     <message>
         <source>Addon</source>
@@ -3261,7 +3265,7 @@ USAGE
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>记住并添加到网站菜单</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
@@ -3391,13 +3395,15 @@ USAGE
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>此计算机请求远程关机。您是否需要现在关闭此计算机？</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>此计算机将在 %1 分钟，%2 秒后关闭。
+
+请保存您的工作并关闭所有程序。</translation>
     </message>
 </context>
 <context>
@@ -3408,7 +3414,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>请指定关闭选定计算机的超时时间：</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3767,7 +3773,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation type="unfinished"/>
+        <translation>多会话模式（适用于终端及远程桌面服务器）</translation>
     </message>
 </context>
 <context>
@@ -3953,7 +3959,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮在所有计算机上执行注销命令。</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
@@ -3961,7 +3967,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要注销选定的用户吗？</translation>
     </message>
 </context>
 <context>
@@ -4092,7 +4098,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>使用其他用户验证机制</translation>
     </message>
 </context>
 <context>
@@ -4106,31 +4112,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 已安装。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 未能安装。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 已成功安装。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 未能卸载。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 已成功卸载。</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 的启动类型无法更改。</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>服务 &quot;%1&quot; 未找到。</translation>
     </message>
 </context>
 <context>

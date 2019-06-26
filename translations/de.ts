@@ -1057,7 +1057,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Der Benutzer &quot;%1&quot; am Computer %2&quot; greift jetzt auf diesen Computer zu.</translation>
+        <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; greift jetzt auf diesen Computer zu.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
