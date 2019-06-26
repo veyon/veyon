@@ -133,7 +133,11 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
 
 	for( const auto& computer : computers )
 	{
-		hostObjects.append( computerToObject( &m_ldapDirectory, computer ) );
+		const auto hostObject = computerToObject( &m_ldapDirectory, computer );
+		if( hostObject.isValid() )
+		{
+			hostObjects.append( hostObject );
+		}
 	}
 
 	return hostObjects;
