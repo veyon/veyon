@@ -46,9 +46,7 @@ signals:
 	void accessControlError( const QString& host, const QString& user );
 
 private:
-	enum {
-		ClientWaitInterval = 1000
-	};
+	static constexpr int ClientWaitInterval = 1000;
 
 	void performAccessControl( VncServerClient* client );
 	VncServerClient::AccessControlState confirmDesktopAccess( VncServerClient* client );
