@@ -156,7 +156,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Attribu
 		break;
 
 	case NetworkObject::Attribute::HostAddress:
-		computers = m_ldapDirectory.computersByHostName( value.toString() );
+		computers = m_ldapDirectory.computersByHostName( m_ldapDirectory.hostToLdapFormat( value.toString() ) );
 		break;
 	default:
 		vCritical() << "Can't query hosts by attribute" << attribute;
