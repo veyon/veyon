@@ -49,6 +49,19 @@ public:
 	} ;
 	Q_ENUM(Type)
 
+	enum class Attribute
+	{
+		None,
+		Type,
+		Name,
+		HostAddress,
+		MacAddress,
+		DirectoryAddress,
+		Uid,
+		ParentUid
+	};
+	Q_ENUM(Attribute)
+
 	NetworkObject( const NetworkObject& other );
 	explicit NetworkObject( Type type = Type::None,
 							const Name& name = Name(),
