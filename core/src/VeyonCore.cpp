@@ -32,7 +32,6 @@
 #include <QDir>
 #include <QGroupBox>
 #include <QHostAddress>
-#include <QHostInfo>
 #include <QLabel>
 #include <QProcessEnvironment>
 #include <QSysInfo>
@@ -40,6 +39,7 @@
 #include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
 #include "Filesystem.h"
+#include "HostAddress.h"
 #include "Logger.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PasswordDialog.h"
@@ -711,7 +711,7 @@ bool VeyonCore::initKeyFileAuthentication()
 
 void VeyonCore::initSystemInfo()
 {
-	vDebug() << version() << QHostInfo::localHostName()
+	vDebug() << version() << HostAddress::localFQDN()
 			 << QSysInfo::kernelType() << QSysInfo::kernelVersion()
 			 << QSysInfo::prettyProductName() << QSysInfo::productType() << QSysInfo::productVersion();
 }
