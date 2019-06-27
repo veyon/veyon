@@ -55,7 +55,8 @@ public:
 
 	NetworkObject::ModelId rootId() const;
 
-	virtual NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name = {} );
+	virtual NetworkObjectList queryObjects( NetworkObject::Type type,
+											NetworkObject::Attribute attribute, const QVariant& value );
 	virtual NetworkObjectList queryParents( const NetworkObject& child );
 
 	virtual void update() = 0;

@@ -36,12 +36,13 @@ LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration&
 
 
 
-NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type type,
+															NetworkObject::Attribute attribute, const QVariant& value )
 {
 	switch( type )
 	{
-	case NetworkObject::Type::Location: return queryLocations( name );
-	case NetworkObject::Type::Host: return queryHosts( name );
+	case NetworkObject::Type::Location: return queryLocations( attribute, value );
+	case NetworkObject::Type::Host: return queryHosts( attribute, value );
 	default: break;
 	}
 
@@ -107,8 +108,24 @@ void LdapNetworkObjectDirectory::updateLocation( const NetworkObject& locationOb
 
 
 
-NetworkObjectList LdapNetworkObjectDirectory::queryLocations( const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryLocations( NetworkObject::Attribute attribute, const QVariant& value )
 {
+	QString name;
+
+	switch( attribute )
+	{
+	case NetworkObject::Attribute::None:
+		break;
+
+	case NetworkObject::Attribute::Name:
+		name = value.toString();
+		break;
+
+	default:
+		vCritical() << "Can't query locations by attribute" << attribute;
+		return {};
+	}
+
 	const auto locations = m_ldapDirectory.computerLocations( name );
 
 	NetworkObjectList locationObjects;
@@ -124,9 +141,27 @@ NetworkObjectList LdapNetworkObjectDirectory::queryLocations( const QString& nam
 
 
 
-NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Attribute attribute, const QVariant& value )
 {
-	const auto computers = m_ldapDirectory.computersByHostName( name );
+	QStringList computers;
+
+	switch( attribute )
+	{
+	case NetworkObject::Attribute::None:
+		computers = m_ldapDirectory.computersByHostName( {} );
+		break;
+
+	case NetworkObject::Attribute::Name:
+		computers = m_ldapDirectory.computersByDisplayName( value.toString() );
+		break;
+
+	case NetworkObject::Attribute::HostAddress:
+		computers = m_ldapDirectory.computersByHostName( value.toString() );
+		break;
+	default:
+		vCritical() << "Can't query hosts by attribute" << attribute;
+		return {};
+	}
 
 	NetworkObjectList hostObjects;
 	hostObjects.reserve( computers.size() );

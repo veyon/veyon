@@ -33,7 +33,8 @@ class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 public:
 	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parent );
 
-	NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name ) override;
+	NetworkObjectList queryObjects( NetworkObject::Type type,
+									NetworkObject::Attribute attribute, const QVariant& value ) override;
 	NetworkObjectList queryParents( const NetworkObject& childId ) override;
 
 	static NetworkObject computerToObject( LdapDirectory* directory, const QString& computerDn );
@@ -42,8 +43,8 @@ private:
 	void update() override;
 	void updateLocation( const NetworkObject& locationObject );
 
-	NetworkObjectList queryLocations( const QString& name );
-	NetworkObjectList queryHosts( const QString& name );
+	NetworkObjectList queryLocations( NetworkObject::Attribute attribute, const QVariant& value );
+	NetworkObjectList queryHosts( NetworkObject::Attribute attribute, const QVariant& value );
 
 	LdapDirectory m_ldapDirectory;
 };

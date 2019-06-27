@@ -185,7 +185,9 @@ NetworkObject::ModelId NetworkObjectDirectory::rootId() const
 
 
 
-NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type,
+														NetworkObject::Attribute attribute,
+														const QVariant& value )
 {
 	if( hasObjects() == false )
 	{
@@ -201,7 +203,8 @@ NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type
 		for( const auto& object : objectList )
 		{
 			if( ( type == NetworkObject::Type::None || object.type() == type ) &&
-					( name.isEmpty() || object.name().compare( name, Qt::CaseInsensitive ) == 0 ) )
+				( attribute == NetworkObject::Attribute::None ||
+				  object.isAttributeValueEqual( attribute, value, Qt::CaseInsensitive ) ) )
 			{
 				objects.append( object );
 			}

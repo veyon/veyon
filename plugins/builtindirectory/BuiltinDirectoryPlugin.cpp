@@ -272,7 +272,9 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const
 	}
 	else
 	{
-		const auto parents = BuiltinDirectory( m_configuration, this ).queryObjects( NetworkObject::Type::Location, arguments.first() );
+		const auto parents = BuiltinDirectory( m_configuration, this ).queryObjects( NetworkObject::Type::Location,
+																					 NetworkObject::Attribute::Name,
+																					 arguments.first() );
 
 		for( const auto& parent : parents )
 		{
