@@ -28,6 +28,7 @@
 
 #include "UserGroupsBackendManager.h"
 #include "AccessControlProvider.h"
+#include "HostAddress.h"
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "VeyonConfiguration.h"
@@ -79,26 +80,21 @@ QStringList AccessControlProvider::locations() const
 
 QStringList AccessControlProvider::locationsOfComputer( const QString& computer ) const
 {
-	auto hostName = computer;
+	const auto fqdn = HostAddress( computer ).convert( HostAddress::Type::FullyQualifiedDomainName );
 
-	// computer is an IP address?
-	if( QHostAddress( hostName ).isNull() == false )
+	vDebug() << "Searching for locations of computer" << computer << "via FQDN" << fqdn;
+
+	if( fqdn.isEmpty() )
 	{
-		hostName = QHostInfo::fromName( hostName ).hostName();
-	}
-
-	vDebug() << "Searching for locations of computer" << computer << hostName;
-
-	if( hostName.isEmpty() )
-	{
+		vWarning() << "Empty FQDN - returning empty location list";
 		return {};
 	}
 
 	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Type::Host,
-																   NetworkObject::Attribute::HostAddress, hostName );
+																   NetworkObject::Attribute::HostAddress, fqdn );
 	if( computers.isEmpty() )
 	{
-		vWarning() << "Could not query any network objects for host name" << hostName;
+		vWarning() << "Could not query any network objects for host" << fqdn;
 		return {};
 	}
 
@@ -139,7 +135,7 @@ AccessControlProvider::Access AccessControlProvider::checkAccess( const QString&
 		auto action = processAccessControlRules( accessingUser,
 												 accessingComputer,
 												 VeyonCore::platform().userFunctions().currentUser(),
-												 QHostInfo::localHostName(),
+												 HostAddress::localFQDN(),
 												 connectedUsers );
 		switch( action )
 		{
@@ -220,7 +216,7 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
 		if( matchConditions( rule, {}, {},
-							 VeyonCore::platform().userFunctions().currentUser(), QHostInfo::localHostName(), {} ) )
+							 VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {} ) )
 		{
 			switch( rule.action() )
 			{
