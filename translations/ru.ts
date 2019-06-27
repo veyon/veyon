@@ -1066,6 +1066,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>Пользователь &quot;%1&quot; на хосте &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию!</translation>
     </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>Пользователь &quot;%1&quot; на узле &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию.</translation>
+    </message>
+    <message>
+        <source>Access control error</source>
+        <translation>Ошибка управления доступом</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation>Пользователь &quot;%1&quot; на узле &quot;%2&quot; пытался получить доступ к этому компьютеру, но был заблокирован из-за параметров управления доступом.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3774,6 +3786,10 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Режим со многими сеансами (для сервера-терминала и сервера удалённого рабочего стола)</translation>
     </message>
+    <message>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Показывать оповещения, когда программа блокирует неавторизованный доступ</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3876,6 +3892,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Default (system user groups)</source>
         <translation>По умолчанию (группы пользователей системы)</translation>
+    </message>
+</context>
+<context>
+    <name>TestingCommandLinePlugin</name>
+    <message>
+        <source>Test internal Veyon components and functions</source>
+        <translation>Выполнить проверку внутренних компонентов и функций Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for testing internal components and functions of Veyon</source>
+        <translation>Команды для проверки внутренних компонентов и функций Veyon</translation>
     </message>
 </context>
 <context>

@@ -1066,6 +1066,18 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači ale nebyl schopen se úspěšně ověřit!</translation>
     </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access control error</source>
+        <translation>Chyba řízení přístupu</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3770,6 +3782,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Režim vícero relací (pro terminály a servery pro vzdálenou plochu)</translation>
     </message>
+    <message>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3872,6 +3888,17 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Default (system user groups)</source>
         <translation>Výchozí (systémové uživatelské skupiny)</translation>
+    </message>
+</context>
+<context>
+    <name>TestingCommandLinePlugin</name>
+    <message>
+        <source>Test internal Veyon components and functions</source>
+        <translation>Vyzkoušet vnitřní součásti a funkce Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for testing internal components and functions of Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

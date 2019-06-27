@@ -1063,6 +1063,18 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren!</translation>
     </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren.</translation>
+    </message>
+    <message>
+        <source>Access control error</source>
+        <translation>Fehler Zugriffskontrolle</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, wurde aber aufgrund von Zugriffskontrolleneinstellungen blockiert.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3770,6 +3782,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Mehrfachsitzungs-Modus (für Terminal- und Remote-Desktop-Server)</translation>
     </message>
+    <message>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Benachrichtigung bei unerlaubtem Zugriff anzeigen</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3872,6 +3888,17 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Default (system user groups)</source>
         <translation>Standard (Systembenutzergruppen)</translation>
+    </message>
+</context>
+<context>
+    <name>TestingCommandLinePlugin</name>
+    <message>
+        <source>Test internal Veyon components and functions</source>
+        <translation>Interne Veyon-Komponenten und -Funktionen testen</translation>
+    </message>
+    <message>
+        <source>Commands for testing internal components and functions of Veyon</source>
+        <translation>Befehle zum Testen interner Komponenten und Funktionen von Veyon</translation>
     </message>
 </context>
 <context>

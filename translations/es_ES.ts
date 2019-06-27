@@ -1068,6 +1068,18 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>¡Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ha intentado acceder a este equipo pero no se ha autenticado correctamente!</translation>
     </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access control error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3776,6 +3788,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Modo de sesión múltiple (para servidores de terminales y de escritorio remoto)</translation>
     </message>
+    <message>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3878,6 +3894,17 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Default (system user groups)</source>
         <translation>Predeterminado (grupos de usuarios del sistema)</translation>
+    </message>
+</context>
+<context>
+    <name>TestingCommandLinePlugin</name>
+    <message>
+        <source>Test internal Veyon components and functions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for testing internal components and functions of Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

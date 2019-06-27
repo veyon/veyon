@@ -1066,6 +1066,18 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a essayé d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier !</translation>
     </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier avec succès.</translation>
+    </message>
+    <message>
+        <source>Access control error</source>
+        <translation>Erreur de contrôle d&apos;accès</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur, mais a été bloqué en raison des paramétrages du contrôle d&apos;accès.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3774,6 +3786,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Mode multi-session (pour les serveurs de bureau terminaux et distants)</translation>
     </message>
+    <message>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Afficher une notification quand un accès non autorisé est bloqué</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3876,6 +3892,17 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Default (system user groups)</source>
         <translation>Défaut (Groupes utilisateur système)</translation>
+    </message>
+</context>
+<context>
+    <name>TestingCommandLinePlugin</name>
+    <message>
+        <source>Test internal Veyon components and functions</source>
+        <translation>Teste les composants internes et fonctions de Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for testing internal components and functions of Veyon</source>
+        <translation>Commandes pour tester les composants internes et les fonctions de Veyon</translation>
     </message>
 </context>
 <context>

@@ -1063,6 +1063,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але не зміг пройти розпізнавання!</translation>
     </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але не зміг пройти розпізнавання.</translation>
+    </message>
+    <message>
+        <source>Access control error</source>
+        <translation>Помилка керування доступом</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але його було заблоковано через параметри керування доступом.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3773,6 +3785,10 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Режим із багатьма сеансами (для сервера-термінала та сервера віддаленої стільниці)</translation>
     </message>
+    <message>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Показувати сповіщення, коли програма блокує неуповноважений доступ</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3875,6 +3891,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Default (system user groups)</source>
         <translation>Типовий (групи користувачів системи)</translation>
+    </message>
+</context>
+<context>
+    <name>TestingCommandLinePlugin</name>
+    <message>
+        <source>Test internal Veyon components and functions</source>
+        <translation>Виконати перевірку внутрішніх компонентів і функцій Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for testing internal components and functions of Veyon</source>
+        <translation>Команди для перевірки внутрішніх компонентів та функцій Veyon</translation>
     </message>
 </context>
 <context>
