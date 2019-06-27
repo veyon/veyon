@@ -108,7 +108,7 @@ void ComputerSelectPanel::removeLocation()
 	const auto index = ui->treeView->selectionModel()->currentIndex();
 
 	if( index.isValid() &&
-		QVariantHelper<NetworkObject::Type>::value( model->data( index, NetworkObjectModel::TypeRole ) ) == NetworkObject::Location )
+		QVariantHelper<NetworkObject::Type>::value( model->data( index, NetworkObjectModel::TypeRole ) ) == NetworkObject::Type::Location )
 	{
 		m_computerManager.removeLocation( model->data( index, NetworkObjectModel::NameRole ).toString() );
 	}

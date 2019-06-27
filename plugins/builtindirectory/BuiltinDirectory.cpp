@@ -49,18 +49,18 @@ void BuiltinDirectory::update()
 	{
 		const NetworkObject networkObject( networkObjectValue.toObject() );
 
-		if( networkObject.type() == NetworkObject::Location )
+		if( networkObject.type() == NetworkObject::Type::Location )
 		{
 			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
-			addOrUpdateObject( networkObject, NetworkObject( NetworkObject::Root ) );
+			addOrUpdateObject( networkObject, NetworkObject( NetworkObject::Type::Root ) );
 
 			updateLocation( networkObject, networkObjects );
 		}
 	}
 
-	removeObjects( NetworkObject( NetworkObject::Root ), [groupUids]( const NetworkObject& object ) {
-		return object.type() == NetworkObject::Location && groupUids.contains( object.uid() ) == false; } );
+	removeObjects( NetworkObject( NetworkObject::Type::Root ), [groupUids]( const NetworkObject& object ) {
+		return object.type() == NetworkObject::Type::Location && groupUids.contains( object.uid() ) == false; } );
 }
 
 
@@ -81,5 +81,5 @@ void BuiltinDirectory::updateLocation( const NetworkObject& locationObject, cons
 	}
 
 	removeObjects( locationObject, [computerUids]( const NetworkObject& object ) {
-		return object.type() == NetworkObject::Host && computerUids.contains( object.uid() ) == false; } );
+		return object.type() == NetworkObject::Type::Host && computerUids.contains( object.uid() ) == false; } );
 }

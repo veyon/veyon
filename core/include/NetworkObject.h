@@ -32,12 +32,13 @@
 
 class VEYON_CORE_EXPORT NetworkObject
 {
+	Q_GADGET
 public:
 	using Uid = QUuid;
 	using Name = QString;
 	using ModelId = quintptr;
 
-	enum Type
+	enum class Type
 	{
 		None,
 		Root,
@@ -46,9 +47,10 @@ public:
 		Label,
 		TypeCount
 	} ;
+	Q_ENUM(Type)
 
 	NetworkObject( const NetworkObject& other );
-	explicit NetworkObject( Type type = None,
+	explicit NetworkObject( Type type = Type::None,
 							const Name& name = Name(),
 							const QString& hostAddress = QString(),
 							const QString& macAddress = QString(),
@@ -65,7 +67,7 @@ public:
 
 	bool isValid() const
 	{
-		return type() != None;
+		return type() != Type::None;
 	}
 
 	bool isPopulated() const

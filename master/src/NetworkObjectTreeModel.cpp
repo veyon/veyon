@@ -135,7 +135,7 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 	{
 	case UidRole: return networkObject.uid();
 	case NameRole: return networkObject.name();
-	case TypeRole: return networkObject.type();
+	case TypeRole: return QVariant::fromValue( networkObject.type() );
 	case HostAddressRole: return networkObject.hostAddress();
 	case MacAddressRole: return networkObject.macAddress();
 	case DirectoryAddressRole: return networkObject.directoryAddress();
@@ -158,9 +158,9 @@ bool NetworkObjectTreeModel::hasChildren( const QModelIndex& parent ) const
 
 	switch( networkObject.type() )
 	{
-	case NetworkObject::None:
-	case NetworkObject::Host:
-	case NetworkObject::Label:
+	case NetworkObject::Type::None:
+	case NetworkObject::Type::Host:
+	case NetworkObject::Type::Label:
 		return false;
 	default:
 		break;

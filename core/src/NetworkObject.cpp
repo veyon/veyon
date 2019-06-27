@@ -119,7 +119,7 @@ bool NetworkObject::exactMatch( const NetworkObject& other ) const
 
 NetworkObject::ModelId NetworkObject::modelId() const
 {
-	if( type() == Root )
+	if( type() == Type::Root )
 	{
 		return 0;
 	}
@@ -145,7 +145,7 @@ NetworkObject::ModelId NetworkObject::modelId() const
 QJsonObject NetworkObject::toJson() const
 {
 	QJsonObject json;
-	json[QStringLiteral("Type")] = type();
+	json[QStringLiteral("Type")] = static_cast<int>( type() );
 	json[QStringLiteral("Uid")] = uid().toString();
 	json[QStringLiteral("Name")] = name();
 
@@ -182,7 +182,7 @@ NetworkObject::Uid NetworkObject::calculateUid() const
 	{
 		return QUuid::createUuidV5( networkObjectNamespace, directoryAddress() );
 	}
-	else if( type() == Root )
+	else if( type() == Type::Root )
 	{
 		return QUuid::createUuidV5( networkObjectNamespace, QByteArrayLiteral("Root") );
 	}

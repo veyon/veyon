@@ -33,8 +33,8 @@ NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	QObject( parent ),
 	m_updateTimer( new QTimer( this ) ),
 	m_objects(),
-	m_invalidObject( NetworkObject::None ),
-	m_rootObject( NetworkObject::Root ),
+	m_invalidObject( NetworkObject::Type::None ),
+	m_rootObject( NetworkObject::Type::Root ),
 	m_defaultObjectList()
 {
 	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
@@ -62,8 +62,8 @@ void NetworkObjectDirectory::setUpdateInterval( int interval )
 
 const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& parent ) const
 {
-	if( parent.type() == NetworkObject::Root ||
-			parent.type() == NetworkObject::Location )
+	if( parent.type() == NetworkObject::Type::Root ||
+			parent.type() == NetworkObject::Type::Location )
 	{
 		const auto it = m_objects.constFind( parent.modelId() );
 		if( it != m_objects.end() )
@@ -200,7 +200,7 @@ NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type
 
 		for( const auto& object : objectList )
 		{
-			if( ( type == NetworkObject::None || object.type() == type ) &&
+			if( ( type == NetworkObject::Type::None || object.type() == type ) &&
 					( name.isEmpty() || object.name().compare( name, Qt::CaseInsensitive ) == 0 ) )
 			{
 				objects.append( object );
@@ -220,7 +220,7 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 		update();
 	}
 
-	if( child.type() == NetworkObject::Root )
+	if( child.type() == NetworkObject::Type::Root )
 	{
 		return {};
 	}
@@ -245,7 +245,7 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 
 void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
 {
-	if( object.type() == NetworkObject::Root )
+	if( object.type() == NetworkObject::Type::Root )
 	{
 		update();
 	}
@@ -284,7 +284,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 		emit objectsAboutToBeInserted( parent, objectList.count(), 1 );
 
 		objectList.append( completeNetworkObject );
-		if( completeNetworkObject.type() == NetworkObject::Location )
+		if( completeNetworkObject.type() == NetworkObject::Type::Location )
 		{
 			m_objects[completeNetworkObject.modelId()] = {};
 		}
@@ -315,7 +315,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 	{
 		if( removeObjectFilter( *it ) )
 		{
-			if( it->type() == NetworkObject::Location )
+			if( it->type() == NetworkObject::Type::Location )
 			{
 				groupsToRemove.append( it->modelId() );
 			}

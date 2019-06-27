@@ -67,7 +67,7 @@ QStringList AccessControlProvider::userGroups() const
 
 QStringList AccessControlProvider::locations() const
 {
-	auto locationList = objectNames( m_networkObjectDirectory->queryObjects( NetworkObject::Location ) );
+	auto locationList = objectNames( m_networkObjectDirectory->queryObjects( NetworkObject::Type::Location ) );
 
 	std::sort( locationList.begin(), locationList.end() );
 
@@ -93,7 +93,7 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 		return {};
 	}
 
-	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Host, hostName );
+	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Type::Host, hostName );
 	if( computers.isEmpty() )
 	{
 		vWarning() << "Could not query any network objects for host name" << hostName;
