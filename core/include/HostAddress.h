@@ -46,6 +46,8 @@ public:
 		return m_type;
 	}
 
+	bool isLocalHost() const;
+
 	QString convert( Type targetType ) const;
 
 	static QString localFQDN();

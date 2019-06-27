@@ -23,6 +23,7 @@
  */
 
 #include <QHostInfo>
+#include <QNetworkInterface>
 
 #include "HostAddress.h"
 
@@ -31,6 +32,35 @@ HostAddress::HostAddress( const QString& address ) :
 	m_type( determineType( address ) ),
 	m_address( address )
 {
+}
+
+
+
+bool HostAddress::isLocalHost() const
+{
+	if( type() == Type::Invalid || m_address.isEmpty() )
+	{
+		return false;
+	}
+
+	const auto allLocalAddresses = QNetworkInterface::allAddresses();
+
+	if( type() == Type::IpAddress )
+	{
+		QHostAddress hostAddress( m_address );
+		return hostAddress.isLoopback() || allLocalAddresses.contains( hostAddress );
+	}
+
+	const auto addresses = QHostInfo::fromName( m_address ).addresses();
+	for( const auto& address : addresses )
+	{
+		if( address.isLoopback() || allLocalAddresses.contains( address ) )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
