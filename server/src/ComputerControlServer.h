@@ -65,8 +65,6 @@ public:
 
 	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
 
-	void setAllowedIPs( const QStringList &allowedIPs );
-
 	FeatureWorkerManager& featureWorkerManager() override
 	{
 		return m_featureWorkerManager;
