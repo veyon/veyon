@@ -25,6 +25,7 @@
 #include <QJsonObject>
 
 #include "NetworkObject.h"
+#include "HostAddress.h"
 
 
 const QUuid NetworkObject::networkObjectNamespace( QStringLiteral( "8a6c479e-243e-4ccb-8e5a-0ddf5cf3c7d0" ) );
@@ -202,6 +203,15 @@ bool NetworkObject::isAttributeValueEqual( NetworkObject::Attribute attribute,
 	if( myValueType == value.userType() &&
 		myValueType == QMetaType::QString )
 	{
+		// make sure to compare host addresses in the same format
+		if( attribute == NetworkObject::Attribute::HostAddress )
+		{
+			const HostAddress myHostAddress( myValue.toString() );
+			const auto otherHost = HostAddress( value.toString() ).convert( myHostAddress.type() );
+
+			return myValue.toString().compare( otherHost, cs ) == 0;
+		}
+
 		return myValue.toString().compare( value.toString(), cs ) == 0;
 	}
 
