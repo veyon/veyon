@@ -252,10 +252,6 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		}
 		break;
 
-	case RfbVeyonAuth::HostWhiteList:
-		// nothing to do - we just get accepted because the host white list contains our IP
-		break;
-
 	case RfbVeyonAuth::Logon:
 	{
 		VariantArrayMessage publicKeyMessage( &socketDevice );
