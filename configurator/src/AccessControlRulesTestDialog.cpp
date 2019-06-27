@@ -22,11 +22,11 @@
  *
  */
 
-#include <QHostInfo>
 #include <QMessageBox>
 
 #include "AccessControlRulesTestDialog.h"
 #include "AccessControlProvider.h"
+#include "HostAddress.h"
 #include "PlatformUserFunctions.h"
 
 #include "ui_AccessControlRulesTestDialog.h"
@@ -39,7 +39,7 @@ AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
 	ui->setupUi(this);
 
 	ui->localUserLineEdit->setText( VeyonCore::platform().userFunctions().currentUser() );
-	ui->localComputerLineEdit->setText( QHostInfo::localHostName() );
+	ui->localComputerLineEdit->setText( HostAddress::localFQDN() );
 }
 
 
