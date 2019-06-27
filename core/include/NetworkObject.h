@@ -137,6 +137,8 @@ public:
 
 	QJsonObject toJson() const;
 
+	QVariant attributeValue( Attribute attribute ) const;
+
 private:
 	Uid calculateUid() const;
 	static ModelId calculateModelId( Uid uid );

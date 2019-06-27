@@ -174,6 +174,25 @@ QJsonObject NetworkObject::toJson() const
 
 
 
+QVariant NetworkObject::attributeValue( NetworkObject::Attribute attribute ) const
+{
+	switch( attribute )
+	{
+	case Attribute::None: return {};
+	case Attribute::Type: return QVariant::fromValue( type() );
+	case Attribute::Name: return name();
+	case Attribute::HostAddress: return hostAddress();
+	case Attribute::MacAddress: return macAddress();
+	case Attribute::DirectoryAddress: return directoryAddress();
+	case Attribute::Uid: return uid();
+	case Attribute::ParentUid: return parentUid();
+	}
+
+	return {};
+}
+
+
+
 NetworkObject::Uid NetworkObject::calculateUid() const
 {
 	// if a directory address is set (e.g. full DN in LDAP) it should be unique and can be
