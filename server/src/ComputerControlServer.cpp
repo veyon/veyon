@@ -150,10 +150,13 @@ void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
 			if( m_failedAuthHosts.contains( client->hostAddress() ) == false )
 			{
 				m_failedAuthHosts += client->hostAddress();
+
+				const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+
 				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 							tr( "Authentication error" ),
 							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
-								"but could not authenticate successfully." ).arg( client->username(), client->hostAddress() ),
+								"but could not authenticate successfully." ).arg( client->username(), fqdn ),
 							m_featureWorkerManager );
 			}
 		}
@@ -170,10 +173,12 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 
 		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
 		{
+			const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+
 			VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 						tr( "Remote access" ),
 						tr( "User \"%1\" at host \"%2\" is now accessing this computer." ).
-						arg( client->username(), client->hostAddress() ),
+						arg( client->username(), fqdn ),
 						m_featureWorkerManager );
 		}
 	}
@@ -188,11 +193,14 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 			if( m_failedAccessControlHosts.contains( client->hostAddress() ) == false )
 			{
 				m_failedAccessControlHosts += client->hostAddress();
+
+				const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+
 				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 							tr( "Access control error" ),
 							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
 								"but has been blocked due to access control settings." ).
-							arg( client->username(), client->hostAddress() ),
+							arg( client->username(), fqdn ),
 							m_featureWorkerManager );
 			}
 		}
