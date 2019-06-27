@@ -198,7 +198,8 @@ bool NetworkObject::isAttributeValueEqual( NetworkObject::Attribute attribute,
 {
 	const auto myValue = attributeValue( attribute );
 	const auto myValueType = myValue.userType();
-	if( myValue == value.userType() &&
+
+	if( myValueType == value.userType() &&
 		myValueType == QMetaType::QString )
 	{
 		return myValue.toString().compare( value.toString(), cs ) == 0;
