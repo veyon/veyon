@@ -32,9 +32,7 @@
 
 
 ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
-	QObject( parent ),
-	m_allowedIPs(),
-	m_failedAuthHosts()
+	QObject( parent )
 {
 }
 
@@ -43,8 +41,6 @@ ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() const
 {
 	QVector<RfbVeyonAuth::Type> authTypes;
-
-	authTypes.append( RfbVeyonAuth::HostWhiteList );
 
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
 	{
@@ -81,11 +77,6 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 		client->setAuthState( VncServerClient::AuthState::Successful );
 		break;
 
-		// host has to be in list of allowed hosts
-	case RfbVeyonAuth::HostWhiteList:
-		client->setAuthState( performHostWhitelistAuth( client, message ) );
-		break;
-
 		// authentication via DSA-challenge/-response
 	case RfbVeyonAuth::KeyFile:
 		client->setAuthState( performKeyAuthentication( client, message ) );
@@ -100,6 +91,8 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 		break;
 
 	default:
+		// unknown or unsupported auth type
+		client->setAuthState( VncServerClient::AuthState::Failed );
 		break;
 	}
 
@@ -111,14 +104,6 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 	default:
 		break;
 	}
-}
-
-
-
-void ServerAuthenticationManager::setAllowedIPs(const QStringList &allowedIPs)
-{
-	QMutexLocker l( &m_dataMutex );
-	m_allowedIPs = allowedIPs;
 }
 
 
@@ -226,32 +211,6 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 		break;
 	}
 
-	return VncServerClient::AuthState::Failed;
-}
-
-
-VncServerClient::AuthState ServerAuthenticationManager::performHostWhitelistAuth( VncServerClient* client,
-																				  VariantArrayMessage& message )
-{
-	Q_UNUSED(message)
-
-	QMutexLocker l( &m_dataMutex );
-
-	if( m_allowedIPs.isEmpty() )
-	{
-		vWarning() << "empty list of allowed IPs";
-		return VncServerClient::AuthState::Failed;
-	}
-
-	if( m_allowedIPs.contains( client->hostAddress() ) )
-	{
-		vDebug() << "SUCCESS";
-		return VncServerClient::AuthState::Successful;
-	}
-
-	vWarning() << "FAIL";
-
-	// authentication failed
 	return VncServerClient::AuthState::Failed;
 }
 
