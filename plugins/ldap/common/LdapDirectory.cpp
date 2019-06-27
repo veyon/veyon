@@ -22,9 +22,7 @@
  *
  */
 
-#include <QHostAddress>
-#include <QHostInfo>
-
+#include "HostAddress.h"
 #include "LdapConfiguration.h"
 #include "LdapDirectory.h"
 
@@ -374,49 +372,12 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 
 QString LdapDirectory::hostToLdapFormat( const QString& host )
 {
-	QHostAddress hostAddress( host );
-
-	// no valid IP address given?
-	if( hostAddress.isNull() ||
-		hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol )
-	{
-		// then try to resolve ist first
-		QHostInfo hostInfo = QHostInfo::fromName( host );
-		if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
-		{
-			vWarning() << "could not lookup IP address of host"
-					   << host << "error:" << hostInfo.errorString();
-			return QString();
-		}
-
-#if QT_VERSION < 0x050600
-		hostAddress = hostInfo.addresses().value( 0 );
-#else
-		hostAddress = hostInfo.addresses().constFirst();
-#endif
-		vDebug() << "no valid IP address given, resolved IP address of host" << host << "to" << hostAddress.toString();
-	}
-
-	// now do a name lookup to get the full hostname information
-	QHostInfo hostInfo = QHostInfo::fromName( hostAddress.toString() );
-	if( hostInfo.error() != QHostInfo::NoError )
-	{
-		vWarning() << "could not lookup hostname for IP" << hostAddress.toString() << "error:" << hostInfo.errorString();
-		return {};
-	}
-
-	// are we working with fully qualified domain name?
 	if( m_computerHostNameAsFQDN )
 	{
-		vDebug() << "resolved FQDN" << hostInfo.hostName();
-		return hostInfo.hostName();
+		return HostAddress( host ).convert( HostAddress::Type::FullyQualifiedDomainName );
 	}
 
-	// return first part of hostname which should be the actual machine name
-	const QString hostName = hostInfo.hostName().split( QLatin1Char('.') ).value( 0 );
-
-	vDebug() << "resolved hostname" << hostName;
-	return hostName;
+	return HostAddress( host ).convert( HostAddress::Type::HostName );
 }
 
 
