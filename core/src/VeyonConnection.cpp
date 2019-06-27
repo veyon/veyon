@@ -154,7 +154,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 {
 	if( authScheme != rfbSecTypeVeyon )
 	{
-		return FALSE;
+		return false;
 	}
 
 	hookPrepareAuthentication( client );
@@ -162,7 +162,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	auto connection = static_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnectionTag ) );
 	if( connection == nullptr )
 	{
-		return FALSE;
+		return false;
 	}
 
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
@@ -232,7 +232,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			if( challenge.size() != CryptoCore::ChallengeSize )
 			{
 				vCritical() << QThread::currentThreadId() << "challenge size mismatch!";
-				return FALSE;
+				return false;
 			}
 
 			// create local copy of private key so we can modify it within our own thread
@@ -240,7 +240,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			if( key.isNull() || key.canSign() == false )
 			{
 				vCritical() << QThread::currentThreadId() << "invalid private key!";
-				return FALSE;
+				return false;
 			}
 
 			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
@@ -266,7 +266,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		if( publicKey.canEncrypt() == false )
 		{
 			vCritical() << QThread::currentThreadId() << "can't encrypt with given public key!";
-			return FALSE;
+			return false;
 		}
 
 		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword().toUtf8() );
@@ -274,7 +274,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		if( encryptedPassword.isEmpty() )
 		{
 			vCritical() << QThread::currentThreadId() << "password encryption failed!";
-			return FALSE;
+			return false;
 		}
 
 		VariantArrayMessage passwordResponse( &socketDevice );
@@ -296,7 +296,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		break;
 	}
 
-	return TRUE;
+	return true;
 }
 
 
