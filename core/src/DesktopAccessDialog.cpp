@@ -23,14 +23,13 @@
  */
 
 #include <QGuiApplication>
-#include <QHostAddress>
-#include <QHostInfo>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QTimer>
 
 #include "DesktopAccessDialog.h"
 #include "FeatureWorkerManager.h"
+#include "HostAddress.h"
 #include "PlatformCoreFunctions.h"
 #include "VeyonServerInterface.h"
 #include "VeyonWorkerInterface.h"
@@ -132,21 +131,10 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, co
 
 DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QString& user, const QString& host )
 {
-	auto hostName = host;
-
-	const QHostAddress address( host );
-	if( address.protocol() == QAbstractSocket::IPv4Protocol ||
-		address.protocol() == QAbstractSocket::IPv6Protocol )
+	auto hostName = HostAddress( host ).convert( HostAddress::Type::FullyQualifiedDomainName );
+	if( hostName.isEmpty() )
 	{
-		hostName = QHostInfo::fromName( host ).hostName();
-		if( hostName.isEmpty() )
-		{
-			hostName = host;
-		}
-		else
-		{
-			hostName = QStringLiteral( "%1 (%2)" ).arg( hostName, host );
-		}
+		hostName = host;
 	}
 
 	qApp->setQuitOnLastWindowClosed( false );
