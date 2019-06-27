@@ -41,8 +41,8 @@ public:
 		// no authentication needed
 		None,
 
-		// only hosts from an internal whitelist list are allowed
-		HostWhiteList,
+		// only hosts in an internal whitelist list are allowed
+		HostWhiteListLegacy, // TODO: drop in VEYON5
 
 		// client has to sign some data to verify it's authority
 		KeyFile,
