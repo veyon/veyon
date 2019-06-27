@@ -23,13 +23,13 @@
  */
 
 #include <QCoreApplication>
-#include <QHostInfo>
 
 #include "AccessControlProvider.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"
 #include "FeatureMessage.h"
+#include "HostAddress.h"
 #include "VeyonConfiguration.h"
 #include "SystemTrayIcon.h"
 
@@ -51,7 +51,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 {
 	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
-													QHostInfo::localHostName(),
+													HostAddress::localFQDN(),
 													QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) ),
 				m_featureWorkerManager );
 
