@@ -86,6 +86,19 @@ QString HostAddress::convert( HostAddress::Type targetType ) const
 
 
 
+QString HostAddress::tryConvert( HostAddress::Type targetType ) const
+{
+	const auto address = convert( targetType );
+	if( address.isEmpty() )
+	{
+		return m_address;
+	}
+
+	return address;
+}
+
+
+
 QString HostAddress::localFQDN()
 {
 	const auto localHostName = QHostInfo::localHostName();
