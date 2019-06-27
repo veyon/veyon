@@ -193,6 +193,22 @@ QVariant NetworkObject::attributeValue( NetworkObject::Attribute attribute ) con
 
 
 
+bool NetworkObject::isAttributeValueEqual( NetworkObject::Attribute attribute,
+										   const QVariant& value, Qt::CaseSensitivity cs ) const
+{
+	const auto myValue = attributeValue( attribute );
+	const auto myValueType = myValue.userType();
+	if( myValue == value.userType() &&
+		myValueType == QMetaType::QString )
+	{
+		return myValue.toString().compare( value.toString(), cs ) == 0;
+	}
+
+	return myValue == value;
+}
+
+
+
 NetworkObject::Uid NetworkObject::calculateUid() const
 {
 	// if a directory address is set (e.g. full DN in LDAP) it should be unique and can be

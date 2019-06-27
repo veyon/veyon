@@ -139,6 +139,8 @@ public:
 
 	QVariant attributeValue( Attribute attribute ) const;
 
+	bool isAttributeValueEqual( Attribute attribute, const QVariant& value, Qt::CaseSensitivity cs ) const;
+
 private:
 	Uid calculateUid() const;
 	static ModelId calculateModelId( Uid uid );
