@@ -60,6 +60,8 @@ void ServerAccessControlManager::addClient( VncServerClient* client )
 		break;
 
 	default:
+		// reject unknown auth type
+		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
 		break;
 	}
 
