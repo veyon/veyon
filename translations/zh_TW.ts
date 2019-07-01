@@ -319,11 +319,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>驗證金鑰</translation>
+        <translation>身份驗證金鑰</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>說明</translation>
+        <translation>介紹</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -1068,15 +1068,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>主機 &quot;%2&quot; 的使用者 &quot;%1&quot; 嘗試存取這部電腦，但無法成功進行身份驗證。</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>存取控制錯誤</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>主機 &quot;%2&quot; 的使用者 &quot;%1&quot; 嘗試存取這部電腦，但因為存取控制設定已封鎖。</translation>
     </message>
 </context>
 <context>
@@ -1694,7 +1694,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication</source>
-        <translation>驗證</translation>
+        <translation>身份驗證</translation>
     </message>
     <message>
         <source>Method:</source>
@@ -1706,7 +1706,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>金鑰檔驗證</translation>
+        <translation>金鑰檔身分驗證</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2431,7 +2431,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>使用者登入屬性</translation>
+        <translation>使用者登入名稱屬性</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2615,7 +2615,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation>授權已安裝。</translation>
+        <translation>授權已經安裝。</translation>
     </message>
     <message>
         <source>Information</source>
@@ -3738,7 +3738,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation>內部的 VNC 伺服器埠</translation>
+        <translation>內部 VNC 伺服器埠</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3762,7 +3762,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation>功能管理埠</translation>
+        <translation>功能管理員埠</translation>
     </message>
     <message>
         <source>Primary service port</source>
@@ -3788,7 +3788,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>未授權的存取已封鎖時顯示通知</translation>
     </message>
 </context>
 <context>
@@ -3898,11 +3898,11 @@ Typically this is required to support terminal servers.</source>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>測試內部 Veyon 元件和功能</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>用於測試 Veyon 內部元件和功能的命令</translation>
     </message>
 </context>
 <context>
@@ -3943,7 +3943,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>輪詢全螢幕(預設開啓)</translation>
+        <translation>輪詢全螢幕 (每個預設值保持這個已啟用)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4085,7 +4085,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>軟體無法變更 SAS 世代的設定。 透過遠端控制傳送 Ctrl+Alt+Del 將無法動作!</translation>
+        <translation>軟體無法變更 SAS 產生的設定。 透過遠端控制傳送 Ctrl+Alt+Del 將無法動作!</translation>
     </message>
 </context>
 <context>
@@ -4100,7 +4100,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>以軟體啟用 SAS 世代 (Ctrl + Alt + Del)</translation>
+        <translation>以軟體啟用 SAS 產生 (Ctrl + Alt + Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>

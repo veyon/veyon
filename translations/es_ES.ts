@@ -1070,15 +1070,15 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>¡El usuario &quot;%1&quot; en &quot;%2&quot; intentó acceder a este equipo pero no pudo autenticarse correctamente!</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>Error de control de acceso</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>El usuario &quot;%1&quot; en &quot;%2&quot; intentó acceder a este equipo pero se ha bloqueado debido a la configuración de control de acceso.</translation>
     </message>
 </context>
 <context>
@@ -3790,7 +3790,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar notificación cuando un acceso no autorizado está bloqueado</translation>
     </message>
 </context>
 <context>
@@ -3900,11 +3900,11 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Comprobar componentes y funciones internas de Veyon</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para comprobar componentes internos y funciones de Veyon</translation>
     </message>
 </context>
 <context>

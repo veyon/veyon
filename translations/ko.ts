@@ -257,7 +257,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>같은 장소에 있는 다른 컴퓨터와 로컬 컴퓨터에 접근</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -1041,7 +1041,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>장소: %1</translation>
     </message>
 </context>
 <context>
@@ -1072,7 +1072,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>접근 제어 오류</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
@@ -1438,7 +1438,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>방 %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1450,7 +1450,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>파일 관리자 열기</translation>
     </message>
     <message>
         <source>Start learning tool</source>
@@ -1458,7 +1458,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>튜토리얼 동영상 재생</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1723,7 +1723,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>인증 테스트</translation>
     </message>
 </context>
 <context>
@@ -2394,7 +2394,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>잘못된 호스트 이름</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -2410,7 +2410,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>호스트 이름을 입력하세요</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
@@ -2618,11 +2618,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>정보</translation>
     </message>
     <message>
         <source>Installation ID</source>
-        <translation type="unfinished"/>
+        <translation>설치 ID</translation>
     </message>
     <message>
         <source>Addons available for licensing</source>
@@ -2630,7 +2630,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Addon</source>
-        <translation type="unfinished"/>
+        <translation>애드온</translation>
     </message>
 </context>
 <context>
@@ -2700,7 +2700,7 @@ USAGE
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>리눅스</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2708,11 +2708,11 @@ USAGE
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>사용자 인증</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>세션 관리</translation>
     </message>
     <message>
         <source>Display manager users</source>
@@ -2730,7 +2730,7 @@ USAGE
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>위치 선택</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2944,7 +2944,7 @@ USAGE
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>위치 &amp;&amp; 컴퓨터</translation>
     </message>
 </context>
 <context>
@@ -3063,11 +3063,11 @@ USAGE
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 위치</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>현재 위치만 표시</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
@@ -3271,15 +3271,15 @@ USAGE
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>예: Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>기억하고 웹 사이트 메뉴에 추가하기</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>예: www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3287,7 +3287,7 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>이름:</translation>
     </message>
 </context>
 <context>
@@ -3389,23 +3389,23 @@ USAGE
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>지금 전원 끄기</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>업데이트를 설치하고 전원 끄기</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>사용자 확인 후 전원 끄기</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>시간이  다 되면 전원 끄기</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>이 컴퓨터는 원격으로 종료를 요청했습니다. 컴퓨터를 지금 끄시겠습니까?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
@@ -3426,11 +3426,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>분</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>초</translation>
     </message>
 </context>
 <context>
@@ -3543,7 +3543,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>나가기</translation>
     </message>
 </context>
 <context>
@@ -3588,15 +3588,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>이름:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>기억하고 프로그램 메뉴에 추가하기</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>예: VLC</translation>
     </message>
 </context>
 <context>
@@ -3978,19 +3978,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>로그오프</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>이 버튼을 클릭하여 사용자를 모든 컴퓨터에서 로그오프하세요.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>사용자 확인 로그오프</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>선택한 유저를 로그오프 하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -4061,7 +4061,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>경고</translation>
     </message>
 </context>
 <context>
@@ -4089,7 +4089,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>윈도우</translation>
     </message>
     <message>
         <source>General</source>
@@ -4101,15 +4101,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>화면 잠금</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>작업 표시줄 숨기기</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>시작 메뉴 숨기기</translation>
     </message>
     <message>
         <source>Hide desktop</source>
@@ -4117,7 +4117,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>사용자 인즘</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4135,23 +4135,23 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;은 이미 설치되어 있습니다.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;을 설치할 수 없습니다.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;을 성공적으로 설치했습니다.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;을 제거할 수 없습니다.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;을 성공적으로 제거했습니다.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
@@ -4159,7 +4159,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;을 찾을 수 없습니다.</translation>
     </message>
 </context>
 <context>

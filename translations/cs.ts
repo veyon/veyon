@@ -1068,7 +1068,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači, ale nepodařilo se úspěšně ověřit.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1076,7 +1076,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači, ale byl zablokován dle nastavení řízení přístupu.</translation>
     </message>
 </context>
 <context>
@@ -3784,7 +3784,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit oznámení když je zablokován nepověřený přístup</translation>
     </message>
 </context>
 <context>
@@ -3898,7 +3898,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Příkazy pro testování vnitřních součástí a funkcí Veyon</translation>
     </message>
 </context>
 <context>
