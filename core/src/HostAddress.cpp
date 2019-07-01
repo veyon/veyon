@@ -248,7 +248,7 @@ QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
 QString HostAddress::fqdnToHostName( const QString& fqdn )
 {
 #if QT_VERSION < 0x050600
-		return fqdn.split( QLatin1Char( '.' ) ).value( 0 ).toString();
+		return fqdn.split( QLatin1Char( '.' ) ).value( 0 );
 #else
 		return fqdn.split( QLatin1Char( '.' ) ).constFirst();
 #endif
