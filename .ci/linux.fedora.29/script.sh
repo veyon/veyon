@@ -3,4 +3,4 @@
 set -e
 
 /veyon/.ci/common/linux-build.sh /veyon /build
-/veyon/.ci/common/finalize-rpm.sh "fc28"
+/veyon/.ci/common/finalize-rpm.sh "fc29"
