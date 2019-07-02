@@ -27,6 +27,7 @@
 #include <QtGlobal>
 #include <QSet>
 #include <QVariant>
+#include <QVector>
 
 template<class A, class B>
 static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
