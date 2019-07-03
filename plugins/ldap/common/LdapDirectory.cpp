@@ -170,7 +170,7 @@ QStringList LdapDirectory::computersByHostName( const QString& filterValue )
 QStringList LdapDirectory::computerGroups( const QString& filterValue )
 {
 	return m_client.queryDistinguishedNames( m_computerGroupsDn.isEmpty() ? m_groupsDn : m_computerGroupsDn,
-											 LdapClient::constructQueryFilter( QStringLiteral( "cn" ), filterValue, m_computerGroupsFilter ) ,
+											 LdapClient::constructQueryFilter( m_locationNameAttribute, filterValue, m_computerGroupsFilter ) ,
 											 m_defaultSearchScope );
 }
 
