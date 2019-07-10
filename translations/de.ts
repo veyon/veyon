@@ -3780,7 +3780,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Mehrfachsitzungs-Modus (für Terminal- und Remote-Desktop-Server)</translation>
+        <translation>Mehrfachsitzungsmodus (für Terminal- und Remote-Desktop-Server)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>

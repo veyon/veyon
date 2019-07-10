@@ -1069,15 +1069,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>主机 &quot;%2&quot; 上的用户 &quot;%1&quot; 尝试访问此计算机但没有通过身份验证。</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>访问控制错误</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>主机 &quot;%2&quot; 上的用户 &quot;%1&quot; 尝试访问此计算机但因访问控制设置被阻止。</translation>
     </message>
 </context>
 <context>
@@ -3789,7 +3789,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>当未授权访问被阻止时显示通知</translation>
     </message>
 </context>
 <context>
@@ -3899,11 +3899,11 @@ Typically this is required to support terminal servers.</source>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>测试Veyon内部组件和功能</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>测试Veyon内部组件和功能的命令</translation>
     </message>
 </context>
 <context>
