@@ -93,7 +93,7 @@ QString LdapClient::errorDescription() const
 
 
 LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringList& attributes,
-													 const QString& filter, LdapClient::Scope scope )
+											  const QString& filter, LdapClient::Scope scope )
 {
 	vDebug() << "called with" << dn << attributes << filter << scope;
 
@@ -648,5 +648,4 @@ QStringList LdapClient::toRDNs( const QString& dn )
 	strParts.append( dn.mid(strPartStartIndex) );
 
 	return strParts;
-
 }
