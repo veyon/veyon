@@ -190,28 +190,28 @@ LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringLi
 QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& attribute,
 											  const QString& filter, Scope scope )
 {
-	QStringList entries;
-
 	vDebug() << "called with" << dn << attribute << filter << scope;
 
 	if( m_state != Bound && reconnect() == false )
 	{
 		vCritical() << "not bound to server!";
-		return entries;
+		return {};
 	}
 
 	if( dn.isEmpty() && attribute != m_namingContextAttribute &&
 		attribute.contains( QLatin1String("namingcontext"), Qt::CaseInsensitive ) == false )
 	{
 		vCritical() << "DN is empty!";
-		return entries;
+		return {};
 	}
 
 	if( attribute.isEmpty() )
 	{
 		vCritical() << "attribute is empty!";
-		return entries;
+		return {};
 	}
+
+	QStringList entries;
 
 	int result = -1;
 	int id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList( attribute ) );
@@ -272,22 +272,21 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 
 QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QString& filter, Scope scope )
 {
-	QStringList distinguishedNames;
-
 	vDebug() << dn << filter << scope;
 
 	if( m_state != Bound && reconnect() == false )
 	{
 		vCritical() << "not bound to server!";
-		return distinguishedNames;
+		return {};
 	}
 
 	if( dn.isEmpty() )
 	{
 		vCritical() << "DN is empty!";
-
-		return distinguishedNames;
+		return {};
 	}
+
+	QStringList distinguishedNames;
 
 	int result = -1;
 	int id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList() );
