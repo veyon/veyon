@@ -49,6 +49,11 @@ public:
 		return m_client;
 	}
 
+	QString usersDn();
+	QString groupsDn();
+	QString computersDn();
+	QString computerGroupsDn();
+
 	void disableAttributes();
 	void disableFilters();
 
@@ -76,11 +81,6 @@ public:
 
 	QString hostToLdapFormat( const QString& host );
 	QString computerObjectFromHost( const QString& host );
-
-	const QString& computersDn() const
-	{
-		return m_computersDn;
-	}
 
 	const QString& computersFilter() const
 	{

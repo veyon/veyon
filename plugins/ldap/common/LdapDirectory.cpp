@@ -32,19 +32,6 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_configuration( configuration ),
 	m_client( configuration, QUrl(), this )
 {
-	m_usersDn = m_client.constructSubDn( m_configuration.userTree(), m_client.baseDn() );
-	m_groupsDn = m_client.constructSubDn( m_configuration.groupTree(), m_client.baseDn() );
-	m_computersDn = m_client.constructSubDn( m_configuration.computerTree(), m_client.baseDn() );
-
-	if( m_configuration.computerGroupTree().isEmpty() == false )
-	{
-		m_computerGroupsDn = LdapClient::constructSubDn( m_configuration.computerGroupTree(), m_client.baseDn() );
-	}
-	else
-	{
-		m_computerGroupsDn.clear();
-	}
-
 	if( m_configuration.recursiveSearchOperations() )
 	{
 		m_defaultSearchScope = LdapClient::Scope::Sub;
@@ -89,6 +76,63 @@ const QString& LdapDirectory::configInstanceId() const
 
 
 
+QString LdapDirectory::usersDn()
+{
+	if( m_usersDn.isEmpty() )
+	{
+		m_usersDn = LdapClient::constructSubDn( m_configuration.userTree(), m_client.baseDn() );
+	}
+
+	return m_usersDn;
+}
+
+
+
+QString LdapDirectory::groupsDn()
+{
+	if( m_groupsDn.isEmpty() )
+	{
+		m_groupsDn = LdapClient::constructSubDn( m_configuration.groupTree(), m_client.baseDn() );
+	}
+
+	return m_groupsDn;
+}
+
+
+
+QString LdapDirectory::computersDn()
+{
+	if( m_computersDn.isEmpty() )
+	{
+		m_computersDn = LdapClient::constructSubDn( m_configuration.computerTree(), m_client.baseDn() );
+	}
+
+	return m_computersDn;
+}
+
+
+
+QString LdapDirectory::computerGroupsDn()
+{
+	if( m_computerGroupsDn.isEmpty() )
+	{
+		const auto computerGroupTree = m_configuration.computerGroupTree();
+
+		if( computerGroupTree.isEmpty() == false )
+		{
+			m_computerGroupsDn = LdapClient::constructSubDn( computerGroupTree, m_client.baseDn() );
+		}
+		else
+		{
+			m_computerGroupsDn = groupsDn();
+		}
+	}
+
+	return m_computerGroupsDn;
+}
+
+
+
 /*!
  * \brief Disables any configured attributes which is required for some test scenarious
  */
@@ -119,7 +163,7 @@ void LdapDirectory::disableFilters()
 
 QStringList LdapDirectory::users( const QString& filterValue )
 {
-	return m_client.queryDistinguishedNames( m_usersDn,
+	return m_client.queryDistinguishedNames( usersDn(),
 											 LdapClient::constructQueryFilter( m_userLoginNameAttribute, filterValue, m_usersFilter ),
 											 m_defaultSearchScope );
 }
@@ -128,7 +172,7 @@ QStringList LdapDirectory::users( const QString& filterValue )
 
 QStringList LdapDirectory::groups( const QString& filterValue )
 {
-	return m_client.queryDistinguishedNames( m_groupsDn,
+	return m_client.queryDistinguishedNames( groupsDn(),
 											 LdapClient::constructQueryFilter( QStringLiteral( "cn" ), filterValue ),
 											 m_defaultSearchScope );
 }
@@ -137,7 +181,7 @@ QStringList LdapDirectory::groups( const QString& filterValue )
 
 QStringList LdapDirectory::userGroups( const QString& filterValue )
 {
-	return m_client.queryDistinguishedNames( m_groupsDn,
+	return m_client.queryDistinguishedNames( groupsDn(),
 											 LdapClient::constructQueryFilter( QStringLiteral( "cn" ), filterValue, m_userGroupsFilter ),
 											 m_defaultSearchScope );
 }
@@ -146,7 +190,7 @@ QStringList LdapDirectory::userGroups( const QString& filterValue )
 
 QStringList LdapDirectory::computersByDisplayName( const QString& filterValue )
 {
-	return m_client.queryDistinguishedNames( m_computersDn,
+	return m_client.queryDistinguishedNames( computersDn(),
 											 LdapClient::constructQueryFilter( m_computerDisplayNameAttribute, filterValue, m_computersFilter ),
 											 computerSearchScope() );
 }
@@ -160,7 +204,7 @@ QStringList LdapDirectory::computersByDisplayName( const QString& filterValue )
  */
 QStringList LdapDirectory::computersByHostName( const QString& filterValue )
 {
-	return m_client.queryDistinguishedNames( m_computersDn,
+	return m_client.queryDistinguishedNames( computersDn(),
 											 LdapClient::constructQueryFilter( m_computerHostNameAttribute, filterValue, m_computersFilter ),
 											 computerSearchScope() );
 }
@@ -169,7 +213,7 @@ QStringList LdapDirectory::computersByHostName( const QString& filterValue )
 
 QStringList LdapDirectory::computerGroups( const QString& filterValue )
 {
-	return m_client.queryDistinguishedNames( m_computerGroupsDn.isEmpty() ? m_groupsDn : m_computerGroupsDn,
+	return m_client.queryDistinguishedNames( computerGroupsDn(),
 											 LdapClient::constructQueryFilter( m_locationNameAttribute, filterValue, m_computerGroupsFilter ) ,
 											 m_defaultSearchScope );
 }
@@ -182,21 +226,21 @@ QStringList LdapDirectory::computerLocations( const QString& filterValue )
 
 	if( m_computerLocationsByAttribute )
 	{
-		locations = m_client.queryAttributeValues( m_computersDn,
+		locations = m_client.queryAttributeValues( computersDn(),
 												   m_computerLocationAttribute,
 												   LdapClient::constructQueryFilter( m_computerLocationAttribute, filterValue, m_computersFilter ),
 												   m_defaultSearchScope );
 	}
 	else if( m_computerLocationsByContainer )
 	{
-		locations = m_client.queryAttributeValues( m_computersDn,
+		locations = m_client.queryAttributeValues( computersDn(),
 												   m_locationNameAttribute,
 												   LdapClient::constructQueryFilter( m_locationNameAttribute, filterValue, m_computerContainersFilter ) ,
 												   m_defaultSearchScope );
 	}
 	else
 	{
-		locations = m_client.queryAttributeValues( m_computerGroupsDn.isEmpty() ? m_groupsDn : m_computerGroupsDn,
+		locations = m_client.queryAttributeValues( computerGroupsDn(),
 												   m_locationNameAttribute,
 												   LdapClient::constructQueryFilter( m_locationNameAttribute, filterValue, m_computerGroupsFilter ) ,
 												   m_defaultSearchScope );
@@ -226,7 +270,7 @@ QStringList LdapDirectory::groupsOfUser( const QString& userDn )
 		return {};
 	}
 
-	return m_client.queryDistinguishedNames( m_groupsDn,
+	return m_client.queryDistinguishedNames( groupsDn(),
 											 LdapClient::constructQueryFilter( m_groupMemberAttribute, userId, m_userGroupsFilter ),
 											 m_defaultSearchScope );
 }
@@ -241,7 +285,7 @@ QStringList LdapDirectory::groupsOfComputer( const QString& computerDn )
 		return {};
 	}
 
-	return m_client.queryDistinguishedNames( m_computerGroupsDn.isEmpty() ? m_groupsDn : m_computerGroupsDn,
+	return m_client.queryDistinguishedNames( computerGroupsDn(),
 											 LdapClient::constructQueryFilter( m_groupMemberAttribute, computerId, m_computerGroupsFilter ),
 											 m_defaultSearchScope );
 }
@@ -265,7 +309,7 @@ QStringList LdapDirectory::locationsOfComputer( const QString& computerDn )
 		return {};
 	}
 
-	return m_client.queryAttributeValues( m_computerGroupsDn.isEmpty() ? m_groupsDn : m_computerGroupsDn,
+	return m_client.queryAttributeValues( computerGroupsDn(),
 										  m_locationNameAttribute,
 										  LdapClient::constructQueryFilter( m_groupMemberAttribute, computerId, m_computerGroupsFilter ),
 										  m_defaultSearchScope );
@@ -340,14 +384,14 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 {
 	if( m_computerLocationsByAttribute )
 	{
-		return m_client.queryDistinguishedNames( m_computersDn,
+		return m_client.queryDistinguishedNames( computersDn(),
 												 LdapClient::constructQueryFilter( m_computerLocationAttribute, locationName, m_computersFilter ),
 												 m_defaultSearchScope );
 	}
 	else if( m_computerLocationsByContainer )
 	{
 		const auto locationDnFilter = LdapClient::constructQueryFilter( m_locationNameAttribute, locationName, m_computerContainersFilter );
-		const auto locationDns = m_client.queryDistinguishedNames( m_computersDn, locationDnFilter, m_defaultSearchScope );
+		const auto locationDns = m_client.queryDistinguishedNames( computersDn(), locationDnFilter, m_defaultSearchScope );
 
 		return m_client.queryDistinguishedNames( locationDns.value( 0 ),
 												 LdapClient::constructQueryFilter( QString(), QString(), m_computersFilter ),
