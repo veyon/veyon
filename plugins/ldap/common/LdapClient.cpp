@@ -557,6 +557,11 @@ bool LdapClient::reconnect()
 
 QString LdapClient::constructSubDn( const QString& subtree, const QString& baseDn )
 {
+	if( baseDn.isEmpty() )
+	{
+		return {};
+	}
+
 	if( subtree.isEmpty() )
 	{
 		return baseDn;
