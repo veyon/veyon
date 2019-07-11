@@ -101,10 +101,7 @@ public:
 
 	QStringList queryNamingContexts( const QString& attribute = QString() );
 
-	const QString& baseDn() const
-	{
-		return m_baseDn;
-	}
+	QString baseDn();
 
 	static QString parentDn( const QString& dn );
 	static QString stripBaseDn( const QString& dn, const QString& baseDn );

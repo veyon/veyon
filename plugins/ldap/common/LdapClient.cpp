@@ -371,6 +371,27 @@ QStringList LdapClient::queryNamingContexts( const QString& attribute )
 
 
 
+QString LdapClient::baseDn()
+{
+	if( m_baseDn.isEmpty() )
+	{
+		// query base DN via naming context if configured
+		if( m_configuration.queryNamingContext() )
+		{
+			m_baseDn = queryNamingContexts().value( 0 );
+		}
+		else
+		{
+			// use the configured base DN
+			m_baseDn = m_configuration.baseDn();
+		}
+	}
+
+	return m_baseDn;
+}
+
+
+
 QString LdapClient::parentDn( const QString& dn )
 {
 	auto rdns = toRDNs( dn );
@@ -485,17 +506,6 @@ bool LdapClient::connectAndBind( const QUrl& url )
 	{
 		// fallback to AD default value
 		m_namingContextAttribute = QStringLiteral( "defaultNamingContext" );
-	}
-
-	// query base DN via naming context if configured
-	if( m_configuration.queryNamingContext() )
-	{
-		m_baseDn = queryNamingContexts().value( 0 );
-	}
-	else
-	{
-		// use the configured base DN
-		m_baseDn = m_configuration.baseDn();
 	}
 
 	return true;
