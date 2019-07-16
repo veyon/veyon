@@ -35,6 +35,9 @@ public:
 	int run();
 	QByteArray runAndReadAll();
 
+	static bool waitForProcess( QProcess* process, int timeout, int sleepInterval );
+
 private:
 	QProcess m_process;
+
 };

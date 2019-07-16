@@ -22,6 +22,9 @@
  *
  */
 
+#include <QElapsedTimer>
+#include <QThread>
+
 #include "ProcessHelper.h"
 
 
@@ -55,4 +58,24 @@ QByteArray ProcessHelper::runAndReadAll()
 	}
 
 	return QByteArray();
+}
+
+
+
+bool ProcessHelper::waitForProcess( QProcess* process, int timeout, int sleepInterval )
+{
+	QElapsedTimer timeoutTimer;
+	timeoutTimer.start();
+
+	while( process->state() != QProcess::NotRunning )
+	{
+		if( timeoutTimer.elapsed() >= timeout )
+		{
+			return false;
+		}
+
+		QThread::msleep( static_cast<unsigned long>( sleepInterval ) );
+	}
+
+	return true;
 }
