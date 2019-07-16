@@ -152,7 +152,6 @@ UNSET(CYGWIN)
 
 # find Linux-specific packages
 IF(VEYON_BUILD_LINUX)
-    FIND_PACKAGE(PAM REQUIRED)
 	INCLUDE(XdgInstall)
 ENDIF()
 
