@@ -31,11 +31,10 @@
 class PlatformServiceFunctions
 {
 public:
-	enum StartMode {
-		StartModeDisabled,
-		StartModeManual,
-		StartModeAuto,
-		StartModeCount
+	enum class StartMode {
+		Disabled,
+		Manual,
+		Auto
 	} ;
 
 	virtual QString veyonServiceName() const = 0;

@@ -81,7 +81,7 @@ void ServiceControl::registerService()
 	serviceControl( tr( "Registering service %1" ).arg( m_name ),
 					QtConcurrent::run( [=]() { VeyonCore::platform().serviceFunctions().install( m_name,
 																								 m_filePath,
-																								 PlatformServiceFunctions::StartModeAuto,
+																								 PlatformServiceFunctions::StartMode::Auto,
 																								 m_displayName ); } ) );
 }
 

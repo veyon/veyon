@@ -93,7 +93,7 @@ bool LinuxServiceFunctions::uninstall( const QString& name )
 
 bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
 {
-	if( startMode == StartModeAuto )
+	if( startMode == StartMode::Auto )
 	{
 		return systemctl( { QStringLiteral("enable"), name } ) == 0;
 	}

@@ -63,10 +63,10 @@ bool WindowsServiceFunctions::stop( const QString& name )
 
 
 bool WindowsServiceFunctions::install( const QString& name, const QString& filePath,
-                                       StartMode startMode, const QString& displayName )
+									   StartMode startMode, const QString& displayName )
 {
 	return WindowsServiceControl( name ).install( filePath, displayName ) &&
-	        setStartMode( name, startMode );
+			setStartMode( name, startMode );
 }
 
 
@@ -104,8 +104,8 @@ int WindowsServiceFunctions::windowsServiceStartType( PlatformServiceFunctions::
 {
 	switch( startMode )
 	{
-	case StartModeAuto: return SERVICE_AUTO_START;
-	case StartModeManual: return SERVICE_DEMAND_START;
+	case StartMode::Auto: return SERVICE_AUTO_START;
+	case StartMode::Manual: return SERVICE_DEMAND_START;
 	default: break;
 	}
 
