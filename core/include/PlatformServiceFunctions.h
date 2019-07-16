@@ -37,6 +37,8 @@ public:
 		Auto
 	} ;
 
+	virtual ~PlatformServiceFunctions() = default;
+
 	virtual QString veyonServiceName() const = 0;
 
 	virtual bool isRegistered( const QString& name ) = 0;
