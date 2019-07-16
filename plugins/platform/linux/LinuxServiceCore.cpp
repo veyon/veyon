@@ -24,10 +24,8 @@
 
 #include <QDateTime>
 #include <QDBusReply>
-#include <QElapsedTimer>
 #include <QEventLoop>
 #include <QProcess>
-#include <QThread>
 #include <QTimer>
 
 #include <proc/readproc.h>
@@ -35,6 +33,7 @@
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxServiceCore.h"
+#include "ProcessHelper.h"
 
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
@@ -182,26 +181,6 @@ void LinuxServiceCore::connectToLoginManager()
 
 
 
-static bool waitForProcess( QProcess* process, int timeout, int sleepInterval )
-{
-	QElapsedTimer timeoutTimer;
-	timeoutTimer.start();
-
-	while( process->state() != QProcess::NotRunning )
-	{
-		if( timeoutTimer.elapsed() >= timeout )
-		{
-			return false;
-		}
-
-		QThread::msleep( sleepInterval );
-	}
-
-	return true;
-}
-
-
-
 void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
 	if( m_serverProcesses.contains( sessionPath ) == false )
@@ -214,11 +193,11 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 	auto process = qAsConst(m_serverProcesses)[sessionPath];
 	process->terminate();
 
-	if( waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
+	if( ProcessHelper::waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
 	{
 		vWarning() << "server for session" << sessionPath << "still running - killing now";
 		process->kill();
-		waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
+		ProcessHelper::waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
 	}
 
 	if( multiSession() )
