@@ -158,6 +158,7 @@ void PluginManager::initPluginSearchPath()
 			vDebug() << "Adding plugin search path" << pluginSearchPath;
 		}
 		QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
+		QCoreApplication::addLibraryPath( pluginSearchPath );
 	}
 }
 
