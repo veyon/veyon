@@ -1,0 +1,16 @@
+{
+   "qt": "@QT_DIR@",
+   "sdk": "@ANDROID_SDK_ROOT@",
+   "ndk": "@ANDROID_NDK@",
+   "toolchain-prefix": "@ANDROID_TOOLCHAIN_MACHINE_NAME@",
+   "tool-prefix": "@ANDROID_TOOLCHAIN_MACHINE_NAME@",
+   "toolchain-version": "@ANDROID_COMPILER_VERSION@",
+   "ndk-host": "@ANDROID_NDK_HOST_SYSTEM_NAME@",
+   "target-architecture": "@ANDROID_ABI@",
+   "application-binary": "@EXECUTABLE_DESTINATION_PATH@",
+   "stdcpp-path": "@ANDROID_STDCPP@",
+   "sdkBuildToolsRevision": "@ANDROID_SDK_BUILD_TOOLS_REVISION@",
+    ##EXTRALIBS##
+    ##EXTRAPLUGINS##
+   "android-package-source-directory": "@CMAKE_ANDROID_DIR@"
+}
