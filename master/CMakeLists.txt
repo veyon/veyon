@@ -1,3 +1,4 @@
+INCLUDE(BuildApplication)
 INCLUDE(WindowsBuildHelpers)
 
 SET(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src)
@@ -17,13 +18,11 @@ SET(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/resources/e
 ENDIF()
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src ${kitemmodels_SOURCE_DIR})
-ADD_EXECUTABLE(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
+BUILD_APPLICATION(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
 TARGET_LINK_LIBRARIES(veyon-master veyon-core)
 
 ADD_WINDOWS_RESOURCE(veyon-master)
 MAKE_GRAPHICAL_APP(veyon-master)
-
-INSTALL(TARGETS veyon-master RUNTIME DESTINATION bin)
 
 IF(VEYON_BUILD_LINUX)
 	XDG_INSTALL(${CMAKE_CURRENT_BINARY_DIR}/data/veyon-master.desktop ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.xpm ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.png ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.svg)

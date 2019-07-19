@@ -1,21 +1,19 @@
+INCLUDE(BuildApplication)
 INCLUDE(WindowsBuildHelpers)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 SET(cli_SOURCES src/main.cpp)
 
-ADD_EXECUTABLE(veyon-cli ${cli_SOURCES})
+BUILD_APPLICATION(veyon-cli ${cli_SOURCES})
 TARGET_LINK_LIBRARIES(veyon-cli veyon-core Qt5::Network)
 
 ADD_WINDOWS_RESOURCE(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
 MAKE_CONSOLE_APP(veyon-cli)
 
 IF(VEYON_BUILD_WIN32)
-ADD_EXECUTABLE(veyon-wcli ${cli_SOURCES})
+BUILD_APPLICATION(veyon-wcli ${cli_SOURCES})
 TARGET_LINK_LIBRARIES(veyon-wcli veyon-core Qt5::Network)
 
 ADD_WINDOWS_RESOURCE(veyon-wcli ${CMAKE_CURRENT_BINARY_DIR}/veyon-wcli.rc)
 MAKE_GRAPHICAL_APP(veyon-wcli)
 ENDIF()
-
-INSTALL(TARGETS veyon-cli RUNTIME DESTINATION bin)
-
