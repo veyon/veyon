@@ -17,7 +17,7 @@ FOREACH(ts_file ${veyon_LOCALES})
 	LIST(APPEND ts_targets "${ts_target}")
 	LIST(APPEND qm_targets "${qm_target}")
 
-	INSTALL(FILES ${qm_file} DESTINATION ${VEYON_INSTALL_DATADIR}/translations)
+	INSTALL(FILES ${qm_file} DESTINATION ${VEYON_INSTALL_DATA_DIR}/translations)
 ENDFOREACH()
 
 ADD_CUSTOM_TARGET(update-locales)
