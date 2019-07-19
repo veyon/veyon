@@ -345,3 +345,22 @@ MESSAGE("\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 )
 
+IF(VEYON_BUILD_ANDROID)
+	INCLUDE(AndroidDeployQt)
+	SET(CMAKE_ANDROID_DIR "${CMAKE_SOURCE_DIR}/android")
+	SET(_CMAKE_ANDROID_DIR "${CMAKE_ANDROID_DIR}")
+	SET(ANDROID_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
+	FILE(GLOB ANDROID_EXTRA_LIBS ${ANDROID_INSTALL_DIR}/${VEYON_LIB_DIR}/*.so)
+	LIST(APPEND ANDROID_EXTRA_LIBS "${ANDROID_SYSROOT_GENERIC}/libc++_shared.so")
+	LIST(APPEND ANDROID_EXTRA_LIBS "${QT_DIR}/lib/qca-qt5/crypto/libqca-ossl.so")
+	androiddeployqt("veyon-master" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core")
+	SET_TARGET_PROPERTIES(create-apk-veyon-master PROPERTIES ANDROID_APK_DIR "${CMAKE_ANDROID_DIR}")
+
+	add_custom_target(prepare-apk
+		COMMAND rm -rf ${ANDROID_INSTALL_DIR}
+		COMMAND cd ${CMAKE_BINARY_DIR}/core && make DESTDIR=${ANDROID_INSTALL_DIR} install
+		COMMAND cd ${CMAKE_BINARY_DIR}/plugins && make DESTDIR=${ANDROID_INSTALL_DIR} install
+	)
+
+	add_dependencies(create-apk-veyon-master prepare-apk)
+ENDIF()
