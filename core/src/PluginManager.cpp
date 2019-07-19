@@ -169,8 +169,11 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 	const auto plugins = QDir( QStringLiteral( "plugins:" ) ).entryInfoList( { nameFilter } );
 	for( const auto& fileInfo : plugins )
 	{
+		const auto fileName = fileInfo.fileName();
+
 		// skip simple shared libraries
-		if( fileInfo.fileName().startsWith( QStringLiteral("lib") ) )
+		if( fileName.startsWith( QLatin1String("lib") ) &&
+			fileName.startsWith( QLatin1String("libveyon") ) == false )
 		{
 			continue;
 		}
@@ -179,7 +182,7 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 
 		if( pluginObject && pluginInterface &&
-				m_pluginInterfaces.contains( pluginInterface ) == false )
+			m_pluginInterfaces.contains( pluginInterface ) == false )
 		{
 			if( m_noDebugMessages == false )
 			{
