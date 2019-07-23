@@ -318,6 +318,24 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
 </context>
 <context>
+    <name>AndroidPlatformConfigurationPage</name>
+    <message>
+        <source>Android</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+</context>
+<context>
+    <name>AndroidPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing specific functions for the Android platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1065,10 +1083,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ahora está accediendo a esta equipo.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation>¡Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ha intentado acceder a este equipo pero no se ha autenticado correctamente!</translation>
-    </message>
-    <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
         <translation>¡El usuario &quot;%1&quot; en &quot;%2&quot; intentó acceder a este equipo pero no pudo autenticarse correctamente!</translation>
     </message>
@@ -1464,6 +1478,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Custom program</source>
         <translation>Programa personalizado</translation>
+    </message>
+    <message>
+        <source>Handout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Texts to read</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2728,6 +2750,10 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin implementando funciones abstractas para la plataforma Linux</translation>
     </message>
+    <message>
+        <source>Plugin implementing specific functions for the Linux platform</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -3781,10 +3807,6 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Mostrar notificación en conexión remota</translation>
     </message>
     <message>
-        <source>Show notification on failed authentication attempts</source>
-        <translation>Mostrar notificación en intentos de autenticación fallidos</translation>
-    </message>
-    <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Modo de sesión múltiple (para servidores de terminales y de escritorio remoto)</translation>
     </message>
@@ -4134,6 +4156,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin implementando funciones abstractas para la plataforma Windows</translation>
+    </message>
+    <message>
+        <source>Plugin implementing specific functions for the Windows platform</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

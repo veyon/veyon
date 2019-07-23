@@ -314,6 +314,24 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>AndroidPlatformConfigurationPage</name>
+    <message>
+        <source>Android</source>
+        <translation>Android</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
+    </message>
+</context>
+<context>
+    <name>AndroidPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing specific functions for the Android platform</source>
+        <translation>Plugin zur Implementierung spezifischer Funktionen für die Android-Plattform</translation>
+    </message>
+</context>
+<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1060,10 +1078,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; greift jetzt auf diesen Computer zu.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren!</translation>
-    </message>
-    <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
         <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren.</translation>
     </message>
@@ -1459,6 +1473,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Custom program</source>
         <translation>Benutzerdefiniertes Programm</translation>
+    </message>
+    <message>
+        <source>Handout</source>
+        <translation>Arbeitsblatt</translation>
+    </message>
+    <message>
+        <source>Texts to read</source>
+        <translation>Texte zum Lesen</translation>
     </message>
 </context>
 <context>
@@ -2723,6 +2745,10 @@ VERWENDUNG
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Linux-Plattform</translation>
     </message>
+    <message>
+        <source>Plugin implementing specific functions for the Linux platform</source>
+        <translation>Plugin zur Implementierung spezifischer Funktionen für die Linux-Plattform</translation>
+    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -3775,10 +3801,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Benachrichtigung bei Fernzugriff anzeigen</translation>
     </message>
     <message>
-        <source>Show notification on failed authentication attempts</source>
-        <translation>Benachrichtigung bei fehlgeschlagenen Authentifizierungsversuchen anzeigen</translation>
-    </message>
-    <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Mehrfachsitzungsmodus (für Terminal- und Remote-Desktop-Server)</translation>
     </message>
@@ -4128,6 +4150,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
+    </message>
+    <message>
+        <source>Plugin implementing specific functions for the Windows platform</source>
+        <translation>Plugin zur Implementierung spezifischer Funktionen für die Windows-Plattform</translation>
     </message>
 </context>
 <context>

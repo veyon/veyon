@@ -316,6 +316,24 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
 </context>
 <context>
+    <name>AndroidPlatformConfigurationPage</name>
+    <message>
+        <source>Android</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Général</translation>
+    </message>
+</context>
+<context>
+    <name>AndroidPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing specific functions for the Android platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1063,10 +1081,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; est en train d’accéder à cet ordinateur.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a essayé d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier !</translation>
-    </message>
-    <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier avec succès.</translation>
     </message>
@@ -1462,6 +1476,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Custom program</source>
         <translation>Programme personnalisé</translation>
+    </message>
+    <message>
+        <source>Handout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Texts to read</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2726,6 +2748,10 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Extension implémentant les fonctions abstraites pour le système Linux</translation>
     </message>
+    <message>
+        <source>Plugin implementing specific functions for the Linux platform</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -3779,10 +3805,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Afficher la notification sur la connexion à distance</translation>
     </message>
     <message>
-        <source>Show notification on failed authentication attempts</source>
-        <translation>Afficher la notification en cas d&apos;échec des tentatives d&apos;authentification</translation>
-    </message>
-    <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation>Mode multi-session (pour les serveurs de bureau terminaux et distants)</translation>
     </message>
@@ -4132,6 +4154,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Extension implémentant les fonctions abstraites pour le système Windows </translation>
+    </message>
+    <message>
+        <source>Plugin implementing specific functions for the Windows platform</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -316,6 +316,24 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
 </context>
 <context>
+    <name>AndroidPlatformConfigurationPage</name>
+    <message>
+        <source>Android</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Umum</translation>
+    </message>
+</context>
+<context>
+    <name>AndroidPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing specific functions for the Android platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1063,10 +1081,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
         <translation type="unfinished"/>
     </message>
@@ -1461,6 +1475,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Custom program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Handout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Texts to read</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2697,6 +2719,10 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Pengaya menerapkan fungsi abstrak untuk platform Linux</translation>
     </message>
+    <message>
+        <source>Plugin implementing specific functions for the Linux platform</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -3742,10 +3768,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification on failed authentication attempts</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation type="unfinished"/>
     </message>
@@ -4095,6 +4117,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Pengaya menerapkan fungsi abstrak untuk platform Windows</translation>
+    </message>
+    <message>
+        <source>Plugin implementing specific functions for the Windows platform</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
