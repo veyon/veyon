@@ -71,9 +71,10 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 	{
 		FileTransferUserConfiguration config( master.userConfigurationObject() );
 
-		const auto files = QFileDialog::getOpenFileNames( master.mainWindow(),
+		auto files = QFileDialog::getOpenFileNames( master.mainWindow(),
 														  tr( "Select one or more files to transfer" ),
 														  config.lastFileTransferSourceDirectory() );
+
 		if( files.isEmpty() == false )
 		{
 			config.setLastFileTransferSourceDirectory( QFileInfo( files.first() ).absolutePath() );
@@ -81,6 +82,15 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 			if( m_fileTransferController == nullptr )
 			{
 				m_fileTransferController = new FileTransferController( this );
+			}
+
+			for( auto& file : files )
+			{
+				QFileInfo fileInfo( file );
+				if( fileInfo.dir() == QDir::current() )
+				{
+					file = fileInfo.fileName();
+				}
 			}
 
 			m_fileTransferController->setFiles( files );
