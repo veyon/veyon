@@ -101,7 +101,9 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	if( LookupAccountSid( nullptr, ownerSID, name, &nameSize, domain, &domainSize, &sidNameUse ) == false )
 	{
 		vCritical() << "LookupAccountSid() (2) failed:" << GetLastError();
-		return QString();
+		delete[] name;
+		delete[] domain;
+		return {};
 	}
 
 	const auto owner = QStringLiteral("%1\\%2").arg( QString::fromWCharArray( domain ), QString::fromWCharArray( name ) );
