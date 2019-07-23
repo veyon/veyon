@@ -23,10 +23,13 @@
  */
 
 #include <QApplication>
+#include <QDialogButtonBox>
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QLineEdit>
 #include <QListView>
 #include <QMenu>
+#include <QPushButton>
 #include <QScreen>
 #include <QSpinBox>
 #include <QStringListModel>
@@ -86,6 +89,7 @@ void DocumentationFigureCreator::run()
 	createRemoteAccessWindowFigure();
 	createPowerDownOptionsFigure();
 	createPowerDownTimeInputDialogFigure();
+	createFileTransferDialogFigure();
 }
 
 
@@ -481,6 +485,37 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ) ) );
 	m_eventLoop.exec();
+}
+
+
+
+void DocumentationFigureCreator::createFileTransferDialogFigure()
+{
+	scheduleUiOperation( [this]() {
+
+		auto dialog = qobject_cast<QFileDialog *>( QApplication::activeWindow() );
+		dialog->setDirectory( QDir::current() );
+		dialog->findChildren<QLineEdit *>().first()->setText( QStringLiteral("\"%1.pdf\" \"%2.pdf\"").arg( tr("Handout"), tr("Texts to read") ) );
+		dialog->setResult( QDialog::Accepted );
+		dialog->setVisible( false );
+
+		scheduleUiOperation( [this]() {
+			auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
+			dialog->show();
+			dialog->setFocus();
+			dialog->move( 0, 0 );
+
+			grabWindow( dialog,  QStringLiteral("FileTransferDialogStart.png") );
+
+			dialog->findChild<QDialogButtonBox *>()->button( QDialogButtonBox::Ok )->click();
+
+			scheduleUiOperation( [dialog]() {
+				grabDialog( dialog, {}, QStringLiteral("FileTransferDialogFinished.png") );
+			});
+		} );
+	} );
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ) ) );
 }
 
 

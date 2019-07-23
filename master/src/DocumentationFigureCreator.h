@@ -56,6 +56,7 @@ private:
 	void createProgramMenuFigure();
 	void createRemoteAccessHostDialogFigure();
 	void createRemoteAccessWindowFigure();
+	void createFileTransferDialogFigure();
 
 	void hideComputers();
 
