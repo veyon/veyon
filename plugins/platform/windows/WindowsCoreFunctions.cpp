@@ -63,7 +63,7 @@ static bool configureSoftwareSAS( bool enabled )
 	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
 						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
 						0, REG_NONE, REG_OPTION_NON_VOLATILE,
-						KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
+						KEY_READ, nullptr, &hkLocal, &dw ) != ERROR_SUCCESS)
 	{
 		return false;
 	}
@@ -78,7 +78,7 @@ static bool configureSoftwareSAS( bool enabled )
 	}
 
 	LONG pref = enabled ? 1 : 0;
-	RegSetValueEx( hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref) );
+	RegSetValueEx( hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, reinterpret_cast<LPBYTE>( &pref ), sizeof(pref) );
 	RegCloseKey( hkLocalKey );
 	RegCloseKey( hkLocal );
 
@@ -538,7 +538,7 @@ wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, con
 {
 	static constexpr auto ENV_POS_MAX = 1024*1024;
 
-	int envPos = 0;
+	size_t envPos = 0;
 	while( envPos < ENV_POS_MAX-1 && !(env[envPos] == 0 && env[envPos+1] == 0) )
 	{
 		++envPos;
@@ -551,13 +551,13 @@ wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, con
 		return nullptr;
 	}
 
-	auto newEnv = new wchar_t[envPos+strings.join( QLatin1Char(' ') ).size()+2];
+	auto newEnv = new wchar_t[envPos+static_cast<size_t>( strings.join( QLatin1Char(' ') ).size())+2];
 	memcpy( newEnv, env, envPos*2 );
 
 	for( const auto& string : strings )
 	{
-		memcpy( &newEnv[envPos], toConstWCharArray( string ), string.size()*2 );
-		envPos += string.size();
+		memcpy( &newEnv[envPos], toConstWCharArray( string ), static_cast<size_t>( string.size()*2 ) );
+		envPos += static_cast<size_t>( string.size() );
 		newEnv[envPos] = 0;
 		++envPos;
 	}
