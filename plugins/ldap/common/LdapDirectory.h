@@ -57,13 +57,13 @@ public:
 	void disableAttributes();
 	void disableFilters();
 
-	QStringList users( const QString& filterValue = QString() );
-	QStringList groups( const QString& filterValue = QString() );
-	QStringList userGroups( const QString& filterValue = QString() );
-	QStringList computersByDisplayName( const QString& filterValue = QString() );
-	QStringList computersByHostName( const QString& filterValue = QString() );
-	QStringList computerGroups( const QString& filterValue = QString() );
-	QStringList computerLocations( const QString& filterValue = QString() );
+	QStringList users( const QString& filterValue = {} );
+	QStringList groups( const QString& filterValue = {} );
+	QStringList userGroups( const QString& filterValue = {} );
+	QStringList computersByDisplayName( const QString& filterValue = {} );
+	QStringList computersByHostName( const QString& filterValue = {} );
+	QStringList computerGroups( const QString& filterValue = {} );
+	QStringList computerLocations( const QString& filterValue = {} );
 
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );

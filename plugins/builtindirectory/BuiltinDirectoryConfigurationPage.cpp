@@ -79,7 +79,7 @@ void BuiltinDirectoryConfigurationPage::addLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.add( NetworkObject( NetworkObject::Type::Location, tr( "New location" ),
-									  QString(), QString(), QString(), QUuid::createUuid() ) );
+									  {}, {}, {}, QUuid::createUuid() ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateLocations();
@@ -129,7 +129,7 @@ void BuiltinDirectoryConfigurationPage::addComputer()
 
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.add( NetworkObject( NetworkObject::Type::Host, tr( "New computer" ),
-									  QString(), QString(), QString(),
+									  {}, {}, {},
 									  QUuid::createUuid(),
 									  currentLocationUid ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
@@ -237,9 +237,9 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentLocationObject() const
 	{
 		return NetworkObject( NetworkObject::Type::Location,
 							  selectedLocation->text(),
-							  QString(),
-							  QString(),
-							  QString(),
+							  {},
+							  {},
+							  {},
 							  selectedLocation->data( NetworkObjectModel::UidRole ).toUuid(),
 							  selectedLocation->data( NetworkObjectModel::ParentUidRole ).toUuid() );
 	}
@@ -262,7 +262,7 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentComputerObject() const
 							  nameItem->text(),
 							  hostAddressItem->text().trimmed(),
 							  macAddressItem->text().trimmed(),
-							  QString(),
+							  {},
 							  nameItem->data( NetworkObjectModel::UidRole ).toUuid(),
 							  nameItem->data( NetworkObjectModel::ParentUidRole ).toUuid() );
 	}

@@ -64,12 +64,12 @@ public:
 
 	NetworkObject( const NetworkObject& other );
 	explicit NetworkObject( Type type = Type::None,
-							const Name& name = Name(),
-							const QString& hostAddress = QString(),
-							const QString& macAddress = QString(),
-							const QString& directoryAddress = QString(),
-							Uid uid = Uid(),
-							Uid parentUid = Uid() );
+							const Name& name = {},
+							const QString& hostAddress = {},
+							const QString& macAddress = {},
+							const QString& directoryAddress = {},
+							Uid uid = {},
+							Uid parentUid = {} );
 	explicit NetworkObject( const QJsonObject& jsonObject );
 	~NetworkObject() = default;
 

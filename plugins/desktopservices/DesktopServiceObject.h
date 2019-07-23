@@ -45,8 +45,8 @@ public:
 
 	DesktopServiceObject( const DesktopServiceObject& other );
 	explicit DesktopServiceObject( Type type = Type::None,
-						  const Name& name = QString(),
-						  const QString& path = QString(),
+						  const Name& name = {},
+						  const QString& path = {},
 						  Uid uid = Uid() );
 	explicit DesktopServiceObject( const QJsonObject& jsonObject );
 

@@ -39,7 +39,7 @@ public:
 	using DataMap = QMap<QString, QVariant>;
 
 	Object();
-	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = QString() );
+	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = {} );
 	explicit Object( Store* store );
 	Object( const Object& );
 	~Object() override;

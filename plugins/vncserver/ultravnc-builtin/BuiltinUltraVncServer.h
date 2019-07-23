@@ -86,7 +86,7 @@ public:
 
 	QString configuredPassword() override
 	{
-		return QString();
+		return {};
 	}
 
 	const UltraVncConfiguration& configuration() const

@@ -34,7 +34,7 @@ namespace Configuration
 class VEYON_CORE_EXPORT JsonStore : public Store
 {
 public:
-	explicit JsonStore( Scope scope, const QString & file = QString() );
+	explicit JsonStore( Scope scope, const QString & file = {} );
 
 	void load( Object *obj ) override;
 	void flush( const Object *obj ) override;

@@ -650,7 +650,7 @@ void LdapConfigurationPage::testLocations()
 
 void LdapConfigurationPage::browseCACertificateFile()
 {
-	auto caCertFile = QFileDialog::getOpenFileName( this, tr( "Custom CA certificate file" ), QString(),
+	auto caCertFile = QFileDialog::getOpenFileName( this, tr( "Custom CA certificate file" ), {},
 													tr( "Certificate files (*.pem)" ) );
 	if( caCertFile.isEmpty() == false )
 	{

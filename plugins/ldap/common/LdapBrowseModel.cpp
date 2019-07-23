@@ -120,7 +120,7 @@ LdapBrowseModel::LdapBrowseModel( Mode mode, const LdapConfiguration& configurat
 	QAbstractItemModel( parent ),
 	m_mode( mode ),
 	m_client( new LdapClient( configuration, QUrl(), this ) ),
-	m_root( new Node( Node::Root, QString(), nullptr ) ),
+	m_root( new Node( Node::Root, {}, nullptr ) ),
 	m_objectIcon( QStringLiteral(":/core/document-open.png") ),
 	m_ouIcon( QStringLiteral( ":/ldap/folder-stash.png") ),
 	m_attributeIcon( QStringLiteral(":/ldap/attribute.png") )
@@ -334,10 +334,10 @@ void LdapBrowseModel::populateRoot() const
 		{
 			if( context.isEmpty() == false )
 			{
-				namingContexts.replaceInStrings( QRegExp( QStringLiteral(".*,%1").arg( context ) ), QString() );
+				namingContexts.replaceInStrings( QRegExp( QStringLiteral(".*,%1").arg( context ) ), {} );
 			}
 		}
-		namingContexts.removeAll( QString() );
+		namingContexts.removeAll( {} );
 		namingContexts.sort();
 	}
 	else
@@ -377,7 +377,7 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 
 	if( node->isPopulated() == false )
 	{
-		auto dns = m_client->queryDistinguishedNames( node->name(), QString(), LdapClient::Scope::One );
+		auto dns = m_client->queryDistinguishedNames( node->name(), {}, LdapClient::Scope::One );
 		dns.sort();
 
 		QStringList attributes;

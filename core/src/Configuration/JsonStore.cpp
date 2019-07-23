@@ -87,7 +87,7 @@ void JsonStore::load( Object* obj )
 
 	QJsonDocument jsonDoc = QJsonDocument::fromJson( jsonFile.readAll() );
 
-	loadJsonTree( obj, jsonDoc.object(), QString() );
+	loadJsonTree( obj, jsonDoc.object(), {} );
 }
 
 

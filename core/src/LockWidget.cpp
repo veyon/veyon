@@ -43,7 +43,7 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 		m_background = QPixmap::grabWindow( qApp->desktop()->winId() );
 	}
 
-	setWindowTitle( QString() );
+	setWindowTitle( {} );
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( qApp->desktop()->size() );

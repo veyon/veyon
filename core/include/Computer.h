@@ -35,10 +35,10 @@ class VEYON_CORE_EXPORT Computer
 {
 public:
 	explicit Computer( NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
-			  const QString& name = QString(),
-			  const QString& hostAddress = QString(),
-			  const QString& macAddress = QString(),
-			  const QString& location = QString() );
+					   const QString& name = {},
+					   const QString& hostAddress = {},
+					   const QString& macAddress = {},
+					   const QString& location = {} );
 
 	bool operator==( const Computer& other ) const
 	{

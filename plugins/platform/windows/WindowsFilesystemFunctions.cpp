@@ -80,7 +80,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		vCritical() << "GetSecurityInfo() failed:" << secInfoResult;
-		return QString();
+		return {};
 	}
 
 	DWORD nameSize = 0;
@@ -92,7 +92,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	if( nameSize == 0 || domainSize == 0)
 	{
 		vCritical() << "Failed to retrieve buffer sizes:" << GetLastError();
-		return QString();
+		return {};
 	}
 
 	wchar_t* name = new wchar_t[nameSize];

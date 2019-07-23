@@ -84,7 +84,7 @@ public:
 
 	QString configuredPassword() override
 	{
-		return QString();
+		return {};
 	}
 
 private:

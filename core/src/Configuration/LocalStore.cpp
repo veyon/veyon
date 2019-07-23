@@ -91,7 +91,7 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 void LocalStore::load( Object *obj )
 {
 	auto s = createSettingsObject();
-	loadSettingsTree( obj, s, QString() );
+	loadSettingsTree( obj, s, {} );
 	delete s;
 }
 

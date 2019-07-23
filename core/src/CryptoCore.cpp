@@ -93,5 +93,5 @@ QString CryptoCore::decryptPassword( const QString& encryptedPassword ) const
 
 	vCritical() << "failed to decrypt password!";
 
-	return QString();
+	return {};
 }

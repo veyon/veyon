@@ -45,7 +45,7 @@ FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 						   Feature::Action | Feature::AllComponents,
 						   Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ),
 						   Feature::Uid(),
-						   tr( "File transfer" ), QString(),
+						   tr( "File transfer" ), {},
 						   tr( "Click this button to transfer files from your computer to all computers." ),
 						   QStringLiteral(":/filetransfer/applications-office.png") ),
 	m_features( { m_fileTransferFeature } ),
@@ -225,7 +225,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			{
 				QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFile.fileName() ) );
 			}
-			m_currentFile.setFileName( QString() );
+			m_currentFile.setFileName( {} );
 			return true;
 
 		case OpenTransferFolder:

@@ -57,7 +57,7 @@ public:
 
 	bool runProgramAsUser( const QString& program, const QStringList& parameters,
 						   const QString& username,
-						   const QString& desktop = QString() ) override;
+						   const QString& desktop = {} ) override;
 
 	QString genericUrlHandler() const override;
 

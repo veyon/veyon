@@ -82,7 +82,7 @@ public:
 			case System: return QStringLiteral( "SystemConfig" );
 		}
 
-		return QString();
+		return {};
 	}
 
 	void setName( const QString& name )

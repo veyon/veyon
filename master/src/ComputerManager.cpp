@@ -318,7 +318,7 @@ QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, c
 		}
 	}
 
-	return QString();
+	return {};
 }
 
 

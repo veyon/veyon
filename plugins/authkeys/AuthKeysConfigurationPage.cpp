@@ -159,7 +159,7 @@ void AuthKeysConfigurationPage::importKey()
 {
 	const auto title = ui->importKey->text();
 
-	const auto inputFile = QFileDialog::getOpenFileName( this, title, QString(), m_keyFilesFilter );
+	const auto inputFile = QFileDialog::getOpenFileName( this, title, {}, m_keyFilesFilter );
 	if( inputFile.isEmpty() )
 	{
 		return;
@@ -265,7 +265,7 @@ QString AuthKeysConfigurationPage::selectedKey() const
 		return m_authKeyTableModel.key( row );
 	}
 
-	return QString();
+	return {};
 }
 
 

@@ -365,7 +365,7 @@ QStringList LdapClient::queryBaseDn()
 
 QStringList LdapClient::queryNamingContexts( const QString& attribute )
 {
-	return queryAttributeValues( QString(), attribute.isEmpty() ? m_namingContextAttribute : attribute );
+	return queryAttributeValues( {}, attribute.isEmpty() ? m_namingContextAttribute : attribute );
 }
 
 

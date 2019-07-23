@@ -142,7 +142,7 @@ QString PluginManager::pluginName( Plugin::Uid pluginUid ) const
 		}
 	}
 
-	return QString();
+	return {};
 }
 
 

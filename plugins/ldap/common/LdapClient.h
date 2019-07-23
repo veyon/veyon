@@ -99,7 +99,7 @@ public:
 
 	QStringList queryBaseDn();
 
-	QStringList queryNamingContexts( const QString& attribute = QString() );
+	QStringList queryNamingContexts( const QString& attribute = {} );
 
 	QString baseDn();
 
@@ -113,7 +113,7 @@ public:
 
 	static QString constructQueryFilter( const QString& filterAttribute,
 										 const QString& filterValue,
-										 const QString& extraFilter = QString() );
+										 const QString& extraFilter = {} );
 
 	static QString escapeFilterValue( const QString& filterValue );
 

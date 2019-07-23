@@ -392,7 +392,7 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		return controlInterface->computer().name();
 	}
 
-	return QString();
+	return {};
 }
 
 
@@ -469,7 +469,7 @@ QString ComputerControlListModel::loggedOnUserInformation( const ComputerControl
 		return tr( "Logged on user: %1" ).arg( user );
 	}
 
-	return QString();
+	return {};
 }
 
 
@@ -486,7 +486,7 @@ QString ComputerControlListModel::activeFeatures( const ComputerControlInterface
 		}
 	}
 
-	featureNames.removeAll( QString() );
+	featureNames.removeAll( {} );
 
 	return featureNames.join( QStringLiteral(", ") );
 }

@@ -38,7 +38,7 @@ TextMessageFeaturePlugin::TextMessageFeaturePlugin( QObject* parent ) :
 								   Feature::Action | Feature::AllComponents,
 								   Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ),
 								   Feature::Uid(),
-								   tr( "Text message" ), QString(),
+								   tr( "Text message" ), {},
 								   tr( "Use this function to send a text message to all "
 									   "users e.g. to assign them new tasks." ),
 								   QStringLiteral(":/textmessage/dialog-information.png") ) ),

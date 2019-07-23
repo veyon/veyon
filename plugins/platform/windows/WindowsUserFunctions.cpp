@@ -88,7 +88,7 @@ QStringList WindowsUserFunctions::userGroups( bool queryDomainGroups )
 	}
 
 	groupList.removeDuplicates();
-	groupList.removeAll( QString() );
+	groupList.removeAll( {} );
 
 	return groupList;
 }
@@ -105,7 +105,7 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 	}
 
 	groupList.removeDuplicates();
-	groupList.removeAll( QString() );
+	groupList.removeAll( {} );
 
 	return groupList;
 }

@@ -336,7 +336,7 @@ QString LdapDirectory::computerHostName( const QString& computerDn )
 {
 	if( computerDn.isEmpty() )
 	{
-		return QString();
+		return {};
 	}
 
 	return m_client.queryAttributeValues( computerDn, m_computerHostNameAttribute ).value( 0 );
@@ -348,7 +348,7 @@ QString LdapDirectory::computerMacAddress( const QString& computerDn )
 {
 	if( computerDn.isEmpty() )
 	{
-		return QString();
+		return {};
 	}
 
 	return m_client.queryAttributeValues( computerDn, m_computerMacAddressAttribute ).value( 0 );
@@ -394,7 +394,7 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 		const auto locationDns = m_client.queryDistinguishedNames( computersDn(), locationDnFilter, m_defaultSearchScope );
 
 		return m_client.queryDistinguishedNames( locationDns.value( 0 ),
-												 LdapClient::constructQueryFilter( QString(), QString(), m_computersFilter ),
+												 LdapClient::constructQueryFilter( {}, {}, m_computersFilter ),
 												 m_defaultSearchScope );
 	}
 

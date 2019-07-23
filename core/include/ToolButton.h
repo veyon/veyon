@@ -38,8 +38,8 @@ class VEYON_CORE_EXPORT ToolButton : public QToolButton
 public:
 	ToolButton( const QIcon& icon,
 				const QString& label,
-				const QString& altLabel = QString(),
-				const QString& description = QString(),
+				const QString& altLabel = {},
+				const QString& description = {},
 				const QKeySequence& shortcut = QKeySequence() );
 	~ToolButton() override = default;
 

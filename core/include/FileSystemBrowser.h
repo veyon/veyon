@@ -57,10 +57,10 @@ public:
 		m_shrinkPath = enabled;
 	}
 
-	QString exec( const QString &path, const QString &title = QString(),
-					const QString &filter = QString() );
-	void exec( QLineEdit *lineEdit, const QString &title = QString(),
-					const QString &filter = QString() );
+	QString exec( const QString &path, const QString &title = {},
+					const QString &filter = {} );
+	void exec( QLineEdit *lineEdit, const QString &title = {},
+					const QString &filter = {} );
 
 
 private:

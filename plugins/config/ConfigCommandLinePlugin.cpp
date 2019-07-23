@@ -84,7 +84,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( cons
 	Q_UNUSED(arguments);
 
 	// clear global configuration
-	listConfiguration( VeyonCore::config().data(), QString() );
+	listConfiguration( VeyonCore::config().data(), {} );
 
 	return NoResult;
 }

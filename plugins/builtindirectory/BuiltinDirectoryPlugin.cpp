@@ -96,7 +96,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 	if( command == importCommand() )
 	{
-		printUsage( commandLineModuleName(), importCommand(), { { tr("FILE"), QString() } }, {
+		printUsage( commandLineModuleName(), importCommand(), { { tr("FILE"), {} } }, {
 						{ tr("LOCATION"), locationArgument() },
 						{ tr("FORMAT-STRING-WITH-PLACEHOLDERS"), formatArgument() },
 						{ tr("REGULAR-EXPRESSION-WITH-PLACEHOLDER"), regexArgument() } } );
@@ -126,7 +126,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	}
 	else if( command == exportCommand() )
 	{
-		printUsage( commandLineModuleName(), exportCommand(), { { tr("FILE"), QString() } }, {
+		printUsage( commandLineModuleName(), exportCommand(), { { tr("FILE"), {} } }, {
 						{ tr("LOCATION"), locationArgument() },
 						{ tr("FORMAT-STRING-WITH-PLACEHOLDERS"), formatArgument() } } );
 
@@ -147,10 +147,10 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	}
 	else if( command == addCommand() )
 	{
-		printUsage( commandLineModuleName(), addCommand(), { { tr("TYPE"), QString() }, { tr("NAME"), QString() } }, {
-						{ tr("HOST ADDRESS"), QString() },
-						{ tr("MAC ADDRESS"), QString() },
-						{ tr("PARENT"), QString() } } );
+		printUsage( commandLineModuleName(), addCommand(), { { tr("TYPE"), {} }, { tr("NAME"), {} } }, {
+						{ tr("HOST ADDRESS"), {} },
+						{ tr("MAC ADDRESS"), {} },
+						{ tr("PARENT"), {} } } );
 
 		printDescription( tr("Adds an object where %1 can be one of \"%2\" or \"%3\". %4 can be specified by name or UUID.").
 						  arg( tr("TYPE"), typeLocation(), typeComputer(), tr("PARENT") ) );
@@ -164,7 +164,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	}
 	else if( command == removeCommand() )
 	{
-		printUsage( commandLineModuleName(), removeCommand(), { { tr("OBJECT"), QString() } } );
+		printUsage( commandLineModuleName(), removeCommand(), { { tr("OBJECT"), {} } } );
 
 		printDescription( tr("Removes the specified object from the directory. %1 can be specified by name or UUID. "
 							 "Removing a location will also remove all related computers.").arg( tr("OBJECT") ) );
@@ -208,7 +208,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 		const auto macAddress = arguments.value( 3 );
 		const auto parent = findNetworkObject( arguments.value( 4 ) );
 		object = NetworkObject( NetworkObject::Type::Host, name, hostAddress, macAddress,
-								QString(), NetworkObject::Uid(), parent.isValid() ? parent.uid() : NetworkObject::Uid() );
+								{}, NetworkObject::Uid(), parent.isValid() ? parent.uid() : NetworkObject::Uid() );
 	}
 	else
 	{
@@ -602,7 +602,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 											  networkObject.name(),
 											  networkObject.hostAddress(),
 											  networkObject.macAddress(),
-											  QString(), NetworkObject::Uid(),
+											  {}, NetworkObject::Uid(),
 											  parentLocationUid ) );
 		}
 	}

@@ -112,7 +112,7 @@ void ServiceControl::serviceControl( const QString& title, const Operation& oper
 
 void ServiceControl::graphicalFeedback( const QString& title, const Operation& operation )
 {
-	QProgressDialog pd( title, QString(), 0, 0, m_parent );
+	QProgressDialog pd( title, {}, 0, 0, m_parent );
 	pd.setWindowTitle( tr( "Service control" ) );
 
 	auto b = new QProgressBar( &pd );

@@ -61,7 +61,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 						 Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 Feature::Uid(),
-						 tr( "Demo server" ), QString(), QString() ),
+						 tr( "Demo server" ), {}, {} ),
 	m_features( { m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
 	m_demoAccessToken( QString::fromLatin1( CryptoCore::generateChallenge().toBase64() ) ),
 	m_demoClientHosts(),

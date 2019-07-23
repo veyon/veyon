@@ -48,14 +48,14 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 						 Feature::Action | Feature::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
 						 Feature::Uid(),
-						 tr( "Run program" ), QString(),
+						 tr( "Run program" ), {},
 						 tr( "Click this button to run a program on all computers." ),
 						 QStringLiteral(":/desktopservices/preferences-desktop-launch-feedback.png") ),
 	m_openWebsiteFeature( QStringLiteral( "OpenWebsite" ),
 						  Feature::Action | Feature::AllComponents,
 						  Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ),
 						  Feature::Uid(),
-						  tr( "Open website" ), QString(),
+						  tr( "Open website" ), {},
 						  tr( "Click this button to open a website on all computers." ),
 						  QStringLiteral(":/desktopservices/internet-web-browser.png") ),
 	m_predefinedProgramsFeatures(),
@@ -424,7 +424,7 @@ void DesktopServicesFeaturePlugin::updatePredefinedProgramFeatures()
 			const auto programObject = DesktopServiceObject( program.toObject() );
 			m_predefinedProgramsFeatures.append( Feature( m_runProgramFeature.name(), Feature::Action | Feature::Master,
 														 programObject.uid(), m_runProgramFeature.uid(),
-														 programObject.name(), QString(),
+														 programObject.name(), {},
 														 tr("Run program \"%1\"").arg( programObject.path() ) ) );
 		}
 
@@ -453,7 +453,7 @@ void DesktopServicesFeaturePlugin::updatePredefinedWebsiteFeatures()
 			const auto websiteObject = DesktopServiceObject( website.toObject() );
 			m_predefinedWebsitesFeatures.append( Feature( m_openWebsiteFeature.name(), Feature::Action | Feature::Master,
 														 websiteObject.uid(), m_openWebsiteFeature.uid(),
-														 websiteObject.name(), QString(),
+														 websiteObject.name(), {},
 														 tr("Open website \"%1\"").arg( websiteObject.path() ) ) );
 		}
 
@@ -481,7 +481,7 @@ QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFea
 		}
 	}
 
-	return QString();
+	return {};
 }
 
 

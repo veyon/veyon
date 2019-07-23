@@ -366,7 +366,7 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 		return m_keyTypePublic;
 	}
 
-	return QString();
+	return {};
 }
 
 
@@ -413,7 +413,7 @@ QString AuthKeysManager::accessGroup( const QString& key )
 
 	if( checkKey( name, type, false ) == false )
 	{
-		return QString();
+		return {};
 	}
 
 	return VeyonCore::platform().filesystemFunctions().fileOwnerGroup( keyFilePathFromType( name, type ) );
@@ -467,7 +467,7 @@ QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 		return rx.cap( 1 );
 	}
 
-	return QString();
+	return {};
 }
 
 
@@ -518,7 +518,7 @@ QString AuthKeysManager::keyFilePathFromType( const QString& name, const QString
 		return VeyonCore::filesystem().publicKeyPath( name );
 	}
 
-	return QString();
+	return {};
 }
 
 

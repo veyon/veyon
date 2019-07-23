@@ -44,7 +44,7 @@ public:
 	};
 	Q_ENUM(MetaData)
 
-	explicit Screenshot( const QString &fileName = QString(), QObject* parent = nullptr );
+	explicit Screenshot( const QString &fileName = {}, QObject* parent = nullptr );
 
 	void take( const ComputerControlInterface::Pointer& computerControlInterface );
 
