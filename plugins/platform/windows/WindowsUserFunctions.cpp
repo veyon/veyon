@@ -194,7 +194,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 	if( config.disableSSPIBasedUserAuthentication() )
 	{
 		HANDLE token = nullptr;
-		result = LogonUserW( userWide, domainWide, passwordWide,
+		result = LogonUserW( userWide.data(), domainWide.data(), passwordWide.data(),
 							 LOGON32_LOGON_NETWORK, LOGON32_PROVIDER_DEFAULT, &token );
 		vDebug() << "LogonUserW()" << result << GetLastError();
 		if( token )
@@ -204,13 +204,9 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 	}
 	else
 	{
-		result = SSPLogonUser( domainWide, userWide, passwordWide );
+		result = SSPLogonUser( domainWide.data(), userWide.data(), passwordWide.data() );
 		vDebug() << "SSPLogonUser()" << result << GetLastError();
 	}
-
-	delete[] domainWide;
-	delete[] userWide;
-	delete[] passwordWide;
 
 	return result;
 }

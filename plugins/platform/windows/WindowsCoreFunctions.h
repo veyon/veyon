@@ -67,7 +67,7 @@ public:
 
 	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 
-	static wchar_t* toWCharArray( const QString& qstring );
+	static QSharedPointer<wchar_t> toWCharArray( const QString& qstring );
 	static const wchar_t* toConstWCharArray( const QString& qstring );
 
 	static HANDLE runProgramInSession( const QString& program,

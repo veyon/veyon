@@ -138,7 +138,6 @@ WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(
 
 WindowsServiceCore::~WindowsServiceCore()
 {
-	delete[] m_name;
 }
 
 
@@ -155,7 +154,7 @@ WindowsServiceCore *WindowsServiceCore::instance()
 bool WindowsServiceCore::runAsService()
 {
 	SERVICE_TABLE_ENTRY dispatchTable[] = {
-		{ m_name, serviceMainStatic },
+		{ m_name.data(), serviceMainStatic },
 		{ nullptr, nullptr }
 	} ;
 
@@ -314,7 +313,7 @@ void WindowsServiceCore::serviceMain()
 {
 	DWORD context = 1;
 
-	m_statusHandle = RegisterServiceCtrlHandlerEx( m_name, serviceCtrlStatic, &context );
+	m_statusHandle = RegisterServiceCtrlHandlerEx( m_name.data(), serviceCtrlStatic, &context );
 
 	if( m_statusHandle == 0 )
 	{

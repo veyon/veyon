@@ -380,13 +380,13 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 
 
 
-wchar_t* WindowsCoreFunctions::toWCharArray( const QString& qstring )
+QSharedPointer<wchar_t> WindowsCoreFunctions::toWCharArray( const QString& qstring )
 {
 	auto wcharArray = new wchar_t[qstring.size()+1];
 	qstring.toWCharArray( wcharArray );
 	wcharArray[qstring.size()] = 0;
 
-	return wcharArray;
+	return { wcharArray, []( wchar_t* buffer ) { delete[] buffer; } };
 }
 
 
@@ -454,18 +454,18 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 		return nullptr;
 	}
 
+	auto desktopWide = toWCharArray( desktop );
+
+	if( desktop.isEmpty() )
+	{
+		desktopWide = toWCharArray( QStringLiteral("Winsta0\\Default") );
+	}
+
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
 	ZeroMemory( &si, sizeof( STARTUPINFO ) );
 	si.cb = sizeof( STARTUPINFO );
-	if( desktop.isEmpty() )
-	{
-		si.lpDesktop = toWCharArray( QStringLiteral("Winsta0\\Default") );
-	}
-	else
-	{
-		si.lpDesktop = toWCharArray( desktop );
-	}
+	si.lpDesktop = desktopWide.data();
 
 	auto fullEnvironment = appendToEnvironmentBlock( reinterpret_cast<const wchar_t *>( userEnvironment ), extraEnvironment );
 
@@ -479,7 +479,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token
 				nullptr,			  // file to execute
-				commandLine,	 // command line
+				commandLine.data(),	 // command line
 				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
 				false,			 // handles are not inheritable
@@ -496,9 +496,6 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	}
 
 	delete[] fullEnvironment;
-	delete[] commandLine;
-
-	delete[] si.lpDesktop;
 
 	CoTaskMemFree( profileDir );
 	DestroyEnvironmentBlock( userEnvironment );
