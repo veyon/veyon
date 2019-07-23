@@ -25,6 +25,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <lm.h>
+#include <ntsecapi.h>
 
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
@@ -33,6 +34,169 @@
 #include "WtsSessionManager.h"
 
 #include "authSSP.h"
+
+
+static bool storePassword( const QString& password )
+{
+	LSA_OBJECT_ATTRIBUTES loa;
+	loa.Length = sizeof(loa);
+	loa.RootDirectory = nullptr;
+	loa.ObjectName = nullptr;
+	loa.Attributes = 0;
+	loa.SecurityDescriptor = nullptr;
+	loa.SecurityQualityOfService = nullptr;
+
+	LSA_HANDLE lh;
+
+	auto status = LsaOpenPolicy( nullptr, &loa, POLICY_CREATE_SECRET, &lh );
+
+	if( status )
+	{
+		vCritical() << "Error opening LSA policy:" << LsaNtStatusToWinError( status );
+		return false;
+	}
+
+	const auto nameWide = WindowsCoreFunctions::toWCharArray( QStringLiteral("DefaultPassword") );
+
+	LSA_UNICODE_STRING name;
+	name.Buffer = nameWide.data();
+	name.MaximumLength = name.Length = static_cast<USHORT>( wcslen(name.Buffer) - 2 );
+
+	if( password.isEmpty() )
+	{
+		status = LsaStorePrivateData( lh, &name, nullptr );
+		if( status )
+		{
+			vCritical() << "Error clearing stored password:" << LsaNtStatusToWinError( status );
+			return false;
+		}
+		return true;
+	}
+
+	const auto passwordWide = WindowsCoreFunctions::toWCharArray( password );
+
+	LSA_UNICODE_STRING data;
+	data.Buffer = passwordWide.data();
+	data.MaximumLength = data.Length = static_cast<USHORT>( wcslen(data.Buffer) * sizeof(*data.Buffer) );
+
+	status = LsaStorePrivateData( lh, &name, &data );
+
+	LsaClose(lh);
+
+	if( status )
+	{
+		vCritical() << "Error storing password:" << LsaNtStatusToWinError( status );
+		return false;
+	}
+
+	return true;
+}
+
+
+
+static bool setAutologon( const QString& username, const QString& password, const QString& domainName )
+{
+	HKEY h;
+
+	auto err = RegOpenKeyEx( HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+							 0, KEY_WOW64_64KEY | KEY_SET_VALUE, &h );
+	if( err != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to open Winlogon subkey:" << err;
+		return false;
+	}
+
+	if( storePassword( password ) == false )
+	{
+		return false;
+	}
+
+	const auto usernameWide = WindowsCoreFunctions::toWCharArray( username );
+	const auto domainNameWide = WindowsCoreFunctions::toWCharArray( domainName );
+
+	err = RegSetValueEx( h, L"DefaultUserName", 0, REG_SZ, reinterpret_cast<CONST BYTE *>( usernameWide.data() ),
+						 static_cast<DWORD>( ( username.length() + 1 ) * 2 ) );
+	if( err != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to set default logon user name:" << err;
+		return false;
+	}
+
+	err = RegSetValueEx( h, L"DefaultDomainName", 0, REG_SZ, reinterpret_cast<CONST BYTE *>( domainNameWide.data() ),
+						 static_cast<DWORD>( ( domainName.length() + 1 ) * 2 ) );
+	if( err != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to set default domain name:" << err;
+		return false;
+	}
+
+	err = RegSetValueEx( h, L"AutoAdminLogon", 0, REG_SZ, reinterpret_cast<CONST BYTE *>( L"1" ), 2 );
+	if( err != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to set automatic logon flag" << err;
+		return false;
+	}
+
+	err = RegSetValueEx( h, L"ForceAutoLogon", 0, REG_SZ, reinterpret_cast<CONST BYTE *>( L"1" ), 2 );
+	if( err != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to set forced automatic logon flag:" << err;
+		return false;
+	}
+
+	return true;
+}
+
+
+
+static bool clearAutologon()
+{
+	HKEY h;
+
+	auto i = RegOpenKeyEx( HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+						   0, KEY_WOW64_64KEY | KEY_SET_VALUE, &h );
+	if( i != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to open Winlogon subkey" << i;
+		return false;
+	}
+
+	i = RegSetValueEx(h, L"DefaultUserName", 0, REG_SZ, reinterpret_cast<const BYTE *>( L"" ), 1 );
+	if( i != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to set default logon user name" << i;
+		return false;
+	}
+
+	if( storePassword( {} ) == false )
+	{
+		return false;
+	}
+
+	i = RegDeleteValue( h, L"DefaultPassword" );
+	if( i != ERROR_SUCCESS && i != ERROR_FILE_NOT_FOUND )
+	{
+		vCritical() << "Unable to remove default logon password" << i;
+		return false;
+	}
+
+	i = RegDeleteValue( h, L"ForceAutoLogon" );
+	if( i != ERROR_SUCCESS && i != ERROR_FILE_NOT_FOUND )
+	{
+		vCritical() << "Unable to remove force logon flag" << i;
+		return false;
+	}
+
+	i = RegSetValueEx( h, L"AutoAdminLogon", 0, REG_SZ, reinterpret_cast<CONST BYTE *>( L"0" ), 2 );
+	if( i != ERROR_SUCCESS )
+	{
+		vCritical() << "Unable to clear automatic logon flag" << i;
+		return false;
+	}
+
+	return true;
+}
+
 
 
 QString WindowsUserFunctions::fullName( const QString& username )
@@ -152,12 +316,35 @@ QString WindowsUserFunctions::currentUser()
 
 bool WindowsUserFunctions::logon( const QString& username, const QString& password )
 {
-	Q_UNUSED(username);
-	Q_UNUSED(password);
+	if( isAnyUserLoggedOn() )
+	{
+		vInfo() << "Skipping user logon as a user is already logged on";
+		return false;
+	}
 
-	// TODO
+	QString domain;
+	QString user;
 
-	return false;
+	const auto userNameParts = username.split( QLatin1Char('\\') );
+	if( userNameParts.count() == 2 )
+	{
+		domain = userNameParts[0];
+		user = userNameParts[1];
+	}
+	else
+	{
+		user = username;
+	}
+
+	if( setAutologon( user, domain, password ) == false )
+	{
+		vCritical() << "Failed to logon user";
+		return false;
+	}
+
+	VeyonCore::platform().coreFunctions().reboot();
+
+	return true;
 }
 
 
