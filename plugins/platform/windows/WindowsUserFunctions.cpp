@@ -150,12 +150,14 @@ QString WindowsUserFunctions::currentUser()
 
 
 
-void WindowsUserFunctions::logon( const QString& username, const QString& password )
+bool WindowsUserFunctions::logon( const QString& username, const QString& password )
 {
 	Q_UNUSED(username);
 	Q_UNUSED(password);
 
 	// TODO
+
+	return false;
 }
 
 

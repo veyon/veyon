@@ -266,12 +266,14 @@ QString LinuxUserFunctions::currentUser()
 
 
 
-void LinuxUserFunctions::logon( const QString& username, const QString& password )
+bool LinuxUserFunctions::logon( const QString& username, const QString& password )
 {
 	Q_UNUSED(username);
 	Q_UNUSED(password);
 
 	// TODO
+
+	return false;
 }
 
 
