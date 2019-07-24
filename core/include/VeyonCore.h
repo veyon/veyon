@@ -160,13 +160,6 @@ public:
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
 
-	enum class AuthenticationMethod
-	{
-		LogonAuthentication,
-		KeyFileAuthentication,
-	};
-	Q_ENUM(AuthenticationMethod)
-
 	int exec();
 
 private:
