@@ -37,13 +37,13 @@
 #include <QTimeLine>
 #include <QWindow>
 
+#include "AuthenticationPluginInterface.h"
 #include "ComputerMonitoringWidget.h"
 #include "DocumentationFigureCreator.h"
 #include "FeatureManager.h"
 #include "LocationDialog.h"
 #include "MainToolBar.h"
 #include "MainWindow.h"
-#include "PasswordDialog.h"
 #include "Plugin.h"
 #include "PluginManager.h"
 #include "Screenshot.h"
@@ -75,10 +75,10 @@ void DocumentationFigureCreator::run()
 
 	hideComputers();
 
-	createFeatureFigures();
-	createContextMenuFigure();
+/*	createFeatureFigures();
+	createContextMenuFigure();*/
 	createLogonDialogFigure();
-	createLocationDialogFigure();
+/*	createLocationDialogFigure();
 	createScreenshotManagementPanelFigure();
 	createTextMessageDialogFigure();
 	createOpenWebsiteDialogFigure();
@@ -89,7 +89,7 @@ void DocumentationFigureCreator::run()
 	createRemoteAccessWindowFigure();
 	createPowerDownOptionsFigure();
 	createPowerDownTimeInputDialogFigure();
-	createFileTransferDialogFigure();
+	createFileTransferDialogFigure();*/
 }
 
 
@@ -176,15 +176,20 @@ void DocumentationFigureCreator::createContextMenuFigure()
 
 void DocumentationFigureCreator::createLogonDialogFigure()
 {
-	PasswordDialog dialog( m_master->mainWindow() );
-	dialog.show();
-	dialog.findChild<QLineEdit *>( QStringLiteral("password") )->setText( QStringLiteral( "TeacherPassword") );
-	dialog.findChild<QLineEdit *>( QStringLiteral("password") )->cursorForward( false );
-	dialog.findChild<QLineEdit *>( QStringLiteral("username") )->setText( tr( "Teacher") );
+	auto authLogonPlugin = VeyonCore::pluginManager().find<AuthenticationPluginInterface, PluginInterface>(
+				[]( const PluginInterface* plugin ) { return plugin->name() == QStringLiteral("AuthLogon"); } );
 
-	grabDialog( &dialog, {}, QStringLiteral("LogonDialog.png") );
-
-	dialog.exec();
+	if( authLogonPlugin )
+	{
+		scheduleUiOperation( []() {
+			auto dialog = dynamic_cast<QDialog *>( QApplication::activeWindow() );
+			dialog->findChild<QLineEdit *>( QStringLiteral("password") )->setText( QStringLiteral( "TeacherPassword") );
+			dialog->findChild<QLineEdit *>( QStringLiteral("password") )->cursorForward( false );
+			dialog->findChild<QLineEdit *>( QStringLiteral("username") )->setText( tr( "Teacher") );
+			grabDialog( dialog, {}, QStringLiteral("LogonDialog.png") );
+		} );
+		authLogonPlugin->initializeCredentials();
+	}
 }
 
 
