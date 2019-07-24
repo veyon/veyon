@@ -82,6 +82,8 @@ public:
 
 	void setVariantValue( const QVariant& value );
 
+	static Property* find( QObject* parent, const QString& key, const QString& parentKey );
+
 private:
 	Object* m_object;
 	Proxy* m_proxy;
