@@ -95,12 +95,18 @@ bool AuthKeysPlugin::hasCredentials() const
 
 
 
-bool AuthKeysPlugin::testConfiguration() const
+bool AuthKeysPlugin::checkCredentials() const
 {
-	if( VeyonCore::instance()->initAuthentication() == false )
+	if( hasCredentials() == false )
 	{
-		QMessageBox::critical( QApplication::activeWindow(), authenticationTestTitle(),
-							   tr( "Authentication keys are not set up properly on this computer." ) );
+		vWarning() << "Authentication key files not set up properly!";
+
+		QMessageBox::critical( QApplication::activeWindow(),
+								  authenticationTestTitle(),
+								  tr( "Authentication key files are not set up properly on this computer. "
+									  "Please create new key files or switch to a different authentication method "
+									  "using the Veyon Configurator." ) );
+
 		return false;
 	}
 

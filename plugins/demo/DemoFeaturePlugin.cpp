@@ -24,16 +24,14 @@
 
 #include <QCoreApplication>
 
-#include "DemoServer.h"
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
-#include "CryptoCore.h"
 #include "DemoClient.h"
 #include "DemoConfigurationPage.h"
 #include "DemoFeaturePlugin.h"
-#include "Logger.h"
+#include "DemoServer.h"
 #include "FeatureWorkerManager.h"
-#include "VariantArrayMessage.h"
+#include "Logger.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
 
@@ -328,9 +326,9 @@ bool DemoFeaturePlugin::hasCredentials() const
 
 
 
-bool DemoFeaturePlugin::testConfiguration() const
+bool DemoFeaturePlugin::checkCredentials() const
 {
-	return m_authentication.testConfiguration();
+	return m_authentication.checkCredentials();
 }
 
 

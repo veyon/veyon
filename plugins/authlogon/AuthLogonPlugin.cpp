@@ -23,13 +23,14 @@
  */
 
 #include <QApplication>
+#include <QMessageBox>
 
 #include "AuthLogonPlugin.h"
-#include "Filesystem.h"
 #include "PasswordDialog.h"
 #include "PlatformUserFunctions.h"
 #include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
+
 
 AuthLogonPlugin::AuthLogonPlugin( QObject* parent ) :
 	QObject( parent )
@@ -40,6 +41,9 @@ AuthLogonPlugin::AuthLogonPlugin( QObject* parent ) :
 
 bool AuthLogonPlugin::initializeCredentials()
 {
+	m_username.clear();
+	m_password.clear();
+
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 	{
 		PasswordDialog passwordDialog( QApplication::activeWindow() );
@@ -64,9 +68,21 @@ bool AuthLogonPlugin::hasCredentials() const
 
 
 
-bool AuthLogonPlugin::testConfiguration() const
+bool AuthLogonPlugin::checkCredentials() const
 {
-	return PasswordDialog( QApplication::activeWindow() ).exec() == PasswordDialog::Accepted;
+	if( hasCredentials() == false )
+	{
+		vWarning() << "Invalid username or password!";
+
+		QMessageBox::critical( QApplication::activeWindow(),
+							   authenticationTestTitle(),
+							   tr( "The supplied username or password is wrong. Please enter valid credentials or "
+								   "switch to a different authentication method using the Veyon Configurator." ) );
+
+		return false;
+	}
+
+	return true;
 }
 
 

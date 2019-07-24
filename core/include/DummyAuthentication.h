@@ -47,7 +47,7 @@ public:
 		return false;
 	}
 
-	bool testConfiguration() const override
+	bool checkCredentials() const override
 	{
 		return false;
 	}

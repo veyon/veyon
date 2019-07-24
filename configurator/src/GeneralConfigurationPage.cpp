@@ -127,7 +127,8 @@ void GeneralConfigurationPage::testAuthentication()
 {
 	VeyonCore::authenticationManager().reloadConfiguration();
 
-	if( VeyonCore::authenticationManager().configuredPlugin()->testConfiguration() )
+	if( VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() &&
+		VeyonCore::authenticationManager().configuredPlugin()->checkCredentials() )
 	{
 		QMessageBox::information( this, AuthenticationPluginInterface::authenticationTestTitle(),
 								  tr( "Authentication is set up properly on this computer." ) );

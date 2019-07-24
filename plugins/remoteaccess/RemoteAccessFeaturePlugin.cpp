@@ -25,7 +25,7 @@
 #include <QApplication>
 #include <QInputDialog>
 
-#include "AuthenticationCredentials.h"
+#include "AuthenticationManager.h"
 #include "RemoteAccessFeaturePlugin.h"
 #include "RemoteAccessWidget.h"
 #include "VeyonMasterInterface.h"
@@ -174,13 +174,8 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( co
 
 bool RemoteAccessFeaturePlugin::initAuthentication()
 {
-	if( VeyonCore::instance()->initAuthentication() == false )
-	{
-		vWarning() << "Could not initialize authentication";
-		return false;
-	}
-
-	return true;
+	return VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() &&
+			VeyonCore::authenticationManager().configuredPlugin()->checkCredentials();
 }
 
 

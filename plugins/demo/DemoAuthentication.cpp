@@ -52,7 +52,7 @@ bool DemoAuthentication::hasCredentials() const
 
 
 
-bool DemoAuthentication::testConfiguration() const
+bool DemoAuthentication::checkCredentials() const
 {
 	return true;
 }

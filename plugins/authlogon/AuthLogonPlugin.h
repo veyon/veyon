@@ -76,7 +76,7 @@ public:
 	bool initializeCredentials() override;
 	bool hasCredentials() const override;
 
-	bool testConfiguration() const override;
+	bool checkCredentials() const override;
 
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
 
