@@ -104,6 +104,22 @@ void Property::setVariantValue( const QVariant& value )
 
 
 
+Property* Property::find( QObject* parent, const QString& key, const QString& parentKey )
+{
+	const auto properties = parent->findChildren<Property *>();
+	for( auto property : properties )
+	{
+		if( property->m_key == key && property->m_parentKey == parentKey )
+		{
+			return property;
+		}
+	}
+
+	return nullptr;
+}
+
+
+
 template<>
 Password Configuration::TypedProperty<Password>::value() const
 {
