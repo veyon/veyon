@@ -37,6 +37,8 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Demo")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
+	using Token = CryptoCore::PlaintextPassword;
+
 	explicit DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override = default;
 
@@ -112,7 +114,7 @@ private:
 	const Feature m_demoServerFeature;
 	const FeatureList m_features;
 
-	QString m_demoAccessToken;
+	Token m_demoAccessToken;
 	QStringList m_demoClientHosts;
 
 	DemoConfiguration m_configuration;

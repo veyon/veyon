@@ -196,8 +196,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 
 		vInfo() << "authenticating user" << client->username();
 
-		if( VeyonCore::platform().userFunctions().authenticate( client->username(),
-																QString::fromUtf8( decryptedPassword.toByteArray() ) ) )
+		if( VeyonCore::platform().userFunctions().authenticate( client->username(), decryptedPassword ) )
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;
@@ -226,7 +225,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 
 	case VncServerClient::AuthState::Token:
 	{
-		const auto token = message.read().toString();  // Flawfinder: ignore
+		const auto token = AuthenticationCredentials::Token( message.read().toByteArray() );  // Flawfinder: ignore
 
 		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::Token ) &&
 				token == VeyonCore::authenticationCredentials().token() )

@@ -35,10 +35,12 @@ class ComputerControlClient : public VncProxyConnection
 {
 	Q_OBJECT
 public:
+	using Password = CryptoCore::SecureArray;
+
 	ComputerControlClient( ComputerControlServer* server,
 						   QTcpSocket* clientSocket,
 						   int vncServerPort,
-						   const QString& vncServerPassword,
+						   const Password& vncServerPassword,
 						   QObject* parent );
 	~ComputerControlClient() override;
 

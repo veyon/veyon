@@ -55,7 +55,7 @@ void BuiltinX11VncServer::prepareServer()
 
 
 
-void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
+void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 {
 	QStringList cmdline = { QStringLiteral("-localhost"),
 							QStringLiteral("-nosel"),			// do not exchange clipboard-contents
@@ -98,7 +98,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 		vCritical() << "Could not create temporary file!";
 		return;
 	}
-	tempFile.write( password.toLocal8Bit() );
+	tempFile.write( password.toByteArray() );
 	tempFile.close();
 
 	cmdline.append( QStringLiteral("-passwdfile") );
@@ -122,7 +122,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 		x11vnc.waitForFinished( -1 );
 	}
 #else
-	cmdline.append( { QStringLiteral("-passwd"), password } );
+	cmdline.append( { QStringLiteral("-passwd"), QString::fromUtf8( password.toByteArray() ) } );
 
 	// build new C-style command line array based on cmdline-QStringList
 	const auto appArguments = QCoreApplication::arguments();

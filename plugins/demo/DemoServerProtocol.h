@@ -32,7 +32,9 @@
 class DemoServerProtocol : public VncServerProtocol
 {
 public:
-	DemoServerProtocol( const QString& demoAccessToken, QTcpSocket* socket, VncServerClient* client );
+	using Token = CryptoCore::PlaintextPassword;
+
+	DemoServerProtocol( const Token& demoAccessToken, QTcpSocket* socket, VncServerClient* client );
 
 protected:
 	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
@@ -42,6 +44,6 @@ protected:
 private:
 	VncServerClient::AuthState performTokenAuthentication( VariantArrayMessage& message );
 
-	const QString m_demoAccessToken;
+	const Token m_demoAccessToken;
 
 } ;

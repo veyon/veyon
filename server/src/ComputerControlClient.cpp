@@ -32,7 +32,7 @@
 ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 											  QTcpSocket* clientSocket,
 											  int vncServerPort,
-											  const QString& vncServerPassword,
+											  const Password& vncServerPassword,
 											  QObject* parent ) :
 	VncProxyConnection( clientSocket, vncServerPort, parent ),
 	m_server( server ),

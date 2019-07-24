@@ -25,13 +25,15 @@
 #pragma once
 
 #include "CryptoCore.h"
-#include "VeyonCore.h"
 
 // clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT AuthenticationCredentials
 {
 public:
+	using Token = CryptoCore::SecureArray;
+	using Password = CryptoCore::SecureArray;
+
 	enum class Type
 	{
 		None = 0x00,
@@ -56,42 +58,42 @@ public:
 	}
 
 	// user logon auth
-	void setLogonUsername( const QString &username )
+	void setLogonUsername( const QString& username )
 	{
 		m_logonUsername = username;
 	}
 
-	void setLogonPassword( const QString &password )
+	void setLogonPassword( const Password& password )
 	{
 		m_logonPassword = password;
 	}
 
-	const QString &logonUsername() const
+	const QString& logonUsername() const
 	{
 		return m_logonUsername;
 	}
 
-	const QString &logonPassword() const
+	const Password& logonPassword() const
 	{
 		return m_logonPassword;
 	}
 
-	void setToken( const QString &token )
+	void setToken( const Token& token )
 	{
 		m_token = token;
 	}
 
-	const QString &token() const
+	const Token& token() const
 	{
 		return m_token;
 	}
 
-	void setInternalVncServerPassword( const QString& password )
+	void setInternalVncServerPassword( const Password& password )
 	{
 		m_internalVncServerPassword = password;
 	}
 
-	const QString& internalVncServerPassword() const
+	const Password& internalVncServerPassword() const
 	{
 		return m_internalVncServerPassword;
 	}
@@ -100,10 +102,10 @@ private:
 	CryptoCore::PrivateKey m_privateKey;
 
 	QString m_logonUsername;
-	QString m_logonPassword;
+	Password m_logonPassword;
 
-	QString m_token;
+	Token m_token;
 
-	QString m_internalVncServerPassword;
+	Password m_internalVncServerPassword;
 
 } ;

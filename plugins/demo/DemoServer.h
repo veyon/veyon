@@ -38,9 +38,10 @@ class DemoServer : public QObject
 {
 	Q_OBJECT
 public:
+	using Password = CryptoCore::SecureArray;
 	using MessageList = QVector<QByteArray>;
 
-	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+	DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
 				const DemoConfiguration& configuration, QObject *parent );
 	~DemoServer() override;
 
@@ -90,7 +91,7 @@ private:
 	const qint64 m_memoryLimit;
 	const int m_keyFrameInterval;
 	const int m_vncServerPort;
-	const QString m_demoAccessToken;
+	const Password m_demoAccessToken;
 
 	QTcpServer* m_tcpServer;
 	QTcpSocket* m_vncServerSocket;

@@ -27,7 +27,7 @@
 #include "VncServerClient.h"
 
 
-DemoServerProtocol::DemoServerProtocol( const QString& demoAccessToken, QTcpSocket* socket, VncServerClient* client ) :
+DemoServerProtocol::DemoServerProtocol( const Token& demoAccessToken, QTcpSocket* socket, VncServerClient* client ) :
 	VncServerProtocol( socket, client ),
 	m_demoAccessToken( demoAccessToken )
 {
@@ -71,7 +71,7 @@ VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( Varia
 		return VncServerClient::AuthState::Token;
 
 	case VncServerClient::AuthState::Token:
-		if( message.read().toString() == m_demoAccessToken )
+		if( Token( message.read().toByteArray() ) == m_demoAccessToken )
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;

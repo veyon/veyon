@@ -23,6 +23,8 @@
  *
  */
 
+#include "rfb/rfbproto.h"
+
 #include <QTcpServer>
 #include <QTcpSocket>
 
@@ -32,7 +34,7 @@
 #include "VeyonConfiguration.h"
 
 
-DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
 						const DemoConfiguration& configuration, QObject *parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),

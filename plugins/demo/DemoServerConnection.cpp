@@ -23,6 +23,8 @@
  *
  */
 
+#include "rfb/rfbproto.h"
+
 #include <QTcpSocket>
 
 #include "DemoConfiguration.h"
@@ -30,7 +32,7 @@
 #include "DemoServerConnection.h"
 
 
-DemoServerConnection::DemoServerConnection( const QString& demoAccessToken,
+DemoServerConnection::DemoServerConnection( const Password& demoAccessToken,
 											QTcpSocket* socket,
 											DemoServer* demoServer ) :
 	QObject( demoServer ),

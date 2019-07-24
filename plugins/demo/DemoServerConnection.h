@@ -37,11 +37,13 @@ class DemoServerConnection : public QObject
 {
 	Q_OBJECT
 public:
+	using Password = CryptoCore::PlaintextPassword;
+
 	enum {
 		ProtocolRetryTime = 250,
 	};
 
-	DemoServerConnection( const QString& demoAccessToken, QTcpSocket* socket, DemoServer* demoServer );
+	DemoServerConnection( const Password& demoAccessToken, QTcpSocket* socket, DemoServer* demoServer );
 	~DemoServerConnection() override;
 
 public slots:

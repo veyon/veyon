@@ -265,7 +265,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			return false;
 		}
 
-		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword().toUtf8() );
+		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword() );
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
@@ -282,7 +282,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	case RfbVeyonAuth::Token:
 	{
 		VariantArrayMessage tokenAuthMessage( &socketDevice );
-		tokenAuthMessage.write( VeyonCore::authenticationCredentials().token() );
+		tokenAuthMessage.write( VeyonCore::authenticationCredentials().token().toByteArray() );
 		tokenAuthMessage.send();
 		break;
 	}

@@ -193,7 +193,7 @@ void WindowsUserFunctions::logoff()
 
 
 
-bool WindowsUserFunctions::authenticate( const QString& username, const QString& password )
+bool WindowsUserFunctions::authenticate( const QString& username, const Password& password )
 {
 	QString domain;
 	QString user;
@@ -211,7 +211,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 
 	auto domainWide = WindowsCoreFunctions::toWCharArray( domain );
 	auto userWide = WindowsCoreFunctions::toWCharArray( user );
-	auto passwordWide = WindowsCoreFunctions::toWCharArray( password );
+	auto passwordWide = WindowsCoreFunctions::toWCharArray( QString::fromUtf8( password.toByteArray() ) );
 
 	bool result = false;
 

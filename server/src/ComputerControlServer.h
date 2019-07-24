@@ -48,7 +48,7 @@ public:
 
 	VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
 												  int vncServerPort,
-												  const QString& vncServerPassword,
+												  const Password& vncServerPassword,
 												  QObject* parent ) override;
 
 	ServerAuthenticationManager& authenticationManager()

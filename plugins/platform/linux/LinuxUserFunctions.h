@@ -44,7 +44,7 @@ public:
 	bool logon( const QString& username, const Password& password ) override;
 	void logoff() override;
 
-	bool authenticate( const QString& username, const QString& password ) override;
+	bool authenticate( const QString& username, const Password& password ) override;
 
 	static uid_t userIdFromName( const QString& username );
 

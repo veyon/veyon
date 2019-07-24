@@ -65,9 +65,9 @@ QString PasswordDialog::username() const
 
 
 
-QString PasswordDialog::password() const
+CryptoCore::PlaintextPassword PasswordDialog::password() const
 {
-	return ui->password->text();
+	return ui->password->text().toUtf8();
 }
 
 

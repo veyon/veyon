@@ -75,14 +75,14 @@ public:
 
 	void prepareServer() override;
 
-	void runServer( int serverPort, const QString& password ) override;
+	void runServer( int serverPort, const Password& password ) override;
 
 	int configuredServerPort() override
 	{
 		return -1;
 	}
 
-	QString configuredPassword() override
+	Password configuredPassword() override
 	{
 		return {};
 	}

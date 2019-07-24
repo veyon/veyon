@@ -38,7 +38,7 @@ public:
 	~PasswordDialog() override;
 
 	QString username() const;
-	QString password() const;
+	CryptoCore::PlaintextPassword password() const;
 
 	AuthenticationCredentials credentials() const;
 

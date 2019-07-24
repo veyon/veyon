@@ -66,10 +66,10 @@ vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 
 
 
-VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPassword ) :
+VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const Password& vncPassword ) :
 	m_socket( socket ),
 	m_state( Disconnected ),
-	m_vncPassword( vncPassword.toUtf8() ),
+	m_vncPassword( vncPassword ),
 	m_serverInitMessage(),
 	m_pixelFormat( { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } ),
 	m_framebufferWidth( 0 ),
@@ -485,7 +485,7 @@ bool VncClientProtocol::receiveCutTextMessage()
 		return false;
 	}
 
-	return readMessage( sz_rfbServerCutTextMsg + qFromBigEndian( message.length ) );
+	return readMessage( sz_rfbServerCutTextMsg + static_cast<int>( qFromBigEndian( message.length ) ) );
 }
 
 

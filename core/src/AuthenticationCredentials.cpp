@@ -57,8 +57,7 @@ bool AuthenticationCredentials::hasCredentials( Type type ) const
 		return m_logonUsername.isEmpty() == false && m_logonPassword.isEmpty() == false;
 
 	case Type::Token:
-		return m_token.isEmpty() == false &&
-				QByteArray::fromBase64( m_token.toUtf8() ).size() == CryptoCore::ChallengeSize;
+		return m_token.isEmpty() == false && m_token.size() == CryptoCore::ChallengeSize;
 
 	default:
 		break;

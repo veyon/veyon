@@ -77,11 +77,11 @@ public:
 
 	void prepareServer() override;
 
-	void runServer( int serverPort, const QString& password ) override;
+	void runServer( int serverPort, const Password& password ) override;
 
 	int configuredServerPort() override;
 
-	QString configuredPassword() override;
+	Password configuredPassword() override;
 
 private:
 	enum {
