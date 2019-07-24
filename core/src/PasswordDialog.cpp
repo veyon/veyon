@@ -65,21 +65,9 @@ QString PasswordDialog::username() const
 
 
 
-QString PasswordDialog::password() const
+CryptoCore::SecureArray PasswordDialog::password() const
 {
-	return ui->password->text();
-}
-
-
-
-
-AuthenticationCredentials PasswordDialog::credentials() const
-{
-	AuthenticationCredentials cred;
-	cred.setLogonUsername( username() );
-	cred.setLogonPassword( password() );
-
-	return cred;
+	return ui->password->text().toUtf8();
 }
 
 

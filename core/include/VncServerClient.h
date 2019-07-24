@@ -35,9 +35,7 @@ class VEYON_CORE_EXPORT VncServerClient : public QObject
 public:
 	enum class AuthState {
 		Init,
-		Challenge,
-		Password,
-		Token,
+		Stage1,
 		Successful,
 		Failed,
 	} ;
@@ -56,7 +54,7 @@ public:
 		QObject( parent ),
 		m_protocolState( VncServerProtocol::Disconnected ),
 		m_authState( AuthState::Init ),
-		m_authType( RfbVeyonAuth::Invalid ),
+		m_authPluginUid(),
 		m_accessControlState( AccessControlState::Init ),
 		m_username(),
 		m_hostAddress(),
@@ -84,14 +82,14 @@ public:
 		m_authState = authState;
 	}
 
-	RfbVeyonAuth::Type authType() const
+	Plugin::Uid authPluginUid() const
 	{
-		return m_authType;
+		return m_authPluginUid;
 	}
 
-	void setAuthType( RfbVeyonAuth::Type authType )
+	void setAuthPluginUid( Plugin::Uid pluginUid )
 	{
-		m_authType = authType;
+		m_authPluginUid = pluginUid;
 	}
 
 	AccessControlState accessControlState() const
@@ -161,7 +159,7 @@ signals:
 private:
 	VncServerProtocol::State m_protocolState;
 	AuthState m_authState;
-	RfbVeyonAuth::Type m_authType;
+	Plugin::Uid m_authPluginUid;
 	AccessControlState m_accessControlState;
 	QElapsedTimer m_accessControlTimer;
 	QString m_username;

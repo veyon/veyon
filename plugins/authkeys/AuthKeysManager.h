@@ -33,6 +33,8 @@ public:
 	explicit AuthKeysManager( QObject* parent = nullptr );
 	~AuthKeysManager() override = default;
 
+	static bool isKeyNameValid( const QString& authKeyName );
+
 	const QString& resultMessage() const
 	{
 		return m_resultMessage;

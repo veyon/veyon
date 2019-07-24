@@ -24,6 +24,7 @@
 
 #include <QDir>
 #include <QFileInfo>
+#include <QRegularExpression>
 
 #include "AuthKeysManager.h"
 #include "CommandLineIO.h"
@@ -47,10 +48,16 @@ AuthKeysManager::AuthKeysManager( QObject* parent ) :
 }
 
 
+bool AuthKeysManager::isKeyNameValid( const QString& authKeyName )
+{
+	return QRegularExpression( QStringLiteral("^\\w+$") ).match( authKeyName ).hasMatch();
+}
+
+
 
 bool AuthKeysManager::createKeyPair( const QString& name )
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
+	if( isKeyNameValid( name ) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
@@ -159,7 +166,7 @@ bool AuthKeysManager::exportKey( const QString& name, const QString& type, const
 
 bool AuthKeysManager::importKey( const QString& name, const QString& type, const QString& inputFile )
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
+	if( isKeyNameValid( name ) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
@@ -269,7 +276,7 @@ QStringList AuthKeysManager::listKeys()
 
 bool AuthKeysManager::extractPublicFromPrivateKey( const QString& name )
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
+	if( isKeyNameValid( name ) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
@@ -474,7 +481,7 @@ QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 
 bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false )
+	if( isKeyNameValid( name ) == false )
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;

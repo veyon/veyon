@@ -26,7 +26,6 @@
 
 #include <QPointer>
 
-#include "RfbVeyonAuth.h"
 #include "VncConnection.h"
 
 
@@ -64,16 +63,6 @@ public:
 		return m_userHomeDir;
 	}
 
-	void setVeyonAuthType( RfbVeyonAuth::Type authType )
-	{
-		m_veyonAuthType = authType;
-	}
-
-	RfbVeyonAuth::Type veyonAuthType() const
-	{
-		return m_veyonAuthType;
-	}
-
 	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
@@ -93,8 +82,6 @@ private:
 	static void hookPrepareAuthentication( rfbClient* client );
 
 	QPointer<VncConnection> m_vncConnection;
-
-	RfbVeyonAuth::Type m_veyonAuthType;
 
 	QString m_user;
 	QString m_userHomeDir;

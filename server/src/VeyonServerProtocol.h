@@ -40,7 +40,7 @@ public:
 						  ServerAccessControlManager& serverAccessControlManager );
 
 protected:
-	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
+	AuthPluginUids supportedAuthPluginUids() const override;
 	void processAuthenticationMessage( VariantArrayMessage& message ) override;
 	void performAccessControl() override;
 

@@ -36,13 +36,14 @@
 #include <QProcessEnvironment>
 #include <QSysInfo>
 
+#include "AuthenticationCredentials.h"
+#include "AuthenticationManager.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
 #include "Filesystem.h"
 #include "HostAddress.h"
 #include "Logger.h"
 #include "NetworkObjectDirectoryManager.h"
-#include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformServiceCore.h"
@@ -61,6 +62,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_config( nullptr ),
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),
+	m_authenticationManager( nullptr ),
 	m_cryptoCore( nullptr ),
 	m_pluginManager( nullptr ),
 	m_platformPluginManager( nullptr ),
@@ -70,7 +72,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_networkObjectDirectoryManager( nullptr ),
 	m_localComputerControlInterface( nullptr ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
-	m_authenticationKeyName(),
 	m_debugging( false )
 {
 	Q_ASSERT( application != nullptr );
@@ -109,6 +110,9 @@ VeyonCore::~VeyonCore()
 
 	delete m_authenticationCredentials;
 	m_authenticationCredentials = nullptr;
+
+	delete m_authenticationManager;
+	m_authenticationManager = nullptr;
 
 	delete m_cryptoCore;
 	m_cryptoCore = nullptr;
@@ -211,13 +215,7 @@ void VeyonCore::setupApplicationParameters()
 
 bool VeyonCore::initAuthentication()
 {
-	switch( config().authenticationMethod() )
-	{
-	case AuthenticationMethod::LogonAuthentication: return initLogonAuthentication();
-	case AuthenticationMethod::KeyFileAuthentication: return initKeyFileAuthentication();
-	}
-
-	return false;
+	return m_authenticationManager->configuredPlugin()->initializeCredentials();
 }
 
 
@@ -485,13 +483,6 @@ QString VeyonCore::formattedUuid( QUuid uuid )
 
 
 
-bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
-{
-	return QRegExp( QStringLiteral("\\w+") ).exactMatch( authKeyName );
-}
-
-
-
 int VeyonCore::exec()
 {
 	emit applicationLoaded();
@@ -639,6 +630,7 @@ void VeyonCore::initPlugins()
 
 void VeyonCore::initManagers()
 {
+	m_authenticationManager = new AuthenticationManager( this );
 	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
 }
@@ -652,59 +644,6 @@ void VeyonCore::initLocalComputerControlInterface()
 								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().primaryServicePort() + sessionId() ) );
 
 	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
-}
-
-
-
-bool VeyonCore::initLogonAuthentication()
-{
-	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
-	{
-		PasswordDialog dlg( QApplication::activeWindow() );
-		if( dlg.exec() &&
-			dlg.credentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
-		{
-			m_authenticationCredentials->setLogonUsername( dlg.username() );
-			m_authenticationCredentials->setLogonPassword( dlg.password() );
-
-			return true;
-		}
-	}
-
-	return false;
-}
-
-
-
-bool VeyonCore::initKeyFileAuthentication()
-{
-	auto authKeyName = QProcessEnvironment::systemEnvironment().value( QStringLiteral("VEYON_AUTH_KEY_NAME") );
-
-	if( authKeyName.isEmpty() == false )
-	{
-		if( isAuthenticationKeyNameValid( authKeyName ) &&
-				m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
-		{
-			m_authenticationKeyName = authKeyName;
-		}
-	}
-	else
-	{
-		// try to auto-detect private key file by searching for readable file
-		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
-		const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
-
-		for( const auto& privateKeyDir : privateKeyDirs )
-		{
-			if( m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( privateKeyDir ) ) )
-			{
-				m_authenticationKeyName = privateKeyDir;
-				return true;
-			}
-		}
-	}
-
-	return false;
 }
 
 

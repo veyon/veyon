@@ -25,7 +25,6 @@
 #pragma once
 
 #include "DesktopAccessDialog.h"
-#include "RfbVeyonAuth.h"
 #include "VncServerClient.h"
 
 class VariantArrayMessage;

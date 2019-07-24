@@ -308,7 +308,7 @@ void LinuxUserFunctions::logoff()
 
 
 
-bool LinuxUserFunctions::authenticate( const QString& username, const QString& password )
+bool LinuxUserFunctions::authenticate( const QString& username, const CryptoCore::SecureArray& password )
 {
 	QProcess p;
 	p.start( QStringLiteral( "veyon-auth-helper" ), QProcess::ReadWrite | QProcess::Unbuffered );
@@ -321,9 +321,9 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 	const auto pamService = LinuxPlatformConfiguration( &VeyonCore::config() ).pamServiceName();
 
 	QDataStream ds( &p );
-	ds << VeyonCore::stripDomain( username );
-	ds << password;
-	ds << pamService;
+	ds << VeyonCore::stripDomain( username ).toUtf8();
+	ds << password.toByteArray();
+	ds << pamService.toUtf8();
 
 	p.waitForFinished();
 

@@ -46,6 +46,7 @@ class QCoreApplication;
 class QWidget;
 
 class AuthenticationCredentials;
+class AuthenticationManager;
 class BuiltinFeatures;
 class ComputerControlInterface;
 class CryptoCore;
@@ -71,6 +72,8 @@ public:
 	};
 	Q_ENUM(ApplicationVersion)
 
+	static constexpr char RfbSecurityTypeVeyon = 40;
+
 	VeyonCore( QCoreApplication* application, const QString& appComponentName );
 	~VeyonCore() override;
 
@@ -93,6 +96,11 @@ public:
 	static AuthenticationCredentials& authenticationCredentials()
 	{
 		return *( instance()->m_authenticationCredentials );
+	}
+
+	static AuthenticationManager& authenticationManager()
+	{
+		return *( instance()->m_authenticationManager );
 	}
 
 	static CryptoCore& cryptoCore()
@@ -152,13 +160,6 @@ public:
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
 
-	const QString& authenticationKeyName() const
-	{
-		return m_authenticationKeyName;
-	}
-
-	static bool isAuthenticationKeyNameValid( const QString& authKeyName );
-
 	enum class AuthenticationMethod
 	{
 		LogonAuthentication,
@@ -178,8 +179,6 @@ private:
 	void initPlugins();
 	void initManagers();
 	void initLocalComputerControlInterface();
-	bool initLogonAuthentication();
-	bool initKeyFileAuthentication();
 	void initSystemInfo();
 
 	static VeyonCore* s_instance;
@@ -188,6 +187,7 @@ private:
 	VeyonConfiguration* m_config;
 	Logger* m_logger;
 	AuthenticationCredentials* m_authenticationCredentials;
+	AuthenticationManager* m_authenticationManager;
 	CryptoCore* m_cryptoCore;
 	PluginManager* m_pluginManager;
 	PlatformPluginManager* m_platformPluginManager;
@@ -199,7 +199,6 @@ private:
 	ComputerControlInterface* m_localComputerControlInterface;
 
 	QString m_applicationName;
-	QString m_authenticationKeyName;
 	bool m_debugging;
 
 signals:

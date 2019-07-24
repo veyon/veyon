@@ -25,6 +25,7 @@
 #include "rfb/rfbclient.h"
 
 #include "AuthenticationCredentials.h"
+#include "AuthenticationManager.h"
 #include "CryptoCore.h"
 #include "PlatformUserFunctions.h"
 #include "SocketDevice.h"
@@ -35,7 +36,7 @@
 
 
 static rfbClientProtocolExtension* __veyonProtocolExt = nullptr;
-static const uint32_t __veyonSecurityTypes[2] = { rfbSecTypeVeyon, 0 };
+static const uint32_t __veyonSecurityTypes[2] = { VeyonCore::RfbSecurityTypeVeyon, 0 };
 
 
 rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
@@ -53,7 +54,6 @@ rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 
 VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 	m_vncConnection( vncConnection ),
-	m_veyonAuthType( RfbVeyonAuth::Logon ),
 	m_user(),
 	m_userHomeDir()
 {
@@ -67,11 +67,6 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 		__veyonProtocolExt->handleAuthentication = handleSecTypeVeyon;
 
 		rfbClientRegisterExtension( __veyonProtocolExt );
-	}
-
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
-	{
-		m_veyonAuthType = RfbVeyonAuth::KeyFile;
 	}
 
 	connect( m_vncConnection, &VncConnection::connectionPrepared, this, &VeyonConnection::registerConnection, Qt::DirectConnection );
@@ -152,7 +147,7 @@ void VeyonConnection::unregisterConnection()
 
 int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authScheme )
 {
-	if( authScheme != rfbSecTypeVeyon )
+	if( authScheme != VeyonCore::RfbSecurityTypeVeyon )
 	{
 		return false;
 	}
@@ -171,128 +166,48 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 	int authTypeCount = message.read().toInt();
 
-	QList<RfbVeyonAuth::Type> authTypes;
+	PluginUidList authTypes;
 	authTypes.reserve( authTypeCount );
 
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-		authTypes.append( QVariantHelper<RfbVeyonAuth::Type>::value( message.read() ) );
+		authTypes.append( message.read().toUuid() );
 	}
 
 	vDebug() << QThread::currentThreadId() << "received authentication types:" << authTypes;
 
-	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
-	if( authTypes.count() > 0 )
+	auto chosenAuthPlugin = Plugin::Uid();
+
+	const auto& plugins = VeyonCore::authenticationManager().plugins();
+	for( auto it = plugins.constBegin(), end = plugins.constEnd(); it != end; ++it )
 	{
-		chosenAuthType = authTypes.first();
-
-		// look whether the VncConnection recommends a specific
-		// authentication type (e.g. VeyonAuthHostBased when running as
-		// demo client)
-
-		for( auto authType : authTypes )
+		if( authTypes.contains( it.key() ) && it.value()->hasCredentials() )
 		{
-			if( connection->veyonAuthType() == authType )
-			{
-				chosenAuthType = authType;
-			}
+			chosenAuthPlugin = it.key();
 		}
 	}
 
-	vDebug() << QThread::currentThreadId() << "chose authentication type:" << authTypes;
+	if( chosenAuthPlugin.isNull() )
+	{
+		vWarning() << QThread::currentThreadId() << "authentication plugins not supported "
+					  "or missing credentials";
+		return false;
+	}
+
+	vDebug() << QThread::currentThreadId() << "chose authentication type:" << chosenAuthPlugin;
 
 	VariantArrayMessage authReplyMessage( &socketDevice );
 
-	authReplyMessage.write( chosenAuthType );
+	authReplyMessage.write( chosenAuthPlugin );
 
 	// send username which is used when displaying an access confirm dialog
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
-	{
-		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
-	}
-	else
-	{
-		authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
-	}
-
+	authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
 	authReplyMessage.send();
 
 	VariantArrayMessage authAckMessage( &socketDevice );
 	authAckMessage.receive();
 
-	switch( chosenAuthType )
-	{
-	case RfbVeyonAuth::KeyFile:
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::PrivateKey ) )
-		{
-			VariantArrayMessage challengeReceiveMessage( &socketDevice );
-			challengeReceiveMessage.receive();
-			const auto challenge = challengeReceiveMessage.read().toByteArray();
-
-			if( challenge.size() != CryptoCore::ChallengeSize )
-			{
-				vCritical() << QThread::currentThreadId() << "challenge size mismatch!";
-				return false;
-			}
-
-			// create local copy of private key so we can modify it within our own thread
-			auto key = VeyonCore::authenticationCredentials().privateKey();
-			if( key.isNull() || key.canSign() == false )
-			{
-				vCritical() << QThread::currentThreadId() << "invalid private key!";
-				return false;
-			}
-
-			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
-
-			VariantArrayMessage challengeResponseMessage( &socketDevice );
-			challengeResponseMessage.write( VeyonCore::instance()->authenticationKeyName() );
-			challengeResponseMessage.write( signature );
-			challengeResponseMessage.send();
-		}
-		break;
-
-	case RfbVeyonAuth::Logon:
-	{
-		VariantArrayMessage publicKeyMessage( &socketDevice );
-		publicKeyMessage.receive();
-
-		CryptoCore::PublicKey publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
-
-		if( publicKey.canEncrypt() == false )
-		{
-			vCritical() << QThread::currentThreadId() << "can't encrypt with given public key!";
-			return false;
-		}
-
-		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword().toUtf8() );
-		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
-		if( encryptedPassword.isEmpty() )
-		{
-			vCritical() << QThread::currentThreadId() << "password encryption failed!";
-			return false;
-		}
-
-		VariantArrayMessage passwordResponse( &socketDevice );
-		passwordResponse.write( encryptedPassword.toByteArray() );
-		passwordResponse.send();
-		break;
-	}
-
-	case RfbVeyonAuth::Token:
-	{
-		VariantArrayMessage tokenAuthMessage( &socketDevice );
-		tokenAuthMessage.write( VeyonCore::authenticationCredentials().token() );
-		tokenAuthMessage.send();
-		break;
-	}
-
-	default:
-		// nothing to do - we just get accepted
-		break;
-	}
-
-	return true;
+	return plugins[chosenAuthPlugin]->authenticate( &socketDevice );
 }
 
 

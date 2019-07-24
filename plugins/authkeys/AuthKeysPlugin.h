@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "AuthenticationPluginInterface.h"
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
@@ -31,6 +32,7 @@
 class AuthKeysTableModel;
 
 class AuthKeysPlugin : public QObject,
+		AuthenticationPluginInterface,
 		CommandLinePluginInterface,
 		PluginInterface,
 		CommandLineIO,
@@ -39,6 +41,7 @@ class AuthKeysPlugin : public QObject,
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.AuthKeys")
 	Q_INTERFACES(PluginInterface
+				 AuthenticationPluginInterface
 				 CommandLinePluginInterface
 				 ConfigurationPagePluginInterface)
 public:
@@ -62,7 +65,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Command line support for managing authentication keys" );
+		return tr( "Key file authentication" );
 	}
 
 	QString vendor() const override
@@ -74,6 +77,22 @@ public:
 	{
 		return QStringLiteral( "Tobias Junghans" );
 	}
+
+	QString authenticationTypeName() const override
+	{
+		return description();
+	}
+
+	bool initializeCredentials() override;
+	bool hasCredentials() const override;
+
+	bool testConfiguration() const override;
+
+	// server side authentication
+	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
+
+	// client side authentication
+	bool authenticate( QIODevice* socket ) const override;
 
 	QString commandLineModuleName() const override
 	{
@@ -101,9 +120,14 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_extract( const QStringList& arguments );
 
 private:
+	bool loadPrivateKey( const QString& privateKeyFile );
+
 	static void printAuthKeyTable();
 	static QString authKeysTableData( const AuthKeysTableModel& tableModel, int row, int column );
 	static void printAuthKeyList();
+
+	CryptoCore::PrivateKey m_privateKey;
+	QString m_authKeyName;
 
 	QMap<QString, QString> m_commands;
 

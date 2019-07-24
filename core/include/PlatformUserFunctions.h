@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "CryptoCore.h"
 #include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -44,6 +45,6 @@ public:
 	virtual bool logon( const QString& username, const QString& password ) = 0;
 	virtual void logoff() = 0;
 
-	virtual bool authenticate( const QString& username, const QString& password ) = 0;
+	virtual bool authenticate( const QString& username, const CryptoCore::SecureArray& password ) = 0;
 
 };

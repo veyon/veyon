@@ -24,7 +24,8 @@
 
 #pragma once
 
-#include "RfbVeyonAuth.h"
+#include "VeyonCore.h"
+#include "Plugin.h"
 
 class QTcpSocket;
 
@@ -36,6 +37,8 @@ class VncServerClient;
 class VEYON_CORE_EXPORT VncServerProtocol
 {
 public:
+	using AuthPluginUids = QVector<Plugin::Uid>;
+
 	enum State {
 		Disconnected,
 		Protocol,
@@ -64,7 +67,7 @@ public:
 	}
 
 protected:
-	virtual QVector<RfbVeyonAuth::Type> supportedAuthTypes() const = 0;
+	virtual AuthPluginUids supportedAuthPluginUids() const = 0;
 	virtual void processAuthenticationMessage( VariantArrayMessage& message ) = 0;
 	virtual void performAccessControl() = 0;
 

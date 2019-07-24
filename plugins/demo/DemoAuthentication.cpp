@@ -1,7 +1,7 @@
 /*
- * DemoServerProtocol.cpp - implementation of DemoServerProtocol class
+ * DemoAuthentication.cpp - implementation of DemoAuthentication class
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -23,56 +23,54 @@
  */
 
 #include "DemoAuthentication.h"
-#include "DemoServerProtocol.h"
 #include "VariantArrayMessage.h"
-#include "VncServerClient.h"
 
 
-DemoServerProtocol::DemoServerProtocol( const DemoAuthentication& authentication, QTcpSocket* socket, VncServerClient* client ) :
-	VncServerProtocol( socket, client ),
-	m_authentication( authentication )
+DemoAuthentication::DemoAuthentication( const Plugin::Uid& pluginUid, QObject* parent ) :
+	QObject( parent ),
+	m_accessToken(),
+	m_pluginUid( pluginUid )
 {
 }
 
 
 
-DemoServerProtocol::AuthPluginUids DemoServerProtocol::supportedAuthPluginUids() const
+bool DemoAuthentication::initializeCredentials()
 {
-	return { m_authentication.pluginUid() };
+	m_accessToken = CryptoCore::generateChallenge().toBase64();
+
+	return hasCredentials();
 }
 
 
 
-void DemoServerProtocol::processAuthenticationMessage( VariantArrayMessage& message )
+bool DemoAuthentication::hasCredentials() const
 {
-	if( client()->authPluginUid() == m_authentication.pluginUid() )
-	{
-		client()->setAuthState( performTokenAuthentication( message ) );
-	}
-	else
-	{
-		client()->setAuthState( VncServerClient::AuthState::Failed );
-	}
+	return m_accessToken.isEmpty() == false &&
+			QByteArray::fromBase64( m_accessToken.toByteArray() ).size() == CryptoCore::ChallengeSize;
 }
 
 
 
-void DemoServerProtocol::performAccessControl()
+bool DemoAuthentication::testConfiguration() const
 {
-	client()->setAccessControlState( VncServerClient::AccessControlState::Successful );
+	return true;
 }
 
 
 
-VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( VariantArrayMessage& message )
+VncServerClient::AuthState DemoAuthentication::performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const
 {
-	switch( client()->authState() )
+	switch( client->authState() )
 	{
 	case VncServerClient::AuthState::Init:
 		return VncServerClient::AuthState::Stage1;
 
 	case VncServerClient::AuthState::Stage1:
-		if( message.read().toByteArray() == m_authentication.accessToken().toByteArray() )
+	{
+		const CryptoCore::SecureArray token = message.read().toByteArray();  // Flawfinder: ignore
+
+		if( hasCredentials() && token == m_accessToken )
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;
@@ -80,10 +78,22 @@ VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( Varia
 
 		vDebug() << "FAIL";
 		return VncServerClient::AuthState::Failed;
+	}
 
 	default:
 		break;
 	}
 
 	return VncServerClient::AuthState::Failed;
+}
+
+
+
+bool DemoAuthentication::authenticate( QIODevice* socket ) const
+{
+	VariantArrayMessage tokenAuthMessage( socket );
+	tokenAuthMessage.write( m_accessToken.toByteArray() );
+	tokenAuthMessage.send();
+
+	return false;
 }

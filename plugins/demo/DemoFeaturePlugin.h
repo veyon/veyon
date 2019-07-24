@@ -24,18 +24,23 @@
 
 #pragma once
 
+#include "AuthenticationPluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
+#include "DemoAuthentication.h"
 #include "DemoConfiguration.h"
 #include "FeatureProviderInterface.h"
 
 class DemoServer;
 class DemoClient;
 
-class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
+class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface, AuthenticationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Demo")
-	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(PluginInterface
+				 FeatureProviderInterface
+				 ConfigurationPagePluginInterface
+				 AuthenticationPluginInterface)
 public:
 	explicit DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override = default;
@@ -92,6 +97,19 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
+	QString authenticationTypeName() const override;
+
+	bool initializeCredentials() override;
+	bool hasCredentials() const override;
+
+	bool testConfiguration() const override;
+
+	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
+
+	bool authenticate( QIODevice* socket ) const override;
+
+	bool requiresAccessControl() const override;
+
 private:
 	enum Commands {
 		StartDemoServer,
@@ -112,10 +130,10 @@ private:
 	const Feature m_demoServerFeature;
 	const FeatureList m_features;
 
-	QString m_demoAccessToken;
-	QStringList m_demoClientHosts;
-
+	DemoAuthentication m_authentication;
 	DemoConfiguration m_configuration;
+
+	QStringList m_demoClientHosts;
 
 	DemoServer* m_demoServer;
 	DemoClient* m_demoClient;

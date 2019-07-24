@@ -26,7 +26,6 @@
 
 #include <QHostAddress>
 #include <QTcpSocket>
-
 #include "AuthenticationCredentials.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
@@ -146,7 +145,7 @@ bool VncServerProtocol::readProtocol()
 bool VncServerProtocol::sendSecurityTypes()
 {
 	// send list of supported security types
-	const char securityTypeList[2] = { 1, rfbSecTypeVeyon }; // Flawfinder: ignore
+	static const char securityTypeList[2] = { 1, VeyonCore::RfbSecurityTypeVeyon }; // Flawfinder: ignore
 	m_socket->write( securityTypeList, sizeof( securityTypeList ) );
 
 	return true;
@@ -161,7 +160,7 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 		char chosenSecurityType = 0;
 
 		if( m_socket->read( &chosenSecurityType, sizeof(chosenSecurityType) ) != sizeof(chosenSecurityType) ||
-				chosenSecurityType != rfbSecTypeVeyon )
+				chosenSecurityType != VeyonCore::RfbSecurityTypeVeyon )
 		{
 			vCritical() << "protocol initialization failed";
 			m_socket->close();
@@ -181,7 +180,7 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 
 bool VncServerProtocol::sendAuthenticationTypes()
 {
-	const auto authTypes = supportedAuthTypes();
+	const auto authTypes = supportedAuthPluginUids();
 
 	VariantArrayMessage message( m_socket );
 	message.write( authTypes.count() );
@@ -202,9 +201,10 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 	if( message.isReadyForReceive() && message.receive() )
 	{
-		const auto chosenAuthType = QVariantHelper<RfbVeyonAuth::Type>::value( message.read() );
+		const auto chosenAuthPluginUid = message.read().toUuid();
 
-		if( supportedAuthTypes().contains( chosenAuthType ) == false )
+		if( chosenAuthPluginUid .isNull() ||
+			supportedAuthPluginUids().contains( chosenAuthPluginUid  ) == false )
 		{
 			vCritical() << "unsupported authentication type chosen by client!";
 			m_socket->close();
@@ -212,16 +212,9 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 			return false;
 		}
 
-		if( chosenAuthType == RfbVeyonAuth::None )
-		{
-			vWarning() << "skipping authentication.";
-			setState( AccessControl );
-			return true;
-		}
-
 		const auto username = message.read().toString();
 
-		m_client->setAuthType( chosenAuthType );
+		m_client->setAuthPluginUid( chosenAuthPluginUid  );
 		m_client->setUsername( username );
 		m_client->setHostAddress( m_socket->peerAddress().toString() );
 

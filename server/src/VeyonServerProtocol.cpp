@@ -39,14 +39,14 @@ VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,
 
 
 
-QVector<RfbVeyonAuth::Type> VeyonServerProtocol::supportedAuthTypes() const
+VeyonServerProtocol::AuthPluginUids VeyonServerProtocol::supportedAuthPluginUids() const
 {
-	return m_serverAuthenticationManager.supportedAuthTypes();
+	return m_serverAuthenticationManager.supportedAuthPluginUids();
 }
 
 
 
-void VeyonServerProtocol::processAuthenticationMessage(VariantArrayMessage &message)
+void VeyonServerProtocol::processAuthenticationMessage( VariantArrayMessage& message )
 {
 	m_serverAuthenticationManager.processAuthenticationMessage( client(), message );
 }
@@ -59,7 +59,7 @@ void VeyonServerProtocol::performAccessControl()
 	// client just entered access control or is still waiting to be
 	// processed (e.g. desktop access dialog already active for a different connection)
 	if( client()->accessControlState() == VncServerClient::AccessControlState::Init ||
-			client()->accessControlState() == VncServerClient::AccessControlState::Waiting )
+		client()->accessControlState() == VncServerClient::AccessControlState::Waiting )
 	{
 		m_serverAccessControlManager.addClient( client() );
 	}

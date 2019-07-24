@@ -22,13 +22,11 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include "ServerAccessControlManager.h"
 #include "AccessControlProvider.h"
+#include "AuthenticationManager.h"
 #include "DesktopAccessDialog.h"
 #include "VeyonConfiguration.h"
-#include "VariantArrayMessage.h"
 
 
 ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& featureWorkerManager,
@@ -46,22 +44,21 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 
 void ServerAccessControlManager::addClient( VncServerClient* client )
 {
-	switch( client->authType() )
+	const auto plugins = VeyonCore::authenticationManager().plugins();
+	if( plugins.contains( client->authPluginUid() ) )
 	{
-	case RfbVeyonAuth::KeyFile:
-	case RfbVeyonAuth::Logon:
-		performAccessControl( client );
-		break;
-
-	case RfbVeyonAuth::None:
-	case RfbVeyonAuth::Token:
-		client->setAccessControlState( VncServerClient::AccessControlState::Successful );
-		break;
-
-	default:
-		// reject unknown auth type
+		if( plugins[client->authPluginUid()]->requiresAccessControl() )
+		{
+			performAccessControl( client );
+		}
+		else
+		{
+			client->setAccessControlState( VncServerClient::AccessControlState::Successful );
+		}
+	}
+	else
+	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
-		break;
 	}
 
 	if( client->accessControlState() == VncServerClient::AccessControlState::Successful )
@@ -88,7 +85,7 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 		addClient( prevClient );
 
 		if( prevClient->accessControlState() != VncServerClient::AccessControlState::Successful &&
-				prevClient->accessControlState() != VncServerClient::AccessControlState::Pending )
+			prevClient->accessControlState() != VncServerClient::AccessControlState::Pending )
 		{
 			vDebug() << "closing connection as client does not pass access control any longer";
 			prevClient->setProtocolState( VncServerProtocol::Close );
@@ -189,7 +186,7 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 {
 	// break helper connections for asynchronous desktop access control operations
 	if( m_desktopAccessDialog.disconnect( client ) == false ||
-			client->disconnect( this ) == false )
+		client->disconnect( this ) == false )
 	{
 		vCritical() << "could not break object connections";
 	}

@@ -33,6 +33,7 @@
 #include "DemoFeaturePlugin.h"
 #include "Logger.h"
 #include "FeatureWorkerManager.h"
+#include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
 
@@ -63,9 +64,9 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 						 Feature::Uid(),
 						 tr( "Demo server" ), {}, {} ),
 	m_features( { m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
-	m_demoAccessToken( QString::fromLatin1( CryptoCore::generateChallenge().toBase64() ) ),
-	m_demoClientHosts(),
+	m_authentication( uid(), this ),
 	m_configuration( &VeyonCore::config() ),
+	m_demoClientHosts(),
 	m_demoServer( nullptr ),
 	m_demoClient( nullptr )
 {
@@ -81,7 +82,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
 		FeatureMessage featureMessage( m_demoServerFeature.uid(), StartDemoServer );
-		featureMessage.addArgument( DemoAccessToken, m_demoAccessToken );
+		featureMessage.addArgument( DemoAccessToken, m_authentication.accessToken().toByteArray() );
 
 		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
 
@@ -98,7 +99,8 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		vDebug() << "clients:" << m_demoClientHosts;
 
-		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).addArgument( DemoAccessToken, m_demoAccessToken ),
+		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).
+								   addArgument( DemoAccessToken, m_authentication.accessToken().toByteArray() ),
 								   computerControlInterfaces );
 	}
 
@@ -243,9 +245,11 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 		case StartDemoServer:
 			if( m_demoServer == nullptr )
 			{
+				m_authentication.setAccessToken( message.argument( DemoAccessToken ).toByteArray() );
+
 				m_demoServer = new DemoServer( message.argument( VncServerPort ).toInt(),
 											   message.argument( VncServerPassword ).toString(),
-											   message.argument( DemoAccessToken ).toString(),
+											   m_authentication,
 											   m_configuration,
 											   this );
 			}
@@ -266,7 +270,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 		switch( message.command() )
 		{
 		case StartDemoClient:
-			VeyonCore::authenticationCredentials().setToken( message.argument( DemoAccessToken ).toString() );
+			m_authentication.setAccessToken( message.argument( DemoAccessToken ).toByteArray() );
 
 			if( m_demoClient == nullptr )
 			{
@@ -299,6 +303,55 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
 {
 	return new DemoConfigurationPage( m_configuration );
+}
+
+
+
+QString DemoFeaturePlugin::authenticationTypeName() const
+{
+	return m_authentication.authenticationTypeName();
+}
+
+
+
+bool DemoFeaturePlugin::initializeCredentials()
+{
+	return m_authentication.initializeCredentials();
+}
+
+
+
+bool DemoFeaturePlugin::hasCredentials() const
+{
+	return m_authentication.hasCredentials();
+}
+
+
+
+bool DemoFeaturePlugin::testConfiguration() const
+{
+	return m_authentication.testConfiguration();
+}
+
+
+
+VncServerClient::AuthState DemoFeaturePlugin::performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const
+{
+	return m_authentication.performAuthentication( client, message );
+}
+
+
+
+bool DemoFeaturePlugin::authenticate( QIODevice* socket ) const
+{
+	return m_authentication.authenticate( socket );
+}
+
+
+
+bool DemoFeaturePlugin::requiresAccessControl() const
+{
+	return m_authentication.requiresAccessControl();
 }
 
 

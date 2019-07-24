@@ -1,8 +1,7 @@
 /*
- * RfbVeyonAuth.h - types and names related to veyon-specific RFB
- *                  authentication type
+ * AuthenticationManager.h - header file for AuthenticationManager
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -25,38 +24,35 @@
 
 #pragma once
 
-#include "VeyonCore.h"
+#include "AuthenticationPluginInterface.h"
+#include "DummyAuthentication.h"
 
-static constexpr char rfbSecTypeVeyon = 40;
-
-class VEYON_CORE_EXPORT RfbVeyonAuth
+class VEYON_CORE_EXPORT AuthenticationManager : public QObject
 {
-	Q_GADGET
+	Q_OBJECT
 public:
-	enum Type
+	using Plugins = QMap<Plugin::Uid, AuthenticationPluginInterface *>;
+	using Types = QMap<Plugin::Uid, QString>;
+
+	explicit AuthenticationManager( QObject* parent = nullptr );
+
+	const Plugins& plugins() const
 	{
-		// invalid/null authentication type
-		Invalid,
+		return m_plugins;
+	}
 
-		// no authentication needed
-		None,
+	Types availableTypes() const;
 
-		// only hosts in an internal whitelist list are allowed
-		HostWhiteListLegacy, // TODO: drop in VEYON5
+	AuthenticationPluginInterface* configuredPlugin() const
+	{
+		return m_configuredPlugin;
+	}
 
-		// client has to sign some data to verify it's authority
-		KeyFile,
+	void reloadConfiguration();
 
-		// authentication is performed using given username and password
-		Logon,
-
-		// client has to prove its authenticity by knowing common token
-		Token,
-
-		AuthTypeCount
-
-	} ;
-
-	Q_ENUM(Type)
+private:
+	Plugins m_plugins;
+	AuthenticationPluginInterface* m_configuredPlugin;
+	DummyAuthentication m_dummyAuthentication;
 
 };

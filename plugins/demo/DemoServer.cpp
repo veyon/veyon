@@ -32,14 +32,14 @@
 #include "VeyonConfiguration.h"
 
 
-DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const DemoAuthentication& authentication,
 						const DemoConfiguration& configuration, QObject *parent ) :
 	QObject( parent ),
+	m_authentication( authentication ),
 	m_configuration( configuration ),
 	m_memoryLimit( m_configuration.memoryLimit() * 1024*1024 ),
 	m_keyFrameInterval( m_configuration.keyFrameInterval() * 1000 ),
 	m_vncServerPort( vncServerPort ),
-	m_demoAccessToken( demoAccessToken ),
 	m_tcpServer( new QTcpServer( this ) ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
 	m_vncClientProtocol( m_vncServerSocket, vncServerPassword ),
@@ -118,7 +118,7 @@ void DemoServer::acceptPendingConnections()
 
 	while( m_tcpServer->hasPendingConnections() )
 	{
-		new DemoServerConnection( m_demoAccessToken, m_tcpServer->nextPendingConnection(), this );
+		new DemoServerConnection( m_authentication, m_tcpServer->nextPendingConnection(), this );
 	}
 }
 

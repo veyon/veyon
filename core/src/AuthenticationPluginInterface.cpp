@@ -1,7 +1,7 @@
 /*
- * DemoServerProtocol.h - header file for DemoServerProtocol class
+ * AuthenticationPluginInterface.cpp - interface class for authentication plugins
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,28 +22,11 @@
  *
  */
 
-#pragma once
+#include "AuthenticationPluginInterface.h"
+#include "PlatformUserFunctions.h"
 
-#include "VncServerClient.h"
-#include "VncServerProtocol.h"
 
-class DemoAuthentication;
-
-// clazy:excludeall=copyable-polymorphic
-
-class DemoServerProtocol : public VncServerProtocol
+QString AuthenticationPluginInterface::accessControlUser() const
 {
-public:
-	DemoServerProtocol( const DemoAuthentication& authentication, QTcpSocket* socket, VncServerClient* client );
-
-protected:
-	AuthPluginUids supportedAuthPluginUids() const override;
-	void processAuthenticationMessage( VariantArrayMessage& message ) override;
-	void performAccessControl() override;
-
-private:
-	VncServerClient::AuthState performTokenAuthentication( VariantArrayMessage& message );
-
-	const DemoAuthentication& m_authentication;
-
-} ;
+	return VeyonCore::platform().userFunctions().currentUser();
+}

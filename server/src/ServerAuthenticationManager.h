@@ -27,7 +27,6 @@
 #include <QMutex>
 #include <QStringList>
 
-#include "RfbVeyonAuth.h"
 #include "VncServerClient.h"
 
 class VariantArrayMessage;
@@ -44,7 +43,7 @@ public:
 
 	explicit ServerAuthenticationManager( QObject* parent );
 
-	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const;
+	VncServerProtocol::AuthPluginUids supportedAuthPluginUids() const;
 
 	void processAuthenticationMessage( VncServerClient* client,
 									   VariantArrayMessage& message );
@@ -52,10 +51,5 @@ public:
 
 signals:
 	void finished( VncServerClient* client );
-
-private:
-	VncServerClient::AuthState performKeyAuthentication( VncServerClient* client, VariantArrayMessage& message );
-	VncServerClient::AuthState performLogonAuthentication( VncServerClient* client, VariantArrayMessage& message );
-	VncServerClient::AuthState performTokenAuthentication( VncServerClient* client, VariantArrayMessage& message );
 
 } ;

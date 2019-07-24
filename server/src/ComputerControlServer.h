@@ -29,7 +29,6 @@
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
-#include "RfbVeyonAuth.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
 #include "VeyonServerInterface.h"

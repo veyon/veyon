@@ -41,18 +41,11 @@ public:
 
 private:
 	void testAuthentication();
-	bool testLogonAuthentication();
-	bool testKeyFileAuthentication();
 
 	void openLogFileDirectory();
 	void clearLogFiles();
 
 	void populateNetworkObjectDirectories();
-
-	static QString authenticationTestTitle()
-	{
-		return tr( "Authentication test");
-	}
 
 	Ui::GeneralConfigurationPage* ui;
 

@@ -64,18 +64,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="authenticationMethod">
-        <item>
-         <property name="text">
-          <string>Logon authentication</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Key file authentication</string>
-         </property>
-        </item>
-       </widget>
+       <widget class="QComboBox" name="authenticationPlugin"/>
       </item>
       <item>
        <widget class="QPushButton" name="testAuthenticationButton">
@@ -343,7 +332,7 @@
  <tabstops>
   <tabstop>applicationName</tabstop>
   <tabstop>uiLanguage</tabstop>
-  <tabstop>authenticationMethod</tabstop>
+  <tabstop>authenticationPlugin</tabstop>
   <tabstop>testAuthenticationButton</tabstop>
   <tabstop>networkObjectDirectoryPlugin</tabstop>
   <tabstop>networkObjectDirectoryUpdateInterval</tabstop>

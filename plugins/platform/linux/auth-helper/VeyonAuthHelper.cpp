@@ -70,22 +70,18 @@ static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_res
 
 int main()
 {
-	QString username, password, service;
+	QByteArray username, password, service;
 	QFile stdIn;
 	stdIn.open( 0, QFile::ReadOnly | QFile::Unbuffered );
 	QDataStream ds( &stdIn );
-	ds >> username;
-	ds >> password;
-	ds >> service;
+	ds >> pam_username;
+	ds >> pam_password;
+	ds >> pam_service;
 
-	if( service.isEmpty() )
+	if( pam_service.isEmpty() )
 	{
-		service = QStringLiteral("login");
+		pam_service = QByteArrayLiteral("login");
 	}
-
-	pam_username = username.toUtf8();
-	pam_password = password.toUtf8();
-	pam_service = service.toUtf8();
 
 	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t* pamh = nullptr;

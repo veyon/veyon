@@ -31,6 +31,7 @@
 
 #include "VncClientProtocol.h"
 
+class DemoAuthentication;
 class DemoConfiguration;
 class QTcpServer;
 
@@ -40,7 +41,7 @@ class DemoServer : public QObject
 public:
 	using MessageList = QVector<QByteArray>;
 
-	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+	DemoServer( int vncServerPort, const QString& vncServerPassword, const DemoAuthentication& authentication,
 				const DemoConfiguration& configuration, QObject *parent );
 	~DemoServer() override;
 
@@ -86,6 +87,7 @@ private:
 	bool setVncServerPixelFormat();
 	bool setVncServerEncodings();
 
+	const DemoAuthentication& m_authentication;
 	const DemoConfiguration& m_configuration;
 	const qint64 m_memoryLimit;
 	const int m_keyFrameInterval;

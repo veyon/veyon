@@ -31,6 +31,7 @@
 
 #include "AboutDialog.h"
 #include "AccessControlProvider.h"
+#include "AuthenticationManager.h"
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
@@ -198,16 +199,16 @@ bool MainWindow::initAuthentication()
 bool MainWindow::initAccessControl()
 {
 	if( VeyonCore::config().accessControlForMasterEnabled() &&
-			VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
+		VeyonCore::authenticationManager().configuredPlugin()->requiresAccessControl() )
 	{
+		const auto username = VeyonCore::authenticationManager().configuredPlugin()->accessControlUser();
 		const auto accessControlResult =
-				AccessControlProvider().checkAccess( VeyonCore::authenticationCredentials().logonUsername(),
+				AccessControlProvider().checkAccess( username,
 													 QHostAddress( QHostAddress::LocalHost ).toString(),
 													 QStringList() );
 		if( accessControlResult == AccessControlProvider::Access::Deny )
 		{
-			vWarning() << "user" << VeyonCore::authenticationCredentials().logonUsername()
-					   << "is not allowed to access computers";
+			vWarning() << "user" << username << "is not allowed to access computers";
 			QMessageBox::critical( nullptr, tr( "Access denied" ),
 								   tr( "According to the local configuration you're not allowed "
 									   "to access computers in the network. Please log in with a different "

@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include "AuthenticationCredentials.h"
+#include "CryptoCore.h"
 
 #include <QDialog>
 
@@ -38,9 +38,7 @@ public:
 	~PasswordDialog() override;
 
 	QString username() const;
-	QString password() const;
-
-	AuthenticationCredentials credentials() const;
+	CryptoCore::SecureArray password() const;
 
 	void accept() override;
 

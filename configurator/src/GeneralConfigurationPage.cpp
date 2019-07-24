@@ -26,6 +26,7 @@
 #include <QMessageBox>
 
 #include "Configuration/UiMapping.h"
+#include "AuthenticationManager.h"
 #include "GeneralConfigurationPage.h"
 #include "Filesystem.h"
 #include "FileSystemBrowser.h"
@@ -74,6 +75,12 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	ui->uiLanguage->addItems( languages );
 
+	const auto authenticationPlugin = VeyonCore::authenticationManager().availableTypes();
+	for( auto it = authenticationPlugin.constBegin(), end = authenticationPlugin.constEnd(); it != end; ++it )
+	{
+		ui->authenticationPlugin->addItem( it.value(), it.key() );
+	}
+
 	connect( ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication );
 	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
 	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
@@ -118,49 +125,14 @@ void GeneralConfigurationPage::applyConfiguration()
 
 void GeneralConfigurationPage::testAuthentication()
 {
-	switch( VeyonCore::config().authenticationMethod() )
+	VeyonCore::authenticationManager().reloadConfiguration();
+
+	if( VeyonCore::authenticationManager().configuredPlugin()->testConfiguration() )
 	{
-	case VeyonCore::AuthenticationMethod::LogonAuthentication:
-		if( testLogonAuthentication() == false )
-		{
-			return;
-		}
-		break;
-	case VeyonCore::AuthenticationMethod::KeyFileAuthentication:
-		if( testKeyFileAuthentication() == false )
-		{
-			return;
-		}
-		break;
+		QMessageBox::information( this, AuthenticationPluginInterface::authenticationTestTitle(),
+								  tr( "Authentication is set up properly on this computer." ) );
 	}
-
-	QMessageBox::information( this, authenticationTestTitle(),
-							  tr( "Authentication is set up properly on this computer." ) );
 }
-
-
-
-bool GeneralConfigurationPage::testLogonAuthentication()
-{
-	return VeyonCore::instance()->initAuthentication() &&
-			VeyonCore::platform().userFunctions().authenticate( VeyonCore::authenticationCredentials().logonUsername(),
-																VeyonCore::authenticationCredentials().logonPassword() );
-}
-
-
-
-bool GeneralConfigurationPage::testKeyFileAuthentication()
-{
-	if( VeyonCore::instance()->initAuthentication() == false )
-	{
-		QMessageBox::critical( this, authenticationTestTitle(),
-							   tr( "Authentication keys are not set up properly on this computer." ) );
-		return false;
-	}
-
-	return true;
-}
-
 
 
 

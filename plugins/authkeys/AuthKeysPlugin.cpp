@@ -22,13 +22,22 @@
  *
  */
 
+#include <QApplication>
+#include <QDir>
+#include <QMessageBox>
+#include <QProcessEnvironment>
+
 #include "AuthKeysConfigurationPage.h"
 #include "AuthKeysPlugin.h"
 #include "AuthKeysManager.h"
+#include "Filesystem.h"
+#include "VariantArrayMessage.h"
+#include "VeyonConfiguration.h"
 
 
 AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
+	m_privateKey(),
 	m_commands( {
 { QStringLiteral("create"), tr( "Create new authentication key pair" ) },
 { QStringLiteral("delete"), tr( "Delete authentication key" ) },
@@ -39,6 +48,149 @@ AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 { QStringLiteral("setaccessgroup"), tr( "Set user group allowed to access a key" ) },
 				} )
 {
+}
+
+
+
+bool AuthKeysPlugin::initializeCredentials()
+{
+	m_privateKey = {};
+
+	auto authKeyName = QProcessEnvironment::systemEnvironment().value( QStringLiteral("VEYON_AUTH_KEY_NAME") );
+
+	if( authKeyName.isEmpty() == false )
+	{
+		if( AuthKeysManager::isKeyNameValid( authKeyName ) &&
+			loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
+		{
+			m_authKeyName = authKeyName;
+			return true;
+		}
+	}
+	else
+	{
+		// try to auto-detect private key file by searching for readable file
+		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
+		const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
+
+		for( const auto& privateKeyDir : privateKeyDirs )
+		{
+			if( loadPrivateKey( VeyonCore::filesystem().privateKeyPath( privateKeyDir ) ) )
+			{
+				m_authKeyName = privateKeyDir;
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
+
+bool AuthKeysPlugin::hasCredentials() const
+{
+	return m_privateKey.isNull() == false;
+}
+
+
+
+bool AuthKeysPlugin::testConfiguration() const
+{
+	if( VeyonCore::instance()->initAuthentication() == false )
+	{
+		QMessageBox::critical( QApplication::activeWindow(), authenticationTestTitle(),
+							   tr( "Authentication keys are not set up properly on this computer." ) );
+		return false;
+	}
+
+	return true;
+}
+
+
+
+VncServerClient::AuthState AuthKeysPlugin::performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const
+{
+	switch( client->authState() )
+	{
+	case VncServerClient::AuthState::Init:
+		client->setChallenge( CryptoCore::generateChallenge() );
+		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() == false )
+		{
+			vWarning() << "failed to send challenge";
+			return VncServerClient::AuthState::Failed;
+		}
+		return VncServerClient::AuthState::Stage1;
+
+	case VncServerClient::AuthState::Stage1:
+	{
+		// get authentication key name
+		const auto authKeyName = message.read().toString(); // Flawfinder: ignore
+
+		if( AuthKeysManager::isKeyNameValid( authKeyName ) == false )
+		{
+			vDebug() << "invalid auth key name!";
+			return VncServerClient::AuthState::Failed;
+		}
+
+		// now try to verify received signed data using public key of the user
+		// under which the client claims to run
+		const auto signature = message.read().toByteArray(); // Flawfinder: ignore
+
+		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath( authKeyName );
+
+		vDebug() << "loading public key" << publicKeyPath;
+		CryptoCore::PublicKey publicKey( publicKeyPath );
+
+		if( publicKey.isNull() || publicKey.isPublic() == false ||
+			publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) == false )
+		{
+			vWarning() << "FAIL";
+			return VncServerClient::AuthState::Failed;
+		}
+
+		vDebug() << "SUCCESS";
+		return VncServerClient::AuthState::Successful;
+	}
+
+	default:
+		break;
+	}
+
+	return VncServerClient::AuthState::Failed;
+}
+
+
+
+bool AuthKeysPlugin::authenticate( QIODevice* socket ) const
+{
+	VariantArrayMessage challengeReceiveMessage( socket );
+	challengeReceiveMessage.receive();
+	const auto challenge = challengeReceiveMessage.read().toByteArray();
+
+	if( challenge.size() != CryptoCore::ChallengeSize )
+	{
+		vCritical() << QThread::currentThreadId() << "challenge size mismatch!";
+		return false;
+	}
+
+	// create local copy of private key so we can modify it within our own thread
+	auto key = m_privateKey;
+
+	if( key.isNull() || key.canSign() == false )
+	{
+		vCritical() << QThread::currentThreadId() << "invalid private key!";
+		return false;
+	}
+
+	const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
+
+	VariantArrayMessage challengeResponseMessage( socket );
+	challengeResponseMessage.write( m_authKeyName );
+	challengeResponseMessage.write( signature );
+	challengeResponseMessage.send();
+
+	return true;
 }
 
 
@@ -294,6 +446,22 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_extract( const QStr
 
 
 
+bool AuthKeysPlugin::loadPrivateKey( const QString& privateKeyFile )
+{
+	vDebug() << privateKeyFile;
+
+	if( privateKeyFile.isEmpty() )
+	{
+		return false;
+	}
+
+	m_privateKey = CryptoCore::PrivateKey( privateKeyFile );
+
+	return m_privateKey.isNull() == false && m_privateKey.isPrivate();
+}
+
+
+
 void AuthKeysPlugin::printAuthKeyTable()
 {
 	AuthKeysTableModel tableModel;
@@ -307,9 +475,9 @@ void AuthKeysPlugin::printAuthKeyTable()
 	for( int i = 0; i < tableModel.rowCount(); ++i )
 	{
 		tableRows.append( { authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyName ),
-							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyType ),
-							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyPairID ),
-							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnAccessGroup ) } );
+							authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyType ),
+							authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyPairID ),
+							authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnAccessGroup ) } );
 	}
 
 	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );

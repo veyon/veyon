@@ -2,6 +2,7 @@ INCLUDE(BuildPlugin)
 
 BUILD_PLUGIN(demo
 	DemoFeaturePlugin.cpp
+	DemoAuthentication.cpp
 	DemoConfigurationPage.cpp
 	DemoConfigurationPage.ui
 	DemoServer.cpp
@@ -9,6 +10,7 @@ BUILD_PLUGIN(demo
 	DemoServerProtocol.cpp
 	DemoClient.cpp
 	DemoFeaturePlugin.h
+	DemoAuthentication.h
 	DemoConfiguration.h
 	DemoConfigurationPage.h
 	DemoServer.h

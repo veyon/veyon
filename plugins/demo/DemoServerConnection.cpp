@@ -30,14 +30,14 @@
 #include "DemoServerConnection.h"
 
 
-DemoServerConnection::DemoServerConnection( const QString& demoAccessToken,
+DemoServerConnection::DemoServerConnection( const DemoAuthentication& authentication,
 											QTcpSocket* socket,
 											DemoServer* demoServer ) :
 	QObject( demoServer ),
 	m_demoServer( demoServer ),
 	m_socket( socket ),
 	m_vncServerClient(),
-	m_serverProtocol( demoAccessToken, m_socket, &m_vncServerClient ),
+	m_serverProtocol( authentication, m_socket, &m_vncServerClient ),
 	m_rfbClientToServerMessageSizes( {
 									 std::pair<int, int>( rfbSetPixelFormat, sz_rfbSetPixelFormatMsg ),
 									 std::pair<int, int>( rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg ),
