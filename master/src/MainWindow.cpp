@@ -34,7 +34,6 @@
 #include "AuthenticationManager.h"
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
-#include "AuthenticationCredentials.h"
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "ComputerSelectPanel.h"

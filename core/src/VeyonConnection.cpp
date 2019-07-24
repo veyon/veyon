@@ -24,9 +24,7 @@
 
 #include "rfb/rfbclient.h"
 
-#include "AuthenticationCredentials.h"
 #include "AuthenticationManager.h"
-#include "CryptoCore.h"
 #include "PlatformUserFunctions.h"
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
