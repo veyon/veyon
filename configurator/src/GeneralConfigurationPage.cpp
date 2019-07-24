@@ -31,7 +31,6 @@
 #include "Filesystem.h"
 #include "FileSystemBrowser.h"
 #include "NetworkObjectDirectoryManager.h"
-#include "PasswordDialog.h"
 #include "PlatformFilesystemFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "PluginManager.h"
