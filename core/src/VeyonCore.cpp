@@ -213,13 +213,6 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-bool VeyonCore::initAuthentication()
-{
-	return m_authenticationManager->configuredPlugin()->initializeCredentials();
-}
-
-
-
 bool VeyonCore::hasSessionId()
 {
 	return QProcessEnvironment::systemEnvironment().contains( sessionIdEnvironmentVariable() );

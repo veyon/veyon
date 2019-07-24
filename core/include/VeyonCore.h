@@ -144,7 +144,6 @@ public:
 	}
 
 	static void setupApplicationParameters();
-	bool initAuthentication();
 
 	static bool hasSessionId();
 	static int sessionId();
