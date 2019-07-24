@@ -27,12 +27,16 @@
 
 #include <QThread>
 
+#include "CryptoCore.h"
+
 class VncServerPluginInterface;
 
 class VncServer : public QThread
 {
 	Q_OBJECT
 public:
+	using Password = CryptoCore::SecureArray;
+
 	explicit VncServer( QObject* parent = nullptr );
 	~VncServer() override;
 
@@ -40,7 +44,7 @@ public:
 
 	int serverPort() const;
 
-	QString password() const;
+	Password password() const;
 
 private:
 	void run() override;

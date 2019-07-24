@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "CryptoCore.h"
 #include "PluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -31,6 +32,10 @@
 class VncServerPluginInterface
 {
 public:
+	using Password = CryptoCore::SecureArray;
+
+	virtual ~VncServerPluginInterface() = default;
+
 	/*!
 	 * \brief Create configuration widget for VNC server plugin - used in Configurator
 	 */
@@ -43,11 +48,11 @@ public:
 	 * \param serverPort the port the VNC server should listen at
 	 * \param password the password to be used for VNC authentication
 	 */
-	virtual void runServer( int serverPort, const QString& password ) = 0;
+	virtual void runServer( int serverPort, const Password& password ) = 0;
 
 	virtual int configuredServerPort() = 0;
 
-	virtual QString configuredPassword() = 0;
+	virtual Password configuredPassword() = 0;
 
 } ;
 

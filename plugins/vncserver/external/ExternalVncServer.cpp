@@ -67,7 +67,7 @@ void ExternalVncServer::prepareServer()
 
 
 
-void ExternalVncServer::runServer( int serverPort, const QString& password )
+void ExternalVncServer::runServer( int serverPort, const Password& password )
 {
 	Q_UNUSED(serverPort);
 	Q_UNUSED(password);
@@ -84,9 +84,9 @@ int ExternalVncServer::configuredServerPort()
 
 
 
-QString ExternalVncServer::configuredPassword()
+ExternalVncServer::Password ExternalVncServer::configuredPassword()
 {
-	return m_configuration.password().plainText();
+	return m_configuration.password().plainText().toUtf8();
 }
 
 

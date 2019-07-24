@@ -32,7 +32,7 @@
 #include "VeyonConfiguration.h"
 
 
-DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const DemoAuthentication& authentication,
+DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const DemoAuthentication& authentication,
 						const DemoConfiguration& configuration, QObject *parent ) :
 	QObject( parent ),
 	m_authentication( authentication ),

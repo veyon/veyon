@@ -176,7 +176,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			server.featureWorkerManager().
 					sendMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
 								 addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).
-								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword() ).
+								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ).
 								 addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
 		}
 		else
@@ -248,7 +248,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 				m_authentication.setAccessToken( message.argument( DemoAccessToken ).toByteArray() );
 
 				m_demoServer = new DemoServer( message.argument( VncServerPort ).toInt(),
-											   message.argument( VncServerPassword ).toString(),
+											   message.argument( VncServerPassword ).toByteArray(),
 											   m_authentication,
 											   m_configuration,
 											   this );

@@ -32,6 +32,8 @@
 class PlatformUserFunctions
 {
 public:
+	using Password = CryptoCore::SecureArray;
+
 	virtual ~PlatformUserFunctions() = default;
 
 	virtual QString fullName( const QString& username ) = 0;
@@ -45,6 +47,6 @@ public:
 	virtual bool logon( const QString& username, const QString& password ) = 0;
 	virtual void logoff() = 0;
 
-	virtual bool authenticate( const QString& username, const CryptoCore::SecureArray& password ) = 0;
+	virtual bool authenticate( const QString& username, const Password& password ) = 0;
 
 };

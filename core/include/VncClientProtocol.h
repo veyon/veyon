@@ -28,7 +28,7 @@
 
 #include "rfb/rfbproto.h"
 
-#include "VeyonCore.h"
+#include "CryptoCore.h"
 
 class QBuffer;
 class QTcpSocket;
@@ -36,6 +36,8 @@ class QTcpSocket;
 class VEYON_CORE_EXPORT VncClientProtocol
 {
 public:
+	using Password = CryptoCore::SecureArray;
+
 	enum State {
 		Disconnected,
 		Protocol,
@@ -47,7 +49,7 @@ public:
 		StateCount
 	} ;
 
-	VncClientProtocol( QTcpSocket* socket, const QString& vncPassword );
+	VncClientProtocol( QTcpSocket* socket, const Password& vncPassword );
 
 	State state() const
 	{
@@ -124,7 +126,7 @@ private:
 	QTcpSocket* m_socket;
 	State m_state;
 
-	QByteArray m_vncPassword;
+	Password m_vncPassword;
 
 	QByteArray m_serverInitMessage;
 

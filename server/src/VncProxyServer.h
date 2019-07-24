@@ -27,6 +27,8 @@
 #include <QHostAddress>
 #include <QVector>
 
+#include "CryptoCore.h"
+
 class QTcpServer;
 class VncProxyConnection;
 class VncProxyConnectionFactory;
@@ -35,6 +37,7 @@ class VncProxyServer : public QObject
 {
 	Q_OBJECT
 public:
+	using Password = CryptoCore::SecureArray;
 	using VncProxyConnectionList = QVector<VncProxyConnection *>;
 
 	VncProxyServer( const QHostAddress& listenAddress,
@@ -43,7 +46,7 @@ public:
 					QObject* parent = nullptr );
 	~VncProxyServer() override;
 
-	bool start( int vncServerPort, const QString& vncServerPassword );
+	bool start( int vncServerPort, const Password& vncServerPassword );
 	void stop();
 
 	const VncProxyConnectionList& clients() const
@@ -56,7 +59,7 @@ private:
 	void closeConnection( VncProxyConnection* );
 
 	int m_vncServerPort;
-	QString m_vncServerPassword;
+	Password m_vncServerPassword;
 	QHostAddress m_listenAddress;
 	int m_listenPort;
 	QTcpServer* m_server;

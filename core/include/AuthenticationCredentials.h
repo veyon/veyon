@@ -24,24 +24,26 @@
 
 #pragma once
 
-#include "VeyonCore.h"
+#include "CryptoCore.h"
 
 // clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT AuthenticationCredentials
 {
 public:
-	void setInternalVncServerPassword( const QString& password )
+	using Password = CryptoCore::SecureArray;
+
+	void setInternalVncServerPassword( const Password& password )
 	{
 		m_internalVncServerPassword = password;
 	}
 
-	const QString& internalVncServerPassword() const
+	const Password& internalVncServerPassword() const
 	{
 		return m_internalVncServerPassword;
 	}
 
 private:
-	QString m_internalVncServerPassword;
+	Password m_internalVncServerPassword;
 
 } ;

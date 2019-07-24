@@ -24,7 +24,8 @@
 
 #pragma once
 
-class QObject;
+#include "CryptoCore.h"
+
 class QTcpSocket;
 class VncProxyConnection;
 
@@ -33,9 +34,13 @@ class VncProxyConnection;
 class VncProxyConnectionFactory
 {
 public:
+	using Password = CryptoCore::SecureArray;
+
+	virtual ~VncProxyConnectionFactory() = default;
+
 	virtual VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
 														  int vncServerPort,
-														  const QString& vncServerPassword,
+														  const Password& vncServerPassword,
 														  QObject* parent ) = 0;
 
 } ;

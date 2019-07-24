@@ -55,7 +55,7 @@ VncProxyServer::~VncProxyServer()
 
 
 
-bool VncProxyServer::start( int vncServerPort, const QString& vncServerPassword )
+bool VncProxyServer::start( int vncServerPort, const Password& vncServerPassword )
 {
 	m_vncServerPort = vncServerPort;
 	m_vncServerPassword = vncServerPassword;

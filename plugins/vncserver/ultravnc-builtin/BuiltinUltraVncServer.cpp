@@ -42,11 +42,11 @@ extern HINSTANCE hInstResDLL;
 
 void ultravnc_veyon_load_password( char* out, int size )
 {
-	const auto password = vncServerInstance->password().toUtf8();
+	const auto password = vncServerInstance->password().toByteArray();
 
 	if( password.size() == size )
 	{
-		memcpy( out, password.constData(), size ); // Flawfinder: ignore
+		memcpy( out, password.constData(), static_cast<size_t>( size ) ); // Flawfinder: ignore
 	}
 	else
 	{
@@ -195,7 +195,7 @@ void BuiltinUltraVncServer::prepareServer()
 
 
 
-void BuiltinUltraVncServer::runServer( int serverPort, const QString& password )
+void BuiltinUltraVncServer::runServer( int serverPort, const Password& password )
 {
 	m_serverPort = serverPort;
 	m_password = password;

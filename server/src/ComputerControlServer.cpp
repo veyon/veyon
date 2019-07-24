@@ -93,7 +93,7 @@ bool ComputerControlServer::start()
 
 VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket* clientSocket,
 																	 int vncServerPort,
-																	 const QString& vncServerPassword,
+																	 const Password& vncServerPassword,
 																	 QObject* parent )
 {
 	return new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
