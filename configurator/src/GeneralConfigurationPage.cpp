@@ -78,7 +78,10 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 	const auto authenticationPlugin = VeyonCore::authenticationManager().availableTypes();
 	for( auto it = authenticationPlugin.constBegin(), end = authenticationPlugin.constEnd(); it != end; ++it )
 	{
-		ui->authenticationPlugin->addItem( it.value(), it.key() );
+		if( it.value().isEmpty() == false )
+		{
+			ui->authenticationPlugin->addItem( it.value(), it.key() );
+		}
 	}
 
 	connect( ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication );
