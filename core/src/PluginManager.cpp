@@ -117,21 +117,6 @@ PluginUidList PluginManager::pluginUids() const
 
 
 
-PluginInterface* PluginManager::pluginInterface( Plugin::Uid pluginUid )
-{
-	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
-	{
-		if( pluginInterface->uid() == pluginUid )
-		{
-			return pluginInterface;
-		}
-	}
-
-	return nullptr;
-}
-
-
-
 QString PluginManager::pluginName( Plugin::Uid pluginUid ) const
 {
 	for( auto pluginInterface : m_pluginInterfaces )

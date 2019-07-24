@@ -58,8 +58,6 @@ public:
 
 	PluginUidList pluginUids() const;
 
-	PluginInterface* pluginInterface( Plugin::Uid pluginUid );
-
 	template<class InterfaceType, class FilterArgType = InterfaceType>
 	InterfaceType* find( const std::function<bool (const FilterArgType *)>& filter = []() { return true; } )
 	{
