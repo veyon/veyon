@@ -325,9 +325,9 @@ bool LinuxUserFunctions::authenticate( const QString& username, const CryptoCore
 	ds << password.toByteArray();
 	ds << pamService.toUtf8();
 
-	p.waitForFinished();
+	p.waitForFinished( AuthHelperTimeout );
 
-	if( p.exitCode() != 0 )
+	if( p.state() != QProcess::NotRunning || p.exitCode() != 0 )
 	{
 		vCritical() << "VeyonAuthHelper failed:" << p.exitCode()
 					<< p.readAllStandardOutput().trimmed() << p.readAllStandardError().trimmed();
