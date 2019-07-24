@@ -32,6 +32,7 @@ namespace Configuration
 
 Configuration::Property::Property( Object* object, const QString& key, const QString& parentKey,
 								   const QVariant& defaultValue, Flags flags ) :
+	QObject( object ),
 	m_object( object ),
 	m_proxy( nullptr ),
 	m_key( key ),
@@ -45,6 +46,7 @@ Configuration::Property::Property( Object* object, const QString& key, const QSt
 
 Configuration::Property::Property( Proxy* proxy, const QString& key, const QString& parentKey,
 								   const QVariant& defaultValue, Flags flags ) :
+	QObject( proxy ),
 	m_object( nullptr ),
 	m_proxy( proxy ),
 	m_key( key ),
