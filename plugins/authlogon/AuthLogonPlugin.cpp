@@ -26,7 +26,7 @@
 #include <QMessageBox>
 
 #include "AuthLogonPlugin.h"
-#include "PasswordDialog.h"
+#include "AuthLogonDialog.h"
 #include "PlatformUserFunctions.h"
 #include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
@@ -46,11 +46,11 @@ bool AuthLogonPlugin::initializeCredentials()
 
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 	{
-		PasswordDialog passwordDialog( QApplication::activeWindow() );
-		if( passwordDialog.exec() == PasswordDialog::Accepted )
+		AuthLogonDialog logonDialog( QApplication::activeWindow() );
+		if( logonDialog.exec() == AuthLogonDialog::Accepted )
 		{
-			m_username = passwordDialog.username();
-			m_password = passwordDialog.password();
+			m_username = logonDialog.username();
+			m_password = logonDialog.password();
 
 			return true;
 		}

@@ -1,5 +1,5 @@
 /*
- * PasswordDialog.cpp - dialog for querying logon credentials
+ * AuthLogonDialog.cpp - dialog for querying logon credentials
  *
  * Copyright (c) 2010-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -25,15 +25,15 @@
 #include <QMessageBox>
 #include <QPushButton>
 
-#include "PasswordDialog.h"
+#include "AuthLogonDialog.h"
 #include "PlatformUserFunctions.h"
 
-#include "ui_PasswordDialog.h"
+#include "ui_AuthLogonDialog.h"
 
 
-PasswordDialog::PasswordDialog( QWidget *parent ) :
+AuthLogonDialog::AuthLogonDialog( QWidget *parent ) :
 	QDialog( parent ),
-	ui( new Ui::PasswordDialog )
+	ui( new Ui::AuthLogonDialog )
 {
 	ui->setupUi( this );
 
@@ -51,28 +51,28 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 
 
 
-PasswordDialog::~PasswordDialog()
+AuthLogonDialog::~AuthLogonDialog()
 {
 	delete ui;
 }
 
 
 
-QString PasswordDialog::username() const
+QString AuthLogonDialog::username() const
 {
 	return ui->username->text();
 }
 
 
 
-CryptoCore::SecureArray PasswordDialog::password() const
+CryptoCore::SecureArray AuthLogonDialog::password() const
 {
 	return ui->password->text().toUtf8();
 }
 
 
 
-void PasswordDialog::accept()
+void AuthLogonDialog::accept()
 {
 	if( VeyonCore::platform().userFunctions().authenticate( username(), password() ) == false )
 	{
@@ -88,7 +88,7 @@ void PasswordDialog::accept()
 
 
 
-void PasswordDialog::updateOkButton()
+void AuthLogonDialog::updateOkButton()
 {
 	ui->buttonBox->button( QDialogButtonBox::Ok )->
 					setEnabled( !username().isEmpty() && !password().isEmpty() );

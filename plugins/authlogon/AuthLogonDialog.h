@@ -1,5 +1,5 @@
 /*
- * PasswordDialog.h - declaration of password dialog
+ * AuthLogonDialog.h - declaration of password dialog
  *
  * Copyright (c) 2010-2016 Tobias Junghans <tobydox@veyon.io>
  *
@@ -28,14 +28,14 @@
 
 #include <QDialog>
 
-namespace Ui { class PasswordDialog; }
+namespace Ui { class AuthLogonDialog; }
 
-class VEYON_CORE_EXPORT PasswordDialog : public QDialog
+class AuthLogonDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit PasswordDialog( QWidget *parent );
-	~PasswordDialog() override;
+	explicit AuthLogonDialog( QWidget *parent );
+	~AuthLogonDialog() override;
 
 	QString username() const;
 	CryptoCore::SecureArray password() const;
@@ -47,6 +47,6 @@ private slots:
 
 
 private:
-	Ui::PasswordDialog *ui;
+	Ui::AuthLogonDialog *ui;
 
 } ;

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PasswordDialog</class>
- <widget class="QDialog" name="PasswordDialog">
+ <class>AuthLogonDialog</class>
+ <widget class="QDialog" name="AuthLogonDialog">
   <property name="windowTitle">
    <string>Veyon Logon</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/core.qrc">
+   <iconset resource="../../core/resources/core.qrc">
     <normaloff>:/core/application-x-pem-key.png</normaloff>:/core/application-x-pem-key.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -68,13 +68,13 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/core.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>PasswordDialog</receiver>
+   <receiver>AuthLogonDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -90,7 +90,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>PasswordDialog</receiver>
+   <receiver>AuthLogonDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -106,7 +106,7 @@
   <connection>
    <sender>password</sender>
    <signal>textChanged(QString)</signal>
-   <receiver>PasswordDialog</receiver>
+   <receiver>AuthLogonDialog</receiver>
    <slot>updateOkButton()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -122,7 +122,7 @@
   <connection>
    <sender>username</sender>
    <signal>textChanged(QString)</signal>
-   <receiver>PasswordDialog</receiver>
+   <receiver>AuthLogonDialog</receiver>
    <slot>updateOkButton()</slot>
    <hints>
     <hint type="sourcelabel">
