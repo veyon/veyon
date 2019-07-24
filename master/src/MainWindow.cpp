@@ -153,12 +153,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	m_modeGroup->button( static_cast<int>( qHash( VeyonCore::builtinFeatures().monitoringMode().feature().uid() ) ) )->setChecked( true );
 
-	// setup system tray icon
-	QIcon icon( QStringLiteral(":/core/icon16.png") );
-	icon.addFile( QStringLiteral(":/core/icon22.png") );
-	icon.addFile( QStringLiteral(":/core/icon32.png") );
-	icon.addFile( QStringLiteral(":/core/icon64.png") );
-
 	VeyonCore::enforceBranding( this );
 }
 
