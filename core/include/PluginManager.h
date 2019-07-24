@@ -60,6 +60,21 @@ public:
 
 	PluginInterface* pluginInterface( Plugin::Uid pluginUid );
 
+	template<class InterfaceType, class FilterArgType = InterfaceType>
+	InterfaceType* find( const std::function<bool (const FilterArgType *)>& filter = []() { return true; } )
+	{
+		for( auto object : m_pluginObjects )
+		{
+			auto pluginInterface = qobject_cast<InterfaceType *>( object );
+			if( pluginInterface && filter( qobject_cast<FilterArgType *>( object ) ) )
+			{
+				return pluginInterface;
+			}
+		}
+
+		return nullptr;
+	}
+
 	QString pluginName( Plugin::Uid pluginUid ) const;
 
 private:
