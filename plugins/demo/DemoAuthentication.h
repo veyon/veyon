@@ -37,7 +37,7 @@ public:
 
 	QString authenticationTypeName() const override
 	{
-		return tr( "Demo authentication" );
+		return {};
 	}
 
 	bool initializeCredentials() override;
