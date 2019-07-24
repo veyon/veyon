@@ -50,5 +50,6 @@ public:
 
 private:
 	static constexpr auto WhoProcessTimeout = 3000;
+	static constexpr auto AuthHelperTimeout = 10000;
 
 };
