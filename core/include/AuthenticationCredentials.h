@@ -31,7 +31,7 @@
 class VEYON_CORE_EXPORT AuthenticationCredentials
 {
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 
 	void setInternalVncServerPassword( const Password& password )
 	{

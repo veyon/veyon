@@ -67,7 +67,7 @@ VncServerClient::AuthState DemoAuthentication::performAuthentication( VncServerC
 
 	case VncServerClient::AuthState::Stage1:
 	{
-		const CryptoCore::SecureArray token = message.read().toByteArray();  // Flawfinder: ignore
+		const CryptoCore::PlaintextPassword token = message.read().toByteArray();  // Flawfinder: ignore
 
 		if( hasCredentials() && token == m_accessToken )
 		{

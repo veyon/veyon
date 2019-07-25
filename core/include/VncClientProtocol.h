@@ -36,7 +36,7 @@ class QTcpSocket;
 class VEYON_CORE_EXPORT VncClientProtocol
 {
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 
 	enum State {
 		Disconnected,

@@ -35,7 +35,7 @@ class ComputerControlClient : public VncProxyConnection
 {
 	Q_OBJECT
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 
 	ComputerControlClient( ComputerControlServer* server,
 						   QTcpSocket* clientSocket,

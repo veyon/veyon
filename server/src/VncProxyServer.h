@@ -37,7 +37,7 @@ class VncProxyServer : public QObject
 {
 	Q_OBJECT
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 	using VncProxyConnectionList = QVector<VncProxyConnection *>;
 
 	VncProxyServer( const QHostAddress& listenAddress,

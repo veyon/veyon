@@ -29,7 +29,7 @@
 class DemoAuthentication : public AuthenticationPluginInterface
 {
 public:
-	using AccessToken = CryptoCore::SecureArray;
+	using AccessToken = CryptoCore::PlaintextPassword;
 
 	explicit DemoAuthentication( const Plugin::Uid& pluginUid );
 	~DemoAuthentication() override = default;

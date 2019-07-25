@@ -38,7 +38,7 @@ public:
 	~AuthLogonDialog() override;
 
 	QString username() const;
-	CryptoCore::SecureArray password() const;
+	CryptoCore::PlaintextPassword password() const;
 
 	void accept() override;
 

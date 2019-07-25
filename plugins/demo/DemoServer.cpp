@@ -23,6 +23,8 @@
  *
  */
 
+#include "rfb/rfbproto.h"
+
 #include <QTcpServer>
 #include <QTcpSocket>
 

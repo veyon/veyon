@@ -35,7 +35,7 @@ class VncServer : public QThread
 {
 	Q_OBJECT
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 
 	explicit VncServer( QObject* parent = nullptr );
 	~VncServer() override;

@@ -37,7 +37,7 @@ public:
 	explicit AuthSimpleDialog( QWidget *parent );
 	~AuthSimpleDialog() override;
 
-	CryptoCore::SecureArray password() const;
+	CryptoCore::PlaintextPassword password() const;
 
 	void accept() override;
 

@@ -89,6 +89,6 @@ public:
 
 private:
 	QString m_username;
-	CryptoCore::SecureArray m_password;
+	CryptoCore::PlaintextPassword m_password;
 
 };

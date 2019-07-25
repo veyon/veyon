@@ -308,7 +308,7 @@ void LinuxUserFunctions::logoff()
 
 
 
-bool LinuxUserFunctions::authenticate( const QString& username, const CryptoCore::SecureArray& password )
+bool LinuxUserFunctions::authenticate( const QString& username, const Password& password )
 {
 	QProcess p;
 	p.start( QStringLiteral( "veyon-auth-helper" ), QProcess::ReadWrite | QProcess::Unbuffered );

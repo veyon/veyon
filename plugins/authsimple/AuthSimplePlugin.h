@@ -83,6 +83,6 @@ public:
 	bool authenticate( QIODevice* socket ) const override;
 
 private:
-	CryptoCore::SecureArray m_password;
+	CryptoCore::PlaintextPassword m_password;
 
 };

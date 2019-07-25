@@ -34,7 +34,7 @@ class VncProxyConnection;
 class VncProxyConnectionFactory
 {
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 
 	virtual ~VncProxyConnectionFactory() = default;
 

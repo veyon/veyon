@@ -39,7 +39,7 @@ class DemoServer : public QObject
 {
 	Q_OBJECT
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 	using MessageList = QVector<QByteArray>;
 
 	DemoServer( int vncServerPort, const Password& vncServerPassword, const DemoAuthentication& authentication,

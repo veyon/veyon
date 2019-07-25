@@ -57,7 +57,7 @@ AuthSimpleDialog::~AuthSimpleDialog()
 
 
 
-CryptoCore::SecureArray AuthSimpleDialog::password() const
+CryptoCore::PlaintextPassword AuthSimpleDialog::password() const
 {
 	return ui->password->text().toUtf8();
 }

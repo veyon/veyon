@@ -65,7 +65,7 @@ QString AuthLogonDialog::username() const
 
 
 
-CryptoCore::SecureArray AuthLogonDialog::password() const
+CryptoCore::PlaintextPassword AuthLogonDialog::password() const
 {
 	return ui->password->text().toUtf8();
 }

@@ -32,7 +32,7 @@
 class VncServerPluginInterface
 {
 public:
-	using Password = CryptoCore::SecureArray;
+	using Password = CryptoCore::PlaintextPassword;
 
 	virtual ~VncServerPluginInterface() = default;
 

@@ -36,8 +36,7 @@ public:
 	using KeyGenerator = QCA::KeyGenerator;
 	using PrivateKey = QCA::PrivateKey;
 	using PublicKey = QCA::PublicKey;
-	using SecureArray = QCA::SecureArray;
-	using PlaintextPassword = SecureArray;
+	using PlaintextPassword = QCA::SecureArray;
 
 	enum {
 		RsaKeySize = 4096,

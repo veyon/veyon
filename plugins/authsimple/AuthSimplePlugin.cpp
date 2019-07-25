@@ -104,9 +104,9 @@ VncServerClient::AuthState AuthSimplePlugin::performAuthentication( VncServerCli
 	{
 		auto privateKey = client->privateKey();
 
-		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
+		CryptoCore::PlaintextPassword encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
 
-		CryptoCore::SecureArray decryptedPassword;
+		CryptoCore::PlaintextPassword decryptedPassword;
 
 		if( privateKey.decrypt( encryptedPassword,
 								&decryptedPassword,
@@ -153,7 +153,7 @@ bool AuthSimplePlugin::authenticate( QIODevice* socket ) const
 		return false;
 	}
 
-	CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( m_password, CryptoCore::DefaultEncryptionAlgorithm );
+	CryptoCore::PlaintextPassword encryptedPassword = publicKey.encrypt( m_password, CryptoCore::DefaultEncryptionAlgorithm );
 	if( encryptedPassword.isEmpty() )
 	{
 		vCritical() << QThread::currentThreadId() << "password encryption failed!";
