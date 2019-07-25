@@ -132,7 +132,7 @@ VEYON_CORE_EXPORT void TypedProperty<Password>::setValue( const Password& value 
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, name, setter, key, parentKey, defaultValue, flags) \
 	private: \
-		Configuration::TypedProperty<type> m_##name{this, QStringLiteral(key), QStringLiteral(parentKey), defaultValue, flags}; \
+		const Configuration::TypedProperty<type> m_##name{this, QStringLiteral(key), QStringLiteral(parentKey), defaultValue, flags}; \
 	public: \
 		type name() const \
 		{											\
@@ -142,11 +142,7 @@ VEYON_CORE_EXPORT void TypedProperty<Password>::setValue( const Password& value 
 		{ \
 			return m_##name; \
 		} \
-		Configuration::TypedProperty<type>& name##Property() \
-		{ \
-			return m_##name; \
-		} \
-		void setter( Configuration::TypedProperty<type>::Type value )									\
+		void setter( Configuration::TypedProperty<type>::Type value ) const \
 		{ \
 			m_##name.setValue( value ); \
 		}
