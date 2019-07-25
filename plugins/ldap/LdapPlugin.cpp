@@ -82,7 +82,7 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 		if( rawBindPassword.size() < MaximumPlaintextPasswordLength )
 		{
 			// setting it again will encrypt it
-			m_configuration.setBindPassword( Configuration::Password::fromPlainText( rawBindPassword ) );
+			m_configuration.setBindPassword( Configuration::Password::fromPlainText( rawBindPassword.toUtf8() ) );
 		}
 	}
 	else if( oldVersion < QVersionNumber( 1, 2 ) )
