@@ -86,21 +86,21 @@ public:
 
 	// connect widget signals to configuration property write methods
 
-	static void connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QCheckBox* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QGroupBox* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QRadioButton* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<QString>& property, QComboBox* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<QString>& property, QLineEdit* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<Password>& property, QLineEdit* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<QColor>& property, QPushButton* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<int>& property, QComboBox* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<int>& property, QSpinBox* widget );
-	static void connectWidgetToProperty( Configuration::TypedProperty<QUuid>& property, QComboBox* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QCheckBox* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QGroupBox* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QRadioButton* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<QString>& property, QComboBox* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<QString>& property, QLineEdit* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<QColor>& property, QPushButton* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<int>& property, QComboBox* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<int>& property, QSpinBox* widget );
+	static void connectWidgetToProperty( const Configuration::TypedProperty<QUuid>& property, QComboBox* widget );
 
 	// SFINAE overload for enum classes
 	template<typename T>
 	static typename std::enable_if<std::is_enum<T>::value, void>::type
-	connectWidgetToProperty( Configuration::TypedProperty<T>& property, QComboBox* widget )
+	connectWidgetToProperty( const Configuration::TypedProperty<T>& property, QComboBox* widget )
 	{
 		QObject::connect( widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
 						  [&property]( int index ) { property.setValue( static_cast<T>( index ) ); } );
@@ -108,13 +108,13 @@ public:
 
 
 	// overloads for special properties which can't be connected to widgets
-	static void connectWidgetToProperty( Configuration::TypedProperty<QStringList>& property, QLabel* widget )
+	static void connectWidgetToProperty( const Configuration::TypedProperty<QStringList>& property, QLabel* widget )
 	{
 		Q_UNUSED(property)
 		Q_UNUSED(widget)
 	}
 
-	static void connectWidgetToProperty( Configuration::TypedProperty<QJsonArray>& property, QLabel* widget )
+	static void connectWidgetToProperty( const Configuration::TypedProperty<QJsonArray>& property, QLabel* widget )
 	{
 		Q_UNUSED(property)
 		Q_UNUSED(widget)
