@@ -86,7 +86,7 @@ QVariant Property::variantValue() const
 
 
 
-void Property::setVariantValue( const QVariant& value )
+void Property::setVariantValue( const QVariant& value ) const
 {
 	if( m_object )
 	{
@@ -129,7 +129,7 @@ Password Configuration::TypedProperty<Password>::value() const
 
 
 template<>
-void Configuration::TypedProperty<Password>::setValue( const Password& value )
+void Configuration::TypedProperty<Password>::setValue( const Password& value ) const
 {
 	setVariantValue( value.encrypted() );
 }

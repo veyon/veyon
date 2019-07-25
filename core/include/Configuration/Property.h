@@ -80,7 +80,7 @@ public:
 
 	QVariant variantValue() const;
 
-	void setVariantValue( const QVariant& value );
+	void setVariantValue( const QVariant& value ) const;
 
 	static Property* find( QObject* parent, const QString& key, const QString& parentKey );
 
@@ -117,7 +117,7 @@ public:
 		return QVariantHelper<T>::value( variantValue() );
 	}
 
-	void setValue( Type value )
+	void setValue( Type value ) const
 	{
 		setVariantValue( QVariant::fromValue( value ) );
 	}
@@ -127,7 +127,7 @@ template<>
 VEYON_CORE_EXPORT Password TypedProperty<Password>::value() const;
 
 template<>
-VEYON_CORE_EXPORT void TypedProperty<Password>::setValue( const Password& value );
+VEYON_CORE_EXPORT void TypedProperty<Password>::setValue( const Password& value ) const;
 
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, name, setter, key, parentKey, defaultValue, flags) \
