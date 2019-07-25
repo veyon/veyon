@@ -133,7 +133,7 @@ Property::Flags UiMapping::flags( QObject* object )
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QCheckBox* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QCheckBox* widget )
 {
 	QObject::connect( widget, &QCheckBox::toggled, property.lambdaContext(),
 					  [&property]( bool value ) { property.setValue( value ); } );
@@ -141,7 +141,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<bool>& pro
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QGroupBox* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QGroupBox* widget )
 {
 	QObject::connect( widget, &QGroupBox::toggled, property.lambdaContext(),
 					  [&property]( bool value ) { property.setValue( value ); } );
@@ -149,7 +149,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<bool>& pro
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<bool>& property, QRadioButton* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QRadioButton* widget )
 {
 	QObject::connect( widget, &QCheckBox::toggled, property.lambdaContext(),
 					  [&property]( bool value ) { property.setValue( value ); } );
@@ -157,7 +157,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<bool>& pro
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QString>& property, QComboBox* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QString>& property, QComboBox* widget )
 {
 	QObject::connect( widget, &QComboBox::currentTextChanged, property.lambdaContext(),
 					  [&property]( const QString& value ) { property.setValue( value ); } );
@@ -165,7 +165,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QString>& 
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QString>& property, QLineEdit* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QString>& property, QLineEdit* widget )
 {
 	QObject::connect( widget, &QLineEdit::textChanged, property.lambdaContext(),
 					  [&property]( const QString& value ) { property.setValue( value ); } );
@@ -173,7 +173,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QString>& 
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<Password>& property, QLineEdit* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget )
 {
 	QObject::connect( widget, &QLineEdit::textChanged, property.lambdaContext(),
 					  [&property]( const QString& plainText ) { property.setValue( Password::fromPlainText( plainText.toUtf8() ) ); } );
@@ -181,7 +181,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<Password>&
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QColor>& property, QPushButton* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QColor>& property, QPushButton* widget )
 {
 	QObject::connect( widget, &QAbstractButton::clicked, property.lambdaContext(), [&property, widget]() {
 		auto palette = widget->palette();
@@ -197,7 +197,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QColor>& p
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<int>& property, QComboBox* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<int>& property, QComboBox* widget )
 {
 	QObject::connect( widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
 					  [&property]( int index ) { property.setValue( index ); } );
@@ -205,7 +205,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<int>& prop
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<int>& property, QSpinBox* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<int>& property, QSpinBox* widget )
 {
 	QObject::connect( widget, QOverload<int>::of(&QSpinBox::valueChanged), property.lambdaContext(),
 					  [&property]( int index ) { property.setValue( index ); } );
@@ -213,7 +213,7 @@ void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<int>& prop
 
 
 
-void UiMapping::connectWidgetToProperty( Configuration::TypedProperty<QUuid>& property, QComboBox* widget )
+void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QUuid>& property, QComboBox* widget )
 {
 	QObject::connect( widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
 					  [widget, &property]( int index ) { property.setValue( widget->itemData( index ).toUuid() ); } );
