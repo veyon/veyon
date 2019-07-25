@@ -216,7 +216,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 	else if( key.contains( QStringLiteral("password"), Qt::CaseInsensitive ) ||
 			 type == QLatin1String("password") )
 	{
-		configValue = VeyonCore::cryptoCore().encryptPassword( value );
+		configValue = VeyonCore::cryptoCore().encryptPassword( value.toUtf8() );
 	}
 	else if( type == QLatin1String("list") ||
 			 valueType == QMetaType::QStringList )

@@ -120,7 +120,7 @@ VncServerClient::AuthState AuthSimplePlugin::performAuthentication( VncServerCli
 
 		AuthSimpleConfiguration config( &VeyonCore::config() );
 
-		if( config.password().plainText().toUtf8() == decryptedPassword.toByteArray() )
+		if( config.password().plainText() == decryptedPassword )
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;

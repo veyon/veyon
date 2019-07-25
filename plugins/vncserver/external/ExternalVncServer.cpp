@@ -47,7 +47,7 @@ void ExternalVncServer::upgrade( const QVersionNumber& oldVersion )
 		if( rawPassword.size() < MaximumPlaintextPasswordLength )
 		{
 			// setting it again will encrypt it
-			m_configuration.setPassword( Configuration::Password::fromPlainText( rawPassword ) );
+			m_configuration.setPassword( Configuration::Password::fromPlainText( rawPassword.toUtf8() ) );
 		}
 	}
 }
@@ -86,7 +86,7 @@ int ExternalVncServer::configuredServerPort()
 
 ExternalVncServer::Password ExternalVncServer::configuredPassword()
 {
-	return m_configuration.password().plainText().toUtf8();
+	return m_configuration.password().plainText();
 }
 
 

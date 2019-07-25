@@ -68,7 +68,7 @@ void AuthSimpleDialog::accept()
 {
 	AuthSimpleConfiguration config( &VeyonCore::config() );
 
-	if( config.password().plainText().toUtf8() != password().toByteArray() )
+	if( config.password().plainText() != password() )
 	{
 		QMessageBox::critical( window(),
 							   tr( "Authentication error" ),

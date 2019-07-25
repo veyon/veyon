@@ -29,7 +29,6 @@
 #include "AuthLogonDialog.h"
 #include "PlatformUserFunctions.h"
 #include "VariantArrayMessage.h"
-#include "VeyonConfiguration.h"
 
 
 AuthLogonPlugin::AuthLogonPlugin( QObject* parent ) :

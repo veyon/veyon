@@ -75,7 +75,7 @@ void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<QStri
 
 void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget )
 {
-	widget->setText( property.value().plainText() );
+	widget->setText( QString::fromUtf8( property.value().plainText().toByteArray() ) );
 }
 
 
@@ -176,7 +176,7 @@ void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QStr
 void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget )
 {
 	QObject::connect( widget, &QLineEdit::textChanged, property.lambdaContext(),
-					  [&property]( const QString& plainText ) { property.setValue( Password::fromPlainText( plainText ) ); } );
+					  [&property]( const QString& plainText ) { property.setValue( Password::fromPlainText( plainText.toUtf8() ) ); } );
 }
 
 

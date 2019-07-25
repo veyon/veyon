@@ -29,14 +29,14 @@
 namespace Configuration
 {
 
-QString Password::plainText() const
+CryptoCore::PlaintextPassword Password::plainText() const
 {
 	return VeyonCore::cryptoCore().decryptPassword( m_encrypted );
 }
 
 
 
-Password Password::fromPlainText( const QString& plaintext )
+Password Password::fromPlainText( const CryptoCore::PlaintextPassword& plaintext )
 {
 	Password password;
 	password.m_encrypted = VeyonCore::cryptoCore().encryptPassword( plaintext );
