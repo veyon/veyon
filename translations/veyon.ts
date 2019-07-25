@@ -657,10 +657,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation type="unfinished"></translation>
     </message>
@@ -674,6 +670,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -693,6 +697,74 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Pair ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1720,27 +1792,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2794,10 +2850,6 @@ USAGE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2855,10 +2907,6 @@ USAGE
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3277,33 +3325,6 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4046,6 +4067,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WARNING</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
