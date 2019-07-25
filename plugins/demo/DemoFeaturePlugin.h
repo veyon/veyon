@@ -33,7 +33,7 @@
 class DemoServer;
 class DemoClient;
 
-class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface, AuthenticationPluginInterface
+class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface, DemoAuthentication
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Demo")
@@ -97,19 +97,6 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
-	QString authenticationTypeName() const override;
-
-	bool initializeCredentials() override;
-	bool hasCredentials() const override;
-
-	bool checkCredentials() const override;
-
-	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
-
-	bool authenticate( QIODevice* socket ) const override;
-
-	bool requiresAccessControl() const override;
-
 private:
 	enum Commands {
 		StartDemoServer,
@@ -130,7 +117,6 @@ private:
 	const Feature m_demoServerFeature;
 	const FeatureList m_features;
 
-	DemoAuthentication m_authentication;
 	DemoConfiguration m_configuration;
 
 	QStringList m_demoClientHosts;

@@ -26,13 +26,12 @@
 
 #include "AuthenticationPluginInterface.h"
 
-class DemoAuthentication : public QObject, public AuthenticationPluginInterface
+class DemoAuthentication : public AuthenticationPluginInterface
 {
-	Q_OBJECT
 public:
 	using AccessToken = CryptoCore::SecureArray;
 
-	explicit DemoAuthentication( const Plugin::Uid& pluginUid, QObject* parent = nullptr );
+	explicit DemoAuthentication( const Plugin::Uid& pluginUid );
 	~DemoAuthentication() override = default;
 
 	QString authenticationTypeName() const override

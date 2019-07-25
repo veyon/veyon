@@ -26,8 +26,7 @@
 #include "VariantArrayMessage.h"
 
 
-DemoAuthentication::DemoAuthentication( const Plugin::Uid& pluginUid, QObject* parent ) :
-	QObject( parent ),
+DemoAuthentication::DemoAuthentication( const Plugin::Uid& pluginUid ) :
 	m_accessToken(),
 	m_pluginUid( pluginUid )
 {
