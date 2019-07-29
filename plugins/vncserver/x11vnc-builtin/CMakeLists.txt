@@ -52,8 +52,6 @@ SET(FULL_PACKAGE_NAME "Veyon")
 SET(PACKAGE_VERSION "${VERSION_STRING}")
 SET(VERSION_PATCHLEVEL "${VERSION_PATCH}")
 
-CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
-
 # check for x11vnc requirements
 SET(FUNCS dup2 floor ftime geteuid gethostbyname gethostname getpwnam getpwuid getspnam gettimeofday getuid grantpt inet_ntoa initgroups memcmp memcpy memmove memset mkfifo mmap fork pow putenv select seteuid setegid setgid setpgrp setsid setuid setutxent shmat socket strchr strcspn strdup strerror strftime strpbrk strrchr strstr uname vfork vprintf waitpid)
 FOREACH(_func ${FUNCS})
