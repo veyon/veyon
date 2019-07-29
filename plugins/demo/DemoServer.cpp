@@ -32,6 +32,7 @@
 #include "DemoServer.h"
 #include "DemoServerConnection.h"
 #include "VeyonConfiguration.h"
+#include "VncClientProtocol.h"
 
 
 DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const DemoAuthentication& authentication,
@@ -44,7 +45,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 	m_vncServerPort( vncServerPort ),
 	m_tcpServer( new QTcpServer( this ) ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
-	m_vncClientProtocol( m_vncServerSocket, vncServerPassword ),
+	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) ),
 	m_framebufferUpdateTimer( this ),
 	m_lastFullFramebufferUpdate(),
 	m_requestFullFramebufferUpdate( false ),
@@ -90,7 +91,17 @@ DemoServer::~DemoServer()
 	vDebug() << "deleting TCP server";
 	delete m_tcpServer;
 
+	vDebug() << "deleting VNC client protocol";
+	delete m_vncClientProtocol;
+
 	vDebug() << "finished";
+}
+
+
+
+const QByteArray& DemoServer::serverInitMessage() const
+{
+	return m_vncClientProtocol->serverInitMessage();
 }
 
 
@@ -113,7 +124,7 @@ void DemoServer::lockDataForRead()
 
 void DemoServer::acceptPendingConnections()
 {
-	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
+	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
 	{
 		return;
 	}
@@ -128,7 +139,7 @@ void DemoServer::acceptPendingConnections()
 
 void DemoServer::reconnectToVncServer()
 {
-	m_vncClientProtocol.start();
+	m_vncClientProtocol->start();
 
 	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( m_vncServerPort ) );
 }
@@ -137,13 +148,13 @@ void DemoServer::reconnectToVncServer()
 
 void DemoServer::readFromVncServer()
 {
-	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
+	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
 	{
-		while( m_vncClientProtocol.read() )
+		while( m_vncClientProtocol->read() )
 		{
 		}
 
-		if( m_vncClientProtocol.state() == VncClientProtocol::Running )
+		if( m_vncClientProtocol->state() == VncClientProtocol::Running )
 		{
 			start();
 		}
@@ -160,7 +171,7 @@ void DemoServer::readFromVncServer()
 
 void DemoServer::requestFramebufferUpdate()
 {
-	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
+	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
 	{
 		return;
 	}
@@ -169,13 +180,13 @@ void DemoServer::requestFramebufferUpdate()
 		m_lastFullFramebufferUpdate.elapsed() >= m_keyFrameInterval )
 	{
 		vDebug() << "Requesting full framebuffer update";
-		m_vncClientProtocol.requestFramebufferUpdate( false );
+		m_vncClientProtocol->requestFramebufferUpdate( false );
 		m_lastFullFramebufferUpdate.restart();
 		m_requestFullFramebufferUpdate = false;
 	}
 	else
 	{
-		m_vncClientProtocol.requestFramebufferUpdate( true );
+		m_vncClientProtocol->requestFramebufferUpdate( true );
 	}
 }
 
@@ -183,15 +194,15 @@ void DemoServer::requestFramebufferUpdate()
 
 bool DemoServer::receiveVncServerMessage()
 {
-	if( m_vncClientProtocol.receiveMessage() )
+	if( m_vncClientProtocol->receiveMessage() )
 	{
-		if( m_vncClientProtocol.lastMessageType() == rfbFramebufferUpdate )
+		if( m_vncClientProtocol->lastMessageType() == rfbFramebufferUpdate )
 		{
-			enqueueFramebufferUpdateMessage( m_vncClientProtocol.lastMessage() );
+			enqueueFramebufferUpdateMessage( m_vncClientProtocol->lastMessage() );
 		}
 		else
 		{
-			vWarning() << "skipping server message of type" << static_cast<int>( m_vncClientProtocol.lastMessageType() );
+			vWarning() << "skipping server message of type" << static_cast<int>( m_vncClientProtocol->lastMessageType() );
 		}
 
 		return true;
@@ -214,11 +225,11 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		vDebug() << "locking for write took" << writeLockTime.elapsed() << "ms";
 	}
 
-	const auto lastUpdatedRect = m_vncClientProtocol.lastUpdatedRect();
+	const auto lastUpdatedRect = m_vncClientProtocol->lastUpdatedRect();
 
 	const bool isFullUpdate = ( lastUpdatedRect.x() == 0 && lastUpdatedRect.y() == 0 &&
-								lastUpdatedRect.width() == m_vncClientProtocol.framebufferWidth() &&
-								lastUpdatedRect.height() == m_vncClientProtocol.framebufferHeight() );
+								lastUpdatedRect.width() == m_vncClientProtocol->framebufferWidth() &&
+								lastUpdatedRect.height() == m_vncClientProtocol->framebufferHeight() );
 
 	const auto queueSize = framebufferUpdateMessageQueueSize();
 
@@ -300,14 +311,14 @@ bool DemoServer::setVncServerPixelFormat()
 	format.pad1 = 0;
 	format.pad2 = 0;
 
-	return m_vncClientProtocol.setPixelFormat( format );
+	return m_vncClientProtocol->setPixelFormat( format );
 }
 
 
 
 bool DemoServer::setVncServerEncodings()
 {
-	return m_vncClientProtocol.
+	return m_vncClientProtocol->
 			setEncodings( {
 							  rfbEncodingUltraZip,
 							  rfbEncodingUltra,
