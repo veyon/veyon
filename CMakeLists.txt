@@ -201,9 +201,6 @@ IF(VEYON_BUILD_WIN32)
     SET(LIBVNCSERVER_NEED_INADDR_T TRUE)
 ENDIF()
 
-FILE(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
-CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
-
 ### END: libvncclient configuration
 
 
@@ -261,6 +258,11 @@ ADD_SUBDIRECTORY(cli)
 ADD_SUBDIRECTORY(worker)
 ADD_SUBDIRECTORY(plugins)
 ADD_SUBDIRECTORY(translations)
+
+# write libvncserver/libvncclient configuration header
+FILE(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
+CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
+
 
 #
 # add target for generating Windows installer
