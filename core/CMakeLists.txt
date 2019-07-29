@@ -26,11 +26,12 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/listen.c
 	${libvncserver_DIR}/libvncclient/rfbproto.c
 	${libvncserver_DIR}/libvncclient/sockets.c
-	${libvncserver_DIR}/libvncclient/tls_none.c
+	${libvncserver_DIR}/libvncclient/tls_openssl.c
 	${libvncserver_DIR}/libvncclient/vncviewer.c
 	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c)
 
+SET_SOURCE_FILES_PROPERTIES(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable")
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
