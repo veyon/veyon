@@ -199,6 +199,16 @@ static bool clearAutologon()
 
 
 
+WindowsUserFunctions::WindowsUserFunctions()
+{
+	if( isAnyUserLoggedOn() )
+	{
+		clearAutologon();
+	}
+}
+
+
+
 QString WindowsUserFunctions::fullName( const QString& username )
 {
 	QString fullName;

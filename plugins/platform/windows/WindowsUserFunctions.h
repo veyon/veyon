@@ -31,6 +31,8 @@
 class WindowsUserFunctions : public PlatformUserFunctions
 {
 public:
+	WindowsUserFunctions();
+
 	QString fullName( const QString& username ) override;
 
 	QStringList userGroups( bool queryDomainGroups ) override;
