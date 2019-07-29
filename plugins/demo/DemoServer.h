@@ -29,10 +29,12 @@
 #include <QReadWriteLock>
 #include <QTimer>
 
-#include "VncClientProtocol.h"
+#include "CryptoCore.h"
 
 class DemoConfiguration;
 class QTcpServer;
+class QTcpSocket;
+class VncClientProtocol;
 
 class DemoServer : public QObject
 {
@@ -50,10 +52,7 @@ public:
 		return m_configuration;
 	}
 
-	const QByteArray& serverInitMessage() const
-	{
-		return m_vncClientProtocol.serverInitMessage();
-	}
+	const QByteArray& serverInitMessage() const;
 
 	void lockDataForRead();
 
@@ -95,7 +94,7 @@ private:
 
 	QTcpServer* m_tcpServer;
 	QTcpSocket* m_vncServerSocket;
-	VncClientProtocol m_vncClientProtocol;
+	VncClientProtocol* m_vncClientProtocol;
 
 	QReadWriteLock m_dataLock;
 	QTimer m_framebufferUpdateTimer;
