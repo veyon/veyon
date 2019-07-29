@@ -67,9 +67,11 @@ CHECK_INCLUDE_FILES(linux/input.h HAVE_LINUX_INPUT_H)
 CHECK_INCLUDE_FILES(linux/uinput.h HAVE_LINUX_UINPUT_H)
 CHECK_INCLUDE_FILES(linux/videodev.h HAVE_LINUX_VIDEODEV_H)
 CHECK_INCLUDE_FILES(netdb.h HAVE_NETDB_H)
+CHECK_INCLUDE_FILES(netinet/in.h HAVE_NETINET_IN_H)
 CHECK_INCLUDE_FILES(pwd.h HAVE_PWD_H)
 CHECK_INCLUDE_FILES(sys/ioctl.h HAVE_SYS_IOCTL_H)
 CHECK_INCLUDE_FILES(sys/stropts.h HAVE_SYS_STROPTS_H)
+CHECK_INCLUDE_FILES(sys/wait.h HAVE_SYS_WAIT_H)
 CHECK_INCLUDE_FILES(termios.h HAVE_TERMIOS_H)
 CHECK_INCLUDE_FILES(utmpx.h HAVE_UTMPX_H)
 
@@ -221,9 +223,9 @@ SET(x11vnc_SOURCES x11vnc-veyon.c
 	${x11vnc_DIR}/src/uinput.c
 )
 
-ENDIF()
-
 SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers" COTIRE_EXCLUDED TRUE)
+
+ENDIF()
 
 BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
