@@ -24,9 +24,9 @@
 
 #pragma once
 
-#include <QRect>
-
 #include "rfb/rfbproto.h"
+
+#include <QRect>
 
 #include "CryptoCore.h"
 
