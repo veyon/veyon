@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QObject>
+#include <QVersionNumber>
 
 #include "VeyonCore.h"
 #include "Plugin.h"
