@@ -206,7 +206,7 @@ rfbBool VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSch
 
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-		const auto authType = QVariantHelper<RfbVeyonAuth::Type>::value( message.read() );
+		const auto authType = message.read().value<RfbVeyonAuth::Type>();
 		if( authType == RfbVeyonAuth::Type::Invalid )
 		{
 			vDebug() << QThread::currentThreadId() << "invalid auth type received";

@@ -86,8 +86,8 @@ bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex
 {
 	if( m_stateFilter != ComputerControlInterface::State::None &&
 		m_stateRole >= 0 &&
-		QVariantHelper<ComputerControlInterface::State>::value(
-			sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ), m_stateRole ) ) != m_stateFilter )
+		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+							 m_stateRole ).value<ComputerControlInterface::State>() != m_stateFilter )
 	{
 		return false;
 	}

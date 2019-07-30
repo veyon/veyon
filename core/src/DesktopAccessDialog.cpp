@@ -94,7 +94,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 		message.command() == ReportDesktopAccessChoice )
 	{
-		m_choice = QVariantHelper<Choice>::value( message.argument( Argument::Choice ) );
+		m_choice = message.argument(Argument::Choice).value<Choice>();
 
 		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature.uid() );
 

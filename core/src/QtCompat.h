@@ -346,23 +346,3 @@ struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
 	{ return ptr; }
 };
 #endif
-
-template<typename T, typename = void>
-struct QVariantHelper
-{
-	static T value( const QVariant& variant )
-	{
-		return variant.value<T>();
-	}
-};
-
-#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
-template<typename T>
-struct QVariantHelper<T, typename std::enable_if<std::is_enum<T>::value >::type>
-{
-	static T value( const QVariant& variant )
-	{
-		return static_cast<T>( variant.toInt() );
-	}
-};
-#endif

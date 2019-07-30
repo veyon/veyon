@@ -207,7 +207,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 	if( message.isReadyForReceive() && message.receive() )
 	{
-		const auto chosenAuthType = QVariantHelper<RfbVeyonAuth::Type>::value( message.read() );
+		const auto chosenAuthType = message.read().value<RfbVeyonAuth::Type>();
 
 		if( supportedAuthTypes().contains( chosenAuthType ) == false )
 		{

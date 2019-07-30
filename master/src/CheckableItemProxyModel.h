@@ -28,8 +28,6 @@
 #include <QIdentityProxyModel>
 #include <QUuid>
 
-#include "QtCompat.h"
-
 class CheckableItemProxyModel : public QIdentityProxyModel
 {
 	Q_OBJECT
@@ -53,11 +51,6 @@ private:
 	QUuid indexToUuid( const QModelIndex& index ) const;
 	bool setChildData( const QModelIndex &index, Qt::CheckState checkState );
 	void setParentData( const QModelIndex &index, Qt::CheckState checkState );
-
-	Qt::CheckState checkStateFromVariant( const QVariant& data ) const
-	{
-		return QVariantHelper<Qt::CheckState>::value( data );
-	}
 
 	int m_uidRole;
 	int m_exceptionRole;

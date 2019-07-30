@@ -64,7 +64,7 @@ bool FeatureMessage::receive( QIODevice* ioDevice )
 		if( message.receive() )
 		{
 			m_featureUid = message.read().toUuid(); // Flawfinder: ignore
-			m_command = QVariantHelper<Command>::value( message.read() ); // Flawfinder: ignore
+			m_command = message.read().value<Command>(); // Flawfinder: ignore
 			m_arguments = message.read().toMap(); // Flawfinder: ignore
 			return true;
 		}
