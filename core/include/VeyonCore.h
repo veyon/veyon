@@ -34,7 +34,7 @@
 
 #include "QtCompat.h"
 
-#if defined(BUILD_VEYON_CORE_LIBRARY)
+#if defined(veyon_core_EXPORTS)
 #  define VEYON_CORE_EXPORT Q_DECL_EXPORT
 #else
 #  define VEYON_CORE_EXPORT Q_DECL_IMPORT
