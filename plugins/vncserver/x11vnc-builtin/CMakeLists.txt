@@ -201,7 +201,6 @@ BUILD_PLUGIN(builtin-x11vnc-server
 IF(NOT VEYON_X11VNC_EXTERNAL)
 TARGET_INCLUDE_DIRECTORIES(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
-	Threads::Threads
 	${X11_LIBRARIES}
 	${X11_XTest_LIB}
 	${X11_Xfixes_LIB}
