@@ -372,7 +372,7 @@ ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 	{
 		QModelIndex entryIndex = model->index( i, 0, parent );
 
-		if( QVariantHelper<Qt::CheckState>::value( model->data( entryIndex, NetworkObjectModel::CheckStateRole ) ) == Qt::Unchecked )
+		if( model->data( entryIndex, NetworkObjectModel::CheckStateRole ).value<Qt::CheckState>() == Qt::Unchecked )
 		{
 			continue;
 		}

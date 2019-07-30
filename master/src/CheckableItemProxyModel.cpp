@@ -23,7 +23,6 @@
  */
 
 #include "CheckableItemProxyModel.h"
-#include "QtCompat.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
@@ -99,7 +98,7 @@ bool CheckableItemProxyModel::setData( const QModelIndex& index, const QVariant&
 	}
 
 	const auto uuid = indexToUuid( index );
-	const auto checkState = checkStateFromVariant( value );
+	const auto checkState = value.value<Qt::CheckState>();
 
 	if( qAsConst(m_checkStates)[uuid] != checkState )
 	{
@@ -118,7 +117,7 @@ bool CheckableItemProxyModel::setData( const QModelIndex& index, const QVariant&
 void CheckableItemProxyModel::updateNewRows(const QModelIndex &parent, int first, int last)
 {
 	// also set newly inserted items checked if parent is checked
-	if( parent.isValid() && checkStateFromVariant( data( parent, Qt::CheckStateRole ) ) == Qt::Checked )
+	if( parent.isValid() && data( parent, Qt::CheckStateRole ).value<Qt::CheckState>() == Qt::Checked )
 	{
 		for( int i = first; i <= last; ++i )
 		{
@@ -238,7 +237,7 @@ void CheckableItemProxyModel::setParentData( const QModelIndex& index, Qt::Check
 
 	for( int i = 0; i < childCount; ++i )
 	{
-		if( checkStateFromVariant( data( this->index( i, 0, index ), Qt::CheckStateRole ) ) != checkState )
+		if( data( this->index( i, 0, index ), Qt::CheckStateRole ).value<Qt::CheckState>() != checkState )
 		{
 			checkState = Qt::PartiallyChecked;
 			break;
