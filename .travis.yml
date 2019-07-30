@@ -14,7 +14,6 @@ matrix:
         - env: TARGET_OS=opensuse.15.0
         - env: TARGET_OS=opensuse.15.1
         - env: TARGET_OS=ubuntu.bionic
-        - env: TARGET_OS=ubuntu.xenial
         - env: TARGET_OS=sast
 script:
     - wget http://archive.ubuntu.com/ubuntu/pool/main/libs/libseccomp/libseccomp2_2.3.3-3ubuntu1_amd64.deb && sudo dpkg -i libseccomp2*deb
