@@ -7,8 +7,6 @@ pkg_check_modules(procps REQUIRED libprocps)
 
 INCLUDE(BuildPlugin)
 
-INCLUDE_DIRECTORIES(${procps_INCLUDE_DIRS})
-
 BUILD_PLUGIN(linux-platform
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
@@ -34,6 +32,8 @@ BUILD_PLUGIN(linux-platform
 	LinuxUserFunctions.h
 	linux.qrc
 )
+
+TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE ${procps_INCLUDE_DIRS})
 
 TARGET_LINK_LIBRARIES(linux-platform
 	${X11_LIBRARIES}

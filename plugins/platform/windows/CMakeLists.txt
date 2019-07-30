@@ -38,9 +38,7 @@ BUILD_PLUGIN(windows-platform
 	windows.qrc
 )
 
-INCLUDE_DIRECTORIES(${ultravnc_DIR}/addon/ms-logon/authSSP)
-INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
-
+TARGET_INCLUDE_DIRECTORIES(windows-platform PRIVATE ${ultravnc_DIR}/addon/ms-logon/authSSP ${Qt5Gui_PRIVATE_INCLUDE_DIRS})
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
 
 SET_TARGET_PROPERTIES(windows-platform PROPERTIES COMPILE_FLAGS "-Wno-unknown-pragmas")
