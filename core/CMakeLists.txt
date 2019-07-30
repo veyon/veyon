@@ -32,7 +32,8 @@ if(NOT LibVNCClient_FOUND)
 endif()
 
 add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
-target_compile_definitions(veyon-core PRIVATE XK_KOREAN BUILD_VEYON_CORE_LIBRARY)
+
+target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
 
 # find Qt's translation directory
 if(NOT VEYON_BUILD_WIN32)
