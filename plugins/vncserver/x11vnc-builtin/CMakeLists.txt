@@ -148,7 +148,6 @@ SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 
 ADD_DEFINITIONS(-DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT)
-INCLUDE_DIRECTORIES(${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
 
 SET(libvncserver_SOURCES
 	${libvncserver_DIR}/libvncserver/auth.c
@@ -239,6 +238,7 @@ BUILD_PLUGIN(builtin-x11vnc-server
 )
 
 IF(NOT VEYON_X11VNC_EXTERNAL)
+TARGET_INCLUDE_DIRECTORIES(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	Threads::Threads
 	${X11_LIBRARIES}
