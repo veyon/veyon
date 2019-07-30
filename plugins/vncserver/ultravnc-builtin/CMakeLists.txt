@@ -85,6 +85,7 @@ BUILD_PLUGIN(builtin-ultravnc-server
 
 TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
 TARGET_INCLUDE_DIRECTORIES(builtin-ultravnc-server PRIVATE
+	${libvncserver_DIR}
 	${ultravnc_DIR}
 	${ultravnc_DIR}/winvnc
 	${ultravnc_DIR}/winvnc/omnithread
