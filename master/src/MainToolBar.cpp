@@ -50,23 +50,11 @@ void MainToolBar::contextMenuEvent( QContextMenuEvent* event )
 {
 	QMenu menu( this );
 
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-	auto toolTipAction = menu.addAction( tr( "Disable balloon tooltips" ) );
-	connect( toolTipAction, &QAction::triggered, this, &MainToolBar::toggleToolTips );
-#else
 	auto toolTipAction = menu.addAction( tr( "Disable balloon tooltips" ), this, &MainToolBar::toggleToolTips );
-#endif
 	toolTipAction->setCheckable( true );
 	toolTipAction->setChecked( m_mainWindow->masterCore().userConfig().noToolTips() );
 
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-	auto iconModeAction = menu.addAction( tr( "Show icons only" ) );
-	connect( iconModeAction, &QAction::triggered, this, &MainToolBar::toggleIconMode );
-#else
 	auto iconModeAction = menu.addAction( tr( "Show icons only" ), this, &MainToolBar::toggleIconMode );
-#endif
 	iconModeAction->setCheckable( true );
 	iconModeAction->setChecked( m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
 

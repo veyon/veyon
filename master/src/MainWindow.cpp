@@ -310,15 +310,8 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 
 	for( const auto& subFeature : subFeatures )
 	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName() );
-		action->setShortcut( subFeature.shortcut() );
-		connect( action, &QAction::triggered, this, [=] () { m_master.runFeature( subFeature ); } );
-#else
 		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
 									   [=]() { m_master.runFeature( subFeature ); }, subFeature.shortcut() );
-#endif
 		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
 	}

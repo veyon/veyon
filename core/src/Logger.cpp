@@ -180,14 +180,7 @@ void Logger::rotateLogFile()
 		logFileInfo.dir().remove( rotatedLogFiles.takeLast() );
 	}
 
-#if QT_VERSION < 0x050600
-#warning Building compat code for unsupported version of Qt
-	using QStringListReverseIterator = std::reverse_iterator<QStringList::const_iterator>;
-	for( auto it = QStringListReverseIterator(rotatedLogFiles.cend()),
-		 end = QStringListReverseIterator(rotatedLogFiles.cbegin()); it != end; ++it )
-#else
 	for( auto it = rotatedLogFiles.crbegin(), end = rotatedLogFiles.crend(); it != end; ++it )
-#endif
 	{
 		bool numberOk = false;
 		int logFileIndex = it->section( QLatin1Char('.'), -1 ).toInt( &numberOk );
