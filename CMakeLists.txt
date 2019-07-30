@@ -154,6 +154,9 @@ FIND_PACKAGE(JPEG REQUIRED)
 FIND_PACKAGE(LZO REQUIRED)
 FIND_PACKAGE(QCA REQUIRED)
 
+SET(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+FIND_PACKAGE(Threads REQUIRED)
+
 # FindOpenSSL.cmake in recent versions of CMake will only find the DLLs instead
 # of the import libraries if CYGWIN is not set
 SET(CYGWIN TRUE)
