@@ -63,13 +63,6 @@ SET(ultravnc_C_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/vncauth.c
 	)
 
-ADD_DEFINITIONS(-DULTRAVNC_VEYON_SUPPORT -D_INTERNALLIB -D_WIN32_WINNT=0x0600)
-
-IF(VEYON_BUILD_WIN64)
-    ADD_DEFINITIONS(-D_X64)
-ENDIF(VEYON_BUILD_WIN64)
-
-
 BUILD_PLUGIN(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp
@@ -92,6 +85,11 @@ TARGET_INCLUDE_DIRECTORIES(builtin-ultravnc-server PRIVATE
 	${ultravnc_DIR}/winvnc/winvnc
 	)
 
+TARGET_COMPILE_DEFINITIONS(builtin-ultravnc-server PRIVATE ULTRAVNC_VEYON_SUPPORT _INTERNALLIB _WIN32_WINNT=0x0600)
+
+IF(VEYON_BUILD_WIN64)
+	TARGET_COMPILE_DEFINITIONS(builtin-ultravnc-server PRIVATE _X64)
+ENDIF()
 
 SET(ULTRAVNC_COMPILER_FLAGS "-Wno-comments -Wno-attributes -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-format-zero-length -Wno-sign-compare -fexceptions")
 

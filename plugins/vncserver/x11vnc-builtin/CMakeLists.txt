@@ -1,10 +1,6 @@
 INCLUDE(BuildPlugin)
 
-IF(VEYON_X11VNC_EXTERNAL)
-
-ADD_DEFINITIONS(-DVEYON_X11VNC_EXTERNAL)
-
-ELSE()
+IF(NOT VEYON_X11VNC_EXTERNAL)
 
 SET(FULL_PACKAGE_NAME "Veyon")
 SET(PACKAGE_VERSION "${VERSION_STRING}")
@@ -108,8 +104,6 @@ UNSET(CMAKE_REQUIRED_LIBRARIES)
 SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 
-ADD_DEFINITIONS(-DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT)
-
 SET(libvncserver_SOURCES
 	${libvncserver_DIR}/libvncserver/auth.c
 	${libvncserver_DIR}/libvncserver/cargs.c
@@ -183,7 +177,7 @@ SET(x11vnc_SOURCES x11vnc-veyon.c
 	${x11vnc_DIR}/src/uinput.c
 )
 
-SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers" COTIRE_EXCLUDED TRUE)
+SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers -Wno-strict-aliasing" COTIRE_EXCLUDED TRUE)
 
 ENDIF()
 
@@ -198,7 +192,13 @@ BUILD_PLUGIN(builtin-x11vnc-server
 	X11VncConfiguration.h
 )
 
-IF(NOT VEYON_X11VNC_EXTERNAL)
+IF(VEYON_X11VNC_EXTERNAL)
+
+TARGET_COMPILE_DEFINITIONS(builtin-x11vnc-server PRIVATE VEYON_X11VNC_EXTERNAL)
+
+ELSE()
+
+TARGET_COMPILE_DEFINITIONS(builtin-x11vnc-server PRIVATE VNCSHARED FOREVER NOREPEAT=0 NOPW=1 REMOTE_CONTROL=0 EXTERNAL_COMMANDS=0 FILEXFER=0 NOGUI SMALL_FOOTPRINT)
 TARGET_INCLUDE_DIRECTORIES(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	${X11_LIBRARIES}
