@@ -113,7 +113,8 @@ public:
 
 	T value() const
 	{
-		return variantValue().value<T>();
+		const auto v = variantValue();
+		return QVariant( v ).value<T>();
 	}
 
 	void setValue( Type value ) const
