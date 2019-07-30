@@ -2,13 +2,6 @@ ADD_SUBDIRECTORY(vnchooks)
 
 INCLUDE(BuildPlugin)
 
-INCLUDE_DIRECTORIES(
-	${ultravnc_DIR}
-	${ultravnc_DIR}/winvnc
-	${ultravnc_DIR}/winvnc/omnithread
-	${ultravnc_DIR}/winvnc/winvnc
-	)
-
 SET(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
@@ -91,6 +84,13 @@ BUILD_PLUGIN(builtin-ultravnc-server
 )
 
 TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
+TARGET_INCLUDE_DIRECTORIES(builtin-ultravnc-server PRIVATE
+	${ultravnc_DIR}
+	${ultravnc_DIR}/winvnc
+	${ultravnc_DIR}/winvnc/omnithread
+	${ultravnc_DIR}/winvnc/winvnc
+	)
+
 
 SET(ULTRAVNC_COMPILER_FLAGS "-Wno-comments -Wno-attributes -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-format-zero-length -Wno-sign-compare -fexceptions")
 
