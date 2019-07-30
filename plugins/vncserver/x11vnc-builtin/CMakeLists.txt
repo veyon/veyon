@@ -11,7 +11,7 @@ SET(PACKAGE_VERSION "${VERSION_STRING}")
 SET(VERSION_PATCHLEVEL "${VERSION_PATCH}")
 
 # check for x11vnc requirements
-SET(FUNCS dup2 floor ftime geteuid gethostbyname gethostname getpwnam getpwuid getspnam gettimeofday getuid grantpt inet_ntoa initgroups memcmp memcpy memmove memset mkfifo mmap fork pow putenv select seteuid setegid setgid setpgrp setsid setuid setutxent shmat socket strchr strcspn strdup strerror strftime strpbrk strrchr strstr uname vfork vprintf waitpid)
+SET(FUNCS getpwnam getspnam getuid grantpt initgroups seteuid setegid setgid setsid setuid shmat waitpid)
 FOREACH(_func ${FUNCS})
     STRING(TOUPPER "${_func}" fuc)
 	CHECK_FUNCTION_EXISTS(${_func} HAVE_${fuc})
