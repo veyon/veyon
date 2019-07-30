@@ -177,7 +177,7 @@ SET(x11vnc_SOURCES x11vnc-veyon.c
 	${x11vnc_DIR}/src/uinput.c
 )
 
-SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers -Wno-strict-aliasing" COTIRE_EXCLUDED TRUE)
+SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers -Wno-strict-aliasing -Wno-restrict -Wno-multistatement-macros" COTIRE_EXCLUDED TRUE)
 
 ENDIF()
 
