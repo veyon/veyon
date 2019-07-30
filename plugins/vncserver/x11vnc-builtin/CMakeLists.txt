@@ -6,48 +6,6 @@ ADD_DEFINITIONS(-DVEYON_X11VNC_EXTERNAL)
 
 ELSE()
 
-# check for pthreads and TLS support
-SET(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-FIND_PACKAGE(Threads)
-IF(CMAKE_USE_PTHREADS_INIT)
-    SET(LIBVNCSERVER_HAVE_LIBPTHREAD TRUE)
-ENDIF(CMAKE_USE_PTHREADS_INIT)
-
-# check for libvncserver requirements
-
-# functions
-SET(LIBVNCSERVER_FUNCS fork ftime gethostbyname gethostname gettimeofday inet_ntoa memmove memset mkfifo mmap select socket strchr strdup strerror strstr vfork vprintf)
-FOREACH(_func ${LIBVNCSERVER_FUNCS})
-    STRING(TOUPPER "${_func}" fuc)
-	CHECK_FUNCTION_EXISTS(${_func} LIBVNCSERVER_HAVE_${fuc})
-ENDFOREACH()
-
-# headers
-SET(LIBVNCSERVER_HEADERS
-		endian
-		fcntl
-		limits
-		netinet/in
-		sys/endian
-		sys/resource
-		sys/socket
-		sys/stat
-		sys/time
-		sys/uio
-		sys/wait
-		string
-		vfork
-		unistd
-		ws2tcpip
-)
-
-FOREACH(_header ${LIBVNCSERVER_HEADERS})
-    STRING(TOUPPER "${_header}" _huc)
-	STRING(REPLACE "/" "_" _header_escaped "${_huc}")
-	CHECK_INCLUDE_FILES(${_header}.h LIBVNCSERVER_HAVE_${_header_escaped}_H)
-ENDFOREACH()
-
-SET(LIBVNCSERVER_ALLOW24BPP TRUE)
 SET(FULL_PACKAGE_NAME "Veyon")
 SET(PACKAGE_VERSION "${VERSION_STRING}")
 SET(VERSION_PATCHLEVEL "${VERSION_PATCH}")
