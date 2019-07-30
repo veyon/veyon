@@ -2,6 +2,8 @@ ADD_SUBDIRECTORY(vnchooks)
 
 INCLUDE(BuildPlugin)
 
+ADD_DEFINITIONS(-D_WIN32_WINNT=0x0600)
+
 SET(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
@@ -92,6 +94,11 @@ TARGET_INCLUDE_DIRECTORIES(builtin-ultravnc-server PRIVATE
 	${ultravnc_DIR}/winvnc/winvnc
 	)
 
+TARGET_COMPILE_DEFINITIONS(builtin-ultravnc-server PRIVATE ULTRAVNC_VEYON_SUPPORT _INTERNALLIB)
+
+IF(VEYON_BUILD_WIN64)
+	TARGET_COMPILE_DEFINITIONS(builtin-ultravnc-server PRIVATE _X64)
+ENDIF()
 
 SET(ULTRAVNC_COMPILER_FLAGS "-Wno-comments -Wno-attributes -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-format-zero-length -Wno-sign-compare -fexceptions")
 
