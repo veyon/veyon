@@ -1,10 +1,7 @@
 INCLUDE(BuildApplication)
 INCLUDE(WindowsBuildHelpers)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
 BUILD_APPLICATION(veyon-service ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-TARGET_LINK_LIBRARIES(veyon-service veyon-core)
 
 ADD_WINDOWS_RESOURCE(veyon-service)
 MAKE_GRAPHICAL_APP(veyon-service)

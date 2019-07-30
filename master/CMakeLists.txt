@@ -17,9 +17,8 @@ IF(VEYON_DEBUG)
 SET(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/resources/examples.qrc)
 ENDIF()
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src ${kitemmodels_SOURCE_DIR})
 BUILD_APPLICATION(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
-TARGET_LINK_LIBRARIES(veyon-master veyon-core)
+TARGET_INCLUDE_DIRECTORIES(veyon-master PRIVATE ${kitemmodels_SOURCE_DIR})
 
 ADD_WINDOWS_RESOURCE(veyon-master)
 MAKE_GRAPHICAL_APP(veyon-master)

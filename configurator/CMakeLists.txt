@@ -5,9 +5,7 @@ FILE(GLOB configurator_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB configurator_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui)
 SET(configurator_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/configurator.qrc)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 BUILD_APPLICATION(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RESOURCES})
-TARGET_LINK_LIBRARIES(veyon-configurator veyon-core)
 
 ADD_WINDOWS_RESOURCE(veyon-configurator)
 MAKE_GRAPHICAL_APP(veyon-configurator)
