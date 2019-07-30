@@ -25,19 +25,10 @@
 #pragma once
 
 #include <QtGlobal>
-#include <QSet>
-#include <QVariant>
-#include <QVector>
 
-template<class A, class B>
-static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
-{
 #if QT_VERSION < 0x050600
-	return QSet<A>( a ).intersect( b ).isEmpty() == false;
-#else
-	return a.intersects( b );
+#error Qt < 5.6 not supported
 #endif
-}
 
 #define Q_DISABLE_MOVE(Class) \
 	Class(const Class &&) Q_DECL_EQ_DELETE;\

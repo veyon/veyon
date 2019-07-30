@@ -165,8 +165,8 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 {
 	vDebug() << "processing for user" << accessingUser;
 
-	return intersects( m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet(),
-					   VeyonCore::config().authorizedUserGroups().toSet() );
+	return m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet().intersects(
+				VeyonCore::config().authorizedUserGroups().toSet() );
 }
 
 
@@ -262,7 +262,7 @@ bool AccessControlProvider::haveGroupsInCommon( const QString &userOne, const QS
 	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_queryDomainGroups );
 	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userTwo, m_queryDomainGroups );
 
-	return intersects( userOneGroups.toSet(), userTwoGroups.toSet() );
+	return userOneGroups.toSet().intersects( userTwoGroups.toSet() );
 }
 
 
