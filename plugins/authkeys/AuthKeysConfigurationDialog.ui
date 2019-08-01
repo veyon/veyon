@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AuthKeysConfigurationPage</class>
- <widget class="QWidget" name="AuthKeysConfigurationPage">
+ <class>AuthKeysConfigurationDialog</class>
+ <widget class="QDialog" name="AuthKeysConfigurationDialog">
   <property name="windowTitle">
    <string>Authentication keys</string>
   </property>
@@ -241,10 +241,50 @@ The public key is used on client computers to authenticate incoming connection r
      </layout>
     </widget>
    </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources>
   <include location="../../core/resources/core.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>AuthKeysConfigurationDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>338</x>
+     <y>800</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>AuthKeysConfigurationDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>338</x>
+     <y>800</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

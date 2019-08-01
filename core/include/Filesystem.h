@@ -35,9 +35,6 @@ public:
 	QString shrinkPath( QString path ) const;
 	bool ensurePathExists( const QString &path ) const;
 
-	QString privateKeyPath( const QString& name ) const;
-	QString publicKeyPath( const QString& name ) const;
-
 	QString serverFilePath() const;
 	QString workerFilePath() const;
 

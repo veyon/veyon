@@ -25,9 +25,10 @@
 #pragma once
 
 #include "AuthenticationPluginInterface.h"
+#include "AuthKeysConfiguration.h"
+#include "AuthKeysManager.h"
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
-#include "ConfigurationPagePluginInterface.h"
 
 class AuthKeysTableModel;
 
@@ -35,15 +36,13 @@ class AuthKeysPlugin : public QObject,
 		AuthenticationPluginInterface,
 		CommandLinePluginInterface,
 		PluginInterface,
-		CommandLineIO,
-		ConfigurationPagePluginInterface
+		CommandLineIO
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.AuthKeys")
 	Q_INTERFACES(PluginInterface
 				 AuthenticationPluginInterface
-				 CommandLinePluginInterface
-				 ConfigurationPagePluginInterface)
+				 CommandLinePluginInterface)
 public:
 	explicit AuthKeysPlugin( QObject* parent = nullptr );
 	~AuthKeysPlugin() override = default;
@@ -55,7 +54,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber( 2, 0 );
 	}
 
 	QString name() const override
@@ -78,6 +77,8 @@ public:
 		return QStringLiteral( "Tobias Junghans" );
 	}
 
+	void upgrade( const QVersionNumber& oldVersion ) override;
+
 	QString authenticationTypeName() const override
 	{
 		return description();
@@ -87,9 +88,7 @@ public:
 	bool hasCredentials() const override;
 	bool checkCredentials() const override;
 
-	void configureCredentials() override
-	{
-	}
+	void configureCredentials() override;
 
 	// server side authentication
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
@@ -110,8 +109,6 @@ public:
 	QStringList commands() const override;
 	QString commandHelp( const QString& command ) const override;
 
-	ConfigurationPage* createConfigurationPage() override;
-
 public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_setaccessgroup( const QStringList& arguments );
@@ -125,9 +122,12 @@ public slots:
 private:
 	bool loadPrivateKey( const QString& privateKeyFile );
 
-	static void printAuthKeyTable();
+	void printAuthKeyTable();
 	static QString authKeysTableData( const AuthKeysTableModel& tableModel, int row, int column );
-	static void printAuthKeyList();
+	void printAuthKeyList();
+
+	AuthKeysConfiguration m_configuration;
+	AuthKeysManager m_manager;
 
 	CryptoCore::PrivateKey m_privateKey;
 	QString m_authKeyName;

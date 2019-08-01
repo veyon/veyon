@@ -2,12 +2,13 @@ INCLUDE(BuildPlugin)
 
 BUILD_PLUGIN(authkeys
 	AuthKeysPlugin.cpp
-	AuthKeysConfigurationPage.cpp
-	AuthKeysConfigurationPage.ui
+	AuthKeysConfigurationDialog.cpp
+	AuthKeysConfigurationDialog.ui
 	AuthKeysTableModel.cpp
 	AuthKeysManager.cpp
 	AuthKeysPlugin.h
-	AuthKeysConfigurationPage.h
+	AuthKeysConfigurationDialog.h
+	AuthKeysConfiguration.h
 	AuthKeysTableModel.h
 	AuthKeysManager.h
 )

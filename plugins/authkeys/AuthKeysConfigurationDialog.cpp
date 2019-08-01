@@ -1,5 +1,5 @@
 /*
- * AuthKeysConfigurationPage.cpp - implementation of the authentication configuration page
+ * AuthKeysConfigurationDialog.cpp - implementation of the authentication configuration page
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,28 +26,32 @@
 #include <QInputDialog>
 #include <QMessageBox>
 
-#include "AuthKeysConfigurationPage.h"
+#include "AuthKeysConfiguration.h"
+#include "AuthKeysConfigurationDialog.h"
 #include "AuthKeysManager.h"
 #include "FileSystemBrowser.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
-#include "Configuration/UiMapping.h"
 
-#include "ui_AuthKeysConfigurationPage.h"
+#include "ui_AuthKeysConfigurationDialog.h"
 
 
-AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
-	ConfigurationPage(),
-	ui(new Ui::AuthKeysConfigurationPage),
-	m_authKeyTableModel( this ),
+AuthKeysConfigurationDialog::AuthKeysConfigurationDialog( AuthKeysConfiguration& configuration,
+														  AuthKeysManager& manager ) :
+	QDialog( QApplication::activeWindow() ),
+	ui( new Ui::AuthKeysConfigurationDialog ),
+	m_configuration( configuration ),
+	m_manager( manager ),
+	m_authKeyTableModel( m_manager, this ),
 	m_keyFilesFilter( tr( "Key files (*.pem)" ) )
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( ui->keyFileDirectories, Configuration::Property::Flag::Advanced );
+	ui->privateKeyBaseDir->setText( m_configuration.privateKeyBaseDir() );
+	ui->publicKeyBaseDir->setText( m_configuration.publicKeyBaseDir() );
 
 #define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationPage::name );
+			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationDialog::name );
 
 	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
@@ -63,36 +67,25 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 }
 
 
-AuthKeysConfigurationPage::~AuthKeysConfigurationPage()
+
+AuthKeysConfigurationDialog::~AuthKeysConfigurationDialog()
 {
 	delete ui;
 }
 
 
 
-void AuthKeysConfigurationPage::resetWidgets()
+void AuthKeysConfigurationDialog::accept()
 {
-	FOREACH_VEYON_KEY_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	m_configuration.setPrivateKeyBaseDir( ui->privateKeyBaseDir->text() );
+	m_configuration.setPublicKeyBaseDir( ui->publicKeyBaseDir->text() );
 
-	reloadKeyTable();
+	QDialog::accept();
 }
 
 
 
-void AuthKeysConfigurationPage::connectWidgetsToProperties()
-{
-	FOREACH_VEYON_KEY_AUTHENTICATION_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-}
-
-
-
-void AuthKeysConfigurationPage::applyConfiguration()
-{
-}
-
-
-
-void AuthKeysConfigurationPage::openPublicKeyBaseDir()
+void AuthKeysConfigurationDialog::openPublicKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 												exec( ui->publicKeyBaseDir );
@@ -100,7 +93,7 @@ void AuthKeysConfigurationPage::openPublicKeyBaseDir()
 
 
 
-void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
+void AuthKeysConfigurationDialog::openPrivateKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 			exec( ui->privateKeyBaseDir );
@@ -108,16 +101,15 @@ void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
 
 
 
-void AuthKeysConfigurationPage::createKeyPair()
+void AuthKeysConfigurationDialog::createKeyPair()
 {
 	const auto keyName = QInputDialog::getText( this, tr( "Authentication key name" ),
 												tr( "Please enter the name of the user group or role for which to create an authentication key pair:") );
 	if( keyName.isEmpty() == false )
 	{
-		AuthKeysManager authKeysManager;
-		const auto success = authKeysManager.createKeyPair( keyName );
+		const auto success = m_manager.createKeyPair( keyName );
 
-		showResultMessage( success, tr( "Create key pair" ), authKeysManager.resultMessage() );
+		showResultMessage( success, tr( "Create key pair" ), m_manager.resultMessage() );
 
 		reloadKeyTable();
 	}
@@ -125,7 +117,7 @@ void AuthKeysConfigurationPage::createKeyPair()
 
 
 
-void AuthKeysConfigurationPage::deleteKey()
+void AuthKeysConfigurationDialog::deleteKey()
 {
 	const auto title = ui->deleteKey->text();
 
@@ -139,10 +131,9 @@ void AuthKeysConfigurationPage::deleteKey()
 		if( QMessageBox::question( this, title, tr( "Do you really want to delete authentication key \"%1/%2\"?" ).arg( name, type ) ) ==
 				QMessageBox::Yes )
 		{
-			AuthKeysManager authKeysManager;
-			const auto success = authKeysManager.deleteKey( name, type );
+			const auto success = m_manager.deleteKey( name, type );
 
-			showResultMessage( success, title, authKeysManager.resultMessage() );
+			showResultMessage( success, title, m_manager.resultMessage() );
 
 			reloadKeyTable();
 		}
@@ -155,7 +146,7 @@ void AuthKeysConfigurationPage::deleteKey()
 
 
 
-void AuthKeysConfigurationPage::importKey()
+void AuthKeysConfigurationDialog::importKey()
 {
 	const auto title = ui->importKey->text();
 
@@ -174,18 +165,17 @@ void AuthKeysConfigurationPage::importKey()
 		return;
 	}
 
-	AuthKeysManager authKeysManager;
-	const auto keyType = authKeysManager.detectKeyType( inputFile );
-	const auto success = authKeysManager.importKey( keyName, keyType, inputFile );
+	const auto keyType = m_manager.detectKeyType( inputFile );
+	const auto success = m_manager.importKey( keyName, keyType, inputFile );
 
-	showResultMessage( success, title, authKeysManager.resultMessage() );
+	showResultMessage( success, title, m_manager.resultMessage() );
 
 	reloadKeyTable();
 }
 
 
 
-void AuthKeysConfigurationPage::exportKey()
+void AuthKeysConfigurationDialog::exportKey()
 {
 	const auto title = ui->exportKey->text();
 
@@ -201,10 +191,9 @@ void AuthKeysConfigurationPage::exportKey()
 															  m_keyFilesFilter );
 		if( outputFile.isEmpty() == false )
 		{
-			AuthKeysManager authKeysManager;
-			const auto success = authKeysManager.exportKey( name, type, outputFile );
+			const auto success = m_manager.exportKey( name, type, outputFile );
 
-			showResultMessage( success, title, authKeysManager.resultMessage() );
+			showResultMessage( success, title, m_manager.resultMessage() );
 		}
 	}
 	else
@@ -215,7 +204,7 @@ void AuthKeysConfigurationPage::exportKey()
 
 
 
-void AuthKeysConfigurationPage::setAccessGroup()
+void AuthKeysConfigurationDialog::setAccessGroup()
 {
 	const auto title = ui->setAccessGroup->text();
 
@@ -224,7 +213,7 @@ void AuthKeysConfigurationPage::setAccessGroup()
 	if( key.isEmpty() == false )
 	{
 		const auto userGroups = VeyonCore::platform().userFunctions().userGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() );
-		const auto currentGroup = AuthKeysManager().accessGroup( key );
+		const auto currentGroup = m_manager.accessGroup( key );
 
 		bool ok = false;
 		const auto selectedGroup = QInputDialog::getItem( this, title,
@@ -233,10 +222,9 @@ void AuthKeysConfigurationPage::setAccessGroup()
 
 		if( ok && selectedGroup.isEmpty() == false )
 		{
-			AuthKeysManager manager;
-			const auto success = manager.setAccessGroup( key, selectedGroup );
+			const auto success = m_manager.setAccessGroup( key, selectedGroup );
 
-			showResultMessage( success, title, manager.resultMessage() );
+			showResultMessage( success, title, m_manager.resultMessage() );
 
 			reloadKeyTable();
 		}
@@ -249,7 +237,7 @@ void AuthKeysConfigurationPage::setAccessGroup()
 
 
 
-void AuthKeysConfigurationPage::reloadKeyTable()
+void AuthKeysConfigurationDialog::reloadKeyTable()
 {
 	m_authKeyTableModel.reload();
 	ui->keyTable->resizeColumnsToContents();
@@ -257,7 +245,7 @@ void AuthKeysConfigurationPage::reloadKeyTable()
 
 
 
-QString AuthKeysConfigurationPage::selectedKey() const
+QString AuthKeysConfigurationDialog::selectedKey() const
 {
 	const auto row = ui->keyTable->currentIndex().row();
 	if( row >= 0 && row < m_authKeyTableModel.rowCount() )
@@ -270,7 +258,7 @@ QString AuthKeysConfigurationPage::selectedKey() const
 
 
 
-void AuthKeysConfigurationPage::showResultMessage( bool success, const QString& title, const QString& message )
+void AuthKeysConfigurationDialog::showResultMessage( bool success, const QString& title, const QString& message )
 {
 	if( message.isEmpty() )
 	{

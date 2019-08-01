@@ -25,18 +25,11 @@
 #include "AuthKeysTableModel.h"
 #include "AuthKeysManager.h"
 
-AuthKeysTableModel::AuthKeysTableModel( QObject* parent ) :
+AuthKeysTableModel::AuthKeysTableModel( AuthKeysManager& manager, QObject* parent ) :
 	QAbstractTableModel( parent ),
-	m_manager( new AuthKeysManager( this ) ),
+	m_manager( manager ),
 	m_keys()
 {
-}
-
-
-
-AuthKeysTableModel::~AuthKeysTableModel()
-{
-	delete m_manager;
 }
 
 
@@ -45,7 +38,7 @@ void AuthKeysTableModel::reload()
 {
 	beginResetModel();
 
-	m_keys = m_manager->listKeys();
+	m_keys = m_manager.listKeys();
 
 	endResetModel();
 }
@@ -83,8 +76,8 @@ QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
 	{
 	case ColumnKeyName: return key.split( QLatin1Char('/') ).value( 0 );
 	case ColumnKeyType: return key.split( QLatin1Char('/') ).value( 1 );
-	case ColumnAccessGroup: return m_manager->accessGroup( key );
-	case ColumnKeyPairID: return m_manager->keyPairId( key );
+	case ColumnAccessGroup: return m_manager.accessGroup( key );
+	case ColumnKeyPairID: return m_manager.keyPairId( key );
 	default: break;
 	}
 

@@ -40,8 +40,8 @@ public:
 		ColumnCount
 	};
 
-	explicit AuthKeysTableModel( QObject* parent = nullptr );
-	~AuthKeysTableModel() override;
+	explicit AuthKeysTableModel( AuthKeysManager& manager, QObject* parent = nullptr );
+	~AuthKeysTableModel() override = default;
 
 	void reload();
 
@@ -56,7 +56,7 @@ public:
 	QVariant headerData( int section, Qt::Orientation orientation, int role ) const override;
 
 private:
-	AuthKeysManager* m_manager;
+	AuthKeysManager& m_manager;
 	QStringList m_keys;
 
 };

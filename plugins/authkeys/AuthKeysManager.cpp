@@ -26,6 +26,7 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 
+#include "AuthKeysConfiguration.h"
 #include "AuthKeysManager.h"
 #include "CommandLineIO.h"
 #include "CryptoCore.h"
@@ -34,8 +35,9 @@
 #include "VeyonConfiguration.h"
 
 
-AuthKeysManager::AuthKeysManager( QObject* parent ) :
+AuthKeysManager::AuthKeysManager( AuthKeysConfiguration& configuration, QObject* parent ) :
 	QObject( parent ),
+	m_configuration( configuration ),
 	m_keyTypePrivate( QStringLiteral("private") ),
 	m_keyTypePublic( QStringLiteral("public") ),
 	m_checkPermissions( tr( "Please check your permissions." ) ),
@@ -63,8 +65,8 @@ bool AuthKeysManager::createKeyPair( const QString& name )
 		return false;
 	}
 
-	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
-	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
+	const auto privateKeyFileName = privateKeyPath( name );
+	const auto publicKeyFileName = publicKeyPath( name );
 
 	if( QFileInfo::exists( privateKeyFileName ) || QFileInfo::exists( publicKeyFileName ) )
 	{
@@ -189,7 +191,7 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 			return false;
 		}
 
-		keyFileName = VeyonCore::filesystem().privateKeyPath( name );
+		keyFileName = privateKeyPath( name );
 	}
 	else if( type == m_keyTypePublic )
 	{
@@ -200,7 +202,7 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 			return false;
 		}
 
-		keyFileName = VeyonCore::filesystem().publicKeyPath( name );
+		keyFileName = publicKeyPath( name );
 	}
 	else
 	{
@@ -242,10 +244,10 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 
 QStringList AuthKeysManager::listKeys()
 {
-	const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
+	const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( m_configuration.privateKeyBaseDir() );
 	const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
 
-	const auto publicKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().publicKeyBaseDir() );
+	const auto publicKeyBaseDir = VeyonCore::filesystem().expandPath( m_configuration.publicKeyBaseDir() );
 	const auto publicKeyDirs = QDir( publicKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
 
 	QStringList keys;
@@ -282,8 +284,8 @@ bool AuthKeysManager::extractPublicFromPrivateKey( const QString& name )
 		return false;
 	}
 
-	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
-	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
+	const auto privateKeyFileName = privateKeyPath( name );
+	const auto publicKeyFileName = publicKeyPath( name );
 
 	if( QFileInfo::exists( privateKeyFileName ) == false )
 	{
@@ -479,6 +481,26 @@ QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 
 
 
+QString AuthKeysManager::privateKeyPath( const QString& name ) const
+{
+	const auto d = VeyonCore::filesystem().expandPath( m_configuration.privateKeyBaseDir() ) +
+			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
+
+	return QDir::toNativeSeparators( d );
+}
+
+
+
+QString AuthKeysManager::publicKeyPath(const QString& name) const
+{
+	const auto d = VeyonCore::filesystem().expandPath( m_configuration.publicKeyBaseDir() ) +
+			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
+
+	return QDir::toNativeSeparators( d );
+}
+
+
+
 bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
 	if( isKeyNameValid( name ) == false )
@@ -518,11 +540,11 @@ QString AuthKeysManager::keyFilePathFromType( const QString& name, const QString
 {
 	if( type == m_keyTypePrivate )
 	{
-		return VeyonCore::filesystem().privateKeyPath( name );
+		return privateKeyPath( name );
 	}
 	else if( type == m_keyTypePublic )
 	{
-		return VeyonCore::filesystem().publicKeyPath( name );
+		return publicKeyPath( name );
 	}
 
 	return {};

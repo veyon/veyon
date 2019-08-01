@@ -27,7 +27,7 @@
 #include <QMessageBox>
 #include <QProcessEnvironment>
 
-#include "AuthKeysConfigurationPage.h"
+#include "AuthKeysConfigurationDialog.h"
 #include "AuthKeysPlugin.h"
 #include "AuthKeysManager.h"
 #include "Filesystem.h"
@@ -37,6 +37,8 @@
 
 AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
+	m_configuration( &VeyonCore::config() ),
+	m_manager( m_configuration ),
 	m_privateKey(),
 	m_commands( {
 { QStringLiteral("create"), tr( "Create new authentication key pair" ) },
@@ -52,6 +54,17 @@ AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 
 
 
+void AuthKeysPlugin::upgrade(const QVersionNumber& oldVersion)
+{
+	if( oldVersion < QVersionNumber( 2, 0 ) )
+	{
+		m_configuration.setPublicKeyBaseDir( m_configuration.legacyPublicKeyBaseDir() );
+		m_configuration.setPrivateKeyBaseDir( m_configuration.legacyPrivateKeyBaseDir() );
+	}
+}
+
+
+
 bool AuthKeysPlugin::initializeCredentials()
 {
 	m_privateKey = {};
@@ -61,7 +74,7 @@ bool AuthKeysPlugin::initializeCredentials()
 	if( authKeyName.isEmpty() == false )
 	{
 		if( AuthKeysManager::isKeyNameValid( authKeyName ) &&
-			loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
+			loadPrivateKey( m_manager.privateKeyPath( authKeyName ) ) )
 		{
 			m_authKeyName = authKeyName;
 			return true;
@@ -70,12 +83,12 @@ bool AuthKeysPlugin::initializeCredentials()
 	else
 	{
 		// try to auto-detect private key file by searching for readable file
-		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
+		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( m_configuration.privateKeyBaseDir() );
 		const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
 
 		for( const auto& privateKeyDir : privateKeyDirs )
 		{
-			if( loadPrivateKey( VeyonCore::filesystem().privateKeyPath( privateKeyDir ) ) )
+			if( loadPrivateKey( m_manager.privateKeyPath( privateKeyDir ) ) )
 			{
 				m_authKeyName = privateKeyDir;
 				return true;
@@ -115,6 +128,13 @@ bool AuthKeysPlugin::checkCredentials() const
 
 
 
+void AuthKeysPlugin::configureCredentials()
+{
+	AuthKeysConfigurationDialog( m_configuration, m_manager ).exec();
+}
+
+
+
 VncServerClient::AuthState AuthKeysPlugin::performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const
 {
 	switch( client->authState() )
@@ -143,7 +163,7 @@ VncServerClient::AuthState AuthKeysPlugin::performAuthentication( VncServerClien
 		// under which the client claims to run
 		const auto signature = message.read().toByteArray(); // Flawfinder: ignore
 
-		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath( authKeyName );
+		const auto publicKeyPath = m_manager.publicKeyPath( authKeyName );
 
 		vDebug() << "loading public key" << publicKeyPath;
 		CryptoCore::PublicKey publicKey( publicKeyPath );
@@ -215,13 +235,6 @@ QString AuthKeysPlugin::commandHelp( const QString& command ) const
 
 
 
-ConfigurationPage* AuthKeysPlugin::createConfigurationPage()
-{
-	return new AuthKeysConfigurationPage();
-}
-
-
-
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QStringList& arguments )
 {
 	const auto command = arguments.value( 0 );
@@ -285,15 +298,14 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_setaccessgroup( con
 	const auto key = arguments[0];
 	const auto accessGroup = arguments[1];
 
-	AuthKeysManager manager;
-	if( manager.setAccessGroup( key, accessGroup ) == false )
+	if( m_manager.setAccessGroup( key, accessGroup ) == false )
 	{
-		error( manager.resultMessage() );
+		error( m_manager.resultMessage() );
 
 		return Failed;
 	}
 
-	info( manager.resultMessage() );
+	info( m_manager.resultMessage() );
 
 	return Successful;
 }
@@ -307,15 +319,14 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_create( const QStri
 		return NotEnoughArguments;
 	}
 
-	AuthKeysManager manager;
-	if( manager.createKeyPair( arguments.first() ) == false )
+	if( m_manager.createKeyPair( arguments.first() ) == false )
 	{
-		error( manager.resultMessage() );
+		error( m_manager.resultMessage() );
 
 		return Failed;
 	}
 
-	info( manager.resultMessage() );
+	info( m_manager.resultMessage() );
 
 	return Successful;
 }
@@ -333,15 +344,14 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_delete( const QStri
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 
-	AuthKeysManager manager;
-	if( manager.deleteKey( name, type ) == false )
+	if( m_manager.deleteKey( name, type ) == false )
 	{
-		error( manager.resultMessage() );
+		error( m_manager.resultMessage() );
 
 		return Failed;
 	}
 
-	info( manager.resultMessage() );
+	info( m_manager.resultMessage() );
 
 	return Successful;
 }
@@ -366,15 +376,14 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStri
 		outputFile = AuthKeysManager::exportedKeyFileName( name, type );
 	}
 
-	AuthKeysManager manager;
-	if( manager.exportKey( name, type, outputFile ) == false )
+	if( m_manager.exportKey( name, type, outputFile ) == false )
 	{
-		error( manager.resultMessage() );
+		error( m_manager.resultMessage() );
 
 		return Failed;
 	}
 
-	info( manager.resultMessage() );
+	info( m_manager.resultMessage() );
 
 	return Successful;
 }
@@ -399,15 +408,14 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 		inputFile = AuthKeysManager::exportedKeyFileName( name, type );
 	}
 
-	AuthKeysManager manager;
-	if( manager.importKey( name, type, inputFile ) == false )
+	if( m_manager.importKey( name, type, inputFile ) == false )
 	{
-		error( manager.resultMessage() );
+		error( m_manager.resultMessage() );
 
 		return Failed;
 	}
 
-	info( manager.resultMessage() );
+	info( m_manager.resultMessage() );
 
 	return Successful;
 }
@@ -437,15 +445,14 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_extract( const QStr
 		return NotEnoughArguments;
 	}
 
-	AuthKeysManager manager;
-	if( manager.extractPublicFromPrivateKey( arguments.first() ) == false )
+	if( m_manager.extractPublicFromPrivateKey( arguments.first() ) == false )
 	{
-		error( manager.resultMessage() );
+		error( m_manager.resultMessage() );
 
 		return Failed;
 	}
 
-	info( manager.resultMessage() );
+	info( m_manager.resultMessage() );
 
 	return Successful;
 }
@@ -470,7 +477,7 @@ bool AuthKeysPlugin::loadPrivateKey( const QString& privateKeyFile )
 
 void AuthKeysPlugin::printAuthKeyTable()
 {
-	AuthKeysTableModel tableModel;
+	AuthKeysTableModel tableModel( m_manager );
 	tableModel.reload();
 
 	CommandLineIO::TableHeader tableHeader( { tr("NAME"), tr("TYPE"), tr("PAIR ID"), tr("ACCESS GROUP") } );
@@ -500,10 +507,13 @@ QString AuthKeysPlugin::authKeysTableData( const AuthKeysTableModel& tableModel,
 
 void AuthKeysPlugin::printAuthKeyList()
 {
-	const auto keys = AuthKeysManager().listKeys();
+	const auto keys = m_manager.listKeys();
 
 	for( const auto& key : keys )
 	{
 		print( key );
 	}
 }
+
+
+IMPLEMENT_CONFIG_PROXY(AuthKeysConfiguration)

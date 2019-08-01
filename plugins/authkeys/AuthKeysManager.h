@@ -26,11 +26,13 @@
 
 #include "CryptoCore.h"
 
+class AuthKeysConfiguration;
+
 class AuthKeysManager : public QObject
 {
 	Q_OBJECT
 public:
-	explicit AuthKeysManager( QObject* parent = nullptr );
+	explicit AuthKeysManager( AuthKeysConfiguration& configuration, QObject* parent = nullptr );
 	~AuthKeysManager() override = default;
 
 	static bool isKeyNameValid( const QString& authKeyName );
@@ -60,6 +62,9 @@ public:
 	static QString exportedKeyFileName( const QString& name, const QString& type );
 	static QString keyNameFromExportedKeyFile( const QString& keyFile );
 
+	QString privateKeyPath( const QString& name ) const;
+	QString publicKeyPath( const QString& name ) const;
+
 private:
 	bool checkKey( const QString& name, const QString& type, bool checkIsReadable = true );
 
@@ -68,6 +73,7 @@ private:
 	bool setPrivateKeyFilePermissions( const QString& fileName ) const;
 	bool setPublicKeyFilePermissions( const QString& fileName ) const;
 
+	AuthKeysConfiguration& m_configuration;
 	const QString m_keyTypePrivate;
 	const QString m_keyTypePublic;
 	const QString m_checkPermissions;

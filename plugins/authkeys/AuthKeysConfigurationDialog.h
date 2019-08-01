@@ -1,5 +1,5 @@
 /*
- * AuthKeysConfigurationPage.h - header for the AuthKeysConfigurationPage class
+ * AuthKeysConfigurationDialog.h - header for the AuthKeysConfigurationDialog class
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,25 +24,27 @@
 
 #pragma once
 
+#include <QDialog>
+
 #include "AuthKeysTableModel.h"
-#include "ConfigurationPage.h"
 
 namespace Ui {
-class AuthKeysConfigurationPage;
+class AuthKeysConfigurationDialog;
 }
 
-class AuthKeysConfigurationPage : public ConfigurationPage
+class AuthKeysConfiguration;
+class AuthKeysManager;
+
+class AuthKeysConfigurationDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	AuthKeysConfigurationPage();
-	~AuthKeysConfigurationPage() override;
+	AuthKeysConfigurationDialog( AuthKeysConfiguration& configuration, AuthKeysManager& manager );
+	~AuthKeysConfigurationDialog() override;
 
-	void resetWidgets() override;
-	void connectWidgetsToProperties() override;
-	void applyConfiguration() override;
+	void accept() override;
 
-private slots:
+private:
 	void openPublicKeyBaseDir();
 	void openPrivateKeyBaseDir();
 	void createKeyPair();
@@ -52,11 +54,12 @@ private slots:
 	void setAccessGroup();
 	void reloadKeyTable();
 
-private:
 	QString selectedKey() const;
 	void showResultMessage( bool success, const QString& title, const QString& message );
 
-	Ui::AuthKeysConfigurationPage *ui;
+	Ui::AuthKeysConfigurationDialog* ui;
+	AuthKeysConfiguration& m_configuration;
+	AuthKeysManager& m_manager;
 	AuthKeysTableModel m_authKeyTableModel;
 	const QString m_keyFilesFilter;
 
