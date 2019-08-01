@@ -319,7 +319,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式為 Android 平臺實現特定功能</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>驗證金鑰名稱</translation>
+        <translation>身份驗證金鑰名稱</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -401,7 +401,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>請選擇要刪除的金鑰!</translation>
+        <translation>請選取要刪除的金鑰!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -502,7 +502,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>無法寫入輸出檔案。</translation>
+        <translation>寫入輸出檔案失敗。</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -747,7 +747,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>刪除選取的位置</translation>
+        <translation>移除選取的位置</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1043,7 +1043,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>驗證失敗或存取拒絕</translation>
+        <translation>身份驗證失敗或存取拒絕</translation>
     </message>
     <message>
         <source>Disconnected</source>
@@ -1066,11 +1066,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 服務 %2 在 %3: %4</translation>
+        <translation>%1 服務 %2 在 %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>驗證錯誤</translation>
+        <translation>身份驗證錯誤</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1471,7 +1471,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>播放教程視訊</translation>
+        <translation>播放指南視訊</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1479,11 +1479,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>講義</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>要閱讀的文字</translation>
     </message>
 </context>
 <context>
@@ -2421,11 +2421,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>您將電腦主機名組態為以完全限定網域名稱 (FQDN) 存儲，但輸入了不含網域的主機名稱。</translation>
+        <translation>您將電腦主機名稱組態為以完全限定網域名稱 (FQDN) 存儲，但輸入了不含網域的主機名稱。</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>您將電腦主機名組態為以不含域名的簡單主機名稱存儲，但輸入了含有域名部分的主機名稱。</translation>
+        <translation>您將電腦主機名稱組態為以不含域名的簡單主機名稱存儲，但輸入了含有域名部分的主機名稱。</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -2441,7 +2441,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>找不到主機名稱為「%1」的電腦。請檢查主機名稱或電腦樹參數。</translation>
+        <translation>找不到主機名稱為「%1」的電腦。 請檢查主機名稱或電腦樹參數。</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
@@ -2535,7 +2535,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>是否確實要刪除實例 &quot;%1&quot;?</translation>
+        <translation>您真的要移除實例 &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Configuration for instance &quot;%1&quot;</source>
@@ -2573,7 +2573,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>刪除選取的網路範圍</translation>
+        <translation>移除選取的網路範圍</translation>
     </message>
     <message>
         <source>ID</source>
@@ -2605,7 +2605,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation>是否真的要移除選取的授權?</translation>
+        <translation>您真的要移除選取的授權?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2750,7 +2750,7 @@ USAGE
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式為 Linux 平臺實現特定功能</translation>
     </message>
 </context>
 <context>
@@ -3184,7 +3184,7 @@ USAGE
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation>刪除選取的群組</translation>
+        <translation>移除選取的群組</translation>
     </message>
     <message>
         <source>Groups</source>
@@ -3204,7 +3204,7 @@ USAGE
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>刪除選取的網路範圍</translation>
+        <translation>移除選取的網路範圍</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -3333,7 +3333,7 @@ USAGE
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>驗證錯誤</translation>
+        <translation>身份驗證錯誤</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -3348,7 +3348,7 @@ USAGE
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>開機</translation>
+        <translation>開啟電源</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -3364,7 +3364,7 @@ USAGE
     </message>
     <message>
         <source>Power down</source>
-        <translation>關機</translation>
+        <translation>關閉電源</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3384,11 +3384,11 @@ USAGE
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>您確定要重新啟動選取的電腦嗎?</translation>
+        <translation>您真的要重新啟動選取的電腦嗎?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation>您確定要關閉選取的電腦嗎?</translation>
+        <translation>您真的要關閉選取的電腦嗎?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3420,15 +3420,15 @@ USAGE
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>安裝更新和關閉電源</translation>
+        <translation>安裝更新並關閉電源</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>使用者確認後關機</translation>
+        <translation>使用者確認後關閉電源</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>逾時後關機</translation>
+        <translation>逾時後關閉電源</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3447,7 +3447,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>關機</translation>
+        <translation>關閉電源</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -4074,7 +4074,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>使用</translation>
+        <translation>用法</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
@@ -4157,7 +4157,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式實現 Windows 平臺的特定功能</translation>
     </message>
 </context>
 <context>

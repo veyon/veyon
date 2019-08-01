@@ -319,7 +319,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>안드로이드 플래폼용 전용 함수 설치 플러그인 </translation>
     </message>
 </context>
 <context>
@@ -669,15 +669,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 이름 &lt;NAME&gt; 를 가진 새로운 인증 키 페어를  생성하고 개인키와 공개키를 지정된 키 폴더에 저장합니다.  파라메터는 반드시 글자만을 포함하는 키 이름이어야 함.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 키폴더에 설정된 인증키 &lt;KEY&gt;  를 삭제합니다. 이키를 삭제하면 다시 복구할 수 없습니다.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 개인키 &lt;KEY&gt; 를 통해서 공개키 파트를 추출하여 개인키에 대한 공개키로 저장합니다. 다른 마스터 컴퓨터를 설정할 경우, 개인기만 전송하는 것으로 충분합니다. 공개키는 이때 추출될수 있습니다.</translation>
     </message>
 </context>
 <context>
@@ -1082,7 +1082,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 인증에 성공하지 못했습니다.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1090,7 +1090,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 접근제어 설정에 의해 블럭되었습니다.</translation>
     </message>
 </context>
 <context>
@@ -1113,11 +1113,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 이름;호스트 이름;사용자</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>이 컴퓨터의 위치를 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 대신 모든  위치는 컴퓨터 선정 패널에 표시됩니다.</translation>
     </message>
 </context>
 <context>
@@ -1250,7 +1250,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>플랫폼 전용 설정 세팅을 적용할 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>데모가 실행중일 때 썸네일 업데이트 속도를 늦춤</translation>
     </message>
 </context>
 <context>
@@ -1456,7 +1456,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>5분내로 모든 작업을 완료하시기 바랍니다.</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1468,7 +1468,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>학습툴 시작</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
@@ -1480,11 +1480,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>핸드아웃</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>읽을 글자들</translation>
     </message>
 </context>
 <context>
@@ -1737,11 +1737,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>이 컴퓨터에서 인증이 적절히 설정되었습니다.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>이 컴퓨터에서 인증키가 적절히 설정되지 않았습니다.</translation>
     </message>
     <message>
         <source>Authentication test</source>
@@ -2404,15 +2404,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>호스트 이름이 완전히 검증된 도메인 이름으로 저장되었음 (FQDN, 예 myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 호스트 이름 속성</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
@@ -2420,15 +2420,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>사용자 이름 &quot;%1&quot;  검색되지 않음.  사용자 이름 또는 사용자 트리 파라메터를 확인하세요.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
@@ -2436,31 +2436,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>호스트 이름 &quot;%1&quot;인 컴퓨터 가 검색되지 않음.  호스트 이름 또는 컴퓨터 트리 파라메터를 확인하세요.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>호스트이름 검색 실패</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 </translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>사용자 로긴이름 속성</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>사용자 로그인 또는 컴퓨터 호스트 이름 (OpenLDAP)의 속성 설정됨</translation>
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 컨테이너들</translation>
     </message>
 </context>
 <context>
@@ -2495,19 +2495,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>다음 형식에 맞는 LDAP url을 입력하세요 &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>네이밍 컨텍스트 속성의 이름이 없습니다 - 이전에 설정된 값으로 되돌립니다</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>베이스 DN을 조회할 수 없습니다. LDAP 설정을 확인하세요.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>%1 을 기본 DN 으로 설정하고 네이밍 컨텍스트 조회를 비활성화 함.</translation>
     </message>
 </context>
 <context>
@@ -2648,7 +2648,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
+        <translation>라이센싱 가능한 애드온이 있습니다</translation>
     </message>
     <message>
         <source>Addon</source>
@@ -2726,7 +2726,7 @@ USAGE
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>사용자 인증용 커스텀 PAM 서비스</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -2738,7 +2738,7 @@ USAGE
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>매니저 유저를 표시</translation>
     </message>
 </context>
 <context>
@@ -2749,7 +2749,7 @@ USAGE
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>리눅스 플래폼용 전용 함수 설치 플러그인 </translation>
     </message>
 </context>
 <context>
@@ -2966,7 +2966,7 @@ USAGE
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>사용자가 정의한 컴퓨터 배치를 사용</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
@@ -3097,7 +3097,7 @@ USAGE
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>수동으로 숨겨진 위치 추가를 허용</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
@@ -3105,23 +3105,23 @@ USAGE
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>안전하지 않은 작동에 대한 확인 대화 창 보여주기</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>접근제어 실행</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>자동으로 현재 위치를 선택</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 썸네일 사진 크기를 자동조정</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 선택 패너을 자동으로 열기</translation>
     </message>
 </context>
 <context>
@@ -3136,7 +3136,7 @@ USAGE
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>이모드는 하나 또는 그 이상의 위치에 있는 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
     </message>
 </context>
 <context>
@@ -3437,7 +3437,9 @@ USAGE
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>이컴퓨터는  %1 분, %2 초 후에 전원이 꺼집니다.
+
+작업을 저장하고 모든 프로그램을 닫기 바랍니다.</translation>
     </message>
 </context>
 <context>
@@ -3448,7 +3450,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>선택된 컴퓨터의 전원을 끝때까지의 시간을 입력하세요.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3803,11 +3805,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation type="unfinished"/>
+        <translation>멀티세션 모드 (터미널 또는 원격 데스크탑 서버용)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>허가되지 않은 접속이 차단되었을때 알려줌</translation>
     </message>
 </context>
 <context>
@@ -3917,11 +3919,11 @@ Typically this is required to support terminal servers.</source>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>내부 Veyon 컴퓨터 및 기능을 시험</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon의 내부 컴포넌트 및 기능을 시험하는 명령어들</translation>
     </message>
 </context>
 <context>
@@ -4135,7 +4137,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>데스크탑 숨김</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -4154,7 +4156,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>윈도우즈 플래폼용 전용 함수 설치 플러그인 </translation>
     </message>
 </context>
 <context>
@@ -4181,7 +4183,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>서비스 &quot;%1&quot;의 시작형식을 변경할 수 없음.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>

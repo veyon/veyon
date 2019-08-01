@@ -2716,10 +2716,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -4113,10 +4109,6 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

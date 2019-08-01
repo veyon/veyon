@@ -319,7 +319,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin che implementa funzioni specifiche per la piattaforma Android</translation>
     </message>
 </context>
 <context>
@@ -1079,15 +1079,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;utente &quot;%1&quot; presso l&apos; host &quot;%2&quot; ha tentato di accedere a questo computer ma non è stato possibile eseguire l&apos;autenticazione.</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>Errore di controllo dell&apos;accesso</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;utente &quot;%1&quot; presso l&apos;host &quot;%2&quot; ha tentato di accedere a questo computer ma è stato bloccato a causa delle impostazioni di controllo dell&apos;accesso.</translation>
     </message>
 </context>
 <context>
@@ -1460,15 +1460,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>Apri il file manager</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Avvia strumento di apprendimento</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>Riproduci video tutorial</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1476,11 +1476,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Volantino</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Testi da leggere</translation>
     </message>
 </context>
 <context>
@@ -2628,19 +2628,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informazioni</translation>
     </message>
     <message>
         <source>Installation ID</source>
-        <translation type="unfinished"/>
+        <translation>ID installazione</translation>
     </message>
     <message>
         <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
+        <translation>Componenti aggiuntivi disponibili per la licenza</translation>
     </message>
     <message>
         <source>Addon</source>
-        <translation type="unfinished"/>
+        <translation>Componente aggiuntivo</translation>
     </message>
 </context>
 <context>
@@ -2722,11 +2722,11 @@ USO
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Gestione della sessione</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Display gestione utenti</translation>
     </message>
 </context>
 <context>
@@ -2737,7 +2737,7 @@ USO
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin che implementa funzioni specifiche per la piattaforma Linux</translation>
     </message>
 </context>
 <context>
@@ -3792,11 +3792,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation type="unfinished"/>
+        <translation>Modalità multi sessione (per terminali e server desktop remoti)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>Mostra notifica quando viene bloccato un accesso non autorizzato</translation>
     </message>
 </context>
 <context>
@@ -3906,11 +3906,11 @@ Typically this is required to support terminal servers.</source>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Testare componenti e funzioni interni di Veyon</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Testare componenti e funzioni interne di Veyon</translation>
     </message>
 </context>
 <context>
@@ -4143,7 +4143,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin che implementa funzioni specifiche per la piattaforma Windows</translation>
     </message>
 </context>
 <context>

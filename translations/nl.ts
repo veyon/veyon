@@ -3387,11 +3387,11 @@ USAGE
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Schakel nu uit</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Installeer updates en schakel uit</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
@@ -3399,7 +3399,7 @@ USAGE
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Schakel uit na timeout</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>

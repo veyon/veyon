@@ -319,7 +319,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Zásuvný modul implementující specifické funkce pro platformu Android</translation>
     </message>
 </context>
 <context>
@@ -1479,11 +1479,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Předání</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Text ke čtení</translation>
     </message>
 </context>
 <context>
@@ -2746,7 +2746,7 @@ POUŽITÍ
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Zásuvný modul implementující specifické funkce pro linuxovou platformu</translation>
     </message>
 </context>
 <context>
@@ -4153,7 +4153,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Zásuvný modul implementující specifické funkce pro platformu Windows</translation>
     </message>
 </context>
 <context>

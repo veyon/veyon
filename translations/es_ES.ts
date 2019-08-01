@@ -321,7 +321,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -332,7 +332,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Complemento que implementa funciones específicas para la plataforma Android</translation>
     </message>
 </context>
 <context>
@@ -1481,11 +1481,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Folleto</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Textos para leer</translation>
     </message>
 </context>
 <context>
@@ -2752,7 +2752,7 @@ Eliminar %1 &lt;LICENSE ID&gt;
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Complemento que implementa funciones específicas para la plataforma Linux</translation>
     </message>
 </context>
 <context>
@@ -4159,7 +4159,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Complemento que implementa funciones específicas para la plataforma Windows</translation>
     </message>
 </context>
 <context>
