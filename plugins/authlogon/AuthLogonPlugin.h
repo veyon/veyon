@@ -78,6 +78,8 @@ public:
 
 	bool checkCredentials() const override;
 
+	void configureCredentials() override;
+
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
 
 	bool authenticate( QIODevice* socket ) const override;

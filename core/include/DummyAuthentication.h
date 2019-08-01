@@ -52,6 +52,10 @@ public:
 		return false;
 	}
 
+	void configureCredentials() override
+	{
+	}
+
 	// server side authentication
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override
 	{

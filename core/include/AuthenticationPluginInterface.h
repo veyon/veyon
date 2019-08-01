@@ -40,6 +40,7 @@ public:
 	virtual bool initializeCredentials() = 0;
 	virtual bool hasCredentials() const = 0;
 	virtual bool checkCredentials() const = 0;
+	virtual void configureCredentials() = 0;
 
 	// server side authentication
 	virtual VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const = 0;
