@@ -83,6 +83,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 		}
 	}
 
+	connect( ui->configureAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::configureAuthentication );
 	connect( ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication );
 	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
 	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
@@ -121,6 +122,14 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 
 void GeneralConfigurationPage::applyConfiguration()
 {
+}
+
+
+
+void GeneralConfigurationPage::configureAuthentication()
+{
+	VeyonCore::authenticationManager().reloadConfiguration();
+	VeyonCore::authenticationManager().configuredPlugin()->configureCredentials();
 }
 
 

@@ -40,6 +40,7 @@ public:
 	void applyConfiguration() override;
 
 private:
+	void configureAuthentication();
 	void testAuthentication();
 
 	void openLogFileDirectory();
