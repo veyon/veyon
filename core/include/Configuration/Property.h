@@ -84,6 +84,36 @@ public:
 
 	static Property* find( QObject* parent, const QString& key, const QString& parentKey );
 
+	const QString& key() const
+	{
+		return m_key;
+	}
+
+	const QString& parentKey() const
+	{
+		return m_parentKey;
+	}
+
+	QString absoluteKey() const
+	{
+		if( m_parentKey.isEmpty() )
+		{
+			return m_key;
+		}
+
+		return m_parentKey + QLatin1Char('/') + m_key;
+	}
+
+	const QVariant& defaultValue() const
+	{
+		return m_defaultValue;
+	}
+
+	Flags flags() const
+	{
+		return m_flags;
+	}
+
 private:
 	Object* m_object;
 	Proxy* m_proxy;
