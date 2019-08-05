@@ -27,35 +27,15 @@
 #include <QAbstractListModel>
 #include <QImage>
 
+#include "ComputerListModel.h"
 #include "ComputerControlInterface.h"
 
 class VeyonMaster;
 
-class ComputerControlListModel : public QAbstractListModel
+class ComputerControlListModel : public ComputerListModel
 {
 	Q_OBJECT
 public:
-	enum {
-		UidRole = Qt::UserRole,
-		StateRole,
-		ScreenRole,
-		ControlInterfaceRole
-	};
-
-	enum DisplayRoleContent {
-		DisplayUserAndComputerName,
-		DisplayUserName,
-		DisplayComputerName,
-	};
-	Q_ENUM(DisplayRoleContent)
-
-	enum SortOrder {
-		SortByComputerAndUserName,
-		SortByUserName,
-		SortByComputerName,
-	};
-	Q_ENUM(SortOrder)
-
 	explicit ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
 
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
@@ -70,11 +50,6 @@ public:
 	}
 
 	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
-
-	Qt::ItemFlags flags( const QModelIndex& index ) const override;
-
-	Qt::DropActions supportedDragActions() const override;
-	Qt::DropActions supportedDropActions() const override;
 
 	void reload();
 
@@ -107,9 +82,6 @@ private:
 	QString activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const;
 
 	VeyonMaster* m_master;
-
-	DisplayRoleContent m_displayRoleContent;
-	SortOrder m_sortOrder;
 
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;

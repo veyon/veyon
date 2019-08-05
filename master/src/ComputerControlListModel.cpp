@@ -37,10 +37,8 @@
 
 
 ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
-	QAbstractListModel( parent ),
+	ComputerListModel( parent ),
 	m_master( masterCore ),
-	m_displayRoleContent( static_cast<DisplayRoleContent>( VeyonCore::config().computerDisplayRoleContent() ) ),
-	m_sortOrder( static_cast<SortOrder>( VeyonCore::config().computerMonitoringSortOrder() ) ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
@@ -223,7 +221,7 @@ void ComputerControlListModel::update()
 
 QModelIndex ComputerControlListModel::interfaceIndex( ComputerControlInterface* controlInterface ) const
 {
-	return QAbstractListModel::index( m_computerControlInterfaces.indexOf( controlInterface->weakPointer() ), 0 );
+	return ComputerListModel::index( m_computerControlInterfaces.indexOf( controlInterface->weakPointer() ), 0 );
 }
 
 
@@ -378,9 +376,9 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 
 QString ComputerControlListModel::computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
-	if( m_displayRoleContent != DisplayComputerName &&
-			controlInterface->state() == ComputerControlInterface::State::Connected &&
-			controlInterface->userLoginName().isEmpty() == false )
+	if( displayRoleContent() != DisplayRoleContent::ComputerName &&
+		controlInterface->state() == ComputerControlInterface::State::Connected &&
+		controlInterface->userLoginName().isEmpty() == false )
 	{
 		auto user = controlInterface->userFullName();
 		if( user.isEmpty() )
@@ -388,7 +386,7 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 			user = controlInterface->userLoginName();
 		}
 
-		if( m_displayRoleContent == DisplayUserName )
+		if( displayRoleContent() == DisplayRoleContent::UserName )
 		{
 			return user;
 		}
@@ -398,7 +396,7 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		}
 	}
 
-	if( m_displayRoleContent != DisplayUserName )
+	if( displayRoleContent() != DisplayRoleContent::UserName )
 	{
 		return controlInterface->computer().name();
 	}
@@ -410,17 +408,17 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 
 QString ComputerControlListModel::computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
-	switch( m_sortOrder )
+	switch( sortOrder() )
 	{
-	case SortByComputerAndUserName:
+	case SortOrder::ComputerAndUserName:
 		return controlInterface->computer().location() + controlInterface->computer().name() +
 				controlInterface->computer().hostAddress() + controlInterface->userLoginName();
 
-	case SortByComputerName:
+	case SortOrder::ComputerName:
 		return controlInterface->computer().location() + controlInterface->computer().name() +
 				controlInterface->computer().hostAddress();
 
-	case SortByUserName:
+	case SortOrder::UserName:
 		if( controlInterface->userFullName().isEmpty() == false )
 		{
 			return controlInterface->userFullName();
@@ -500,32 +498,4 @@ QString ComputerControlListModel::activeFeatures( const ComputerControlInterface
 	featureNames.removeAll( {} );
 
 	return featureNames.join( QStringLiteral(", ") );
-}
-
-
-
-Qt::ItemFlags ComputerControlListModel::flags( const QModelIndex& index ) const
-{
-	auto defaultFlags = QAbstractListModel::flags( index );
-
-	if( index.isValid() )
-	{
-		 return Qt::ItemIsDragEnabled | defaultFlags;
-	}
-
-	return Qt::ItemIsDropEnabled | defaultFlags;
-}
-
-
-
-Qt::DropActions ComputerControlListModel::supportedDragActions() const
-{
-	return Qt::MoveAction;
-}
-
-
-
-Qt::DropActions ComputerControlListModel::supportedDropActions() const
-{
-	return Qt::MoveAction;
 }
