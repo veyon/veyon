@@ -55,6 +55,7 @@ template<typename T> struct CheapestType<T *>     { using Type = T *; };
 
 class VEYON_CORE_EXPORT Property : public QObject
 {
+	Q_OBJECT
 public:
 	enum class Flag
 	{
