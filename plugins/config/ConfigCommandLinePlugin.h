@@ -90,8 +90,14 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_upgrade( const QStringList& arguments );
 
 private:
-	void listConfiguration( const VeyonConfiguration::DataMap &map,
-							const QString &parentKey );
+	enum class ListMode {
+		Values,
+		Defaults,
+		Types
+	};
+
+	void listConfiguration( ListMode listMode ) const;
+
 	CommandLinePluginInterface::RunResult applyConfiguration();
 
 	static QString printableConfigurationValue( const QVariant& value );

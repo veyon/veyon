@@ -81,10 +81,18 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( con
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( const QStringList& arguments )
 {
-	Q_UNUSED(arguments);
+	auto listMode = ListMode::Values;
 
-	// clear global configuration
-	listConfiguration( VeyonCore::config().data(), {} );
+	if( arguments.value( 0 ) == QLatin1String("defaults") )
+	{
+		listMode = ListMode::Defaults;
+	}
+	else if( arguments.value( 0 ) == QLatin1String("types") )
+	{
+		listMode = ListMode::Types;
+	}
+
+	listConfiguration( listMode );
 
 	return NoResult;
 }
@@ -266,29 +274,35 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_upgrade( c
 
 
 
-void ConfigCommandLinePlugin::listConfiguration( const VeyonConfiguration::DataMap &map,
-												 const QString &parentKey )
+void ConfigCommandLinePlugin::listConfiguration( ListMode listMode ) const
 {
-	for( auto it = map.begin(); it != map.end(); ++it )
-	{
-		QString curParentKey = parentKey.isEmpty() ? it.key() : parentKey + QLatin1Char('/') + it.key();
+	QTextStream stdoutStream( stdout );
 
-		if( it.value().type() == QVariant::Map )
+	const auto properties = VeyonCore::config().findChildren<Configuration::Property *>();
+
+	for( auto property : properties )
+	{
+		if( property->flags().testFlag( Configuration::Property::Flag::Legacy ) )
 		{
-			listConfiguration( it.value().toMap(), curParentKey );
+			continue;
 		}
-		else
+
+		stdoutStream << property->absoluteKey() << "=";
+		switch( listMode )
 		{
-			QString value = printableConfigurationValue( it.value() );
-			if( value.isNull() )
-			{
-				qWarning() << "Key" << it.key() << "has unknown value type:" << it.value();
-			}
-			else
-			{
-				QTextStream( stdout ) << curParentKey << "=" << value << endl;
-			}
+		case ListMode::Values:
+			stdoutStream << printableConfigurationValue( property->variantValue() );
+			break;
+		case ListMode::Defaults:
+			stdoutStream << printableConfigurationValue( property->defaultValue() );
+			break;
+		case ListMode::Types:
+			stdoutStream << QStringLiteral("[%1]").arg( QString::fromLatin1(
+															property->defaultValue().typeName() ).
+														replace( QLatin1Char('Q'), QString() ).toLower() );
+			break;
 		}
+		stdoutStream << endl;
 	}
 }
 
@@ -299,7 +313,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 	ConfigurationManager configurationManager;
 
 	if( configurationManager.saveConfiguration() == false ||
-			configurationManager.applyConfiguration() == false )
+		configurationManager.applyConfiguration() == false )
 	{
 		return operationError( configurationManager.errorString() );
 	}
