@@ -312,9 +312,10 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& value )
 {
 	if( value.type() == QVariant::String ||
-			value.type() == QVariant::Uuid ||
-			value.type() == QVariant::UInt ||
-			value.type() == QVariant::Bool )
+		value.type() == QVariant::Uuid ||
+		value.type() == QVariant::UInt ||
+		value.type() == QVariant::Int ||
+		value.type() == QVariant::Bool )
 	{
 		return value.toString();
 	}
@@ -322,9 +323,17 @@ QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& va
 	{
 		return value.toStringList().join( QLatin1Char(';') );
 	}
-	else if( value.userType() == QMetaType::type( "QJsonArray" ) )
+	else if( value.userType() == QMetaType::QJsonArray )
 	{
 		return QString::fromUtf8( QJsonDocument( value.toJsonArray() ).toJson( QJsonDocument::Compact ) );
+	}
+	else if( value.userType() == QMetaType::QJsonObject )
+	{
+		return QString::fromUtf8( QJsonDocument( value.toJsonObject() ).toJson( QJsonDocument::Compact ) );
+	}
+	else if( QMetaType( value.userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+	{
+		return QString::number( value.toInt() );
 	}
 
 	return {};
