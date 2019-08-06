@@ -28,8 +28,8 @@
 namespace Configuration
 {
 
-Proxy::Proxy(Object *object, QObject *parent) :
-	QObject( parent ),
+Proxy::Proxy( Object* object ) :
+	QObject(),
 	m_object( object ),
 	m_instanceId()
 {
