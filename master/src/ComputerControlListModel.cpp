@@ -40,7 +40,7 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	QAbstractListModel( parent ),
 	m_master( masterCore ),
 	m_displayRoleContent( static_cast<DisplayRoleContent>( VeyonCore::config().computerDisplayRoleContent() ) ),
-	m_sortOrder( static_cast<SortOrder>( VeyonCore::config().computerDisplayRoleContent() ) ),
+	m_sortOrder( static_cast<SortOrder>( VeyonCore::config().computerMonitoringSortOrder() ) ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
