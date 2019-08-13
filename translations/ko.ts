@@ -2954,7 +2954,7 @@ USAGE
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;View 보기</translation>
+        <translation>&amp;보기</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
@@ -3465,7 +3465,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>원격화면보기</translation>
+        <translation>원격 화면 보기</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>

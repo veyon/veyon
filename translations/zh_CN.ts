@@ -319,7 +319,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>安卓</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>实现针对安卓平台特定功能的插件</translation>
     </message>
 </context>
 <context>
@@ -1480,11 +1480,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>讲义</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>要阅读的文本</translation>
     </message>
 </context>
 <context>
@@ -2751,7 +2751,7 @@ USAGE
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>实现针对Linux平台特定功能的插件</translation>
     </message>
 </context>
 <context>
@@ -4158,7 +4158,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>实现针对Windows平台特定功能的插件</translation>
     </message>
 </context>
 <context>

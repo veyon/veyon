@@ -317,7 +317,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>แอนดรอยด์</translation>
     </message>
     <message>
         <source>General</source>
@@ -1003,14 +1003,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC ในตัว (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC ในตัว (x11vnc)</translation>
     </message>
 </context>
 <context>
@@ -1488,14 +1488,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC ภายนอก</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าเซิฟเวอร์ VNC ภายนอก</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1590,7 +1590,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>ส่วนติดต่อผู้ใช้</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -2560,7 +2560,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>ฟิเจอร์</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2880,7 +2880,7 @@ USAGE
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation type="unfinished"/>
+        <translation>ฟีเจอร์ &quot;%1&quot; ยังถูกในระหว่างการใช้งานอยู่ กรุณาหยุดการใช้งานก่อนปิด %2</translation>
     </message>
     <message>
         <source>Reset configuration</source>
@@ -2940,7 +2940,7 @@ USAGE
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>สถานที่ &amp;&amp; คอมพิวเตอร์</translation>
     </message>
 </context>
 <context>
@@ -3003,11 +3003,11 @@ USAGE
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>การกระทำอย่างเช่นการสั่งบู๊ตเครื่องใหม่ หรือการสั่งปิดคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>ส่วนติดต่อผู้ใช้</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -3332,7 +3332,7 @@ USAGE
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกที่ปุ่มนี้เพื่อทำการสั่งปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่จำเป็นต้องเดินไปปิดคอมพิวเตอร์ด้วยตัวเองทีละเครื่อง</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -3352,7 +3352,7 @@ USAGE
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>คุณต้องการที่จะสั่งปิดเครื่องคอมพิวเตอร์ที่เลือกไว้หรือไม่?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3632,7 +3632,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>ใช้ฟังก์ชั่นนี้เพื่อเก็บภาพหน้าจอจากคอมพิวเตอร์ที่เลือกไว้</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
@@ -3718,7 +3718,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3726,7 +3726,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>พอร์ตของเซิฟเวอร์ VNC ภายใน</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3809,7 +3809,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>ตั้งค่าและควบคุม Veyon Service</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
@@ -3930,15 +3930,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"/>
+        <translation>ความแม่นยำต่ำ (โหมดเทอร์โบ)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าเซิฟเวอร์ UltraVNC ในตัว</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>เปิดใช้การสนับสนุนการแสดงหลายหน้าจอ</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>

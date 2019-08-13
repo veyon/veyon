@@ -319,7 +319,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Beépülő modul, amely az Android platformon különleges funkciókat valósít meg</translation>
     </message>
 </context>
 <context>
@@ -1479,11 +1479,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Kiosztás</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Olvasandó szövegek</translation>
     </message>
 </context>
 <context>
@@ -2750,7 +2750,7 @@ HASZNÁLAT
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Beépülő modul, amely a Linux platformon különleges funkciókat valósít meg</translation>
     </message>
 </context>
 <context>
@@ -4154,7 +4154,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Beépülő modul, amely a Windows platformon különleges funkciókat valósít meg</translation>
     </message>
 </context>
 <context>

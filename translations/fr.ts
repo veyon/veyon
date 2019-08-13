@@ -319,7 +319,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,7 +330,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin implémentant des fonctions spécifiques pour la plateforme Android</translation>
     </message>
 </context>
 <context>
@@ -1479,11 +1479,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>don</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Textes à lire</translation>
     </message>
 </context>
 <context>
@@ -2750,7 +2750,7 @@ USAGE
     </message>
     <message>
         <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin implémentant des fonctions spécifiques pour la plate-forme Linux</translation>
     </message>
 </context>
 <context>
@@ -4157,7 +4157,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin implémentant des fonctions spécifiques pour la plate-forme Windows</translation>
     </message>
 </context>
 <context>

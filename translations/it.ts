@@ -33,7 +33,7 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>La lingua corrente non è ancora stata tradotta completamente (dall&apos;inglese).
+        <translation>La lingua corrente e&apos; stata tradotta da Albano Battistella (dall&apos;inglese).
 
 Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche altra lingua o vuoi migliorare una traduzione esistente, contatta uno sviluppatore Veyon!</translation>
     </message>
