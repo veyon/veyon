@@ -43,8 +43,6 @@ public:
 
 	explicit ServerAuthenticationManager( QObject* parent );
 
-	VncServerProtocol::AuthPluginUids supportedAuthPluginUids() const;
-
 	void processAuthenticationMessage( VncServerClient* client,
 									   VariantArrayMessage& message );
 

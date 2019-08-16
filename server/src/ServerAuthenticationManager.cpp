@@ -24,18 +24,12 @@
 
 #include "AuthenticationManager.h"
 #include "ServerAuthenticationManager.h"
+#include "VeyonConfiguration.h"
 
 
 ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 	QObject( parent )
 {
-}
-
-
-
-VncServerProtocol::AuthPluginUids ServerAuthenticationManager::supportedAuthPluginUids() const
-{
-	return VncServerProtocol::AuthPluginUids::fromList( VeyonCore::authenticationManager().plugins().keys() );
 }
 
 
@@ -48,10 +42,9 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 			 << "host" << client->hostAddress()
 			 << "user" << client->username();
 
-	const auto plugins = VeyonCore::authenticationManager().plugins();
-	if( plugins.contains( client->authPluginUid() ) )
+	if( client->authPluginUid() == VeyonCore::config().authenticationPlugin()  )
 	{
-		client->setAuthState( plugins[client->authPluginUid()]->performAuthentication( client, message ) );
+		client->setAuthState( VeyonCore::authenticationManager().configuredPlugin()->performAuthentication( client, message ) );
 	}
 	else
 	{

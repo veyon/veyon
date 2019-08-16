@@ -25,6 +25,7 @@
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
 #include "VeyonServerProtocol.h"
+#include "VeyonConfiguration.h"
 
 
 VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,
@@ -41,7 +42,7 @@ VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,
 
 VeyonServerProtocol::AuthPluginUids VeyonServerProtocol::supportedAuthPluginUids() const
 {
-	return m_serverAuthenticationManager.supportedAuthPluginUids();
+	return { VeyonCore::config().authenticationPlugin() };
 }
 
 
