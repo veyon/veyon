@@ -75,10 +75,10 @@ void DocumentationFigureCreator::run()
 
 	hideComputers();
 
-/*	createFeatureFigures();
-	createContextMenuFigure();*/
+	createFeatureFigures();
+	createContextMenuFigure();
 	createLogonDialogFigure();
-/*	createLocationDialogFigure();
+	createLocationDialogFigure();
 	createScreenshotManagementPanelFigure();
 	createTextMessageDialogFigure();
 	createOpenWebsiteDialogFigure();
@@ -89,7 +89,7 @@ void DocumentationFigureCreator::run()
 	createRemoteAccessWindowFigure();
 	createPowerDownOptionsFigure();
 	createPowerDownTimeInputDialogFigure();
-	createFileTransferDialogFigure();*/
+	createFileTransferDialogFigure();
 }
 
 
