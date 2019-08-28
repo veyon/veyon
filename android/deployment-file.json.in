@@ -10,6 +10,7 @@
    "application-binary": "@EXECUTABLE_DESTINATION_PATH@",
    "stdcpp-path": "@ANDROID_STDCPP@",
    "sdkBuildToolsRevision": "@ANDROID_SDK_BUILD_TOOLS_REVISION@",
+    ##EXTRAPREFIXDIRS##
     ##EXTRALIBS##
     ##EXTRAPLUGINS##
    "android-package-source-directory": "@CMAKE_ANDROID_DIR@"
