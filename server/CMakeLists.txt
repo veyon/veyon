@@ -19,7 +19,7 @@ COTIRE_VEYON(veyon-server)
 
 IF(VEYON_BUILD_ANDROID)
 	SET(CMAKE_ANDROID_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-	androiddeployqt("veyon-server" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core")
+	androiddeployqt("veyon-server" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core;${ANDROID_INSTALL_DIR}")
 	SET_TARGET_PROPERTIES(create-apk-veyon-server PROPERTIES ANDROID_APK_DIR "${CMAKE_ANDROID_DIR}")
 
 	add_dependencies(create-apk-veyon-server prepare-apk)
