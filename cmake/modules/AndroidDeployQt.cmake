@@ -1,17 +1,9 @@
 find_package(Qt5Core REQUIRED)
 
-function(androiddeployqt QTANDROID_EXPORTED_TARGET ADDITIONAL_FIND_ROOT_PATH)
+function(androiddeployqt QTANDROID_EXPORTED_TARGET ANDROID_ADDITIONAL_FIND_ROOT_PATH)
     set(EXPORT_DIR "${CMAKE_CURRENT_BINARY_DIR}/${QTANDROID_EXPORTED_TARGET}_build_apk/")
     set(EXECUTABLE_DESTINATION_PATH "${EXPORT_DIR}/libs/${CMAKE_ANDROID_ARCH_ABI}/lib${QTANDROID_EXPORTED_TARGET}.so")
 
-    set(EXTRA_PREFIX_DIRS "")
-    foreach(prefix ${ADDITIONAL_FIND_ROOT_PATH})
-        if (EXTRA_PREFIX_DIRS)
-            set(EXTRA_PREFIX_DIRS "${EXTRA_PREFIX_DIRS}, \"${prefix}\"")
-        else()
-            set(EXTRA_PREFIX_DIRS "\"${prefix}\"")
-        endif()
-    endforeach()
     string(TOLOWER "${CMAKE_HOST_SYSTEM_NAME}" _LOWER_CMAKE_HOST_SYSTEM_NAME)
     configure_file("${CMAKE_SOURCE_DIR}/android/deployment-file.json.in" "${CMAKE_CURRENT_BINARY_DIR}/${QTANDROID_EXPORTED_TARGET}-deployment.json.in1")
     file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${QTANDROID_EXPORTED_TARGET}-deployment.json.in2"
