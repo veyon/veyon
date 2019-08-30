@@ -74,6 +74,21 @@
             <meta-data android:name="android.app.extract_android_style" android:value="default"/>
             <!-- extract android style -->
         </activity>
+        <service
+            android:name=".VeyonAccessibilityService"
+            android:label="Veyon Server"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/veyon_accessibility_service_config"/>
+        </service>
+
 <!--
         <receiver android:name="io.veyon.Veyon.Server.StartServiceAtBootReceiver" >
             <intent-filter>
