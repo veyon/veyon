@@ -27,7 +27,6 @@
 #include "Computer.h"
 #include "FeatureControl.h"
 #include "MonitoringMode.h"
-#include "UserSessionControl.h"
 #include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
 #include "VncConnection.h"
@@ -319,7 +318,7 @@ void ComputerControlInterface::updateUser()
 	{
 		if( userLoginName().isEmpty() )
 		{
-			VeyonCore::builtinFeatures().userSessionControl().getUserSessionInfo( { weakPointer() } );
+			VeyonCore::builtinFeatures().monitoringMode().queryLoggedOnUserInfo( { weakPointer() } );
 		}
 	}
 	else

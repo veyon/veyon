@@ -39,8 +39,6 @@ public:
 	explicit UserSessionControl( QObject* parent = nullptr );
 	~UserSessionControl() override = default;
 
-	bool getUserSessionInfo( const ComputerControlInterfaceList& computerControlInterfaces );
-
 	Plugin::Uid uid() const override
 	{
 		return QStringLiteral("80580500-2e59-4297-9e35-e53959b028cd");
@@ -48,7 +46,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber( 1, 2 );
 	}
 
 	QString name() const override
@@ -79,36 +77,14 @@ public:
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
-
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
 
 private:
-	enum Commands
-	{
-		GetInfo,
-		LogonUser,
-		LogoffUser
-	};
-
-	enum Arguments
-	{
-		UserLoginName,
-		UserFullName,
-	};
-
-	void queryUserInformation();
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 
-	const Feature m_userSessionInfoFeature;
 	const Feature m_userLogoffFeature;
 	const FeatureList m_features;
-
-	QReadWriteLock m_userDataLock;
-	QString m_userLoginName;
-	QString m_userFullName;
 
 };

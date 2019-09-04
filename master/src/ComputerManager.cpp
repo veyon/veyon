@@ -37,7 +37,6 @@
 #include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectTreeModel.h"
 #include "UserConfig.h"
-#include "UserSessionControl.h"
 
 
 ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
