@@ -23,26 +23,15 @@
  */
 
 #include <QMessageBox>
-#include <QThread>
-#include <QTimer>
-#include <QtConcurrent>
 
 #include "UserSessionControl.h"
-#include "FeatureWorkerManager.h"
-#include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
-#include "VeyonServerInterface.h"
 #include "PlatformUserFunctions.h"
 
 
 UserSessionControl::UserSessionControl( QObject* parent ) :
 	QObject( parent ),
-	m_userSessionInfoFeature( Feature( QStringLiteral( "UserSessionInfo" ),
-									   Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
-									   Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
-									   Feature::Uid(),
-									   tr( "User session control" ), {}, {} ) ),
 	m_userLogoffFeature( QStringLiteral( "UserLogoff" ),
 						 Feature::Action | Feature::Master | Feature::Service,
 						 Feature::Uid( "7311d43d-ab53-439e-a03a-8cb25f7ed526" ),
@@ -50,16 +39,8 @@ UserSessionControl::UserSessionControl( QObject* parent ) :
 						 tr( "Log off" ), {},
 						 tr( "Click this button to log off users from all computers." ),
 						 QStringLiteral( ":/core/system-suspend-hibernate.png" ) ),
-	m_features( { m_userSessionInfoFeature, m_userLogoffFeature } )
+	m_features( { m_userLogoffFeature } )
 {
-}
-
-
-
-bool UserSessionControl::getUserSessionInfo( const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	return sendFeatureMessage( FeatureMessage( m_userSessionInfoFeature.uid(), GetInfo ),
-							   computerControlInterfaces, false );
 }
 
 
@@ -85,71 +66,20 @@ bool UserSessionControl::startFeature( VeyonMasterInterface& master, const Featu
 
 
 
-bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-											   ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-
-	if( message.featureUid() == m_userSessionInfoFeature.uid() )
-	{
-		computerControlInterface->setUserLoginName( message.argument( UserLoginName ).toString() );
-		computerControlInterface->setUserFullName( message.argument( UserFullName ).toString() );
-
-		return true;
-	}
-
-	return false;
-}
-
-
-
 bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server,
 											   const MessageContext& messageContext,
 											   const FeatureMessage& message )
 {
-	if( m_userSessionInfoFeature.uid() == message.featureUid() )
-	{
-		FeatureMessage reply( message.featureUid(), message.command() );
+	Q_UNUSED(server)
+	Q_UNUSED(messageContext)
 
-		m_userDataLock.lockForRead();
-		if( m_userLoginName.isEmpty() )
-		{
-			queryUserInformation();
-			reply.addArgument( UserLoginName, QString() );
-			reply.addArgument( UserFullName, QString() );
-		}
-		else
-		{
-			reply.addArgument( UserLoginName, m_userLoginName );
-			reply.addArgument( UserFullName, m_userFullName );
-		}
-		m_userDataLock.unlock();
-
-		return server.sendFeatureMessageReply( messageContext, reply );
-	}
-	else if( m_userLogoffFeature.uid() == message.featureUid() )
+	if( m_userLogoffFeature.uid() == message.featureUid() )
 	{
 		VeyonCore::platform().userFunctions().logoff();
 		return true;
 	}
 
 	return false;
-}
-
-
-
-void UserSessionControl::queryUserInformation()
-{
-	// asynchronously query information about logged on user (which might block
-	// due to domain controller queries and timeouts etc.)
-	QtConcurrent::run( [=]() {
-		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
-		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
-		m_userDataLock.lockForWrite();
-		m_userLoginName = userLoginName;
-		m_userFullName = userFullName;
-		m_userDataLock.unlock();
-	} );
 }
 
 

@@ -45,7 +45,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber( 1, 2 );
 	}
 
 	QString name() const override
@@ -73,8 +73,31 @@ public:
 		return m_features;
 	}
 
+	bool queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces );
+
+	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+							   ComputerControlInterface::Pointer computerControlInterface ) override;
+
+	bool handleFeatureMessage( VeyonServerInterface& server,
+							   const MessageContext& messageContext,
+							   const FeatureMessage& message ) override;
+
+
 private:
+	void queryUserInformation();
+
 	const Feature m_monitoringModeFeature;
+	const Feature m_queryLoggedOnUserInfoFeature;
 	const FeatureList m_features;
+
+	enum Arguments
+	{
+		UserLoginName,
+		UserFullName,
+	};
+
+	QReadWriteLock m_userDataLock;
+	QString m_userLoginName;
+	QString m_userFullName;
 
 };
