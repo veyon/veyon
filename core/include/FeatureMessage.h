@@ -95,20 +95,23 @@ public:
 		return m_arguments;
 	}
 
-	FeatureMessage &addArgument( int index, const QVariant& value )
+	template<typename T = int>
+	FeatureMessage& addArgument( T index, const QVariant& value )
 	{
-		m_arguments[QString::number(index)] = value;
+		m_arguments[QString::number( static_cast<int>( index ) )] = value;
 		return *this;
 	}
 
-	QVariant argument( int index ) const
+	template<typename T = int>
+	QVariant argument( T index ) const
 	{
-		return m_arguments[QString::number(index)];
+		return m_arguments[QString::number( static_cast<int>( index ) )];
 	}
 
-	bool hasArgument( int index ) const
+	template<typename T = int>
+	bool hasArgument( T index ) const
 	{
-		return m_arguments.contains( QString::number( index ) );
+		return m_arguments.contains( QString::number( static_cast<int>( index ) ) );
 	}
 
 	bool send( QIODevice* ioDevice ) const;
