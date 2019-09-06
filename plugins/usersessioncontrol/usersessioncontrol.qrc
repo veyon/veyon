@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/usersessioncontrol">
+        <file>login-user.png</file>
+        <file>logout-user.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UserLoginDialog</class>
+ <widget class="QDialog" name="UserLoginDialog">
+  <property name="windowTitle">
+   <string>User login</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="usersessioncontrol.qrc">
+    <normaloff>:/usersessioncontrol/login-user.png</normaloff>:/usersessioncontrol/login-user.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Please enter a username and password for automatic login on all computers.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="horizontalSpacing">
+      <number>16</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="username">
+       <property name="minimumSize">
+        <size>
+         <width>350</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Password</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="password">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="usersessioncontrol.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>UserLoginDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>UserLoginDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>password</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>UserLoginDialog</receiver>
+   <slot>updateOkButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>107</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>username</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>UserLoginDialog</receiver>
+   <slot>updateOkButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>updateOkButton()</slot>
+ </slots>
+</ui>
