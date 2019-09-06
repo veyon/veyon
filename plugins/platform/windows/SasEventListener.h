@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <windows.h>
+
 #include <QThread>
 
 #include "VeyonCore.h"
@@ -33,9 +35,7 @@ class SasEventListener : public QThread
 public:
 	using SendSas = void (WINAPI *)(BOOL asUser);
 
-	enum {
-		WaitPeriod = 1000
-	};
+	static constexpr DWORD WaitPeriod = 1000;
 
 	SasEventListener();
 	~SasEventListener() override;
