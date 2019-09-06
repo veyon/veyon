@@ -191,9 +191,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 
 	bool result = false;
 
-	WindowsPlatformConfiguration config( &VeyonCore::config() );
-
-	if( config.disableSSPIBasedUserAuthentication() )
+	if( WindowsPlatformConfiguration( &VeyonCore::config() ).disableSSPIBasedUserAuthentication() )
 	{
 		HANDLE token = nullptr;
 		result = LogonUserW( userWide.data(), domainWide.data(), passwordWide.data(),
