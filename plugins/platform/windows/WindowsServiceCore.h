@@ -24,7 +24,10 @@
 
 #pragma once
 
+#include <windows.h>
+
 #include "PlatformServiceCore.h"
+#include "ServiceDataManager.h"
 
 class WindowsServiceCore : public PlatformServiceCore
 {
@@ -37,6 +40,9 @@ public:
 	bool runAsService();
 
 	void manageServerInstances();
+
+	static ServiceDataManager::Token serviceDataTokenFromEnvironment();
+	static const char* serviceDataTokenEnvironmentVariable();
 
 private:
 	void manageServersForAllSessions();
@@ -53,11 +59,13 @@ private:
 	std::function<void(void)> m_serviceMainEntry;
 
 	static WindowsServiceCore* s_instance;
-	SERVICE_STATUS m_status;
-	SERVICE_STATUS_HANDLE m_statusHandle;
-	HANDLE m_stopServiceEvent;
-	HANDLE m_serverShutdownEvent;
-	QAtomicInt m_sessionChangeEvent;
+	SERVICE_STATUS m_status{};
+	SERVICE_STATUS_HANDLE m_statusHandle{nullptr};
+	HANDLE m_stopServiceEvent{nullptr};
+	HANDLE m_serverShutdownEvent{nullptr};
+	QAtomicInt m_sessionChangeEvent{0};
+
+	ServiceDataManager m_dataManager;
 
 	static constexpr auto SessionPollingInterval = 100;
 	static constexpr auto MinimumServerUptimeTime = 10000;
