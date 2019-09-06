@@ -22,17 +22,32 @@
  *
  */
 
-#include <winsock2.h>
-#include <windows.h>
-#include <lm.h>
+#include <QBuffer>
 
+#include "DesktopInputController.h"
+#include "VariantStream.h"
 #include "VeyonConfiguration.h"
+#include "VeyonServerInterface.h"
 #include "WindowsCoreFunctions.h"
+#include "WindowsInputDeviceFunctions.h"
 #include "WindowsPlatformConfiguration.h"
+#include "WindowsServiceCore.h"
 #include "WindowsUserFunctions.h"
 #include "WtsSessionManager.h"
 
 #include "authSSP.h"
+
+#define XK_MISCELLANY
+
+#include "keysymdef.h"
+
+
+WindowsUserFunctions::WindowsUserFunctions()
+{
+	connect( VeyonCore::instance(), &VeyonCore::applicationLoaded,
+			 this, &WindowsUserFunctions::checkPendingLogonTasks );
+}
+
 
 
 QString WindowsUserFunctions::fullName( const QString& username )
@@ -152,10 +167,19 @@ QString WindowsUserFunctions::currentUser()
 
 bool WindowsUserFunctions::logon( const QString& username, const Password& password )
 {
-	Q_UNUSED(username);
-	Q_UNUSED(password);
+	if( isAnyUserLoggedOn() )
+	{
+		vInfo() << "Skipping user logon as a user is already logged on";
+		return false;
+	}
 
-	// TODO
+	if( writePersistentLogonCredentials( username, password ) )
+	{
+		logoff();
+		return true;
+	}
+
+	vCritical() << "failed";
 
 	return false;
 }
@@ -209,6 +233,127 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 	}
 
 	return result;
+}
+
+
+
+void WindowsUserFunctions::checkPendingLogonTasks()
+{
+	// running inside a Veyon Server component?
+	if( WindowsServiceCore::serviceDataTokenFromEnvironment().isEmpty() == false &&
+		isAnyUserLoggedOn() == false )
+	{
+		vDebug() << "Reading logon credentials";
+		QString username;
+		Password password;
+		if( readPersistentLogonCredentials( &username, &password ) )
+		{
+			clearPersistentLogonCredentials();
+
+			performFakeInputLogon( username, password );
+		}
+	}
+}
+
+
+
+bool WindowsUserFunctions::readPersistentLogonCredentials( QString* username, Password* password )
+{
+	if( username == nullptr || password == nullptr )
+	{
+		vCritical() << "Invalid input pointers";
+		return false;
+	}
+
+	auto logonData = ServiceDataManager::read( WindowsServiceCore::serviceDataTokenFromEnvironment() );
+	if( logonData.isEmpty() )
+	{
+		vCritical() << "Empty data";
+		return false;
+	}
+
+	QBuffer logonDataBuffer( &logonData );
+	if( logonDataBuffer.open( QBuffer::ReadOnly ) == false )
+	{
+		vCritical() << "Failed to open buffer";
+		return false;
+	}
+
+	VariantStream stream( &logonDataBuffer );
+	*username = stream.read().toString();
+	*password = VeyonCore::cryptoCore().decryptPassword( stream.read().toString() );
+
+	return username->isEmpty() == false && password->isEmpty() == false;
+}
+
+
+
+bool WindowsUserFunctions::writePersistentLogonCredentials( const QString& username, const Password& password )
+{
+	QBuffer logonDataBuffer;
+	if( logonDataBuffer.open( QBuffer::WriteOnly ) == false )
+	{
+		vCritical() << "Failed to open buffer";
+		return false;
+	}
+
+	VariantStream stream( &logonDataBuffer );
+	stream.write( username );
+	stream.write( VeyonCore::cryptoCore().encryptPassword( password ) );
+
+	if( ServiceDataManager::write( WindowsServiceCore::serviceDataTokenFromEnvironment(),
+								   logonDataBuffer.data() ) == false )
+	{
+		vCritical() << "Failed to write persistent service data";
+		return false;
+	}
+
+	return true;
+}
+
+
+
+bool WindowsUserFunctions::clearPersistentLogonCredentials()
+{
+	return ServiceDataManager::write( WindowsServiceCore::serviceDataTokenFromEnvironment(), {} );
+}
+
+
+
+bool WindowsUserFunctions::performFakeInputLogon( const QString& username, const Password& password )
+{
+	WindowsPlatformConfiguration config( &VeyonCore::config() );
+
+	DesktopInputController input( config.logonKeyPressInterval() );
+
+	const auto ctrlAltDel = []() {
+		auto sasEvent = OpenEvent( EVENT_MODIFY_STATE, false, L"Global\\VeyonServiceSasEvent" );
+		SetEvent( sasEvent );
+		CloseHandle( sasEvent );
+	};
+
+	const auto sendString = [&input]( const QString& string ) {
+		for( const auto& character : string )
+		{
+			input.pressAndReleaseKey( character );
+		}
+	};
+
+	ctrlAltDel();
+
+	QThread::msleep( static_cast<unsigned long>( config.logonInputStartDelay() ) );
+
+	input.pressAndReleaseKey( XK_Delete );
+
+	sendString( username );
+
+	input.pressAndReleaseKey( XK_Tab );
+
+	sendString( QString::fromUtf8( password.toByteArray() ) );
+
+	input.pressAndReleaseKey( XK_Return );
+
+	return true;
 }
 
 

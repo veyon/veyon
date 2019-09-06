@@ -28,8 +28,9 @@
 
 // clazy:exclude=copyable-polymorphic
 
-class WindowsUserFunctions : public PlatformUserFunctions
+class WindowsUserFunctions : public QObject, public PlatformUserFunctions
 {
+	Q_OBJECT
 public:
 	QString fullName( const QString& username ) override;
 
@@ -46,6 +47,14 @@ public:
 
 
 private:
+	void checkPendingLogonTasks();
+
+	static bool readPersistentLogonCredentials( QString* username, Password* password );
+	static bool writePersistentLogonCredentials( const QString& username, const Password& password );
+	static bool clearPersistentLogonCredentials();
+
+	static bool performFakeInputLogon( const QString& username, const Password& password );
+
 	static QString domainController();
 	static QStringList domainUserGroups();
 	static QStringList domainGroupsOfUser( const QString& username );
