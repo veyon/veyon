@@ -266,7 +266,7 @@ QString LinuxUserFunctions::currentUser()
 
 
 
-bool LinuxUserFunctions::logon( const QString& username, const QString& password )
+bool LinuxUserFunctions::logon( const QString& username, const Password& password )
 {
 	Q_UNUSED(username);
 	Q_UNUSED(password);

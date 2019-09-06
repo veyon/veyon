@@ -44,7 +44,7 @@ public:
 	virtual bool isAnyUserLoggedOn() = 0;
 	virtual QString currentUser() = 0;
 
-	virtual bool logon( const QString& username, const QString& password ) = 0;
+	virtual bool logon( const QString& username, const Password& password ) = 0;
 	virtual void logoff() = 0;
 
 	virtual bool authenticate( const QString& username, const Password& password ) = 0;
