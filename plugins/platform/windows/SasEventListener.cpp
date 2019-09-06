@@ -30,14 +30,14 @@ SasEventListener::SasEventListener()
 {
 	const wchar_t* sasDll = L"\\sas.dll";
 	wchar_t sasPath[MAX_PATH] = { 0 }; // Flawfinder: ignore
-	if( GetSystemDirectory( sasPath, MAX_PATH - wcslen(sasDll) - 1 ) == 0 ) // Flawfinder: ignore
+	if( GetSystemDirectory( sasPath, static_cast<UINT>( MAX_PATH - wcslen(sasDll) - 1 ) ) == 0 ) // Flawfinder: ignore
 	{
 		vCritical() << "could not determine system directory";
 	}
 	wcscat( sasPath, sasDll );
 
 	m_sasLibrary = LoadLibrary( sasPath ); // Flawfinder: ignore
-	m_sendSas = (SendSas)GetProcAddress( m_sasLibrary, "SendSAS" );
+	m_sendSas = reinterpret_cast<SendSas>( GetProcAddress( m_sasLibrary, "SendSAS" ) );
 
 	if( m_sendSas == nullptr )
 	{
@@ -73,7 +73,7 @@ void SasEventListener::run()
 
 	while( isInterruptionRequested() == false )
 	{
-		int event = WaitForMultipleObjects( 2, eventObjects, false, WaitPeriod );
+		const auto event = WaitForMultipleObjects( 2, eventObjects, FALSE, WaitPeriod );
 
 		switch( event )
 		{
