@@ -1,5 +1,5 @@
 /*
- * UserSessionControl.h - declaration of UserSessionControl class
+ * UserSessionControlPlugin.h - declaration of UserSessionControlPlugin class
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -28,16 +28,14 @@
 
 #include "SimpleFeatureProvider.h"
 
-class QThread;
-class QTimer;
-
-class VEYON_CORE_EXPORT UserSessionControl : public QObject, public SimpleFeatureProvider, public PluginInterface
+class UserSessionControlPlugin : public QObject, public SimpleFeatureProvider, public PluginInterface
 {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.UserSessionControl")
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	explicit UserSessionControl( QObject* parent = nullptr );
-	~UserSessionControl() override = default;
+	explicit UserSessionControlPlugin( QObject* parent = nullptr );
+	~UserSessionControlPlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
@@ -84,6 +82,12 @@ public:
 private:
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 
+	enum class Argument {
+		Username,
+		Password
+	};
+
+	const Feature m_userLoginFeature;
 	const Feature m_userLogoffFeature;
 	const FeatureList m_features;
 

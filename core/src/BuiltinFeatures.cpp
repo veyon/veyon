@@ -27,7 +27,6 @@
 #include "MonitoringMode.h"
 #include "PluginManager.h"
 #include "SystemTrayIcon.h"
-#include "UserSessionControl.h"
 #include "DesktopAccessDialog.h"
 
 
@@ -35,21 +34,18 @@ BuiltinFeatures::BuiltinFeatures() :
 	m_featureControl( new FeatureControl ),
 	m_systemTrayIcon( new SystemTrayIcon ),
 	m_monitoringMode( new MonitoringMode ),
-	m_desktopAccessDialog( new DesktopAccessDialog ),
-	m_userSessionControl( new UserSessionControl )
+	m_desktopAccessDialog( new DesktopAccessDialog )
 {
 	VeyonCore::pluginManager().registerExtraPluginInterface( m_featureControl );
 	VeyonCore::pluginManager().registerExtraPluginInterface( m_systemTrayIcon );
 	VeyonCore::pluginManager().registerExtraPluginInterface( m_monitoringMode );
 	VeyonCore::pluginManager().registerExtraPluginInterface( m_desktopAccessDialog );
-	VeyonCore::pluginManager().registerExtraPluginInterface( m_userSessionControl );
 }
 
 
 
 BuiltinFeatures::~BuiltinFeatures()
 {
-	delete m_userSessionControl;
 	delete m_systemTrayIcon;
 	delete m_monitoringMode;
 	delete m_desktopAccessDialog;

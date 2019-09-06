@@ -1,7 +1,7 @@
 /*
- * BuiltinFeatures.h - declaration of BuiltinFeatures class
+ * UserLoginDialog.h - dialog for querying logon credentials
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,44 +24,26 @@
 
 #pragma once
 
-#include "VeyonCore.h"
+#include "CryptoCore.h"
 
-class DesktopAccessDialog;
-class FeatureControl;
-class MonitoringMode;
-class SystemTrayIcon;
+#include <QDialog>
 
-// clazy:excludeall=rule-of-three
+namespace Ui { class UserLoginDialog; }
 
-class VEYON_CORE_EXPORT BuiltinFeatures
+class UserLoginDialog : public QDialog
 {
+	Q_OBJECT
 public:
-	BuiltinFeatures();
-	~BuiltinFeatures();
+	explicit UserLoginDialog( QWidget *parent );
+	~UserLoginDialog() override;
 
-	FeatureControl& featureControl()
-	{
-		return *m_featureControl;
-	}
+	QString username() const;
+	CryptoCore::PlaintextPassword password() const;
 
-	SystemTrayIcon& systemTrayIcon()
-	{
-		return *m_systemTrayIcon;
-	}
-
-	MonitoringMode& monitoringMode()
-	{
-		return *m_monitoringMode;
-	}
-
-	DesktopAccessDialog& desktopAccessDialog()
-	{
-		return *m_desktopAccessDialog;
-	}
+private slots:
+	void updateOkButton();
 
 private:
-	FeatureControl* m_featureControl;
-	SystemTrayIcon* m_systemTrayIcon;
-	MonitoringMode* m_monitoringMode;
-	DesktopAccessDialog* m_desktopAccessDialog;
-};
+	Ui::UserLoginDialog *ui;
+
+} ;
