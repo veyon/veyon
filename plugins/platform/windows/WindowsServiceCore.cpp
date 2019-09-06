@@ -50,14 +50,18 @@ public:
 		stop();
 	}
 
-	void start( DWORD wtsSessionId, bool multiSession )
+	void start( DWORD wtsSessionId, bool multiSession, const ServiceDataManager::Token& token )
 	{
 		stop();
 
 		const auto baseProcessId = WtsSessionManager::findWinlogonProcessId( wtsSessionId );
 		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfo::UserName );
 
-		QStringList extraEnv;
+		QStringList extraEnv{
+			QStringLiteral("%1=%2").arg( QLatin1String( WindowsServiceCore::serviceDataTokenEnvironmentVariable() ),
+										 QString::fromUtf8( token.toByteArray() ) )
+		};
+
 		if( multiSession )
 		{
 			extraEnv.append( QStringLiteral("%1=%2").
@@ -121,11 +125,7 @@ WindowsServiceCore* WindowsServiceCore::s_instance = nullptr;
 WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(void)> serviceMainEntry ) :
 	m_name( WindowsCoreFunctions::toWCharArray( name ) ),
 	m_serviceMainEntry( serviceMainEntry ),
-	m_status(),
-	m_statusHandle( 0 ),
-	m_stopServiceEvent( nullptr ),
-	m_serverShutdownEvent( nullptr ),
-	m_sessionChangeEvent( 0 )
+	m_dataManager()
 {
 	s_instance = this;
 
@@ -190,6 +190,20 @@ void WindowsServiceCore::manageServerInstances()
 
 
 
+ServiceDataManager::Token WindowsServiceCore::serviceDataTokenFromEnvironment()
+{
+	return qEnvironmentVariable( serviceDataTokenEnvironmentVariable() ).toUtf8();
+}
+
+
+
+const char* WindowsServiceCore::serviceDataTokenEnvironmentVariable()
+{
+	return "VEYON_SERVICE_DATA_TOKEN";
+}
+
+
+
 void WindowsServiceCore::manageServersForAllSessions()
 {
 	QMap<WtsSessionManager::SessionId, VeyonServerProcess*> serverProcesses;
@@ -223,7 +237,8 @@ void WindowsServiceCore::manageServersForAllSessions()
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
 				auto serverProcess = new VeyonServerProcess;
-				serverProcess->start( wtsSessionId, multiSession() && wtsSessionId != consoleSessionId );
+				serverProcess->start( wtsSessionId, multiSession() && wtsSessionId != consoleSessionId,
+									  m_dataManager.token() );
 
 				serverProcesses[wtsSessionId] = serverProcess;
 			}
@@ -270,7 +285,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 
 			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
-				veyonServerProcess.start( wtsSessionId, multiSession() );
+				veyonServerProcess.start( wtsSessionId, multiSession(), m_dataManager.token() );
 				lastServerStart.restart();
 			}
 
@@ -278,7 +293,7 @@ void WindowsServiceCore::manageServerForActiveConsoleSession()
 		}
 		else if( veyonServerProcess.isRunning() == false )
 		{
-			veyonServerProcess.start( wtsSessionId, multiSession() );
+			veyonServerProcess.start( wtsSessionId, multiSession(), m_dataManager.token() );
 			oldWtsSessionId = wtsSessionId;
 			lastServerStart.restart();
 		}
