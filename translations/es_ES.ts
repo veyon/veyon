@@ -321,7 +321,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -332,11 +332,11 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Complemento que implementa funciones específicas para la plataforma Android</translation>
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Claves de autenticación</translation>
@@ -344,6 +344,26 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Introduction</source>
         <translation>Introducción</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Realice los siguientes pasos para configurar la autenticación de archivos de claves:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Crea un par de llaves en la computadora maestra.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Establezca un grupo con acceso cuyos miembros deberían tener acceso a otras computadoras.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporte la clave pública e impórtela en todas las computadoras cliente con el mismo nombre.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Consulte el &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de Administrador de Veyon&lt;/a&gt; para obtener más información.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -364,6 +384,16 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Available authentication keys</source>
         <translation>Claves de autenticación disponibles</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Un par de claves de autenticación consta de dos claves criptográficas acopladas, una privada y otra pública.
+Una clave privada permite a los usuarios de la computadora maestra acceder a las computadoras cliente.
+Es importante que solo los usuarios autorizados tengan acceso de lectura al archivo de clave privada.
+La clave pública se usa en las computadoras cliente para autenticar la solicitud de conexión entrante.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -420,36 +450,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>¡Seleccione una clave para configurar el grupo que tenga acceso!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Realice los siguientes pasos para configurar la autenticación de archivos de claves:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Crea un par de llaves en la computadora maestra.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Establezca un grupo con acceso cuyos miembros deberían tener acceso a otras computadoras.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exporte la clave pública e impórtela en todas las computadoras cliente con el mismo nombre.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Consulte el &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de Administrador de Veyon&lt;/a&gt; para obtener más información.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Un par de claves de autenticación consta de dos claves criptográficas acopladas, una privada y otra pública.
-Una clave privada permite a los usuarios de la computadora maestra acceder a las computadoras cliente.
-Es importante que solo los usuarios autorizados tengan acceso de lectura al archivo de clave privada.
-La clave pública se usa en las computadoras cliente para autenticar la solicitud de conexión entrante.</translation>
     </message>
 </context>
 <context>
@@ -662,10 +662,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>ID PAR</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Soporte de línea de comando para administrar claves de autenticación</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>Comandos para administrar claves de autenticación</translation>
     </message>
@@ -680,6 +676,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Este comando extrae la parte de la clave pública de la clave privada &lt;KEY&gt; y la guarda como la clave pública correspondiente. Al configurar otra computadora maestra, por lo tanto, es suficiente transferir la clave privada solamente. La clave pública puede entonces ser extraída.</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Los archivos de clave de autenticación no están configurados correctamente en esta computadora. Cree nuevos archivos clave o cambie a un método de autenticación diferente utilizando el Configurador Veyon.</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Autenticación mediante archivo de clave</translation>
     </message>
 </context>
 <context>
@@ -699,6 +703,74 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Pair ID</source>
         <translation>ID del par</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Inicio de sesión de Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Introduzca su nombre de usuario y contraseña para acceder a los equipos.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Error de autenticación</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Error de inicio de sesión con el nombre de usuario y contraseña dados. Por favor, ¡inténtelo de nuevo!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>El nombre de usuario o la contraseña proporcionados son incorrectos. Ingrese credenciales válidas o cambie a un método de autenticación diferente utilizando Veyon Configurator.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Autenticación de inicio de sesión</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Inicio de sesión de Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation>Por favor, introduzca la contraseña de Veyon:</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Error de autenticación</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation>El inicio de sesión falló con la contraseña dada. ¡Inténtalo de nuevo!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>La contraseña proporcionada es incorrecta. Ingrese la contraseña correcta o cambie a un método de autenticación diferente utilizando Veyon Configurator.</translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation>Autenticación de contraseña simple</translation>
     </message>
 </context>
 <context>
@@ -1481,10 +1553,17 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Folleto</translation>
     </message>
     <message>
         <source>Texts to read</source>
+        <translation>Textos para leer</translation>
+    </message>
+</context>
+<context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1725,14 +1804,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Método:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Autenticación de inicio de sesión</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Autenticación mediante archivo de clave</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Comprobar</translation>
     </message>
@@ -1741,12 +1812,8 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>La autenticación está configurada correctamente en esta computadora.</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Las claves de autenticación no están configuradas correctamente en esta computadora.</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>Prueba de autenticacion</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2750,10 +2817,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin implementando funciones abstractas para la plataforma Linux</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2828,10 +2891,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
         <translation>Acerca de Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>Autenticación imposible</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>La configuración no se puede escribir</translation>
     </message>
@@ -2853,7 +2912,7 @@ Eliminar %1 &lt;LICENSE ID&gt;
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Configurador de Veyon</translation>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2890,10 +2949,6 @@ Eliminar %1 &lt;LICENSE ID&gt;
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>¡El backend de configuración local informó que la configuración no es escribible! Ejecute el Configurador de %1 con privilegios más altos.</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>No se encontraron archivos de clave de autenticación o los actuales no están actualizados. Por favor, cree nuevos archivos de claves usando el Configurador de %1. También puede configurar la autenticación de inicio de sesión utilizando el Configurador de %1. De lo contrario, no podrá acceder a los equipos que utilizan %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3317,33 +3372,6 @@ USO
     <message>
         <source>Name:</source>
         <translation>Nombre:</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>Nombre de usuario</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Contraseña</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Inicio de sesión de Veyon</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Error de autenticación</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Error de inicio de sesión con el nombre de usuario y contraseña dados. Por favor, ¡inténtelo de nuevo!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Introduzca su nombre de usuario y contraseña para acceder a los equipos.</translation>
     </message>
 </context>
 <context>
@@ -3998,10 +4026,33 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>Control de sesión de usuario</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4018,6 +4069,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>¿Realmente quieres desconectar a los usuarios seleccionados?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Control de sesión de usuario</translation>
     </message>
 </context>
 <context>
@@ -4090,12 +4145,16 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <source>WARNING</source>
         <translation>ADVERTENCIA</translation>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Prueba de autenticacion</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Servicio Veyon</translation>
+        <translation>Veyon Service</translation>
     </message>
 </context>
 <context>
@@ -4150,16 +4209,24 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <source>Use alternative user authentication mechanism</source>
         <translation>Utilizar mecanismo de autenticación de usuario alternativo</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin implementando funciones abstractas para la plataforma Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

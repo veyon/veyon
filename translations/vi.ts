@@ -334,7 +334,7 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Khóa xác thực</translation>
@@ -342,6 +342,26 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     <message>
         <source>Introduction</source>
         <translation>Giới thiệu</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Vui lòng thực hiện các bước sau để thiết lập xác thực tập tin khóa:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Tạo một cặp khóa trên máy tính chủ.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Thiết lập một nhóm truy cập mà các thành viên sẽ được phép truy cập vào các máy tính khác.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Xuất khóa công và nhập nó trên tất cả các máy tính khách với cùng tên.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Vui lòng tham khảo &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Hướng dẫn quản trị Veyon&lt;/a&gt;để biết thêm thông tin.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -362,6 +382,16 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     <message>
         <source>Available authentication keys</source>
         <translation>Khóa xác thực khả dụng</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Một cặp khóa xác thực bao gồm hai khóa mật mã, một khóa riêng và một khóa công.
+Một khóa riêng cho phép người dùng trên máy tính chủ truy cập vào các máy tính khách.
+Điều quan trọng đó là chỉ những người dùng được cấp quyền mới có truy cập đọc vào tập tin khóa riêng.
+Khóa công được sử dụng trên các máy tính khách để xác thực yêu cầu kết nối đến.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -418,36 +448,6 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Vui lòng chọn một khóa để đặt nhóm truy cập!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Vui lòng thực hiện các bước sau để thiết lập xác thực tập tin khóa:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Tạo một cặp khóa trên máy tính chủ.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Thiết lập một nhóm truy cập mà các thành viên sẽ được phép truy cập vào các máy tính khác.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Xuất khóa công và nhập nó trên tất cả các máy tính khách với cùng tên.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Vui lòng tham khảo &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Hướng dẫn quản trị Veyon&lt;/a&gt;để biết thêm thông tin.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Một cặp khóa xác thực bao gồm hai khóa mật mã, một khóa riêng và một khóa công.
-Một khóa riêng cho phép người dùng trên máy tính chủ truy cập vào các máy tính khách.
-Điều quan trọng đó là chỉ những người dùng được cấp quyền mới có truy cập đọc vào tập tin khóa riêng.
-Khóa công được sử dụng trên các máy tính khách để xác thực yêu cầu kết nối đến.</translation>
     </message>
 </context>
 <context>
@@ -660,10 +660,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation>ID CẶP</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Hỗ trợ dòng lệnh để quản lý các khóa xác thực</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>Lệnh để quản lý các khóa xác thực</translation>
     </message>
@@ -677,6 +673,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file authentication</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -697,6 +701,74 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Pair ID</source>
         <translation>ID cặp</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1487,6 +1559,13 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
 </context>
 <context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1723,14 +1802,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Kiểm tra</translation>
     </message>
@@ -1739,11 +1810,7 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Authentication test</source>
+        <source>Configure</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2719,10 +2786,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2797,10 +2860,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation type="unfinished"/>
     </message>
@@ -2858,10 +2917,6 @@ USAGE
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3280,33 +3335,6 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3959,9 +3987,32 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3978,6 +4029,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User session control</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4051,6 +4106,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4111,15 +4170,23 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -319,7 +319,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,11 +330,11 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Beépülő modul, amely az Android platformon különleges funkciókat valósít meg</translation>
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Hitelesítési kulcs</translation>
@@ -342,6 +342,26 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Introduction</source>
         <translation>Bevezetés</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Kérem, hajtsd végre a következő lépéseket a kulcsfájl-hitelesítés beállításához:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Hozz létre egy kulcspárt a mesterszámítógépen.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Állíts be egy hozzáférési csoportot, amelynek tagjai hozzáférhetnek a többi számítógéphez.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exportáld a nyilvános kulcsot , majd importáld ugyanazon a néven az összes számítógépre.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Kérem, további információkért olvassa le a &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon üzemeltetői leírást &lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -362,6 +382,16 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Available authentication keys</source>
         <translation>Elérhető hitelesítési kulcsok</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>A hitelesítési kulcspár kettő összetartozó kriptográfiai kulcsból áll, egy privát és egy publikus kulcsból.
+A privát kulcs használatával a mester számítógép felhasználói hozzáférhetnek a kliens számítógépekhez. 
+Fontos, hogy csak hitelesített felhasználóknak legyen olvasási hozzáférése a privát kulcsfájlhoz.
+A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcsolatkérések hitelesítéséhez.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -418,36 +448,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Kérem, válassz egy kulcsot, amelyhez hozzáférési csoportot állítasz be!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Kérem, hajtsd végre a következő lépéseket a kulcsfájl-hitelesítés beállításához:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Hozz létre egy kulcspárt a mesterszámítógépen.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Állíts be egy hozzáférési csoportot, amelynek tagjai hozzáférhetnek a többi számítógéphez.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exportáld a nyilvános kulcsot , majd importáld ugyanazon a néven az összes számítógépre.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Kérem, további információkért olvassa le a &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon üzemeltetői leírást &lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>A hitelesítési kulcspár kettő összetartozó kriptográfiai kulcsból áll, egy privát és egy publikus kulcsból.
-A privát kulcs használatával a mester számítógép felhasználói hozzáférhetnek a kliens számítógépekhez. 
-Fontos, hogy csak hitelesített felhasználóknak legyen olvasási hozzáférése a privát kulcsfájlhoz.
-A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcsolatkérések hitelesítéséhez.</translation>
     </message>
 </context>
 <context>
@@ -660,10 +660,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>PÁR ID</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Parancssori támogatás a hitelesítési kulcsok kezeléséhez</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>A hitelesítési kulcsokat kezelő parancsok</translation>
     </message>
@@ -678,6 +674,14 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ez a parancs kicsomagolja a nyilvános kulcsrészt &lt;KEY&gt; privát kulcsból és a megfelelő nyilvános kulcsként menti. Amikor egy másik mesterszámítógépet állítasz be, elegendő csak a privát kulcsot átmásolni. A publikus kulcs ebből már előállítható.</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>A hitelesítő kulcsfájlok nincsenek megfelelően beállítva ezen a számítógépen. Új kulcsfájlokat kell létrehozni vagy másik hitelesítési módszert kell választani a Veyon Konfigurátor használatával.</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Kulcsfájl hitelesítés</translation>
     </message>
 </context>
 <context>
@@ -697,6 +701,74 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Pair ID</source>
         <translation>Pár ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon bejelentkezés</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Kérem, a számítógépek eléréséhez add meg felhasználóneved és jelszavad.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Felhasználónév</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Jelszó</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Hitelesítési hiba</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>A megadott felhasználónévvel és jelszóval a bejelentkezés sikertelen. Próbáld újra!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>A megadott felhasználónév és jelszó helytelen. Érvényes hitelesítő adatokat kell megadni vagy másik hitelesítési módszert kell választani a Veyon Konfigurátor használatával.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Bejelentkezési hitelesítés</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon bejelentkezés</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation>A Veyon jelszó megadása:</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Hitelesítési hiba</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation>A megadott jelszóval a bejelentkezés sikertelen. Próbáld újra!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>A megadott jelszó helytelen. Meg kell adni a helyes jelszót vagy másik hitelesítési módszert kell választani a Veyon Konfigurátor használatával.</translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation>Egyszerű jelszavas hitelesítés</translation>
     </message>
 </context>
 <context>
@@ -1479,10 +1551,17 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Kiosztás</translation>
     </message>
     <message>
         <source>Texts to read</source>
+        <translation>Olvasandó szövegek</translation>
+    </message>
+</context>
+<context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1723,14 +1802,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Módszer:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Bejelentkezési hitelesítés</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Kulcsfájl hitelesítés</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Tesztelés</translation>
     </message>
@@ -1739,12 +1810,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>A hitelesítés megfelelően van beállítva ezen a számítógépen.</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>A hitelesítési kulcsok nem megfelelően vannak beállítva ezen a számtógépen.</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>Hitelesítési teszt</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2748,10 +2815,6 @@ HASZNÁLAT
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>A bővítmény absztrakt függvényekkel egészíti ki a Linux platformot</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2826,10 +2889,6 @@ HASZNÁLAT
         <translation>Qt névjegye</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>Hitelesítés nem lehetséges</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Konfiguráció nem írható</translation>
     </message>
@@ -2888,10 +2947,6 @@ HASZNÁLAT
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>A helyi konfiguráció háttere azt jelzi, hogy a konfiguráció nem írható. Futtasd %1 Konfigurátort magasabb jogosultságokkal.</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Nincsenek hitelesítési kulcsok vagy a jelenlegi kulcsok elavultak. Kérem, készíts új kulcsfájlokat %1 Konfigurátorral. Másik megoldás lehet bejelentkezési hitelesítés beállítása %1 Konfigurátorral. Különben nem tudod majd elérni a számítógépeket %1 használatával.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3315,33 +3370,6 @@ HASZNÁLATA
     <message>
         <source>Name:</source>
         <translation>Név:</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>Felhasználónév</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Jelszó</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon bejelentkezés</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Hitelesítési hiba</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>A megadott felhasználónévvel és jelszóval a bejelentkezés sikertelen. Próbáld újra!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Kérem, a számítógépek eléréséhez add meg felhasználóneved és jelszavad.</translation>
     </message>
 </context>
 <context>
@@ -3993,10 +4021,33 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>Felhasználói munkamenet-vezérlés</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Felhasználónév</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Jelszó</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4013,6 +4064,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Felhasználói munkamenet-vezérlés</translation>
     </message>
 </context>
 <context>
@@ -4085,6 +4140,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>FIGYELMEZTETÉS</translation>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Hitelesítési teszt</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4145,16 +4204,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>Alternatív felhasználói hitelesítési mechanizmus használata</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>A bővítmény absztrakt függvényekkel egészíti ki a Windows platformot</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -334,7 +334,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ключі розпізнавання</translation>
@@ -342,6 +342,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Introduction</source>
         <translation>Вступ</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Будь ласка, виконайте такі кроки, щоб налаштувати файл ключа розпізнавання:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Створіть пару ключів на основному комп&apos;ютері.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Встановіть групу доступу, учасникам якої буде дозволено доступу до інших комп&apos;ютерів.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Експортуйте відкритий ключ і імпортуйте його на всіх клієнтські комп&apos;ютери із однаковою назвою.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Будь ласка, ознайомтеся із &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Підручником із адміністрування Veyon&lt;/a&gt;, щоб дізнатися більше.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -362,6 +382,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation>Доступні ключі розпізнавання</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Пара ключів для розпізнавання складається із поєднаних між собою криптографічних ключів, закритого і відкритого. За допомогою закритого ключа користувачі на основному комп&apos;ютері можуть отримувати доступу до клієнтських комп&apos;ютерів. Важливо, щоб право на читання файла закритого ключа мали лише уповноважені на це користувачі. Відкритий ключ використовується на клієнтських комп&apos;ютерах для розпізнавання вхідних запитів щодо з&apos;єднання.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -418,33 +445,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Будь ласка, виберіть ключ, доступ до якого слід встановити для групи!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Будь ласка, виконайте такі кроки, щоб налаштувати файл ключа розпізнавання:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Створіть пару ключів на основному комп&apos;ютері.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Встановіть групу доступу, учасникам якої буде дозволено доступу до інших комп&apos;ютерів.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Експортуйте відкритий ключ і імпортуйте його на всіх клієнтські комп&apos;ютери із однаковою назвою.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Будь ласка, ознайомтеся із &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Підручником із адміністрування Veyon&lt;/a&gt;, щоб дізнатися більше.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Пара ключів для розпізнавання складається із поєднаних між собою криптографічних ключів, закритого і відкритого. За допомогою закритого ключа користувачі на основному комп&apos;ютері можуть отримувати доступу до клієнтських комп&apos;ютерів. Важливо, щоб право на читання файла закритого ключа мали лише уповноважені на це користувачі. Відкритий ключ використовується на клієнтських комп&apos;ютерах для розпізнавання вхідних запитів щодо з&apos;єднання.</translation>
     </message>
 </context>
 <context>
@@ -657,10 +657,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ІД ПАРИ</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Підтримка керування ключами розпізнавання у командному рядку</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>Команди для керування ключами розпізнавання</translation>
     </message>
@@ -675,6 +671,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ця команда видобуває частину, пов&apos;язану із відкритим ключем, з закритого ключа &lt;КЛЮЧ&gt; і зберігає її до відповідного файла відкритого ключа. Через це при налаштовуванні додаткового основного комп&apos;ютера достатньо перенести на нього лише закритий ключ. Після перенесення відкритий ключ можна просто видобути.</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>На цьому комп&apos;ютері не налаштовано належним чином ключі розпізнавання. Будь ласка, створіть нові ключі або перемкніть систему на інший спосіб розпізнавання за допомогою засобу налаштовування Veyon.</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Розпізнавання за файлами ключів</translation>
     </message>
 </context>
 <context>
@@ -694,6 +698,74 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>Ід. пари</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Вхід до Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Будь ласка, вкажіть ваше ім’я користувача та пароль, щоб отримати доступ до комп’ютерів.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Ім’я користувача</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Помилка розпізнавання</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Не вдалося увійти на основі вказаних імені користувача і пароля. Будь ласка, повторіть спробу!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Надане значення імені користувача або пароля є помилковим. Будь ласка, вкажіть коректні реєстраційні дані або перемкніть систему на інший спосіб розпізнавання за допомогою засобу налаштовування Veyon.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Розпізнавання під час входу</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Вхід до Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation>Будь ласка, введіть пароль Veyon:</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Помилка розпізнавання</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation>Не вдалося увійти до системи за вказаним паролем. Будь ласка, повторіть спробу!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Надане значення пароля є помилковим. Будь ласка, вкажіть чинний пароль або перемкніть систему на інший спосіб розпізнавання за допомогою засобу налаштовування Veyon.</translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation>Просте розпізнавання за паролем</translation>
     </message>
 </context>
 <context>
@@ -1484,6 +1556,13 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1720,14 +1799,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Метод:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Розпізнавання під час входу</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Розпізнавання за файлами ключів</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Перевірити</translation>
     </message>
@@ -1736,12 +1807,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>На цьому комп&apos;ютері належним чином налаштовано розпізнавання.</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>На цьому комп&apos;ютері ключі розпізнавання налаштовано не так, як слід.</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>Перевірка розпізнавання</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2747,10 +2814,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Linux</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>У додатку реалізовано специфічні можливості для платформи Linux</translation>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2825,10 +2888,6 @@ USAGE
         <translation>Про Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>Розпізнавання неможливе</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Не вдалося записати налаштування</translation>
     </message>
@@ -2887,10 +2946,6 @@ USAGE
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування %1 із ширшими правами доступу.</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Не знайдено файлів ключів розпізнавання або строк дії знайдених ключів вичерпано. Будь ласка, створіть нові файли ключів за допомогою засобу налаштовування %1. Крім того, ви можете налаштувати розпізнавання за іменем користувача під час входу до системи, скориставшись для цього засобом налаштовування %1. Якщо ви не створите ключів і не налаштуєте розпізнавання, ви не зможете отримувати доступ до комп’ютерів за допомогою %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3314,33 +3369,6 @@ USAGE
     <message>
         <source>Name:</source>
         <translation>Назва:</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>Ім’я користувача</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Пароль</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Вхід до Veyon</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Помилка розпізнавання</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Не вдалося увійти на основі вказаних імені користувача і пароля. Будь ласка, повторіть спробу!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Будь ласка, вкажіть ваше ім’я користувача та пароль, щоб отримати доступ до комп’ютерів.</translation>
     </message>
 </context>
 <context>
@@ -3995,10 +4023,33 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>Керування сеансами користувачів</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Ім’я користувача</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4015,6 +4066,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Керування сеансами користувачів</translation>
     </message>
 </context>
 <context>
@@ -4087,6 +4142,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>ПОПЕРЕДЖЕННЯ</translation>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Перевірка розпізнавання</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4147,16 +4206,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>Альтернативний механізм розпізнавання користувачів</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>У додатку реалізовано специфічні можливості для платформи Windows</translation>
     </message>
 </context>
 <context>

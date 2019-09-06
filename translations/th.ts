@@ -317,7 +317,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>แอนดรอยด์</translation>
     </message>
     <message>
         <source>General</source>
@@ -332,13 +332,33 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Introduction</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -360,6 +380,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
+กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
+ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
+ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -416,36 +446,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
-กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
-ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
-ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
     </message>
 </context>
 <context>
@@ -658,10 +658,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation type="unfinished"/>
     </message>
@@ -676,6 +672,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
     </message>
 </context>
 <context>
@@ -694,6 +698,74 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Pair ID</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>ชื่อผู้ใช้</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>รหัสผ่าน</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>การยืนยันตัวตนผิดพลาด</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>การยืนยันตัวตนผิดพลาด</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1003,14 +1075,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC ในตัว (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC ในตัว (x11vnc)</translation>
     </message>
 </context>
 <context>
@@ -1485,17 +1557,24 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>เซิฟเวอร์ VNC ภายนอก</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าเซิฟเวอร์ VNC ภายนอก</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1590,7 +1669,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>ส่วนติดต่อผู้ใช้</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -1721,14 +1800,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>วิธีการ:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>ทดสอบ</translation>
     </message>
@@ -1737,12 +1808,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>การยืนยันตัวตนถูกติดตั้งบนคอมพิวเตอร์ได้อย่างถูกต้องแล้ว</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนยังไม่ได้รับถูกติดตั้งบนคอมพิวเตอร์อย่างถูกต้อง</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>การทดสอบการยืนยันตัวตน</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2560,7 +2627,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>ฟิเจอร์</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2717,10 +2784,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2795,10 +2858,6 @@ USAGE
         <translation>เกี่ยวกับ Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation type="unfinished"/>
     </message>
@@ -2859,10 +2918,6 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Access denied</source>
         <translation>การเข้าถึงถูกปฏิเสธ</translation>
     </message>
@@ -2880,7 +2935,7 @@ USAGE
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation type="unfinished"/>
+        <translation>ฟีเจอร์ &quot;%1&quot; ยังถูกในระหว่างการใช้งานอยู่ กรุณาหยุดการใช้งานก่อนปิด %2</translation>
     </message>
     <message>
         <source>Reset configuration</source>
@@ -2940,7 +2995,7 @@ USAGE
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>สถานที่ &amp;&amp; คอมพิวเตอร์</translation>
     </message>
 </context>
 <context>
@@ -3003,11 +3058,11 @@ USAGE
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>การกระทำอย่างเช่นการสั่งบู๊ตเครื่องใหม่ หรือการสั่งปิดคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>ส่วนติดต่อผู้ใช้</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -3282,33 +3337,6 @@ USAGE
     </message>
 </context>
 <context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>ชื่อผู้ใช้</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>รหัสผ่าน</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>การยืนยันตัวตนผิดพลาด</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3332,7 +3360,7 @@ USAGE
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกที่ปุ่มนี้เพื่อทำการสั่งปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่จำเป็นต้องเดินไปปิดคอมพิวเตอร์ด้วยตัวเองทีละเครื่อง</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -3352,7 +3380,7 @@ USAGE
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>คุณต้องการที่จะสั่งปิดเครื่องคอมพิวเตอร์ที่เลือกไว้หรือไม่?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3632,7 +3660,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>ใช้ฟังก์ชั่นนี้เพื่อเก็บภาพหน้าจอจากคอมพิวเตอร์ที่เลือกไว้</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
@@ -3718,7 +3746,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3726,7 +3754,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>พอร์ตของเซิฟเวอร์ VNC ภายใน</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3809,7 +3837,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>ตั้งค่าและควบคุม Veyon Service</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
@@ -3930,15 +3958,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"/>
+        <translation>ความแม่นยำต่ำ (โหมดเทอร์โบ)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>การตั้งค่าเซิฟเวอร์ UltraVNC ในตัว</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>เปิดใช้การสนับสนุนการแสดงหลายหน้าจอ</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
@@ -3957,9 +3985,32 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>ชื่อผู้ใช้</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>รหัสผ่าน</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3977,6 +4028,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4049,6 +4104,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>การทดสอบการยืนยันตัวตน</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4109,15 +4168,23 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
 </context>

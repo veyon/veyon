@@ -334,7 +334,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ključi preverjanja pristnosti </translation>
@@ -344,8 +344,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Uvod</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Če želite nastaviti overjanje datotek ključa, naredite naslednje:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Ustvarite par ključev na glavnem računalniku.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Nastavite skupino za dostop, katere člani bi morali imeti dostop do drugih računalnikov.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Izvozite javni ključ in ga uvozite v vse odjemalske računalnike z istim imenom.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Prosimo, obiščite &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon skrbniški priročnik&lt;/a&gt; za več informacij.</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
-        <translation>Imeniki ključne datoteke</translation>
+        <translation>Imeniki datoteke ključa </translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -362,6 +382,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation>Razpoložljivi ključi za preverjanje pristnosti</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Par ključev za preverjanje pristnosti je sestavljen iz dveh povezanih kriptografskih ključev, zasebnega in javnega ključa.
+Zasebni ključ omogoča uporabnikom na glavnem računalniku dostop do odjemalskih računalnikov.
+Pomembno je, da imajo samo pooblaščeni uporabniki dostop do datoteke zasebnega ključa.
+Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti dohodne povezave.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -418,36 +448,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Izberite ključ, za katerega želite nastaviti skupino za dostop!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Če želite nastaviti overjanje datotek ključa, naredite naslednje:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Ustvarite par ključev na glavnem računalniku.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Nastavite skupino za dostop, katere člani bi morali imeti dostop do drugih računalnikov.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Izvozite javni ključ in ga uvozite v vse odjemalske računalnike z istim imenom.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Prosimo, obiščite &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon skrbniški priročnik&lt;/a&gt; za več informacij.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Par ključev za preverjanje pristnosti je sestavljen iz dveh povezanih kriptografskih ključev, zasebnega in javnega ključa.
-Zasebni ključ omogoča uporabnikom na glavnem računalniku dostop do odjemalskih računalnikov.
-Pomembno je, da imajo samo pooblaščeni uporabniki dostop do datoteke zasebnega ključa.
-Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti dohodne povezave.</translation>
     </message>
 </context>
 <context>
@@ -625,7 +625,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Ta ukaz prilagaja dovoljenja za dostop do datotek na &lt;KLJUČ&gt; tako da ima samo skupina uporabnikov &lt;SKUPINA ZA DOSTOP&gt; bralni dostop do njega.</translation>
+        <translation>Ta ukaz prilagodi dovoljenja za dostop do datotek &lt;KEY&gt; tako, da ima dostop samo do skupine uporabnikov &lt;ACCESS GROUP&gt;bralni dostop do njega.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -660,10 +660,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>PAR ID</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Podpora za ukazno vrstico za upravljanje ključev za preverjanje pristnosti</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>Ukazi za upravljanje ključev za preverjanje pristnosti</translation>
     </message>
@@ -678,6 +674,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ta ukaz izdela del javnega ključa iz zasebnega ključa &lt;KEY&gt; in ga shrani kot ustrezen javni ključ. Pri nastavljanju drugega glavnega računalnika je torej dovolj, da prenesete samo zasebni ključ. Nato se lahko izvleče javni ključ.</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Preverjanje pristnosti z datotečnim ključem</translation>
     </message>
 </context>
 <context>
@@ -697,6 +701,74 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Pair ID</source>
         <translation>Par ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon prijava</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Vnesite svoje uporabniško ime in geslo za dostop do računalnikov.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uporabniško ime</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Geslo</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Napaka preverjanja pristnosti</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Prijava z neodobrenim uporabniškim imenom in geslom ni uspela. Prosim, poskusite ponovno!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Preverjanje pristnosti prijave</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon prijava</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Napaka preverjanja pristnosti</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1487,6 +1559,13 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
 </context>
 <context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1723,14 +1802,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Metoda:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Preverjanje pristnosti prijave</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Preverjanje pristnosti z datotečnim ključem</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Preizkus</translation>
     </message>
@@ -1739,12 +1810,8 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Preverjanje pristnosti je pravilno nastavljeno v tem računalniku.</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Ključi za preverjanje pristnosti v tem računalniku niso pravilno nastavljeni.</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>Preverjanje pristnosti</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1875,7 +1942,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Predmetna drevesa</translation>
+        <translation>Objektna drevesa</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -2748,10 +2815,6 @@ UPORABA
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Vtičnik izvajanja abstraktnih funkcij za platformo Linux</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2768,7 +2831,7 @@ UPORABA
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>Nastavitev</translation>
+        <translation>Nastavitve</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
@@ -2824,10 +2887,6 @@ UPORABA
     <message>
         <source>About Qt</source>
         <translation>Vizitka Qt</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Preverjanje pristnosti ni mogoče</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -2888,10 +2947,6 @@ UPORABA
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Lokalno konfiguracijsko ozadje je sporočilo, da konfiguracije ni mogoče zapisati! Konfiguratorja %1 zaženite z višjimi pravicami.</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Datoteke ključa za preverjanje pristnosti niso bile najdene, ali so vaše trenutne zastarele. Ustvarite nove datoteke ključa z uporabo konfiguratorja %1. Druga možnost je nastaviti preverjanje pristnosti pri prijavi z uporabo %1 konfiguratorja. V nasprotnem primeru ne boste mogli dostopati do računalnikov z uporabo %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3315,33 +3370,6 @@ UPORABA
     <message>
         <source>Name:</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>Uporabniško ime</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Geslo</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon prijava</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Napaka preverjanja pristnosti</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Prijava z neodobrenim uporabniškim imenom in geslom ni uspela. Prosim, poskusite ponovno!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Vnesite svoje uporabniško ime in geslo za dostop do računalnikov.</translation>
     </message>
 </context>
 <context>
@@ -3994,10 +4022,33 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>Nadzor seje uporabnika</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uporabniško ime</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Geslo</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4014,6 +4065,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Nadzor seje uporabnika</translation>
     </message>
 </context>
 <context>
@@ -4086,6 +4141,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Preverjanje pristnosti</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4146,16 +4205,24 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>Use alternative user authentication mechanism</source>
         <translation>Uporabite alternativni mehanizem za preverjanje pristnosti uporabnika</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Vtičnik izvajanja abstraktnih funkcij za platformo Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

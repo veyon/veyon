@@ -334,13 +334,33 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Introduction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -361,6 +381,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -417,33 +444,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1556,6 +1556,13 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1797,6 +1804,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2770,10 +2781,6 @@ USAGE
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3977,9 +3984,32 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
+        <source>User login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3996,6 +4026,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User session control</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4133,15 +4167,23 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -319,7 +319,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>安卓</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,11 +330,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>实现针对安卓平台特定功能的插件</translation>
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>验证密钥</translation>
@@ -342,6 +342,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Introduction</source>
         <translation>介绍</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>请按以下步骤设置密钥文件验证：</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1）在主计算机上创建密钥对。</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2）设置一个访问组，其成员应该被允许访问其他计算机。</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3）将公钥其导入到具有相同名称的所有客户端计算机上。</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>请访问链接 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理员手册&lt;/a&gt; 以获得更多信息。</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -362,6 +382,17 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation>可用的验证密钥</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation> 密钥包括两部分，私钥和公钥。
+私钥允许主机上的用户访问客户机。
+重要：只有经过验证的用户才可以读取私钥文件。
+公钥存放于客户端电脑，用以验证前来访问的请求。
+</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -418,37 +449,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>请选择一个用于访问组的的密钥！</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>请按以下步骤设置密钥文件验证：</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1）在主计算机上创建密钥对。</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2）设置一个访问组，其成员应该被允许访问其他计算机。</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3）将公钥其导入到具有相同名称的所有客户端计算机上。</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>请访问链接 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理员手册&lt;/a&gt; 以获得更多信息。</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation> 密钥包括两部分，私钥和公钥。
-私钥允许主机上的用户访问客户机。
-重要：只有经过验证的用户才可以读取私钥文件。
-公钥存放于客户端电脑，用以验证前来访问的请求。
-</translation>
     </message>
 </context>
 <context>
@@ -661,10 +661,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>PAIR ID</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>用于管理验证密钥的命令行支持</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>管理身份验证密钥的命令</translation>
     </message>
@@ -679,6 +675,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>此命令从私钥&lt;KEY&gt;中抽取公钥部分并将其保存为相应的公钥。因此当设置另一台主计算机时，只传输私钥就可以了。公钥可以被抽取出来。</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>此计算机上的验证密钥文件没有被正确配置。请创建新的密钥文件或使用Veyon配置器切换不同的验证方法。</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>密钥验证</translation>
     </message>
 </context>
 <context>
@@ -698,6 +702,74 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>配对 ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 登录</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>请输入您的用户名和密码才能访问计算机。</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>用户名</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>验证错误</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>使用给定的用户名和密码登录失败。 请再试一次！</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>提供的用户名或密码错误。请输入正确的密码或使用Veyon配置器切换不同的验证方法。</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>登录验证</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 登录</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation>请输入Veyon密码：</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>验证错误</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation>使用提供的密码登录失败。请重试！</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>提供的密码是错误的。请输入正确的密码或使用Veyon配置器切换不同的验证方法。</translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation>简单密码验证</translation>
     </message>
 </context>
 <context>
@@ -1480,10 +1552,17 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>讲义</translation>
     </message>
     <message>
         <source>Texts to read</source>
+        <translation>要阅读的文本</translation>
+    </message>
+</context>
+<context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1724,14 +1803,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>方法：</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>登录验证</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>密钥验证</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>测试</translation>
     </message>
@@ -1740,12 +1811,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>身份验证已在此计算机上正确配置。</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>验证密钥在此计算机上没有正确配置。</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>验证测试</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2749,10 +2816,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>通过插件实现 Linux 平台的抽象函数</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2827,10 +2890,6 @@ USAGE
         <translation>关于 Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>无法验证</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>配置文件不可写</translation>
     </message>
@@ -2889,10 +2948,6 @@ USAGE
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>本地配置后端报告配置不可写入！ 请以更高的权限来运行 %1 配置程序。</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>没有找到密钥验证文件或者您当前的文件已过期。 请使用 %1 配置程序创建新的密钥文件。 或者使用 %1 配置器设置登录验证。 否则，您将无法使用 %1 访问计算机。</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3316,33 +3371,6 @@ USAGE
     <message>
         <source>Name:</source>
         <translation>名称：</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>用户名</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密码</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon 登录</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>验证错误</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>使用给定的用户名和密码登录失败。 请再试一次！</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>请输入您的用户名和密码才能访问计算机。</translation>
     </message>
 </context>
 <context>
@@ -3997,10 +4025,33 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>用户会话控制</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>用户名</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4017,6 +4068,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>您确定要注销选定的用户吗？</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>用户会话控制</translation>
     </message>
 </context>
 <context>
@@ -4089,6 +4144,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>警告</translation>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>验证测试</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4149,16 +4208,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>使用其他用户验证机制</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>插件实现 Windows 平台的抽象函数</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

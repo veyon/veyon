@@ -217,11 +217,11 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Ontzeg toegang</translation>
+        <translation>Weiger toegang</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Vraag ingelogde gebruiker voor toestemming</translation>
+        <translation>Vraag ingelogde gebruiker om toestemming</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -334,7 +334,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Authenticatie sleutels</translation>
@@ -342,6 +342,26 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source>Introduction</source>
         <translation>Inleiding</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Gelieve volgende stappen te volgen om sleutel authenticatie in te stellen:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Maak een key pair op de master computer.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporteer de publieke key en importeer deze op alle client computers met dezelfde naam.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Key file directories</source>
@@ -361,6 +381,13 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Available authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -419,33 +446,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>Please select a key which to set the access group for!</source>
         <translation>Gelieve de sleutel aan te duiden waarvoor u de toegangsgroep wil instellen!</translation>
     </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Gelieve volgende stappen te volgen om sleutel authenticatie in te stellen:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Maak een key pair op de master computer.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exporteer de publieke key en importeer deze op alle client computers met dezelfde naam.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
@@ -471,7 +471,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Maak een nieuw key pair voor &quot;%1&quot;</translation>
+        <translation>Maak een nieuw sleutelpaar voor &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -479,11 +479,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>Het nieuwe key pair is opgeslagen op &quot;%1&quot; en &quot;%2&quot;</translation>
+        <translation>Het nieuwe sleutelpaar is opgeslagen op &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Kan key bestand &quot;%1&quot; niet verwijderen!</translation>
+        <translation>Kan sleutelbestand &quot;%1&quot; niet verwijderen!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -657,10 +657,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>PAIR ID</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation type="unfinished"/>
     </message>
@@ -675,6 +671,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Sleutel bestand authenticatie</translation>
     </message>
 </context>
 <context>
@@ -694,6 +698,74 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>Paar ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon inloggen</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Geef uw gebruikersnaam en paswoord in om toegang tot de computers te krijgen.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Gebruikersnaam</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Wachtwoord</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authenticatie fout</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Inloggen mislukt met de opgegeven gebruikersnaam en wachtwoord. Probeer het opnieuw!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Aanmeldingsverificatie</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon inloggen</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authenticatie fout</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1484,6 +1556,13 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1720,14 +1799,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Methode:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Aanmeldingsverificatie</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Sleutel bestand authenticatie</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -1736,11 +1807,7 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Authentication test</source>
+        <source>Configure</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2202,8 +2269,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation>TLS certificaatverificatie
-</translation>
+        <translation>TLS certificaatverificatie</translation>
     </message>
     <message>
         <source>System defaults</source>
@@ -2724,10 +2790,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin uitvoering van abstracte functies voor Linux</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2802,10 +2864,6 @@ USAGE
         <translation>Over Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>Authenticatie onmogelijk</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Configuratie niet schrijfbaar</translation>
     </message>
@@ -2864,10 +2922,6 @@ USAGE
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>De lokale backend configuratie rapporteert dat de configuratie niet-schrijfbaar is. Start de %1 configurator met admin of hogere previleges.</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Er werden geen verificatiesleutels gevonden of de huidige zijn verlopen. Maak nieuwe sleutelbestanden aan, of als alternatief stel logon verificatie in, met de %1 configurator. U krijgt geen toegang tot computers, gebruikmakend van %1, indien u niet een van beide gebruikt.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3289,33 +3343,6 @@ USAGE
     </message>
 </context>
 <context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>Gebruikersnaam</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Wachtwoord</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon inloggen</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Authenticatie fout</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Inloggen mislukt met de opgegeven gebruikersnaam en wachtwoord. Probeer het opnieuw!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Geef uw gebruikersnaam en paswoord in om toegang tot de computers te krijgen.</translation>
-    </message>
-</context>
-<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3387,11 +3414,11 @@ USAGE
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Schakel nu uit</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Installeer updates en schakel uit</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
@@ -3399,7 +3426,7 @@ USAGE
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Schakel uit na timeout</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3770,7 +3797,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>Toon melding op externe verbinding</translation>
+        <translation>Toon melding bij externe verbinding</translation>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
@@ -3964,10 +3991,33 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>Gebruikers sessie controle</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Gebruikersnaam</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Wachtwoord</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -3984,6 +4034,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Gebruikers sessie controle</translation>
     </message>
 </context>
 <context>
@@ -4056,6 +4110,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4116,16 +4174,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Uitvoering plugin abstracte functies voor Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

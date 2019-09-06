@@ -319,7 +319,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,11 +330,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式為 Android 平臺實現特定功能</translation>
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>身份驗證金鑰</translation>
@@ -342,6 +342,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Introduction</source>
         <translation>介紹</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>請執行以下步驟以設定金鑰檔身份驗證:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) 在主電腦上建立金鑰對。</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) 設定一個存取群組，應該允許其成員存取其它電腦。</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) 匯出公開金鑰並將其匯入到具有相同名稱的所有用戶端電腦上。</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>有關詳細資訊，請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -362,6 +382,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation>可用驗證金鑰</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>身份驗證金鑰配對由兩個耦合的加密金鑰，一個私有金鑰和一個公開金鑰組成。
+私密金鑰允許主機電腦上的使用者存取用戶端電腦。
+重要的是，只有授權使用者才能對私密金鑰檔進行讀取存取。
+公開金鑰用於用戶端電腦以驗證傳入連線請求。</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -389,7 +419,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>驗證金鑰名稱</translation>
+        <translation>身份驗證金鑰名稱</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -401,7 +431,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>請選擇要刪除的金鑰!</translation>
+        <translation>請選取要刪除的金鑰!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -418,36 +448,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>請選擇要為其設定存取群組的金鑰!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>請執行以下步驟以設定金鑰檔身份驗證:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) 在主電腦上建立金鑰對。</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) 設定一個存取群組，應該允許其成員存取其它電腦。</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) 匯出公開金鑰並將其匯入到具有相同名稱的所有用戶端電腦上。</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>有關詳細資訊，請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;。</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>身份驗證金鑰配對由兩個耦合的加密金鑰，一個私有金鑰和一個公開金鑰組成。
-私密金鑰允許主機電腦上的使用者存取用戶端電腦。
-重要的是，只有授權使用者才能對私密金鑰檔進行讀取存取。
-公開金鑰用於用戶端電腦以驗證傳入連線請求。</translation>
     </message>
 </context>
 <context>
@@ -502,7 +502,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>無法寫入輸出檔案。</translation>
+        <translation>寫入輸出檔案失敗。</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -660,10 +660,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>配對 ID</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>管理驗證金鑰的命令列支援</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>管理驗證金鑰的命令</translation>
     </message>
@@ -678,6 +674,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>這個命令從私密金鑰 &lt;KEY&gt; 中提取公開金鑰部分，並將其儲存為相應的公開金鑰。 因此，在設定另一部主機電腦時，只需要傳輸私密金鑰。接著可以提取公開金鑰。</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>在這部電腦上未正確組態身份驗證金鑰檔。 請建立新金鑰檔或使用 Veyon 組態器切換到其它身份驗證方法。</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>金鑰檔身分驗證</translation>
     </message>
 </context>
 <context>
@@ -697,6 +701,74 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>配對 ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 登入</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>請輸入您的使用者名稱和密碼才能存取電腦。</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>身份驗證錯誤</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>以給予的使用者名稱和密碼登入失敗。 請再試一次!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>提供的使用者名稱或密碼錯誤。 請輸入有效的認證或使用 Veyon 組態器切換到其它身份驗證方法。</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>登入驗證</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 登入</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation>請輸入 Veyon 密碼:</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>身份驗證錯誤</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation>使用給予的密碼登入失敗。 請重試!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>提供的密碼錯誤。 請輸入正確的密碼或使用 Veyon 組態器切換到其它身份驗證方法。</translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation>簡單的密碼身份驗證</translation>
     </message>
 </context>
 <context>
@@ -747,7 +819,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>刪除選取的位置</translation>
+        <translation>移除選取的位置</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -774,7 +846,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;.</translation>
+        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;。</translation>
     </message>
     <message>
         <source>Type</source>
@@ -1043,7 +1115,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>驗證失敗或存取拒絕</translation>
+        <translation>身份驗證失敗或存取拒絕</translation>
     </message>
     <message>
         <source>Disconnected</source>
@@ -1066,11 +1138,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 服務 %2 在 %3: %4</translation>
+        <translation>%1 服務 %2 在 %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>驗證錯誤</translation>
+        <translation>身份驗證錯誤</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1471,7 +1543,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>播放教程視訊</translation>
+        <translation>播放指南視訊</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1479,10 +1551,17 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>講義</translation>
     </message>
     <message>
         <source>Texts to read</source>
+        <translation>要閱讀的文字</translation>
+    </message>
+</context>
+<context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1596,7 +1675,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Language:</source>
-        <translation>語言:</translation>
+        <translation>正體中文:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
@@ -1723,14 +1802,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>方式:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>登入驗證</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>金鑰檔身分驗證</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>測試</translation>
     </message>
@@ -1739,12 +1810,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>在這部電腦中正確設定身份驗證。</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>這部電腦中的身份驗證金鑰設定不正確。</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>身份驗證測試</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2069,7 +2136,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>請輸入查詢其 MAC 位址的電腦 DN :</translation>
+        <translation>請輸入查詢其 MAC 位址的電腦 DN:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -2341,7 +2408,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>請輸入要查詢的電腦顯示名稱:</translation>
+        <translation>請輸入電腦顯示名稱進行查詢:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -2349,7 +2416,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>請輸入電腦位置的名稱 (允許萬用字元):</translation>
+        <translation>請輸入電腦位置的名稱(允許萬用字元):</translation>
     </message>
     <message>
         <source>computer locations</source>
@@ -2421,11 +2488,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>您將電腦主機名組態為以完全限定網域名稱 (FQDN) 存儲，但輸入了不含網域的主機名稱。</translation>
+        <translation>您將電腦主機名稱組態為以完全限定網域名稱 (FQDN) 存儲，但輸入了不含網域的主機名稱。</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>您將電腦主機名組態為以不含域名的簡單主機名稱存儲，但輸入了含有域名部分的主機名稱。</translation>
+        <translation>您將電腦主機名稱組態為以不含域名的簡單主機名稱存儲，但輸入了含有域名部分的主機名稱。</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -2441,7 +2508,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>找不到主機名稱為「%1」的電腦。請檢查主機名稱或電腦樹參數。</translation>
+        <translation>找不到主機名稱為「%1」的電腦。 請檢查主機名稱或電腦樹參數。</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
@@ -2535,7 +2602,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>是否確實要刪除實例 &quot;%1&quot;?</translation>
+        <translation>您真的要移除實例 &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Configuration for instance &quot;%1&quot;</source>
@@ -2573,7 +2640,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>刪除選取的網路範圍</translation>
+        <translation>移除選取的網路範圍</translation>
     </message>
     <message>
         <source>ID</source>
@@ -2605,7 +2672,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation>是否真的要移除選取的授權?</translation>
+        <translation>您真的要移除選取的授權?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2748,10 +2815,6 @@ USAGE
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>外掛程式實現 Linux 平臺的抽象函數</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2826,10 +2889,6 @@ USAGE
         <translation>關於 Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>無法驗證</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>組態無法寫入</translation>
     </message>
@@ -2888,10 +2947,6 @@ USAGE
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>本機組態後台報告組態不可寫入! 請以較高特權執行 %1 組態器。</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>找不到驗證金鑰檔或目前的已過時。 請使用 %1 組態器建立新的金鑰檔。 或者使用 %1 組態器設定登入驗證。 否則您將無法使用 %1 存取電腦。</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3184,7 +3239,7 @@ USAGE
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation>刪除選取的群組</translation>
+        <translation>移除選取的群組</translation>
     </message>
     <message>
         <source>Groups</source>
@@ -3196,7 +3251,7 @@ USAGE
     </message>
     <message>
         <source>Last address</source>
-        <translation>最後位址</translation>
+        <translation>最後一個位址</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -3204,7 +3259,7 @@ USAGE
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>刪除選取的網路範圍</translation>
+        <translation>移除選取的網路範圍</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -3272,7 +3327,7 @@ USAGE
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>自動探索網路中的電腦的網路物件目錄</translation>
+        <translation>自動探索網路中電腦的網路物件目錄</translation>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
@@ -3318,37 +3373,10 @@ USAGE
     </message>
 </context>
 <context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>使用者名稱</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密碼</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon 登入</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>驗證錯誤</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>以給予的使用者名稱和密碼登入失敗。 請再試一次!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>請輸入您的使用者名稱和密碼才能存取電腦。</translation>
-    </message>
-</context>
-<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>開機</translation>
+        <translation>開啟電源</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -3364,7 +3392,7 @@ USAGE
     </message>
     <message>
         <source>Power down</source>
-        <translation>關機</translation>
+        <translation>關閉電源</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3384,11 +3412,11 @@ USAGE
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>您確定要重新啟動選取的電腦嗎?</translation>
+        <translation>您真的要重新啟動選取的電腦嗎?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation>您確定要關閉選取的電腦嗎?</translation>
+        <translation>您真的要關閉選取的電腦嗎?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3420,15 +3448,15 @@ USAGE
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>安裝更新和關閉電源</translation>
+        <translation>安裝更新並關閉電源</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>使用者確認後關機</translation>
+        <translation>使用者確認後關閉電源</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>逾時後關機</translation>
+        <translation>逾時後關閉電源</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3447,7 +3475,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>關機</translation>
+        <translation>關閉電源</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -3996,10 +4024,33 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>使用者工作階段控制</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4016,6 +4067,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>您真的要登出選取的使用者?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>使用者工作階段控制</translation>
     </message>
 </context>
 <context>
@@ -4074,7 +4129,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>使用</translation>
+        <translation>用法</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
@@ -4088,6 +4143,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>警告</translation>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>身份驗證測試</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4100,7 +4159,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>建立連線到 %1 ...</translation>
+        <translation>建立連線到 %1...</translation>
     </message>
 </context>
 <context>
@@ -4148,16 +4207,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>使用替代使用者身份驗證機制</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>執行 Windows 平臺的抽象函數的外掛程式</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

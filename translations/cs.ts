@@ -319,7 +319,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -330,11 +330,11 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
+        <translation>Zásuvný modul implementující specifické funkce pro platformu Android</translation>
     </message>
 </context>
 <context>
-    <name>AuthKeysConfigurationPage</name>
+    <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ověřovací klíče</translation>
@@ -342,6 +342,26 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Introduction</source>
         <translation>Úvod</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Pro nastavení ověřování souborem s klíčem proveďte následující kroky:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Vytvořte dvojici klíčů na řídícím počítači.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2( Nastavte přístupovou skupinu jejíž členům by mělo být umožněno přistupovat k ostatním počítačům.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exportujte veřejnou část klíče a importujte ji na všechny klientské počítače pod stejným názvem.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Nahlédněte do &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Příručky správy Veyon&lt;/a&gt; pro další informace.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -362,6 +382,16 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Available authentication keys</source>
         <translation>Ověřovací klíče k dispozici</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Dvojice ověřovacích klíčů je tvořena propojovacími šifrovacími klíči, soukromým a veřejným.
+Soukromá část umožňuje uživatelům na hlavním počítači přistupovat ke klientským počítačům.
+Je důležité aby pouze pověření uživatelé mohli číst soubor se soukromou částí klíče.
+Veřejná část je použita na klientských počítačích pro ověření příchozího požadavku na připojení.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -418,36 +448,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Vyberte klíč pro který nastavit přístupovou skupinu!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Pro nastavení ověřování souborem s klíčem proveďte následující kroky:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Vytvořte dvojici klíčů na řídícím počítači.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2( Nastavte přístupovou skupinu jejíž členům by mělo být umožněno přistupovat k ostatním počítačům.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exportujte veřejnou část klíče a importujte ji na všechny klientské počítače pod stejným názvem.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Nahlédněte do &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Příručky správy Veyon&lt;/a&gt; pro další informace.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Dvojice ověřovacích klíčů je tvořena propojovacími šifrovacími klíči, soukromým a veřejným.
-Soukromá část umožňuje uživatelům na hlavním počítači přistupovat ke klientským počítačům.
-Je důležité aby pouze pověření uživatelé mohli číst soubor se soukromou částí klíče.
-Veřejná část je použita na klientských počítačích pro ověření příchozího požadavku na připojení.</translation>
     </message>
 </context>
 <context>
@@ -660,10 +660,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>IDENTIFIKÁTOR DVOJICE</translation>
     </message>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Podpora pro správu ověřovacích klíčů z příkazového řádku</translation>
-    </message>
-    <message>
         <source>Commands for managing authentication keys</source>
         <translation>Příkazy pro zprávu ověřovacích klíčů</translation>
     </message>
@@ -678,6 +674,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Tento příkaz vytáhne veřejnou část klíče ze soukromého klíče &lt;KEY&gt; a uloží jí do odpovídajícího veřejného klíče. Při nastavování jiného řídícího počítače proto stačí přenést pouze soukromou část klíče. Tu veřejnou z něj lze vytáhnout.</translation>
+    </message>
+    <message>
+        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Na tomto počítači nejsou správně nastavené klíče s ověřovacími klíči. Vytvořte nové soubory nebo pomocí nastavení Veyon přepněte na jinou metodu ověřování.</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Ověření pomocí souboru s klíčem</translation>
     </message>
 </context>
 <context>
@@ -697,6 +701,74 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Pair ID</source>
         <translation>Identifikátor dvojice</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon přihlášení</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Zadejte své uživatelské jméno a heslo pro přístup k počítačům.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uživatelské jméno</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Heslo</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Chyba ověření</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Přihlášení daným uživatelským jménem a heslem se nezdařilo. Zkuste to znovu!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLogonPlugin</name>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Zadané uživatelské jméno nebo heslo není správné. Zadejte platné přihlašovací údaje nebo pomocí nastavení Veyon přepněte na jinou metodu ověřování.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Ověření přihlášením se</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimpleDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon přihlášení</translation>
+    </message>
+    <message>
+        <source>Please enter the Veyon password:</source>
+        <translation>Zadejte Veyon heslo:</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Chyba ověření</translation>
+    </message>
+    <message>
+        <source>Logon failed with given password. Please try again!</source>
+        <translation>Přihlášení se zadaným heslem se nezdařilo. Zkuste to prosím znovu!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthSimplePlugin</name>
+    <message>
+        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Zadané heslo není správné. Zadejte platné heslo pomocí nastavení Veyon přepněte na jinou metodu ověřování.</translation>
+    </message>
+    <message>
+        <source>Simple password authentication</source>
+        <translation>Jednoduché ověřování se heslem</translation>
     </message>
 </context>
 <context>
@@ -1479,10 +1551,17 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Předání</translation>
     </message>
     <message>
         <source>Texts to read</source>
+        <translation>Text ke čtení</translation>
+    </message>
+</context>
+<context>
+    <name>DroidVncServer</name>
+    <message>
+        <source>Builtin VNC server (Android)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1723,14 +1802,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Metoda:</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Ověření přihlášením se</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Ověření pomocí souboru s klíčem</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Vyzkoušet funkčnost</translation>
     </message>
@@ -1739,12 +1810,8 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Ověřování je na tomto počítači nastaveno správně</translation>
     </message>
     <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Ověřování není na tomto počítači nastaveno správně</translation>
-    </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>Vyzkoušení ověřování</translation>
+        <source>Configure</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2719,7 +2786,7 @@ POUŽITÍ
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation>GNU/Linux</translation>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2743,10 +2810,6 @@ POUŽITÍ
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Zásuvný modul implementující abstrahující funkce pro Linuxovou platformu</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2822,10 +2885,6 @@ POUŽITÍ
         <translation>O aplikačním rámci (framework) Qt</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>Ověření není možné</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Nastavení není přístupné pro zápis</translation>
     </message>
@@ -2884,10 +2943,6 @@ POUŽITÍ
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Podpůrná vrstva (backend) nastavení na tomto počítači hlásí, že do nastavení nelze zapisovat! Spusťte konzolu pro správu %1 s vyššími oprávněními.</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Nebyly nalezeny žádné ověřovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu %1. Případně můžete v konzoli pro správu %1 nastavit ověřování přihlášením. Pokud tak neučiníte, nebudete moci přistupovat k počítačům pomocí %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3311,33 +3366,6 @@ POUŽITÍ
     <message>
         <source>Name:</source>
         <translation>Název:</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordDialog</name>
-    <message>
-        <source>Username</source>
-        <translation>Uživatelské jméno</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Heslo</translation>
-    </message>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon přihlášení</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Chyba ověření</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Přihlášení daným uživatelským jménem a heslem se nezdařilo. Zkuste to znovu!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Zadejte své uživatelské jméno a heslo pro přístup k počítačům.</translation>
     </message>
 </context>
 <context>
@@ -3992,10 +4020,33 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
 </context>
 <context>
-    <name>UserSessionControl</name>
+    <name>UserLoginDialog</name>
     <message>
-        <source>User session control</source>
-        <translation>Ovládání relace uživatele</translation>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uživatelské jméno</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Heslo</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
@@ -4012,6 +4063,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Opravdu chcete označené uživatele odhlásit?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Ovládání relace uživatele</translation>
     </message>
 </context>
 <context>
@@ -4084,6 +4139,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>WARNING</source>
         <translation>VAROVÁNÍ</translation>
     </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Vyzkoušení ověřování</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4144,16 +4203,24 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>Use alternative user authentication mechanism</source>
         <translation>Použít alternativní mechanizmus ověřování uživatelů</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Zásuvný modul implementující abstrahující funkce pro platformu Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
