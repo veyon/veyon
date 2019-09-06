@@ -315,7 +315,7 @@ void WindowsServiceCore::serviceMain()
 
 	m_statusHandle = RegisterServiceCtrlHandlerEx( m_name.data(), serviceCtrlStatic, &context );
 
-	if( m_statusHandle == 0 )
+	if( m_statusHandle == nullptr )
 	{
 		return;
 	}
@@ -329,7 +329,7 @@ void WindowsServiceCore::serviceMain()
 		return;
 	}
 
-	m_stopServiceEvent = CreateEvent( 0, FALSE, FALSE, 0 );
+	m_stopServiceEvent = CreateEvent( nullptr, false, false, nullptr );
 
 	if( reportStatus( SERVICE_RUNNING, NO_ERROR, 0 ) == false )
 	{
