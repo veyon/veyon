@@ -17,8 +17,10 @@ BUILD_PLUGIN(windows-platform
 	WindowsServiceFunctions.cpp
 	WindowsUserFunctions.cpp
 	WtsSessionManager.cpp
+	DesktopInputController.cpp
 	SasEventListener.cpp
 	XEventLog.cpp
+	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp
 	WindowsPlatformConfiguration.h
@@ -33,12 +35,18 @@ BUILD_PLUGIN(windows-platform
 	WindowsServiceFunctions.h
 	WindowsUserFunctions.h
 	WtsSessionManager.h
+	DesktopInputController.h
 	SasEventListener.h
 	XEventLog.h
 	windows.qrc
 )
 
-TARGET_INCLUDE_DIRECTORIES(windows-platform PRIVATE ${ultravnc_DIR}/addon/ms-logon/authSSP ${Qt5Gui_PRIVATE_INCLUDE_DIRS})
+TARGET_INCLUDE_DIRECTORIES(windows-platform PRIVATE
+	${ultravnc_DIR}/addon/ms-logon/authSSP
+	${ultravnc_DIR}/winvnc/winvnc
+	${ultravnc_DIR}
+	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
+)
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
 TARGET_COMPILE_DEFINITIONS(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 TARGET_COMPILE_OPTIONS(windows-platform PRIVATE "-Wno-unknown-pragmas")
