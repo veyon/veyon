@@ -1562,7 +1562,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <name>DroidVncServer</name>
     <message>
         <source>Builtin VNC server (Android)</source>
-        <translation type="unfinished"/>
+        <translation>Vestavěný VNC server (Android)</translation>
     </message>
 </context>
 <context>
@@ -1811,7 +1811,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Configure</source>
-        <translation type="unfinished"/>
+        <translation>Nastavit</translation>
     </message>
 </context>
 <context>
@@ -4023,11 +4023,11 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Přihlášení uživatele</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte uživatelské jméno a heslo pro automatické přihlášení na všechny počítače.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4042,11 +4042,11 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Přihlásit</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kliknutím na toto tlačítko se přihlásíte jako konkrétní uživatel na všechny počítače.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4205,15 +4205,15 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Přihlášení uživatele</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Prodleva začátku vstupu</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Interval simulovaných stisků kláves</translation>
     </message>
 </context>
 <context>

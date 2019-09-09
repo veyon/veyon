@@ -1562,7 +1562,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <name>DroidVncServer</name>
     <message>
         <source>Builtin VNC server (Android)</source>
-        <translation type="unfinished"/>
+        <translation>Serveur VNC interne (Android)</translation>
     </message>
 </context>
 <context>
@@ -1811,7 +1811,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Configure</source>
-        <translation type="unfinished"/>
+        <translation>Configurer</translation>
     </message>
 </context>
 <context>
@@ -4027,11 +4027,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Identifiant utilisateur</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Saisissez ici votre identifiant utilisateur et votre mot de passe pour la connexion automatique à toutes les stations.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4046,11 +4046,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Connexion</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Cliquez sur ce bouton pour connecter un utilisateur spécifique sur toutes les stations.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4209,15 +4209,15 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Identifiant utilisateur</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Délai de démarrage de l&apos;entrée</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>intervalle entre simulations de saisie de touche</translation>
     </message>
 </context>
 <context>

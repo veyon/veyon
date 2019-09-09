@@ -1562,7 +1562,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DroidVncServer</name>
     <message>
         <source>Builtin VNC server (Android)</source>
-        <translation type="unfinished"/>
+        <translation>Встроенный сервер VNC (Android)</translation>
     </message>
 </context>
 <context>
@@ -1811,7 +1811,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Configure</source>
-        <translation type="unfinished"/>
+        <translation>Конфигурация</translation>
     </message>
 </context>
 <context>
@@ -4027,11 +4027,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Имя пользователя</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, введите имя пользователя и пароль для автоматического входа на все компьютеры.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4046,11 +4046,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Залогиниться</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Нажмите эту кнопку, чтобы войти в систему под определённым пользователем на всех компьютерах.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4209,15 +4209,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Имя пользователя</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Задержка входа</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Имитированный интервал между нажатиями клавиш</translation>
     </message>
 </context>
 <context>

@@ -1564,7 +1564,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>DroidVncServer</name>
     <message>
         <source>Builtin VNC server (Android)</source>
-        <translation type="unfinished"/>
+        <translation>Servidor VNC incorporado (Android)</translation>
     </message>
 </context>
 <context>
@@ -1813,7 +1813,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Configure</source>
-        <translation type="unfinished"/>
+        <translation>Configurar</translation>
     </message>
 </context>
 <context>
@@ -4029,11 +4029,11 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Inicio de sesión de usuario</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca un nombre de usuario y contraseña para iniciar sesión automáticamente en todas las computadoras.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4048,11 +4048,11 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar sesión</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Haga clic en este botón para iniciar sesión en un usuario específico en todas las computadoras.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4211,15 +4211,15 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Inicio de sesión de usuario</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Retardo de inicio de entrada</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervalo de pulsaciones de teclas simuladas</translation>
     </message>
 </context>
 <context>
