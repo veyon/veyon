@@ -316,24 +316,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Generale</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Plugin che implementa funzioni specifiche per la piattaforma Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1751,12 +1733,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Controllo dell&apos;accesso a Internet</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Impostazioni generali</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2551,6 +2533,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Licenze</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Informazioni</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>ID installazione</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Componenti aggiuntivi disponibili per la licenza</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Licenze installate</translation>
     </message>
@@ -2567,8 +2561,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Funzionalità</translation>
+        <source>Addon</source>
+        <translation>Componente aggiuntivo</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2599,6 +2593,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Funzionalità</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>File di licenza non valido</translation>
     </message>
@@ -2625,22 +2623,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The license is already installed.</source>
         <translation>La licenza è già installata.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informazioni</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>ID installazione</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Componenti aggiuntivi disponibili per la licenza</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Componente aggiuntivo</translation>
     </message>
 </context>
 <context>
@@ -2734,10 +2716,6 @@ USO
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin che implementa funzioni astratte per la piattaforma Linux.</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>Plugin che implementa funzioni specifiche per la piattaforma Linux</translation>
     </message>
 </context>
 <context>
@@ -3194,6 +3172,10 @@ USO
         <translation>Rimuovi l&apos;intervallo di rete selezionato</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Opzioni</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Scansioni parallele</translation>
     </message>
@@ -3208,10 +3190,6 @@ USO
     <message>
         <source>Session scan limit</source>
         <translation>Limite di scansione di sessione</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Opzioni</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3301,7 +3279,7 @@ USO
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nome:</translation>
+        <translation>Nome</translation>
     </message>
 </context>
 <context>
@@ -3488,7 +3466,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 Accesso remoto</translation>
+        <translation>%1 -%2 Accesso remoto</translation>
     </message>
 </context>
 <context>
@@ -3982,6 +3960,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>Login utente</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>Inserisci un nome utente e una password per l&apos;accesso automatico su tutti i computer.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nome Utente</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Password</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4002,6 +3999,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>Log in</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>Fare clic su questo pulsante per accedere a un utente specifico su tutti i computer.</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Disconnetti</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Fare clic su questo pulsante per disconnettere gli utenti da tutti i computer.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Conferma logout utente</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Controllo sessione utente</translation>
     </message>
 </context>
 <context>
@@ -4055,10 +4083,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ERRORE</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>concesso in licenza per</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>USO</translation>
     </message>
@@ -4073,6 +4097,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation>ATTENZIONE</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>concesso in licenza per</translation>
     </message>
 </context>
 <context>
@@ -4134,16 +4162,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>Utilizzare un meccanismo di autenticazione utente alternativo</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Login utente</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Ritardo inizio ingresso</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>Simulato l&apos;intervallo di pressioni dei tasti</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin che implementa funzioni astratte per la piattaforma Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>Plugin che implementa funzioni specifiche per la piattaforma Windows</translation>
     </message>
 </context>
 <context>

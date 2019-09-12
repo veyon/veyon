@@ -316,24 +316,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Général</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Plugin implémentant des fonctions spécifiques pour la plateforme Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1754,12 +1736,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Contrôle d&apos;accès internet</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Méthode de fonctionnement:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Paramètres généraux</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Méthode de fonctionnement:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2564,6 +2546,18 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Licence</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Information</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Identité installation</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Extensions disponibles pour licence</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Licences installées</translation>
     </message>
@@ -2580,8 +2574,8 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Fonctionnalité</translation>
+        <source>Addon</source>
+        <translation>Extension</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2612,6 +2606,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>&lt; Sans Objet &gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Fonctionnalité</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Fichier licence invalide</translation>
     </message>
@@ -2638,22 +2636,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>The license is already installed.</source>
         <translation>La licence est déjà installée.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Information</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Identité installation</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Extensions disponibles pour licence</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Extension</translation>
     </message>
 </context>
 <context>
@@ -2747,10 +2729,6 @@ USAGE
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Extension implémentant les fonctions abstraites pour le système Linux</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>Plugin implémentant des fonctions spécifiques pour la plate-forme Linux</translation>
     </message>
 </context>
 <context>
@@ -2915,7 +2893,7 @@ USAGE
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>Reset de la configuration</translation>
+        <translation>Réinitialisation de la configuration</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3207,6 +3185,10 @@ USAGE
         <translation>Supprimer la plage réseau sélectionnée</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Options</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Scans parallèles</translation>
     </message>
@@ -3221,10 +3203,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation>Limite d&apos;analyse de session</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Options</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3996,6 +3974,25 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>Identifiant utilisateur</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>Saisissez ici votre identifiant utilisateur et votre mot de passe pour la connexion automatique à toutes les stations.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Identifiant</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Mot de passe</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4016,6 +4013,37 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Souhaitez-vous vraiment déconnecter l&apos;utilisateur sélectionné ?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>Connexion</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>Cliquez sur ce bouton pour connecter un utilisateur spécifique sur toutes les stations.</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Déconnexion</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Cliquez sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Confirmer la déconnexion utilisateur</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Souhaitez-vous vraiment déconnecter l&apos;utilisateur sélectionné ?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Contrôle de session utilisateur</translation>
     </message>
 </context>
 <context>
@@ -4069,10 +4097,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>ERREUR</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>sous licence pour</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>USAGE</translation>
     </message>
@@ -4087,6 +4111,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>WARNING</source>
         <translation>ATTENTION</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>sous licence pour</translation>
     </message>
 </context>
 <context>
@@ -4148,16 +4176,24 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Use alternative user authentication mechanism</source>
         <translation>Utiliser une autre méthode pour l&apos;authentification de l&apos;utilisateur</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Identifiant utilisateur</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Délai de démarrage de l&apos;entrée</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>intervalle entre simulations de saisie de touche</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Extension implémentant les fonctions abstraites pour le système Windows </translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>Plugin implémentant des fonctions spécifiques pour la plate-forme Windows</translation>
     </message>
 </context>
 <context>

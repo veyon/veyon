@@ -316,24 +316,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Általános</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Beépülő modul, amely az Android platformon különleges funkciókat valósít meg</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1754,12 +1736,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Internethozzáférés-vezérlés</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Háttér:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Általános beállítások</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Háttér:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2564,6 +2546,18 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Licencelés</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Információ</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Telepítésazonosító</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Licencelhető</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Telepített licencek</translation>
     </message>
@@ -2580,8 +2574,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Szolgáltatás</translation>
+        <source>Addon</source>
+        <translation>Bővítmény</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2612,6 +2606,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Szolgáltatás</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Érvénytelen licencfájlok</translation>
     </message>
@@ -2638,22 +2636,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>The license is already installed.</source>
         <translation>A licencet már telepítették.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Információ</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Telepítésazonosító</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Licencelhető</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Bővítmény</translation>
     </message>
 </context>
 <context>
@@ -2747,10 +2729,6 @@ HASZNÁLAT
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>A bővítmény absztrakt függvényekkel egészíti ki a Linux platformot</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>Beépülő modul, amely a Linux platformon különleges funkciókat valósít meg</translation>
     </message>
 </context>
 <context>
@@ -3207,6 +3185,10 @@ HASZNÁLAT
         <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Lehetőség</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Párhuzamos átvizsgálások</translation>
     </message>
@@ -3221,10 +3203,6 @@ HASZNÁLAT
     <message>
         <source>Session scan limit</source>
         <translation>Átvizsgálás munkamenetének korlátja</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Lehetőség</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3993,6 +3971,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Felhasználónév</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Jelszó</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4013,6 +4010,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Kijelentkezés</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Felhasználó kijelentkeztetésének megerősítése</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Felhasználói munkamenet-vezérlés</translation>
     </message>
 </context>
 <context>
@@ -4066,10 +4094,6 @@ Typically this is required to support terminal servers.</source>
         <translation>HIBA</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>licencelt</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>HASZNÁLAT</translation>
     </message>
@@ -4084,6 +4108,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation>FIGYELMEZTETÉS</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>licencelt</translation>
     </message>
 </context>
 <context>
@@ -4145,16 +4173,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>Alternatív felhasználói hitelesítési mechanizmus használata</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>A bővítmény absztrakt függvényekkel egészíti ki a Windows platformot</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>Beépülő modul, amely a Windows platformon különleges funkciókat valósít meg</translation>
     </message>
 </context>
 <context>

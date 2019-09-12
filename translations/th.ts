@@ -314,24 +314,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>แอนดรอยด์</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>ทั่วไป</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1752,12 +1734,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>การตั้งค่าทั่วไป</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2543,6 +2525,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>ใบอนุญาตที่ติดตั้งอยู่</translation>
     </message>
@@ -2559,8 +2553,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>ฟิเจอร์</translation>
+        <source>Addon</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Valid until</source>
@@ -2591,6 +2585,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>ฟิเจอร์</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation type="unfinished"/>
     </message>
@@ -2616,22 +2614,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addon</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2715,10 +2697,6 @@ USAGE
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3176,6 +3154,10 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Options</source>
+        <translation>ตัวเลือก</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>สแกนคู่ขนาน</translation>
     </message>
@@ -3190,10 +3172,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>ตัวเลือก</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3957,6 +3935,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>ชื่อผู้ใช้</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>รหัสผ่าน</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -3977,6 +3974,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>ล็อกออฟ</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>คลิกปุ่มนี้เพื่อล็อกออฟผู้ใช้จากคอมพิวเตอร์ทุกเครื่อง</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>ยืนยันการล็อกออฟผู้ใช้</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4030,10 +4058,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>ได้รับอนุญาต สำหรับ</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation type="unfinished"/>
     </message>
@@ -4048,6 +4072,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>ได้รับอนุญาต สำหรับ</translation>
     </message>
 </context>
 <context>
@@ -4109,15 +4137,23 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
 </context>

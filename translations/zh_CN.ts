@@ -316,24 +316,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>安卓</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>常规</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>实现针对安卓平台特定功能的插件</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1755,12 +1737,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>互联网访问控制</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>后端：</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>常规设置</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>后端：</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2565,6 +2547,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>许可</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>安装ID</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>需要许可证的可用插件</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>已安装的许可证</translation>
     </message>
@@ -2581,8 +2575,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>特性</translation>
+        <source>Addon</source>
+        <translation>插件</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2613,6 +2607,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>特性</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>无效的许可证文件</translation>
     </message>
@@ -2639,22 +2637,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The license is already installed.</source>
         <translation>许可证已安装。</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>信息</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>安装ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>需要许可证的可用插件</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>插件</translation>
     </message>
 </context>
 <context>
@@ -2748,10 +2730,6 @@ USAGE
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>通过插件实现 Linux 平台的抽象函数</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>实现针对Linux平台特定功能的插件</translation>
     </message>
 </context>
 <context>
@@ -3208,6 +3186,10 @@ USAGE
         <translation>移除选中的网络范围</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>首选项</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>并行扫描</translation>
     </message>
@@ -3222,10 +3204,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation>会话扫描限制</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>首选项</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3997,6 +3975,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>用户名</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4017,6 +4014,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>您确定要注销选定的用户吗？</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>注销</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>点击此按钮在所有计算机上执行注销命令。</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>确认用户注销</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>您确定要注销选定的用户吗？</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>用户会话控制</translation>
     </message>
 </context>
 <context>
@@ -4070,10 +4098,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ERROR</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>许可给</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>使用情况</translation>
     </message>
@@ -4088,6 +4112,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation>警告</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>许可给</translation>
     </message>
 </context>
 <context>
@@ -4149,16 +4177,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>使用其他用户验证机制</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>插件实现 Windows 平台的抽象函数</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>实现针对Windows平台特定功能的插件</translation>
     </message>
 </context>
 <context>

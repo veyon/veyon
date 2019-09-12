@@ -316,24 +316,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Obecné</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Zásuvný modul implementující specifické funkce pro platformu Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1754,12 +1736,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Řízení přístupu k Internetu</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Podpůrná vrstva (backend):</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Obecná nastavení</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Podpůrná vrstva (backend):</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2560,6 +2542,18 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Licencování</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Informace</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Identifikátor instalace</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Doplňky které je možné si licencovat</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Nainstalované licence</translation>
     </message>
@@ -2576,8 +2570,8 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Identif.</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Funkce</translation>
+        <source>Addon</source>
+        <translation>Doplněk</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2608,6 +2602,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Funkce</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Neplatný soubor s licencí</translation>
     </message>
@@ -2634,22 +2632,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>The license is already installed.</source>
         <translation>Tato licence už je nainstalována.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informace</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Identifikátor instalace</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Doplňky které je možné si licencovat</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Doplněk</translation>
     </message>
 </context>
 <context>
@@ -2719,7 +2701,7 @@ POUŽITÍ
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation>GNU/Linux</translation>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2743,10 +2725,6 @@ POUŽITÍ
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Zásuvný modul implementující abstrahující funkce pro Linuxovou platformu</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>Zásuvný modul implementující specifické funkce pro linuxovou platformu</translation>
     </message>
 </context>
 <context>
@@ -3203,6 +3181,10 @@ POUŽITÍ
         <translation>Odebrat označený síťový rozsah</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Volby</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Souběžné skeny</translation>
     </message>
@@ -3217,10 +3199,6 @@ POUŽITÍ
     <message>
         <source>Session scan limit</source>
         <translation>Limit skenu relace</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Volby</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3992,6 +3970,25 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>Přihlášení uživatele</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>Zadejte uživatelské jméno a heslo pro automatické přihlášení na všechny počítače.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uživatelské jméno</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Heslo</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4012,6 +4009,37 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Opravdu chcete označené uživatele odhlásit?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>Přihlásit</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>Kliknutím na toto tlačítko se přihlásíte jako konkrétní uživatel na všechny počítače.</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Odhlásit</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Potvrdit odhlášení uživatele</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Opravdu chcete označené uživatele odhlásit?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Ovládání relace uživatele</translation>
     </message>
 </context>
 <context>
@@ -4065,10 +4093,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>CHYBA</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>licencováno pro</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>POUŽITÍ</translation>
     </message>
@@ -4083,6 +4107,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>WARNING</source>
         <translation>VAROVÁNÍ</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>licencováno pro</translation>
     </message>
 </context>
 <context>
@@ -4144,16 +4172,24 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>Use alternative user authentication mechanism</source>
         <translation>Použít alternativní mechanizmus ověřování uživatelů</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Přihlášení uživatele</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Prodleva začátku vstupu</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>Interval simulovaných stisků kláves</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Zásuvný modul implementující abstrahující funkce pro platformu Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>Zásuvný modul implementující specifické funkce pro platformu Windows</translation>
     </message>
 </context>
 <context>

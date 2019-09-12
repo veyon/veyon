@@ -316,24 +316,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Загальні</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>У додатку реалізовано специфічні можливості для платформи Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1751,12 +1733,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Керування доступом до інтернету</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Модуль:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Загальні параметри</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Модуль:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2563,6 +2545,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ліцензування</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Інформація</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Ід. встановлення</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Додатки, які доступні до ліцензування</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Встановлені ліцензії</translation>
     </message>
@@ -2579,8 +2573,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ідентифікатор</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Можливість</translation>
+        <source>Addon</source>
+        <translation>Додаток</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2611,6 +2605,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;н/д&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Можливість</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Некоректний файл ліцензії</translation>
     </message>
@@ -2637,22 +2635,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The license is already installed.</source>
         <translation>Цю ліцензію вже встановлено.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Інформація</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Ід. встановлення</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Додатки, які доступні до ліцензування</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Додаток</translation>
     </message>
 </context>
 <context>
@@ -2746,10 +2728,6 @@ USAGE
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Linux</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>У додатку реалізовано специфічні можливості для платформи Linux</translation>
     </message>
 </context>
 <context>
@@ -3206,6 +3184,10 @@ USAGE
         <translation>Вилучити позначений діапазон мережі</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Параметри</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Паралельне сканування</translation>
     </message>
@@ -3220,10 +3202,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation>Обмеження сканування сеансів</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Параметри</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3995,6 +3973,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>Вхід від імені користувача</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>Будь ласка, вкажіть ім&apos;я користувача і пароль для автоматичного входу до усіх комп&apos;ютерів.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Ім’я користувача</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4015,6 +4012,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>Увійти</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>Натисніть цю кнопку, щоб увійти від імені вказаного користувача на усі комп&apos;ютери.</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Викинути</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Натисніть цю кнопку, щоб виконати примусовий вихід користувачів з систем усіх комп&apos;ютерів.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Підтвердження виходу користувачів</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Керування сеансами користувачів</translation>
     </message>
 </context>
 <context>
@@ -4068,10 +4096,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ПОМИЛКА</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>ліцензовано для</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>КОРИСТУВАННЯ</translation>
     </message>
@@ -4086,6 +4110,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation>ПОПЕРЕДЖЕННЯ</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>ліцензовано для</translation>
     </message>
 </context>
 <context>
@@ -4147,16 +4175,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>Альтернативний механізм розпізнавання користувачів</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Вхід від імені користувача</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Затримка початку введення</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>Імітований інтервал між натисканнями клавіш</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>У додатку реалізовано специфічні можливості для платформи Windows</translation>
     </message>
 </context>
 <context>

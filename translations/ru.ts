@@ -316,24 +316,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Главное</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>В плагине реализованы специфические возможности для платформы Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1754,12 +1736,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Управление доступом к интернету</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Бэкэнд:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Общие параметры</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Бэкэнд:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2564,6 +2546,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Лицензирование</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Ид. установки</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Дополнения, доступные для лицензирования</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Установленные лицензии</translation>
     </message>
@@ -2580,8 +2574,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Идентификатор</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Функция</translation>
+        <source>Addon</source>
+        <translation>Дополнение</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2612,6 +2606,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;н/д&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Функция</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Некорректный файл лицензии</translation>
     </message>
@@ -2638,22 +2636,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The license is already installed.</source>
         <translation>Эта лицензия уже установлена.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Информация</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Ид. установки</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Дополнения, доступные для лицензирования</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Дополнение</translation>
     </message>
 </context>
 <context>
@@ -2747,10 +2729,6 @@ USAGE
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Плагин, который реализует абстрактные функции на платформе Linux</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>В плагине реализованы специфические возможности для платформы Linux</translation>
     </message>
 </context>
 <context>
@@ -3207,6 +3185,10 @@ USAGE
         <translation>Удалить выделенный диапазон сети</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Параллельное сканирование</translation>
     </message>
@@ -3221,10 +3203,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation>Ограничение сканирования сеансов</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Параметры</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3996,6 +3974,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>Пожалуйста, введите имя пользователя и пароль для автоматического входа на все компьютеры.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4016,6 +4013,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>Залогиниться</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>Нажмите эту кнопку, чтобы войти в систему под определённым пользователем на всех компьютерах.</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Разлогиниться</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Нажмите эту кнопку для разлогинивания пользователей со всех компьютеров.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Потверждение выхода пользователя</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Управление сеансами пользователей</translation>
     </message>
 </context>
 <context>
@@ -4069,10 +4097,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ОШИБКА</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>лицензировано для</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>ИСПОЛЬЗОВАНИЕ</translation>
     </message>
@@ -4087,6 +4111,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation>ПРЕДУПРЕЖДЕНИЕ</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>лицензировано для</translation>
     </message>
 </context>
 <context>
@@ -4148,16 +4176,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>Использовать альтернативный механизм аутентификации пользователей</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Задержка входа</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>Имитированный интервал между нажатиями клавиш</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Плагин, который реализует абстрактные функции на платформе Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>В плагине реализованы специфические возможности для платформы Windows</translation>
     </message>
 </context>
 <context>

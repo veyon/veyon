@@ -138,11 +138,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>使用者群組後台:</translation>
+        <translation>使用者群組後端:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>缺少使用者群組後台</translation>
+        <translation>缺少使用者群組後端</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
@@ -316,24 +316,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>一般</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>外掛程式為 Android 平臺實現特定功能</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -437,7 +419,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>有關詳細資訊，請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;。</translation>
+        <translation>請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;，取得更多資訊。</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -774,7 +756,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;.</translation>
+        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;。</translation>
     </message>
     <message>
         <source>Type</source>
@@ -1105,7 +1087,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>找不到預設網路物件目錄外掛程式。 請檢查您的安裝或透過 %1 組態器設定不同的網路物件目錄後台。</translation>
+        <translation>找不到預設網路物件目錄外掛程式。 請檢查您的安裝或透過 %1 組態器設定不同的網路物件目錄後端。</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1257,14 +1239,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 展示</translation>
+        <translation>%1 示範</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>展示伺服器</translation>
+        <translation>示範伺服器</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1300,30 +1282,30 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>展示執行時，縮圖更新速度變慢</translation>
+        <translation>示範執行時，縮圖更新速度變慢</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>全螢幕展示</translation>
+        <translation>全螢幕示範</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>停止展示</translation>
+        <translation>停止示範</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>視窗展示</translation>
+        <translation>視窗示範</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>通過螢幕廣播給予展示</translation>
+        <translation>透過螢幕廣播給予示範</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>展示伺服器</translation>
+        <translation>示範伺服器</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1664,7 +1646,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Backend:</source>
-        <translation>後台:</translation>
+        <translation>後端:</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -1754,16 +1736,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Internet 存取控制</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>後台:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>一般設定</translation>
     </message>
     <message>
+        <source>Backend:</source>
+        <translation>後端:</translation>
+    </message>
+    <message>
         <source>Backend settings</source>
-        <translation>後台設定</translation>
+        <translation>後端設定</translation>
     </message>
 </context>
 <context>
@@ -2029,7 +2011,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>請輸入查詢的使用者登入名稱 (允許使用萬用字元):</translation>
+        <translation>請輸入查詢的使用者登入名稱 (允許萬用字元):</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2069,7 +2051,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>請輸入查詢其 MAC 位址的電腦 DN :</translation>
+        <translation>請輸入查詢其 MAC 位址的電腦 DN:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -2341,7 +2323,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>請輸入要查詢的電腦顯示名稱:</translation>
+        <translation>請輸入查詢的電腦顯示名稱:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -2361,7 +2343,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation>請輸入要查詢其項目的位置名稱:</translation>
+        <translation>請輸入查詢其項目的位置名稱:</translation>
     </message>
     <message>
         <source>location entries</source>
@@ -2405,7 +2387,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>主機名稱存儲為完全限定網域名稱 (FQDN, 例如: myhost.example.org)</translation>
+        <translation>主機名稱存儲為完全限定網域名稱 (FQDN， 例如: myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2413,7 +2395,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>請輸入要查詢的電腦主機名稱:</translation>
+        <translation>請輸入查詢的電腦主機名稱:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
@@ -2437,7 +2419,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>請輸入要查詢其群組成員身份的電腦主機名稱:</translation>
+        <translation>請輸入查詢其群組成員身份的電腦主機名稱:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -2445,7 +2427,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation>主機名稱查找失敗</translation>
+        <translation>主機名稱尋找失敗</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
@@ -2564,6 +2546,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>授權</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>資訊</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>安裝 ID</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>授權的附加元件可用</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>已安裝的授權</translation>
     </message>
@@ -2580,8 +2574,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>功能</translation>
+        <source>Addon</source>
+        <translation>附加元件</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2612,6 +2606,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;不適用&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>功能</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>授權檔無效</translation>
     </message>
@@ -2638,22 +2636,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The license is already installed.</source>
         <translation>授權已經安裝。</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>資訊</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>安裝 ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>授權的附加元件可用</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>附加元件</translation>
     </message>
 </context>
 <context>
@@ -2747,10 +2729,6 @@ USAGE
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>外掛程式實現 Linux 平臺的抽象函數</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>外掛程式為 Linux 平臺實現特定功能</translation>
     </message>
 </context>
 <context>
@@ -2887,7 +2865,7 @@ USAGE
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>本機組態後台報告組態不可寫入! 請以較高特權執行 %1 組態器。</translation>
+        <translation>本機組態後端報告組態不可寫入! 請以較高特權執行 %1 組態器。</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -3196,7 +3174,7 @@ USAGE
     </message>
     <message>
         <source>Last address</source>
-        <translation>最後位址</translation>
+        <translation>上次位址</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -3205,6 +3183,10 @@ USAGE
     <message>
         <source>Remove selected network range</source>
         <translation>移除選取的網路範圍</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>選項</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -3221,10 +3203,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation>工作階段掃描限制</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>選項</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3272,7 +3250,7 @@ USAGE
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>自動探索網路中的電腦的網路物件目錄</translation>
+        <translation>自動探索網路中電腦的網路物件目錄</translation>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
@@ -3752,7 +3730,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>展示伺服器連接埠</translation>
+        <translation>示範伺服器連接埠</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3909,7 +3887,7 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation>系統使用者群組的使用者群組後台</translation>
+        <translation>系統使用者群組的使用者群組後端</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
@@ -3996,6 +3974,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>使用者登入</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>請在所有電腦上輸入自動登入的使用者名稱和密碼。</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4016,6 +4013,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>您真的要登出選取的使用者?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>登入</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>按一下這個按鈕以登入所有電腦中的特定使用者。</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>登出</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>按一下這個按鈕以登出所有電腦中的使用者。</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>確認使用者登出</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>您真的要登出選取的使用者?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>使用者工作階段控制</translation>
     </message>
 </context>
 <context>
@@ -4069,10 +4097,6 @@ Typically this is required to support terminal servers.</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>授權於</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>用法</translation>
     </message>
@@ -4088,6 +4112,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>警告</translation>
     </message>
+    <message>
+        <source>licensed for</source>
+        <translation>授權於</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4100,7 +4128,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>建立連線到 %1 ...</translation>
+        <translation>建立連線到 %1...</translation>
     </message>
 </context>
 <context>
@@ -4148,16 +4176,24 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation>使用替代使用者身份驗證機制</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>使用者登入</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>輸入啟動延遲</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>模擬按鍵間隔</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>執行 Windows 平臺的抽象函數的外掛程式</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>外掛程式實現 Windows 平臺的特定功能</translation>
     </message>
 </context>
 <context>

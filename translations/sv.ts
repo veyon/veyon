@@ -316,24 +316,6 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Allmänt</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1751,11 +1733,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Backend:</source>
+        <source>General settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>General settings</source>
+        <source>Backend:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2542,6 +2524,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation type="unfinished"/>
     </message>
@@ -2558,7 +2552,7 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Feature</source>
+        <source>Addon</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2590,6 +2584,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Feature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation type="unfinished"/>
     </message>
@@ -2615,22 +2613,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addon</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2714,10 +2696,6 @@ USAGE
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3175,6 +3153,10 @@ USAGE
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation type="unfinished"/>
     </message>
@@ -3188,10 +3170,6 @@ USAGE
     </message>
     <message>
         <source>Session scan limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Options</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3956,6 +3934,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Användarnamn</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Lösenord</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -3975,6 +3972,37 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User session control</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4029,10 +4057,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation type="unfinished"/>
     </message>
@@ -4046,6 +4070,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>WARNING</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4108,15 +4136,23 @@ Typically this is required to support terminal servers.</source>
         <source>Use alternative user authentication mechanism</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
 </context>

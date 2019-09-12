@@ -316,24 +316,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Splošno</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -345,7 +327,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>Imeniki ključne datoteke</translation>
+        <translation>Imeniki datoteke ključa </translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -625,7 +607,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Ta ukaz prilagaja dovoljenja za dostop do datotek na &lt;KLJUČ&gt; tako da ima samo skupina uporabnikov &lt;SKUPINA ZA DOSTOP&gt; bralni dostop do njega.</translation>
+        <translation>Ta ukaz prilagodi dovoljenja za dostop do datotek &lt;KEY&gt; tako, da ima dostop samo do skupine uporabnikov &lt;ACCESS GROUP&gt;bralni dostop do njega.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -1754,12 +1736,12 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Nadzor dostopa do interneta</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Ozadje:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Splošne nastavitve</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Ozadje:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -1875,7 +1857,7 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Predmetna drevesa</translation>
+        <translation>Objektna drevesa</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -2564,6 +2546,18 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Licenciranje</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Nameščene licence</translation>
     </message>
@@ -2580,8 +2574,8 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Funkcija</translation>
+        <source>Addon</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Valid until</source>
@@ -2612,6 +2606,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Funkcija</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Neveljavna licenčna datoteka</translation>
     </message>
@@ -2638,22 +2636,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>The license is already installed.</source>
         <translation>Licenca je že nameščena.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2748,10 +2730,6 @@ UPORABA
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Vtičnik izvajanja abstraktnih funkcij za platformo Linux</translation>
     </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LocationDialog</name>
@@ -2768,7 +2746,7 @@ UPORABA
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>Nastavitev</translation>
+        <translation>Nastavitve</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
@@ -3207,6 +3185,10 @@ UPORABA
         <translation>Odstranite izbrano omrežno območje</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Možnosti</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Vzporedno skeniranje</translation>
     </message>
@@ -3221,10 +3203,6 @@ UPORABA
     <message>
         <source>Session scan limit</source>
         <translation>Meja skeniranja seje</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Možnosti</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3994,6 +3972,25 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uporabniško ime</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Geslo</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4014,6 +4011,37 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Nadzor seje uporabnika</translation>
     </message>
 </context>
 <context>
@@ -4067,10 +4095,6 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <translation>NAPAKA</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>licenca za</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>UPORABA</translation>
     </message>
@@ -4085,6 +4109,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>WARNING</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>licenca za</translation>
     </message>
 </context>
 <context>
@@ -4146,16 +4174,24 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>Use alternative user authentication mechanism</source>
         <translation>Uporabite alternativni mehanizem za preverjanje pristnosti uporabnika</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Vtičnik izvajanja abstraktnih funkcij za platformo Windows</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

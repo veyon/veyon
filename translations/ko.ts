@@ -316,24 +316,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>일반사항</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>안드로이드 플래폼용 전용 함수 설치 플러그인 </translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -1480,7 +1462,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation>핸드아웃</translation>
+        <translation>자료 배포 핸드아웃</translation>
     </message>
     <message>
         <source>Texts to read</source>
@@ -1755,12 +1737,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>인터넷 연결 제어</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>백엔드:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>일반 설정</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>백엔드:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2563,6 +2545,18 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Licensing</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>정보</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>설치 ID</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>라이센싱 가능한 애드온들</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>설치된 라이센스</translation>
     </message>
@@ -2579,8 +2573,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>기능</translation>
+        <source>Addon</source>
+        <translation>애드온</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2611,6 +2605,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>기능</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>유효하지 않은 라이센스 파일</translation>
     </message>
@@ -2637,22 +2635,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The license is already installed.</source>
         <translation>이 라이센스는 이미 설치 되었습니다.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>정보</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>설치 ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>라이센싱 가능한 애드온이 있습니다</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>애드온</translation>
     </message>
 </context>
 <context>
@@ -2746,10 +2728,6 @@ USAGE
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>리눅스 플래폼용 플러그인 실행용 추상화 함수</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>리눅스 플래폼용 전용 함수 설치 플러그인 </translation>
     </message>
 </context>
 <context>
@@ -3136,7 +3114,7 @@ USAGE
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation>이모드는 하나 또는 그 이상의 위치에 있는 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
+        <translation>이모드는 하나 또는 많은 위치에 있는 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
     </message>
 </context>
 <context>
@@ -3206,6 +3184,10 @@ USAGE
         <translation>선택된 네트워크 범위 삭제</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>옵션</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>병행 스캔</translation>
     </message>
@@ -3220,10 +3202,6 @@ USAGE
     <message>
         <source>Session scan limit</source>
         <translation>세션 스캔 제한</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>옵션</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3919,7 +3897,7 @@ Typically this is required to support terminal servers.</source>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation>내부 Veyon 컴퓨터 및 기능을 시험</translation>
+        <translation>내부 Veyon 컴포넌트 및 기능을 시험</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
@@ -3995,6 +3973,25 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>사용자 이름</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>암호</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4015,6 +4012,37 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>선택한 유저를 로그오프 하시겠습니까?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>로그오프</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>이 버튼을 클릭하여 사용자를 모든 컴퓨터에서 로그오프하세요.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>사용자 확인 로그오프</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>선택한 유저를 로그오프 하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>사용자 세션제어</translation>
     </message>
 </context>
 <context>
@@ -4068,10 +4096,6 @@ Typically this is required to support terminal servers.</source>
         <translation>에러</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>에게 사용허가 됨  </translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>사용법</translation>
     </message>
@@ -4086,6 +4110,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>WARNING</source>
         <translation>경고</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>에게 사용허가 됨  </translation>
     </message>
 </context>
 <context>
@@ -4141,11 +4169,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>사용자 인즘</translation>
+        <translation>사용자 인증</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
         <translation>대체 사용자 인증 메커니즘 사용</translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4153,10 +4193,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>윈도우즈 플래폼용 플러그인 실행용 추상화 함수</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>윈도우즈 플래폼용 전용 함수 설치 플러그인 </translation>
     </message>
 </context>
 <context>

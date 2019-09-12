@@ -314,24 +314,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Allgemein</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Plugin zur Implementierung spezifischer Funktionen für die Android-Plattform</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
@@ -347,11 +329,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Basisverzeichnis für öffentliche Schlüsseldateien</translation>
+        <translation>Basisverzeichnis der öffentlichen Schlüsseldatei</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Basisverzeichnis für private Schlüsseldateien</translation>
+        <translation>Basisverzeichnis der privaten Schlüsseldatei</translation>
     </message>
     <message>
         <source>...</source>
@@ -1386,7 +1368,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Ausgewählte Webseite entfernen</translation>
+        <translation>Ausgewählte Webseiten entfernen</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1751,12 +1733,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Internetzugriffskontrolle</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
-    </message>
-    <message>
         <source>General settings</source>
         <translation>Allgemeine Einstellungen</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -2561,6 +2543,18 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Lizenzierung</translation>
     </message>
     <message>
+        <source>Information</source>
+        <translation>Informationen</translation>
+    </message>
+    <message>
+        <source>Installation ID</source>
+        <translation>Installations-ID</translation>
+    </message>
+    <message>
+        <source>Addons available for licensing</source>
+        <translation>Lizenzierbare Erweiterungen</translation>
+    </message>
+    <message>
         <source>Installed licenses</source>
         <translation>Installierte Lizenzen</translation>
     </message>
@@ -2577,8 +2571,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Funktion</translation>
+        <source>Addon</source>
+        <translation>Erweiterung</translation>
     </message>
     <message>
         <source>Valid until</source>
@@ -2609,6 +2603,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>&lt;N/V&gt;</translation>
     </message>
     <message>
+        <source>Feature</source>
+        <translation>Funktion</translation>
+    </message>
+    <message>
         <source>Invalid license file</source>
         <translation>Ungültige Lizenzdatei</translation>
     </message>
@@ -2635,22 +2633,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>The license is already installed.</source>
         <translation>Die Lizenz ist bereits installiert.</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informationen</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Installations-ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Lizenzierbare Erweiterungen</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Erweiterung</translation>
     </message>
 </context>
 <context>
@@ -2744,10 +2726,6 @@ VERWENDUNG
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Linux-Plattform</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Linux platform</source>
-        <translation>Plugin zur Implementierung spezifischer Funktionen für die Linux-Plattform</translation>
     </message>
 </context>
 <context>
@@ -3204,6 +3182,10 @@ VERWENDUNG
         <translation>Gewählten Netzwerkbereich entfernen</translation>
     </message>
     <message>
+        <source>Options</source>
+        <translation>Optionen</translation>
+    </message>
+    <message>
         <source>Parallel scans</source>
         <translation>Parallele Scans</translation>
     </message>
@@ -3218,10 +3200,6 @@ VERWENDUNG
     <message>
         <source>Session scan limit</source>
         <translation>Limit für Sitzungsscan</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Optionen</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3992,6 +3970,25 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
 </context>
 <context>
+    <name>UserLoginDialog</name>
+    <message>
+        <source>User login</source>
+        <translation>Benutzeranmeldung</translation>
+    </message>
+    <message>
+        <source>Please enter a username and password for automatic login on all computers.</source>
+        <translation>Bitte geben Sie einen Benutzernamen und ein Passwort zur automatischen Anmeldung auf allen Computern ein.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Passwort</translation>
+    </message>
+</context>
+<context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
@@ -4012,6 +4009,37 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControlPlugin</name>
+    <message>
+        <source>Log in</source>
+        <translation>Anmelden</translation>
+    </message>
+    <message>
+        <source>Click this button to log in a specific user on all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um einen bestimmten Benutzer auf allen Computern anzumelden.</translation>
+    </message>
+    <message>
+        <source>Log off</source>
+        <translation>Abmelden</translation>
+    </message>
+    <message>
+        <source>Click this button to log off users from all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
+    </message>
+    <message>
+        <source>Confirm user logoff</source>
+        <translation>Benutzerabmeldung bestätigen</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off the selected users?</source>
+        <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
+    </message>
+    <message>
+        <source>User session control</source>
+        <translation>Benutzersitzungssteuerung</translation>
     </message>
 </context>
 <context>
@@ -4065,10 +4093,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>FEHLER</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>lizenziert für</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>VERWENDUNG</translation>
     </message>
@@ -4083,6 +4107,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>WARNING</source>
         <translation>WARNUNG</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>lizenziert für</translation>
     </message>
 </context>
 <context>
@@ -4144,16 +4172,24 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>Use alternative user authentication mechanism</source>
         <translation>Alternativen Mechanismus zur Benutzerauthentifizierung verwenden</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Benutzeranmeldung</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Verzögerung vor Eingabebeginn</translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation>Intervall zwischen simulierten Tastendrücken</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
-    </message>
-    <message>
-        <source>Plugin implementing specific functions for the Windows platform</source>
-        <translation>Plugin zur Implementierung spezifischer Funktionen für die Windows-Plattform</translation>
     </message>
 </context>
 <context>
