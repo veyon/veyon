@@ -321,9 +321,9 @@ bool LinuxUserFunctions::authenticate( const QString& username, const Password& 
 	const auto pamService = LinuxPlatformConfiguration( &VeyonCore::config() ).pamServiceName();
 
 	QDataStream ds( &p );
-	ds << VeyonCore::stripDomain( username );
+	ds << VeyonCore::stripDomain( username ).toUtf8();
 	ds << password.toByteArray();
-	ds << pamService;
+	ds << pamService.toUtf8();
 
 	p.waitForFinished( AuthHelperTimeout );
 
