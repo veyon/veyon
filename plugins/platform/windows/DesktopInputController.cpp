@@ -22,6 +22,8 @@
  *
  */
 
+#include "vnckeymap.h"
+
 #include <windows.h>
 
 #include <QElapsedTimer>
@@ -30,7 +32,6 @@
 #include "DesktopInputController.h"
 #include "VeyonCore.h"
 
-#include "vnckeymap.h"
 
 
 // wrapper used by vncKeymap
