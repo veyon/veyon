@@ -114,12 +114,6 @@ VeyonCore::~VeyonCore()
 	delete m_authenticationManager;
 	m_authenticationManager = nullptr;
 
-	delete m_cryptoCore;
-	m_cryptoCore = nullptr;
-
-	delete m_logger;
-	m_logger = nullptr;
-
 	delete m_builtinFeatures;
 	m_builtinFeatures = nullptr;
 
@@ -129,11 +123,17 @@ VeyonCore::~VeyonCore()
 	delete m_pluginManager;
 	m_pluginManager = nullptr;
 
+	delete m_logger;
+	m_logger = nullptr;
+
 	delete m_config;
 	m_config = nullptr;
 
 	delete m_filesystem;
 	m_filesystem = nullptr;
+
+	delete m_cryptoCore;
+	m_cryptoCore = nullptr;
 
 	s_instance = nullptr;
 }
