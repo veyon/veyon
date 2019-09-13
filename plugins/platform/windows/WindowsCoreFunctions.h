@@ -79,6 +79,8 @@ public:
 	static QStringList sessionIdEnvironment();
 
 private:
+	static constexpr int ConsoleOutputBufferSize = 256;
+
 	static wchar_t* appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings );
 	static void setTaskbarState( bool enabled );
 	static void setStartMenuState( bool enabled );

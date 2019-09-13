@@ -119,6 +119,10 @@ bool WindowsCoreFunctions::applyConfiguration()
 
 void WindowsCoreFunctions::initNativeLoggingSystem( const QString& appName )
 {
+	SetConsoleOutputCP( CP_UTF8 );
+	setvbuf( stdout, nullptr, _IOFBF, ConsoleOutputBufferSize );
+	setvbuf( stderr, nullptr, _IOFBF, ConsoleOutputBufferSize );
+
 	m_eventLog = new CXEventLog( toConstWCharArray( appName ) );
 }
 
