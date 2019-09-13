@@ -236,8 +236,8 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 		unpressKey( XK_Meta_L );
 		break;
 	case ShortcutWin:
-		pressKey( XK_Meta_L );
-		unpressKey( XK_Meta_L );
+		pressKey( XK_Super_L );
+		unpressKey( XK_Super_L );
 		break;
 	case ShortcutMenu:
 		pressKey( XK_Menu );
