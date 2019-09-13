@@ -79,7 +79,7 @@ int main( int argc, char **argv )
 		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( static_cast<int>(Logger::LogLevel::Nothing) ) );
 	}
 
-	VeyonCore* core = new VeyonCore( app, QStringLiteral("CLI") );
+	auto core = new VeyonCore( app, QStringLiteral("CLI") );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 	const auto pluginObjects = core->pluginManager().pluginObjects();
@@ -128,8 +128,6 @@ int main( int argc, char **argv )
 				runResult = CommandLinePluginInterface::NotEnoughArguments;
 			}
 
-			delete core;
-
 			switch( runResult )
 			{
 			case CommandLinePluginInterface::NoResult:
@@ -168,11 +166,12 @@ int main( int argc, char **argv )
 			{
 				CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
 			}
+
+			delete core;
+			delete app;
 			return -1;
 		}
 	}
-
-	delete core;
 
 	int rc = -1;
 
@@ -197,6 +196,7 @@ int main( int argc, char **argv )
 	std::for_each( modulesHelpStrings.begin(), modulesHelpStrings.end(), [](const QString& s) {
 		CommandLineIO::print( QStringLiteral( "    " ) + s ); } );
 
+	delete core;
 	delete app;
 
 	return rc;
