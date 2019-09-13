@@ -27,14 +27,15 @@
 
 void CommandLineIO::print( const QString& message )
 {
-	printf( "%s\n", qUtf8Printable( message ) );
+	fprintf( stdout, "%s\n", qUtf8Printable( message ) );
+	fflush( stdout );
 }
 
 
 
 void CommandLineIO::newline()
 {
-	printf( "\n" );
+	putc( '\n', stdout );
 }
 
 
@@ -42,6 +43,7 @@ void CommandLineIO::newline()
 void CommandLineIO::info( const QString &message )
 {
 	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "INFO" ) ), qUtf8Printable( message ) );
+	fflush( stderr );
 }
 
 
@@ -49,6 +51,7 @@ void CommandLineIO::info( const QString &message )
 void CommandLineIO::warning( const QString &message )
 {
 	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "WARNING" ) ), qUtf8Printable( message ) );
+	fflush( stderr );
 }
 
 
@@ -56,6 +59,7 @@ void CommandLineIO::warning( const QString &message )
 void CommandLineIO::error( const QString& message )
 {
 	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "ERROR" ) ), qUtf8Printable( message ) );
+	fflush( stderr );
 }
 
 
@@ -159,27 +163,28 @@ void CommandLineIO::printExamples( const QString& module, const QString& command
 
 void CommandLineIO::printTableRuler( const CommandLineIO::TableColumnWidths& columnWidths, char horizontal, char corner )
 {
-	printf( "%c", corner );
+	putc( corner, stdout );
 	for( const auto& width : columnWidths )
 	{
 		for( int i = 0; i < width; ++i )
 		{
-			printf( "%c", horizontal );
+			putc( horizontal, stdout );
 		}
-		printf( "%c", corner );
+		putc( corner, stdout );
 	}
-	printf( "\n" );
+	newline();
 }
 
 
 
 void CommandLineIO::printTableRow( const TableColumnWidths& columnWidths, char vertical, const TableRow& row )
 {
-	printf( "%c", vertical );
+	putc( vertical, stdout );
 	for( int col = 0; col < columnWidths.size(); ++col )
 	{
 		const auto cell = row.value( col );
-		printf( " %s%c", qUtf8Printable( cell + QString( columnWidths[col] - cell.size() - 1, QLatin1Char(' ') ) ), vertical );
+		fprintf( stdout, " %s%c", qUtf8Printable( cell + QString( columnWidths[col] - cell.size() - 1, QLatin1Char(' ') ) ), vertical );
+		fflush( stdout );
 	}
-	printf( "\n" );
+	newline();
 }
