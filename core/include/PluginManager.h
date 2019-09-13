@@ -29,11 +29,14 @@
 #include "Plugin.h"
 #include "PluginInterface.h"
 
+class QPluginLoader;
+
 class VEYON_CORE_EXPORT PluginManager : public QObject
 {
 	Q_OBJECT
 public:
 	explicit PluginManager( QObject* parent = nullptr );
+	~PluginManager();
 
 	void loadPlatformPlugins();
 	void loadPlugins();
@@ -81,6 +84,7 @@ private:
 
 	PluginInterfaceList m_pluginInterfaces;
 	QObjectList m_pluginObjects;
+	QList<QPluginLoader *> m_pluginLoaders;
 	bool m_noDebugMessages;
 
 signals:
