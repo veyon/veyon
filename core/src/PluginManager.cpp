@@ -35,9 +35,25 @@ PluginManager::PluginManager( QObject* parent ) :
 	QObject( parent ),
 	m_pluginInterfaces(),
 	m_pluginObjects(),
+	m_pluginLoaders(),
 	m_noDebugMessages( qEnvironmentVariableIsSet( Logger::logLevelEnvironmentVariable() ) )
 {
 	initPluginSearchPath();
+}
+
+
+
+PluginManager::~PluginManager()
+{
+	vDebug();
+
+	for( auto pluginLoader : qAsConst(m_pluginLoaders) )
+	{
+		pluginLoader->unload();
+	}
+
+	m_pluginInterfaces.clear();
+	m_pluginObjects.clear();
 }
 
 
@@ -178,7 +194,8 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 			continue;
 		}
 
-		auto pluginObject = QPluginLoader( fileInfo.filePath() ).instance();
+		auto pluginLoader = new QPluginLoader( fileInfo.filePath(), this );
+		auto pluginObject = pluginLoader->instance();
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 
 		if( pluginObject && pluginInterface &&
@@ -190,6 +207,11 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 			}
 			m_pluginInterfaces += pluginInterface;	// clazy:exclude=reserve-candidates
 			m_pluginObjects += pluginObject;		// clazy:exclude=reserve-candidates
+			m_pluginLoaders += pluginLoader;			// clazy:exclude=reserve-candidates
+		}
+		else
+		{
+			delete pluginLoader;
 		}
 	}
 }
