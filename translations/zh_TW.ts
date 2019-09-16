@@ -437,7 +437,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>有關詳細資訊，請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;。</translation>
+        <translation>請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;，取得更多資訊。</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -774,7 +774,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;.</translation>
+        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;。</translation>
     </message>
     <message>
         <source>Type</source>
@@ -2029,7 +2029,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>請輸入查詢的使用者登入名稱 (允許使用萬用字元):</translation>
+        <translation>請輸入查詢的使用者登入名稱 (允許萬用字元):</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2069,7 +2069,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>請輸入查詢其 MAC 位址的電腦 DN :</translation>
+        <translation>請輸入查詢其 MAC 位址的電腦 DN:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -2341,7 +2341,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>請輸入要查詢的電腦顯示名稱:</translation>
+        <translation>請輸入查詢的電腦顯示名稱:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -2361,7 +2361,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation>請輸入要查詢其項目的位置名稱:</translation>
+        <translation>請輸入查詢其項目的位置名稱:</translation>
     </message>
     <message>
         <source>location entries</source>
@@ -2405,7 +2405,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>主機名稱存儲為完全限定網域名稱 (FQDN, 例如: myhost.example.org)</translation>
+        <translation>主機名稱存儲為完全限定網域名稱 (FQDN， 例如: myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2413,7 +2413,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>請輸入要查詢的電腦主機名稱:</translation>
+        <translation>請輸入查詢的電腦主機名稱:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
@@ -2437,7 +2437,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>請輸入要查詢其群組成員身份的電腦主機名稱:</translation>
+        <translation>請輸入查詢其群組成員身份的電腦主機名稱:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -2445,7 +2445,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation>主機名稱查找失敗</translation>
+        <translation>主機名稱尋找失敗</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
@@ -3196,7 +3196,7 @@ USAGE
     </message>
     <message>
         <source>Last address</source>
-        <translation>最後位址</translation>
+        <translation>上次位址</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -3272,7 +3272,7 @@ USAGE
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>自動探索網路中的電腦的網路物件目錄</translation>
+        <translation>自動探索網路中電腦的網路物件目錄</translation>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
@@ -4100,7 +4100,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>建立連線到 %1 ...</translation>
+        <translation>建立連線到 %1...</translation>
     </message>
 </context>
 <context>

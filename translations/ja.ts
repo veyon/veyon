@@ -445,7 +445,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>1つの認証キーのペアは、プライベートキーとパブリックキーの2つの暗号キーで構成されています。
+プライベートキーを使用すると、マスターコンピューターのユーザーがクライアントPCにアクセスすることができます。
+許可されたユーザーのみがプライベートキーを読む権限があるようにしてください。
+パブリックキーはクライアントPCが他からのアクセス要求を認証するために使用します。</translation>
     </message>
 </context>
 <context>
@@ -512,150 +515,150 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>ファイル（ &quot;%1&quot;）に有効なプライベートキーがありません。</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>ファイル（ &quot;%1&quot;）に有効なパブリックキーがありません。</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>キーファイル用のディレクトリーの作成に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>キーファイル&quot;%1&quot;の書き込みに失敗しました。</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>キーファイル&quot;%1へのアクセス権限の設定に失敗しました。</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>キー&quot;%1/%2&quot;のインポートに成功しました。許可されていないアクセスを防ぐため、&quot;%3&quot;へのアクセス権限を確認してください。</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>プライベートキーからパブリックキーへの変換に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>プライベートキーファイル&quot;%1&quot;のディレクトリーの作成に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;へのプライベートキーの保存に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>プライベートキー&quot;%1&quot;へのアクセス権限の設定に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>パブリックキーのファイル&quot;%1&quot;のディレクトリーの作成に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;のファイルへのパブリックキーの保存に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>パブリックキー&quot;%1&quot;へのアクセス権限の設定に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>キーファイル&quot;%1&quot; から &quot;%2&quot;への所有者の設定に失敗しました。</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>キーファイル&quot;%1&quot;へのアクセス権限の設定に失敗しました。</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>キー&quot;%1&quot;はユーザーグループ&quot;%2&quot;によってアクセス可能になりました、</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>キーファイルの読み込みに失敗しました。</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>新しい認証キーキーペアの作成</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>認証キーを削除</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>認証キーリスト</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>パブリックまたはプライベートキーのインポート</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>パブリックまたはプライベートキーのエクスポート</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>既存のプライベートキーからパブリックキーを作成</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーグループをキーにアクセス可能にする</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>キー</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>アクセスグループ</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドはファイルのアクセス権限を、ユーザーグループ&lt;ACCESS GROUP&gt;がアクセスできるよう、&lt;KEY&gt;に設定します。</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>名前</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ファイル</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドは認証キー&lt;KEY&gt;を&lt;FILE&gt;にエクスポートします。&lt;FILE&gt;が指定されていない場合、&lt;KEY&gt;の名前とタイプから新しい名前が作成されます。</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドは認証キー&lt;KEY&gt;を&lt;FILE&gt;からインポートします。&lt;FILE&gt;が指定されていない場合、&lt;KEY&gt;の名前とタイプから新しい名前が作成されます。</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドは設定されたキーディレクトリーにあるすべての有効な認証キーを一覧にします。&quot;%1&quot;が指定されていれば、キーの詳細が表で表示されます。キーにアクセス権限が無いなどキーにアクセスできなかった場合、いくつかの詳細が表示されない場合があります。</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>ヘルプを表示するコマンドを指定してください!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>タイプ</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ペアID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -663,19 +666,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>認証キーを管理するコマンド</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドは&lt;NAME&gt;という名前で認証キーペアを作成し、設定されたキーの保存ディレクトリーに保存されます。このパラメーターは文字だけを含む名前である必要があります。</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドは認証キー&lt;KEY&gt;を設定されたーディレクトリーから削除します。一度削除したキーは復元できないことに注意してください。</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>このコマンドはプライベートキー&lt;KEY&gt;からパブリックキーを作成し、対応するパブリックキーとして保存します。別のマスターPCを設定する際はプライベートキーを転送すると便利です。パブリックキーが作成されます。</translation>
     </message>
 </context>
 <context>
@@ -690,18 +693,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>アクセスグループ</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>ペアID</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>コンピューター</translation>
     </message>
     <message>
         <source>Name</source>
@@ -709,7 +712,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>ホストアドレス/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -717,62 +720,62 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>新しいコンピューターを追加</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>選択したコンピューターを削除</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>新しいコンピューター</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>ビルドインディクショナリー</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>場所＆コンピューター</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>場所</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>新しい場所を追加</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>選択した場所を削除</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>コマンドラインでCSVを使ってインポートできます。詳細は&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;オンラインドキュメント&lt;/a&gt;を確認してください。</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>新しい場所</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>指定したコマンドのヘルプを表示</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>ファイルからオブジェクトを追加</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>ファイルへオブジェクトをエクスポート</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>無効なタイプが指定されました。有効な値は&quot;%1&quot; か &quot;%2&quot;です。</translation>
     </message>
     <message>
         <source>Type</source>
@@ -784,7 +787,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>ホストアドレス</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -792,115 +795,115 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>指定したオブジェクトが見つかりませんでした。</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>ファイル&quot;%1&quot;が存在しません!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;の読み込みに失敗</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>不明な因数&quot;%</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>コンピューター&quot;%1&quot;（ホストアドレス:&quot;%2&quot; MACアドレス:&quot;%3&quot;）</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>未分類のオブジェクト&quot;%1&quot;、ID&quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>なし</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>コンピューター</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>ルート</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>無効</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;の解析中にエラーが発生しました。</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>ローカル設定でオブジェクトを保管するネットワークオブジェクトの保存先</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>ビルドインのネットワークオブジェクト保存先を管理するためのコマンド</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>ストリングや一般の表現が指定されていません。</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;に書き込むことができませんでした。</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>フォーマットが指定されていません!</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>オブジェクトUUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>ペアレントUUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>場所かコンピューターを追加</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>全ての場所とコンピューターを削除</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>全てまたは個別の場所かコンピューターを削除</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>全てのコンピューターと場所の一覧</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>場所かコンピューターを削除</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>場所&quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>ビルドイン（ローカル設定内のコンピューターと場所）</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>場所</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ファイル</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>場所</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -916,11 +919,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>CSVファイルを1つの部屋にインポート</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>最初の列に場所の名前があるCSVファイルをインポート</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
@@ -944,11 +947,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>タイプ</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>名前</translation>
     </message>
     <message>
         <source>PARENT</source>
@@ -1325,11 +1328,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>このモードでは、全てのコンピューターの入力を停止し、このコンピューターの画面をフルスクリーンで全てのPCに表示します。</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>このモードでは、このPCの画面が全てのコンピューターの画面にウィンドウとして表示されます。全てのユーザーは必要に応じて他のウィンドウに切り替えることができます。</translation>
     </message>
 </context>
 <context>
@@ -1406,7 +1409,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>プログラムを起動</translation>
     </message>
     <message>
         <source>Open website</source>
@@ -1422,7 +1425,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>全てのコンピューターでプログラムを起動します。</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
@@ -1722,11 +1725,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"/>
+        <translation>ログオン認証</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"/>
+        <translation>キーファイル認証</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2214,7 +2217,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>なし</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2588,7 +2591,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Invalid license file</source>
@@ -2639,7 +2642,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LicensingPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>指定したコマンドのヘルプを表示</translation>
     </message>
     <message>
         <source>Show all installed licenses</source>
@@ -2677,7 +2680,7 @@ USAGE
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Licensing management</source>
@@ -3106,7 +3109,7 @@ USAGE
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>このモードでは、全てのコンピューターを1つ以上の場所でモニターできるようになります。</translation>
     </message>
 </context>
 <context>
@@ -3201,7 +3204,7 @@ USAGE
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>新しい場所</translation>
     </message>
 </context>
 <context>
@@ -3219,7 +3222,7 @@ USAGE
     <name>NetworkDiscoveryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>指定したコマンドのヘルプを表示</translation>
     </message>
     <message>
         <source>Scan a subnet</source>
@@ -3285,15 +3288,15 @@ USAGE
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー名</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>パスワード</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyonログオン</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -3301,11 +3304,11 @@ USAGE
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>入力したユーザー名とパスワードでログインに失敗しました。再試行してください!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>アクセスするにはユーザー名とパスワードを入力してください。</translation>
     </message>
 </context>
 <context>
@@ -3368,7 +3371,7 @@ USAGE
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>ヘルプを表示するコマンドを指定してください!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3606,7 +3609,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーの注意をひくためには、このボタンを使用して全てのコンピューターの入力をロック・黒画面を表示し、PCをロックできます。</translation>
     </message>
 </context>
 <context>
@@ -3848,7 +3851,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>ファイル&quot;%1&quot;が存在しません!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
