@@ -41,8 +41,7 @@ SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Veyon, an open source computer monitoring 
   * powering on/off and rebooting computers remote
   * remote logoff and remote execution of arbitrary commands/scripts
   * home schooling - Veyon's network-technology is not restricted to a subnet and therefore students at home
-  can join lessons via VPN connections just by installing the Veyon service
-")
+  can join lessons via VPN connections just by installing the Veyon service")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
 SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins")
 SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
