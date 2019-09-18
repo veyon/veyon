@@ -71,6 +71,16 @@ public:
 	};
 	Q_ENUM(ApplicationVersion)
 
+	enum class Component {
+		Service,
+		Server,
+		Worker,
+		Master,
+		CLI,
+		Configurator
+	};
+	Q_ENUM(Component)
+
 	VeyonCore( QCoreApplication* application, const QString& appComponentName );
 	~VeyonCore() override;
 
