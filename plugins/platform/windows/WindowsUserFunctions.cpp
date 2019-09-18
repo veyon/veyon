@@ -239,8 +239,8 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 
 void WindowsUserFunctions::checkPendingLogonTasks()
 {
-	// running inside a Veyon Server component?
-	if( WindowsServiceCore::serviceDataTokenFromEnvironment().isEmpty() == false &&
+	if( VeyonCore::component() == VeyonCore::Component::Server &&
+		WindowsServiceCore::serviceDataTokenFromEnvironment().isEmpty() == false &&
 		isAnyUserLoggedOn() == false )
 	{
 		vDebug() << "Reading logon credentials";
