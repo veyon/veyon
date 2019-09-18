@@ -32,7 +32,7 @@ int main( int argc, char **argv )
 {
 	QCoreApplication app( argc, argv );
 
-	VeyonCore core( &app, QStringLiteral("Server") );
+	VeyonCore core( &app, VeyonCore::Component::Server, QStringLiteral("Server") );
 
 	ComputerControlServer server( &core );
 	if( server.start() == false )

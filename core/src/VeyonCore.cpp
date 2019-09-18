@@ -56,7 +56,7 @@
 VeyonCore* VeyonCore::s_instance = nullptr;
 
 
-VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
+VeyonCore::VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName ) :
 	QObject( application ),
 	m_filesystem( new Filesystem ),
 	m_config( nullptr ),
@@ -71,6 +71,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_localComputerControlInterface( nullptr ),
+	m_component( component ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_debugging( false )
 {

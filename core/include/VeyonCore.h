@@ -86,7 +86,7 @@ public:
 
 	static constexpr char RfbSecurityTypeVeyon = 40;
 
-	VeyonCore( QCoreApplication* application, const QString& appComponentName );
+	VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName );
 	~VeyonCore() override;
 
 	static VeyonCore* instance();
@@ -99,6 +99,11 @@ public:
 	static QString sharedLibrarySuffix();
 
 	static QString sessionIdEnvironmentVariable();
+
+	static Component component()
+	{
+		return instance()->m_component;
+	}
 
 	static VeyonConfiguration& config()
 	{
@@ -202,6 +207,7 @@ private:
 
 	ComputerControlInterface* m_localComputerControlInterface;
 
+	Component m_component;
 	QString m_applicationName;
 	bool m_debugging;
 
