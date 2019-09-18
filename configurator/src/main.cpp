@@ -39,7 +39,7 @@ int main( int argc, char **argv )
 
 	QApplication app( argc, argv );
 
-	VeyonCore core( &app, QStringLiteral("Configurator") );
+	VeyonCore core( &app, VeyonCore::Component::Configurator, QStringLiteral("Configurator") );
 
 	// make sure to run as admin
 	if( qEnvironmentVariableIntValue( "VEYON_CONFIGURATOR_NO_ELEVATION" ) == 0 &&

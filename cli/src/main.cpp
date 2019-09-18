@@ -79,7 +79,7 @@ int main( int argc, char **argv )
 		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( static_cast<int>(Logger::LogLevel::Nothing) ) );
 	}
 
-	auto core = new VeyonCore( app, QStringLiteral("CLI") );
+	auto core = new VeyonCore( app, VeyonCore::Component::CLI, QStringLiteral("CLI") );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 	const auto pluginObjects = core->pluginManager().pluginObjects();

@@ -30,7 +30,7 @@
 int main( int argc, char** argv )
 {
 	QCoreApplication app( argc, argv );
-	VeyonCore core( &app, QStringLiteral("Service") );
+	VeyonCore core( &app, VeyonCore::Component::Service, QStringLiteral("Service") );
 
 	auto& serviceFunctions = core.platform().serviceFunctions();
 
