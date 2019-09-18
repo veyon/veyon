@@ -74,6 +74,16 @@ public:
 	};
 	Q_ENUM(ApplicationVersion)
 
+	enum class Component {
+		Service,
+		Server,
+		Worker,
+		Master,
+		CLI,
+		Configurator
+	};
+	Q_ENUM(Component)
+
 	static constexpr char RfbSecurityTypeVeyon = 40;
 
 	VeyonCore( QCoreApplication* application, const QString& appComponentName );
