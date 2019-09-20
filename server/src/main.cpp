@@ -22,7 +22,7 @@
  *
  */
 
-#include <QCoreApplication>
+#include <QGuiApplication>
 
 #include "ComputerControlServer.h"
 #include "VeyonConfiguration.h"
@@ -30,7 +30,8 @@
 
 int main( int argc, char **argv )
 {
-	QCoreApplication app( argc, argv );
+	QGuiApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
+	QGuiApplication app( argc, argv );
 
 	VeyonCore core( &app, VeyonCore::Component::Server, QStringLiteral("Server") );
 
