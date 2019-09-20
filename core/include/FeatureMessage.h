@@ -46,14 +46,7 @@ public:
 		InitCommand = -2,
 	};
 
-	explicit FeatureMessage() :
-		m_featureUid(),
-		m_command( InvalidCommand ),
-		m_arguments()
-	{
-	}
-
-	explicit FeatureMessage( FeatureUid featureUid, Command command ) :
+	explicit FeatureMessage( FeatureUid featureUid = {}, Command command = InvalidCommand ) :
 		m_featureUid( featureUid ),
 		m_command( command ),
 		m_arguments()
