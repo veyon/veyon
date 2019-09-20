@@ -42,11 +42,10 @@ public:
 	DemoServerConnection( const DemoAuthentication& authentication, QTcpSocket* socket, DemoServer* demoServer );
 	~DemoServerConnection() override;
 
-public slots:
+private:
 	void processClient();
 	void sendFramebufferUpdate();
 
-private:
 	bool receiveClientMessage();
 
 	DemoServer* m_demoServer;
