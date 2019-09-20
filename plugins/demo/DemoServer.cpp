@@ -60,7 +60,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 
 	if( m_tcpServer->listen( QHostAddress::Any, static_cast<quint16>( VeyonCore::config().demoServerPort() ) ) == false )
 	{
-		vCritical() << "could not listen to demo server port";
+		vCritical() << "could not listen on demo server port";
 		return;
 	}
 
