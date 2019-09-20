@@ -37,9 +37,7 @@ class DemoServerConnection : public QObject
 {
 	Q_OBJECT
 public:
-	enum {
-		ProtocolRetryTime = 250,
-	};
+	static constexpr int ProtocolRetryTime = 250;
 
 	DemoServerConnection( const DemoAuthentication& authentication, QTcpSocket* socket, DemoServer* demoServer );
 	~DemoServerConnection() override;
