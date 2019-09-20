@@ -27,7 +27,6 @@
 #include <QVariant>
 
 #include "Feature.h"
-#include "MessageContext.h"
 
 class QIODevice;
 
