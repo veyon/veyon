@@ -33,7 +33,6 @@ class QIODevice;
 class VEYON_CORE_EXPORT FeatureMessage
 {
 public:
-	using MessageSize = quint32;
 	using FeatureUid = Feature::Uid;
 	using Command = qint32;
 	using Arguments = QMap<QString, QVariant>;
