@@ -99,12 +99,6 @@ public:
 		return m_arguments[QString::number( static_cast<int>( index ) )];
 	}
 
-	template<typename T = int>
-	bool hasArgument( T index ) const
-	{
-		return m_arguments.contains( QString::number( static_cast<int>( index ) ) );
-	}
-
 	bool send( QIODevice* ioDevice ) const;
 
 	bool isReadyForReceive( QIODevice* ioDevice );
