@@ -55,6 +55,7 @@ TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Gui
 	Qt5::Network
 	Qt5::Widgets
+	Qt5::QuickControls2
 	Threads::Threads
 	${VEYON_DEBUG_LIBRARIES}
 	${ZLIB_LIBRARIES}
