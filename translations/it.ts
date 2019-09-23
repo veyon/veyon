@@ -1481,7 +1481,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open website</source>
-        <translation>Collegamento ad un sito internet</translation>
+        <translation>Apri sito web</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
@@ -3336,7 +3336,7 @@ USO
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Collegamento ad un sito internet</translation>
+        <translation>Apri sito web</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
