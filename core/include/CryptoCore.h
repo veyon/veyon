@@ -44,8 +44,8 @@ public:
 		ChallengeSize = 128,
 	};
 
-	static constexpr QCA::EncryptionAlgorithm DefaultEncryptionAlgorithm = QCA::EME_PKCS1_OAEP;
-	static constexpr QCA::SignatureAlgorithm DefaultSignatureAlgorithm = QCA::EMSA3_SHA512;
+	static constexpr auto DefaultEncryptionAlgorithm = QCA::EME_PKCS1_OAEP;
+	static constexpr auto DefaultSignatureAlgorithm = QCA::EMSA3_SHA512;
 
 	CryptoCore();
 	~CryptoCore();
