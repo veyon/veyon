@@ -152,7 +152,7 @@ bool AuthSimplePlugin::authenticate( QIODevice* socket ) const
 	VariantArrayMessage publicKeyMessage( socket );
 	publicKeyMessage.receive();
 
-	CryptoCore::PublicKey publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
+	auto publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
 
 	if( publicKey.canEncrypt() == false )
 	{
@@ -160,7 +160,7 @@ bool AuthSimplePlugin::authenticate( QIODevice* socket ) const
 		return false;
 	}
 
-	CryptoCore::PlaintextPassword encryptedPassword = publicKey.encrypt( m_password, CryptoCore::DefaultEncryptionAlgorithm );
+	auto encryptedPassword = publicKey.encrypt( m_password, CryptoCore::DefaultEncryptionAlgorithm );
 	if( encryptedPassword.isEmpty() )
 	{
 		vCritical() << QThread::currentThreadId() << "password encryption failed!";
