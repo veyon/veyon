@@ -141,7 +141,6 @@ VncServerClient::AuthState AuthLogonPlugin::performAuthentication( VncServerClie
 	}
 
 	return VncServerClient::AuthState::Failed;
-
 }
 
 
@@ -151,7 +150,7 @@ bool AuthLogonPlugin::authenticate( QIODevice* socket ) const
 	VariantArrayMessage publicKeyMessage( socket );
 	publicKeyMessage.receive();
 
-	CryptoCore::PublicKey publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
+	auto publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
 
 	if( publicKey.canEncrypt() == false )
 	{
@@ -159,7 +158,7 @@ bool AuthLogonPlugin::authenticate( QIODevice* socket ) const
 		return false;
 	}
 
-	CryptoCore::PlaintextPassword encryptedPassword = publicKey.encrypt( m_password, CryptoCore::DefaultEncryptionAlgorithm );
+	const auto encryptedPassword = publicKey.encrypt( m_password, CryptoCore::DefaultEncryptionAlgorithm );
 	if( encryptedPassword.isEmpty() )
 	{
 		vCritical() << QThread::currentThreadId() << "password encryption failed!";
