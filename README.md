@@ -61,7 +61,7 @@ First grab the latest sources by cloning the Git repository and fetching all sub
 Requirements for Debian-based distributions:
 
 - Build tools: g++ make cmake
-- Qt5: qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools
+- Qt5: qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev
 - X11: xorg-dev libxtst-dev
 - libjpeg: libjpeg-dev provided by libjpeg-turbo8-dev or libjpeg62-turbo-dev
 - zlib: zlib1g-dev
@@ -76,6 +76,7 @@ Requirements for Debian-based distributions:
 As root you can run
 
 	apt install g++ make cmake qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
+                    qtdeclarative5-dev qtquickcontrols2-5-dev \
 	            xorg-dev libxtst-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
 	            libprocps-dev liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev \
 	            libsasl2-dev
