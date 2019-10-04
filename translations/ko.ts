@@ -3976,11 +3976,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>유저 로긴</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>자동으로 모든 컴퓨터에 로긴하려면 유저명과 패스워드를 입력하세요</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4018,11 +4018,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>로긴</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>이 버튼을 클릭하여 모든 컴퓨터에 로긴 합니다</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4177,15 +4177,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>유저 로긴</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>입력 시작 지연</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>시뮬레이션 키입력 간격</translation>
     </message>
 </context>
 <context>

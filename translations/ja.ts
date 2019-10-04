@@ -1057,7 +1057,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>リモートアクセス</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1556,7 +1556,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターへファイルを転送</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
@@ -1753,7 +1753,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>インターネットへのアクセスをブロック</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
@@ -1765,15 +1765,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>インターネットをブロック</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>ボタンをクリックしてインターネットへのアクセスをブロック</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>インターネットへのアクセスブロックを解除</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -3293,7 +3293,7 @@ USAGE
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation type="unfinished"/>
+        <translation>電源オン</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -3317,7 +3317,7 @@ USAGE
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>電源オン・オフ・再起動</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3377,7 +3377,8 @@ USAGE
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>このコンピューターは遠隔操作でシャットダウンが要求されました。
+コンピューターをシャットダウンして良いですか？</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
@@ -3409,11 +3410,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>リモートビュー</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>通知なしにリモートビューを開始</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -3425,7 +3426,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>リモートアクセス</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3575,15 +3576,15 @@ Please save your work and close all programs.</source>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>ロック</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>ロック解除</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターのスクリーンと入力機器をロック</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -3752,7 +3753,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>許可されていないアクセスがブロックされた時、通知を表示</translation>
     </message>
 </context>
 <context>
@@ -4118,7 +4119,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>スクリーンロック</translation>
     </message>
     <message>
         <source>Hide taskbar</source>

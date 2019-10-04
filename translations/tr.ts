@@ -150,7 +150,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Giriş yetkisini sadece belirli kullanıcı grup üyeleriyle sınırla</translation>
     </message>
 </context>
 <context>
@@ -193,7 +193,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Giriş yapan bilgisayar yerel sunucudur</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -257,11 +257,11 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>Giriş yapan bilgisayar ve yerel bilgisayar aynı lokasyonda</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>bulunduğu yer</translation>
     </message>
 </context>
 <context>
@@ -343,7 +343,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Kullanılabilir yetkilendirme anahtarları</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -403,23 +403,23 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosyası yetkilendirmesi için lütfen bu adımları gerçekleştirin:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Ana bilgisayarda anahtar çifti oluşturun.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Diğer bilgisayarlara giriş yetkisi olan bir giriş grubu oluşturun.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Genel anahtarı dışarı verin ve tüm katılımcı bilgisayarlara aynı isimle ekleyin.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Yönetici Kılavuzuna &lt;/a&gt; daha fazla bilgi için göz atın.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.

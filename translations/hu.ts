@@ -3974,11 +3974,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználó bejelentkezése</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kérem, adj meg egy felhasználónevet és egy jelszót az automatikus bejelentkezéshez az összes számítógépen.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4016,11 +4016,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Bejelentkezés</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kattints erre a gombra, hogy egy megadott felhasználó bejelentkezzen az össze számítógépre.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4175,15 +4175,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználó bejelentkezése</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Add meg az indítási késleltetést</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűlenyomási időköz szimulálása</translation>
     </message>
 </context>
 <context>
