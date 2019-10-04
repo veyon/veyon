@@ -1359,11 +1359,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมและเว็บไซต์</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมที่กำหนดไว้</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2924,15 +2924,15 @@ USAGE
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;มุมมอง</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;มาตรฐาน</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ขั้นสูง</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
@@ -3402,7 +3402,8 @@ USAGE
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์จะปิดลงใน %1 นาที %2 วินาที
+กรุณาบันทึกงานให้เรียบร้อยแล้วปิดโปรแกรมทุกโปรแกรม</translation>
     </message>
 </context>
 <context>
@@ -3771,7 +3772,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
     </message>
 </context>
 <context>
