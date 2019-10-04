@@ -1,84 +1,84 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Névjegy</translation>
+        <translation>O nama</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Fordítás</translation>
+        <translation>Prevod</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licenc</translation>
+        <translation>Licenca</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Veyon-ról</translation>
+        <translation>O Veyonu</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Közreműködők</translation>
+        <translation>Saradnici</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Verzió:</translation>
+        <translation>Verzija</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Weboldal:</translation>
+        <translation>Websajt:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>A Veyon esetleges fordítási hibáit kérem, jelezd a kisskalmandaniel@gmail.hu címre.
+        <translation>Trenutni jezik nije još preveden (ili maternji Engleski).
 
-Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő fordítást szeretnél továbbfejleszteni, vedd fel a kapcsolatot a Veyon fejlesztőivel.</translation>
+Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili želite poboljšati postojeći prevod,molimo kontaktirajte Veyon programera!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>%1 %2</translation>
+        <translation>O %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Adakozással támogasd a Veyon projektet</translation>
+        <translation>Podržite Veyon projekat sa donacijom</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>Számítógéphozzáférés-vezérlés</translation>
+        <translation>Kontrola pristupa računaru</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Hozzáférés engedélyezése az összes hitelesített felhasználó számára (alapértelmezett)</translation>
+        <translation>Odobriti pristup autorizovanom korisniku (podrazumevano)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Tesztelés</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Hozzáférési szabályok feldogozása</translation>
+        <translation>Obraditi pravila kontrole pristupa</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Számítógép-hozzáférést engedélyezett felhasználói csoportok</translation>
+        <translation>Autorizovane grupe korisnika za pristup računaru</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Adja meg azokat a csoportokat, melyek tagjainak hozzáférése kellene, hogy legyen a Veyon hálózatában lévő számítógépekhez.</translation>
+        <translation>Molimo dodajte grupe čiji članovi trebaju biti autorizovani za pristup računarima u vašoj Veyon mreži.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Hitelesített felhasználói csoportok</translation>
+        <translation>Autorizovane grupe korisnika</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Összes csoport</translation>
+        <translation>Sve grupe</translation>
     </message>
     <message>
         <source>...</source>
@@ -86,233 +86,233 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Hozzáférési szabályok</translation>
+        <translation>Pravila kotrole pristupa</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>Hozzáférési szabály létrehozása</translation>
+        <translation>Dodaj pravilo kontrole pristupa</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>Hozzáférési szabály eltávolítása</translation>
+        <translation>Ukloni pravilo kotrole pristupa</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Kijelölt szabály mozgatása lefelé</translation>
+        <translation>Pomeri obeleženo pravilo dole</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Kijelölt szabály mozgatása felfelé</translation>
+        <translation>Pomeri pravilo gore</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>Kijelölt szabály módosítása</translation>
+        <translation>Izmeni obeleženo pravilo</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Add meg a felhasználónevet</translation>
+        <translation>Unesi korisničko ime</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Kérem, add meg a felhasználó bejelentkezési nevét, akinek a hozzáférését teszteled:</translation>
+        <translation>Molim unesite korisničko ime prijave čiji pristup je dozvoljen za test:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>Hozzáférés engedélyezve</translation>
+        <translation>Pristup dozvoljen</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>A kijelölt felhasználó hozzáférhet a számítógéphez a jelenlegi konfiguráció alapján.</translation>
+        <translation>Navedenom korisniku je dozvoljen pristup računarima sa ovom konfiguracijom.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Hozzáférés megtagadva</translation>
+        <translation>Pristup odbijen</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>A kijelölt felhasználó nem férhet hozzá a számítógéphez a jelenlegi konfiguráció alapján.</translation>
+        <translation>Navedenom korisniku nije dozvoljen pristup računarima sa ovom konfiguracijom.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation>Domain csoportok használatának bekapcsolása</translation>
+        <translation>Omogući korišćenje domen grupa</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Felhasználói csoportok háttere:</translation>
+        <translation>Pozadina grupe korisnika:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Hiányzik a felhasználói csoportok háttere</translation>
+        <translation>Nedostaje pozadina grupe korisnika</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nincs alapértelmezett felhasználóicsoport-bővítmény. Kérem, ellenőrizd telepítésed! </translation>
+        <translation>Nije pronađjen nijedan dodatak za grupe korisnika. Molimo proverite vašu instalaciju!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation>Hozzáférés tiltása meghatározott felhasználói csoport tagjainak</translation>
+        <translation>Ograniči pristup članovima određjenih grupa korisnika</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>Hozzáférési szabály módosítása</translation>
+        <translation>Izmeni pristup pravila kontrole</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Opšte</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>írd ide a szabály rövid nevét</translation>
+        <translation>unesite kratko ime za pravilo ovde</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Szabály megnevezése:</translation>
+        <translation>Ime pravila:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>írd ide néhány szót a szabályról</translation>
+        <translation>unesite opis za pravilo ovde</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Szabály leírása:</translation>
+        <translation>Opis pravila:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Feltételek megfordítása (&quot;van/volt&quot; cseréje: &quot;nincs/nem volt&quot;)</translation>
+        <translation>Zamenite sve uslove (&quot;is / has&quot; je protumačeno kao &quot;je / nije&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>Feltételek</translation>
+        <translation>Uslovi</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>tagja a csoportnak</translation>
+        <translation>je član grupe</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>A hozzáférő számítógép a helyi számítógép</translation>
+        <translation>Pristup kompjuteru je lokalni</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>A hozzáférő felhasználó már bejelentkezett</translation>
+        <translation>Pristupni korisnik je prijavljen</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>A hozzáférő felhasználó már csatlakozott</translation>
+        <translation>Pristupni korisnik je već povezan</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Ha egynél több feltétel aktív, az összes feltételnek teljesülnie kell, hogy a szabály életbe lépjen (logikai ÉS). Ha a szabályok közül csak egy teljesül (logikai VAGY), kérem, készíts több hozzáférés-vezérlési szabályt.</translation>
+        <translation>Ako je aktivirano više od jednog uslova, svaki se uslov mora ispuniti da bi se pravilo primenilo (logično I). Ako mora biti ispunjen samo jedan od više uslova (logički ILI),kreirajte više pravila kontrole pristupa.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Művelet</translation>
+        <translation>Akcija</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>Hozzáférés engedélyezése</translation>
+        <translation>Dozvoli pristup</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Hozzáférés tiltása</translation>
+        <translation>Odbi pristup</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Bejelentkezett felhasználótól jogosultság kérése</translation>
+        <translation>Pitajte prijavljenog korisnika za dozvolu</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Egyik sem (egyik szabály sincs bekapcsolva)</translation>
+        <translation>Nema (pravilo onemogućeno)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Hozzáférő felhasználó</translation>
+        <translation>Pristup korisniku</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Hozzáférő számítógép</translation>
+        <translation>Pristup kompjuteru</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Helyi (bejelentkezett) felhasználó</translation>
+        <translation>Lokalni (prijavljeni) korisnik</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Helyi számítógép</translation>
+        <translation>Lokalni računar</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Mindig hassanak a szabályok és hagyja figyelmen kívül a feltételeket</translation>
+        <translation>Uvek obradi pravilo i ignoriši uslove</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Egy felhasználó sem jelentkezett be</translation>
+        <translation>Nijedan korisnik nije prijavljen</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>A hozzáférő felhasználó egy vagy több csoport közös tagja a helyi (bejelentkezett) felhasználóval</translation>
+        <translation>Korisnik koji ima pristup ima jednu ili više grupa zajedničkih s lokalnim (prijavljenim) korisnikom</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>A hozzáférő számítógép a helyi számítógéppel egy helyszínen van</translation>
+        <translation>Pristupni računar i lokalni računar su na istoj lokaciji</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation>helyezkedik el</translation>
+        <translation>nalazi se na</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>Hozzáférési szabály tesztelése</translation>
+        <translation>Testiranje pravila kontrole pristupa</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Hozzáférő felhasználó:</translation>
+        <translation>Pristupni korisnik:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Helyi számítógép:</translation>
+        <translation>Lokalni računar:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Hozzáférő számítógép:</translation>
+        <translation>Pristupni računar:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Kérem, add meg a következő felhasználó- és számítógép-információt, hogy tesztelhessem a beállított szabályokat.</translation>
+        <translation>Molimo unesite sledeće podatke o korisniku i računaru kako biste testirali konfigurisani skup pravila.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Helyi felhasználó:</translation>
+        <translation>Lokalni korisnik:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Csatlakozott felhasználó:</translation>
+        <translation>Povezani korisnici:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>Az adott esetben a hozzáférés engedélyezett.</translation>
+        <translation>Dozvoljen je pristup u datom scenariju.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>Az adott esetben a hozzáférés tiltott.</translation>
+        <translation>Odbijen je pristup u datom scenariju</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Az adott esetben a hozzáféréshez a bejelentkezett felhasználó jogosultságára van szükség.</translation>
+        <translation>Za pristup datom scenariju potrebne su dozvole prijavljenog korisnika.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>HIBA: Ismeretlen művelet</translation>
+        <translation>GREŠKA: Nepoznata akcija</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation>Teszt eredménye:</translation>
+        <translation>Rezultati testa</translation>
     </message>
 </context>
 <context>
@@ -323,57 +323,57 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Opšte</translation>
     </message>
 </context>
 <context>
     <name>AndroidPlatformPlugin</name>
     <message>
         <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Beépülő modul, amely az Android platformon különleges funkciókat valósít meg</translation>
+        <translation>Dodatak implementira specifične funkcije za Android platformu</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
-        <translation>Hitelesítési kulcs</translation>
+        <translation>Ključevi za autentifikaciju</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>Bevezetés</translation>
+        <translation>Uvod</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Kérem, hajtsd végre a következő lépéseket a kulcsfájl-hitelesítés beállításához:</translation>
+        <translation>Molimo vas da izvršite sledeće korake za podešavanje provjere autentičnosti datoteka:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Hozz létre egy kulcspárt a mesterszámítógépen.</translation>
+        <translation>1) Na glavnom računaru napravite par ključeva.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Állíts be egy hozzáférési csoportot, amelynek tagjai hozzáférhetnek a többi számítógéphez.</translation>
+        <translation>2) Postavite pristupnu grupu čiji članovi trebaju imati pristup drugim računarima.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exportáld a nyilvános kulcsot , majd importáld ugyanazon a néven az összes számítógépre.</translation>
+        <translation>3) Izvezite javni ključ i uvezite ga na sve računare klijenta sa istim nazivom.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Kérem, további információkért olvassa le a &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon üzemeltetői leírást &lt;/a&gt;.</translation>
+        <translation>Više informacija potražite u Priručniku za administratore Veyon.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>Kulcsfájlok mappái</translation>
+        <translation>Ključne datoteke direktorijuma</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Publikus kulcsfájl alapmappája</translation>
+        <translation>Osnovni direktorijum datoteka javnih ključeva</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Privát kulcsfájl alapmappája</translation>
+        <translation>Osnovni direktorijum datoteka privatnih ključeva</translation>
     </message>
     <message>
         <source>...</source>
@@ -381,200 +381,200 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>Elérhető hitelesítési kulcsok</translation>
+        <translation>Dostupni ključevi za proveru autentičnosti</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>A hitelesítési kulcspár kettő összetartozó kriptográfiai kulcsból áll, egy privát és egy publikus kulcsból.
-A privát kulcs használatával a mester számítógép felhasználói hozzáférhetnek a kliens számítógépekhez. 
-Fontos, hogy csak hitelesített felhasználóknak legyen olvasási hozzáférése a privát kulcsfájlhoz.
-A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcsolatkérések hitelesítéséhez.</translation>
+        <translation>Par ključeva za autentifikaciju sastoji se od dva povezana kriptografska ključa, privatnog i javnog ključa.
+Privatni ključ omogućava korisnicima na matičnom računaru pristup klijentima.
+Važno je da su samo ovlašćeni korisnici pročitali pristup datoteci privatnog ključa.
+Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva za povezivanje.</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>Kulcspár létrehozása</translation>
+        <translation>Kreirajte par ključeva</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>Kulcs törlése</translation>
+        <translation>Obriši ključ</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>Kulcs importálása</translation>
+        <translation>Uvozni ključ</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>Kulcs exportálása</translation>
+        <translation>Izvozni ključ</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation>Hozzáférési csoport beállítása</translation>
+        <translation>Podesite grupu pristupa</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>Kulcsfájlok (*.pem)</translation>
+        <translation>Ključne datoteke (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>Hitelesítési kulcs neve</translation>
+        <translation>Naziv ključa za autentifikaciju</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Kérem, add meg a felhasználó csoport vagy szerep nevét, amely számára létrehozod a hitelesítési kulcspárt:</translation>
+        <translation>Unesite ime korisničke grupe ili uloge za kreiranje parova ključeva za provjeru autentičnosti:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>Biztos, hogy törli &quot;%1%2&quot; hitelesítési kulcsot?</translation>
+        <translation>Želite li stvarno izbrisati autentifikacijski ključ &quot;% 1 /% 2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Kérem, válaszd ki a törlendő kulcsot!</translation>
+        <translation>Odaberite ključ za brisanje!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Kérem, add meg a felhasználó csoport vagy szerep nevét, amely számára importálod a hitelesítési kulcsot: </translation>
+        <translation>Unesite ime korisničke grupe ili uloge za koju želite uvesti ključ za autentifikaciju:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>Kérem, válaszd ki az importálandó kulcsot!</translation>
+        <translation>Odaberite ključ za izvoz!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Kérem, válassz felhasználó szerepet, amely számára hozzáférést adsz &quot;%1&quot; kulcshoz:</translation>
+        <translation>Odaberite grupu korisnika koja će odobriti pristup ključu &quot;% 1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation>Kérem, válassz egy kulcsot, amelyhez hozzáférési csoportot állítasz be!</translation>
+        <translation>Odaberite ključ za koji ćete podesiti pristupnu grupu!</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Kérem, ellenőrizd a jogosultságaidat.</translation>
+        <translation>Proverite vaše dozvole.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>A kulcs neve érvénytelen karaktereket tartalmaz.</translation>
+        <translation>Ime ključa sadrži nevažeće znakove!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Érvénytelen kulcstípus-meghatározás. &quot;%1&quot; vagy &quot;%2&quot; lehetséges.</translation>
+        <translation>Navedena je nevažeća vrsta ključa! Navedite &quot;% 1&quot; ili &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>A megadott kulcs nem létezik! Az összes telepített kulcs listázásához használja a &quot;list&quot; parancsot.</translation>
+        <translation>Navedeni ključ ne postoji! Upotrebite komandu &quot;list&quot; za popis svih instaliranih ključeva.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>Egy vagy több kulcs már létezik! Kérem, törölje ezeket a &quot;delete&quot; paranccsal.</translation>
+        <translation>Jedna ili više ključnih datoteka već postoje! Izbrišite ih pomoću komande &quot;delete&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; számára új kulcspár létrehozása</translation>
+        <translation>Izrada novog para ključeva za &quot;% 1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>Publikus vagy privát kulcs importálási hiba!</translation>
+        <translation>Nije uspelo kreiranje javnog ili privatnog ključa!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>Az újonnan létrehozott kulcspárt mentettük: &quot;%1&quot; és &quot;%2&quot;.</translation>
+        <translation>Novostvoreni par ključeva sačuvan je u „% 1“ i „% 2“.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Nem sikerült eltávolítani &quot;%1&quot; kulcsfájlt!</translation>
+        <translation>Nije moguće ukloniti datoteku s ključevima &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Nem sikerült eltávolítani &quot;%1&quot; kulcsfájl-mappát!</translation>
+        <translation>Nije moguće ukloniti direktorijum ključnih datoteka &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation>A kimeneti fájl számára a mappa létrehozása sikertelen.</translation>
+        <translation>Nije uspelo kreiranje direktorijuma za izlaznu datoteku.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>&quot;%1&quot; fájl már létezik.</translation>
+        <translation>Datoteka &quot;% 1&quot; već postoji.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>Kimeneti fájl írási hiba.</translation>
+        <translation>Pisanje izlazne datoteke nije uspelo.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>&quot;%1/%2&quot; kulcsot sikeresen importáltuk ide: &quot;%3&quot;.</translation>
+        <translation>Ključ &quot;% 1 /% 2&quot; je uspešno izvezen u &quot;% 3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>Bemenet fájl olvasási hiba.</translation>
+        <translation>Učitavanje ulazne datoteke nije uspelo.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>&quot;%1&quot; fájl nem tartalmaz valid privát kulcsot!</translation>
+        <translation>Datoteka &quot;% 1&quot; ne sadrži validni privatni ključ!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>&quot;%1&quot; fájl nem tartalmaz valid publikus kulcsot!</translation>
+        <translation>Datoteka &quot;% 1&quot; ne sadrži validni javni ključ!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>A kulcsfájl számára a mappa létrehozása sikertelen.</translation>
+        <translation>Nije uspelo kreiranje direktorijuma za ključnu datoteku.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; kulcsfájl írása sikertelen.</translation>
+        <translation>Nije uspelo pisanje datoteke ključa &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot; kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+        <translation>Nije moguće postaviti dozvole za ključnu datoteku &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>&quot;%1/%2&quot; kulcsot sikeresen importáltuk. Kérem, az illetéktelen hozzáférés elkerülése érdekében ellenőrizd &quot;%3&quot; fájl jogosultsági beállításait.</translation>
+        <translation>Ključ &quot;% 1 /% 2&quot; je uspešno uvežen. Proverite dozvole datoteka &quot;% 3&quot; kako biste sprečili neovlašćeni pristup.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>Privát kulcs importálása publikus kulcsból sikertelen</translation>
+        <translation>Nije uspelo konvertovati privatni ključ u javni ključ</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; privát kulcsfájl számára mappa létrehozása sikertelen.</translation>
+        <translation>Nije uspelo kreiranje direktorijuma za datoteku privatnog ključa &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot; fájlba a privát kulcsfájl mentése sikertelen!</translation>
+        <translation>Privatni ključ u datoteci &quot;% 1&quot; nije uspešno sačuvan!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot; privát kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+        <translation>Neuspešno postavljanje dozvola za datoteku privatnog ključa &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; publikus kulcsfájl számára mappa létrehozása sikertelen.</translation>
+        <translation>Neuspešno kreiranje direktorijuma za datoteku javnog ključa &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot; fájlba a publikus kulcsfájl mentése sikertelen!</translation>
+        <translation>Javni ključ u datoteci  &quot;%1&quot; nije uspešno sačuvan!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot; publikus kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+        <translation>Nije moguće postaviti dozvole za datoteku javnog ključa &quot;% 1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>&quot;%1&quot; -&gt; &quot;%2&quot; kulcsfájl tulajdonosának beállítása sikertelen. </translation>
+        <translation>Neuspešno postavljanje vlasnika datoteke ključa &quot;% 1&quot; na &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+        <translation>Neuspešno postavljanje dozvola za ključnu datoteku &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>&quot;%2&quot; csoport felhasználói hozzáférhetnek &quot;%1&quot; kulcshoz.</translation>
+        <translation>Ključ &quot;% 1&quot; je sada dostupan grupi korisnika &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -582,765 +582,765 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>Kulcsfájl olvasási hiba.</translation>
+        <translation>Nije moguće pročitati datoteku s ključevima.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation>Új hitelesítési kulcspár létrehozása</translation>
+        <translation>Kreirajte novi par ključeva za autentifikaciju</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>Hitelesítési kulcs törlése </translation>
+        <translation>Izbriši ključ za provjeru autentičnosti</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>Hitelesítési kulcsok felsorolása</translation>
+        <translation>Lista ključeva za proveru autentičnosti</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>Publikus vagy privát kulcsok importálása</translation>
+        <translation>Uvezite javni ili privatni ključ</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>Publikus vagy privát kulcsok exportálása</translation>
+        <translation>Izvoz javnog ili privatnog ključa</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation>Publikus kulcs kicsomagolása egy már létező privát kulcsból</translation>
+        <translation>Izdvojite javni ključ iz postojećeg privatnog ključa</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>Felhasználói csoport hozzáférésének beállítása egy kulcshoz </translation>
+        <translation>Postavite korisničkoj grupi dozvoljen pristup ključu</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation>KULCS</translation>
+        <translation>KLJUČ</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation>HOZZÁFÉRÉSI CSOPORT</translation>
+        <translation>PRISTUPNA GRUPA</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Ez a parancs beállítja a fájlhozzáférési jogosultságot&lt;KEY&gt;értékre, így csak&lt;ACCESS GROUP&gt;felhasználói csoportnak van olvasási hozzáférése a fájlhoz. </translation>
+        <translation>Ova naredba prilagođjava dozvole za pristup datoteci na &lt;KEY&gt; tako da samo korisnička grupa &lt;ACCESS GROUP&gt; može pročitati pristup.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NÉV</translation>
+        <translation>IME</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>FÁJL</translation>
+        <translation>FAJL</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ez a parancs exportálja &lt;KEY&gt; hitelesítési kulcsot &lt;FILE&gt; fájlba. Ha &lt;FILE&gt; nincs megadva, akkor &lt;KEY&gt; nevéből és típusából állítunk elő egy nevet.</translation>
+        <translation>Ova naredba izvozi ključ  autentičnosti &lt;KEY&gt; u &lt;FILE&gt;.Ako &lt;FILE&gt; nije specifičan i ime će se konstruisati iz imena i tipa &lt;KEY&gt; .</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ez a parancs importálja &lt;KEY&gt; hitelesítési kulcsot &lt;FILE&gt; fájlból. Ha &lt;FILE&gt; nincs megadva, akkor &lt;KEY&gt; nevéből és típusából állítunk elő egy nevet.</translation>
+        <translation>Ova komanda uvozi autentičnost ključa &lt;KEY&gt; od &lt;FILE&gt;.Ako &lt;FILE&gt; nije specifičan ime će biti konstruisano od imena i tipa &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Ez a parancs a beállított kulcskönyvtárban lévő összes elérhető hitelesítési kulcsot felsorolja. Ha &quot;%1&quot; lehetőség meg van adva, egy, a kulcs részleteit tartalmazó táblázat fog megjelenni. Ha a kulcs nem érhető el, például olvasási jogosultságok hiánya miatt, néhány részlete hiányozhat.</translation>
+        <translation>Ova naredba navodi sve dostupne ključeve za proveru autentičnosti u konfiguracionom direktorijumu ključeva. Ako je navedena opcija &quot;% 1&quot;,specifična tablica s ključnim detaljima biće prikazana umesto opcija. Neki detalji možda nedostaju ako ključ nije dostupan, npr. zbog nedostatka dozvola za čitanje.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
+        <translation>Molimo navedite naredbu za prikaz pomoći!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TÍPUS</translation>
+        <translation>TIP</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>PÁR ID</translation>
+        <translation>PAR ID</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation>A hitelesítési kulcsokat kezelő parancsok</translation>
+        <translation>Komande za upravljanje ključevima autentičnosti</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>Ez a parancs egy új &lt;NAME&gt; nevű hitelesítési kulcspárt hoz létre és menti a privát és a publikus kulcsot a beállított kulcskönyvtárakba. A paraméter a kulcs megnevezése, ami csak betűket tartalmazhat.</translation>
+        <translation>Ova naredba kreira novi par ključeva za provjeru autentičnosti s imenom &lt;NAME&gt; i sačuvaće privatni i javni ključ u konfiguracione direktorijume ključeva. Parametar mora biti naziv ključa koji može sadržavati samo slova.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Ez a parancs törli &lt;KEY&gt; hitelesítési kulcsot a beállított kulcskönyvtárból. Kérem, figyelj arra, hogy törlés után a kulcs már nem állítható vissza. </translation>
+        <translation>Ova naredba briše ključ za proveru autentičnosti &lt;KEY&gt; iz konfiguracionog direktorija ključeva. Imajte na umu da ključ nije moguće vratiti nakon što ga izbrišete.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>Ez a parancs kicsomagolja a nyilvános kulcsrészt &lt;KEY&gt; privát kulcsból és a megfelelő nyilvános kulcsként menti. Amikor egy másik mesterszámítógépet állítasz be, elegendő csak a privát kulcsot átmásolni. A publikus kulcs ebből már előállítható.</translation>
+        <translation>Ova naredba izdvaja deo javnog ključa iz privatnog ključa &lt;KEY&gt; i sačuvaće ga kao odgovarajući javni ključ. Pri podešavanju drugog glavnog računara dovoljno je preneti samo privatni ključ. Javni ključ se zatim može izvući.</translation>
     </message>
     <message>
         <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>A hitelesítő kulcsfájlok nincsenek megfelelően beállítva ezen a számítógépen. Új kulcsfájlokat kell létrehozni vagy másik hitelesítési módszert kell választani a Veyon Konfigurátor használatával.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Kulcsfájl hitelesítés</translation>
+        <translation>Autentičnost ključa datoteke</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>Megnevezés</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Típus</translation>
+        <translation>Tip</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>Hozzáférési csoport</translation>
+        <translation>Pristupna grupa</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation>Pár ID</translation>
+        <translation>Par ID</translation>
     </message>
 </context>
 <context>
     <name>AuthLogonDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation>Veyon bejelentkezés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Kérem, a számítógépek eléréséhez add meg felhasználóneved és jelszavad.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>Felhasználónév</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Hitelesítési hiba</translation>
+        <translation>Greška autentifikacije</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>A megadott felhasználónévvel és jelszóval a bejelentkezés sikertelen. Próbáld újra!</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AuthLogonPlugin</name>
     <message>
         <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>A megadott felhasználónév és jelszó helytelen. Érvényes hitelesítő adatokat kell megadni vagy másik hitelesítési módszert kell választani a Veyon Konfigurátor használatával.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Bejelentkezési hitelesítés</translation>
+        <translation>Provera autentičnosti</translation>
     </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation>Veyon bejelentkezés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the Veyon password:</source>
-        <translation>A Veyon jelszó megadása:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Hitelesítési hiba</translation>
+        <translation>Greška autentifikacije</translation>
     </message>
     <message>
         <source>Logon failed with given password. Please try again!</source>
-        <translation>A megadott jelszóval a bejelentkezés sikertelen. Próbáld újra!</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AuthSimplePlugin</name>
     <message>
         <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>A megadott jelszó helytelen. Meg kell adni a helyes jelszót vagy másik hitelesítési módszert kell választani a Veyon Konfigurátor használatával.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Simple password authentication</source>
-        <translation>Egyszerű jelszavas hitelesítés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation>Számítógépek</translation>
+        <translation>Računari</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Megnevezés</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Kiszolgáló címe/IP-je</translation>
+        <translation>Host adresa/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>Fizikai cím</translation>
+        <translation>MAC adresa</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Új számítógép hozzáadása</translation>
+        <translation>Dodaj nov računar</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Kiválasztott számítógép eltávolítása</translation>
+        <translation>Ukloni obeležene računar</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>Új számítógép</translation>
+        <translation>Novi računar</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation>Beépített mappa</translation>
+        <translation>Ugradjeni direktorijum</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>Helyszínek és számítógépek</translation>
+        <translation>Lokacije &amp; računari</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>Helyszínek</translation>
+        <translation>Lokacije</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>Új helyszín hozzáadása</translation>
+        <translation>Dodaj novu lokaciju</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>Kiválasztott helyszín eltávolítása</translation>
+        <translation>Ukloni obeleženu lokaciju</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>CSV fájlok importálása parancssori interfészen keresztül lehetséges. Bővebb információért látogassa meg az &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online dokumentációt&lt;/a&gt;.</translation>
+        <translation>Uvoz CSV datoteka moguć je putem sistema komandne linije. Za više informacija pogledajte &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt; online dokumentaciju &lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation>Új helyszín</translation>
+        <translation>Nova lokacija</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
+        <translation>Prikaži pomoć za specifičnu komandu</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>Objektumok importálása a megadott fájlból</translation>
+        <translation>Uvoz predmeta iz date datoteke</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>Objektumok exportálása a megadott fájlba</translation>
+        <translation>Izvoz predmeta iz date datoteke</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Érvénytelen típusmeghatározás. &quot;%1&quot; vagy &quot;%2&quot; lehetséges.</translation>
+        <translation>Naveden nevažeći tip. Važeće vrednosti su „% 1“ ili „% 2“.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Típus</translation>
+        <translation>Tip</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Megnevezés</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Kiszolgáló címe</translation>
+        <translation>Host adresa</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>Fizikai cím</translation>
+        <translation>MAC adresa</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>Az adott objektum nem található.</translation>
+        <translation>Navedeni objekt nije pronađen.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>&quot;%1&quot; fájl nem létezik!</translation>
+        <translation>Fajl &quot;%1&quot; nije pronadjen!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>&quot;%1&quot; fájl nem nyitható meg olvasásra!</translation>
+        <translation>Nije moguće otvoriti datoteku &quot;% 1&quot; za čitanje!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; ismeretlen argumentum.</translation>
+        <translation>Nepoznati argument &quot;% 1&quot;.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>&quot;%1&quot; számítógép (kiszolgáló címe: &quot;%2&quot; fizikai cím: &quot;%3&quot;)</translation>
+        <translation>Računar &quot;% 1&quot; (adresa domaćina: &quot;% 2&quot; MAC adresa: &quot;% 3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Be nem sorolt &quot;%1&quot; objektum, ID: &quot;%2&quot;</translation>
+        <translation>Nerazvrstani objekt &quot;% 1&quot; sa ID-om &quot;% 2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Egyik sem</translation>
+        <translation>Nijedan</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation>Számítógép</translation>
+        <translation>Računar</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation>Root</translation>
+        <translation>Ruta</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>Érvénytelen</translation>
+        <translation>Nevažeći</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>%1. sor feldolgozásakor hiba keletkezett.</translation>
+        <translation>Greška prilikom raščlanjivanja linije% 1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation>Hálózatobjektum-mappa, ami objektumokat tároló a helyi konfigurációban</translation>
+        <translation>Mrežni objektni direktorijum koji je sačuvan objekat u lokalnoj konfiguraciji</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation>A beépített hálózatobjektum-mappát kezelő parancsok</translation>
+        <translation>Komande za upravljanje ugrađenim direktorijom mrežnih objekata</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation>Nincs formázott karakterlánc, illetve reguláris kifejezés!</translation>
+        <translation>Nije naveden niz formata ili regularni izraz!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>&quot;%1&quot; fájl nem nyitható meg írásra!</translation>
+        <translation>Nije moguće otvoriti datoteku &quot;% 1&quot; za pisanje!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation>Nincs formázott karakterlánc!</translation>
+        <translation>Nije naveden specifičan niz formata!</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation>Objektum UUID</translation>
+        <translation>Objekat UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation>Szülő UUID</translation>
+        <translation>Roditeljski UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>Egy helyszín vagy számítógép hozzáadása</translation>
+        <translation>Dodaj lokaciju ili računar</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>Összes helyszín és számítógép törlése</translation>
+        <translation>Očistite sve lokacije i računare</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation>Az összes vagy néhány helyszín és számítógép mentése </translation>
+        <translation>Izbacite sve ili pojedine lokacije i računare</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation>Összes helyszín és számítógép felsorolása</translation>
+        <translation>Lista svih lokacija i računara</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation>Egy helyszín vagy számítógép eltávolítása</translation>
+        <translation>Ukloni lokaciju ili računar</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; helyszín</translation>
+        <translation>Lokacija  &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Beépített (a helyi konfigurációban lévő számítógépek és helyszínek)</translation>
+        <translation>Ugrađeni (računari i lokacije u lokalnoj konfiguraciji)</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Helyszín</translation>
+        <translation>Lokacija</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>FÁJL</translation>
+        <translation>FAJL</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation>HELYSZÍN</translation>
+        <translation>LOKACIJA</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>HELYÖRZŐKKEL-FORMÁZOTT-SZTRING</translation>
+        <translation>FORMAT-NIZ-SA-MESTIMA</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation>REGULÁRIS-KIFEJEZÉS-HELYŐRZŐVEL</translation>
+        <translation>REGULARNO-IZRAŽENJE-SA-PLOČA</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Objektumok importálás meghatározott szöveges fájlból egy vagy több helyőrzővel megadott formátum használatával. Érvényes helyőrzők a következők: %1</translation>
+        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervirana mesta su:% 1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation>Egyszerű CSV fájl importálása egy szobába</translation>
+        <translation>Uvezi jednostavnu CSV datoteku u jednu prostoriju</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation>CSV fájl importálása a helyszín nevével az első oszlopában</translation>
+        <translation>Uvezi CSV datoteku sa imenom lokacije u prvu kolonu</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation>Szöveges fájl importálása kulcs/érték párokkal reguláris kifejezések használatával</translation>
+        <translation>Uvezi tekstualnu datoteku s parovima ključ / vrijednost koristeći regularne izraze</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation>Önkényesen formázott adatok importálása</translation>
+        <translation>Uvezi proizvoljno formatirane podatke</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Objektumok exportálása meghatározott szöveges fájlba egy vagy több helyőrzővel megadott formátum használatával. Érvényes helyőrzők a következők: %1</translation>
+        <translation>Izvezi objekte u navedenu tekstualnu datoteku koristeći zadani format niza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:% 1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation>Összes objektum exportálása CSV fájlba</translation>
+        <translation>Izvezite sve objekte u CSV datoteku</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation>Egy megadott helyszín összes számítógépének exportálása CSV fájlba</translation>
+        <translation>Izvezite sve računare na određenoj lokaciji u CSV datoteku</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TÍPUS</translation>
+        <translation>TIP</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>NÉV</translation>
+        <translation>IME</translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation>SZÜLŐ</translation>
+        <translation>RODITELJ</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>Egy objektumot ad hozzá, ahol %1 &quot;%2&quot; vagy &quot;%3&quot; egyike lehet. %4 értékét név vagy UUID határozhatja meg.</translation>
+        <translation>Dodaje objekt u kojem % 1 može biti jedan od &quot;% 2&quot; ili &quot;% 3&quot;. % 4 može se odrediti imenom ili UUID-om.</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation>Szoba hozzáadása</translation>
+        <translation>Dodaj prostoriju</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>Számítógép hozzáadása %1 szobához</translation>
+        <translation>Dodaj računar u prostoriju</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation>OBJEKTUM</translation>
+        <translation>OBJEKAT</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation>Eltávolítja a meghatározott objektumot a mappából. %1 értékét a név vagy az UUID határozhatja meg. Egy helyszín eltávolítása a hozzá tartozó összes számítógépet is eltávolítja.</translation>
+        <translation>Uklanja navedeni objekt iz direktorijuma. % 1 može se odrediti imenom ili UUID-om. Ako uklonite lokaciju, uklonite i sva povezana računara.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation>Számítógép eltávolítása név alapján</translation>
+        <translation>Uklonite računar po imenu</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation>Objektum eltávolítása UUID alapján</translation>
+        <translation>Uklonite objekt po UUID</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>&quot;01 szoba&quot;</translation>
+        <translation>&quot;Prostorija 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation>&quot;01 számítógép&quot;</translation>
+        <translation>&quot;Računar 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>HOST ADDRESS</translation>
+        <translation>DOMAĆIN ADRESA</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>FIZIKAI CÍM</translation>
+        <translation>MAC ADRESA</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation>Beépített VNC szerver (UltraVNC)</translation>
+        <translation>Ugrađeni VNC server (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>Beépített VNC szerver (x11vnc)</translation>
+        <translation>Ugrađeni VNC server (x11vnc)</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation>Kiszolgáló/IP cím: %1</translation>
+        <translation>Domaćin/IP adresa: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation>Aktív szolgáltatások: %1</translation>
+        <translation>Aktivne karakteristike:% 1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Online és sikeren csatlakozott</translation>
+        <translation>Online i povezan</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>Kapcsolat létesítése</translation>
+        <translation>Uspostavljanje veze</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>A számítógép nincs hálózaton vagy kikapcsolták</translation>
+        <translation>Računar nije mreži ili je isključen</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>A szolgáltatás nem érhető el vagy jelenleg nem fut </translation>
+        <translation>Usluga nedostupna ili ne radi</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>A hitelesítés sikertelen vagy a hozzáférés nem engedélyezett</translation>
+        <translation>Autentifikacija nije uspela ili je pristup odbijen</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Kapcsolat megszakadt</translation>
+        <translation>Nepovezan</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Egy felhasználó sem jelentkezett be</translation>
+        <translation>Nijedan korisnik nije prijavljen</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Bejelentkezett felhasználó: %1</translation>
+        <translation>Prijavljeni korisnik:% 1</translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation>Helyszín: %1</translation>
+        <translation>Lokacija: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 szolgáltatás %2, 3%:%4</translation>
+        <translation>%1 Usluga %2 na %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Hitelesítési hiba</translation>
+        <translation>Greška autentifikacije</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Távoli elérés</translation>
+        <translation>Udaljeni pristup</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>&quot;%1&quot; felhasználó &quot;%2&quot; kiszolgálóról éppen most eléri ezt a számítógépet.</translation>
+        <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; sada pristupa ovom računalu.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de nem sikerült hitelesítenie magát.</translation>
+        <translation>Korisnik &quot;% 1&quot; kod domaćina &quot;% 2&quot; pokušao je pristupiti ovom računaru, ali nije uspeo uspješno proveriti identitet.</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation>Hozzáférés-vezérlési hiba</translation>
+        <translation>Greška kontrole pristupa</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de letiltottuk hozzáférés-hitelesítési beállítások miatt.</translation>
+        <translation>Korisnik &quot;% 1&quot; kod računara &quot;% 2&quot; pokušao je pristupiti ovom računaru, ali je blokiran zbog postavki kontrole pristupa.</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Felhasználó</translation>
+        <translation>Korisnik</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>Hiányzik a hálózatobjektummappa-bővítmény</translation>
+        <translation>Nedostaje dodatak mrežnog objekta direktorijuma</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Hiányzik az alapértelmezett hálózatobjektummappa-bővítmény. Ellenőrizd telepítésed vagy állítsd be egy másik hálózatobjektummappa-hátteret &quot;%1&quot; Konfigurátorral.</translation>
+        <translation>Nije pronađen nijedan podrazumevani dodatak mrežnog objekta. Proverite vašu instalaciju ili konfigurišite drugačiju poziciju direktorijuma mrežnih objekata putem% 1 Konfigurator.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation>A helyszínérzékelés nem sikerült</translation>
+        <translation>Otkrivanje lokacije nije uspelo</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>Számítógépnév;Kiszolgálónév;Felhasználó</translation>
+        <translation>Ime računara; Ime domaćina; Korisnik</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-panelen az összes helyszínt megjelentjük.</translation>
+        <translation>Ne mogu odrediti lokaciju ovog računara. Ovo ukazuje na problem sa konfiguracijom sistema. Sve lokacije će se umesto toga prikazati na ploči za odabir računara.</translation>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
-        <translation>Számítógép-kezelés</translation>
+        <translation>Upravljanje računarom</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation>Számítógép keresése</translation>
+        <translation>Pretraživanje računara</translation>
     </message>
     <message>
         <source>Add location</source>
-        <translation>Helyszín hozzáadása:</translation>
+        <translation>Dodaj lokaciju</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Számítógép-/felhasználólista mentése</translation>
+        <translation>Sačuvaj listu računara/korisnika</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>Válassz kimeneti fájlnevet</translation>
+        <translation>Odaberite naziv izlazne datoteke</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>CSV fájlok (*.csv)</translation>
+        <translation>CSV datoteke (* .csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>Fájlhiba</translation>
+        <translation>Greška datoteke</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Nem sikerült a számítógép- és a felhasználólista kiírása ide: %1. Ellenőrizd a hozzáférési jogosultságaidat.</translation>
+        <translation>Ne može se zapisati lista računara i korisnika na% 1! Proverite dozvole za pristup datoteci.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Létező konfigurációs fájlt adj meg importáláshoz.</translation>
+        <translation>Navedite postojeću konfiguracijsku datoteku za uvoz.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Valós fájlnevet adj meg a konfiguráció exportálásához.</translation>
+        <translation>Navedite valjano ime datoteke za izvoz konfiguracije</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Valós kulcsot adj meg.</translation>
+        <translation>Molimo navedite važeći ključ.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>A megadott kulcs nem létezik a jelenlegi konfigurációban!</translation>
+        <translation>Navedeni ključ ne postoji u trenutnoj konfiguraciji!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>Kérem, valós értéket adj meg.</translation>
+        <translation>Navedite valjanu vrednost.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>Veyon konfigurálása parancssorból</translation>
+        <translation>Konfigurišite Veyon u komandnoj liniji</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Kimeneti fájl nem írható!</translation>
+        <translation>Izlazna datoteka se ne može pisati!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Kimeneti könyvtár nem írható!</translation>
+        <translation>Izlazni direktorijum nije zapisan!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>Konfigurációs fájl nem olvasható!</translation>
+        <translation>Konfiguracijska datoteka nije čitljiva!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation>Az egész rendszerre kiterjedő Veyon konfiguráció törlése</translation>
+        <translation>Jasna konfiguracija Veyon na celom sistemu</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>Összes konfigurációs kulcs és és értékének felsorolása</translation>
+        <translation>Navedi sve konfiguracijske ključeve i vrednosti</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>Konfiguráció importálása adott fájlból</translation>
+        <translation>Uvezi konfiguraciju iz date datoteke</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation>Konfiguráció exportálása adott fájlba</translation>
+        <translation>Izvoz konfiguracije u datu datoteku</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation>Adott kulcs konfigurációs értékének olvasása és kimenete</translation>
+        <translation>Pročitajte i iznesite konfiguracione vrednosti za zadani ključ</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation>Adott érték írása adott konfigurációs kulcsba</translation>
+        <translation>Zapišite zadatu vrednost zadatom konfiguracijskom ključu</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Adott konfigurációs kulcs kikapcsolása (eltávolítása)</translation>
+        <translation>Poništite (uklonite) dati konfiguracijski ključ</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon konfigurálásához parancsok</translation>
+        <translation>Naredbe za upravljanje konfiguracijom Veyon-a</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation>A program és bővítmények frissítése és konfigurációjuk mentése</translation>
+        <translation>Nadogradite i spremite konfiguraciju programa i dodataka</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás automatikusan induló tulajdonsága.</translation>
+        <translation>Nije moguće izmeniti svojstvo automatskog pokretanja za uslugu% 1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Nem sikerült %1 szerver tűzfalbeállításait konfigurálni.</translation>
+        <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za% 1 Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Nem sikerült %1 munkás tűzfalbeállításait konfigurálni.</translation>
+        <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za% 1 Radnika.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>A konfiguráció nem írható. Kérem, ellenőrizd a jogosultságaidat. </translation>
+        <translation>Konfiguracija nije upisiva. Molimo proverite svoje dozvole!</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation>A platformfüggő konfigurációs beállítások nem alkalmazhatóak.</translation>
+        <translation>Ne mogu se primeniti postavke konfiguracije specifične za platformu.</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 demó</translation>
+        <translation>%1 Demonstracija</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Demószerver</translation>
+        <translation>Demo server</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Hangolhatók</translation>
+        <translation>Tunables</translation>
     </message>
     <message>
         <source> ms</source>
@@ -1348,15 +1348,15 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation>Kulcskeret intervallum</translation>
+        <translation>Interval ključnog okvira</translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>Memóriakorlát</translation>
+        <translation>Memorijski limit</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation>Többszálúság használata (kísérleti)</translation>
+        <translation>Koristite višeslojno (eksperimentalno)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1364,104 +1364,104 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Update interval</source>
-        <translation>Frissítési időköz</translation>
+        <translation>Interval ažuriranja</translation>
     </message>
     <message>
         <source> s</source>
-        <translation>mp</translation>
+        <translation>s</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>Indexképek frissítésének lassítása a demó futása alatt.</translation>
+        <translation>Usporite ažuriranje sličica dok je demonstracija aktivna</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Teljes képernyős demó</translation>
+        <translation>Demonstracija u punom ekranu</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Demó leállítása</translation>
+        <translation>Zaustavi demonstraciju</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Ablakban futó demó</translation>
+        <translation>Prozor demonstracije</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Bemutató megjelenítése képernyőbroadcasttal</translation>
+        <translation>Pokažite demonstraciju ekranskim emitovanjem</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Demószerver</translation>
+        <translation>Demo server</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>Ebben a módban a képernyőd az összes számítógépén teljes képernyőn jelenik meg, ezalatt a felhasználók bemeneti eszközeit blokkoljuk.</translation>
+        <translation>U ovom režimu se ekran prikazuje u režimu punog ekrana na svim računarima dok su ulazni uređaji korisnika zaključani.</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>Ebben a módban a képernyőd az összes számítógépen ablakban jelenik meg. A felhasználók eközben ablakot tudnak váltani.</translation>
+        <translation>U ovom režimu se vaš ekran prikazuje u prozoru na svim računarima. Korisnici se po potrebi mogu prebaciti na druge prozore.</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation>Asztal-hozzáférés párbeszédablaka</translation>
+        <translation>Dijalog pristupa radnoj površini</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Asztal-hozzáférés megerősítése</translation>
+        <translation>Potvrdite pristup radnoj površini</translation>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Ennek a munkamenetnek semmikor</translation>
+        <translation>Nikada za ovu sesiju</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Ennek a munkamenetnek mindig</translation>
+        <translation>Uvek za ovu sesiju</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>%1 felhasználó %2 számítógéptől próbálja elérni az asztalodat. Engedélyezel számára hozzáférést?</translation>
+        <translation>Korisnik % 1 na računaru % 2 želi pristupiti vašoj radnoj površini. Želite li odobriti pristup?</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation>Programok és weboldalak</translation>
+        <translation>Programi &amp; websajtovi</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation>Előre definiált programok</translation>
+        <translation>Unapred definisani programi</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Megnevezés</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation>Útvonal</translation>
+        <translation>Putanja</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation>Új program hozzáadása</translation>
+        <translation>Dodaj novi program</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation>Kiválasztott program eltávolítása</translation>
+        <translation>Ukloni obeležen program</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Előre definiált weboldal</translation>
+        <translation>Unapred definisani websajtovi</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Kiválasztott weboldal eltávolítása</translation>
+        <translation>Ukloni obeležen websajt</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1469,114 +1469,114 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>New program</source>
-        <translation>Új program</translation>
+        <translation>Novi program</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>Új weboldal</translation>
+        <translation>Novi websajt</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation>Program futtatása</translation>
+        <translation>Pokreni program</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Weboldal megnyitása</translation>
+        <translation>Otvori websajt</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Kattints erre a gombra, hogy az összes számítógépen megnyíljon egy weboldal.</translation>
+        <translation>Klikni ovo dugme da otvorite websajt na svim računarima.</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation>Programok és szolgáltatások indítása a felhasználó asztalon</translation>
+        <translation>Pokrenite programe i usluge na radnoj površini korisnika</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>Kattints erre a gombra, hogy egy programot futtass az összes számítógépen. </translation>
+        <translation>Kliknite ovo dugme da biste pokrenuli program na svim računarima.</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; program futtatása</translation>
+        <translation>Pokreni program &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation>Egyéni program</translation>
+        <translation>Prilagođjeni program</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; weboldal megnyitása </translation>
+        <translation>Otvori web lokaciju &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Egyéni weboldal</translation>
+        <translation>Prilagodjena web lokacija</translation>
     </message>
 </context>
 <context>
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>Tanár</translation>
+        <translation>Nastavnik</translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>Szoba %1</translation>
+        <translation>Prostorija %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation>Kérjük, fejezze be az összes feladatot a következő 5 percen belül. </translation>
+        <translation>Molimo ispunite sve zadatke u narednih 5 minuta.</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Egyéni weboldal</translation>
+        <translation>Prilagodjena web lokacija</translation>
     </message>
     <message>
         <source>Open file manager</source>
-        <translation>Fájlkezelő megnyitása</translation>
+        <translation>Otvorite menadžer datoteka</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation>Tanulási eszköz indítása</translation>
+        <translation>Pokrenite alat za učenje</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>Bemutató videó lejátszása</translation>
+        <translation>Reprodukujte video tutorial</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation>Egyéni program</translation>
+        <translation>Prilagođjeni program</translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation>Kiosztás</translation>
+        <translation>Brošura</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation>Olvasandó szövegek</translation>
+        <translation>Tekstovi za čitanje</translation>
     </message>
 </context>
 <context>
     <name>DroidVncServer</name>
     <message>
         <source>Builtin VNC server (Android)</source>
-        <translation>Beépített VNC szerver (Android)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>Külső VNC szerver</translation>
+        <translation>Spoljni VNC server</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>Külső VNC szerver konfiguráció</translation>
+        <translation>Spoljna VNC server konfiguracija</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1584,102 +1584,102 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Password:</source>
-        <translation>Jelszó:</translation>
+        <translation>Lozinka</translation>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation>Szolgáltatásvezérlés</translation>
+        <translation>Kontrola funkcija</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>&quot;%1&quot; fájl nem nyitható meg olvasásra. Kérem, ellenőrizd a jogosultságaidat.</translation>
+        <translation>Nije moguće otvoriti datoteku &quot;% 1&quot; za čitanje! Molimo proverite svoje dozvole!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Fájlátvitel</translation>
+        <translation>Otpremanje datoteka</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Lehetőség</translation>
+        <translation>Opcije</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation>Csak átvitel</translation>
+        <translation>Samo prenos</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>Átvitel és a fájl(ok) megnyitása a társított programmal</translation>
+        <translation>Prenos i otvaranje datoteke(a) s pripadajućim programom</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation>Átvitel és a célmappa megnyitása</translation>
+        <translation>Prenos i otvaranje odredišne fascikle</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Fájlok</translation>
+        <translation>Datoteke</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Indítás</translation>
+        <translation>Pokreni</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation>Fájlok felülírása</translation>
+        <translation>Prepišite postojeće datoteke</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation>Fájlátvitel</translation>
+        <translation>Otpremanje datoteka</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Kattints erre gombra, hogy számítógépedről fájlokat küld át az összes számítógépre.</translation>
+        <translation>Kliknite ovo dugme za prenos datoteka od vašeg računara na sve računare.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>Válasszon ki egy vagy több fájlt az átvitelhez</translation>
+        <translation>Obeležite jednu ili više datoteka za prenos.</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation>Fájlok átvitele távoli számítógépre</translation>
+        <translation>Prenos datoteka na upravljani računar</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; fájl fogadva.</translation>
+        <translation>Primljena datoteka &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>&quot;%1&quot; fájl nem fogadható, mert már létezik.</translation>
+        <translation>Nije moguće primiti datoteku &quot;% 1&quot; jer ona već postoji.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>&quot;%1&quot; fájl nem fogadható, mert nem nyitható meg írásra!</translation>
+        <translation>Ne mogu primiti datoteku &quot;% 1&quot; jer se ne može otvoriti za pisanje!</translation>
     </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Felhasználói felület</translation>
+        <translation>Korisnički interfejs</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Nyelv:</translation>
+        <translation>Jezik:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>Rendszernyelv beállításának használata</translation>
+        <translation>Koristi podešeni sistemski jezik</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1687,11 +1687,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Logging</source>
-        <translation>Naplózás</translation>
+        <translation>Prijavljivanje</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Naplófájl mappája</translation>
+        <translation>Dnevnik datoteka direktorijuma</translation>
     </message>
     <message>
         <source>...</source>
@@ -1699,79 +1699,79 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Log level</source>
-        <translation>Naplózás szintje</translation>
+        <translation>Nivo zapisa</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Semmi</translation>
+        <translation>Ništa</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Csak kritikus üzenetek</translation>
+        <translation>Samo kritične poruke</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Hibák és kritikus üzenetek</translation>
+        <translation>Greške i kritične poruke</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Figyelmeztetések és hibák</translation>
+        <translation>Upozorenja i greške</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Információk, figyelmeztetések és hibák</translation>
+        <translation>Informacija,upozorenja i greške</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Hibakeresési üzenetek és minden egyéb</translation>
+        <translation>Poruke za uklanjanje grešaka i sve ostalo</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Naplófájl méretének korlátozása</translation>
+        <translation>Ograničite veličinu datoteke dnevnika</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Összes naplófájl törlése</translation>
+        <translation>Očistite sve datoteke dnevnika</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Naplózás standard hibakimenetre</translation>
+        <translation>Prijavite se na standardni izlaz greške</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>Hálózatobjektum-mappa</translation>
+        <translation>Mrežni direktorijum objekata</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation>Háttér:</translation>
+        <translation>Pozadina:</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Frissítési időköz:</translation>
+        <translation>Ažuriraj interval:</translation>
     </message>
     <message>
         <source>%1 service</source>
-        <translation>%1 szolgáltatás</translation>
+        <translation>%1 usluga</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>%1 szolgáltatást ideiglenesen le kell állítani, hogy a naplófájlokat eltávolíthassuk. Biztos, hogy folytatod?</translation>
+        <translation>Uslugu %1 potrebno je privremeno zaustaviti kako biste uklonili datoteke dnevnika. Nastaviti?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation>Naplófájlokat sikeresen törölted</translation>
+        <translation>Datoteke dnevnika su očišćene</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>Az összes naplófájlt sikeresen törölted.</translation>
+        <translation>Sve datoteke dnevnika uspešno su izbrisane.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Hiba</translation>
+        <translation>Greška</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>Nem sikerült az összes naplófájl törlése.</translation>
+        <translation>Nije bilo moguće ukloniti sve datoteke dnevnika.</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1779,7 +1779,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation>Naplófájlok rotálása</translation>
+        <translation>Rotacija datoteka dnevnika</translation>
     </message>
     <message>
         <source>x</source>
@@ -1787,508 +1787,508 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source> seconds</source>
-        <translation>másodpercek</translation>
+        <translation>sekunde</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation>Írás az operációs rendszer naplózási rendszerébe</translation>
+        <translation>Zapisati u sistem za prijavu operativnog sistema</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Hitelesítés</translation>
+        <translation>Autentifikacija</translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation>Módszer:</translation>
+        <translation>Metod:</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Tesztelés</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation>A hitelesítés megfelelően van beállítva ezen a számítógépen.</translation>
+        <translation>Autentifikacija je na ovom računaru pravilno postavljena.</translation>
     </message>
     <message>
         <source>Configure</source>
-        <translation>Konfiguráció</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation>Internethozzáférés-vezérlés</translation>
+        <translation>Kontrola pristupa internetu</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation>Háttér:</translation>
+        <translation>Pozadina:</translation>
     </message>
     <message>
         <source>General settings</source>
-        <translation>Általános beállítások</translation>
+        <translation>Opšta podešavanja</translation>
     </message>
     <message>
         <source>Backend settings</source>
-        <translation>Háttér beállításai</translation>
+        <translation>Pozadinska podešavanja</translation>
     </message>
 </context>
 <context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation>Internet-hozzáférés blokkolása</translation>
+        <translation>Blokirajte pristup internetu</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation>Internet-hozzáférés engedélyezése</translation>
+        <translation>Dozvolite pristup internetu</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parancsról segítség megjelenítése</translation>
+        <translation>Pokažite pomoć o naredbi</translation>
     </message>
     <message>
         <source>Block internet</source>
-        <translation>Internet blokkolása</translation>
+        <translation>Blokiraj internet</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation>Az internet-hozzáférés blokkolásához kattintson erre a gombra. </translation>
+        <translation>Kliknite ovo dugme kako biste blokirali pristup internetu.</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation>Internet blokkolásának feloldása</translation>
+        <translation>Deblokirajte internet</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation>Az internet-hozzáférés engedélyezéséhez kattintson erre a gombra. </translation>
+        <translation>Kliknite ovo dugme kako biste dozvolili pristup internetu.</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation>Internethozzáférés-vezérlés</translation>
+        <translation>Kontrolišite pristup internetu</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation>Internethozzáférés-vezérlés parancsai</translation>
+        <translation>Naredbe za kontrolu pristupa internetu</translation>
     </message>
 </context>
 <context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation>LDAP tallózása</translation>
+        <translation>Pregledajte LDAP</translation>
     </message>
 </context>
 <context>
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation>LDAP hiba leírása: %1</translation>
+        <translation>Opis greške LDAP:% 1</translation>
     </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Alapbeállítások</translation>
+        <translation>Osnovna podešavanja</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Opšte</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation>LDAP szerver és port</translation>
+        <translation>LDAP server i port</translation>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Kötés DN-je</translation>
+        <translation>Vezati DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Kötés jelszava</translation>
+        <translation>Vezati lozinku</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Névtelen kötés</translation>
+        <translation>Anonimni vez</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Kötéshitelesítés használata</translation>
+        <translation>Koristite veze akreditiva</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Alap DN</translation>
+        <translation>Osnovni DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation>Fixált alap DN</translation>
+        <translation>Fiksna baza DN</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>például dc=valami, dc=hu</translation>
+        <translation>npr. dc = primer, dc = org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation>Alap DN felfedezése névmeghatározással</translation>
+        <translation>Otkrijte bazu DN imenovanjem konteksta</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation>például namingContexts vagy defaultNamingContext</translation>
+        <translation>npr. imenovanje Konteksta ili podrazumevaoImenovanjeKonteksta</translation>
     </message>
     <message>
         <source>Environment settings</source>
-        <translation>Környezeti beállítások</translation>
+        <translation>Postavke okruženja</translation>
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Objektumfák</translation>
+        <translation>Objektna stabla</translation>
     </message>
     <message>
         <source>Computer tree</source>
-        <translation>Számítógépfák</translation>
+        <translation>Rašunar prikaz stablo</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>például OU=Csoportok</translation>
+        <translation>npr. OU=Grupe</translation>
     </message>
     <message>
         <source>User tree</source>
-        <translation>Felhasználófa</translation>
+        <translation>Korisnik prikaz stablo</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>például OU=Felhasználók</translation>
+        <translation>npr. OU=Korisnici</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>például OU=Számítógépek</translation>
+        <translation>npr.OU=Računari</translation>
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Számítógépfa</translation>
+        <translation>Grupa prikaz stabla</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation>Rekurzív keresési műveletek az objektumfákban</translation>
+        <translation>Izvođenje rekurzivnih pretraga u stablima objekata</translation>
     </message>
     <message>
         <source>Object attributes</source>
-        <translation>Objektum attribútumok</translation>
+        <translation>Objekat atributi</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>például hwAddress</translation>
+        <translation>npr.hwAdresa</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation>például member vagy memberUid</translation>
+        <translation>npr. član ili članUid</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation>például dNSHostName</translation>
+        <translation>npr.dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation>Számítógép fizikai címének attribútuma</translation>
+        <translation>Atribut računarske MAC adrese</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Csoporttagság attribútumok</translation>
+        <translation>Atribut člana grupe</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation>például uid vagy sAMAccountName</translation>
+        <translation>npr.uid ili sAMAccountName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>Haladó beállítások</translation>
+        <translation>Napredna podešavanja</translation>
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation>Opcionális objektumszűrő</translation>
+        <translation>Opcionalni filteri objekata</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation>Felhasználói csoportok szűrője</translation>
+        <translation>Filter za korisničke grupe</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Felhasználók szűrője</translation>
+        <translation>Filter za korisnike</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Számítógépcsoportok szűrője</translation>
+        <translation>Filter za grupe računara</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation>Csoporttagság azonosítója</translation>
+        <translation>Identifikacija člana grupe</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation>Megkülönböztetett név (Samba/AD)</translation>
+        <translation>Istaknuto ime (Samba / AD)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Egy felhasználó összes csoportjának felsorolása</translation>
+        <translation>Lista svih grupa korisnika</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation>Egy számítógép összes csoportjának felsorolása</translation>
+        <translation>Lista svih grupa računara</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation>Számítógép-objektumok előállítása IP címek alapján</translation>
+        <translation>Nabavite predmet računara putem IP adrese</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation>LDAP kapcsolat sikertelen</translation>
+        <translation>LDAP veza je neuspešna</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>LDAP kötés sikertelen</translation>
+        <translation>Neuspešna LDAP veza</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>LDAP kötés sikerült</translation>
+        <translation>LDAP vezanje je uspešno</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Sikeresen csatlakoztunk az LDAP szerverhez, és létrejött az LDAP kötés. Az LDAP alapszintű beállításai helyesek.</translation>
+        <translation>Uspešno se povezao s LDAP serverom i izvršio LDAP vezanje. Osnovne postavke LDAP-a ispravno su konfigurisane.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>LDAP alap DN teszt sikertelen</translation>
+        <translation>DN-test za LDAP bazu je neuspešan</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>LDAP alap DN teszt sikeres</translation>
+        <translation>LDAP baza DN test je uspešan</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation>LDAP névkontextusteszt sikertelen</translation>
+        <translation>Neuspešan kontekstni test LDAP imenovanja</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation>LDAP névkontextus-teszt sikerült</translation>
+        <translation>LDAP kontekstni test imenovanja je uspešan</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>Az LDAP névmeghatározását sikeresen lekérdeztük. A következő alap DN-t találtuk:
+        <translation>Kontekst imenovanja LDAP uspešno je prosledio upit. Pronađjena je sledeća baza DN:
 %1</translation>
     </message>
     <message>
         <source>user tree</source>
-        <translation>felhasználófa</translation>
+        <translation>stablo korisnika</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation>csoportfa</translation>
+        <translation>stablo grupe</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation>számítógépfa</translation>
+        <translation>stablo računara</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Add meg a felhasználónevet</translation>
+        <translation>Unesi korisničko ime</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Kérem, add meg a bejelentkezési felhasználónevet (helyettesítő karakterek megengedettek), melyeket lekérdezel:</translation>
+        <translation>Unesite korisničko ime za prijavu (dozvoljeni zamenski znakovi) za upite:</translation>
     </message>
     <message>
         <source>user objects</source>
-        <translation>felhasználói objektumok</translation>
+        <translation>korisnički objekti</translation>
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Adja meg a csoport nevét</translation>
+        <translation>Unesi ime grupe</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Kérem, add meg a csoport nevét, amely tagjait lekérdezed:</translation>
+        <translation>Molimo unesite naziv grupe čiji će članovi zatražiti:</translation>
     </message>
     <message>
         <source>group members</source>
-        <translation>csoporttagok</translation>
+        <translation>članovi grupe</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>Csoport nem találgató</translation>
+        <translation>Grupa nije pronadjena</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>&quot;1%&quot; nevű csoport nem található. Kérem, ellenőrizd a csoport nevét vagy a csoportfa paramétert.</translation>
+        <translation>Nije bilo moguće pronaći grupu sa nazivom &quot;% 1&quot;. Proverite naziv grupe ili parametar stabla grupe.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>Add meg a számítógép nevét</translation>
+        <translation>Unesite ime računara</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation>számítógép-objektumok</translation>
+        <translation>računarski objekti</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation>Add meg a számítógép DN-t</translation>
+        <translation>Unesite DN računara</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>Kérem, add meg a számítógép DN-jét, mely fizikai címét lekérdezed: </translation>
+        <translation>Molimo unesite DN računara čija je MAC adresa upitana:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation>számítógép fizikai címei</translation>
+        <translation>računarske MAC adrese</translation>
     </message>
     <message>
         <source>users</source>
-        <translation>felhasználók</translation>
+        <translation>korisnici</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>felhasználói csoportok</translation>
+        <translation>korisničke grupe</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation>számítógépcsoportok</translation>
+        <translation>računarske grupe</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Kérem, add meg a felhasználó bejelentkezési nevét, akinek csoporttagságait lekérdezed:</translation>
+        <translation>Unesite korisničko ime za prijavu čija će članarina grupe biti upitna:</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation>felhasználó csoportjai</translation>
+        <translation>grupe korisnika</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation>Felhasználó nem található</translation>
+        <translation>Korisnik nije pronadjen</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation>számítógép csoportjai</translation>
+        <translation>grupe računara</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation>Számítógép nem található</translation>
+        <translation>Računar nije pronadjen</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation>Add meg a számítógép IP címét</translation>
+        <translation>Unesite IP adresu računara</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation>Kérem, add meg a számítógép IP címét, melyet számítógép-objektummá keressünk vissza:</translation>
+        <translation>Unesite računarsku IP adresu koja se može rešiti na računarskom objektu:</translation>
     </message>
     <message>
         <source>computers</source>
-        <translation>számítógépek</translation>
+        <translation>računari</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>%1 LDAP teszt sikertelen</translation>
+        <translation>LDAP% 1 test je neuspešan</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>%1 LDAP teszt sikeres</translation>
+        <translation>LDAP% 1 test je uspešan</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>%1 objektum lekérdezése sikeres, %2 jegyezést találtunk.</translation>
+        <translation>% 1 je uspešno upitan i pronađjeni su unosi % 2.</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 lekérdezés sikeres:
+        <translation>% 1% 2 uspešno je prosledjen upit:
 
 %3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation>LDAP szűrő teszt sikertelen</translation>
+        <translation>Provera LDAP filtera nije uspela</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation>A konfigurált szűrővel egy %1 objektumot sem sikerült lekérdezni. Kérem, ellenőrizd %1 LDAP szűrőt.
+        <translation>Nije moguće proslediti upit nijednog % 1 pomoću konfigurisanog filtera. Molimo proverite LDAP filter za% 1.
 
 %2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation>LDAP szűrő teszt sikeres</translation>
+        <translation>Provera LDAP filtera uspešna</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2-t sikeresen lekérdezted a a konfigurált szűrő használatával. </translation>
+        <translation>% 1% 2 uspešno je ispitan pomoću konfigurisanog filtera.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation>(csak ha eltér csoportfától)</translation>
+        <translation>(samo ako se razlikuje od stabla grupe)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>Számítógépcsoport-fa</translation>
+        <translation>Stablo računarskih grupa</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation>számítógépcsoport-fa</translation>
+        <translation>stablo računarske grupe</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation>Számítógépek szűrője</translation>
+        <translation>Filter za računare</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>például szoba vagy számítógépLabor</translation>
+        <translation>npr. soba ili kompjuterska laboratorija</translation>
     </message>
     <message>
         <source>Integration tests</source>
-        <translation>Integrációs tesztek</translation>
+        <translation>Integracijski testovi</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation>Számítógépcsoportok</translation>
+        <translation>Računarske grupe</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation>például név vagy leírás</translation>
+        <translation>npr. ime ili opis</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation>Számító géptároló szűrője</translation>
+        <translation>Filter za kontejnere računara</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation>Számítógép tárolók vagy szervezeti egységek</translation>
+        <translation>Kontejneri za računare ili OU</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation>Csatlakozási biztonság</translation>
+        <translation>Sigurnost veze</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation>TLS tanúsítványhitelesítés</translation>
+        <translation>Potvrda TLS certifikata</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation>Rendszer alapértelmezett értékei</translation>
+        <translation>Podrazumevane postavke sistema</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>Semmikor (nem biztonságos!)</translation>
+        <translation>Nikada (nesigurno!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation>Egyéni CA tanúsítványfájl</translation>
+        <translation>Prilagođena datoteka certifikata CA</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Egyik sem</translation>
+        <translation>Nijedan</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2300,37 +2300,35 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation>például (objectClass=computer) </translation>
+        <translation>npr. (objectClass = računar)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>például (objectClass=group)</translation>
+        <translation>npr. (objectClass = grupa)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>például (objectClass=person)</translation>
+        <translation>npr. (objectClass = osoba)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>például (objectClass=szoba) vagy (objectClass=számítógépLabor) </translation>
+        <translation>npr. (objectClass = soba) ili (objectClass = kompjuterska laboratorija)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>például (objectClass=container) vagy (objectClass=organizationalUnit)</translation>
+        <translation>npr. (objectClass = kontejner) ili (objectClass = organizationUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>Nem sikerült lekérdezni az konfigurált alap DN-t. Kérem, ellenőrizd az alap DN paramétert.
-
-%1</translation>
+        <translation>Ne može se zatražiti konfigurisana baza DN. Molimo proverite osnovni DN parametar.</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation>Az LDAP alap DN-t sikeresen lekérdeztük. Az alábbi bejegyzéseket találtuk:
+        <translation>LDAP baza DN uspješno prosledjen upit. Pronađjeni su sledeći unosi:
 
 %1</translation>
     </message>
@@ -2338,19 +2336,19 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation>Nem sikerült elnevezési kontextusokból lekérdezni az alap DN-t. Kérem, ellenőrizd az elnevezési kontextusok attribútuma paramétert.
+        <translation>Nije moguć upit baznog DN-a putem imenovanja konteksta. Molimo proverite parametar atributa konteksta imenovanja.
 
 %1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation>Tanúsítványfájlok (*.pem)</translation>
+        <translation>Datoteke certifikata (* .pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation>Nem sikerült kapcsolódni az LDAP szerverhez. Kérem, ellenőrizd a szerver paramétereit.
+        <translation>Ne mogu se povezati s LDAP serverom. Molimo proverite parametre servera.
 
 %1</translation>
     </message>
@@ -2358,224 +2356,224 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>Nem sikerült kötést létrehozni a LDAP szerverrel. Kérem, ellenőrizd a szerver paramétereit és a kötést hitelesítő adatokat.
+        <translation>Nije se moglo povezati na LDAP server. Proverite parametre servera i povežite akreditive.
 
 %1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation>Titkosítási protokoll</translation>
+        <translation>Protokol šifrovanja</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation>Számítógéphelyszín attribútum</translation>
+        <translation>Atribut lokacije računara</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation>Számítógép megjelenítési név attribútum</translation>
+        <translation>Atribut prikaza računarskog imena</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation>Helyszínnév attribútum</translation>
+        <translation>Atribut naziva lokacije</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation>pl. cn vagy displayName</translation>
+        <translation>npr. cn ili displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation>Számítógéphelyszínek azonosítója </translation>
+        <translation>Identifikacija računarskih lokacija</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Azonosítja a számítógép helyszínét (pl. szobák):</translation>
+        <translation>Prepoznajte lokacije računara (npr. Sobe) putem:</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation>Helyszín attribútuma számítógép-objektumokban</translation>
+        <translation>Atribut lokacije u računarskim objektima</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation>A helyszín összes bejegyzésének felsorolása</translation>
+        <translation>Lista svih unosa lokacije</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation>Helyszínek felsorolása</translation>
+        <translation>Lista svih lokacija</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation>Adja meg a számítógép megjelenítési nevét</translation>
+        <translation>Unesite ime računara za prikaz</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>Adja meg a számítógép megjelenítési nevét a lekérdezéshez:</translation>
+        <translation>Unesite prikazno ime računara za upit:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation>Adja meg a számítógép helyszínének nevét</translation>
+        <translation>Unesite naziv lokacije računara</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Adja meg egy számítógéphelyszín nevét (helyettesítő karakterek megengedettek):</translation>
+        <translation>Unesite ime lokacije računara (dozvoljene zamenske karte):</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation>számítógéphelyszínek</translation>
+        <translation>lokacije računara</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation>Adja meg a helyszín nevét</translation>
+        <translation>Unesite naziv lokacije</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Adja meg azon helyszín nevét, amely bejegyzéseit le kívánja kérni:</translation>
+        <translation>Unesite naziv lokacije koji se unosi traže:</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation>Helyszín-bejegyzések</translation>
+        <translation>unosi lokacije</translation>
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation>LDAP tesztelése sikertelen</translation>
+        <translation>LDAP test neuspešan</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation>Egy %1 sem kérhető le. Ellenőrizze %2 paraméter(eke)t vagy adja meg a már létező objektum nevét.
+        <translation>Nije moguće postaviti nijedan %1. Proverite parametar(e) %2 i unesite ime postojećeg objekta.
 
-%3 </translation>
+%3</translation>
     </message>
     <message>
         <source>and</source>
-        <translation>és</translation>
+        <translation>i</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation>LDAP tesztelése sikeres</translation>
+        <translation>LDAP test je uspešan</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation>Egy bejegyzést sem sikerült lekérni %1 konfigurációban. Ellenőrizze a  &quot;%2&quot; paramétert.
+        <translation>Ne može se zatražiti ni jedan unos u konfigurisanom %1. Molimo proverite parametar &quot;%2&quot;.
 
 %3</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>Tallózás</translation>
+        <translation>Pregledajte</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Tesztelés</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>A kiszolgálónevet a teljesen minősített domain névként tároljuk (FQDN, például szerver.cegem.hu)</translation>
+        <translation>Imena hosta sačuvana su kao potpuno kvalifikovana imena domena (FQDN, npr. Myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation>Számítógép kiszolgálónév attribútuma</translation>
+        <translation>Atribut imena domaćina računara</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>Kérem, add meg a számítógép kiszolgálónevét, melyet lekérdezel:</translation>
+        <translation>Da biste poslali upit unesite ime domaćin računara:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation>Érvénytelen kiszolgálónév</translation>
+        <translation>Nevažeće ime domaćina</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét teljesen minősített domainnévként (FQDN)  tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
+        <translation>Konfigurisali ste imena domaćina računara da se sačuvaju kao potpuno kvalifikovana imena domena (FQDN), ali ste unieli ime računara domaćina bez domena.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét domain nélküli egyszerű névként tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
+        <translation>Konfigurisali ste imena domaćina računara da se sačuvaju kao jednostavna imena računara bez imena domena, ali ste unieli ime računara s delom imena domena.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>&quot;%1&quot; nevű felhasználó nem található. Kérem, ellenőrizd a felhasználónevet vagy a felhasználó-fa paramétert.</translation>
+        <translation>Ne mogu pronaći korisnika s imenom &quot;% 1&quot;. Proverite korisničko ime ili parametar korisničkog stabla.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation>Add meg a kiszolgálónevet</translation>
+        <translation>Unesite ime domaćina</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Kérem, add meg a számítógép kiszolgálónevét, melynek csoporttagságait lekérdezed:</translation>
+        <translation>Unesite ime računara domaćina čije će članstvo u grupi biti upitno:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>&quot;%1&quot; nevű kiszolgálónevű számítógép nem található. Kérem, ellenőrizd a kiszolgálónevet vagy a számítógépfa paramétert.</translation>
+        <translation>Ne mogu pronaći računar s imenom domaćina &quot;% 1&quot;. Molimo proverite naziv domaćina ili parametar stabla računara.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation>Kiszolgálónév keresése sikertelen</translation>
+        <translation>Pretraživanje imena hosta nije uspelo</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>%1 IP címhez nem sikerült lekérdezni a kiszolgálónevet. Kérem, ellenőrizd a DNS szerver beállításait.</translation>
+        <translation>Nije moguće potražiti ime hosta za IP adresu% 1. Proverite postavke DNS servera.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>A felhasználó bejelentkezési nevének attribútuma</translation>
+        <translation>Atribut korisničkog imena za prijavu</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>A felhasználó bejelentkezési nevéhez vagy a számítógép kiszolgálónevéhez beállított attribútum (OpenLDAP)</translation>
+        <translation>Konfigurisani atribut za korisničko ime za prijavu ili  domaćin računara (OpenLDAP)</translation>
     </message>
     <message>
         <source>computer containers</source>
-        <translation>számítógép tárolók</translation>
+        <translation>kontejneri za računare</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation>Alap DN automatikus konfigurálása névmeghatározással</translation>
+        <translation>Automatski konfigurišite osnovni DN putem konteksta imenovanja</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation>Objektumok lekérdezése LDAP könyvtárból</translation>
+        <translation>Upit objekata iz LDAP direktorijuma</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parancsról segítség megjelenítése</translation>
+        <translation>Pokažite pomoć o naredbi</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>LDAP/AD integráció konfigurálásának és tesztelésének parancsai</translation>
+        <translation>Naredbe za konfigurisanje i testiranje LDAP / AD integracije</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Alapvető LDAP/AD támogatás a Veyon számára</translation>
+        <translation>Osnovna podrška za LDAP / AD za Veyon</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (számítógépek és helyszínek betöltése LDAP/AD-ból)</translation>
+        <translation>%1 (učitavanje računara i lokacija iz LDAP / AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
+        <translation>%1 (učitavanje korisnika i grupa iz LDAP / AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation>Add meg a következő sémának megfelelő, érvényes LDAP url-t: &quot;ldap[s]://[felhasználó[:jelszó]@]kiszolgáló[:port]&quot;</translation>
+        <translation>Navedite valjani LDAP URL prateći šemu &quot;ldap [s]: // [korisnik [: lozinka] @] ime hosta [: port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation>Hiányzik a névmeghatározás attribútum - visszaállunk  a beállított értékekre.</translation>
+        <translation>Nije dodato ime atributa konteksta imenovanja - vraća se na konfigurisanu vrednost.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation>Nem sikerült az alap DN lekérdezése. Ellenőrizd az LDAP beállításait.</translation>
+        <translation>Ne može se zatražiti baza DN. Molimo proverite LDAP konfiguraciju.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation>%1 beállítása alap DN-nek és a névmeghatározás-lekérdezések kikapcsolása.</translation>
+        <translation>Konfigurisanje %1 kao osnovnog DN-a i onemogućavanje imenovanja kontekstnih upita.</translation>
     </message>
 </context>
 <context>
@@ -2586,61 +2584,61 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Instances</source>
-        <translation>Példányok</translation>
+        <translation>Primeri</translation>
     </message>
     <message>
         <source>Enter name</source>
-        <translation>Adja meg a nevet</translation>
+        <translation>Unesi ime</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>Adja meg a példány nevét (később nem módosítható):</translation>
+        <translation>Unesite ime instancije (ne možete je naknadno menjati!):</translation>
     </message>
     <message>
         <source>Remove instance</source>
-        <translation>Példány eltávolítása</translation>
+        <translation>Ukloni instancu</translation>
     </message>
     <message>
         <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>Biztos, hogy eltávolítja a &quot;%1&quot; példányt?</translation>
+        <translation>Da li stvarno želite ukloniti instancu &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; példány beállításai</translation>
+        <translation>Konfiguracija za instancu, &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
     <name>LdapProPlugin</name>
     <message>
         <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Professzionális LDAP/AD integráció a Veyon számára</translation>
+        <translation>Profesionalna LDAP / AD integracija za Veyon</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (számítógépek és helyszínek betöltése LDAP/AD-ból)</translation>
+        <translation>%1 (učitavanje računara i lokacija iz LDAP / AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
+        <translation>%1 (učitavanje korisnika i grupa iz LDAP / AD)</translation>
     </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation>Licencelés</translation>
+        <translation>Licenciranje</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation>Telepített licencek</translation>
+        <translation>Instalirane licence</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation>Új hálózati tartomány hozzáadása</translation>
+        <translation>Dodajte novi opseg mreže</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
+        <translation>Uklonite odabrani mrežni raspon</translation>
     </message>
     <message>
         <source>ID</source>
@@ -2648,31 +2646,31 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Feature</source>
-        <translation>Szolgáltatás</translation>
+        <translation>Odlike</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation>Érvényes eddig</translation>
+        <translation>Ispravno do</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation>Licencelő</translation>
+        <translation>Imalac licence</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation>Licencfájlok böngészése</translation>
+        <translation>Pregledajte licencnu datoteku</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon licencfájlok (*.vlf)</translation>
+        <translation>Veyon licence datoteka (* .vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation>Licenc eltávolítása</translation>
+        <translation>Ukloni licencu</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation>Biztos, hogy eltávolítod a kiválasztott licenceket?</translation>
+        <translation>Želite li zaista ukloniti odabranu licencu?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2680,66 +2678,66 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation>Érvénytelen licencfájlok</translation>
+        <translation>Nevažeća datoteka licence</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation>A licencfájl nem nyitható meg olvasásra!</translation>
+        <translation>Nije moguće otvoriti datoteku licence za čitanje!</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation>A kiválasztott licencfájl nem tartalmaz érvényes adatot.</translation>
+        <translation>Odabrana datoteka licence ne sadrži valjane podatke.</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation>A kiválasztott licencfájl nem ellenőrizhető.</translation>
+        <translation>Odabranu datoteku licence nije moguće proveriti.</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation>A kiválasztott licencfájl nem érvényes ehhez a telepítéshez.</translation>
+        <translation>Odabrana datoteka licence nije valjana za ovu instalaciju.</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation>A kiválasztott licencfájl lejárt.</translation>
+        <translation>Izabrana datoteka licence je istekla.</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation>A licencet már telepítették.</translation>
+        <translation>Licenca je već instalirana.</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Információ</translation>
+        <translation>Informacija</translation>
     </message>
     <message>
         <source>Installation ID</source>
-        <translation>Telepítésazonosító</translation>
+        <translation>ID instalacije</translation>
     </message>
     <message>
         <source>Addons available for licensing</source>
-        <translation>Licencelhető</translation>
+        <translation>Dostupni dodaci za licenciranje</translation>
     </message>
     <message>
         <source>Addon</source>
-        <translation>Bővítmény</translation>
+        <translation>Dodaj</translation>
     </message>
 </context>
 <context>
     <name>LicensingPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
+        <translation>Prikaži pomoć za specifičnu komandu</translation>
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation>Az összes telepített licenc megjelenítése</translation>
+        <translation>Prikaži sve instalirane licence</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation>Licencfájlok hozzáadása</translation>
+        <translation>Dodajte licencnu datoteku</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation>Telepített licencek eltávolítása</translation>
+        <translation>Uklonite instaliranu licencu</translation>
     </message>
     <message>
         <source>
@@ -2749,9 +2747,9 @@ USAGE
 
 </source>
         <translation>
-HASZNÁLAT
+UPOTREBA
 
-%1 add &lt;LICENSE FILE&gt;
+%1 dodaj &lt;LICENSE FILE&gt; 
 
 </translation>
     </message>
@@ -2763,15 +2761,15 @@ USAGE
 
 </source>
         <translation>
-HASZNÁLAT
+UPOTREBA
 
-%1 remove &lt;LICENSE ID&gt;
+%1 ukloni &lt;LICENSE ID&gt;
 
 </translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation>A megadott ID-vel nem található tanúsítvány </translation>
+        <translation>Nije pronađen sertifikat s datim ID-om</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2779,94 +2777,94 @@ HASZNÁLAT
     </message>
     <message>
         <source>Licensing management</source>
-        <translation>Licenckezelése</translation>
+        <translation>Upravljanje licencama</translation>
     </message>
     <message>
         <source>Commands for managing license keys</source>
-        <translation>Licenckulcs-kezelési parancsok</translation>
+        <translation>Naredbe za upravljanje licencnim ključevima</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation>Linux</translation>
+        <translation>LINUX</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation>Személyre szabott felhasználó-hitelesítő PAM szolgáltatás</translation>
+        <translation>Prilagođena PAM usluga za proveru autentičnosti korisnika</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Felhasználó hitelesítés</translation>
+        <translation>Autentifikacija korisnika</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation>Munkamenet-kezelés</translation>
+        <translation>Upravljanje sesijama</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation>Kezelő felhasználók megjelenítése</translation>
+        <translation>Prikaz menadžera korisnika</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation>A bővítmény absztrakt függvényekkel egészíti ki a Linux platformot</translation>
+        <translation>Dodatak implementira apstraktne funkcije za Linux platformu</translation>
     </message>
 </context>
 <context>
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation>Helyszín kiválasztása:</translation>
+        <translation>Obeleži lokaciju</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>írd ide a keresési szűrőt...</translation>
+        <translation>unesite filter pretraživanja ...</translation>
     </message>
 </context>
 <context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>Konfiguráció</translation>
+        <translation>Konfiguracija</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation>Buborék-eszköztippek kikapcsolása</translation>
+        <translation>Onemogućite balon opisa alatki</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>Csak az ikonok megjelenítése</translation>
+        <translation>Prikaži samo ikone</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation>Fő ablak</translation>
+        <translation>Glavni prozor</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>Eszköztár</translation>
+        <translation>alatna traka</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Opšte</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Fájl</translation>
+        <translation>&amp;Datoteka</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Súgó</translation>
+        <translation>&amp;Pomoć</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Kilépés</translation>
+        <translation>&amp;Odustati</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2878,7 +2876,7 @@ HASZNÁLAT
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>Beállítások be&amp;töltése fájlból</translation>
+        <translation>Učitajte postavke iz datoteke</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -2886,154 +2884,154 @@ HASZNÁLAT
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Qt névjegye</translation>
+        <translation>O QT</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Konfiguráció nem írható</translation>
+        <translation>Konfiguracija se ne može prepisati</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Beállítások betöltése fájlból</translation>
+        <translation>Učitajte postavke iz datoteka</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Beállítások mentése fájlba</translation>
+        <translation>Sačuvaj postavke u datoteku</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>El nem mentett beállítások</translation>
+        <translation>Nečuvaj podešavanja</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Vannak el nem mentett beállítások. Ennek ellenére kilépsz?</translation>
+        <translation>Postoje ne sačuvana podešavanja. Prestati svakako?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon Konfigurátor</translation>
+        <translation>Veyon Konfigurator</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Szolgáltatás</translation>
+        <translation>Servis</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Mester</translation>
+        <translation>Glavni</translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation>Hozzáférés-vezérlés</translation>
+        <translation>Pristup kontroli</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Veyon-ról</translation>
+        <translation>O Veyonu</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automatikus</translation>
+        <translation>Automatski</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Névjegy</translation>
+        <translation>O nama</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation>%1 Konfigurátor %2</translation>
+        <translation>%1 Konfigurator %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>JSON fájlok (*.json)</translation>
+        <translation>JSON datoteke (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>A helyi konfiguráció háttere azt jelzi, hogy a konfiguráció nem írható. Futtasd %1 Konfigurátort magasabb jogosultságokkal.</translation>
+        <translation>Lokalni pomoćni program za konfiguraciju izveštava da konfiguracija ne može biti napisana! Molimo pokrenite% 1 konfigurator s većim privilegijama.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Hozzáférés megtagadva</translation>
+        <translation>Pristup odbijen</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>A helyi konfiguráció alapján nincs jogosultságod elérni a a hálózatban lévő számítógépeket. Kérem, jelentkezz be másik felhasználói fiókkal vagy kérd meg a rendszer üzemeltetőjét, hogy ellenőrizze a helyi konfigurációt.</translation>
+        <translation>Prema lokalnoj konfiguraciji nije vam dopušten pristup računarima u mreži. Prijavite se pomoću drugog naloga ili dopustite administratoru sistema da proveri lokalnu konfiguraciju.</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Képernyőképek</translation>
+        <translation>Snimci ekrana</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation>Aktív szolgáltatás</translation>
+        <translation>Aktivna funkcija</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>&quot;%1&quot; szolgáltatás még aktív. Kérem, állítsa le, mielőtt %2-t bezárja </translation>
+        <translation>Funkcija  &quot;%1&quot; i dalje je aktivna. Molim zaustavite pre zatvaranja %2.</translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>Konfiguráció alapértelmezettre állítása</translation>
+        <translation>Resetujte konfiguraciju</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Biztos, hogy a helyi konfiguráció és az összes beállítás értékét visszaállítod az alapértelmezett értékére?</translation>
+        <translation>Želite li stvarno resetovati lokalnu konfiguraciju i vratiti sve postavke na njihove početne vrednosti?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>Felhasználók és számítógépek keresse</translation>
+        <translation>Pretražite korisnike i računare</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation>Optimális méretűre állítás</translation>
+        <translation>Podesite optimalnu veličinu</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation>Számítógépek rácsba illesztése</translation>
+        <translation>Poravnajte računare po mreži</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation>%1 Konfigurátor</translation>
+        <translation>%1 Konfigurator</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation>Nem elegendő jogosultság</translation>
+        <translation>Nedovoljno privilegija</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Nem sikerült rendszergazdai jogosultsággal indulni. Kérem, ellenőrizd, hogy sudo-típusú program telepítve van az asztali környezetedre. A program normál felhasználói jogosultságokkal fog futni.</translation>
+        <translation>Ne mogu započeti s administrativnim privilegijama. Molimo vas proverite da li je instaliran program sličan sudo-u za radnu površinu! Program će se pokrenuti sa uobičajenim korisničkim privilegijama.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation>Csak a bekapcsolt számítógépek megjelenítése</translation>
+        <translation>Pokaži samo na pokrenutim računarima</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>Beállítások &amp;mentése fájlba</translation>
+        <translation>% Sačuvajte postavke u datoteci</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Megtekint</translation>
+        <translation>%Vidi</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
+        <translation>&amp;Standardno</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>&amp;Haladó</translation>
+        <translation>&amp;Napredno</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation>Egyéni számítógép-elhelyezés használata</translation>
+        <translation>Koristite prilagođjeni raspored računara</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>Helyszínek &amp;&amp; számítógépek</translation>
+        <translation>Lokacije i računari</translation>
     </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation>Mappák</translation>
+        <translation>Direktorijumi</translation>
     </message>
     <message>
         <source>...</source>
@@ -3041,67 +3039,67 @@ HASZNÁLAT
     </message>
     <message>
         <source>User configuration</source>
-        <translation>Felhasználói konfigurációk</translation>
+        <translation>Korisnička konfiguracija</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>Számítógépen a dupla kattintás:</translation>
+        <translation>Dvostruki klik na računaru:</translation>
     </message>
     <message>
         <source>Features</source>
-        <translation>Szolgáltatások</translation>
+        <translation>Karakteristike</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation>Összes szolgáltatás</translation>
+        <translation>Sve karakteristike</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation>Szolgáltatások kikapcsolása</translation>
+        <translation>Onemogući karakteristike</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Képernyőképek</translation>
+        <translation>Snimci ekrana</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation>&lt;nincs szolgáltatás&gt;</translation>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>Alapbeállítások</translation>
+        <translation>Osnovna podešavanja</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation>Viselkedés</translation>
+        <translation>Ponašanje</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation>Kiválasztott mód rákényszerítése a kliens számítógépekre</translation>
+        <translation>Pojačajte odabrani režim za klijentske računare</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation>Helyi számítógép elrejtése</translation>
+        <translation>Sakri lokalni računar</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation>Számítógépszűrő mező elrejtése</translation>
+        <translation>Sakri polje filtera računara</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>Műveletek, mint a számítógépek újraindítása vagy kikapcsolása</translation>
+        <translation>Radnje poput ponovnog pokretanja ili isključivanja računara</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Felhasználói felület</translation>
+        <translation>Korisnički interfejs</translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation>Háttérszín</translation>
+        <translation>Boja pozadine</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>Indexkép-frissítési időköz</translation>
+        <translation>Interval ažuriranja sličica</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3109,165 +3107,165 @@ HASZNÁLAT
     </message>
     <message>
         <source>Program start</source>
-        <translation>Program indítása</translation>
+        <translation>Startovanje programa</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation>Módok és szolgáltatások</translation>
+        <translation>Načini i funkcije</translation>
     </message>
     <message>
         <source>User and computer name</source>
-        <translation>Felhasználó- és számítógépnév</translation>
+        <translation>Ime korisnika i računara</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Csak felhasználónév</translation>
+        <translation>Samo korisničko ime</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation>Csak számítógépnév</translation>
+        <translation>Samo ime računara</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation>Számítógép indexképének felirata</translation>
+        <translation>Opis računara u sličicama</translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>Betűszín</translation>
+        <translation>Boja teksta</translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation>Rendezés</translation>
+        <translation>Poredjaj prema</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>Számítógép és felhasználónév</translation>
+        <translation>Ime računara i korisnika</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation>Számítógéphelyszínek</translation>
+        <translation>Lokacije računara</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation>Csak a jelenlegi helyszín megjelenítése</translation>
+        <translation>Prikaži samo trenutnu lokaciju</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation>Rejtett helyszínek kézi hozzáadásának engedélyezése</translation>
+        <translation>Dopusti ručno dodavanje skrivenih lokacija</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation>Üres helyszínek elrejtése</translation>
+        <translation>Sakri prazne lokacije</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Megerősítő párbeszédablak megjelentése potenciálisan veszélyes műveleteknél</translation>
+        <translation>Prikaži potvrdni dijalog za potencijalno nesigurne radnje</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation>Hozzáférés-vezérlés elvégzése</translation>
+        <translation>Izvršite kontrolu pristupa</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation>Jelenlegi helyszín automatikus kiválasztása</translation>
+        <translation>Automatski odaberite trenutnu lokaciju</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation>Számítógépek indexképének automatikus méretezése</translation>
+        <translation>Automatski prilagodite veličinu sličica računara</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation>Számítógépkiválasztási-panel automatikus megnyitása</translation>
+        <translation>Automatski otvorite panel za odabir računara</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>Monitorozási</translation>
+        <translation>Nadgledanje</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation>Beépített monitorozási mód</translation>
+        <translation>Ugrađeni način praćenja</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation>Ez az alapértelmezett mód, ami lehetővé teszi, hogy monitorozd az egy vagy több helyszínen lévő összes számítógépet.</translation>
+        <translation>Ovaj način rada omogućuje vam praćenje svih računara na jednoj ili više lokacija.</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryConfigurationPage</name>
     <message>
         <source>Network discovery</source>
-        <translation>Hálózat felderítése</translation>
+        <translation>Otkrivanje mreže</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Mód</translation>
+        <translation>Mod</translation>
     </message>
     <message>
         <source>Scan network ranges</source>
-        <translation>Hálózati tartományok átvizsgálása</translation>
+        <translation>Skeniranje mrežnih opsega</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
-        <translation>pl. 192.168.1.0/24</translation>
+        <translation>npr. 192.168.1.0/24</translation>
     </message>
     <message>
         <source>Scan all subnets of computer</source>
-        <translation>A számítógép összes alhálózatának átvizsgálása</translation>
+        <translation>Skeniranje svih podmreža računara</translation>
     </message>
     <message>
         <source>Scan custom subnet</source>
-        <translation>Egyéni alhálózat átvizsgálása</translation>
+        <translation>Skeniranje prilagođjene podmreže</translation>
     </message>
     <message>
         <source>Scan sessions on local computer</source>
-        <translation>A helyi számítógép munkameneteinek átvizsgálása</translation>
+        <translation>Skeniranje sesija na lokalnom računaru</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Tesztelés</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Network ranges</source>
-        <translation>Hálózati tartományok</translation>
+        <translation>Raspon mreže</translation>
     </message>
     <message>
         <source>Add new group</source>
-        <translation>Új csoport hozzáadása</translation>
+        <translation>Dodaj novu grupu</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation>Kiválasztott csoport eltávolítása</translation>
+        <translation>Ukloni obeleženu grupu</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation>Csoportok</translation>
+        <translation>Grupe</translation>
     </message>
     <message>
         <source>First address</source>
-        <translation>Első cím</translation>
+        <translation>Prva adresa</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation>Utolsó cím</translation>
+        <translation>Poslednja adresa</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation>Új hálózati tartomány hozzáadása</translation>
+        <translation>Dodajte novi opseg mreže</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
+        <translation>Uklonite odabrani mrežni raspon</translation>
     </message>
     <message>
         <source>Parallel scans</source>
-        <translation>Párhuzamos átvizsgálások</translation>
+        <translation>Paralelno skeniranje</translation>
     </message>
     <message>
         <source>Scan timeout</source>
-        <translation>Átvizsgálási időtúllépés</translation>
+        <translation>Istek vremena skeniranja</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3275,41 +3273,41 @@ HASZNÁLAT
     </message>
     <message>
         <source>Session scan limit</source>
-        <translation>Átvizsgálás munkamenetének korlátja</translation>
+        <translation>Granica sesija skeniranja</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Lehetőség</translation>
+        <translation>Opcije</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>A fordított keresés IP-címeket talált a kiszolgálónevekhez</translation>
+        <translation>Obrnutim pretraživanjem otkrivene IP adrese za imena hosta</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation>Új helyszín</translation>
+        <translation>Nova lokacija</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryDirectory</name>
     <message>
         <source>Scanning...</source>
-        <translation>Átvizsgálás...</translation>
+        <translation>Skeniranje ...</translation>
     </message>
     <message>
         <source>Discovered computers</source>
-        <translation>Felderített számítógépek</translation>
+        <translation>Otkriveni računari</translation>
     </message>
 </context>
 <context>
     <name>NetworkDiscoveryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
+        <translation>Prikaži pomoć za specifičnu komandu</translation>
     </message>
     <message>
         <source>Scan a subnet</source>
-        <translation>Egy alhálózat átvizsgálása</translation>
+        <translation>Skeniranje podmreže</translation>
     </message>
     <message>
         <source>
@@ -3318,956 +3316,951 @@ USAGE
 %1 scan [&lt;SUBNET&gt;]
 
 </source>
-        <translation>
-HASZNÁLATA
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Hálózatobjektum-felderítő, ami automatikusan felderíti a hálózat számítógépeit</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Hálózat felderítése (hálózat átvizsgálása Veyon kliens után)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for managing the network discovery directory</source>
-        <translation>A hálózatfelderítő-mappát kezelő parancsok</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>Helyszínek/számítógépek</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Weboldal megnyitása</translation>
+        <translation>Otvori websajt</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation>pl. Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>Emlékezz és add a weboldal-menühöz</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation>pl. www.veyon.io</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Kérem, adja meg a megnyitandó weboldal URL-jét:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Név:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Bekapcsolás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>Kattints erre a gombra az összes számítógép bekapcsolásához. Így megúszod, hogy egyesével kapcsolgasd be őket.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Újraindítás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Kattints erre a gombra az összes számítógép újraindításához.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down</source>
-        <translation>Kikapcsolás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>Kattints erre a gombra az összes számítógép kikapcsolásához. Így megúszod, hogy egyesével kapcsolgasd ki őket.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Egy számítógép be-/kikapcsolása vagy újraindítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>Újraindítás megerősítése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>Kikapcsolás megerősítése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>Biztos, hogy újraindítod a kiválasztott számítógépeket?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Egy számítógép bekapcsolása hálózati ébresztéssel (WOL)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>FIZIKAI CÍM</translation>
+        <translation>MAC ADRESA</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Ez a parancs egy hálózati ébresztő jelcsomagot (WOL) szór a hálózaton, hogy a megadott fizikai című számítógépeket bekapcsolja.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
+        <translation>Molimo navedite naredbu za prikaz pomoći!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation>A fizikai cím érvénytelen!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation>A számítógépek működési állapotát módosító parancsok </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down now</source>
-        <translation>Leállítás azonnal</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>Frissítések telepítése és leállítás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>Leállítás a felhasználó jóváhagyása után</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>Leállítás a megadott idő lejárta után</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation>A számítógép leállítását távolról kezdeményezték. Leállítja most a számítógépet?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation>A számítógép %1 perc %2 másodperc múlva automatikusan le fog állni.  Kérjük, mentse el munkáját és zárja be az összes futó programot.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>Kikapcsolás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation>Kérem, add meg, hogy kiválasztott számítógépek leállításának mennyi legyen az időtúllépése:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>minutes</source>
-        <translation>perc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>seconds</source>
-        <translation>másodperc</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>Távoli megtekintés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>Egy számítógépet tudsz megtekinteni távolról, beavatkozás nélkül.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Távoli vezérlés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>Egy számítógépet tudsz távolról vezérelni.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Távoli elérés</translation>
+        <translation>Udaljeni pristup</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Egy számítógép távoli megtekintése vagy vezérlése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Kérem, add meg az elérni kívánt gép nevét vagy IP címét:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parancsról segítség megjelenítése</translation>
+        <translation>Pokažite pomoć o naredbi</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 távoli hozzáférés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Csak megtekintés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Távoli vezérlés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation>Parancsikon küldése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Teljes képernyő</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Window</source>
-        <translation>Ablak</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Ctrl+Esc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation>Alt+Tab</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation>Alt+F4</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation>Win+Tab</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Win</source>
-        <translation>Win</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Menu</source>
-        <translation>Menü</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Ctrl+F1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>%1 csatlakozik</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Sikeresen csatlakozott.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Képernyőkép</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Kilépés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Routing</name>
     <message>
         <source>Control internet access by modifying routing table</source>
-        <translation>Az internetelérés módosítása az útvonaltábla módosításával</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
-        <translation>Az alapértelmezett útvonalak eltávolítása az internetelérés blokkolásáért</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation>Egyéni útvonal hozzáadása az internet blokkolásáért</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination</source>
-        <translation>Cél</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Gateway</source>
-        <translation>Átjáró</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Kérem, add meg a kiválasztott számítógép(ek)en futtatandó programokat vagy parancsokat. Több programot/parancsot soronként adj meg.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Run programs</source>
-        <translation>Programok futtatása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>például &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Név:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation>Emlékezz és add a programmenühöz</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>pl. VLC</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Zárolás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Zárolás feloldása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation>Számítógép képernyőjének és bemeneti eszközeinek zárolása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbak zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk és a képernyő elfeketedik.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>ismeretlen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Képernyőkép nem készíthető, mert &apos;%1&apos; mappa nem létezik és nem is hozható létre.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Képernyőkép</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Képernyőkép</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>Használd ezt a funkciót, hogy képernyőképet készíts a kiválasztott számítógépekről.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>Elkészített képernyőképek</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation>%1 számítógépről sikeresen készítettél képernyőképet.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation>Számítógépekről képernyőképek készítése és mentése a helyi gépre.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Az összes képernyőképet felsoroljuk itt. Képernyőképet a számítógép helyi menüjében lévő &quot;Képernyőkép&quot; gombra kattintva készíthetsz. A képernyőképeket az alul lévő gombokkal tudod kezelni.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User:</source>
-        <translation>Felhasználó:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>Számítógép:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Dátum:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Idő:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show</source>
-        <translation>Megjelenítés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Törlés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Opšte</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Automatikus indítás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Tálcaikon elrejtése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Szolgáltatás indítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Leállítva</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Szolgáltatás leállítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>State:</source>
-        <translation>Állapot:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network</source>
-        <translation>Hálózat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>Demó szerver port</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Fűzfal-kivétel bekapcsolása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Kapcsolatok engedélyezése csak a localhost-ból</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation>Belső VNC szerver port</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>VNC szerver</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation>Bővítmény:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>%1 szolgáltatás újraindítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Az összes beállítást sikeresen mentette. A változások életbe lépéséhez %1 szolgáltatást új kell indítani. Újraindítod most?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
-        <translation>Jelenleg fut</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation>Szolgáltatáskezelő port</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation>Elsődleges szolgáltatási port</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation>A funkció bekapcsolása esetén a szerver minden egyes számítógépen létrejövő interaktív munkamenethez külön szerverfolyamatot indít.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>Távoli csatlakozás esetén értesítés megjelenítése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Többmunka-menetes mód (terminál és távoli asztal szerverekhez)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation>Értesítés jelenjen meg amikor egy nem hitelesített hozzáférést blokkolunk.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation>%1 szolgáltatás indítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation>%1 szolgáltatás leállítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation>%1 szolgáltatás nyilvántartásban vétele</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation>%1 szolgáltatás törlése a nyilvántartásból</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service control</source>
-        <translation>Szolgáltatásvezérlés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation>Veyon szolgáltatás jelenleg fut</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Veyon szolgáltatás jelenleg nem fut</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>Veyon szolgáltatás konfigurálása és felügyelete</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation>Regisztrált Veyon szolgáltatás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Nem regisztrált Veyon szolgáltatás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Veyon szolgáltatás indítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Veyon szolgáltatás leállítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Veyon Szolgáltatás újraindítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Veyon Szolgáltatás állapotának lekérdezése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation>Veyon Szolgáltatás konfigurációs és felügyeleti parancsai</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation>Parancsfájl futtatása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>&quot;%1&quot; fájl nem létezik!</translation>
+        <translation>Fajl &quot;%1&quot; nije pronadjen!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktív héj és szkriptfuttatás a Veyon vezérlésből</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation>Parancsok héjfunkciókhoz</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>Rendszer tálcaikon</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation>Rendszerfelhasználói csoportok esetén a felhasználói csoportok háttere: </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation>Alapértelmezett (rendszerfelhasználói csoportok)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation>A Veyon belső komponenseinek és funkciónak tesztelése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation>A Veyon belső komponensek és funkciók teszteléséhez parancsok</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Szöveges üzenet küldése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Az alábbi mezőbe gépeld az összes kiválasztott felhasználóknak küldendő üzenetedet.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Szöveges üzenet</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Használd ezt a funkciót, hogy üzenetet küldj az összes felhasználónak (például arról, hogy új feladatot adsz nekik).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Üzenet a tanártól</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Üzenet küldése egy felhasználónak</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Réteges (félig átlátszó) ablakok elkapásának bekapcsolása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Beépített UltraVNC szerver konfiguráció</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Alacsony pontosság (turbó mód)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>Beépített UltraVNC szerver konfiguráció</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>Többmonitoros támogatás bekapcsolása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>Asztalduplikációs motor bekapcsolása Windows 8 vagy újabb rendszeren</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation>Nincs írási hozzáférés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Személyes beállításait nem sikerült menteni! Kérem, ellenőrizd a felhasználói konfigurációs fájl útvonalát %1 Konfigurátorban.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Felhasználó bejelentkezése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation>Kérem, adj meg egy felhasználónevet és egy jelszót az automatikus bejelentkezéshez az összes számítógépen.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>Felhasználónév</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation>Bejelentkezés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation>Kattints erre a gombra, hogy egy megadott felhasználó bejelentkezzen az össze számítógépre.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
-        <translation>Kijelentkezés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>Felhasználó kijelentkeztetésének megerősítése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User session control</source>
-        <translation>Felhasználói munkamenet-vezérlés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[OK]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[SIKERTELEN]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Érvénytelen parancs!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>Elérhető műveletek:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Érvénytelen az argumentum</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>Nincs elegendő argumentum - további információért használja a &quot;%1 súgót&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>Ismeretlen végeredmény!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation>Elérhető modulok:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation>A modul nincs megadva vagy nem található - az elérhető modulok:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>A bővítmény nem licencelt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>INFO</source>
-        <translation>INFO</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ERROR</source>
-        <translation>HIBA</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>licensed for</source>
-        <translation>licencelt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>HASZNÁLAT</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>LEÍRÁS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation>PÉLDÁK</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>WARNING</source>
-        <translation>FIGYELMEZTETÉS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>Hitelesítési teszt</translation>
+        <translation>Test provere autentičnosti</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon szolgáltatás</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Kapcsolat létrehozása: %1 ...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>SAS generáció beállítását szoftverrel nem sikerült módosítani. Ctrl+Alt+Del küldése távoli vezérlésről nem fog működni.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation>Windows</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation>Opšte</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>SAS generáció bekapcsolása szoftverrel (Ctrl+Alt+Del)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation>Képernyő zárolása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation>Tálca elrejtése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation>Start menü elrejtése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation>Asztal elrejtése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Felhasználó hitelesítés</translation>
+        <translation>Autentifikacija korisnika</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>Alternatív felhasználói hitelesítési mechanizmus használata</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User login</source>
-        <translation>Felhasználó bejelentkezése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>Add meg az indítási késleltetést</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation>Billentyűlenyomási időköz szimulálása</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>A bővítmény absztrakt függvényekkel egészíti ki a Windows platformot</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>&quot;%1&quot; szolgáltatás már telepítve van.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>&quot;%1&quot; szolgáltatás nem telepíthető.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>&quot;%1&quot; szolgáltatást sikeresen telepítette.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>&quot;%1&quot; szolgáltatás nem távolítható el.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>&quot;%1&quot; szolgáltatást sikeresen eltávolította.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>&quot;%1&quot; szolgáltatás indítási típusa nem módosítható. </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>&quot;%1&quot; szolgáltatás nem található.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation>Beépített x11vnc szerver konfiguráció</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>Egyéni x11vnc paraméterek:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>Ne használd az X Damage bővítményt</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
