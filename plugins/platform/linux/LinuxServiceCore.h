@@ -28,6 +28,7 @@
 
 #include "LinuxCoreFunctions.h"
 #include "PlatformServiceCore.h"
+#include "ServiceDataManager.h"
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -85,5 +86,7 @@ private:
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager;
 	QMap<QString, QProcess *> m_serverProcesses;
+
+	ServiceDataManager m_dataManager;
 
 };

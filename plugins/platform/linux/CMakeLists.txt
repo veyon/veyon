@@ -31,9 +31,14 @@ BUILD_PLUGIN(linux-platform
 	LinuxServiceFunctions.h
 	LinuxUserFunctions.h
 	linux.qrc
+	../common/ServiceDataManager.h
+	../common/ServiceDataManager.cpp
 )
 
-TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE ${procps_INCLUDE_DIRS})
+TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE
+	../common
+	${procps_INCLUDE_DIRS}
+)
 
 TARGET_LINK_LIBRARIES(linux-platform
 	${X11_LIBRARIES}
