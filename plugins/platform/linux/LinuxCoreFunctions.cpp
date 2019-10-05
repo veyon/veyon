@@ -353,3 +353,20 @@ int LinuxCoreFunctions::systemctl( const QStringList& arguments )
 	return QProcess::execute( QStringLiteral("systemctl"),
 							  QStringList( { QStringLiteral("--no-pager"), QStringLiteral("-q") } ) + arguments );
 }
+
+
+
+void LinuxCoreFunctions::restartDisplayManagers()
+{
+	for( const auto& displayManager : {
+		 QStringLiteral("gdm"),
+		 QStringLiteral("lightdm"),
+		 QStringLiteral("lxdm"),
+		 QStringLiteral("nodm"),
+		 QStringLiteral("sddm"),
+		 QStringLiteral("wdm"),
+		 QStringLiteral("xdm") } )
+	{
+		systemctl( { QStringLiteral("restart"), displayManager } );
+	}
+}

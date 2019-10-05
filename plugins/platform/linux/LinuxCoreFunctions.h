@@ -72,6 +72,8 @@ public:
 
 	static int systemctl( const QStringList& arguments );
 
+	static void restartDisplayManagers();
+
 private:
 	int m_screenSaverTimeout;
 	int m_screenSaverPreferBlanking;
