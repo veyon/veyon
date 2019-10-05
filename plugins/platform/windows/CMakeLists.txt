@@ -19,7 +19,7 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.cpp
 	DesktopInputController.cpp
 	SasEventListener.cpp
-	ServiceDataManager.cpp
+	../common/ServiceDataManager.cpp
 	XEventLog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
@@ -38,12 +38,13 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.h
 	DesktopInputController.h
 	SasEventListener.h
-	ServiceDataManager.h
+	../common/ServiceDataManager.h
 	XEventLog.h
 	windows.qrc
 )
 
 TARGET_INCLUDE_DIRECTORIES(windows-platform PRIVATE
+	../common
 	${ultravnc_DIR}/addon/ms-logon/authSSP
 	${ultravnc_DIR}/winvnc/winvnc
 	${ultravnc_DIR}
