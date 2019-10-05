@@ -19,6 +19,7 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.cpp
 	DesktopInputController.cpp
 	SasEventListener.cpp
+	../common/PersistentLogonCredentials.cpp
 	../common/ServiceDataManager.cpp
 	XEventLog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp
@@ -38,6 +39,7 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.h
 	DesktopInputController.h
 	SasEventListener.h
+	../common/PersistentLogonCredentials.h
 	../common/ServiceDataManager.h
 	XEventLog.h
 	windows.qrc

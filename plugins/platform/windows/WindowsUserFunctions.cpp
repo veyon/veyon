@@ -25,6 +25,7 @@
 #include <QBuffer>
 
 #include "DesktopInputController.h"
+#include "PersistentLogonCredentials.h"
 #include "VariantStream.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
@@ -173,7 +174,7 @@ bool WindowsUserFunctions::logon( const QString& username, const Password& passw
 		return false;
 	}
 
-	if( writePersistentLogonCredentials( username, password ) )
+	if( PersistentLogonCredentials::write( username, password ) )
 	{
 		logoff();
 		return true;
@@ -245,76 +246,13 @@ void WindowsUserFunctions::checkPendingLogonTasks()
 		vDebug() << "Reading logon credentials";
 		QString username;
 		Password password;
-		if( readPersistentLogonCredentials( &username, &password ) )
+		if( PersistentLogonCredentials::read( &username, &password ) )
 		{
-			clearPersistentLogonCredentials();
+			PersistentLogonCredentials::clear();
 
 			performFakeInputLogon( username, password );
 		}
 	}
-}
-
-
-
-bool WindowsUserFunctions::readPersistentLogonCredentials( QString* username, Password* password )
-{
-	if( username == nullptr || password == nullptr )
-	{
-		vCritical() << "Invalid input pointers";
-		return false;
-	}
-
-	auto logonData = ServiceDataManager::read( ServiceDataManager::serviceDataTokenFromEnvironment() );
-	if( logonData.isEmpty() )
-	{
-		vCritical() << "Empty data";
-		return false;
-	}
-
-	QBuffer logonDataBuffer( &logonData );
-	if( logonDataBuffer.open( QBuffer::ReadOnly ) == false )
-	{
-		vCritical() << "Failed to open buffer";
-		return false;
-	}
-
-	VariantStream stream( &logonDataBuffer );
-	*username = stream.read().toString();
-	*password = VeyonCore::cryptoCore().decryptPassword( stream.read().toString() );
-
-	return username->isEmpty() == false && password->isEmpty() == false;
-}
-
-
-
-bool WindowsUserFunctions::writePersistentLogonCredentials( const QString& username, const Password& password )
-{
-	QBuffer logonDataBuffer;
-	if( logonDataBuffer.open( QBuffer::WriteOnly ) == false )
-	{
-		vCritical() << "Failed to open buffer";
-		return false;
-	}
-
-	VariantStream stream( &logonDataBuffer );
-	stream.write( username );
-	stream.write( VeyonCore::cryptoCore().encryptPassword( password ) );
-
-	if( ServiceDataManager::write( ServiceDataManager::serviceDataTokenFromEnvironment(),
-								   logonDataBuffer.data() ) == false )
-	{
-		vCritical() << "Failed to write persistent service data";
-		return false;
-	}
-
-	return true;
-}
-
-
-
-bool WindowsUserFunctions::clearPersistentLogonCredentials()
-{
-	return ServiceDataManager::write( ServiceDataManager::serviceDataTokenFromEnvironment(), {} );
 }
 
 
