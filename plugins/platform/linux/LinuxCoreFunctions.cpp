@@ -345,3 +345,11 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::consoleKitManager()
 										 QStringLiteral("org.freedesktop.ConsoleKit.Manager"),
 										 QDBusConnection::systemBus() );
 }
+
+
+
+int LinuxCoreFunctions::systemctl( const QStringList& arguments )
+{
+	return QProcess::execute( QStringLiteral("systemctl"),
+							  QStringList( { QStringLiteral("--no-pager"), QStringLiteral("-q") } ) + arguments );
+}

@@ -70,6 +70,8 @@ public:
 	static DBusInterfacePointer systemdLoginManager();
 	static DBusInterfacePointer consoleKitManager();
 
+	static int systemctl( const QStringList& arguments );
+
 private:
 	int m_screenSaverTimeout;
 	int m_screenSaverPreferBlanking;
