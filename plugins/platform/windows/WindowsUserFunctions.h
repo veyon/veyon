@@ -51,10 +51,6 @@ public:
 private:
 	void checkPendingLogonTasks();
 
-	static bool readPersistentLogonCredentials( QString* username, Password* password );
-	static bool writePersistentLogonCredentials( const QString& username, const Password& password );
-	static bool clearPersistentLogonCredentials();
-
 	static bool performFakeInputLogon( const QString& username, const Password& password );
 
 	static QString domainController();
