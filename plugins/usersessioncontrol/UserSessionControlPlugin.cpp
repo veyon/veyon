@@ -95,9 +95,9 @@ bool UserSessionControlPlugin::handleFeatureMessage( VeyonServerInterface& serve
 
 	if( message.featureUid() == m_userLoginFeature.uid() )
 	{
-		VeyonCore::platform().userFunctions().logon( message.argument( Argument::Username ).toString(),
-													 VeyonCore::cryptoCore().decryptPassword(
-														 message.argument( Argument::Password ).toString() ) );
+		VeyonCore::platform().userFunctions().prepareLogon( message.argument( Argument::Username ).toString(),
+															VeyonCore::cryptoCore().decryptPassword(
+																message.argument( Argument::Password ).toString() ) );
 		return true;
 	}
 	else if( message.featureUid() == m_userLogoffFeature.uid() )

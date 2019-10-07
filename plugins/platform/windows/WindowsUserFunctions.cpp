@@ -157,23 +157,53 @@ QString WindowsUserFunctions::currentUser()
 
 
 
-bool WindowsUserFunctions::logon( const QString& username, const Password& password )
+bool WindowsUserFunctions::prepareLogon( const QString& username, const Password& password )
 {
-	if( isAnyUserLoggedOn() )
-	{
-		vInfo() << "Skipping user logon as a user is already logged on";
-		return false;
-	}
-
-	if( PersistentLogonCredentials::write( username, password ) )
+	if( m_logonHelper.prepare( username, password ) )
 	{
 		logoff();
 		return true;
 	}
 
-	vCritical() << "failed";
-
 	return false;
+}
+
+
+
+bool WindowsUserFunctions::performLogon( const QString& username, const Password& password )
+{
+	WindowsPlatformConfiguration config( &VeyonCore::config() );
+
+	DesktopInputController input( config.logonKeyPressInterval() );
+
+	const auto ctrlAltDel = []() {
+		auto sasEvent = OpenEvent( EVENT_MODIFY_STATE, false, L"Global\\VeyonServiceSasEvent" );
+		SetEvent( sasEvent );
+		CloseHandle( sasEvent );
+	};
+
+	const auto sendString = [&input]( const QString& string ) {
+		for( const auto& character : string )
+		{
+			input.pressAndReleaseKey( character );
+		}
+	};
+
+	ctrlAltDel();
+
+	QThread::msleep( static_cast<unsigned long>( config.logonInputStartDelay() ) );
+
+	input.pressAndReleaseKey( XK_Delete );
+
+	sendString( username );
+
+	input.pressAndReleaseKey( XK_Tab );
+
+	sendString( QString::fromUtf8( password.toByteArray() ) );
+
+	input.pressAndReleaseKey( XK_Return );
+
+	return true;
 }
 
 
@@ -225,64 +255,6 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 	}
 
 	return result;
-}
-
-
-
-void WindowsUserFunctions::checkPendingLogonTasks()
-{
-	if( VeyonCore::component() == VeyonCore::Component::Server &&
-		ServiceDataManager::serviceDataTokenFromEnvironment().isEmpty() == false &&
-		isAnyUserLoggedOn() == false )
-	{
-		vDebug() << "Reading logon credentials";
-		QString username;
-		Password password;
-		if( PersistentLogonCredentials::read( &username, &password ) )
-		{
-			PersistentLogonCredentials::clear();
-
-			performFakeInputLogon( username, password );
-		}
-	}
-}
-
-
-
-bool WindowsUserFunctions::performFakeInputLogon( const QString& username, const Password& password )
-{
-	WindowsPlatformConfiguration config( &VeyonCore::config() );
-
-	DesktopInputController input( config.logonKeyPressInterval() );
-
-	const auto ctrlAltDel = []() {
-		auto sasEvent = OpenEvent( EVENT_MODIFY_STATE, false, L"Global\\VeyonServiceSasEvent" );
-		SetEvent( sasEvent );
-		CloseHandle( sasEvent );
-	};
-
-	const auto sendString = [&input]( const QString& string ) {
-		for( const auto& character : string )
-		{
-			input.pressAndReleaseKey( character );
-		}
-	};
-
-	ctrlAltDel();
-
-	QThread::msleep( static_cast<unsigned long>( config.logonInputStartDelay() ) );
-
-	input.pressAndReleaseKey( XK_Delete );
-
-	sendString( username );
-
-	input.pressAndReleaseKey( XK_Tab );
-
-	sendString( QString::fromUtf8( password.toByteArray() ) );
-
-	input.pressAndReleaseKey( XK_Return );
-
-	return true;
 }
 
 

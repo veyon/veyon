@@ -266,14 +266,22 @@ QString LinuxUserFunctions::currentUser()
 
 
 
-bool LinuxUserFunctions::logon( const QString& username, const Password& password )
+bool LinuxUserFunctions::prepareLogon( const QString& username, const Password& password )
 {
-	Q_UNUSED(username);
-	Q_UNUSED(password);
-
-	// TODO
+	if( m_logonHelper.prepare( username, password ) )
+	{
+		LinuxCoreFunctions::restartDisplayManagers();
+		return true;
+	}
 
 	return false;
+}
+
+
+
+bool LinuxUserFunctions::performLogon( const QString& username, const Password& password )
+{
+	return true;
 }
 
 
