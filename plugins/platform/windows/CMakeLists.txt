@@ -19,8 +19,6 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.cpp
 	DesktopInputController.cpp
 	SasEventListener.cpp
-	../common/PersistentLogonCredentials.cpp
-	../common/ServiceDataManager.cpp
 	XEventLog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
@@ -39,8 +37,12 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.h
 	DesktopInputController.h
 	SasEventListener.h
+	../common/LogonHelper.h
+	../common/LogonHelper.cpp
 	../common/PersistentLogonCredentials.h
+	../common/PersistentLogonCredentials.cpp
 	../common/ServiceDataManager.h
+	../common/ServiceDataManager.cpp
 	XEventLog.h
 	windows.qrc
 )
