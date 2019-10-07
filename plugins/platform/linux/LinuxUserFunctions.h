@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "LogonHelper.h"
 #include "PlatformUserFunctions.h"
 
 #include <pwd.h>
@@ -51,5 +52,7 @@ public:
 private:
 	static constexpr auto WhoProcessTimeout = 3000;
 	static constexpr auto AuthHelperTimeout = 10000;
+
+	LogonHelper m_logonHelper{};
 
 };
