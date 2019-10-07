@@ -42,7 +42,8 @@ public:
 	bool isAnyUserLoggedOn() override;
 	QString currentUser() override;
 
-	bool logon( const QString& username, const Password& password ) override;
+	bool prepareLogon( const QString& username, const Password& password ) override;
+	bool performLogon( const QString& username, const Password& password ) override;
 	void logoff() override;
 
 	bool authenticate( const QString& username, const Password& password ) override;
