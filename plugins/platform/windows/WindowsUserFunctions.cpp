@@ -290,7 +290,8 @@ QStringList WindowsUserFunctions::domainUserGroups()
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetGroupEnum( WindowsCoreFunctions::toConstWCharArray( dc ), 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, nullptr ) == NERR_Success )
+	if( NetGroupEnum( WindowsCoreFunctions::toConstWCharArray( dc ), 0, &outBuffer, MAX_PREFERRED_LENGTH,
+					  &entriesRead, &totalEntries, nullptr ) == NERR_Success )
 	{
 		const auto* groupInfos = reinterpret_cast<GROUP_INFO_0 *>( outBuffer );
 
