@@ -25,7 +25,6 @@
 #include <QBuffer>
 
 #include "DesktopInputController.h"
-#include "PersistentLogonCredentials.h"
 #include "VariantStream.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
@@ -41,14 +40,6 @@
 #define XK_MISCELLANY
 
 #include "keysymdef.h"
-
-
-WindowsUserFunctions::WindowsUserFunctions()
-{
-	connect( VeyonCore::instance(), &VeyonCore::applicationLoaded,
-			 this, &WindowsUserFunctions::checkPendingLogonTasks );
-}
-
 
 
 QString WindowsUserFunctions::fullName( const QString& username )

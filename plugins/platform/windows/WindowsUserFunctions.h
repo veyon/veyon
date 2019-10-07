@@ -24,16 +24,14 @@
 
 #pragma once
 
+#include "LogonHelper.h"
 #include "PlatformUserFunctions.h"
 
 // clazy:exclude=copyable-polymorphic
 
-class WindowsUserFunctions : public QObject, public PlatformUserFunctions
+class WindowsUserFunctions : public PlatformUserFunctions
 {
-	Q_OBJECT
 public:
-	WindowsUserFunctions();
-
 	QString fullName( const QString& username ) override;
 
 	QStringList userGroups( bool queryDomainGroups ) override;
@@ -59,5 +57,7 @@ private:
 
 	static QStringList localUserGroups();
 	static QStringList localGroupsOfUser( const QString& username );
+
+	LogonHelper m_logonHelper{};
 
 };
