@@ -41,9 +41,6 @@ public:
 
 	void manageServerInstances();
 
-	static ServiceDataManager::Token serviceDataTokenFromEnvironment();
-	static const char* serviceDataTokenEnvironmentVariable();
-
 private:
 	void manageServersForAllSessions();
 	void manageServerForActiveConsoleSession();

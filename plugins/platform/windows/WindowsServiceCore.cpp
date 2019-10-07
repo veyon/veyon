@@ -58,7 +58,7 @@ public:
 		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfo::UserName );
 
 		QStringList extraEnv{
-			QStringLiteral("%1=%2").arg( QLatin1String( WindowsServiceCore::serviceDataTokenEnvironmentVariable() ),
+			QStringLiteral("%1=%2").arg( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
 										 QString::fromUtf8( token.toByteArray() ) )
 		};
 
@@ -186,20 +186,6 @@ void WindowsServiceCore::manageServerInstances()
 	}
 
 	CloseHandle( m_serverShutdownEvent );
-}
-
-
-
-ServiceDataManager::Token WindowsServiceCore::serviceDataTokenFromEnvironment()
-{
-	return qEnvironmentVariable( serviceDataTokenEnvironmentVariable() ).toUtf8();
-}
-
-
-
-const char* WindowsServiceCore::serviceDataTokenEnvironmentVariable()
-{
-	return "VEYON_SERVICE_DATA_TOKEN";
 }
 
 

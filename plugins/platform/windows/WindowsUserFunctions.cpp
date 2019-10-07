@@ -239,8 +239,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 
 void WindowsUserFunctions::checkPendingLogonTasks()
 {
-	// running inside a Veyon Server component?
-	if( WindowsServiceCore::serviceDataTokenFromEnvironment().isEmpty() == false &&
+	if( ServiceDataManager::serviceDataTokenFromEnvironment().isEmpty() == false &&
 		isAnyUserLoggedOn() == false )
 	{
 		vDebug() << "Reading logon credentials";
@@ -265,7 +264,7 @@ bool WindowsUserFunctions::readPersistentLogonCredentials( QString* username, Pa
 		return false;
 	}
 
-	auto logonData = ServiceDataManager::read( WindowsServiceCore::serviceDataTokenFromEnvironment() );
+	auto logonData = ServiceDataManager::read( ServiceDataManager::serviceDataTokenFromEnvironment() );
 	if( logonData.isEmpty() )
 	{
 		vCritical() << "Empty data";
@@ -301,7 +300,7 @@ bool WindowsUserFunctions::writePersistentLogonCredentials( const QString& usern
 	stream.write( username );
 	stream.write( VeyonCore::cryptoCore().encryptPassword( password ) );
 
-	if( ServiceDataManager::write( WindowsServiceCore::serviceDataTokenFromEnvironment(),
+	if( ServiceDataManager::write( ServiceDataManager::serviceDataTokenFromEnvironment(),
 								   logonDataBuffer.data() ) == false )
 	{
 		vCritical() << "Failed to write persistent service data";
@@ -315,7 +314,7 @@ bool WindowsUserFunctions::writePersistentLogonCredentials( const QString& usern
 
 bool WindowsUserFunctions::clearPersistentLogonCredentials()
 {
-	return ServiceDataManager::write( WindowsServiceCore::serviceDataTokenFromEnvironment(), {} );
+	return ServiceDataManager::write( ServiceDataManager::serviceDataTokenFromEnvironment(), {} );
 }
 
 
