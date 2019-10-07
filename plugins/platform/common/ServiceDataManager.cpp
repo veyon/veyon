@@ -25,6 +25,7 @@
 #include <QElapsedTimer>
 #include <QLocalServer>
 #include <QLocalSocket>
+#include <QProcessEnvironment>
 
 #include "ServiceDataManager.h"
 
@@ -99,6 +100,14 @@ bool ServiceDataManager::write( const Token& token, const Data& data )
 	sendMessage( &socket, outMessage );
 
 	return waitForMessage( &socket );
+}
+
+
+
+ServiceDataManager::Token ServiceDataManager::serviceDataTokenFromEnvironment()
+{
+	return QProcessEnvironment::systemEnvironment().value(
+				QLatin1String( serviceDataTokenEnvironmentVariable() ) ).toUtf8();
 }
 
 

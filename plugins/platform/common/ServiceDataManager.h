@@ -62,10 +62,7 @@ public:
 		return "VEYON_SERVICE_DATA_TOKEN";
 	}
 
-	static Token serviceDataTokenFromEnvironment()
-	{
-		return qEnvironmentVariable( serviceDataTokenEnvironmentVariable() ).toUtf8();
-	}
+	static Token serviceDataTokenFromEnvironment();
 
 protected:
 	void run() override;
