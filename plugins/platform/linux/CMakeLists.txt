@@ -31,6 +31,10 @@ BUILD_PLUGIN(linux-platform
 	LinuxServiceFunctions.h
 	LinuxUserFunctions.h
 	linux.qrc
+	../common/LogonHelper.h
+	../common/LogonHelper.cpp
+	../common/PersistentLogonCredentials.h
+	../common/PersistentLogonCredentials.cpp
 	../common/ServiceDataManager.h
 	../common/ServiceDataManager.cpp
 )
