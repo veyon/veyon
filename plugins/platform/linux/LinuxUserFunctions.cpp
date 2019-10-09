@@ -28,9 +28,14 @@
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
+#include "LinuxKeyboardInput.h"
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
+
+#define XK_MISCELLANY
+
+#include <X11/keysymdef.h>
 
 #include <pwd.h>
 #include <unistd.h>
@@ -281,6 +286,13 @@ bool LinuxUserFunctions::prepareLogon( const QString& username, const Password& 
 
 bool LinuxUserFunctions::performLogon( const QString& username, const Password& password )
 {
+	LinuxKeyboardInput input;
+
+	input.sendString( username );
+	input.pressAndReleaseKey( XK_Tab );
+	input.sendString( QString::fromUtf8( password.toByteArray() ) );
+	input.pressAndReleaseKey( XK_Return );
+
 	return true;
 }
 
