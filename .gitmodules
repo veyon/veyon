@@ -14,3 +14,7 @@
 	path = 3rdparty/kitemmodels
 	url = https://anongit.kde.org/kitemmodels.git
 	branch = master
+[submodule "3rdparty/libfakekey"]
+	path = 3rdparty/libfakekey
+	url = git://git.yoctoproject.org/libfakekey
+	branch = master
