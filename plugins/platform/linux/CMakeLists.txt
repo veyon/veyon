@@ -33,6 +33,8 @@ BUILD_PLUGIN(linux-platform
 	LinuxDesktopIntegration.h
 	LinuxFilesystemFunctions.h
 	LinuxInputDeviceFunctions.h
+	LinuxKeyboardInput.h
+	LinuxKeyboardInput.cpp
 	LinuxKeyboardShortcutTrapper.h
 	LinuxNetworkFunctions.h
 	LinuxServiceCore.h
