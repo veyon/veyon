@@ -25,6 +25,7 @@
 #pragma once
 
 #include "ConfigurationPage.h"
+#include "LdapCommon.h"
 
 class LdapConfiguration;
 class LdapDirectory;
@@ -35,7 +36,7 @@ class LdapConfigurationPage;
 
 class QLineEdit;
 
-class LdapConfigurationPage : public ConfigurationPage
+class LDAP_COMMON_EXPORT LdapConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:

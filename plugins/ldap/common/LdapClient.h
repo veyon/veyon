@@ -27,6 +27,8 @@
 #include <QObject>
 #include <QUrl>
 
+#include "LdapCommon.h"
+
 namespace KLDAP {
 class LdapConnection;
 class LdapOperation;
@@ -35,7 +37,7 @@ class LdapServer;
 
 class LdapConfiguration;
 
-class LdapClient : public QObject
+class LDAP_COMMON_EXPORT LdapClient : public QObject
 {
 	Q_OBJECT
 public:
