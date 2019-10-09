@@ -66,7 +66,7 @@ QString LinuxUserFunctions::fullName( const QString& username )
 
 QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 {
-	Q_UNUSED(queryDomainGroups);
+	Q_UNUSED(queryDomainGroups)
 
 	QStringList groupList;
 
@@ -172,7 +172,7 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 
 QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	Q_UNUSED(queryDomainGroups);
+	Q_UNUSED(queryDomainGroups)
 
 	QStringList groupList;
 
