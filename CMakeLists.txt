@@ -241,6 +241,7 @@ SET(3rdparty_DIR ${CMAKE_SOURCE_DIR}/3rdparty)
 SET(ultravnc_DIR ${3rdparty_DIR}/ultravnc)
 SET(libvncserver_DIR ${3rdparty_DIR}/libvncserver)
 SET(x11vnc_DIR ${3rdparty_DIR}/x11vnc)
+SET(libfakekey_DIR ${3rdparty_DIR}/libfakekey)
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/${VEYON_CORE_INCLUDE_DIR} ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR} ${libvncserver_DIR})
 INCLUDE_DIRECTORIES(${SYS_INC} ${ZLIB_INCLUDE_DIR} ${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR} ${QCA_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${LZO_INCLUDE_DIR})
