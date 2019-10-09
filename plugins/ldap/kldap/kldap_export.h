@@ -1,7 +1,7 @@
 /*
  * kldap_export.h - definition of symbol visibility macros for kldap
  *
- * Copyright (c) 2016 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,5 +24,5 @@
 
 #pragma once
 
-#define KLDAP_EXPORT
+#define KLDAP_EXPORT __attribute__((visibility("default")))
 #define KLDAP_NO_EXPORT __attribute__((visibility("hidden")))
