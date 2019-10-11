@@ -158,7 +158,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findWinlogonProcessId( SessionId
 
 
 
-WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& userName )
+WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
 	char userSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
