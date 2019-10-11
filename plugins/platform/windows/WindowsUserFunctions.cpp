@@ -31,6 +31,7 @@
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsPlatformConfiguration.h"
+#include "WindowsServiceControl.h"
 #include "WindowsServiceCore.h"
 #include "WindowsUserFunctions.h"
 #include "WtsSessionManager.h"
@@ -188,6 +189,8 @@ bool WindowsUserFunctions::performLogon( const QString& username, const Password
 			input.pressAndReleaseKey( character );
 		}
 	};
+
+	WindowsInputDeviceFunctions::stopOnScreenKeyboard();
 
 	ctrlAltDel();
 
