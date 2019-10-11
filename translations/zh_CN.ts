@@ -3978,11 +3978,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>用户登陆</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>请输入用来在所有计算机自动登陆的用户名和密码。</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4020,11 +4020,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>登陆</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮以便于在所有计算机上登陆制定账户</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4179,15 +4179,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>用户登陆</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>输入启动延迟</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>模拟按键间隔</translation>
     </message>
 </context>
 <context>
