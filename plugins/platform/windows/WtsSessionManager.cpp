@@ -208,6 +208,39 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 
 
 
+WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& processName )
+{
+	PWTS_PROCESS_INFO processInfo = nullptr;
+	DWORD processCount = 0;
+
+	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
+	{
+		return InvalidProcess;
+	}
+
+	auto pid = InvalidProcess;
+
+	for( DWORD proc = 0; proc < processCount; ++proc )
+	{
+		if( processInfo[proc].ProcessId == 0 )
+		{
+			continue;
+		}
+
+		if( processName.compare( QString::fromWCharArray( processInfo[proc].pProcessName ), Qt::CaseInsensitive ) == 0 )
+		{
+			pid = processInfo[proc].ProcessId;
+			break;
+		}
+	}
+
+	WTSFreeMemory( processInfo );
+
+	return pid;
+}
+
+
+
 QStringList WtsSessionManager::loggedOnUsers()
 {
 	PWTS_SESSION_INFO sessionInfo = nullptr;
