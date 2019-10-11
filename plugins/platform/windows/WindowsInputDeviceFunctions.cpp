@@ -31,6 +31,7 @@
 #include "PlatformServiceFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsKeyboardShortcutTrapper.h"
+#include "WtsSessionManager.h"
 
 
 static int interception_is_any( InterceptionDevice device )
@@ -110,6 +111,20 @@ void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 	{
 		// failed to uninstall it so we can try to install it again on next reboot
 		uninstallInterception();
+	}
+}
+
+
+
+void WindowsInputDeviceFunctions::stopOnScreenKeyboard()
+{
+	const auto oskProcessId = WtsSessionManager::findProcessId( QStringLiteral("osk.exe") );
+	if( oskProcessId != WtsSessionManager::InvalidProcess )
+	{
+		const auto oskProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, oskProcessId );
+		TerminateProcess( oskProcessHandle, 0 );
+		WaitForSingleObject( oskProcessHandle, OnScreenKeyboardTerminateTimeout );
+		CloseHandle( oskProcessHandle );
 	}
 }
 
