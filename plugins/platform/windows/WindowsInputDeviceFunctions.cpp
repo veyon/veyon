@@ -29,6 +29,7 @@
 
 #include "ConfigurationManager.h"
 #include "PlatformServiceFunctions.h"
+#include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsKeyboardShortcutTrapper.h"
 #include "WtsSessionManager.h"
@@ -118,14 +119,7 @@ void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 
 void WindowsInputDeviceFunctions::stopOnScreenKeyboard()
 {
-	const auto oskProcessId = WtsSessionManager::findProcessId( QStringLiteral("osk.exe") );
-	if( oskProcessId != WtsSessionManager::InvalidProcess )
-	{
-		const auto oskProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, oskProcessId );
-		TerminateProcess( oskProcessHandle, 0 );
-		WaitForSingleObject( oskProcessHandle, OnScreenKeyboardTerminateTimeout );
-		CloseHandle( oskProcessHandle );
-	}
+	WindowsCoreFunctions::terminateProcess( WtsSessionManager::findProcessId( QStringLiteral("osk.exe") ) );
 }
 
 
