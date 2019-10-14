@@ -35,6 +35,8 @@ class CXEventLog;
 class WindowsCoreFunctions : public PlatformCoreFunctions
 {
 public:
+	using ProcessId = DWORD;
+
 	WindowsCoreFunctions();
 	~WindowsCoreFunctions() override;
 
@@ -78,8 +80,11 @@ public:
 
 	static QStringList sessionIdEnvironment();
 
+	static bool terminateProcess( ProcessId processId, DWORD timeout = DefaultProcessTerminationTimeout );
+
 private:
 	static constexpr int ConsoleOutputBufferSize = 256;
+	static constexpr DWORD DefaultProcessTerminationTimeout = 5000;
 
 	static wchar_t* appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings );
 	static void setTaskbarState( bool enabled );

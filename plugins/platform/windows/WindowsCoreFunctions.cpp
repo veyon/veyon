@@ -538,6 +538,28 @@ QStringList WindowsCoreFunctions::sessionIdEnvironment()
 
 
 
+bool WindowsCoreFunctions::terminateProcess( ProcessId processId, DWORD timeout )
+{
+	if( processId != WtsSessionManager::InvalidProcess )
+	{
+		const auto processHandle = OpenProcess( PROCESS_TERMINATE, false, processId );
+		if( processHandle )
+		{
+			const auto result = TerminateProcess( processHandle, 0 );
+			WaitForSingleObject( processHandle, timeout );
+			CloseHandle( processHandle );
+
+			return result;
+		}
+
+		vCritical() << "could not open process with ID" << processId;
+	}
+
+	return false;
+}
+
+
+
 wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings )
 {
 	static constexpr auto ENV_POS_MAX = 1024*1024;
