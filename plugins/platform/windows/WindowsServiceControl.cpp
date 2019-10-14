@@ -35,11 +35,16 @@ WindowsServiceControl::WindowsServiceControl( const QString& name ) :
 
 	if( m_serviceManager )
 	{
-		m_serviceHandle = OpenService( m_serviceManager, WindowsCoreFunctions::toConstWCharArray( m_name ), SERVICE_ALL_ACCESS );
+		m_serviceHandle = OpenService( m_serviceManager, WindowsCoreFunctions::toConstWCharArray( m_name ),
+									   SERVICE_ALL_ACCESS );
+		if( m_serviceHandle == nullptr )
+		{
+			vCritical() << "could not open service" << m_name;
+		}
 	}
 	else
 	{
-		vCritical() << "the Service Control Manager could not be contacted - service " << m_name << "was not started.";
+		vCritical() << "the Service Control Manager could not be contacted - service " << m_name << "can't be controlled.";
 	}
 }
 
