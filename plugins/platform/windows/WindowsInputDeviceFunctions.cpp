@@ -120,6 +120,7 @@ void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 void WindowsInputDeviceFunctions::stopOnScreenKeyboard()
 {
 	WindowsCoreFunctions::terminateProcess( WtsSessionManager::findProcessId( QStringLiteral("osk.exe") ) );
+	WindowsCoreFunctions::terminateProcess( WtsSessionManager::findProcessId( QStringLiteral("tabtip.exe") ) );
 }
 
 
