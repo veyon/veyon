@@ -27,6 +27,7 @@
 #include "Configuration/Proxy.h"
 #include "CryptoCore.h"
 #include "LdapClient.h"
+#include "LdapCommon.h"
 
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
 	OP( LdapConfiguration, m_configuration, QString, serverHost, setServerHost, "ServerHost", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
@@ -73,4 +74,4 @@
 	FOREACH_LDAP_CONFIG_PROPERTY(OP) \
 	FOREACH_LDAP_LEGACY_CONFIG_PROPERTY(OP)
 
-DECLARE_CONFIG_PROXY(LdapConfiguration, FOREACH_LDAP_PROXIES_CONFIG_PROPERTY)
+DECLARE_CONFIG_PROXY(LDAP_COMMON_EXPORT LdapConfiguration, FOREACH_LDAP_PROXIES_CONFIG_PROPERTY)

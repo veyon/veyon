@@ -1,7 +1,7 @@
 /*
- * kldap_export.h - definition of symbol visibility macros for kldap
+ * PersistentLogonCredentials.h - declaration of PersistentLogonCredentials class
  *
- * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,5 +24,17 @@
 
 #pragma once
 
-#define KLDAP_EXPORT __attribute__((visibility("default")))
-#define KLDAP_NO_EXPORT __attribute__((visibility("hidden")))
+#include "CryptoCore.h"
+
+// clazy:exclude=copyable-polymorphic
+
+class PersistentLogonCredentials
+{
+public:
+	using Password = CryptoCore::SecureArray;
+
+	static bool read( QString* username, Password* password );
+	static bool write( const QString& username, const Password& password );
+	static bool clear();
+
+};

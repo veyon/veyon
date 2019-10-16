@@ -24,16 +24,14 @@
 
 #pragma once
 
+#include "LogonHelper.h"
 #include "PlatformUserFunctions.h"
 
 // clazy:exclude=copyable-polymorphic
 
-class WindowsUserFunctions : public QObject, public PlatformUserFunctions
+class WindowsUserFunctions : public PlatformUserFunctions
 {
-	Q_OBJECT
 public:
-	WindowsUserFunctions();
-
 	QString fullName( const QString& username ) override;
 
 	QStringList userGroups( bool queryDomainGroups ) override;
@@ -42,26 +40,22 @@ public:
 	bool isAnyUserLoggedOn() override;
 	QString currentUser() override;
 
-	bool logon( const QString& username, const Password& password ) override;
+	bool prepareLogon( const QString& username, const Password& password ) override;
+	bool performLogon( const QString& username, const Password& password ) override;
+
 	void logoff() override;
 
 	bool authenticate( const QString& username, const Password& password ) override;
 
 
 private:
-	void checkPendingLogonTasks();
-
-	static bool readPersistentLogonCredentials( QString* username, Password* password );
-	static bool writePersistentLogonCredentials( const QString& username, const Password& password );
-	static bool clearPersistentLogonCredentials();
-
-	static bool performFakeInputLogon( const QString& username, const Password& password );
-
 	static QString domainController();
 	static QStringList domainUserGroups();
 	static QStringList domainGroupsOfUser( const QString& username );
 
 	static QStringList localUserGroups();
 	static QStringList localGroupsOfUser( const QString& username );
+
+	LogonHelper m_logonHelper{};
 
 };

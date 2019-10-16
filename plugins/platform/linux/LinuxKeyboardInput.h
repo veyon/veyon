@@ -1,7 +1,7 @@
 /*
- * kldap_export.h - definition of symbol visibility macros for kldap
+ * LinuxKeyboardInput.h - declaration of LinuxKeyboardInput class
  *
- * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,5 +24,27 @@
 
 #pragma once
 
-#define KLDAP_EXPORT __attribute__((visibility("default")))
-#define KLDAP_NO_EXPORT __attribute__((visibility("hidden")))
+#include <QString>
+
+typedef struct FakeKey FakeKey;
+typedef struct _XDisplay Display;
+
+// clazy:excludeall=copyable-polymorphic
+
+class LinuxKeyboardInput
+{
+public:
+	LinuxKeyboardInput();
+	~LinuxKeyboardInput();
+
+	void pressAndReleaseKey( uint32_t keysym );
+
+	void pressAndReleaseKey( const QByteArray& utf8Data );
+
+	void sendString( const QString& string );
+
+private:
+	Display* m_display;
+	FakeKey* m_fakeKeyHandle;
+
+};

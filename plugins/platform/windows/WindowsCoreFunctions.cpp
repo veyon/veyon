@@ -328,7 +328,7 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 {
 	vDebug() << program << parameters << username << desktop;
 
-	const auto baseProcessId = WtsSessionManager::findProcessId( username );
+	const auto baseProcessId = WtsSessionManager::findUserProcessId( username );
 	if( baseProcessId == WtsSessionManager::InvalidProcess )
 	{
 		vCritical() << "could not determine base process ID for user" << username;

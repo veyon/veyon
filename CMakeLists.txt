@@ -4,20 +4,24 @@ PROJECT(veyon)
 
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    SET(VEYON_DEBUG TRUE)
+	SET(VEYON_DEBUG TRUE)
 ELSEIF(NOT CMAKE_BUILD_TYPE)
-    SET(CMAKE_BUILD_TYPE relwithdebinfo)
+	SET(CMAKE_BUILD_TYPE relwithdebinfo)
 ENDIF()
 
 IF(VEYON_DEBUG)
-    ADD_DEFINITIONS(-DVEYON_DEBUG)
+	ADD_DEFINITIONS(-DVEYON_DEBUG)
 ENDIF()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 IF(COMMAND CMAKE_POLICY)
-    CMAKE_POLICY(SET CMP0009 NEW)
+	CMAKE_POLICY(SET CMP0009 NEW)
 	CMAKE_POLICY(SET CMP0020 NEW)
+	CMAKE_POLICY(SET CMP0063 NEW)
+	if(${CMAKE_VERSION} VERSION_GREATER "3.8.0")
+		cmake_policy(SET CMP0069 NEW)
+	endif()
 	if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
 		cmake_policy(SET CMP0075 NEW)
 	endif()
@@ -32,12 +36,13 @@ INCLUDE(CheckTypeSize)
 INCLUDE(GNUInstallDirs)
 INCLUDE(CotireVeyon)
 INCLUDE(ConfigureFiles)
+INCLUDE(SetDefaultTargetProperties)
 
 FIND_PACKAGE(Git)
 
 IF(GIT_FOUND)
-    EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-		            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+	EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
+					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 					OUTPUT_STRIP_TRAILING_WHITESPACE
 					OUTPUT_VARIABLE VERSION_STRING)
 	STRING(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
@@ -46,12 +51,12 @@ IF(GIT_FOUND)
 
 	# determine build number to use in NSIS installer and resource files
 	EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-		            COMMAND cut -d "-" -f2
+					COMMAND cut -d "-" -f2
 					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 					OUTPUT_STRIP_TRAILING_WHITESPACE
 					OUTPUT_VARIABLE VERSION_BUILD)
 	IF(NOT VERSION_BUILD GREATER 0)
-	    SET(VERSION_BUILD 0)
+		SET(VERSION_BUILD 0)
 	ENDIF()
 
 	# Get list of all committers from git history, ordered by number of commits.
@@ -62,7 +67,7 @@ IF(GIT_FOUND)
 	SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
 	IF(NOT EXISTS "${CONTRIBUTORS}")
 		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -s d160d147165271516589c304cb1b8f5e48f8527d..HEAD
-			            COMMAND cut -c8-
+						COMMAND cut -c8-
 						COMMAND sort -f
 						OUTPUT_FILE "${CONTRIBUTORS}"
 						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
@@ -73,13 +78,13 @@ ENDIF()
 
 # can't retrieve version information as not building from Git repository?
 IF(NOT VERSION_STRING)
-    SET(VERSION_MAJOR 4)
+	SET(VERSION_MAJOR 4)
 	SET(VERSION_MINOR 99)
 	SET(VERSION_PATCH 0)
 	SET(VERSION_BUILD 0)
 	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 ELSE()
-    # remove leading character from tag name
+	# remove leading character from tag name
 	STRING(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
 ENDIF()
 
@@ -89,7 +94,7 @@ STRING(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COM
 
 # set up basic platform variables
 IF(WIN32)
-    SET(VEYON_BUILD_WIN32 1)
+	SET(VEYON_BUILD_WIN32 1)
 ENDIF()
 IF(APPLE)
 	SET(VEYON_BUILD_APPLE 1)
@@ -102,7 +107,7 @@ IF(ANDROID)
 ENDIF()
 
 IF(WIN64)
-    SET(VEYON_BUILD_WIN64 TRUE)
+	SET(VEYON_BUILD_WIN64 TRUE)
 ENDIF(WIN64)
 
 # set up library and plugin path variables
@@ -193,20 +198,20 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
 ENDIF()
 
-IF(LTO)
-SET(LTO_FLAGS "-flto=4")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${LTO_FLAGS}")
-ENDIF()
-
 SET(VEYON_COMPILE_OPTIONS "-Wall;-Werror")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions -std=c++11 ${CXXFLAGS}")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions ${CXXFLAGS}")
 
-ADD_DEFINITIONS(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050600 -D_FORTIFY_SOURCE=2 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY)
+IF(CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0)
+MESSAGE(WARNING "Not using -fvisibility=hidden and/or LTO with GCC < 6.0")
+SET(DISABLE_LTO)
+ELSE()
+SET(CMAKE_C_VISIBILITY_PRESET hidden)
+SET(CMAKE_CXX_VISIBILITY_PRESET hidden)
+SET(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+ENDIF()
+
+ADD_DEFINITIONS(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x051200 -D_FORTIFY_SOURCE=2 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY)
 
 FILE(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "*config.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
 CONFIGURE_FILES(${IN_FILES})
@@ -219,6 +224,7 @@ SET(3rdparty_DIR ${CMAKE_SOURCE_DIR}/3rdparty)
 SET(ultravnc_DIR ${3rdparty_DIR}/ultravnc)
 SET(libvncserver_DIR ${3rdparty_DIR}/libvncserver)
 SET(x11vnc_DIR ${3rdparty_DIR}/x11vnc)
+SET(libfakekey_DIR ${3rdparty_DIR}/libfakekey)
 
 SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
@@ -270,15 +276,15 @@ IF(WIN32)
 	SET(DLLDIR_LIB "${MINGW_PREFIX}/lib")
 	SET(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${COMPILER_VERSION_MAJOR_MINOR}-win32")
 	IF(VEYON_BUILD_WIN64)
-	    SET(DLL_GCC "libgcc_s_seh-1.dll")
+		SET(DLL_GCC "libgcc_s_seh-1.dll")
 		SET(DLL_DDENGINE "ddengine64.dll")
 	ELSE()
-	    SET(DLL_GCC "libgcc_s_sjlj-1.dll")
+		SET(DLL_GCC "libgcc_s_sjlj-1.dll")
 		SET(DLL_DDENGINE "ddengine.dll")
 	ENDIF()
 
 	ADD_CUSTOM_TARGET(win-nsi
-		    COMMAND make
+			COMMAND make
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}/interception
 			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/* ${TMP}/interception
@@ -304,7 +310,7 @@ IF(WIN32)
 			COMMAND cp ${DLLDIR_GCC}/${DLL_GCC} ${TMP}
 			COMMAND mkdir -p ${TMP}/crypto
 			COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${TMP}/crypto
-			COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${TMP}
+			COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${DLLDIR}/Qt5Qml.dll ${DLLDIR}/Qt5Quick.dll ${DLLDIR}/Qt5QuickControls2.dll ${DLLDIR}/Qt5QuickTemplates2.dll ${TMP}
 			COMMAND mkdir -p ${TMP}/platforms
 			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${TMP}/platforms
 			COMMAND mkdir -p ${TMP}/styles

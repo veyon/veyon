@@ -45,7 +45,7 @@ ProgressWidget::ProgressWidget( const QString& text, const QString& animationPix
 	f.setPointSize( 12 );
 	setFont( f );
 
-	setFixedSize( 30 + m_pixmaps[0].width() + fontMetrics().width( m_text ),
+	setFixedSize( 30 + m_pixmaps[0].width() + fontMetrics().boundingRect( m_text ).width(),
 			m_pixmaps[0].height() * 5 / 4 );
 
 	auto t = new QTimer( this );

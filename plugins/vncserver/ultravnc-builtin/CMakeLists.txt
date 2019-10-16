@@ -2,7 +2,7 @@ ADD_SUBDIRECTORY(vnchooks)
 
 INCLUDE(BuildPlugin)
 
-ADD_DEFINITIONS(-D_WIN32_WINNT=0x0600)
+ADD_DEFINITIONS(-D_WIN32_WINNT=0x0602)
 
 SET(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp

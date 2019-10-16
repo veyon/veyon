@@ -25,12 +25,13 @@
 #pragma once
 
 #include "LdapClient.h"
+#include "LdapCommon.h"
 #include "VeyonCore.h"
 
 class LdapConfiguration;
 class LdapClient;
 
-class LdapDirectory : public QObject
+class LDAP_COMMON_EXPORT LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:

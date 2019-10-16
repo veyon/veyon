@@ -44,7 +44,4 @@ public:
 	bool runAsService( const QString& name, const std::function<void(void)>& serviceMain ) override;
 	void manageServerInstances() override;
 
-private:
-	static int systemctl( const QStringList& arguments );
-
 };

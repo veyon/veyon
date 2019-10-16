@@ -38,7 +38,8 @@
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 	QObject( parent ),
-	m_loginManager( LinuxCoreFunctions::systemdLoginManager() )
+	m_loginManager( LinuxCoreFunctions::systemdLoginManager() ),
+	m_dataManager()
 {
 	connectToLoginManager();
 }
@@ -130,6 +131,9 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		const auto sessionId = openSession( QStringList( { sessionPath, display, seat.path } ) );
 		sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
 	}
+
+	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
+							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
 
 	auto process = new QProcess( this );
 	process->setProcessEnvironment( sessionEnvironment );

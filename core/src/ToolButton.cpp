@@ -209,7 +209,7 @@ void ToolButton::paintEvent( QPaintEvent* )
 	if( s_iconOnlyMode == false )
 	{
 		const auto label = ( active && m_altLabel.isEmpty() == false ) ? m_altLabel : m_label;
-		const int labelX = 1 + ( width() - painter.fontMetrics().width( label ) ) / 2;
+		const int labelX = 1 + ( width() - painter.fontMetrics().boundingRect( label ).width() ) / 2;
 		const int deltaNormal = delta - 1;
 		const int deltaShadow = deltaNormal + 1;
 
@@ -262,7 +262,7 @@ void ToolButton::updateSize()
 	}
 	else
 	{
-		const int textWidth = ( qMax( metrics.width( m_label ), metrics.width( m_altLabel ) ) / stepSize() + 1 ) * stepSize();
+		const int textWidth = ( qMax( metrics.boundingRect( m_label ).width(), metrics.boundingRect( m_altLabel ).width() ) / stepSize() + 1 ) * stepSize();
 		const int width = qMax( textWidth, iconSize() * 3 / 2 );
 		const int height = iconSize() + fontInfo().pixelSize();
 		setFixedSize( width + margin(), height + margin() );
@@ -301,7 +301,7 @@ QSize ToolButtonTip::sizeHint() const
 	auto f = font();
 	f.setBold( true );
 
-	const auto titleWidth = QFontMetrics( f ).width( m_title );
+	const auto titleWidth = QFontMetrics( f ).boundingRect( m_title ).width();
 	const auto descriptionRect = fontMetrics().boundingRect( QRect( 0, 0, 250, 100 ), Qt::TextWordWrap, m_description );
 
 	return { margin() + m_pixmap.width() + margin() + qMax( titleWidth, descriptionRect.width() ) + margin(),

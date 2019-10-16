@@ -57,6 +57,13 @@ public:
 	static QByteArray read( const Token& token );
 	static bool write( const Token& token, const Data& data );
 
+	static const char* serviceDataTokenEnvironmentVariable()
+	{
+		return "VEYON_SERVICE_DATA_TOKEN";
+	}
+
+	static Token serviceDataTokenFromEnvironment();
+
 protected:
 	void run() override;
 

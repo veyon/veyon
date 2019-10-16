@@ -22,6 +22,7 @@
  *
  */
 
+#include "LinuxCoreFunctions.h"
 #include "LinuxServiceCore.h"
 #include "LinuxServiceFunctions.h"
 
@@ -46,21 +47,21 @@ bool LinuxServiceFunctions::isRegistered( const QString& name )
 
 bool LinuxServiceFunctions::isRunning( const QString& name )
 {
-	return systemctl( { QStringLiteral("status"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl( { QStringLiteral("status"), name } ) == 0;
 }
 
 
 
 bool LinuxServiceFunctions::start( const QString& name )
 {
-	return systemctl( { QStringLiteral("start"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl( { QStringLiteral("start"), name } ) == 0;
 }
 
 
 
 bool LinuxServiceFunctions::stop( const QString& name )
 {
-	return systemctl( { QStringLiteral("stop"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl( { QStringLiteral("stop"), name } ) == 0;
 }
 
 
@@ -95,10 +96,10 @@ bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFu
 {
 	if( startMode == StartMode::Auto )
 	{
-		return systemctl( { QStringLiteral("enable"), name } ) == 0;
+		return LinuxCoreFunctions::systemctl( { QStringLiteral("enable"), name } ) == 0;
 	}
 
-	return systemctl( { QStringLiteral("disable"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl( { QStringLiteral("disable"), name } ) == 0;
 }
 
 
@@ -118,12 +119,4 @@ void LinuxServiceFunctions::manageServerInstances()
 {
 	LinuxServiceCore serviceCore;
 	serviceCore.run();
-}
-
-
-
-int LinuxServiceFunctions::systemctl( const QStringList& arguments )
-{
-	return QProcess::execute( QStringLiteral("systemctl"),
-							  QStringList( { QStringLiteral("--no-pager"), QStringLiteral("-q") } ) + arguments );
 }

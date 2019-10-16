@@ -43,7 +43,11 @@ public:
 
 	static void checkInterceptionInstallation();
 
+	static void stopOnScreenKeyboard();
+
 private:
+	static constexpr auto OnScreenKeyboardTerminateTimeout = 5000;
+
 	void enableInterception();
 	void disableInterception();
 	void initHIDServiceStatus();

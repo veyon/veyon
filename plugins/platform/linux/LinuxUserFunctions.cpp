@@ -28,9 +28,14 @@
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
+#include "LinuxKeyboardInput.h"
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
+
+#define XK_MISCELLANY
+
+#include <X11/keysymdef.h>
 
 #include <pwd.h>
 #include <unistd.h>
@@ -61,7 +66,7 @@ QString LinuxUserFunctions::fullName( const QString& username )
 
 QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 {
-	Q_UNUSED(queryDomainGroups);
+	Q_UNUSED(queryDomainGroups)
 
 	QStringList groupList;
 
@@ -167,7 +172,7 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 
 QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	Q_UNUSED(queryDomainGroups);
+	Q_UNUSED(queryDomainGroups)
 
 	QStringList groupList;
 
@@ -266,14 +271,29 @@ QString LinuxUserFunctions::currentUser()
 
 
 
-bool LinuxUserFunctions::logon( const QString& username, const Password& password )
+bool LinuxUserFunctions::prepareLogon( const QString& username, const Password& password )
 {
-	Q_UNUSED(username);
-	Q_UNUSED(password);
-
-	// TODO
+	if( m_logonHelper.prepare( username, password ) )
+	{
+		LinuxCoreFunctions::restartDisplayManagers();
+		return true;
+	}
 
 	return false;
+}
+
+
+
+bool LinuxUserFunctions::performLogon( const QString& username, const Password& password )
+{
+	LinuxKeyboardInput input;
+
+	input.sendString( username );
+	input.pressAndReleaseKey( XK_Tab );
+	input.sendString( QString::fromUtf8( password.toByteArray() ) );
+	input.pressAndReleaseKey( XK_Return );
+
+	return true;
 }
 
 

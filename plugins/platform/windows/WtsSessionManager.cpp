@@ -158,7 +158,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findWinlogonProcessId( SessionId
 
 
 
-WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& userName )
+WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
 	char userSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
@@ -195,6 +195,39 @@ WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& us
 		if( processInfo[proc].ProcessId > 0 &&
 			processInfo[proc].pUserSid != nullptr &&
 			EqualSid( processInfo[proc].pUserSid, userSID ) )
+		{
+			pid = processInfo[proc].ProcessId;
+			break;
+		}
+	}
+
+	WTSFreeMemory( processInfo );
+
+	return pid;
+}
+
+
+
+WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& processName )
+{
+	PWTS_PROCESS_INFO processInfo = nullptr;
+	DWORD processCount = 0;
+
+	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
+	{
+		return InvalidProcess;
+	}
+
+	auto pid = InvalidProcess;
+
+	for( DWORD proc = 0; proc < processCount; ++proc )
+	{
+		if( processInfo[proc].ProcessId == 0 )
+		{
+			continue;
+		}
+
+		if( processName.compare( QString::fromWCharArray( processInfo[proc].pProcessName ), Qt::CaseInsensitive ) == 0 )
 		{
 			pid = processInfo[proc].ProcessId;
 			break;

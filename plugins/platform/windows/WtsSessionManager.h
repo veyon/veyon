@@ -55,7 +55,8 @@ public:
 	static QString querySessionInformation( SessionId sessionId, SessionInfo sessionInfo );
 
 	static ProcessId findWinlogonProcessId( SessionId sessionId );
-	static ProcessId findProcessId( const QString& userName );
+	static ProcessId findUserProcessId( const QString& userName );
+	static ProcessId findProcessId( const QString& processName );
 
 	static QStringList loggedOnUsers();
 

@@ -1,7 +1,7 @@
 /*
- * kldap_export.h - definition of symbol visibility macros for kldap
+ * EnumHelper.h - helper functions for enumerations
  *
- * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,5 +24,17 @@
 
 #pragma once
 
-#define KLDAP_EXPORT __attribute__((visibility("default")))
-#define KLDAP_NO_EXPORT __attribute__((visibility("hidden")))
+#include <QMetaEnum>
+
+// clazy:excludeall=rule-of-three
+
+class EnumHelper
+{
+public:
+	template<class T>
+	static QString itemName( T item )
+	{
+		return QLatin1String( QMetaEnum::fromType<T>().key( static_cast<int>( item ) ) );
+	}
+
+} ;
