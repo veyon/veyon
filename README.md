@@ -62,7 +62,7 @@ Requirements for Debian-based distributions:
 
 - Build tools: g++ make cmake
 - Qt5: qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev
-- X11: xorg-dev libxtst-dev
+- X11: xorg-dev libxtst-dev libfakekey-dev
 - libjpeg: libjpeg-dev provided by libjpeg-turbo8-dev or libjpeg62-turbo-dev
 - zlib: zlib1g-dev
 - OpenSSL: libssl-dev
@@ -76,7 +76,7 @@ Requirements for Debian-based distributions:
 As root you can run
 
 	apt install g++ make cmake qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
-                    qtdeclarative5-dev qtquickcontrols2-5-dev \
+	            qtdeclarative5-dev qtquickcontrols2-5-dev libfakekey-dev \
 	            xorg-dev libxtst-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
 	            libprocps-dev liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev \
 	            libsasl2-dev
@@ -87,7 +87,7 @@ Requirements for RedHat-based distributions:
 
 - Build tools: gcc-c++ make cmake rpm-build
 - Qt5: qt5-devel
-- X11: libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel
+- X11: libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libfakekey-devel
 - libjpeg: libjpeg-turbo-devel
 - zlib: zlib-devel
 - OpenSSL: openssl-devel
@@ -101,7 +101,7 @@ Requirements for RedHat-based distributions:
 As root you can run
 
 	dnf install gcc-c++ make cmake rpm-build qt5-devel libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel \
-             libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libjpeg-turbo-devel zlib-devel \
+             libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libfakekey-devel libjpeg-turbo-devel zlib-devel \
              openssl-devel pam-devel procps-devel lzo-devel qca-devel qca-qt5-devel openldap-devel cyrus-sasl-devel
 
 
