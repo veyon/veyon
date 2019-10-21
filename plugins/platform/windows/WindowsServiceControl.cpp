@@ -281,7 +281,7 @@ int WindowsServiceControl::startType()
 
 bool WindowsServiceControl::setStartType( int startType )
 {
-	if( checkService() == false )
+	if( checkService() == false || startType == InvalidStartType )
 	{
 		return false;
 	}
