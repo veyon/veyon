@@ -32,6 +32,8 @@ class WindowsServiceControl : public QObject
 {
 	Q_OBJECT
 public:
+	static constexpr auto InvalidStartType = SERVICE_DISABLED+1;
+
 	WindowsServiceControl( const QString& name );
 	~WindowsServiceControl() override;
 
@@ -41,6 +43,7 @@ public:
 	bool stop();
 	bool install( const QString& filePath, const QString& displayName );
 	bool uninstall();
+	int startType();
 	bool setStartType( int startType );
 
 private:
