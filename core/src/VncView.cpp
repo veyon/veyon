@@ -611,17 +611,13 @@ QRect VncView::mapFromFramebuffer( QRect r )
 
 void VncView::updateLocalCursor()
 {
-	if( isViewOnly()  )
-	{
-		setCursor( Qt::ArrowCursor );
-	}
-	else if( m_cursorShape.isNull() == false )
+	if( m_cursorShape.isNull() == false && isViewOnly() == false )
 	{
 		setCursor( QCursor( m_cursorShape, m_cursorHotX, m_cursorHotY ) );
 	}
 	else
 	{
-		setCursor( Qt::BlankCursor );
+		setCursor( Qt::ArrowCursor );
 	}
 }
 
