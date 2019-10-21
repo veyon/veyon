@@ -49,6 +49,7 @@ private:
 	void createScreenshotManagementPanelFigure();
 	void createPowerDownOptionsFigure();
 	void createPowerDownTimeInputDialogFigure();
+	void createUserLoginDialogFigure();
 	void createTextMessageDialogFigure();
 	void createOpenWebsiteDialogFigure();
 	void createWebsiteMenuFigure();
