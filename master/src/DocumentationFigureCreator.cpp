@@ -80,6 +80,7 @@ void DocumentationFigureCreator::run()
 	createLogonDialogFigure();
 	createLocationDialogFigure();
 	createScreenshotManagementPanelFigure();
+	createUserLoginDialogFigure();
 	createTextMessageDialogFigure();
 	createOpenWebsiteDialogFigure();
 	createWebsiteMenuFigure();
@@ -309,6 +310,23 @@ void DocumentationFigureCreator::createPowerDownTimeInputDialogFigure()
 	});
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ) ) );
+}
+
+
+
+void DocumentationFigureCreator::createUserLoginDialogFigure()
+{
+	scheduleUiOperation( []() {
+		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
+
+		dialog->findChild<QLineEdit *>( QStringLiteral("password") )->setText( QStringLiteral( "TeacherPassword") );
+		dialog->findChild<QLineEdit *>( QStringLiteral("password") )->cursorForward( false );
+		dialog->findChild<QLineEdit *>( QStringLiteral("username") )->setText( tr( "generic-student-user") );
+
+		grabDialog( dialog, {}, QStringLiteral("UserLoginDialog.png") );
+	});
+
+	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "7310707d-3918-460d-a949-65bd152cb958" ) ) );
 }
 
 
