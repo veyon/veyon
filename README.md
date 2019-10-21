@@ -12,20 +12,20 @@
 
 Veyon is a free and open source software for computer monitoring and classroom
 management supporting Windows and Linux. It enables teachers to view and control
-computer labs and interact with students. Veyon is available in different
-languages and provides lots of useful features:
+computer labs and interact with students. Veyon is available in many different
+languages and provides numerous features supporting teachers and administrators
+at their daily work:
 
-  * see what's going on in computer labs in overview mode and take screenshots
-  * remote control computers to support and help users
-  * broadcast teacher's screen to students in realtime by using demo mode
-    (either in fullscreen or in a window)
-  * lock workstations for attracting attention to teacher
-  * send text messages to students
-  * powering on/off and rebooting computers remote
-  * remote logoff and remote execution of arbitrary commands/scripts
-  * home schooling - Veyon's network technology is not restricted to a subnet
-    and therefore students at home can join lessons via VPN connections just by
-    installing the Veyon service
+  * Overview: monitor all computers in one or multiple locations or classrooms
+  * Remote access: view or control computers to watch and support users
+  * Demo: broadcast the teacher's screen in realtime (fullscreen/window)
+  * Screen lock: draw attention to what matters right now
+  * Communication: send text messages to students
+  * Start and end lessons: log in and log out users all at once
+  * Screenshots: record learning progress and document infringements
+  * Programs & websites: launch programs and open website URLs remotely
+  * Teaching material: distribute and open documents, images and videos easily
+  * Administration: power on/off and reboot computers remotely
 
 
 ## License
