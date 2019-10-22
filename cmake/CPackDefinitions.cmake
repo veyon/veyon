@@ -19,7 +19,6 @@ SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}_${CP
 SET(CPACK_PACKAGE_CONTACT "Tobias Junghans <tobydox@veyon.io>")
 SET(CPACK_PACKAGE_HOMEPAGE "https://veyon.io")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open source computer monitoring and classroom management")
-# SET(CPACK_PACKAGE_DESCRIPTION_FILE  "${CMAKE_SOURCE_DIR}/DESCRIPTION")
 SET(CPACK_PACKAGE_VENDOR "Veyon Solutions")
 SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
 SET(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
@@ -28,20 +27,23 @@ SET(CPACK_SOURCE_IGNORE_FILES "${CMAKE_SOURCE_DIR}/build/;${CMAKE_SOURCE_DIR}/.g
 SET(CPACK_STRIP_FILES  TRUE)
 
 # DEB package
-SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Veyon, an open source computer monitoring and classroom management software
-  Veyon is an open source computer monitoring and classroom management software.
-  It enables teachers to view and control computer labs and interact with students.
-  Veyon is available in different languages and provides lots of useful features:
+SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Open source computer monitoring and classroom management software
+  Veyon is a free and open source software for computer monitoring and classroom
+  management supporting Windows and Linux. It enables teachers to view and control
+  computer labs and interact with students. Veyon is available in many different
+  languages and provides numerous features supporting teachers and administrators
+  at their daily work:
   .
-  * see what's going on in computer labs in overview mode and take screenshots
-  * remote control computers to support and help users
-  * broadcast teacher's screen to students in realtime by using demo mode (either in fullscreen or in a window)
-  * lock workstations for attracting attention to teacher
-  * send text messages to students
-  * powering on/off and rebooting computers remote
-  * remote logoff and remote execution of arbitrary commands/scripts
-  * home schooling - Veyon's network-technology is not restricted to a subnet and therefore students at home
-  can join lessons via VPN connections just by installing the Veyon service")
+  * Overview: monitor all computers in one or multiple locations or classrooms
+  * Remote access: view or control computers to watch and support users
+  * Demo: broadcast the teacher's screen in realtime (fullscreen/window)
+  * Screen lock: draw attention to what matters right now
+  * Communication: send text messages to students
+  * Start and end lessons: log in and log out users all at once
+  * Screenshots: record learning progress and document infringements
+  * Programs & websites: launch programs and open website URLs remotely
+  * Teaching material: distribute and open documents, images and videos easily
+  * Administration: power on/off and reboot computers remotely")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
 SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins")
 SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
