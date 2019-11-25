@@ -1467,6 +1467,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Texts to read</source>
         <translation>Tekstovi za čitanje</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1568,6 +1572,68 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Ne mogu primiti datoteku &quot;% 1&quot; jer se ne može otvoriti za pisanje!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>npr. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ime</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3545,13 +3611,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3567,6 +3626,13 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Gateway</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3979,29 +4045,6 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>

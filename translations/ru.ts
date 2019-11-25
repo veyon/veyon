@@ -1467,6 +1467,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation>Фрагменты текста для чтения</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>типичный-ученик-пользователь</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1568,6 +1572,68 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Не удалось получить файл &quot;%1&quot;, поскольку не удалось открыть соответствующий файл для записи данных!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation>Блокировать передачу любых исходных данных к портам TCP</translation>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation>Например: 8080</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Нетипичный</translation>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation>21 (FTP)</translation>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation>80/443 (HTTP/HTTPS)</translation>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation>Блокировать передачу любых исходных данных для нелокальных сетей</translation>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation>Исключения</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>Например: 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation>Сети и хосты</translation>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation>Порты</translation>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation>Например: 80 443</translation>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation>Включить предварительно настроенное правило брандмауэра</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation>Блокировать доступ к интернету с помощью брандмауэра</translation>
     </message>
 </context>
 <context>
@@ -3554,13 +3620,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Управление доступом к интернету путём внесения изменений в таблицы маршрутизации</translation>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3577,6 +3636,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Gateway</source>
         <translation>Шлюз</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation>Блокировать доступ к интернету изменением таблицы маршрутизации</translation>
     </message>
 </context>
 <context>
@@ -3990,29 +4056,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Password</source>
         <translation>Пароль</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation>Управление сеансами пользователей</translation>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>Разлогиниться</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>Нажмите эту кнопку для разлогинивания пользователей со всех компьютеров.</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>Потверждение выхода пользователя</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
     </message>
 </context>
 <context>

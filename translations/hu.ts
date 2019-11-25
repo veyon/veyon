@@ -1467,6 +1467,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Texts to read</source>
         <translation>Olvasandó szövegek</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>generic-student-user</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1568,6 +1572,68 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>&quot;%1&quot; fájl nem fogadható, mert nem nyitható meg írásra!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>pl. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3552,13 +3618,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Az internetelérés módosítása az útvonaltábla módosításával</translation>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3575,6 +3634,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Gateway</source>
         <translation>Átjáró</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3987,29 +4053,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Password</source>
         <translation>Jelszó</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation>Felhasználói munkamenet-vezérlés</translation>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>Kijelentkezés</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>Felhasználó kijelentkeztetésének megerősítése</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
     </message>
 </context>
 <context>

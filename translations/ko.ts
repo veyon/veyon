@@ -1468,6 +1468,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation>읽을 글자들</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>일반-학생-사용자</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1569,6 +1573,68 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>화일 &quot;%1&quot; 이 쓸수 있도록 열리지 않아 화일을 받을 수 없습니다!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>e.g. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3553,13 +3619,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>라우팅 테이블을 수정하여 인터넷 접속 제어</translation>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3576,6 +3635,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Gateway</source>
         <translation>게이트 웨이</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3989,29 +4055,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Password</source>
         <translation>암호</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation>사용자 세션제어</translation>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>로그오프</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>이 버튼을 클릭하여 사용자를 모든 컴퓨터에서 로그오프하세요.</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>사용자 확인 로그오프</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>선택한 유저를 로그오프 하시겠습니까?</translation>
     </message>
 </context>
 <context>

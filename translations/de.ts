@@ -1464,6 +1464,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Texts to read</source>
         <translation>Texte zum Lesen</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>allgemeiner-schueler-benutzer</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1565,6 +1569,68 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie nicht zum Schreiben geöffnet werden konnte!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation>Allen ausgehenden Verkehr für TCP-Ports blockieren</translation>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation>z.B. 8080</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Benutzerdefiniert</translation>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation>21 (FTP)</translation>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation>80/443 (HTTP/HTTPS)</translation>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation>Allen ausgehenden Verkehr für nicht-lokale Subnetze blockieren</translation>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation>Ausnahmen</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>z.B. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation>Netzwerke &amp; Rechner</translation>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation>Ports</translation>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation>z.B. 80 443</translation>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation>Vorkonfigurierte Firewall-Regel aktivieren</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation>Internetzugriff über Systemfirewall sperren</translation>
     </message>
 </context>
 <context>
@@ -3550,13 +3616,6 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Internetzugriff durch Modifizierung der Routingtabelle</translation>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3573,6 +3632,13 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Gateway</source>
         <translation>Gateway</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation>Internetzugriff durch Modifizierung der Routingtabelle sperren</translation>
     </message>
 </context>
 <context>
@@ -3986,29 +4052,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Password</source>
         <translation>Passwort</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation>Benutzersitzungssteuerung</translation>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>Abmelden</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>Benutzerabmeldung bestätigen</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
     </message>
 </context>
 <context>

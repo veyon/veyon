@@ -1467,6 +1467,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Texts to read</source>
         <translation>Text ke čtení</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>obecný student-uživatel</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1568,6 +1572,68 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Není možné přijmout soubor „%1“, protože by ho nebylo možné otevřít pro zápis!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation>Blokovat veškerý odchozí provoz pro TCP porty</translation>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation>např. 8080</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Uživatelsky určené</translation>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation>21 (FTP)</translation>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation>80/443 (HTTP/HTTPS)</translation>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation>Blokovat veškerý odchozí provoz na nelokální podsítě</translation>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation>Výjimky</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>např. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation>Sítě a stroje</translation>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation>Porty</translation>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation>např. 80 443</translation>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation>Zapnout přednastavené pravidlo brány firewall</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation>Blokovat přístup k Internetu pomocí brány firewall systému</translation>
     </message>
 </context>
 <context>
@@ -3550,13 +3616,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Ovládá přístup k Internetu prostřednictvím upravování směrovacích tabulek</translation>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3573,6 +3632,13 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Gateway</source>
         <translation>Brána</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation>Blokovat přístup k Internetu prostřednictvím úpravy směrovacích tabulek</translation>
     </message>
 </context>
 <context>
@@ -3986,29 +4052,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Password</source>
         <translation>Heslo</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation>Ovládání relace uživatele</translation>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>Odhlásit</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>Potvrdit odhlášení uživatele</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>Opravdu chcete označené uživatele odhlásit?</translation>
     </message>
 </context>
 <context>

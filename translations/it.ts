@@ -1464,6 +1464,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation>Testi da leggere</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>utente-generico-studente</translation>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1565,6 +1569,68 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Impossibile ricevere il file &quot;%1&quot; in quanto non può essere aperto per la scrittura!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>per esempio: 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nome</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3541,13 +3607,6 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Controlla l&apos;accesso a Internet modificando la tabella di routing</translation>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3564,6 +3623,13 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Gateway</source>
         <translation>Gateway</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3976,29 +4042,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Password</source>
         <translation>Password</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation>Controllo sessione utente</translation>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>Disconnetti</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>Fare clic su questo pulsante per disconnettere gli utenti da tutti i computer.</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>Conferma logout utente</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
     </message>
 </context>
 <context>

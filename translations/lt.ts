@@ -15,44 +15,45 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Apie Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Autoriai</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Versija</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Tinklalapis:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Dabartinė naudojama kalba dar neišversta (arba pagrindinė yra Anglų)
+Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite patobulinti esamą vertimą, susisiekite su Veyon kūrėjais</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Apie %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Paremti Veyon projektą</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio prieigos valdymas</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Suteikti prieigą kiekvienam prijungtam vartotojui (numatytasis)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -60,19 +61,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Apdoroti prieigos valdymo taisykles</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų grupės kurioms suteikta prieiga prie kompiuterio</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Pridėkite grupes kurių nariai kuriems turėtų būti leista prieiti prie kompiuterių esančių Veyon tinkle</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Autorizuotų vartotojų grupė</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -84,78 +85,78 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos valdymas</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti prieigos valdymo taisyklę</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti prieigos valdymo taisyklę</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Pakelti pasirinktą taisyklę aukštyn</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Pakelti pasirinktą taisyklę aukštyn</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Redaguoti pasirinktą taisyklę</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo vardą</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo vardą kurio prieigos teises tikrinsite:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga leidžiama</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktam vartotojui leidžiam prieiga prie kompiuteriu su šia konfiguracija.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga uždrausta</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktam vartotojui neleidžiama prieiga prie kompiuteriu su šia konfiguracija.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti domenų grupių naudojimą</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų grupių valdymas:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų grupių valdymas nerastas</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Nerasta standartinių vartotojų grupių plėtinių. Patikrinkite savo programos įdiegimą</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Apriboti prieigą speficinių grupių nariams</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Redaguoti prieigos valdymo taisyklę</translation>
     </message>
     <message>
         <source>General</source>
@@ -163,169 +164,169 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>įveskite trumpą taisyklės pavadinimą</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Taisyklės pavadinimas:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>įveskite trumpą taisyklės aprašymą</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Taisyklės aprašymas</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Invertuoti visas sąlygas (&quot;yra turi&quot; interpretuojama kaip &quot;nėra/neturi&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Sąlygos</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>yra grupės narys</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Pasiekiamas kompiuteris yra vietiniame tinkle</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungiantis vartotojas yra prisijungęs prie vartotojo</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas kuris bando prisijungti jau yra prisijungęs</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Jeigu daugiau negu viena sąlyga yra aktyvuota kiekviena sąlyga turi atitikti nustatytus kriterijus, kad taisyklė veiktų (loginis IR). Jeigu viena iš kelių salygų atitinka (loginis ARBA). Prašome sukurti kelias prieigos valdymo taisykles.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Veiksmai</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Suteikti prieigą</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Nesuteikti prieigos</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Prašyti prisijungusio vartotojo leidimo</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Taisyklė išjungta</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungiama prie vartotojo</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungiama prie kompiuterio</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Vietinis (prisijungęs) vartotojas</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Vietinis kompiuteris</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Visados vykdyti šią taisyklę ir ignoruoti sąlygas</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Nėra prisijungusių vartotojų</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas kurį bandoma pasiekti turi viena ar daugiau bendrų grupių su vietiniu (prisijungusiu) vartotoju</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>Pasiekiamas kompiuteris ir vietinis kompiuteris yra toje pačioje vietoje</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>yra šioje vietoje</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos kontrolės taisyklių testavimas</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungiantis vartotojas</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Vietinis kompiuteris</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungiantis kompiuteris:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo ir kompiuterio informaciją jeigu norite patikrinti sukonfigūruotą taisyklių rinkinį</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Vietinis vartotojas:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Prijungti vartotojai:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga šiomis salygomis yra leidžiama.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga šiomis salygomis yra draudžiama</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga šiomis salygomis reikalauja patvirtinimo iš prisijungusio vartotojo</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>KLAIDA: Nežinomas veiksmas</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Testo rezultatai</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos raktai</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Įvadas</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Direktorija raktų failams</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -341,300 +342,303 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Galimi autorizavimo raktai</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Sukurti raktų porą</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti raktą</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti raktą</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoti raktą</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyti prieigos grupę</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Raktų failai (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Raktų failo vardas</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojų grupės vardą arba rolę kuriai bus kuriama raktų pora:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite ištrinti prieigos raktą &quot;%1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite raktą kurį norite ištrinti</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojų grupės vardą arba rolę kuriai bus importuojama raktų pora:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite raktą kurį norite eksportuoti</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite vartotojų grupę kuriai bus suteikta prieiga prie rakto &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite vartotojų grupę kuriai norite nustatyti prieigos grupę</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Atlikite šiuos veiksmus, kad nustatytumėte prieigą naudojant rakto failą</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Sukurkite raktų porą pagrindiniame kompiuteryje</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Nustatykite prieigos grupę, kurios nariams bus leista pasiekti kitus kompiuterius</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Eksportuokite viešajį raktą ir importuokite visuose klientų kompiuteriuose naudojant tą patį vardą.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Daugiau informacijos galite rasti &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administratoriaus Instrukcijoje&lt;/a&gt; </translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Autorizavimo raktų pora susideda iš dviejų kriptografinių raktų privataus ir viešojo.
+Privatus raktas leidžia pagrindiniam kompiuteriui pasiekti klientų kompiuterius
+Svarbu, kad tik autorizuoti vartotojai turetų prieigą prie privataus rakto failo
+Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio užklausą.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Patikrinkite savo leidimus.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Rakto varde yra neleistinų simbolių.</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktas negalimas rakto tipas! Pasirinkite &quot;%1&quot; arba &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytas raktas neegzistuoja! Pasinaudokite komanda &quot;list&quot; , kad peržiūrėtumėte visus įdiegtus raktus</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Vienas ar daugiau raktų failai jau egzistuoja! Ištrinkite juos naudojantis &quot;delete&quot; komanda.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sukurkite naują raktų porą &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti viešojo arba privataus rakto</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Naujai sukurta raktų pora buvo išsaugota: &quot;%1&quot; ir &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Negalima ištrinti rakto failo &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Negalima ištrinti rakto failo direktorijos &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti direktorijos išvesties failams</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Failas &quot;%1&quot; jau egzistuoja</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko įrašyti į išvesties failą.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Raktas &quot;%1/%2&quot; eksportuotas į &quot;%3&quot; sėkmingai.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nuskaityti įvesties failo</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>Failas &quot;%1&quot; neturi tinkamo privataus rakto</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>Failas &quot;%1&quot; neturi tinkamo viešo rakto</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti direktorijos raktų failams.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko įrašyti į rakto failą &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti prieigos teisių rakto failui &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>Raktai &quot;%1/%2&quot; buvo sėkmingai importuoti. Patikrinkite failų teises &quot;%3&quot; , kad būtų apribota neleistina prieiga.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko konvertuoti privataus rakto į viešajį.</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti direktorijos privataus rakto failui &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko išsaugoti privataus rakto &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti teisių privataus rakto failui &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti direktorijos viešojo rakto failui &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko išsaugoti viešojo rakto &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti prieigos teisių viešojo rakto failui &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti rakto failo šeimininko &quot;%1&quot; to &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti prieigos teisių rakto failui &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Raktas &quot;%1&quot; dabar yra pasiekiamas vartotojų grupės: &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nuskaityti rakto failo</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>Sukurti naują prieigos raktų porą</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti prieigos raktą</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Atvaizduoti prieigos raktus</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti privatujį ar viešajį raktą</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoti privatujį ar viešajį raktą</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Gauti viešajį raktą iš esamo privataus rakto</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyta vartotojų grupė turi prieigą prie rakto.</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>RAKTAS</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>PRIEIGOS GRUPĖ</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda pakeičia failo prieigos teises į &lt;KEY&gt; tam, kad tik ši vartotojų grupė &lt;ACCESS GROUP&gt; turi skaitymo teises.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>VARDAS</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAILAS</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda eksportuoja prieigos raktą &lt;KEY&gt; į &lt;FILE&gt;. Jeigu &lt;FILE&gt; nėra nurodytas, vardas bus sukurtas iš vardo ir tipo &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda importuoja prieigos raktą &lt;KEY&gt; į &lt;FILE&gt;. Jeigu &lt;FILE&gt; nėra nurodytas, vardas bus sukurtas iš vardo ir tipo &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda parodo visus galimus prieigos raktus, kurie yra sukonfigūruoti raktų direktorijoje. Jeigu opcija &quot;%1&quot; yra užpildyta, lentelė su rakto duomenimis bus parodyta. Ne visos detalės gali būti rodomos jeigu raktas yra nepasiekiamas, pavyzdžiui dėl teisių trūkumo.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite komandą, kuriai norite peržiūrėti pagalbą!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPAS</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>POROS ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -642,19 +646,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Komandos prieigos raktų valdymui</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda sukuria naują prieigos raktą su vardu &lt;NAME&gt; ir išsaugo privatų ir viešajį raktus į sukonfigūruotą raktų direktoriją. Parametras turi būti rakto vardas kuris gali būti sudarytas tik iš raidžių.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda ištrina prieigos raktą &lt;KEY&gt; iš sukonfigūruotų raktų direktorijos. Pastaba: ištrynus raktą jis negali būti atkurtas.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda sugeneruoja viešajį raktą iš privataus rakto &lt;KEY&gt; ir išsaugo kaip atitinkamą viešajį raktą. Kai bus nustatomas kitas pagrindinis kompiuteris, užtenka perkelti tik privatujį raktą. Viešasis raktas gali būti sugeneruotas iš privataus rakto.</translation>
     </message>
 </context>
 <context>
@@ -669,18 +673,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos grupė</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Poros ID</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteriai</translation>
     </message>
     <message>
         <source>Name</source>
@@ -688,7 +692,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>Tinklo adresas/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -696,62 +700,64 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti naują kompiuterį</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti pažymėtą kompiuterį</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Naujas kompiuteris</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Standartinė direktorija</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Vietos ir kompiuteriai</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Vietos
+</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti naują vietą</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti pasirinktą vietą</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>CSV failų importavimas įmanomas naudojant komandinę eilutę. Daugiau informacijos žiūrėkite skiltyje  &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;internetinėje dokumentacijoje &lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Nauja vieta</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti specifinės komandos pagalbą</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti objektus iš failo
+</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoti pasirinktus objektus į failą</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytas neteisingas tipas. Tinkamos vertės yra&quot;%1&quot; ar &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
@@ -763,7 +769,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio adresas</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -771,279 +777,279 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytas objektas nerastas.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Failas &quot;%1&quot; neegzistuoja!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Negaliu atidaryti failo &quot;%1&quot; skaitymui!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nežinomas argumentas &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris &quot;%1&quot; (tinklo adresas: &quot;%2&quot; MAC adresas: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Nesuklasifikuotas objektas &quot;%1&quot; su ID &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nėra</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Pagrindinis</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Neteisingas</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>Klaida šifruojant eilutę %1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Tinklo objektų direktorija kurioje saugomi objektai vietinėje konfigūracijoje</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation> Komandos skirtos valdyti tinklo objektų direktoriją</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>Nenurodytas formatas, ar regex</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Negalima atidaryti failo  &quot;%1&quot; įrašymui!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>Nenurodytas formatas</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objekto UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Tėvinis UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti vietą ar kompiuter</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti visas vietas ar kompiuterius</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti visas ar individualias vietas ir kompiuterius</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Atvaizduoti visas vietas ir kompiuterius</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti vietą ar kompiuterį</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Vieta &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteriai ar vietos vietinėje konfigūracijoje</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Vieta</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAILAS</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>VIETA</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>FORMATUOTI-TEKSTĄ-SU-ŠABLONAIS</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>REGULIARI-IŠRAIŠKA-SU-ŠABLONU</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Importuoja objektus iš nurodyto tekstinio failo, naudojant numatytą formatą ar reguliarą formą kurioje yra viena ar daugiau užpildytų vietų. Tinkami šablonai yra: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti paprastą CSV failą į vieną kambarį</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti CSV failą su vietos pavadinimu pirmame stulpelyje</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti tekstinį failą su raktu/verčių poromis naudojant reguliarias išraiškas.</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti arbitruotai suformuotus duomenis</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoja objektus į nurodytą tekstinį failą, naudojant numatytą formatą ar reguliarą išraišką kurioje yra viena ar daugiau užpildytų vietų. Tinkami šablonai yra: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoti visus objektus į CSV failą</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoti kompiuterius iš nurodytos vietos į CSV failą</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPAS</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>VARDAS</translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>TĖVINIS</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>Prideda objektą kur %1 gali būti vienas iš &quot;%2&quot; ar  &quot;%3&quot;. %4 gali būti nurodyta pagal vardą arba UUID.</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti kambarį</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti kompiuterį prie kambario %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>OBJEKTAS</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>Pašalina nurodytą objektą iš direktorijos. %1  gali būti nurodytas pagal vardą ar UUID. Pašalinant vietą bus pašalinti visi susieti kompiuteriai.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti kompiuterį pagal vardą</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti objektą pagal UUID</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Kambarys 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Kompiuteris 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>SERVERIO ADRESAS</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC ADRESAS</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation type="unfinished"/>
+        <translation>Integruotas VNC serveris (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation type="unfinished"/>
+        <translation>Integruotas VNC serveris (x11vnc)</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Serverio/IP adresas: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Aktyvios funkcijos: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>Įjungtas ir prisijungta</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>Jungiamasi</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris nepasiekiamas arba išjungtas</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Servisas nepasiekiamas arba nevykdomas</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation type="unfinished"/>
+        <translation>Autorizacija nepavyko arba prieiga negalima</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Atsijungta</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Nėra prisijungusių vartotojų</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungta su vartotoju: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>Vieta: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
+        <translation>%1 Servisas %2 vietoje %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1051,19 +1057,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Nutolusi prieiga</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; dabar jungiasi prie šio kompiuterio.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet negalėjo autorizuotis tinkamai.</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos valdymo klaida</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
@@ -1086,11 +1092,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko aptikti vietos</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio vardas;Serverio vardas;Vartotojas</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
@@ -1101,31 +1107,31 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio valdymas</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio paieška</translation>
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti vietą</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>Išsaugoti kompiuterių/vartotojų sąrašą</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti išvesties failo vardą</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>CSV failas (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>Failo klaida</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1144,7 +1150,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite tinkamą raktą</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
@@ -1152,23 +1158,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite tinkamą vertę.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>Konfigūruoti Veyon naudojant komandinę eilutę</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma rašyti į išvesties failą</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma rašyti į išvesties direktoriją</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma nuskaityti konfigūracijos failo</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
@@ -1180,11 +1186,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation type="unfinished"/>
+        <translation>Importuoti konfigūraciją iš duoto failo.</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuoti konfigūraciją į nurodytą failą</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
@@ -1257,7 +1263,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>Atminties riba</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
@@ -1265,7 +1271,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1288,7 +1294,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>Sustabdyti demonstraciją</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1350,74 +1356,74 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Kelias</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti naują programą</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti pasirinktą programą</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>Numatytieji puslapiai</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti pasirinktą puslapį</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>Nauja programa</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>Naujas puslapis</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programą</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti tinklalapį</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, akd atidarytumėte puslapį visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programas ar servisus vartotojo kompiuteryje.</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, kad atidarytumėte programą visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programą&quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Nestandartinė programa</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti puslapį &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinis puslapis</translation>
     </message>
 </context>
 <context>
@@ -1428,140 +1434,206 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>Kambarys %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Prašome užbaigti visas užduotis per artimiausias 5 minutes.</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinis puslapis</translation>
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti failų tvarkyklę</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti mokymosi įrankį</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti mokomajį vaizdo įrašą</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Nestandartinė programa</translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Padalomoji medžiaga</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Medžiaga skaitymui</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>bendrinis-besimokantysis-vartotojas</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Išorinis VNC serveris</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Išorinė VNC serverio konfigūracija</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>Prievadas:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis:</translation>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation type="unfinished"/>
+        <translation>Funkcijų valdymas</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma atidaryt failo &quot;%1&quot; skaitymui! Patikrinkite prieigos teises!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Failų perkėlimas</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Nustatymai</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>Tik perkelti</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti ir atidaryti failą(-us) su numatytąja programa </translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti ir atidaryti failo katalogą</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Failai</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Pradėti</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Perrašyti esamus failus</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Failų perkėlimas</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, kad perkelti failus iš Jūsų kompiuterio į visus kompiuterius</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite vieną ar daugiau failų perkėlimui</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti failus į nutolusį kompiuterį</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Gautas failas &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma pasiekti failo &quot;%1&quot; kadangi failas jau egzistuoja.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation>Negalima priimti failo &quot;%1&quot; nes jo negalima atidaryti rašymui!</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Vardas</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1577,11 +1649,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti sistemos kalbos nustatymą</translation>
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1637,23 +1709,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Tinklo objektų direktorija</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Sisteminė konfigūracija</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinimo intervalai:</translation>
     </message>
     <message>
         <source>%1 service</source>
-        <translation type="unfinished"/>
+        <translation>%1 servisas</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Servisas %1 turi būti sustabdytas laikinai, norint ištrinti log failus. Tęsti??</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1673,15 +1745,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>Keisti įvykio žurnalo failus</translation>
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -1689,7 +1761,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>Įrašyti į operacinės sistemos įvykių žurnalą</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1697,7 +1769,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>Metodas:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1713,7 +1785,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Autorizacija nustatyta tinkamai šiame kompiuteryje.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
@@ -1728,79 +1800,79 @@ The public key is used on client computers to authenticate incoming connection r
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Interneto prieigos valdymas</translation>
     </message>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Sisteminė konfigūracija</translation>
     </message>
     <message>
         <source>Backend settings</source>
-        <translation type="unfinished"/>
+        <translation>Sisteminiai nustatymai</translation>
     </message>
 </context>
 <context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Uždrausti prieigą prie interneto</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Suteikti prieigą prie interneto</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti pagalbos komandą</translation>
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Užblokuoti internetą</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, norint apriboti prieigą prie interneto</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Atblokuoti internetą</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, norint suteikti prieigą prie interneto.</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Valdyti prieigą prie interneto</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Komandos skirtos interneto prieigos valdymui</translation>
     </message>
 </context>
 <context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>Naršyti LDAP</translation>
     </message>
 </context>
 <context>
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP klaidos informacija: %1</translation>
     </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Baziniai nustatymai</translation>
     </message>
     <message>
         <source>General</source>
@@ -1808,35 +1880,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation type="unfinished"/>
+        <translation>LDAP serverio adresas ir prievadas</translation>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation type="unfinished"/>
+        <translation>Pririšti BN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation type="unfinished"/>
+        <translation>Pririšti slaptažodį</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished"/>
+        <translation>Anoniminis prisirišimas</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti prisirišimo duomenis</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"/>
+        <translation>Bazinis DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation type="unfinished"/>
+        <translation>Fiksuotas bazinis DN</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>pvz. dc=pavyzdys, dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -1848,15 +1920,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>Aplinkos nustatymai</translation>
     </message>
     <message>
         <source>Object trees</source>
-        <translation type="unfinished"/>
+        <translation>Objektų medis</translation>
     </message>
     <message>
         <source>Computer tree</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių medis</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
@@ -1864,7 +1936,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User tree</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų medis</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
@@ -1876,15 +1948,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Group tree</source>
-        <translation type="unfinished"/>
+        <translation>Grupės medis</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation type="unfinished"/>
+        <translation>Vykdyti rekursyvią paiešką objektų medyje</translation>
     </message>
     <message>
         <source>Object attributes</source>
-        <translation type="unfinished"/>
+        <translation>Objekto atributai</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -1900,11 +1972,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio MAC adreso atributai</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>Grupių narių atributai</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
@@ -1912,27 +1984,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Išplėstiniai nustatymai</translation>
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktiniai filtrai</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation type="unfinished"/>
+        <translation>Filtrai vartotojų grupėms</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation type="unfinished"/>
+        <translation>Filtrai visiems vartotojams</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Filtras kompiuterių grupėms</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation type="unfinished"/>
+        <translation>Grupių vartotojų indentifikacija</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
@@ -1940,11 +2012,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation type="unfinished"/>
+        <translation>Atvaizduoti visas vartotojų grupes</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Atvaizduoti visas grupes kompiuteriui</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
@@ -2001,7 +2073,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo vardą</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2137,7 +2209,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių grupių medis</translation>
     </message>
     <message>
         <source>computer group tree</source>
@@ -2145,7 +2217,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>Filtrai kompiuteriams</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
@@ -2153,11 +2225,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>Integraciniai testai</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių grupės</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2173,11 +2245,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungimo sauga</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS sertifikato patvirtinimas</translation>
     </message>
     <message>
         <source>System defaults</source>
@@ -2189,11 +2261,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinis CA sertifikato failas</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nėra</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2259,19 +2331,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Šifravimo protokolas</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio vietos atributai</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio atvaizduojamo vardo atributai</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Vietos pavadinimo atributai</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
@@ -2411,7 +2483,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungimo vardo atributai</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2434,7 +2506,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti pagalbos komandą</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2579,7 +2651,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Feature</source>
@@ -2618,7 +2690,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LicensingPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti specifinės komandos pagalbą</translation>
     </message>
     <message>
         <source>Show all installed licenses</source>
@@ -2656,7 +2728,7 @@ USAGE
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Licensing management</source>
@@ -2671,7 +2743,7 @@ USAGE
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2679,7 +2751,7 @@ USAGE
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo patvirtinimas</translation>
     </message>
     <message>
         <source>Session management</source>
@@ -2712,7 +2784,7 @@ USAGE
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigūracija</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
@@ -2795,7 +2867,7 @@ USAGE
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2807,11 +2879,11 @@ USAGE
     </message>
     <message>
         <source>Access control</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos valdymas</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Apie Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2839,7 +2911,7 @@ USAGE
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga uždrausta</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2859,7 +2931,7 @@ USAGE
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Atstatyti numatytają konfigūraciją</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -2958,15 +3030,15 @@ USAGE
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Baziniai nustatymai</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Elgsena</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti pasirinktą rėžimą kliento kompiuteriuose</translation>
     </message>
     <message>
         <source>Hide local computer</source>
@@ -2986,11 +3058,11 @@ USAGE
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Fono spalva</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>Piktogramų atnaujinimo intervalas</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3018,15 +3090,15 @@ USAGE
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio piktogramos užrašas</translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation type="unfinished"/>
+        <translation>Teksto spalva</translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Rikiavimo tvarka</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3034,11 +3106,11 @@ USAGE
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių vietos</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti dabartinę vietą</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
@@ -3050,11 +3122,11 @@ USAGE
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti patvirtinimo langą galimai nesaugiems veiksmams</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>Atlikti prieigos kontrolę</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
@@ -3152,7 +3224,7 @@ USAGE
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Nustatymai</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -3176,7 +3248,7 @@ USAGE
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Nauja vieta</translation>
     </message>
 </context>
 <context>
@@ -3194,7 +3266,7 @@ USAGE
     <name>NetworkDiscoveryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti specifinės komandos pagalbą</translation>
     </message>
     <message>
         <source>Scan a subnet</source>
@@ -3233,7 +3305,7 @@ USAGE
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti tinklalapį</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3268,7 +3340,7 @@ USAGE
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Prisijungimas</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -3276,11 +3348,11 @@ USAGE
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko prisijungti naudojant įvestus vartotojo vardą ir slaptažodį. Pabandykite dar kartą</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite savo vartotojo vardą ir slaptažodį, kad pasiektumėte kompiuterius</translation>
     </message>
 </context>
 <context>
@@ -3335,15 +3407,15 @@ USAGE
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC ADRESAS</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>Ši komanda persiunčia Wake-on-LAN(WOL) paketą tinklui, kad kompiuteris su nustatytu MAC adresu būtų įjungtas</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite komandą, kuriai norite peržiūrėti pagalbą!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3419,7 +3491,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Nutolusi prieiga</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3431,7 +3503,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti pagalbos komandą</translation>
     </message>
 </context>
 <context>
@@ -3465,7 +3537,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
@@ -3513,13 +3585,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3535,6 +3600,13 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Gateway</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3701,11 +3773,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>Vidinio VNC serverio prievadas</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>VNC serveris</translation>
     </message>
     <message>
         <source>Plugin:</source>
@@ -3725,7 +3797,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation type="unfinished"/>
+        <translation>Funkcijų valdymo prievadas</translation>
     </message>
     <message>
         <source>Primary service port</source>
@@ -3742,7 +3814,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation type="unfinished"/>
+        <translation>Daugelio sesijų darbo rėžimas (naudojant terminalą ir remote desktop serverius)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -3769,7 +3841,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>Serviso valdymas</translation>
     </message>
 </context>
 <context>
@@ -3823,7 +3895,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Failas &quot;%1&quot; neegzistuoja!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3935,7 +4007,7 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo prisijungimas</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
@@ -3948,29 +4020,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Password</source>
         <translation>Slaptažodis</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4079,7 +4128,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service</translation>
     </message>
 </context>
 <context>
@@ -4100,7 +4149,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4116,31 +4165,31 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Paslėpti užduočių juostą</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Paslėpti pradžios meniu</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Paslėpti darbalaukį</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo patvirtinimas</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti alternatyvų vartotojo autentifikavimo mechanizmą</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo prisijungimas</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Įvesties vėlinimas</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>

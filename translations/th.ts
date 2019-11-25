@@ -846,11 +846,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มสถานที่หรือคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>ล้างรายการสถานที่และคอมพิวเตอร์ทั้งหมด</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -1128,7 +1128,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์มีข้อผิดพลาด</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1465,6 +1465,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
@@ -1545,11 +1549,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกที่ปุ่มนี้เพื่อถ่ายโอนไฟล์ในคอมพิวเตอร์ของคุณไปยังคอมพิวเตอร์ทุกเครื่อง</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>เลือกไฟล์อย่างน้อยหนึ่งไฟล์เพื่อนำไปถ่ายโอน</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
@@ -1565,6 +1569,68 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FirewallConfigurationWidget</name>
+    <message>
+        <source>Block all outbound traffic for TCP ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 8080</source>
+        <translation>เช่น 8080</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>กำหนดเอง</translation>
+    </message>
+    <message>
+        <source>21 (FTP)</source>
+        <translation>21 (FTP)</translation>
+    </message>
+    <message>
+        <source>80/443 (HTTP/HTTPS)</source>
+        <translation>80/443 (HTTP/HTTPS)</translation>
+    </message>
+    <message>
+        <source>Block all outbound traffic to non-local subnets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exceptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>เช่น 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Networks &amp; hosts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ports</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 80 443</source>
+        <translation>เช่น 80 443</translation>
+    </message>
+    <message>
+        <source>Enable preconfigured firewall rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ชื่อ</translation>
+    </message>
+</context>
+<context>
+    <name>FirewallPlugin</name>
+    <message>
+        <source>Block internet access via system firewall</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3517,13 +3583,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>RoutingConfigurationWidget</name>
     <message>
         <source>Remove default routes to block internet access</source>
@@ -3540,6 +3599,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Gateway</source>
         <translation>เกตเวย์</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingPlugin</name>
+    <message>
+        <source>Block internet access by modifying routing table</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3585,7 +3651,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>เพื่อที่จะดึงความสนใจจากผู้ใช้ทั้งหมดให้กลับมา คุณสามารถล็อกคอมพิวเตอร์ของเขาโดยใช้ปุ่มนี้ ในโหมดนี้ อุปกรณ์ประเภทนำเข้าข้อมูล เช่น เมาส์ คีย์บอร์ด จะถูกล็อกและหน้าจอจะดับลง</translation>
     </message>
 </context>
 <context>
@@ -3952,29 +4018,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Password</source>
         <translation>รหัสผ่าน</translation>
-    </message>
-</context>
-<context>
-    <name>UserSessionControl</name>
-    <message>
-        <source>User session control</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Log off</source>
-        <translation>ล็อกออฟ</translation>
-    </message>
-    <message>
-        <source>Click this button to log off users from all computers.</source>
-        <translation>คลิกปุ่มนี้เพื่อล็อกออฟผู้ใช้จากคอมพิวเตอร์ทุกเครื่อง</translation>
-    </message>
-    <message>
-        <source>Confirm user logoff</source>
-        <translation>ยืนยันการล็อกออฟผู้ใช้</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off the selected users?</source>
-        <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
     </message>
 </context>
 <context>
