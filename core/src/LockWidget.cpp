@@ -28,6 +28,8 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QPainter>
+#include <QScreen>
+#include <QWindow>
 
 
 LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) :
@@ -40,7 +42,7 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 
 	if( mode == DesktopVisible )
 	{
-		m_background = QPixmap::grabWindow( qApp->desktop()->winId() );
+		m_background = windowHandle()->screen()->grabWindow( qApp->desktop()->winId() );
 	}
 
 	setWindowTitle( {} );
