@@ -183,6 +183,13 @@ void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 
 bool VncClientProtocol::receiveMessage()
 {
+	if( m_socket->bytesAvailable() > MaximumMessageSize )
+	{
+		vCritical() << "Message too big or invalid";
+		m_socket->close();
+		return false;
+	}
+
 	uint8_t messageType = 0;
 	if( m_socket->peek( reinterpret_cast<char *>( &messageType ), sizeof(messageType) ) != sizeof(messageType) )
 	{

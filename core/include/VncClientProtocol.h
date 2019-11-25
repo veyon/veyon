@@ -123,6 +123,8 @@ private:
 
 	static bool isPseudoEncoding( rfbFramebufferUpdateRectHeader header );
 
+	static constexpr auto MaximumMessageSize = 4096*4096*4;
+
 	QTcpSocket* m_socket;
 	State m_state;
 
