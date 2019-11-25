@@ -1,7 +1,7 @@
 INCLUDE(BuildApplication)
 INCLUDE(WindowsBuildHelpers)
 
-SET(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src)
+SET(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src/core)
 SET(kitemmodels_SOURCES
 	${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.cpp
 	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.cpp
