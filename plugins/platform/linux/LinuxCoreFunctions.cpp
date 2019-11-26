@@ -221,12 +221,12 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 	if( desktop == QLatin1String("KDE") &&
 			QStandardPaths::findExecutable( QStringLiteral("kdesudo") ).isEmpty() == false )
 	{
-		return QProcess::execute( QStringLiteral("kdesudo"), commandLine ) == 0;
+		return QProcess::execute( QStringLiteral("kdesudo"), QStringList( QStringLiteral("--") ) + commandLine ) == 0;
 	}
 
 	if( QStandardPaths::findExecutable( QStringLiteral("gksudo") ).isEmpty() == false )
 	{
-		return QProcess::execute( QStringLiteral("gksudo"), commandLine ) == 0;
+		return QProcess::execute( QStringLiteral("gksudo"), QStringList( QStringLiteral("--") ) + commandLine ) == 0;
 	}
 
 	return QProcess::execute( QStringLiteral("pkexec"), commandLine ) == 0;
