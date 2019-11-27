@@ -48,8 +48,12 @@ public:
 
 	QString searchFilter() const;
 	void setSearchFilter( const QString& searchFilter );
+
 	void setFilterPoweredOnComputers( bool enabled );
+
+	QStringList groupFilter() const;
 	void setGroupFilter( const QStringList& groups );
+
 	void setComputerScreenSize( int size );
 	int computerScreenSize() const;
 

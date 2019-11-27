@@ -83,6 +83,13 @@ void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
 
 
 
+QStringList ComputerMonitoringView::groupFilter() const
+{
+	return listModel()->groupsFilter().toList();
+}
+
+
+
 void ComputerMonitoringView::setGroupFilter( const QStringList& groups )
 {
 	listModel()->setGroupsFilter( groups );
