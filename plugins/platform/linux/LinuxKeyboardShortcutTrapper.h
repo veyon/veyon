@@ -39,7 +39,7 @@ public:
 
 	void setEnabled( bool on ) override
 	{
-		Q_UNUSED(on);
+		Q_UNUSED(on)
 	}
 
 } ;

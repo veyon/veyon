@@ -60,7 +60,7 @@ ScreenLockFeaturePlugin::~ScreenLockFeaturePlugin()
 bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
+	Q_UNUSED(master)
 
 	if( feature == m_screenLockFeature )
 	{
@@ -76,7 +76,7 @@ bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const 
 bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
 										   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
+	Q_UNUSED(master)
 
 	if( feature == m_screenLockFeature )
 	{
@@ -92,9 +92,9 @@ bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const F
 bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 													ComputerControlInterface::Pointer computerControlInterface )
 {
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
+	Q_UNUSED(master)
+	Q_UNUSED(message)
+	Q_UNUSED(computerControlInterface)
 
 	return false;
 }
@@ -128,7 +128,7 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 
 bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker);
+	Q_UNUSED(worker)
 
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{

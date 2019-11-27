@@ -54,8 +54,8 @@ LogoffEventFilter::LogoffEventFilter() :
 
 bool LogoffEventFilter::nativeEventFilter( const QByteArray& eventType, void* message, long* result )
 {
-	Q_UNUSED(eventType);
-	Q_UNUSED(result);
+	Q_UNUSED(eventType)
+	Q_UNUSED(result)
 
 	const auto winMsg = reinterpret_cast<MSG *>( message )->message;
 

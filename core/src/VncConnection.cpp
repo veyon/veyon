@@ -149,7 +149,7 @@ void VncConnection::rfbClientLogDebug( const char* format, ... )
 
 void VncConnection::rfbClientLogNone( const char* format, ... )
 {
-	Q_UNUSED(format);
+	Q_UNUSED(format)
 }
 
 

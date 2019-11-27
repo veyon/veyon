@@ -36,7 +36,7 @@ QString LinuxServiceFunctions::veyonServiceName() const
 
 bool LinuxServiceFunctions::isRegistered( const QString& name )
 {
-	Q_UNUSED(name);
+	Q_UNUSED(name)
 
 	vCritical() << "Querying service registration is not supported on this platform.";
 
@@ -106,7 +106,7 @@ bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFu
 
 bool LinuxServiceFunctions::runAsService( const QString& name, const std::function<void(void)>& serviceMain )
 {
-	Q_UNUSED(name);
+	Q_UNUSED(name)
 
 	serviceMain();
 

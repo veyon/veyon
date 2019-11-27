@@ -67,7 +67,7 @@ QString ConfigCommandLinePlugin::commandHelp( const QString& command ) const
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( const QStringList& arguments )
 {
-	Q_UNUSED(arguments);
+	Q_UNUSED(arguments)
 
 	if( ConfigurationManager().clearConfiguration() )
 	{
@@ -266,7 +266,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( con
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_upgrade( const QStringList& arguments )
 {
-	Q_UNUSED(arguments);
+	Q_UNUSED(arguments)
 
 	// upgrade already happened while loading plugins so only save upgraded configuration
 	return applyConfiguration();

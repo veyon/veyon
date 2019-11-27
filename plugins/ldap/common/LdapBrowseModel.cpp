@@ -224,7 +224,7 @@ Qt::ItemFlags LdapBrowseModel::flags( const QModelIndex& index ) const
 
 int LdapBrowseModel::columnCount( const QModelIndex& parent ) const
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(parent)
 	return 1;
 }
 

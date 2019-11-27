@@ -56,7 +56,7 @@ UserSessionControlPlugin::UserSessionControlPlugin( QObject* parent ) :
 bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
+	Q_UNUSED(master)
 
 	if( confirmFeatureExecution( feature, master.mainWindow() ) == false )
 	{

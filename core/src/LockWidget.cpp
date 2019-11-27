@@ -74,7 +74,7 @@ LockWidget::~LockWidget()
 
 void LockWidget::paintEvent( QPaintEvent* event )
 {
-	Q_UNUSED(event);
+	Q_UNUSED(event)
 
 	QPainter p( this );
 	switch( m_mode )

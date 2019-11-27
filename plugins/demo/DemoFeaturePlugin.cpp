@@ -75,7 +75,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
+	Q_UNUSED(master)
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
@@ -110,7 +110,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
 									 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
+	Q_UNUSED(master)
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
@@ -148,9 +148,9 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 											  ComputerControlInterface::Pointer computerControlInterface )
 {
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
+	Q_UNUSED(master)
+	Q_UNUSED(message)
+	Q_UNUSED(computerControlInterface)
 
 	return false;
 }

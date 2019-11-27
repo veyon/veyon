@@ -84,9 +84,9 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 bool TextMessageFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
+	Q_UNUSED(master)
+	Q_UNUSED(feature)
+	Q_UNUSED(computerControlInterfaces)
 
 	return false;
 }
@@ -96,9 +96,9 @@ bool TextMessageFeaturePlugin::stopFeature( VeyonMasterInterface& master, const 
 bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 													 ComputerControlInterface::Pointer computerControlInterface )
 {
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
+	Q_UNUSED(master)
+	Q_UNUSED(message)
+	Q_UNUSED(computerControlInterface)
 
 	return false;
 }
@@ -130,7 +130,7 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serve
 
 bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker);
+	Q_UNUSED(worker)
 
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{

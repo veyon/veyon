@@ -227,7 +227,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( const QStringList& arguments )
 {
-	Q_UNUSED(arguments);
+	Q_UNUSED(arguments)
 
 	m_configuration.setNetworkObjects( {} );
 

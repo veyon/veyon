@@ -158,8 +158,8 @@ void ComputerManager::updateUser( const ComputerControlInterface::Pointer& contr
 
 void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles )
 {
-	Q_UNUSED(topLeft);
-	Q_UNUSED(bottomRight);
+	Q_UNUSED(topLeft)
+	Q_UNUSED(bottomRight)
 
 	if( roles.contains( Qt::CheckStateRole ) )
 	{

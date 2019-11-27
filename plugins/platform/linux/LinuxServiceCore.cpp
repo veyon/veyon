@@ -146,7 +146,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
 {
-	Q_UNUSED( login1SessionId );
+	Q_UNUSED( login1SessionId )
 
 	const auto sessionPath = sessionObjectPath.path();
 

@@ -66,7 +66,7 @@ void ProgressWidget::nextFrame()
 
 void ProgressWidget::paintEvent( QPaintEvent* event )
 {
-	Q_UNUSED(event);
+	Q_UNUSED(event)
 
 	QPainter p( this );
 	p.setRenderHint( QPainter::Antialiasing );

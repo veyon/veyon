@@ -52,7 +52,7 @@ bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& co
 bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   ComputerControlInterface::Pointer computerControlInterface )
 {
-	Q_UNUSED(master);
+	Q_UNUSED(master)
 
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{

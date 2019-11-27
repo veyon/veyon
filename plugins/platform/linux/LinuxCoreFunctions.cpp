@@ -237,7 +237,7 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QStringList& parameters,
 										   const QString& username, const QString& desktop )
 {
-	Q_UNUSED(desktop);
+	Q_UNUSED(desktop)
 
 	class UserProcess : public QProcess // clazy:exclude=missing-qobject-macro
 	{

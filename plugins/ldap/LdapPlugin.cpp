@@ -128,7 +128,7 @@ void LdapPlugin::reloadConfiguration()
 
 QStringList LdapPlugin::userGroups( bool queryDomainGroups )
 {
-	Q_UNUSED(queryDomainGroups);
+	Q_UNUSED(queryDomainGroups)
 
 	return LdapClient::stripBaseDn( ldapDirectory().userGroups(), ldapClient().baseDn() );
 }
@@ -137,7 +137,7 @@ QStringList LdapPlugin::userGroups( bool queryDomainGroups )
 
 QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	Q_UNUSED(queryDomainGroups);
+	Q_UNUSED(queryDomainGroups)
 
 	const auto strippedUsername = VeyonCore::stripDomain( username );
 
