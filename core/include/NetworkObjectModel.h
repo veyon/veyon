@@ -49,4 +49,19 @@ public:
 		ParentUidRole
 	} ;
 
+	QHash<int, QByteArray> roleNames() const
+	{
+		auto roles = QAbstractItemModel::roleNames();
+		roles[CheckStateRole] = "checkState";
+		roles[NameRole] = "name";
+		roles[UidRole] = "uid";
+		roles[TypeRole] = "type";
+		roles[HostAddressRole] = "hostAddress";
+		roles[MacAddressRole] = "macAddress";
+		roles[DirectoryAddressRole] = "directoryAddress";
+		roles[ParentUidRole] = "parentUid";
+		return roles;
+	}
+
+
 };
