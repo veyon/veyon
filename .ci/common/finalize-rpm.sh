@@ -2,10 +2,10 @@
 
 set -e
 
-cd /build
+cd $2
 
 # add distribution name to file name
-rename ".x86_64" ".${1}.x86_64" *.rpm
+rename ".x86_64" ".${3}.x86_64" *.rpm
 
 # show files
 rpm -qlp *.rpm
@@ -14,4 +14,4 @@ rpm -qlp *.rpm
 rpm -qpR *.rpm
 
 # move to Docker volume
-mv -v *.rpm /veyon
+mv -v *.rpm $1

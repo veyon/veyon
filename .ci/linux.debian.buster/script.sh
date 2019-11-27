@@ -2,5 +2,5 @@
 
 set -e
 
-/veyon/.ci/common/linux-build.sh /veyon /build
-/veyon/.ci/common/finalize-deb.sh "debian-buster"
+$1/.ci/common/linux-build.sh $1 $2
+$1/.ci/common/finalize-deb.sh $1 $2 "debian-buster"
