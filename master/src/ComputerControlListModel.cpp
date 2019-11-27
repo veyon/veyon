@@ -253,7 +253,7 @@ void ComputerControlListModel::updateUser( const QModelIndex& index )
 void ComputerControlListModel::startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface,
 															  const QModelIndex& index )
 {
-	controlInterface->start( computerScreenSize() );
+	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
 	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived, this,
 			 [this]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface )

@@ -69,7 +69,7 @@ WebApiController::Response WebApiController::getAuthenticationMethods( const Req
 	const auto proxy = new WebApiAuthenticationProxy( m_configuration );
 	proxy->populateCredentials( proxy->dummyAuthenticationMethod(), {} );
 
-	connection.controlInterface()->start( {}, proxy );
+	connection.controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Monitoring, proxy );
 
 	if( proxy->waitForAuthenticationMethods(
 			m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond ) == false )
@@ -115,7 +115,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 	auto connection = new WebApiConnection( host.isEmpty() ? QStringLiteral("localhost") : host );
 	auto proxy = new WebApiAuthenticationProxy( m_configuration );
 
-	connection->controlInterface()->start( {}, proxy );
+	connection->controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Monitoring, proxy );
 
 	connection->idleTimer()->setInterval( m_configuration.connectionIdleTimeout() * MillisecondsPerSecond );
 	connection->idleTimer()->start();

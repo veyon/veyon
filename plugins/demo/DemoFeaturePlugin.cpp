@@ -95,7 +95,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 			m_demoClientHosts += computerControlInterface->computer().hostAddress();
 			if( disableUpdates )
 			{
-				computerControlInterface->disableUpdates();
+				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Disabled );
 			}
 		}
 
@@ -126,7 +126,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
 			if( enableUpdates )
 			{
-				computerControlInterface->enableUpdates();
+				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
 			}
 		}
 
