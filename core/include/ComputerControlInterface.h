@@ -106,6 +106,16 @@ public:
 		return m_designatedModeFeature;
 	}
 
+	const QStringList& groups() const
+	{
+		return m_groups;
+	}
+
+	void setGroups( const QStringList& groups )
+	{
+		m_groups = groups;
+	}
+
 	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
 
 	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
@@ -146,6 +156,8 @@ private:
 	QTimer m_connectionWatchdogTimer;
 	QTimer m_userUpdateTimer;
 	QTimer m_activeFeaturesUpdateTimer;
+
+	QStringList m_groups;
 
 signals:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
