@@ -76,6 +76,7 @@ private:
 	void loadComputerPositions( const QJsonArray& positions ) override;
 	void setIconSize( const QSize& size ) override;
 
+	QVariantList selectedObjects() const;
 	void setSelectedObjects( const QVariantList& objects );
 
 	QColor m_backgroundColor;

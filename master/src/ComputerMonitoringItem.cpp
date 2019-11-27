@@ -164,6 +164,19 @@ void ComputerMonitoringItem::setIconSize( const QSize& size )
 
 
 
+QVariantList ComputerMonitoringItem::selectedObjects() const
+{
+	QVariantList objects;
+	for( const auto& object : qAsConst(m_selectedObjects) )
+	{
+		objects.append( object );
+	}
+
+	return objects;
+}
+
+
+
 void ComputerMonitoringItem::setSelectedObjects( const QVariantList& objects )
 {
 	m_selectedObjects.clear();
