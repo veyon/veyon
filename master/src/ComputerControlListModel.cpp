@@ -106,6 +106,11 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case StateRole:
 		return QVariant::fromValue( computerControl->state() );
 
+	case ImageIdRole:
+		return QStringLiteral("image://%1/%2/%3").arg( imageProviderId(),
+													   VeyonCore::formattedUuid( computerControl->computer().networkObjectUid() ),
+													   QString::number( computerControl->timestamp() ) );
+
 	case GroupsRole:
 		return computerControl->groups();
 
@@ -249,14 +254,14 @@ void ComputerControlListModel::update()
 
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } );
+	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole } );
 }
 
 
 
 void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DecorationRole } );
+	emit dataChanged( index, index, { Qt::DecorationRole, ImageIdRole } );
 }
 
 
