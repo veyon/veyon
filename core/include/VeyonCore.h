@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QtEndian>
+#include <QVersionNumber>
 #include <QString>
 #include <QDebug>
 
@@ -86,7 +87,8 @@ public:
 
 	static VeyonCore* instance();
 
-	static QString version();
+	static QVersionNumber version();
+	static QString versionString();
 	static QString pluginDir();
 	static QString translationsDirectory();
 	static QString qtTranslationsDirectory();

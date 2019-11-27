@@ -37,9 +37,9 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "About %1 %2" ).arg( VeyonCore::applicationName(), VeyonCore::version() ) );
+	setWindowTitle( tr( "About %1 %2" ).arg( VeyonCore::applicationName(), VeyonCore::versionString() ) );
 
-	ui->versionLabel->setText( VeyonCore::version() );
+	ui->versionLabel->setText( VeyonCore::versionString() );
 
 	QFile authors( QStringLiteral( ":/CONTRIBUTORS" ) );
 	authors.open( QFile::ReadOnly ); // Flawfinder: ignore

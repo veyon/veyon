@@ -255,7 +255,7 @@ QFutureWatcher<void>* ComputerControlServer::resolveFQDNs( const QStringList& ho
 
 void ComputerControlServer::updateTrayIconToolTip()
 {
-	auto toolTip = tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
+	auto toolTip = tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::versionString(),
 													   HostAddress::localFQDN(),
 												QString::number( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) );
 
