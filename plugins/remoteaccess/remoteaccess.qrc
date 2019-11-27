@@ -1,10 +1,11 @@
 <RCC>
-	<qresource prefix="/remoteaccess">
-		<file>view-fullscreen.png</file>
-		<file>application-exit.png</file>
-		<file>krdc.png</file>
-		<file>kmag.png</file>
-		<file>camera-photo.png</file>
-		<file>preferences-desktop-keyboard.png</file>
-	</qresource>
+    <qresource prefix="/remoteaccess">
+        <file>view-fullscreen.png</file>
+        <file>application-exit.png</file>
+        <file>krdc.png</file>
+        <file>kmag.png</file>
+        <file>camera-photo.png</file>
+        <file>preferences-desktop-keyboard.png</file>
+        <file>RemoteAccessPage.qml</file>
+    </qresource>
 </RCC>

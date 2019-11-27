@@ -24,9 +24,12 @@
 
 #include <QApplication>
 #include <QInputDialog>
+#include <QQuickItem>
 
 #include "AuthenticationManager.h"
+#include "QmlCore.h"
 #include "RemoteAccessFeaturePlugin.h"
+#include "RemoteAccessPage.h"
 #include "RemoteAccessWidget.h"
 #include "VeyonMasterInterface.h"
 
@@ -73,7 +76,7 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 
 	if( ( feature.uid() == m_remoteViewFeature.uid() ||
 		  feature.uid() == m_remoteControlFeature.uid() ) &&
-			computerControlInterfaces.count() != 1 )
+		computerControlInterfaces.count() != 1 )
 	{
 		QString hostName = QInputDialog::getText( master.mainWindow(),
 												  tr( "Remote access" ),
@@ -97,6 +100,20 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 	{
 		return false;
 	}
+
+	if( master.appWindow() )
+	{
+		if( feature.uid() == m_remoteViewFeature.uid() )
+		{
+			auto page = new RemoteAccessPage( remoteAccessComputer );
+
+			VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"),
+											 master.appContainer(),
+											 page );
+			return true;
+		}
+	}
+
 
 	if( feature.uid() == m_remoteViewFeature.uid() )
 	{
