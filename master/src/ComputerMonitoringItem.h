@@ -38,10 +38,10 @@ class ComputerMonitoringItem : public QQuickItem, public ComputerMonitoringView
 	Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY backgroundColorChanged)
 	Q_PROPERTY(QColor textColor READ textColor NOTIFY textColorChanged)
 	Q_PROPERTY(QSize iconSize READ iconSize NOTIFY iconSizeChanged)
-	Q_PROPERTY(QString searchFilter WRITE setSearchFilter)
-	Q_PROPERTY(QStringList groupFilter WRITE setGroupFilter)
-	Q_PROPERTY(QVariantList selectedObjects WRITE setSelectedObjects)
-	Q_PROPERTY(int computerScreenSize WRITE setComputerScreenSize)
+	Q_PROPERTY(QString searchFilter READ searchFilter WRITE setSearchFilter)
+	Q_PROPERTY(QStringList groupFilter READ groupFilter WRITE setGroupFilter)
+	Q_PROPERTY(QVariantList selectedObjects READ selectedObjects WRITE setSelectedObjects)
+	Q_PROPERTY(int computerScreenSize READ computerScreenSize WRITE setComputerScreenSize)
 public:
 	enum class ComputerScreenSize {
 		MinimumComputerScreenSize = MinimumComputerScreenSize,
