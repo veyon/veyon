@@ -30,6 +30,7 @@
 #include "FeatureListModel.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
+#include "ComputerSelectModel.h"
 #include "VeyonMasterInterface.h"
 
 class QModelIndex;
@@ -76,11 +77,17 @@ public:
 		return m_computerMonitoringModel;
 	}
 
+	ComputerSelectModel* computerSelectModel() const
+	{
+		return m_computerSelectModel;
+	}
+
 	FeatureListModel* featureListModel() const
 	{
 		return m_featureListModel;
 	}
 
+	Q_PROPERTY(QObject* computerSelectModel READ computerSelectModel CONSTANT)
 	Q_PROPERTY(QObject* featureListModel READ featureListModel CONSTANT)
 
 	const FeatureList& features() const
@@ -134,6 +141,7 @@ private:
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;
 	ComputerMonitoringModel* m_computerMonitoringModel;
+	ComputerSelectModel* m_computerSelectModel;
 
 	MainWindow* m_mainWindow;
 

@@ -1,7 +1,7 @@
 /*
- * ComputerSelectPanel.h - provides a view for a network object tree
+ * ComputerSelectListModel.h - data model for computer selection
  *
- * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,36 +24,14 @@
 
 #pragma once
 
-#include <QModelIndexList>
-#include <QWidget>
+#include "RecursiveFilterProxyModel.h"
 
-namespace Ui {
-class ComputerSelectPanel;
-}
-
-class ComputerManager;
-class ComputerSelectModel;
-
-class ComputerSelectPanel : public QWidget
+class ComputerSelectModel : public RecursiveFilterProxyModel
 {
 	Q_OBJECT
 public:
-	explicit ComputerSelectPanel( ComputerManager& computerManager, ComputerSelectModel* model, QWidget* parent = nullptr );
-	~ComputerSelectPanel() override;
+	explicit ComputerSelectModel( QAbstractItemModel* sourceModel, QObject* parent = nullptr );
 
-	bool eventFilter(QObject *watched, QEvent *event) override;
-
-private slots:
-	void addLocation();
-	void removeLocation();
-	void saveList();
-	void updateFilter();
-
-private:
-	Ui::ComputerSelectPanel *ui;
-	ComputerManager& m_computerManager;
-	ComputerSelectModel* m_model;
-	QString m_previousFilter;
-	QModelIndexList m_expandedGroups;
+	Q_INVOKABLE QVariant value( const QModelIndex& index, const QString& role ) const;
 
 };

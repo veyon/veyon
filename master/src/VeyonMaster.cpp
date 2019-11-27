@@ -48,6 +48,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_computerMonitoringModel( new ComputerMonitoringModel( m_computerControlListModel, this ) ),
 	m_mainWindow( nullptr ),
+	m_computerSelectModel( new ComputerSelectModel( m_computerManager->computerTreeModel(), this ) ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
 	if( VeyonCore::config().enforceSelectedModeForClients() )

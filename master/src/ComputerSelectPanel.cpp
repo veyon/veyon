@@ -26,33 +26,29 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
+#include "ComputerSelectModel.h"
 #include "ComputerSelectPanel.h"
 #include "ComputerManager.h"
 #include "NetworkObjectModel.h"
-#include "RecursiveFilterProxyModel.h"
 #include "LocationDialog.h"
 #include "VeyonConfiguration.h"
 
 #include "ui_ComputerSelectPanel.h"
 
 
-ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent ) :
+ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, ComputerSelectModel* model, QWidget* parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerSelectPanel),
 	m_computerManager( computerManager ),
-	m_filterProxyModel( new RecursiveFilterProxyModel( this ) )
+	m_model( model )
 {
-	m_filterProxyModel->setSourceModel( computerManager.computerTreeModel() );
-	m_filterProxyModel->setFilterCaseSensitivity( Qt::CaseInsensitive );
-	m_filterProxyModel->setFilterKeyColumn( -1 ); // filter all columns instead of first one only
-
 	ui->setupUi(this);
 
 	// capture keyboard events for tree view
 	ui->treeView->installEventFilter( this );
 
 	// set computer tree model as data model
-	ui->treeView->setModel( m_filterProxyModel );
+	ui->treeView->setModel( m_model );
 
 	// set default sort order
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
@@ -140,7 +136,7 @@ void ComputerSelectPanel::updateFilter()
 
 	if( filter.isEmpty() )
 	{
-		m_filterProxyModel->setFilterWildcard( filter );
+		m_model->setFilterWildcard( filter );
 
 		for( int i = 0; i < model->rowCount(); ++i )
 		{
@@ -168,7 +164,7 @@ void ComputerSelectPanel::updateFilter()
 
 		m_previousFilter = filter;
 
-		m_filterProxyModel->setFilterWildcard( filter );
+		m_model->setFilterWildcard( filter );
 		ui->treeView->expandAll();
 	}
 }

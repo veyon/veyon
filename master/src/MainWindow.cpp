@@ -84,7 +84,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	ui->centralLayout->addWidget( splitter );
 
-	m_computerSelectPanel = new ComputerSelectPanel( m_master.computerManager(), splitter );
+	m_computerSelectPanel = new ComputerSelectPanel( m_master.computerManager(), m_master.computerSelectModel(), splitter );
 	m_screenshotManagementPanel = new ScreenshotManagementPanel( splitter );
 
 	splitter->addWidget( m_computerSelectPanel );
