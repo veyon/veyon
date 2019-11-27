@@ -23,11 +23,13 @@
  */
 
 #include <QMessageBox>
+#include <QQuickWindow>
 
-#include "TextMessageFeaturePlugin.h"
-#include "TextMessageDialog.h"
-#include "FeatureWorkerManager.h"
 #include "ComputerControlInterface.h"
+#include "FeatureWorkerManager.h"
+#include "QmlCore.h"
+#include "TextMessageDialog.h"
+#include "TextMessageFeaturePlugin.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
 
@@ -63,18 +65,25 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 		return false;
 	}
 
+	if( master.appWindow() )
+	{
+		auto dialog = VeyonCore::qmlCore().createObject( QStringLiteral("qrc:/textmessage/TextMessageDialog.qml"),
+														 master.appWindow(),
+														 this );
+		connect( this, &TextMessageFeaturePlugin::acceptTextMessage, dialog,
+				 [this, computerControlInterfaces]( const QString& text )
+		{
+			sendTextMessage( text, computerControlInterfaces );
+		} );
+
+		return true;
+	}
+
 	QString textMessage;
 
 	TextMessageDialog( textMessage, master.mainWindow() ).exec();
 
-	if( textMessage.isEmpty() == false )
-	{
-		FeatureMessage featureMessage( m_textMessageFeature.uid(), ShowTextMessage );
-		featureMessage.addArgument( MessageTextArgument, textMessage );
-		featureMessage.addArgument( MessageIcon, QMessageBox::Information );
-
-		sendFeatureMessage( featureMessage, computerControlInterfaces );
-	}
+	sendTextMessage( textMessage, computerControlInterfaces );
 
 	return true;
 }
@@ -145,4 +154,19 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 	}
 
 	return true;
+}
+
+
+
+void TextMessageFeaturePlugin::sendTextMessage( const QString& textMessage,
+												const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( textMessage.isEmpty() == false )
+	{
+		FeatureMessage featureMessage( m_textMessageFeature.uid(), ShowTextMessage );
+		featureMessage.addArgument( MessageTextArgument, textMessage );
+		featureMessage.addArgument( MessageIcon, QMessageBox::Information );
+
+		sendFeatureMessage( featureMessage, computerControlInterfaces );
+	}
 }

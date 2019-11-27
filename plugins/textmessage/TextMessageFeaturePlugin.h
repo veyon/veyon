@@ -83,7 +83,12 @@ public:
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
+signals:
+	Q_INVOKABLE void acceptTextMessage( const QString& textMessage );
+
 private:
+	void sendTextMessage( const QString& textMessage, const ComputerControlInterfaceList& computerControlInterfaces );
+
 	enum Commands {
 		ShowTextMessage
 	};

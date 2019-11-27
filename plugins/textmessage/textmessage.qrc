@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/textmessage" >
+    <qresource prefix="/textmessage">
         <file>dialog-information.png</file>
+        <file>TextMessageDialog.qml</file>
     </qresource>
 </RCC>
