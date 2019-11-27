@@ -22,6 +22,10 @@
  *
  */
 
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQuickStyle>
+
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
@@ -47,7 +51,6 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_computerMonitoringModel( new ComputerMonitoringModel( m_computerControlListModel, this ) ),
-	m_mainWindow( nullptr ),
 	m_computerSelectModel( new ComputerSelectModel( m_computerManager->computerTreeModel(), this ) ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
@@ -64,7 +67,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 
 	VeyonCore::localComputerControlInterface().start( QSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
-	m_mainWindow = new MainWindow( *this );
+	initUserInterface();
 }
 
 
@@ -73,6 +76,7 @@ VeyonMaster::~VeyonMaster()
 {
 	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces() );
 
+	delete m_qmlAppEngine;
 	delete m_mainWindow;
 
 	delete m_computerManager;
@@ -127,7 +131,10 @@ Configuration::Object* VeyonMaster::userConfigurationObject()
 
 void VeyonMaster::reloadSubFeatures()
 {
-	m_mainWindow->reloadSubFeatures();
+	if( m_mainWindow )
+	{
+		m_mainWindow->reloadSubFeatures();
+	}
 }
 
 
@@ -214,6 +221,33 @@ void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& compu
 		{
 			m_featureManager->stopFeature( *this, feature, computerControlInterfaces );
 		}
+	}
+}
+
+
+
+void VeyonMaster::initUserInterface()
+{
+	if( VeyonCore::config().classicUserInterface() )
+	{
+		m_mainWindow = new MainWindow( *this );
+	}
+	else
+	{
+		QQuickStyle::setStyle( QStringLiteral("Material") );
+
+		m_computerControlListModel->updateComputerScreenSize();
+
+		const auto veyonVersion = QVersionNumber( 5, 0 );
+		const auto majorVersion = veyonVersion.majorVersion();
+		const auto minorVersion = veyonVersion.minorVersion();
+
+		qmlRegisterType<ComputerMonitoringItem>( "Veyon.Master", majorVersion, minorVersion, "ComputerMonitoringItem" );
+
+		m_qmlAppEngine = new QQmlApplicationEngine( this );
+		m_qmlAppEngine->addImageProvider( m_computerControlListModel->imageProviderId(), m_computerControlListModel );
+		m_qmlAppEngine->rootContext()->setContextProperty( QStringLiteral("masterCore"), this );
+		m_qmlAppEngine->load( QStringLiteral(":/master/main.qml") );
 	}
 }
 

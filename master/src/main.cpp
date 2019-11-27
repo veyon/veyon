@@ -22,20 +22,20 @@
  *
  */
 
-#include <QApplication>
+#include <QGuiApplication>
 #include <QSplashScreen>
 
 #include "DocumentationFigureCreator.h"
-#include "VeyonMaster.h"
 #include "MainWindow.h"
+#include "VeyonConfiguration.h"
+#include "VeyonMaster.h"
 
 
 int main( int argc, char** argv )
 {
 	VeyonCore::setupApplicationParameters();
 
-	QApplication app( argc, argv );
-	app.connect( &app, &QApplication::lastWindowClosed, &QApplication::quit );
+	QGuiApplication app( argc, argv );
 
 	VeyonCore core( &app, VeyonCore::Component::Master, QStringLiteral("Master") );
 
@@ -47,21 +47,27 @@ int main( int argc, char** argv )
 	}
 #endif
 
-	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
-	splashScreen.show();
+	QSplashScreen* splashScreen = nullptr;
+
+	if( core.config().classicUserInterface() )
+	{
+		splashScreen = new QSplashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
+		splashScreen->show();
+	}
 
 	if( MainWindow::initAuthentication() == false ||
-			MainWindow::initAccessControl() == false )
+		MainWindow::initAccessControl() == false )
 	{
 		return -1;
 	}
 
 	VeyonMaster masterCore( &core );
 
-	// hide splash-screen as soon as main-window is shown
-	splashScreen.finish( masterCore.mainWindow() );
-
-	masterCore.mainWindow()->show();
+	if( masterCore.mainWindow() )
+	{
+		splashScreen->finish( masterCore.mainWindow() );
+		masterCore.mainWindow()->show();
+	}
 
 	return core.exec();
 }

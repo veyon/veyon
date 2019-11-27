@@ -34,6 +34,7 @@
 #include "VeyonMasterInterface.h"
 
 class QModelIndex;
+class QQmlApplicationEngine;
 
 class BuiltinFeatures;
 class ComputerControlListModel;
@@ -129,6 +130,8 @@ signals:
 	void appContainerChanged();
 
 private:
+	void initUserInterface();
+
 	void setAppWindow( QQuickWindow* appWindow );
 	void setAppContainer( QQuickItem* appContainer );
 
@@ -143,8 +146,8 @@ private:
 	ComputerMonitoringModel* m_computerMonitoringModel;
 	ComputerSelectModel* m_computerSelectModel;
 
-	MainWindow* m_mainWindow;
-
+	MainWindow* m_mainWindow{nullptr};
+	QQmlApplicationEngine* m_qmlAppEngine{nullptr};
 	QQuickWindow* m_appWindow{nullptr};
 	QQuickItem* m_appContainer{nullptr};
 
