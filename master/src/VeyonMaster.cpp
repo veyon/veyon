@@ -222,6 +222,28 @@ void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& compu
 
 
 
+void VeyonMaster::setAppWindow( QQuickWindow* appWindow )
+{
+	if( m_appWindow != appWindow )
+	{
+		m_appWindow = appWindow;
+		emit appWindowChanged();
+	}
+}
+
+
+
+void VeyonMaster::setAppContainer( QQuickItem* appContainer )
+{
+	if( m_appContainer != appContainer )
+	{
+		m_appContainer = appContainer;
+		emit appContainerChanged();
+	}
+}
+
+
+
 FeatureList VeyonMaster::featureList() const
 {
 	FeatureList features;

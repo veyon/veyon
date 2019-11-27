@@ -28,6 +28,8 @@
 #include "VeyonCore.h"
 
 class BuiltinFeatures;
+class QQuickItem;
+class QQuickWindow;
 class QWidget;
 
 class VEYON_CORE_EXPORT VeyonMasterInterface : public QObject
@@ -42,6 +44,9 @@ public:
 	~VeyonMasterInterface() override = default;
 
 	virtual QWidget* mainWindow() = 0;
+	virtual QQuickWindow* appWindow() = 0;
+	virtual QQuickItem* appContainer() = 0;
+
 	virtual Configuration::Object* userConfigurationObject() = 0;
 	virtual void reloadSubFeatures() = 0;
 

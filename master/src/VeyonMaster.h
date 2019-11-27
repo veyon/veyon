@@ -44,6 +44,8 @@ class UserConfig;
 class VeyonMaster : public VeyonMasterInterface
 {
 	Q_OBJECT
+	Q_PROPERTY(QQuickWindow* appWindow READ appWindow WRITE setAppWindow NOTIFY appWindowChanged)
+	Q_PROPERTY(QQuickItem* appContainer READ appContainer WRITE setAppContainer NOTIFY appContainerChanged)
 public:
 	explicit VeyonMaster( QObject* parent = nullptr );
 	~VeyonMaster() override;
@@ -86,6 +88,17 @@ public:
 	}
 
 	QWidget* mainWindow() override;
+
+	QQuickWindow* appWindow() override
+	{
+		return m_appWindow;
+	}
+
+	QQuickItem* appContainer() override
+	{
+		return m_appContainer;
+	}
+
 	Configuration::Object* userConfigurationObject() override;
 	void reloadSubFeatures() override;
 
@@ -96,7 +109,14 @@ public slots:
 	void enforceDesignatedMode( const QModelIndex& index );
 	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 
+signals:
+	void appWindowChanged();
+	void appContainerChanged();
+
 private:
+	void setAppWindow( QQuickWindow* appWindow );
+	void setAppContainer( QQuickItem* appContainer );
+
 	FeatureList featureList() const;
 
 	UserConfig* m_userConfig;
@@ -107,6 +127,9 @@ private:
 	ComputerSortFilterProxyModel* m_computerSortFilterProxyModel;
 
 	MainWindow* m_mainWindow;
+
+	QQuickWindow* m_appWindow{nullptr};
+	QQuickItem* m_appContainer{nullptr};
 
 	Feature::Uid m_currentMode;
 
