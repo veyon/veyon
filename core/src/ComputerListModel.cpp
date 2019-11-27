@@ -49,6 +49,18 @@ Qt::ItemFlags ComputerListModel::flags( const QModelIndex& index ) const
 
 
 
+QHash<int, QByteArray> ComputerListModel::roleNames() const
+{
+	auto roles = QAbstractListModel::roleNames();
+	roles[UidRole] = "uid";
+	roles[StateRole] = "state";
+	roles[ImageIdRole] = "imageId";
+	roles[GroupsRole] = "groups";
+	return roles;
+}
+
+
+
 Qt::DropActions ComputerListModel::supportedDragActions() const
 {
 	return Qt::MoveAction;

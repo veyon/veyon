@@ -34,7 +34,9 @@ class VEYON_CORE_EXPORT ComputerListModel : public QAbstractListModel
 public:
 	enum {
 		UidRole = Qt::UserRole,
-		StateRole
+		StateRole,
+		ImageIdRole,
+		GroupsRole,
 	};
 
 	enum class DisplayRoleContent {
@@ -54,6 +56,8 @@ public:
 	explicit ComputerListModel( QObject* parent = nullptr );
 
 	Qt::ItemFlags flags( const QModelIndex& index ) const override;
+
+	QHash<int, QByteArray> roleNames() const override;
 
 	Qt::DropActions supportedDragActions() const override;
 	Qt::DropActions supportedDropActions() const override;
