@@ -45,7 +45,7 @@ SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Open source computer monitoring and classr
   * Teaching material: distribute and open documents, images and videos easily
   * Administration: power on/off and reboot computers remotely")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins, qml-module-qtquick-controls2")
 SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
 
@@ -72,9 +72,9 @@ ENDIF()
 ENDIF()
 
 IF(OS_OPENSUSE)
-SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "libqca-qt5-plugins")
+SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "libqca-qt5-plugins, libqt5-qtquickcontrols2")
 ELSE()
-SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "qca-qt5-ossl")
+SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "qca-qt5-ossl, qt5-qtquickcontrols2")
 ENDIF()
 SET(CPACK_RPM_PACKAGE_LICENSE "GPLv2")
 SET(CPACK_RPM_PACKAGE_DESCRIPTION ${CPACK_DEBIAN_PACKAGE_DESCRIPTION})
