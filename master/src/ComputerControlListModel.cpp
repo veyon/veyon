@@ -75,7 +75,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 {
 	if( index.isValid() == false )
 	{
-		return QVariant();
+		return {};
 	}
 
 	if( index.row() >= m_computerControlInterfaces.count() )
@@ -105,11 +105,14 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case StateRole:
 		return QVariant::fromValue( computerControl->state() );
 
+	case GroupsRole:
+		return computerControl->groups();
+
 	default:
 		break;
 	}
 
-	return QVariant();
+	return {};
 }
 
 
