@@ -2,5 +2,5 @@
 
 set -e
 
-/veyon/.ci/common/linux-build.sh /veyon /build
-/veyon/.ci/common/finalize-rpm.sh "opensuse-15.0"
+$1/.ci/common/linux-build.sh $1 $2
+$1/.ci/common/finalize-rpm.sh $1 $2 "opensuse-15.0"

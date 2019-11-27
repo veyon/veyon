@@ -2,10 +2,10 @@
 
 set -e
 
-cd /build
+cd $2
 
 # add distribution name to file name
-rename "s/_amd64/-${1}_amd64/g" *.deb
+rename "s/_amd64/-${3}_amd64/g" *.deb
 
 # show content
 dpkg -c *.deb
@@ -14,4 +14,4 @@ dpkg -c *.deb
 dpkg -I *.deb
 
 # move to Docker volume
-mv -v *.deb /veyon
+mv -v *.deb $1
