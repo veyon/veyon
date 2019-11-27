@@ -123,6 +123,36 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 
 
+bool ComputerControlListModel::setData( const QModelIndex& index, const QVariant& value, int role )
+{
+	if( index.isValid() == false )
+	{
+		return false;
+	}
+
+	if( index.row() >= m_computerControlInterfaces.count() )
+	{
+		vCritical() << "index out of range!";
+	}
+
+	const auto computerControl = m_computerControlInterfaces[index.row()];
+
+	switch( role )
+	{
+	case GroupsRole:
+		computerControl->setGroups( value.toStringList() );
+		emit dataChanged( index, index, { role } );
+		return true;
+
+	default:
+		break;
+	}
+
+	return false;
+}
+
+
+
 QImage ComputerControlListModel::requestImage( const QString& id, QSize* size, const QSize& requestedSize )
 {
 	Q_UNUSED(size)
