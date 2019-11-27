@@ -58,10 +58,8 @@ QSGImageTexture::QSGImageTexture()
 
 QSGImageTexture::~QSGImageTexture()
 {
-#if QT_CONFIG(opengl)
 	if (m_texture_id && m_owns_texture && QOpenGLContext::currentContext())
 		QOpenGLContext::currentContext()->functions()->glDeleteTextures(1, &m_texture_id);
-#endif
 }
 
 void QSGImageTexture::setImage(const QImage &image)
@@ -81,10 +79,8 @@ int QSGImageTexture::textureId() const
 			// or ~QSGImageTexture so just keep it minimal here.
 			return 0;
 		} else if (m_texture_id == 0){
-#if QT_CONFIG(opengl)
 			// Generate a texture id for use later and return it.
 			QOpenGLContext::currentContext()->functions()->glGenTextures(1, &const_cast<QSGImageTexture *>(this)->m_texture_id);
-#endif
 			return int(m_texture_id);
 		}
 	}
@@ -93,7 +89,6 @@ int QSGImageTexture::textureId() const
 
 void QSGImageTexture::bind()
 {
-#if QT_CONFIG(opengl)
 	QOpenGLContext *context = QOpenGLContext::currentContext();
 	QOpenGLFunctions *funcs = context->functions();
 	if (!m_dirty_texture) {
@@ -176,5 +171,4 @@ void QSGImageTexture::bind()
 
 	m_dirty_bind_options = false;
 	m_image = {};
-#endif
 }
