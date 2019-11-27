@@ -272,7 +272,7 @@ QVariant LinuxServiceCore::getSessionProperty( const QString& session, const QSt
 	if( reply.isValid() == false )
 	{
 		vCritical() << "Could not query session property" << property << reply.error().message();
-		return QVariant();
+		return {};
 	}
 
 	return reply.value().variant();

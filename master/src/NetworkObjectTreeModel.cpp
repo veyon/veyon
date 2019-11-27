@@ -112,7 +112,7 @@ QVariant NetworkObjectTreeModel::headerData( int section, Qt::Orientation orient
 		return tr( "Locations/Computers" );
 	}
 
-	return QVariant();
+	return {};
 }
 
 

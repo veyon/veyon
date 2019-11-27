@@ -50,7 +50,7 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 {
 	if( extraColumn != 0 || role != m_overlayDataRole )
 	{
-		return QVariant();
+		return {};
 	}
 
 	NetworkObject::Uid networkObjectUid = data( index( row, 0, parent ), NetworkObjectModel::UidRole ).toUuid();
@@ -60,7 +60,7 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 		return m_overlayData[networkObjectUid];
 	}
 
-	return QVariant();
+	return {};
 }
 
 

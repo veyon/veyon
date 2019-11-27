@@ -74,9 +74,9 @@ Qt::ItemFlags CheckableItemProxyModel::flags( const QModelIndex& index ) const
 
 QVariant CheckableItemProxyModel::data( const QModelIndex& index, int role ) const
 {
-	if( !index.isValid() )
+	if( index.isValid() == false )
 	{
-		return QVariant();
+		return {};
 	}
 
 	if( role == Qt::CheckStateRole && index.column() == 0 &&
