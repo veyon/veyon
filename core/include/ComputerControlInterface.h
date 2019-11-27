@@ -44,6 +44,12 @@ class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:
+	enum class UpdateMode {
+		Disabled,
+		Monitoring,
+		Live
+	};
+
 	using Pointer = QSharedPointer<ComputerControlInterface>;
 
 	using State = VncConnection::State;
@@ -51,7 +57,7 @@ public:
 	explicit ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
-	void start( QSize scaledScreenSize );
+	void start( QSize scaledScreenSize, UpdateMode updateMode );
 	void stop();
 
 	const Computer& computer() const
@@ -121,9 +127,11 @@ public:
 	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 	bool isMessageQueueEmpty();
 
-	void enableUpdates();
-	void disableUpdates();
-
+	void setUpdateMode( UpdateMode updateMode );
+	UpdateMode updateMode() const
+	{
+		return m_updateMode;
+	}
 
 private:
 	Pointer weakPointer();
@@ -138,9 +146,11 @@ private:
 	void handleFeatureMessage( const FeatureMessage& message );
 
 	static constexpr int ConnectionWatchdogTimeout = 10000;
-	static constexpr int UpdateIntervalWhenDisabled = 5000;
+	static constexpr int UpdateIntervalDisabled = 5000;
 
 	Computer m_computer;
+
+	UpdateMode m_updateMode{UpdateMode::Disabled};
 
 	State m_state;
 	QString m_userLoginName;

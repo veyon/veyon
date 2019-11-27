@@ -59,7 +59,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 			 m_featureManager->handleFeatureMessage( *this, featureMessage, computerControlInterface );
 	} );
 
-	VeyonCore::localComputerControlInterface().start( QSize() );
+	VeyonCore::localComputerControlInterface().start( QSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
 	// attach computer list model to proxy model
 	m_computerSortFilterProxyModel->setSourceModel( m_computerControlListModel );

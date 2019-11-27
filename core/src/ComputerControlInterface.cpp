@@ -63,7 +63,7 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( QSize scaledScreenSize )
+void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateMode )
 {
 	// make sure we do not leak
 	stop();
@@ -77,7 +77,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 		m_vncConnection->setQuality( VncConnection::Quality::Thumbnail );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 
-		enableUpdates();
+		setUpdateMode( updateMode );
 
 		m_connection = new VeyonConnection( m_vncConnection );
 
@@ -156,7 +156,7 @@ QImage ComputerControlInterface::scaledScreen() const
 		return m_vncConnection->scaledScreen();
 	}
 
-	return QImage();
+	return {};
 }
 
 
@@ -168,7 +168,7 @@ QImage ComputerControlInterface::screen() const
 		return m_vncConnection->image();
 	}
 
-	return QImage();
+	return {};
 }
 
 
@@ -239,31 +239,36 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 }
 
 
-
-void ComputerControlInterface::enableUpdates()
+void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 {
-	const auto updateInterval = VeyonCore::config().computerMonitoringUpdateInterval();
+	m_updateMode = updateMode;
 
-	if( m_vncConnection )
+	const auto computerMonitoringUpdateInterval = VeyonCore::config().computerMonitoringUpdateInterval();
+
+	switch( updateMode )
 	{
-		m_vncConnection->setFramebufferUpdateInterval( updateInterval );
+	case UpdateMode::Disabled:
+		if( m_vncConnection )
+		{
+			m_vncConnection->setFramebufferUpdateInterval( UpdateIntervalDisabled );
+		}
+
+		m_userUpdateTimer.stop();
+		m_activeFeaturesUpdateTimer.start( UpdateIntervalDisabled );
+		break;
+
+	case UpdateMode::Monitoring:
+	case UpdateMode::Live:
+		if( m_vncConnection )
+		{
+			m_vncConnection->setFramebufferUpdateInterval( updateMode == UpdateMode::Monitoring ?
+															   computerMonitoringUpdateInterval : -1 );
+		}
+
+		m_userUpdateTimer.start( computerMonitoringUpdateInterval );
+		m_activeFeaturesUpdateTimer.start( computerMonitoringUpdateInterval );
+		break;
 	}
-
-	m_userUpdateTimer.start( updateInterval );
-	m_activeFeaturesUpdateTimer.start( updateInterval );
-}
-
-
-
-void ComputerControlInterface::disableUpdates()
-{
-	if( m_vncConnection )
-	{
-		m_vncConnection->setFramebufferUpdateInterval( UpdateIntervalWhenDisabled );
-	}
-
-	m_userUpdateTimer.stop();
-	m_activeFeaturesUpdateTimer.start( UpdateIntervalWhenDisabled );
 }
 
 
