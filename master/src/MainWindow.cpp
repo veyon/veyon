@@ -63,8 +63,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	restoreState( QByteArray::fromBase64( m_master.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_master.userConfig().windowGeometry().toUtf8() ) );
 
-	ui->computerMonitoringWidget->setVeyonMaster( m_master );
-
 	// add widgets to status bar
 	ui->statusBar->addWidget( ui->computerSelectPanelButton );
 	ui->statusBar->addWidget( ui->screenshotManagementPanelButton );
@@ -110,29 +108,21 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	// initialize search filter
 	ui->filterPoweredOnComputersButton->setChecked( m_master.userConfig().filterPoweredOnComputers() );
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setSearchFilter );
+			 this, [this]( const QString& filter ) { ui->computerMonitoringWidget->setSearchFilter( filter ); } );
 	connect( ui->filterPoweredOnComputersButton, &QToolButton::toggled,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setFilterPoweredOnComputers );
+			 this, [this]( bool enabled ) { ui->computerMonitoringWidget->setFilterPoweredOnComputers( enabled ); } );
 
 	// initialize monitoring screen size slider
 	ui->gridSizeSlider->setMinimum( ComputerMonitoringWidget::MinimumComputerScreenSize );
 	ui->gridSizeSlider->setMaximum( ComputerMonitoringWidget::MaximumComputerScreenSize );
+	ui->gridSizeSlider->setValue( ui->computerMonitoringWidget->computerScreenSize() );
 
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setComputerScreenSize );
+			 this, [this]( int size ) { ui->computerMonitoringWidget->setComputerScreenSize( size ); } );
 	connect( ui->computerMonitoringWidget, &ComputerMonitoringWidget::computerScreenSizeAdjusted,
 			 ui->gridSizeSlider, &QSlider::setValue );
 	connect( ui->autoFitButton, &QToolButton::clicked,
 			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::autoAdjustComputerScreenSize );
-
-	int size = ComputerMonitoringWidget::DefaultComputerScreenSize;
-	if( m_master.userConfig().monitoringScreenSize() >= ComputerMonitoringWidget::MinimumComputerScreenSize )
-	{
-		size = m_master.userConfig().monitoringScreenSize();
-	}
-
-	ui->gridSizeSlider->setValue( size );
-	ui->computerMonitoringWidget->setComputerScreenSize( size );
 
 	// initialize computer placement controls
 	ui->useCustomComputerArrangementButton->setChecked( m_master.userConfig().useCustomComputerPositions() );
@@ -160,6 +150,8 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 MainWindow::~MainWindow()
 {
+	ui->computerMonitoringWidget->saveConfiguration();
+
 	delete ui;
 }
 

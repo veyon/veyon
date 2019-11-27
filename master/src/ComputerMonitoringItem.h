@@ -1,5 +1,5 @@
 /*
- * ComputerMonitoringWidget.h - provides a view with computer monitor thumbnails
+ * ComputerMonitoringItem.h - provides a view with computer monitor thumbnails
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -27,45 +27,66 @@
 #include "ComputerMonitoringView.h"
 #include "FlexibleListView.h"
 
-#include <QWidget>
+#include <QQuickItem>
 
 class FlexibleListView;
 
-class ComputerMonitoringWidget : public FlexibleListView, public ComputerMonitoringView
+class ComputerMonitoringItem : public QQuickItem, public ComputerMonitoringView
 {
 	Q_OBJECT
+	Q_PROPERTY(QObject* model READ model CONSTANT)
+	Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY backgroundColorChanged)
+	Q_PROPERTY(QColor textColor READ textColor NOTIFY textColorChanged)
+	Q_PROPERTY(QSize iconSize READ iconSize NOTIFY iconSizeChanged)
+	Q_PROPERTY(QString searchFilter WRITE setSearchFilter)
+	Q_PROPERTY(QStringList groupFilter WRITE setGroupFilter)
+	Q_PROPERTY(QVariantList selectedObjects WRITE setSelectedObjects)
+	Q_PROPERTY(int computerScreenSize WRITE setComputerScreenSize)
 public:
-	explicit ComputerMonitoringWidget( QWidget *parent = nullptr );
-	~ComputerMonitoringWidget() override = default;
+	enum class ComputerScreenSize {
+		MinimumComputerScreenSize = MinimumComputerScreenSize,
+		DefaultComputerScreenSize = DefaultComputerScreenSize,
+		MaximumComputerScreenSize = MaximumComputerScreenSize,
+	};
+	Q_ENUM(ComputerScreenSize)
+
+	explicit ComputerMonitoringItem( QQuickItem* parent = nullptr );
+	~ComputerMonitoringItem() override = default;
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces() const override;
+
+	void componentComplete() override;
 
 	void autoAdjustComputerScreenSize();
 
 	void setUseCustomComputerPositions( bool enabled ) override;
 	void alignComputers() override;
 
-	void showContextMenu( QPoint globalPos );
+	Q_INVOKABLE void runFeature( QString featureUid );
 
 private:
+	QObject* model() const;
+	QColor backgroundColor() const;
+	QColor textColor() const;
+	const QSize& iconSize() const;
+
 	void setColors( const QColor& backgroundColor, const QColor& textColor ) override;
 	QJsonArray saveComputerPositions() override;
 	bool useCustomComputerPositions() override;
 	void loadComputerPositions( const QJsonArray& positions ) override;
 	void setIconSize( const QSize& size ) override;
 
-	void populateFeatureMenu( const FeatureUidList& activeFeatures );
-	void addFeatureToMenu( const Feature& feature, const QString& label );
-	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
+	void setSelectedObjects( const QVariantList& objects );
 
-	void runDoubleClickFeature( const QModelIndex& index );
+	QColor m_backgroundColor;
+	QColor m_textColor;
+	QSize m_iconSize;
 
-	void showEvent( QShowEvent* event ) override;
-	void wheelEvent( QWheelEvent* event ) override;
-
-	QMenu* m_featureMenu{nullptr};
+	QList<NetworkObject::Uid> m_selectedObjects;
 
 signals:
-	void computerScreenSizeAdjusted( int size );
+	void backgroundColorChanged();
+	void textColorChanged();
+	void iconSizeChanged();
 
 };

@@ -1,5 +1,5 @@
 /*
- * ComputerSortFilterProxyModel.cpp - implementation of ComputerSortFilterProxyModel
+ * ComputerMonitoringModel.cpp - implementation of ComputerMonitoringModel
  *
  * Copyright (c) 2018-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,28 +22,32 @@
  *
  */
 
-#include "ComputerSortFilterProxyModel.h"
+#include "ComputerControlListModel.h"
+#include "ComputerMonitoringModel.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
 #endif
 
 
-ComputerSortFilterProxyModel::ComputerSortFilterProxyModel( QObject* parent ) :
-	QSortFilterProxyModel( parent ),
-	m_stateRole( -1 ),
-	m_stateFilter( ComputerControlInterface::State::None )
+ComputerMonitoringModel::ComputerMonitoringModel( ComputerControlListModel* sourceModel, QObject* parent ) :
+	QSortFilterProxyModel( parent )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 
+	setSourceModel( sourceModel );
 	setFilterCaseSensitivity( Qt::CaseInsensitive );
+	setSortRole( Qt::InitialSortOrderRole );
+	setStateRole( ComputerControlListModel::StateRole );
+	setGroupsRole( ComputerControlListModel::GroupsRole );
+	sort( 0 );
 }
 
 
 
-void ComputerSortFilterProxyModel::setStateRole( int role )
+void ComputerMonitoringModel::setStateRole( int role )
 {
 	beginResetModel();
 	m_stateRole = role;
@@ -52,7 +56,16 @@ void ComputerSortFilterProxyModel::setStateRole( int role )
 
 
 
-void ComputerSortFilterProxyModel::setStateFilter( ComputerControlInterface::State state )
+void ComputerMonitoringModel::setGroupsRole( int role )
+{
+	beginResetModel();
+	m_groupsRole = role;
+	endResetModel();
+}
+
+
+
+void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State state )
 {
 	beginResetModel();
 	m_stateFilter = state;
@@ -61,12 +74,29 @@ void ComputerSortFilterProxyModel::setStateFilter( ComputerControlInterface::Sta
 
 
 
-bool ComputerSortFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
+void ComputerMonitoringModel::setGroupsFilter( const QStringList& groups )
+{
+	beginResetModel();
+	m_groupsFilter = groups.toSet();
+	endResetModel();
+}
+
+
+
+bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	if( m_stateFilter != ComputerControlInterface::State::None &&
-		m_stateRole >= 0 &&
+		stateRole() >= 0 &&
 		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
 							 m_stateRole ).value<ComputerControlInterface::State>() != m_stateFilter )
+	{
+		return false;
+	}
+
+	if( m_groupsRole >= 0 &&
+		groupsFilter().isEmpty() == false &&
+		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+							 m_groupsRole ).toStringList().toSet().intersects( groupsFilter() ) == false )
 	{
 		return false;
 	}

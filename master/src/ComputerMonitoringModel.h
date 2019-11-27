@@ -28,11 +28,13 @@
 
 #include "ComputerControlInterface.h"
 
-class ComputerSortFilterProxyModel : public QSortFilterProxyModel
+class ComputerControlListModel;
+
+class ComputerMonitoringModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:
-	explicit ComputerSortFilterProxyModel( QObject* parent );
+	explicit ComputerMonitoringModel( ComputerControlListModel* sourceModel, QObject* parent );
 
 	int stateRole() const
 	{
@@ -41,6 +43,13 @@ public:
 
 	void setStateRole( int role );
 
+	int groupsRole() const
+	{
+		return m_groupsRole;
+	}
+
+	void setGroupsRole( int role );
+
 	ComputerControlInterface::State stateFilter() const
 	{
 		return m_stateFilter;
@@ -48,11 +57,20 @@ public:
 
 	void setStateFilter( ComputerControlInterface::State state );
 
+	const QSet<QString>& groupsFilter() const
+	{
+		return m_groupsFilter;
+	}
+
+	void setGroupsFilter( const QStringList& groups );
+
 protected:
 	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
 
 private:
-	int m_stateRole;
-	ComputerControlInterface::State m_stateFilter;
+	int m_stateRole{-1};
+	int m_groupsRole{-1};
+	ComputerControlInterface::State m_stateFilter{ComputerControlInterface::State::None};
+	QSet<QString> m_groupsFilter;
 
 };

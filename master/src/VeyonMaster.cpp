@@ -25,7 +25,8 @@
 #include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
-#include "ComputerSortFilterProxyModel.h"
+#include "ComputerMonitoringItem.h"
+#include "ComputerMonitoringModel.h"
 #include "FeatureManager.h"
 #include "VncConnection.h"
 #include "VeyonConfiguration.h"
@@ -45,7 +46,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_featureListModel( new FeatureListModel( this ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
-	m_computerSortFilterProxyModel( new ComputerSortFilterProxyModel( this ) ),
+	m_computerMonitoringModel( new ComputerMonitoringModel( m_computerControlListModel, this ) ),
 	m_mainWindow( nullptr ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
@@ -61,12 +62,6 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	} );
 
 	VeyonCore::localComputerControlInterface().start( QSize(), ComputerControlInterface::UpdateMode::Monitoring );
-
-	// attach computer list model to proxy model
-	m_computerSortFilterProxyModel->setSourceModel( m_computerControlListModel );
-	m_computerSortFilterProxyModel->setSortRole( Qt::InitialSortOrderRole );
-	m_computerSortFilterProxyModel->setStateRole( ComputerControlListModel::StateRole );
-	m_computerSortFilterProxyModel->sort( 0 );
 
 	m_mainWindow = new MainWindow( *this );
 }
@@ -138,15 +133,15 @@ void VeyonMaster::reloadSubFeatures()
 
 ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 {
-	const auto rowCount = m_computerSortFilterProxyModel->rowCount();
+	const auto rowCount = m_computerMonitoringModel->rowCount();
 
 	ComputerControlInterfaceList computerControlInterfaces;
 	computerControlInterfaces.reserve( rowCount );
 
 	for( int i = 0; i < rowCount; ++i )
 	{
-		const auto index = m_computerSortFilterProxyModel->index( i, 0 );
-		const auto sourceIndex = m_computerSortFilterProxyModel->mapToSource( index );
+		const auto index = m_computerMonitoringModel->index( i, 0 );
+		const auto sourceIndex = m_computerMonitoringModel->mapToSource( index );
 		computerControlInterfaces.append( m_computerControlListModel->computerControlInterface( sourceIndex ) );
 	}
 
