@@ -12,5 +12,13 @@
         <file>align-grid.png</file>
         <file>exchange-positions-zorder.png</file>
         <file>powered-on.png</file>
+        <file>edit-find.png</file>
+        <file>add-group.png</file>
+        <file>remove-group.png</file>
+        <file>edit-select-all.png</file>
+        <file>homerun.png</file>
+        <file>application-menu.png</file>
+        <file>go-previous.png</file>
+        <file>go-next.png</file>
     </qresource>
 </RCC>

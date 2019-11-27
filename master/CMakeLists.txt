@@ -16,6 +16,7 @@ SET(master_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/master.qrc)
 IF(VEYON_DEBUG)
 SET(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/resources/examples.qrc)
 ENDIF()
+SET(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/qml/qml.qrc)
 
 BUILD_APPLICATION(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
 TARGET_INCLUDE_DIRECTORIES(veyon-master PRIVATE ${kitemmodels_SOURCE_DIR})

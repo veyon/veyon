@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/master">
+        <file>main.qml</file>
+        <file>TitleBarTab.qml</file>
+        <file>FeatureButton.qml</file>
+        <file>ButtonMenu.qml</file>
+        <file>ComputerGroupSelector.qml</file>
+        <file>ComputerDelegate.qml</file>
+        <file>ComputerMonitoring.qml</file>
+        <file>AppDrawer.qml</file>
+        <file>TitleBar.qml</file>
+    </qresource>
+</RCC>
