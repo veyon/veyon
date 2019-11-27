@@ -129,15 +129,29 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 
 
-ComputerControlInterface::Pointer ComputerControlListModel::computerControlInterface( const QModelIndex& index ) const
+ComputerControlInterface::Pointer ComputerControlListModel::computerControlInterface( const QModelIndex& index  ) const
 {
 	if( index.isValid() == false || index.row() >= m_computerControlInterfaces.count() )
 	{
 		vCritical() << "invalid ComputerControlInterface requested!";
-		return ComputerControlInterface::Pointer();
+		return {};
 	}
 
 	return m_computerControlInterfaces[index.row()];
+}
+
+
+
+ComputerControlInterface::Pointer ComputerControlListModel::computerControlInterface( NetworkObject::Uid uid ) const
+{
+	for( auto& controlInterface : m_computerControlInterfaces )
+	{
+		if( controlInterface->computer().networkObjectUid() == uid )
+		{
+			return controlInterface;
+		}
+	}
+	return {};
 }
 
 

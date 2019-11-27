@@ -50,6 +50,7 @@ public:
 	}
 
 	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
+	ComputerControlInterface::Pointer computerControlInterface( NetworkObject::Uid uid ) const;
 
 	void reload();
 
