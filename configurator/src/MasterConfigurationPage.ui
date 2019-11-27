@@ -82,14 +82,46 @@
           <string>User interface</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_9">
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>Text color</string>
+             <string>Sort order</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
+           <widget class="QPushButton" name="computerMonitoringTextColor"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
+          </item>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="computerMonitoringSortOrder">
+            <item>
+             <property name="text">
+              <string>Computer and user name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only user name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only computer name</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Thumbnail update interval</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
            <widget class="QComboBox" name="computerDisplayRoleContent">
             <item>
              <property name="text">
@@ -108,14 +140,21 @@
             </item>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_8">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Computer thumbnail caption</string>
+             <string>Background color</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Text color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
            <widget class="QSpinBox" name="computerMonitoringUpdateInterval">
             <property name="suffix">
              <string> ms</string>
@@ -134,50 +173,18 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="computerMonitoringTextColor"/>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Background color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Thumbnail update interval</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="0">
-           <widget class="QLabel" name="label_10">
+           <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>Sort order</string>
+             <string>Computer thumbnail caption</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="computerMonitoringSortOrder">
-            <item>
-             <property name="text">
-              <string>Computer and user name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Only user name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Only computer name</string>
-             </property>
-            </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="classicUserInterface">
+            <property name="text">
+             <string>Use classic user interface</string>
+            </property>
            </widget>
           </item>
          </layout>
