@@ -27,6 +27,7 @@
 #include <QObject>
 
 #include "Feature.h"
+#include "FeatureListModel.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "VeyonMasterInterface.h"
@@ -75,6 +76,13 @@ public:
 		return *m_computerSortFilterProxyModel;
 	}
 
+	FeatureListModel* featureListModel() const
+	{
+		return m_featureListModel;
+	}
+
+	Q_PROPERTY(QObject* featureListModel READ featureListModel CONSTANT)
+
 	const FeatureList& features() const
 	{
 		return m_features;
@@ -122,6 +130,7 @@ private:
 	UserConfig* m_userConfig;
 	FeatureManager* m_featureManager;
 	const FeatureList m_features;
+	FeatureListModel* m_featureListModel{nullptr};
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;
 	ComputerSortFilterProxyModel* m_computerSortFilterProxyModel;
