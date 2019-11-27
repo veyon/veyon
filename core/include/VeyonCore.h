@@ -57,6 +57,7 @@ class NetworkObjectDirectoryManager;
 class PlatformPluginInterface;
 class PlatformPluginManager;
 class PluginManager;
+class QmlCore;
 class UserGroupsBackendManager;
 class VeyonConfiguration;
 
@@ -137,6 +138,11 @@ public:
 		return *( instance()->m_platformPlugin );
 	}
 
+	static QmlCore& qmlCore()
+	{
+		return *( instance()->m_qmlCore );
+	}
+
 	static BuiltinFeatures& builtinFeatures()
 	{
 		return *( instance()->m_builtinFeatures );
@@ -186,6 +192,7 @@ private:
 	void initLogging( const QString& appComponentName );
 	void initLocaleAndTranslation();
 	void initCryptoCore();
+	void initQmlCore();
 	void initAuthenticationCredentials();
 	void initPlugins();
 	void initManagers();
@@ -200,6 +207,7 @@ private:
 	AuthenticationCredentials* m_authenticationCredentials;
 	AuthenticationManager* m_authenticationManager;
 	CryptoCore* m_cryptoCore;
+	QmlCore* m_qmlCore{nullptr};
 	PluginManager* m_pluginManager;
 	PlatformPluginManager* m_platformPluginManager;
 	PlatformPluginInterface* m_platformPlugin;

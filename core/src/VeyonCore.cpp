@@ -48,6 +48,7 @@
 #include "PlatformCoreFunctions.h"
 #include "PlatformServiceCore.h"
 #include "PluginManager.h"
+#include "QmlCore.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
 #include "VncConnection.h"
@@ -90,6 +91,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	initLocaleAndTranslation();
 
 	initCryptoCore();
+
+	initQmlCore();
 
 	initAuthenticationCredentials();
 
@@ -135,6 +138,9 @@ VeyonCore::~VeyonCore()
 
 	delete m_cryptoCore;
 	m_cryptoCore = nullptr;
+
+	delete m_qmlCore;
+	m_qmlCore = nullptr;
 
 	s_instance = nullptr;
 }
@@ -601,6 +607,13 @@ void VeyonCore::initLocaleAndTranslation()
 void VeyonCore::initCryptoCore()
 {
 	m_cryptoCore = new CryptoCore;
+}
+
+
+
+void VeyonCore::initQmlCore()
+{
+	m_qmlCore = new QmlCore( this );
 }
 
 
