@@ -26,6 +26,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QMessageBox>
+#include <QQuickWindow>
 
 #include "BuiltinFeatures.h"
 #include "FileTransferController.h"
@@ -33,6 +34,7 @@
 #include "FileTransferPlugin.h"
 #include "FileTransferUserConfiguration.h"
 #include "FeatureWorkerManager.h"
+#include "QmlCore.h"
 #include "SystemTrayIcon.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
@@ -67,44 +69,49 @@ FileTransferPlugin::~FileTransferPlugin()
 bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature == m_fileTransferFeature )
+	if( feature != m_fileTransferFeature )
 	{
-		FileTransferUserConfiguration config( master.userConfigurationObject() );
+		return false;
+	}
 
-		auto files = QFileDialog::getOpenFileNames( master.mainWindow(),
-														  tr( "Select one or more files to transfer" ),
-														  config.lastFileTransferSourceDirectory() );
+	const auto userConfigObject = master.userConfigurationObject();
 
-		if( files.isEmpty() == false )
+	m_lastFileTransferSourceDirectory = FileTransferUserConfiguration( userConfigObject ).lastFileTransferSourceDirectory();
+
+	if( master.appWindow() )
+	{
+		auto dialog = VeyonCore::qmlCore().createObject( QStringLiteral("qrc:/filetransfer/FileTransferFileDialog.qml"),
+														 master.appWindow(),
+														 this );
+		connect( this, &FileTransferPlugin::acceptSelectedFiles, dialog,
+				 [this, computerControlInterfaces, userConfigObject]( const QList<QUrl>& fileUrls )
 		{
-			config.setLastFileTransferSourceDirectory( QFileInfo( files.first() ).absolutePath() );
-
-			if( m_fileTransferController == nullptr )
+			QStringList files;
+			files.reserve( fileUrls.size() );
+			for( const auto& url : fileUrls )
 			{
-				m_fileTransferController = new FileTransferController( this );
+				files.append( url.toString( QUrl::RemoveScheme ) );
 			}
-
-			for( auto& file : files )
-			{
-				QFileInfo fileInfo( file );
-				if( fileInfo.dir() == QDir::current() )
-				{
-					file = fileInfo.fileName();
-				}
-			}
-
-			m_fileTransferController->setFiles( files );
-			m_fileTransferController->setInterfaces( computerControlInterfaces );
-
-			auto dialog = new FileTransferDialog( m_fileTransferController, master.mainWindow() );
-			connect( dialog, &QDialog::finished, dialog, &QDialog::deleteLater );
-			dialog->exec();
-		}
+			startFileTransfer( files, userConfigObject, computerControlInterfaces );
+		} );
 
 		return true;
 	}
 
-	return false;
+	auto files = QFileDialog::getOpenFileNames( master.mainWindow(),
+												tr( "Select one or more files to transfer" ),
+												lastFileTransferSourceDirectory() );
+
+	if( files.isEmpty() == false )
+	{
+		startFileTransfer( files, userConfigObject, computerControlInterfaces );
+
+		auto dialog = new FileTransferDialog( m_fileTransferController, master.mainWindow() );
+		connect( dialog, &QDialog::finished, dialog, &QDialog::deleteLater );
+		dialog->exec();
+	}
+
+	return true;
 }
 
 
@@ -149,9 +156,9 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 		if( message.command() == FileTransferFinishCommand )
 		{
 			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
-																   tr( "Received file \"%1\"." ).
-																   arg( message.argument( Filename ).toString() ),
-																   server.featureWorkerManager() );
+																	   tr( "Received file \"%1\"." ).
+																	   arg( message.argument( Filename ).toString() ),
+																	   server.featureWorkerManager() );
 		}
 
 		// forward message to worker
@@ -288,4 +295,34 @@ void FileTransferPlugin::sendFinishMessage( QUuid transferId, const QString& fil
 void FileTransferPlugin::sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), OpenTransferFolder ), interfaces );
+}
+
+
+
+void FileTransferPlugin::startFileTransfer( const QStringList& files, Configuration::Object* userConfigObject,
+											const ComputerControlInterfaceList& interfaces )
+{
+	FileTransferUserConfiguration( userConfigObject ).
+			setLastFileTransferSourceDirectory( QFileInfo( files.first() ).absolutePath() );
+
+	if( m_fileTransferController == nullptr )
+	{
+		m_fileTransferController = new FileTransferController( this );
+	}
+
+	auto relativeFiles = files;
+
+	for( auto& file : relativeFiles )
+	{
+		QFileInfo fileInfo( file );
+		if( fileInfo.dir() == QDir::current() )
+		{
+			file = fileInfo.fileName();
+		}
+	}
+
+	qCritical() << relativeFiles;
+
+	m_fileTransferController->setFiles( relativeFiles );
+	m_fileTransferController->setInterfaces( interfaces );
 }

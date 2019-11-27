@@ -1,8 +1,9 @@
 <RCC>
-    <qresource prefix="/filetransfer" >
+    <qresource prefix="/filetransfer">
         <file>applications-office.png</file>
         <file>file-scheduled.png</file>
         <file>file-transferring.png</file>
         <file>file-finished.png</file>
+        <file>FileTransferFileDialog.qml</file>
     </qresource>
 </RCC>

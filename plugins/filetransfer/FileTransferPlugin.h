@@ -25,16 +25,20 @@
 #pragma once
 
 #include <QFile>
+#include <QUrl>
 
+#include "Configuration/Object.h"
 #include "FeatureProviderInterface.h"
 
 class FileTransferController;
+class FileTransferUserConfiguration;
 
 class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FileTransfer")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
+	Q_PROPERTY(QString lastFileTransferSourceDirectory READ lastFileTransferSourceDirectory)
 public:
 	explicit FileTransferPlugin( QObject* parent = nullptr );
 	~FileTransferPlugin() override;
@@ -97,7 +101,18 @@ public:
 							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 
+signals:
+	Q_INVOKABLE void acceptSelectedFiles( const QList<QUrl>& fileUrls );
+
 private:
+	const QString& lastFileTransferSourceDirectory() const
+	{
+		return m_lastFileTransferSourceDirectory;
+	}
+
+	void startFileTransfer( const QStringList& files, Configuration::Object* config,
+							const ComputerControlInterfaceList& interfaces );
+
 	enum Commands
 	{
 		FileTransferStartCommand,
@@ -120,6 +135,8 @@ private:
 
 	const Feature m_fileTransferFeature;
 	const FeatureList m_features;
+
+	QString m_lastFileTransferSourceDirectory;
 
 	FileTransferController* m_fileTransferController;
 
