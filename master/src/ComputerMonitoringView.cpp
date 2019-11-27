@@ -61,6 +61,13 @@ void ComputerMonitoringView::saveConfiguration()
 
 
 
+QString ComputerMonitoringView::searchFilter() const
+{
+	return listModel()->filterRegExp().pattern();
+}
+
+
+
 void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
 {
 	listModel()->setFilterRegExp( searchFilter );

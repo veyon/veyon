@@ -46,6 +46,7 @@ public:
 	virtual ComputerControlInterfaceList selectedComputerControlInterfaces() const = 0;
 	ComputerControlInterfaceList filteredComputerControlInterfaces() const;
 
+	QString searchFilter() const;
 	void setSearchFilter( const QString& searchFilter );
 	void setFilterPoweredOnComputers( bool enabled );
 	void setGroupFilter( const QStringList& groups );
