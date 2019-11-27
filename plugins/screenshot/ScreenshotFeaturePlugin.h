@@ -73,6 +73,8 @@ public:
 
 
 private:
+	void initUi();
+
 	const Feature m_screenshotFeature;
 	const FeatureList m_features;
 

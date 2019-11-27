@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/screenshot" >
+    <qresource prefix="/screenshot">
         <file>camera-photo.png</file>
+        <file>ScreenshotManagementPage.qml</file>
     </qresource>
 </RCC>

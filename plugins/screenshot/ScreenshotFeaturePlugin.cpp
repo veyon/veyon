@@ -24,11 +24,11 @@
 
 #include <QMessageBox>
 
-#include "ScreenshotFeaturePlugin.h"
 #include "ComputerControlInterface.h"
-#include "VeyonMasterInterface.h"
 #include "Screenshot.h"
-
+#include "ScreenshotFeaturePlugin.h"
+#include "QmlCore.h"
+#include "VeyonMasterInterface.h"
 
 ScreenshotFeaturePlugin::ScreenshotFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
@@ -41,6 +41,11 @@ ScreenshotFeaturePlugin::ScreenshotFeaturePlugin( QObject* parent ) :
 								  QStringLiteral(":/screenshot/camera-photo.png") ) ),
 	m_features( { m_screenshotFeature } )
 {
+	if( VeyonCore::component() == VeyonCore::Component::Master )
+	{
+		connect( VeyonCore::instance(), &VeyonCore::applicationLoaded,
+				 this, &ScreenshotFeaturePlugin::initUi );
+	}
 }
 
 
@@ -72,4 +77,18 @@ bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const 
 	}
 
 	return true;
+}
+
+
+
+void ScreenshotFeaturePlugin::initUi()
+{
+	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	if( master->appContainer() )
+	{
+		VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/screenshot/ScreenshotManagementPage.qml"),
+													 master->appContainer(),
+													 this );
+
+	}
 }
