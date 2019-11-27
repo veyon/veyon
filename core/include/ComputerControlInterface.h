@@ -75,6 +75,11 @@ public:
 
 	QImage screen() const;
 
+	int timestamp() const
+	{
+		return m_timestamp;
+	}
+
 	const QString& userLoginName() const
 	{
 		return m_userLoginName;
@@ -134,6 +139,7 @@ private:
 	Feature::Uid m_designatedModeFeature;
 
 	QSize m_scaledScreenSize;
+	int m_timestamp{0};
 
 	VncConnection* m_vncConnection;
 	VeyonConnection* m_connection;
@@ -143,7 +149,8 @@ private:
 
 signals:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
-	void screenUpdated();
+	void screenUpdated( QRect rect );
+	void scaledScreenUpdated();
 	void userChanged();
 	void stateChanged();
 	void activeFeaturesChanged();

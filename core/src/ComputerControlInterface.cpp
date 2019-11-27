@@ -83,8 +83,15 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 
 		m_vncConnection->start();
 
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::screenUpdated );
+		connect( m_vncConnection, &VncConnection::imageUpdated, this, [this]( int x, int y, int w, int h )
+		{
+			emit screenUpdated( QRect( x, y, w, h ) );
+		} );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, [this]() {
+			resetWatchdog();
+			++m_timestamp;
+			emit scaledScreenUpdated();
+		} );
 
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
@@ -135,7 +142,9 @@ void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 	}
 
-	emit screenUpdated();
+	++m_timestamp;
+
+	emit scaledScreenUpdated();
 }
 
 
