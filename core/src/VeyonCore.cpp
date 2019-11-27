@@ -150,7 +150,14 @@ VeyonCore* VeyonCore::instance()
 
 
 
-QString VeyonCore::version()
+QVersionNumber VeyonCore::version()
+{
+	return QVersionNumber::fromString( versionString() );
+}
+
+
+
+QString VeyonCore::versionString()
 {
 	return QStringLiteral( VEYON_VERSION );
 }
@@ -644,7 +651,7 @@ void VeyonCore::initLocalComputerControlInterface()
 
 void VeyonCore::initSystemInfo()
 {
-	vDebug() << version() << HostAddress::localFQDN()
+	vDebug() << versionString() << HostAddress::localFQDN()
 			 << QSysInfo::kernelType() << QSysInfo::kernelVersion()
 			 << QSysInfo::prettyProductName() << QSysInfo::productType() << QSysInfo::productVersion();
 }

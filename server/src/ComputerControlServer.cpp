@@ -50,7 +50,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 					  this )
 {
 	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip(
-				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
+				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::versionString(),
 													HostAddress::localFQDN(),
 													QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) ),
 				m_featureWorkerManager );
