@@ -38,6 +38,7 @@
 
 ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
 	ComputerListModel( parent ),
+	QQuickImageProvider( QQmlImageProviderBase::Image ),
 	m_master( masterCore ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
@@ -110,6 +111,22 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 	default:
 		break;
+	}
+
+	return {};
+}
+
+
+
+QImage ComputerControlListModel::requestImage( const QString& id, QSize* size, const QSize& requestedSize )
+{
+	Q_UNUSED(size)
+	Q_UNUSED(requestedSize)
+
+	const auto controlInterface = computerControlInterface( NetworkObject::Uid{id} );
+	if( controlInterface )
+	{
+		return computerDecorationRole( controlInterface );
 	}
 
 	return {};

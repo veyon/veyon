@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QAbstractListModel>
+#include <QQuickImageProvider>
 #include <QImage>
 
 #include "ComputerListModel.h"
@@ -32,7 +33,7 @@
 
 class VeyonMaster;
 
-class ComputerControlListModel : public ComputerListModel
+class ComputerControlListModel : public ComputerListModel, public QQuickImageProvider
 {
 	Q_OBJECT
 public:
@@ -41,6 +42,13 @@ public:
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
 
 	QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
+
+	const QString& imageProviderId() const
+	{
+		return m_imageProviderId;
+	}
+
+	QImage requestImage( const QString& id, QSize *size, const QSize &requestedSize ) override;
 
 	void updateComputerScreenSize();
 
@@ -82,6 +90,7 @@ private:
 
 	VeyonMaster* m_master;
 
+	QString m_imageProviderId{ QStringLiteral("computers") };
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;
 	QImage m_iconDemoMode;
