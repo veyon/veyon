@@ -22,20 +22,20 @@
  *
  */
 
-#include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
+#include "ComputerManager.h"
 #include "ComputerMonitoringItem.h"
 #include "ComputerMonitoringModel.h"
 #include "FeatureManager.h"
-#include "VncConnection.h"
+#include "MainWindow.h"
+#include "MonitoringMode.h"
+#include "PluginManager.h"
+#include "UserConfig.h"
 #include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
-#include "MainWindow.h"
-#include "ComputerManager.h"
-#include "MonitoringMode.h"
-#include "UserConfig.h"
-#include "PluginManager.h"
+#include "VeyonMaster.h"
+#include "VncConnection.h"
 
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
