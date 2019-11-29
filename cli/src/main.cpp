@@ -26,9 +26,8 @@
 
 #include <openssl/crypto.h>
 
-#include "CommandLineIO.h"
-#include "CommandLinePluginInterface.h"
 #include "Logger.h"
+#include "PluginsCommands.h"
 #include "PluginManager.h"
 
 
@@ -80,6 +79,7 @@ int main( int argc, char **argv )
 	}
 
 	auto core = new VeyonCore( app, VeyonCore::Component::CLI, QStringLiteral("CLI") );
+	core->pluginManager().registerExtraPluginInterface( new PluginsCommands( core ) );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 	const auto pluginObjects = core->pluginManager().pluginObjects();

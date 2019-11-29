@@ -1,7 +1,10 @@
 INCLUDE(BuildApplication)
 INCLUDE(WindowsBuildHelpers)
 
-SET(cli_SOURCES src/main.cpp)
+SET(cli_SOURCES
+	src/main.cpp
+	src/PluginsCommands.cpp
+)
 
 BUILD_APPLICATION(veyon-cli ${cli_SOURCES})
 
