@@ -480,8 +480,8 @@ void AuthKeysPlugin::printAuthKeyTable()
 	AuthKeysTableModel tableModel( m_manager );
 	tableModel.reload();
 
-	CommandLineIO::TableHeader tableHeader( { tr("NAME"), tr("TYPE"), tr("PAIR ID"), tr("ACCESS GROUP") } );
-	CommandLineIO::TableRows tableRows;
+	TableHeader tableHeader( { tr("NAME"), tr("TYPE"), tr("PAIR ID"), tr("ACCESS GROUP") } );
+	TableRows tableRows;
 
 	tableRows.reserve( tableModel.rowCount() );
 
@@ -493,7 +493,7 @@ void AuthKeysPlugin::printAuthKeyTable()
 							authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnAccessGroup ) } );
 	}
 
-	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );
+	printTable( Table( tableHeader, tableRows ) );
 }
 
 
