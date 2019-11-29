@@ -45,7 +45,7 @@ SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Open source computer monitoring and classr
   * Teaching material: distribute and open documents, images and videos easily
   * Administration: power on/off and reboot computers remotely")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins, qml-module-qtquick-controls2")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins, qml-module-qtquick2, qml-module-qtquick-dialogs, qml-module-qtquick-layouts, qml-module-qtqml-models2, qml-module-qtquick-controls2, qml-module-qtquick-window2")
 SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
 
