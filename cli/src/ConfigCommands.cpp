@@ -1,5 +1,5 @@
 /*
- * ConfigCommandLinePlugin.cpp - implementation of ConfigCommandLinePlugin class
+ * ConfigCommands.cpp - implementation of ConfigCommands class
  *
  * Copyright (c) 2017-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -29,12 +29,12 @@
 
 #include "CommandLineIO.h"
 #include "Configuration/JsonStore.h"
-#include "ConfigCommandLinePlugin.h"
+#include "ConfigCommands.h"
 #include "ConfigurationManager.h"
 #include "CryptoCore.h"
 
 
-ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
+ConfigCommands::ConfigCommands( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
 { QStringLiteral("clear"), tr( "Clear system-wide Veyon configuration" ) },
@@ -51,21 +51,21 @@ ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
 
 
 
-QStringList ConfigCommandLinePlugin::commands() const
+QStringList ConfigCommands::commands() const
 {
 	return m_commands.keys();
 }
 
 
 
-QString ConfigCommandLinePlugin::commandHelp( const QString& command ) const
+QString ConfigCommands::commandHelp( const QString& command ) const
 {
 	return m_commands.value( command );
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_clear( const QStringList& arguments )
 {
 	Q_UNUSED(arguments);
 
@@ -79,7 +79,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( con
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_list( const QStringList& arguments )
 {
 	auto listMode = ListMode::Values;
 
@@ -99,7 +99,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( cons
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_import( const QStringList& arguments )
 {
 	QString fileName = arguments.value( 0 );
 
@@ -123,7 +123,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( co
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_export( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_export( const QStringList& arguments )
 {
 	QString fileName = arguments.value( 0 );
 
@@ -151,7 +151,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_export( co
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_get( const QStringList& arguments )
 {
 	QString key = arguments.value( 0 );
 
@@ -181,7 +181,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_set( const QStringList& arguments )
 {
 	auto key = arguments.value( 0 );
 	auto value = arguments.value( 1 );
@@ -239,7 +239,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_unset( const QStringList& arguments )
 {
 	QString key = arguments.value( 0 );
 
@@ -264,7 +264,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( con
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_upgrade( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_upgrade( const QStringList& arguments )
 {
 	Q_UNUSED(arguments);
 
@@ -274,7 +274,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_upgrade( c
 
 
 
-void ConfigCommandLinePlugin::listConfiguration( ListMode listMode ) const
+void ConfigCommands::listConfiguration( ListMode listMode ) const
 {
 	QTextStream stdoutStream( stdout );
 
@@ -308,7 +308,7 @@ void ConfigCommandLinePlugin::listConfiguration( ListMode listMode ) const
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguration()
+CommandLinePluginInterface::RunResult ConfigCommands::applyConfiguration()
 {
 	ConfigurationManager configurationManager;
 
@@ -323,7 +323,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 
 
 
-QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& value )
+QString ConfigCommands::printableConfigurationValue( const QVariant& value )
 {
 	if( value.type() == QVariant::String ||
 		value.type() == QVariant::Uuid ||
@@ -355,7 +355,7 @@ QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& va
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::operationError( const QString& message )
+CommandLinePluginInterface::RunResult ConfigCommands::operationError( const QString& message )
 {
 	CommandLineIO::error( message );
 
