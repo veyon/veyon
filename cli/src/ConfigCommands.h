@@ -1,5 +1,5 @@
 /*
- * ConfigCommandLinePlugin.h - declaration of ConfigCommandLinePlugin class
+ * ConfigCommands.h - declaration of ConfigCommands class
  *
  * Copyright (c) 2017-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -27,14 +27,13 @@
 #include "CommandLinePluginInterface.h"
 #include "VeyonConfiguration.h"
 
-class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
+class ConfigCommands : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ConfigCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	explicit ConfigCommandLinePlugin( QObject* parent = nullptr );
-	~ConfigCommandLinePlugin() override = default;
+	explicit ConfigCommands( QObject* parent = nullptr );
+	~ConfigCommands() override = default;
 
 	Plugin::Uid uid() const override
 	{

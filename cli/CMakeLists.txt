@@ -3,6 +3,7 @@ INCLUDE(WindowsBuildHelpers)
 
 SET(cli_SOURCES
 	src/main.cpp
+	src/ConfigCommands.cpp
 	src/PluginsCommands.cpp
 )
 
