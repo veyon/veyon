@@ -159,8 +159,19 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initAuthentication()
 {
-	return VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() &&
-			VeyonCore::authenticationManager().configuredPlugin()->checkCredentials();
+	if( VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() == false )
+	{
+		vCritical() << "failed to initialize credentials";
+		return false;
+	}
+
+	if( VeyonCore::authenticationManager().configuredPlugin()->checkCredentials() == false )
+	{
+		vCritical() << "failed to check credentials";
+		return false;
+	}
+
+	return true;
 }
 
 
