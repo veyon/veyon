@@ -5,7 +5,9 @@ import QtQuick.Layouts 1.0
 
 Dialog {
 	title: qsTr("Send text message")
-	standardButtons: StandardButton.Ok | StandardButton.Cancel
+	x: (parent.width - width) / 2
+	y: (parent.height - height) / 2
+	standardButtons: Dialog.Ok | Dialog.Cancel
 	visible: true
 
 	onAccepted: {
