@@ -1,6 +1,6 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.10
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
 
 Repeater {
 	model: [ "#ff0000", "#00aa00", "#0000ff", "#ffaa00", "#00aaff"]
