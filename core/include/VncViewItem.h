@@ -27,8 +27,9 @@
 #include <QQuickPaintedItem>
 
 #include "ComputerControlInterface.h"
+#include "VncView.h"
 
-class VEYON_CORE_EXPORT VncViewItem : public QQuickItem
+class VEYON_CORE_EXPORT VncViewItem : public QQuickItem, public VncView
 {
 	Q_OBJECT
 public:
@@ -36,6 +37,13 @@ public:
 	~VncViewItem() override;
 
 	QSGNode* updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData* updatePaintNodeData ) override;
+
+protected:
+	virtual void updateView( int x, int y, int w, int h ) override;
+	virtual QSize viewSize() const override;
+	virtual void setViewCursor( const QCursor& cursor ) override;
+
+	bool event( QEvent* event ) override;
 
 private:
 	ComputerControlInterface::Pointer m_computerControlInterface;
