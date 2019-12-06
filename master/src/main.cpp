@@ -22,6 +22,7 @@
  *
  */
 
+#include <QApplication>
 #include <QGuiApplication>
 #include <QSplashScreen>
 
@@ -35,9 +36,11 @@ int main( int argc, char** argv )
 {
 	VeyonCore::setupApplicationParameters();
 
-	QGuiApplication app( argc, argv );
+	const auto classicUi = VeyonConfiguration().classicUserInterface();
 
-	VeyonCore core( &app, VeyonCore::Component::Master, QStringLiteral("Master") );
+	QGuiApplication* app = classicUi ? new QApplication( argc, argv ) : new QGuiApplication( argc, argv );
+
+	VeyonCore core( app, VeyonCore::Component::Master, QStringLiteral("Master") );
 
 #ifdef VEYON_DEBUG
 	if( qEnvironmentVariableIsSet( "VEYON_MASTER_CREATE_DOC_FIGURES") )
@@ -49,7 +52,7 @@ int main( int argc, char** argv )
 
 	QSplashScreen* splashScreen = nullptr;
 
-	if( core.config().classicUserInterface() )
+	if( classicUi )
 	{
 		splashScreen = new QSplashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
 		splashScreen->show();
