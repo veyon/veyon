@@ -21,21 +21,29 @@
  *  USA.
  */
 
+#include "QmlCore.h"
 #include "RemoteAccessPage.h"
+#include "Screenshot.h"
 #include "VncViewItem.h"
 
 
-RemoteAccessPage::RemoteAccessPage( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly ) :
-	QObject( nullptr ),
+RemoteAccessPage::RemoteAccessPage( const ComputerControlInterface::Pointer& computerControlInterface,
+									bool viewOnly,
+									QQuickItem* parent ) :
+	QObject( parent ),
 	m_computerControlInterface( computerControlInterface ),
 	m_view( new VncViewItem( m_computerControlInterface ) )
 {
+	m_view->setViewOnly( viewOnly );
+
+	VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"), parent, this );
 }
 
 
 
 RemoteAccessPage::~RemoteAccessPage()
 {
+	delete m_view;
 }
 
 

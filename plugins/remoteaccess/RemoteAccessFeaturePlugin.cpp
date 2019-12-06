@@ -71,12 +71,16 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	if( feature.uid() == m_remoteViewFeature.uid() &&
+		feature.uid() == m_remoteControlFeature.uid() )
+	{
+		return false;
+	}
+
 	// determine which computer to access and ask if neccessary
 	ComputerControlInterface::Pointer remoteAccessComputer;
 
-	if( ( feature.uid() == m_remoteViewFeature.uid() ||
-		  feature.uid() == m_remoteControlFeature.uid() ) &&
-		computerControlInterfaces.count() != 1 )
+	if( computerControlInterfaces.count() != 1 )
 	{
 		QString hostName = QInputDialog::getText( master.mainWindow(),
 												  tr( "Remote access" ),
@@ -91,7 +95,7 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		customComputer.setName( hostName );
 		remoteAccessComputer = ComputerControlInterface::Pointer::create( customComputer );
 	}
-	else if( computerControlInterfaces.count() >= 1 )
+	else
 	{
 		remoteAccessComputer = computerControlInterfaces.first();
 	}
@@ -101,34 +105,18 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		return false;
 	}
 
-	if( master.appWindow() )
-	{
-		if( feature.uid() == m_remoteViewFeature.uid() )
-		{
-			auto page = new RemoteAccessPage( remoteAccessComputer );
+	const auto viewOnly = feature.uid() == m_remoteViewFeature.uid();
 
-			VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"),
-											 master.appContainer(),
-											 page );
-			return true;
-		}
+	if( master.appContainer() )
+	{
+		new RemoteAccessPage( remoteAccessComputer, viewOnly, master.appContainer() );
+	}
+	else
+	{
+		new RemoteAccessWidget( remoteAccessComputer, viewOnly );
 	}
 
-
-	if( feature.uid() == m_remoteViewFeature.uid() )
-	{
-		new RemoteAccessWidget( remoteAccessComputer, true );
-
-		return true;
-	}
-	else if( feature.uid() == m_remoteControlFeature.uid() )
-	{
-		new RemoteAccessWidget( remoteAccessComputer, false );
-
-		return true;
-	}
-
-	return false;
+	return true;
 }
 
 

@@ -36,7 +36,9 @@ class RemoteAccessPage : public QObject
 	Q_PROPERTY(QString computerName READ computerName CONSTANT)
 	Q_PROPERTY(QQuickItem* view READ view CONSTANT)
 public:
-	explicit RemoteAccessPage( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly = false );
+	explicit RemoteAccessPage( const ComputerControlInterface::Pointer& computerControlInterface,
+							   bool viewOnly,
+							   QQuickItem* parent );
 	~RemoteAccessPage() override;
 
 	QString computerName() const
