@@ -59,6 +59,11 @@ public:
 	explicit ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
+	VeyonConnection* connection() const
+	{
+		return m_connection;
+	}
+
 	void start( QSize scaledScreenSize = {}, UpdateMode updateMode = UpdateMode::Monitoring, AuthenticationProxy* authenticationProxy = nullptr );
 	void stop();
 
