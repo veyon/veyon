@@ -26,7 +26,7 @@
 
 #include <QObject>
 
-class VncView;
+class VncViewWidget;
 
 class DemoClient : public QObject
 {
@@ -40,6 +40,6 @@ private:
 	void resizeToplevelWidget();
 
 	QWidget* m_toplevel;
-	VncView* m_vncView;
+	VncViewWidget* m_vncView;
 
 } ;

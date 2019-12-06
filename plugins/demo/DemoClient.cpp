@@ -31,7 +31,7 @@
 #include "VeyonConfiguration.h"
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
-#include "VncView.h"
+#include "VncViewWidget.h"
 
 
 DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) :
@@ -57,7 +57,7 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 		m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 	}
 
-	m_vncView = new VncView( host, VeyonCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
+	m_vncView = new VncViewWidget( host, VeyonCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
 
 	auto toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setMargin( 0 );
@@ -67,7 +67,7 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 	m_toplevel->setLayout( toplevelLayout );
 
 	connect( m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed );
-	connect( m_vncView, &VncView::sizeHintChanged, this, &DemoClient::resizeToplevelWidget );
+	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &DemoClient::resizeToplevelWidget );
 
 	m_toplevel->move( 0, 0 );
 	if( fullscreen )

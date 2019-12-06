@@ -1,5 +1,5 @@
 /*
- * VncView.h - VNC viewer widget
+ * VncView.h - abstract base for all VNC views
  *
  * Copyright (c) 2006-2019 Tobias Junghans <tobydox@veyon.io>
  *
@@ -25,21 +25,20 @@
 #pragma once
 
 #include <QEvent>
-#include <QPointer>
-#include <QTimer>
-#include <QWidget>
+#include <QPixmap>
 
 #include "KeyboardShortcutTrapper.h"
 #include "VncConnection.h"
 
-class ProgressWidget;
-class RemoteControlWidget;
+class QHoverEvent;
+class QKeyEvent;
+class QMouseEvent;
+class QWheelEvent;
 class KeyboardShortcutTrapper;
-class VeyonConnection;
+class VncConnection;
 
-class VEYON_CORE_EXPORT VncView : public QWidget
+class VEYON_CORE_EXPORT VncView
 {
-	Q_OBJECT
 public:
 	enum Modes
 	{
@@ -62,17 +61,17 @@ public:
 		ShortcutCount
 	} ;
 
-	VncView( const QString &host, int port, QWidget *parent, Mode mode );
-	~VncView() override;
+	VncView( VncConnection* connection );
+	virtual ~VncView();
 
-	bool isViewOnly() const
+	VncConnection* connection() const
 	{
-		return m_viewOnly;
+		return m_connection;
 	}
 
-	VncConnection* vncConnection()
+	bool viewOnly() const
 	{
-		return m_vncConn;
+		return m_viewOnly;
 	}
 
 	QSize scaledSize() const;
@@ -80,73 +79,82 @@ public:
 	{
 		return m_framebufferSize;
 	}
-	QSize sizeHint() const override;
 
-
-public slots:
-	void setViewOnly( bool viewOnly );
+	virtual void setViewOnly( bool viewOnly );
 	void sendShortcut( Shortcut shortcut );
 
+protected:
+	template<class SubClass>
+	void connectUpdateFunctions( SubClass* object )
+	{
+		QObject::connect( connection(), &VncConnection::imageUpdated, object,
+						  [this](int x, int y, int w, int h) { updateImage( x, y, w, h ); } );
+		QObject::connect( connection(), &VncConnection::framebufferSizeChanged, object,
+						  [this]( int w, int h ) { updateFramebufferSize( w, h ); } );
 
-signals:
-	void mouseAtBorder();
-	void keyEvent( unsigned int, bool );
-	void startConnection();
-	void connectionEstablished();
-	void sizeHintChanged();
+		QObject::connect( connection(), &VncConnection::cursorPosChanged, object,
+						  [this]( int x, int y ) { updateCursorPos( x, y ); } );
+		QObject::connect( connection(), &VncConnection::cursorShapeUpdated, object,
+						  [this]( const QPixmap& cursorShape, int xh, int yh ) { updateCursorShape( cursorShape, xh, yh ); } );
+	}
 
+	virtual void updateView( int x, int y, int w, int h ) = 0;
+	virtual QSize viewSize() const = 0;
+	virtual void setViewCursor( const QCursor& cursor ) = 0;
 
-private:
-	void handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut );
-	void updateCursorPos( int x, int y );
-	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
-	void updateImage( int x, int y, int w, int h );
-	void updateFramebufferSize( int w, int h );
-	void updateConnectionState();
+	virtual void updateCursorPos( int x, int y );
+	virtual void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
+	virtual void updateFramebufferSize( int w, int h );
+	virtual void updateImage( int x, int y, int w, int h );
 
-	bool eventFilter( QObject* obj, QEvent* event ) override;
-	bool event( QEvent* event ) override;
-	void focusInEvent( QFocusEvent* event ) override;
-	void focusOutEvent( QFocusEvent* event ) override;
-	void paintEvent( QPaintEvent* event ) override;
-	void resizeEvent( QResizeEvent* event ) override;
-
-	void keyEventHandler( QKeyEvent* event );
-	void mouseEventHandler( QMouseEvent* event );
-	void wheelEventHandler( QWheelEvent* event );
 	void unpressModifiers();
 
+	void handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut );
+	bool handleEvent( QEvent* handleEvent );
+
+	virtual void hoverEventHandler( QHoverEvent* event );
+	virtual void keyEventHandler( QKeyEvent* event );
+	virtual void mouseEventHandler( QMouseEvent* event );
+	virtual void wheelEventHandler( QWheelEvent* event );
+
 	bool isScaledView() const;
+
+	auto cursorShape() const
+	{
+		return m_cursorShape;
+	}
+
+	auto cursorPos() const
+	{
+		return m_cursorPos;
+	}
+
+	auto cursorHot() const
+	{
+		return m_cursorHot;
+	}
+
 	qreal scaleFactor() const;
 	QPoint mapToFramebuffer( QPoint pos );
 	QRect mapFromFramebuffer( QRect rect );
 
 	void updateLocalCursor();
+
+private:
+	void updatePaintedCursor();
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
 
-	VncConnection* m_vncConn;
-	VeyonConnection* m_veyonConnection;
-
-	Mode m_mode;
+	VncConnection* m_connection;
 	QPixmap m_cursorShape;
-	int m_cursorX;
-	int m_cursorY;
+	QPoint m_cursorPos;
+	QPoint m_cursorHot;
 	QSize m_framebufferSize;
-	int m_cursorHotX;
-	int m_cursorHotY;
 	bool m_viewOnly;
-	bool m_viewOnlyFocus;
-	bool m_initDone;
 
 	int m_buttonMask;
 	QMap<unsigned int, bool> m_mods;
 
-	ProgressWidget* m_establishingConnectionWidget;
-
 	KeyboardShortcutTrapper* m_keyboardShortcutTrapper;
-
-	static constexpr int MouseBorderSignalDelay = 500;
-	QTimer m_mouseBorderSignalTimer;
 
 } ;

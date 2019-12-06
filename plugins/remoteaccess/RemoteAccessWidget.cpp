@@ -30,7 +30,7 @@
 #include "rfb/keysym.h"
 
 #include "RemoteAccessWidget.h"
-#include "VncView.h"
+#include "VncViewWidget.h"
 #include "VeyonConnection.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
@@ -98,8 +98,8 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->addWidget( m_fullScreenButton );
 	layout->addWidget( m_exitButton );
 	layout->addSpacing( 5 );
-	connect( vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
-	connect( vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
+	connect( vncView, &VncViewWidget::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
+	connect( vncView, &VncViewWidget::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
 	setFixedHeight( m_exitButton->height() );
 
@@ -240,8 +240,7 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly ) :
 	QWidget( nullptr ),
 	m_computerControlInterface( computerControlInterface ),
-	m_vncView( new VncView( computerControlInterface->computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
-	m_connection( new VeyonConnection( m_vncView->vncConnection() ) ),
+	m_vncView( new VncViewWidget( computerControlInterface->computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, viewOnly ) )
 {
 	setWindowTitle( tr( "%1 - %2 Remote Access" ).arg( computerControlInterface->computer().name(),
@@ -250,9 +249,9 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
-	connect( m_vncView, &VncView::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
-	connect( m_vncView, &VncView::keyEvent, this, &RemoteAccessWidget::checkKeyEvent );
-	connect( m_vncView, &VncView::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
+	m_vncView->installEventFilter( this );
+	connect( m_vncView, &VncViewWidget::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
+	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 
 	showMaximized();
 	VeyonCore::platform().coreFunctions().raiseWindow( this );
@@ -268,8 +267,22 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 
 RemoteAccessWidget::~RemoteAccessWidget()
 {
-	delete m_connection;
 	delete m_vncView;
+}
+
+
+
+bool RemoteAccessWidget::eventFilter( QObject* obj, QEvent* event )
+{
+	if( event->type() == QEvent::KeyRelease &&
+		dynamic_cast<QKeyEvent *>( event )->key() == Qt::Key_Escape &&
+		m_vncView->connection()->isConnected() == false )
+	{
+		close();
+		return true;
+	}
+
+	return QWidget::eventFilter( obj, event );
 }
 
 
@@ -303,16 +316,6 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 	m_toolBar->setFixedSize( width(), m_toolBar->height() );
 
 	QWidget::resizeEvent( event );
-}
-
-
-
-void RemoteAccessWidget::checkKeyEvent( unsigned int key, bool pressed )
-{
-	if( pressed && key == XK_Escape && !m_connection->isConnected() )
-	{
-		close();
-	}
 }
 
 
