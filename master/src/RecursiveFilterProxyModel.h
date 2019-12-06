@@ -24,11 +24,23 @@
 
 #pragma once
 
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+
+#include <QSortFilterProxyModel>
+
+using RecursiveFilterProxyModel = QSortFilterProxyModel;
+
+#else
+
 #include "krecursivefilterproxymodel.h"
 
 class RecursiveFilterProxyModel : public KRecursiveFilterProxyModel
 {
 public:
 	explicit RecursiveFilterProxyModel( QObject* parent );
-
+	void setRecursiveFilteringEnabled( bool ) { }
 };
+
+#endif

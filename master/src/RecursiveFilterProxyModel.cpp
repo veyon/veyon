@@ -24,6 +24,8 @@
 
 #include "RecursiveFilterProxyModel.h"
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
+
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
 #endif
@@ -35,3 +37,5 @@ RecursiveFilterProxyModel::RecursiveFilterProxyModel( QObject* parent ) :
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 }
+
+#endif
