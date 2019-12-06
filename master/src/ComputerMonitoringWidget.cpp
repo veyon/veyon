@@ -37,7 +37,8 @@
 
 
 ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
-	FlexibleListView( parent )
+	FlexibleListView( parent ),
+	m_featureMenu( new QMenu( this ) )
 {
 	setContextMenuPolicy( Qt::CustomContextMenu );
 	setAcceptDrops( true );

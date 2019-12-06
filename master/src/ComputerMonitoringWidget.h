@@ -63,7 +63,7 @@ private:
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
 
-	QMenu* m_featureMenu{nullptr};
+	QMenu* m_featureMenu{};
 
 signals:
 	void computerScreenSizeAdjusted( int size );
