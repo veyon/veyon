@@ -321,8 +321,6 @@ void FileTransferPlugin::startFileTransfer( const QStringList& files, Configurat
 		}
 	}
 
-	qCritical() << relativeFiles;
-
 	m_fileTransferController->setFiles( relativeFiles );
 	m_fileTransferController->setInterfaces( interfaces );
 }
