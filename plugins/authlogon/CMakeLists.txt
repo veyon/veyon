@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(authlogon
+build_plugin(authlogon
 	AuthLogonPlugin.cpp
 	AuthLogonPlugin.h
 	AuthLogonDialog.cpp

@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(powercontrol
+build_plugin(powercontrol
 	PowerControlFeaturePlugin.cpp
 	PowerControlFeaturePlugin.h
 	PowerDownTimeInputDialog.cpp

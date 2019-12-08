@@ -1,20 +1,20 @@
-INCLUDE(BuildApplication)
-INCLUDE(WindowsBuildHelpers)
+include(BuildApplication)
+include(WindowsBuildHelpers)
 
-SET(cli_SOURCES
+set(cli_SOURCES
 	src/main.cpp
 	src/ConfigCommands.cpp
 	src/PluginsCommands.cpp
 )
 
-BUILD_APPLICATION(veyon-cli ${cli_SOURCES})
+build_application(veyon-cli ${cli_SOURCES})
 
-ADD_WINDOWS_RESOURCE(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
-MAKE_CONSOLE_APP(veyon-cli)
+add_windows_resource(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
+make_console_app(veyon-cli)
 
-IF(VEYON_BUILD_WIN32)
-BUILD_APPLICATION(veyon-wcli ${cli_SOURCES})
+if(VEYON_BUILD_WIN32)
+build_application(veyon-wcli ${cli_SOURCES})
 
-ADD_WINDOWS_RESOURCE(veyon-wcli ${CMAKE_CURRENT_BINARY_DIR}/veyon-wcli.rc)
-MAKE_GRAPHICAL_APP(veyon-wcli)
-ENDIF()
+add_windows_resource(veyon-wcli ${CMAKE_CURRENT_BINARY_DIR}/veyon-wcli.rc)
+make_graphical_app(veyon-wcli)
+endif()

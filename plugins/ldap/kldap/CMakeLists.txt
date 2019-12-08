@@ -1,26 +1,26 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
 # libraries and functions for LDAP support
-FIND_PACKAGE(Ldap REQUIRED)
-FIND_PACKAGE(Sasl2 REQUIRED)
+find_package(Ldap REQUIRED)
+find_package(Sasl2 REQUIRED)
 
-SET(CMAKE_REQUIRED_INCLUDES lber.h ldap.h)
-SET(CMAKE_REQUIRED_LIBRARIES ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES} ${OPENSSL_LIBRARIES})
-CHECK_FUNCTION_EXISTS(ldap_start_tls_s HAVE_LDAP_START_TLS_S)
-CHECK_FUNCTION_EXISTS(ldap_initialize HAVE_LDAP_INITIALIZE)
-CHECK_FUNCTION_EXISTS(ber_memfree HAVE_BER_MEMFREE)
-CHECK_FUNCTION_EXISTS(ldap_unbind_ext HAVE_LDAP_UNBIND_EXT)
-CHECK_FUNCTION_EXISTS(ldap_extended_operation HAVE_LDAP_EXTENDED_OPERATION)
-CHECK_FUNCTION_EXISTS(ldap_extended_operation_s HAVE_LDAP_EXTENDED_OPERATION_S)
+set(CMAKE_REQUIRED_INCLUDES lber.h ldap.h)
+set(CMAKE_REQUIRED_LIBRARIES ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES} ${OPENSSL_LIBRARIES})
+check_function_exists(ldap_start_tls_s HAVE_LDAP_START_TLS_S)
+check_function_exists(ldap_initialize HAVE_LDAP_INITIALIZE)
+check_function_exists(ber_memfree HAVE_BER_MEMFREE)
+check_function_exists(ldap_unbind_ext HAVE_LDAP_UNBIND_EXT)
+check_function_exists(ldap_extended_operation HAVE_LDAP_EXTENDED_OPERATION)
+check_function_exists(ldap_extended_operation_s HAVE_LDAP_EXTENDED_OPERATION_S)
 CHECK_SYMBOL_EXISTS(ldap_extended_operation ldap.h HAVE_LDAP_EXTENDED_OPERATION_PROTOTYPE)
 CHECK_SYMBOL_EXISTS(ldap_extended_operation_s ldap.h HAVE_LDAP_EXTENDED_OPERATION_S_PROTOTYPE)
-CHECK_INCLUDE_FILES(ldap.h HAVE_LDAP_H)
-SET(LDAP_FOUND TRUE)
+check_include_files(ldap.h HAVE_LDAP_H)
+set(LDAP_FOUND TRUE)
 
-SET(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap/src)
-CONFIGURE_FILE(${kldap_SOURCE_DIR}/kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
+set(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap/src)
+configure_file(${kldap_SOURCE_DIR}/kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
 
-SET(kldap_SOURCES
+set(kldap_SOURCES
 	${kldap_SOURCE_DIR}/ber.cpp
 	${kldap_SOURCE_DIR}/ldif.cpp
 	${kldap_SOURCE_DIR}/ldapurl.cpp
@@ -33,13 +33,13 @@ SET(kldap_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/KLdapIntegration.cpp
 )
 
-ADD_LIBRARY(kldap-light SHARED ${kldap_SOURCES})
-TARGET_COMPILE_OPTIONS(kldap-light PRIVATE ${VEYON_COMPILE_OPTIONS})
-TARGET_LINK_LIBRARIES(kldap-light Qt5::Core ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES})
-TARGET_INCLUDE_DIRECTORIES(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
-TARGET_INCLUDE_DIRECTORIES(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
-SET_DEFAULT_TARGET_PROPERTIES(kldap-light)
-SET_TARGET_PROPERTIES(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
-INSTALL(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
-COTIRE_VEYON(kldap-light)
+add_library(kldap-light SHARED ${kldap_SOURCES})
+target_compile_options(kldap-light PRIVATE ${VEYON_COMPILE_OPTIONS})
+target_link_libraries(kldap-light Qt5::Core ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES})
+target_include_directories(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
+target_include_directories(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+set_default_target_properties(kldap-light)
+set_target_properties(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
+cotire_veyon(kldap-light)
 

@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(servicecontrol
+build_plugin(servicecontrol
 	ServiceControlPlugin.cpp
 	ServiceControlPlugin.h
 )

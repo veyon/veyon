@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(authkeys
+build_plugin(authkeys
 	AuthKeysPlugin.cpp
 	AuthKeysConfigurationDialog.cpp
 	AuthKeysConfigurationDialog.ui

@@ -9,7 +9,7 @@ function(androiddeployqt QTANDROID_EXPORTED_TARGET ANDROID_ADDITIONAL_FIND_ROOT_
     file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${QTANDROID_EXPORTED_TARGET}-deployment.json.in2"
                   INPUT  "${CMAKE_CURRENT_BINARY_DIR}/${QTANDROID_EXPORTED_TARGET}-deployment.json.in1")
 
-    if (NOT TARGET create-apk)
+    if(NOT TARGET create-apk)
         add_custom_target(create-apk)
     endif()
 

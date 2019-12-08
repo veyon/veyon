@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(usersessioncontrol
+build_plugin(usersessioncontrol
 	UserSessionControlPlugin.cpp
 	UserSessionControlPlugin.h
 	UserLoginDialog.cpp

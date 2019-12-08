@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(desktopservices
+build_plugin(desktopservices
 	DesktopServiceObject.cpp
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesConfigurationPage.ui

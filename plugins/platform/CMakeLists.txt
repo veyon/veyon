@@ -1,7 +1,7 @@
-IF(VEYON_BUILD_WIN32)
-ADD_SUBDIRECTORY(windows)
-ENDIF()
+if(VEYON_BUILD_WIN32)
+add_subdirectory(windows)
+endif()
 
-IF(VEYON_BUILD_LINUX)
-ADD_SUBDIRECTORY(linux)
-ENDIF()
+if(VEYON_BUILD_LINUX)
+add_subdirectory(linux)
+endif()

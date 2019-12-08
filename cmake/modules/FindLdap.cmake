@@ -63,10 +63,10 @@
 find_path(Ldap_INCLUDE_DIRS NAMES ldap.h)
 
 if(APPLE)
-   find_library(Ldap_LIBRARIES NAMES LDAP
-      PATHS
-      /System/Library/Frameworks
-      /Library/Frameworks
+   find_path(Ldap_LIBRARIES NAMES LDAP
+	  PATHS
+	  /System/Library/Frameworks
+	  /Library/Frameworks
    )
 else()
    find_library(Ldap_LIBRARIES NAMES ldap)
@@ -93,9 +93,9 @@ endif()
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(Ldap
-    FOUND_VAR Ldap_FOUND
-    REQUIRED_VARS Ldap_LIBRARIES Ldap_INCLUDE_DIRS
-    VERSION_VAR Ldap_VERSION
+	FOUND_VAR Ldap_FOUND
+	REQUIRED_VARS Ldap_LIBRARIES Ldap_INCLUDE_DIRS
+	VERSION_VAR Ldap_VERSION
 )
 
 if(Ldap_FOUND AND NOT TARGET Ldap::Ldap)

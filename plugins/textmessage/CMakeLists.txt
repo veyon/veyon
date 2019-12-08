@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(textmessage
+build_plugin(textmessage
 	TextMessageFeaturePlugin.cpp
 	TextMessageDialog.cpp
 	TextMessageDialog.ui

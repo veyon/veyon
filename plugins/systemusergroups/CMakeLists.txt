@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(systemusergroups
+build_plugin(systemusergroups
 	SystemUserGroupsPlugin.cpp
 	SystemUserGroupsPlugin.h
 )

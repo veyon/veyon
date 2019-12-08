@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(remoteaccess
+build_plugin(remoteaccess
 	RemoteAccessFeaturePlugin.h
 	RemoteAccessFeaturePlugin.cpp
 	RemoteAccessPage.h

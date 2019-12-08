@@ -1,10 +1,10 @@
-ADD_SUBDIRECTORY(vnchooks)
+add_subdirectory(vnchooks)
 
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-ADD_DEFINITIONS(-D_WIN32_WINNT=0x0602)
+add_definitions(-D_WIN32_WINNT=0x0602)
 
-SET(ultravnc_CXX_SOURCES
+set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vistahook.cpp
@@ -60,12 +60,12 @@ SET(ultravnc_CXX_SOURCES
 	vncntlm.cpp
 	)
 
-SET(ultravnc_C_SOURCES
+set(ultravnc_C_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/d3des.c
 	${ultravnc_DIR}/winvnc/winvnc/vncauth.c
 	)
 
-BUILD_PLUGIN(builtin-ultravnc-server
+build_plugin(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp
 	UltraVncConfigurationWidget.cpp
@@ -78,8 +78,8 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	UltraVncConfiguration.h
 )
 
-TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
-TARGET_INCLUDE_DIRECTORIES(builtin-ultravnc-server PRIVATE
+target_link_libraries(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
+target_include_directories(builtin-ultravnc-server PRIVATE
 	${libvncserver_DIR}
 	${ultravnc_DIR}
 	${ultravnc_DIR}/winvnc
@@ -87,13 +87,13 @@ TARGET_INCLUDE_DIRECTORIES(builtin-ultravnc-server PRIVATE
 	${ultravnc_DIR}/winvnc/winvnc
 	)
 
-TARGET_COMPILE_DEFINITIONS(builtin-ultravnc-server PRIVATE ULTRAVNC_VEYON_SUPPORT _INTERNALLIB)
+target_compile_definitions(builtin-ultravnc-server PRIVATE ULTRAVNC_VEYON_SUPPORT _INTERNALLIB)
 
-IF(VEYON_BUILD_WIN64)
-	TARGET_COMPILE_DEFINITIONS(builtin-ultravnc-server PRIVATE _X64)
-ENDIF()
+if(VEYON_BUILD_WIN64)
+	target_compile_definitions(builtin-ultravnc-server PRIVATE _X64)
+endif()
 
-SET(ULTRAVNC_COMPILER_FLAGS "-Wno-comments -Wno-attributes -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-format-zero-length -Wno-sign-compare -fexceptions")
+set(ULTRAVNC_COMPILER_FLAGS "-Wno-comments -Wno-attributes -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-format-zero-length -Wno-sign-compare -fexceptions")
 
-SET_SOURCE_FILES_PROPERTIES(${ultravnc_C_SOURCES} PROPERTIES COMPILE_FLAGS "${ULTRAVNC_COMPILER_FLAGS}")
-SET_SOURCE_FILES_PROPERTIES(${ultravnc_CXX_SOURCES} PROPERTIES COMPILE_FLAGS "${ULTRAVNC_COMPILER_FLAGS} -Wno-terminate -Wno-conversion-null")
+set_source_files_properties(${ultravnc_C_SOURCES} PROPERTIES COMPILE_FLAGS "${ULTRAVNC_COMPILER_FLAGS}")
+set_source_files_properties(${ultravnc_CXX_SOURCES} PROPERTIES COMPILE_FLAGS "${ULTRAVNC_COMPILER_FLAGS} -Wno-terminate -Wno-conversion-null")

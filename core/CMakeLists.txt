@@ -1,17 +1,17 @@
-FILE(GLOB veyoncore_INCLUDES
+file(GLOB veyoncore_INCLUDES
 						${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 						${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h
 )
-FILE(GLOB veyoncore_SOURCES
+file(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
 )
 
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
-SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
+set(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
-SET(libvncclient_SOURCES
+set(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/cursor.c
 	${libvncserver_DIR}/libvncclient/listen.c
 	${libvncserver_DIR}/libvncclient/rfbproto.c
@@ -21,13 +21,13 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c)
 
-SET_SOURCE_FILES_PROPERTIES(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types")
+set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types")
 
-ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
+add_library(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
 
-SET_DEFAULT_TARGET_PROPERTIES(veyon-core)
+set_default_target_properties(veyon-core)
 
-TARGET_INCLUDE_DIRECTORIES(veyon-core PUBLIC
+target_include_directories(veyon-core PUBLIC
 	${CMAKE_BINARY_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -37,22 +37,22 @@ TARGET_INCLUDE_DIRECTORIES(veyon-core PUBLIC
 	${QCA_INCLUDE_DIR}
 )
 
-TARGET_INCLUDE_DIRECTORIES(veyon-core PRIVATE SYSTEM ${ZLIB_INCLUDE_DIR} ${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${LZO_INCLUDE_DIR})
+target_include_directories(veyon-core PRIVATE SYSTEM ${ZLIB_INCLUDE_DIR} ${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${LZO_INCLUDE_DIR})
 
-TARGET_COMPILE_OPTIONS(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS})
+target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS})
 
 # find Qt's translation directory
-IF(NOT VEYON_BUILD_WIN32)
-	GET_TARGET_PROPERTY(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
-	EXECUTE_PROCESS(COMMAND "${QT_QMAKE_EXECUTABLE}" -query QT_INSTALL_TRANSLATIONS
+if(NOT VEYON_BUILD_WIN32)
+	get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
+	execute_process(COMMAND "${QT_QMAKE_EXECUTABLE}" -query QT_INSTALL_TRANSLATIONS
 						OUTPUT_STRIP_TRAILING_WHITESPACE
 						OUTPUT_VARIABLE QT_TRANSLATIONS_DIR)
-	TARGET_COMPILE_DEFINITIONS(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
-ENDIF()
+	target_compile_definitions(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
+endif()
 
 
 
-TARGET_LINK_LIBRARIES(veyon-core
+target_link_libraries(veyon-core
 	Qt5::Concurrent
 	Qt5::Gui
 	Qt5::Network
@@ -68,17 +68,17 @@ TARGET_LINK_LIBRARIES(veyon-core
 	${OPENSSL_LIBRARIES}
 	)
 
-IF(VEYON_BUILD_WIN32)
+if(VEYON_BUILD_WIN32)
 	# add Windows Socket library required by libvncclient
-	TARGET_LINK_LIBRARIES(veyon-core -lws2_32)
-	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
-	INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
-ELSE()
-	INSTALL(TARGETS veyon-core LIBRARY DESTINATION ${VEYON_LIB_DIR})
-ENDIF(VEYON_BUILD_WIN32)
+	target_link_libraries(veyon-core -lws2_32)
+	set_target_properties(veyon-core PROPERTIES PREFIX "")
+	install(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
+else()
+	install(TARGETS veyon-core LIBRARY DESTINATION ${VEYON_LIB_DIR})
+endif()
 
-IF(VEYON_BUILD_ANDROID)
-	TARGET_LINK_LIBRARIES(veyon-core Qt5::AndroidExtras)
-ENDIF()
+if(VEYON_BUILD_ANDROID)
+	target_link_libraries(veyon-core Qt5::AndroidExtras)
+endif()
 
-COTIRE_VEYON(veyon-core)
+cotire_veyon(veyon-core)

@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(screenshot
+build_plugin(screenshot
 	ScreenshotFeaturePlugin.cpp
 	ScreenshotFeaturePlugin.h
 	screenshot.qrc

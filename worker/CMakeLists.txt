@@ -1,12 +1,12 @@
-INCLUDE(BuildApplication)
-INCLUDE(WindowsBuildHelpers)
+include(BuildApplication)
+include(WindowsBuildHelpers)
 
-FILE(GLOB worker_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
-FILE(GLOB worker_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB worker_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
+file(GLOB worker_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-BUILD_APPLICATION(veyon-worker ${worker_SOURCES} ${worker_INCLUDES})
+build_application(veyon-worker ${worker_SOURCES} ${worker_INCLUDES})
 
-ADD_WINDOWS_RESOURCE(veyon-worker)
-MAKE_GRAPHICAL_APP(veyon-worker)
+add_windows_resource(veyon-worker)
+make_graphical_app(veyon-worker)
 
-COTIRE_VEYON(veyon-worker)
+cotire_veyon(veyon-worker)

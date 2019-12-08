@@ -1,3 +1,3 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(shell ShellCommandLinePlugin.cpp ShellCommandLinePlugin.h)
+build_plugin(shell ShellCommandLinePlugin.cpp ShellCommandLinePlugin.h)

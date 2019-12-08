@@ -1,3 +1,3 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(screenlock ScreenLockFeaturePlugin.cpp ScreenLockFeaturePlugin.h screenlock.qrc)
+build_plugin(screenlock ScreenLockFeaturePlugin.cpp ScreenLockFeaturePlugin.h screenlock.qrc)

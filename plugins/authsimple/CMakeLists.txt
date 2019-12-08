@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(authsimple
+build_plugin(authsimple
 	AuthSimplePlugin.cpp
 	AuthSimplePlugin.h
 	AuthSimpleConfiguration.h

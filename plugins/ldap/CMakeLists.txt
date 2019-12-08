@@ -1,11 +1,11 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-ADD_SUBDIRECTORY(kldap)
-ADD_SUBDIRECTORY(common)
+add_subdirectory(kldap)
+add_subdirectory(common)
 
-BUILD_PLUGIN(ldap
+build_plugin(ldap
 	LdapPlugin.cpp
 	LdapPlugin.h
 )
 
-TARGET_LINK_LIBRARIES(ldap ldap-common)
+target_link_libraries(ldap ldap-common)

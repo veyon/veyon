@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(external-vnc-server
+build_plugin(external-vnc-server
 	ExternalVncServer.cpp
 	ExternalVncServerConfigurationWidget.cpp
 	ExternalVncServerConfigurationWidget.ui

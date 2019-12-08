@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(demo
+build_plugin(demo
 	DemoFeaturePlugin.cpp
 	DemoAuthentication.cpp
 	DemoConfigurationPage.cpp
@@ -20,4 +20,4 @@ BUILD_PLUGIN(demo
 	demo.qrc
 )
 
-TARGET_LINK_LIBRARIES(demo ${LZO_LIBRARIES})
+target_link_libraries(demo ${LZO_LIBRARIES})

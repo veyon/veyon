@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(filetransfer
+build_plugin(filetransfer
 	FileTransferPlugin.cpp
 	FileTransferPlugin.h
 	FileTransferController.cpp

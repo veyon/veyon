@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+include(BuildPlugin)
 
-BUILD_PLUGIN(builtindirectory
+build_plugin(builtindirectory
 	BuiltinDirectoryPlugin.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectoryConfigurationPage.ui
