@@ -424,6 +424,7 @@ void VncConnection::establishConnection()
 		m_client->HandleCursorPos = hookHandleCursorPos;
 		m_client->GotCursorShape = hookCursorShape;
 		m_client->GotXCutText = hookCutText;
+		m_client->connectTimeout = ConnectTimeout;
 		setClientData( VncConnectionTag, this );
 
 		emit connectionPrepared();
