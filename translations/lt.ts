@@ -642,7 +642,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Komandinės eilutės prieiga autentifikacijos raktų valdymui</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -1073,18 +1073,18 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet negalėjo autorizuotis tinkamai.</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>Trūksta tinklo objektų direktorijos įskiepio</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
@@ -1240,7 +1240,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation type="unfinished"/>
+        <translation>%1 prezentacija</translation>
     </message>
 </context>
 <context>
@@ -1251,15 +1251,15 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>Derinamieji</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>Pagrindinio kadro intervalas</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1267,7 +1267,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti daugiasluoksniavimą (eksperimentinis)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1275,15 +1275,15 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinimo intervalas</translation>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation>s</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Sulėtinti miniatūrų atnaujinimą, kol vyksta prezentacija</translation>
     </message>
 </context>
 <context>
@@ -1302,7 +1302,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>Pateikite demonstraciją transliuodami ekraną</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -1321,7 +1321,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation type="unfinished"/>
+        <translation>Darbalaukio prieigos dialogas</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
@@ -1344,11 +1344,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Programos ir tinklalapiai</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>Numatytosios programos</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1789,11 +1789,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikacijos raktai nenustatyti tinkamai šiame kompiuteryje</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikacijos testas</translation>
     </message>
 </context>
 <context>
@@ -1916,7 +1916,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: namingContexts arba defaultNamingContext</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1932,7 +1932,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: OU=Groups</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -1940,11 +1940,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: OU=Computers</translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -1960,7 +1960,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: hwAddress</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
@@ -2008,7 +2008,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"/>
+        <translation>Išskirtinis vardas (Samba/AD)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2020,56 +2020,57 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation type="unfinished"/>
+        <translation>Gaukite kompiuterio objektą pagal IP adresą</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko prisijungti prie LDAP</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko susieti su LDAP</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation type="unfinished"/>
+        <translation>Susiejimas su LDAP sėkmingas</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <translation>Sėkmingai prisijungta prie LDAP serverio ir atliktas LDAP susiejimas. Pagrindiniai LDAP parametrai yra tinkamai sukonfigūruoti.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atlikti LDAP bazinio DN testo</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP bazinis DN testas sėkmingas</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atlikti LDAP pavadinimo konteksto testo</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP įvardijimo konteksto testas sėkmingas</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP pavadinimų konteksto užklausa buvo sėkmingai pateikta. Rasta ši bazinė DN:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
-        <translation type="unfinished"/>
+        <translation>vartotojų medis</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation type="unfinished"/>
+        <translation>grupės medis</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių medis</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2081,23 +2082,23 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>user objects</source>
-        <translation type="unfinished"/>
+        <translation>vartotojų objektai</translation>
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite grupės pavadinimą</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite grupės pavadinimą, kurios narius užklausti:</translation>
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>grupės nariai</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>Grupė nerasta</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -2105,35 +2106,35 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio vardą</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių objektai</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio DN</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio DN, kurio MAC adresą norite užklausti:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių MAC adresai</translation>
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>vartotojai</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>vartotojų grupės</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių grupės</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2141,39 +2142,39 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>groups of user</source>
-        <translation type="unfinished"/>
+        <translation>vartotojo grupės</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas nerastas</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterio grupės</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris nerastas</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio IP adresą</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio IP adresą, kurį reikia naudoti kompiuterio objektui atskirti:</translation>
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>kompiuteriai</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP %1 testas nepavyko</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP %1 testas pavyko</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
@@ -2253,11 +2254,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Gamykliniai nustatymai</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>Niekada (nesaugu!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2269,11 +2270,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2315,7 +2316,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikatų failai (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2347,7 +2348,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: cn arba displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2413,7 +2414,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>ir</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
@@ -2427,7 +2428,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Naršyti</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2447,7 +2448,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>Klaidingas kompiuterio vardas</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -2463,7 +2464,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio vardą</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
@@ -2475,7 +2476,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko ieškoti pagrindinio kompiuterio vardo</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
@@ -2545,7 +2546,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>LdapProConfigurationPage</name>
     <message>
         <source>LDAP Pro</source>
-        <translation type="unfinished"/>
+        <translation>LDAP Pro</translation>
     </message>
     <message>
         <source>Instances</source>
@@ -2553,7 +2554,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Enter name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vardą</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
@@ -3066,7 +3067,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -3236,7 +3237,7 @@ USAGE
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
@@ -3298,7 +3299,7 @@ USAGE
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>Vietos/Kompiuteriai</translation>
     </message>
 </context>
 <context>
@@ -3309,7 +3310,7 @@ USAGE
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
@@ -3317,7 +3318,7 @@ USAGE
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3325,7 +3326,7 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Vardas:</translation>
     </message>
 </context>
 <context>
@@ -3387,11 +3388,11 @@ USAGE
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Patvirtinti kompiuterio paleidimą iš naujo</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Patvirtinti kompiuterio išjungimą</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3464,11 +3465,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>minutės</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>sekundės</translation>
     </message>
 </context>
 <context>
@@ -3541,31 +3542,31 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Meniu</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -3577,11 +3578,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano vaizdas</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Išeiti</translation>
     </message>
 </context>
 <context>
@@ -3596,11 +3597,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"/>
+        <translation>Paskirties vieta</translation>
     </message>
     <message>
         <source>Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Tinklų sąsaja</translation>
     </message>
 </context>
 <context>
@@ -3618,15 +3619,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programas</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Vardas:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
@@ -3634,22 +3635,22 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>pvz.: VLC</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Užrakinti</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Atrakinti</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Užrakinti ekraną ir įvesties įrenginius kompiuteryje</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -3668,14 +3669,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano vaizdas</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano vaizdas</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -3706,7 +3707,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris:</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -3781,15 +3782,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Įskiepis:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Perkrauti %1 tarnybą</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Visi nustatymai išsaugoti sėkmingai. Tam, kad pakeitimai taptų aktyvūs, %1 tarnyba turi būti paleista iš naujo. Paleisti iš naujo dabar?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -3801,7 +3802,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation type="unfinished"/>
+        <translation>Pagrindinės tarnybos šliuzas</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3810,7 +3811,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti pranešimą nuotoliniame kompiuteryje</translation>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
@@ -3818,26 +3819,26 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti pranešimą, kai neautorizuota prieiga užblokuota</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Paleidžiama tarnyba %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Stabdoma tarnyba %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Užregistruojama tarnyba %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Išregistruojama tarnyba %1</translation>
     </message>
     <message>
         <source>Service control</source>
@@ -3848,39 +3849,39 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba vykdoma</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba nevykdoma</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Konfigūruoti ir kontroliuoti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Užregistruoti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Išregistruoti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Sustabdyti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Perkrauti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti Veyon tarnybos statuso</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -3891,7 +3892,7 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti komandos failą</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -3899,18 +3900,18 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Interaktyvus shell ir script vykdymas</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>Shell funkcijų komandos</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Sistemos dėklo piktograma</translation>
     </message>
 </context>
 <context>
@@ -3921,18 +3922,18 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>Numatytas (sistemos vartotojų grupės)</translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Patikrinti vidinius Veyon komponentus ir funkcijas</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Komandos naudojamos testavimui vidiniams komponentams ir funkcijoms Veyon programinėje įrangoje</translation>
     </message>
 </context>
 <context>
@@ -3954,7 +3955,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>Naudokite šią funkciją norėdami išsiųsti žinutę visiems vartotojams, pavyzdžiui, priskirti juos naujoms užduotims.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3962,7 +3963,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Nusiųsti žinutę vartotojui</translation>
     </message>
 </context>
 <context>
@@ -3981,15 +3982,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Integruoto UltraVNC serverio konfigūracija</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti daugiau nei vieno monitoriaus palaikymą</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti darbalaukio dubliavimo variklį Windows 8 ar naujesnėje versijoje</translation>
     </message>
 </context>
 <context>
@@ -4000,7 +4001,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma išsaugoti asmeninių nustatymų! Prašome patikrinti vartotojo konfigūracijos failo vietą naudojant %1 konfigūratorių</translation>
     </message>
 </context>
 <context>
@@ -4011,7 +4012,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo vardą ir slaptažodį, kad galėtumėte automatiškai prisijungti visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4026,7 +4027,7 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungti</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
@@ -4034,94 +4035,94 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Atsijungti</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, kad atjungtumėte vartotojus visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>Patvirtinti vartotojo atsijungimą</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite atjungti visus pasirinktus vartotojus?</translation>
     </message>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo sesijos valdymas</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[GERAI]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[KLAIDA]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>Klaidinga komanda!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Galimos komandos:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>Gauti klaidingi argumentai</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation type="unfinished"/>
+        <translation>Per mažai argumentų - naudokite &quot;%1 help&quot;, norėdami gauti daugiau informacijos</translation>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Nežinomas rezultatas!</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Galimi moduliai:</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Nenurodytas modulis arba modulis nerastas - galimi moduliai yra:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Įskiepis neįdiegtas</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFORMACIJA</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>KLAIDA</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>VARTOJIMAS</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>APIBŪDINIMAS</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>PAVYZDŽIAI</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>ĮSPĖJIMAS</translation>
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>licencijuota</translation>
     </message>
 </context>
 <context>
@@ -4142,7 +4143,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma išsaugoti SAS generavimo nustatymo programinėje įrangoje. Komandos Ctrl+Alt+Del siuntimas nuotoliniu valdymu neveiks!</translation>
     </message>
 </context>
 <context>
@@ -4157,11 +4158,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti SAS generavimą programinėje įrangoje (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano užraktas</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
@@ -4200,53 +4201,53 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Plėtinio įgyvendinimo abstrakčios funkcijos Windows platformai</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba &quot;%1&quot; jau yra įdiegta.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba &quot;%1&quot; negali būti įdiegta.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba &quot;%1&quot; buvo sėkmingai įdiegta.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba &quot;%1&quot; negali būti išdiegta.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba &quot;%&quot; buvo sėkmingai išdiegta.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Paleisties tipas tarnybai &quot;%1&quot; negali būti pakeistas.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba &quot;%1&quot; nerasta.</translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Integruoto x11vnc serverio konfigūracija</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktiniai x11vnc parametrai:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>Nenaudokite X Damage papildinio.</translation>
     </message>
 </context>
 </TS>

@@ -1575,31 +1575,31 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FirewallConfigurationWidget</name>
     <message>
         <source>Block all outbound traffic for TCP ports</source>
-        <translation type="unfinished"/>
+        <translation>Blocca tutto il traffico in uscita per le porte TCP</translation>
     </message>
     <message>
         <source>e.g. 8080</source>
-        <translation type="unfinished"/>
+        <translation>per esempio 8080</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation type="unfinished"/>
+        <translation>Personalizzata</translation>
     </message>
     <message>
         <source>21 (FTP)</source>
-        <translation type="unfinished"/>
+        <translation>21 (FTP)</translation>
     </message>
     <message>
         <source>80/443 (HTTP/HTTPS)</source>
-        <translation type="unfinished"/>
+        <translation>80/443 (HTTP/HTTPS)</translation>
     </message>
     <message>
         <source>Block all outbound traffic to non-local subnets</source>
-        <translation type="unfinished"/>
+        <translation>Blocca tutto il traffico in uscita verso subnet non locali</translation>
     </message>
     <message>
         <source>Exceptions</source>
-        <translation type="unfinished"/>
+        <translation>Eccezioni</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
@@ -1607,19 +1607,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Networks &amp; hosts</source>
-        <translation type="unfinished"/>
+        <translation>Reti e host</translation>
     </message>
     <message>
         <source>Ports</source>
-        <translation type="unfinished"/>
+        <translation>Porte</translation>
     </message>
     <message>
         <source>e.g. 80 443</source>
-        <translation type="unfinished"/>
+        <translation>per esempio 80 443</translation>
     </message>
     <message>
         <source>Enable preconfigured firewall rule</source>
-        <translation type="unfinished"/>
+        <translation>Abilita regola firewall preconfigurata</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1630,7 +1630,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FirewallPlugin</name>
     <message>
         <source>Block internet access via system firewall</source>
-        <translation type="unfinished"/>
+        <translation>Blocca l&apos;accesso a Internet tramite il firewall di sistema</translation>
     </message>
 </context>
 <context>
@@ -3629,7 +3629,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <name>RoutingPlugin</name>
     <message>
         <source>Block internet access by modifying routing table</source>
-        <translation type="unfinished"/>
+        <translation>Blocca l&apos;accesso a Internet modificando la tabella di routing</translation>
     </message>
 </context>
 <context>

@@ -1580,31 +1580,31 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>FirewallConfigurationWidget</name>
     <message>
         <source>Block all outbound traffic for TCP ports</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear todo el tráfico saliente para los puertos TCP</translation>
     </message>
     <message>
         <source>e.g. 8080</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. 8080</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation type="unfinished"/>
+        <translation>Personalizado</translation>
     </message>
     <message>
         <source>21 (FTP)</source>
-        <translation type="unfinished"/>
+        <translation>21 (FTP)</translation>
     </message>
     <message>
         <source>80/443 (HTTP/HTTPS)</source>
-        <translation type="unfinished"/>
+        <translation>80/443 (HTTP/HTTPS)</translation>
     </message>
     <message>
         <source>Block all outbound traffic to non-local subnets</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear todo el tráfico saliente a subredes no locales</translation>
     </message>
     <message>
         <source>Exceptions</source>
-        <translation type="unfinished"/>
+        <translation>Excepciones</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
@@ -1612,19 +1612,19 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Networks &amp; hosts</source>
-        <translation type="unfinished"/>
+        <translation>Redes y equipos</translation>
     </message>
     <message>
         <source>Ports</source>
-        <translation type="unfinished"/>
+        <translation>Puertos</translation>
     </message>
     <message>
         <source>e.g. 80 443</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. 80 443</translation>
     </message>
     <message>
         <source>Enable preconfigured firewall rule</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar la regla de firewall preconfigurada</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1635,7 +1635,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>FirewallPlugin</name>
     <message>
         <source>Block internet access via system firewall</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear el acceso a Internet mediante el firewall del sistema</translation>
     </message>
 </context>
 <context>
@@ -3644,7 +3644,7 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <name>RoutingPlugin</name>
     <message>
         <source>Block internet access by modifying routing table</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear el acceso a Internet modificando la tabla de enrutamiento</translation>
     </message>
 </context>
 <context>

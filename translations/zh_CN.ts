@@ -1470,7 +1470,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>generic-student-user</source>
-        <translation type="unfinished"/>
+        <translation>一般学生用户</translation>
     </message>
 </context>
 <context>
@@ -1579,31 +1579,31 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FirewallConfigurationWidget</name>
     <message>
         <source>Block all outbound traffic for TCP ports</source>
-        <translation type="unfinished"/>
+        <translation>阻止TCP端口的所有出口流量</translation>
     </message>
     <message>
         <source>e.g. 8080</source>
-        <translation type="unfinished"/>
+        <translation>例如： 8080</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation type="unfinished"/>
+        <translation>自定义</translation>
     </message>
     <message>
         <source>21 (FTP)</source>
-        <translation type="unfinished"/>
+        <translation>21 (FTP)</translation>
     </message>
     <message>
         <source>80/443 (HTTP/HTTPS)</source>
-        <translation type="unfinished"/>
+        <translation>80/443 (HTTP/HTTPS)</translation>
     </message>
     <message>
         <source>Block all outbound traffic to non-local subnets</source>
-        <translation type="unfinished"/>
+        <translation>阻止非本地子网的所有出口流量</translation>
     </message>
     <message>
         <source>Exceptions</source>
-        <translation type="unfinished"/>
+        <translation>例外</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
@@ -1611,19 +1611,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Networks &amp; hosts</source>
-        <translation type="unfinished"/>
+        <translation>网络及主机</translation>
     </message>
     <message>
         <source>Ports</source>
-        <translation type="unfinished"/>
+        <translation>端口</translation>
     </message>
     <message>
         <source>e.g. 80 443</source>
-        <translation type="unfinished"/>
+        <translation>例如： 80 443</translation>
     </message>
     <message>
         <source>Enable preconfigured firewall rule</source>
-        <translation type="unfinished"/>
+        <translation>启用预配置的防火墙规则</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1634,7 +1634,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FirewallPlugin</name>
     <message>
         <source>Block internet access via system firewall</source>
-        <translation type="unfinished"/>
+        <translation>通过系统防火墙阻止互联网访问</translation>
     </message>
 </context>
 <context>
@@ -3643,7 +3643,7 @@ Please save your work and close all programs.</source>
     <name>RoutingPlugin</name>
     <message>
         <source>Block internet access by modifying routing table</source>
-        <translation type="unfinished"/>
+        <translation>通过修改路由表阻止互联网访问</translation>
     </message>
 </context>
 <context>
