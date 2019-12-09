@@ -284,7 +284,7 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 				QMessageBox::Yes;
 	}
 
-	return false;
+	return true;
 }
 
 
