@@ -71,8 +71,8 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature.uid() == m_remoteViewFeature.uid() &&
-		feature.uid() == m_remoteControlFeature.uid() )
+	if( feature.uid() != m_remoteViewFeature.uid() &&
+		feature.uid() != m_remoteControlFeature.uid() )
 	{
 		return false;
 	}
