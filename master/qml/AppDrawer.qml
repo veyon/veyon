@@ -66,7 +66,7 @@ Drawer {
 						checked: checkState
 						visible: String(type) === "Host"
 						Layout.fillWidth: true
-						onClicked: checkState = !checkState
+						onClicked: checkState = checked ? Qt.Checked : Qt.Unchecked
 					}
 					CheckBox {
 						id: checkBox
