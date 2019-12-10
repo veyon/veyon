@@ -24,7 +24,6 @@
 
 #include <QApplication>
 #include <QInputDialog>
-#include <QQuickItem>
 
 #include "AuthenticationManager.h"
 #include "QmlCore.h"
