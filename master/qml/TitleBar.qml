@@ -40,6 +40,7 @@ Rectangle {
 					Layout.topMargin: 2
 					Layout.fillHeight: true
 					text: modelData.title
+					canBeClosed: modelData.canBeClosed
 					active: container.currentIndex === index
 					onClicked: {
 						if( active )
@@ -54,6 +55,7 @@ Rectangle {
 							container.currentIndex = index
 						}
 					}
+					onClosed: modelData.close()
 				}
 			}
 		}

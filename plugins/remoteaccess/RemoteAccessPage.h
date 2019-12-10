@@ -48,6 +48,8 @@ public:
 
 	QQuickItem* view() const;
 
+	Q_INVOKABLE void close();
+
 private:
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncViewItem* m_view;

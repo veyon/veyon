@@ -6,6 +6,7 @@ import Veyon.Master 5.0
 Page {
 
 	title: qsTr("Computers")
+	property bool canBeClosed: false
 
 	header: Flow {
 		Repeater {

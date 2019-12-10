@@ -54,6 +54,13 @@ QQuickItem* RemoteAccessPage::view() const
 }
 
 
+
+void RemoteAccessPage::close()
+{
+	deleteLater();
+}
+
+
 /*
 void RemoteAccessPage::takeScreenshot()
 {

@@ -5,14 +5,14 @@ import QtQuick.Layouts 1.0
 Item {
 	property bool active: false
 	property alias text: label.text
-	property bool fixed: true
+	property bool canBeClosed: true
 
 	signal clicked()
 	signal closed()
 
 	id: item
 
-	implicitWidth: labelLayout.implicitWidth + 2 * label.Layout.margins
+	implicitWidth: labelLayout.implicitWidth
 	implicitHeight: labelLayout.implicitHeight - label.Layout.margins
 
 	MouseArea {
@@ -29,29 +29,32 @@ Item {
 	RowLayout {
 		id: labelLayout
 		anchors.fill: parent
+		spacing: 0
 		Label {
 			id: label
-			Layout.margins: 10
+			Layout.margins: 8
 			font.bold: true
 			font.capitalization: Font.AllUppercase
 			color: active ? "#444" : "white"
 		}
 		Item {
 			width: height
-			height: closeLabel.implicitHeight*2
-			visible: !fixed
+			height: closeLabel.implicitHeight
+			visible: canBeClosed
 			Rectangle {
-				anchors.fill: parent
+				anchors.centerIn: parent
+				width: height
+				height: parent.height
 				opacity: closeButtonMouseArea.pressed ? 0.5 : closeButtonMouseArea.containsMouse ? 0.3 : 0
-				color: closeButtonMouseArea.pressed ? "#aaaaaa" : "white"
+				color: closeButtonMouseArea.pressed ? "#aaaaaa" : active ? label.color : "white"
 			}
-			//width: parent.width
 			Label {
 				id: closeLabel
 				anchors.centerIn: parent
 				color: label.color
 				text: "×"
 				font.bold: true
+				font.pointSize: label.font.pointSize*1.5
 			}
 
 			MouseArea {
@@ -60,6 +63,12 @@ Item {
 				hoverEnabled: true
 				onClicked: closed()
 			}
+		}
+		Item {
+			id: spacer
+			visible: canBeClosed
+			width: label.Layout.margins
+			height: 1
 		}
 	}
 }
