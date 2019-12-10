@@ -16,6 +16,6 @@ Page {
 	function close()
 	{
 		SwipeView.view.currentIndex = 0;
-		context.close();
+		qmlCore.deleteLater(this)
 	}
 }

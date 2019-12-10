@@ -32,11 +32,12 @@ RemoteAccessPage::RemoteAccessPage( const ComputerControlInterface::Pointer& com
 									QQuickItem* parent ) :
 	QObject( parent ),
 	m_computerControlInterface( computerControlInterface ),
-	m_view( new VncViewItem( m_computerControlInterface ) )
+	m_view( new VncViewItem( m_computerControlInterface ) ),
+	m_item( VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"), parent, this ) )
 {
 	m_view->setViewOnly( viewOnly );
 
-	VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"), parent, this );
+	connect( m_item, &QObject::destroyed, this, &RemoteAccessPage::deleteLater );
 }
 
 
@@ -51,13 +52,6 @@ RemoteAccessPage::~RemoteAccessPage()
 QQuickItem* RemoteAccessPage::view() const
 {
 	return m_view;
-}
-
-
-
-void RemoteAccessPage::close()
-{
-	deleteLater();
 }
 
 
