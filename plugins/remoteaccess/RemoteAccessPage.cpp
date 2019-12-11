@@ -33,7 +33,7 @@ RemoteAccessPage::RemoteAccessPage( const ComputerControlInterface::Pointer& com
 	QObject( parent ),
 	m_computerControlInterface( computerControlInterface ),
 	m_view( new VncViewItem( m_computerControlInterface ) ),
-	m_item( VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"), parent, this ) )
+	m_item( VeyonCore::qmlCore().createItemFromFile( QStringLiteral("qrc:/remoteaccess/RemoteAccessPage.qml"), parent, this ) )
 {
 	m_view->setViewOnly( viewOnly );
 

@@ -33,8 +33,8 @@ class VEYON_CORE_EXPORT QmlCore : public QObject
 public:
 	explicit QmlCore( QObject* parent = nullptr );
 
-	QObject* createObject( const QString& qmlFile, QObject* parent, QObject* context = nullptr );
-	QQuickItem* createItem( const QString& qmlFile, QQuickItem* parent, QObject* context = nullptr );
+	QObject* createObjectFromFile( const QString& qmlFile, QObject* parent, QObject* context = nullptr );
+	QQuickItem* createItemFromFile( const QString& qmlFile, QQuickItem* parent, QObject* context = nullptr );
 
 	Q_INVOKABLE void deleteLater( QObject* object );
 

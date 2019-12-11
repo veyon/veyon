@@ -67,7 +67,7 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 
 	if( master.appWindow() )
 	{
-		auto dialog = VeyonCore::qmlCore().createObject( QStringLiteral("qrc:/textmessage/TextMessageDialog.qml"),
+		auto dialog = VeyonCore::qmlCore().createObjectFromFile( QStringLiteral("qrc:/textmessage/TextMessageDialog.qml"),
 														 master.appWindow(),
 														 this );
 		connect( this, &TextMessageFeaturePlugin::acceptTextMessage, dialog,

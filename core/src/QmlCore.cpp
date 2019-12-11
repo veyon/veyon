@@ -35,7 +35,7 @@ QmlCore::QmlCore( QObject* parent ) :
 
 
 
-QObject* QmlCore::createObject( const QString& qmlFile, QObject* parent, QObject* context )
+QObject* QmlCore::createObjectFromFile( const QString& qmlFile, QObject* parent, QObject* context )
 {
 	QQmlComponent component( qmlEngine(parent), qmlFile );
 
@@ -56,7 +56,7 @@ QObject* QmlCore::createObject( const QString& qmlFile, QObject* parent, QObject
 
 
 
-QQuickItem* QmlCore::createItem( const QString& qmlFile, QQuickItem* parent, QObject* context )
+QQuickItem* QmlCore::createItemFromFile( const QString& qmlFile, QQuickItem* parent, QObject* context )
 {
 	QQmlComponent component( qmlEngine(parent), qmlFile );
 

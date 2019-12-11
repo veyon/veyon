@@ -80,7 +80,7 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 
 	if( master.appWindow() )
 	{
-		auto dialog = VeyonCore::qmlCore().createObject( QStringLiteral("qrc:/filetransfer/FileTransferFileDialog.qml"),
+		auto dialog = VeyonCore::qmlCore().createObjectFromFile( QStringLiteral("qrc:/filetransfer/FileTransferFileDialog.qml"),
 														 master.appWindow(),
 														 this );
 		connect( this, &FileTransferPlugin::acceptSelectedFiles, dialog,

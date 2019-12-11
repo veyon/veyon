@@ -86,7 +86,7 @@ void ScreenshotFeaturePlugin::initUi()
 	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
 	if( master->appContainer() )
 	{
-		VeyonCore::qmlCore().createItem( QStringLiteral("qrc:/screenshot/ScreenshotManagementPage.qml"),
+		VeyonCore::qmlCore().createItemFromFile( QStringLiteral("qrc:/screenshot/ScreenshotManagementPage.qml"),
 													 master->appContainer(),
 													 this );
 
