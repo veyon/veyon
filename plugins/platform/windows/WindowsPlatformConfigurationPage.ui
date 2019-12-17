@@ -101,6 +101,15 @@
        </widget>
       </item>
      </layout>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QCheckBox" name="logonMessageUsed">
+        <property name="text">
+         <string>Message is displayed before user logs in</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
@@ -153,6 +162,7 @@
   <tabstop>disableSSPIBasedUserAuthentication</tabstop>
   <tabstop>logonInputStartDelay</tabstop>
   <tabstop>logonKeyPressInterval</tabstop>
+  <tabstop>logonMessageUsed</tabstop>
   <tabstop>hideTaskbarForScreenLock</tabstop>
   <tabstop>hideStartMenuForScreenLock</tabstop>
   <tabstop>hideDesktopForScreenLock</tabstop>
