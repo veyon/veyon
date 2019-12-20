@@ -1558,6 +1558,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation>읽을 글자들</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>일반-학생-사용자</translation>
+    </message>
 </context>
 <context>
     <name>DroidVncServer</name>
@@ -3487,6 +3491,17 @@ Please save your work and close all programs.</source>
     <message>
         <source>seconds</source>
         <translation>초</translation>
+    </message>
+</context>
+<context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation>레슨 시작</translation>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
+        <translation>이버튼을 클릭해서 당신의 학생이 참가할 수 있는 새 레슨을 시작하세요</translation>
     </message>
 </context>
 <context>

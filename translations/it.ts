@@ -1554,6 +1554,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation>Testi da leggere</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>utente-generico-studente</translation>
+    </message>
 </context>
 <context>
     <name>DroidVncServer</name>
@@ -3475,6 +3479,17 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>seconds</source>
         <translation>secondi</translation>
+    </message>
+</context>
+<context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation>Inizia la lezione</translation>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
+        <translation>Fai clic su questo pulsante per iniziare una nuova lezione a cui i tuoi studenti possono partecipare.</translation>
     </message>
 </context>
 <context>

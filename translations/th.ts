@@ -936,11 +936,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มสถานที่หรือคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>ล้างรายการสถานที่และคอมพิวเตอร์ทั้งหมด</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -1218,7 +1218,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์มีข้อผิดพลาด</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1555,6 +1555,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DroidVncServer</name>
@@ -1642,11 +1646,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>คลิกที่ปุ่มนี้เพื่อถ่ายโอนไฟล์ในคอมพิวเตอร์ของคุณไปยังคอมพิวเตอร์ทุกเครื่อง</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>เลือกไฟล์อย่างน้อยหนึ่งไฟล์เพื่อนำไปถ่ายโอน</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
@@ -3454,6 +3458,17 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
@@ -3635,7 +3650,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>เพื่อที่จะดึงความสนใจจากผู้ใช้ทั้งหมดให้กลับมา คุณสามารถล็อกคอมพิวเตอร์ของเขาโดยใช้ปุ่มนี้ ในโหมดนี้ อุปกรณ์ประเภทนำเข้าข้อมูล เช่น เมาส์ คีย์บอร์ด จะถูกล็อกและหน้าจอจะดับลง</translation>
     </message>
 </context>
 <context>

@@ -54,7 +54,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>每個經過驗證的使用者授予存取權限 (預設值)</translation>
+        <translation>每個已驗證的使用者授予存取權限 (預設值)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -641,7 +641,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>這個命令從 &lt;FILE&gt; 匯入驗證金鑰 &lt;KEY&gt;。 如果沒有指定 &lt;FILE&gt;，將根據 &lt;KEY&gt; 的名稱和類型構造名稱。</translation>
+        <translation>這個命令從 &lt;FILE&gt; 匯入身分驗證金鑰 &lt;KEY&gt;。 如果未指定 &lt;FILE&gt;，則名稱將從 &lt;KEY&gt; 的名稱和類型構造。</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
@@ -1527,7 +1527,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation>請在接下來的 5 分鐘內完成所有任務。</translation>
+        <translation>請在接下來的 5 分鐘內完成所有工作。</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1556,6 +1556,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Texts to read</source>
         <translation>要閱讀的文字</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>通用學生使用者</translation>
     </message>
 </context>
 <context>
@@ -1902,23 +1906,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>綁定 DN</translation>
+        <translation>繫結 DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>綁定密碼</translation>
+        <translation>繫結密碼</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>匿名綁定</translation>
+        <translation>匿名繫結</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>使用綁定認證</translation>
+        <translation>使用繫結認證</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation>基礎 DN</translation>
+        <translation>基本 DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
@@ -2046,15 +2050,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>LDAP 綁定失敗</translation>
+        <translation>LDAP 繫結失敗</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>LDAP 綁定成功</translation>
+        <translation>LDAP 繫結成功</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>成功地連接到 LDAP 伺服器並執行 LDAP 綁定。 基本的 LDAP 設定正確組態。</translation>
+        <translation>成功地連接到 LDAP 伺服器並執行 LDAP 繫結。 基本的 LDAP 設定正確組態。</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2358,7 +2362,7 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>無法綁定到 LDAP 伺服器。 請檢查伺服器參數並綁定認證。
+        <translation>無法繫結到 LDAP 伺服器。 請檢查伺服器參數並繫結認證。
 
 %1</translation>
     </message>
@@ -2958,7 +2962,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕快照</translation>
+        <translation>螢幕截圖</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -3061,7 +3065,7 @@ USAGE
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕快照</translation>
+        <translation>螢幕截圖</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -3488,6 +3492,17 @@ Please save your work and close all programs.</source>
     <message>
         <source>seconds</source>
         <translation>秒</translation>
+    </message>
+</context>
+<context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation>開始課程</translation>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
+        <translation>按一下這個按鈕以開始學生能加入的新課程。</translation>
     </message>
 </context>
 <context>
@@ -3974,7 +3989,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>使用此函數來向所有使用者傳送文字訊息，例如要向其分配新任務。</translation>
+        <translation>使用此函數來向所有使用者傳送文字訊息，例如要向其分配新工作。</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4181,7 +4196,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>以軟體啟用 SAS 產生 (Ctrl + Alt + Del)</translation>
+        <translation>以軟體啟用 SAS 產生 (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>

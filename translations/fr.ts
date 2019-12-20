@@ -738,7 +738,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Authentification par un identifiant</translation>
+        <translation>Authentification par identifiant</translation>
     </message>
 </context>
 <context>
@@ -1111,7 +1111,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>Service injoignable ou inactif</translation>
+        <translation>Service injoignable ou éteint</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1543,7 +1543,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>Lire le didacticiel vidéo</translation>
+        <translation>Démarrer le didacticiel vidéo</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1556,6 +1556,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Texts to read</source>
         <translation>Textes à lire</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>utilisateur-élève-générique</translation>
     </message>
 </context>
 <context>
@@ -1902,19 +1906,19 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Authentification DN</translation>
+        <translation>Liaison DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Mot de passe d&apos;authentification</translation>
+        <translation>Mot de passe lié</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Authentification anonyme</translation>
+        <translation>Liaison anonyme</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Utiliser des informations d&apos;identification</translation>
+        <translation>Utiliser des informations d&apos;identification par liaison</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2046,15 +2050,15 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>Échec de l&apos;authentification LDAP</translation>
+        <translation>Échec de la liaison LDAP</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>Authentification LDAP réussie</translation>
+        <translation>Liaison LDAP réussie</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>La connexion au serveur LDAP ainsi que l&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
+        <translation>La connexion au serveur LDAP ainsi que la liaison d&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2358,7 +2362,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>Authentification au serveur LDAP impossible. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
+        <translation>Impossible de créer une liaison au serveur LDAP. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
 
 %1</translation>
     </message>
@@ -3097,7 +3101,7 @@ USAGE
     </message>
     <message>
         <source>Background color</source>
-        <translation>Couleur de fond</translation>
+        <translation>Couleur d&apos;arrière plan</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -3113,7 +3117,7 @@ USAGE
     </message>
     <message>
         <source>Modes and features</source>
-        <translation>Modes et paramétrages</translation>
+        <translation>Modes et fonctionnalités</translation>
     </message>
     <message>
         <source>User and computer name</source>
@@ -3121,7 +3125,7 @@ USAGE
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Nom d&apos;utilisateur seulement</translation>
+        <translation>Uniquement le nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3491,6 +3495,17 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
 </context>
 <context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation>Commencer le cours</translation>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
+        <translation>Cliquez sur ce bouton pour commencer un nouveau cours auquel vos élèves pourront s&apos;inscrire.</translation>
+    </message>
+</context>
+<context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
@@ -3812,7 +3827,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation>En cours</translation>
+        <translation>En cours d’exécution</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3868,11 +3883,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation>Le service fonctionne</translation>
+        <translation>Le service est en cours d’exécution</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Le service ne fonctionne pas</translation>
+        <translation>Le service n&apos;est pas en fonctionnement</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>

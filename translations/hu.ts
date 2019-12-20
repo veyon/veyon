@@ -1557,6 +1557,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Texts to read</source>
         <translation>Olvasandó szövegek</translation>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>generic-student-user</translation>
+    </message>
 </context>
 <context>
     <name>DroidVncServer</name>
@@ -3486,6 +3490,17 @@ Please save your work and close all programs.</source>
     <message>
         <source>seconds</source>
         <translation>másodperc</translation>
+    </message>
+</context>
+<context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation>Lecke indítása</translation>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
+        <translation>Kattints erre a gombra az új lecke indításához, melyhez a tanulók csatlakozhatnak.</translation>
     </message>
 </context>
 <context>
