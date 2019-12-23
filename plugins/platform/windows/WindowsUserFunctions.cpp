@@ -198,7 +198,7 @@ bool WindowsUserFunctions::performLogon( const QString& username, const Password
 
 	input.pressAndReleaseKey( XK_Delete );
 	
-	if (config.logonMessageUsed) {
+	if (config.logonMessageUsed()) {
 		input.pressAndReleaseKey( XK_Return );
 		QThread::msleep( static_cast<unsigned long>( config.logonInputStartDelay() ) );
 	}

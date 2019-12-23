@@ -100,9 +100,7 @@
         </property>
        </widget>
       </item>
-     </layout>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
+      <item row="2">
        <widget class="QCheckBox" name="logonMessageUsed">
         <property name="text">
          <string>Message is displayed before user logs in</string>
