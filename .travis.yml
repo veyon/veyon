@@ -23,7 +23,7 @@ deploy:
     provider: releases
     api_key:
         secure: Hvax0pT56HkHHDFhNnCoMIxhTCRZ2eHSK1kf0Lw91pX/UPsexkhtFm9qck2siyyAW5IDaXMWCvbJmD5f8TXNZV5d65NQ9lc0OtUdl/os6Te3LhIbNjdywKQQknWkZxoX+blXr1VCoRUjvruxwt2Q9yIjMJn40cMh8bnQPAx1VNdCAiGNSIb8vFBmTbv9a6GTkQ3xHjlSrtCXoeq3/AZ3OqrRtXLe5uS+TquZBZv4gS908+TaveSfRUBVFB/XPvNKHVdFPYSkQUz3i0k+/ZV+7gWGEHLk2nXcKRe+6tjrsQyhvqTbyOUiQxjsWHHW0dql67ZFmvQR31RM6l/IO3QhBNu1Qotu7IyxKExE7Wn5+RiyLYOA80RoyK09uAJA7T/MyvoY2QH1dWYQEi6kJQdK7A/g51zJJosILaZuokvmF19cjTu7MC0eMkAhhTWB79JRBLg+6DOskCesWfFf7xuCqt4XqONOjWb2N1vSgH0EkkAN4w2jlO/utX9f2bQTC6sOgW57V+/1yD7rKAj0QdI+eJSuuR0azId+UtBEaSefIuGhR7qw+vQ/GZQ27uz4GZ2NalD1mp0wt0wfx+p2TW2XC03uMO1j2ZY3ve8wT+sFlbEMKmwxC3ObRpM14ez2/EIAotauZ0HKDRm/AzvpShz8o9geChxZTuez06frt6Zx7fo=
-    repo: veyon/veyon
+    repo: NJJJCAustin/veyon
     skip_cleanup: true
     file_glob: true
     file: "veyon*"
