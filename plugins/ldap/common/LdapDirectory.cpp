@@ -326,8 +326,14 @@ QString LdapDirectory::userLoginName( const QString& userDn )
 
 QString LdapDirectory::computerDisplayName( const QString& computerDn )
 {
-	return m_client.queryAttributeValues( computerDn, m_computerDisplayNameAttribute ).value( 0 );
-
+	if (m_client.queryAttributeValues( computerDn, m_computerDisplayNameAttribute ).count() > 0){
+		const auto displayName = m_client.queryAttributeValues( computerDn, m_computerDisplayNameAttribute ).value( 0 );
+		if (displayName.isNull() || displayName.isEmpty()){
+			return m_client.queryAttributeValues( computerDn, QStringLiteral("cn") ).value( 0 );
+		}
+		return displayName;
+	}
+	return m_client.queryAttributeValues( computerDn, QStringLiteral("cn") ).value( 0 );
 }
 
 
