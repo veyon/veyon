@@ -194,7 +194,7 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 		hostNameAttribute = QStringLiteral("cn");
 	}
 
-	QStringList computerAttributes{ displayNameAttribute, hostNameAttribute };
+	QStringList computerAttributes{  QStringLiteral("cn"), displayNameAttribute, hostNameAttribute };
 
 	auto macAddressAttribute = directory->computerMacAddressAttribute();
 	if( macAddressAttribute.isEmpty() == false )
@@ -210,11 +210,21 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 	{
 		const auto& computerDn = computers.firstKey();
 		const auto& computer = computers.first();
-		const auto displayName = computer[displayNameAttribute].value( 0 );
+		const auto computerCn = computer[QStringLiteral("cn")].value( 0 );
 		const auto hostName = computer[hostNameAttribute].value( 0 );
 		const auto macAddress = ( macAddressAttribute.isEmpty() == false ) ? computer[macAddressAttribute].value( 0 ) : QString();
+		if (computer[displayNameAttribute].count() > 0){
+			const auto displayName = computer[displayNameAttribute].value( 0 );
+			if (displayName.isNull() || displayName.isEmpty()){
+				return NetworkObject( NetworkObject::Type::Host, computerCn, hostName, macAddress, computerDn );
+			} else {
+				return NetworkObject( NetworkObject::Type::Host, displayName, hostName, macAddress, computerDn );
+			}
+		} else {
+			return NetworkObject( NetworkObject::Type::Host, computerCn, hostName, macAddress, computerDn );
+		}
 
-		return NetworkObject( NetworkObject::Type::Host, displayName, hostName, macAddress, computerDn );
+		
 	}
 
 	return NetworkObject( NetworkObject::Type::None );
