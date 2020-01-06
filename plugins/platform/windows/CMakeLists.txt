@@ -16,6 +16,7 @@ build_plugin(windows-platform
 	WindowsServiceCore.cpp
 	WindowsServiceFunctions.cpp
 	WindowsUserFunctions.cpp
+	WindowsSmartcardFunctions.cpp
 	WtsSessionManager.cpp
 	DesktopInputController.cpp
 	SasEventListener.cpp
@@ -54,6 +55,6 @@ target_include_directories(windows-platform PRIVATE
 	${ultravnc_DIR}
 	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
 )
-target_link_libraries(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
+target_link_libraries(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception -lcrypt32)
 target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")

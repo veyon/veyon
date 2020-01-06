@@ -33,6 +33,7 @@
 #include "WindowsNetworkFunctions.h"
 #include "WindowsServiceFunctions.h"
 #include "WindowsUserFunctions.h"
+#include "WindowsSmartcardFunctions.h"
 
 class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
 {
@@ -108,6 +109,11 @@ public:
 		return m_windowsUserFunctions;
 	}
 
+	PlatformSmartcardFunctions& smartcardFunctions() override
+	{
+		return m_windowsSmartcardFunctions;
+	}
+
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
@@ -117,5 +123,6 @@ private:
 	WindowsNetworkFunctions m_windowsNetworkFunctions;
 	WindowsServiceFunctions m_windowsServiceFunctions;
 	WindowsUserFunctions m_windowsUserFunctions;
+	WindowsSmartcardFunctions m_windowsSmartcardFunctions;
 
 };

@@ -33,6 +33,7 @@
 #include "LinuxNetworkFunctions.h"
 #include "LinuxServiceFunctions.h"
 #include "LinuxUserFunctions.h"
+#include "LinuxSmartcardFunctions.h"
 
 class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
 {
@@ -108,6 +109,11 @@ public:
 		return m_linuxUserFunctions;
 	}
 
+	PlatformSmartcardFunctions& smartcardFunctions() override
+	{
+		return m_linuxSmartcardFunctions;
+	}
+
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
@@ -117,5 +123,6 @@ private:
 	LinuxNetworkFunctions m_linuxNetworkFunctions;
 	LinuxServiceFunctions m_linuxServiceFunctions;
 	LinuxUserFunctions m_linuxUserFunctions;
+	LinuxSmartcardFunctions m_linuxSmartFunctions;
 
 };

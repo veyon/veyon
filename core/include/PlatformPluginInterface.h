@@ -32,6 +32,7 @@ class PlatformInputDeviceFunctions;
 class PlatformNetworkFunctions;
 class PlatformServiceFunctions;
 class PlatformUserFunctions;
+class PlatformSmartcardFunctions;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -44,6 +45,7 @@ public:
 	virtual PlatformNetworkFunctions& networkFunctions() = 0;
 	virtual PlatformServiceFunctions& serviceFunctions() = 0;
 	virtual PlatformUserFunctions& userFunctions() = 0;
+	virtual PlatformSmartcardFunctions& smartcardFunctions() = 0;
 
 };
 

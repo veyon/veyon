@@ -27,6 +27,7 @@ build_plugin(linux-platform
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
 	LinuxUserFunctions.cpp
+	LinuxSmartcardFunctions.cpp
 	LinuxPlatformPlugin.h
 	LinuxPlatformConfiguration.h
 	LinuxCoreFunctions.h

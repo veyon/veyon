@@ -758,13 +758,67 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>AuthSimplePlugin</name>
+    <name>AuthSmartcartPlugin</name>
     <message>
         <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Simple password authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AuthSmartcardDialog</name>
+    <message>
+        <source>Veyon SmartCard Logon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select your certificate and enter your pin in order to access computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to Validate Certificate. Are Intermidiate Certificates Configured?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon failed with given Certificate and Pin. Please try again!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must enter a pin. Please try again!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must select a certificate. Please click Rescan and try again!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AuthSmartcardPlugin</name>
+    <message>
+        <source>Logon failed with given Certificate and Pin. Please correct or switch to a different authentication method using the Veyon Configurator./source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
