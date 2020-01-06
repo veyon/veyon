@@ -814,7 +814,7 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>AuthSmartcardPlugin</name>
     <message>
-        <source>Logon failed with given Certificate and Pin. Please correct or switch to a different authentication method using the Veyon Configurator./source>
+        <source>Logon failed with given Certificate and Pin. Please correct or switch to a different authentication method using the Veyon Configurator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
