@@ -57,35 +57,35 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	connect( ui->browseComputerLocationAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerLocationAttribute, m_configuration.computerTree() ); } );
 	connect( ui->browseLocationNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->locationNameAttribute, m_configuration.computerTree() ); } );
 
-	CONNECT_BUTTON_SLOT( testBindInteractively );
-	CONNECT_BUTTON_SLOT( testBaseDn );
-	CONNECT_BUTTON_SLOT( testNamingContext );
-	CONNECT_BUTTON_SLOT( testUserTree );
-	CONNECT_BUTTON_SLOT( testGroupTree );
-	CONNECT_BUTTON_SLOT( testComputerTree );
-	CONNECT_BUTTON_SLOT( testComputerGroupTree );
+	CONNECT_BUTTON_SLOT( testBindInteractively )
+	CONNECT_BUTTON_SLOT( testBaseDn )
+	CONNECT_BUTTON_SLOT( testNamingContext )
+	CONNECT_BUTTON_SLOT( testUserTree )
+	CONNECT_BUTTON_SLOT( testGroupTree )
+	CONNECT_BUTTON_SLOT( testComputerTree )
+	CONNECT_BUTTON_SLOT( testComputerGroupTree )
 
-	CONNECT_BUTTON_SLOT( testUserLoginNameAttribute );
-	CONNECT_BUTTON_SLOT( testGroupMemberAttribute );
-	CONNECT_BUTTON_SLOT( testComputerDisplayNameAttribute );
-	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute );
-	CONNECT_BUTTON_SLOT( testComputerMacAddressAttribute );
-	CONNECT_BUTTON_SLOT( testComputerLocationAttribute );
-	CONNECT_BUTTON_SLOT( testLocationNameAttribute );
+	CONNECT_BUTTON_SLOT( testUserLoginNameAttribute )
+	CONNECT_BUTTON_SLOT( testGroupMemberAttribute )
+	CONNECT_BUTTON_SLOT( testComputerDisplayNameAttribute )
+	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute )
+	CONNECT_BUTTON_SLOT( testComputerMacAddressAttribute )
+	CONNECT_BUTTON_SLOT( testComputerLocationAttribute )
+	CONNECT_BUTTON_SLOT( testLocationNameAttribute )
 
-	CONNECT_BUTTON_SLOT( testUsersFilter );
-	CONNECT_BUTTON_SLOT( testUserGroupsFilter );
-	CONNECT_BUTTON_SLOT( testComputersFilter );
-	CONNECT_BUTTON_SLOT( testComputerGroupsFilter );
-	CONNECT_BUTTON_SLOT( testComputerContainersFilter );
+	CONNECT_BUTTON_SLOT( testUsersFilter )
+	CONNECT_BUTTON_SLOT( testUserGroupsFilter )
+	CONNECT_BUTTON_SLOT( testComputersFilter )
+	CONNECT_BUTTON_SLOT( testComputerGroupsFilter )
+	CONNECT_BUTTON_SLOT( testComputerContainersFilter )
 
-	CONNECT_BUTTON_SLOT( testGroupsOfUser );
-	CONNECT_BUTTON_SLOT( testGroupsOfComputer );
-	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress );
-	CONNECT_BUTTON_SLOT( testLocationEntries );
-	CONNECT_BUTTON_SLOT( testLocations );
+	CONNECT_BUTTON_SLOT( testGroupsOfUser )
+	CONNECT_BUTTON_SLOT( testGroupsOfComputer )
+	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress )
+	CONNECT_BUTTON_SLOT( testLocationEntries )
+	CONNECT_BUTTON_SLOT( testLocations )
 
-	CONNECT_BUTTON_SLOT( browseCACertificateFile );
+	CONNECT_BUTTON_SLOT( browseCACertificateFile )
 
 	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=]() {
 		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapClient::TLSVerifyCustomCert );
@@ -115,7 +115,7 @@ LdapConfigurationPage::~LdapConfigurationPage()
 
 void LdapConfigurationPage::resetWidgets()
 {
-	FOREACH_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
 }
 
 
