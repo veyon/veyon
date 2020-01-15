@@ -100,10 +100,10 @@
         </property>
        </widget>
       </item>
-      <item row="2">
-       <widget class="QCheckBox" name="logonMessageUsed">
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="logonConfirmLegalNotice">
         <property name="text">
-         <string>Message is displayed before user logs in</string>
+         <string>Confirm legal notice (message displayed before user logs in)</string>
         </property>
        </widget>
       </item>
@@ -160,7 +160,7 @@
   <tabstop>disableSSPIBasedUserAuthentication</tabstop>
   <tabstop>logonInputStartDelay</tabstop>
   <tabstop>logonKeyPressInterval</tabstop>
-  <tabstop>logonMessageUsed</tabstop>
+  <tabstop>logonConfirmLegalNotice</tabstop>
   <tabstop>hideTaskbarForScreenLock</tabstop>
   <tabstop>hideStartMenuForScreenLock</tabstop>
   <tabstop>hideDesktopForScreenLock</tabstop>
