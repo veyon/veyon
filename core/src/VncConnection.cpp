@@ -624,7 +624,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 		return false;
 	}
 
-	const auto pixelCount = static_cast<uint32_t>( client->width ) * client->height;
+	const auto pixelCount = uint32_t(client->width) * uint32_t(client->height);
 
 	client->frameBuffer = reinterpret_cast<uint8_t *>( new RfbPixel[pixelCount] );
 
