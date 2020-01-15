@@ -48,6 +48,12 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_computerHostNameAsFQDN = m_configuration.computerHostNameAsFQDN();
 	m_computerMacAddressAttribute = m_configuration.computerMacAddressAttribute();
 	m_locationNameAttribute = m_configuration.locationNameAttribute();
+
+	if( m_computerDisplayNameAttribute.isEmpty() )
+	{
+		m_computerDisplayNameAttribute = QStringLiteral("cn");
+	}
+
 	if( m_locationNameAttribute.isEmpty() )
 	{
 		m_locationNameAttribute = QStringLiteral("cn");
@@ -64,7 +70,6 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_computerLocationsByContainer = m_configuration.computerLocationsByContainer();
 	m_computerLocationsByAttribute = m_configuration.computerLocationsByAttribute();
 	m_computerLocationAttribute = m_configuration.computerLocationAttribute();
-
 }
 
 
