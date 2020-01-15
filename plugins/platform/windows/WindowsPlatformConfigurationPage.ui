@@ -100,6 +100,13 @@
         </property>
        </widget>
       </item>
+      <item row="2">
+       <widget class="QCheckBox" name="logonMessageUsed">
+        <property name="text">
+         <string>Message is displayed before user logs in</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -153,6 +160,7 @@
   <tabstop>disableSSPIBasedUserAuthentication</tabstop>
   <tabstop>logonInputStartDelay</tabstop>
   <tabstop>logonKeyPressInterval</tabstop>
+  <tabstop>logonMessageUsed</tabstop>
   <tabstop>hideTaskbarForScreenLock</tabstop>
   <tabstop>hideStartMenuForScreenLock</tabstop>
   <tabstop>hideDesktopForScreenLock</tabstop>
