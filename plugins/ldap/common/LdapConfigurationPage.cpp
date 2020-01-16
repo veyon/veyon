@@ -1,7 +1,7 @@
 /*
  * LdapConfigurationPage.cpp - implementation of the LdapConfigurationPage class
  *
- * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2016-2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

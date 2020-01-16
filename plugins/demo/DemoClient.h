@@ -1,7 +1,7 @@
 /*
- * DemoClient.h - client for demo-server
+ * DemoClient.h - client for demo server
  *
- * Copyright (c) 2006-2013 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2006-2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  *  RemoteAccessWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2019 Tobias Junghans <tobydox@veyon.io>
+ *  Copyright (c) 2006-2020 Tobias Junghans <tobydox@veyon.io>
  *
  *  This file is part of Veyon - https://veyon.io
  *
