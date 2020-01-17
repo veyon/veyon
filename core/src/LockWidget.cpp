@@ -1,7 +1,7 @@
 /*
  *  LockWidget.cpp - widget for locking a client
  *
- *  Copyright (c) 2006-2016 Tobias Junghans <tobydox@veyon.io>
+ *  Copyright (c) 2006-2020 Tobias Junghans <tobydox@veyon.io>
  *
  *  This file is part of Veyon - https://veyon.io
  *

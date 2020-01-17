@@ -1,4 +1,4 @@
-# BuildApplication.cmake - Copyright (c) 2019 Tobias Junghans
+# BuildApplication.cmake - Copyright (c) 2019-2020 Tobias Junghans
 #
 # description: build Veyon application
 # usage: BUILD_APPLICATION(<NAME> <SOURCES>)

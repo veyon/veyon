@@ -1,7 +1,7 @@
 /*
  * ComputerSortFilterProxyModel.h - header file for ComputerSortFilterProxyModel
  *
- * Copyright (c) 2018-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2018-2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

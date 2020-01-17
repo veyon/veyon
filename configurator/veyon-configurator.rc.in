@@ -19,7 +19,7 @@ BEGIN
       VALUE "CompanyName",	"Veyon Solutions\0"
       VALUE "FileDescription",	"Veyon Configurator\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2010-2019 Tobias Junghans\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2010-2020 Tobias Junghans\0"
       VALUE "OriginalFilename",	"veyon-configurator.exe\0"
       VALUE "ProductName",	"Veyon\0"
     END

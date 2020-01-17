@@ -1,7 +1,7 @@
 /*
  * PowerDownTimeInputDialog.h - implementation of PowerDownTimeInputDialog class
  *
- * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019-2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

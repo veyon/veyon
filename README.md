@@ -30,7 +30,7 @@ at their daily work:
 
 ## License
 
-Copyright (c) 2004-2019 Tobias Junghans / Veyon Solutions.
+Copyright (c) 2004-2020 Tobias Junghans / Veyon Solutions.
 
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 

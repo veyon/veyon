@@ -2,7 +2,7 @@
 !define COMP_NAME "Veyon Solutions"
 !define WEB_SITE "https://veyon.io"
 !define VERSION "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@.@VERSION_BUILD@"
-!define COPYRIGHT "2004-2019 Tobias Junghans / Veyon Solutions"
+!define COPYRIGHT "2004-2020 Tobias Junghans / Veyon Solutions"
 !define DESCRIPTION "Veyon Installer"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
 !define INSTALLER_NAME "veyon-${VERSION}-@MINGW_PLATFORM@-setup.exe"

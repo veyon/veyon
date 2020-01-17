@@ -1,7 +1,7 @@
 /*
  * ConfigurationLocalStore.cpp - implementation of LocalStore
  *
- * Copyright (c) 2009-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2009-2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

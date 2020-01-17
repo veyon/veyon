@@ -1,7 +1,7 @@
 /*
  * Configuration/Object.h - ConfigurationObject class
  *
- * Copyright (c) 2009-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2009-2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
