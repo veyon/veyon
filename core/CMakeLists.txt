@@ -44,13 +44,10 @@ target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS})
 
 # find Qt's translation directory
 if(NOT VEYON_BUILD_WIN32)
-	get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
-	execute_process(COMMAND "${QT_QMAKE_EXECUTABLE}" -query QT_INSTALL_TRANSLATIONS
-						OUTPUT_STRIP_TRAILING_WHITESPACE
-						OUTPUT_VARIABLE QT_TRANSLATIONS_DIR)
+	include(FindQtTranslations)
+	find_qt_translations()
 	target_compile_definitions(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
 endif()
-
 
 
 target_link_libraries(veyon-core
