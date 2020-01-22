@@ -138,7 +138,7 @@ else()
 endif()
 
 
-set(VEYON_CORE_INCLUDE_DIR core/include)
+set(VEYON_CORE_INCLUDE_DIR core/src)
 
 # find required Qt5 modules
 find_package(Qt5Core REQUIRED)
