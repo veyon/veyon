@@ -11,16 +11,6 @@ FILE(GLOB veyoncore_SOURCES
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
-# find Qt's translation directory
-IF(NOT VEYON_BUILD_WIN32)
-	GET_TARGET_PROPERTY(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
-	EXECUTE_PROCESS(COMMAND "${QT_QMAKE_EXECUTABLE}" -query QT_INSTALL_TRANSLATIONS
-						OUTPUT_STRIP_TRAILING_WHITESPACE
-						OUTPUT_VARIABLE QT_TRANSLATIONS_DIR)
-	ADD_DEFINITIONS(-D'QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}"')
-ENDIF()
-
-
 SET(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/cursor.c
 	${libvncserver_DIR}/libvncclient/listen.c
@@ -36,6 +26,14 @@ ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
 ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
+
+# find Qt's translation directory
+if(NOT VEYON_BUILD_WIN32)
+	include(FindQtTranslations)
+	find_qt_translations()
+	target_compile_definitions(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
+endif()
+
 
 TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Concurrent
