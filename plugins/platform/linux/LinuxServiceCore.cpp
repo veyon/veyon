@@ -28,6 +28,9 @@
 #include <QProcess>
 #include <QTimer>
 
+#include <signal.h>
+#include <sys/types.h>
+
 #include <proc/readproc.h>
 
 #include "Filesystem.h"
@@ -195,13 +198,20 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 	vInfo() << "stopping server for removed session" << sessionPath;
 
 	auto process = qAsConst(m_serverProcesses)[sessionPath];
-	process->terminate();
 
-	if( ProcessHelper::waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
+	// tell x11vnc to shutdown
+	kill( pid_t(process->processId()), SIGINT );
+
+	if( ProcessHelper::waitForProcess( process, ServerShutdownTimeout, ServerWaitSleepInterval ) == false )
 	{
-		vWarning() << "server for session" << sessionPath << "still running - killing now";
-		process->kill();
-		ProcessHelper::waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
+		process->terminate();
+
+		if( ProcessHelper::waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
+		{
+			vWarning() << "server for session" << sessionPath << "still running - killing now";
+			process->kill();
+			ProcessHelper::waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
+		}
 	}
 
 	if( multiSession() )
