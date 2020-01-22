@@ -8,5 +8,5 @@ file(GLOB_RECURSE veyon_sources ${CMAKE_SOURCE_DIR}/*.cpp ${CMAKE_SOURCE_DIR}/*.
 string(REGEX REPLACE "${CMAKE_SOURCE_DIR}/3rdparty[^;]+;?" "" veyon_sources "${veyon_sources}")
 string(REGEX REPLACE "${CMAKE_SOURCE_DIR}/plugins/addons[^;]+;?" "" veyon_sources "${veyon_sources}")
 
-create_translations("${veyon_translations}" "${veyon_sources}")
+create_translations(veyon "${veyon_translations}" "${veyon_sources}")
 find_qt_translations()

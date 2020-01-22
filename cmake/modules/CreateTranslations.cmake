@@ -3,7 +3,7 @@
 # description: create Qt translation files
 # usage: create_translations(<TS FILES> <SOURCE FILES>)
 
-function(create_translations ts_files source_files)
+function(create_translations name ts_files source_files)
 
 	set(qm_targets "")
 	foreach(ts_file ${ts_files})
@@ -19,5 +19,7 @@ function(create_translations ts_files source_files)
 
 		install(FILES ${qm_file} DESTINATION ${VEYON_INSTALL_DATA_DIR}/translations)
 	endforeach()
+
+	add_custom_target("${name}-translations" ALL DEPENDS "${qm_targets}")
 
 endfunction()
