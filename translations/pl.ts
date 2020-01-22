@@ -39,7 +39,7 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>O %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
@@ -50,7 +50,7 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Kontrola dostępu do komputerów</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
@@ -62,15 +62,15 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Użyj reguł kontroli dostępu</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Grupy użytkowników z autoryzacją dostępu do komputerów</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj grupy użytkowników z autoryzacją dostępu do komputerów w twojej sieci Veyon.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -122,7 +122,7 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik ma dostęp do komputerów przy tej konfiguracji.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -130,7 +130,7 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik nie ma dostępu do komputerów przy tej konfiguracji.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
@@ -138,19 +138,19 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Źródło grup użytkowników:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Nieskonfigurowane źródło grup użytkowników</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Brak domyślnej wtyczki źródła grup użytkowników. Proszę sprawdzić poprawność instalacji programu!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Ogranicz dostęp do członków wybranych grup</translation>
     </message>
 </context>
 <context>
@@ -426,7 +426,10 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Para kluczy uwierzytelniających składa się z dwóch kluczy kryptograficznych, prywatnego i publicznego.
+Klucz prywatny umożliwia użytkownikom komputera głównego dostęp do komputerów klienta.
+Ważne jest, aby jedynie autoryzowani użytkownicy mogli odczytać plik klucza prywatnego.
+Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połączeń przychodzących.</translation>
     </message>
 </context>
 <context>
@@ -441,7 +444,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Niepoprawny typ klucza! Proszę podać &quot;%1&quot; lub &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
@@ -453,7 +456,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Stwórz nową parę kluczy uwierzytelniających dla &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -461,7 +464,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nowa para kluczy uwierzytelniających została zapisana do &quot;%1&quot; i &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
@@ -477,7 +480,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Plik &quot;%1&quot; już istnieje.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -714,15 +717,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Sale i komputery</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Sale</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj nową salę</translation>
     </message>
     <message>
         <source>Remove selected location</source>
@@ -1286,15 +1289,15 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demonstracja (pełny ekran)</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>Zakończ demonstrację</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished"/>
+        <translation>Demonstracja (w oknie)</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1509,23 +1512,23 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Transfer plików</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opcje</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>Tylko wyślij</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>Wyślij plik(i) i otwórz za pomocą skojarzonego programu</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Wyślij plik(i) i otwórz folder docelowy</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1537,14 +1540,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Nadpisz istniejące pliki</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Transfer plików</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -1568,68 +1571,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>FirewallConfigurationWidget</name>
-    <message>
-        <source>Block all outbound traffic for TCP ports</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 8080</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Custom</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>21 (FTP)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>80/443 (HTTP/HTTPS)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Block all outbound traffic to non-local subnets</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Exceptions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Networks &amp; hosts</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Ports</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 80 443</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enable preconfigured firewall rule</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Nazwa</translation>
-    </message>
-</context>
-<context>
-    <name>FirewallPlugin</name>
-    <message>
-        <source>Block internet access via system firewall</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1790,64 +1731,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Kontrola dostępu do internetu</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Zablokuj dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Zezwól na dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Pokaż pomoc dotyczącą komendy</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Zablokuj internet</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Naciśnij ten przycisk żeby zablokować dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Odblokuj internet</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Naciśnij ten przycisk żeby zezwolić na dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Kontroluj dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Komendy do zarządzania dostępem do internetu</translation>
     </message>
 </context>
 <context>
@@ -2538,204 +2421,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>LdapProConfigurationPage</name>
-    <message>
-        <source>LDAP Pro</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>Brak danych</translation>
-    </message>
-    <message>
-        <source>Feature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Pokaż pomoc dla wskazanej komendy</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>Brak danych</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
@@ -3153,144 +2838,6 @@ USAGE
     </message>
 </context>
 <context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>New location</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Pokaż pomoc dla wskazanej komendy</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
@@ -3577,32 +3124,6 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RoutingPlugin</name>
-    <message>
-        <source>Block internet access by modifying routing table</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4115,10 +3636,6 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>licensed for</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4189,6 +3706,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Simulated key presses interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation type="unfinished"/>
     </message>
 </context>
