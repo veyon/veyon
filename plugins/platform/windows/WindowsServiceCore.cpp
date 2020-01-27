@@ -322,7 +322,7 @@ void WindowsServiceCore::serviceMain()
 	}
 
 	memset( &m_status, 0, sizeof( m_status ) );
-	m_status.dwServiceType = SERVICE_WIN32 | SERVICE_INTERACTIVE_PROCESS;
+	m_status.dwServiceType = SERVICE_WIN32;
 
 	if( reportStatus( SERVICE_START_PENDING, NO_ERROR, 15000 ) == false )
 	{
