@@ -153,7 +153,7 @@ WindowsServiceCore *WindowsServiceCore::instance()
 
 bool WindowsServiceCore::runAsService()
 {
-	SERVICE_TABLE_ENTRY dispatchTable[] = {
+	static const SERVICE_TABLE_ENTRY dispatchTable[] = {
 		{ m_name.data(), serviceMainStatic },
 		{ nullptr, nullptr }
 	} ;
