@@ -163,7 +163,7 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 				WindowsCoreFunctions::toConstWCharArray( m_name ),	// name of service
 				WindowsCoreFunctions::toConstWCharArray( displayName ),// name to display
 				SERVICE_ALL_ACCESS,	// desired access
-				SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
+				SERVICE_WIN32_OWN_PROCESS,
 				// service type
 				SERVICE_AUTO_START,	// start type
 				SERVICE_ERROR_NORMAL,	// error control type
