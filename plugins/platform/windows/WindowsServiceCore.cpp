@@ -318,6 +318,7 @@ void WindowsServiceCore::serviceMain()
 
 	if( m_statusHandle == nullptr )
 	{
+		vCritical() << "Invalid service status handle";
 		return;
 	}
 
@@ -326,6 +327,7 @@ void WindowsServiceCore::serviceMain()
 
 	if( reportStatus( SERVICE_START_PENDING, NO_ERROR, ServiceStartTimeout ) == false )
 	{
+		vCritical() << "Service start timed out";
 		reportStatus( SERVICE_STOPPED, 0, 0 );
 		return;
 	}
@@ -334,6 +336,7 @@ void WindowsServiceCore::serviceMain()
 
 	if( reportStatus( SERVICE_RUNNING, NO_ERROR, 0 ) == false )
 	{
+		vCritical() << "Could not report service as running";
 		return;
 	}
 
@@ -355,8 +358,7 @@ void WindowsServiceCore::serviceMain()
 
 DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context )
 {
-	Q_UNUSED(eventData)
-	Q_UNUSED(context)
+	vDebug() << ctrlCode << eventType << eventData << context;
 
 	// What control code have we been sent?
 	switch( ctrlCode )
@@ -432,7 +434,7 @@ bool WindowsServiceCore::reportStatus( DWORD state, DWORD exitCode, DWORD waitHi
 		m_status.dwCheckPoint = checkpoint++;
 	}
 
-	vDebug() << "reporting service status:" << static_cast<int>( state );
+	vDebug() << state << exitCode << waitHint << checkpoint;
 
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( m_statusHandle, &m_status ) ) )
