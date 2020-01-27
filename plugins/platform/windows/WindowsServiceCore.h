@@ -66,5 +66,6 @@ private:
 
 	static constexpr auto SessionPollingInterval = 100;
 	static constexpr auto MinimumServerUptimeTime = 10000;
+	static constexpr auto ServiceStartTimeout = 15000;
 
 } ;

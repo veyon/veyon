@@ -303,7 +303,7 @@ void WindowsServiceCore::serviceMainStatic( DWORD argc, LPWSTR* argv )
 
 
 
-DWORD WindowsServiceCore::serviceCtrlStatic(DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context)
+DWORD WindowsServiceCore::serviceCtrlStatic( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context )
 {
 	return instance()->serviceCtrl( ctrlCode, eventType, eventData, context );
 }
@@ -324,7 +324,7 @@ void WindowsServiceCore::serviceMain()
 	memset( &m_status, 0, sizeof( m_status ) );
 	m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
 
-	if( reportStatus( SERVICE_START_PENDING, NO_ERROR, 15000 ) == false )
+	if( reportStatus( SERVICE_START_PENDING, NO_ERROR, ServiceStartTimeout ) == false )
 	{
 		reportStatus( SERVICE_STOPPED, 0, 0 );
 		return;
