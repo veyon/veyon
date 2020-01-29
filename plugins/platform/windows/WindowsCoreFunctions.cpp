@@ -337,11 +337,13 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 	if( !OpenProcessToken( GetCurrentProcess(),
 						   TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &token ) )
 	{
+		vCritical() << "could not open process token";
 		return false;
 	}
 
 	if( !LookupPrivilegeValue( nullptr, privilegeName, &luid ) )
 	{
+		vCritical() << "could lookup privilege value";
 		return false;
 	}
 
