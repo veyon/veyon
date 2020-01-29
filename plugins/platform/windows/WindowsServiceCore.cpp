@@ -40,10 +40,7 @@
 class VeyonServerProcess
 {
 public:
-	VeyonServerProcess() :
-		m_subProcessHandle( nullptr )
-	{
-	}
+	VeyonServerProcess() = default;
 
 	~VeyonServerProcess()
 	{
@@ -113,7 +110,7 @@ private:
 	static constexpr auto ServerWaitTime = 10000;
 	static constexpr auto ServerPostStopWaitTime = 1000;
 
-	HANDLE m_subProcessHandle;
+	HANDLE m_subProcessHandle{nullptr};
 
 } ;
 
