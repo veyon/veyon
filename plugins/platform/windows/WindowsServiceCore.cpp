@@ -66,7 +66,7 @@ public:
 		{
 			extraEnv.append( QStringLiteral("%1=%2").
 							 arg( VeyonCore::sessionIdEnvironmentVariable() ).
-							 arg( wtsSessionId % 100 ) );
+							 arg( wtsSessionId % PlatformServiceCore::MaximumSessionCount ) );
 		}
 
 		vInfo() << "Starting server for session" << wtsSessionId << "with user" << user;

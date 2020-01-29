@@ -33,8 +33,9 @@ class VEYON_CORE_EXPORT PlatformServiceCore
 public:
 	using SessionId = int;
 
-	constexpr static SessionId SessionIdInvalid = -1;
-	constexpr static SessionId SessionIdMax = 99;
+	static constexpr SessionId SessionIdInvalid = -1;
+	static constexpr SessionId SessionIdMax = 99;
+	static constexpr auto MaximumSessionCount = SessionIdMax+1;
 
 	PlatformServiceCore();
 

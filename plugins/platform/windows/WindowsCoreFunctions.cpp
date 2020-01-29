@@ -29,6 +29,7 @@
 #include <shlobj.h>
 #include <userenv.h>
 
+#include "PlatformServiceCore.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsPlatformConfiguration.h"
@@ -527,9 +528,11 @@ QStringList WindowsCoreFunctions::sessionIdEnvironment()
 		auto currentSession = WtsSessionManager::currentSession();
 		if( currentSession != WtsSessionManager::activeConsoleSession() )
 		{
-			return { QStringLiteral("%1=%2").
-						arg( VeyonCore::sessionIdEnvironmentVariable() ).
-						arg( currentSession % 100 ) };
+			return {
+				QStringLiteral("%1=%2").
+					arg( VeyonCore::sessionIdEnvironmentVariable() ).
+					arg( currentSession % PlatformServiceCore::MaximumSessionCount )
+			};
 		}
 	}
 
