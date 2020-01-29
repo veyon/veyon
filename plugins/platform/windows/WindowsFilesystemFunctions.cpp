@@ -96,8 +96,8 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 		return {};
 	}
 
-	wchar_t* name = new wchar_t[nameSize];
-	wchar_t* domain = new wchar_t[domainSize];
+	auto name = new wchar_t[nameSize];
+	auto domain = new wchar_t[domainSize];
 
 	if( LookupAccountSid( nullptr, ownerSID, name, &nameSize, domain, &domainSize, &sidNameUse ) == false )
 	{
@@ -200,7 +200,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	ea[0].grfInheritance = NO_INHERITANCE;
 	ea[0].Trustee.TrusteeForm = TRUSTEE_IS_SID;
 	ea[0].Trustee.TrusteeType = TRUSTEE_IS_GROUP;
-	ea[0].Trustee.ptstrName = (LPTSTR) ownerSID;
+	ea[0].Trustee.ptstrName = LPTSTR(ownerSID);
 
 	// set full control for Administrators
 	ea[1].grfAccessPermissions = GENERIC_ALL;
@@ -208,7 +208,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	ea[1].grfInheritance = NO_INHERITANCE;
 	ea[1].Trustee.TrusteeForm = TRUSTEE_IS_SID;
 	ea[1].Trustee.TrusteeType = TRUSTEE_IS_GROUP;
-	ea[1].Trustee.ptstrName = (LPTSTR) adminSID;
+	ea[1].Trustee.ptstrName = LPTSTR(adminSID);
 
 	PACL acl = nullptr;
 	if( SetEntriesInAcl( ExplicitAccessCount, ea.data(), nullptr, &acl ) != ERROR_SUCCESS )
