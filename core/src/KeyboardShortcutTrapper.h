@@ -51,6 +51,6 @@ public:
 	virtual void setEnabled( bool on ) = 0;
 
 signals:
-	void shortcutTrapped( Shortcut );
+	void shortcutTrapped( KeyboardShortcutTrapper::Shortcut );
 
 } ;
