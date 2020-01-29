@@ -46,6 +46,9 @@ public:
 private:
 	bool checkService() const;
 
+	static constexpr auto ServiceActionDelay = 10000;
+	static constexpr auto ServiceWaitSleepInterval = 1000;
+
 	const QString m_name;
 	SC_HANDLE m_serviceManager;
 	SC_HANDLE m_serviceHandle;
