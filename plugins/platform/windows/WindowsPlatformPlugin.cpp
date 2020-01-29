@@ -26,13 +26,7 @@
 #include "WindowsPlatformConfigurationPage.h"
 
 WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_windowsCoreFunctions(),
-	m_windowsFilesystemFunctions(),
-	m_windowsInputDeviceFunctions(),
-	m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-	m_windowsUserFunctions()
+	QObject( parent )
 {
 }
 
