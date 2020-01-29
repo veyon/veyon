@@ -18,7 +18,7 @@ class CXEventLog
 {
 // Construction
 public:
-	CXEventLog(LPCTSTR lpszApp = NULL, LPCTSTR lpszEventMessageDll = NULL);
+	CXEventLog(LPCTSTR lpszApp = nullptr, LPCTSTR lpszEventMessageDll = nullptr);
 	~CXEventLog();
 
 // Attributes
@@ -28,11 +28,11 @@ public:
 // Operations
 public:
 	void	Close();
-	BOOL	Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll = NULL);
+	BOOL	Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll = nullptr);
 	BOOL	Write(WORD wType, LPCTSTR lpszMessage);
 
 // Implementation
-protected:
+private:
 	HANDLE	m_hEventLog;
 	LPTSTR	m_pszAppName;
 	PSID	GetUserSid();
