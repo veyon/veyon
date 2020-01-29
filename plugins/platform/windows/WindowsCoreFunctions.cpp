@@ -40,7 +40,8 @@
 
 static bool configureSoftwareSAS( bool enabled )
 {
-	HKEY hkLocal, hkLocalKey;
+	HKEY hkLocal;
+	HKEY hkLocalKey;
 	DWORD dw;
 	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
 						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
@@ -166,11 +167,11 @@ void WindowsCoreFunctions::raiseWindow( QWidget* widget )
 	widget->activateWindow();
 	widget->raise();
 
-	QWindow* window = windowForWidget( widget );
+	auto window = windowForWidget( widget );
 	if( window )
 	{
-		QPlatformNativeInterface* interfacep = QGuiApplication::platformNativeInterface();
-		auto windowHandle = static_cast<HWND>( interfacep->nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
+		auto windowHandle = HWND( QGuiApplication::platformNativeInterface()->
+								  nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
 
 		SetWindowPos( windowHandle, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
 	}
@@ -278,7 +279,7 @@ bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStr
 {
 	const auto parametersJoined = parameters.join( QLatin1Char(' ') );
 
-	SHELLEXECUTEINFO sei{0};
+	SHELLEXECUTEINFO sei{};
 	sei.cbSize = sizeof(sei);
 	sei.lpVerb = L"runas";
 	sei.lpFile = toConstWCharArray( program );
@@ -350,7 +351,7 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 	tokenPrivileges.Privileges[0].Luid = luid;
 	tokenPrivileges.Privileges[0].Attributes = enable ? SE_PRIVILEGE_ENABLED : 0;
 
-	bool ret = AdjustTokenPrivileges( token, false, &tokenPrivileges, 0, nullptr, nullptr );
+	const auto ret = AdjustTokenPrivileges( token, false, &tokenPrivileges, 0, nullptr, nullptr );
 
 	CloseHandle( token );
 
@@ -365,7 +366,7 @@ QSharedPointer<wchar_t> WindowsCoreFunctions::toWCharArray( const QString& qstri
 	qstring.toWCharArray( wcharArray );
 	wcharArray[qstring.size()] = 0;
 
-	return { wcharArray, []( wchar_t* buffer ) { delete[] buffer; } };
+	return { wcharArray, []( const wchar_t* buffer ) { delete[] buffer; } };
 }
 
 
