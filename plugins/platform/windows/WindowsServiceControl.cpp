@@ -104,7 +104,7 @@ bool WindowsServiceControl::start()
 		{
 			if( status.dwCurrentState == SERVICE_START_PENDING )
 			{
-				Sleep( 1000 );
+				Sleep( ServiceWaitSleepInterval );
 			}
 			else
 			{
@@ -163,7 +163,7 @@ bool WindowsServiceControl::stop()
 		{
 			if( status.dwCurrentState == SERVICE_STOP_PENDING )
 			{
-				Sleep( 1000 );
+				Sleep( ServiceWaitSleepInterval );
 			}
 			else
 			{
@@ -230,7 +230,7 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 	}
 
 	SC_ACTION serviceActions;
-	serviceActions.Delay = 10000;
+	serviceActions.Delay = ServiceActionDelay;
 	serviceActions.Type = SC_ACTION_RESTART;
 
 	SERVICE_FAILURE_ACTIONS serviceFailureActions;
