@@ -161,17 +161,16 @@ WtsSessionManager::ProcessId WtsSessionManager::findWinlogonProcessId( SessionId
 WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
-	char userSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
-	wchar_t domainName[MAX_PATH]; // Flawfinder: ignore
-	domainName[0] = 0;
-	DWORD domainLen = MAX_PATH;
+	std::array<char, SECURITY_MAX_SID_SIZE> userSID{};
+	std::array<wchar_t, DOMAIN_LENGTH> domainName{};
+	DWORD domainLen = domainName.size();
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr,		// system name
 						   WindowsCoreFunctions::toConstWCharArray( userName ),
-						   userSID,
+						   userSID.data(),
 						   &sidLen,
-						   domainName,
+						   domainName.data(),
 						   &domainLen,
 						   &sidNameUse ) == false )
 	{
@@ -194,7 +193,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 	{
 		if( processInfo[proc].ProcessId > 0 &&
 			processInfo[proc].pUserSid != nullptr &&
-			EqualSid( processInfo[proc].pUserSid, userSID ) )
+			EqualSid( processInfo[proc].pUserSid, userSID.data() ) )
 		{
 			pid = processInfo[proc].ProcessId;
 			break;

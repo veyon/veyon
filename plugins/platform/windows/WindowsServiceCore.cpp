@@ -147,12 +147,12 @@ WindowsServiceCore *WindowsServiceCore::instance()
 
 bool WindowsServiceCore::runAsService()
 {
-	static const SERVICE_TABLE_ENTRY dispatchTable[] = {
+	static const std::array<SERVICE_TABLE_ENTRY, 2> dispatchTable = { {
 		{ m_name.data(), serviceMainStatic },
 		{ nullptr, nullptr }
-	} ;
+	} } ;
 
-	if( !StartServiceCtrlDispatcher( dispatchTable ) )
+	if( !StartServiceCtrlDispatcher( dispatchTable.data() ) )
 	{
 		vCritical() << "StartServiceCtrlDispatcher failed.";
 		return false;

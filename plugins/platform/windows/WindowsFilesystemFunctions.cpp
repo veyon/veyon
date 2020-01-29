@@ -27,6 +27,7 @@
 #include <shlobj.h>
 #include <accctrl.h>
 #include <aclapi.h>
+#include <wtsapi32.h>
 
 #include "WindowsCoreFunctions.h"
 #include "WindowsFilesystemFunctions.h"
@@ -119,15 +120,15 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE;
-	char ownerGroupSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
-	wchar_t domain[PATH_MAX]; // Flawfinder: ignore
-	domain[0] = 0;
-	DWORD domainLen = PATH_MAX;
+	std::array<char, SECURITY_MAX_SID_SIZE> ownerGroupSID{};
+	std::array<wchar_t, DOMAIN_LENGTH> domain{};
+
+	DWORD domainLen = domain.size();
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr, WindowsCoreFunctions::toConstWCharArray( ownerGroup ),
-						   ownerGroupSID, &sidLen,
-						   domain, &domainLen, &sidNameUse ) == false )
+						   ownerGroupSID.data(), &sidLen,
+						   domain.data(), &domainLen, &sidNameUse ) == false )
 	{
 		vCritical() << "Could not look up SID structure:" << GetLastError();
 		return false;
@@ -139,7 +140,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 	const auto filePathWide = WindowsCoreFunctions::toWCharArray( filePath );
 
 	const auto result = SetNamedSecurityInfo( filePathWide.data(), SE_FILE_OBJECT,
-											  OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
+											  OWNER_SECURITY_INFORMATION, ownerGroupSID.data(), nullptr, nullptr, nullptr );
 
 	if( result != ERROR_SUCCESS )
 	{
@@ -178,10 +179,8 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 		return false;
 	}
 
-	const int NUM_ACES = 2;
-	EXPLICIT_ACCESS ea[NUM_ACES];
-
-	ZeroMemory( &ea, NUM_ACES * sizeof(EXPLICIT_ACCESS) );
+	static constexpr auto ExplicitAccessCount = 2;
+	std::array<EXPLICIT_ACCESS, ExplicitAccessCount> ea{};
 
 	// set read access for owner
 	ea[0].grfAccessPermissions = 0;
@@ -212,7 +211,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	ea[1].Trustee.ptstrName = (LPTSTR) adminSID;
 
 	PACL acl = nullptr;
-	if( SetEntriesInAcl( NUM_ACES, ea, nullptr, &acl ) != ERROR_SUCCESS )
+	if( SetEntriesInAcl( ExplicitAccessCount, ea.data(), nullptr, &acl ) != ERROR_SUCCESS )
 	{
 		vCritical() << "SetEntriesInAcl() failed";
 		FreeSid( adminSID );
