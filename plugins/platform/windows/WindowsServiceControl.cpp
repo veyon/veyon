@@ -193,10 +193,7 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 	serviceActions.Delay = ServiceActionDelay;
 	serviceActions.Type = SC_ACTION_RESTART;
 
-	SERVICE_FAILURE_ACTIONS serviceFailureActions;
-	serviceFailureActions.dwResetPeriod = 0;
-	serviceFailureActions.lpRebootMsg = nullptr;
-	serviceFailureActions.lpCommand = nullptr;
+	SERVICE_FAILURE_ACTIONS serviceFailureActions{};
 	serviceFailureActions.lpsaActions = &serviceActions;
 	serviceFailureActions.cActions = 1;
 	ChangeServiceConfig2( m_serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS, &serviceFailureActions );
