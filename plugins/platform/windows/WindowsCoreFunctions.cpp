@@ -69,13 +69,6 @@ static bool configureSoftwareSAS( bool enabled )
 
 
 
-WindowsCoreFunctions::WindowsCoreFunctions() :
-	m_eventLog( nullptr )
-{
-}
-
-
-
 WindowsCoreFunctions::~WindowsCoreFunctions()
 {
 	delete m_eventLog;
@@ -123,7 +116,7 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 		break;
 	}
 
-	if( messageType > 0 )
+	if( messageType > 0 && m_eventLog )
 	{
 		m_eventLog->Write( static_cast<WORD>( messageType ), toConstWCharArray( message ) );
 	}

@@ -37,7 +37,7 @@ class WindowsCoreFunctions : public PlatformCoreFunctions
 public:
 	using ProcessId = DWORD;
 
-	WindowsCoreFunctions();
+	WindowsCoreFunctions() = default;
 	~WindowsCoreFunctions() override;
 
 	bool applyConfiguration() override;
@@ -107,7 +107,7 @@ private:
 	static void setStartMenuState( bool enabled );
 	static void setDesktopState( bool enabled );
 
-	CXEventLog* m_eventLog;
+	CXEventLog* m_eventLog{nullptr};
 	std::array<UINT, ScreenSaverSettingsCount> m_screenSaverSettings{};
 
 };
