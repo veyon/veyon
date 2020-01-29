@@ -158,11 +158,11 @@ QString WindowsUserFunctions::currentUser()
 	// check whether we just got the name of the local computer
 	if( !domainName.isEmpty() )
 	{
-		wchar_t computerName[MAX_PATH]; // Flawfinder: ignore
-		DWORD size = MAX_PATH;
-		GetComputerName( computerName, &size );
+		std::array<wchar_t, MAX_COMPUTERNAME_LENGTH+1> computerName{}; // Flawfinder: ignore
+		DWORD size = MAX_COMPUTERNAME_LENGTH;
+		GetComputerName( computerName.data(), &size );
 
-		if( domainName == QString::fromWCharArray( computerName ) )
+		if( domainName == QString::fromWCharArray( computerName.data() ) )
 		{
 			// reset domain name as we do not need to store local computer name
 			domainName.clear();
