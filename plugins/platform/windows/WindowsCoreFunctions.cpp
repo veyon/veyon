@@ -530,28 +530,36 @@ bool WindowsCoreFunctions::terminateProcess( ProcessId processId, DWORD timeout 
 
 wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings )
 {
-	static constexpr auto ENV_POS_MAX = 1024*1024;
+	static constexpr auto MaximumEnvironmentSize = 1024*1024;
+	static constexpr auto MaximumExtraStringsLength = 1024*1024;
 
 	size_t envPos = 0;
-	while( envPos < ENV_POS_MAX-1 && !(env[envPos] == 0 && env[envPos+1] == 0) )
+	while( envPos < MaximumEnvironmentSize-1 && !(env[envPos] == 0 && env[envPos+1] == 0) )
 	{
 		++envPos;
 	}
 
 	++envPos;
 
-	if( envPos >= ENV_POS_MAX-1 )
+	if( envPos >= MaximumEnvironmentSize-1 )
 	{
 		return nullptr;
 	}
 
-	auto newEnv = new wchar_t[envPos+static_cast<size_t>( strings.join( QLatin1Char(' ') ).size())+2];
-	memcpy( newEnv, env, envPos*2 );
+	const auto stringsTotalLength = size_t( strings.join( QLatin1Char(' ') ).size() );
+	if( stringsTotalLength >= MaximumExtraStringsLength )
+	{
+		return nullptr;
+	}
+
+	auto newEnv = new wchar_t[envPos + stringsTotalLength + 2];
+	memcpy( newEnv, env, envPos*2 ); // Flawfinder: ignore
 
 	for( const auto& string : strings )
 	{
-		memcpy( &newEnv[envPos], toConstWCharArray( string ), static_cast<size_t>( string.size()*2 ) );
-		envPos += static_cast<size_t>( string.size() );
+		const auto stringLength = size_t(string.size());
+		memcpy( &newEnv[envPos], toConstWCharArray( string ), stringLength * sizeof(wchar_t) ); // Flawfinder: ignore
+		envPos += stringLength;
 		newEnv[envPos] = 0;
 		++envPos;
 	}
