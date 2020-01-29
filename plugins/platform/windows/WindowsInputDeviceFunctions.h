@@ -33,8 +33,8 @@
 class WindowsInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
-	WindowsInputDeviceFunctions();
-	~WindowsInputDeviceFunctions() override;
+	WindowsInputDeviceFunctions() = default;
+	virtual ~WindowsInputDeviceFunctions();
 
 	void enableInputDevices() override;
 	void disableInputDevices() override;
@@ -60,10 +60,10 @@ private:
 	static bool uninstallInterception();
 	static int interceptionInstaller( const QString& argument );
 
-	bool m_inputDevicesDisabled;
-	InterceptionContext m_interceptionContext;
-	QString m_hidServiceName;
-	bool m_hidServiceStatusInitialized;
-	bool m_hidServiceActivated;
+	bool m_inputDevicesDisabled{false};
+	InterceptionContext m_interceptionContext{nullptr};
+	QString m_hidServiceName{QStringLiteral("hidserv")};
+	bool m_hidServiceStatusInitialized{false};
+	bool m_hidServiceActivated{false};
 
 };
