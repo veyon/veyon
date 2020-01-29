@@ -136,9 +136,12 @@ WindowsServiceCore::WindowsServiceCore( const QString& name,
 
 
 
-WindowsServiceCore *WindowsServiceCore::instance()
+WindowsServiceCore* WindowsServiceCore::instance()
 {
-	Q_ASSERT(s_instance != nullptr);
+	if( s_instance == nullptr )
+	{
+		vCritical() << "invalid instance!";
+	}
 
 	return s_instance;
 }
