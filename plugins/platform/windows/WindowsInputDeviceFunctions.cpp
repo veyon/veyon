@@ -44,17 +44,6 @@ static int interception_is_any( InterceptionDevice device )
 
 
 
-WindowsInputDeviceFunctions::WindowsInputDeviceFunctions() :
-	m_inputDevicesDisabled( false ),
-	m_interceptionContext( nullptr ),
-	m_hidServiceName( QStringLiteral("hidserv") ),
-	m_hidServiceStatusInitialized( false ),
-	m_hidServiceActivated( false )
-{
-}
-
-
-
 WindowsInputDeviceFunctions::~WindowsInputDeviceFunctions()
 {
 	if( m_inputDevicesDisabled )
