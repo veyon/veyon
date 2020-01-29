@@ -26,7 +26,9 @@
 
 #include "PlatformNetworkFunctions.h"
 
-// clazy:excludeall=copyable-polymorphic
+#include <winbase.h>
+
+// clazy:exclude=copyable-polymorphic
 
 class WindowsNetworkFunctions : public PlatformNetworkFunctions
 {
@@ -37,6 +39,8 @@ public:
 	bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) override;
 
 	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
+
+	static constexpr auto WindowsFirewallServiceError = HRESULT(0x800706D9);
 
 private:
 	bool pingIPv4Address( const QString& hostAddress, bool* result );
