@@ -122,22 +122,16 @@ private:
 WindowsServiceCore* WindowsServiceCore::s_instance = nullptr;
 
 
-WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(void)> serviceMainEntry ) :
+WindowsServiceCore::WindowsServiceCore( const QString& name,
+										const PlatformServiceFunctions::ServiceEntryPoint& serviceEntryPoint ) :
 	m_name( WindowsCoreFunctions::toWCharArray( name ) ),
-	m_serviceMainEntry( serviceMainEntry ),
-	m_dataManager()
+	m_serviceEntryPoint( serviceEntryPoint )
 {
 	s_instance = this;
 
 	// enable privileges required to create process with access token from other process
 	WindowsCoreFunctions::enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	WindowsCoreFunctions::enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
-}
-
-
-
-WindowsServiceCore::~WindowsServiceCore()
-{
 }
 
 
@@ -343,7 +337,7 @@ void WindowsServiceCore::serviceMain()
 	SasEventListener sasEventListener;
 	sasEventListener.start();
 
-	m_serviceMainEntry();
+	m_serviceEntryPoint();
 
 	CloseHandle( m_stopServiceEvent );
 

@@ -85,9 +85,9 @@ bool WindowsServiceFunctions::setStartMode( const QString& name, PlatformService
 
 
 
-bool WindowsServiceFunctions::runAsService( const QString& name, const std::function<void(void)>& serviceMain )
+bool WindowsServiceFunctions::runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint )
 {
-	WindowsServiceCore windowsServiceCore( name, serviceMain );
+	WindowsServiceCore windowsServiceCore( name, serviceEntryPoint );
 	return windowsServiceCore.runAsService();
 }
 

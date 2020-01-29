@@ -27,13 +27,14 @@
 #include <windows.h>
 
 #include "PlatformServiceCore.h"
+#include "PlatformServiceFunctions.h"
 #include "ServiceDataManager.h"
 
 class WindowsServiceCore : public PlatformServiceCore
 {
 public:
-	WindowsServiceCore( const QString& name, std::function<void(void)> serviceMainEntry );
-	~WindowsServiceCore();
+	WindowsServiceCore( const QString& name, const PlatformServiceFunctions::ServiceEntryPoint& serviceEntryPoint );
+	~WindowsServiceCore() = default;
 
 	static WindowsServiceCore* instance();
 
@@ -53,7 +54,7 @@ private:
 	bool reportStatus( DWORD state, DWORD exitCode, DWORD waitHint );
 
 	QSharedPointer<wchar_t> m_name;
-	std::function<void(void)> m_serviceMainEntry;
+	const PlatformServiceFunctions::ServiceEntryPoint& m_serviceEntryPoint;
 
 	static WindowsServiceCore* s_instance;
 	SERVICE_STATUS m_status{};
@@ -62,7 +63,7 @@ private:
 	HANDLE m_serverShutdownEvent{nullptr};
 	QAtomicInt m_sessionChangeEvent{0};
 
-	ServiceDataManager m_dataManager;
+	ServiceDataManager m_dataManager{};
 
 	static constexpr auto SessionPollingInterval = 100;
 	static constexpr auto MinimumServerUptimeTime = 10000;
