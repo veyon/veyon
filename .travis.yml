@@ -11,7 +11,6 @@ matrix:
         - env: TARGET_OS=debian.stretch
         - env: TARGET_OS=debian.buster
         - env: TARGET_OS=fedora.29
-        - env: TARGET_OS=opensuse.15.0
         - env: TARGET_OS=opensuse.15.1
         - env: TARGET_OS=ubuntu.bionic
         - env: TARGET_OS=ubuntu.xenial
