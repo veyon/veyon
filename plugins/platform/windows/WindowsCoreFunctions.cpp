@@ -39,22 +39,6 @@
 #define SHUTDOWN_FLAGS (SHUTDOWN_FORCE_OTHERS | SHUTDOWN_FORCE_SELF)
 #define SHUTDOWN_REASON (SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_FLAG_PLANNED)
 
-static const int screenSaverSettingsCount = 3;
-static const UINT screenSaverSettingsGetList[screenSaverSettingsCount] =
-{
-	SPI_GETLOWPOWERTIMEOUT,
-	SPI_GETPOWEROFFTIMEOUT,
-	SPI_GETSCREENSAVETIMEOUT
-};
-
-static const UINT screenSaverSettingsSetList[screenSaverSettingsCount] =
-{
-	SPI_SETLOWPOWERTIMEOUT,
-	SPI_SETPOWEROFFTIMEOUT,
-	SPI_SETSCREENSAVETIMEOUT
-};
-
-static UINT screenSaverSettings[screenSaverSettingsCount];
 
 static bool configureSoftwareSAS( bool enabled )
 {
@@ -205,10 +189,10 @@ void WindowsCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 
 void WindowsCoreFunctions::disableScreenSaver()
 {
-	for( int i = 0; i < screenSaverSettingsCount; ++i )
+	for( size_t i = 0; i < ScreenSaverSettingsCount; ++i )
 	{
-		SystemParametersInfo( screenSaverSettingsGetList[i], 0, &screenSaverSettings[i], 0 );
-		SystemParametersInfo( screenSaverSettingsSetList[i], 0, nullptr, 0 );
+		SystemParametersInfo( ScreenSaverSettingsGetList.at(i), 0, &m_screenSaverSettings.at(i), 0 );
+		SystemParametersInfo( ScreenSaverSettingsSetList.at(i), 0, nullptr, 0 );
 	}
 
 	SetThreadExecutionState( ES_CONTINUOUS | ES_DISPLAY_REQUIRED );
@@ -218,9 +202,9 @@ void WindowsCoreFunctions::disableScreenSaver()
 
 void WindowsCoreFunctions::restoreScreenSaverSettings()
 {
-	for( int i = 0; i < screenSaverSettingsCount; ++i )
+	for( size_t i = 0; i < ScreenSaverSettingsCount; ++i )
 	{
-		SystemParametersInfo( screenSaverSettingsSetList[i], screenSaverSettings[i], nullptr, 0 );
+		SystemParametersInfo( ScreenSaverSettingsSetList.at(i), m_screenSaverSettings.at(i), nullptr, 0 );
 	}
 
 	SetThreadExecutionState( ES_CONTINUOUS );
