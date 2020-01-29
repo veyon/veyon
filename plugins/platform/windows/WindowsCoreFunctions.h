@@ -85,6 +85,19 @@ public:
 private:
 	static constexpr int ConsoleOutputBufferSize = 256;
 	static constexpr DWORD DefaultProcessTerminationTimeout = 5000;
+	static constexpr size_t ScreenSaverSettingsCount = 3;
+
+	const std::array<UINT, ScreenSaverSettingsCount> ScreenSaverSettingsGetList = {
+		SPI_GETLOWPOWERTIMEOUT,
+		SPI_GETPOWEROFFTIMEOUT,
+		SPI_GETSCREENSAVETIMEOUT
+	};
+
+	const std::array<UINT, ScreenSaverSettingsCount> ScreenSaverSettingsSetList = {
+		SPI_SETLOWPOWERTIMEOUT,
+		SPI_SETPOWEROFFTIMEOUT,
+		SPI_SETSCREENSAVETIMEOUT
+	};
 
 	static wchar_t* appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings );
 	static void setTaskbarState( bool enabled );
@@ -92,5 +105,6 @@ private:
 	static void setDesktopState( bool enabled );
 
 	CXEventLog* m_eventLog;
+	std::array<UINT, ScreenSaverSettingsCount> m_screenSaverSettings{};
 
 };
