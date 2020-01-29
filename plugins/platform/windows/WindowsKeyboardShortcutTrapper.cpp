@@ -105,7 +105,6 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 
 WindowsKeyboardShortcutTrapper::WindowsKeyboardShortcutTrapper( QObject* parent ) :
 	KeyboardShortcutTrapper( parent ),
-	m_enabled( false ),
 	m_pollTimer( this )
 {
 	connect( &m_pollTimer, &QTimer::timeout,
