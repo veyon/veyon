@@ -37,9 +37,6 @@
 #include "XEventLog.h"
 
 
-#define SHUTDOWN_FLAGS (SHUTDOWN_FORCE_OTHERS | SHUTDOWN_FORCE_SELF)
-#define SHUTDOWN_REASON (SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_FLAG_PLANNED)
-
 
 static bool configureSoftwareSAS( bool enabled )
 {
@@ -137,7 +134,7 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 void WindowsCoreFunctions::reboot()
 {
 	enablePrivilege( SE_SHUTDOWN_NAME, true );
-	InitiateShutdown( nullptr, nullptr, 0, SHUTDOWN_FLAGS | SHUTDOWN_RESTART, SHUTDOWN_REASON );
+	InitiateShutdown( nullptr, nullptr, 0, ShutdownFlags | SHUTDOWN_RESTART, ShutdownReason );
 }
 
 
@@ -146,8 +143,8 @@ void WindowsCoreFunctions::powerDown( bool installUpdates )
 {
 	enablePrivilege( SE_SHUTDOWN_NAME, true );
 	InitiateShutdown( nullptr, nullptr, 0,
-					  SHUTDOWN_FLAGS | SHUTDOWN_POWEROFF | ( installUpdates ? SHUTDOWN_INSTALL_UPDATES : 0 ),
-					  SHUTDOWN_REASON );
+					  ShutdownFlags | SHUTDOWN_POWEROFF | ( installUpdates ? SHUTDOWN_INSTALL_UPDATES : 0 ),
+					  ShutdownReason );
 }
 
 
