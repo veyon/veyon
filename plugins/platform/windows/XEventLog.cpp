@@ -55,7 +55,7 @@ CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
 					   LPCTSTR lpszEventMessageDll /* = NULL*/)
 {
 #ifdef _DEBUG
-	if ((lpszApp == NULL) || (lpszApp[0] == _T('\0')))
+	if ((lpszApp == nullptr) || (lpszApp[0] == _T('\0')))
 	{
 		TRACE(_T("=== No app specified in CXEventLog ctor. ")
 			  _T("Be sure to call Init() before calling Write(). ===\n"));
@@ -85,10 +85,7 @@ CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
 CXEventLog::~CXEventLog()
 {
 	Close();
-	if (m_pszAppName)
-	{
-		delete [] m_pszAppName;
-	}
+	delete [] m_pszAppName;
 	m_pszAppName = nullptr;
 }
 
@@ -268,7 +265,7 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 								LPCTSTR lpszEventMessageDll)
 {
-	_ASSERTE((lpszApp != NULL) && (lpszApp[0] != _T('\0')));
+	_ASSERTE((lpszApp != nullptr) && (lpszApp[0] != _T('\0')));
 	if (!lpszApp || lpszApp[0] == _T('\0'))
 	{
 		return FALSE;
@@ -277,8 +274,8 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 	TCHAR szRegPath[] =
 		_T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
 
-	TCHAR szKey[_MAX_PATH*2]; // Flawfinder: ignore
-	memset(szKey, 0, _MAX_PATH*2*sizeof(TCHAR));
+	TCHAR szKey[MAX_PATH*2]; // Flawfinder: ignore
+	memset(szKey, 0, MAX_PATH*2*sizeof(TCHAR));
 	wcsncpy(szKey, szRegPath, MAX_PATH*2-2); // Flawfinder: ignore
 	wcsncat(szKey, lpszApp, MAX_PATH*2-2); // Flawfinder: ignore
 
