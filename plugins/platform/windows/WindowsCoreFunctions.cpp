@@ -238,12 +238,10 @@ QString WindowsCoreFunctions::activeDesktopName()
 
 	auto desktopHandle = GetThreadDesktop( GetCurrentThreadId() );
 
-	wchar_t inputDesktopName[256]; // Flawfinder: ignore
-	inputDesktopName[0] = 0;
-	if( GetUserObjectInformation( desktopHandle, UOI_NAME, inputDesktopName,
-								  sizeof( inputDesktopName ) / sizeof( wchar_t ), nullptr ) )
+	std::array<wchar_t, MAX_PATH> inputDesktopName{};
+	if( GetUserObjectInformation( desktopHandle, UOI_NAME, inputDesktopName.data(), inputDesktopName.size(), nullptr ) )
 	{
-		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName ) );
+		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName.data() ) );
 	}
 
 	return desktopName;
