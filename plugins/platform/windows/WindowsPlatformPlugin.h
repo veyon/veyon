@@ -111,11 +111,11 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	WindowsCoreFunctions m_windowsCoreFunctions;
-	WindowsFilesystemFunctions m_windowsFilesystemFunctions;
-	WindowsInputDeviceFunctions m_windowsInputDeviceFunctions;
-	WindowsNetworkFunctions m_windowsNetworkFunctions;
-	WindowsServiceFunctions m_windowsServiceFunctions;
-	WindowsUserFunctions m_windowsUserFunctions;
+	WindowsCoreFunctions m_windowsCoreFunctions{};
+	WindowsFilesystemFunctions m_windowsFilesystemFunctions{};
+	WindowsInputDeviceFunctions m_windowsInputDeviceFunctions{};
+	WindowsNetworkFunctions m_windowsNetworkFunctions{};
+	WindowsServiceFunctions m_windowsServiceFunctions{};
+	WindowsUserFunctions m_windowsUserFunctions{};
 
 };
