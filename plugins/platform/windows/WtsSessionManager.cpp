@@ -63,7 +63,7 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 		return sessionList;
 	}
 
-	sessionList.reserve( sessionCount );
+	sessionList.reserve( int(sessionCount) );
 
 	for( DWORD sessionIndex = 0; sessionIndex < sessionCount; ++sessionIndex )
 	{
