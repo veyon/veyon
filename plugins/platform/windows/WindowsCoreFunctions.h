@@ -85,6 +85,9 @@ private:
 	static constexpr DWORD DefaultProcessTerminationTimeout = 5000;
 	static constexpr size_t ScreenSaverSettingsCount = 3;
 
+	static constexpr auto ShutdownFlags = SHUTDOWN_FORCE_OTHERS | SHUTDOWN_FORCE_SELF;
+	static constexpr auto ShutdownReason = SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_FLAG_PLANNED;
+
 	const std::array<UINT, ScreenSaverSettingsCount> ScreenSaverSettingsGetList = {
 		SPI_GETLOWPOWERTIMEOUT,
 		SPI_GETPOWEROFFTIMEOUT,
