@@ -7,7 +7,7 @@ dist: xenial
 sudo: required
 matrix:
     include:
-        - env: TARGET_OS=centos.74
+        - env: TARGET_OS=centos.77
         - env: TARGET_OS=debian.stretch
         - env: TARGET_OS=debian.buster
         - env: TARGET_OS=fedora.30
