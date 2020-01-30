@@ -1,4 +1,4 @@
-FROM centos:7.4.1708
+FROM centos:7.7.1908
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
