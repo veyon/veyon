@@ -39,18 +39,6 @@
 #include <X11/extensions/dpms.h>
 
 
-LinuxCoreFunctions::LinuxCoreFunctions() :
-	m_screenSaverTimeout( 0 ),
-	m_screenSaverPreferBlanking( 0 ),
-	m_dpmsEnabled( false ),
-	m_dpmsStandbyTimeout( 0 ),
-	m_dpmsSuspendTimeout( 0 ),
-	m_dpmsOffTimeout( 0 )
-{
-}
-
-
-
 bool LinuxCoreFunctions::applyConfiguration()
 {
 	return true;
@@ -131,7 +119,8 @@ void LinuxCoreFunctions::disableScreenSaver()
 	auto display = XOpenDisplay( nullptr );
 
 	// query and disable screen saver
-	int interval, allowExposures;
+	int interval;
+	int allowExposures;
 	XGetScreenSaver( display, &m_screenSaverTimeout, &interval, &m_screenSaverPreferBlanking, &allowExposures );
 	XSetScreenSaver( display, 0, interval, 0, allowExposures );
 
@@ -170,7 +159,10 @@ void LinuxCoreFunctions::restoreScreenSaverSettings()
 	auto display = XOpenDisplay( nullptr );
 
 	// restore screensaver settings
-	int timeout, interval, preferBlanking, allowExposures;
+	int timeout;
+	int interval;
+	int preferBlanking;
+	int allowExposures;
 	XGetScreenSaver( display, &timeout, &interval, &preferBlanking, &allowExposures );
 	XSetScreenSaver( display, m_screenSaverTimeout, interval, m_screenSaverPreferBlanking, allowExposures );
 
@@ -267,7 +259,7 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 	}
 
 	auto process = new UserProcess( uid );
-	process->connect( process, QOverload<int>::of( &QProcess::finished ), &QProcess::deleteLater );
+	QObject::connect( process, QOverload<int>::of( &QProcess::finished ), &QProcess::deleteLater );
 	process->start( program, parameters );
 
 	return true;

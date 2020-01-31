@@ -31,7 +31,7 @@
 class LinuxInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
-	LinuxInputDeviceFunctions();
+	LinuxInputDeviceFunctions() = default;
 	virtual ~LinuxInputDeviceFunctions() = default;
 
 	void enableInputDevices() override;
@@ -43,11 +43,11 @@ private:
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
 
-	bool m_inputDevicesDisabled;
-	void* m_origKeyTable;
-	int m_keyCodeMin;
-	int m_keyCodeMax;
-	int m_keyCodeCount;
-	int m_keySymsPerKeyCode;
+	bool m_inputDevicesDisabled{false};
+	void* m_origKeyTable{nullptr};
+	int m_keyCodeMin{0};
+	int m_keyCodeMax{0};
+	int m_keyCodeCount{0};
+	int m_keySymsPerKeyCode{0};
 
 };

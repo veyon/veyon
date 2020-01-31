@@ -26,14 +26,14 @@
 
 #include <QString>
 
-typedef struct FakeKey FakeKey;
-typedef struct _XDisplay Display;
-
 // clazy:excludeall=copyable-polymorphic
 
 class LinuxKeyboardInput
 {
 public:
+	using FakeKey = struct FakeKey;
+	using Display = struct _XDisplay;
+
 	LinuxKeyboardInput();
 	~LinuxKeyboardInput();
 
