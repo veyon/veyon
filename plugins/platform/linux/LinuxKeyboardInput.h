@@ -26,7 +26,7 @@
 
 #include <QString>
 
-// clazy:excludeall=rule-of-three
+// clazy:excludeall=copyable-polymorphic
 
 class LinuxKeyboardInput
 {
