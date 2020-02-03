@@ -55,11 +55,11 @@ void VncServerProtocol::start()
 {
 	if( state() == Disconnected )
 	{
-		char protocol[sz_rfbProtocolVersionMsg+1]; // Flawfinder: ignore
+		std::array<char, sz_rfbProtocolVersionMsg+1> protocol{}; // Flawfinder: ignore
 
-		sprintf( protocol, rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
+		sprintf( protocol.data(), rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
 
-		m_socket->write( protocol, sz_rfbProtocolVersionMsg );
+		m_socket->write( protocol.data(), sz_rfbProtocolVersionMsg );
 
 		setState( Protocol );
 	}
@@ -145,8 +145,8 @@ bool VncServerProtocol::readProtocol()
 bool VncServerProtocol::sendSecurityTypes()
 {
 	// send list of supported security types
-	static const char securityTypeList[2] = { 1, VeyonCore::RfbSecurityTypeVeyon }; // Flawfinder: ignore
-	m_socket->write( securityTypeList, sizeof( securityTypeList ) );
+	constexpr std::array<char, 2> securityTypeList{ 1, VeyonCore::RfbSecurityTypeVeyon };
+	m_socket->write( securityTypeList.data(), sizeof( securityTypeList ) );
 
 	return true;
 }

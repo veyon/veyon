@@ -34,7 +34,7 @@
 
 
 static rfbClientProtocolExtension* __veyonProtocolExt = nullptr;
-static const uint32_t __veyonSecurityTypes[2] = { VeyonCore::RfbSecurityTypeVeyon, 0 };
+static constexpr std::array<uint32_t, 2> __veyonSecurityTypes = { VeyonCore::RfbSecurityTypeVeyon, 0 };
 
 
 rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
@@ -61,7 +61,7 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 		__veyonProtocolExt->encodings = nullptr;
 		__veyonProtocolExt->handleEncoding = nullptr;
 		__veyonProtocolExt->handleMessage = handleVeyonMessage;
-		__veyonProtocolExt->securityTypes = __veyonSecurityTypes;
+		__veyonProtocolExt->securityTypes = __veyonSecurityTypes.data();
 		__veyonProtocolExt->handleAuthentication = handleSecTypeVeyon;
 
 		rfbClientRegisterExtension( __veyonProtocolExt );

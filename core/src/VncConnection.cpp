@@ -134,14 +134,14 @@ void VncConnection::rfbClientLogDebug( const char* format, ... )
 	va_start( args, format );
 
 	static constexpr int MaxMessageLength = 256;
-	char message[MaxMessageLength];
+	std::array<char, MaxMessageLength> message{};
 
-	vsnprintf( message, sizeof(message), format, args );
+	vsnprintf( message.data(), sizeof(message), format, args );
 	message[MaxMessageLength-1] = 0;
 
 	va_end(args);
 
-	vDebug() << QThread::currentThreadId() << message;
+	vDebug() << QThread::currentThreadId() << message.data();
 }
 
 

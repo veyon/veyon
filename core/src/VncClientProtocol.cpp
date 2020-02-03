@@ -42,24 +42,28 @@ extern "C"
 static void
 vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 {
-	constexpr int KeyLength = 8;
-	unsigned char key[KeyLength];  // Flawfinder: ignore
-	unsigned int i;
+	static constexpr int KeyLength = 8;
+	std::array<unsigned char, KeyLength> key{};  // Flawfinder: ignore
 
 	/* key is simply password padded with nulls */
 
-	for (i = 0; i < KeyLength; i++) {
-		if (i < passwd_length) {
-			key[i] = static_cast<unsigned char>( passwd[i] );
-		} else {
-			key[i] = 0;
+	for( size_t i = 0; i < key.size(); i++ )
+	{
+		if( i < passwd_length )
+		{
+			key.at(i) = static_cast<unsigned char>( passwd[i] );
+		}
+		else
+		{
+			key.at(i) = 0;
 		}
 	}
 
-	rfbDesKey(key, EN0);
+	rfbDesKey( key.data(), EN0 );
 
-	for (i = 0; i < CHALLENGESIZE; i += KeyLength) {
-		rfbDes(bytes+i, bytes+i);
+	for( size_t i = 0; i < CHALLENGESIZE; i += KeyLength )
+	{
+		rfbDes( bytes+i, bytes+i );
 	}
 }
 
@@ -138,25 +142,23 @@ bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
 		return false;
 	}
 
-	alignas(rfbSetEncodingsMsg) char buf[sz_rfbSetEncodingsMsg + MAX_ENCODINGS * 4]; // Flawfinder: ignore
+	rfbSetEncodingsMsg setEncodingsMsg{};
+	setEncodingsMsg.type = rfbSetEncodings;
 
-	auto setEncodingsMsg = reinterpret_cast<rfbSetEncodingsMsg *>( buf );
-	auto encs = reinterpret_cast<uint32_t *>( &buf[sz_rfbSetEncodingsMsg] );
-
-	setEncodingsMsg->type = rfbSetEncodings;
-	setEncodingsMsg->pad = 0;
-	setEncodingsMsg->nEncodings = 0;
+	std::array<uint32_t, MAX_ENCODINGS> encs{};
 
 	for( auto encoding : encodings )
 	{
-		encs[setEncodingsMsg->nEncodings++] = qFromBigEndian<uint32_t>( encoding );
+		encs.at(setEncodingsMsg.nEncodings++) = qFromBigEndian<uint32_t>( encoding );
 	}
 
-	const auto len = sz_rfbSetEncodingsMsg + setEncodingsMsg->nEncodings * 4;
+	const auto len = setEncodingsMsg.nEncodings * 4;
 
-	setEncodingsMsg->nEncodings = qFromBigEndian(setEncodingsMsg->nEncodings);
+	setEncodingsMsg.nEncodings = qFromBigEndian(setEncodingsMsg.nEncodings);
 
-	return m_socket->write( buf, len ) == len;
+	return m_socket->write( reinterpret_cast<const char *>( &setEncodingsMsg ), sz_rfbSetEncodingsMsg) ==
+			   sz_rfbSetEncodingsMsg &&
+		   m_socket->write( reinterpret_cast<const char *>( encs.data() ), len ) == len;
 }
 
 
@@ -315,12 +317,13 @@ bool VncClientProtocol::receiveSecurityChallenge()
 {
 	if( m_socket->bytesAvailable() >= CHALLENGESIZE )
 	{
-		uint8_t challenge[CHALLENGESIZE];
-		m_socket->read( reinterpret_cast<char *>( challenge ), CHALLENGESIZE );
+		std::array<char, CHALLENGESIZE> challenge{};
+		m_socket->read( challenge.data(), challenge.size() );
 
-		vncEncryptBytes( challenge, m_vncPassword.constData(), static_cast<size_t>( m_vncPassword.size() ) );
+		vncEncryptBytes( reinterpret_cast<uint8_t *>( challenge.data() ), m_vncPassword.constData(),
+						 size_t( m_vncPassword.size() ) );
 
-		m_socket->write( reinterpret_cast<const char *>( challenge ), CHALLENGESIZE );
+		m_socket->write( challenge.data(), CHALLENGESIZE );
 
 		m_state = SecurityResult;
 
