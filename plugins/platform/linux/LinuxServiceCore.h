@@ -85,9 +85,9 @@ private:
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
 
-	LinuxCoreFunctions::DBusInterfacePointer m_loginManager;
+	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, QProcess *> m_serverProcesses;
 
-	ServiceDataManager m_dataManager;
+	ServiceDataManager m_dataManager{};
 
 };

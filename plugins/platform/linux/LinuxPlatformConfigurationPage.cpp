@@ -31,7 +31,6 @@
 
 
 LinuxPlatformConfigurationPage::LinuxPlatformConfigurationPage() :
-	ConfigurationPage(),
 	ui( new Ui::LinuxPlatformConfigurationPage ),
 	m_configuration( &VeyonCore::config() )
 {

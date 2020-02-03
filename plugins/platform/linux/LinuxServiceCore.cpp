@@ -28,7 +28,7 @@
 #include <QProcess>
 #include <QTimer>
 
-#include <signal.h>
+#include <csignal>
 #include <sys/types.h>
 
 #include <proc/readproc.h>
@@ -40,9 +40,7 @@
 
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
-	QObject( parent ),
-	m_loginManager( LinuxCoreFunctions::systemdLoginManager() ),
-	m_dataManager()
+	QObject( parent )
 {
 	connectToLoginManager();
 }
@@ -149,7 +147,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
 {
-	Q_UNUSED( login1SessionId )
+	Q_UNUSED(login1SessionId)
 
 	const auto sessionPath = sessionObjectPath.path();
 
@@ -258,10 +256,8 @@ QStringList LinuxServiceCore::listSessions()
 		}
 		return sessions;
 	}
-	else
-	{
-		vCritical() << "Could not query sessions:" << reply.error().message();
-	}
+
+	vCritical() << "Could not query sessions:" << reply.error().message();
 
 	return sessions;
 }
@@ -306,14 +302,20 @@ int LinuxServiceCore::getSessionLeaderPid( const QString& session )
 
 qint64 LinuxServiceCore::getSessionUptimeSeconds( const QString& session )
 {
-	const auto timestamp = getSessionProperty( session, QStringLiteral("Timestamp") );
+	const auto sessionUptimeUsec = getSessionProperty( session, QStringLiteral("Timestamp") );
 
-	if( timestamp.isNull() )
+	if( sessionUptimeUsec.isNull() )
 	{
 		return -1;
 	}
 
-	return QDateTime::currentMSecsSinceEpoch() / 1000 - static_cast<qint64>( timestamp.toLongLong() / ( 1000 * 1000 ) );
+#if QT_VERSION < 0x050800
+	const auto currentTimestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
+#else
+	const auto currentTimestamp = QDateTime::currentSecsSinceEpoch();
+#endif
+
+	return currentTimestamp - qint64( sessionUptimeUsec.toLongLong() / ( 1000 * 1000 ) );
 }
 
 

@@ -27,13 +27,7 @@
 #include "LinuxPlatformConfigurationPage.h"
 
 LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_linuxCoreFunctions(),
-	m_linuxFilesystemFunctions(),
-	m_linuxInputDeviceFunctions(),
-	m_linuxNetworkFunctions(),
-	m_linuxServiceFunctions(),
-	m_linuxUserFunctions()
+	QObject( parent )
 {
 	// make sure to load global config from default config dirs independent of environment variables
 	qunsetenv( "XDG_CONFIG_DIRS" );

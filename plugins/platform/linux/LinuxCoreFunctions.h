@@ -33,7 +33,7 @@
 class LinuxCoreFunctions : public PlatformCoreFunctions
 {
 public:
-	LinuxCoreFunctions();
+	LinuxCoreFunctions() = default;
 
 	bool applyConfiguration() override;
 
@@ -75,11 +75,11 @@ public:
 	static void restartDisplayManagers();
 
 private:
-	int m_screenSaverTimeout;
-	int m_screenSaverPreferBlanking;
-	bool m_dpmsEnabled;
-	unsigned short m_dpmsStandbyTimeout;
-	unsigned short m_dpmsSuspendTimeout;
-	unsigned short m_dpmsOffTimeout;
+	int m_screenSaverTimeout{0};
+	int m_screenSaverPreferBlanking{0};
+	bool m_dpmsEnabled{false};
+	unsigned short m_dpmsStandbyTimeout{0};
+	unsigned short m_dpmsSuspendTimeout{0};
+	unsigned short m_dpmsOffTimeout{0};
 
 };

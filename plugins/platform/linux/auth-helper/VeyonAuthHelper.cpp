@@ -27,9 +27,9 @@
 
 #include <security/pam_appl.h>
 
-static QByteArray pam_username;
-static QByteArray pam_password;
-static QByteArray pam_service;
+static QByteArray pam_username; // clazy:exclude=non-pod-global-static
+static QByteArray pam_password; // clazy:exclude=non-pod-global-static
+static QByteArray pam_service; // clazy:exclude=non-pod-global-static
 
 static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_response** resp, void * )
 {
@@ -70,7 +70,6 @@ static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_res
 
 int main()
 {
-	QByteArray username, password, service;
 	QFile stdIn;
 	stdIn.open( 0, QFile::ReadOnly | QFile::Unbuffered );
 	QDataStream ds( &stdIn );

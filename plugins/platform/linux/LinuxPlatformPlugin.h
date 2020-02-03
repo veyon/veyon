@@ -111,11 +111,11 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	LinuxCoreFunctions m_linuxCoreFunctions;
-	LinuxFilesystemFunctions m_linuxFilesystemFunctions;
-	LinuxInputDeviceFunctions m_linuxInputDeviceFunctions;
-	LinuxNetworkFunctions m_linuxNetworkFunctions;
-	LinuxServiceFunctions m_linuxServiceFunctions;
-	LinuxUserFunctions m_linuxUserFunctions;
+	LinuxCoreFunctions m_linuxCoreFunctions{};
+	LinuxFilesystemFunctions m_linuxFilesystemFunctions{};
+	LinuxInputDeviceFunctions m_linuxInputDeviceFunctions{};
+	LinuxNetworkFunctions m_linuxNetworkFunctions{};
+	LinuxServiceFunctions m_linuxServiceFunctions{};
+	LinuxUserFunctions m_linuxUserFunctions{};
 
 };

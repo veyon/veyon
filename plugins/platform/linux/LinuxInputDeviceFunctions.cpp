@@ -29,18 +29,6 @@
 #include <X11/XKBlib.h>
 
 
-LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
-	m_inputDevicesDisabled( false ),
-	m_origKeyTable( nullptr ),
-	m_keyCodeMin( 0 ),
-	m_keyCodeMax( 0 ),
-	m_keyCodeCount( 0 ),
-	m_keySymsPerKeyCode( 0 )
-{
-}
-
-
-
 void LinuxInputDeviceFunctions::enableInputDevices()
 {
 	if( m_inputDevicesDisabled )
