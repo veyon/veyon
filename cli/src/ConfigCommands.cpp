@@ -333,19 +333,23 @@ QString ConfigCommands::printableConfigurationValue( const QVariant& value )
 	{
 		return value.toString();
 	}
-	else if( value.type() == QVariant::StringList )
+
+	if( value.type() == QVariant::StringList )
 	{
 		return value.toStringList().join( QLatin1Char(';') );
 	}
-	else if( value.userType() == QMetaType::QJsonArray )
+
+	if( value.userType() == QMetaType::QJsonArray )
 	{
 		return QString::fromUtf8( QJsonDocument( value.toJsonArray() ).toJson( QJsonDocument::Compact ) );
 	}
-	else if( value.userType() == QMetaType::QJsonObject )
+
+	if( value.userType() == QMetaType::QJsonObject )
 	{
 		return QString::fromUtf8( QJsonDocument( value.toJsonObject() ).toJson( QJsonDocument::Compact ) );
 	}
-	else if( QMetaType( value.userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+
+	if( QMetaType( value.userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
 	{
 		return QString::number( value.toInt() );
 	}

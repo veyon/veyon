@@ -50,7 +50,7 @@ int main( int argc, char **argv )
 	app = new QApplication( argc, argv );
 #endif
 
-	const auto arguments = app->arguments();
+	const auto arguments = QCoreApplication::arguments();
 
 	if( arguments.count() == 2 )
 	{
@@ -60,7 +60,7 @@ int main( int argc, char **argv )
 			delete app;
 			return 0;
 		}
-		else if( arguments.last() == QLatin1String("about") )
+		if( arguments.last() == QLatin1String("about") )
 		{
 			CommandLineIO::print( QStringLiteral("Veyon: %1 (%2)").arg( VeyonCore::versionString() ).arg( QLatin1String(__DATE__) ) );
 			CommandLineIO::print( QStringLiteral("Qt: %1 (built against %2/%3)").
@@ -80,11 +80,11 @@ int main( int argc, char **argv )
 	}
 
 	auto core = new VeyonCore( app, VeyonCore::Component::CLI, QStringLiteral("CLI") );
-	core->pluginManager().registerExtraPluginInterface( new ConfigCommands( core ) );
-	core->pluginManager().registerExtraPluginInterface( new PluginsCommands( core ) );
+	VeyonCore::pluginManager().registerExtraPluginInterface( new ConfigCommands( core ) );
+	VeyonCore::pluginManager().registerExtraPluginInterface( new PluginsCommands( core ) );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
-	const auto pluginObjects = core->pluginManager().pluginObjects();
+	const auto pluginObjects = VeyonCore::pluginManager().pluginObjects();
 	for( auto pluginObject : pluginObjects )
 	{
 		auto commandLinePluginInterface = qobject_cast<CommandLinePluginInterface *>( pluginObject );
