@@ -3731,7 +3731,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Підтвердити прочитання правового зауваження (повідомлення, яке показано до входу до системи)</translation>
     </message>
 </context>
 <context>

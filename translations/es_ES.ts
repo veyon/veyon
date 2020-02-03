@@ -3734,7 +3734,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Confirmar aviso legal (mensaje que se muestra antes de que el usuario inicie sesión)</translation>
     </message>
 </context>
 <context>

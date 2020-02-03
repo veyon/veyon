@@ -3732,7 +3732,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Подтвердить официальное уведомление (сообщение отображается перед входом пользователя)</translation>
     </message>
 </context>
 <context>

@@ -3730,7 +3730,7 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Potvrdite pravnu napomenu (poruka se prikazuje pre nego što se korisnik prijavi)</translation>
     </message>
 </context>
 <context>
