@@ -36,9 +36,7 @@
 
 
 MasterConfigurationPage::MasterConfigurationPage() :
-	ConfigurationPage(),
-	ui(new Ui::MasterConfigurationPage),
-	m_featureManager()
+	ui(new Ui::MasterConfigurationPage)
 {
 	ui->setupUi(this);
 

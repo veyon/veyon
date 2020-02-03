@@ -42,7 +42,6 @@
 
 
 GeneralConfigurationPage::GeneralConfigurationPage() :
-	ConfigurationPage(),
 	ui(new Ui::GeneralConfigurationPage)
 {
 	ui->setupUi(this);

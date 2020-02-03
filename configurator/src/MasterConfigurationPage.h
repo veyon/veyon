@@ -56,7 +56,7 @@ private:
 
 	Ui::MasterConfigurationPage *ui;
 
-	FeatureManager m_featureManager;
-	QStringList m_disabledFeatures;
+	FeatureManager m_featureManager{};
+	QStringList m_disabledFeatures{};
 
 };

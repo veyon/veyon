@@ -37,7 +37,6 @@
 
 
 ServiceConfigurationPage::ServiceConfigurationPage() :
-	ConfigurationPage(),
 	ui(new Ui::ServiceConfigurationPage),
 	m_vncServerPluginConfigurationWidget( nullptr )
 {

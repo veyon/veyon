@@ -37,7 +37,6 @@
 #include "ui_AccessControlPage.h"
 
 AccessControlPage::AccessControlPage() :
-	ConfigurationPage(),
 	ui(new Ui::AccessControlPage),
 	m_accessControlRulesModel( this ),
 	m_accessControlRulesTestDialog( this )
