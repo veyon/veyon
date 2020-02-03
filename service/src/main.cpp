@@ -32,7 +32,7 @@ int main( int argc, char** argv )
 	QCoreApplication app( argc, argv );
 	VeyonCore core( &app, VeyonCore::Component::Service, QStringLiteral("Service") );
 
-	auto& serviceFunctions = core.platform().serviceFunctions();
+	auto& serviceFunctions = VeyonCore::platform().serviceFunctions();
 
 	if( serviceFunctions.runAsService( VeyonServiceControl::name(),
 									   [&]() { serviceFunctions.manageServerInstances(); } ) )
