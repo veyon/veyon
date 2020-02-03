@@ -93,10 +93,10 @@ private:
 	VeyonMaster* m_master;
 
 	QString m_imageProviderId{ QStringLiteral("computers") };
-	QImage m_iconDefault;
-	QImage m_iconConnectionProblem;
-	QImage m_iconDemoMode;
+	QImage m_iconDefault{};
+	QImage m_iconConnectionProblem{};
+	QImage m_iconDemoMode{};
 
-	ComputerControlInterfaceList m_computerControlInterfaces;
+	ComputerControlInterfaceList m_computerControlInterfaces{};
 
 };

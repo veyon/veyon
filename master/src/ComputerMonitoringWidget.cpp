@@ -58,7 +58,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 
 	connect( this, &QListView::doubleClicked, this, &ComputerMonitoringWidget::runDoubleClickFeature );
 	connect( this, &QListView::customContextMenuRequested,
-			 this, [this]( const QPoint& pos ) { showContextMenu( mapToGlobal( pos ) ); } );
+			 this, [this]( QPoint pos ) { showContextMenu( mapToGlobal( pos ) ); } );
 
 	initializeView();
 
@@ -72,7 +72,7 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 	const auto& computerControlListModel = master()->computerControlListModel();
 	ComputerControlInterfaceList computerControlInterfaces;
 
-	const auto selectedIndices = selectionModel()->selectedIndexes();
+	const auto selectedIndices = selectionModel()->selectedIndexes(); // clazy:exclude=inefficient-qlist
 	computerControlInterfaces.reserve( selectedIndices.size() );
 
 	for( const auto& index : selectedIndices )
@@ -283,6 +283,6 @@ void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 	}
 	else
 	{
-		QWidget::wheelEvent( event );
+		QListView::wheelEvent( event );
 	}
 }

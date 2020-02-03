@@ -187,7 +187,8 @@ QSizeF FlexibleListView::effectiveGridSize() const
 	{
 		return rectForIndex( m->index( 0, 0 ) ).size() + QSize( spacing(), spacing() );
 	}
-	else if( iconSize().isEmpty() == false )
+
+	if( iconSize().isEmpty() == false )
 	{
 		return iconSize() + QSize( spacing(), spacing() );
 	}

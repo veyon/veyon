@@ -31,9 +31,7 @@
 
 CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent ) :
 	QIdentityProxyModel(parent),
-	m_uidRole( uidRole ),
-	m_exceptionRole( -1 ),
-	m_exceptionData()
+	m_uidRole( uidRole )
 {
 	connect( this, &QIdentityProxyModel::rowsInserted,
 			 this, &CheckableItemProxyModel::updateNewRows );
@@ -164,7 +162,7 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 	for( const auto& item : data )
 	{
 		const QUuid uid = QUuid( item.toString() );
-		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,
+		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1, // clazy:exclude=inefficient-qlist
 									  Qt::MatchExactly | Qt::MatchRecursive );
 		if( indexList.isEmpty() == false &&
 				hasChildren( indexList.first() ) == false )

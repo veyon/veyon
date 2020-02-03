@@ -29,6 +29,8 @@
 class ComputerMonitoringModel;
 class VeyonMaster;
 
+// clazy:excludeall=copyable-polymorphic
+
 class ComputerMonitoringView
 {
 public:

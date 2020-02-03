@@ -53,9 +53,9 @@ private:
 	bool setChildData( const QModelIndex &index, Qt::CheckState checkState );
 	void setParentData( const QModelIndex &index, Qt::CheckState checkState );
 
-	int m_uidRole;
-	int m_exceptionRole;
-	QVariant m_exceptionData;
+	int m_uidRole{-1};
+	int m_exceptionRole{-1};
+	QVariant m_exceptionData{};
 	QHash<QUuid, Qt::CheckState> m_checkStates;
 
 };

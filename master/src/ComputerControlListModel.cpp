@@ -39,10 +39,7 @@
 ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
 	ComputerListModel( parent ),
 	QQuickImageProvider( QQmlImageProviderBase::Image ),
-	m_master( masterCore ),
-	m_iconDefault(),
-	m_iconConnectionProblem(),
-	m_iconDemoMode()
+	m_master( masterCore )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
@@ -135,7 +132,7 @@ bool ComputerControlListModel::setData( const QModelIndex& index, const QVariant
 		vCritical() << "index out of range!";
 	}
 
-	const auto computerControl = m_computerControlInterfaces[index.row()];
+	const auto computerControl = qAsConst(m_computerControlInterfaces)[index.row()];
 
 	switch( role )
 	{
@@ -448,10 +445,8 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		{
 			return user;
 		}
-		else
-		{
-			return QStringLiteral("%1 - %2").arg( user, controlInterface->computer().name() );
-		}
+
+		return QStringLiteral("%1 - %2").arg( user, controlInterface->computer().name() );
 	}
 
 	if( displayRoleContent() != DisplayRoleContent::UserName )

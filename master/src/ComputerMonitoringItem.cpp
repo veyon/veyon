@@ -166,7 +166,9 @@ void ComputerMonitoringItem::setIconSize( const QSize& size )
 
 QVariantList ComputerMonitoringItem::selectedObjects() const
 {
-	QVariantList objects;
+	QVariantList objects; // clazy:exclude=inefficient-qlist
+	objects.reserve(m_selectedObjects.size());
+
 	for( const auto& object : qAsConst(m_selectedObjects) )
 	{
 		objects.append( object );

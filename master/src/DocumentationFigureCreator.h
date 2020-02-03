@@ -35,7 +35,7 @@ class DocumentationFigureCreator : public QObject
 {
 	Q_OBJECT
 public:
-	DocumentationFigureCreator();
+	DocumentationFigureCreator() = default;
 
 	void run();
 
@@ -63,13 +63,13 @@ private:
 
 	void scheduleUiOperation( const std::function<void(void)>& operation );
 
-	static void grabWidget( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
-	static void grabDialog( QDialog* dialog, const QSize& size, const QString& fileName );
+	static void grabWidget( QWidget* widget, QPoint pos, const QSize size, const QString& fileName );
+	static void grabDialog( QDialog* dialog, QSize size, const QString& fileName );
 	static void grabWindow( QWidget* widget, const QString& fileName );
-	static void grabWindow( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
+	static void grabWindow( QWidget* widget, QPoint pos, const QSize size, const QString& fileName );
 
-	VeyonMaster* m_master;
-	QEventLoop m_eventLoop;
+	VeyonMaster* m_master{new VeyonMaster};
+	QEventLoop m_eventLoop{};
 
 } ;
 

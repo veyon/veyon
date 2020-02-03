@@ -43,8 +43,8 @@ protected:
 	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
 
 private:
-	QStringList m_groupList;
-	QStringList m_computerExcludeList;
-	bool m_excludeEmptyGroups;
+	QStringList m_groupList{};
+	QStringList m_computerExcludeList{};
+	bool m_excludeEmptyGroups{false};
 
 };

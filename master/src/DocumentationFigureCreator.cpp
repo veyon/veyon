@@ -55,16 +55,6 @@
 
 #ifdef VEYON_DEBUG
 
-DocumentationFigureCreator::DocumentationFigureCreator() :
-	QObject(),
-	m_master( nullptr ),
-	m_eventLoop( this )
-{
-	m_master = new VeyonMaster;
-}
-
-
-
 void DocumentationFigureCreator::run()
 {
 	auto mainWindow = m_master->mainWindow();
@@ -472,7 +462,8 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 				auto vncView = window->findChild<VncViewWidget *>();
 				Q_ASSERT(vncView != nullptr);
 
-				for( auto timeline : window->findChildren<QTimeLine *>() )
+				auto timeline = window->findChild<QTimeLine *>();
+				if( timeline )
 				{
 					timeline->stop();
 					timeline->setCurrentTime( 0 );
@@ -518,7 +509,7 @@ void DocumentationFigureCreator::createFileTransferDialogFigure()
 
 		auto dialog = qobject_cast<QFileDialog *>( QApplication::activeWindow() );
 		dialog->setDirectory( QDir::current() );
-		dialog->findChildren<QLineEdit *>().first()->setText( QStringLiteral("\"%1.pdf\" \"%2.pdf\"").arg( tr("Handout"), tr("Texts to read") ) );
+		dialog->findChildren<QLineEdit *>().value(0)->setText( QStringLiteral("\"%1.pdf\" \"%2.pdf\"").arg( tr("Handout"), tr("Texts to read") ) );
 		dialog->setResult( QDialog::Accepted );
 		dialog->setVisible( false );
 
@@ -558,7 +549,7 @@ void DocumentationFigureCreator::scheduleUiOperation( const std::function<void(v
 
 
 
-void DocumentationFigureCreator::grabWidget(QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::grabWidget(QWidget* widget, QPoint pos, QSize size, const QString& fileName)
 {
 	QPixmap pixmap( size );
 	widget->render( &pixmap, QPoint(), QRegion( QRect( pos, size ) ) );
@@ -567,7 +558,7 @@ void DocumentationFigureCreator::grabWidget(QWidget* widget, const QPoint& pos, 
 
 
 
-void DocumentationFigureCreator::grabDialog(QDialog* dialog, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::grabDialog(QDialog* dialog, QSize size, const QString& fileName)
 {
 	dialog->show();
 	dialog->setFocus();
@@ -598,7 +589,7 @@ void DocumentationFigureCreator::grabWindow(QWidget* widget, const QString& file
 
 
 
-void DocumentationFigureCreator::grabWindow(QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::grabWindow(QWidget* widget, QPoint pos, QSize size, const QString& fileName)
 {
 	QGuiApplication::sync();
 
