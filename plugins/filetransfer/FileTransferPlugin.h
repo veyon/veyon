@@ -138,9 +138,9 @@ private:
 
 	QString m_lastFileTransferSourceDirectory;
 
-	FileTransferController* m_fileTransferController;
+	FileTransferController* m_fileTransferController{nullptr};
 
-	QFile m_currentFile;
-	QUuid m_currentTransferId;
+	QFile m_currentFile{};
+	QUuid m_currentTransferId{};
 
 };

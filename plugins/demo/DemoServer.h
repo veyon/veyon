@@ -98,13 +98,13 @@ private:
 	QTcpSocket* m_vncServerSocket;
 	VncClientProtocol* m_vncClientProtocol;
 
-	QReadWriteLock m_dataLock;
-	QTimer m_framebufferUpdateTimer;
-	QElapsedTimer m_lastFullFramebufferUpdate;
-	QElapsedTimer m_keyFrameTimer;
-	bool m_requestFullFramebufferUpdate;
+	QReadWriteLock m_dataLock{};
+	QTimer m_framebufferUpdateTimer{this};
+	QElapsedTimer m_lastFullFramebufferUpdate{};
+	QElapsedTimer m_keyFrameTimer{};
+	bool m_requestFullFramebufferUpdate{false};
 
-	int m_keyFrame;
-	MessageList m_framebufferUpdateMessages;
+	int m_keyFrame{0};
+	MessageList m_framebufferUpdateMessages{};
 
 } ;

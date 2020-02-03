@@ -70,7 +70,7 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 		auto dialog = VeyonCore::qmlCore().createObjectFromFile( QStringLiteral("qrc:/textmessage/TextMessageDialog.qml"),
 														 master.appWindow(),
 														 this );
-		connect( this, &TextMessageFeaturePlugin::acceptTextMessage, dialog,
+		connect( this, &TextMessageFeaturePlugin::acceptTextMessage, dialog, // clazy:exclude=connect-non-signal
 				 [this, computerControlInterfaces]( const QString& text )
 		{
 			sendTextMessage( text, computerControlInterfaces );

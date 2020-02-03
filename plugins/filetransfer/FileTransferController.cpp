@@ -31,15 +31,7 @@
 
 FileTransferController::FileTransferController( FileTransferPlugin* plugin ) :
 	QObject( plugin ),
-	m_plugin( plugin ),
-	m_currentFileIndex( -1 ),
-	m_currentTransferId(),
-	m_files(),
-	m_flags( Transfer ),
-	m_interfaces(),
-	m_fileReadThread( nullptr ),
-	m_fileState( FileStateFinished ),
-	m_processTimer( this )
+	m_plugin( plugin )
 {
 	m_processTimer.setInterval( ProcessInterval );
 	connect( &m_processTimer, &QTimer::timeout, this, &FileTransferController::process );
@@ -49,10 +41,7 @@ FileTransferController::FileTransferController( FileTransferPlugin* plugin ) :
 
 FileTransferController::~FileTransferController()
 {
-	if( m_fileReadThread )
-	{
-		delete m_fileReadThread;
-	}
+	delete m_fileReadThread;
 }
 
 

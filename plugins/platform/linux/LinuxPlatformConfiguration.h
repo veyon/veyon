@@ -30,5 +30,6 @@
 	OP( LinuxPlatformConfiguration, m_configuration, QString, pamServiceName, setPamServiceName, "PamServiceName", "Linux", QString(), Configuration::Property::Flag::Advanced ) \
 	OP( LinuxPlatformConfiguration, m_configuration, QString, displayManagerUsers, setDisplayManagerUsers, "DisplayManagerUsers", "Linux", QStringLiteral("gdm,lightdm,sddm,mdm"), Configuration::Property::Flag::Advanced ) \
 
+// clazy:excludeall=missing-qobject-macro
 
 DECLARE_CONFIG_PROXY(LinuxPlatformConfiguration, FOREACH_LINUX_PLATFORM_CONFIG_PROPERTY)

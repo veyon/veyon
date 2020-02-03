@@ -34,4 +34,6 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QString, legacyPrivateKeyBaseDir, setLegacyPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ), Configuration::Property::Flag::Legacy )	\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, legacyPublicKeyBaseDir, setLegacyPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ), Configuration::Property::Flag::Legacy )	\
 
+// clazy:excludeall=missing-qobject-macro
+
 DECLARE_CONFIG_PROXY(AuthKeysConfiguration, FOREACH_AUTH_KEYS_CONFIG_PROPERTY)

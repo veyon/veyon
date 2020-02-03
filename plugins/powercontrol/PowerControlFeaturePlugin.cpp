@@ -212,7 +212,8 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& work
 		confirmShutdown();
 		return true;
 	}
-	else if( message.featureUid() == m_powerDownDelayedFeature.uid() )
+
+	if( message.featureUid() == m_powerDownDelayedFeature.uid() )
 	{
 		displayShutdownTimeout( message.argument( ShutdownTimeout ).toInt() );
 		return true;
@@ -250,7 +251,7 @@ CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_help( co
 
 CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_on( const QStringList& arguments )
 {
-	if( arguments.size() < 1 )
+	if( arguments.isEmpty() )
 	{
 		return NotEnoughArguments;
 	}
@@ -273,7 +274,8 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 									  tr( "Do you really want to reboot the selected computers?" ) ) ==
 				QMessageBox::Yes;
 	}
-	else if( feature == m_powerDownFeature ||
+
+	if( feature == m_powerDownFeature ||
 			 feature == m_powerDownNowFeature ||
 			 feature == m_installUpdatesAndPowerDownFeature ||
 			 feature == m_powerDownConfirmedFeature ||
@@ -291,8 +293,8 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 
 bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 {
-	const int MAC_SIZE = 6;
-	unsigned int mac[MAC_SIZE];  // Flawfinder: ignore
+	static constexpr size_t MAC_SIZE = 6;
+	std::array<uint, MAC_SIZE> mac{};
 
 	if( macAddress.isEmpty() )
 	{
@@ -322,11 +324,11 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 
 	QByteArray datagram( MAC_SIZE*17, static_cast<char>( 0xff ) );
 
-	for( int i = 1; i < 17; ++i )
+	for( size_t i = 1; i < 17; ++i )
 	{
-		for(int j = 0; j < MAC_SIZE; ++j )
+		for( size_t j = 0; j < MAC_SIZE; ++j )
 		{
-			datagram[i*MAC_SIZE+j] = static_cast<char>( mac[j] );
+			datagram[uint(i*MAC_SIZE+j)] = static_cast<char>( mac.at(j) );
 		}
 	}
 

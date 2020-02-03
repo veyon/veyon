@@ -50,10 +50,7 @@ FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 						   tr( "File transfer" ), {},
 						   tr( "Click this button to transfer files from your computer to all computers." ),
 						   QStringLiteral(":/filetransfer/applications-office.png") ),
-	m_features( { m_fileTransferFeature } ),
-	m_fileTransferController( nullptr ),
-	m_currentFile(),
-	m_currentTransferId()
+	m_features( { m_fileTransferFeature } )
 {
 }
 
@@ -83,7 +80,7 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 		auto dialog = VeyonCore::qmlCore().createObjectFromFile( QStringLiteral("qrc:/filetransfer/FileTransferFileDialog.qml"),
 														 master.appWindow(),
 														 this );
-		connect( this, &FileTransferPlugin::acceptSelectedFiles, dialog,
+		connect( this, &FileTransferPlugin::acceptSelectedFiles, dialog, // clazy:exclude=connect-non-signal
 				 [this, computerControlInterfaces, userConfigObject]( const QList<QUrl>& fileUrls )
 		{
 			QStringList files;

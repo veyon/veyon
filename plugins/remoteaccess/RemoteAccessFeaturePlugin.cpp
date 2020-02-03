@@ -165,7 +165,8 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( co
 		printf( "\nremoteaccess view <host>\n\n" );
 		return NoResult;
 	}
-	else if( arguments.value( 0 ) == QLatin1String("control") )
+
+	if( arguments.value( 0 ) == QLatin1String("control") )
 	{
 		printf( "\nremoteaccess control <host>\n}n" );
 		return NoResult;

@@ -129,7 +129,7 @@ private:
 	AuthKeysConfiguration m_configuration;
 	AuthKeysManager m_manager;
 
-	CryptoCore::PrivateKey m_privateKey;
+	CryptoCore::PrivateKey m_privateKey{};
 	QString m_authKeyName;
 
 	QMap<QString, QString> m_commands;

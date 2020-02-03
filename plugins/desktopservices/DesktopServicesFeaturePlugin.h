@@ -127,8 +127,8 @@ private:
 	const Feature m_runProgramFeature;
 	const Feature m_openWebsiteFeature;
 
-	FeatureList m_predefinedProgramsFeatures;
-	FeatureList m_predefinedWebsitesFeatures;
+	FeatureList m_predefinedProgramsFeatures{};
+	FeatureList m_predefinedWebsitesFeatures{};
 
 	FeatureList m_features;
 

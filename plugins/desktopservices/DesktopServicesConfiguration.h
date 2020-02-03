@@ -31,4 +31,6 @@
 	OP( DesktopServicesConfiguration, m_configuration, QJsonArray, predefinedPrograms, setPredefinedPrograms, "PredefinedPrograms", "DesktopServices", QJsonArray(), Configuration::Property::Flag::Standard )	\
 	OP( DesktopServicesConfiguration, m_configuration, QJsonArray, predefinedWebsites, setPredefinedWebsites, "PredefinedWebsites", "DesktopServices", QJsonArray(), Configuration::Property::Flag::Standard )	\
 
+// clazy:excludeall=missing-qobject-macro
+
 DECLARE_CONFIG_PROXY(DesktopServicesConfiguration, FOREACH_DESKTOP_SERVICES_CONFIG_PROPERTY)

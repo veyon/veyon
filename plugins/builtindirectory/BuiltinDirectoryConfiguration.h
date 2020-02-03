@@ -33,4 +33,6 @@
 	/* legacy properties required for upgrade */ \
 	OP( BuiltinDirectoryConfiguration, m_configuration, QJsonArray, legacyLocalDataNetworkObjects, setLegacyLocalDataNetworkObjects, "NetworkObjects", "LocalData", QJsonArray(), Configuration::Property::Flag::Legacy )	\
 
+// clazy:excludeall=missing-qobject-macro
+
 DECLARE_CONFIG_PROXY(BuiltinDirectoryConfiguration, FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY)

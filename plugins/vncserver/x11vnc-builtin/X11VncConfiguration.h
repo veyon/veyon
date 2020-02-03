@@ -30,4 +30,6 @@
 	OP( X11VncConfiguration, m_configuration, bool, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc", false, Configuration::Property::Flag::Advanced )	\
 	OP( X11VncConfiguration, m_configuration, QString, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc", QString(), Configuration::Property::Flag::Advanced )
 
+// clazy:excludeall=missing-qobject-macro
+
 DECLARE_CONFIG_PROXY(X11VncConfiguration, FOREACH_X11VNC_CONFIG_PROPERTY)

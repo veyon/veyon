@@ -57,6 +57,6 @@ public:
 
 private:
 	AuthKeysManager& m_manager;
-	QStringList m_keys;
+	QStringList m_keys{};
 
 };

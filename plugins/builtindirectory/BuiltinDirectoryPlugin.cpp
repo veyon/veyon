@@ -124,7 +124,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 		return NoResult;
 	}
-	else if( command == exportCommand() )
+
+	if( command == exportCommand() )
 	{
 		printUsage( commandLineModuleName(), exportCommand(), { { tr("FILE"), {} } }, {
 						{ tr("LOCATION"), locationArgument() },
@@ -145,7 +146,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 		return NoResult;
 	}
-	else if( command == addCommand() )
+
+	if( command == addCommand() )
 	{
 		printUsage( commandLineModuleName(), addCommand(), { { tr("TYPE"), {} }, { tr("NAME"), {} } }, {
 						{ tr("HOST ADDRESS"), {} },
@@ -162,7 +164,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 		return NoResult;
 	}
-	else if( command == removeCommand() )
+
+	if( command == removeCommand() )
 	{
 		printUsage( commandLineModuleName(), removeCommand(), { { tr("OBJECT"), {} } } );
 
@@ -327,7 +330,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 		error( tr( "File \"%1\" does not exist!" ).arg( inputFileName ) );
 		return Failed;
 	}
-	else if( inputFile.open( QFile::ReadOnly | QFile::Text ) == false )
+
+	if( inputFile.open( QFile::ReadOnly | QFile::Text ) == false )
 	{
 		error( tr( "Can't open file \"%1\" for reading!" ).arg( inputFileName ) );
 		return Failed;
@@ -525,11 +529,13 @@ NetworkObject::Type BuiltinDirectoryPlugin::parseNetworkObjectType( const QStrin
 	{
 		return NetworkObject::Type::Location;
 	}
-	else if( typeName == typeNameComputer() )
+
+	if( typeName == typeNameComputer() )
 	{
 		return NetworkObject::Type::Host;
 	}
-	else if( typeName == typeNameRoot() )
+
+	if( typeName == typeNameRoot() )
 	{
 		return NetworkObject::Type::Root;
 	}

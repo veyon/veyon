@@ -39,7 +39,6 @@ AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration( &VeyonCore::config() ),
 	m_manager( m_configuration ),
-	m_privateKey(),
 	m_commands( {
 { QStringLiteral("create"), tr( "Create new authentication key pair" ) },
 { QStringLiteral("delete"), tr( "Delete authentication key" ) },
@@ -335,7 +334,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_create( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_delete( const QStringList& arguments )
 {
-	if( arguments.size() < 1 )
+	if( arguments.isEmpty() )
 	{
 		return NotEnoughArguments;
 	}
@@ -360,7 +359,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_delete( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStringList& arguments )
 {
-	if( arguments.size() < 1 )
+	if( arguments.isEmpty() )
 	{
 		return NotEnoughArguments;
 	}
@@ -392,7 +391,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStringList& arguments )
 {
-	if( arguments.size() < 1 )
+	if( arguments.isEmpty() )
 	{
 		return NotEnoughArguments;
 	}

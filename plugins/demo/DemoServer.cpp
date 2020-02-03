@@ -45,11 +45,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 	m_vncServerPort( vncServerPort ),
 	m_tcpServer( new QTcpServer( this ) ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
-	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) ),
-	m_framebufferUpdateTimer( this ),
-	m_lastFullFramebufferUpdate(),
-	m_requestFullFramebufferUpdate( false ),
-	m_keyFrame( 0 )
+	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) )
 {
 	connect( m_tcpServer, &QTcpServer::newConnection, this, &DemoServer::acceptPendingConnections );
 

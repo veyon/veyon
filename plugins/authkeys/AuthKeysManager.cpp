@@ -542,7 +542,8 @@ QString AuthKeysManager::keyFilePathFromType( const QString& name, const QString
 	{
 		return privateKeyPath( name );
 	}
-	else if( type == m_keyTypePublic )
+
+	if( type == m_keyTypePublic )
 	{
 		return publicKeyPath( name );
 	}
@@ -560,7 +561,8 @@ bool AuthKeysManager::setKeyFilePermissions( const QString& name, const QString&
 	{
 		return setPrivateKeyFilePermissions( keyFilePath );
 	}
-	else if( type == m_keyTypePublic )
+
+	if( type == m_keyTypePublic )
 	{
 		return setPublicKeyFilePermissions( keyFilePath );
 	}

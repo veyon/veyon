@@ -414,7 +414,8 @@ QString LdapClient::stripBaseDn( const QString& dn, const QString& baseDn )
 		// cut off comma and base DN
 		return dn.left( dn.length() - baseDn.length() - 1 );
 	}
-	else if( fullDnLower == baseDnLower )
+
+	if( fullDnLower == baseDnLower )
 	{
 		return {};
 	}

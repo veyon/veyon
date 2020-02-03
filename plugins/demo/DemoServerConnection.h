@@ -52,13 +52,13 @@ private:
 
 	QTcpSocket* m_socket;
 
-	VncServerClient m_vncServerClient;
+	VncServerClient m_vncServerClient{};
 	DemoServerProtocol m_serverProtocol;
 
 	const QMap<int, int> m_rfbClientToServerMessageSizes;
 
-	int m_keyFrame;
-	int m_framebufferUpdateMessageIndex;
+	int m_keyFrame{-1};
+	int m_framebufferUpdateMessageIndex{0};
 
 	const int m_framebufferUpdateInterval;
 

@@ -265,7 +265,8 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 				"  ldap[s]://[user[:password]@]hostname[:port]\n\n" );
 		return NoResult;
 	}
-	else if( command == QLatin1String("query") )
+
+	if( command == QLatin1String("query") )
 	{
 		printf( "\n"
 				"ldap query <object type> [filter]\n"

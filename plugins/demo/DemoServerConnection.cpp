@@ -38,7 +38,6 @@ DemoServerConnection::DemoServerConnection( const DemoAuthentication& authentica
 	QObject( demoServer ),
 	m_demoServer( demoServer ),
 	m_socket( socket ),
-	m_vncServerClient(),
 	m_serverProtocol( authentication, m_socket, &m_vncServerClient ),
 	m_rfbClientToServerMessageSizes( {
 									 std::pair<int, int>( rfbSetPixelFormat, sz_rfbSetPixelFormatMsg ),
@@ -46,8 +45,6 @@ DemoServerConnection::DemoServerConnection( const DemoAuthentication& authentica
 									 std::pair<int, int>( rfbKeyEvent, sz_rfbKeyEventMsg ),
 									 std::pair<int, int>( rfbPointerEvent, sz_rfbPointerEventMsg ),
 									 } ),
-	m_keyFrame( -1 ),
-	m_framebufferUpdateMessageIndex( 0 ),
 	m_framebufferUpdateInterval( m_demoServer->configuration().framebufferUpdateInterval() )
 {
 	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerConnection::processClient );

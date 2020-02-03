@@ -34,4 +34,6 @@
 	OP( DemoConfiguration, m_configuration, int, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo", 10, Configuration::Property::Flag::Advanced )	\
 	OP( DemoConfiguration, m_configuration, int, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo", 128, Configuration::Property::Flag::Advanced )	\
 
+// clazy:excludeall=missing-qobject-macro
+
 DECLARE_CONFIG_PROXY(DemoConfiguration, FOREACH_DEMO_CONFIG_PROPERTY)

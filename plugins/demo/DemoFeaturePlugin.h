@@ -119,9 +119,9 @@ private:
 
 	DemoConfiguration m_configuration;
 
-	QStringList m_demoClientHosts;
+	QStringList m_demoClientHosts{};
 
-	DemoServer* m_demoServer;
-	DemoClient* m_demoClient;
+	DemoServer* m_demoServer{nullptr};
+	DemoClient* m_demoClient{nullptr};
 
 };

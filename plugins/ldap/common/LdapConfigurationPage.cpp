@@ -392,7 +392,8 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 									   "a hostname without domain." ) );
 			return;
 		}
-		else if( m_configuration.computerHostNameAsFQDN() == false &&
+
+		if( m_configuration.computerHostNameAsFQDN() == false &&
 				 computerName.contains( QLatin1Char('.') ) )
 		{
 			QMessageBox::critical( this, tr( "Invalid hostname" ),

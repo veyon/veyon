@@ -303,7 +303,8 @@ QStringList LdapDirectory::locationsOfComputer( const QString& computerDn )
 	{
 		return m_client.queryAttributeValues( computerDn, m_computerLocationAttribute );
 	}
-	else if( m_computerLocationsByContainer )
+
+	if( m_computerLocationsByContainer )
 	{
 		return m_client.queryAttributeValues( LdapClient::parentDn( computerDn ), m_locationNameAttribute );
 	}
@@ -393,7 +394,8 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 												 LdapClient::constructQueryFilter( m_computerLocationAttribute, locationName, m_computersFilter ),
 												 m_defaultSearchScope );
 	}
-	else if( m_computerLocationsByContainer )
+
+	if( m_computerLocationsByContainer )
 	{
 		const auto locationDnFilter = LdapClient::constructQueryFilter( m_locationNameAttribute, locationName, m_computerContainersFilter );
 		const auto locationDns = m_client.queryDistinguishedNames( computersDn(), locationDnFilter, m_defaultSearchScope );

@@ -30,4 +30,6 @@
 	OP( ExternalVncServerConfiguration, m_configuration, int, serverPort, setServerPort, "ServerPort", "ExternalVncServer", 5900, Configuration::Property::Flag::Standard ) \
 	OP( ExternalVncServerConfiguration, m_configuration, Configuration::Password, password, setPassword, "Password", "ExternalVncServer", QString(), Configuration::Property::Flag::Standard )
 
+// clazy:excludeall=missing-qobject-macro
+
 DECLARE_CONFIG_PROXY(ExternalVncServerConfiguration, FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY)

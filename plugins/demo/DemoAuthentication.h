@@ -26,12 +26,14 @@
 
 #include "AuthenticationPluginInterface.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class DemoAuthentication : public AuthenticationPluginInterface
 {
 public:
 	using AccessToken = CryptoCore::PlaintextPassword;
 
-	explicit DemoAuthentication( const Plugin::Uid& pluginUid );
+	explicit DemoAuthentication( Plugin::Uid pluginUid );
 	~DemoAuthentication() override = default;
 
 	QString authenticationTypeName() const override
@@ -73,7 +75,7 @@ public:
 	}
 
 private:
-	AccessToken m_accessToken;
+	AccessToken m_accessToken{};
 	Plugin::Uid m_pluginUid;
 
 };

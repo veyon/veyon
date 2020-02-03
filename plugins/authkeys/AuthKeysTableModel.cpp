@@ -27,8 +27,7 @@
 
 AuthKeysTableModel::AuthKeysTableModel( AuthKeysManager& manager, QObject* parent ) :
 	QAbstractTableModel( parent ),
-	m_manager( manager ),
-	m_keys()
+	m_manager( manager )
 {
 }
 

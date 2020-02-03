@@ -26,9 +26,8 @@
 #include "VariantArrayMessage.h"
 
 
-DemoAuthentication::DemoAuthentication( const Plugin::Uid& pluginUid ) :
-	m_accessToken(),
-	m_pluginUid( pluginUid )
+DemoAuthentication::DemoAuthentication( Plugin::Uid pluginUid ) :
+    m_pluginUid( pluginUid )
 {
 }
 

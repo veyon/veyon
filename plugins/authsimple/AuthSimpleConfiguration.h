@@ -27,6 +27,8 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_AUTH_SIMPLE_CONFIG_PROPERTY(OP) \
-	OP( AuthSimpleConfiguration, m_configuration, Configuration::Password, password, setPassword, "Password", "AuthSimple", QString(), Configuration::Property::Flag::Standard )	\
+    OP( AuthSimpleConfiguration, m_configuration, Configuration::Password, password, setPassword, "Password", "AuthSimple", QString(), Configuration::Property::Flag::Standard )	\
+
+// clazy:excludeall=missing-qobject-macro
 
 DECLARE_CONFIG_PROXY(AuthSimpleConfiguration, FOREACH_AUTH_SIMPLE_CONFIG_PROPERTY)

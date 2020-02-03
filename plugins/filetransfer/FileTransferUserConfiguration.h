@@ -32,6 +32,8 @@
 #define FOREACH_FILE_TRANSFER_USER_CONFIG_PROPERTIES(OP) \
 	OP( FileTransferUserConfiguration, config, QString, lastFileTransferSourceDirectory, setLastFileTransferSourceDirectory, "LastSourceDirectory", "FileTransfer", QDir::homePath(), Configuration::Property::Flag::Standard )
 
+// clazy:excludeall=missing-qobject-macro
+
 class FileTransferUserConfiguration : public Configuration::Proxy
 {
 public:

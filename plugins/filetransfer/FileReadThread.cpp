@@ -27,15 +27,7 @@
 
 FileReadThread::FileReadThread( const QString& fileName, QObject* parent ) :
 	QObject( parent ),
-	m_mutex(),
-	m_thread( new QThread ),
-	m_file( nullptr ),
-	m_currentChunk(),
-	m_timer( new QTimer ),
-	m_fileName( fileName ),
-	m_chunkReady( false ),
-	m_filePos( 0 ),
-	m_fileSize( 0 )
+	m_fileName( fileName )
 {
 	m_timer->moveToThread( m_thread );
 	m_thread->start();

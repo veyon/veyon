@@ -100,7 +100,8 @@ bool UserSessionControlPlugin::handleFeatureMessage( VeyonServerInterface& serve
 																message.argument( Argument::Password ).toString() ) );
 		return true;
 	}
-	else if( message.featureUid() == m_userLogoffFeature.uid() )
+
+	if( message.featureUid() == m_userLogoffFeature.uid() )
 	{
 		VeyonCore::platform().userFunctions().logoff();
 		return true;

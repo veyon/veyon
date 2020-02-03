@@ -89,16 +89,16 @@ private:
 
 	FileTransferPlugin* m_plugin;
 
-	int m_currentFileIndex;
-	QUuid m_currentTransferId;
-	QStringList m_files;
-	Flags m_flags;
-	ComputerControlInterfaceList m_interfaces;
+	int m_currentFileIndex{-1};
+	QUuid m_currentTransferId{};
+	QStringList m_files{};
+	Flags m_flags{Transfer};
+	ComputerControlInterfaceList m_interfaces{};
 
-	FileReadThread* m_fileReadThread;
+	FileReadThread* m_fileReadThread{nullptr};
 
-	FileState m_fileState;
+	FileState m_fileState{FileStateFinished};
 
-	QTimer m_processTimer;
+	QTimer m_processTimer{this};
 
 };

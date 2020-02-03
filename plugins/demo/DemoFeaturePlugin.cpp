@@ -63,10 +63,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 						 Feature::Uid(),
 						 tr( "Demo server" ), {}, {} ),
 	m_features( { m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
-	m_configuration( &VeyonCore::config() ),
-	m_demoClientHosts(),
-	m_demoServer( nullptr ),
-	m_demoClient( nullptr )
+	m_configuration( &VeyonCore::config() )
 {
 }
 
@@ -185,7 +182,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 		return true;
 	}
-	else if( message.featureUid() == m_fullscreenDemoFeature.uid() ||
+
+	if( message.featureUid() == m_fullscreenDemoFeature.uid() ||
 			 message.featureUid() == m_windowDemoFeature.uid() )
 	{
 		// if a demo server is started, it's likely that the demo accidentally was

@@ -57,7 +57,8 @@ QVariant FileTransferListModel::data( const QModelIndex& index, int role ) const
 		{
 			return m_finishedPixmap;
 		}
-		else if( index.row() > currentRow || m_controller->isRunning() == false )
+
+		if( index.row() > currentRow || m_controller->isRunning() == false )
 		{
 			return m_scheduledPixmap;
 		}
