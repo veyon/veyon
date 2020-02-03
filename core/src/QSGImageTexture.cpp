@@ -46,8 +46,7 @@
 #endif
 
 QSGImageTexture::QSGImageTexture()
-	: QSGTexture()
-	, m_texture_id(0)
+	: m_texture_id(0)
 	, m_has_alpha(false)
 	, m_dirty_texture(false)
 	, m_dirty_bind_options(false)
@@ -78,7 +77,8 @@ int QSGImageTexture::textureId() const
 			// The actual texture and id will be updated/deleted in a later bind()
 			// or ~QSGImageTexture so just keep it minimal here.
 			return 0;
-		} else if (m_texture_id == 0){
+		}
+		if (m_texture_id == 0){
 			// Generate a texture id for use later and return it.
 			QOpenGLContext::currentContext()->functions()->glGenTextures(1, &const_cast<QSGImageTexture *>(this)->m_texture_id);
 			return int(m_texture_id);

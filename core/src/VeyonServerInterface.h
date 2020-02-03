@@ -29,6 +29,8 @@ class FeatureMessage;
 class FeatureWorkerManager;
 class MessageContext;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VeyonServerInterface
 {
 public:

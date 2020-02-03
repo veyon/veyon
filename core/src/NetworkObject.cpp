@@ -125,20 +125,19 @@ NetworkObject::ModelId NetworkObject::modelId() const
 		return 0;
 	}
 
-	auto id =
-			( static_cast<quint64>( uid().data1 ) << 0u ) +
-			( static_cast<quint64>( uid().data2 ) << 32u ) +
-			( static_cast<quint64>( uid().data3 ) << 48u ) +
-			( static_cast<quint64>( uid().data4[0] ) << 0u ) +
-			( static_cast<quint64>( uid().data4[1] ) << 8u ) +
-			( static_cast<quint64>( uid().data4[2] ) << 16u ) +
-			( static_cast<quint64>( uid().data4[3] ) << 24u ) +
-			( static_cast<quint64>( uid().data4[4] ) << 32u ) +
-			( static_cast<quint64>( uid().data4[5] ) << 40u ) +
-			( static_cast<quint64>( uid().data4[6] ) << 48u ) +
-			( static_cast<quint64>( uid().data4[7] ) << 56u );
-
-	return static_cast<ModelId>( id );
+	return ModelId(
+			( quint64( uid().data1 ) << 0U ) +
+			( quint64( uid().data2 ) << 32U ) +
+			( quint64( uid().data3 ) << 48U ) +
+			( quint64( uid().data4[0] ) << 0U ) +
+			( quint64( uid().data4[1] ) << 8U ) +
+			( quint64( uid().data4[2] ) << 16U ) +
+			( quint64( uid().data4[3] ) << 24U ) +
+			( quint64( uid().data4[4] ) << 32U ) +
+			( quint64( uid().data4[5] ) << 40U ) +
+			( quint64( uid().data4[6] ) << 48U ) +
+			( quint64( uid().data4[7] ) << 56U )
+		);
 }
 
 
@@ -228,7 +227,8 @@ NetworkObject::Uid NetworkObject::calculateUid() const
 	{
 		return QUuid::createUuidV5( networkObjectNamespace, directoryAddress() );
 	}
-	else if( type() == Type::Root )
+
+	if( type() == Type::Root )
 	{
 		return QUuid::createUuidV5( networkObjectNamespace, QByteArrayLiteral("Root") );
 	}

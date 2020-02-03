@@ -30,7 +30,6 @@ AccessControlRule::AccessControlRule() :
 	m_name(),
 	m_description(),
 	m_action( Action::None ),
-	m_parameters(),
 	m_invertConditions( false ),
 	m_ignoreConditions( false )
 {
@@ -54,7 +53,6 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 	m_name(),
 	m_description(),
 	m_action( Action::None ),
-	m_parameters(),
 	m_invertConditions( false ),
 	m_ignoreConditions( false )
 {

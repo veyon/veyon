@@ -39,8 +39,8 @@ public:
 	void reloadConfiguration();
 
 private:
-	QMap<Plugin::Uid, UserGroupsBackendInterface *> m_backends;
-	UserGroupsBackendInterface* m_defaultBackend;
-	UserGroupsBackendInterface* m_accessControlBackend;
+	QMap<Plugin::Uid, UserGroupsBackendInterface *> m_backends{};
+	UserGroupsBackendInterface* m_defaultBackend{nullptr};
+	UserGroupsBackendInterface* m_accessControlBackend{nullptr};
 
 };

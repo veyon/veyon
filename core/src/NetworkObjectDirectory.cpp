@@ -31,11 +31,7 @@
 
 NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	QObject( parent ),
-	m_updateTimer( new QTimer( this ) ),
-	m_objects(),
-	m_invalidObject( NetworkObject::Type::None ),
-	m_rootObject( NetworkObject::Type::Root ),
-	m_defaultObjectList()
+	m_updateTimer( new QTimer( this ) )
 {
 	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
 

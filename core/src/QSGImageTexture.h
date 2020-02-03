@@ -53,7 +53,7 @@ public:
 	bool ownsTexture() const { return m_owns_texture; }
 
 	int textureId() const override;
-	void setTextureSize(const QSize &size) { m_texture_size = size; }
+	void setTextureSize(QSize size) { m_texture_size = size; }
 	QSize textureSize() const override { return m_texture_size; }
 
 	void setHasAlphaChannel(bool alpha) { m_has_alpha = alpha; }

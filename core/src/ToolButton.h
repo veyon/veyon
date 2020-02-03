@@ -102,10 +102,10 @@ private:
 		return static_cast<int>( 8 * m_pixelRatio );
 	}
 
-	qreal m_pixelRatio;
+	qreal m_pixelRatio{1};
 	QIcon m_icon;
 	QPixmap m_pixmap;
-	bool m_mouseOver;
+	bool m_mouseOver{false};
 
 	QString m_label;
 	QString m_altLabel;
@@ -140,7 +140,7 @@ private:
 
 	const int ROUNDED = 2000;
 
-	qreal m_pixelRatio;
+	qreal m_pixelRatio{1};
 	QPixmap m_pixmap;
 	QString m_title;
 	QString m_description;

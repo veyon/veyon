@@ -29,9 +29,7 @@
 
 
 NetworkObjectDirectoryManager::NetworkObjectDirectoryManager( QObject* parent ) :
-	QObject( parent ),
-	m_directoryPluginInterfaces(),
-	m_configuredDirectory( nullptr )
+	QObject( parent )
 {
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{

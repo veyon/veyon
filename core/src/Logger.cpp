@@ -37,16 +37,7 @@ QMutex Logger::s_instanceMutex;
 
 
 Logger::Logger( const QString &appName ) :
-	m_logLevel( LogLevel::Default ),
-	m_logMutex(),
-	m_lastMessageLevel( LogLevel::Nothing ),
-	m_lastMessage(),
-	m_lastMessageCount( 0 ),
-	m_logToSystem( false ),
-	m_appName( QStringLiteral( "Veyon" ) + appName ),
-	m_logFile( nullptr ),
-	m_logFileSizeLimit( -1 ),
-	m_logFileRotationCount( -1 )
+	m_appName( QStringLiteral( "Veyon" ) + appName )
 {
 	s_instanceMutex.lock();
 
@@ -125,7 +116,8 @@ void Logger::initLogFile()
 
 	if( VeyonCore::config().logFileSizeLimitEnabled() )
 	{
-		m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit() * 1024 * 1024;
+		static constexpr auto BytesPerKB = 1024;
+		m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit() * BytesPerKB * BytesPerKB;
 	}
 
 	if( VeyonCore::config().logFileRotationEnabled() )

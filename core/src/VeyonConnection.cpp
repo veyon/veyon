@@ -112,11 +112,9 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 
 		return true;
 	}
-	else
-	{
-		vCritical() << "unknown message type" << static_cast<int>( msg )
-					<< "from server. Closing connection. Will re-open it later.";
-	}
+
+	vCritical() << "unknown message type" << int( msg )
+				<< "from server. Closing connection. Will re-open it later.";
 
 	return false;
 }

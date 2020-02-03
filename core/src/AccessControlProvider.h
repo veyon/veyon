@@ -78,7 +78,7 @@ private:
 
 	static QStringList objectNames( const NetworkObjectList& objects );
 
-	QList<AccessControlRule> m_accessControlRules;
+	QList<AccessControlRule> m_accessControlRules{};
 	UserGroupsBackendInterface* m_userGroupsBackend;
 	NetworkObjectDirectory* m_networkObjectDirectory;
 	bool m_queryDomainGroups;

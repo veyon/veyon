@@ -26,6 +26,8 @@
 
 #include "FeatureProviderInterface.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT SimpleFeatureProvider : public FeatureProviderInterface
 {
 public:

@@ -71,11 +71,11 @@ protected:
 	void setObjectPopulated( const NetworkObject& networkObject );
 
 private:
-	QTimer* m_updateTimer;
-	QHash<NetworkObject::ModelId, NetworkObjectList> m_objects;
-	NetworkObject m_invalidObject;
-	NetworkObject m_rootObject;
-	NetworkObjectList m_defaultObjectList;
+	QTimer* m_updateTimer{nullptr};
+	QHash<NetworkObject::ModelId, NetworkObjectList> m_objects{};
+	NetworkObject m_invalidObject{NetworkObject::Type::None};
+	NetworkObject m_rootObject{NetworkObject::Type::Root};
+	NetworkObjectList m_defaultObjectList{};
 
 signals:
 	void objectsAboutToBeInserted( const NetworkObject& parent, int index, int count );

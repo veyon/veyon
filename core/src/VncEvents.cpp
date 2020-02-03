@@ -41,7 +41,7 @@ void VncKeyEvent::fire( rfbClient* client )
 
 
 
-VncPointerEvent::VncPointerEvent(int x, int y, int buttonMask) :
+VncPointerEvent::VncPointerEvent(int x, int y, uint buttonMask) :
 	m_x( x ),
 	m_y( y ),
 	m_buttonMask( buttonMask )
@@ -52,7 +52,7 @@ VncPointerEvent::VncPointerEvent(int x, int y, int buttonMask) :
 
 void VncPointerEvent::fire(rfbClient *client)
 {
-	SendPointerEvent( client, m_x, m_y, m_buttonMask );
+	SendPointerEvent( client, m_x, m_y, int(m_buttonMask) );
 }
 
 

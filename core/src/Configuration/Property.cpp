@@ -76,7 +76,8 @@ QVariant Property::variantValue() const
 	{
 		return m_object->value( m_key, m_parentKey, m_defaultValue );
 	}
-	else if( m_proxy )
+
+	if( m_proxy )
 	{
 		return m_proxy->value( m_key, m_parentKey, m_defaultValue );
 	}

@@ -58,7 +58,7 @@ private:
 		MaxMessageSize = 1024*1024*32
 	};
 
-	QBuffer m_buffer;
+	QBuffer m_buffer{};
 	VariantStream m_stream;
 	QIODevice* m_ioDevice;
 

@@ -61,7 +61,7 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 {
 	Q_UNUSED(updatePaintNodeData)
 
-	QSGSimpleTextureNode *node = static_cast<QSGSimpleTextureNode *>(oldNode);
+	auto* node = static_cast<QSGSimpleTextureNode *>(oldNode);
 	if( !node )
 	{
 		node = new QSGSimpleTextureNode();
@@ -86,7 +86,7 @@ void VncViewItem::setViewCursor( const QCursor& cursor )
 
 QSize VncViewItem::viewSize() const
 {
-	return QSize( int(width()), int(height()) );
+	return { int(width()), int(height()) };
 }
 
 

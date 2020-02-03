@@ -158,11 +158,13 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QSt
 	{
 		return ChoiceNever;
 	}
-	else if( m.clickedButton() == alwaysBtn )
+
+	if( m.clickedButton() == alwaysBtn )
 	{
 		return ChoiceAlways;
 	}
-	else if( result == QMessageBox::Yes )
+
+	if( result == QMessageBox::Yes )
 	{
 		return ChoiceYes;
 	}

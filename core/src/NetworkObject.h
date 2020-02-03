@@ -103,7 +103,7 @@ public:
 		return m_parentUid;
 	}
 
-	void setParentUid( const Uid& parentUid )
+	void setParentUid( Uid parentUid )
 	{
 		m_parentUid = parentUid;
 	}
@@ -160,5 +160,5 @@ private:
 
 Q_DECLARE_METATYPE(NetworkObject::Type)
 
-using NetworkObjectList = QList<NetworkObject>;
+using NetworkObjectList = QVector<NetworkObject>;
 using NetworkObjectUidList = HashList<NetworkObject::Uid>;

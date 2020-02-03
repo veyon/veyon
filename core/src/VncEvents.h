@@ -55,14 +55,14 @@ private:
 class VncPointerEvent : public VncEvent
 {
 public:
-	VncPointerEvent( int x, int y, int buttonMask );
+	VncPointerEvent( int x, int y, uint buttonMask );
 
 	void fire( rfbClient* client ) override;
 
 private:
 	int m_x;
 	int m_y;
-	int m_buttonMask;
+	uint m_buttonMask;
 } ;
 
 

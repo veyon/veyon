@@ -34,11 +34,7 @@ Q_DECLARE_METATYPE(FeatureMessage)
 // clazy:excludeall=reserve-candidates
 
 FeatureManager::FeatureManager( QObject* parent ) :
-	QObject( parent ),
-	m_features(),
-	m_emptyFeatureList(),
-	m_pluginObjects(),
-	m_dummyFeature()
+	QObject( parent )
 {
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();

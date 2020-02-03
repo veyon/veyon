@@ -27,6 +27,8 @@
 class BuiltinFeatures;
 class FeatureMessage;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VeyonWorkerInterface
 {
 public:

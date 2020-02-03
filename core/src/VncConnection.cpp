@@ -163,22 +163,7 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 
 VncConnection::VncConnection( QObject* parent ) :
-	QThread( parent ),
-	m_state( State::Disconnected ),
-	m_framebufferState( FramebufferState::Invalid ),
-	m_controlFlags(),
-	m_client( nullptr ),
-	m_quality( Quality::Default ),
-	m_host(),
-	m_port( -1 ),
-	m_globalMutex(),
-	m_eventQueueMutex(),
-	m_updateIntervalSleeper(),
-	m_framebufferUpdateInterval( 0 ),
-	m_image(),
-	m_scaledScreen(),
-	m_scaledSize(),
-	m_imgLock()
+	QThread( parent )
 {
 }
 
@@ -527,7 +512,8 @@ void VncConnection::handleConnection()
 		{
 			break;
 		}
-		else if( i )
+
+		if( i )
 		{
 			// handle all available messages
 			bool handledOkay = true;
@@ -598,11 +584,11 @@ void VncConnection::setControlFlag( VncConnection::ControlFlag flag, bool on )
 {
 	if( on )
 	{
-		m_controlFlags |= static_cast<int>( flag );
+		m_controlFlags |= uint( flag );
 	}
 	else
 	{
-		m_controlFlags &= ~static_cast<int>( flag );
+		m_controlFlags &= ~uint( flag );
 	}
 }
 
@@ -610,7 +596,7 @@ void VncConnection::setControlFlag( VncConnection::ControlFlag flag, bool on )
 
 bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
 {
-	return m_controlFlags & static_cast<int>( flag );
+	return m_controlFlags & uint( flag );
 }
 
 
@@ -744,7 +730,7 @@ bool VncConnection::isEventQueueEmpty()
 
 
 
-void VncConnection::mouseEvent( int x, int y, int buttonMask )
+void VncConnection::mouseEvent( int x, int y, uint buttonMask )
 {
 	enqueueEvent( new VncPointerEvent( x, y, buttonMask ), true );
 }

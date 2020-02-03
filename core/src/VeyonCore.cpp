@@ -294,7 +294,7 @@ bool VeyonCore::isDebugging()
 
 
 
-QByteArray VeyonCore::shortenFuncinfo( QByteArray info )
+QByteArray VeyonCore::shortenFuncinfo( const QByteArray& info )
 {
 	const auto funcinfo = cleanupFuncinfo( info );
 
@@ -495,7 +495,7 @@ int VeyonCore::exec()
 
 	vDebug() << "Running";
 
-	const auto result = QCoreApplication::instance()->exec();
+	const auto result = QCoreApplication::exec();
 
 	vDebug() << "Exit";
 

@@ -29,7 +29,6 @@
 
 
 VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
-	m_buffer(),
 	m_stream( &m_buffer ),
 	m_ioDevice( ioDevice )
 {

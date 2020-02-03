@@ -72,12 +72,7 @@ vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 
 VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const Password& vncPassword ) :
 	m_socket( socket ),
-	m_state( Disconnected ),
-	m_vncPassword( vncPassword ),
-	m_serverInitMessage(),
-	m_pixelFormat( { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } ),
-	m_framebufferWidth( 0 ),
-	m_framebufferHeight( 0 )
+	m_vncPassword( vncPassword )
 {
 }
 
@@ -120,11 +115,9 @@ bool VncClientProtocol::read() // Flawfinder: ignore
 
 bool VncClientProtocol::setPixelFormat( rfbPixelFormat pixelFormat )
 {
-	rfbSetPixelFormatMsg spf;
+	rfbSetPixelFormatMsg spf{};
 
 	spf.type = rfbSetPixelFormat;
-	spf.pad1 = 0;
-	spf.pad2 = 0;
 	spf.format = pixelFormat;
 	spf.format.redMax = qFromBigEndian(pixelFormat.redMax);
 	spf.format.greenMax = qFromBigEndian(pixelFormat.greenMax);
@@ -664,7 +657,8 @@ bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
 	{
 		for( uint x = rx; x < rx+rw; x += 16 )
 		{
-			uint w = 16, h = 16;
+			uint w = 16;
+			uint h = 16;
 			if( rx+rw - x < 16 )
 			{
 				w = rx+rw - x;

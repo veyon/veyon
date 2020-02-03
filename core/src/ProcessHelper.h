@@ -38,6 +38,6 @@ public:
 	static bool waitForProcess( QProcess* process, int timeout, int sleepInterval );
 
 private:
-	QProcess m_process;
+	QProcess m_process{};
 
 };

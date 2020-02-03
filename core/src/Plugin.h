@@ -46,4 +46,4 @@ public:
 
 };
 
-using PluginUidList = QList<Plugin::Uid>;
+using PluginUidList = QVector<Plugin::Uid>;

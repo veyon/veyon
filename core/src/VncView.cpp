@@ -39,12 +39,7 @@
 
 VncView::VncView( VncConnection* connection ) :
 	m_connection( connection ),
-	m_cursorShape(),
-	m_cursorPos(),
-	m_cursorHot(),
 	m_framebufferSize( connection->image().size() ),
-	m_viewOnly( true ),
-	m_buttonMask( 0 ),
 	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( nullptr ) )
 {
 	// handle/forward trapped keyboard shortcuts
@@ -567,11 +562,11 @@ void VncView::mouseEventHandler( QMouseEvent* event )
 				if( event->type() == QEvent::MouseButtonPress ||
 					event->type() == QEvent::MouseButtonDblClick )
 				{
-					m_buttonMask |= i.rfb;
+					m_buttonMask |= uint(i.rfb);
 				}
 				else
 				{
-					m_buttonMask &= ~i.rfb;
+					m_buttonMask &= ~uint(i.rfb);
 				}
 			}
 		}
@@ -591,7 +586,7 @@ void VncView::wheelEventHandler( QWheelEvent* event )
 	}
 
 	const auto p = mapToFramebuffer( event->pos() );
-	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask | ( ( event->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
+	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask | uint( ( event->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
 	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask );
 }
 

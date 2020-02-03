@@ -48,7 +48,7 @@ public:
 	FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
-	Q_INVOKABLE void startWorker( const Feature& feature, WorkerProcessMode workerProcessMode );
+	Q_INVOKABLE void startWorker( const Feature& feature, FeatureWorkerManager::WorkerProcessMode workerProcessMode );
 	Q_INVOKABLE void stopWorker( const Feature& feature );
 
 	void sendMessage( const FeatureMessage& message );

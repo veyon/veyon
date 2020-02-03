@@ -45,10 +45,7 @@ ToolButton::ToolButton( const QIcon& icon,
 						const QString& altLabel,
 						const QString& description,
 						const QKeySequence& shortcut ) :
-	m_pixelRatio( 1 ),
 	m_icon( icon ),
-	m_pixmap(),
-	m_mouseOver( false ),
 	m_label( label ),
 	m_altLabel( altLabel ),
 	m_descr( description )

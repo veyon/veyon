@@ -27,9 +27,7 @@
 #include "VeyonConfiguration.h"
 
 AuthenticationManager::AuthenticationManager( QObject* parent ) :
-	QObject( parent ),
-	m_configuredPlugin( nullptr ),
-	m_dummyAuthentication()
+	QObject( parent )
 {
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{

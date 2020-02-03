@@ -136,7 +136,7 @@ public:
 	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 										  SocketDevice::SocketOperation operation, void * user );
 
-	void mouseEvent( int x, int y, int buttonMask );
+	void mouseEvent( int x, int y, uint buttonMask );
 	void keyEvent( unsigned int key, bool pressed );
 	void clientCut( const QString& text );
 
@@ -205,30 +205,30 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	// states and flags
-	std::atomic<State> m_state;
-	std::atomic<FramebufferState> m_framebufferState;
-	QAtomicInt m_controlFlags;
+	std::atomic<State> m_state{State::Disconnected};
+	std::atomic<FramebufferState> m_framebufferState{FramebufferState::Invalid};
+	QAtomicInteger<uint> m_controlFlags{};
 
 	// connection parameters and data
-	rfbClient* m_client;
-	Quality m_quality;
-	QString m_host;
-	int m_port;
+	rfbClient* m_client{nullptr};
+	Quality m_quality{Quality::Default};
+	QString m_host{};
+	int m_port{-1};
 
 	// thread and timing control
-	QMutex m_globalMutex;
-	QMutex m_eventQueueMutex;
-	QWaitCondition m_updateIntervalSleeper;
-	QAtomicInt m_framebufferUpdateInterval;
-	QElapsedTimer m_framebufferUpdateWatchdog;
+	QMutex m_globalMutex{};
+	QMutex m_eventQueueMutex{};
+	QWaitCondition m_updateIntervalSleeper{};
+	QAtomicInt m_framebufferUpdateInterval{0};
+	QElapsedTimer m_framebufferUpdateWatchdog{};
 
 	// queue for RFB and custom events
-	QQueue<VncEvent *> m_eventQueue;
+	QQueue<VncEvent *> m_eventQueue{};
 
 	// framebuffer data and thread synchronization objects
-	QImage m_image;
-	QImage m_scaledScreen;
-	QSize m_scaledSize;
-	QReadWriteLock m_imgLock;
+	QImage m_image{};
+	QImage m_scaledScreen{};
+	QSize m_scaledSize{};
+	QReadWriteLock m_imgLock{};
 
 } ;

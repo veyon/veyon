@@ -68,10 +68,10 @@ public slots:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message );
 
 private:
-	FeatureList m_features;
-	const FeatureList m_emptyFeatureList;
-	QObjectList m_pluginObjects;
-	FeatureProviderInterfaceList m_featurePluginInterfaces;
-	const Feature m_dummyFeature;
+	FeatureList m_features{};
+	const FeatureList m_emptyFeatureList{};
+	QObjectList m_pluginObjects{};
+	FeatureProviderInterfaceList m_featurePluginInterfaces{};
+	const Feature m_dummyFeature{};
 
 };

@@ -37,11 +37,7 @@
 VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode ) :
 	QWidget( parent ),
 	VncView( new VncConnection( QCoreApplication::instance() ) ),
-	m_veyonConnection( new VeyonConnection( connection() ) ),
-	m_viewOnlyFocus( true ),
-	m_initDone( false ),
-	m_establishingConnectionWidget( nullptr ),
-	m_mouseBorderSignalTimer( this )
+	m_veyonConnection( new VeyonConnection( connection() ) )
 {
 	connectUpdateFunctions( this );
 

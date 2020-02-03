@@ -37,6 +37,8 @@ class QWheelEvent;
 class KeyboardShortcutTrapper;
 class VncConnection;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT VncView
 {
 public:
@@ -81,7 +83,7 @@ public:
 	}
 
 	virtual void setViewOnly( bool viewOnly );
-	void sendShortcut( Shortcut shortcut );
+	void sendShortcut( VncView::Shortcut shortcut );
 
 protected:
 	template<class SubClass>
@@ -145,16 +147,16 @@ private:
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
 
-	VncConnection* m_connection;
-	QPixmap m_cursorShape;
-	QPoint m_cursorPos;
-	QPoint m_cursorHot;
-	QSize m_framebufferSize;
-	bool m_viewOnly;
+	VncConnection* m_connection{nullptr};
+	QPixmap m_cursorShape{};
+	QPoint m_cursorPos{0, 0};
+	QPoint m_cursorHot{0, 0};
+	QSize m_framebufferSize{0, 0};
+	bool m_viewOnly{true};
 
-	int m_buttonMask;
+	uint m_buttonMask{0};
 	QMap<unsigned int, bool> m_mods;
 
-	KeyboardShortcutTrapper* m_keyboardShortcutTrapper;
+	KeyboardShortcutTrapper* m_keyboardShortcutTrapper{nullptr};
 
 } ;

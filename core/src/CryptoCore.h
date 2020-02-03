@@ -39,10 +39,9 @@ public:
 	using SecureArray = QCA::SecureArray;
 	using PlaintextPassword = SecureArray;
 
-	enum {
-		RsaKeySize = 4096,
-		ChallengeSize = 128,
-	};
+	static constexpr auto RsaKeySize = 4096;
+	static constexpr auto ChallengeSize = 128;
+	static constexpr auto BitsPerByte = 8;
 
 	static constexpr auto DefaultEncryptionAlgorithm = QCA::EME_PKCS1_OAEP;
 	static constexpr auto DefaultSignatureAlgorithm = QCA::EMSA3_SHA512;
@@ -56,7 +55,7 @@ public:
 	PlaintextPassword decryptPassword( const QString& encryptedPassword ) const;
 
 private:
-	QCA::Initializer m_qcaInitializer;
-	PrivateKey m_defaultPrivateKey;
+	QCA::Initializer m_qcaInitializer{};
+	PrivateKey m_defaultPrivateKey{};
 
 };

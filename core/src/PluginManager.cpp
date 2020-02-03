@@ -33,9 +33,6 @@
 
 PluginManager::PluginManager( QObject* parent ) :
 	QObject( parent ),
-	m_pluginInterfaces(),
-	m_pluginObjects(),
-	m_pluginLoaders(),
 	m_noDebugMessages( qEnvironmentVariableIsSet( Logger::logLevelEnvironmentVariable() ) )
 {
 	initPluginSearchPath();

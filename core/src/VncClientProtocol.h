@@ -125,17 +125,17 @@ private:
 
 	static constexpr auto MaximumMessageSize = 4096*4096*4;
 
-	QTcpSocket* m_socket;
-	State m_state;
+	QTcpSocket* m_socket{nullptr};
+	State m_state{State::Disconnected};
 
-	Password m_vncPassword;
+	Password m_vncPassword{};
 
-	QByteArray m_serverInitMessage;
+	QByteArray m_serverInitMessage{};
 
-	rfbPixelFormat m_pixelFormat;
+	rfbPixelFormat m_pixelFormat{};
 
-	quint16 m_framebufferWidth;
-	quint16 m_framebufferHeight;
+	quint16 m_framebufferWidth{0};
+	quint16 m_framebufferHeight{0};
 
 	QByteArray m_lastMessage;
 	QRect m_lastUpdatedRect;

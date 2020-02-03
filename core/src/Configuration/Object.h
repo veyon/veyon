@@ -38,7 +38,7 @@ class VEYON_CORE_EXPORT Object : public QObject
 public:
 	using DataMap = QMap<QString, QVariant>;
 
-	Object();
+	Object() = default;
 	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = {} );
 	explicit Object( Store* store );
 	Object( const Object& );
@@ -96,9 +96,9 @@ signals:
 private:
 	static Store* createStore( Store::Backend backend, Store::Scope scope );
 
-	Configuration::Store *m_store;
-	bool m_customStore;
-	DataMap m_data;
+	Configuration::Store* m_store{nullptr};
+	bool m_customStore{false};
+	DataMap m_data{};
 
 } ;
 

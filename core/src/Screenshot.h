@@ -69,8 +69,8 @@ public:
 	}
 
 	static QString constructFileName( const QString& user, const QString& hostAddress,
-									  const QDate& date = QDate::currentDate(),
-									  const QTime& time = QTime::currentTime() );
+									  QDate date = QDate::currentDate(),
+									  QTime time = QTime::currentTime() );
 
 	QString user() const;
 	QString host() const;
@@ -80,11 +80,13 @@ public:
 	static QString metaDataKey( MetaData key );
 
 private:
+	static constexpr auto ScreenshotLabelFontPointSize = 14;
+
 	QString property( const QString& key, int section ) const;
 	QString fileNameSection( int n ) const;
 
-	QString m_fileName;
-	QImage m_image;
+	QString m_fileName{};
+	QImage m_image{};
 
 } ;
 

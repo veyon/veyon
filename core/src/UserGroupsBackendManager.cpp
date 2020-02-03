@@ -29,7 +29,6 @@
 
 UserGroupsBackendManager::UserGroupsBackendManager( QObject* parent ) :
 	QObject( parent ),
-	m_backends(),
 	m_defaultBackend( nullptr ),
 	m_accessControlBackend( nullptr )
 {

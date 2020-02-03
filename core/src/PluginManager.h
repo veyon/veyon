@@ -64,7 +64,7 @@ public:
 	template<class InterfaceType, class FilterArgType = InterfaceType>
 	InterfaceType* find( const std::function<bool (const FilterArgType *)>& filter = []() { return true; } )
 	{
-		for( auto object : m_pluginObjects )
+		for( auto object : qAsConst(m_pluginObjects) )
 		{
 			auto pluginInterface = qobject_cast<InterfaceType *>( object );
 			if( pluginInterface && filter( qobject_cast<FilterArgType *>( object ) ) )
@@ -82,10 +82,10 @@ private:
 	void initPluginSearchPath();
 	void loadPlugins( const QString& nameFilter );
 
-	PluginInterfaceList m_pluginInterfaces;
-	QObjectList m_pluginObjects;
-	QList<QPluginLoader *> m_pluginLoaders;
-	bool m_noDebugMessages;
+	PluginInterfaceList m_pluginInterfaces{};
+	QObjectList m_pluginObjects{};
+	QList<QPluginLoader *> m_pluginLoaders{};
+	bool m_noDebugMessages{false};
 
 signals:
 	void pluginsLoaded();

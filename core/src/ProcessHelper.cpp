@@ -28,8 +28,7 @@
 #include "ProcessHelper.h"
 
 
-ProcessHelper::ProcessHelper( const QString& program, const QStringList& arguments ) :
-	m_process()
+ProcessHelper::ProcessHelper( const QString& program, const QStringList& arguments )
 {
 	m_process.start( program, arguments );
 }

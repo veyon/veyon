@@ -51,8 +51,8 @@ public:
 	void reloadConfiguration();
 
 private:
-	Plugins m_plugins;
-	AuthenticationPluginInterface* m_configuredPlugin;
-	DummyAuthentication m_dummyAuthentication;
+	Plugins m_plugins{};
+	AuthenticationPluginInterface* m_configuredPlugin{nullptr};
+	DummyAuthentication m_dummyAuthentication{};
 
 };

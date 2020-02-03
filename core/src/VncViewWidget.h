@@ -68,14 +68,14 @@ protected:
 private:
 	void updateConnectionState();
 
-	VeyonConnection* m_veyonConnection;
+	VeyonConnection* m_veyonConnection{nullptr};
 
-	bool m_viewOnlyFocus;
-	bool m_initDone;
+	bool m_viewOnlyFocus{true};
+	bool m_initDone{false};
 
-	ProgressWidget* m_establishingConnectionWidget;
+	ProgressWidget* m_establishingConnectionWidget{nullptr};
 
 	static constexpr int MouseBorderSignalDelay = 500;
-	QTimer m_mouseBorderSignalTimer;
+	QTimer m_mouseBorderSignalTimer{this};
 
 } ;

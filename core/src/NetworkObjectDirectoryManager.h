@@ -44,7 +44,7 @@ public:
 private:
 	NetworkObjectDirectory* createDirectory();
 
-	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces;
-	NetworkObjectDirectory* m_configuredDirectory;
+	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces{};
+	NetworkObjectDirectory* m_configuredDirectory{nullptr};
 
 };

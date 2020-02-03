@@ -86,18 +86,18 @@ private:
 	static QAtomicPointer<Logger> s_instance;
 	static QMutex s_instanceMutex;
 
-	LogLevel m_logLevel;
-	QMutex m_logMutex;
+	LogLevel m_logLevel{LogLevel::Default};
+	QMutex m_logMutex{};
 
-	LogLevel m_lastMessageLevel;
-	QString m_lastMessage;
-	int m_lastMessageCount;
-	bool m_logToSystem;
+	LogLevel m_lastMessageLevel{LogLevel::Nothing};
+	QString m_lastMessage{};
+	int m_lastMessageCount{0};
+	bool m_logToSystem{false};
 
 	QString m_appName;
 
-	QFile *m_logFile;
-	int m_logFileSizeLimit;
-	int m_logFileRotationCount;
+	QFile* m_logFile{nullptr};
+	int m_logFileSizeLimit{-1};
+	int m_logFileRotationCount{-1};
 
 } ;

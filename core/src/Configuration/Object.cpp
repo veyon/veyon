@@ -30,20 +30,8 @@
 namespace Configuration
 {
 
-
-Object::Object() :
-	m_store( nullptr ),
-	m_customStore( false ),
-	m_data()
-{
-}
-
-
-
 Object::Object( Store::Backend backend, Store::Scope scope, const QString& storeName ) :
-	m_store( createStore( backend, scope ) ),
-	m_customStore( false ),
-	m_data()
+	m_store( createStore( backend, scope ) )
 {
 	m_store->setName( storeName );
 
@@ -53,9 +41,7 @@ Object::Object( Store::Backend backend, Store::Scope scope, const QString& store
 
 
 Object::Object( Store* store ) :
-	m_store( store ),
-	m_customStore( true ),
-	m_data()
+	m_store( store )
 {
 	reloadFromStore();
 }
@@ -63,8 +49,7 @@ Object::Object( Store* store ) :
 
 
 Object::Object( const Object& obj ) :
-	m_store( nullptr ),
-	m_customStore( false )
+	m_store( nullptr )
 {
 	*this = obj;
 }

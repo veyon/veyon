@@ -37,7 +37,6 @@
 
 
 AccessControlProvider::AccessControlProvider() :
-	m_accessControlRules(),
 	m_userGroupsBackend( VeyonCore::userGroupsBackendManager().accessControlBackend() ),
 	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
 	m_queryDomainGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() )
