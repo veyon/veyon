@@ -214,5 +214,5 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Feature::Flags)
 
-using FeatureList = QList<Feature>;
+using FeatureList = QVector<Feature>;
 using FeatureUidList = QStringList;
