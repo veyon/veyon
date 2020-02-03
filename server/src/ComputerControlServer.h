@@ -74,11 +74,11 @@ private:
 	void showAuthenticationMessage( VncServerClient* client );
 	void showAccessControlMessage( VncServerClient* client );
 
-	QMutex m_dataMutex;
-	QStringList m_allowedIPs;
+	QMutex m_dataMutex{};
+	QStringList m_allowedIPs{};
 
-	QStringList m_failedAuthHosts;
-	QStringList m_failedAccessControlHosts;
+	QStringList m_failedAuthHosts{};
+	QStringList m_failedAccessControlHosts{};
 
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
@@ -86,7 +86,7 @@ private:
 	ServerAuthenticationManager m_serverAuthenticationManager;
 	ServerAccessControlManager m_serverAccessControlManager;
 
-	VncServer m_vncServer;
+	VncServer m_vncServer{};
 	VncProxyServer m_vncProxyServer;
 
 } ;

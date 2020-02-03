@@ -60,7 +60,7 @@ protected:
 private:
 	ComputerControlServer* m_server;
 
-	VncServerClient m_serverClient;
+	VncServerClient m_serverClient{};
 
 	VeyonServerProtocol m_serverProtocol;
 	VncClientProtocol m_clientProtocol;

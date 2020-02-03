@@ -36,13 +36,9 @@
 
 ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	QObject( parent ),
-	m_allowedIPs(),
-	m_failedAuthHosts(),
-	m_featureManager(),
 	m_featureWorkerManager( *this, m_featureManager ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),
-	m_vncServer(),
 	m_vncProxyServer( VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
 					  VeyonCore::config().primaryServicePort() + VeyonCore::sessionId(),

@@ -36,8 +36,6 @@ VncProxyServer::VncProxyServer( const QHostAddress& listenAddress,
 								VncProxyConnectionFactory* connectionFactory,
 								QObject* parent ) :
 	QObject( parent ),
-	m_vncServerPort( -1 ),
-	m_vncServerPassword(),
 	m_listenAddress( listenAddress ),
 	m_listenPort( listenPort ),
 	m_server( new QTcpServer( this ) ),

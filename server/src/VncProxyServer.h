@@ -58,8 +58,8 @@ private:
 	void acceptConnection();
 	void closeConnection( VncProxyConnection* );
 
-	int m_vncServerPort;
-	Password m_vncServerPassword;
+	int m_vncServerPort{-1};
+	Password m_vncServerPassword{};
 	QHostAddress m_listenAddress;
 	int m_listenPort;
 	QTcpServer* m_server;

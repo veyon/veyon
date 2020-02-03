@@ -36,7 +36,6 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 											  QObject* parent ) :
 	VncProxyConnection( clientSocket, vncServerPort, parent ),
 	m_server( server ),
-	m_serverClient(),
 	m_serverProtocol( clientSocket,
 					  &m_serverClient,
 					  server->authenticationManager(),

@@ -34,9 +34,7 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 														QObject* parent ) :
 	QObject( parent ),
 	m_featureWorkerManager( featureWorkerManager ),
-	m_desktopAccessDialog( desktopAccessDialog ),
-	m_clients(),
-	m_desktopAccessChoices()
+	m_desktopAccessDialog( desktopAccessDialog )
 {
 }
 

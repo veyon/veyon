@@ -56,11 +56,11 @@ private:
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;
 
-	VncServerClientList m_clients;
+	VncServerClientList m_clients{};
 
 	using HostUserPair = QPair<QString, QString>;
 	using DesktopAccessChoiceMap = QMap<HostUserPair, DesktopAccessDialog::Choice>;
 
-	DesktopAccessChoiceMap m_desktopAccessChoices;
+	DesktopAccessChoiceMap m_desktopAccessChoices{};
 
 } ;
