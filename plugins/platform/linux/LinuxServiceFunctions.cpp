@@ -104,11 +104,11 @@ bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFu
 
 
 
-bool LinuxServiceFunctions::runAsService( const QString& name, const std::function<void(void)>& serviceMain )
+bool LinuxServiceFunctions::runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint )
 {
 	Q_UNUSED(name)
 
-	serviceMain();
+	serviceEntryPoint();
 
 	return true;
 }

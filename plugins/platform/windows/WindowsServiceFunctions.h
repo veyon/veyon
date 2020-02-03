@@ -38,10 +38,10 @@ public:
 	bool start( const QString& name ) override;
 	bool stop( const QString& name ) override;
 	bool install( const QString& name, const QString& filePath,
-	              StartMode startMode, const QString& displayName ) override;
+				  StartMode startMode, const QString& displayName ) override;
 	bool uninstall( const QString& name ) override;
 	bool setStartMode( const QString& name, StartMode startMode ) override;
-	bool runAsService( const QString& name, const std::function<void(void)>& serviceMain ) override;
+	bool runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint ) override;
 	void manageServerInstances() override;
 
 private:

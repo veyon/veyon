@@ -31,6 +31,8 @@
 class PlatformServiceFunctions
 {
 public:
+	using ServiceEntryPoint = std::function<void(void)>;
+
 	enum class StartMode {
 		Disabled,
 		Manual,
@@ -49,7 +51,7 @@ public:
 						  StartMode startMode, const QString& displayName ) = 0;
 	virtual bool uninstall( const QString& name ) = 0;
 	virtual bool setStartMode( const QString& name, StartMode startMode ) = 0;
-	virtual bool runAsService( const QString& name, const std::function<void(void)>& serviceMain ) = 0;
+	virtual bool runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint ) = 0;
 	virtual void manageServerInstances() = 0;
 
 };
