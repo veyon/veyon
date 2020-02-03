@@ -44,7 +44,7 @@ public:
 
 private:
 	VeyonCore m_core;
-	FeatureManager m_featureManager;
-	FeatureWorkerManagerConnection* m_workerManagerConnection;
+	FeatureManager m_featureManager{};
+	FeatureWorkerManagerConnection* m_workerManagerConnection{nullptr};
 
 } ;

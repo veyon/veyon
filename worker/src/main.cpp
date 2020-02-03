@@ -30,9 +30,9 @@
 int main( int argc, char **argv )
 {
 	QApplication app( argc, argv );
-	app.setWindowIcon( QIcon( QStringLiteral(":/core/icon64.png") ) );
+	QApplication ::setWindowIcon( QIcon( QStringLiteral(":/core/icon64.png") ) );
 
-	const auto arguments = app.arguments();
+	const auto arguments = QApplication::arguments();
 
 	if( arguments.count() < 2 )
 	{
