@@ -18,6 +18,7 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/sockets.c
 	${libvncserver_DIR}/libvncclient/tls_none.c
 	${libvncserver_DIR}/libvncclient/vncviewer.c
+	${libvncserver_DIR}/common/crypto_openssl.c
 	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c)
 
