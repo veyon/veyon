@@ -17,11 +17,10 @@ cmake $BASEDIR -DCMAKE_TOOLCHAIN_FILE=$BASEDIR/cmake/modules/Win${1}Toolchain.cm
 echo Building on $CPUS CPUs
 
 if [ -z "$2" ] ; then
-	make -j$CPUS
-	make win-nsi
+	make windows-binaries -j$CPUS
 else
 	make ${@:2} -j$CPUS
 fi
 
-mv -v veyon*setup.exe $BASEDIR
+mv veyon-win* $BASEDIR
 

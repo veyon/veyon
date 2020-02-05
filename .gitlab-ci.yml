@@ -3,22 +3,22 @@ image: docker:latest
 stages:
   - build
 
-build-win32-installer:
+build-win32:
   stage: build
   image: $IMAGE
   script:
     - .ci/windows/build.sh 32
   artifacts:
-    paths: [ "*.exe" ]
+    paths: [ veyon-win32* ]
     expire_in: 1 day
 
-build-win64-installer:
+build-win64:
   stage: build
   image: $IMAGE
   script:
     - .ci/windows/build.sh 64
   artifacts:
-    paths: [ "*.exe" ]
+    paths: [ veyon-win64* ]
     expire_in: 1 day
 
 variables:
