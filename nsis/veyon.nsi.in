@@ -4,7 +4,7 @@
 !define VERSION "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@.@VERSION_BUILD@"
 !define COPYRIGHT "2004-2020 Tobias Junghans / Veyon Solutions"
 !define DESCRIPTION "Veyon Installer"
-!define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
+!define LICENSE_TXT "COPYING"
 !define INSTALLER_NAME "veyon-${VERSION}-@MINGW_PLATFORM@-setup.exe"
 !define MAIN_APP_EXE "veyon-master.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
@@ -24,7 +24,7 @@ VIAddVersionKey "FileVersion"  "${VERSION}"
 
 ######################################################################
 
-SetCompressor /SOLID Lzma
+SetCompressor /SOLID lzma
 Name "${APP_NAME}"
 Caption "${APP_NAME} ${VERSION}"
 OutFile "${INSTALLER_NAME}"
@@ -44,13 +44,13 @@ RequestExecutionLevel admin
 !define MUI_ABORTWARNING
 !define MUI_UNABORTWARNING
 
-!define MUI_WELCOMEFINISHPAGE_BITMAP "@CMAKE_SOURCE_DIR@/nsis/welcome-page.bmp"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "@CMAKE_SOURCE_DIR@/nsis/welcome-page.bmp" 
+!define MUI_WELCOMEFINISHPAGE_BITMAP "nsis/welcome-page.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "nsis/welcome-page.bmp"
 
-!define MUI_ICON "@CMAKE_SOURCE_DIR@/nsis/installer.ico"
-!define MUI_UNICON "@CMAKE_SOURCE_DIR@/nsis/uninstaller.ico"
+!define MUI_ICON "nsis/installer.ico"
+!define MUI_UNICON "nsis/uninstaller.ico"
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "@CMAKE_SOURCE_DIR@/nsis/header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "nsis/header.bmp"
 !define MUI_HEADERIMAGE_RIGHT
 
 !define MUI_LANGDLL_REGISTRY_ROOT "${REG_ROOT}"

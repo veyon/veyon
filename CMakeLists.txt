@@ -273,66 +273,11 @@ ADD_SUBDIRECTORY(plugins)
 ADD_SUBDIRECTORY(translations)
 
 #
-# add target for generating Windows installer
+# add Windows installer related targets
 #
-
-IF(WIN32)
-	SET(TMP "veyon-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
-
-	SET(DLLDIR "${MINGW_PREFIX}/bin")
-	SET(DLLDIR_LIB "${MINGW_PREFIX}/lib")
-	SET(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${COMPILER_VERSION_MAJOR_MINOR}-win32")
-	IF(VEYON_BUILD_WIN64)
-	    SET(DLL_GCC "libgcc_s_seh-1.dll")
-		SET(DLL_DDENGINE "ddengine64.dll")
-	ELSE()
-	    SET(DLL_GCC "libgcc_s_sjlj-1.dll")
-		SET(DLL_DDENGINE "ddengine.dll")
-	ENDIF()
-
-	ADD_CUSTOM_TARGET(win-nsi
-		    COMMAND make
-			COMMAND rm -rf ${TMP}
-			COMMAND mkdir -p ${TMP}/interception
-			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/* ${TMP}/interception
-			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/ddengine/${DLL_DDENGINE} ${TMP}
-			COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe cli/*.exe worker/veyon-worker.exe ${TMP}
-			COMMAND mkdir -p ${TMP}/plugins
-			COMMAND find plugins/ -name '*.dll' -exec cp '{}' ${TMP}/plugins/ '\;'
-			COMMAND mv ${TMP}/plugins/lib*.dll ${TMP}
-			COMMAND mkdir -p ${TMP}/translations
-			COMMAND cp translations/*qm ${TMP}/translations/
-			COMMAND cp ${DLLDIR}/libjpeg-62.dll ${TMP}
-			COMMAND cp ${DLLDIR}/libpng16-16.dll ${TMP}
-			COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${TMP}
-			COMMAND cp ${DLLDIR}/libqca-qt5.dll ${TMP}
-			COMMAND cp ${DLLDIR}/libsasl2-3.dll ${TMP}
-			COMMAND cp ${DLLDIR}/libldap.dll ${DLLDIR}/liblber.dll ${TMP}
-			COMMAND cp ${DLLDIR}/interception.dll ${TMP}
-			COMMAND cp ${DLLDIR}/liblzo2-2.dll ${TMP}
-			COMMAND cp ${DLLDIR_LIB}/zlib1.dll ${TMP}
-			COMMAND cp ${DLLDIR_LIB}/libwinpthread-1.dll ${TMP}
-			COMMAND cp ${DLLDIR_GCC}/libstdc++-6.dll ${TMP}
-			COMMAND cp ${DLLDIR_GCC}/libssp-0.dll ${TMP}
-			COMMAND cp ${DLLDIR_GCC}/${DLL_GCC} ${TMP}
-			COMMAND mkdir -p ${TMP}/crypto
-			COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${TMP}/crypto
-			COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${TMP}
-			COMMAND mkdir -p ${TMP}/platforms
-			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${TMP}/platforms
-			COMMAND mkdir -p ${TMP}/styles
-			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/styles/*.dll ${TMP}/styles
-			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*.dll ${TMP}/platforms/*.dll ${TMP}/styles/*.dll ${TMP}/crypto/*.dll
-			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
-			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
-			COMMAND cp ${CMAKE_SOURCE_DIR}/README.md ${TMP}/README.TXT
-			COMMAND todos ${TMP}/*.TXT
-			COMMAND cp nsis/veyon.nsi ${TMP}
-			COMMAND makensis ${TMP}/veyon.nsi
-			COMMAND mv ${TMP}/veyon-*setup.exe .
-			#COMMAND rm -rf ${TMP}
-		)
-ENDIF()
+if(WIN32)
+	include(WindowsInstaller)
+endif()
 
 #
 # package generation
