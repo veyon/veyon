@@ -191,7 +191,7 @@ void AuthKeysConfigurationDialog::exportKey()
 															  m_keyFilesFilter );
 		if( outputFile.isEmpty() == false )
 		{
-			const auto success = m_manager.exportKey( name, type, outputFile );
+			const auto success = m_manager.exportKey( name, type, outputFile, true );
 
 			showResultMessage( success, title, m_manager.resultMessage() );
 		}

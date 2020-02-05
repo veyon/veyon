@@ -375,7 +375,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStri
 		outputFile = AuthKeysManager::exportedKeyFileName( name, type );
 	}
 
-	if( m_manager.exportKey( name, type, outputFile ) == false )
+	if( m_manager.exportKey( name, type, outputFile, arguments.contains( QLatin1String("-f") ) ) == false )
 	{
 		error( m_manager.resultMessage() );
 

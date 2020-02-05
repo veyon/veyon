@@ -44,7 +44,7 @@ public:
 
 	bool createKeyPair( const QString& name );
 	bool deleteKey( const QString& name, const QString& type );
-	bool exportKey( const QString& name, const QString& type, const QString& outputFile );
+	bool exportKey( const QString& name, const QString& type, const QString& outputFile, bool overwriteExisting );
 	bool importKey( const QString& name, const QString& type, const QString& inputFile );
 	QStringList listKeys();
 	bool extractPublicFromPrivateKey( const QString& name );
