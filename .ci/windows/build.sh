@@ -22,5 +22,5 @@ else
 	make ${@:2} -j$CPUS
 fi
 
-mv veyon-win* $BASEDIR
+mv veyon-*win* $BASEDIR
 
