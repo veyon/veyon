@@ -123,7 +123,7 @@ bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
 
 
 
-bool AuthKeysManager::exportKey( const QString& name, const QString& type, const QString& outputFile )
+bool AuthKeysManager::exportKey( const QString& name, const QString& type, const QString& outputFile, bool overwriteExisting )
 {
 	if( checkKey( name, type ) == false )
 	{
@@ -138,7 +138,7 @@ bool AuthKeysManager::exportKey( const QString& name, const QString& type, const
 		return false;
 	}
 
-	if( QFileInfo::exists( outputFile ) )
+	if( overwriteExisting == false && QFileInfo::exists( outputFile ) )
 	{
 		m_resultMessage = tr( "File \"%1\" already exists." ).arg( outputFile );
 		return false;

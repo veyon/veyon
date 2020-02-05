@@ -202,7 +202,7 @@ void AuthKeysConfigurationPage::exportKey()
 		if( outputFile.isEmpty() == false )
 		{
 			AuthKeysManager authKeysManager;
-			const auto success = authKeysManager.exportKey( name, type, outputFile );
+			const auto success = authKeysManager.exportKey( name, type, outputFile, true );
 
 			showResultMessage( success, title, authKeysManager.resultMessage() );
 		}

@@ -209,7 +209,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStri
 	}
 
 	AuthKeysManager manager;
-	if( manager.exportKey( name, type, outputFile ) == false )
+	if( manager.exportKey( name, type, outputFile, arguments.contains( QLatin1String("-f") ) ) == false )
 	{
 		error( manager.resultMessage() );
 
