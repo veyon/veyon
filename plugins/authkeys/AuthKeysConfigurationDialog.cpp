@@ -53,13 +53,13 @@ AuthKeysConfigurationDialog::AuthKeysConfigurationDialog( AuthKeysConfiguration&
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationDialog::name );
 
-	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
-	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
-	CONNECT_BUTTON_SLOT( createKeyPair );
-	CONNECT_BUTTON_SLOT( deleteKey );
-	CONNECT_BUTTON_SLOT( importKey );
-	CONNECT_BUTTON_SLOT( exportKey );
-	CONNECT_BUTTON_SLOT( setAccessGroup );
+	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir )
+	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir )
+	CONNECT_BUTTON_SLOT( createKeyPair )
+	CONNECT_BUTTON_SLOT( deleteKey )
+	CONNECT_BUTTON_SLOT( importKey )
+	CONNECT_BUTTON_SLOT( exportKey )
+	CONNECT_BUTTON_SLOT( setAccessGroup )
 
 	reloadKeyTable();
 
