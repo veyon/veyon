@@ -176,14 +176,14 @@ BuiltinUltraVncServer::~BuiltinUltraVncServer()
 
 
 QWidget* BuiltinUltraVncServer::configurationWidget()
-{
+ {
 	return new UltraVncConfigurationWidget( m_configuration );
-}
+ }
 
 
 
 void BuiltinUltraVncServer::prepareServer()
-{
+ {
 	// initialize global instance handler and main thread ID
 	hAppInstance = GetModuleHandle( nullptr );
 	mainthreadId = GetCurrentThreadId();
@@ -191,12 +191,12 @@ void BuiltinUltraVncServer::prepareServer()
 	hInstResDLL = hAppInstance;
 
 	m_logoffEventFilter = new LogoffEventFilter;
-}
+ }
 
 
 
 void BuiltinUltraVncServer::runServer( int serverPort, const Password& password )
-{
+ {
 	m_serverPort = serverPort;
 	m_password = password;
 
@@ -205,20 +205,39 @@ void BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 	if( VeyonCore::hasSessionId() )
 	{
 		multi = true;
-	}
+	 }
 
-	// run winvnc-server
-	HMODULE hUser32 = LoadLibrary( "user32.dll" );
-	using SetProcessDPIAwareFunc = BOOL (*)();
-	SetProcessDPIAwareFunc setDPIAware = nullptr;
-	if( hUser32 )
+	// run UltraVNC server
+	auto hUser32 = LoadLibrary( "user32.dll" );
+	auto hSHCore = LoadLibrary( "SHCore.dll" );
+
+	using SetProcessDpiAwarenessFunc = HRESULT (WINAPI *)( DWORD );
+	const auto setProcessDpiAwareness =
+		hSHCore ? SetProcessDpiAwarenessFunc( GetProcAddress( hSHCore, "SetProcessDpiAwareness" ) ) : nullptr;
+
+	if( setProcessDpiAwareness )
 	{
-		setDPIAware = reinterpret_cast<SetProcessDPIAwareFunc>( GetProcAddress( hUser32, "SetProcessDPIAware" ) );
+		static constexpr DWORD PROCESS_PER_MONITOR_DPI_AWARE = 2;
+		setProcessDpiAwareness( PROCESS_PER_MONITOR_DPI_AWARE );
+	}
+	else if( hUser32 )
+	{
+		using SetProcessDPIAwareFunc = BOOL (*)();
+		const auto setDPIAware = SetProcessDPIAwareFunc( GetProcAddress( hUser32, "SetProcessDPIAware" ) );
 		if( setDPIAware )
 		{
 			setDPIAware();
 		}
+	}
+
+	if( hUser32 )
+	{
 		FreeLibrary( hUser32 );
+	}
+
+	if( hSHCore )
+	{
+		FreeLibrary( hSHCore );
 	}
 
 	WinVNCAppMain();
