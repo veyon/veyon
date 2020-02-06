@@ -17,10 +17,11 @@ add_custom_target(windows-binaries
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/interception
 	COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/* ${WINDOWS_INSTALL_FILES}/interception
 	COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/ddengine/${DLL_DDENGINE} ${WINDOWS_INSTALL_FILES}
-	COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe cli/*.exe worker/veyon-worker.exe ${WINDOWS_INSTALL_FILES}
+	COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe master/veyon-master.exe configurator/veyon-configurator.exe cli/*.exe worker/veyon-worker.exe ${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/plugins
 	COMMAND find plugins/ -name '*.dll' -exec cp '{}' ${WINDOWS_INSTALL_FILES}/plugins/ '\;'
 	COMMAND mv ${WINDOWS_INSTALL_FILES}/plugins/lib*.dll ${WINDOWS_INSTALL_FILES}
+	COMMAND mv ${WINDOWS_INSTALL_FILES}/plugins/vnchooks.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/translations
 	COMMAND cp translations/*qm ${WINDOWS_INSTALL_FILES}/translations/
 	COMMAND cp ${DLLDIR}/libjpeg-62.dll ${WINDOWS_INSTALL_FILES}
