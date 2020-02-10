@@ -70,6 +70,7 @@ bool VncProxyServer::start( int vncServerPort, const Password& vncServerPassword
 }
 
 
+
 void VncProxyServer::stop()
 {
 	for( auto connection : qAsConst( m_connections ) )
@@ -104,6 +105,8 @@ void VncProxyServer::acceptConnection()
 void VncProxyServer::closeConnection( VncProxyConnection* connection )
 {
 	m_connections.removeAll( connection );
+
+	emit connectionClosed( connection );
 
 	connection->deleteLater();
 }
