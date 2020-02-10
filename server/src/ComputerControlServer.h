@@ -75,6 +75,8 @@ private:
 	void showAuthenticationMessage( VncServerClient* client );
 	void showAccessControlMessage( VncServerClient* client );
 
+	void updateTrayIconToolTip();
+
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;
 

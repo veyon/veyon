@@ -49,11 +49,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 					  this,
 					  this )
 {
-	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip(
-				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
-													HostAddress::localFQDN(),
-													QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) ),
-				m_featureWorkerManager );
+	updateTrayIconToolTip();
 
 	// make app terminate once the VNC server thread has finished
 	connect( &m_vncServer, &VncServer::finished, QCoreApplication::instance(), &QCoreApplication::quit );
@@ -63,6 +59,8 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 
 	connect( &m_serverAccessControlManager, &ServerAccessControlManager::finished,
 			 this, &ComputerControlServer::showAccessControlMessage );
+
+	connect( &m_vncProxyServer, &VncProxyServer::connectionClosed, this, &ComputerControlServer::updateTrayIconToolTip );
 }
 
 
@@ -181,6 +179,8 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 						arg( client->username(), fqdn ),
 						m_featureWorkerManager );
 		}
+
+		updateTrayIconToolTip();
 	}
 	else if( client->accessControlState() == VncServerClient::AccessControlState::Failed )
 	{
@@ -205,4 +205,27 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 			}
 		}
 	}
+}
+
+
+
+void ComputerControlServer::updateTrayIconToolTip()
+{
+	auto toolTip = tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
+													   HostAddress::localFQDN(),
+												QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) );
+
+	QStringList clients;
+	for( const auto* client : m_vncProxyServer.clients() )
+	{
+		const auto clientAddress = HostAddress( client->proxyClientSocket()->peerAddress().toString() );
+		clients.append( clientAddress.tryConvert( HostAddress::Type::FullyQualifiedDomainName ) );
+	}
+
+	if( clients.isEmpty() == false )
+	{
+		toolTip += QLatin1Char('\n') + tr( "Active connections:") + QLatin1Char('\n') + clients.join( QLatin1Char('\n') );
+	}
+
+	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip( toolTip, m_featureWorkerManager );
 }
