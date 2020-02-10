@@ -38,12 +38,12 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 	m_proxyClientSocket( clientSocket ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
 	m_rfbClientToServerMessageSizes( {
-									 std::pair<int, int>( rfbSetPixelFormat, sz_rfbSetPixelFormatMsg ),
-									 std::pair<int, int>( rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg ),
-									 std::pair<int, int>( rfbKeyEvent, sz_rfbKeyEventMsg ),
-									 std::pair<int, int>( rfbPointerEvent, sz_rfbPointerEventMsg ),
-									 std::pair<int, int>( rfbXvp, sz_rfbXvpMsg ),
-									 } )
+		{ rfbSetPixelFormat, sz_rfbSetPixelFormatMsg },
+		{ rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg },
+		{ rfbKeyEvent, sz_rfbKeyEventMsg },
+		{ rfbPointerEvent, sz_rfbPointerEventMsg },
+		{ rfbXvp, sz_rfbXvpMsg },
+		} )
 {
 	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient );
 	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer );
