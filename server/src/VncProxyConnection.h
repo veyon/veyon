@@ -43,12 +43,12 @@ public:
 	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
 	~VncProxyConnection() override;
 
-	QTcpSocket* proxyClientSocket()
+	QTcpSocket* proxyClientSocket() const
 	{
 		return m_proxyClientSocket;
 	}
 
-	QTcpSocket* vncServerSocket()
+	QTcpSocket* vncServerSocket() const
 	{
 		return m_vncServerSocket;
 	}
