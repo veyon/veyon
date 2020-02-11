@@ -34,7 +34,7 @@ class WindowsInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
 	WindowsInputDeviceFunctions();
-	virtual ~WindowsInputDeviceFunctions();
+	~WindowsInputDeviceFunctions() override;
 
 	void enableInputDevices() override;
 	void disableInputDevices() override;

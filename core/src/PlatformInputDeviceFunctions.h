@@ -33,6 +33,8 @@ class KeyboardShortcutTrapper;
 class PlatformInputDeviceFunctions
 {
 public:
+	virtual ~PlatformInputDeviceFunctions() = default;
+
 	virtual void enableInputDevices() = 0;
 	virtual void disableInputDevices() = 0;
 
