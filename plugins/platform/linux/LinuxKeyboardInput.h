@@ -33,11 +33,15 @@ class LinuxKeyboardInput
 public:
 	using FakeKey = struct FakeKey;
 	using Display = struct _XDisplay;
+	using KeySym = uint32_t;
 
 	LinuxKeyboardInput();
 	~LinuxKeyboardInput();
 
-	void pressAndReleaseKey( uint32_t keysym );
+	void pressKey( KeySym keysym );
+	void releaseKey( KeySym keysym );
+
+	void pressAndReleaseKey( KeySym keysym );
 
 	void pressAndReleaseKey( const QByteArray& utf8Data );
 

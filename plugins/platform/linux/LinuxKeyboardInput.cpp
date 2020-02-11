@@ -45,10 +45,26 @@ LinuxKeyboardInput::~LinuxKeyboardInput()
 
 
 
-void LinuxKeyboardInput::pressAndReleaseKey( uint32_t keysym )
+void LinuxKeyboardInput::pressKey( KeySym keysym )
 {
 	fakekey_press_keysym( m_fakeKeyHandle, keysym, 0 );
+}
+
+
+
+void LinuxKeyboardInput::releaseKey( KeySym keysym )
+{
+	Q_UNUSED(keysym)
+
 	fakekey_release( m_fakeKeyHandle );
+}
+
+
+
+void LinuxKeyboardInput::pressAndReleaseKey( KeySym keysym )
+{
+	pressKey( keysym );
+	releaseKey( keysym );
 }
 
 
