@@ -67,23 +67,20 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 		XFree( m_origKeyTable );
 	}
 
-	Display* display = XOpenDisplay( nullptr );
+	auto display = XOpenDisplay( nullptr );
 	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
 	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
 
-	m_origKeyTable = XGetKeyboardMapping( display, static_cast<KeyCode>( m_keyCodeMin ),
-										  m_keyCodeCount, &m_keySymsPerKeyCode );
+	m_origKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
 
-	KeySym* newKeyTable = XGetKeyboardMapping( display, static_cast<KeyCode>( m_keyCodeMin ),
-											   m_keyCodeCount, &m_keySymsPerKeyCode );
+	auto newKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
 
 	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
 	{
 		newKeyTable[i] = 0;
 	}
 
-	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
-							newKeyTable, m_keyCodeCount );
+	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode, newKeyTable, m_keyCodeCount );
 	XFlush( display );
 	XFree( newKeyTable );
 	XCloseDisplay( display );
@@ -96,7 +93,7 @@ void LinuxInputDeviceFunctions::restoreKeyMapTable()
 	Display* display = XOpenDisplay( nullptr );
 
 	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
-							static_cast<KeySym *>( m_origKeyTable ), m_keyCodeCount );
+							static_cast<::KeySym *>( m_origKeyTable ), m_keyCodeCount );
 
 	XFlush( display );
 	XCloseDisplay( display );
