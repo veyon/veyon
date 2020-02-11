@@ -38,6 +38,8 @@ class PlatformUserFunctions;
 class PlatformPluginInterface
 {
 public:
+	virtual ~PlatformPluginInterface() = default;
+
 	virtual PlatformCoreFunctions& coreFunctions() = 0;
 	virtual PlatformFilesystemFunctions& filesystemFunctions() = 0;
 	virtual PlatformInputDeviceFunctions& inputDeviceFunctions() = 0;
