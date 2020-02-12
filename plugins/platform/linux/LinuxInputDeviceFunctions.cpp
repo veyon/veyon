@@ -24,9 +24,17 @@
 
 #include "PlatformServiceFunctions.h"
 #include "LinuxInputDeviceFunctions.h"
+#include "LinuxKeyboardInput.h"
 #include "LinuxKeyboardShortcutTrapper.h"
 
 #include <X11/XKBlib.h>
+
+
+LinuxInputDeviceFunctions::~LinuxInputDeviceFunctions()
+{
+	delete m_keyboardInput;
+}
+
 
 
 void LinuxInputDeviceFunctions::enableInputDevices()
@@ -56,6 +64,25 @@ void LinuxInputDeviceFunctions::disableInputDevices()
 KeyboardShortcutTrapper* LinuxInputDeviceFunctions::createKeyboardShortcutTrapper( QObject* parent )
 {
 	return new LinuxKeyboardShortcutTrapper( parent );
+}
+
+
+
+void LinuxInputDeviceFunctions::synthesizeKeyEvent( LinuxInputDeviceFunctions::KeySym keySym, bool down )
+{
+	if( m_keyboardInput == nullptr )
+	{
+		m_keyboardInput = new LinuxKeyboardInput;
+	}
+
+	if( down )
+	{
+		m_keyboardInput->pressKey( keySym );
+	}
+	else
+	{
+		m_keyboardInput->releaseKey( keySym );
+	}
 }
 
 
