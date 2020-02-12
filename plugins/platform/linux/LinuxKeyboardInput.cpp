@@ -31,7 +31,7 @@
 
 LinuxKeyboardInput::LinuxKeyboardInput() :
 	m_display( XOpenDisplay( nullptr ) ),
-	m_fakeKeyHandle( fakekey_init( m_display ) )
+	m_fakeKeyHandle( m_display ? fakekey_init( m_display ) : nullptr )
 {
 }
 
@@ -39,8 +39,15 @@ LinuxKeyboardInput::LinuxKeyboardInput() :
 
 LinuxKeyboardInput::~LinuxKeyboardInput()
 {
-	free( m_fakeKeyHandle );
-	XCloseDisplay( m_display );
+	if( m_fakeKeyHandle )
+	{
+		free( m_fakeKeyHandle );
+	}
+
+	if( m_display )
+	{
+		XCloseDisplay( m_display );
+	}
 }
 
 
