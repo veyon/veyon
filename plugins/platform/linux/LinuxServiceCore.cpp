@@ -309,7 +309,7 @@ qint64 LinuxServiceCore::getSessionUptimeSeconds( const QString& session )
 		return -1;
 	}
 
-#if QT_VERSION < 0x050800
+#if QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
 	const auto currentTimestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
 #else
 	const auto currentTimestamp = QDateTime::currentSecsSinceEpoch();
