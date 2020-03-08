@@ -34,7 +34,6 @@
 #include "VeyonConnection.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
-#include "PlatformCoreFunctions.h"
 #include "ToolButton.h"
 #include "Screenshot.h"
 
@@ -275,7 +274,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	connect( m_vncView, &VncView::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 
 	showMaximized();
-	VeyonCore::platform().coreFunctions().raiseWindow( this );
+	VeyonCore::raiseWindow( this, false );
 
 	showNormal();
 

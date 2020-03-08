@@ -79,7 +79,7 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 		m_toplevel->show();
 	}
 
-	VeyonCore::platform().coreFunctions().raiseWindow( m_toplevel );
+	VeyonCore::raiseWindow( m_toplevel, fullscreen );
 
 	VeyonCore::platform().coreFunctions().disableScreenSaver();
 }
