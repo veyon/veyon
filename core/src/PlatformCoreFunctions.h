@@ -44,8 +44,6 @@ public:
 	virtual void reboot() = 0;
 	virtual void powerDown( bool installUpdates ) = 0;
 
-	virtual void raiseWindow( QWidget* widget ) = 0;
-
 	virtual void disableScreenSaver() = 0;
 	virtual void restoreScreenSaverSettings() = 0;
 

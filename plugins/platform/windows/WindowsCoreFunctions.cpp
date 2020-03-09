@@ -167,42 +167,6 @@ void WindowsCoreFunctions::powerDown( bool installUpdates )
 
 
 
-static QWindow* windowForWidget( const QWidget* widget )
-{
-	QWindow* window = widget->windowHandle();
-	if( window )
-	{
-		return window;
-	}
-
-	const QWidget* nativeParent = widget->nativeParentWidget();
-	if( nativeParent )
-	{
-		return nativeParent->windowHandle();
-	}
-
-	return nullptr;
-}
-
-
-
-void WindowsCoreFunctions::raiseWindow( QWidget* widget )
-{
-	widget->activateWindow();
-	widget->raise();
-
-	QWindow* window = windowForWidget( widget );
-	if( window )
-	{
-		QPlatformNativeInterface* interfacep = QGuiApplication::platformNativeInterface();
-		auto windowHandle = static_cast<HWND>( interfacep->nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
-
-		SetWindowPos( windowHandle, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
-	}
-}
-
-
-
 void WindowsCoreFunctions::disableScreenSaver()
 {
 	for( int i = 0; i < screenSaverSettingsCount; ++i )
