@@ -1,4 +1,4 @@
-INCLUDE(BuildApplication)
+INCLUDE(BuildVeyonApplication)
 INCLUDE(WindowsBuildHelpers)
 
 SET(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src/core)
@@ -18,7 +18,7 @@ SET(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/resources/e
 ENDIF()
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src ${kitemmodels_SOURCE_DIR})
-BUILD_APPLICATION(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
+build_veyon_application(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
 TARGET_LINK_LIBRARIES(veyon-master veyon-core)
 
 ADD_WINDOWS_RESOURCE(veyon-master)
