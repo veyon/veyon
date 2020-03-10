@@ -1,7 +1,7 @@
-include(BuildApplication)
+include(BuildVeyonApplication)
 include(WindowsBuildHelpers)
 
-build_application(veyon-service ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+build_veyon_application(veyon-service ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 
 add_windows_resource(veyon-service)
 make_graphical_app(veyon-service)

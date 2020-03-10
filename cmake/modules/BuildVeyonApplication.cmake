@@ -1,15 +1,13 @@
-# BuildApplication.cmake - Copyright (c) 2019-2020 Tobias Junghans
+# BuildVeyonApplication.cmake - Copyright (c) 2019-2020 Tobias Junghans
 #
 # description: build Veyon application
-# usage: build_application(<NAME> <SOURCES>)
+# usage: build_veyon_application(<NAME> <SOURCES>)
 
-macro(BUILD_APPLICATION APPLICATION_NAME)
-	set(APPLICATION_SOURCES ${ARGN})
-
+macro(build_veyon_application APPLICATION_NAME)
 	if(VEYON_BUILD_ANDROID)
-		add_library(${APPLICATION_NAME} SHARED ${APPLICATION_SOURCES})
+		add_library(${APPLICATION_NAME} SHARED ${ARGN})
 	else()
-		add_executable(${APPLICATION_NAME} ${APPLICATION_SOURCES})
+		add_executable(${APPLICATION_NAME} ${ARGN})
 		install(TARGETS ${APPLICATION_NAME} RUNTIME DESTINATION bin)
 	endif()
 	target_include_directories(${APPLICATION_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)

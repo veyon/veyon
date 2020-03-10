@@ -1,11 +1,11 @@
-include(BuildApplication)
+include(BuildVeyonApplication)
 include(WindowsBuildHelpers)
 
 file(GLOB configurator_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB configurator_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui)
 set(configurator_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/configurator.qrc)
 
-build_application(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RESOURCES})
+build_veyon_application(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RESOURCES})
 
 add_windows_resource(veyon-configurator)
 make_graphical_app(veyon-configurator)
