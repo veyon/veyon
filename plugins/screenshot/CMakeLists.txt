@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(screenshot
+build_veyon_plugin(screenshot
 	ScreenshotFeaturePlugin.cpp
 	ScreenshotFeaturePlugin.h
 	screenshot.qrc

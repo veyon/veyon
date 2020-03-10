@@ -1,6 +1,6 @@
 add_subdirectory(vnchooks)
 
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
 add_definitions(-D_WIN32_WINNT=0x0602)
 
@@ -65,7 +65,7 @@ set(ultravnc_C_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/vncauth.c
 	)
 
-build_plugin(builtin-ultravnc-server
+build_veyon_plugin(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp
 	UltraVncConfigurationWidget.cpp

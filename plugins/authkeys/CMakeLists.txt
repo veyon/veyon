@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(authkeys
+build_veyon_plugin(authkeys
 	AuthKeysPlugin.cpp
 	AuthKeysConfigurationDialog.cpp
 	AuthKeysConfigurationDialog.ui

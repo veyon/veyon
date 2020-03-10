@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(desktopservices
+build_veyon_plugin(desktopservices
 	DesktopServiceObject.cpp
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesConfigurationPage.ui

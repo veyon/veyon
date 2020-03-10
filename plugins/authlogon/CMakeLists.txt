@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(authlogon
+build_veyon_plugin(authlogon
 	AuthLogonPlugin.cpp
 	AuthLogonPlugin.h
 	AuthLogonDialog.cpp

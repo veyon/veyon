@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(authsimple
+build_veyon_plugin(authsimple
 	AuthSimplePlugin.cpp
 	AuthSimplePlugin.h
 	AuthSimpleConfiguration.h

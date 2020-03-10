@@ -1,3 +1,3 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(shell ShellCommandLinePlugin.cpp ShellCommandLinePlugin.h)
+build_veyon_plugin(shell ShellCommandLinePlugin.cpp ShellCommandLinePlugin.h)

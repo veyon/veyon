@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(servicecontrol
+build_veyon_plugin(servicecontrol
 	ServiceControlPlugin.cpp
 	ServiceControlPlugin.h
 )

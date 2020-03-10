@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(filetransfer
+build_veyon_plugin(filetransfer
 	FileTransferPlugin.cpp
 	FileTransferPlugin.h
 	FileTransferController.cpp

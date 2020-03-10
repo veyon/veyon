@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(remoteaccess
+build_veyon_plugin(remoteaccess
 	RemoteAccessFeaturePlugin.h
 	RemoteAccessFeaturePlugin.cpp
 	RemoteAccessPage.h

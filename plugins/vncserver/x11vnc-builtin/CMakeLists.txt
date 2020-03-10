@@ -1,4 +1,4 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
 if(NOT VEYON_X11VNC_EXTERNAL)
 
@@ -181,7 +181,7 @@ set_source_files_properties(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES
 
 endif()
 
-build_plugin(builtin-x11vnc-server
+build_veyon_plugin(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfigurationWidget.cpp
 	X11VncConfigurationWidget.ui

@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(external-vnc-server
+build_veyon_plugin(external-vnc-server
 	ExternalVncServer.cpp
 	ExternalVncServerConfigurationWidget.cpp
 	ExternalVncServerConfigurationWidget.ui

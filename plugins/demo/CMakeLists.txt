@@ -1,6 +1,6 @@
-include(BuildPlugin)
+include(BuildVeyonPlugin)
 
-build_plugin(demo
+build_veyon_plugin(demo
 	DemoFeaturePlugin.cpp
 	DemoAuthentication.cpp
 	DemoConfigurationPage.cpp
