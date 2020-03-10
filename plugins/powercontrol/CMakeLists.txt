@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(powercontrol
+build_veyon_plugin(powercontrol
 	PowerControlFeaturePlugin.cpp
 	PowerControlFeaturePlugin.h
 	PowerDownTimeInputDialog.cpp

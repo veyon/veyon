@@ -1,8 +1,8 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 ADD_DEFINITIONS(-DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0600)
 
-BUILD_PLUGIN(windows-platform
+build_veyon_plugin(windows-platform
 	WindowsPlatformPlugin.cpp
 	WindowsPlatformConfigurationPage.h
 	WindowsPlatformConfigurationPage.cpp

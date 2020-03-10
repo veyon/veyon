@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(textmessage
+build_veyon_plugin(textmessage
 	TextMessageFeaturePlugin.cpp
 	TextMessageDialog.cpp
 	TextMessageDialog.ui

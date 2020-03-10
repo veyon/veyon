@@ -1,3 +1,3 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(screenlock ScreenLockFeaturePlugin.cpp ScreenLockFeaturePlugin.h screenlock.qrc)
+build_veyon_plugin(screenlock ScreenLockFeaturePlugin.cpp ScreenLockFeaturePlugin.h screenlock.qrc)

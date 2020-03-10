@@ -1,4 +1,4 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 IF(VEYON_X11VNC_EXTERNAL)
 
@@ -241,7 +241,7 @@ ENDIF()
 
 SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers" COTIRE_EXCLUDED TRUE)
 
-BUILD_PLUGIN(builtin-x11vnc-server
+build_veyon_plugin(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfigurationWidget.cpp
 	X11VncConfigurationWidget.ui

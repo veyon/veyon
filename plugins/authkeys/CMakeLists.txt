@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(authkeys
+build_veyon_plugin(authkeys
 	AuthKeysPlugin.cpp
 	AuthKeysConfigurationPage.cpp
 	AuthKeysConfigurationPage.ui

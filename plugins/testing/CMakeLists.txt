@@ -1,5 +1,5 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 IF(VEYON_DEBUG)
-BUILD_PLUGIN(testing TestingCommandLinePlugin.cpp TestingCommandLinePlugin.h)
+build_veyon_plugin(testing TestingCommandLinePlugin.cpp TestingCommandLinePlugin.h)
 ENDIF()

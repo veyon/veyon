@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(usersessioncontrol
+build_veyon_plugin(usersessioncontrol
 	UserSessionControlPlugin.cpp
 	UserSessionControlPlugin.h
 	UserLoginDialog.cpp

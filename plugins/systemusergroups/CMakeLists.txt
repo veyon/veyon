@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(systemusergroups
+build_veyon_plugin(systemusergroups
 	SystemUserGroupsPlugin.cpp
 	SystemUserGroupsPlugin.h
 )

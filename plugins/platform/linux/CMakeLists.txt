@@ -6,7 +6,7 @@ FIND_PACKAGE(PkgConfig QUIET)
 pkg_check_modules(procps REQUIRED libprocps)
 pkg_check_modules(fakekey libfakekey)
 
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 IF(NOT fakekey_FOUND)
 SET(libfakekey_SOURCES ${libfakekey_DIR}/src/libfakekey.c)
@@ -15,7 +15,7 @@ SET_SOURCE_FILES_PROPERTIES(${libfakekey_SOURCES} PROPERTIES
 	COTIRE_EXCLUDED TRUE)
 ENDIF()
 
-BUILD_PLUGIN(linux-platform
+build_veyon_plugin(linux-platform
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
 	LinuxPlatformConfigurationPage.h

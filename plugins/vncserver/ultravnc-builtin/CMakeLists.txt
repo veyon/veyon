@@ -1,6 +1,6 @@
 ADD_SUBDIRECTORY(vnchooks)
 
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 ADD_DEFINITIONS(-D_WIN32_WINNT=0x0600)
 
@@ -72,7 +72,7 @@ IF(VEYON_BUILD_WIN64)
 ENDIF(VEYON_BUILD_WIN64)
 
 
-BUILD_PLUGIN(builtin-ultravnc-server
+build_veyon_plugin(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp
 	UltraVncConfigurationWidget.cpp

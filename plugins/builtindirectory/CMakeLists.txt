@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(builtindirectory
+build_veyon_plugin(builtindirectory
 	BuiltinDirectoryPlugin.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectoryConfigurationPage.ui

@@ -1,6 +1,6 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(demo
+build_veyon_plugin(demo
 	DemoFeaturePlugin.cpp
 	DemoConfigurationPage.cpp
 	DemoConfigurationPage.ui

@@ -1,5 +1,5 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(remoteaccess RemoteAccessFeaturePlugin.cpp RemoteAccessWidget.cpp
+build_veyon_plugin(remoteaccess RemoteAccessFeaturePlugin.cpp RemoteAccessWidget.cpp
 	RemoteAccessFeaturePlugin.h RemoteAccessWidget.h
 	remoteaccess.qrc)

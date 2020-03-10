@@ -1,3 +1,3 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
-BUILD_PLUGIN(config ConfigCommandLinePlugin.cpp ConfigCommandLinePlugin.h)
+build_veyon_plugin(config ConfigCommandLinePlugin.cpp ConfigCommandLinePlugin.h)

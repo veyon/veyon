@@ -1,9 +1,9 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 ADD_SUBDIRECTORY(kldap)
 ADD_SUBDIRECTORY(common)
 
-BUILD_PLUGIN(ldap
+build_veyon_plugin(ldap
 	LdapPlugin.cpp
 	LdapPlugin.h
 )

@@ -1,4 +1,4 @@
-INCLUDE(BuildPlugin)
+INCLUDE(BuildVeyonPlugin)
 
 # libraries and functions for LDAP support
 FIND_PACKAGE(Ldap REQUIRED)
