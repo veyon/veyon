@@ -40,8 +40,6 @@
 #  define VEYON_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
-#define QSL QStringLiteral
-
 class QCoreApplication;
 class QWidget;
 

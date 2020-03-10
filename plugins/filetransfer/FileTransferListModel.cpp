@@ -29,9 +29,9 @@
 FileTransferListModel::FileTransferListModel( FileTransferController* controller, QObject* parent ) :
 	QStringListModel( parent ),
 	m_controller( controller ),
-	m_scheduledPixmap( QIcon( QSL( ":/filetransfer/file-scheduled.png" ) ) ),
-	m_transferringPixmap( QIcon( QSL( ":/filetransfer/file-transferring.png" ) ) ),
-	m_finishedPixmap( QIcon( QSL( ":/filetransfer/file-finished.png" ) ) )
+	m_scheduledPixmap( QIcon( QStringLiteral( ":/filetransfer/file-scheduled.png" ) ) ),
+	m_transferringPixmap( QIcon( QStringLiteral( ":/filetransfer/file-transferring.png" ) ) ),
+	m_finishedPixmap( QIcon( QStringLiteral( ":/filetransfer/file-finished.png" ) ) )
 {
 	setStringList( m_controller->files() );
 
