@@ -24,8 +24,6 @@
 
 #include <veyonconfig.h>
 
-#include <QLocale>
-#include <QTranslator>
 #include <QAbstractButton>
 #include <QAction>
 #include <QApplication>
@@ -49,6 +47,7 @@
 #include "PlatformServiceCore.h"
 #include "PluginManager.h"
 #include "QmlCore.h"
+#include "TranslationLoader.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
 #include "VncConnection.h"
@@ -572,40 +571,9 @@ void VeyonCore::initLogging( const QString& appComponentName )
 
 void VeyonCore::initLocaleAndTranslation()
 {
-	QLocale configuredLocale( QLocale::C );
+	TranslationLoader::load( QStringLiteral("qt") );
 
-	QRegExp localeRegEx( QStringLiteral( "[^(]*\\(([^)]*)\\)") );
-	if( localeRegEx.indexIn( config().uiLanguage() ) == 0 )
-	{
-		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
-	}
-
-	if( configuredLocale.language() != QLocale::English )
-	{
-		auto tr = new QTranslator;
-		if( configuredLocale == QLocale::C ||
-			tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
-		{
-			configuredLocale = QLocale::system(); // Flawfinder: ignore
-
-			if( tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
-			{
-				tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.language() ), translationsDirectory() );
-			}
-		}
-
-		QLocale::setDefault( configuredLocale );
-
-		QCoreApplication::installTranslator( tr );
-
-		auto qtTr = new QTranslator;
-		if( qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), qtTranslationsDirectory() ) == false )
-		{
-			qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.language() ), qtTranslationsDirectory() );
-		}
-
-		QCoreApplication::installTranslator( qtTr );
-	}
+	const auto configuredLocale = TranslationLoader::load( QStringLiteral("veyon") );
 
 	if( configuredLocale.language() == QLocale::Hebrew ||
 		configuredLocale.language() == QLocale::Arabic )
