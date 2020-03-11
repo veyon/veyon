@@ -49,18 +49,13 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
-	const auto qmFiles = QDir( VeyonCore::translationsDirectory() ).entryList( { QStringLiteral("*.qm") } );
+	const auto qmFiles = QDir( VeyonCore::translationsDirectory() ).entryList( { QStringLiteral("veyon*.qm") } );
 
 	languages.reserve( qmFiles.count() );
 
 	for( const auto& qmFile : qmFiles )
 	{
-		// ignore Qt's translation files
-		if( qmFile.startsWith( QStringLiteral("qt") ) )
-		{
-			continue;
-		}
-		QLocale loc( qmFile );
+		QLocale loc( qmFile.split( QLatin1Char('_') ).mid( 1 ).join( QLatin1Char('_') ) );
 		if( loc.language() == QLocale::C )
 		{
 			loc = QLocale( QLocale::English );
