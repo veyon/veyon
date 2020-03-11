@@ -408,7 +408,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Erişim grubunu ayarla</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
@@ -575,7 +575,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -614,11 +614,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>ANAHTAR</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>ERİŞİM GRUBU</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -626,11 +626,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>İSİM</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>DOSYA</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -650,7 +650,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TİP</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -967,7 +967,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>DOSYA</translation>
     </message>
     <message>
         <source>LOCATION</source>
@@ -1015,11 +1015,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TİP</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>İSİM</translation>
     </message>
     <message>
         <source>PARENT</source>
@@ -1554,6 +1554,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DroidVncServer</name>
@@ -1815,7 +1819,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>İnternet Erişim Kontrolü</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1823,11 +1827,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Genel Ayarlar</translation>
     </message>
     <message>
         <source>Backend settings</source>
-        <translation type="unfinished"/>
+        <translation>Arka uç ayarları</translation>
     </message>
 </context>
 <context>
@@ -1862,11 +1866,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>İnternet erişimini kontrol edin</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>İnternet erişimini kontrol etmek için komutlar</translation>
     </message>
 </context>
 <context>
@@ -2567,7 +2571,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LdapProConfigurationPage</name>
     <message>
         <source>LDAP Pro</source>
-        <translation type="unfinished"/>
+        <translation>LDAP Pro</translation>
     </message>
     <message>
         <source>Instances</source>
@@ -2575,7 +2579,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter name</source>
-        <translation type="unfinished"/>
+        <translation>İsim girin</translation>
     </message>
     <message>
         <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
@@ -2613,55 +2617,55 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation type="unfinished"/>
+        <translation>Lisans</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>Kurulu lisanslar</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>Yeni Ağ aralığı ekle</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>Seçili Ağ aralığını sil</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>Özellik</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli tarih</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>Lisans</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>Lisans dosyasına göz at </translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>Veyon lisans dosyaları(*.vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>Lisans sil</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
+        <translation>Seçili lisansı silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Invalid license file</source>
@@ -2693,19 +2697,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <source>Installation ID</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum  ID</translation>
     </message>
     <message>
         <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
+        <translation>Bu lisans için kullanılabilir eklentiler</translation>
     </message>
     <message>
         <source>Addon</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti</translation>
     </message>
 </context>
 <context>
@@ -2750,7 +2754,7 @@ USAGE
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Licensing management</source>
@@ -3186,7 +3190,7 @@ USAGE
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
+        <translation>Örnek: 192.168.1.0/24</translation>
     </message>
     <message>
         <source>Scan all subnets of computer</source>
@@ -3230,11 +3234,11 @@ USAGE
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>Yeni Ağ aralığı ekle</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>Seçili Ağ aralığını sil</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -3455,6 +3459,17 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>seconds</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QuickPlugin</name>
+    <message>
+        <source>Start lesson</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start a new lesson which your students can join.</source>
         <translation type="unfinished"/>
     </message>
 </context>

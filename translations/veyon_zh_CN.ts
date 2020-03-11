@@ -3499,11 +3499,11 @@ Please save your work and close all programs.</source>
     <name>QuickPlugin</name>
     <message>
         <source>Start lesson</source>
-        <translation type="unfinished"/>
+        <translation>开始课程</translation>
     </message>
     <message>
         <source>Click this button to start a new lesson which your students can join.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮开始一个新的回话以便学生加入。</translation>
     </message>
 </context>
 <context>

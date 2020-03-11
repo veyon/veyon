@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>License</source>
-        <translation>Licenc</translation>
+        <translation>Licensz</translation>
     </message>
     <message>
         <source>About Veyon</source>
