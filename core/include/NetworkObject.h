@@ -160,5 +160,5 @@ private:
 
 Q_DECLARE_METATYPE(NetworkObject::Type)
 
-using NetworkObjectList = QList<NetworkObject>;
+using NetworkObjectList = QVector<NetworkObject>;
 using NetworkObjectUidList = HashList<NetworkObject::Uid>;
