@@ -99,6 +99,31 @@ QString HostAddress::tryConvert( HostAddress::Type targetType ) const
 
 
 
+QStringList HostAddress::lookupIpAddresses() const
+{
+	const auto hostName = convert( Type::FullyQualifiedDomainName );
+	const auto hostInfo = QHostInfo::fromName( hostName );
+	if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
+	{
+		vWarning() << "could not lookup IP addresses of host" << hostName << "error:" << hostInfo.errorString();
+		return {};
+	}
+
+	QStringList ipAddresses;
+
+	const auto addresses = hostInfo.addresses();
+	ipAddresses.reserve( addresses.size() );
+
+	for( const auto& address : addresses )
+	{
+		ipAddresses.append( address.toString() );
+	}
+
+	return ipAddresses;
+}
+
+
+
 QString HostAddress::localFQDN()
 {
 	const auto localHostName = QHostInfo::localHostName();

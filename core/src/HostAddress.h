@@ -51,6 +51,8 @@ public:
 	QString convert( Type targetType ) const;
 	QString tryConvert( Type targetType ) const;
 
+	QStringList lookupIpAddresses() const;
+
 	static QString localFQDN();
 
 private:
