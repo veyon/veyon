@@ -157,8 +157,6 @@ public:
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
 
-	static void raiseWindow( QWidget* widget, bool stayOnTop );
-
 	static bool isDebugging();
 
 	static QByteArray shortenFuncinfo( QByteArray info );
