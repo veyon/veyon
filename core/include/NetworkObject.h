@@ -103,7 +103,7 @@ public:
 		return m_parentUid;
 	}
 
-	void setParentUid( const Uid& parentUid )
+	void setParentUid( Uid parentUid )
 	{
 		m_parentUid = parentUid;
 	}
