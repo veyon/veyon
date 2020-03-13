@@ -43,6 +43,8 @@ public:
 	void reboot() override;
 	void powerDown( bool installUpdates ) override;
 
+	void raiseWindow( QWidget* widget ) override;
+
 	void disableScreenSaver() override;
 	void restoreScreenSaverSettings() override;
 

@@ -107,6 +107,13 @@ void LinuxCoreFunctions::powerDown( bool installUpdates )
 
 
 
+void LinuxCoreFunctions::raiseWindow( QWidget* widget )
+{
+	widget->activateWindow();
+	widget->raise();
+}
+
+
 void LinuxCoreFunctions::disableScreenSaver()
 {
 	auto display = XOpenDisplay( nullptr );
