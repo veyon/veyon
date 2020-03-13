@@ -254,7 +254,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 
 	showMaximized();
-	VeyonCore::platform().coreFunctions().raiseWindow( this );
+	VeyonCore::platform().coreFunctions().raiseWindow( this, false );
 
 	showNormal();
 

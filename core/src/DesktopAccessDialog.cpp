@@ -150,7 +150,7 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QSt
 	m.setEscapeButton( m.button( QMessageBox::No ) );
 	m.setDefaultButton( neverBtn );
 
-	VeyonCore::platform().coreFunctions().raiseWindow( &m );
+	VeyonCore::platform().coreFunctions().raiseWindow( &m, true );
 
 	const auto result = m.exec();
 
