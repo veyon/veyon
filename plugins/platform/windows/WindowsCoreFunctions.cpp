@@ -162,7 +162,7 @@ static QWindow* windowForWidget( const QWidget* widget )
 
 
 
-void WindowsCoreFunctions::raiseWindow( QWidget* widget )
+void WindowsCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 {
 	widget->activateWindow();
 	widget->raise();
@@ -173,7 +173,7 @@ void WindowsCoreFunctions::raiseWindow( QWidget* widget )
 		auto windowHandle = HWND( QGuiApplication::platformNativeInterface()->
 								  nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
 
-		SetWindowPos( windowHandle, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
+		SetWindowPos( windowHandle, stayOnTop ? HWND_TOPMOST : HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
 	}
 }
 
