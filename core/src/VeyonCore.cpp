@@ -286,23 +286,6 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 
 
 
-void VeyonCore::raiseWindow( QWidget* widget, bool stayOnTop )
-{
-	widget->activateWindow();
-	widget->raise();
-
-	if( stayOnTop )
-	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
-		widget->setWindowFlag( Qt::WindowStaysOnTopHint, true );
-#else
-		widget->setWindowFlags( widget->windowFlags() | Qt::WindowStaysOnTopHint );
-#endif
-	}
-}
-
-
-
 bool VeyonCore::isDebugging()
 {
 	return instance()->m_debugging;

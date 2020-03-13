@@ -360,7 +360,7 @@ void PowerControlFeaturePlugin::confirmShutdown()
 				   tr( "The computer was remotely requested to power down. Do you want to power down the computer now?" ),
 				   QMessageBox::Yes | QMessageBox::No );
 	m.show();
-	VeyonCore::raiseWindow( &m, true );
+	VeyonCore::platform().coreFunctions().raiseWindow( &m );
 
 	if( m.exec() == QMessageBox::Yes )
 	{
@@ -407,7 +407,7 @@ void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
 	updateDialog( &dialog, 0 );
 
 	dialog.show();
-	VeyonCore::raiseWindow( &dialog, true );
+	VeyonCore::platform().coreFunctions().raiseWindow( &dialog );
 
 	QTimer powerdownTimer;
 	powerdownTimer.start( 1000 );

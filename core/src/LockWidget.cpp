@@ -49,7 +49,7 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( qApp->desktop()->size() );
-	VeyonCore::raiseWindow( this, true );
+	VeyonCore::platform().coreFunctions().raiseWindow( this );
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 	grabMouse();
