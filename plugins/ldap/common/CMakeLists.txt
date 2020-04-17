@@ -11,6 +11,8 @@ set(ldap_common_SOURCES
 	LdapConfigurationPage.h
 	LdapConfigurationPage.cpp
 	LdapConfigurationPage.ui
+	LdapConfigurationTest.h
+	LdapConfigurationTest.cpp
 	LdapDirectory.cpp
 	LdapDirectory.h
 	LdapNetworkObjectDirectory.cpp
