@@ -117,6 +117,7 @@ public:
 public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_query( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_testbind( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:

@@ -27,6 +27,7 @@
 #include "LdapNetworkObjectDirectory.h"
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
+#include "LdapConfigurationTest.h"
 #include "LdapDirectory.h"
 #include "VeyonConfiguration.h"
 
@@ -37,10 +38,11 @@ LdapPlugin::LdapPlugin( QObject* parent ) :
 	m_ldapClient( nullptr ),
 	m_ldapDirectory( nullptr ),
 	m_commands( {
-{ QStringLiteral("autoconfigurebasedn"), tr( "Auto-configure the base DN via naming context" ) },
-{ QStringLiteral("query"), tr( "Query objects from LDAP directory" ) },
-{ QStringLiteral("help"), tr( "Show help about command" ) },
-				} )
+		{ QStringLiteral("autoconfigurebasedn"), tr( "Auto-configure the base DN via naming context" ) },
+		{ QStringLiteral("query"), tr( "Query objects from LDAP directory" ) },
+		{ QStringLiteral("testbind"), tr( "Test binding to an LDAP server" ) },
+		{ QStringLiteral("help"), tr( "Show help about command" ) }
+	} )
 {
 }
 
@@ -248,10 +250,37 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 
 
 
+CommandLinePluginInterface::RunResult LdapPlugin::handle_testbind( const QStringList& arguments )
+{
+	Q_UNUSED(arguments)
+
+	const auto result = LdapConfigurationTest( m_configuration ).testBind();
+	if( result )
+	{
+		CommandLineIO::info( result.message );
+		return Successful;
+	}
+
+	CommandLineIO::error( result.message );
+	return Failed;
+}
+
+
+
 
 CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList& arguments )
 {
 	QString command = arguments.value( 0 );
+
+	if( command == QLatin1String("testbind") )
+	{
+		printf( "\n"
+				"ldap testbind\n"
+				"\n"
+				"Test binding to the LDAP server using the current configuration.\n"
+				"\n\n" );
+		return NoResult;
+	}
 
 	if( command == QLatin1String("autoconfigurebasedn") )
 	{
