@@ -164,8 +164,18 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 {
 	vDebug() << "processing for user" << accessingUser;
 
-	return m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet().intersects(
-				VeyonCore::config().authorizedUserGroups().toSet() );
+	const auto groupsOfAccessingUser = m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups );
+	const auto authorizedUserGroups = VeyonCore::config().authorizedUserGroups();
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	const auto groupsOfAccessingUserSet = QSet<QString>{ groupsOfAccessingUser.begin(), groupsOfAccessingUser.end() };
+	const auto authorizedUserGroupSet = QSet<QString>{ authorizedUserGroups.begin(), authorizedUserGroups.end() };
+#else
+	const auto groupsOfAccessingUserSet = groupsOfAccessingUser.toSet();
+	const auto authorizedUserGroupSet = authorizedUserGroups.toSet();
+#endif
+
+	return groupsOfAccessingUserSet.intersects( authorizedUserGroupSet );
 }
 
 
@@ -261,7 +271,15 @@ bool AccessControlProvider::haveGroupsInCommon( const QString &userOne, const QS
 	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_queryDomainGroups );
 	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userTwo, m_queryDomainGroups );
 
-	return userOneGroups.toSet().intersects( userTwoGroups.toSet() );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	const auto userOneGroupSet = QSet<QString>{ userOneGroups.begin(), userOneGroups.end() };
+	const auto userTwoGroupSet = QSet<QString>{ userTwoGroups.begin(), userTwoGroups.end() };
+#else
+	const auto userOneGroupSet = userOneGroups.toSet();
+	const auto userTwoGroupSet = userTwoGroups.toSet();
+#endif
+
+	return userOneGroupSet.intersects( userTwoGroupSet );
 }
 
 

@@ -30,9 +30,11 @@
 #error Qt < 5.6 not supported
 #endif
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 13, 0)
 #define Q_DISABLE_MOVE(Class) \
 	Class(const Class &&) Q_DECL_EQ_DELETE;\
 	Class &operator=(const Class &&) Q_DECL_EQ_DELETE;
+#endif
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
 template <typename T> struct QAddConst { using Type = const T; };

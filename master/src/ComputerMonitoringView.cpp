@@ -85,7 +85,12 @@ void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
 
 QStringList ComputerMonitoringView::groupFilter() const
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	const auto groupsFilter = listModel()->groupsFilter();
+	return { groupsFilter.begin(), groupsFilter.end() };
+#else
 	return listModel()->groupsFilter().toList();
+#endif
 }
 
 

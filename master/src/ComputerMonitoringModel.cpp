@@ -77,7 +77,11 @@ void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State st
 void ComputerMonitoringModel::setGroupsFilter( const QStringList& groups )
 {
 	beginResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	m_groupsFilter = { groups.begin(), groups.end() };
+#else
 	m_groupsFilter = groups.toSet();
+#endif
 	endResetModel();
 }
 
@@ -93,12 +97,20 @@ bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex
 		return false;
 	}
 
-	if( m_groupsRole >= 0 &&
-		groupsFilter().isEmpty() == false &&
-		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-							 m_groupsRole ).toStringList().toSet().intersects( groupsFilter() ) == false )
+	if( m_groupsRole >= 0 && groupsFilter().isEmpty() == false )
 	{
-		return false;
+		const auto groups = sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ), m_groupsRole ).toStringList();
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+		const auto groupSet = QSet<QString>{ groups.begin(), groups.end() };
+#else
+		const auto groupSet = groups.toSet();
+#endif
+
+		if( groupSet.intersects( groupsFilter() ) == false )
+		{
+			return false;
+		}
 	}
 
 	return QSortFilterProxyModel::filterAcceptsRow( sourceRow, sourceParent );
