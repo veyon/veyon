@@ -70,7 +70,7 @@ protected:
 	void paintEvent( QPaintEvent * _pe ) override;
 
 
-signals:
+Q_SIGNALS:
 	void mouseLeftButton();
 
 

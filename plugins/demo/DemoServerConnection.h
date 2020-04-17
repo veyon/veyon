@@ -46,7 +46,7 @@ public:
 	DemoServerConnection( const Password& demoAccessToken, QTcpSocket* socket, DemoServer* demoServer );
 	~DemoServerConnection() override;
 
-public slots:
+public Q_SLOTS:
 	void processClient();
 	void sendFramebufferUpdate();
 

@@ -46,12 +46,12 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-public slots:
+public Q_SLOTS:
 	void startService();
 	void stopService();
 
 
-private slots:
+private Q_SLOTS:
 	void updateServiceControl();
 	void updateVncServerPluginConfigurationWidget();
 

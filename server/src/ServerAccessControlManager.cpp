@@ -139,7 +139,7 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 		break;
 	}
 
-	emit finished( client );
+	Q_EMIT finished( client );
 }
 
 

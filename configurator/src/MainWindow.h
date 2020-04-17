@@ -44,7 +44,7 @@ public:
 
 	void updateView();
 
-private slots:
+private Q_SLOTS:
 	void configurationChanged();
 	void resetOrApply( QAbstractButton *btn );
 	void loadSettingsFromFile();

@@ -83,12 +83,12 @@ public:
 	QSize sizeHint() const override;
 
 
-public slots:
+public Q_SLOTS:
 	void setViewOnly( bool viewOnly );
 	void sendShortcut( Shortcut shortcut );
 
 
-signals:
+Q_SIGNALS:
 	void mouseAtBorder();
 	void keyEvent( unsigned int, bool );
 	void startConnection();

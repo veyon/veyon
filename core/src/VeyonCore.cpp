@@ -337,7 +337,7 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 	info.replace("operator ", "operator");
 
 	// remove argument list
-	forever {
+	Q_FOREVER {
 		int parencount = 0;
 		pos = info.lastIndexOf(')');
 		if (pos == -1) {
@@ -494,7 +494,7 @@ bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 
 int VeyonCore::exec()
 {
-	emit applicationLoaded();
+	Q_EMIT applicationLoaded();
 
 	vDebug() << "Running";
 

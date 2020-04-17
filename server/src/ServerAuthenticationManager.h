@@ -50,7 +50,7 @@ public:
 									   VariantArrayMessage& message );
 
 
-signals:
+Q_SIGNALS:
 	void finished( VncServerClient* client );
 
 private:

@@ -28,4 +28,8 @@ IF(VEYON_BUILD_LINUX)
 	XDG_INSTALL(${CMAKE_CURRENT_BINARY_DIR}/data/veyon-master.desktop ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.xpm ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.png ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.svg)
 ENDIF()
 
-COTIRE_VEYON(veyon-master)
+remove_definitions(-DQT_NO_KEYWORDS)
+set_source_files_properties(${master_SOURCES} PROPERTIES COMPILE_DEFINITIONS QT_NO_KEYWORDS)
+
+# enable again once kitemmodels compile with QT_NO_KEYWORDS and the remove_definitions/set_source_files_properties above can be removed
+# cotire_veyon(veyon-master)

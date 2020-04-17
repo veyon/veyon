@@ -76,7 +76,7 @@ public:
 
 	void reload();
 
-signals:
+Q_SIGNALS:
 	void activeFeaturesChanged( QModelIndex );
 
 private:

@@ -41,7 +41,7 @@ public:
 
 	void run();
 
-private slots:
+private Q_SLOTS:
 	void startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 

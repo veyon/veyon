@@ -45,7 +45,7 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-private slots:
+private Q_SLOTS:
 	void addProgram();
 	void updateProgram();
 	void removeProgram();

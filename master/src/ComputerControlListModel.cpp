@@ -111,7 +111,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 		break;
 	}
 
-	return QVariant();
+	return {};
 }
 
 
@@ -217,29 +217,29 @@ void ComputerControlListModel::update()
 
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } );
 }
 
 
 
 void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DecorationRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DecorationRole } );
 }
 
 
 
 void ComputerControlListModel::updateActiveFeatures( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::ToolTipRole } );
-	emit activeFeaturesChanged( index );
+	Q_EMIT dataChanged( index, index, { Qt::ToolTipRole } );
+	Q_EMIT activeFeaturesChanged( index );
 }
 
 
 
 void ComputerControlListModel::updateUser( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DisplayRole, Qt::ToolTipRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::ToolTipRole } );
 
 	auto controlInterface = computerControlInterface( index );
 	if( controlInterface.isNull() == false )

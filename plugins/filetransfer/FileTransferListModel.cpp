@@ -39,7 +39,7 @@ FileTransferListModel::FileTransferListModel( FileTransferController* controller
 			 this, [this]() { setStringList( m_controller->files() ); } );
 
 	connect( m_controller, &FileTransferController::progressChanged,
-			 this, [this]() { emit dataChanged( index( 0 ), index( rowCount() ), { Qt::DecorationRole } ); } );
+			 this, [this]() { Q_EMIT dataChanged( index( 0 ), index( rowCount() ), { Qt::DecorationRole } ); } );
 
 	connect( m_controller, &FileTransferController::started,
 			 this, [this]() { setStringList( m_controller->files() ); } );

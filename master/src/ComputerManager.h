@@ -59,7 +59,7 @@ public:
 
 	void updateUser( const ComputerControlInterface::Pointer& controlInterface );
 
-signals:
+Q_SIGNALS:
 	void computerSelectionReset();
 	void computerSelectionChanged();
 

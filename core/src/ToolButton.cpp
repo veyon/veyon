@@ -149,7 +149,7 @@ void ToolButton::leaveEvent( QEvent* event )
 
 void ToolButton::mousePressEvent( QMouseEvent* event )
 {
-	emit mouseLeftButton();
+	Q_EMIT mouseLeftButton();
 	QToolButton::mousePressEvent( event );
 }
 
@@ -233,7 +233,7 @@ bool ToolButton::checkForLeaveEvent()
 	}
 	else
 	{
-		emit mouseLeftButton();
+		Q_EMIT mouseLeftButton();
 		m_mouseOver = false;
 
 		return true;

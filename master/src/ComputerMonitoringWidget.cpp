@@ -172,7 +172,7 @@ void ComputerMonitoringWidget::autoAdjustComputerScreenSize()
 		setComputerScreenSize( size-20 );
 	}
 
-	emit computerScreenSizeAdjusted( m_master->userConfig().monitoringScreenSize() );
+	Q_EMIT computerScreenSizeAdjusted( m_master->userConfig().monitoringScreenSize() );
 }
 
 
@@ -277,7 +277,7 @@ void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 											ui->listView->iconSize().width() + event->angleDelta().y() / 8,
 											MaximumComputerScreenSize ) );
 
-		emit computerScreenSizeAdjusted( m_master->userConfig().monitoringScreenSize() );
+		Q_EMIT computerScreenSizeAdjusted( m_master->userConfig().monitoringScreenSize() );
 
 		event->accept();
 	}

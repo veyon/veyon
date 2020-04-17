@@ -44,7 +44,7 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-private slots:
+private Q_SLOTS:
 	void enableFeature();
 	void disableFeature();
 

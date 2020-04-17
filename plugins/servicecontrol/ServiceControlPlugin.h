@@ -85,7 +85,7 @@ public:
 		return m_commands.value( command );
 	}
 
-public slots:
+public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_register( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_unregister( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_start( const QStringList& arguments );

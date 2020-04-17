@@ -91,7 +91,7 @@ public:
 
 	ComputerControlInterfaceList filteredComputerControlInterfaces();
 
-public slots:
+public Q_SLOTS:
 	void runFeature( const Feature& feature );
 	void enforceDesignatedMode( const QModelIndex& index );
 	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );

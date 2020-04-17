@@ -129,7 +129,7 @@ private:
 
 	QTimer m_abortTimer;
 
-signals:
+Q_SIGNALS:
 	void finished();
 
 };

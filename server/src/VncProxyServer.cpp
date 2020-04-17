@@ -108,7 +108,7 @@ void VncProxyServer::closeConnection( VncProxyConnection* connection )
 {
 	m_connections.removeAll( connection );
 
-	emit connectionClosed( connection );
+	Q_EMIT connectionClosed( connection );
 
 	connection->deleteLater();
 }

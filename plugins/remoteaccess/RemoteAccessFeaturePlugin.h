@@ -87,7 +87,7 @@ public:
 
 	QString commandHelp( const QString& command ) const override;
 
-private slots:
+private Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_view( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_control( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );

@@ -78,7 +78,7 @@ public:
 	QStringList commands() const override;
 	QString commandHelp( const QString& command ) const override;
 
-public slots:
+public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_main();
 	CommandLinePluginInterface::RunResult handle_run( const QStringList& arguments );
 

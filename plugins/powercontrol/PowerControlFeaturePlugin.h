@@ -96,7 +96,7 @@ public:
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
-public slots:
+public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_on( const QStringList& arguments );
 

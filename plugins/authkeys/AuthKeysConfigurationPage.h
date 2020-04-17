@@ -42,7 +42,7 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-private slots:
+private Q_SLOTS:
 	void openPublicKeyBaseDir();
 	void openPrivateKeyBaseDir();
 	void createKeyPair();

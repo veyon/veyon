@@ -141,7 +141,7 @@ private:
 	QTimer m_userUpdateTimer;
 	QTimer m_activeFeaturesUpdateTimer;
 
-signals:
+Q_SIGNALS:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
 	void screenUpdated();
 	void userChanged();

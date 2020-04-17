@@ -54,7 +54,7 @@ public:
 		return m_connections;
 	}
 
-signals:
+Q_SIGNALS:
 	void connectionClosed( VncProxyConnection* connection );
 
 private:

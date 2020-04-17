@@ -216,7 +216,7 @@ private:
 	QString m_authenticationKeyName;
 	bool m_debugging;
 
-signals:
+Q_SIGNALS:
 	void applicationLoaded();
 
 };

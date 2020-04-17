@@ -89,7 +89,7 @@ public:
 	}
 
 
-signals:
+Q_SIGNALS:
 	void configurationChanged();
 
 

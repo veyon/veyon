@@ -79,7 +79,7 @@ public:
 	QStringList commands() const override;
 	QString commandHelp( const QString& command ) const override;
 
-public slots:
+public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_checkaccess( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_authorizedgroups( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_accesscontrolrules( const QStringList& arguments );

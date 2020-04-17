@@ -539,7 +539,7 @@ void VncView::keyEventHandler( QKeyEvent* event )
 
 		// signal key event - used by RemoteControlWidget to close itself
 		// when pressing Esc
-		emit keyEvent( key, pressed );
+		Q_EMIT keyEvent( key, pressed );
 
 		// inform Qt that we handled the key event
 		event->accept();
@@ -818,7 +818,7 @@ void VncView::updateImage( int x, int y, int w, int h )
 
 		resize( sizeHint() );
 
-		emit connectionEstablished();
+		Q_EMIT connectionEstablished();
 		m_initDone = true;
 
 	}
@@ -837,7 +837,7 @@ void VncView::updateFramebufferSize( int w, int h )
 
 	resize( w, h );
 
-	emit sizeHintChanged();
+	Q_EMIT sizeHintChanged();
 }
 
 
