@@ -87,7 +87,7 @@ private:
 	QList<QPluginLoader *> m_pluginLoaders{};
 	bool m_noDebugMessages{false};
 
-signals:
+Q_SIGNALS:
 	void pluginsLoaded();
 
 };

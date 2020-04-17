@@ -85,12 +85,12 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 
 		connect( m_vncConnection, &VncConnection::imageUpdated, this, [this]( int x, int y, int w, int h )
 		{
-			emit screenUpdated( QRect( x, y, w, h ) );
+			Q_EMIT screenUpdated( QRect( x, y, w, h ) );
 		} );
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, [this]() {
 			resetWatchdog();
 			++m_timestamp;
-			emit scaledScreenUpdated();
+			Q_EMIT scaledScreenUpdated();
 		} );
 
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
@@ -144,7 +144,7 @@ void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 
 	++m_timestamp;
 
-	emit scaledScreenUpdated();
+	Q_EMIT scaledScreenUpdated();
 }
 
 
@@ -179,7 +179,7 @@ void ComputerControlInterface::setUserLoginName( const QString& userLoginName )
 	{
 		m_userLoginName = userLoginName;
 
-		emit userChanged();
+		Q_EMIT userChanged();
 	}
 }
 
@@ -191,7 +191,7 @@ void ComputerControlInterface::setUserFullName( const QString& userFullName )
 	{
 		m_userFullName = userFullName;
 
-		emit userChanged();
+		Q_EMIT userChanged();
 	}
 }
 
@@ -203,7 +203,7 @@ void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFe
 	{
 		m_activeFeatures = activeFeatures;
 
-		emit activeFeaturesChanged();
+		Q_EMIT activeFeaturesChanged();
 	}
 }
 
@@ -360,5 +360,5 @@ void ComputerControlInterface::updateActiveFeatures()
 
 void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
 {
-	emit featureMessageReceived( message, weakPointer() );
+	Q_EMIT featureMessageReceived( message, weakPointer() );
 }

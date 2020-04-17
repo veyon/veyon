@@ -43,7 +43,7 @@ public:
 
 	bool eventFilter(QObject *watched, QEvent *event) override;
 
-private slots:
+private Q_SLOTS:
 	void addLocation();
 	void removeLocation();
 	void saveList();

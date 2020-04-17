@@ -167,6 +167,6 @@ void WindowsKeyboardShortcutTrapper::forwardTrappedShortcuts()
 
 	while( __trappedShortcuts.isEmpty() == false )
 	{
-		emit shortcutTrapped( __trappedShortcuts.takeFirst() );
+		Q_EMIT shortcutTrapped( __trappedShortcuts.takeFirst() );
 	}
 }

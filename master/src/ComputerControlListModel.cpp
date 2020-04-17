@@ -138,7 +138,7 @@ bool ComputerControlListModel::setData( const QModelIndex& index, const QVariant
 	{
 	case GroupsRole:
 		computerControl->setGroups( value.toStringList() );
-		emit dataChanged( index, index, { role } );
+		Q_EMIT dataChanged( index, index, { role } );
 		return true;
 
 	default:
@@ -281,29 +281,29 @@ void ComputerControlListModel::update()
 
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole } );
 }
 
 
 
 void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DecorationRole, ImageIdRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, ImageIdRole } );
 }
 
 
 
 void ComputerControlListModel::updateActiveFeatures( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::ToolTipRole } );
-	emit activeFeaturesChanged( index );
+	Q_EMIT dataChanged( index, index, { Qt::ToolTipRole } );
+	Q_EMIT activeFeaturesChanged( index );
 }
 
 
 
 void ComputerControlListModel::updateUser( const QModelIndex& index )
 {
-	emit dataChanged( index, index, { Qt::DisplayRole, Qt::ToolTipRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::ToolTipRole } );
 
 	auto controlInterface = computerControlInterface( index );
 	if( controlInterface.isNull() == false )

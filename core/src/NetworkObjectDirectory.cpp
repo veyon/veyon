@@ -280,7 +280,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 
 	if( index < 0 )
 	{
-		emit objectsAboutToBeInserted( parent, objectList.count(), 1 );
+		Q_EMIT objectsAboutToBeInserted( parent, objectList.count(), 1 );
 
 		objectList.append( completeNetworkObject );
 		if( completeNetworkObject.type() == NetworkObject::Type::Location )
@@ -288,12 +288,12 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 			m_objects[completeNetworkObject.modelId()] = {};
 		}
 
-		emit objectsInserted();
+		Q_EMIT objectsInserted();
 	}
 	else if( objectList[index].exactMatch( completeNetworkObject ) == false )
 	{
 		objectList.replace( index, completeNetworkObject );
-		emit objectChanged( parent, index );
+		Q_EMIT objectChanged( parent, index );
 	}
 }
 
@@ -319,9 +319,9 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 				groupsToRemove.append( it->modelId() );
 			}
 
-			emit objectsAboutToBeRemoved( parent, index, 1 );
+			Q_EMIT objectsAboutToBeRemoved( parent, index, 1 );
 			it = objectList.erase( it );
-			emit objectsRemoved();
+			Q_EMIT objectsRemoved();
 		}
 		else
 		{

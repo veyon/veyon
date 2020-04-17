@@ -174,7 +174,7 @@ private:
 
 	QStringList m_groups;
 
-signals:
+Q_SIGNALS:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
 	void screenUpdated( QRect rect );
 	void scaledScreenUpdated();

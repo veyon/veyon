@@ -77,7 +77,7 @@ private:
 	NetworkObject m_rootObject{NetworkObject::Type::Root};
 	NetworkObjectList m_defaultObjectList{};
 
-signals:
+Q_SIGNALS:
 	void objectsAboutToBeInserted( const NetworkObject& parent, int index, int count );
 	void objectsInserted();
 	void objectsAboutToBeRemoved( const NetworkObject& parent, int index, int count );

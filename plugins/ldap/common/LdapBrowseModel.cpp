@@ -399,7 +399,7 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 
 			endInsertRows();
 
-			emit layoutChanged();
+			Q_EMIT layoutChanged();
 		}
 
 		node->setPopulated( true );

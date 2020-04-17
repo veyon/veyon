@@ -232,7 +232,7 @@ void NetworkObjectTreeModel::updateObject( const NetworkObject& parent, int row 
 {
 	const auto index = createIndex( row, 0, parent.modelId() );
 
-	emit dataChanged( index, index );
+	Q_EMIT dataChanged( index, index );
 }
 
 

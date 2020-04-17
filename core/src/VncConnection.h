@@ -140,7 +140,7 @@ public:
 	void keyEvent( unsigned int key, bool pressed );
 	void clientCut( const QString& text );
 
-signals:
+Q_SIGNALS:
 	void connectionPrepared();
 	void connectionEstablished();
 	void imageUpdated( int x, int y, int w, int h );

@@ -60,7 +60,7 @@ public:
 
 	bool isRunning() const;
 
-signals:
+Q_SIGNALS:
 	void errorOccured( const QString& message );
 	void filesChanged();
 	void progressChanged( int progress );

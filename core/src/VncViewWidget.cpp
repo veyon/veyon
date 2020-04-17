@@ -154,7 +154,7 @@ void VncViewWidget::updateFramebufferSize( int w, int h )
 
 	resize( w, h );
 
-	emit sizeHintChanged();
+	Q_EMIT sizeHintChanged();
 }
 
 
@@ -171,7 +171,7 @@ void VncViewWidget::updateImage( int x, int y, int w, int h )
 
 		resize( sizeHint() );
 
-		emit connectionEstablished();
+		Q_EMIT connectionEstablished();
 		m_initDone = true;
 
 	}

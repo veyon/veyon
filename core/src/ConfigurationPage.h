@@ -39,7 +39,7 @@ public:
 	virtual void connectWidgetsToProperties() = 0;
 	virtual void applyConfiguration() = 0;
 
-signals:
+Q_SIGNALS:
 	void widgetsChanged();
 
 };

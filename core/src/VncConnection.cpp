@@ -59,7 +59,7 @@ void VncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h 
 	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
-		emit connection->imageUpdated( x, y, w, h );
+		Q_EMIT connection->imageUpdated( x, y, w, h );
 	}
 }
 
@@ -83,7 +83,7 @@ rfbBool VncConnection::hookHandleCursorPos( rfbClient* client, int x, int y )
 	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
-		emit connection->cursorPosChanged( x, y );
+		Q_EMIT connection->cursorPosChanged( x, y );
 	}
 
 	return true;
@@ -109,7 +109,7 @@ void VncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, i
 	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
-		emit connection->cursorShapeUpdated( cursorShape, xh, yh );
+		Q_EMIT connection->cursorShapeUpdated( cursorShape, xh, yh );
 	}
 }
 
@@ -122,7 +122,7 @@ void VncConnection::hookCutText( rfbClient* client, const char* text, int textle
 
 	if( connection && cutText.isEmpty() == false  )
 	{
-		emit connection->gotCut( cutText );
+		Q_EMIT connection->gotCut( cutText );
 	}
 }
 
@@ -412,7 +412,7 @@ void VncConnection::establishConnection()
 		m_client->connectTimeout = ConnectTimeout;
 		setClientData( VncConnectionTag, this );
 
-		emit connectionPrepared();
+		Q_EMIT connectionPrepared();
 
 		m_globalMutex.lock();
 
@@ -437,7 +437,7 @@ void VncConnection::establishConnection()
 		{
 			m_framebufferUpdateWatchdog.restart();
 
-			emit connectionEstablished();
+			Q_EMIT connectionEstablished();
 
 			VeyonCore::platform().networkFunctions().
 					configureSocketKeepalive( static_cast<PlatformNetworkFunctions::Socket>( m_client->sock ), true,
@@ -574,7 +574,7 @@ void VncConnection::setState( State state )
 {
 	if( m_state.exchange( state ) != state )
 	{
-		emit stateChanged();
+		Q_EMIT stateChanged();
 	}
 }
 
@@ -657,7 +657,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 
 	m_framebufferState = FramebufferState::Initialized;
 
-	emit framebufferSizeChanged( client->width, client->height );
+	Q_EMIT framebufferSizeChanged( client->width, client->height );
 
 	return true;
 }
@@ -671,7 +671,7 @@ void VncConnection::finishFrameBufferUpdate()
 	m_framebufferState = FramebufferState::Valid;
 	setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
 
-	emit framebufferUpdateComplete();
+	Q_EMIT framebufferUpdateComplete();
 }
 
 

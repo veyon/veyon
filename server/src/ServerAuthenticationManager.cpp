@@ -55,7 +55,7 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 	{
 	case VncServerClient::AuthState::Failed:
 	case VncServerClient::AuthState::Successful:
-		emit finished( client );
+		Q_EMIT finished( client );
 		break;
 	default:
 		break;

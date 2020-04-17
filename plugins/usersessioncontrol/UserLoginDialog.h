@@ -40,7 +40,7 @@ public:
 	QString username() const;
 	CryptoCore::PlaintextPassword password() const;
 
-private slots:
+private Q_SLOTS:
 	void updateOkButton();
 
 private:

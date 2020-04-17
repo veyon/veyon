@@ -43,7 +43,7 @@ public:
 
 	void setViewOnly( bool enabled ) override;
 
-signals:
+Q_SIGNALS:
 	void mouseAtBorder();
 	void startConnection();
 	void connectionEstablished();

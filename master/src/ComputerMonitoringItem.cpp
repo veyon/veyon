@@ -126,8 +126,8 @@ void ComputerMonitoringItem::setColors( const QColor& backgroundColor, const QCo
 	m_backgroundColor = backgroundColor;
 	m_textColor = textColor;
 
-	emit backgroundColorChanged();
-	emit textColorChanged();
+	Q_EMIT backgroundColorChanged();
+	Q_EMIT textColorChanged();
 }
 
 
@@ -158,7 +158,7 @@ void ComputerMonitoringItem::setIconSize( const QSize& size )
 	{
 		m_iconSize = size;
 
-		emit iconSizeChanged();
+		Q_EMIT iconSizeChanged();
 	}
 }
 

@@ -40,7 +40,7 @@ public:
 	explicit AboutDialog( QWidget *parent );
 	~AboutDialog() override;
 
-private slots:
+private Q_SLOTS:
 	void openDonationWebsite();
 
 private:

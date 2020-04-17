@@ -83,7 +83,7 @@ public:
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
-signals:
+Q_SIGNALS:
 	Q_INVOKABLE void acceptTextMessage( const QString& textMessage );
 
 private:

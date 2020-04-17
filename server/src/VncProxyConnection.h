@@ -49,7 +49,7 @@ public:
 		return m_vncServerSocket;
 	}
 
-protected slots:
+protected Q_SLOTS:
 	void readFromClient();
 	void readFromServer();
 
@@ -74,7 +74,7 @@ private:
 
 	const QMap<int, int> m_rfbClientToServerMessageSizes;
 
-signals:
+Q_SIGNALS:
 	void clientConnectionClosed();
 	void serverConnectionClosed();
 

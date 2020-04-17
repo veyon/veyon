@@ -80,7 +80,7 @@ void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 
 	m_choice = ChoiceNone;
 
-	emit finished();
+	Q_EMIT finished();
 }
 
 
@@ -100,7 +100,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 
 		m_abortTimer.stop();
 
-		emit finished();
+		Q_EMIT finished();
 
 		return true;
 	}

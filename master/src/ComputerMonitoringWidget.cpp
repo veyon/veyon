@@ -116,7 +116,7 @@ void ComputerMonitoringWidget::autoAdjustComputerScreenSize()
 		setComputerScreenSize( size-20 );
 	}
 
-	emit computerScreenSizeAdjusted( size );
+	Q_EMIT computerScreenSizeAdjusted( size );
 }
 
 
@@ -277,7 +277,7 @@ void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 	{
 		setComputerScreenSize( iconSize().width() + event->angleDelta().y() / 8 );
 
-		emit computerScreenSizeAdjusted( computerScreenSize() );
+		Q_EMIT computerScreenSizeAdjusted( computerScreenSize() );
 
 		event->accept();
 	}

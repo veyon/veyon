@@ -163,7 +163,7 @@ void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModel
 
 	if( roles.contains( Qt::CheckStateRole ) )
 	{
-		emit computerSelectionChanged();
+		Q_EMIT computerSelectionChanged();
 	}
 }
 

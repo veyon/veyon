@@ -42,7 +42,7 @@ public:
 
 	void accept() override;
 
-private slots:
+private Q_SLOTS:
 	void updateOkButton();
 
 

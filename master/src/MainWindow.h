@@ -62,7 +62,7 @@ protected:
 	void keyPressEvent( QKeyEvent *e ) override;
 
 
-private slots:
+private Q_SLOTS:
 	void showAboutDialog();
 
 private:

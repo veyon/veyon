@@ -50,7 +50,7 @@ public:
 
 	virtual void setEnabled( bool on ) = 0;
 
-signals:
+Q_SIGNALS:
 	void shortcutTrapped( KeyboardShortcutTrapper::Shortcut );
 
 } ;

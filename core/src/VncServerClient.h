@@ -147,13 +147,13 @@ public:
 		m_privateKey = privateKey;
 	}
 
-public slots:
+public Q_SLOTS:
 	void finishAccessControl()
 	{
-		emit accessControlFinished( this );
+		Q_EMIT accessControlFinished( this );
 	}
 
-signals:
+Q_SIGNALS:
 	void accessControlFinished( VncServerClient* );
 
 private:

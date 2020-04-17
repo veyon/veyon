@@ -65,7 +65,7 @@ private:
 
 	QMenu* m_featureMenu{};
 
-signals:
+Q_SIGNALS:
 	void computerScreenSizeAdjusted( int size );
 
 };

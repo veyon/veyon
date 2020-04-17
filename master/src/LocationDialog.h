@@ -43,7 +43,7 @@ public:
 		return m_selectedLocation;
 	}
 
-private slots:
+private Q_SLOTS:
 	void updateSearchFilter();
 	void updateSelection( const QModelIndex& current, const QModelIndex& previous );
 

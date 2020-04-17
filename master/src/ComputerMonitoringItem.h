@@ -85,7 +85,7 @@ private:
 
 	QList<NetworkObject::Uid> m_selectedObjects;
 
-signals:
+Q_SIGNALS:
 	void backgroundColorChanged();
 	void textColorChanged();
 	void iconSizeChanged();

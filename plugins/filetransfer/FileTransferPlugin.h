@@ -101,7 +101,7 @@ public:
 							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 
-signals:
+Q_SIGNALS:
 	Q_INVOKABLE void acceptSelectedFiles( const QList<QUrl>& fileUrls );
 
 private:

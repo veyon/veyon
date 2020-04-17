@@ -41,7 +41,7 @@ public:
 	void removeClient( VncServerClient* client );
 
 
-signals:
+Q_SIGNALS:
 	void finished( VncServerClient* client );
 
 private:

@@ -219,7 +219,7 @@ private:
 	QString m_applicationName;
 	bool m_debugging;
 
-signals:
+Q_SIGNALS:
 	void applicationLoaded();
 
 };

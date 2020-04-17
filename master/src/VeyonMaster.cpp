@@ -258,7 +258,7 @@ void VeyonMaster::setAppWindow( QQuickWindow* appWindow )
 	if( m_appWindow != appWindow )
 	{
 		m_appWindow = appWindow;
-		emit appWindowChanged();
+		Q_EMIT appWindowChanged();
 	}
 }
 
@@ -269,7 +269,7 @@ void VeyonMaster::setAppContainer( QQuickItem* appContainer )
 	if( m_appContainer != appContainer )
 	{
 		m_appContainer = appContainer;
-		emit appContainerChanged();
+		Q_EMIT appContainerChanged();
 	}
 }
 

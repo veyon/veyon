@@ -70,7 +70,7 @@ public:
 	static constexpr auto VeyonConnectionTag = 0xFE14A11;
 
 
-signals:
+Q_SIGNALS:
 	void featureMessageReceived( const FeatureMessage& );
 
 private:

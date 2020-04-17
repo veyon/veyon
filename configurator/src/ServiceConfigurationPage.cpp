@@ -145,7 +145,7 @@ void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
 		}
 	}
 
-	emit widgetsChanged();
+	Q_EMIT widgetsChanged();
 }
 
 

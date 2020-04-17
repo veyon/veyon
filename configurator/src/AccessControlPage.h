@@ -43,7 +43,7 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-private slots:
+private Q_SLOTS:
 	void addAccessGroup();
 	void removeAccessGroup();
 	void updateAccessGroupsLists();
