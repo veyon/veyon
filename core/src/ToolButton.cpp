@@ -332,14 +332,14 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 	p.setPen( pen );
 	QLinearGradient grad( 0, 0, 0, height() );
 	const QColor color_top = palette().color( QPalette::Active,
-											  QPalette::Window ).light( 120 );
+											  QPalette::Window ).lighter( 120 );
 	grad.setColorAt( 0, color_top );
 	grad.setColorAt( 1, palette().color( QPalette::Active,
 										 QPalette::Window ).
-					 light( 80 ) );
+					 lighter( 80 ) );
 	p.setBrush( grad );
-	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					 ROUNDED / width(), ROUNDED / height() );
+	p.drawRoundedRect( 0, 0, width() - 1, height() - 1, ROUNDED / width(), ROUNDED / height() );
+
 	if( m_toolButton )
 	{
 		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
@@ -393,8 +393,7 @@ void ToolButtonTip::updateMask()
 	QPainter p( &b );
 	p.setBrush( Qt::color1 );
 	p.setPen( Qt::color1 );
-	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					 ROUNDED / width(), ROUNDED / height() );
+	p.drawRoundedRect( 0, 0, width() - 1, height() - 1, ROUNDED / width(), ROUNDED / height() );
 
 	if( m_toolButton )
 	{

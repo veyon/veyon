@@ -239,7 +239,9 @@ void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& cont
 {
 	QMutexLocker instanceLocker( &s_instanceMutex );
 
-	if( s_instance.load() == nullptr )
+	const auto instance = s_instance.loadAcquire();
+
+	if( instance == nullptr )
 	{
 		return;
 	}
@@ -257,11 +259,11 @@ void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& cont
 
 	if( context.category && strcmp(context.category, "default") != 0 )
 	{
-		s_instance.load()->log( logLevel, QStringLiteral( "[%1] " ).arg(QLatin1String(context.category)) + message );
+		instance->log( logLevel, QStringLiteral( "[%1] " ).arg(QLatin1String(context.category)) + message );
 	}
 	else
 	{
-		s_instance.load()->log( logLevel, message );
+		instance->log( logLevel, message );
 	}
 }
 

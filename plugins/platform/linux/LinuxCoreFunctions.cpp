@@ -268,7 +268,7 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 	}
 
 	auto process = new UserProcess( uid );
-	QObject::connect( process, QOverload<int>::of( &QProcess::finished ), &QProcess::deleteLater );
+	QObject::connect( process, QOverload<int, QProcess::ExitStatus>::of( &QProcess::finished ), &QProcess::deleteLater );
 	process->start( program, parameters );
 
 	return true;

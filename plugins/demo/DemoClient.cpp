@@ -60,7 +60,7 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 	m_vncView = new VncView( host, VeyonCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
 
 	auto toplevelLayout = new QVBoxLayout;
-	toplevelLayout->setMargin( 0 );
+	toplevelLayout->setContentsMargins( 0, 0, 0, 0 );
 	toplevelLayout->setSpacing( 0 );
 	toplevelLayout->addWidget( m_vncView );
 
