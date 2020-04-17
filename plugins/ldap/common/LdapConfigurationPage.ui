@@ -71,7 +71,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="testBindInteractively">
+             <widget class="QPushButton" name="testBind">
               <property name="icon">
                <iconset resource="../../../core/resources/core.qrc">
                 <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
@@ -1013,7 +1013,7 @@
   <tabstop>serverPort</tabstop>
   <tabstop>anonymousBind</tabstop>
   <tabstop>useBindCredentials</tabstop>
-  <tabstop>testBindInteractively</tabstop>
+  <tabstop>testBind</tabstop>
   <tabstop>bindDn</tabstop>
   <tabstop>bindPassword</tabstop>
   <tabstop>connectionSecurity</tabstop>

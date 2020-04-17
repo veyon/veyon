@@ -25,6 +25,7 @@
 #pragma once
 
 #include "ConfigurationPage.h"
+#include "LdapConfigurationTest.h"
 #include "LdapCommon.h"
 
 class LdapConfiguration;
@@ -52,7 +53,7 @@ private:
 	void browseObjectTree( QLineEdit* lineEdit );
 	void browseAttribute( QLineEdit* lineEdit, const QString& tree );
 
-	void testBindInteractively();
+	void testBind();
 	void testBaseDn();
 	void testNamingContext();
 	void testUserTree();
@@ -79,19 +80,7 @@ private:
 
 	void browseCACertificateFile();
 
-	bool testBindQuietly()
-	{
-		return testBind( true );
-	}
-
-	bool testBind( bool quiet );
-	void reportLdapTreeQueryResult( const QString& name, int count, const QString& parameter,
-									const QString& errorDescription );
-	void reportLdapObjectQueryResults( const QString &objectsName, const QStringList& parameterNames,
-									   const QStringList &results, const LdapDirectory& directory );
-	void reportLdapFilterTestResult( const QString &filterObjects, int count, const QString &errorDescription );
-
-	static QString formatResultsString( const QStringList& results );
+	void showTestResult( const LdapConfigurationTest::Result& result );
 
 	Ui::LdapConfigurationPage *ui;
 
