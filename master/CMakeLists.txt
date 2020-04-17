@@ -7,18 +7,17 @@ set(kitemmodels_SOURCES
 	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.cpp
 	${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.h
 	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.h
-)
+	)
 
-file(GLOB master_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
-file(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui)
+file(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.*)
 
 set(master_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/master.qrc)
 if(VEYON_DEBUG)
-set(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/resources/examples.qrc)
+	set(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/resources/examples.qrc)
 endif()
 set(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/qml/qml.qrc)
 
-build_veyon_application(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
+build_veyon_application(veyon-master ${master_SOURCES} ${master_RESOURCES} ${kitemmodels_SOURCES})
 target_include_directories(veyon-master PRIVATE ${kitemmodels_SOURCE_DIR})
 
 add_windows_resource(veyon-master)
