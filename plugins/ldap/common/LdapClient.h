@@ -124,6 +124,7 @@ public:
 private:
 	static constexpr int LdapQueryTimeout = 3000;
 	static constexpr int LdapConnectionTimeout = 60*1000;
+	static constexpr auto LdapLibraryDebugAny = -1;
 
 	bool reconnect();
 	bool connectAndBind( const QUrl& url );

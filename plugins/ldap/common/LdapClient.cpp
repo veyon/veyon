@@ -542,6 +542,13 @@ bool LdapClient::reconnect()
 
 	m_connection->setServer( *m_server );
 
+	if( qEnvironmentVariableIsSet( "VEYON_DEBUG_LDAP_LIBRARY") )
+	{
+		const auto debugLevel = LdapLibraryDebugAny;
+		ldap_set_option( nullptr, LDAP_OPT_DEBUG_LEVEL, &debugLevel );
+		ber_set_option( nullptr, LDAP_OPT_DEBUG_LEVEL, &debugLevel );
+	}
+
 	if( m_connection->connect() != 0 )
 	{
 		vWarning() << "LDAP connect failed:" << errorString();
