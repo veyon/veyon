@@ -1074,6 +1074,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači, ale byl zablokován dle nastavení řízení přístupu.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation>Aktivní spojení:</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3728,7 +3732,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Potvrďte právní upozornění (zprávu zobrazovanou před tím, než se uživatel přihlásí)</translation>
     </message>
 </context>
 <context>

@@ -1071,6 +1071,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але його було заблоковано через параметри керування доступом.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation>Активні з&apos;єднання:</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>

@@ -1074,6 +1074,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Korisnik &quot;% 1&quot; kod računara &quot;% 2&quot; pokušao je pristupiti ovom računaru, ali je blokiran zbog postavki kontrole pristupa.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>

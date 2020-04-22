@@ -1074,6 +1074,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>

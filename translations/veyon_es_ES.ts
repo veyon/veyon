@@ -1076,6 +1076,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>El usuario &quot;%1&quot; en &quot;%2&quot; intentó acceder a este equipo pero se ha bloqueado debido a la configuración de control de acceso.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>

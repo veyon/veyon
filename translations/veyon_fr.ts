@@ -1074,6 +1074,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur, mais a été bloqué en raison des paramétrages du contrôle d&apos;accès.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation>Connexions actives:</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -3732,7 +3736,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer les mentions légales (message affiché avant la connexion de l&apos;utilisateur)</translation>
     </message>
 </context>
 <context>

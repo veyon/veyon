@@ -1071,6 +1071,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, wurde aber aufgrund von Zugriffskontrolleneinstellungen blockiert.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation>Aktive Verbindungen:</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>

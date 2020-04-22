@@ -1074,6 +1074,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>主機 &quot;%2&quot; 的使用者 &quot;%1&quot; 嘗試存取這部電腦，但因為存取控制設定已封鎖。</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>

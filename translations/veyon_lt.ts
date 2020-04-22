@@ -1075,6 +1075,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet negalėjo autorizuotis tinkamai.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
