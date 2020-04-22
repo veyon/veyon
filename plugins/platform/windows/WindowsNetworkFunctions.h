@@ -26,7 +26,7 @@
 
 #include "PlatformNetworkFunctions.h"
 
-// clazy:exclude=copyable-polymorphic
+// clazy:excludeall=copyable-polymorphic
 
 class WindowsNetworkFunctions : public PlatformNetworkFunctions
 {
