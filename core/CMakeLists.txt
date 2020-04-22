@@ -22,6 +22,7 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c)
 
+set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types -fvisibility=default")
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
