@@ -483,7 +483,7 @@ QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 
 QString AuthKeysManager::privateKeyPath( const QString& name ) const
 {
-	const auto d = VeyonCore::filesystem().expandPath( m_configuration.privateKeyBaseDir() ) +
+	const QString d = VeyonCore::filesystem().expandPath( m_configuration.privateKeyBaseDir() ) +
 			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
 
 	return QDir::toNativeSeparators( d );
@@ -493,7 +493,7 @@ QString AuthKeysManager::privateKeyPath( const QString& name ) const
 
 QString AuthKeysManager::publicKeyPath(const QString& name) const
 {
-	const auto d = VeyonCore::filesystem().expandPath( m_configuration.publicKeyBaseDir() ) +
+	const QString d = VeyonCore::filesystem().expandPath( m_configuration.publicKeyBaseDir() ) +
 			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
 
 	return QDir::toNativeSeparators( d );
