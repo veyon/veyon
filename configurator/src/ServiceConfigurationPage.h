@@ -39,7 +39,7 @@ class ServiceConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	ServiceConfigurationPage();
+	ServiceConfigurationPage( QWidget* parent = nullptr );
 	~ServiceConfigurationPage() override;
 
 	void resetWidgets() override;

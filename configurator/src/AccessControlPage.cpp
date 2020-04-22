@@ -36,7 +36,8 @@
 
 #include "ui_AccessControlPage.h"
 
-AccessControlPage::AccessControlPage() :
+AccessControlPage::AccessControlPage( QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui(new Ui::AccessControlPage),
 	m_accessControlRulesModel( this ),
 	m_accessControlRulesTestDialog( this )

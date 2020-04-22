@@ -37,7 +37,7 @@ class MasterConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	MasterConfigurationPage();
+	MasterConfigurationPage( QWidget* parent = nullptr );
 	~MasterConfigurationPage() override;
 
 	void resetWidgets() override;

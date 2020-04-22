@@ -41,7 +41,8 @@
 #include "ui_GeneralConfigurationPage.h"
 
 
-GeneralConfigurationPage::GeneralConfigurationPage() :
+GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui(new Ui::GeneralConfigurationPage)
 {
 	ui->setupUi(this);

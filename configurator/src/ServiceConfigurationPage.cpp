@@ -36,7 +36,8 @@
 #include "ui_ServiceConfigurationPage.h"
 
 
-ServiceConfigurationPage::ServiceConfigurationPage() :
+ServiceConfigurationPage::ServiceConfigurationPage( QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui(new Ui::ServiceConfigurationPage),
 	m_vncServerPluginConfigurationWidget( nullptr )
 {

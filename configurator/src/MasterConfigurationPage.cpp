@@ -35,7 +35,8 @@
 #include "ui_MasterConfigurationPage.h"
 
 
-MasterConfigurationPage::MasterConfigurationPage() :
+MasterConfigurationPage::MasterConfigurationPage( QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui(new Ui::MasterConfigurationPage)
 {
 	ui->setupUi(this);

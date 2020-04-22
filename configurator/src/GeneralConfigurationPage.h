@@ -32,7 +32,7 @@ class GeneralConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	GeneralConfigurationPage();
+	GeneralConfigurationPage( QWidget* parent = nullptr );
 	~GeneralConfigurationPage() override;
 
 	void resetWidgets() override;
