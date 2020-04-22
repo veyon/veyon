@@ -33,6 +33,7 @@
 
 class DesktopInputController : public QThread
 {
+	Q_OBJECT
 public:
 	using KeyCode = uint32_t;
 
