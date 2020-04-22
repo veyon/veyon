@@ -33,7 +33,7 @@
 #include "WindowsFilesystemFunctions.h"
 
 
-static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
+static QString windowsConfigPath( const KNOWNFOLDERID folderId )
 {
 	QString result;
 
