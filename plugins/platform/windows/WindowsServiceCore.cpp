@@ -37,6 +37,7 @@
 #include "WtsSessionManager.h"
 
 
+// clazy:excludeall=rule-of-three
 class VeyonServerProcess
 {
 public:
