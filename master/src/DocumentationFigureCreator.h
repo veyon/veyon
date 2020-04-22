@@ -31,6 +31,7 @@
 
 #ifdef VEYON_DEBUG
 
+// clazy:excludeall=ctor-missing-parent-argument
 class DocumentationFigureCreator : public QObject
 {
 	Q_OBJECT
