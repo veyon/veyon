@@ -30,6 +30,7 @@
 
 class QJsonObject;
 
+// clazy:excludeall=rule-of-three
 class DesktopServiceObject
 {
 public:
