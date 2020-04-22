@@ -181,9 +181,9 @@
            </widget>
           </item>
           <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="classicUserInterface">
+           <widget class="QCheckBox" name="modernUserInterface">
             <property name="text">
-             <string>Use classic user interface</string>
+             <string>Use modern user interface (experimental)</string>
             </property>
            </widget>
           </item>
@@ -460,8 +460,8 @@
   <tabstop>disabledFeaturesListWidget</tabstop>
  </tabstops>
  <resources>
-  <include location="../../core/resources/core.qrc"/>
   <include location="../resources/configurator.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
   <connection>

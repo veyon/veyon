@@ -228,11 +228,7 @@ void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& compu
 
 void VeyonMaster::initUserInterface()
 {
-	if( VeyonCore::config().classicUserInterface() )
-	{
-		m_mainWindow = new MainWindow( *this );
-	}
-	else
+	if( VeyonCore::config().modernUserInterface() )
 	{
 		QQuickStyle::setStyle( QStringLiteral("Material") );
 
@@ -248,6 +244,10 @@ void VeyonMaster::initUserInterface()
 		m_qmlAppEngine->addImageProvider( m_computerControlListModel->imageProviderId(), m_computerControlListModel );
 		m_qmlAppEngine->rootContext()->setContextProperty( QStringLiteral("masterCore"), this );
 		m_qmlAppEngine->load( QStringLiteral(":/master/main.qml") );
+	}
+	else
+	{
+		m_mainWindow = new MainWindow( *this );
 	}
 }
 

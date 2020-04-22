@@ -36,9 +36,9 @@ int main( int argc, char** argv )
 {
 	VeyonCore::setupApplicationParameters();
 
-	const auto classicUi = VeyonConfiguration().classicUserInterface();
+	const auto modernUi = VeyonConfiguration().modernUserInterface();
 
-	QGuiApplication* app = classicUi ? new QApplication( argc, argv ) : new QGuiApplication( argc, argv );
+	QGuiApplication* app = modernUi ? new QGuiApplication( argc, argv ) : new QApplication( argc, argv );
 
 	VeyonCore core( app, VeyonCore::Component::Master, QStringLiteral("Master") );
 
@@ -52,7 +52,7 @@ int main( int argc, char** argv )
 
 	QSplashScreen* splashScreen = nullptr;
 
-	if( classicUi )
+	if( modernUi == false )
 	{
 		splashScreen = new QSplashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
 		splashScreen->show();
