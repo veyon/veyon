@@ -52,6 +52,8 @@ template<>           struct CheapestType<QUuid>   { using Type = QUuid; };
 template<typename T> struct CheapestType<T *>     { using Type = T *; };
 
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class VEYON_CORE_EXPORT Property : public QObject
 {
 	Q_OBJECT

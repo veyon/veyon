@@ -186,7 +186,7 @@ QString VeyonCore::translationsDirectory()
 QString VeyonCore::qtTranslationsDirectory()
 {
 #ifdef QT_TRANSLATIONS_DIR
-	return QStringLiteral( QT_TRANSLATIONS_DIR );
+	return QStringLiteral( QT_TRANSLATIONS_DIR ); // clazy:exclude=empty-qstringliteral
 #else
 	return translationsDirectory();
 #endif
