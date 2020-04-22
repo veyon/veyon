@@ -32,6 +32,7 @@
 
 class SasEventListener : public QThread
 {
+	Q_OBJECT
 public:
 	using SendSas = void (WINAPI *)(BOOL asUser);
 
