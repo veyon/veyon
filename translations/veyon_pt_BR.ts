@@ -327,13 +327,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Plugin implementando funções específicas para a plataforma Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -1164,6 +1157,17 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -1189,6 +1193,33 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>Computadores</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Buscar usuários e computadores</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1228,43 +1259,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Por favor especifique um arquivo existente para importar.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Por favor especifique um nome valido para o arquivo exportado.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Por favor especifique uma chave válida.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Chave especificada não existe na configuração atual.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Por favor especifique um valor valido.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Configurar Veyon pela linha de comando.</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Arquivo de saída não é gravável!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Diretório de saída não é gravável!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>O arquivo de configuração não pode ser lido!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Apagar a configuração Veyon em todo o sistema</translation>
@@ -1294,12 +1289,48 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Remover a chave de configuração</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Comandos para gerenciar a configuração do Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Por favor especifique um arquivo existente para importar.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>O arquivo de configuração não pode ser lido!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Por favor especifique um nome valido para o arquivo exportado.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Arquivo de saída não é gravável!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Diretório de saída não é gravável!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Por favor especifique uma chave válida.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Chave especificada não existe na configuração atual.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Por favor especifique um valor valido.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Configurar Veyon pela linha de comando.</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Comandos para gerenciar a configuração do Veyon</translation>
     </message>
 </context>
 <context>
@@ -1563,13 +1594,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
 </context>
 <context>
-    <name>DroidVncServer</name>
-    <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1638,6 +1662,13 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Overwrite existing files</source>
         <translation>Sobrescrever arquivos existentes</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1819,64 +1850,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Controle de acesso a internet</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Configurações gerais</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Bloquear acesso à internet</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Permitir acesso à Internet</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Mostrar ajuda sobre comando</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Bloquear internet</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Desbloquear internet</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Controlar acesso à internet</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1888,6 +1861,317 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>LDAP error description: %1</source>
         <translation>Descrição de erro LDAP: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>Falha na conexão LDAP</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Falha no bind de LDAP</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Bind de LDAP bem sucedido</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Conexão com o servidor LDAP foi feita com sucesso e foi executado um bind de LDAP. As configurações LDAP básicas estão configuradas corretamente.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>Falha no teste de base DN LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>Teste de base DN LDAP bem sucedido</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>Falha no teste de contexto de nomeação LDAP </translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>Teste de contexto de nomeação LDAP bem sucedido</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>O contexto de nomeação LDAP foi consultado com sucesso. As seguintes entradas foram encontradas:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>árvore de usuário</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Árvore de usuário</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>árvore de grupo</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Árvore de grupo</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>árvore de computador</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Árvore de computador</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>árvore de grupos de computador</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Árvore de grupos de computador</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>objetos de usuário</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>Membros do grupo</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Atributo de membro do grupo</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Grupo não encontrado</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>Não foi possível encontrar um grupo com o nome &quot;%1&quot;. Por favor verifique o nome do grupo ou o parâmetro de árvore.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>objetos do computador</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>endereços MAC dos computadores</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Atributo de endereço MAC do computador</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>usuários</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>grupos de usuários</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>computadores</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>grupos de computadores</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>Grupos do usuário</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Usuário não encontrado</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>grupos do computador</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Computador não encontrado</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>Filtro para grupos de computador</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>Falha no teste LDAP %1</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>Teste LDAP %1 bem sucedido</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>O %1 foi consultado com sucesso e %2 entradas foram encontradas.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 foram consultados com sucesso:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>Falha no teste de filtro LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>Não foi possível consultar nenhum %1 usando o filtro configurado. Por favor verifique o filtro LDAP para %1.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>Teste de filtro LDAP bem sucedido</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2 foram consultados com sucesso usando o filtro configurado.</translation>
     </message>
 </context>
 <context>
@@ -2045,66 +2329,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Obter objeto de computador pelo endereço IP</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>Falha na conexão LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>Falha no bind de LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>Bind de LDAP bem sucedido</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Conexão com o servidor LDAP foi feita com sucesso e foi executado um bind de LDAP. As configurações LDAP básicas estão configuradas corretamente.</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>Falha no teste de base DN LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>Teste de base DN LDAP bem sucedido</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>Falha no teste de contexto de nomeação LDAP </translation>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>Teste de contexto de nomeação LDAP bem sucedido</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>O contexto de nomeação LDAP foi consultado com sucesso. As seguintes entradas foram encontradas:
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>árvore de usuário</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>árvore de grupo</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>árvore de computador</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Digite o nome do usuário</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>Por favor digite um nome de login de usuário (wildcards permitidos) para ser consultado:</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>objetos de usuário</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2115,24 +2345,8 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Por favor digite um nome de um grupo cujos membros devem ser consultados:</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>Membros do grupo</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>Grupo não encontrado</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Não foi possível encontrar um grupo com o nome &quot;%1&quot;. Por favor verifique o nome do grupo ou o parâmetro de árvore.</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>Digite o nome do computador</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>objetos do computador</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2143,40 +2357,8 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Por favor digite o DN de um computador cujos endereços MAC devem ser consultados:</translation>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>endereços MAC dos computadores</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>usuários</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>grupos de usuários</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>grupos de computadores</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Por favor digite um nome de login cujas associações de grupo devem ser consultadas:</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>Grupos do usuário</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>Usuário não encontrado</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>grupos do computador</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>Computador não encontrado</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2187,60 +2369,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Por favor digite um endereço de IP que deve ser resolvido para um objeto:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>computadores</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>Falha no teste LDAP %1</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>Teste LDAP %1 bem sucedido</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>O %1 foi consultado com sucesso e %2 entradas foram encontradas.</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>%1 %2 foram consultados com sucesso:
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>Falha no teste de filtro LDAP</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>Não foi possível consultar nenhum %1 usando o filtro configurado. Por favor verifique o filtro LDAP para %1.
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>Teste de filtro LDAP bem sucedido</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2 foram consultados com sucesso usando o filtro configurado.</translation>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(apenas se for diferente da árvore de grupo)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
         <translation>Árvore de grupos de computador</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>árvore de grupos de computador</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2323,37 +2457,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2413,43 +2517,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>and</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2473,22 +2545,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation type="unfinished"/>
     </message>
@@ -2497,27 +2553,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer containers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2567,50 +2607,8 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
+        <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2637,63 +2635,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Feature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2710,59 +2656,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Addon</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Exibir ajuda para o comando específico</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3159,6 +3052,10 @@ USAGE
         <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3265,53 +3162,6 @@ USAGE
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>Novo local</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Exibir ajuda para o comando específico</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3344,6 +3194,41 @@ USAGE
     </message>
     <message>
         <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3464,17 +3349,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>QuickPlugin</name>
-    <message>
-        <source>Start lesson</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to start a new lesson which your students can join.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
@@ -3507,6 +3381,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show help about command</source>
         <translation>Mostrar ajuda sobre comando</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3584,32 +3465,6 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Gateway</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3695,6 +3550,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>Tire capturas de tela de computadores e salve-as localmente.</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>Capturas de tela</translation>
     </message>
 </context>
 <context>
@@ -4107,10 +3969,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation type="unfinished"/>
     </message>
@@ -4139,7 +3997,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Estabelecendo conexão para %1 ...</translation>
@@ -4202,6 +4060,10 @@ Typically this is required to support terminal servers.</source>
         <source>Simulated key presses interval</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4254,6 +4116,13 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Não use extensão X Damage</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

@@ -327,13 +327,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Beépülő modul, amely az Android platformon különleges funkciókat valósít meg</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -1164,6 +1157,17 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de letiltottuk hozzáférés-hitelesítési beállítások miatt.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -1190,6 +1194,33 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-panelen az összes helyszínt megjelentjük.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>Számítógépek</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Felhasználók és számítógépek keresse</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1228,43 +1259,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Létező konfigurációs fájlt adj meg importáláshoz.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Valós fájlnevet adj meg a konfiguráció exportálásához.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Valós kulcsot adj meg.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>A megadott kulcs nem létezik a jelenlegi konfigurációban!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Kérem, valós értéket adj meg.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Veyon konfigurálása parancssorból</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Kimeneti fájl nem írható!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Kimeneti könyvtár nem írható!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Konfigurációs fájl nem olvasható!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Az egész rendszerre kiterjedő Veyon konfiguráció törlése</translation>
@@ -1294,12 +1289,48 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Adott konfigurációs kulcs kikapcsolása (eltávolítása)</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon konfigurálásához parancsok</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>A program és bővítmények frissítése és konfigurációjuk mentése</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Létező konfigurációs fájlt adj meg importáláshoz.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Konfigurációs fájl nem olvasható!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Valós fájlnevet adj meg a konfiguráció exportálásához.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Kimeneti fájl nem írható!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Kimeneti könyvtár nem írható!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Valós kulcsot adj meg.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>A megadott kulcs nem létezik a jelenlegi konfigurációban!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Kérem, valós értéket adj meg.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Veyon konfigurálása parancssorból</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon konfigurálásához parancsok</translation>
     </message>
 </context>
 <context>
@@ -1563,13 +1594,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
 </context>
 <context>
-    <name>DroidVncServer</name>
-    <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation>Beépített VNC szerver (Android)</translation>
-    </message>
-</context>
-<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1638,6 +1662,13 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Overwrite existing files</source>
         <translation>Fájlok felülírása</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Válasszon ki egy vagy több fájlt az átvitelhez</translation>
     </message>
 </context>
 <context>
@@ -1819,64 +1850,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Internethozzáférés-vezérlés</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Háttér:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Általános beállítások</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Háttér beállításai</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Internet-hozzáférés blokkolása</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Internet-hozzáférés engedélyezése</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Internet blokkolása</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Az internet-hozzáférés blokkolásához kattintson erre a gombra. </translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Internet blokkolásának feloldása</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Az internet-hozzáférés engedélyezéséhez kattintson erre a gombra. </translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Internethozzáférés-vezérlés</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Internethozzáférés-vezérlés parancsai</translation>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1888,6 +1861,331 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>LDAP error description: %1</source>
         <translation>LDAP hiba leírása: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP kapcsolat sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Nem sikerült kapcsolódni az LDAP szerverhez. Kérem, ellenőrizd a szerver paramétereit.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP kötés sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Nem sikerült kötést létrehozni a LDAP szerverrel. Kérem, ellenőrizd a szerver paramétereit és a kötést hitelesítő adatokat.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP kötés sikerült</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Sikeresen csatlakoztunk az LDAP szerverhez, és létrejött az LDAP kötés. Az LDAP alapszintű beállításai helyesek.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>LDAP alap DN teszt sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Nem sikerült lekérdezni az konfigurált alap DN-t. Kérem, ellenőrizd az alap DN paramétert.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>LDAP alap DN teszt sikeres</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>Az LDAP alap DN-t sikeresen lekérdeztük. Az alábbi bejegyzéseket találtuk:
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>LDAP névkontextusteszt sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Nem sikerült elnevezési kontextusokból lekérdezni az alap DN-t. Kérem, ellenőrizd az elnevezési kontextusok attribútuma paramétert.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>LDAP névkontextus-teszt sikerült</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>Az LDAP névmeghatározását sikeresen lekérdeztük. A következő alap DN-t találtuk:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>felhasználófa</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Felhasználófa</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>csoportfa</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Számítógépfa</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>számítógépfa</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Számítógépfák</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>számítógépcsoport-fa</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Számítógépcsoport-fa</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>felhasználói objektumok</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>A felhasználó bejelentkezési nevének attribútuma</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>csoporttagok</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Csoporttagság attribútumok</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Csoport nem találgató</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>&quot;1%&quot; nevű csoport nem található. Kérem, ellenőrizd a csoport nevét vagy a csoportfa paramétert.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>számítógép-objektumok</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Számítógép megjelenítési név attribútum</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Érvénytelen kiszolgálónév</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét teljesen minősített domainnévként (FQDN)  tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét domain nélküli egyszerű névként tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Számítógép kiszolgálónév attribútuma</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>számítógép fizikai címei</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Számítógép fizikai címének attribútuma</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>számítógéphelyszínek</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Számítógéphelyszín attribútum</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Helyszínnév attribútum</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>felhasználók</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>felhasználói csoportok</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>számítógépek</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>számítógépcsoportok</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>számítógép tárolók</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>felhasználó csoportjai</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Felhasználó nem található</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>&quot;%1&quot; nevű felhasználó nem található. Kérem, ellenőrizd a felhasználónevet vagy a felhasználó-fa paramétert.</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>számítógép csoportjai</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Számítógép nem található</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>&quot;%1&quot; nevű kiszolgálónevű számítógép nem található. Kérem, ellenőrizd a kiszolgálónevet vagy a számítógépfa paramétert.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Kiszolgálónév keresése sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>%1 IP címhez nem sikerült lekérdezni a kiszolgálónevet. Kérem, ellenőrizd a DNS szerver beállításait.</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>Helyszín-bejegyzések</translation>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Számítógéphelyszínek azonosítója </translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>Számítógépcsoportok szűrője</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>%1 LDAP teszt sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Egy bejegyzést sem sikerült lekérni %1 konfigurációban. Ellenőrizze a  &quot;%2&quot; paramétert.
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>%1 LDAP teszt sikeres</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>%1 objektum lekérdezése sikeres, %2 jegyezést találtunk.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP tesztelése sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Egy %1 sem kérhető le. Ellenőrizze %2 paraméter(eke)t vagy adja meg a már létező objektum nevét.
+
+%3 </translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>és</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP tesztelése sikeres</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 lekérdezés sikeres:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>LDAP szűrő teszt sikertelen</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>A konfigurált szűrővel egy %1 objektumot sem sikerült lekérdezni. Kérem, ellenőrizd %1 LDAP szűrőt.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>LDAP szűrő teszt sikeres</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2-t sikeresen lekérdezted a a konfigurált szűrő használatával. </translation>
     </message>
 </context>
 <context>
@@ -2045,66 +2343,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Számítógép-objektumok előállítása IP címek alapján</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP kapcsolat sikertelen</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAP kötés sikertelen</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP kötés sikerült</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Sikeresen csatlakoztunk az LDAP szerverhez, és létrejött az LDAP kötés. Az LDAP alapszintű beállításai helyesek.</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>LDAP alap DN teszt sikertelen</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>LDAP alap DN teszt sikeres</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>LDAP névkontextusteszt sikertelen</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>LDAP névkontextus-teszt sikerült</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>Az LDAP névmeghatározását sikeresen lekérdeztük. A következő alap DN-t találtuk:
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>felhasználófa</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>csoportfa</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>számítógépfa</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Add meg a felhasználónevet</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>Kérem, add meg a bejelentkezési felhasználónevet (helyettesítő karakterek megengedettek), melyeket lekérdezel:</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>felhasználói objektumok</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2115,24 +2359,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kérem, add meg a csoport nevét, amely tagjait lekérdezed:</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>csoporttagok</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>Csoport nem találgató</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>&quot;1%&quot; nevű csoport nem található. Kérem, ellenőrizd a csoport nevét vagy a csoportfa paramétert.</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>Add meg a számítógép nevét</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>számítógép-objektumok</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2143,40 +2371,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kérem, add meg a számítógép DN-jét, mely fizikai címét lekérdezed: </translation>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>számítógép fizikai címei</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>felhasználók</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>felhasználói csoportok</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>számítógépcsoportok</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Kérem, add meg a felhasználó bejelentkezési nevét, akinek csoporttagságait lekérdezed:</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>felhasználó csoportjai</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>Felhasználó nem található</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>számítógép csoportjai</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>Számítógép nem található</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2187,60 +2383,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kérem, add meg a számítógép IP címét, melyet számítógép-objektummá keressünk vissza:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>számítógépek</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>%1 LDAP teszt sikertelen</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>%1 LDAP teszt sikeres</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>%1 objektum lekérdezése sikeres, %2 jegyezést találtunk.</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>%1 %2 lekérdezés sikeres:
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>LDAP szűrő teszt sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>A konfigurált szűrővel egy %1 objektumot sem sikerült lekérdezni. Kérem, ellenőrizd %1 LDAP szűrőt.
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>LDAP szűrő teszt sikeres</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2-t sikeresen lekérdezted a a konfigurált szűrő használatával. </translation>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(csak ha eltér csoportfától)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
         <translation>Számítógépcsoport-fa</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>számítógépcsoport-fa</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2323,48 +2471,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>például (objectClass=container) vagy (objectClass=organizationalUnit)</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>Nem sikerült lekérdezni az konfigurált alap DN-t. Kérem, ellenőrizd az alap DN paramétert.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>Az LDAP alap DN-t sikeresen lekérdeztük. Az alábbi bejegyzéseket találtuk:
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Nem sikerült elnevezési kontextusokból lekérdezni az alap DN-t. Kérem, ellenőrizd az elnevezési kontextusok attribútuma paramétert.
-
-%1</translation>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
         <translation>Tanúsítványfájlok (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Nem sikerült kapcsolódni az LDAP szerverhez. Kérem, ellenőrizd a szerver paramétereit.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Nem sikerült kötést létrehozni a LDAP szerverrel. Kérem, ellenőrizd a szerver paramétereit és a kötést hitelesítő adatokat.
-
-%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2423,48 +2531,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Adja meg egy számítógéphelyszín nevét (helyettesítő karakterek megengedettek):</translation>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation>számítógéphelyszínek</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Adja meg a helyszín nevét</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
         <translation>Adja meg azon helyszín nevét, amely bejegyzéseit le kívánja kérni:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>Helyszín-bejegyzések</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP tesztelése sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Egy %1 sem kérhető le. Ellenőrizze %2 paraméter(eke)t vagy adja meg a már létező objektum nevét.
-
-%3 </translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>és</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP tesztelése sikeres</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Egy bejegyzést sem sikerült lekérni %1 konfigurációban. Ellenőrizze a  &quot;%2&quot; paramétert.
-
-%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2487,22 +2559,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kérem, add meg a számítógép kiszolgálónevét, melyet lekérdezel:</translation>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation>Érvénytelen kiszolgálónév</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét teljesen minősített domainnévként (FQDN)  tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Úgy konfiguráltad a rendszert, hogy az a számítógép kiszolgálónevét domain nélküli egyszerű névként tárolja, de a kiszolgálónevet domain nélkül kell megadni.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>&quot;%1&quot; nevű felhasználó nem található. Kérem, ellenőrizd a felhasználónevet vagy a felhasználó-fa paramétert.</translation>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation>Add meg a kiszolgálónevet</translation>
     </message>
@@ -2511,28 +2567,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kérem, add meg a számítógép kiszolgálónevét, melynek csoporttagságait lekérdezed:</translation>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>&quot;%1&quot; nevű kiszolgálónevű számítógép nem található. Kérem, ellenőrizd a kiszolgálónevet vagy a számítógépfa paramétert.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Kiszolgálónév keresése sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>%1 IP címhez nem sikerült lekérdezni a kiszolgálónevet. Kérem, ellenőrizd a DNS szerver beállításait.</translation>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation>A felhasználó bejelentkezési nevének attribútuma</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>A felhasználó bejelentkezési nevéhez vagy a számítógép kiszolgálónevéhez beállított attribútum (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>számítógép tárolók</translation>
     </message>
 </context>
 <context>
@@ -2581,51 +2621,9 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>%1 beállítása alap DN-nek és a névmeghatározás-lekérdezések kikapcsolása.</translation>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation>LDAP Pro</translation>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation>Példányok</translation>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation>Adja meg a nevet</translation>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>Adja meg a példány nevét (később nem módosítható):</translation>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation>Példány eltávolítása</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>Biztos, hogy eltávolítja a &quot;%1&quot; példányt?</translation>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; példány beállításai</translation>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Professzionális LDAP/AD integráció a Veyon számára</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (számítógépek és helyszínek betöltése LDAP/AD-ból)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
+        <source>Test binding to an LDAP server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2651,64 +2649,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Szolgáltatás</translation>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation>Érvényes eddig</translation>
     </message>
     <message>
         <source>Licensee</source>
         <translation>Licencelő</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Licencfájlok böngészése</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon licencfájlok (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Licenc eltávolítása</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Biztos, hogy eltávolítod a kiválasztott licenceket?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Érvénytelen licencfájlok</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>A licencfájl nem nyitható meg olvasásra!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>A kiválasztott licencfájl nem tartalmaz érvényes adatot.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>A kiválasztott licencfájl nem ellenőrizhető.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>A kiválasztott licencfájl nem érvényes ehhez a telepítéshez.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>A kiválasztott licencfájl lejárt.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>A licencet már telepítették.</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2725,69 +2671,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Addon</source>
         <translation>Bővítmény</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Az összes telepített licenc megjelenítése</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Licencfájlok hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Telepített licencek eltávolítása</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-HASZNÁLAT
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-HASZNÁLAT
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>A megadott ID-vel nem található tanúsítvány </translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Licenckezelése</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Licenckulcs-kezelési parancsok</translation>
     </message>
 </context>
 <context>
@@ -3183,6 +3066,10 @@ HASZNÁLAT
         <source>Automatically open computer select panel</source>
         <translation>Számítógépkiválasztási-panel automatikus megnyitása</translation>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3289,58 +3176,6 @@ HASZNÁLAT
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>A fordított keresés IP-címeket talált a kiszolgálónevekhez</translation>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>Új helyszín</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Átvizsgálás...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Felderített számítógépek</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Konkrét parancsról segítség megjelenítése</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Egy alhálózat átvizsgálása</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Hálózatobjektum-felderítő, ami automatikusan felderíti a hálózat számítógépeit</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Hálózat felderítése (hálózat átvizsgálása Veyon kliens után)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>A hálózatfelderítő-mappát kezelő parancsok</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3374,6 +3209,41 @@ HASZNÁLATA
     <message>
         <source>Name:</source>
         <translation>Név:</translation>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3493,17 +3363,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>QuickPlugin</name>
-    <message>
-        <source>Start lesson</source>
-        <translation>Lecke indítása</translation>
-    </message>
-    <message>
-        <source>Click this button to start a new lesson which your students can join.</source>
-        <translation>Kattints erre a gombra az új lecke indításához, melyhez a tanulók csatlakozhatnak.</translation>
-    </message>
-</context>
-<context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
@@ -3536,6 +3395,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show help about command</source>
         <translation>Parancsról segítség megjelenítése</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3614,32 +3480,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Kilépés</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Az internetelérés módosítása az útvonaltábla módosításával</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Az alapértelmezett útvonalak eltávolítása az internetelérés blokkolásáért</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Egyéni útvonal hozzáadása az internet blokkolásáért</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Cél</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Átjáró</translation>
     </message>
 </context>
 <context>
@@ -3724,6 +3564,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>Számítógépekről képernyőképek készítése és mentése a helyi gépre.</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>Képernyőképek</translation>
     </message>
 </context>
 <context>
@@ -4136,10 +3983,6 @@ Typically this is required to support terminal servers.</source>
         <translation>HIBA</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>licencelt</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>HASZNÁLAT</translation>
     </message>
@@ -4168,7 +4011,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Kapcsolat létrehozása: %1 ...</translation>
@@ -4231,6 +4074,10 @@ Typically this is required to support terminal servers.</source>
         <source>Simulated key presses interval</source>
         <translation>Billentyűlenyomási időköz szimulálása</translation>
     </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation>Jogi értesítést erősítése (az üzenet a felhasználói bejelentkezés előtt jelenik meg)</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4283,6 +4130,13 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Ne használd az X Damage bővítményt</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

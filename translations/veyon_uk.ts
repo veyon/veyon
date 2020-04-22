@@ -327,13 +327,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>У додатку реалізовано специфічні можливості для платформи Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -1161,6 +1154,17 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але його було заблоковано через параметри керування доступом.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -1187,6 +1191,33 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Не вдалося визначити місце цього комп&apos;ютера. Це означає, що у налаштуваннях системи є проблеми. На панелі вибору комп&apos;ютера буде показано усі місця.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>Комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Пошук користувачів і комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1225,43 +1256,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Будь ласка, вкажіть файл наявних налаштувань для імпортування.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Будь ласка, вкажіть коректну назву файла для експортування налаштувань.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Будь ласка, вкажіть коректний ключ.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Вказаного ключа не існує у поточних налаштуваннях!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Будь ласка, вкажіть коректне значення.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Налаштувати Veyon з командного рядка</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Файл для виведення даних непридатний до запису!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Каталог для виведення даних непридатний до запису!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Не вдалося прочитати файл налаштувань!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Вилучити загальносистемні налаштування Veyon</translation>
@@ -1291,12 +1286,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Скинути (вилучити) вказаний ключ налаштування</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Команди для керування налаштуваннями Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Оновити і зберегти налаштування програми і додатків</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Будь ласка, вкажіть файл наявних налаштувань для імпортування.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Не вдалося прочитати файл налаштувань!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Будь ласка, вкажіть коректну назву файла для експортування налаштувань.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Файл для виведення даних непридатний до запису!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Каталог для виведення даних непридатний до запису!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Будь ласка, вкажіть коректний ключ.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Вказаного ключа не існує у поточних налаштуваннях!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Будь ласка, вкажіть коректне значення.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Налаштувати Veyon з командного рядка</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Команди для керування налаштуваннями Veyon</translation>
     </message>
 </context>
 <context>
@@ -1554,12 +1585,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Texts to read</source>
         <translation>Фрагменти тексту для читання</translation>
     </message>
-</context>
-<context>
-    <name>DroidVncServer</name>
     <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation>Вбудований сервер VNC (Android)</translation>
+        <source>generic-student-user</source>
+        <translation>типовий-користувач-учень</translation>
     </message>
 </context>
 <context>
@@ -1631,6 +1659,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Overwrite existing files</source>
         <translation>Перезаписати наявні файли</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Виберіть один або декілька файлів для передавання</translation>
     </message>
 </context>
 <context>
@@ -1812,64 +1847,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Керування доступом до інтернету</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Модуль:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Загальні параметри</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Параметри модулів</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Блокувати доступу до інтернету</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Дозволити доступ до інтернету</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Показати довідку щодо команди</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Блокувати інтернет</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Натисніть цю кнопку, щоб заблокувати доступ до інтернету.</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Розблокувати інтернет</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Натисніть цю кнопку, щоб дозволити доступ до інтернету.</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Керування доступом до інтернету</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Команди для керування доступом до інтернету</translation>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1881,6 +1858,333 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>LDAP error description: %1</source>
         <translation>Опис помилки LDAP: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>Невдала спроба встановити LDAP-з’єднання</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Не вдалося з&apos;єднатися із сервером LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера.
+
+%1
+
+</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Помилка прив’язування до LDAP</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Не вдалося прив&apos;язатися до сервера LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера та реєстраційні дані прив&apos;язки.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Успішне прив’язування до LDAP</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Виконано успішне з’єднання із сервером LDAP і прив’язування LDAP. Належним чином налаштовано основні параметри LDAP.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>Не вдалося пройти перевірку кореневого DN LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Не вдалося опитати налаштований базовий DN. Будь ласка, перевірите, чи правильно вказано параметр базового DN.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>Успішна перевірка кореневого DN LDAP</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>Успішно опитано базовий DN LDAP. Знайдено такі записи:
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>Не вдалося пройти перевірку контексту іменування LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Не вдалося опитати базовий DN за контекстами іменування. Будь ласка, перевірите, чи правильно вказано параметр атрибута контексту іменування.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>Успішно пройдено перевірку контексту іменування LDAP</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>Успішно виконано опитування контексту іменування LDAP. Виявлено такий кореневий DN:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>ієрархія користувачів</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Ієрархія користувачів</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>ієрархія груп</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Ієрархія груп</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>ієрархія комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Ієрархія комп’ютерів</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>ієрархії груп комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Ієрархія груп комп’ютерів</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>об’єкти користувачів</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Атрибут імені користувача</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>учасники групи</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Атрибут членства у групі</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Групи не знайдено</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>Не вдалося знайти групу із назвою «%1». Будь ласка, перевірте, чи правильно вказано назву групи або параметр ієрархії груп.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>об’єкти комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Атрибут показаної назви комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Некоректна назва вузла</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Ви налаштували програму на зберігання повних доменних назв вузлів комп’ютерів (FQDN), але вказали назву вузла без домену.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Ви налаштували програму на зберігання простих назв вузлів комп’ютерів, але вказали назву вузла разом із назвою домену.</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Атрибут назви вузла комп’ютера</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>MAC-адреси комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Атрибут MAC-адреси комп’ютера</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>місця комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Атрибут місця комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Атрибут назви місця</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>користувачі</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>групи користувачів</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>групи комп’ютерів</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>контейнери комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>групи користувача</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Користувача не знайдено</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Не вдалося знайти користувача із іменем «%1». Будь ласка, перевірте, чи правильно вказано ім’я користувача або параметр ієрархії користувачів.</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>групи комп’ютера</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Комп’ютер не знайдено</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Не вдалося знайти комп’ютер із назвою вузла «%1». Будь ласка, перевірте, чи правильно вказано назву вузла або параметр ієрархії комп’ютерів.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Помилка пошуку вузла за назвою</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Не вдалося виконати пошук назви вузла для IP-адреси %1. Будь ласка, перевірте, чи правильно вказано параметри вашого сервера DNS.</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>записи місць</translation>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Ідентифікація місць комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>Фільтрування за групами комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>Помилка тестування LDAP %1</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Не вдалося опитати жодний із записів у налаштованій %1. Будь ласка, перевірте, чи правильно вказано параметр «%2».
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>Успішне тестування LDAP %1</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>Успішно опитано %1, виявлено %2 записів.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Не пройдено перевірку LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Не вдалося виконати опитування для жодного %1. Будь ласка, перевірте, чи правильно вказано параметри %2, або вкажіть назву наявного об’єкта.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>і</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Перевірку LDAP пройдено</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 успішно опитано:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>Помилка тестування фільтрування LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>Не вдалося виконати опитування для жодного %1 з використанням налаштованого фільтрування. Будь ласка, перевірте, чи правильно вказано фільтр LDAP для %1.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>Успішна перевірка фільтрування LDAP</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2 було успішно опитано за допомогою налаштованого фільтра.</translation>
     </message>
 </context>
 <context>
@@ -2038,66 +2342,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Отримати об’єкт комп’ютера за IP-адресою</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>Невдала спроба встановити LDAP-з’єднання</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>Помилка прив’язування до LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>Успішне прив’язування до LDAP</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Виконано успішне з’єднання із сервером LDAP і прив’язування LDAP. Належним чином налаштовано основні параметри LDAP.</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>Не вдалося пройти перевірку кореневого DN LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>Успішна перевірка кореневого DN LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>Не вдалося пройти перевірку контексту іменування LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>Успішно пройдено перевірку контексту іменування LDAP</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>Успішно виконано опитування контексту іменування LDAP. Виявлено такий кореневий DN:
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>ієрархія користувачів</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>ієрархія груп</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>ієрархія комп’ютерів</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Введіть ім’я користувача</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>Вкажіть запис користувача (можна використовувати символи-замінники), дані якого слід отримати:</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>об’єкти користувачів</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2108,24 +2358,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, вкажіть назву групи, учасників якої слід визначити:</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>учасники групи</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>Групи не знайдено</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Не вдалося знайти групу із назвою «%1». Будь ласка, перевірте, чи правильно вказано назву групи або параметр ієрархії груп.</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>Вкажіть назву комп’ютера</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>об’єкти комп’ютерів</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2136,40 +2370,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, вкажіть DN комп’ютера, запит щодо MAC-адреси якого слід надіслати:</translation>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>MAC-адреси комп’ютерів</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>користувачі</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>групи користувачів</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>групи комп’ютерів</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Будь ласка, вкажіть назву запису користувача, для кого слід отримати дані щодо участі у групах:</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>групи користувача</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>Користувача не знайдено</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>групи комп’ютера</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>Комп’ютер не знайдено</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2180,60 +2382,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, вкажіть IP-адресу комп’ютера, за якою слід визначити об’єкт комп’ютера:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>комп&apos;ютери</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>Помилка тестування LDAP %1</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>Успішне тестування LDAP %1</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>Успішно опитано %1, виявлено %2 записів.</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>%1 %2 успішно опитано:
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>Помилка тестування фільтрування LDAP</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>Не вдалося виконати опитування для жодного %1 з використанням налаштованого фільтрування. Будь ласка, перевірте, чи правильно вказано фільтр LDAP для %1.
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>Успішна перевірка фільтрування LDAP</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2 було успішно опитано за допомогою налаштованого фільтра.</translation>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(лише якщо відмінне від ієрархії груп)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
         <translation>Ієрархія груп комп’ютерів</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>ієрархії груп комп’ютерів</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2316,50 +2470,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>наприклад (objectClass=container) або (objectClass=organizationalUnit)</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>Не вдалося опитати налаштований базовий DN. Будь ласка, перевірите, чи правильно вказано параметр базового DN.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>Успішно опитано базовий DN LDAP. Знайдено такі записи:
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Не вдалося опитати базовий DN за контекстами іменування. Будь ласка, перевірите, чи правильно вказано параметр атрибута контексту іменування.
-
-%1</translation>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
         <translation>файли сертифікатів (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Не вдалося з&apos;єднатися із сервером LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера.
-
-%1
-
-</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Не вдалося прив&apos;язатися до сервера LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера та реєстраційні дані прив&apos;язки.
-
-%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2418,48 +2530,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Введіть назву місця комп&apos;ютера (можна використовувати символи-замінники):</translation>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation>місця комп&apos;ютерів</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Вкажіть назву місця</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
         <translation>Будь ласка, вкажіть назву місця, запит до учасників якого слід виконати:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>записи місць</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>Не пройдено перевірку LDAP</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Не вдалося виконати опитування для жодного %1. Будь ласка, перевірте, чи правильно вказано параметри %2, або вкажіть назву наявного об’єкта.
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>і</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>Перевірку LDAP пройдено</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Не вдалося опитати жодний із записів у налаштованій %1. Будь ласка, перевірте, чи правильно вказано параметр «%2».
-
-%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2482,22 +2558,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, вкажіть назву вузла комп’ютера для запиту:</translation>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation>Некоректна назва вузла</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Ви налаштували програму на зберігання повних доменних назв вузлів комп’ютерів (FQDN), але вказали назву вузла без домену.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Ви налаштували програму на зберігання простих назв вузлів комп’ютерів, але вказали назву вузла разом із назвою домену.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Не вдалося знайти користувача із іменем «%1». Будь ласка, перевірте, чи правильно вказано ім’я користувача або параметр ієрархії користувачів.</translation>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation>Введіть назву вузла</translation>
     </message>
@@ -2506,28 +2566,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, вкажіть назву вузла комп’ютера, для кого слід отримати дані щодо участі у групах:</translation>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Не вдалося знайти комп’ютер із назвою вузла «%1». Будь ласка, перевірте, чи правильно вказано назву вузла або параметр ієрархії комп’ютерів.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Помилка пошуку вузла за назвою</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Не вдалося виконати пошук назви вузла для IP-адреси %1. Будь ласка, перевірте, чи правильно вказано параметри вашого сервера DNS.</translation>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation>Атрибут імені користувача</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>контейнери комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -2576,51 +2620,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>Налаштовуємо %1 як кореневий DN і вимикаємо запити щодо контексту іменування.</translation>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation>LDAP Pro</translation>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation>Екземпляри</translation>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation>Введіть назву</translation>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>Будь ласка, введіть назву екземпляра (її не можна буде змінити!):</translation>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation>Вилучити екземпляр</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>Ви справді хочете вилучити екземпляр «%1»?</translation>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>Налаштування для екземпляра «%1»</translation>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Професійна інтеграція LDAP/AD до Veyon</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (завантажити записи комп&apos;ютерів та місця з LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (завантажити записи користувачів та груп з LDAP/AD)</translation>
+        <source>Test binding to an LDAP server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2646,64 +2648,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ідентифікатор</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Можливість</translation>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation>Чинний до</translation>
     </message>
     <message>
         <source>Licensee</source>
         <translation>Ліцензіат</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Переглянути файл ліцензії</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>файли ліцензій Veyon (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Вилучити ліцензію</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Ви справді хочете вилучити позначену ліцензію?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;н/д&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Некоректний файл ліцензії</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>Не вдалося відкрити файл ліцензії для читання!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>У позначеному файлі ліцензії не міститься коректних даних.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>Позначений файл ліцензії не вдалося перевірити.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>Позначений файл ліцензії не є чинним для цього встановлення.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>Строк дії позначеного файла ліцензії вичерпано.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>Цю ліцензію вже встановлено.</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2720,69 +2670,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Addon</source>
         <translation>Додаток</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Показати довідку щодо певної команди</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Показати усі встановлені ліцензії</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Додати файл ліцензії</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Вилучити встановлену ліцензію</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-КОРИСТУВАННЯ
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-КОРИСТУВАННЯ
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>Не знайдено сертифіката із вказаним ідентифікатором</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;н/д&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Керування ліцензіями</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Команди для керування файлами ліцензій</translation>
     </message>
 </context>
 <context>
@@ -3178,6 +3065,10 @@ USAGE
         <source>Automatically open computer select panel</source>
         <translation>Автоматично відкрити панель вибору комп&apos;ютера</translation>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3284,58 +3175,6 @@ USAGE
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>Зворотним пошуком визначено IP-адреси для назв вузлів</translation>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>Нове місце</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Сканування…</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Виявлені комп&apos;ютери</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Показати довідку щодо певної команди</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Сканувати підмережу</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-КОРИСТУВАННЯ
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Каталог об&apos;єктів мережі, який автоматично виявляє комп&apos;ютери у мережі</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Виявлення мережі (пошук у мережі клієнтів Veyon)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>Команди для керування каталогом виявлення мережі</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3369,6 +3208,41 @@ USAGE
     <message>
         <source>Name:</source>
         <translation>Назва:</translation>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Опис</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3525,6 +3399,13 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
@@ -3600,32 +3481,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Вийти</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Керування доступом до інтернету шляхом внесення змін до таблиці маршрутизації</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Вилучити типові маршрути для блокування доступу до інтернету</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Додати нетиповий маршрут для блокування інтернету</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Призначення</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Шлюз</translation>
     </message>
 </context>
 <context>
@@ -3710,6 +3565,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>Створення знімків екранів комп’ютерів і їхнє локальне зберігання.</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>Знімки вікон</translation>
     </message>
 </context>
 <context>
@@ -4123,10 +3985,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ПОМИЛКА</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>ліцензовано для</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>КОРИСТУВАННЯ</translation>
     </message>
@@ -4155,7 +4013,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Встановлення зв’язку з %1 ...</translation>
@@ -4218,6 +4076,10 @@ Typically this is required to support terminal servers.</source>
         <source>Simulated key presses interval</source>
         <translation>Імітований інтервал між натисканнями клавіш</translation>
     </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation>Підтвердити прочитання правового зауваження (повідомлення, яке показано до входу до системи)</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4270,6 +4132,13 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Не використовувати розширення X Damage</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation>Головний комп&apos;ютер Veyon (Veyon Master)</translation>
     </message>
 </context>
 </TS>

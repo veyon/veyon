@@ -327,13 +327,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Zásuvný modul implementující specifické funkce pro platformu Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -1164,6 +1157,17 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači, ale byl zablokován dle nastavení řízení přístupu.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -1190,6 +1194,33 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Umístění počítače se nedaří zjistit. To značí problém s nastavením systému. Náhradně budou v panelu výběru počítačů zobrazena všechna umístění.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>Počítače</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Hledání uživatelů a počítačů</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1228,43 +1259,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Zadejte existující soubor s nastaveními, který importovat.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Zadejte platný název souboru pro export nastavení.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Zadejte platný klíč.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Zadaný klíč ve stávajícím nastavení neexistuje!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Zadejte platnou hodnotu.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Nastavit Veyon na příkazovém řádku</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Výstupní soubor není přístupný pro zápis!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Výstupní složka není přístupná pro zápis!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Soubor s nastaveními není přístupný pro čtení!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Vyčistit nastavení Veyon týkající se celého systému</translation>
@@ -1294,12 +1289,48 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zrušit nastavení (odebrat ze) zadané položky nastavení</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Příkazy pro správu nastavení Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Přejít na novější verzi a uložit nastavení aplikace a zásuvných modulů</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Zadejte existující soubor s nastaveními, který importovat.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Soubor s nastaveními není přístupný pro čtení!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Zadejte platný název souboru pro export nastavení.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Výstupní soubor není přístupný pro zápis!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Výstupní složka není přístupná pro zápis!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Zadejte platný klíč.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Zadaný klíč ve stávajícím nastavení neexistuje!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Zadejte platnou hodnotu.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Nastavit Veyon na příkazovém řádku</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Příkazy pro správu nastavení Veyon</translation>
     </message>
 </context>
 <context>
@@ -1557,12 +1588,9 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Texts to read</source>
         <translation>Text ke čtení</translation>
     </message>
-</context>
-<context>
-    <name>DroidVncServer</name>
     <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation>Vestavěný VNC server (Android)</translation>
+        <source>generic-student-user</source>
+        <translation>obecný student-uživatel</translation>
     </message>
 </context>
 <context>
@@ -1634,6 +1662,13 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Overwrite existing files</source>
         <translation>Přepsat existující soubory</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Vyberte jeden nebo více souborů k přenosu</translation>
     </message>
 </context>
 <context>
@@ -1815,64 +1850,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Řízení přístupu k Internetu</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Podpůrná vrstva (backend):</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Obecná nastavení</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Nastavení podpůrné vrstvy</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Blokovat přístup k Internetu</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Umožnit přístup k Internetu</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Zobrazit nápovědu k příkazu</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Blokovat Internet</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Kliknutím na toto tlačítko zablokujete přístup k Internetu.</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Odblokovat Internet</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Kliknutím na toto tlačítko umožníte přístup k Internetu.</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Ovládat přístup k Internetu</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Příkazy pro ovládání přístup k Internetu</translation>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1884,6 +1861,327 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>LDAP error description: %1</source>
         <translation>Popis LDAP chyby: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>Nepodařilo se připojit do LDAP</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Nedaří se připojit na LDAP server. Zkontrolujte parametry serveru.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Spojení s LDAP se nezdařilo</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Nedaří se přihlásit k LDAP serveru. Zkontrolujte parametry serveru a přihlašovací údaje.</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Spojení do LDAP úspěšně navázáno</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Úspěšně připojeno k LDAP serveru a provedeno LDAP přihlášení. Základní LDAP nastavení jsou v pořádku.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>Test základu LDAP rozliš. (DN) názvu se nezdařil</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Nedaří se dotázat na nastavený základ rozlišeného názvu. Zkontrolujte parametr základu DN.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>Test základu LDAP rozliš. názvu úspěšný</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>Základ LDAP DN byl úspěšně dotázán. Byly nalezeny následující položky:
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>Test LDAP kontextu názvů se nezdařil</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Nedaří se dotázat na základ rozlišeného názvu prostřednictvím názvového kontextu. Zkontrolujte parametr atributu kontextu názvů.</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>Test LDAP kontextu názvů úspěšný</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>LDAP kontext názvů by úspěšně dotázán. Následující základní DN byly nalezeny:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>strom uživatelů</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Strom uživatelů</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>strom skupin</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Strom skupin</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>strom počítačů</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Strom počítačů</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>Strom skupin uživatelů</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Strom skupin počítačů</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>objekty uživatele</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Atribut obsahující přihlašovací jméno uživatele</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>členové skupiny</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Atribut členství ve skupinách</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Skupina nenalezena</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>Nedaří se nalézt skupinu s názvem „%1“. Zkontrolujte název skupiny a parametr „strom skupin“.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>objekty počítačů</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Atribut zobrazovaného názvu počítače</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Neplatný název stroje</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě úplných doménových názvů (FQDN), ale nyní jste zadali pouze název stroje bez domény.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě krátkých názvů bez doménové části, ale nyní jste zadali název stroje včetně domény.</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atribut název počítače</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>Fyzické (MAC) adresy sítových rozhraní počítačů</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Atribut fyzická (MAC) adresa počítače</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>umístění počítačů</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Atribut umístění počítače</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Atribut názvu umístění</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>uživatelé</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>skupiny uživatelů</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>počítače</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>skupiny počítačů</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>kontejnery s počítači</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>skupiny uživatelů</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Uživatel nebyl nalezen</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Nedaří se nalézt uživatele se jménem „%1“. Zkontrolujte uživatelské jméno nebo parametr strom uživatelů.</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>skupiny počítačů</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Počítač nenalezen</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Nedaří se nalézt počítač nazvaný „%1“. Zkontrolujte název stroje nebo parametr strom počítačů.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Vyhledání názvu stroje se nezdařilo</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Nedaří se zjistit název stroje pro IP adresu %1. Zkontrolujte nastavení pro DNS server.</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>položky umístění</translation>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identifikace umístění počítače</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>Filtrovat dle skupin počítačů</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>Test LDAP %1 se nezdařil</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Nedaří se dotázat na žádné položky v nastaveném %1. Zkontrolujte parametr „%2“.
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>Test LDAP %1 úspěšný</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>Úspěšně dotázáno na %1 a nalezeno %2 položek.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Zkouška LDAP neúspěšná</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Nedaří se dotázat na žádné %1. Zkontrolujte parametr(y) %2 a zadejte název existujícího objektu.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>a</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Zkouška LDAP úspěšná</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>Úspěšně dotázáno na %1 %2:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>Test LDAP filtru se nezdařil</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>S takto nastaveným filtrem se nedaří dotázat na žádné %1. Zkontrolujte LDAP filtr pro %1.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>Test LDAP filtru úspěšný</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>S nastaveným filtrem úspěšně dotázáno na %1 %2.</translation>
     </message>
 </context>
 <context>
@@ -2041,66 +2339,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Získat objekt počítače pomocí IP adresy</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>Nepodařilo se připojit do LDAP</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>Spojení s LDAP se nezdařilo</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>Spojení do LDAP úspěšně navázáno</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Úspěšně připojeno k LDAP serveru a provedeno LDAP přihlášení. Základní LDAP nastavení jsou v pořádku.</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>Test základu LDAP rozliš. (DN) názvu se nezdařil</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>Test základu LDAP rozliš. názvu úspěšný</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>Test LDAP kontextu názvů se nezdařil</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>Test LDAP kontextu názvů úspěšný</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>LDAP kontext názvů by úspěšně dotázán. Následující základní DN byly nalezeny:
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>strom uživatelů</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>strom skupin</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>strom počítačů</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Zadejte uživatelské jméno</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>Zadejte přihlašovací jméno uživatele (je možné použít i zástupné znaky) na které se dotázat:</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>objekty uživatele</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2111,24 +2355,8 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte název skupiny na jejíž členy se dotázat:</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>členové skupiny</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>Skupina nenalezena</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Nedaří se nalézt skupinu s názvem „%1“. Zkontrolujte název skupiny a parametr „strom skupin“.</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>Zadejte název počítače</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>objekty počítačů</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2139,40 +2367,8 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte rozlišený název (DN) počítače na jehož MAC adresu se dotázat:</translation>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>Fyzické (MAC) adresy sítových rozhraní počítačů</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>uživatelé</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>skupiny uživatelů</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>skupiny počítačů</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Zadejte přihlašovací jméno uživatele na jehož členství ve skupinách se dotázat:</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>skupiny uživatelů</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>Uživatel nebyl nalezen</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>skupiny počítačů</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>Počítač nenalezen</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2183,60 +2379,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte IP adresu počítače kterou přeložit na objekt počítače:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>počítače</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>Test LDAP %1 se nezdařil</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>Test LDAP %1 úspěšný</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>Úspěšně dotázáno na %1 a nalezeno %2 položek.</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>Úspěšně dotázáno na %1 %2:
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>Test LDAP filtru se nezdařil</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>S takto nastaveným filtrem se nedaří dotázat na žádné %1. Zkontrolujte LDAP filtr pro %1.
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>Test LDAP filtru úspěšný</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>S nastaveným filtrem úspěšně dotázáno na %1 %2.</translation>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(pouze pokud se liší od stromu skupin)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
         <translation>Strom skupin počítačů</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>Strom skupin uživatelů</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2319,44 +2467,8 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>např. (objectClass=container) nebo (objectClass=organizationalUnit)</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>Nedaří se dotázat na nastavený základ rozlišeného názvu. Zkontrolujte parametr základu DN.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>Základ LDAP DN byl úspěšně dotázán. Byly nalezeny následující položky:
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Nedaří se dotázat na základ rozlišeného názvu prostřednictvím názvového kontextu. Zkontrolujte parametr atributu kontextu názvů.</translation>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
         <translation>Soubory certifikátů (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Nedaří se připojit na LDAP server. Zkontrolujte parametry serveru.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Nedaří se přihlásit k LDAP serveru. Zkontrolujte parametry serveru a přihlašovací údaje.</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2415,48 +2527,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte název umístění počítače (je možné použít i zástupné znaky):</translation>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation>umístění počítačů</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Zadejte název umístění</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
         <translation>Zadejte název umístění na jejíž členy se chcete dotázat:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>položky umístění</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>Zkouška LDAP neúspěšná</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Nedaří se dotázat na žádné %1. Zkontrolujte parametr(y) %2 a zadejte název existujícího objektu.
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>a</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>Zkouška LDAP úspěšná</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Nedaří se dotázat na žádné položky v nastaveném %1. Zkontrolujte parametr „%2“.
-
-%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2479,22 +2555,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte název počítače na se který dotázat:</translation>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation>Neplatný název stroje</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě úplných doménových názvů (FQDN), ale nyní jste zadali pouze název stroje bez domény.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě krátkých názvů bez doménové části, ale nyní jste zadali název stroje včetně domény.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Nedaří se nalézt uživatele se jménem „%1“. Zkontrolujte uživatelské jméno nebo parametr strom uživatelů.</translation>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation>Zadejte název stroje</translation>
     </message>
@@ -2503,28 +2563,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zadejte název počítače na jehož členství ve skupinách se dotázat:</translation>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Nedaří se nalézt počítač nazvaný „%1“. Zkontrolujte název stroje nebo parametr strom počítačů.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Vyhledání názvu stroje se nezdařilo</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Nedaří se zjistit název stroje pro IP adresu %1. Zkontrolujte nastavení pro DNS server.</translation>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation>Atribut obsahující přihlašovací jméno uživatele</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Nastavený atribut pro uživatelské jméno nebo název počítače (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>kontejnery s počítači</translation>
     </message>
 </context>
 <context>
@@ -2573,51 +2617,9 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>%1 je nastavováno jako základ rozlišeného názvu a vypínají se dotazy na jmenný kontext.</translation>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation>LDAP Pro</translation>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation>Instance</translation>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation>Zadejte název</translation>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>Zadejte název instance (později už nepůjde změnit!):</translation>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation>Odebrat instanci</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>Opravdu chcete odebrat instanci „%1“?</translation>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>Nastavení pro instanci „%1“</translation>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Profesionální začlenění LDAP/AD pro Veyon</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (načíst počítače a umístění z LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (načíst uživatele a skupiny z LDAP/AD)</translation>
+        <source>Test binding to an LDAP server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2643,64 +2645,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Identif.</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Funkce</translation>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation>Platné do</translation>
     </message>
     <message>
         <source>Licensee</source>
         <translation>Držitel licence</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Nalistovat soubor s licencí</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Soubory s licencí pro Veyon (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Odebrat licenci</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Opravdu chcete odebrat vybranou licenci?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Neplatný soubor s licencí</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>Nedaří se otevřít soubor s licencí pro čtení!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>Zvolený soubor s licencí neobsahuje platná data.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>Zvolený soubor s licencí se nepodařilo ověřit.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>Zvolený soubor s licencí není platný pro tuto instalaci.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>Platnost zvoleného souboru s licencí skončila.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>Tato licence už je nainstalována.</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2717,69 +2667,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Addon</source>
         <translation>Doplněk</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Zobrazit všechny nainstalované licence</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Přidat licenční soubor</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Odebrat nainstalovanou licenci</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>U daného identif. nenalezen certifikát</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Správa licencí</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Příkazy pro správu licenčních klíčů</translation>
     </message>
 </context>
 <context>
@@ -3175,6 +3062,10 @@ POUŽITÍ
         <source>Automatically open computer select panel</source>
         <translation>Automaticky otevřít panel výběru počítače</translation>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3281,58 +3172,6 @@ POUŽITÍ
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>Překládat objevené IP adresy na názvy strojů</translation>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>Nové umístění</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Skenování…</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Objevené počítače</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Skenovat podsíť</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-POUŽITÍ
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Adresář síťových objektů který automaticky objevuje počítače v síti</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Průzkum sítě (skenuje přítomnost Veyon klientů na síti)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>Příkazy pro správu adresáře průzkumu sítě</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3366,6 +3205,41 @@ POUŽITÍ
     <message>
         <source>Name:</source>
         <translation>Název:</translation>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3522,6 +3396,13 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
 </context>
 <context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
@@ -3597,32 +3478,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Exit</source>
         <translation>Ukončit</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Ovládá přístup k Internetu prostřednictvím upravování směrovacích tabulek</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Odebrat výchozí trasy pro blokování přístupu k Internetu</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Přidat uživatelsky určenou trasu pro blokování přístupu k Internetu</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Cíl</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Brána</translation>
     </message>
 </context>
 <context>
@@ -3707,6 +3562,13 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>Pořizovat snímky obrazovek počítačů a ukládat je místně.</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>Snímky obrazovky</translation>
     </message>
 </context>
 <context>
@@ -4120,10 +3982,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>CHYBA</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>licencováno pro</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>POUŽITÍ</translation>
     </message>
@@ -4152,7 +4010,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Připojování k %1…</translation>
@@ -4215,6 +4073,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>Simulated key presses interval</source>
         <translation>Interval simulovaných stisků kláves</translation>
     </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4267,6 +4129,13 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Nezjišťovat změny ve zobrazení pomocí rozšíření Damage pro X zobrazovací server</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

@@ -327,13 +327,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>안드로이드 플래폼용 전용 함수 설치 플러그인 </translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -1164,6 +1157,17 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 접근제어 설정에 의해 블럭되었습니다.</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -1190,6 +1194,33 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>이 컴퓨터의 위치를 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 대신 모든  위치는 컴퓨터 선정 패널에 표시됩니다.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>컴퓨터</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>사용자 또는 컴퓨터 검색</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1228,43 +1259,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>읽어 올 기존 설정 화일을 선택하세요.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>유효한 키를 선택하세요.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>현재 설정에 지정된 키가 존재하지 않습니다!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>유효한 값을 지정하세요</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>커맨드 라인에서 Veyon 설정</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>출력 화일에 쓸수 없습니다!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>출력 폴더에 저장할 수 없습니다!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>설정화일을 읽을 수 없습니다!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>시스템 상의 Veyon 설정 삭제</translation>
@@ -1294,12 +1289,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>해당 설정 키를 삭제(선택취소)함</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon 설정 관리 명령어들</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>프로그램과 플러그인의 설정을 업그레이드하고 저장</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>읽어 올 기존 설정 화일을 선택하세요.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>설정화일을 읽을 수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>출력 화일에 쓸수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>출력 폴더에 저장할 수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>유효한 키를 선택하세요.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>현재 설정에 지정된 키가 존재하지 않습니다!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>유효한 값을 지정하세요</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>커맨드 라인에서 Veyon 설정</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon 설정 관리 명령어들</translation>
     </message>
 </context>
 <context>
@@ -1564,13 +1595,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>DroidVncServer</name>
-    <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation>내장 VNC 서버 (안드로이드)</translation>
-    </message>
-</context>
-<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1639,6 +1663,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Overwrite existing files</source>
         <translation>기존 화일을 덮어 씀</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>전송하려는 하나 또는 여러개의 화일을 선택하세요</translation>
     </message>
 </context>
 <context>
@@ -1820,64 +1851,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>인터넷 연결 제어</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>백엔드:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>일반 설정</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>백엔드 설정</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>인터넷 접근 제한</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>인터넷 접근 허용</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>인터넷 연결제한</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>클릭하여 인터넷 접근을 제한</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>인터넷 연결허용</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>클릭하여 인터넷 접근을 허용</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>인터넷 접근 제어</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>인터넷 접근 제어용 명령어들</translation>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1889,6 +1862,329 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>LDAP error description: %1</source>
         <translation>LDAP 에러 설명: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP 연결실패</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>LDAP 서버에 연결할 수 없음. 서버 파라메터를 점검하세요.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP 결합실패</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>LDAP서버와 결합 불가. 결합인자와 서버 파라메터를 점검하세요.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP 결합 성공</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>LDAP 서버  연결및 바인드에 성공했습니다. 기본 LDAP 설정이 올바르게 끝났습니다.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>LDAP 기본 DN 시험 실패 </translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>설정된 베이스 DN을 찾을 수 없습니다. 베이스 DN 파라메터를 점검하세요.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>LDAP 기본 DN 시험 성공</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>LDAP 베이스 DN 조회 성공. 다음 입력항목이 발견되었습니다:
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>LDAP naming context 시험실패</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>명칭 내용을 통해 베이스 DN 조회를 할 수 없습니다. 명칭 속성 파라메터를 점검하세요.
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>LDAP naming context 시험 성공</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>LDAP 명칭 내용이 성공적으로 조회되었습니다. 기본 DN 이 발견되었습니다:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>사용자 트리</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>사용자 트리</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>그룹 트리</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>그룹 트리</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>컴퓨터 트리</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>컴퓨터 트리</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>컴퓨터 그룹 트리</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>컴퓨터 그룹 트리</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>사용자 개체</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>사용자 로긴이름 속성</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>그룹 멤버</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>그룹멤버 속성</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>그룹 검색되지 않음</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>이름 &quot;%1&quot; 그룹 검색되지 않음.  그룹이름 또는 그룹 트리 파라메터를 확인하세요.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>컴퓨터 개체</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>컴퓨터 표시 이름 속성</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>잘못된 호스트 이름</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>컴퓨터 호스트 이름 속성</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>컴퓨터 MAC 주소</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>컴퓨터 MAC 주소 속성</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>컴퓨터 위치</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>컴퓨터 위치 및 속성</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>위치 이름 및 속성</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>사용자</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>사용자 그룹</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>컴퓨터</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>컴퓨터 그룹</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>컴퓨터 컨테이너들</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>사용자 그룹</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>사용자 검색되지 않음</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>사용자 이름 &quot;%1&quot;  검색되지 않음.  사용자 이름 또는 사용자 트리 파라메터를 확인하세요.</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>컴퓨터 그룹</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>컴퓨터 발견되지 않음</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>호스트 이름 &quot;%1&quot;인 컴퓨터 가 검색되지 않음.  호스트 이름 또는 컴퓨터 트리 파라메터를 확인하세요.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>호스트이름 검색 실패</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 </translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>위치 엔트리</translation>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>컴퓨터 위치 ID</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>컴퓨터 그룹 필터</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>LDAP %1 시험 실패</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>설정된 %1에서 엔트리 값을 찾지 못함. &quot;%2&quot; 파라메터를 점검하세요.
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>LDAP %1 시험 성공</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>%1 이 성공적으로 조회되고 %2 입력 값이 검색됨</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP 테스트 실패</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>%1을 조회할 수 없음. %2 파라메터(들)을 점검하거나 또는 기존의 개체의 이름을 입력하세요
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>및 </translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP 테스트 성공</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 가 성공적으로 조회됨
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>LDAP 필터 시험 실패</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>설정된 필터를 사용하여 어떤 %1도 조회할 수 없음. %1에 대한 LDAP 필터를 점검하세요
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>LDAP 필터 시험 성공</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>컴퓨터 필터를 사용한 %1 %2 검색 조회 성공 </translation>
     </message>
 </context>
 <context>
@@ -2046,66 +2342,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>IP주소로 컴퓨터 개체 가져오기</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP 연결실패</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAP 결합실패</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP 결합 성공</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>LDAP 서버  연결및 바인드에 성공했습니다. 기본 LDAP 설정이 올바르게 끝났습니다.</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>LDAP 기본 DN 시험 실패 </translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>LDAP 기본 DN 시험 성공</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>LDAP naming context 시험실패</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>LDAP naming context 시험 성공</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>LDAP 명칭 내용이 성공적으로 조회되었습니다. 기본 DN 이 발견되었습니다:
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>사용자 트리</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>그룹 트리</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>컴퓨터 트리</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>사용자 이름 입력</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>검색할 유저로그인 이름을 입력하세요 (와일드카드 허용됨):</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>사용자 개체</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2116,24 +2358,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>검색할 그룹 이름을 입력하세요:</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>그룹 멤버</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>그룹 검색되지 않음</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>이름 &quot;%1&quot; 그룹 검색되지 않음.  그룹이름 또는 그룹 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>그룹이름 입력</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>컴퓨터 개체</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2144,40 +2370,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>MAC 주소를 조회할 컴퓨터의 DN을 입력하세요</translation>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>컴퓨터 MAC 주소</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>사용자</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>사용자 그룹</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>컴퓨터 그룹</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>그룹 멤버 속성을 검색할 사용자 로그인 이름을 입력하세요 :</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>사용자 그룹</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>사용자 검색되지 않음</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>컴퓨터 그룹</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>컴퓨터 발견되지 않음</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2188,59 +2382,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 개체로 변환할 컴퓨터 IP 주소를 입력하세요</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>컴퓨터</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>LDAP %1 시험 실패</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>LDAP %1 시험 성공</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>%1 이 성공적으로 조회되고 %2 입력 값이 검색됨</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>%1 %2 가 성공적으로 조회됨
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>LDAP 필터 시험 실패</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>설정된 필터를 사용하여 어떤 %1도 조회할 수 없음. %1에 대한 LDAP 필터를 점검하세요
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>LDAP 필터 시험 성공</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>컴퓨터 필터를 사용한 %1 %2 검색 조회 성공 </translation>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(그룹 트리가 다를 경우에만)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>컴퓨터 그룹 트리</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
         <translation>컴퓨터 그룹 트리</translation>
     </message>
     <message>
@@ -2324,46 +2470,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>e.g. (objectClass=container) or (objectClass=organizationalUnit)</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>설정된 베이스 DN을 찾을 수 없습니다. 베이스 DN 파라메터를 점검하세요.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>LDAP 베이스 DN 조회 성공. 다음 입력항목이 발견되었습니다:
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>명칭 내용을 통해 베이스 DN 조회를 할 수 없습니다. 명칭 속성 파라메터를 점검하세요.
-%1</translation>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
         <translation>인증화일 (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>LDAP 서버에 연결할 수 없음. 서버 파라메터를 점검하세요.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>LDAP서버와 결합 불가. 결합인자와 서버 파라메터를 점검하세요.
-
-%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2422,48 +2530,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 위치의 이름을 입력하세요(와일드카드 허용됨):</translation>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation>컴퓨터 위치</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>위치 이름 입력</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
         <translation>조회할 위치 이름을 넣으세요:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>위치 엔트리</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP 테스트 실패</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>%1을 조회할 수 없음. %2 파라메터(들)을 점검하거나 또는 기존의 개체의 이름을 입력하세요
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>및 </translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP 테스트 성공</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>설정된 %1에서 엔트리 값을 찾지 못함. &quot;%2&quot; 파라메터를 점검하세요.
-
-%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2486,22 +2558,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation>잘못된 호스트 이름</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>사용자 이름 &quot;%1&quot;  검색되지 않음.  사용자 이름 또는 사용자 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation>호스트 이름을 입력하세요</translation>
     </message>
@@ -2510,28 +2566,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>호스트 이름 &quot;%1&quot;인 컴퓨터 가 검색되지 않음.  호스트 이름 또는 컴퓨터 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>호스트이름 검색 실패</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 </translation>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation>사용자 로긴이름 속성</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>사용자 로그인 또는 컴퓨터 호스트 이름 (OpenLDAP)의 속성 설정됨</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>컴퓨터 컨테이너들</translation>
     </message>
 </context>
 <context>
@@ -2580,51 +2620,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>%1 을 기본 DN 으로 설정하고 네이밍 컨텍스트 조회를 비활성화 함.</translation>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation>LDAP Pro</translation>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation>개체</translation>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation>이름 입력</translation>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>개체의 이름을 입력하세요 (나중에 변경불가!):</translation>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation>개체 삭제</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>정말로 &quot;%1&quot; 개체를 삭제하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; 객체 설정</translation>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Veyon용 프로페셔널 LDAP/AD 결합</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (LDAP/AD에서 컴퓨터와 위치를 가져옴)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
+        <source>Test binding to an LDAP server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2650,64 +2648,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>기능</translation>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation>다음 기간동안 유효함</translation>
     </message>
     <message>
         <source>Licensee</source>
         <translation>사용권자</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>라이센스 파일 찾아보기</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon 라이센스 파일 (*.vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>라이센스 제거</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>선택된 라이센스를 제거하시겠습니까 ?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>유효하지 않은 라이센스 파일</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>라이센스 파일을 읽을 수 없습니다!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>선택된 라이센스 파일에 유효한 데이터가 없습니다.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>선택한 라이센스 파일을 검증할 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>선택된 라이센스 파일을 이번 설치에 사용할 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>선택된 라이센스 파일의 유효기간이 지났습니다.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>이 라이센스는 이미 설치 되었습니다.</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2724,69 +2670,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Addon</source>
         <translation>애드온</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>특정 명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>설치된 모든 라이센스를 보여주기</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>라이센스 파일을 추가</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>설치된 라이센스 제거</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-사용법
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-사용법
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>주어진 ID에 해당하는 인증서가 발견되지 않음</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>라이센스 관리</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>라이센스 키 관리용 명령어들</translation>
     </message>
 </context>
 <context>
@@ -3182,6 +3065,10 @@ USAGE
         <source>Automatically open computer select panel</source>
         <translation>컴퓨터 선택 패너을 자동으로 열기</translation>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3288,58 +3175,6 @@ USAGE
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>발견된 IP 주소를 호스트 이름으로 검색하기</translation>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>새로운 위치</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>스캐닝...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>검색된 컴퓨터들</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>특정 명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>서브넷 스캔</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-사용법
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>네트워크의 컴퓨터들을 자동으로 검색하기 위한 네트워크 오브젝트 폴더</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>네트워크 검색(Veyon 클라이언트용 네트워크 검색)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>네트워크 검색 폴더를 제어하기 위한 명령어들</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3373,6 +3208,41 @@ USAGE
     <message>
         <source>Name:</source>
         <translation>이름:</translation>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3494,17 +3364,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>QuickPlugin</name>
-    <message>
-        <source>Start lesson</source>
-        <translation>레슨 시작</translation>
-    </message>
-    <message>
-        <source>Click this button to start a new lesson which your students can join.</source>
-        <translation>이버튼을 클릭해서 당신의 학생이 참가할 수 있는 새 레슨을 시작하세요</translation>
-    </message>
-</context>
-<context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
@@ -3537,6 +3396,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show help about command</source>
         <translation>명령어에 대한 도움말 보여줌</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3615,32 +3481,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>나가기</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>라우팅 테이블을 수정하여 인터넷 접속 제어</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>인터넷 접속을 제한하기 위해 기본 루트 제거</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>인터넷 접근 제한하려는 사용자 루트 추가</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>목적지</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>게이트 웨이</translation>
     </message>
 </context>
 <context>
@@ -3725,6 +3565,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>컴퓨터의 화면을 캡쳐하고 로컬에 저장함</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>화면캡쳐</translation>
     </message>
 </context>
 <context>
@@ -4138,10 +3985,6 @@ Typically this is required to support terminal servers.</source>
         <translation>에러</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>에게 사용허가 됨  </translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>사용법</translation>
     </message>
@@ -4170,7 +4013,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>... %1 로 연결 중입니다</translation>
@@ -4233,6 +4076,10 @@ Typically this is required to support terminal servers.</source>
         <source>Simulated key presses interval</source>
         <translation>시뮬레이션 키입력 간격</translation>
     </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4285,6 +4132,13 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>X 손상 확장 사용하지 않음</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

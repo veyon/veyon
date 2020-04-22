@@ -327,13 +327,6 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>Wtyczka dodająca specyficzne funkcje dla platformy Android</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -486,11 +479,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Nie można usunąć pliku klucza „% 1”!</translation>
+        <translation>Nie można usunąć pliku klucza „%1”!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Nie można usunąć katalogu plików kluczy „% 1”!</translation>
+        <translation>Nie można usunąć katalogu plików kluczy „%1”!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
@@ -506,7 +499,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>Klucz „% 1 /% 2” został pomyślnie wyeksportowany do „% 3”.</translation>
+        <translation>Klucz „%1 /%2” został pomyślnie wyeksportowany do „%3”.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
@@ -514,11 +507,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>Plik „% 1” nie zawiera poprawnego klucza prywatnego!</translation>
+        <translation>Plik „%1” nie zawiera poprawnego klucza prywatnego!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>Plik „% 1” nie zawiera poprawnego klucza publicznego!</translation>
+        <translation>Plik „%1” nie zawiera poprawnego klucza publicznego!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
@@ -566,7 +559,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Nie można zamienić właściciela pliku kluczy „% 1” na „% 2”.</translation>
+        <translation>Nie można zamienić właściciela pliku kluczy „%1” na „%2”.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
@@ -645,7 +638,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>To polecenie wyświetla listę wszystkich dostępnych kluczy uwierzytelniania w  katalogu kluczy. Jeśli podano opcję „% 1”, zamiast niej zostanie wyświetlona tabela ze szczegółami klucza. Niektórych szczegółów może brakować, jeśli klucz nie jest dostępny, np. z powodu braku uprawnień do odczytu.</translation>
+        <translation>To polecenie wyświetla listę wszystkich dostępnych kluczy uwierzytelniania w  katalogu kluczy. Jeśli podano opcję „%1”, zamiast niej zostanie wyświetlona tabela ze szczegółami klucza. Niektórych szczegółów może brakować, jeśli klucz nie jest dostępny, np. z powodu braku uprawnień do odczytu.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -673,8 +666,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>To polecenie wyodrębnia część klucza publicznego z klucza prywatnego &lt;KEY&gt; i zapisuje ją jako odpowiedni klucz publiczny. Dlatego podczas konfigurowania innego komputera głównego wystarczy przesłać tylko klucz prywatny. Następnie można wyodrębnić klucz publiczny.
- </translation>
+        <translation>To polecenie wyodrębnia część klucza publicznego z klucza prywatnego &lt;KEY&gt; i zapisuje ją jako odpowiedni klucz publiczny. Dlatego podczas konfigurowania innego komputera głównego wystarczy przesłać tylko klucz prywatny. Następnie można wyodrębnić klucz publiczny.</translation>
     </message>
     <message>
         <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
@@ -765,8 +757,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>AuthSimplePlugin</name>
     <message>
         <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>Podane hasło jest nieprawidłowe. Wprowadź poprawnie hasło lub przejdź do innej metody uwierzytelniania za pomocą Konfiguratora Veyon.
- </translation>
+        <translation>Podane hasło jest nieprawidłowe. Wprowadź poprawnie hasło lub przejdź do innej metody uwierzytelniania za pomocą Konfiguratora Veyon.</translation>
     </message>
     <message>
         <source>Simple password authentication</source>
@@ -848,7 +839,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Podano nieprawidłowy typ. Prawidłowe wartości to „% 1” lub „% 2”.</translation>
+        <translation>Podano nieprawidłowy typ. Prawidłowe wartości to „%1” lub „%2”.</translation>
     </message>
     <message>
         <source>Type</source>
@@ -888,7 +879,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Nieklasyfikowany obiekt „% 1” o identyfikatorze „% 2&quot;</translation>
+        <translation>Nieklasyfikowany obiekt „%1” o identyfikatorze „%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
@@ -908,7 +899,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Błąd podczas analizowania linii% 1.</translation>
+        <translation>Błąd podczas analizowania linii %1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
@@ -988,7 +979,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Importuje obiekty z określonego pliku tekstowego przy użyciu podanego ciągu  lub wyrażenia zawierającego jeden lub wiele symboli zastępczych. Prawidłowe symbole zastępcze to:% 1</translation>
+        <translation>Importuje obiekty z określonego pliku tekstowego przy użyciu podanego ciągu  lub wyrażenia zawierającego jeden lub wiele symboli zastępczych. Prawidłowe symbole zastępcze to: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -1008,7 +999,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Eksportuje obiekty do określonego pliku tekstowego przy użyciu ciągu formatu podanego zawierającego jeden lub wiele symboli zastępczych. Prawidłowe symbole zastępcze to:% 1</translation>
+        <translation>Eksportuje obiekty do określonego pliku tekstowego przy użyciu ciągu formatu podanego zawierającego jeden lub wiele symboli zastępczych. Prawidłowe symbole zastępcze to: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -1032,7 +1023,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>Dodaje obiekt, w którym% 1 może być jednym z „% 2” lub „% 3”. % 4 można określić według nazwy lub UUID.</translation>
+        <translation>Dodaje obiekt, w którym %1 może być jednym z „%2” lub „%3”. %4 można określić według nazwy lub UUID.</translation>
     </message>
     <message>
         <source>Add a room</source>
@@ -1040,7 +1031,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>Dodaj komputer do sali % 1</translation>
+        <translation>Dodaj komputer do sali %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
@@ -1048,7 +1039,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation>Usuwa określony obiekt z katalogu. % 1 można określić według nazwy lub UUID. Usunięcie lokalizacji spowoduje również usunięcie wszystkich powiązanych komputerów.</translation>
+        <translation>Usuwa określony obiekt z katalogu. %1 można określić według nazwy lub UUID. Usunięcie lokalizacji spowoduje również usunięcie wszystkich powiązanych komputerów.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
@@ -1152,11 +1143,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Użytkownik „% 1” na hoście „% 2” uzyskuje teraz dostęp do tego komputera.</translation>
+        <translation>Użytkownik „%1” na hoście „%2” uzyskuje teraz dostęp do tego komputera.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Użytkownik „% 1” na hoście „% 2” próbował uzyskać dostęp do tego komputera, ale nie mógł się pomyślnie uwierzytelnić.</translation>
+        <translation>Użytkownik „%1” na hoście „%2” próbował uzyskać dostęp do tego komputera, ale nie mógł się pomyślnie uwierzytelnić.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1164,7 +1155,18 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>Użytkownik „% 1” na hoście „% 2” próbował uzyskać dostęp do tego komputera, ale został zablokowany z powodu ustawień kontroli dostępu.</translation>
+        <translation>Użytkownik „%1” na hoście „%2” próbował uzyskać dostęp do tego komputera, ale został zablokowany z powodu ustawień kontroli dostępu.</translation>
+    </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1179,7 +1181,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nie znaleziono domyślnej wtyczki katalogu obiektów sieciowych. Sprawdź swoją instalację lub skonfiguruj inny backend katalogu obiektów sieciowych za pomocą Konfiguratora% 1.</translation>
+        <translation>Nie znaleziono domyślnej wtyczki katalogu obiektów sieciowych. Sprawdź swoją instalację lub skonfiguruj inny backend katalogu obiektów sieciowych za pomocą Konfiguratora %1.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1192,6 +1194,33 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Nie można określić lokalizacji tego komputera. Wskazuje to na problem z konfiguracją systemu. W panelu wyboru komputera pokazane zostaną wszystkie lokalizacje.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>Komputery</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Wyszukaj użytkowników i komputery</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1230,43 +1259,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Wskaż istniejący plik konfiguracyjny w celu zaimportowania.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Wskaż nazwę wyeksportowanego pliku konfiguracyjnego.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Wskaż poprawny klucz</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Wskazany klucz nie istnieje w bieżącej konfiguracji!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Proszę wpisać prawidłową wartość.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Konfiguruj Veyon za pomocą wiersza polecenia</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Plik wyjściowy nie ma uprawnień zapisu!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Lokalizacja wyjściowa nie ma uprawnień zapisu!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Plik konfiguracyjny nie nadaje się do odczytu!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Wyczyść konfigurację programu Veyon</translation>
@@ -1296,12 +1289,48 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Odznacz (usuń) dany klucz konfiguracji</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Komendy do zarządzania konfiguracją programu Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Aktualizuj i zapisz konfigurację programu i rozszerzeń</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Wskaż istniejący plik konfiguracyjny w celu zaimportowania.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Plik konfiguracyjny nie nadaje się do odczytu!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Wskaż nazwę wyeksportowanego pliku konfiguracyjnego.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Plik wyjściowy nie ma uprawnień zapisu!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Lokalizacja wyjściowa nie ma uprawnień zapisu!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Wskaż poprawny klucz</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Wskazany klucz nie istnieje w bieżącej konfiguracji!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Proszę wpisać prawidłową wartość.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Konfiguruj Veyon za pomocą wiersza polecenia</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Komendy do zarządzania konfiguracją programu Veyon</translation>
     </message>
 </context>
 <context>
@@ -1350,7 +1379,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>Interwał między klatkami</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1565,13 +1594,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
-    <name>DroidVncServer</name>
-    <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation>Wbudowany serwer VNC (Android)</translation>
-    </message>
-</context>
-<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1604,7 +1626,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Nie można otworzyć pliku „% 1”! Sprawdź uprawnienia!</translation>
+        <translation>Nie można otworzyć pliku „%1”! Sprawdź uprawnienia!</translation>
     </message>
 </context>
 <context>
@@ -1640,6 +1662,13 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Overwrite existing files</source>
         <translation>Nadpisz istniejące pliki</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Wybierz jeden lub więcej plików do przesłania</translation>
     </message>
 </context>
 <context>
@@ -1821,64 +1850,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>Kontrola dostępu do internetu</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Zaplecze:</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>Ustawienia główne</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>Ustawienia zaplecza</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>Zablokuj dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>Zezwól na dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>Pokaż pomoc dotyczącą komendy</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>Zablokuj internet</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>Naciśnij ten przycisk żeby zablokować dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>Odblokuj internet</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>Naciśnij ten przycisk żeby zezwolić na dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>Kontroluj dostęp do internetu</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>Komendy do zarządzania dostępem do internetu</translation>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1890,6 +1861,325 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>LDAP error description: %1</source>
         <translation>Opis błędu LDAP: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>Połączenie LDAP zakończone niepowodzeniem</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Nie można połączyć się z serwerem LDAP. Sprawdź parametry serwera.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Podłączenie LDAP nie powiodło się</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Nie można powiązać z serwerem LDAP. Sprawdź parametry serwera i powiąż poświadczenia.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Podłączenie LDAP powiodło się</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Pomyślnie nawiązano połączenie z serwerem LDAP. Podstawowe ustawienia LDAP są poprawnie skonfigurowane.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>Test podstawowego DN z  LDAP nie powiódł się</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>Test podstawowego DN z LDAP  powiódł się</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>Test  LDAP nie powiódł się</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>Test kontekstu  LDAP powiódł się</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>drzewo użytkowników</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Drzewo użytkownika</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>drzewo grupy</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Drzewo grupy</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>drzewo komputera</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Drzewo komputerów</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>drzewo grup komputerowych</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Drzewo grup komputerowych</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>obiekty użytkownika</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Atrybut nazwy logowania użytkownika</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>Członkowie grupy</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Atrybut członka grupy</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Nie znaleziono grupy</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>Nie można znaleźć grupy o nazwie „%1”. Sprawdź nazwę grupy lub jej drzewo.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>Obiekty komputerowe</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Atrybut wyświetlanej nazwy komputera</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Nieprawidłowa nazwa hosta</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Skonfigurowałeś nazwy komputerów, aby były przechowywane jako w pełni kwalifikowane nazwy domen (FQDN), ale wprowadziłeś nazwę hosta bez domeny.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Skonfigurowałeś nazwy komputerów, aby były przechowywane jako proste nazwy hostów bez nazwy domeny, ale wprowadziłeś nazwę hosta z częścią nazwy domeny.</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atrybut nazwy hosta komputera</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>adres MAC komputera</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Atrybut adresu MAC komputera</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>lokalizacje komputerów</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Atrybut lokalizacji komputera</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Atrybut nazwy lokalizacji</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>użytkownicy</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>grupy użytkowników</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>komputery</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>grupy komputerów</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>grupy użytkownika</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Nie znaleziono użytkownika</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Nie można znaleźć użytkownika o nazwie „%1”. Sprawdź nazwę użytkownika lub parametr drzewa użytkownika.</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>grupy komputera</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Nie znaleziono komputera</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Nie można znaleźć komputera o nazwie hosta „%1”. Sprawdź nazwę hosta lub parametr drzewa komputera.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Wyszukiwanie nazwy hosta nie powiodło się</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Nie można wyszukać nazwy hosta dla adresu IP %1. Sprawdź ustawienia serwera DNS. </translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>lokalizacje</translation>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identyfikacja lokalizacji komputera</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>Filtruj według grup komputerów</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>test LDAP %1 zakończony niepowodzeniem</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Nie można wyszukać żadnych wpisów w skonfigurowanym %1. Sprawdź parametr „%2”.
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>test LDAP %1 zakończony powodzeniem</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>Zapytanie o %1 zakończyło się powodzeniem i znaleziono %2 wpisów.
+ </translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Test LDAP nie powiódł się</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Nie można wysłać zapytania do żadnego %1. Sprawdź parametr(y) %2 i wprowadź nazwę istniejącego obiektu.
+
+%3 </translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>oraz</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Test LDAP powiódł się</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>Zadania %1 %2 zostały pomyślnie wykonane
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>test filtrów LDAP zakończony niepowodzeniem</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>Nie można wysłać zapytania do żadnego %1 przy użyciu skonfigurowanego filtra. Sprawdź filtr LDAP dla %1
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>test filtrów LDAP zakończony powodzeniem</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>Zadanie %1 %2 zakończyło się pomyślnie przy użyciu skonfigurowanego filtra.</translation>
     </message>
 </context>
 <context>
@@ -2047,65 +2337,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wybierz komputer za pomocą adresu IP</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>Połączenie LDAP zakończone niepowodzeniem</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>Podłączenie LDAP nie powiodło się</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>Podłączenie LDAP powiodło się</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Pomyślnie nawiązano połączenie z serwerem LDAP. Podstawowe ustawienia LDAP są poprawnie skonfigurowane.</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>Test podstawowego DN z  LDAP nie powiódł się</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>Test podstawowego DN z LDAP  powiódł się</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>Test kontekstu  LDAP powiódł się</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>drzewo użytkowników</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>drzewo grupy</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>drzewo komputera</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Wprowadź nazwę użytkownika</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>Wprowadź nazwę logowania użytkownika (dozwolone są symbole), którą chcesz sprawdzić:</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>obiekty użytkownika</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2116,24 +2353,8 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Podaj nazwę grupy, którą chcesz sprawdzić:</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>Członkowie grupy</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>Nie znaleziono grupy</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Nie można znaleźć grupy o nazwie „% 1”. Sprawdź nazwę grupy lub jej drzewo.</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>Wprowadź nazwę komputera</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2144,40 +2365,8 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>adres MAC komputera</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>użytkownicy</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>grupy użytkowników</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>grupy komputerów</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Wprowadź nazwę  użytkownika, którego członkostwo w grupach ma być wyszukiwane:</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>grupy użytkownika</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>Nie znaleziono użytkownika</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>grupy komputera</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>Nie znaleziono komputera</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2188,61 +2377,16 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wprowadź adres IP komputera, który ma zostać przekształcony w obiekt komputerowy:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>komputery</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>test LDAP %1 zakończony niepowodzeniem</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>test LDAP %1 zakończony powodzeniem</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>Zapytanie o %1 zakończyło się powodzeniem i znaleziono %2 wpisów.
- </translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>test filtrów LDAP zakończony niepowodzeniem</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>test filtrów LDAP zakończony powodzeniem</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(tylko jeśli różni się od drzewa grupy)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Drzewo grup komputerowych</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>Filtruj komputery</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
@@ -2321,42 +2465,8 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>np. (objectClass=kontener) lub (objectClass=JednostkaOrganizacyjna)</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
         <translation>Pliki certyfikatów (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Nie można połączyć się z serwerem LDAP. Sprawdź parametry serwera.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Nie można powiązać z serwerem LDAP. Sprawdź parametry serwera i powiąż poświadczenia.
-
-%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2415,48 +2525,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wprowadź nazwę lokalizacji komputera (dozwolone są znaki specjalne): </translation>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation>lokalizacje komputerów</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>Wpisz nazwę lokalizacji</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
         <translation>Wprowadź nazwę lokalizacji, której wpisy dotyczą zapytania:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>lokalizacje</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>Test LDAP nie powiódł się</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Nie można wysłać zapytania do żadnego %1. Sprawdź parametry %2 i wprowadź nazwę istniejącego obiektu.
-
-%3 </translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>oraz</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>Test LDAP powiódł się</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Nie można wyszukać żadnych wpisów w skonfigurowanym %1. Sprawdź parametr „%2”.
-
-%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2480,22 +2554,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wprowadź nazwę hosta, aby wysłać zapytanie:</translation>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation>Nieprawidłowa nazwa hosta</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Skonfigurowałeś nazwy komputerów, aby były przechowywane jako w pełni kwalifikowane nazwy domen (FQDN), ale wprowadziłeś nazwę hosta bez domeny.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Skonfigurowałeś nazwy komputerów, aby były przechowywane jako proste nazwy hostów bez nazwy domeny, ale wprowadziłeś nazwę hosta z częścią nazwy domeny.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Nie można znaleźć użytkownika o nazwie „%1”. Sprawdź nazwę użytkownika lub parametr drzewa użytkownika.</translation>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation>Wpisz nazwę hosta</translation>
     </message>
@@ -2504,28 +2562,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wprowadź nazwę hosta, którego członkostwo w grupach ma być wyszukiwane:</translation>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Nie można znaleźć komputera o nazwie hosta „%1”. Sprawdź nazwę hosta lub parametr drzewa komputera.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Wyszukiwanie nazwy hosta nie powiodło się</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Nie można wyszukać nazwy hosta dla adresu IP %1. Sprawdź ustawienia serwera DNS. </translation>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation>Atrybut nazwy logowania użytkownika</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Skonfigurowany atrybut użytkownik lub komputer (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2552,11 +2594,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>% 1 (wczytywanie komputerów i lokacji z LDAP / AD)</translation>
+        <translation>%1 (wczytywanie komputerów i lokacji z LDAP / AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>% 1 (wczytywanie użytkowników i grupy z LDAP / AD)</translation>
+        <translation>%1 (wczytywanie użytkowników i grupy z LDAP / AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2574,51 +2616,9 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation>LDAP Pro</translation>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation>Instancje</translation>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation>Wprowadź nazwę</translation>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>Wprowadź nazwę instancji (nie można jej później zmienić!):</translation>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation>Usuń instancję</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>Czy napewno chcesz usunąć instancję „% 1”?</translation>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>Konfiguracja instancji „% 1”</translation>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>Profesjonalna integracja LDAP / AD dla Veyon</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>% 1 (wczytywanie komputerów i lokacji z LDAP / AD)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>% 1 (wczytywanie użytkowników i grupy z LDAP / AD)</translation>
+        <source>Test binding to an LDAP server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2644,64 +2644,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Identyfikator</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>Rozszerzenie</translation>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation>Ważne do</translation>
     </message>
     <message>
         <source>Licensee</source>
         <translation>Właściciel</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>Przeglądaj plik licencji</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Pliki licencji Veyon (* .vlf)</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>Usuń licencję</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>Czy na pewno chcesz usunąć wybraną licencję?</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>Brak danych</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>Nieprawidłowy plik licencji</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>Nie można otworzyć pliku licencji!</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>Wybrany plik licencji nie zawiera prawidłowych danych.</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>Nie można zweryfikować wybranego pliku licencji.</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>Wybrany plik licencji jest nieprawidłowy dla tej instalacji.</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>Wybrany plik licencji wygasł.</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>Licencja jest już zainstalowana.</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2718,69 +2666,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Addon</source>
         <translation>Addon</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Pokaż pomoc dla wskazanej komendy</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>Pokaż wszystkie zainstalowane licencje</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>Dodaj plik licencji</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>Usuń zainstalowaną licencję</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-UŻYCIE
-
-%1 dodaj &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-UŻYCIE
-
-%1 usuń &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>Nie znaleziono certyfikatu o podanym identyfikatorze</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>Brak danych</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>Zarządzanie licencjami</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>Komendy do zarządzania kluczami licencyjnymi</translation>
     </message>
 </context>
 <context>
@@ -3003,7 +2888,7 @@ UŻYCIE
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>Zapi$sz ustawienia do pliku</translation>
+        <translation>Zapi&amp;sz ustawienia do pliku</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -3011,7 +2896,7 @@ UŻYCIE
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Standard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
@@ -3176,6 +3061,10 @@ UŻYCIE
         <source>Automatically open computer select panel</source>
         <translation>Automatycznie otwórz panel wyboru komputera</translation>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3282,58 +3171,6 @@ UŻYCIE
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>Odwrócone wyszukiwanie adresów IP na nazwy hostów</translation>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>Nowa lokalizacja</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>Skanowanie...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>Rozpoznane komputery</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>Pokaż pomoc dla wskazanej komendy</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>Przeskanuj podsieć</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-UŻYCIE
-
-%1 skanuj [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>Katalog elementów sieciowych, który automatycznie wykrywa komputery w sieci</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>Wykrywanie sieci (skanuj sieć w poszukiwaniu klientów Veyon)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>Komendy do zarządzania katalogiem wykrywania sieci</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3367,6 +3204,41 @@ UŻYCIE
     <message>
         <source>Name:</source>
         <translation>Nazwa:</translation>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nazwa</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3463,7 +3335,7 @@ UŻYCIE
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation>Komputer zostanie wyłączony za %1 minut, % 2 sekund.
+        <translation>Komputer zostanie wyłączony za %1 minut, %2 sekund.
 
 Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
@@ -3485,17 +3357,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>seconds</source>
         <translation>sekund</translation>
-    </message>
-</context>
-<context>
-    <name>QuickPlugin</name>
-    <message>
-        <source>Start lesson</source>
-        <translation>Rozpocznij lekcję</translation>
-    </message>
-    <message>
-        <source>Click this button to start a new lesson which your students can join.</source>
-        <translation>Kliknij ten przycisk, aby rozpocząć nową lekcję, do której mogą dołączyć uczniowie.</translation>
     </message>
 </context>
 <context>
@@ -3531,6 +3392,13 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Show help about command</source>
         <translation>Pokaż pomoc dotyczącą komendy</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3609,32 +3477,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Exit</source>
         <translation>Wyjście</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>Kontroluj dostęp do Internetu, modyfikując tabelę routingu</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>Usuń domyślny routing, aby zablokować dostęp do Internetu</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>Dodaj niestandardowy routing, aby zablokować internet</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>Miejsce docelowe</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>Bramka</translation>
     </message>
 </context>
 <context>
@@ -3719,6 +3561,13 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>Wykonaj zrzuty ekranów komputerów i zapisz je lokalnie.</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>Zrzuty ekranu</translation>
     </message>
 </context>
 <context>
@@ -4001,7 +3850,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"/>
+        <translation>Rozciągnij na pełny ekran (domyślnie pozostaw włączone)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4132,10 +3981,6 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>BŁĄD</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>licencjonowane dla</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>UŻYCIE</translation>
     </message>
@@ -4164,7 +4009,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Nawiązywanie połączenia z %1</translation>
@@ -4225,7 +4070,11 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Interwał naciskania klawiszy</translation>
+    </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation>Potwierdź informację prawną (komunikat wyświetlany przed zalogowaniem się użytkownika)</translation>
     </message>
 </context>
 <context>
@@ -4279,6 +4128,13 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Nie używaj rozszerzenia X Damage</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation>Veyon Master</translation>
     </message>
 </context>
 </TS>

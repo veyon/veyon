@@ -327,13 +327,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AndroidPlatformPlugin</name>
-    <message>
-        <source>Plugin implementing specific functions for the Android platform</source>
-        <translation>实现针对安卓平台特定功能的插件</translation>
-    </message>
-</context>
-<context>
     <name>AuthKeysConfigurationDialog</name>
     <message>
         <source>Authentication keys</source>
@@ -1165,6 +1158,17 @@ The public key is used on client computers to authenticate incoming connection r
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>主机 &quot;%2&quot; 上的用户 &quot;%1&quot; 尝试访问此计算机但因访问控制设置被阻止。</translation>
     </message>
+    <message>
+        <source>Active connections:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerGroupSelector</name>
+    <message>
+        <source>Group %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -1191,6 +1195,33 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>无法确定此计算机的地点。这表明系统配置存在问题。所有地点都将显示在计算机选择面板中。</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoring</name>
+    <message>
+        <source>Computers</source>
+        <translation>计算机</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>搜索用户和计算机</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unselect all</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add to group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove from group</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1229,43 +1260,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>请指定要导入的配置文件。</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>请为导出的配置指定一个有效的文件名。</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>请指定一个有效的密钥。</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>指定的密钥在当前配置中不存在！</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>请指定一个有效的值。</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>在命令行配置 </translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>输出文件不可写！</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>输出目录不可写！</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>配置文件不可读！</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>清除系统级别 Veyon 配置</translation>
@@ -1295,12 +1290,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>取消设置(移除)给定的配置密钥</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>管理 Veyon 配置的命令</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>升级并保存程序和插件的配置</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>请指定要导入的配置文件。</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>配置文件不可读！</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>请为导出的配置指定一个有效的文件名。</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>输出文件不可写！</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>输出目录不可写！</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>请指定一个有效的密钥。</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>指定的密钥在当前配置中不存在！</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>请指定一个有效的值。</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>在命令行配置 </translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>管理 Veyon 配置的命令</translation>
     </message>
 </context>
 <context>
@@ -1564,13 +1595,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>DroidVncServer</name>
-    <message>
-        <source>Builtin VNC server (Android)</source>
-        <translation>内置VNC服务器（安卓）</translation>
-    </message>
-</context>
-<context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
@@ -1639,6 +1663,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Overwrite existing files</source>
         <translation>覆盖已存在的文件</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferFileDialog</name>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>选择一个或多个要发送的文件</translation>
     </message>
 </context>
 <context>
@@ -1820,64 +1851,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation>互联网访问控制</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>后端：</translation>
-    </message>
-    <message>
-        <source>General settings</source>
-        <translation>常规设置</translation>
-    </message>
-    <message>
-        <source>Backend settings</source>
-        <translation>后台设置</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation>阻止访问互联网</translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation>允许访问互联网</translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation>显此命令的帮助信息</translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation>阻止互联网</translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation>点击此按钮，阻止访问互联网。</translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation>取消阻止互联网</translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation>点击此按钮，取消阻止访问互联网。</translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation>控制访问互联网</translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation>控制访问互联网的命令</translation>
-    </message>
-</context>
-<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -1889,6 +1862,331 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>LDAP error description: %1</source>
         <translation>LDAP错误描述： %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfiguration</name>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP 连接失败</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>无法连接到 LDAP 服务器。 请检查服务器参数。
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP 绑定失败</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>无法绑定到 LDAP 服务器。 请检查服务器参数并绑定证书。
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP 绑定成功</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>成功连接到 LDAP 服务器并执行 LDAP 绑定。 基本的 LDAP 设置配置正确。</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>LDAP 基础 DN 测试失败</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>无法查询配置的基本 DN。 请检查基本 DN 参数
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>LDAP 基础 DN 测试通过</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>LDAP 基本 DN 已成功查询。 找到以下条目：
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>LDAP 命名上下文测试失败</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>无法通过命名上下文查询基本 DN。 请检查命名上下文属性参数。
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>LDAP 命名上下文测试通过</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>LDAP 命名上下文已成功查询。 发现以下基本 DN：
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>用户树</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>User tree</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>组树</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Group tree</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>计算机树</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Computer tree</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>计算机组树</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>计算机组树</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>用户对象</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>用户登录名属性</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>组成员</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>组成员属性</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>未找到组</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>找不到名称为 &quot;%1&quot; 的组。 请检查组名称或组树参数。</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>计算机对象</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>计算机显示名称属性</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>无效的主机名</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>您将计算机主机名配置为存储为完全限定域名（FQDN），但输入的是没有域名部分的主机名。</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>您将计算机主机名配置为存储没有域名的简单主机名，但输入了带有域名部分的主机名。</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>计算机主机名属性</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>计算机 MAC 地址</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>计算机 MAC 地址属性</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>计算机地点</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>计算机地点属性</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>地点名称属性</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>用户</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>用户组</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>计算机</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>计算机组</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>计算机容器</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>用户组</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>未找到用户</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>无法找到名称为 &quot;%1&quot; 的用户。 请检查用户名或用户树参数。</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>计算机组</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>未找到计算机</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>无法找到主机名为 &quot;%1&quot; 的计算机。 请检查主机名或计算机树参数。</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>主机名查询失败</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>无法查找IP地址为 %1 的主机名。请检查您的DNS服务器设置。</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>地点条目</translation>
+    </message>
+    <message>
+        <source>Computer groups filter</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>计算机地点标识</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>计算机组过滤器</translation>
+    </message>
+    <message>
+        <source>Invalid test value</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An empty or invalid value has been supplied for this test.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>LDAP %1 测试失败</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Could not query any entries in configured %1.无法查询已配置的 %1 中的任何条目。请检查参数 &quot;%2&quot;。
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>LDAP %1 测试成功</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>已成功查询 %1 ，并找到 %2 个条目。</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP测试失败</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>无法查询任何 %1。 请检查参数 %2 或输入现有对象的名称。
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>和</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP测试成功</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 查询成功：
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>LDAP 过滤器测试失败</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>无法使用配置的过滤器查询任何 %1 。 请检查 LDAP 过滤器的 %1 。
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>LDAP 过滤器测试成功</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2 使用配置的过滤器成功查询。</translation>
     </message>
 </context>
 <context>
@@ -2046,66 +2344,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>通过 IP 地址获取计算机对象</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP 连接失败</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAP 绑定失败</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP 绑定成功</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>成功连接到 LDAP 服务器并执行 LDAP 绑定。 基本的 LDAP 设置配置正确。</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>LDAP 基础 DN 测试失败</translation>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>LDAP 基础 DN 测试通过</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>LDAP 命名上下文测试失败</translation>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>LDAP 命名上下文测试通过</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>LDAP 命名上下文已成功查询。 发现以下基本 DN：
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>用户树</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>组树</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>计算机树</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>请输入用户名</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>请输入要查询的用户登录名(允许使用通配符)：</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>用户对象</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2116,24 +2360,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请输入要查询其成员的群组名称：</translation>
     </message>
     <message>
-        <source>group members</source>
-        <translation>组成员</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>未找到组</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>找不到名称为 &quot;%1&quot; 的组。 请检查组名称或组树参数。</translation>
-    </message>
-    <message>
         <source>Enter computer name</source>
         <translation>输入计算机名称</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>计算机对象</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2144,40 +2372,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请输入要查询 MAC 地址的计算机的 DN：</translation>
     </message>
     <message>
-        <source>computer MAC addresses</source>
-        <translation>计算机 MAC 地址</translation>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>用户</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>用户组</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>计算机组</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>请输入要查询的组成员资格的用户登录名：</translation>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>用户组</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>未找到用户</translation>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>计算机组</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>未找到计算机</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2188,59 +2384,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请输入要解析为计算机对象的计算机 IP 地址：</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>计算机</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>LDAP %1 测试失败</translation>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>LDAP %1 测试成功</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>已成功查询 %1 ，并找到 %2 个条目。</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>%1 %2 查询成功：
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>LDAP 过滤器测试失败</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>无法使用配置的过滤器查询任何 %1 。 请检查 LDAP 过滤器的 %1 。
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>LDAP 过滤器测试成功</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2 使用配置的过滤器成功查询。</translation>
-    </message>
-    <message>
         <source>(only if different from group tree)</source>
         <translation>(仅当与组树不同时)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>计算机组树</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
         <translation>计算机组树</translation>
     </message>
     <message>
@@ -2324,48 +2472,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>例如 (objectClass=container) 或 (objectClass=organizationalUnit)</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>无法查询配置的基本 DN。 请检查基本 DN 参数
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>LDAP 基本 DN 已成功查询。 找到以下条目：
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>无法通过命名上下文查询基本 DN。 请检查命名上下文属性参数。
-
-%1</translation>
-    </message>
-    <message>
         <source>Certificate files (*.pem)</source>
         <translation>证书文件 (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>无法连接到 LDAP 服务器。 请检查服务器参数。
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>无法绑定到 LDAP 服务器。 请检查服务器参数并绑定证书。
-
-%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2424,48 +2532,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请输入计算机地点名称（允许使用通配符）：</translation>
     </message>
     <message>
-        <source>computer locations</source>
-        <translation>计算机地点</translation>
-    </message>
-    <message>
         <source>Enter location name</source>
         <translation>输入地点名称</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
         <translation>请输入要查询其条目的地点名称：</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>地点条目</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP测试失败</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>无法查询任何 %1。 请检查参数 %2 或输入现有对象的名称。
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>和</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP测试成功</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Could not query any entries in configured %1.无法查询已配置的 %1 中的任何条目。请检查参数 &quot;%2&quot;。
-
-%3</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2488,22 +2560,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请输入要查询的计算机主机名：</translation>
     </message>
     <message>
-        <source>Invalid hostname</source>
-        <translation>无效的主机名</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>您将计算机主机名配置为存储为完全限定域名（FQDN），但输入的是没有域名部分的主机名。</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>您将计算机主机名配置为存储没有域名的简单主机名，但输入了带有域名部分的主机名。</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>无法找到名称为 &quot;%1&quot; 的用户。 请检查用户名或用户树参数。</translation>
-    </message>
-    <message>
         <source>Enter hostname</source>
         <translation>输入主机名</translation>
     </message>
@@ -2512,28 +2568,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请输入要查询其组成员的计算机主机名：</translation>
     </message>
     <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>无法找到主机名为 &quot;%1&quot; 的计算机。 请检查主机名或计算机树参数。</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>主机名查询失败</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>无法查找IP地址为 %1 的主机名。请检查您的DNS服务器设置。</translation>
-    </message>
-    <message>
         <source>User login name attribute</source>
         <translation>用户登录名属性</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>用户登录名或计算机主机名的配置属性（OpenLDAP）</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>计算机容器</translation>
     </message>
 </context>
 <context>
@@ -2582,51 +2622,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>正配置 %1 为base DN，并禁用命名上下文查询。</translation>
     </message>
-</context>
-<context>
-    <name>LdapProConfigurationPage</name>
     <message>
-        <source>LDAP Pro</source>
-        <translation>LDAP Pro</translation>
-    </message>
-    <message>
-        <source>Instances</source>
-        <translation>实例</translation>
-    </message>
-    <message>
-        <source>Enter name</source>
-        <translation>输入名称</translation>
-    </message>
-    <message>
-        <source>Please enter a name for the instance (can&apos;t be changed later!):</source>
-        <translation>请输入此实例的名称（设置后无法更改！）：</translation>
-    </message>
-    <message>
-        <source>Remove instance</source>
-        <translation>移除实例</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove instance &quot;%1&quot;?</source>
-        <translation>您确定要移除实例 &quot;%1&quot; 吗？</translation>
-    </message>
-    <message>
-        <source>Configuration for instance &quot;%1&quot;</source>
-        <translation>实例 &quot;%1&quot; 的配置</translation>
-    </message>
-</context>
-<context>
-    <name>LdapProPlugin</name>
-    <message>
-        <source>Professional LDAP/AD integration for Veyon</source>
-        <translation>为Veyon提供LDAP/AD专业集成</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 （从LDAP/AD加载计算机和地点）</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1（从LDAP/AD加载用户和组）</translation>
+        <source>Test binding to an LDAP server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2652,64 +2650,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ID</translation>
     </message>
     <message>
-        <source>Feature</source>
-        <translation>特性</translation>
-    </message>
-    <message>
         <source>Valid until</source>
         <translation>有效期至</translation>
     </message>
     <message>
         <source>Licensee</source>
         <translation>被许可人</translation>
-    </message>
-    <message>
-        <source>Browse license file</source>
-        <translation>浏览许可证文件</translation>
-    </message>
-    <message>
-        <source>Veyon license files (*.vlf)</source>
-        <translation>Veyon  许可证文件</translation>
-    </message>
-    <message>
-        <source>Remove license</source>
-        <translation>删除许可证</translation>
-    </message>
-    <message>
-        <source>Do you really want to remove the selected license?</source>
-        <translation>您确定要删除所选的许可证吗？</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Invalid license file</source>
-        <translation>无效的许可证文件</translation>
-    </message>
-    <message>
-        <source>Could not open the license file for reading!</source>
-        <translation>无法打开打开并读取许可证文件！</translation>
-    </message>
-    <message>
-        <source>The selected license file does not contain valid data.</source>
-        <translation>选定的许可证文件不包含有效数据。</translation>
-    </message>
-    <message>
-        <source>The selected license file could not be verified.</source>
-        <translation>无法验证所选的许可证文件。</translation>
-    </message>
-    <message>
-        <source>The selected license file is not valid for this installation.</source>
-        <translation>选定的许可证文件对此安装无效。</translation>
-    </message>
-    <message>
-        <source>The selected license file is expired.</source>
-        <translation>选定的许可证文件已过期。</translation>
-    </message>
-    <message>
-        <source>The license is already installed.</source>
-        <translation>许可证已安装。</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2726,69 +2672,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Addon</source>
         <translation>插件</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>为指定的命令显示帮助</translation>
-    </message>
-    <message>
-        <source>Show all installed licenses</source>
-        <translation>显示所有已安装的许可</translation>
-    </message>
-    <message>
-        <source>Add license file</source>
-        <translation>添加许可证文件</translation>
-    </message>
-    <message>
-        <source>Remove installed license</source>
-        <translation>删除已安装的许可证</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 add &lt;LICENSE FILE&gt;
-
-</source>
-        <translation>
-用法：
-
-%1 add &lt;LICENSE FILE&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 remove &lt;LICENSE ID&gt;
-
-</source>
-        <translation>
-用法：
-
-%1 remove &lt;LICENSE ID&gt;
-
-</translation>
-    </message>
-    <message>
-        <source>No certificate found with given ID</source>
-        <translation>找不到给定 ID 的许可证书</translation>
-    </message>
-    <message>
-        <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
-    </message>
-    <message>
-        <source>Licensing management</source>
-        <translation>许可管理</translation>
-    </message>
-    <message>
-        <source>Commands for managing license keys</source>
-        <translation>用于管理许可证密钥的命令</translation>
     </message>
 </context>
 <context>
@@ -3184,6 +3067,10 @@ USAGE
         <source>Automatically open computer select panel</source>
         <translation>自动打开计算机选择面板</translation>
     </message>
+    <message>
+        <source>Use modern user interface (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3290,58 +3177,6 @@ USAGE
         <source>Reverse lookup discovered IP addresses to host names</source>
         <translation>反向查找已发现的IP地址到主机名</translation>
     </message>
-    <message>
-        <source>New location</source>
-        <translation>新地点</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryDirectory</name>
-    <message>
-        <source>Scanning...</source>
-        <translation>正在扫描...</translation>
-    </message>
-    <message>
-        <source>Discovered computers</source>
-        <translation>查找计算机</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryPlugin</name>
-    <message>
-        <source>Show help for specific command</source>
-        <translation>为指定的命令显示帮助</translation>
-    </message>
-    <message>
-        <source>Scan a subnet</source>
-        <translation>扫描一个子网</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 scan [&lt;SUBNET&gt;]
-
-</source>
-        <translation>
-用法：
-
-%1 scan [&lt;SUBNET&gt;]
-
-</translation>
-    </message>
-    <message>
-        <source>Network object directory which automatically discovers computers in the network</source>
-        <translation>网络中，可自动发现计算机的网络对象目录</translation>
-    </message>
-    <message>
-        <source>Network discovery (scan network for Veyon clients)</source>
-        <translation>网络发现(Veyon 客户端的扫描网络)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the network discovery directory</source>
-        <translation>用于管理网络发现目录的命令</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3375,6 +3210,41 @@ USAGE
     <message>
         <source>Name:</source>
         <translation>名称：</translation>
+    </message>
+</context>
+<context>
+    <name>PluginsCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3496,17 +3366,6 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
-    <name>QuickPlugin</name>
-    <message>
-        <source>Start lesson</source>
-        <translation>开始课程</translation>
-    </message>
-    <message>
-        <source>Click this button to start a new lesson which your students can join.</source>
-        <translation>点击此按钮开始一个新的回话以便学生加入。</translation>
-    </message>
-</context>
-<context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
@@ -3539,6 +3398,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show help about command</source>
         <translation>显此命令的帮助信息</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessPage</name>
+    <message>
+        <source>Remote access: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3617,32 +3483,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>退出</translation>
-    </message>
-</context>
-<context>
-    <name>Routing</name>
-    <message>
-        <source>Control internet access by modifying routing table</source>
-        <translation>通过修改路由表来控制 Internet 访问</translation>
-    </message>
-</context>
-<context>
-    <name>RoutingConfigurationWidget</name>
-    <message>
-        <source>Remove default routes to block internet access</source>
-        <translation>删除默认路由以阻止 Internet 访问</translation>
-    </message>
-    <message>
-        <source>Add custom route to block internet</source>
-        <translation>通过添加自定义路由来阻止访问互联网</translation>
-    </message>
-    <message>
-        <source>Destination</source>
-        <translation>目标地址</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation>网关</translation>
     </message>
 </context>
 <context>
@@ -3727,6 +3567,13 @@ Please save your work and close all programs.</source>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>以计算机屏幕截图并将其保存在本地。</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotManagementPage</name>
+    <message>
+        <source>Screenshots</source>
+        <translation>屏幕截图</translation>
     </message>
 </context>
 <context>
@@ -4140,10 +3987,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ERROR</translation>
     </message>
     <message>
-        <source>licensed for</source>
-        <translation>许可给</translation>
-    </message>
-    <message>
         <source>USAGE</source>
         <translation>使用情况</translation>
     </message>
@@ -4172,7 +4015,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>正在建立到 %1 的连接...</translation>
@@ -4235,6 +4078,10 @@ Typically this is required to support terminal servers.</source>
         <source>Simulated key presses interval</source>
         <translation>模拟按键间隔</translation>
     </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4287,6 +4134,13 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do not use X Damage extension</source>
         <translation>不要使用 X Damage 扩展</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
