@@ -4,11 +4,9 @@
 #define KEEPALIVE_INTERVAL 5
 #define FT_RECV_TIMEOUT    30
 
-// adzm 2010-08
-#define SOCKET_KEEPALIVE_TIMEOUT 10000
-#define SOCKET_KEEPALIVE_INTERVAL 1000
-
 #define rfbEncodingUltra2   10
+
+#define rfbEncodingQueueZip                 0xFFFF0008
 
 // adzm - 2010-07 - Extended clipboard support
 // this struct is used as the data within an rfbServerCutTextMsg or rfbClientCutTextMsg.

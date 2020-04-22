@@ -53,6 +53,7 @@ set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/omnithread/nt.cpp
 	${ultravnc_DIR}/common/Clipboard.cpp
 	${ultravnc_DIR}/common/win32_helpers.cpp
+	${ultravnc_DIR}/common/UltraVncZ.cpp
 	${ultravnc_DIR}/rfb/dh.cpp
 	${ultravnc_DIR}/rdr/ZlibOutStream.cxx
 	${ultravnc_DIR}/rdr/ZlibInStream.cxx
