@@ -1,5 +1,6 @@
 file(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+						${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
