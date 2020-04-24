@@ -3,5 +3,5 @@
 
 #include <X11/Xfuncproto.h>
 
-#include "x11vnc/src/x11vnc.c"
-#include "x11vnc/src/pm.c"
+#include "x11vnc.c"
+#include "pm.c"

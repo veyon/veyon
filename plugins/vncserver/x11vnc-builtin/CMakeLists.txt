@@ -1,170 +1,132 @@
-INCLUDE(BuildVeyonPlugin)
+include(BuildVeyonPlugin)
 
-IF(VEYON_X11VNC_EXTERNAL)
+if(NOT VEYON_X11VNC_EXTERNAL)
 
-ADD_DEFINITIONS(-DVEYON_X11VNC_EXTERNAL)
+find_package(LibVNCServer 0.9.8)
+if(NOT LibVNCServer_FOUND)
+	### BEGIN: libvncserver configuration
+	include(LibVNCServerIntegration)
 
-ELSE()
+	set(_RFB_RFBCONFIG_H TRUE)
+	set(LIBVNCSERVER_HAVE_LIBJPEG TRUE)
+	set(LIBVNCSERVER_HAVE_LZO TRUE)
+	set(LIBVNCSERVER_HAVE_LIBPNG TRUE)
+	set(LIBVNCSERVER_HAVE_LIBPTHREAD TRUE)
+	set(LIBVNCSERVER_HAVE_LIBZ TRUE)
+	set(LIBVNCSERVER_HAVE_LIBSSL TRUE)
+	set(LIBVNCSERVER_ALLOW24BPP TRUE)
+	set(LIBVNCSERVER_IPv6 TRUE)
+	### END: libvncserver configuration
 
-# check for pthreads and TLS support
-SET(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-FIND_PACKAGE(Threads)
-IF(CMAKE_USE_PTHREADS_INIT)
-    SET(LIBVNCSERVER_HAVE_LIBPTHREAD TRUE)
-ENDIF(CMAKE_USE_PTHREADS_INIT)
+	# write libvncserver configuration header
+	file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
+	configure_file(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
 
-# check for libvncserver requirements
+endif()
 
-# functions
-SET(LIBVNCSERVER_FUNCS fork ftime gethostbyname gethostname gettimeofday inet_ntoa memmove memset mkfifo mmap select socket strchr strdup strerror strstr vfork vprintf)
-FOREACH(_func ${LIBVNCSERVER_FUNCS})
-    STRING(TOUPPER "${_func}" fuc)
-	CHECK_FUNCTION_EXISTS(${_func} LIBVNCSERVER_HAVE_${fuc})
-ENDFOREACH()
-
-# headers
-SET(LIBVNCSERVER_HEADERS fcntl sys/endian sys/wait sys/uio vfork)
-FOREACH(_header ${LIBVNCSERVER_HEADERS})
-    STRING(TOUPPER "${_header}" _huc)
-	STRING(REPLACE "/" "_" _header_escaped "${_huc}")
-	CHECK_INCLUDE_FILES(${_header}.h LIBVNCSERVER_HAVE_${_header_escaped}_H)
-ENDFOREACH()
-
-SET(LIBVNCSERVER_ALLOW24BPP TRUE)
-SET(FULL_PACKAGE_NAME "Veyon")
-SET(PACKAGE_VERSION "${VERSION_STRING}")
-SET(VERSION_PATCHLEVEL "${VERSION_PATCH}")
-
-CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
+set(FULL_PACKAGE_NAME "Veyon")
+set(PACKAGE_VERSION "${VERSION_STRING}")
+set(VERSION_PATCHLEVEL "${VERSION_PATCH}")
 
 # check for x11vnc requirements
-SET(FUNCS dup2 floor ftime geteuid gethostbyname gethostname getpwnam getpwuid getspnam gettimeofday getuid grantpt inet_ntoa initgroups memcmp memcpy memmove memset mkfifo mmap fork pow putenv select seteuid setegid setgid setpgrp setsid setuid setutxent shmat socket strchr strcspn strdup strerror strftime strpbrk strrchr strstr uname vfork vprintf waitpid)
-FOREACH(_func ${FUNCS})
-    STRING(TOUPPER "${_func}" fuc)
-	CHECK_FUNCTION_EXISTS(${_func} HAVE_${fuc})
-ENDFOREACH(_func ${FUNCS})
+set(FUNCS getpwnam getspnam getuid grantpt initgroups seteuid setegid setgid setsid setuid shmat waitpid)
+foreach(_func ${FUNCS})
+	string(TOUPPER "${_func}" fuc)
+	check_function_exists(${_func} HAVE_${fuc})
+endforeach()
 
-CHECK_C_SOURCE_COMPILES("static __thread int p = 0; int main() {}" HAVE_TLS)
+check_c_source_compiles("static __thread int p = 0; int main() {}" HAVE_TLS)
 
-CHECK_INCLUDE_FILES(arpa/inet.h HAVE_ARPA_INET_H)
-CHECK_INCLUDE_FILES(ctype.h HAVE_CTYPE_H)
-CHECK_INCLUDE_FILES(dlfcn.h HAVE_DLFCN_H)
-CHECK_INCLUDE_FILES(endian.h HAVE_ENDIAN_H)
-CHECK_INCLUDE_FILES(errno.h HAVE_ERRNO_H)
-CHECK_INCLUDE_FILES(fcntl.h HAVE_FCNTL_H)
-CHECK_INCLUDE_FILES(inttypes.h HAVE_INTTYPES_H)
-CHECK_INCLUDE_FILES(linux/fb.h HAVE_LINUX_FB_H)
-CHECK_INCLUDE_FILES(linux/input.h HAVE_LINUX_INPUT_H)
-CHECK_INCLUDE_FILES(linux/uinput.h HAVE_LINUX_UINPUT_H)
-CHECK_INCLUDE_FILES(linux/videodev2.h HAVE_LINUX_VIDEODEV2_H)
-CHECK_INCLUDE_FILES(linux/videodev.h HAVE_LINUX_VIDEODEV_H)
-CHECK_INCLUDE_FILES(memory.h HAVE_MEMORY_H)
-CHECK_INCLUDE_FILES(netdb.h HAVE_NETDB_H)
-CHECK_INCLUDE_FILES(netinet/in.h HAVE_NETINET_IN_H)
-CHECK_INCLUDE_FILES(process.h HAVE_PROCESS_H)
-CHECK_INCLUDE_FILES(pthread.h HAVE_PTHREAD_H)
-CHECK_INCLUDE_FILES(pwd.h HAVE_PWD_H)
-CHECK_INCLUDE_FILES(signal.h HAVE_SIGNAL_H)
-CHECK_INCLUDE_FILES(stdarg.h HAVE_STDARG_H)
-CHECK_INCLUDE_FILES(stdbool.h HAVE_STDBOOL_H)
-CHECK_INCLUDE_FILES(stdint.h HAVE_STDINT_H)
-CHECK_INCLUDE_FILES(stdlib.h HAVE_STDLIB_H)
-CHECK_INCLUDE_FILES(string.h HAVE_STRING_H)
-CHECK_INCLUDE_FILES(strings.h HAVE_STRINGS_H)
-CHECK_INCLUDE_FILES(sys/endian.h HAVE_SYS_ENDIAN_H)
-CHECK_INCLUDE_FILES(sys/ioctl.h HAVE_SYS_IOCTL_H)
-CHECK_INCLUDE_FILES(sys/ipc.h HAVE_SYS_IPC_H)
-CHECK_INCLUDE_FILES(syslog.h HAVE_SYSLOG_H)
-CHECK_INCLUDE_FILES(sys/shm.h HAVE_SYS_SHM_H)
-CHECK_INCLUDE_FILES(sys/socket.h HAVE_SYS_SOCKET_H)
-CHECK_INCLUDE_FILES(sys/stat.h HAVE_SYS_STAT_H)
-CHECK_INCLUDE_FILES(sys/stropts.h HAVE_SYS_STROPTS_H)
-CHECK_INCLUDE_FILES(sys/timeb.h HAVE_SYS_TIMEB_H)
-CHECK_INCLUDE_FILES(sys/time.h HAVE_SYS_TIME_H)
-CHECK_INCLUDE_FILES(sys/types.h HAVE_SYS_TYPES_H)
-CHECK_INCLUDE_FILES(sys/wait.h HAVE_SYS_WAIT_H)
-CHECK_INCLUDE_FILES(termios.h HAVE_TERMIOS_H)
-CHECK_INCLUDE_FILES(time.h HAVE_TIME_H)
-CHECK_INCLUDE_FILES(unistd.h HAVE_UNISTD_H)
-CHECK_INCLUDE_FILES(utmpx.h HAVE_UTMPX_H)
-CHECK_INCLUDE_FILES(vfork.h HAVE_VFORK_H)
+# x11vnc header macros
+check_include_files(linux/fb.h HAVE_LINUX_FB_H)
+check_include_files(linux/input.h HAVE_LINUX_INPUT_H)
+check_include_files(linux/uinput.h HAVE_LINUX_UINPUT_H)
+check_include_files(linux/videodev.h HAVE_LINUX_VIDEODEV_H)
+check_include_files(netdb.h HAVE_NETDB_H)
+check_include_files(netinet/in.h HAVE_NETINET_IN_H)
+check_include_files(pwd.h HAVE_PWD_H)
+check_include_files(sys/ioctl.h HAVE_SYS_IOCTL_H)
+check_include_files(sys/stropts.h HAVE_SYS_STROPTS_H)
+check_include_files(sys/wait.h HAVE_SYS_WAIT_H)
+check_include_files(termios.h HAVE_TERMIOS_H)
+check_include_files(utmpx.h HAVE_UTMPX_H)
 
-FIND_PACKAGE(X11 REQUIRED)
+find_package(X11 REQUIRED)
 
-IF(NOT X11_XTest_FOUND)
-	MESSAGE(FATAL_ERROR "XTest library or headers not found - please install libxtst-dev or libXtst-devel")
-ENDIF()
+if(NOT X11_XTest_FOUND)
+	message(FATAL_ERROR "XTest library or headers not found - please install libxtst-dev or libXtst-devel")
+endif()
 
-IF(NOT X11_Xrandr_FOUND)
-	MESSAGE(FATAL_ERROR "Xrandr library or headers not found - please install libxrandr-dev or libXrandr-devel")
-ENDIF()
+if(NOT X11_Xrandr_FOUND)
+	message(FATAL_ERROR "Xrandr library or headers not found - please install libxrandr-dev or libXrandr-devel")
+endif()
 
-IF(NOT X11_Xinerama_FOUND)
-	MESSAGE(FATAL_ERROR "Xinerama library or headers not found - please install libxinerama-dev or libXinerama-devel")
-ENDIF()
+if(NOT X11_Xinerama_FOUND)
+	message(FATAL_ERROR "Xinerama library or headers not found - please install libxinerama-dev or libXinerama-devel")
+endif()
 
-IF(NOT X11_Xdamage_FOUND)
-	MESSAGE(FATAL_ERROR "Xdamage library or headers not found - please install libxdamage-dev or libXdamage-devel")
-ENDIF()
+if(NOT X11_Xdamage_FOUND)
+	message(FATAL_ERROR "Xdamage library or headers not found - please install libxdamage-dev or libXdamage-devel")
+endif()
 
-IF(NOT X11_Xfixes_FOUND)
-	MESSAGE(FATAL_ERROR "Xfixes library or headers not found - please install libxfixes-dev or libXfixes-devel")
-ENDIF()
+if(NOT X11_Xfixes_FOUND)
+	message(FATAL_ERROR "Xfixes library or headers not found - please install libxfixes-dev or libXfixes-devel")
+endif()
 
-SET(HAVE_X11 TRUE)
-SET(HAVE_XTEST TRUE)
-SET(HAVE_LIBSSL TRUE)
-SET(HAVE_LIBXINERAMA TRUE)
-SET(HAVE_LIBXRANDR TRUE)
-SET(HAVE_LIBXDAMAGE TRUE)
-SET(HAVE_LIBXFIXES TRUE)
+set(HAVE_X11 TRUE)
+set(HAVE_XTEST TRUE)
+set(HAVE_LIBSSL TRUE)
+set(HAVE_LIBXINERAMA TRUE)
+set(HAVE_LIBXRANDR TRUE)
+set(HAVE_LIBXDAMAGE TRUE)
+set(HAVE_LIBXFIXES TRUE)
 
-IF(X11_XShm_FOUND)
-    SET(HAVE_XSHM TRUE)
-ELSE()
-	MESSAGE("WARNING: XShm library or headers not found - building VNC server without XShm support")
-ENDIF()
+if(X11_XShm_FOUND)
+	set(HAVE_XSHM TRUE)
+else()
+	message("WARNING: XShm library or headers not found - building VNC server without XShm support")
+endif()
 
-IF(X11_Xinput_FOUND)
-    SET(HAVE_XI2 TRUE)
-ELSE()
-	MESSAGE("WARNING: Xinput library or headers not found - building VNC server without Xinput support")
-ENDIF()
+if(X11_Xinput_FOUND)
+	set(HAVE_XI2 TRUE)
+else()
+	message("WARNING: Xinput library or headers not found - building VNC server without Xinput support")
+endif()
 
-IF(X11_Xcomposite_FOUND)
-    SET(HAVE_LIBXCOMPOSITE TRUE)
-ELSE()
-	MESSAGE("WARNING: Xcomposite library or headers not found - building VNC server without Xcomposite support")
-ENDIF()
+if(X11_Xcomposite_FOUND)
+	set(HAVE_LIBXCOMPOSITE TRUE)
+else()
+	message("WARNING: Xcomposite library or headers not found - building VNC server without Xcomposite support")
+endif()
 
-IF(X11_Xcursor_FOUND)
-    SET(HAVE_LIBXCURSOR TRUE)
-ELSE()
-	MESSAGE("WARNING: Xcursor library or headers not found - building VNC server without Xcursor support")
-ENDIF()
+if(X11_Xcursor_FOUND)
+	set(HAVE_LIBXCURSOR TRUE)
+else()
+	message("WARNING: Xcursor library or headers not found - building VNC server without Xcursor support")
+endif()
 
-SET(CMAKE_REQUIRED_LIBRARIES ${X11_LIBRARIES} ${X11_XTest_LIB})
+set(CMAKE_REQUIRED_LIBRARIES ${X11_LIBRARIES} ${X11_XTest_LIB})
 
-CHECK_FUNCTION_EXISTS(XReadScreen HAVE_SOLARIS_XREADSCREEN)
-CHECK_FUNCTION_EXISTS(FBPMForceLevel HAVE_FBPM)
-CHECK_FUNCTION_EXISTS(DPMSForceLevel HAVE_DPMS)
-CHECK_FUNCTION_EXISTS(XTestGrabControl HAVE_XTESTGRABCONTROL)
-CHECK_FUNCTION_EXISTS(XRecordEnableContextAsync HAVE_RECORD)
-CHECK_INCLUDE_FILES(X11/extensions/readdisplay.h HAVE_IRIX_XREADDISPLAY)
-CHECK_INCLUDE_FILES(X11/XKBlib.h HAVE_XKBLIB_H)
-IF(HAVE_XKBLIB_H)
-    CHECK_FUNCTION_EXISTS(XkbSelectEvents HAVE_XKEYBOARD)
-ENDIF(HAVE_XKBLIB_H)
+check_function_exists(XReadScreen HAVE_SOLARIS_XREADSCREEN)
+check_function_exists(FBPMForceLevel HAVE_FBPM)
+check_function_exists(DPMSForceLevel HAVE_DPMS)
+check_function_exists(XTestGrabControl HAVE_XTESTGRABCONTROL)
+check_function_exists(XRecordEnableContextAsync HAVE_RECORD)
+check_include_files(X11/extensions/readdisplay.h HAVE_IRIX_XREADDISPLAY)
+check_include_files(X11/XKBlib.h HAVE_XKBLIB_H)
+if(HAVE_XKBLIB_H)
+	check_function_exists(XkbSelectEvents HAVE_XKEYBOARD)
+endif()
 
-UNSET(CMAKE_REQUIRED_LIBRARIES)
+set(CMAKE_REQUIRED_LIBRARIES ${OPENSSL_LIBRARIES})
+check_function_exists(X509_print_ex_fp HAVE_X509_PRINT_EX_FP)
 
-SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
+unset(CMAKE_REQUIRED_LIBRARIES)
 
-ADD_DEFINITIONS(-DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT)
-INCLUDE_DIRECTORIES(${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
-
-SET(libvncserver_SOURCES
+set(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
+if(NOT LibVNCServer_FOUND)
+set(libvncserver_SOURCES
 	${libvncserver_DIR}/libvncserver/auth.c
 	${libvncserver_DIR}/libvncserver/cargs.c
 	${libvncserver_DIR}/libvncserver/corre.c
@@ -192,8 +154,9 @@ SET(libvncserver_SOURCES
 	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c
 	${libvncserver_DIR}/common/vncauth.c)
+endif()
 
-SET(x11vnc_SOURCES x11vnc-veyon.c
+set(x11vnc_SOURCES x11vnc-veyon.c
 	${x11vnc_DIR}/src/appshare.c
 	${x11vnc_DIR}/src/avahi.c
 	${x11vnc_DIR}/src/rates.c
@@ -237,9 +200,9 @@ SET(x11vnc_SOURCES x11vnc-veyon.c
 	${x11vnc_DIR}/src/uinput.c
 )
 
-ENDIF()
+set_source_files_properties(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers -Wno-strict-aliasing -Wno-restrict -Wno-multistatement-macros" COTIRE_EXCLUDED TRUE)
 
-SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers" COTIRE_EXCLUDED TRUE)
+endif()
 
 build_veyon_plugin(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
@@ -252,9 +215,17 @@ build_veyon_plugin(builtin-x11vnc-server
 	X11VncConfiguration.h
 )
 
-IF(NOT VEYON_X11VNC_EXTERNAL)
-TARGET_LINK_LIBRARIES(builtin-x11vnc-server
-	Threads::Threads
+if(VEYON_X11VNC_EXTERNAL)
+
+target_compile_definitions(builtin-x11vnc-server PRIVATE VEYON_X11VNC_EXTERNAL)
+
+else()
+
+target_compile_definitions(builtin-x11vnc-server PRIVATE VNCSHARED FOREVER NOREPEAT=0 NOPW=1 REMOTE_CONTROL=0 EXTERNAL_COMMANDS=0 FILEXFER=0 NOGUI SMALL_FOOTPRINT)
+
+target_include_directories(builtin-x11vnc-server PRIVATE ${x11vnc_DIR}/src)
+
+target_link_libraries(builtin-x11vnc-server
 	${X11_LIBRARIES}
 	${X11_XTest_LIB}
 	${X11_Xfixes_LIB}
@@ -263,22 +234,27 @@ TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	${X11_Xrandr_LIB}
 )
 
-IF(X11_XShm_FOUND)
-TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_XShm_LIB})
-ENDIF()
+if(LibVNCServer_FOUND)
+	#target_include_directories(builtin-x11vnc-server PRIVATE ${3rdparty_DIR} ${x11vnc_DIR}/src)
+	target_link_libraries(builtin-x11vnc-server LibVNC::LibVNCServer)
+else()
+	target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common)
+endif()
 
-IF(X11_Xcomposite_FOUND)
-TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_Xcomposite_LIB})
-ENDIF()
+if(X11_XShm_FOUND)
+target_link_libraries(builtin-x11vnc-server ${X11_XShm_LIB})
+endif()
 
-IF(X11_Xcursor_FOUND)
-TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_Xcursor_LIB})
-ENDIF()
+if(X11_Xcomposite_FOUND)
+target_link_libraries(builtin-x11vnc-server ${X11_Xcomposite_LIB})
+endif()
 
-IF(X11_Xinput_FOUND)
-TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_Xinput_LIB})
-ENDIF()
+if(X11_Xcursor_FOUND)
+target_link_libraries(builtin-x11vnc-server ${X11_Xcursor_LIB})
+endif()
 
-ENDIF()
+if(X11_Xinput_FOUND)
+target_link_libraries(builtin-x11vnc-server ${X11_Xinput_LIB})
+endif()
 
-
+endif()

@@ -12,17 +12,19 @@ FILE(GLOB veyoncore_SOURCES
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
-SET(libvncclient_SOURCES
-	${libvncserver_DIR}/libvncclient/cursor.c
-	${libvncserver_DIR}/libvncclient/listen.c
-	${libvncserver_DIR}/libvncclient/rfbproto.c
-	${libvncserver_DIR}/libvncclient/sockets.c
-	${libvncserver_DIR}/libvncclient/tls_none.c
-	${libvncserver_DIR}/libvncclient/vncviewer.c
-	${libvncserver_DIR}/common/crypto_openssl.c
-	${libvncserver_DIR}/common/turbojpeg.c)
+if(NOT LibVNCClient_FOUND)
+	set(libvncclient_SOURCES
+		${libvncserver_DIR}/libvncclient/cursor.c
+		${libvncserver_DIR}/libvncclient/listen.c
+		${libvncserver_DIR}/libvncclient/rfbproto.c
+		${libvncserver_DIR}/libvncclient/sockets.c
+		${libvncserver_DIR}/libvncclient/tls_openssl.c
+		${libvncserver_DIR}/libvncclient/vncviewer.c
+		${libvncserver_DIR}/common/crypto_openssl.c
+		${libvncserver_DIR}/common/turbojpeg.c)
 
-set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types -fvisibility=default")
+	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types -fvisibility=default")
+endif()
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
@@ -43,13 +45,32 @@ TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Network
 	Qt5::Widgets
 	${VEYON_DEBUG_LIBRARIES}
-	${ZLIB_LIBRARIES}
-	${JPEG_LIBRARIES}
-	${PNG_LIBRARIES}
-	${LZO_LIBRARIES}
-	${QCA_LIBRARY}
 	${OPENSSL_LIBRARIES}
+	${QCA_LIBRARY}
 	)
+
+if(LibVNCClient_FOUND)
+	target_link_libraries(veyon-core LibVNC::LibVNCClient)
+else()
+	target_include_directories(veyon-core PRIVATE SYSTEM
+		${ZLIB_INCLUDE_DIR}
+		${JPEG_INCLUDE_DIR}
+		${PNG_INCLUDE_DIR}
+		${LZO_INCLUDE_DIR}
+	)
+	target_include_directories(veyon-core PUBLIC
+		${libvncserver_DIR}/common/
+		${libvncserver_DIR}
+	)
+	target_link_libraries(veyon-core
+		Threads::Threads
+		${ZLIB_LIBRARIES}
+		${JPEG_LIBRARIES}
+		${PNG_LIBRARIES}
+		${LZO_LIBRARIES}
+		${OPENSSL_LIBRARIES}
+	)
+endif()
 
 IF(VEYON_BUILD_WIN32)
 	# add Windows Socket library required by libvncclient
