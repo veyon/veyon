@@ -3,6 +3,7 @@ FILE(GLOB veyoncore_INCLUDES
 						${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h
 )
 FILE(GLOB veyoncore_SOURCES
+						${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
@@ -19,7 +20,6 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/tls_none.c
 	${libvncserver_DIR}/libvncclient/vncviewer.c
 	${libvncserver_DIR}/common/crypto_openssl.c
-	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c)
 
 set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types -fvisibility=default")

@@ -25,7 +25,7 @@
 extern "C"
 {
 #include "rfb/rfbproto.h"
-#include "common/d3des.h"
+#include "d3des.h"
 }
 
 #include <QBuffer>
