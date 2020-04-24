@@ -158,14 +158,7 @@ set(VEYON_DEBUG_LIBRARIES Qt5::Test)
 endif()
 
 # find required libraries
-find_package(ZLIB REQUIRED)
-find_package(PNG REQUIRED)
-find_package(JPEG REQUIRED)
-find_package(LZO REQUIRED)
 find_package(QCA REQUIRED)
-
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-find_package(Threads REQUIRED)
 
 # FindOpenSSL.cmake in recent versions of CMake will only find the DLLs instead
 # of the import libraries if CYGWIN is not set
@@ -178,21 +171,58 @@ if(VEYON_BUILD_LINUX)
 	include(XdgInstall)
 endif()
 
+find_package(LibVNCClient 0.9.13)
 
-### BEGIN: libvncserver configuration
-include(LibVNCServerIntegration)
+if(LibVNCClient_FOUND)
+	include(CheckCSourceCompiles)
+	set(CMAKE_REQUIRED_LIBRARIES LibVNC::LibVNCClient)
+	check_c_source_compiles("
+#include <rfb/rfbclient.h>
 
-set(_RFB_RFBCONFIG_H TRUE)
-set(LIBVNCSERVER_HAVE_LIBJPEG TRUE)
-set(LIBVNCSERVER_HAVE_LZO TRUE)
-set(LIBVNCSERVER_HAVE_LIBPNG TRUE)
-set(LIBVNCSERVER_HAVE_LIBPTHREAD TRUE)
-set(LIBVNCSERVER_HAVE_LIBZ TRUE)
-set(LIBVNCSERVER_HAVE_LIBSSL TRUE)
-set(LIBVNCSERVER_ALLOW24BPP TRUE)
-set(LIBVNCSERVER_IPv6 TRUE)
-### END: libvncserver configuration
+int main()
+{
+	rfbClient* client = rfbGetClient( 8, 3, 4 );
+	client->connectTimeout = 1;
+	client->readTimeout = 1;
+	return 0;
+}
+"
+	LIBVNCCLIENT_SUPPORTS_TIMEOUTS)
+	if(NOT LIBVNCCLIENT_SUPPORTS_TIMEOUTS)
+		message(FATAL_ERROR "Outdated development version of LibVNCClient found")
+	endif()
+	unset(CMAKE_REQUIRED_LIBRARIES)
+else()
+	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
+	find_package(ZLIB REQUIRED)
+	find_package(PNG REQUIRED)
+	find_package(JPEG REQUIRED)
+	find_package(LZO REQUIRED)
+	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+	find_package(Threads REQUIRED)
+endif()
 
+find_package(LibVNCServer 0.9.8)
+if(NOT LibVNCServer_FOUND)
+	### BEGIN: libvncserver configuration
+	include(LibVNCServerIntegration)
+
+	set(_RFB_RFBCONFIG_H TRUE)
+	set(LIBVNCSERVER_HAVE_LIBJPEG TRUE)
+	set(LIBVNCSERVER_HAVE_LZO TRUE)
+	set(LIBVNCSERVER_HAVE_LIBPNG TRUE)
+	set(LIBVNCSERVER_HAVE_LIBPTHREAD TRUE)
+	set(LIBVNCSERVER_HAVE_LIBZ TRUE)
+	set(LIBVNCSERVER_HAVE_LIBSSL TRUE)
+	set(LIBVNCSERVER_ALLOW24BPP TRUE)
+	set(LIBVNCSERVER_IPv6 TRUE)
+	### END: libvncserver configuration
+
+	# write libvncserver configuration header
+	file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
+	configure_file(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
+
+endif()
 
 if(SANITIZE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
@@ -275,11 +305,6 @@ add_subdirectory(cli)
 add_subdirectory(worker)
 add_subdirectory(plugins)
 add_subdirectory(translations)
-
-# write libvncserver/libvncclient configuration header
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
-configure_file(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
-
 
 #
 # add Windows installer related targets

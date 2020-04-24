@@ -103,7 +103,7 @@ unset(CMAKE_REQUIRED_LIBRARIES)
 
 set(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
-
+if(NOT LibVNCServer_FOUND)
 set(libvncserver_SOURCES
 	${libvncserver_DIR}/libvncserver/auth.c
 	${libvncserver_DIR}/libvncserver/cargs.c
@@ -132,6 +132,7 @@ set(libvncserver_SOURCES
 	${libvncserver_DIR}/common/d3des.c
 	${libvncserver_DIR}/common/turbojpeg.c
 	${libvncserver_DIR}/common/vncauth.c)
+endif()
 
 set(x11vnc_SOURCES x11vnc-veyon.c
 	${x11vnc_DIR}/src/appshare.c
@@ -199,7 +200,9 @@ target_compile_definitions(builtin-x11vnc-server PRIVATE VEYON_X11VNC_EXTERNAL)
 else()
 
 target_compile_definitions(builtin-x11vnc-server PRIVATE VNCSHARED FOREVER NOREPEAT=0 NOPW=1 REMOTE_CONTROL=0 EXTERNAL_COMMANDS=0 FILEXFER=0 NOGUI SMALL_FOOTPRINT)
-target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
+
+target_include_directories(builtin-x11vnc-server PRIVATE ${x11vnc_DIR}/src)
+
 target_link_libraries(builtin-x11vnc-server
 	${X11_LIBRARIES}
 	${X11_XTest_LIB}
@@ -208,6 +211,13 @@ target_link_libraries(builtin-x11vnc-server
 	${X11_Xdamage_LIB}
 	${X11_Xrandr_LIB}
 )
+
+if(LibVNCServer_FOUND)
+	#target_include_directories(builtin-x11vnc-server PRIVATE ${3rdparty_DIR} ${x11vnc_DIR}/src)
+	target_link_libraries(builtin-x11vnc-server LibVNC::LibVNCServer)
+else()
+	target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common)
+endif()
 
 if(X11_XShm_FOUND)
 target_link_libraries(builtin-x11vnc-server ${X11_XShm_LIB})
