@@ -410,6 +410,7 @@ void VncConnection::establishConnection()
 		m_client->GotCursorShape = hookCursorShape;
 		m_client->GotXCutText = hookCutText;
 		m_client->connectTimeout = ConnectTimeout / 1000;
+		m_client->readTimeout = ReadTimeout / 1000;
 		setClientData( VncConnectionTag, this );
 
 		Q_EMIT connectionPrepared();
