@@ -157,6 +157,8 @@ protected:
 private:
 	// intervals and timeouts
 	static constexpr int ThreadTerminationTimeout = 30000;
+	static constexpr int ConnectTimeout = 10000;
+	static constexpr int ReadTimeout = 30000;
 	static constexpr int ConnectionRetryInterval = 1000;
 	static constexpr int MessageWaitTimeout = 500;
 	static constexpr int FastFramebufferUpdateInterval = 100;
