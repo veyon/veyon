@@ -22,6 +22,11 @@
  *
  */
 
+#include <QApplication>
+#include <QMessageBox>
+
+#include "AuthLdapConfigurationDialog.h"
+#include "AuthLdapDialog.h"
 #include "CommandLineIO.h"
 #include "ConfigurationManager.h"
 #include "LdapNetworkObjectDirectory.h"
@@ -29,8 +34,8 @@
 #include "LdapConfigurationPage.h"
 #include "LdapConfigurationTest.h"
 #include "LdapDirectory.h"
+#include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
-
 
 LdapPlugin::LdapPlugin( QObject* parent ) :
 	QObject( parent ),
@@ -95,6 +100,146 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 		m_configuration.setComputerLocationAttribute( m_configuration.legacyComputerRoomAttribute() );
 		m_configuration.setLocationNameAttribute( m_configuration.legacyComputerRoomNameAttribute() );
 	}
+}
+
+
+
+bool LdapPlugin::initializeCredentials()
+{
+	m_authCore.clear();
+
+	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
+	{
+		AuthLdapDialog logonDialog( m_configuration, QApplication::activeWindow() );
+		if( logonDialog.exec() == AuthLdapDialog::Accepted )
+		{
+			m_authCore.setUsername( logonDialog.username() );
+			m_authCore.setPassword( logonDialog.password() );
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+bool LdapPlugin::hasCredentials() const
+{
+	return m_authCore.hasCredentials();
+}
+
+
+
+bool LdapPlugin::checkCredentials() const
+{
+	if( hasCredentials() == false )
+	{
+		vWarning() << "Invalid username or password!";
+
+		QMessageBox::critical( QApplication::activeWindow(),
+							   authenticationTestTitle(),
+							   tr( "The supplied username or password is wrong. Please enter valid credentials or "
+								   "switch to a different authentication method using the Veyon Configurator." ) );
+
+		return false;
+	}
+
+	return true;
+}
+
+
+
+void LdapPlugin::configureCredentials()
+{
+	AuthLdapConfigurationDialog( m_authCore.configuration() ).exec();
+}
+
+
+
+VncServerClient::AuthState LdapPlugin::performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const
+{
+	switch( client->authState() )
+	{
+	case VncServerClient::AuthState::Init:
+		client->setPrivateKey( CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize ) );
+
+		if( VariantArrayMessage( message.ioDevice() ).write( client->privateKey().toPublicKey().toPEM() ).send() )
+		{
+			return VncServerClient::AuthState::Stage1;
+		}
+
+		vDebug() << "failed to send public key";
+		return VncServerClient::AuthState::Failed;
+
+	case VncServerClient::AuthState::Stage1:
+	{
+		auto privateKey = client->privateKey();
+
+		client->setUsername( message.read().toString() ); // Flawfinder: ignore
+		CryptoCore::PlaintextPassword encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
+
+		CryptoCore::PlaintextPassword decryptedPassword;
+
+		if( privateKey.decrypt( encryptedPassword,
+								&decryptedPassword,
+								CryptoCore::DefaultEncryptionAlgorithm ) == false )
+		{
+			vWarning() << "failed to decrypt password";
+			return VncServerClient::AuthState::Failed;
+		}
+
+		vInfo() << "authenticating user" << client->username();
+
+		AuthLdapCore authCore;
+		authCore.setUsername( client->username() );
+		authCore.setPassword( decryptedPassword );
+
+		if( authCore.authenticate() )
+		{
+			vDebug() << "SUCCESS";
+			return VncServerClient::AuthState::Successful;
+		}
+
+		vDebug() << "FAIL";
+		return VncServerClient::AuthState::Failed;
+	}
+
+	default:
+		break;
+	}
+
+	return VncServerClient::AuthState::Failed;
+}
+
+
+
+bool LdapPlugin::authenticate( QIODevice* socket ) const
+{
+	VariantArrayMessage publicKeyMessage( socket );
+	publicKeyMessage.receive();
+
+	auto publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
+
+	if( publicKey.canEncrypt() == false )
+	{
+		vCritical() << QThread::currentThreadId() << "can't encrypt with given public key!";
+		return false;
+	}
+
+	const auto encryptedPassword = publicKey.encrypt( m_authCore.password(), CryptoCore::DefaultEncryptionAlgorithm );
+	if( encryptedPassword.isEmpty() )
+	{
+		vCritical() << QThread::currentThreadId() << "password encryption failed!";
+		return false;
+	}
+
+	VariantArrayMessage response( socket );
+	response.write( m_authCore.username() );
+	response.write( encryptedPassword.toByteArray() );
+	response.send();
+
+	return true;
 }
 
 

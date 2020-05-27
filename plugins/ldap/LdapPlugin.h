@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include "AuthLdapCore.h"
+#include "AuthenticationPluginInterface.h"
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "LdapConfiguration.h"
@@ -32,15 +34,18 @@
 
 class LdapDirectory;
 
-class LdapPlugin : public QObject, PluginInterface,
-		CommandLinePluginInterface,
-		NetworkObjectDirectoryPluginInterface,
-		UserGroupsBackendInterface,
-		ConfigurationPagePluginInterface
+class LdapPlugin : public QObject,
+				   PluginInterface,
+				   AuthenticationPluginInterface,
+				   CommandLinePluginInterface,
+				   NetworkObjectDirectoryPluginInterface,
+				   UserGroupsBackendInterface,
+				   ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Ldap")
 	Q_INTERFACES(PluginInterface
+				 AuthenticationPluginInterface
 				 CommandLinePluginInterface
 				 NetworkObjectDirectoryPluginInterface
 				 UserGroupsBackendInterface
@@ -81,6 +86,28 @@ public:
 
 	void upgrade( const QVersionNumber& oldVersion ) override;
 
+	QString authenticationTypeName() const override
+	{
+		return tr("LDAP bind authentication");
+	}
+
+	bool initializeCredentials() override;
+	bool hasCredentials() const override;
+	bool checkCredentials() const override;
+
+	void configureCredentials() override;
+
+	// server side authentication
+	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
+
+	// client side authentication
+	bool authenticate( QIODevice* socket ) const override;
+
+	QString accessControlUser() const override
+	{
+		return m_authCore.username();
+	}
+
 	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "ldap" );
@@ -113,7 +140,6 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
-
 public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_query( const QStringList& arguments );
@@ -132,5 +158,7 @@ private:
 	LdapClient* m_ldapClient;
 	LdapDirectory* m_ldapDirectory;
 	QMap<QString, QString> m_commands;
+
+	AuthLdapCore m_authCore;
 
 };
