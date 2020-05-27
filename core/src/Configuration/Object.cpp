@@ -41,7 +41,8 @@ Object::Object( Store::Backend backend, Store::Scope scope, const QString& store
 
 
 Object::Object( Store* store ) :
-	m_store( store )
+	m_store( store ),
+	m_customStore( true )
 {
 	reloadFromStore();
 }
