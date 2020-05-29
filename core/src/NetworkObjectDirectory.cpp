@@ -345,6 +345,18 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 
 
 
+void NetworkObjectDirectory::replaceObjects( const NetworkObjectList& objects, const NetworkObject& parent )
+{
+	for( const auto& object : objects )
+	{
+		addOrUpdateObject( object, parent );
+	}
+
+	removeObjects( parent, [&objects]( const NetworkObject& object ) { return objects.contains( object ) == false; } );
+}
+
+
+
 void NetworkObjectDirectory::setObjectPopulated( const NetworkObject& networkObject )
 {
 	const auto objectModelId = networkObject.modelId();
