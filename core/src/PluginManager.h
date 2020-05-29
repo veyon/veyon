@@ -47,12 +47,7 @@ public:
 		return m_pluginInterfaces;
 	}
 
-	PluginInterfaceList& pluginInterfaces()
-	{
-		return m_pluginInterfaces;
-	}
-
-	QObjectList& pluginObjects()
+	const QObjectList& pluginObjects() const
 	{
 		return m_pluginObjects;
 	}
