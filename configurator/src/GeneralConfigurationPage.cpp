@@ -236,7 +236,7 @@ void GeneralConfigurationPage::clearLogFiles()
 
 void GeneralConfigurationPage::populateNetworkObjectDirectories()
 {
-	const auto directories = NetworkObjectDirectoryManager().availableDirectories();
+	const auto directories = VeyonCore::networkObjectDirectoryManager().availableDirectories();
 
 	for( auto it = directories.constBegin(), end = directories.constEnd(); it != end; ++it )
 	{
