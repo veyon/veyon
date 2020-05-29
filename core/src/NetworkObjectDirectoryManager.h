@@ -39,11 +39,11 @@ public:
 
 	QMap<Plugin::Uid, QString> availableDirectories();
 
+	NetworkObjectDirectory* createDirectory( Plugin::Uid uid, QObject* parent );
+
 	NetworkObjectDirectory* configuredDirectory();
 
 private:
-	NetworkObjectDirectory* createDirectory();
-
 	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces{};
 	NetworkObjectDirectory* m_configuredDirectory{nullptr};
 
