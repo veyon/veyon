@@ -308,7 +308,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 
 	auto& objectList = m_objects[parent.modelId()]; // clazy:exclude=detaching-member
 	int index = 0;
-	QList<NetworkObject::ModelId> groupsToRemove;
+	QList<NetworkObject::ModelId> objectsToRemove;
 
 	for( auto it = objectList.begin(); it != objectList.end(); )
 	{
@@ -316,7 +316,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 		{
 			if( it->type() == NetworkObject::Type::Location )
 			{
-				groupsToRemove.append( it->modelId() );
+				objectsToRemove.append( it->modelId() );
 			}
 
 			Q_EMIT objectsAboutToBeRemoved( parent, index, 1 );
@@ -330,7 +330,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 		}
 	}
 
-	for( const auto& groupId : groupsToRemove )
+	for( const auto& groupId : objectsToRemove )
 	{
 		m_objects.remove( groupId );
 	}
