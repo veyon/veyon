@@ -3,7 +3,7 @@ services:
     - docker
 git:
     depth: false
-dist: xenial
+dist: bionic
 sudo: required
 matrix:
     include:
@@ -16,7 +16,6 @@ matrix:
         - env: TARGET_OS=ubuntu.xenial
         - env: TARGET_OS=sast
 script:
-    - wget http://archive.ubuntu.com/ubuntu/pool/main/libs/libseccomp/libseccomp2_2.4.1-0ubuntu0.16.04.2_amd64.deb && sudo dpkg -i libseccomp2*deb
     - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:latest || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.ci/${TRAVIS_OS_NAME}.${TARGET_OS}/
     - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} /bin/sh /veyon/.ci/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
 deploy:
