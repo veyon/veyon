@@ -45,7 +45,7 @@ public:
 		Location,
 		Host,
 		Label,
-		TypeCount
+		DesktopGroup
 	} ;
 	Q_ENUM(Type)
 
@@ -143,7 +143,6 @@ public:
 
 private:
 	Uid calculateUid() const;
-	static ModelId calculateModelId( Uid uid );
 
 	Type m_type;
 	QString m_name;

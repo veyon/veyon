@@ -385,6 +385,7 @@ ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 		switch( objectType )
 		{
 		case NetworkObject::Type::Location:
+		case NetworkObject::Type::DesktopGroup:
 			computers += selectedComputers( entryIndex );
 			break;
 		case NetworkObject::Type::Host:
