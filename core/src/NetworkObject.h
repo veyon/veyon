@@ -43,6 +43,7 @@ public:
 		None,
 		Root,
 		Location,
+		RemoteSessionServer,
 		Host,
 		Label,
 		TypeCount
