@@ -68,6 +68,7 @@ protected:
 	bool hasObjects() const;
 	void addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent );
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
+	void replaceObjects( const NetworkObjectList& objects, const NetworkObject& parent );
 	void setObjectPopulated( const NetworkObject& networkObject );
 
 private:
