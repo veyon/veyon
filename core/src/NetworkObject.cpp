@@ -64,6 +64,7 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 	if( m_uid.isNull() )
 	{
 		m_uid = calculateUid();
+		m_calculatedUid = true;
 	}
 }
 
@@ -114,6 +115,18 @@ bool NetworkObject::exactMatch( const NetworkObject& other ) const
 			macAddress() == other.macAddress() &&
 			directoryAddress() == other.directoryAddress() &&
 			parentUid() == other.parentUid();
+}
+
+
+
+void NetworkObject::setParentUid( Uid parentUid )
+{
+	m_parentUid = parentUid;
+
+	if( m_calculatedUid )
+	{
+		m_uid = calculateUid();
+	}
 }
 
 

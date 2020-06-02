@@ -104,10 +104,7 @@ public:
 		return m_parentUid;
 	}
 
-	void setParentUid( Uid parentUid )
-	{
-		m_parentUid = parentUid;
-	}
+	void setParentUid( Uid parentUid );
 
 	ModelId modelId() const;
 
@@ -154,6 +151,7 @@ private:
 	Uid m_uid;
 	Uid m_parentUid;
 	bool m_populated;
+	bool m_calculatedUid{false};
 
 	static const QUuid networkObjectNamespace;
 
