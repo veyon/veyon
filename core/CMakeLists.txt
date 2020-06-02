@@ -24,14 +24,14 @@ if(NOT LibVNCClient_FOUND)
 		${libvncserver_DIR}/common/crypto_openssl.c
 		${libvncserver_DIR}/common/turbojpeg.c)
 
-	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types -fvisibility=default")
+	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default")
 endif()
 
 add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
 
 set_default_target_properties(veyon-core)
 
-target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS})
+target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS} -Wno-parentheses)
 
 target_include_directories(veyon-core PRIVATE SYSTEM ${OPENSSL_INCLUDE_DIR})
 target_include_directories(veyon-core PUBLIC
