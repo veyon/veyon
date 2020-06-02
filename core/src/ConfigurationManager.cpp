@@ -61,6 +61,14 @@ bool ConfigurationManager::applyConfiguration()
 
 	auto& network = VeyonCore::platform().networkFunctions();
 
+	if( network.configureFirewallException( VeyonCore::filesystem().serviceFilePath(),
+											QStringLiteral("Veyon Service"),
+											m_configuration.isFirewallExceptionEnabled() ) == false )
+	{
+		m_errorString = tr( "Could not configure the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() );
+		return false;
+	}
+
 	if( network.configureFirewallException( VeyonCore::filesystem().serverFilePath(),
 											QStringLiteral("Veyon Server"),
 											m_configuration.isFirewallExceptionEnabled() ) == false )
