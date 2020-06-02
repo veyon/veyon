@@ -43,9 +43,9 @@ public:
 		None,
 		Root,
 		Location,
-		RemoteSessionServer,
 		Host,
 		Label,
+		RemoteSessionServer,
 		TypeCount
 	} ;
 	Q_ENUM(Type)
