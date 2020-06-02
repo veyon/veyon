@@ -23,7 +23,7 @@ if(NOT LibVNCClient_FOUND)
 		${libvncserver_DIR}/common/crypto_openssl.c
 		${libvncserver_DIR}/common/turbojpeg.c)
 
-	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -Wno-incompatible-pointer-types -fvisibility=default")
+	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default")
 endif()
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
@@ -38,6 +38,7 @@ if(NOT VEYON_BUILD_WIN32)
 endif()
 
 set_default_target_properties(veyon-core)
+target_compile_options(veyon-core PRIVATE -Wno-parentheses)
 
 target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
