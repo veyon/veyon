@@ -34,8 +34,10 @@ int main( int argc, char** argv )
 
 	auto& serviceFunctions = VeyonCore::platform().serviceFunctions();
 
-	if( serviceFunctions.runAsService( VeyonServiceControl::name(),
-									   [&]() { serviceFunctions.manageServerInstances(); } ) )
+	if( serviceFunctions.runAsService( VeyonServiceControl::name(), [&]() {
+			Q_EMIT core.applicationLoaded();
+			serviceFunctions.manageServerInstances();
+		} ) )
 	{
 		return 0;
 	}
