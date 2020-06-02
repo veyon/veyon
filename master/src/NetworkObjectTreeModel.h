@@ -49,6 +49,7 @@ public:
 	bool canFetchMore( const QModelIndex& parent ) const override;
 	void fetchMore( const QModelIndex& parent ) override;
 
+	Qt::ItemFlags flags( const QModelIndex& index ) const override;
 
 private:
 	void beginInsertObjects( const NetworkObject& parent, int index, int count );
