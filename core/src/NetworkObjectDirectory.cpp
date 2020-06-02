@@ -248,6 +248,7 @@ void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
 	if( object.type() == NetworkObject::Type::Root )
 	{
 		update();
+		m_rootObject.setPopulated();
 	}
 
 	setObjectPopulated( object );
