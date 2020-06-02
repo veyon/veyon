@@ -141,7 +141,6 @@ public:
 
 private:
 	Uid calculateUid() const;
-	static ModelId calculateModelId( Uid uid );
 
 	Type m_type;
 	QString m_name;
