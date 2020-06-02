@@ -128,6 +128,14 @@ bool Filesystem::ensurePathExists( const QString &path ) const
 
 
 
+QString Filesystem::serviceFilePath() const
+{
+	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
+									 QStringLiteral("veyon-service" ) + VeyonCore::executableSuffix() );
+}
+
+
+
 QString Filesystem::serverFilePath() const
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
