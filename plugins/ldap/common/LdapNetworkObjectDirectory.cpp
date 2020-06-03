@@ -37,12 +37,12 @@ LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration&
 
 
 NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type type,
-															NetworkObject::Attribute attribute, const QVariant& value )
+															NetworkObject::Property property, const QVariant& value )
 {
 	switch( type )
 	{
-	case NetworkObject::Type::Location: return queryLocations( attribute, value );
-	case NetworkObject::Type::Host: return queryHosts( attribute, value );
+	case NetworkObject::Type::Location: return queryLocations( property, value );
+	case NetworkObject::Type::Host: return queryHosts( property, value );
 	default: break;
 	}
 
@@ -57,7 +57,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject&
 	{
 	case NetworkObject::Type::Host:
 		return { NetworkObject( NetworkObject::Type::Location,
-								m_ldapDirectory.locationsOfComputer( object.directoryAddress() ).value( 0 ) ) };
+								m_ldapDirectory.locationsOfComputer( object.property( NetworkObject::Property::DirectoryAddress ).toString() ).value( 0 ) ) };
 	case NetworkObject::Type::Location:
 		return { NetworkObject( NetworkObject::Type::Root ) };
 	default:
@@ -103,26 +103,27 @@ void LdapNetworkObjectDirectory::updateLocation( const NetworkObject& locationOb
 	}
 
 	removeObjects( locationObject, [computers]( const NetworkObject& object ) {
-		return object.type() == NetworkObject::Type::Host && computers.contains( object.directoryAddress() ) == false; } );
+		return object.type() == NetworkObject::Type::Host &&
+			   computers.contains( object.property( NetworkObject::Property::DirectoryAddress ).toString() ) == false; } );
 }
 
 
 
-NetworkObjectList LdapNetworkObjectDirectory::queryLocations( NetworkObject::Attribute attribute, const QVariant& value )
+NetworkObjectList LdapNetworkObjectDirectory::queryLocations( NetworkObject::Property property, const QVariant& value )
 {
 	QString name;
 
-	switch( attribute )
+	switch( property )
 	{
-	case NetworkObject::Attribute::None:
+	case NetworkObject::Property::None:
 		break;
 
-	case NetworkObject::Attribute::Name:
+	case NetworkObject::Property::Name:
 		name = value.toString();
 		break;
 
 	default:
-		vCritical() << "Can't query locations by attribute" << attribute;
+		vCritical() << "Can't query locations by property" << property;
 		return {};
 	}
 
@@ -141,25 +142,25 @@ NetworkObjectList LdapNetworkObjectDirectory::queryLocations( NetworkObject::Att
 
 
 
-NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Attribute attribute, const QVariant& value )
+NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Property property, const QVariant& value )
 {
 	QStringList computers;
 
-	switch( attribute )
+	switch( property )
 	{
-	case NetworkObject::Attribute::None:
+	case NetworkObject::Property::None:
 		computers = m_ldapDirectory.computersByHostName( {} );
 		break;
 
-	case NetworkObject::Attribute::Name:
+	case NetworkObject::Property::Name:
 		computers = m_ldapDirectory.computersByDisplayName( value.toString() );
 		break;
 
-	case NetworkObject::Attribute::HostAddress:
+	case NetworkObject::Property::HostAddress:
 		computers = m_ldapDirectory.computersByHostName( m_ldapDirectory.hostToLdapFormat( value.toString() ) );
 		break;
 	default:
-		vCritical() << "Can't query hosts by attribute" << attribute;
+		vCritical() << "Can't query hosts by attribute" << property;
 		return {};
 	}
 
@@ -211,10 +212,17 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 		const auto& computerDn = computers.firstKey();
 		const auto& computer = computers.first();
 		const auto displayName = computer[displayNameAttribute].value( 0 );
-		const auto hostName = computer[hostNameAttribute].value( 0 );
-		const auto macAddress = ( macAddressAttribute.isEmpty() == false ) ? computer[macAddressAttribute].value( 0 ) : QString();
+		NetworkObject::Properties properties;
+		properties[NetworkObject::propertyKey(NetworkObject::Property::HostAddress)] =
+			computer[hostNameAttribute].value( 0 );
+		if( macAddressAttribute.isEmpty() == false )
+		{
+			properties[NetworkObject::propertyKey(NetworkObject::Property::MacAddress)] =
+				computer[macAddressAttribute].value( 0 );
+		}
+		properties[NetworkObject::propertyKey(NetworkObject::Property::DirectoryAddress)] = computerDn;
 
-		return NetworkObject( NetworkObject::Type::Host, displayName, hostName, macAddress, computerDn );
+		return NetworkObject{ NetworkObject::Type::Host, displayName, properties };
 	}
 
 	return NetworkObject( NetworkObject::Type::None );

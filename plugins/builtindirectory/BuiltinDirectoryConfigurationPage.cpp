@@ -79,7 +79,8 @@ void BuiltinDirectoryConfigurationPage::addLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.add( NetworkObject( NetworkObject::Type::Location, tr( "New location" ),
-									  {}, {}, {}, QUuid::createUuid() ) );
+									  {},
+									  QUuid::createUuid() ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateLocations();
@@ -129,7 +130,7 @@ void BuiltinDirectoryConfigurationPage::addComputer()
 
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.add( NetworkObject( NetworkObject::Type::Host, tr( "New computer" ),
-									  {}, {}, {},
+									  {},
 									  QUuid::createUuid(),
 									  currentLocationUid ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
@@ -219,8 +220,8 @@ void BuiltinDirectoryConfigurationPage::populateComputers()
 
 			ui->computerTableWidget->setRowCount( rowCount+1 );
 			ui->computerTableWidget->setItem( rowCount, 0, nameItem );
-			ui->computerTableWidget->setItem( rowCount, 1, new QTableWidgetItem( networkObject.hostAddress() ) );
-			ui->computerTableWidget->setItem( rowCount, 2, new QTableWidgetItem( networkObject.macAddress() ) );
+			ui->computerTableWidget->setItem( rowCount, 1, new QTableWidgetItem( networkObject.property( NetworkObject::Property::HostAddress ).toString() ) );
+			ui->computerTableWidget->setItem( rowCount, 2, new QTableWidgetItem( networkObject.property( NetworkObject::Property::MacAddress ).toString() ) );
 			++rowCount;
 		}
 	}
@@ -237,8 +238,6 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentLocationObject() const
 	{
 		return NetworkObject( NetworkObject::Type::Location,
 							  selectedLocation->text(),
-							  {},
-							  {},
 							  {},
 							  selectedLocation->data( NetworkObjectModel::UidRole ).toUuid(),
 							  selectedLocation->data( NetworkObjectModel::ParentUidRole ).toUuid() );
@@ -260,9 +259,10 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentComputerObject() const
 
 		return NetworkObject( NetworkObject::Type::Host,
 							  nameItem->text(),
-							  hostAddressItem->text().trimmed(),
-							  macAddressItem->text().trimmed(),
-							  {},
+							  {
+								  { NetworkObject::propertyKey(NetworkObject::Property::HostAddress), hostAddressItem->text().trimmed() },
+								  { NetworkObject::propertyKey(NetworkObject::Property::MacAddress), macAddressItem->text().trimmed() }
+							  },
 							  nameItem->data( NetworkObjectModel::UidRole ).toUuid(),
 							  nameItem->data( NetworkObjectModel::ParentUidRole ).toUuid() );
 	}

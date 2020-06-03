@@ -37,6 +37,7 @@ public:
 	using Uid = QUuid;
 	using Name = QString;
 	using ModelId = quintptr;
+	using Properties = QVariantMap;
 
 	enum class Type
 	{
@@ -50,25 +51,23 @@ public:
 	} ;
 	Q_ENUM(Type)
 
-	enum class Attribute
+	enum class Property
 	{
 		None,
 		Type,
 		Name,
+		Uid,
+		ParentUid,
 		HostAddress,
 		MacAddress,
-		DirectoryAddress,
-		Uid,
-		ParentUid
+		DirectoryAddress
 	};
-	Q_ENUM(Attribute)
+	Q_ENUM(Property)
 
 	NetworkObject( const NetworkObject& other );
 	explicit NetworkObject( Type type = Type::None,
 							const Name& name = {},
-							const QString& hostAddress = {},
-							const QString& macAddress = {},
-							const QString& directoryAddress = {},
+							const Properties& properties = {},
 							Uid uid = {},
 							Uid parentUid = {} );
 	explicit NetworkObject( const QJsonObject& jsonObject );
@@ -118,35 +117,24 @@ public:
 		return m_name;
 	}
 
-	const QString& hostAddress() const
+	const Properties& properties() const
 	{
-		return m_hostAddress;
+		return m_properties;
 	}
 
-	const QString& macAddress() const
-	{
-		return m_macAddress;
-	}
-
-	const QString& directoryAddress() const
-	{
-		return m_directoryAddress;
-	}
+	QVariant property( Property property ) const;
+	static QString propertyKey( Property property );
 
 	QJsonObject toJson() const;
 
-	QVariant attributeValue( Attribute attribute ) const;
-
-	bool isAttributeValueEqual( Attribute attribute, const QVariant& value, Qt::CaseSensitivity cs ) const;
+	bool isPropertyValueEqual( Property property, const QVariant& value, Qt::CaseSensitivity cs ) const;
 
 private:
 	Uid calculateUid() const;
 
+	Properties m_properties;
 	Type m_type;
 	QString m_name;
-	QString m_hostAddress;
-	QString m_macAddress;
-	QString m_directoryAddress;
 	Uid m_uid;
 	Uid m_parentUid;
 	bool m_populated;

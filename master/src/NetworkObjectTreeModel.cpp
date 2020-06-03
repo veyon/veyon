@@ -136,9 +136,9 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 	case UidRole: return networkObject.uid();
 	case NameRole: return networkObject.name();
 	case TypeRole: return QVariant::fromValue( networkObject.type() );
-	case HostAddressRole: return networkObject.hostAddress();
-	case MacAddressRole: return networkObject.macAddress();
-	case DirectoryAddressRole: return networkObject.directoryAddress();
+	case HostAddressRole: return networkObject.property( NetworkObject::Property::HostAddress );
+	case MacAddressRole: return networkObject.property( NetworkObject::Property::MacAddress );
+	case DirectoryAddressRole: return networkObject.property( NetworkObject::Property::DirectoryAddress );
 	default: break;
 	}
 
