@@ -36,6 +36,7 @@
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "Filesystem.h"
+#include "PlatformFilesystemFunctions.h"
 
 Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
 	QObject( parent ),
@@ -76,7 +77,10 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	m_fileName = dir + QDir::separator() + constructFileName( userLogin, computerControlInterface->computer().hostAddress() );
 
 	QFile outputFile( m_fileName );
-	if( outputFile.open( QFile::WriteOnly | QFile::Truncate ) == false )
+	if( VeyonCore::platform().filesystemFunctions().openFileSafely(
+			&outputFile,
+			QFile::WriteOnly | QFile::Truncate,
+			QFile::ReadOwner | QFile::WriteOwner ) == false )
 	{
 		const auto msg = tr( "Could not open screenshot file %1 for writing." ).arg( m_fileName );
 		vCritical() << msg.toUtf8().constData();
