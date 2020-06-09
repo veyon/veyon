@@ -41,8 +41,8 @@ set_default_target_properties(veyon-core)
 
 target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
-	${CMAKE_CURRENT_SOURCE_DIR}/src
-	${CMAKE_CURRENT_BINARY_DIR}/src
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${CMAKE_CURRENT_BINARY_DIR}/include
 	${QCA_INCLUDE_DIR}
 )
 
