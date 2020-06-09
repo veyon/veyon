@@ -33,6 +33,7 @@ INCLUDE(CheckTypeSize)
 INCLUDE(GNUInstallDirs)
 INCLUDE(CotireVeyon)
 INCLUDE(ConfigureFiles)
+include(SetDefaultTargetProperties)
 
 FIND_PACKAGE(Git)
 
@@ -150,12 +151,7 @@ ENDIF()
 
 # find required libraries
 find_package(QCA REQUIRED)
-
-# FindOpenSSL.cmake in recent versions of CMake will only find the DLLs instead
-# of the import libraries if CYGWIN is not set
-SET(CYGWIN TRUE)
-FIND_PACKAGE(OpenSSL REQUIRED)
-UNSET(CYGWIN)
+find_package(OpenSSL REQUIRED)
 
 # find Linux-specific packages
 IF(VEYON_BUILD_LINUX)

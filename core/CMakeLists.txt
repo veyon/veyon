@@ -28,7 +28,6 @@ endif()
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
 ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
 
 # find Qt's translation directory
@@ -38,24 +37,31 @@ if(NOT VEYON_BUILD_WIN32)
 	target_compile_definitions(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
 endif()
 
+set_default_target_properties(veyon-core)
+
+target_include_directories(veyon-core PUBLIC
+	${CMAKE_CURRENT_BINARY_DIR}
+	${CMAKE_CURRENT_SOURCE_DIR}/src
+	${CMAKE_CURRENT_BINARY_DIR}/src
+	${QCA_INCLUDE_DIR}
+)
 
 TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Concurrent
 	Qt5::Gui
 	Qt5::Network
 	Qt5::Widgets
+	OpenSSL::SSL
 	${VEYON_DEBUG_LIBRARIES}
-	${OPENSSL_LIBRARIES}
 	${QCA_LIBRARY}
 	)
 
 if(LibVNCClient_FOUND)
 	target_link_libraries(veyon-core LibVNC::LibVNCClient)
 else()
-	target_include_directories(veyon-core PRIVATE SYSTEM
+	target_include_directories(veyon-core PRIVATE
 		${ZLIB_INCLUDE_DIR}
 		${JPEG_INCLUDE_DIR}
-		${PNG_INCLUDE_DIR}
 		${LZO_INCLUDE_DIR}
 	)
 	target_include_directories(veyon-core PUBLIC
@@ -64,11 +70,10 @@ else()
 	)
 	target_link_libraries(veyon-core
 		Threads::Threads
+		PNG::PNG
 		${ZLIB_LIBRARIES}
 		${JPEG_LIBRARIES}
-		${PNG_LIBRARIES}
 		${LZO_LIBRARIES}
-		${OPENSSL_LIBRARIES}
 	)
 endif()
 
