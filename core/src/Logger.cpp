@@ -64,7 +64,10 @@ Logger::Logger( const QString &appName ) :
 	m_logLevel = qBound( LogLevel::Min, configuredLogLevel, LogLevel::Max );
 	m_logToSystem = VeyonCore::config().logToSystem();
 
-	initLogFile();
+	if( m_logLevel > LogLevel::Nothing )
+	{
+		initLogFile();
+	}
 
 	qInstallMessageHandler( qtMsgHandler );
 
