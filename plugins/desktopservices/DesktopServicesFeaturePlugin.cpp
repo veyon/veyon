@@ -32,6 +32,7 @@
 #include "ComputerControlInterface.h"
 #include "DesktopServicesConfigurationPage.h"
 #include "DesktopServicesFeaturePlugin.h"
+#include "FeatureWorkerManager.h"
 #include "ObjectManager.h"
 #include "OpenWebsiteDialog.h"
 #include "PlatformCoreFunctions.h"
@@ -39,6 +40,7 @@
 #include "RunProgramDialog.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
+#include "VeyonServerInterface.h"
 
 
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
@@ -128,7 +130,6 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 														 const FeatureMessage& message )
 {
 	Q_UNUSED(messageContext)
-	Q_UNUSED(server)
 
 	if( message.featureUid() == m_runProgramFeature.uid() )
 	{
@@ -140,7 +141,13 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 	}
 	else if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
-		openWebsite( message.argument( WebsiteUrlArgument ).toString() );
+		// forward message to worker running with user privileges
+		if( server.featureWorkerManager().isWorkerRunning( m_openWebsiteFeature ) == false )
+		{
+			server.featureWorkerManager().startWorker( m_openWebsiteFeature, FeatureWorkerManager::UnmanagedSessionProcess );
+		}
+
+		server.featureWorkerManager().sendMessage( message );
 	}
 	else
 	{
@@ -154,8 +161,13 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 
 bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker)
 	Q_UNUSED(message)
+
+	if( message.featureUid() == m_openWebsiteFeature.uid() )
+	{
+		openWebsite( message.argument( WebsiteUrlArgument ).toString() );
+		return true;
+	}
 
 	return false;
 }
