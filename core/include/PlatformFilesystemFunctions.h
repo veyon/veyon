@@ -41,5 +41,6 @@ public:
 	virtual bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) = 0;
 	virtual bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) = 0;
 
+	virtual bool openFileSafely( QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions ) = 0;
 
 };
