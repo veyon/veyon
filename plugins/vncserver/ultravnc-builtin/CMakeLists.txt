@@ -2,6 +2,10 @@ add_subdirectory(vnchooks)
 
 include(BuildVeyonPlugin)
 
+find_package(ZLIB REQUIRED)
+find_package(JPEG REQUIRED)
+find_package(LZO REQUIRED)
+
 add_definitions(-D_WIN32_WINNT=0x0602)
 
 set(ultravnc_CXX_SOURCES
@@ -79,9 +83,8 @@ build_veyon_plugin(builtin-ultravnc-server
 	UltraVncConfiguration.h
 )
 
-target_link_libraries(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
+target_link_libraries(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${LZO_LIBRARIES})
 target_include_directories(builtin-ultravnc-server PRIVATE
-	${libvncserver_DIR}
 	${ultravnc_DIR}
 	${ultravnc_DIR}/winvnc
 	${ultravnc_DIR}/winvnc/omnithread
