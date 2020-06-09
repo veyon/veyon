@@ -34,6 +34,7 @@
 #include "FileTransferPlugin.h"
 #include "FileTransferUserConfiguration.h"
 #include "FeatureWorkerManager.h"
+#include "PlatformFilesystemFunctions.h"
 #include "QmlCore.h"
 #include "SystemTrayIcon.h"
 #include "VeyonMasterInterface.h"
@@ -189,7 +190,10 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 				return true;
 			}
 
-			if( m_currentFile.open( QFile::WriteOnly | QFile::Truncate ) )
+			if( VeyonCore::platform().filesystemFunctions().openFileSafely(
+					&m_currentFile,
+					QFile::WriteOnly | QFile::Truncate,
+					QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup | QFile::ReadOther ) )
 			{
 				m_currentTransferId = message.argument( TransferId ).toUuid();
 			}
