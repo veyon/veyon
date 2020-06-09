@@ -233,3 +233,10 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 
 	return result == ERROR_SUCCESS;
 }
+
+
+
+bool WindowsFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode openMode, QFileDevice::Permissions permissions )
+{
+	return file->open( openMode ) && file->setPermissions( permissions );
+}

@@ -39,4 +39,6 @@ public:
 	bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) override;
 	bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) override;
 
+	bool openFileSafely( QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions ) override;
+
 };
