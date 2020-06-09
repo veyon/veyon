@@ -30,6 +30,7 @@
 #include "CommandLineIO.h"
 #include "ConfigurationManager.h"
 #include "ObjectManager.h"
+#include "PlatformFilesystemFunctions.h"
 #include "VeyonConfiguration.h"
 
 
@@ -404,7 +405,10 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( con
 	const auto& outputFileName = arguments.first();
 	QFile outputFile( outputFileName );
 
-	if( outputFile.open( QFile::WriteOnly | QFile::Truncate | QFile::Text ) == false )
+	if( VeyonCore::platform().filesystemFunctions().openFileSafely(
+			&outputFile,
+			QFile::WriteOnly | QFile::Truncate | QFile::Text,
+			QFile::ReadOwner | QFile::WriteOwner ) == false )
 	{
 		error( tr( "Can't open file \"%1\" for writing!" ).arg( outputFileName ) );
 		return Failed;
