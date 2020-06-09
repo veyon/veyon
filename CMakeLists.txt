@@ -162,12 +162,7 @@ endif()
 
 # find required libraries
 find_package(QCA REQUIRED)
-
-# FindOpenSSL.cmake in recent versions of CMake will only find the DLLs instead
-# of the import libraries if CYGWIN is not set
-set(CYGWIN TRUE)
 find_package(OpenSSL REQUIRED)
-unset(CYGWIN)
 
 # find Linux-specific packages
 if(VEYON_BUILD_LINUX)

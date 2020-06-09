@@ -33,7 +33,6 @@ set_default_target_properties(veyon-core)
 
 target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS} -Wno-parentheses)
 
-target_include_directories(veyon-core PRIVATE SYSTEM ${OPENSSL_INCLUDE_DIR})
 target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -47,18 +46,17 @@ target_link_libraries(veyon-core
 	Qt5::Network
 	Qt5::Widgets
 	Qt5::QuickControls2
+	OpenSSL::SSL
 	${VEYON_DEBUG_LIBRARIES}
-	${OPENSSL_LIBRARIES}
 	${QCA_LIBRARY}
 	)
 
 if(LibVNCClient_FOUND)
 	target_link_libraries(veyon-core LibVNC::LibVNCClient)
 else()
-	target_include_directories(veyon-core PRIVATE SYSTEM
+	target_include_directories(veyon-core PRIVATE
 		${ZLIB_INCLUDE_DIR}
 		${JPEG_INCLUDE_DIR}
-		${PNG_INCLUDE_DIR}
 		${LZO_INCLUDE_DIR}
 	)
 	target_include_directories(veyon-core PUBLIC
@@ -67,11 +65,10 @@ else()
 	)
 	target_link_libraries(veyon-core
 		Threads::Threads
+		PNG::PNG
 		${ZLIB_LIBRARIES}
 		${JPEG_LIBRARIES}
-		${PNG_LIBRARIES}
 		${LZO_LIBRARIES}
-		${OPENSSL_LIBRARIES}
 	)
 endif()
 
