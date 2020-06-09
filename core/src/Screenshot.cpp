@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QMetaEnum>
@@ -73,6 +74,19 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 	// construct filename
 	m_fileName = dir + QDir::separator() + constructFileName( userLogin, computerControlInterface->computer().hostAddress() );
+
+	QFile outputFile( m_fileName );
+	if( outputFile.open( QFile::WriteOnly | QFile::Truncate ) == false )
+	{
+		const auto msg = tr( "Could not open screenshot file %1 for writing." ).arg( m_fileName );
+		vCritical() << msg.toUtf8().constData();
+		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
+		{
+			QMessageBox::critical( nullptr, tr( "Screenshot" ), msg );
+		}
+
+		return;
+	}
 
 	// construct caption
 	auto user = userLogin;
@@ -128,7 +142,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	m_image.setText( metaDataKey( MetaData::Date ), date );
 	m_image.setText( metaDataKey( MetaData::Time ), time );
 
-	m_image.save( m_fileName, "PNG", 50 );
+	m_image.save( &outputFile, "PNG", 50 );
 }
 
 
