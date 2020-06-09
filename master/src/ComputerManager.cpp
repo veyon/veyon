@@ -36,6 +36,7 @@
 #include "NetworkObjectFilterProxyModel.h"
 #include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectTreeModel.h"
+#include "PlatformFilesystemFunctions.h"
 #include "UserConfig.h"
 
 
@@ -125,7 +126,10 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 	lines += QString();
 
 	QFile outputFile( fileName );
-	if( outputFile.open( QFile::WriteOnly | QFile::Truncate ) == false )
+	if( VeyonCore::platform().filesystemFunctions().openFileSafely(
+			&outputFile,
+			QFile::WriteOnly | QFile::Truncate,
+			QFile::ReadOwner | QFile::WriteOwner ) == false )
 	{
 		return false;
 	}
