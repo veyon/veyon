@@ -238,5 +238,19 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 
 bool WindowsFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode openMode, QFileDevice::Permissions permissions )
 {
-	return file->open( openMode ) && file->setPermissions( permissions );
+	if( file == nullptr )
+	{
+		return false;
+	}
+
+	if( file->open( openMode ) &&
+		file->symLinkTarget().isEmpty() &&
+		file->setPermissions( permissions ) )
+	{
+		return true;
+	}
+
+	file->close();
+
+	return false;
 }
