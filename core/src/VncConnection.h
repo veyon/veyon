@@ -47,6 +47,18 @@ class VEYON_CORE_EXPORT VncConnection : public QThread
 {
 	Q_OBJECT
 public:
+	// intervals and timeouts
+	static constexpr int DefaultThreadTerminationTimeout = 30000;
+	static constexpr int DefaultConnectTimeout = 10000;
+	static constexpr int DefaultReadTimeout = 30000;
+	static constexpr int DefaultConnectionRetryInterval = 1000;
+	static constexpr int DefaultMessageWaitTimeout = 500;
+	static constexpr int DefaultFastFramebufferUpdateInterval = 100;
+	static constexpr int DefaultFramebufferUpdateWatchdogTimeout = 10000;
+	static constexpr int DefaultSocketKeepaliveIdleTime = 1000;
+	static constexpr int DefaultSocketKeepaliveInterval = 500;
+	static constexpr int DefaultSocketKeepaliveCount = 5;
+
 	enum class Quality
 	{
 		Thumbnail,
@@ -155,18 +167,6 @@ protected:
 	void run() override;
 
 private:
-	// intervals and timeouts
-	static constexpr int ThreadTerminationTimeout = 30000;
-	static constexpr int ConnectTimeout = 10000;
-	static constexpr int ReadTimeout = 30000;
-	static constexpr int ConnectionRetryInterval = 1000;
-	static constexpr int MessageWaitTimeout = 500;
-	static constexpr int FastFramebufferUpdateInterval = 100;
-	static constexpr int FramebufferUpdateWatchdogTimeout = 10000;
-	static constexpr int SocketKeepaliveIdleTime = 1000;
-	static constexpr int SocketKeepaliveInterval = 500;
-	static constexpr int SocketKeepaliveCount = 5;
-
 	// RFB parameters
 	using RfbPixel = uint32_t;
 	static constexpr int RfbBitsPerSample = 8;
@@ -204,6 +204,18 @@ private:
 	static void rfbClientLogDebug( const char* format, ... );
 	static void rfbClientLogNone( const char* format, ... );
 	static void framebufferCleanup( void* framebuffer );
+
+	// intervals and timeouts
+	int m_threadTerminationTimeout{DefaultThreadTerminationTimeout};
+	int m_connectTimeout{DefaultConnectTimeout};
+	int m_readTimeout{DefaultReadTimeout};
+	int m_connectionRetryInterval{DefaultConnectionRetryInterval};
+	int m_messageWaitTimeout{DefaultMessageWaitTimeout};
+	int m_fastFramebufferUpdateInterval{DefaultFastFramebufferUpdateInterval};
+	int m_framebufferUpdateWatchdogTimeout{DefaultFramebufferUpdateWatchdogTimeout};
+	int m_socketKeepaliveIdleTime{DefaultSocketKeepaliveIdleTime};
+	int m_socketKeepaliveInterval{DefaultSocketKeepaliveInterval};
+	int m_socketKeepaliveCount{DefaultSocketKeepaliveCount};
 
 	// states and flags
 	std::atomic<State> m_state{State::Disconnected};

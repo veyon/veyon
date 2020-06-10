@@ -165,6 +165,19 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent )
 {
+	if( VeyonCore::config().useCustomVncConnectionSettings() )
+	{
+		m_threadTerminationTimeout = VeyonCore::config().vncConnectionThreadTerminationTimeout();
+		m_connectTimeout = VeyonCore::config().vncConnectionConnectTimeout();
+		m_readTimeout = VeyonCore::config().vncConnectionReadTimeout();
+		m_connectionRetryInterval = VeyonCore::config().vncConnectionRetryInterval();
+		m_messageWaitTimeout = VeyonCore::config().vncConnectionMessageWaitTimeout();
+		m_fastFramebufferUpdateInterval = VeyonCore::config().vncConnectionFastFramebufferUpdateInterval();
+		m_framebufferUpdateWatchdogTimeout = VeyonCore::config().vncConnectionFramebufferUpdateWatchdogTimeout();
+		m_socketKeepaliveIdleTime = VeyonCore::config().vncConnectionSocketKeepaliveIdleTime();
+		m_socketKeepaliveInterval = VeyonCore::config().vncConnectionSocketKeepaliveInterval();
+		m_socketKeepaliveCount = VeyonCore::config().vncConnectionSocketKeepaliveCount();
+	}
 }
 
 
@@ -176,7 +189,7 @@ VncConnection::~VncConnection()
 	if( isRunning() )
 	{
 		vWarning() << "Waiting for VNC connection thread to finish.";
-		wait( ThreadTerminationTimeout );
+		wait( m_threadTerminationTimeout );
 	}
 
 	if( isRunning() )
@@ -409,8 +422,8 @@ void VncConnection::establishConnection()
 		m_client->HandleCursorPos = hookHandleCursorPos;
 		m_client->GotCursorShape = hookCursorShape;
 		m_client->GotXCutText = hookCutText;
-		m_client->connectTimeout = ConnectTimeout / 1000;
-		m_client->readTimeout = ReadTimeout / 1000;
+		m_client->connectTimeout = m_connectTimeout / 1000;
+		m_client->readTimeout = m_readTimeout / 1000;
 		setClientData( VncConnectionTag, this );
 
 		Q_EMIT connectionPrepared();
@@ -442,7 +455,7 @@ void VncConnection::establishConnection()
 
 			VeyonCore::platform().networkFunctions().
 					configureSocketKeepalive( static_cast<PlatformNetworkFunctions::Socket>( m_client->sock ), true,
-											  SocketKeepaliveIdleTime, SocketKeepaliveInterval, SocketKeepaliveCount );
+											  m_socketKeepaliveIdleTime, m_socketKeepaliveInterval, m_socketKeepaliveCount );
 
 			setState( State::Connected );
 		}
@@ -488,7 +501,7 @@ void VncConnection::establishConnection()
 			else
 			{
 				// default: retry every second
-				m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( ConnectionRetryInterval ) );
+				m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( m_connectionRetryInterval ) );
 			}
 			sleeperMutex.unlock();
 		}
@@ -508,7 +521,7 @@ void VncConnection::handleConnection()
 	{
 		loopTimer.start();
 
-		const int i = WaitForMessage( m_client, MessageWaitTimeout );
+		const int i = WaitForMessage( m_client, m_messageWaitTimeout );
 		if( isControlFlagSet( ControlFlag::TerminateThread ) || i < 0 )
 		{
 			break;
@@ -533,11 +546,11 @@ void VncConnection::handleConnection()
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
 		if( m_framebufferState == FramebufferState::Initialized ||
-			m_framebufferUpdateWatchdog.elapsed() >= qMax<qint64>( 2*m_framebufferUpdateInterval, FramebufferUpdateWatchdogTimeout ) )
+			m_framebufferUpdateWatchdog.elapsed() >= qMax<qint64>( 2*m_framebufferUpdateInterval, m_framebufferUpdateWatchdogTimeout ) )
 		{
 			SendFramebufferUpdateRequest( m_client, 0, 0, m_client->width, m_client->height, false );
 
-			const auto remainingFastUpdateInterval = FastFramebufferUpdateInterval - loopTimer.elapsed();
+			const auto remainingFastUpdateInterval = m_fastFramebufferUpdateInterval - loopTimer.elapsed();
 
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( remainingFastUpdateInterval ) );
