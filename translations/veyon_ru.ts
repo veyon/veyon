@@ -3212,6 +3212,10 @@ Please save your work and close all programs.</source>
         <source>Screenshot</source>
         <translation>Скриншот </translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>

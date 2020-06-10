@@ -3210,6 +3210,10 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <source>Screenshot</source>
         <translation>Snimka ekrana</translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>

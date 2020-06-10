@@ -3208,6 +3208,10 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <source>Screenshot</source>
         <translation>Snímek obrazovky</translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>

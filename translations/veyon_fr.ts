@@ -3212,6 +3212,10 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <source>Screenshot</source>
         <translation>Capture d&apos;écran</translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>Impossible d&apos;ouvrir le fichier de capture d&apos;écran &quot;%1&quot; pour écrire!</translation>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>

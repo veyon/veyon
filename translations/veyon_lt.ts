@@ -53,7 +53,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Suteikti prieigą kiekvienam prijungtam vartotojui (numatytasis)</translation>
+        <translation>Suteikti prieigą kiekvienam prijungtam naudotojui (numatytasis)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -65,7 +65,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Vartotojų grupės kurioms suteikta prieiga prie kompiuterio</translation>
+        <translation>Naudotojų grupės kurioms suteikta prieiga prie kompiuterio</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
@@ -73,7 +73,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Autorizuotų vartotojų grupė</translation>
+        <translation>Autorizuotų naudotojų grupės</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -109,11 +109,11 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Įveskite vartotojo vardą</translation>
+        <translation>Įveskite naudotojo vardą</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Įveskite vartotojo vardą kurio prieigos teises tikrinsite:</translation>
+        <translation>Įveskite naudotojo vardą kurio prieigos teises tikrinsite:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -121,7 +121,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Pasirinktam vartotojui leidžiam prieiga prie kompiuteriu su šia konfiguracija.</translation>
+        <translation>Pasirinktam naudotojui leidžiam prieigą prie kompiuterių su šia konfigūracija.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -129,7 +129,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Pasirinktam vartotojui neleidžiama prieiga prie kompiuteriu su šia konfiguracija.</translation>
+        <translation>Pasirinktam naudotojui neleidžiama prieiga prie kompiuterių su šia konfigūracija.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
@@ -137,15 +137,15 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Vartotojų grupių valdymas:</translation>
+        <translation>Naudotojų grupių valdymas:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Vartotojų grupių valdymas nerastas</translation>
+        <translation>Naudotojų grupių valdymas nerastas</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nerasta standartinių vartotojų grupių plėtinių. Patikrinkite savo programos įdiegimą</translation>
+        <translation>Nerasta standartinių naudotojų grupių plėtinio. Patikrinkite veyon programos įdiegimą!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
@@ -196,11 +196,11 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Prisijungiantis vartotojas yra prisijungęs prie vartotojo</translation>
+        <translation>Prisijungiantis naudotojas yra prisijungęs naudotojas</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Vartotojas kuris bando prisijungti jau yra prisijungęs</translation>
+        <translation>Naudotojas kuris bando prisijungti jau yra prisijungęs</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -220,7 +220,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Prašyti prisijungusio vartotojo leidimo</translation>
+        <translation>Prašyti prisijungusio naudotojo leidimo</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -228,7 +228,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Prisijungiama prie vartotojo</translation>
+        <translation>Prisijungti kaip naudotojas</translation>
     </message>
     <message>
         <source>Accessing computer</source>
@@ -236,7 +236,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Vietinis (prisijungęs) vartotojas</translation>
+        <translation>Vietinis (prisijungęs) naudotojas</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -248,11 +248,11 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nėra prisijungusių vartotojų</translation>
+        <translation>Nėra prisijungusių naudotojų</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Vartotojas kurį bandoma pasiekti turi viena ar daugiau bendrų grupių su vietiniu (prisijungusiu) vartotoju</translation>
+        <translation>Naudotojas kurį bandoma pasiekti turi vieną ar daugiau bendrų grupių su vietiniu (prisijungusiu) naudotoju</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
@@ -271,7 +271,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Prisijungiantis vartotojas</translation>
+        <translation>Prisijungiantis naudotojas</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -283,15 +283,15 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Įveskite vartotojo ir kompiuterio informaciją jeigu norite patikrinti sukonfigūruotą taisyklių rinkinį</translation>
+        <translation>Įveskite naudotojo ir kompiuterio informaciją jeigu norite patikrinti sukonfigūruotą taisyklių rinkinį</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Vietinis vartotojas:</translation>
+        <translation>Vietinis naudotojas:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Prijungti vartotojai:</translation>
+        <translation>Prijungti naudotojai:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -303,7 +303,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Prieiga šiomis salygomis reikalauja patvirtinimo iš prisijungusio vartotojo</translation>
+        <translation>Prieiga šiomis sąlygomis reikalauja patvirtinimo iš prisijungusio naudotojo</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -374,7 +374,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Įveskite vartotojų grupės vardą arba rolę kuriai bus kuriama raktų pora:</translation>
+        <translation>Įveskite naudotojų grupės vardą arba rolę kuriai bus kuriama raktų pora:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -386,7 +386,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Įveskite vartotojų grupės vardą arba rolę kuriai bus importuojama raktų pora:</translation>
+        <translation>Įveskite naudotojų grupės vardą arba rolę kuriai bus importuojama raktų pora:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -394,7 +394,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Pasirinkite vartotojų grupę kuriai bus suteikta prieiga prie rakto &quot;%1&quot;:</translation>
+        <translation>Pasirinkite naudotojų grupę kuriai bus suteikta prieiga prie rakto &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -427,7 +427,7 @@ It is important that only authorized users have read access to the private key f
 The public key is used on client computers to authenticate incoming connection request.</source>
         <translation>Autorizavimo raktų pora susideda iš dviejų kriptografinių raktų privataus ir viešojo.
 Privatus raktas leidžia pagrindiniam kompiuteriui pasiekti klientų kompiuterius
-Svarbu, kad tik autorizuoti vartotojai turetų prieigą prie privataus rakto failo
+Svarbu, kad tik autorizuoti naudotojai turėtų prieigą prie privataus rakto failo
 Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio užklausą.</translation>
     </message>
 </context>
@@ -555,7 +555,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>Raktas &quot;%1&quot; dabar yra pasiekiamas vartotojų grupės: &quot;%2&quot;.</translation>
+        <translation>Raktas &quot;%1&quot; dabar yra pasiekiamas naudotojų grupės: &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -594,7 +594,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>Nustatyta vartotojų grupė turi prieigą prie rakto.</translation>
+        <translation>Nustatyta naudotojų grupė turi prieigą prie rakto.</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -606,7 +606,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Ši komanda pakeičia failo prieigos teises į &lt;KEY&gt; tam, kad tik ši vartotojų grupė &lt;ACCESS GROUP&gt; turi skaitymo teises.</translation>
+        <translation>Ši komanda pakeičia failų prieigos teises į &lt;KEY&gt; tam, kad tik naudotojų grupė &lt;ACCESS GROUP&gt; turėtų skaitymo teises.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -1022,7 +1022,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>Servisas nepasiekiamas arba nevykdomas</translation>
+        <translation>Tarnyba nepasiekiama arba nevykdoma</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1034,11 +1034,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nėra prisijungusių vartotojų</translation>
+        <translation>Nėra prisijungusių naudotojų</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Prisijungta su vartotoju: %1</translation>
+        <translation>Prisijungęs naudotojas: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1049,7 +1049,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Servisas %2 vietoje %3:%4</translation>
+        <translation>%1 Tarnyba %2 vietoje %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1061,11 +1061,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; dabar jungiasi prie šio kompiuterio.</translation>
+        <translation>Naudotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; dabar prisjungęs prie šio kompiuterio.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet negalėjo autorizuotis tinkamai.</translation>
+        <translation>Naudotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet netinkamai autorizavosi.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1073,18 +1073,18 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>Vartotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet negalėjo autorizuotis tinkamai.</translation>
+        <translation>Naudotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet buvo užblokuotas dėl priėjimo kontrolės nustatymų.</translation>
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktyvūs prisijungimai:</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Vartotojas</translation>
+        <translation>Naudotojas</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1100,7 +1100,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>Kompiuterio vardas;Serverio vardas;Vartotojas</translation>
+        <translation>Kompiuterio vardas;Hostname;Naudotojas</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
@@ -1123,7 +1123,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Išsaugoti kompiuterių/vartotojų sąrašą</translation>
+        <translation>Išsaugoti kompiuterių/naudotojų sąrašą</translation>
     </message>
     <message>
         <source>Select output filename</source>
@@ -1341,7 +1341,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation> Naudotojas %1 iš kompiuterio %2 nori prisijungti prie jūsų kompiuterio. Ar norite tai leisti?</translation>
     </message>
 </context>
 <context>
@@ -1407,7 +1407,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation>Paleisti programas ar servisus vartotojo kompiuteryje.</translation>
+        <translation>Paleisti programas ar servisus naudotojo kompiuteryje</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
@@ -1474,7 +1474,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>generic-student-user</source>
-        <translation>bendrinis-besimokantysis-vartotojas</translation>
+        <translation>bendrinis-besimokantysis-naudotojas</translation>
     </message>
 </context>
 <context>
@@ -1583,7 +1583,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Vartotojo sąsaja</translation>
+        <translation>Naudotojo sąsaja</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -1820,7 +1820,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User tree</source>
-        <translation>Vartotojų medis</translation>
+        <translation>Naudotojų medis</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
@@ -1876,11 +1876,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation>Filtrai vartotojų grupėms</translation>
+        <translation>Filtras naudotojų grupėms</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Filtrai visiems vartotojams</translation>
+        <translation>Filtras naudotojams</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
@@ -1896,7 +1896,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Atvaizduoti visas vartotojų grupes</translation>
+        <translation>Atvaizduoti visas naudotojo grupes</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -1946,7 +1946,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>user tree</source>
-        <translation>vartotojų medis</translation>
+        <translation>naudotojų medis</translation>
     </message>
     <message>
         <source>group tree</source>
@@ -1958,7 +1958,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Įveskite vartotojo vardą</translation>
+        <translation>Įveskite naudotojo vardą</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1966,7 +1966,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>user objects</source>
-        <translation>vartotojų objektai</translation>
+        <translation>naudotojo objektai</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2010,11 +2010,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>users</source>
-        <translation>vartotojai</translation>
+        <translation>naudotojai</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>vartotojų grupės</translation>
+        <translation>naudotojų grupės</translation>
     </message>
     <message>
         <source>computer groups</source>
@@ -2026,11 +2026,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>groups of user</source>
-        <translation>vartotojo grupės</translation>
+        <translation>naudotojo grupės</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation>Vartotojas nerastas</translation>
+        <translation>Naudotojas nerastas</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2252,7 +2252,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti visas vietas</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
@@ -2276,7 +2276,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vietovės pavadinimą</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
@@ -2438,11 +2438,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Vartotojo patvirtinimas</translation>
+        <translation>Naudotojo autorizavimas</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Seanso valdymas</translation>
     </message>
     <message>
         <source>Display manager users</source>
@@ -2460,7 +2460,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite vietą</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2558,7 +2558,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Tarnyba</translation>
     </message>
     <message>
         <source>Master</source>
@@ -2606,11 +2606,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano nuotraukos</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>Funkcija aktyvi</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
@@ -2626,7 +2626,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Ieškoti naudotojų bei kompiuterių</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
@@ -2654,11 +2654,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Į&amp;rašyti nustatymus į failą</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Rodyti</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
@@ -2674,7 +2674,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Vietos bei kompiuteriai</translation>
     </message>
 </context>
 <context>
@@ -2689,7 +2689,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>Naudotojo konfigūravimas</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2697,19 +2697,19 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Funkcijos</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Visos funkcijos</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Išjungtos funkcijos</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano nuotraukos</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2741,7 +2741,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User interface</source>
-        <translation>Vartotojo sąsaja</translation>
+        <translation>Naudotojo sąsaja</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -2765,15 +2765,15 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Naudotojo ir kompiuterio vardas</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Tik naudotojo vardas</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Tik kompiuterio vardas</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2789,7 +2789,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio ir naudotojo vardas</translation>
     </message>
     <message>
         <source>Computer locations</source>
@@ -2805,7 +2805,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>Slėpti tuščias vietas</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
@@ -2881,7 +2881,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Vartotojo vardas</translation>
+        <translation>Naudotojo vardas</translation>
     </message>
     <message>
         <source>Password</source>
@@ -2897,11 +2897,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Nepavyko prisijungti naudojant įvestus vartotojo vardą ir slaptažodį. Pabandykite dar kartą</translation>
+        <translation>Nepavyko prisijungti su įvestu naudotojo vardu bei slaptažodžiu. Pabandykite dar kartą!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Įveskite savo vartotojo vardą ir slaptažodį, kad pasiektumėte kompiuterius</translation>
+        <translation>Įveskite savo naudotojo vardą ir slaptažodį, kad pasiektumėte kompiuterius.</translation>
     </message>
 </context>
 <context>
@@ -2916,11 +2916,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Perkrauti</translation>
+        <translation>Paleisti iš naujo</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, kad paleistumėte iš naujo visus kompiuterius.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2932,7 +2932,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>Į(iš)jungti kompiuterį ar paleisti iš naujo</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -2944,7 +2944,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite paleisti iš naujo pasirinktus kompiuterius?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
@@ -2976,11 +2976,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti dabar</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegti atnaujinimus ir išjungti</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
@@ -3024,7 +3024,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Nuotolinis rodymas</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -3044,7 +3044,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>Žiūrėti arba valdyti kompiuterį nuotoliniu būdu</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -3126,7 +3126,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano vaizdas</translation>
+        <translation>Ekrano nuotrauka</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -3191,14 +3191,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano vaizdas</translation>
+        <translation>Ekrano nuotrauka</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano vaizdas</translation>
+        <translation>Ekrano nuotrauka</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -3225,7 +3229,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>User:</source>
-        <translation>Vartotojas:</translation>
+        <translation>Naudotojas:</translation>
     </message>
     <message>
         <source>Computer:</source>
@@ -3308,7 +3312,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>Perkrauti %1 tarnybą</translation>
+        <translation>Perleisti %1 tarnybą</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3444,7 +3448,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation>Numatytas (sistemos vartotojų grupės)</translation>
+        <translation>Numatytasis (sistemos naudotojų grupės)</translation>
     </message>
 </context>
 <context>
@@ -3466,7 +3470,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Apačioje esančiame lange įveskite žinutę kuri bus išsiųsta visiems pasirinktiems vartotojams</translation>
+        <translation>Apačioje esančiame laukelyje įveskite žinutę kuri bus išsiųsta visiems pasirinktiems naudotojams</translation>
     </message>
 </context>
 <context>
@@ -3477,7 +3481,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Naudokite šią funkciją norėdami išsiųsti žinutę visiems vartotojams, pavyzdžiui, priskirti juos naujoms užduotims.</translation>
+        <translation>Naudokite šią funkciją norėdami išsiųsti žinutę visiems naudotojams, pvz., priskirti jiems naujas užduotis.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3485,7 +3489,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Nusiųsti žinutę vartotojui</translation>
+        <translation>Nusiųsti žinutę naudotojui</translation>
     </message>
 </context>
 <context>
@@ -3523,22 +3527,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Neįmanoma išsaugoti asmeninių nustatymų! Prašome patikrinti vartotojo konfigūracijos failo vietą naudojant %1 konfigūratorių</translation>
+        <translation>Neįmanoma išsaugoti asmeninių nustatymų! Prašome patikrinti naudotojo konfigūracijos failo vietą naudodami %1 konfigūratorių.</translation>
     </message>
 </context>
 <context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Vartotojo prisijungimas</translation>
+        <translation>Naudotojo prisijungimas</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation>Įveskite vartotojo vardą ir slaptažodį, kad galėtumėte automatiškai prisijungti visuose kompiuteriuose.</translation>
+        <translation>Įveskite naudotojo vardą ir slaptažodį, kad galėtumėte automatiškai prisijungti visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Vartotojo vardas</translation>
+        <translation>Naudotojo vardas</translation>
     </message>
     <message>
         <source>Password</source>
@@ -3561,19 +3565,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Paspauskite šį mygtuką, kad atjungtumėte vartotojus visuose kompiuteriuose.</translation>
+        <translation>Paspauskite šį mygtuką, kad atjungtumėte naudotojus visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>Patvirtinti vartotojo atsijungimą</translation>
+        <translation>Patvirtinti naudotojo atsijungimą</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>Ar tikrai norite atjungti visus pasirinktus vartotojus?</translation>
+        <translation>Ar tikrai norite atjungti visus pasirinktus naudotojus?</translation>
     </message>
     <message>
         <source>User session control</source>
-        <translation>Vartotojo sesijos valdymas</translation>
+        <translation>Naudotojo seanso valdymas</translation>
     </message>
 </context>
 <context>
@@ -3696,15 +3700,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Vartotojo patvirtinimas</translation>
+        <translation>Naudotojo autorizavimas</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>Naudoti alternatyvų vartotojo autentifikavimo mechanizmą</translation>
+        <translation>Naudoti alternatyvų naudotojo autentifikavimo mechanizmą</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation>Vartotojo prisijungimas</translation>
+        <translation>Naudotojo prisijungimas</translation>
     </message>
     <message>
         <source>Input start delay</source>

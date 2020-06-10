@@ -1078,7 +1078,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Conexiones activas:</translation>
     </message>
 </context>
 <context>
@@ -3213,6 +3213,10 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Captura</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

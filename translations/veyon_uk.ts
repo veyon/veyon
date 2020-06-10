@@ -3211,6 +3211,10 @@ Please save your work and close all programs.</source>
         <source>Screenshot</source>
         <translation>Знімок вікна</translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>Не вдалося відкрити файл знімка вікна %1 для запису даних.</translation>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>

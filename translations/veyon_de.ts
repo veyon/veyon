@@ -3209,6 +3209,10 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <source>Screenshot</source>
         <translation>Bildschirmfoto</translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>Die Bildschirmfotodatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>

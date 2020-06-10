@@ -1076,7 +1076,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>使用中連線:</translation>
     </message>
 </context>
 <context>
@@ -3211,6 +3211,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>螢幕快照</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

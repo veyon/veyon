@@ -1076,7 +1076,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktywne połączenia:</translation>
     </message>
 </context>
 <context>
@@ -3206,6 +3206,10 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Zrzut ekranu</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

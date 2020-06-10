@@ -1084,7 +1084,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1259,7 +1259,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1380,7 +1380,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1415,11 +1415,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;プログラムを起動します</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>カスタムプログラム</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1462,7 +1462,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>カスタムプログラム</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1521,7 +1521,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>オプション</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1655,7 +1655,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>バックエンド</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -2005,7 +2005,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>コンピュータのMACアドレス</translation>
     </message>
     <message>
         <source>users</source>
@@ -2390,7 +2390,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>コマンドに関するヘルプを表示する</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2402,11 +2402,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP / ADからコンピューターとその場所を読み込む)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP/ADからユーザーとグループを読み込む)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2497,7 +2497,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ファイル</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -2752,7 +2752,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2939,7 +2939,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>パワーダウンを確認</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3052,7 +3052,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>コマンドに関するヘルプを表示する</translation>
     </message>
 </context>
 <context>
@@ -3193,6 +3193,10 @@ Please save your work and close all programs.</source>
         <source>Screenshot</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
@@ -3308,7 +3312,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>サービス%1を再起動します</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3573,7 +3577,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーセッション制御</translation>
     </message>
 </context>
 <context>
