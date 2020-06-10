@@ -259,7 +259,7 @@ void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& cont
 
 	const auto instance = s_instance.loadAcquire();
 
-	if( instance == nullptr )
+	if( instance == nullptr || message.size() > MaximumMessageSize )
 	{
 		return;
 	}
