@@ -163,7 +163,8 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 
 VncConnection::VncConnection( QObject* parent ) :
-	QThread( parent )
+	QThread( parent ),
+	m_defaultPort( VeyonCore::config().primaryServicePort() )
 {
 	if( VeyonCore::config().useCustomVncConnectionSettings() )
 	{
@@ -432,7 +433,7 @@ void VncConnection::establishConnection()
 
 		if( m_port < 0 ) // use default port?
 		{
-			m_client->serverPort = VeyonCore::config().primaryServicePort();
+			m_client->serverPort = m_defaultPort;
 		}
 		else
 		{
