@@ -171,6 +171,7 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_quality( Quality::Default ),
 	m_host(),
 	m_port( -1 ),
+	m_defaultPort( VeyonCore::config().primaryServicePort() ),
 	m_globalMutex(),
 	m_eventQueueMutex(),
 	m_updateIntervalSleeper(),
@@ -447,7 +448,7 @@ void VncConnection::establishConnection()
 
 		if( m_port < 0 ) // use default port?
 		{
-			m_client->serverPort = VeyonCore::config().primaryServicePort();
+			m_client->serverPort = m_defaultPort;
 		}
 		else
 		{

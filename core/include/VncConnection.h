@@ -227,6 +227,7 @@ private:
 	Quality m_quality;
 	QString m_host;
 	int m_port;
+	int m_defaultPort{-1};
 
 	// thread and timing control
 	QMutex m_globalMutex;
