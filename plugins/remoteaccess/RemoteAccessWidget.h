@@ -39,7 +39,8 @@ class RemoteAccessWidgetToolBar : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly );
+	RemoteAccessWidgetToolBar( RemoteAccessWidget* parent,
+							   bool startViewOnly, bool showViewOnlyToggleButton );
 	~RemoteAccessWidgetToolBar() override = default;
 
 	void appear();
@@ -83,7 +84,8 @@ class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit RemoteAccessWidget( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly = false );
+	explicit RemoteAccessWidget( const ComputerControlInterface::Pointer& computerControlInterface,
+								 bool startViewOnly, bool showViewOnlyToggleButton );
 	~RemoteAccessWidget() override;
 
 	VncView* vncView() const
