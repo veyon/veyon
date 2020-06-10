@@ -3,7 +3,7 @@
  <class>AuthLdapConfigurationDialog</class>
  <widget class="QDialog" name="AuthLdapConfigurationDialog">
   <property name="windowTitle">
-   <string>Authentication keys</string>
+   <string>LDAP authentication</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../core/resources/core.qrc">
