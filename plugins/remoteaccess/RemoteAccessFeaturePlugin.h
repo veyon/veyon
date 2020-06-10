@@ -93,6 +93,8 @@ private Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
+	bool remoteViewEnabled() const;
+	bool remoteControlEnabled() const;
 	bool initAuthentication();
 	bool remoteAccess( const QString& hostAddress, bool viewOnly );
 

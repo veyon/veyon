@@ -30,6 +30,7 @@
 #include "RemoteAccessFeaturePlugin.h"
 #include "RemoteAccessPage.h"
 #include "RemoteAccessWidget.h"
+#include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
 
 
@@ -104,7 +105,11 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		return false;
 	}
 
-	const auto viewOnly = feature.uid() == m_remoteViewFeature.uid();
+	auto viewOnly = feature.uid() == m_remoteViewFeature.uid();
+	if( remoteControlEnabled() == false )
+	{
+		viewOnly = true;
+	}
 
 	if( master.appContainer() )
 	{
@@ -112,7 +117,8 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 	}
 	else
 	{
-		new RemoteAccessWidget( remoteAccessComputer, viewOnly );
+		new RemoteAccessWidget( remoteAccessComputer, viewOnly,
+								remoteViewEnabled() && remoteControlEnabled() );
 	}
 
 	return true;
@@ -141,6 +147,11 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( co
 		return NotEnoughArguments;
 	}
 
+	if( remoteViewEnabled() == false )
+	{
+		return InvalidCommand;
+	}
+
 	return remoteAccess( arguments.first(), true ) ? Successful : Failed;
 }
 
@@ -151,6 +162,11 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 	if( arguments.count() < 1 )
 	{
 		return NotEnoughArguments;
+	}
+
+	if( remoteControlEnabled() == false )
+	{
+		return InvalidCommand;
 	}
 
 	return remoteAccess( arguments.first(), false ) ? Successful : Failed;
@@ -177,6 +193,21 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( co
 
 
 
+bool RemoteAccessFeaturePlugin::remoteViewEnabled() const
+{
+	return VeyonCore::config().disabledFeatures().contains( m_remoteViewFeature.uid().toString() ) == false;
+
+}
+
+
+
+bool RemoteAccessFeaturePlugin::remoteControlEnabled() const
+{
+	return VeyonCore::config().disabledFeatures().contains( m_remoteControlFeature.uid().toString() ) == false;
+}
+
+
+
 bool RemoteAccessFeaturePlugin::initAuthentication()
 {
 	return VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() &&
@@ -196,7 +227,13 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 	remoteComputer.setName( hostAddress );
 	remoteComputer.setHostAddress( hostAddress );
 
-	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), viewOnly );
+	if( remoteControlEnabled() == false )
+	{
+		viewOnly = true;
+	}
+
+	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), viewOnly,
+							remoteViewEnabled() && remoteControlEnabled() );
 
 	qApp->exec();
 
