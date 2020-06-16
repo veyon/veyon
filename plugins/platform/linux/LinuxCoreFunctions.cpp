@@ -65,7 +65,7 @@ void LinuxCoreFunctions::reboot()
 {
 	if( isRunningAsAdmin() )
 	{
-		QProcess::startDetached( QStringLiteral("reboot") );
+		QProcess::startDetached( QStringLiteral("reboot"), {} );
 	}
 	else
 	{
@@ -89,7 +89,7 @@ void LinuxCoreFunctions::powerDown( bool installUpdates )
 
 	if( isRunningAsAdmin() )
 	{
-		QProcess::startDetached( QStringLiteral("poweroff") );
+		QProcess::startDetached( QStringLiteral("poweroff"), {} );
 	}
 	else
 	{

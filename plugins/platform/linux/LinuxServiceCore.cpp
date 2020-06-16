@@ -136,7 +136,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	auto process = new QProcess( this );
 	process->setProcessEnvironment( sessionEnvironment );
-	process->start( VeyonCore::filesystem().serverFilePath() );
+	process->start( VeyonCore::filesystem().serverFilePath(), QStringList{} );
 
 	m_serverProcesses[sessionPath] = process;
 }

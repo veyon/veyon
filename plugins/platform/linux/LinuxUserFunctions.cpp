@@ -203,7 +203,7 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 bool LinuxUserFunctions::isAnyUserLoggedOn()
 {
 	QProcess whoProcess;
-	whoProcess.start( QStringLiteral("who") );
+	whoProcess.start( QStringLiteral("who"), QStringList{} );
 	whoProcess.waitForFinished( WhoProcessTimeout );
 
 	if( whoProcess.exitCode() != 0 )
@@ -311,11 +311,11 @@ void LinuxUserFunctions::logoff()
 														 static_cast<int>( LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE ) );
 
 	// Xfce logout
-	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
+	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout"), {} );
 
 	// LXDE logout
 	QProcess::startDetached( QStringLiteral("kill -TERM %1").
-							 arg( QProcessEnvironment::systemEnvironment().value( QStringLiteral("_LXSESSION_PID") ).toInt() ) );
+							 arg( QProcessEnvironment::systemEnvironment().value( QStringLiteral("_LXSESSION_PID") ).toInt() ), {} );
 
 	// terminate session via systemd
 	LinuxCoreFunctions::systemdLoginManager()->asyncCall( QStringLiteral("TerminateSession"),
@@ -331,7 +331,7 @@ void LinuxUserFunctions::logoff()
 bool LinuxUserFunctions::authenticate( const QString& username, const Password& password )
 {
 	QProcess p;
-	p.start( QStringLiteral( "veyon-auth-helper" ), QProcess::ReadWrite | QProcess::Unbuffered );
+	p.start( QStringLiteral( "veyon-auth-helper" ), QStringList{}, QProcess::ReadWrite | QProcess::Unbuffered );
 	if( p.waitForStarted() == false )
 	{
 		vCritical() << "failed to start VeyonAuthHelper";
