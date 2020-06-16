@@ -227,13 +227,6 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-bool VeyonCore::hasSessionId()
-{
-	return QProcessEnvironment::systemEnvironment().contains( sessionIdEnvironmentVariable() );
-}
-
-
-
 int VeyonCore::sessionId()
 {
 	if( config().multiSessionModeEnabled() )
@@ -548,9 +541,11 @@ void VeyonCore::initConfiguration()
 
 void VeyonCore::initLogging( const QString& appComponentName )
 {
-	if( hasSessionId() )
+	const auto currentSessionId = sessionId();
+
+	if( currentSessionId != PlatformSessionFunctions::DefaultSession )
 	{
-		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( sessionId() ) );
+		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( currentSessionId ) );
 	}
 	else
 	{

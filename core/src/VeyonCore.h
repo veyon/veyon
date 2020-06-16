@@ -168,7 +168,6 @@ public:
 
 	static void setupApplicationParameters();
 
-	static bool hasSessionId();
 	static int sessionId();
 
 	static QString applicationName();
