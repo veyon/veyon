@@ -26,6 +26,7 @@ build_veyon_plugin(linux-platform
 	LinuxNetworkFunctions.cpp
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
+	LinuxSessionFunctions.cpp
 	LinuxUserFunctions.cpp
 	LinuxPlatformPlugin.h
 	LinuxPlatformConfiguration.h
@@ -39,6 +40,7 @@ build_veyon_plugin(linux-platform
 	LinuxNetworkFunctions.h
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
+	LinuxSessionFunctions.h
 	LinuxUserFunctions.h
 	linux.qrc
 	../common/LogonHelper.h
