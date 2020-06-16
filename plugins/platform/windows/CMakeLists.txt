@@ -15,6 +15,7 @@ build_veyon_plugin(windows-platform
 	WindowsServiceControl.cpp
 	WindowsServiceCore.cpp
 	WindowsServiceFunctions.cpp
+	WindowsSessionFunctions.cpp
 	WindowsUserFunctions.cpp
 	WtsSessionManager.cpp
 	DesktopInputController.cpp
@@ -33,6 +34,7 @@ build_veyon_plugin(windows-platform
 	WindowsServiceControl.h
 	WindowsServiceCore.h
 	WindowsServiceFunctions.h
+	WindowsSessionFunctions.h
 	WindowsUserFunctions.h
 	WtsSessionManager.h
 	DesktopInputController.h
