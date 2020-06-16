@@ -45,6 +45,7 @@
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformServiceCore.h"
+#include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
 #include "QmlCore.h"
 #include "TranslationLoader.h"
@@ -235,7 +236,18 @@ bool VeyonCore::hasSessionId()
 
 int VeyonCore::sessionId()
 {
-	return QProcessEnvironment::systemEnvironment().value( sessionIdEnvironmentVariable() ).toInt();
+	if( config().multiSessionModeEnabled() )
+	{
+		const auto systemEnv = QProcessEnvironment::systemEnvironment();
+		if( systemEnv.contains( sessionIdEnvironmentVariable() ) )
+		{
+			return systemEnv.value( sessionIdEnvironmentVariable() ).toInt();
+		}
+
+		return platform().sessionFunctions().currentSessionId();
+	}
+
+	return PlatformSessionFunctions::DefaultSession;
 }
 
 
