@@ -32,6 +32,7 @@
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxNetworkFunctions.h"
 #include "LinuxServiceFunctions.h"
+#include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
 
 class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
@@ -103,6 +104,11 @@ public:
 		return m_linuxServiceFunctions;
 	}
 
+	PlatformSessionFunctions& sessionFunctions() override
+	{
+		return m_linuxSessionFunctions;
+	}
+
 	PlatformUserFunctions& userFunctions() override
 	{
 		return m_linuxUserFunctions;
@@ -116,6 +122,7 @@ private:
 	LinuxInputDeviceFunctions m_linuxInputDeviceFunctions{};
 	LinuxNetworkFunctions m_linuxNetworkFunctions{};
 	LinuxServiceFunctions m_linuxServiceFunctions{};
+	LinuxSessionFunctions m_linuxSessionFunctions{};
 	LinuxUserFunctions m_linuxUserFunctions{};
 
 };

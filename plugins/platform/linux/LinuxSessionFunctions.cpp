@@ -1,0 +1,182 @@
+/*
+ * LinuxSessionFunctions.cpp - implementation of LinuxSessionFunctions class
+ *
+ * Copyright (c) 2020 Tobias Junghans <tobydox@veyon.io>
+ *
+ * This file is part of Veyon - https://veyon.io
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program (see COPYING); if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ */
+
+#include <QDateTime>
+#include <QDBusReply>
+
+#include <proc/readproc.h>
+
+
+#include "LinuxSessionFunctions.h"
+
+
+LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId() const
+{
+	return toSessionId( QStringLiteral("/org/freedesktop/login1/session/self") );
+}
+
+
+
+LinuxSessionFunctions::SessionId LinuxSessionFunctions::toSessionId( const QString& session )
+{
+	auto display = getSessionDisplay( session );
+	if( display.isEmpty() == false )
+	{
+		return display.replace( QLatin1Char(':'), QString() ).toInt() % MaxSessions;
+	}
+
+	auto sessionId = getSessionIdString( session );
+	if( sessionId.isEmpty() == false )
+	{
+		return sessionId.replace( QLatin1Char('c'), QString() ).toInt() % MaxSessions;
+	}
+
+	return DefaultSession;
+}
+
+
+
+QVariant LinuxSessionFunctions::getSessionProperty( const QString& session, const QString& property )
+{
+	QDBusInterface loginManager( QStringLiteral("org.freedesktop.login1"),
+								 session,
+								 QStringLiteral("org.freedesktop.DBus.Properties"),
+								 QDBusConnection::systemBus() );
+
+	const QDBusReply<QDBusVariant> reply = loginManager.call( QStringLiteral("Get"),
+															  QStringLiteral("org.freedesktop.login1.Session"),
+															  property );
+
+	if( reply.isValid() == false )
+	{
+		vCritical() << "Could not query session property" << property << reply.error().message();
+		return {};
+	}
+
+	return reply.value().variant();
+}
+
+
+
+int LinuxSessionFunctions::getSessionLeaderPid( const QString& session )
+{
+	const auto leader = getSessionProperty( session, QStringLiteral("Leader") );
+
+	if( leader.isNull() )
+	{
+		return -1;
+	}
+
+	return leader.toInt();
+}
+
+
+
+qint64 LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
+{
+	const auto sessionUptimeUsec = getSessionProperty( session, QStringLiteral("Timestamp") );
+
+	if( sessionUptimeUsec.isNull() )
+	{
+		return -1;
+	}
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
+	const auto currentTimestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
+#else
+	const auto currentTimestamp = QDateTime::currentSecsSinceEpoch();
+#endif
+
+	return currentTimestamp - qint64( sessionUptimeUsec.toLongLong() / ( 1000 * 1000 ) );
+}
+
+
+
+QString LinuxSessionFunctions::getSessionType( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Type") ).toString();
+}
+
+
+
+QString LinuxSessionFunctions::getSessionDisplay( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Display") ).toString();
+}
+
+
+
+QString LinuxSessionFunctions::getSessionIdString( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Id") ).toString();
+}
+
+
+
+LinuxSessionFunctions::LoginDBusSessionSeat LinuxSessionFunctions::getSessionSeat( const QString& session )
+{
+	const auto seatArgument = getSessionProperty( session, QStringLiteral("Seat") ).value<QDBusArgument>();
+
+	LoginDBusSessionSeat seat;
+	seatArgument.beginStructure();
+	seatArgument >> seat.id;
+	seatArgument >> seat.path;
+	seatArgument.endStructure();
+
+	return seat;
+}
+
+
+
+QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLeaderPid )
+{
+	QProcessEnvironment sessionEnv;
+
+	PROCTAB* proc = openproc( PROC_FILLSTATUS | PROC_FILLENV );
+	proc_t* procInfo = nullptr;
+
+	QList<int> ppids;
+
+	while( ( procInfo = readproc( proc, nullptr ) ) )
+	{
+		if( ( procInfo->ppid == sessionLeaderPid || ppids.contains( procInfo->ppid ) ) &&
+			procInfo->environ != nullptr )
+		{
+			for( int i = 0; procInfo->environ[i]; ++i )
+			{
+				const auto env = QString::fromUtf8( procInfo->environ[i] ).split( QLatin1Char('=') );
+				sessionEnv.insert( env.first(), env.mid( 1 ).join( QLatin1Char('=') ) );
+			}
+
+			ppids.append( procInfo->tid );
+		}
+
+		freeproc( procInfo );
+	}
+
+	closeproc( proc );
+
+	return sessionEnv;
+}
+
