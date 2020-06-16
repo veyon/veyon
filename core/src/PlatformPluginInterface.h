@@ -31,6 +31,7 @@ class PlatformFilesystemFunctions;
 class PlatformInputDeviceFunctions;
 class PlatformNetworkFunctions;
 class PlatformServiceFunctions;
+class PlatformSessionFunctions;
 class PlatformUserFunctions;
 
 // clazy:excludeall=copyable-polymorphic
@@ -45,6 +46,7 @@ public:
 	virtual PlatformInputDeviceFunctions& inputDeviceFunctions() = 0;
 	virtual PlatformNetworkFunctions& networkFunctions() = 0;
 	virtual PlatformServiceFunctions& serviceFunctions() = 0;
+	virtual PlatformSessionFunctions& sessionFunctions() = 0;
 	virtual PlatformUserFunctions& userFunctions() = 0;
 
 };
