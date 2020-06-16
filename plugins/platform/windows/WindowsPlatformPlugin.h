@@ -32,6 +32,7 @@
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsNetworkFunctions.h"
 #include "WindowsServiceFunctions.h"
+#include "WindowsSessionFunctions.h"
 #include "WindowsUserFunctions.h"
 
 class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
@@ -103,6 +104,11 @@ public:
 		return m_windowsServiceFunctions;
 	}
 
+	PlatformSessionFunctions& sessionFunctions() override
+	{
+		return m_windowsSessionFunctions;
+	}
+
 	PlatformUserFunctions& userFunctions() override
 	{
 		return m_windowsUserFunctions;
@@ -116,6 +122,7 @@ private:
 	WindowsInputDeviceFunctions m_windowsInputDeviceFunctions{};
 	WindowsNetworkFunctions m_windowsNetworkFunctions{};
 	WindowsServiceFunctions m_windowsServiceFunctions{};
+	WindowsSessionFunctions m_windowsSessionFunctions{};
 	WindowsUserFunctions m_windowsUserFunctions{};
 
 };
