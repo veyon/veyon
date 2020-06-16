@@ -24,11 +24,11 @@
 
 #pragma once
 
-#include <QProcessEnvironment>
-
 #include "LinuxCoreFunctions.h"
 #include "PlatformServiceCore.h"
 #include "ServiceDataManager.h"
+
+class QProcess;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -55,35 +55,11 @@ private:
 	static constexpr auto SessionUptimeSecondsMinimum = 3;
 	static constexpr auto SessionUptimeProbingInterval = 1000;
 
-	using LoginDBusSession = struct {
-		QString id;
-		quint32 uid{0};
-		QString name;
-		QString seatId;
-		QDBusObjectPath path;
-	} ;
-
-	using LoginDBusSessionSeat = struct {
-		QString id;
-		QString path;
-	} ;
-
 	void connectToLoginManager();
 	void stopServer( const QString& sessionPath );
 	void stopAllServers();
 
 	QStringList listSessions();
-
-	static QVariant getSessionProperty( const QString& session, const QString& property );
-
-	static int getSessionLeaderPid( const QString& session );
-	static qint64 getSessionUptimeSeconds( const QString& session );
-	static QString getSessionType( const QString& session );
-	static QString getSessionDisplay( const QString& session );
-	static QString getSessionId( const QString& session );
-	static LoginDBusSessionSeat getSessionSeat( const QString& session );
-
-	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, QProcess *> m_serverProcesses;
