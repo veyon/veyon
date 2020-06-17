@@ -26,8 +26,14 @@
 #include "WtsSessionManager.h"
 
 
-
 WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId() const
 {
-    return WtsSessionManager::currentSession();
+	const auto currentSession = WtsSessionManager::currentSession();
+
+	if( currentSession == WtsSessionManager::activeConsoleSession() )
+	{
+		return DefaultSession;
+	}
+
+	return currentSession;
 }
