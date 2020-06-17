@@ -90,7 +90,7 @@ void AuthenticationPage::populateTabs()
 	const auto plugins = VeyonCore::authenticationManager().plugins();
 	for( auto* plugin : plugins )
 	{
-		if( plugin->authenticationTypeName().isEmpty() )
+		if( plugin->authenticationMethodName().isEmpty() )
 		{
 			continue;
 		}
@@ -117,7 +117,7 @@ void AuthenticationPage::populateTabs()
 		}
 
 
-		ui->tabWidget->addTab( tab, plugin->authenticationTypeName() );
+		ui->tabWidget->addTab( tab, plugin->authenticationMethodName() );
 
 		m_tabs[plugin] = tab;
 	}

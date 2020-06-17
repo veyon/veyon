@@ -36,7 +36,7 @@ public:
 	explicit DemoAuthentication( Plugin::Uid pluginUid );
 	~DemoAuthentication() override = default;
 
-	QString authenticationTypeName() const override
+	QString authenticationMethodName() const override
 	{
 		return {};
 	}

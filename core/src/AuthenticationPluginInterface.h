@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT AuthenticationPluginInterface
 public:
 	virtual ~AuthenticationPluginInterface() = default;
 
-	virtual QString authenticationTypeName() const = 0;
+	virtual QString authenticationMethodName() const = 0;
 
 	virtual QWidget* createAuthenticationConfigurationWidget() = 0;
 

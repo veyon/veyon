@@ -68,7 +68,7 @@ public:
 		return QStringLiteral( "Tobias Junghans" );
 	}
 
-	QString authenticationTypeName() const override
+	QString authenticationMethodName() const override
 	{
 		return tr("Simple password");
 	}

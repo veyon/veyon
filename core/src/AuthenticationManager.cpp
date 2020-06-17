@@ -53,7 +53,7 @@ AuthenticationManager::Types AuthenticationManager::availableTypes() const
 	Types types;
 	for( auto it = m_plugins.constBegin(), end = m_plugins.constEnd(); it != end; ++it )
 	{
-		types[it.key()] = it.value()->authenticationTypeName();
+		types[it.key()] = it.value()->authenticationMethodName();
 	}
 
 	return types;

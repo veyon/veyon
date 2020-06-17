@@ -79,7 +79,7 @@ public:
 
 	void upgrade( const QVersionNumber& oldVersion ) override;
 
-	QString authenticationTypeName() const override
+	QString authenticationMethodName() const override
 	{
 		return tr("Key file");
 	}
