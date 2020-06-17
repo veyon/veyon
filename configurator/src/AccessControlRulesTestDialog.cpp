@@ -26,6 +26,7 @@
 
 #include "AccessControlRulesTestDialog.h"
 #include "AccessControlProvider.h"
+#include "AuthenticationManager.h"
 #include "HostAddress.h"
 #include "PlatformUserFunctions.h"
 
@@ -40,6 +41,15 @@ AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
 
 	ui->localUserLineEdit->setText( VeyonCore::platform().userFunctions().currentUser() );
 	ui->localComputerLineEdit->setText( HostAddress::localFQDN() );
+
+	const auto authenticationMethods = VeyonCore::authenticationManager().availableMethods();
+	for( auto it = authenticationMethods.constBegin(), end = authenticationMethods.constEnd(); it != end; ++it )
+	{
+		if( it.value().isEmpty() == false )
+		{
+			ui->authenticationMethodsComboBox->addItem( it.value(), it.key() );
+		}
+	}
 }
 
 
@@ -67,7 +77,8 @@ void AccessControlRulesTestDialog::accept()
 															   ui->accessingComputerLineEdit->text(),
 															   ui->localUserLineEdit->text(),
 															   ui->localComputerLineEdit->text(),
-															   ui->connectedUsersLineEdit->text().split( QLatin1Char(',') ) );
+															   ui->connectedUsersLineEdit->text().split( QLatin1Char(',') ),
+															   ui->authenticationMethodsComboBox->currentData().toString() );
 	QString resultText;
 
 	switch( result )
