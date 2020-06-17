@@ -40,6 +40,8 @@ public:
 		return m_plugins;
 	}
 
+	Plugin::Uid toUid( AuthenticationPluginInterface* authPlugin ) const;
+
 	Types availableMethods() const;
 
 	void setEnabled( Plugin::Uid uid, bool enabled );

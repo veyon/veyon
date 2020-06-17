@@ -48,6 +48,21 @@ AuthenticationManager::AuthenticationManager( QObject* parent ) :
 
 
 
+Plugin::Uid AuthenticationManager::toUid( AuthenticationPluginInterface* authPlugin ) const
+{
+	for( auto it = m_plugins.constBegin(), end = m_plugins.constEnd(); it != end; ++it )
+	{
+		if( it.value() == authPlugin )
+		{
+			return it.key();
+		}
+	}
+
+	return {};
+}
+
+
+
 AuthenticationManager::Types AuthenticationManager::availableMethods() const
 {
 	Types types;
