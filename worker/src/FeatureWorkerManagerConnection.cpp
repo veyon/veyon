@@ -40,6 +40,8 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 	m_socket( this ),
 	m_featureUid( featureUid )
 {
+	connect( &m_connectTimer, &QTimer::timeout, this, &FeatureWorkerManagerConnection::tryConnection );
+
 	connect( &m_socket, &QTcpSocket::connected,
 			 this, &FeatureWorkerManagerConnection::sendInitMessage );
 
@@ -49,8 +51,7 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
-	m_socket.connectToHost( QHostAddress::LocalHost,
-							static_cast<quint16>( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() ) );
+	tryConnection();
 }
 
 
@@ -62,9 +63,26 @@ bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message 
 
 
 
+void FeatureWorkerManagerConnection::tryConnection()
+{
+	if( m_socket.state() != QTcpSocket::ConnectedState )
+	{
+		const auto port = quint16( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() );
+
+		vDebug() << "connecting to FeatureWorkerManager at port" << port;
+
+		m_socket.connectToHost( QHostAddress::LocalHost, port );
+		m_connectTimer.start( ConnectTimeout );
+	}
+}
+
+
+
 void FeatureWorkerManagerConnection::sendInitMessage()
 {
 	vDebug() << m_featureUid;
+
+	m_connectTimer.stop();
 
 	FeatureMessage( m_featureUid, FeatureMessage::InitCommand ).send( &m_socket );
 }

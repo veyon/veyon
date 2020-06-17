@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QTcpSocket>
+#include <QTimer>
 
 #include "Feature.h"
 
@@ -45,6 +46,9 @@ public:
 	bool sendMessage( const FeatureMessage& message );
 
 private:
+	static constexpr auto ConnectTimeout = 3000;
+
+	void tryConnection();
 	void sendInitMessage();
 	void receiveMessage();
 
@@ -52,5 +56,6 @@ private:
 	FeatureManager& m_featureManager;
 	QTcpSocket m_socket;
 	Feature::Uid m_featureUid;
+	QTimer m_connectTimer{this};
 
 } ;
