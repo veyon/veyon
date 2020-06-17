@@ -263,6 +263,10 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <source>is located at</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <source>Test result</source>
         <translation>Kết quả kiểm tra</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Khóa xác thực</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Giới thiệu</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Vui lòng thực hiện các bước sau để thiết lập xác thực tập tin khóa:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Tạo một cặp khóa trên máy tính chủ.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Thiết lập một nhóm truy cập mà các thành viên sẽ được phép truy cập vào các máy tính khác.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Xuất khóa công và nhập nó trên tất cả các máy tính khách với cùng tên.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Vui lòng tham khảo &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Hướng dẫn quản trị Veyon&lt;/a&gt;để biết thêm thông tin.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Thư mục tập tin khóa</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Thư mục cơ sở tập tin khóa công</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Thư mục cơ sở tập tin khóa riêng</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Khóa xác thực khả dụng</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Một cặp khóa xác thực bao gồm hai khóa mật mã, một khóa riêng và một khóa công.
+Một khóa riêng cho phép người dùng trên máy tính chủ truy cập vào các máy tính khách.
+Điều quan trọng đó là chỉ những người dùng được cấp quyền mới có truy cập đọc vào tập tin khóa riêng.
+Khóa công được sử dụng trên các máy tính khách để xác thực yêu cầu kết nối đến.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Tặp cặp khóa</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Xóa khóa</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Nhập khóa</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Xuất khóa</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Đặt nhóm truy cập</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Khóa xác thực</translation>
@@ -676,6 +765,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Key file authentication</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Pair ID</source>
         <translation>ID cặp</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Chung</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Logon authentication</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Simple password authentication</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Kiểm tra</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1524,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1839,10 +2012,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Test</source>
         <translation>Kiểm tra</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure</source>
@@ -2606,6 +2775,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2894,6 +3071,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3521,6 +3702,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -263,6 +263,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>is located at</source>
         <translation>에 위치함</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>Test result</source>
         <translation>시험 결과</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>인증 키</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>소개</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>키 파일 인증을 설정하기 위해 다음 단계들을 실행하세요:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) 마스터 컴퓨터에서 키페어를 생성하시오.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) 다른 컴퓨터에 접근을 허용할 멤버가 속한 그룹을 설정하세요.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) 공개키를 내보내고 그키를 같은 이름을 가진 모든 클라이언트 컴퓨터에서 읽어들이기.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>더 자세한 정보는  &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon 관리자 매뉴얼을 참조하세요 &lt;/a&gt; .</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>키 파일 폴더</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>공개 키 화일 기본 폴더</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>개인 키 화일 기본 폴더</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>사용 가능한 인증키들</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>인증 키는 두 부분으로 구성되어 있습니다, 공개 키 파트와 개인 키 파트.
+개인 키를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다.
+오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는 것이 아주 중요합니다.
+공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>키 페어 생성</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>키 삭제</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>키 불러오기</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>키 내보내기</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>접근 그룹 설정</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>인증 키</translation>
@@ -676,6 +765,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>키 화일 인증</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>페어(짝) ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>일반사항</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 로그온</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>사용자 이름</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>암호</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>인증 에러</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>입력한 사용자이름과 패스워드로 로그온 실패. 다시 시도하세요!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>로그온 인증</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation>패스워드 간단 인증</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>인증 방법</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>이 컴퓨터에서 인증이 적절히 설정되었습니다.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>테스트</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1524,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>플랫폼 전용 설정 세팅을 적용할 수 없습니다.</translation>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1840,10 +2013,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>테스트</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>이 컴퓨터에서 인증이 적절히 설정되었습니다.</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -2624,6 +2793,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>제공된 사용자 이름 또는 패스워드가 틀립니다. 유효한 사용자 명 또는 패스워드를 사용하시거나 Veyon 설정기를 이용하여 다른 인증방법을 사용하시기 바랍니다.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2913,6 +3090,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation>위치 &amp;&amp; 컴퓨터</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>인증</translation>
     </message>
 </context>
 <context>
@@ -3542,6 +3723,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>화면캡쳐</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

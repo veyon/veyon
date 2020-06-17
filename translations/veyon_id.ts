@@ -263,6 +263,10 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <source>is located at</source>
         <translation>berlokasi</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <source>Test result</source>
         <translation>Hasil test</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Kunci otentikasi</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Perkenalan</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Silakan lakukan langkah-langkah berikut untuk mengatur otentikasi file utama:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Buat pasangan kunci di komputer master.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Tetapkan grup akses yang anggotanya harus diizinkan untuk mengakses komputer lain.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Ekspor kunci publik dan impor pada semua komputer klien dengan nama yang sama.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Direktori berkas kunci</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Direktori basis berkas kunci publik</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Direktori basis file kunci pribadi</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Sepasang kunci otentikasi terdiri dari dua kunci kriptografi yang digabungkan, kunci pribadi dan kunci publik. 
+Kunci privat memungkinkan pengguna pada komputer master untuk mengakses komputer klien. 
+Penting bahwa hanya pengguna yang berwenang yang memiliki akses baca ke file kunci pribadi. 
+Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan koneksi masuk.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Buat pasangan kunci</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Hapus kunci</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Impor kunci</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Ekspor kunci</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Setel grup akses</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Kunci otentikasi</translation>
@@ -676,6 +765,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Key file authentication</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     <message>
         <source>Pair ID</source>
         <translation>ID Pasangan</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Umum</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Masuk Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nama Pengguna</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Kata sandi</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Otentikasi gagal</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Logon authentication</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     <message>
         <source>Simple password authentication</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Tes</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1524,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1839,10 +2012,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     <message>
         <source>Test</source>
         <translation>Tes</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure</source>
@@ -2606,6 +2775,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2894,6 +3071,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3522,6 +3703,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>Tangkapan layar</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -263,6 +263,10 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
         <source>is located at</source>
         <translation>jest w</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
         <source>Test result</source>
         <translation>Wynik testu</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Metoda uwierzytelnienia</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Klucze uwierzytelniające</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Wprowadzenie</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Wykonaj poniższe kroki w celu ustawienia pliku klucza uwierzytelniającego:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>)1 Stwórz parę kluczy uwierzytelniających na głównym komputerze.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Utwórz grupę użytkowników którzy mają mieć dostęp do innych komputerów.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Wyeksportuj klucz publiczny i zaimportuj go na wszystkich komputerach klienckich z taką samą nazwą.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Więcej informacji można znaleźć w &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Podręczniku administratora Veyon&lt;/a&gt;. </translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Lokalizacja plików kluczy</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Katalog z plikami kluczy publicznych</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Katalog z plikami kluczy prywatnych</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Dostępne klucze uwierzytelniające</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Para kluczy uwierzytelniających składa się z dwóch kluczy kryptograficznych, prywatnego i publicznego.
+Klucz prywatny umożliwia użytkownikom komputera głównego dostęp do komputerów klienta.
+Ważne jest, aby jedynie autoryzowani użytkownicy mogli odczytać plik klucza prywatnego.
+Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połączeń przychodzących.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Stwórz parę kluczy</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Usuń klucz</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importuj klucz</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Eksportuj klucz</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Ustaw grupę dostępu</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Klucze uwierzytelniające</translation>
@@ -676,6 +765,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Key file authentication</source>
         <translation>Uwierzytelnienie z użyciem klucza</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Plik z kluczem</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Pair ID</source>
         <translation>Pair ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Ogólne</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Logowanie Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nazwa użytkownika</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Hasło</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Błąd uwierzytelnienia</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Nie można się zalogować z użytym loginem i hasłem. Spróbuj ponownie!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Logon authentication</source>
         <translation>Uwierzytelnienie z użyciem loginu</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Simple password authentication</source>
         <translation>Proste uwierzytelnianie hasłem</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Metody uwierzytelniania</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Uwierzytelnianie jest poprawnie skonfigurowane na tym komputerze.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
 </context>
 <context>
@@ -1159,14 +1328,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktywne połączenia:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Grupa %1</translation>
     </message>
 </context>
 <context>
@@ -1208,19 +1377,19 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Odznacz wszystko</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj do grupy</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Usuń z grupy</translation>
     </message>
 </context>
 <context>
@@ -1354,6 +1523,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Nie można zastosować ustawień konfiguracji specyficznych dla platformy.</translation>
+    </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1841,10 +2014,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Test</translation>
     </message>
     <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Uwierzytelnianie jest poprawnie skonfigurowane na tym komputerze.</translation>
-    </message>
-    <message>
         <source>Configure</source>
         <translation>Konfiguruj</translation>
     </message>
@@ -2094,7 +2263,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>Filtr grupy komputerów</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2106,11 +2275,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>Nieprawidłowa wartość</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>Podano pustą lub niepoprawną wartość.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2618,6 +2787,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
+        <translation>Zweryfikuj połączenie do serwera LDAP</translation>
+    </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Podana nazwa użytkownika lub hasło jest nieprawidłowe. Wprowadź prawidłowe dane uwierzytelniające lub przejdź na inną metodę uwierzytelniania za pomocą Konfiguratora Veyon.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2910,6 +3087,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Locations &amp;&amp; computers</source>
         <translation>Lokalizacje i komputery</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Uwierzytelnienie</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3063,7 +3244,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Użyj nowoczesnego interfejsu użytkownika (eksperymentalne)</translation>
     </message>
 </context>
 <context>
@@ -3210,11 +3391,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl nazwy wszystkich zainstalowanych wtyczek</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż szczegółową tabelę zainstalowanych wtyczek</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3222,23 +3403,23 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Opis</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Wersja</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>Identyfikator użytkownika</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Operacje linii komend  związane z wtyczkami</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Polecenia do zarządzania wtyczkami</translation>
     </message>
 </context>
 <context>
@@ -3398,7 +3579,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Zdalny dostęp: %1</translation>
     </message>
 </context>
 <context>
@@ -3538,6 +3719,10 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Zrzut ekranu</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

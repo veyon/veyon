@@ -262,6 +262,10 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
         <source>is located at</source>
         <translation>yra šioje vietoje</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -312,6 +316,10 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     <message>
         <source>Test result</source>
         <translation>Testo rezultatai</translation>
+    </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Autorizavimo metodas</translation>
     </message>
 </context>
 <context>
@@ -405,6 +413,87 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Set access group</source>
         <translation>Nustatyti prieigos grupę</translation>
     </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Prieigos raktai</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Įvadas</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Atlikite šiuos veiksmus, kad nustatytumėte prieigą naudojant rakto failą</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Sukurkite raktų porą pagrindiniame kompiuteryje</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Nustatykite prieigos grupę, kurios nariams bus leista pasiekti kitus kompiuterius.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Eksportuokite viešajį raktą ir importuokite visuose klientų kompiuteriuose naudojant tą patį vardą.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Daugiau informacijos galite rasti &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administratoriaus Instrukcijoje&lt;/a&gt; </translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Direktorija raktų failams</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Katalogas kuriame saugomas viešas raktas</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Privataus rakto saugojimo direktorija</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Galimi autorizavimo raktai</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Autorizavimo raktų pora susideda iš dviejų kriptografinių raktų privataus ir viešojo.
+Privatus raktas leidžia pagrindiniam kompiuteriui pasiekti klientų kompiuterius
+Svarbu, kad tik autorizuoti naudotojai turėtų prieigą prie privataus rakto failo
+Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio užklausą.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Sukurti raktų porą</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Ištrinti raktą</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importuoti raktą</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Eksportuoti raktą</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Nustatyti prieigos grupę</translation>
+    </message>
     <message>
         <source>Key files (*.pem)</source>
         <translation>Raktų failai (*.pem)</translation>
@@ -415,7 +504,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Įveskite vartotojų grupės vardą arba rolę kuriai bus kuriama raktų pora:</translation>
+        <translation>Įveskite naudotojų grupės vardą arba rolę kuriai bus kuriama raktų pora:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -427,7 +516,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Įveskite vartotojų grupės vardą arba rolę kuriai bus importuojama raktų pora:</translation>
+        <translation>Įveskite naudotojų grupės vardą arba rolę kuriai bus importuojama raktų pora:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -435,7 +524,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Pasirinkite vartotojų grupę kuriai bus suteikta prieiga prie rakto &quot;%1&quot;:</translation>
+        <translation>Pasirinkite naudotojų grupę kuriai bus suteikta prieiga prie rakto &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -675,6 +764,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Key file authentication</source>
         <translation>Autorizuotis naudojant pasiekiamumo raktą</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Rakto failas</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -693,6 +786,52 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Pair ID</source>
         <translation>Poros ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Pagrindinis</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon Prisijungimas</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Naudotojo vardas</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Slaptažodis</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Autorizacijos klaida</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Nepavyko prisijungti su įvestu naudotojo vardu bei slaptažodžiu. Pabandykite dar kartą!</translation>
     </message>
 </context>
 <context>
@@ -732,6 +871,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Logon authentication</source>
         <translation>Autorizacija prisijungiant į sistemą</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -761,6 +904,32 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Simple password authentication</source>
         <translation>Paprastas slaptažodio autorizavimas</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Autorizavimo metodai</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Autorizacija nustatyta tinkamai šiame kompiuteryje.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testuoti</translation>
     </message>
 </context>
 <context>
@@ -1158,7 +1327,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktyvūs prisijungimai:</translation>
     </message>
 </context>
 <context>
@@ -1203,7 +1372,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Ieškoti naudotojų bei kompiuterių</translation>
     </message>
     <message>
         <source>Select all</source>
@@ -1354,6 +1523,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1456,7 +1629,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation> Naudotojas %1 iš kompiuterio %2 nori prisijungti prie jūsų kompiuterio. Ar norite tai leisti?</translation>
     </message>
 </context>
 <context>
@@ -1838,10 +2011,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Test</source>
         <translation>Testuoti</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Autorizacija nustatyta tinkamai šiame kompiuteryje.</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -2493,7 +2662,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti visas vietas</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
@@ -2513,7 +2682,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vietovės pavadinimą</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
@@ -2606,6 +2775,14 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Pateiktas vartotojo vardas ar slaptažodis yra neteisingas/i. Įveskite teisingus prisijungimo duomenis, arba perjunkite į kitą autorizavimo metodą naudojant Veyon Configurator</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2670,7 +2847,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Seanso valdymas</translation>
     </message>
     <message>
         <source>Display manager users</source>
@@ -2688,7 +2865,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite vietą</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2782,7 +2959,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Paslauga</translation>
     </message>
     <message>
         <source>Master</source>
@@ -2826,11 +3003,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano nuotraukos</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>Funkcija aktyvi</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
@@ -2846,7 +3023,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Ieškoti naudotojų bei kompiuterių</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
@@ -2874,11 +3051,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Į&amp;rašyti nustatymus į failą</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Rodyti</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
@@ -2894,7 +3071,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Vietos bei kompiuteriai</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autorizavimas</translation>
     </message>
 </context>
 <context>
@@ -2909,7 +3090,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>Naudotojo konfigūravimas</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2917,19 +3098,19 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Galimybės</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Visos galimybės</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Išjungtos galimybės</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano nuotraukos</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2985,15 +3166,15 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Naudotojo ir kompiuterio vardas</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Tik naudotojo vardas</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Tik kompiuterio vardas</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3009,7 +3190,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio ir naudotojo vardas</translation>
     </message>
     <message>
         <source>Computer locations</source>
@@ -3025,7 +3206,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>Slėpti tuščias vietas</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
@@ -3243,7 +3424,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Paspauskite šį mygtuką, kad paleistumėte iš naujo visus kompiuterius.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3255,7 +3436,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>Į(iš)jungti kompiuterį ar paleisti iš naujo</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3267,7 +3448,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite paleisti iš naujo pasirinktus kompiuterius?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
@@ -3299,11 +3480,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti dabar</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegti atnaujinimus ir išjungti</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
@@ -3347,7 +3528,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Nuotolinis rodymas</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -3367,7 +3548,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>Žiūrėti arba valdyti kompiuterį nuotoliniu būdu</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -3523,6 +3704,10 @@ Please save your work and close all programs.</source>
         <source>Screenshot</source>
         <translation>Ekrano vaizdas</translation>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
@@ -3551,7 +3736,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotManagementPage</name>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano nuotraukos</translation>
     </message>
 </context>
 <context>

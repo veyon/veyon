@@ -263,6 +263,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>is located at</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>Test result</source>
         <translation>Testresultaat</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,84 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Authenticatie sleutels</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Inleiding</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Gelieve volgende stappen te volgen om sleutel authenticatie in te stellen:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Maak een key pair op de master computer.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporteer de publieke key en importeer deze op alle client computers met dezelfde naam.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Publieke sleutel basis bestands folder</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Privé sleutel basis bestands folder</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>key pair aanmaken</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Verwijder key</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importeer key</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Exporteer key</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Authenticatie sleutels</translation>
@@ -673,6 +759,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Sleutel bestand authenticatie</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -691,6 +781,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>Paar ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Algemeen</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon inloggen</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Gebruikersnaam</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Wachtwoord</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authenticatie fout</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Inloggen mislukt met de opgegeven gebruikersnaam en wachtwoord. Probeer het opnieuw!</translation>
     </message>
 </context>
 <context>
@@ -730,6 +866,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>Aanmeldingsverificatie</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -759,6 +899,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Verificatiemethoden</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
 </context>
 <context>
@@ -1352,6 +1518,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1836,10 +2006,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>Test</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure</source>
@@ -2610,6 +2776,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2899,6 +3073,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authenticatie</translation>
     </message>
 </context>
 <context>
@@ -3526,6 +3704,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>Schermafbeelding</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

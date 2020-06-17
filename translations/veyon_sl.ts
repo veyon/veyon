@@ -263,6 +263,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation>se nahaja na</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Test result</source>
         <translation>Rezultati testa</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Metoda overjanja</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Ključi preverjanja pristnosti </translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Uvod</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Če želite nastaviti overjanje datotek ključa, naredite naslednje:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Ustvarite par ključev na glavnem računalniku.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Nastavite skupino za dostop, katere člani bi morali imeti dostop do drugih računalnikov.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Izvozite javni ključ in ga uvozite v vse odjemalske računalnike z istim imenom.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Prosimo, obiščite &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon skrbniški priročnik&lt;/a&gt; za več informacij.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Imeniki datoteke ključa </translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Imenik datoteke z javnim ključem</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Imenik datoteke z zasebnim ključem</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Razpoložljivi ključi za preverjanje pristnosti</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Par ključev za preverjanje pristnosti je sestavljen iz dveh povezanih kriptografskih ključev, zasebnega in javnega ključa.
+Zasebni ključ omogoča uporabnikom na glavnem računalniku dostop do odjemalskih računalnikov.
+Pomembno je, da imajo samo pooblaščeni uporabniki dostop do datoteke zasebnega ključa.
+Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti dohodne povezave.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Ustvari par ključev</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Izbriši ključ</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Uvozi ključ</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Izvozi ključ</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Nastavite skupino za dostop</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ključi preverjanja pristnosti </translation>
@@ -676,6 +765,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Key file authentication</source>
         <translation>Preverjanje pristnosti z datotečnim ključem</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Datoteka ključa</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Pair ID</source>
         <translation>Par ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Splošno</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon prijava</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uporabniško ime</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Geslo</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Napaka preverjanja pristnosti</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Prijava z neodobrenim uporabniškim imenom in geslom ni uspela. Prosim, poskusite ponovno!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Logon authentication</source>
         <translation>Preverjanje pristnosti prijave</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Simple password authentication</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Načini overjanja</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Preverjanje pristnosti je pravilno nastavljeno v tem računalniku.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkus</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1524,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1839,10 +2012,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Test</source>
         <translation>Preizkus</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Preverjanje pristnosti je pravilno nastavljeno v tem računalniku.</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -2625,6 +2794,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2914,6 +3091,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation>Lokacije &amp;&amp; računalniki</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Preverjanje pristnosti</translation>
     </message>
 </context>
 <context>
@@ -3541,6 +3722,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>Zaslonska slika</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

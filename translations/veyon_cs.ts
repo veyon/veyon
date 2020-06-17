@@ -263,6 +263,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <source>is located at</source>
         <translation>se nachází v</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <source>Test result</source>
         <translation>Výsledek zkoušky fungování</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Ověřovací klíče</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Úvod</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Pro nastavení ověřování souborem s klíčem proveďte následující kroky:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Vytvořte dvojici klíčů na řídícím počítači.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2( Nastavte přístupovou skupinu jejíž členům by mělo být umožněno přistupovat k ostatním počítačům.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exportujte veřejnou část klíče a importujte ji na všechny klientské počítače pod stejným názvem.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Nahlédněte do &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Příručky správy Veyon&lt;/a&gt; pro další informace.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Složky souboru s klíčem</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Základní složka pro veřejnou část klíče</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Základní složka pro soukromou část klíče</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>…</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Ověřovací klíče k dispozici</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Dvojice ověřovacích klíčů je tvořena propojovacími šifrovacími klíči, soukromým a veřejným.
+Soukromá část umožňuje uživatelům na hlavním počítači přistupovat ke klientským počítačům.
+Je důležité aby pouze pověření uživatelé mohli číst soubor se soukromou částí klíče.
+Veřejná část je použita na klientských počítačích pro ověření příchozího požadavku na připojení.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Vytvořit dvojici klíčů</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Smazat klíč</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importovat klíč</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Exportovat klíč</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Nastavit přístupovou skupinu</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ověřovací klíče</translation>
@@ -676,6 +765,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Key file authentication</source>
         <translation>Ověření pomocí souboru s klíčem</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Pair ID</source>
         <translation>Identifikátor dvojice</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Obecné</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon přihlášení</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Uživatelské jméno</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Heslo</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Chyba ověření</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Přihlášení daným uživatelským jménem a heslem se nezdařilo. Zkuste to znovu!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Logon authentication</source>
         <translation>Ověření přihlášením se</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Simple password authentication</source>
         <translation>Jednoduché ověřování se heslem</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Metody ověřování</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Ověřování je na tomto počítači nastaveno správně</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Vyzkoušet funkčnost</translation>
     </message>
 </context>
 <context>
@@ -1159,14 +1328,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktivní spojení:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Skupina %1</translation>
     </message>
 </context>
 <context>
@@ -1208,19 +1377,19 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat vše</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Odznačit vše</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Přidat do skupiny</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Odebrat ze skupiny</translation>
     </message>
 </context>
 <context>
@@ -1354,6 +1523,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Nedaří se uplatnit změny nastavení pro konkrétní platformu.</translation>
+    </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1841,10 +2014,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Vyzkoušet funkčnost</translation>
     </message>
     <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Ověřování je na tomto počítači nastaveno správně</translation>
-    </message>
-    <message>
         <source>Configure</source>
         <translation>Nastavit</translation>
     </message>
@@ -2097,7 +2266,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>Filtr skupin počítačů</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2109,11 +2278,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>Neplatná hodnota testu</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>Pro tento test zadána prázdná nebo neplatná hodnota.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2619,6 +2788,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
+        <translation>Vyzkoušet napojení na LDAP server</translation>
+    </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Zadané uživatelské jméno nebo heslo není správné. Zadejte platné přihlašovací údaje nebo pomocí nastavení Veyon přepněte na jinou metodu ověřování.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2911,6 +3088,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Locations &amp;&amp; computers</source>
         <translation>Umístění &amp;&amp; počítače</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Ověření</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3064,7 +3245,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Použít moderní uživatelské rozhraní (experimentální)</translation>
     </message>
 </context>
 <context>
@@ -3211,11 +3392,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Vypsat názvy všech nainstalovaných zásuvných modulů</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit tabulku s podrobnostmi o všech nainstalovaných zásuvných modulech</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3223,11 +3404,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Popis</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Verze</translation>
     </message>
     <message>
         <source>UID</source>
@@ -3235,11 +3416,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Operace v příkazovém řádku související se zásuvným modulem</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Příkazy pro správu zásuvných modulů</translation>
     </message>
 </context>
 <context>
@@ -3399,7 +3580,7 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Přístup na dálku: %1</translation>
     </message>
 </context>
 <context>
@@ -3539,6 +3720,10 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Snímek obrazovky</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4075,7 +4260,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Potvrďte právní upozornění (zprávu zobrazovanou před tím, než se uživatel přihlásí)</translation>
     </message>
 </context>
 <context>
@@ -4135,7 +4320,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <name>main</name>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon – hlavní</translation>
     </message>
 </context>
 </TS>

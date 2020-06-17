@@ -261,6 +261,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation>befindet sich in</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation>Authentifiziert über Methode</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -312,6 +316,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Test result</source>
         <translation>Testergebnis</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Authentifizierungsmethode</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -326,6 +334,86 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Authentifizierungsschlüssel</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Einführung</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Bitte führen Sie die folgenden Schritte durch, um die Schlüsseldatei-Authentifizierung einzurichten:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Schlüsselpaar auf dem Master-Computer erzeugen.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Zugriffsgruppe festlegen, deren Mitgliedern der Zugriff auf andere Computer erlaubt werden soll.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Öffentlichen Schlüssel exportieren und auf allen Client-Computern mit dem selben Namen importieren.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Weitere Informationen entnehmen Sie bitte dem &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon-Administrationshandbuch&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Schlüsseldateiverzeichnis</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Basisverzeichnis der öffentlichen Schlüsseldatei</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Basisverzeichnis der privaten Schlüsseldatei</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Verfügbare Authentifizierungsschlüssel</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Ein Authentifizierungsschlüsselpaar besteht aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
+Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
+Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Schlüsselpaar erzeugen</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Schlüssel löschen</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Schlüssel importieren</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Schlüssel exportieren</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Zugriffsgruppe setzen</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Authentifizierungsschlüssel</translation>
@@ -673,6 +761,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Key file authentication</source>
         <translation>Schlüsseldatei-Authentifizierung</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Schlüsseldatei</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -691,6 +783,52 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Pair ID</source>
         <translation>Paar-ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation>LDAP-Authentifizierung</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation>Zuordnung Benutzername zu Bind-DN:</translation>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation>z.B. %username%@DOMAIN oder cn=%username%,ou=users,dc=example,dc=org</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon-Anmeldung</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation>Bitte geben Sie Ihren Domain/LDAP-Benutzernamen und Passwort ein, um auf Computer zuzugreifen.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Passwort</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authentifizierungsfehler</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Die Anmeldung mit dem angegebenen Benutzername und Passwort ist fehlgeschlagen. Bitte versuchen Sie es erneut!</translation>
     </message>
 </context>
 <context>
@@ -730,6 +868,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Logon authentication</source>
         <translation>Anmelde-Authentifizierung</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation>Anmeldung</translation>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -759,6 +901,32 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Simple password authentication</source>
         <translation>Einfache Passwortauthentifizierung</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation>Einfaches Passwort</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Authentifizierungsmethoden</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Authentifizierung ist auf diesem Computer ordnungsgemäß eingerichtet.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktiviert</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testen</translation>
     </message>
 </context>
 <context>
@@ -1352,6 +1520,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Die plattformspezifischen Konfigurationseinstellungen konnten nicht angewendet werden.</translation>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation>Die Firewall-Einstellungen für den %1 Service konnten nicht geändert werden.</translation>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1836,10 +2008,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Test</source>
         <translation>Testen</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Authentifizierung ist auf diesem Computer ordnungsgemäß eingerichtet.</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -2622,6 +2790,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Test binding to an LDAP server</source>
         <translation>Bind zu einem LDAP-Server testen</translation>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Der angegebene Benutzername oder das Passwort ist falsch. Bitte geben Sie gültige Zugangsdaten ein oder wechseln zu einer anderen Authentifizierungsmethode mit Hilfe des Veyon Configurators.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation>LDAP-Bind</translation>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2911,6 +3087,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation>Standorte &amp;&amp; Computer</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authentifizierung</translation>
     </message>
 </context>
 <context>
@@ -3540,6 +3720,10 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Bildschirmfoto</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>Die Bildschirmfotodatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>
 </context>
 <context>

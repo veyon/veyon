@@ -262,6 +262,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -313,6 +317,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Test result</source>
         <translation>نتیجه تست</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -327,6 +335,84 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>کلیدهای احراز هویت</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>معرفی</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>لطفا مراحل زیر را برای راه اندازی احراز هویت فایل کلید انجام دهید:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>دایرکتوری فایل های کلیدها</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>دایرکتوری پایگاه داده کلید عمومی</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>فایل پایگاه داده فایل خصوصی</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>کلیدهای تأیید موجود</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>ایجاد جفت کلید</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>حذف کلید</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>وارد کردن کلید</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>صادرکردن کلید</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>تعیین گروه دسترسی</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>کلیدهای احراز هویت</translation>
@@ -672,6 +758,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation> فایل کلید احراز هویت</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -689,6 +779,52 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Pair ID</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>عمومی</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>نام کاربری</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>رمز</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>خطا احراز هویت</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -729,6 +865,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>ورود احراز هویت شده ها</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -758,6 +898,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>روش های احراز هویت</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>تست</translation>
     </message>
 </context>
 <context>
@@ -1351,6 +1517,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1835,10 +2005,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>تست</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure</source>
@@ -2602,6 +2768,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2890,6 +3064,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3517,6 +3695,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
         <translation type="unfinished"/>
     </message>
 </context>

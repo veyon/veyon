@@ -263,6 +263,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation>расположен в</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Test result</source>
         <translation>Результат испытаний</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Ключи аутентификации</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Вступление</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Для настройки проверки подлинности ключа выполните следующие действия:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Создайте ключевую пару на главном компьютере.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Установите группу доступа, члены которой должны иметь доступ к другим компьютерам.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Экспортируйте открытый ключ и импортируйте его на всех клиентских компьютерах с тем же именем.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Дополнительную информацию см.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;В Руководстве администратора Veyon&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Файловый каталог с ключами</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Каталог, содержащий открытые ключи</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Каталог, содержащий закрытые ключи</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Доступные ключи аутентификации</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Ключевая пара аутентификации состоит из двух связанных криптографических ключей, частного и открытого ключа. 
+Закрытый ключ позволяет пользователям на главном компьютере обращаться к клиентским компьютерам.
+Важно, чтобы только авторизованные пользователи имели доступ к чтению в файл закрытого ключа.
+Открытый ключ используется на клиентских компьютерах для аутентификации входящего запроса на соединение.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Создать ключевую пару</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Удалить ключ</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Импорт ключа</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Экспорт ключа</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Установить группу доступа</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ключи аутентификации</translation>
@@ -676,6 +765,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Аутентификация с помощью ключа доступа</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>Ид. пары</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Главное</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Вход в систему Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Ошибка аутенфикации</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Не удалось войти, используя указанные имя пользователя и пароль. Пожалуйста, повторите попытку!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>Аутентификация при входе в систему</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation>Простое распознавание по паролю</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Методы аутентификации</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>На этом компьютере аутентификация установлена правильно.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Тестировать</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1524,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Не удалось применить специфические для платформы параметры настроек.</translation>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1839,10 +2012,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>Тестировать</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>На этом компьютере аутентификация установлена правильно.</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -2625,6 +2794,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Предоставленое значение имени пользователя и пароля является ошибочным. Пожалуйста, укажите корректные регистрационные данные или переключите систему на другой способ распознавания с помощью средства настройки Veyon.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2914,6 +3091,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation>Места &amp;&amp; компьютеры</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Аутентификация</translation>
     </message>
 </context>
 <context>
@@ -3543,6 +3724,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>Скриншот </translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

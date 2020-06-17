@@ -263,6 +263,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation>розташовано у</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Test result</source>
         <translation>Результат тестування</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Метод розпізнавання</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,84 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Ключі розпізнавання</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Вступ</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Будь ласка, виконайте такі кроки, щоб налаштувати файл ключа розпізнавання:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Створіть пару ключів на основному комп&apos;ютері.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Встановіть групу доступу, учасникам якої буде дозволено доступу до інших комп&apos;ютерів.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Експортуйте відкритий ключ і імпортуйте його на всіх клієнтські комп&apos;ютери із однаковою назвою.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Будь ласка, ознайомтеся із &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Підручником із адміністрування Veyon&lt;/a&gt;, щоб дізнатися більше.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Каталоги файлів ключів</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Основний каталог файлів відкритих ключів</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Основний каталог файлів закритих ключів</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Доступні ключі розпізнавання</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Пара ключів для розпізнавання складається із поєднаних між собою криптографічних ключів, закритого і відкритого. За допомогою закритого ключа користувачі на основному комп&apos;ютері можуть отримувати доступу до клієнтських комп&apos;ютерів. Важливо, щоб право на читання файла закритого ключа мали лише уповноважені на це користувачі. Відкритий ключ використовується на клієнтських комп&apos;ютерах для розпізнавання вхідних запитів щодо з&apos;єднання.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Створити пару ключів</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Вилучити ключ</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Імпорт ключа</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Експортувати ключ</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Встановити групу доступу</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ключі розпізнавання</translation>
@@ -673,6 +759,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Розпізнавання за файлами ключів</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Файл ключа</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -691,6 +781,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>Ід. пари</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation>Розпізнавання у LDAP</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation>Користувач для прив&apos;язки DN:</translation>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation>Приклад: %користувач%@ДОМЕН або cn=%користувач%,ou=users,dc=example,dc=org</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Вхід до Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation>Для отримання доступу до комп&apos;ютерів, будь ласка, вкажіть ваше ім&apos;я користувача і пароль домену/LDAP.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Ім’я користувача</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Помилка розпізнавання</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Не вдалося увійти на основі вказаних імені користувача і пароля. Будь ласка, повторіть спробу!</translation>
     </message>
 </context>
 <context>
@@ -730,6 +866,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>Розпізнавання під час входу</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation>Вхід</translation>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -759,6 +899,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation>Просте розпізнавання за паролем</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Способи розпізнавання</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>На цьому комп&apos;ютері належним чином налаштовано розпізнавання.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
     </message>
 </context>
 <context>
@@ -1156,14 +1322,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Активні з&apos;єднання:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Група %1</translation>
     </message>
 </context>
 <context>
@@ -1205,19 +1371,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Позначити все</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Скасувати позначення</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Додати до групи</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Вилучити з групи</translation>
     </message>
 </context>
 <context>
@@ -1351,6 +1517,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Не вдалося застосувати специфічні для платформи параметри налаштувань.</translation>
+    </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation>Не вдалося налаштувати брандмауер для служби %1.</translation>
     </message>
 </context>
 <context>
@@ -1838,10 +2008,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Перевірити</translation>
     </message>
     <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>На цьому комп&apos;ютері належним чином налаштовано розпізнавання.</translation>
-    </message>
-    <message>
         <source>Configure</source>
         <translation>Налаштувати</translation>
     </message>
@@ -2100,7 +2266,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>Фільтр груп комп&apos;ютерів</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2112,11 +2278,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>Некоректне тестове значення</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>Для тестування надано порожнє або некоректне значення.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2622,6 +2788,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
+        <translation>Тестова прив&apos;язка до сервера LDAP</translation>
+    </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Надане значення імені користувача або пароля є помилковим. Будь ласка, вкажіть коректні реєстраційні дані або перемкніть систему на інший спосіб розпізнавання за допомогою засобу налаштовування Veyon.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2914,6 +3088,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp;&amp; computers</source>
         <translation>Місця &amp;&amp; комп&apos;ютери</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Розпізнавання</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3067,7 +3245,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Сучасний інтерфейс користувача (експериментальне)</translation>
     </message>
 </context>
 <context>
@@ -3214,11 +3392,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Вивести список назв усіх встановлених додатків</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Показати таблицю із подробицями щодо усіх встановлених додатків</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3230,19 +3408,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Версія</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Пов&apos;язані із додатком дії командного рядка</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Команди для керування додатками</translation>
     </message>
 </context>
 <context>
@@ -3402,7 +3580,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Віддалений доступ: %1</translation>
     </message>
 </context>
 <context>
@@ -3542,6 +3720,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>Знімок вікна</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>Не вдалося відкрити файл знімка вікна %1 для запису даних.</translation>
     </message>
 </context>
 <context>

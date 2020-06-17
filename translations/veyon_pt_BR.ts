@@ -263,6 +263,10 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <source>is located at</source>
         <translation>está localizado em</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <source>Test result</source>
         <translation>Resultado do teste</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Chaves de autenticação</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Introdução</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Por favor, realize os passos a seguir para configurar a autenticação por arquivo chave:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Crie um par de chaves no computador master.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Defina um grupo de acesso, cujos membros devem ter permissão para acessar outros computadores.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporte a chave pública e importe ela, com o mesmo nome, nos computadores clientes.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Por favor, consulte o &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de administração do Veyon &lt;/a&gt; para mais informações.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Diretórios do arquivo chave</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Diretório base do arquivo de chave pública</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Diretório base do arquivo de chave privada</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Chaves de autenticação disponíveis</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Um par de chaves de autenticação consiste em duas chaves criptografadas, uma chave privada e uma chave pública.
+A chave privada concede acesso ao computador cliente através do computador master.
+É importante que somente usuários autorizados tenham acesso de leitura ao arquivo da chave privada.
+A chave pública é usada no computadores clientes para autenticar as requisições de conexão do computador master.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Criar um par de chaves</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Apagar chave</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importar chave</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Exportar chave</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Definir grupo de acesso</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Chaves de autenticação</translation>
@@ -676,6 +765,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Key file authentication</source>
         <translation>Autenticação de arquivo de chave</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Pair ID</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Geral</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Logon Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nome de usuário</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Senha</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Erro de autenticação</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Falha no logon com o nome de usuário e senha fornecidos. Por favor tente novamente!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Logon authentication</source>
         <translation>Autenticação de logon</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Simple password authentication</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Métodos de autenticação</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Teste</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1524,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1839,10 +2012,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Test</source>
         <translation>Teste</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure</source>
@@ -2611,6 +2780,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2900,6 +3077,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autenticação</translation>
     </message>
 </context>
 <context>
@@ -3527,6 +3708,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>Captura de tela</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

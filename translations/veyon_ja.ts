@@ -264,6 +264,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation>の場所</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -315,6 +319,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Test result</source>
         <translation>テスト結果</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -329,6 +337,87 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>認証キー</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>紹介</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>キーファイル認証を設定するために以下の手順を追ってください</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1.マスターPCで認証キーを作成</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2.他のコンピューターへのアクセスを許可するメンバーのグループを設定</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3.パブリックキーをエクスポートし、すべてのクライアントPCに同じ名前でインポートしてください。</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>詳細は&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon管理者マニュアル&lt;/a&gt;を確認してください。</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>キーファイルの場所:</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>パブリックキーのファイルの場所</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>プライベートキーのファイルの場所</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>使用可能な認証キー</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>1つの認証キーのペアは、プライベートキーとパブリックキーの2つの暗号キーで構成されています。
+プライベートキーを使用すると、マスターコンピューターのユーザーがクライアントPCにアクセスすることができます。
+許可されたユーザーのみがプライベートキーを読む権限があるようにしてください。
+パブリックキーはクライアントPCが他からのアクセス要求を認証するために使用します。</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>キーを作成</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>キーを削除</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>キーをインポート</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>キーをエクスポート</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>アクセスグループを設定</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>認証キー</translation>
@@ -677,6 +766,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>キーファイル認証</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -695,6 +788,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>ペアID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyonログオン</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>ユーザー名</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>パスワード</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>認証エラー</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>入力したユーザー名とパスワードでログインに失敗しました。再試行してください!</translation>
     </message>
 </context>
 <context>
@@ -734,6 +873,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>ログオン認証</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -763,6 +906,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation>パスワード認証</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>テスト</translation>
     </message>
 </context>
 <context>
@@ -1174,7 +1343,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1356,6 +1525,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1376,7 +1549,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1497,7 +1670,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1532,11 +1705,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;プログラムを起動します</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>カスタムプログラム</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1579,7 +1752,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>カスタムプログラム</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1638,7 +1811,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>オプション</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1779,7 +1952,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>バックエンド</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -1840,10 +2013,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>テスト</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure</source>
@@ -2015,7 +2184,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>コンピュータのMACアドレス</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
@@ -2569,7 +2738,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>コマンドに関するヘルプを表示する</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2581,11 +2750,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP / ADからコンピューターとその場所を読み込む)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP/ADからユーザーとグループを読み込む)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2607,52 +2776,60 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>入力されたユーザー名とパスワードが異なります。有効な資格情報を入力するか、Veyon Configuratorを使って別の認証方法に切り替えてください。</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation type="unfinished"/>
+        <translation>ライセンス</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>インストールされているライセンス</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>新しいネットワーク範囲を追加</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>選択したネットワーク範囲を削除</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>まで有効</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>ライセンス</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>情報</translation>
     </message>
     <message>
         <source>Installation ID</source>
-        <translation type="unfinished"/>
+        <translation>インストールID</translation>
     </message>
     <message>
         <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
+        <translation>ライセンスで利用可能なアドオン</translation>
     </message>
     <message>
         <source>Addon</source>
-        <translation type="unfinished"/>
+        <translation>アドオン</translation>
     </message>
 </context>
 <context>
@@ -2727,7 +2904,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ファイル</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -2897,6 +3074,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>認証</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2974,7 +3155,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -3072,31 +3253,31 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkDiscoveryConfigurationPage</name>
     <message>
         <source>Network discovery</source>
-        <translation type="unfinished"/>
+        <translation>ネットワーク発見</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished"/>
+        <translation>モード</translation>
     </message>
     <message>
         <source>Scan network ranges</source>
-        <translation type="unfinished"/>
+        <translation>ネットワーク範囲をスキャンする</translation>
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
+        <translation>e.g. 192.168.1.0/24</translation>
     </message>
     <message>
         <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
+        <translation>コンピュータのすべてのサブネットをスキャンする</translation>
     </message>
     <message>
         <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
+        <translation>カスタムサブネットをスキャンする</translation>
     </message>
     <message>
         <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
+        <translation>ローカルコンピューターでのセッションのスキャン</translation>
     </message>
     <message>
         <source>Test</source>
@@ -3104,59 +3285,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Network ranges</source>
-        <translation type="unfinished"/>
+        <translation>ネットワーク範囲</translation>
     </message>
     <message>
         <source>Add new group</source>
-        <translation type="unfinished"/>
+        <translation>新しいグループを追加</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation type="unfinished"/>
+        <translation>選択したグループを削除</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation type="unfinished"/>
+        <translation>グループ</translation>
     </message>
     <message>
         <source>First address</source>
-        <translation type="unfinished"/>
+        <translation>最初のアドレス</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation type="unfinished"/>
+        <translation>最後のアドレス</translation>
     </message>
     <message>
         <source>Add new network range</source>
-        <translation type="unfinished"/>
+        <translation>新しいネットワーク範囲を追加</translation>
     </message>
     <message>
         <source>Remove selected network range</source>
-        <translation type="unfinished"/>
+        <translation>選択したネットワーク範囲を削除</translation>
     </message>
     <message>
         <source>Parallel scans</source>
-        <translation type="unfinished"/>
+        <translation>並列スキャン</translation>
     </message>
     <message>
         <source>Scan timeout</source>
-        <translation type="unfinished"/>
+        <translation>スキャンのタイムアウト</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
-        <translation type="unfinished"/>
+        <translation>セッションスキャン制限</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>オプション</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
+        <translation>検出されたIPアドレスをホスト名に逆引き</translation>
     </message>
 </context>
 <context>
@@ -3264,7 +3445,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>パワーダウンを確認</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3377,7 +3558,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>コマンドに関するヘルプを表示する</translation>
     </message>
 </context>
 <context>
@@ -3525,6 +3706,10 @@ Please save your work and close all programs.</source>
         <source>Screenshot</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
@@ -3647,7 +3832,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>サービス%1を再起動します</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3912,7 +4097,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーセッション制御</translation>
     </message>
 </context>
 <context>

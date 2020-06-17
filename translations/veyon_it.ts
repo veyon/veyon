@@ -263,6 +263,10 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <source>is located at</source>
         <translation>si trova a</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <source>Test result</source>
         <translation>Risultati del test</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Metodo di autenticazione</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,84 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Chiavi di autenticazione</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Introduzione</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Effettuare le seguenti operazioni per configurare l&apos;autenticazione del file chiave:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Creare una coppia di chiavi sul computer master.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Impostare un gruppo di accesso i cui membri dovrebbero poter accedere ad altri computer.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Esportare la chiave pubblica e importarla su tutti i computer client con lo stesso nome.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Per ulteriori informazioni, consultare il &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manuale dell&apos;amministratore di Veyon&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Cartelle per i file delle chiavi</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Cartella chiave Pubblica</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Cartella chiave Privata</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Chiavi di autenticazione disponibili</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Una coppia di chiavi di autenticazione è composta da due chiavi crittografiche accoppiate, una privata e una chiave pubblica. Una chiave privata consente agli utenti del computer master di accedere ai computer client. È importante che solo gli utenti autorizzati abbiano accesso in lettura al file della chiave privata. La chiave pubblica viene utilizzata sui computer client per autenticare la richiesta di connessione in entrata.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Crea una coppia di chiavi</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Cancella la chiave</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importa la chiave</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Esporta la chiave</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Imposta il gruppo di accesso</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Chiavi di autenticazione</translation>
@@ -673,6 +759,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file authentication</source>
         <translation>Autenticazione con File chiave</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>File chiave</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -691,6 +781,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>Coppia ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation>Autenticazione LDAP</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Generale</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation>Nome utente per associare la mappatura DN:</translation>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation>es. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Logon Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation>Inserisci il tuo dominio/LDAP nome utente e password per accedere ai computer.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nome Utente</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Password</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Errore di autenticazione</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Logon fallito con le credenziali fornite. Riprova!</translation>
     </message>
 </context>
 <context>
@@ -730,6 +866,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>Autenticazione di accesso (Logon)</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation>Accedere</translation>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -759,6 +899,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation>La password fornita è errata. Inserisci la password corretta o passa un altro metodo di autenticazione usato Veyon Configurator.</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Metodi di autenticazione</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>L&apos;autenticazione è configurata correttamente su questo computer.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Prova</translation>
     </message>
 </context>
 <context>
@@ -1156,14 +1322,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Connessioni attive:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Gruppo %1</translation>
     </message>
 </context>
 <context>
@@ -1205,19 +1371,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona tutto</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Deseleziona tutto</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi al gruppo</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi dal gruppo</translation>
     </message>
 </context>
 <context>
@@ -1351,6 +1517,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Impossibile applicare le impostazioni di configurazione specifiche della piattaforma.</translation>
+    </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation>Impossibile configurare la configurazione del firewall per il servizio %1.</translation>
     </message>
 </context>
 <context>
@@ -1838,10 +2008,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Prova</translation>
     </message>
     <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>L&apos;autenticazione è configurata correttamente su questo computer.</translation>
-    </message>
-    <message>
         <source>Configure</source>
         <translation>Configurazione</translation>
     </message>
@@ -2088,7 +2254,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>Filtro gruppi di computer</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2100,11 +2266,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>Valore di prova non valido</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>Un valore vuoto o non valido è stato fornito per questo test.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2610,6 +2776,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
+        <translation>Test dell&apos;associazione a un server LDAP</translation>
+    </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Il nome utente o la password forniti sono errati. Inserisci credenziali valide o passa a un altro metodo di autenticazione utilizzando Veyon Configurator.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2902,6 +3076,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp;&amp; computers</source>
         <translation>Posizioni &amp;&amp; computers</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autenticazione</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3055,7 +3233,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Usa l&apos;interfaccia utente moderna (sperimentale)</translation>
     </message>
 </context>
 <context>
@@ -3202,11 +3380,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Elenca i nomi di tutti i plugin installati</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Mostra la tabella con i dettagli di tutti i plugin installati</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3214,23 +3392,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Descrizione</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versione</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Operazioni CLI relative al plug-in</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Comandi per la gestione dei plugin</translation>
     </message>
 </context>
 <context>
@@ -3390,7 +3568,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Accesso remoto: %1</translation>
     </message>
 </context>
 <context>
@@ -3530,6 +3708,10 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Screenshot</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>Impossibile aprire il file screenshot %1 per la scrittura.</translation>
     </message>
 </context>
 <context>

@@ -263,6 +263,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located at</source>
         <translation>位於</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -313,6 +317,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Test result</source>
         <translation>測試結果</translation>
+    </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>身份驗證方法</translation>
     </message>
 </context>
 <context>
@@ -374,7 +382,88 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>可用驗證金鑰</translation>
+        <translation>可用身份驗證金鑰</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>身份驗證金鑰配對由兩個耦合的加密金鑰，一個私有金鑰和一個公開金鑰組成。
+私密金鑰允許主機電腦上的使用者存取用戶端電腦。
+重要的是，只有授權使用者才能對私密金鑰檔進行讀取存取。
+公開金鑰用於用戶端電腦以驗證傳入連線請求。</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>建立金鑰配對</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>刪除金鑰</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>匯入金鑰</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>匯出金鑰</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>設定存取群組</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>身份驗證金鑰</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>介紹</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>請執行以下步驟以設定金鑰檔身份驗證:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) 在主電腦上建立金鑰對。</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) 設定一個存取群組，應該允許其成員存取其它電腦。</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) 匯出公開金鑰並將其匯入到具有相同名稱的所有用戶端電腦上。</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;，取得更多資訊。</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>金鑰檔目錄</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>公開金鑰檔基礎目錄</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>私密金鑰檔基礎目錄</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>可用身份驗證金鑰</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -408,7 +497,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>金鑰檔 (*. pem)</translation>
+        <translation>金鑰檔 (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -674,7 +763,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>金鑰檔身分驗證</translation>
+        <translation>金鑰檔身份驗證</translation>
+    </message>
+    <message>
+        <source>Key file</source>
+        <translation>金鑰檔</translation>
     </message>
 </context>
 <context>
@@ -694,6 +787,52 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Pair ID</source>
         <translation>配對 ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 登入</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>身份驗證錯誤</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>以給予的使用者名稱和密碼登入失敗。 請再試一次!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Logon authentication</source>
         <translation>登入驗證</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation>登入</translation>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -762,6 +905,32 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Simple password authentication</source>
         <translation>簡單密碼身份驗證</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>身份驗證方法</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>在這部電腦中正確設定身份驗證。</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>測試</translation>
     </message>
 </context>
 <context>
@@ -1159,14 +1328,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>使用中連線:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>群組 %1</translation>
     </message>
 </context>
 <context>
@@ -1208,19 +1377,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>選擇所有</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>取消選取所有</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>加入到群組</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>從群組中移除</translation>
     </message>
 </context>
 <context>
@@ -1354,6 +1523,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>無法套用特定平臺的組態設定。</translation>
+    </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1841,10 +2014,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>測試</translation>
     </message>
     <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>在這部電腦中正確設定身份驗證。</translation>
-    </message>
-    <message>
         <source>Configure</source>
         <translation>組態</translation>
     </message>
@@ -2101,7 +2270,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>電腦群組篩選器</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2113,11 +2282,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>測試值無效</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>這個測試提供空白或無效的值。</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2623,6 +2792,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
+        <translation>測試繫結到 LDAP 伺服器</translation>
+    </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>提供的使用者名稱或密碼錯誤。 請輸入有效的認證或使用 Veyon 組態器切換到其它身份驗證方法。</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2915,6 +3092,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp;&amp; computers</source>
         <translation>地點 &amp;&amp; 電腦</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>身份驗證</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3068,7 +3249,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>使用現代使用者介面 (實驗性)</translation>
     </message>
 </context>
 <context>
@@ -3142,7 +3323,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Last address</source>
-        <translation>上次位址</translation>
+        <translation>最後位址</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -3215,11 +3396,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>列出所有已安裝外掛程式的名稱</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>顯示包含所有已安裝外掛程式的詳細資訊表格</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3227,23 +3408,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>描述</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>版本</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>與外掛程式相關的 CLI 操作</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>管理外掛程式的命令</translation>
     </message>
 </context>
 <context>
@@ -3403,7 +3584,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>遠端存取: %1</translation>
     </message>
 </context>
 <context>
@@ -3543,6 +3724,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Screenshot</source>
         <translation>螢幕快照</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4017,7 +4202,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>建立連線到 %1...</translation>
+        <translation>正在建立與 %1 連線...</translation>
     </message>
 </context>
 <context>

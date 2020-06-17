@@ -265,6 +265,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>is located at</source>
         <translation>se encuentra en</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -316,6 +320,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>Test result</source>
         <translation>Resultado de la prueba</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Métodos de autenticación</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -330,6 +338,87 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Claves de autenticación</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Introducción</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Realice los siguientes pasos para configurar la autenticación de archivos de claves:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Crea un par de llaves en la computadora maestra.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Establezca un grupo con acceso cuyos miembros deberían tener acceso a otras computadoras.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporte la clave pública e impórtela en todas las computadoras cliente con el mismo nombre.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Consulte el &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de Administrador de Veyon&lt;/a&gt; para obtener más información.</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Directorios de claves</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Directorio base para archivo de clave pública</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Directorio base para archivo de clave privada</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Claves de autenticación disponibles</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Un par de claves de autenticación consta de dos claves criptográficas acopladas, una privada y otra pública.
+Una clave privada permite a los usuarios de la computadora maestra acceder a las computadoras cliente.
+Es importante que solo los usuarios autorizados tengan acceso de lectura al archivo de clave privada.
+La clave pública se usa en las computadoras cliente para autenticar la solicitud de conexión entrante.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Crear par de claves</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Borrar clave</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Importar clave</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Exportar clave</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Establecer el grupo de acceso</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Claves de autenticación</translation>
@@ -678,6 +767,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Key file authentication</source>
         <translation>Autenticación mediante archivo de clave</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Archivo de clave</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -696,6 +789,52 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Pair ID</source>
         <translation>ID del par</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation>Autenticación LDAP</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation>Nombre de usuario para vincular la asignación de DN:</translation>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation>p.ej. %username%@DOMAIN o cn=%username%,ou=users,dc=example,dc=org</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Inicio de sesión de Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation>Introduzca su nombre de usuario y contraseña de dominio/LDAP para acceder a las computadoras.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Error de autenticación</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Error de inicio de sesión con el nombre de usuario y contraseña dados. Por favor, ¡inténtelo de nuevo!</translation>
     </message>
 </context>
 <context>
@@ -735,6 +874,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Logon authentication</source>
         <translation>Autenticación de inicio de sesión</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation>Inicio de sesión</translation>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -764,6 +907,32 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Simple password authentication</source>
         <translation>Autenticación de contraseña simple</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Métodos de autenticación</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>La autenticación está configurada correctamente en esta computadora.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Comprobar</translation>
     </message>
 </context>
 <context>
@@ -1161,14 +1330,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Conexiones activas:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Grupo %1</translation>
     </message>
 </context>
 <context>
@@ -1210,19 +1379,19 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar todo</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Deseleccionar todo</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Añadir al grupo</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar del grupo</translation>
     </message>
 </context>
 <context>
@@ -1356,6 +1525,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>No se pudieron aplicar los ajustes de configuración específicos de la plataforma.</translation>
+    </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation>No se pudo configurar la configuración del firewall para el servicio %1.</translation>
     </message>
 </context>
 <context>
@@ -1843,10 +2016,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Comprobar</translation>
     </message>
     <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>La autenticación está configurada correctamente en esta computadora.</translation>
-    </message>
-    <message>
         <source>Configure</source>
         <translation>Configurar</translation>
     </message>
@@ -2103,7 +2272,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>Filtro de grupos de computadoras</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2111,15 +2280,15 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Filtro para grupos de ordenadores</translation>
+        <translation>Filtro para grupos de computadoras</translation>
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>Valor de prueba inválido</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>Se ha proporcionado un valor vacío o inválido para esta prueba.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2322,7 +2491,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Filtro para grupos de ordenadores</translation>
+        <translation>Filtro para grupos de computadoras</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2625,6 +2794,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
+        <translation>Prueba de enlace a un servidor LDAP</translation>
+    </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>El nombre de usuario o la contraseña proporcionados son incorrectos. Ingrese credenciales válidas o cambie a un método de autenticación diferente utilizando Veyon Configurator.</translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2917,6 +3094,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Locations &amp;&amp; computers</source>
         <translation>Ubicaciones &amp;&amp; equipos</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autenticación</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3070,7 +3251,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Usar una interfaz de usuario moderna (experimental)</translation>
     </message>
 </context>
 <context>
@@ -3217,11 +3398,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Lista de nombres de todos los complementos instalados</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar tabla con detalles de todos los complementos instalados</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3229,23 +3410,23 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Descripción</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versión</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Operaciones CLI relacionadas con complementos</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para administrar complementos</translation>
     </message>
 </context>
 <context>
@@ -3405,7 +3586,7 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Acceso remoto: %1</translation>
     </message>
 </context>
 <context>
@@ -3545,6 +3726,10 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Captura</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation>No se pudo abrir el archivo de captura de pantalla %1 para escribir.</translation>
     </message>
 </context>
 <context>

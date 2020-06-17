@@ -263,6 +263,10 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <source>is located at</source>
         <translation>nalazi se na</translation>
     </message>
+    <message>
+        <source>Authenticated via method</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -314,6 +318,10 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <source>Test result</source>
         <translation>Rezultati testa</translation>
     </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Način provere autentifikacije</translation>
+    </message>
 </context>
 <context>
     <name>AndroidPlatformConfigurationPage</name>
@@ -328,6 +336,87 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
 </context>
 <context>
     <name>AuthKeysConfigurationDialog</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Ključevi za autentifikaciju</translation>
+    </message>
+    <message>
+        <source>Introduction</source>
+        <translation>Uvod</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Molimo vas da izvršite sledeće korake za podešavanje provjere autentičnosti datoteka:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Na glavnom računaru napravite par ključeva.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Postavite pristupnu grupu čiji članovi trebaju imati pristup drugim računarima.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Izvezite javni ključ i uvezite ga na sve računare klijenta sa istim nazivom.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Više informacija potražite u Priručniku za administratore Veyon.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;</translation>
+    </message>
+    <message>
+        <source>Key file directories</source>
+        <translation>Ključne datoteke direktorijuma</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Osnovni direktorijum datoteka javnih ključeva</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Osnovni direktorijum datoteka privatnih ključeva</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Available authentication keys</source>
+        <translation>Dostupni ključevi za proveru autentičnosti</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Par ključeva za autentifikaciju sastoji se od dva povezana kriptografska ključa, privatnog i javnog ključa.
+Privatni ključ omogućava korisnicima na matičnom računaru pristup klijentima.
+Važno je da su samo ovlašćeni korisnici pročitali pristup datoteci privatnog ključa.
+Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva za povezivanje.</translation>
+    </message>
+    <message>
+        <source>Create key pair</source>
+        <translation>Kreirajte par ključeva</translation>
+    </message>
+    <message>
+        <source>Delete key</source>
+        <translation>Obriši ključ</translation>
+    </message>
+    <message>
+        <source>Import key</source>
+        <translation>Uvozni ključ</translation>
+    </message>
+    <message>
+        <source>Export key</source>
+        <translation>Izvozni ključ</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Podesite grupu pristupa</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Authentication keys</source>
         <translation>Ključevi za autentifikaciju</translation>
@@ -676,6 +765,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Key file authentication</source>
         <translation>Autentičnost ključa datoteke</translation>
     </message>
+    <message>
+        <source>Key file</source>
+        <translation>Datoteka ključa</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -694,6 +787,52 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Pair ID</source>
         <translation>Par ID</translation>
+    </message>
+</context>
+<context>
+    <name>AuthLdapConfigurationWidget</name>
+    <message>
+        <source>LDAP authentication</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Opšte</translation>
+    </message>
+    <message>
+        <source>Username to bind DN mapping:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthLdapDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Prijava u Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Korisničko ime</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Šifra/lozinka</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Greška autentifikacije</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Prijava je neuspešna sa datim korisničkim imenom i šifrom. Molimo pokušajte ponovo!</translation>
     </message>
 </context>
 <context>
@@ -733,6 +872,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Logon authentication</source>
         <translation>Provera autentičnosti</translation>
     </message>
+    <message>
+        <source>Logon</source>
+        <translation>Prijava</translation>
+    </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
@@ -764,6 +907,32 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>Simple password authentication</source>
         <translation>Jednostavna provera šifre</translation>
+    </message>
+    <message>
+        <source>Simple password</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Metoda provjere</translation>
+    </message>
+    <message>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Autentifikacija je na ovom računaru pravilno postavljena.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
 </context>
 <context>
@@ -1357,6 +1526,10 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Ne mogu se primeniti postavke konfiguracije specifične za platformu.</translation>
     </message>
+    <message>
+        <source>Could not configure the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -1841,10 +2014,6 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>Test</source>
         <translation>Test</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Autentifikacija je na ovom računaru pravilno postavljena.</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -2627,6 +2796,14 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <source>Test binding to an LDAP server</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
+        <translation>Uneseno korisničko ime ili šifra nisu ispravni. Molimo unesite ispravne podatke ili se prebacite na drugi metod autentifikacije upotrebom Veyon Configurator-a. </translation>
+    </message>
+    <message>
+        <source>LDAP bind</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LicensingConfigurationPage</name>
@@ -2916,6 +3093,10 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation>Lokacije i računari</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autentifikacija</translation>
     </message>
 </context>
 <context>
@@ -3545,6 +3726,10 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     <message>
         <source>Screenshot</source>
         <translation>Snimka ekrana</translation>
+    </message>
+    <message>
+        <source>Could not open screenshot file %1 for writing.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
