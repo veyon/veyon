@@ -29,6 +29,7 @@
 
 
 #include "LinuxSessionFunctions.h"
+#include "PlatformServiceCore.h"
 
 
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId() const
@@ -43,13 +44,13 @@ LinuxSessionFunctions::SessionId LinuxSessionFunctions::toSessionId( const QStri
 	auto display = getSessionDisplay( session );
 	if( display.isEmpty() == false )
 	{
-		return display.replace( QLatin1Char(':'), QString() ).toInt() % MaxSessions;
+		return display.replace( QLatin1Char(':'), QString() ).toInt() % PlatformServiceCore::MaximumSessionCount;
 	}
 
 	auto sessionId = getSessionIdString( session );
 	if( sessionId.isEmpty() == false )
 	{
-		return sessionId.replace( QLatin1Char('c'), QString() ).toInt() % MaxSessions;
+		return sessionId.replace( QLatin1Char('c'), QString() ).toInt() % PlatformServiceCore::MaximumSessionCount;
 	}
 
 	return DefaultSession;
