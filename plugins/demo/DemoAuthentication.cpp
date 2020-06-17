@@ -93,5 +93,5 @@ bool DemoAuthentication::authenticate( QIODevice* socket ) const
 	tokenAuthMessage.write( m_accessToken.toByteArray() );
 	tokenAuthMessage.send();
 
-	return false;
+	return true;
 }
