@@ -80,8 +80,12 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
+		const auto demoServerPort = VeyonCore::config().demoServerPort() + VeyonCore::sessionId();
+
 		FeatureMessage featureMessage( m_demoServerFeature.uid(), StartDemoServer );
 		featureMessage.addArgument( DemoAccessToken, m_demoAccessToken.toByteArray() );
+		featureMessage.addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() );
+		featureMessage.addArgument( DemoServerPort, demoServerPort );
 
 		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
 
@@ -98,7 +102,9 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		vDebug() << "clients:" << m_demoClientHosts;
 
-		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).addArgument( DemoAccessToken, m_demoAccessToken.toByteArray() ),
+		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).
+								   addArgument( DemoAccessToken, m_demoAccessToken.toByteArray() ).
+								   addArgument( DemoServerPort, demoServerPort ),
 								   computerControlInterfaces );
 	}
 
@@ -173,7 +179,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			// add VNC server password to message
 			server.featureWorkerManager().
 					sendMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
-								 addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).
+								 addArgument( DemoServerPort, message.argument( DemoServerPort ) ).
+								 addArgument( VncServerPort, message.argument( VncServerPort ) ).
 								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ).
 								 addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
 		}
@@ -216,6 +223,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			FeatureMessage startDemoClientMessage( message.featureUid(), message.command() );
 			startDemoClientMessage.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) );
 			startDemoClientMessage.addArgument( DemoServerHost, socket->peerAddress().toString() );
+			startDemoClientMessage.addArgument( DemoServerPort, message.argument( DemoServerPort ) );
 			server.featureWorkerManager().sendMessage( startDemoClientMessage );
 		}
 		else
@@ -247,6 +255,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 											   message.argument( VncServerPassword ).toByteArray(),
 											   message.argument( DemoAccessToken ).toByteArray(),
 											   m_configuration,
+											   message.argument( DemoServerPort ).toInt(),
 											   this );
 			}
 			return true;
@@ -271,10 +280,11 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			if( m_demoClient == nullptr )
 			{
 				const auto demoServerHost = message.argument( DemoServerHost ).toString();
+				const auto demoServerPort = message.argument( DemoServerPort ).toInt();
 				const auto isFullscreenDemo = message.featureUid() == m_fullscreenDemoFeature.uid();
 
 				vDebug() << "connecting with master" << demoServerHost;
-				m_demoClient = new DemoClient( demoServerHost, isFullscreenDemo );
+				m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo );
 			}
 			return true;
 
