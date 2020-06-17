@@ -335,7 +335,7 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 		return false;
 	}
 
-	auto processHandle = runProgramInSession( program, parameters, sessionIdEnvironment(), baseProcessId, desktop );
+	auto processHandle = runProgramInSession( program, parameters, {}, baseProcessId, desktop );
 	if( processHandle )
 	{
 		CloseHandle( processHandle );
@@ -516,24 +516,6 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	}
 
 	return nullptr;
-}
-
-
-
-QStringList WindowsCoreFunctions::sessionIdEnvironment()
-{
-	if( VeyonCore::config().multiSessionModeEnabled() )
-	{
-		auto currentSession = WtsSessionManager::currentSession();
-		if( currentSession != WtsSessionManager::activeConsoleSession() )
-		{
-			return { QStringLiteral("%1=%2").
-						arg( VeyonCore::sessionIdEnvironmentVariable() ).
-						arg( currentSession % 100 ) };
-		}
-	}
-
-	return {};
 }
 
 
