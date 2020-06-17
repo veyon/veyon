@@ -199,7 +199,11 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	for( const auto& f : localLogFiles )
 	{
-		if( f != QLatin1String("VeyonConfigurator.log") )
+		if( f.startsWith( QLatin1String("VeyonConfigurator") ) )
+		{
+			d.remove( f );
+		}
+		else
 		{
 			success &= d.remove( f );
 		}
