@@ -107,6 +107,11 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 	{
 		result = QString::fromWCharArray( pBuffer );
 	}
+	else
+	{
+		const auto lastError = GetLastError();
+		vCritical() << lastError;
+	}
 
 	WTSFreeMemory( pBuffer );
 
