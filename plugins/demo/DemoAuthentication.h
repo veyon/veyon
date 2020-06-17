@@ -77,6 +77,6 @@ public:
 
 private:
 	AccessToken m_accessToken{};
-	Plugin::Uid m_pluginUid;
+	const Plugin::Uid m_pluginUid;
 
 };
