@@ -36,7 +36,7 @@
 
 
 DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const DemoAuthentication& authentication,
-						const DemoConfiguration& configuration, QObject *parent ) :
+						const DemoConfiguration& configuration, int demoServerPort, QObject *parent ) :
 	QObject( parent ),
 	m_authentication( authentication ),
 	m_configuration( configuration ),
@@ -54,7 +54,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 
 	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
 
-	if( m_tcpServer->listen( QHostAddress::Any, static_cast<quint16>( VeyonCore::config().demoServerPort() ) ) == false )
+	if( m_tcpServer->listen( QHostAddress::Any, demoServerPort ) == false )
 	{
 		vCritical() << "could not listen on demo server port";
 		return;

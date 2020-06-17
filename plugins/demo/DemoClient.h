@@ -32,7 +32,7 @@ class DemoClient : public QObject
 {
 	Q_OBJECT
 public:
-	DemoClient( const QString& host, bool fullscreen, QObject* parent = nullptr );
+	DemoClient( const QString& host, int port, bool fullscreen, QObject* parent = nullptr );
 	~DemoClient() override;
 
 private:

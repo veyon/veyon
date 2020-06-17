@@ -45,7 +45,7 @@ public:
 	using MessageList = QVector<QByteArray>;
 
 	DemoServer( int vncServerPort, const Password& vncServerPassword, const DemoAuthentication& authentication,
-				const DemoConfiguration& configuration, QObject *parent );
+				const DemoConfiguration& configuration, int demoServerPort, QObject *parent );
 	~DemoServer() override;
 
 	const DemoConfiguration& configuration() const

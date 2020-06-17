@@ -110,6 +110,7 @@ private:
 		VncServerPort,
 		VncServerPassword,
 		DemoServerHost,
+		DemoServerPort
 	};
 
 	const Feature m_fullscreenDemoFeature;
