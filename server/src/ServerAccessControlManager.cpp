@@ -116,7 +116,8 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 	const auto accessResult =
 			AccessControlProvider().checkAccess( client->username(),
 												 client->hostAddress(),
-												 connectedUsers() );
+												 connectedUsers(),
+												 client->authMethodUid() );
 
 	switch( accessResult )
 	{
