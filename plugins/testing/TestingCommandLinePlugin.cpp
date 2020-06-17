@@ -30,9 +30,9 @@
 TestingCommandLinePlugin::TestingCommandLinePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ QStringLiteral("checkaccess"), QStringLiteral( "check access with arguments [ACCESSING USER] [ACCESSING COMPUTER] [CONNECTED USER]" ) },
+{ QStringLiteral("checkaccess"), QStringLiteral( "check access with arguments [ACCESSING USER] [ACCESSING COMPUTER] [CONNECTED USER] [AUTH METHOD UID]" ) },
 { QStringLiteral("authorizedgroups"), QStringLiteral( "check if specified user is in authorized groups [ACCESSING USER]" ) },
-{ QStringLiteral("accesscontrolrules"), QStringLiteral( "process access control rules with arguments [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER] [CONNECTED USER]" ) },
+{ QStringLiteral("accesscontrolrules"), QStringLiteral( "process access control rules with arguments [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER] [CONNECTED USER] [AUTH METHOD UID]" ) },
 { QStringLiteral("isaccessdeniedbylocalstate"), QStringLiteral( "check if access would be denied by local state") },
 				} )
 {
@@ -57,7 +57,7 @@ QString TestingCommandLinePlugin::commandHelp( const QString& command ) const
 CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_checkaccess( const QStringList& arguments )
 {
 
-	switch( AccessControlProvider().checkAccess( arguments.value( 0 ), arguments.value( 1 ), { arguments.value( 2 ) } ) )
+	switch( AccessControlProvider().checkAccess( arguments.value( 0 ), arguments.value( 1 ), { arguments.value( 2 ) }, arguments.value( 3 ) ) )
 	{
 	case AccessControlProvider::Access::Allow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return Successful;
 	case AccessControlProvider::Access::Deny: printf( "[TEST]: CheckAccess: DENY\n" ); return Successful;
@@ -89,7 +89,8 @@ CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_accesscon
 {
 	switch( AccessControlProvider().processAccessControlRules( arguments.value( 0 ), arguments.value( 1 ),
 															   arguments.value( 2 ), arguments.value( 3 ),
-															   QStringList( arguments.value( 4 ) ) ) )
+															   QStringList( arguments.value( 4 ) ),
+															   arguments.value( 5 ) ) )
 	{
 	case AccessControlRule::Action::Allow: printf( "[TEST]: AccessControlRules: ALLOW\n" ); return Successful;
 	case AccessControlRule::Action::Deny: printf( "[TEST]: AccessControlRules: DENY\n" ); return Successful;
