@@ -54,6 +54,7 @@ AuthenticationPage::~AuthenticationPage()
 void AuthenticationPage::resetWidgets()
 {
 	populateTabs();
+	connectWidgetsToProperties();
 }
 
 
