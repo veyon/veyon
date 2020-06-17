@@ -26,6 +26,7 @@
 
 #include "AccessControlRule.h"
 #include "NetworkObject.h"
+#include "Plugin.h"
 
 class UserGroupsBackendInterface;
 class NetworkObjectDirectory;
@@ -46,7 +47,7 @@ public:
 	QStringList locationsOfComputer( const QString& computer ) const;
 
 	Access checkAccess( const QString& accessingUser, const QString& accessingComputer,
-						const QStringList& connectedUsers );
+						const QStringList& connectedUsers, Plugin::Uid authMethodUid );
 
 	bool processAuthorizedGroups( const QString& accessingUser );
 
@@ -54,7 +55,8 @@ public:
 														 const QString& accessingComputer,
 														 const QString& localUser,
 														 const QString& localComputer,
-														 const QStringList& connectedUsers );
+														 const QStringList& connectedUsers,
+														 Plugin::Uid authMethodUid );
 
 	bool isAccessToLocalComputerDenied() const;
 
@@ -74,7 +76,8 @@ private:
 	bool matchConditions( const AccessControlRule& rule,
 						  const QString& accessingUser, const QString& accessingComputer,
 						  const QString& localUser, const QString& localComputer,
-						  const QStringList& connectedUsers ) const;
+						  const QStringList& connectedUsers,
+						  Plugin::Uid authMethodUid ) const;
 
 	static QStringList objectNames( const NetworkObjectList& objects );
 

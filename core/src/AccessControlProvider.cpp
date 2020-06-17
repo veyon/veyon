@@ -119,7 +119,8 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 
 AccessControlProvider::Access AccessControlProvider::checkAccess( const QString& accessingUser,
 																  const QString& accessingComputer,
-																  const QStringList& connectedUsers )
+																  const QStringList& connectedUsers,
+																  Plugin::Uid authMethodUid )
 {
 	if( VeyonCore::config().isAccessRestrictedToUserGroups() )
 	{
@@ -134,7 +135,8 @@ AccessControlProvider::Access AccessControlProvider::checkAccess( const QString&
 												 accessingComputer,
 												 VeyonCore::platform().userFunctions().currentUser(),
 												 HostAddress::localFQDN(),
-												 connectedUsers );
+												 connectedUsers,
+												 authMethodUid );
 		switch( action )
 		{
 		case AccessControlRule::Action::Allow:
@@ -184,9 +186,10 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 																			const QString& accessingComputer,
 																			const QString& localUser,
 																			const QString& localComputer,
-																			const QStringList& connectedUsers )
+																			const QStringList& connectedUsers,
+																			Plugin::Uid authMethodUid )
 {
-	vDebug() << "processing rules for" << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
+	vDebug() << "processing rules for" << accessingUser << accessingComputer << localUser << localComputer << connectedUsers << authMethodUid;
 
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
@@ -198,7 +201,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 		}
 
 		if( rule.areConditionsIgnored() ||
-			matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers ) )
+			matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers, authMethodUid ) )
 		{
 			vDebug() << "rule" << rule.name() << "matched with action" << rule.action();
 			return rule.action();
@@ -224,7 +227,7 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
 		if( matchConditions( rule, {}, {},
-							 VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {} ) )
+							 VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {}, {} ) )
 		{
 			switch( rule.action() )
 			{
@@ -338,7 +341,7 @@ QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject
 bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 											 const QString& accessingUser, const QString& accessingComputer,
 											 const QString& localUser, const QString& localComputer,
-											 const QStringList& connectedUsers ) const
+											 const QStringList& connectedUsers, Plugin::Uid authMethodUid ) const
 {
 	bool hasConditions = false;
 
@@ -348,6 +351,19 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	bool matchResult = rule.areConditionsInverted() == false;
 
 	vDebug() << rule.toJson() << matchResult;
+
+	if( rule.isConditionEnabled( AccessControlRule::Condition::AuthenticationMethod ) )
+	{
+		hasConditions = true;
+
+		const auto allowedAuthMethod = Plugin::Uid( rule.argument( AccessControlRule::Condition::AuthenticationMethod ) );
+		if( authMethodUid.isNull() ||
+			allowedAuthMethod.isNull() ||
+			( authMethodUid == allowedAuthMethod ) != matchResult )
+		{
+			return false;
+		}
+	}
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup ) )
 	{
