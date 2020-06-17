@@ -182,10 +182,12 @@ bool MainWindow::initAccessControl()
 		VeyonCore::authenticationManager().initializedPlugin()->requiresAccessControl() )
 	{
 		const auto username = VeyonCore::authenticationManager().initializedPlugin()->accessControlUser();
+		const auto authMethodUid = VeyonCore::authenticationManager().toUid( VeyonCore::authenticationManager().initializedPlugin() );
 		const auto accessControlResult =
 				AccessControlProvider().checkAccess( username,
 													 QHostAddress( QHostAddress::LocalHost ).toString(),
-													 QStringList() );
+													 QStringList(),
+													 authMethodUid );
 		if( accessControlResult == AccessControlProvider::Access::Deny )
 		{
 			vWarning() << "user" << username << "is not allowed to access computers";
