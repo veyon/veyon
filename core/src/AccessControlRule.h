@@ -55,6 +55,7 @@ public:
 		AccessFromLocalUser,
 		AccessFromAlreadyConnectedUser,
 		NoUserLoggedOn,
+		AuthenticationMethod
 	} ;
 
 	Q_ENUM(Condition)
