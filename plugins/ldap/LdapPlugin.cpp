@@ -25,7 +25,7 @@
 #include <QApplication>
 #include <QMessageBox>
 
-#include "AuthLdapConfigurationDialog.h"
+#include "AuthLdapConfigurationWidget.h"
 #include "AuthLdapDialog.h"
 #include "CommandLineIO.h"
 #include "ConfigurationManager.h"
@@ -104,6 +104,13 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 
 
 
+QWidget* LdapPlugin::createAuthenticationConfigurationWidget()
+{
+	return new AuthLdapConfigurationWidget( m_authCore.configuration() );
+}
+
+
+
 bool LdapPlugin::initializeCredentials()
 {
 	m_authCore.clear();
@@ -146,13 +153,6 @@ bool LdapPlugin::checkCredentials() const
 	}
 
 	return true;
-}
-
-
-
-void LdapPlugin::configureCredentials()
-{
-	AuthLdapConfigurationDialog( m_authCore.configuration() ).exec();
 }
 
 

@@ -27,7 +27,7 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_AUTH_LDAP_CONFIG_PROPERTY(OP) \
-    OP( AuthLdapConfiguration, m_configuration, QString, usernnameBindDnMapping, setUsernameBindMapping, "UsernameBindDnMapping", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
+    OP( AuthLdapConfiguration, m_configuration, QString, usernameBindDnMapping, setUsernameBindMapping, "UsernameBindDnMapping", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 
 // clazy:excludeall=missing-qobject-macro
 

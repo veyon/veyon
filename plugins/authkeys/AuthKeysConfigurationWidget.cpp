@@ -1,5 +1,5 @@
 /*
- * AuthKeysConfigurationDialog.cpp - implementation of the authentication configuration page
+ * AuthKeysConfigurationWidget.cpp - implementation of the authentication configuration page
  *
  * Copyright (c) 2017-2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -27,19 +27,20 @@
 #include <QMessageBox>
 
 #include "AuthKeysConfiguration.h"
-#include "AuthKeysConfigurationDialog.h"
+#include "AuthKeysConfigurationWidget.h"
 #include "AuthKeysManager.h"
 #include "FileSystemBrowser.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
+#include "Configuration/UiMapping.h"
 
-#include "ui_AuthKeysConfigurationDialog.h"
+#include "ui_AuthKeysConfigurationWidget.h"
 
 
-AuthKeysConfigurationDialog::AuthKeysConfigurationDialog( AuthKeysConfiguration& configuration,
+AuthKeysConfigurationWidget::AuthKeysConfigurationWidget( AuthKeysConfiguration& configuration,
 														  AuthKeysManager& manager ) :
-	QDialog( QApplication::activeWindow() ),
-	ui( new Ui::AuthKeysConfigurationDialog ),
+	QWidget( QApplication::activeWindow() ),
+	ui( new Ui::AuthKeysConfigurationWidget ),
 	m_configuration( configuration ),
 	m_manager( manager ),
 	m_authKeyTableModel( m_manager, this ),
@@ -51,7 +52,7 @@ AuthKeysConfigurationDialog::AuthKeysConfigurationDialog( AuthKeysConfiguration&
 	ui->publicKeyBaseDir->setText( m_configuration.publicKeyBaseDir() );
 
 #define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationDialog::name );
+			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationWidget::name );
 
 	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir )
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir )
@@ -61,6 +62,8 @@ AuthKeysConfigurationDialog::AuthKeysConfigurationDialog( AuthKeysConfiguration&
 	CONNECT_BUTTON_SLOT( exportKey )
 	CONNECT_BUTTON_SLOT( setAccessGroup )
 
+	FOREACH_AUTH_KEYS_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
+
 	reloadKeyTable();
 
 	ui->keyTable->setModel( &m_authKeyTableModel );
@@ -68,24 +71,17 @@ AuthKeysConfigurationDialog::AuthKeysConfigurationDialog( AuthKeysConfiguration&
 
 
 
-AuthKeysConfigurationDialog::~AuthKeysConfigurationDialog()
+AuthKeysConfigurationWidget::~AuthKeysConfigurationWidget()
 {
 	delete ui;
 }
 
 
 
-void AuthKeysConfigurationDialog::accept()
-{
-	m_configuration.setPrivateKeyBaseDir( ui->privateKeyBaseDir->text() );
-	m_configuration.setPublicKeyBaseDir( ui->publicKeyBaseDir->text() );
-
-	QDialog::accept();
-}
 
 
 
-void AuthKeysConfigurationDialog::openPublicKeyBaseDir()
+void AuthKeysConfigurationWidget::openPublicKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 												exec( ui->publicKeyBaseDir );
@@ -93,7 +89,7 @@ void AuthKeysConfigurationDialog::openPublicKeyBaseDir()
 
 
 
-void AuthKeysConfigurationDialog::openPrivateKeyBaseDir()
+void AuthKeysConfigurationWidget::openPrivateKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 			exec( ui->privateKeyBaseDir );
@@ -101,7 +97,7 @@ void AuthKeysConfigurationDialog::openPrivateKeyBaseDir()
 
 
 
-void AuthKeysConfigurationDialog::createKeyPair()
+void AuthKeysConfigurationWidget::createKeyPair()
 {
 	const auto keyName = QInputDialog::getText( this, tr( "Authentication key name" ),
 												tr( "Please enter the name of the user group or role for which to create an authentication key pair:") );
@@ -117,7 +113,7 @@ void AuthKeysConfigurationDialog::createKeyPair()
 
 
 
-void AuthKeysConfigurationDialog::deleteKey()
+void AuthKeysConfigurationWidget::deleteKey()
 {
 	const auto title = ui->deleteKey->text();
 
@@ -146,7 +142,7 @@ void AuthKeysConfigurationDialog::deleteKey()
 
 
 
-void AuthKeysConfigurationDialog::importKey()
+void AuthKeysConfigurationWidget::importKey()
 {
 	const auto title = ui->importKey->text();
 
@@ -175,7 +171,7 @@ void AuthKeysConfigurationDialog::importKey()
 
 
 
-void AuthKeysConfigurationDialog::exportKey()
+void AuthKeysConfigurationWidget::exportKey()
 {
 	const auto title = ui->exportKey->text();
 
@@ -204,7 +200,7 @@ void AuthKeysConfigurationDialog::exportKey()
 
 
 
-void AuthKeysConfigurationDialog::setAccessGroup()
+void AuthKeysConfigurationWidget::setAccessGroup()
 {
 	const auto title = ui->setAccessGroup->text();
 
@@ -237,7 +233,7 @@ void AuthKeysConfigurationDialog::setAccessGroup()
 
 
 
-void AuthKeysConfigurationDialog::reloadKeyTable()
+void AuthKeysConfigurationWidget::reloadKeyTable()
 {
 	m_authKeyTableModel.reload();
 	ui->keyTable->resizeColumnsToContents();
@@ -245,7 +241,7 @@ void AuthKeysConfigurationDialog::reloadKeyTable()
 
 
 
-QString AuthKeysConfigurationDialog::selectedKey() const
+QString AuthKeysConfigurationWidget::selectedKey() const
 {
 	const auto row = ui->keyTable->currentIndex().row();
 	if( row >= 0 && row < m_authKeyTableModel.rowCount() )
@@ -258,7 +254,7 @@ QString AuthKeysConfigurationDialog::selectedKey() const
 
 
 
-void AuthKeysConfigurationDialog::showResultMessage( bool success, const QString& title, const QString& message )
+void AuthKeysConfigurationWidget::showResultMessage( bool success, const QString& title, const QString& message )
 {
 	if( message.isEmpty() )
 	{

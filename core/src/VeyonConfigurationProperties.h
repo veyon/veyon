@@ -117,7 +117,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, confirmUnsafeActions, setConfirmUnsafeActions, "ConfirmUnsafeActions", "Master", false, Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), QUuid, authenticationPlugin, setAuthenticationPlugin, "Plugin", "Authentication", QUuid(), Configuration::Property::Flag::Standard )	\
+	OP( VeyonConfiguration, VeyonCore::config(), QStringList, enabledAuthenticationPlugins, setEnabledAuthenticationPlugins, "EnabledPlugins", "Authentication", QStringList(), Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
 	OP( VeyonConfiguration, VeyonCore::config(), QUuid, accessControlUserGroupsBackend, setAccessControlUserGroupsBackend, "UserGroupsBackend", "AccessControl", QUuid(), Configuration::Property::Flag::Standard )		\

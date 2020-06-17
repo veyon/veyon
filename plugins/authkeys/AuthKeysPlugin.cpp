@@ -27,7 +27,7 @@
 #include <QMessageBox>
 #include <QProcessEnvironment>
 
-#include "AuthKeysConfigurationDialog.h"
+#include "AuthKeysConfigurationWidget.h"
 #include "AuthKeysPlugin.h"
 #include "AuthKeysManager.h"
 #include "Filesystem.h"
@@ -60,6 +60,13 @@ void AuthKeysPlugin::upgrade(const QVersionNumber& oldVersion)
 		m_configuration.setPublicKeyBaseDir( m_configuration.legacyPublicKeyBaseDir() );
 		m_configuration.setPrivateKeyBaseDir( m_configuration.legacyPrivateKeyBaseDir() );
 	}
+}
+
+
+
+QWidget* AuthKeysPlugin::createAuthenticationConfigurationWidget()
+{
+	return new AuthKeysConfigurationWidget( m_configuration, m_manager );
 }
 
 
@@ -123,13 +130,6 @@ bool AuthKeysPlugin::checkCredentials() const
 	}
 
 	return true;
-}
-
-
-
-void AuthKeysPlugin::configureCredentials()
-{
-	AuthKeysConfigurationDialog( m_configuration, m_manager ).exec();
 }
 
 

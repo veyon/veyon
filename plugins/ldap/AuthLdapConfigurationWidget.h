@@ -1,5 +1,5 @@
 /*
- * AuthLdapConfigurationDialog.cpp - implementation of the authentication configuration page
+ * AuthLdapConfigurationWidget.h - header for the AuthLdapConfigurationWidget class
  *
  * Copyright (c) 2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,35 +22,25 @@
  *
  */
 
-#include "AuthLdapConfiguration.h"
-#include "AuthLdapConfigurationDialog.h"
-#include "VeyonConfiguration.h"
+#pragma once
 
-#include "ui_AuthLdapConfigurationDialog.h"
+#include <QWidget>
 
-
-AuthLdapConfigurationDialog::AuthLdapConfigurationDialog( AuthLdapConfiguration& configuration ) :
-	QDialog( QApplication::activeWindow() ),
-	ui( new Ui::AuthLdapConfigurationDialog ),
-	m_configuration( configuration )
-{
-	ui->setupUi(this);
-
-	ui->usernameToBindDnMapping->setText( configuration.usernnameBindDnMapping() );
+namespace Ui {
+class AuthLdapConfigurationWidget;
 }
 
+class AuthLdapConfiguration;
 
-
-AuthLdapConfigurationDialog::~AuthLdapConfigurationDialog()
+class AuthLdapConfigurationWidget : public QWidget
 {
-	delete ui;
-}
+	Q_OBJECT
+public:
+	AuthLdapConfigurationWidget( AuthLdapConfiguration& configuration );
+	~AuthLdapConfigurationWidget() override;
 
+private:
+	Ui::AuthLdapConfigurationWidget* ui;
+	AuthLdapConfiguration& m_configuration;
 
-
-void AuthLdapConfigurationDialog::accept()
-{
-	m_configuration.setUsernameBindMapping( ui->usernameToBindDnMapping->text() );
-
-	QDialog::accept();
-}
+};

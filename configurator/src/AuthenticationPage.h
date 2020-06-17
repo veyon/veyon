@@ -1,5 +1,5 @@
 /*
- * GeneralConfigurationPage.h - configuration page with general settings
+ * AuthenticationPage.h - header for the AuthenticationPage class
  *
  * Copyright (c) 2016-2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,25 +26,29 @@
 
 #include "ConfigurationPage.h"
 
-namespace Ui { class GeneralConfigurationPage; }
+namespace Ui {
+class AuthenticationPage;
+}
 
-class GeneralConfigurationPage : public ConfigurationPage
+class AuthenticationPluginInterface;
+class AuthenticationPageTab;
+
+class AuthenticationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	GeneralConfigurationPage( QWidget* parent = nullptr );
-	~GeneralConfigurationPage() override;
+	AuthenticationPage( QWidget* parent = nullptr );
+	~AuthenticationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
 private:
-	void openLogFileDirectory();
-	void clearLogFiles();
+	void populateTabs();
 
-	void populateNetworkObjectDirectories();
+	Ui::AuthenticationPage *ui;
 
-	Ui::GeneralConfigurationPage* ui;
+	QMap<AuthenticationPluginInterface *, AuthenticationPageTab *> m_tabs;
 
-} ;
+};

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AuthLdapConfigurationDialog</class>
- <widget class="QDialog" name="AuthLdapConfigurationDialog">
+ <class>AuthLdapConfigurationWidget</class>
+ <widget class="QWidget" name="AuthLdapConfigurationWidget">
   <property name="windowTitle">
    <string>LDAP authentication</string>
   </property>
@@ -30,7 +30,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="usernameToBindDnMapping">
+       <widget class="QLineEdit" name="usernameBindDnMapping">
         <property name="minimumSize">
          <size>
           <width>600</width>
@@ -45,50 +45,10 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources>
   <include location="../../core/resources/core.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>AuthLdapConfigurationDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>338</x>
-     <y>800</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>338</x>
-     <y>408</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>AuthLdapConfigurationDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>338</x>
-     <y>800</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>338</x>
-     <y>408</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

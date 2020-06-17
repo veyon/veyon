@@ -26,7 +26,6 @@
 #include <QMessageBox>
 
 #include "Configuration/UiMapping.h"
-#include "AuthenticationManager.h"
 #include "GeneralConfigurationPage.h"
 #include "Filesystem.h"
 #include "FileSystemBrowser.h"
@@ -69,17 +68,6 @@ GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
 
 	ui->uiLanguage->addItems( languages );
 
-	const auto authenticationPlugin = VeyonCore::authenticationManager().availableTypes();
-	for( auto it = authenticationPlugin.constBegin(), end = authenticationPlugin.constEnd(); it != end; ++it )
-	{
-		if( it.value().isEmpty() == false )
-		{
-			ui->authenticationPlugin->addItem( it.value(), it.key() );
-		}
-	}
-
-	connect( ui->configureAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::configureAuthentication );
-	connect( ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication );
 	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
 	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
 
@@ -100,7 +88,6 @@ void GeneralConfigurationPage::resetWidgets()
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
@@ -110,7 +97,6 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
@@ -120,26 +106,6 @@ void GeneralConfigurationPage::applyConfiguration()
 }
 
 
-
-void GeneralConfigurationPage::configureAuthentication()
-{
-	VeyonCore::authenticationManager().reloadConfiguration();
-	VeyonCore::authenticationManager().configuredPlugin()->configureCredentials();
-}
-
-
-
-void GeneralConfigurationPage::testAuthentication()
-{
-	VeyonCore::authenticationManager().reloadConfiguration();
-
-	if( VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() &&
-		VeyonCore::authenticationManager().configuredPlugin()->checkCredentials() )
-	{
-		QMessageBox::information( this, AuthenticationPluginInterface::authenticationTestTitle(),
-								  tr( "Authentication is set up properly on this computer." ) );
-	}
-}
 
 
 

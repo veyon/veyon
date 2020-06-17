@@ -19,6 +19,7 @@
       <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
       <widget class="ServiceConfigurationPage" name="serviceConfigurationPage"/>
       <widget class="MasterConfigurationPage" name="masterConfigurationPage"/>
+      <widget class="AuthenticationPage" name="authenticationPage"/>
       <widget class="AccessControlPage" name="accessControlPage"/>
      </widget>
     </item>
@@ -52,7 +53,7 @@
        <bool>true</bool>
       </property>
       <property name="currentRow">
-       <number>0</number>
+       <number>-1</number>
       </property>
       <item>
        <property name="text">
@@ -92,6 +93,18 @@
       </item>
       <item>
        <property name="text">
+        <string>Authentication</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/application-x-pem-key.png</normaloff>:/core/application-x-pem-key.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Access control</string>
        </property>
        <property name="icon">
@@ -124,6 +137,14 @@
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>516</width>
+     <height>32</height>
+    </rect>
+   </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
@@ -236,6 +257,12 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>AuthenticationPage</class>
+   <extends>QWidget</extends>
+   <header>AuthenticationPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>GeneralConfigurationPage</class>
    <extends>QWidget</extends>
    <header>GeneralConfigurationPage.h</header>
@@ -253,10 +280,16 @@
    <header>ServiceConfigurationPage.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>AuthenticationPage</class>
+   <extends>QWidget</extends>
+   <header>authenticationpage.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../core/resources/core.qrc"/>
   <include location="../resources/configurator.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
   <connection>

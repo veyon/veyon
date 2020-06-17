@@ -70,15 +70,18 @@ public:
 
 	QString authenticationTypeName() const override
 	{
-		return description();
+		return tr("Logon");
+	}
+
+	QWidget* createAuthenticationConfigurationWidget() override
+	{
+		return nullptr;
 	}
 
 	bool initializeCredentials() override;
 	bool hasCredentials() const override;
 
 	bool checkCredentials() const override;
-
-	void configureCredentials() override;
 
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;
 

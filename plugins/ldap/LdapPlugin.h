@@ -88,14 +88,14 @@ public:
 
 	QString authenticationTypeName() const override
 	{
-		return tr("LDAP bind authentication");
+		return tr("LDAP bind");
 	}
+
+	QWidget* createAuthenticationConfigurationWidget() override;
 
 	bool initializeCredentials() override;
 	bool hasCredentials() const override;
 	bool checkCredentials() const override;
-
-	void configureCredentials() override;
 
 	// server side authentication
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;

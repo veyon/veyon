@@ -1,5 +1,5 @@
 /*
- * AuthKeysConfigurationDialog.h - header for the AuthKeysConfigurationDialog class
+ * AuthKeysConfigurationWidget.h - header for the AuthKeysConfigurationDialog class
  *
  * Copyright (c) 2017-2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,25 +24,23 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QWidget>
 
 #include "AuthKeysTableModel.h"
 
 namespace Ui {
-class AuthKeysConfigurationDialog;
+class AuthKeysConfigurationWidget;
 }
 
 class AuthKeysConfiguration;
 class AuthKeysManager;
 
-class AuthKeysConfigurationDialog : public QDialog
+class AuthKeysConfigurationWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	AuthKeysConfigurationDialog( AuthKeysConfiguration& configuration, AuthKeysManager& manager );
-	~AuthKeysConfigurationDialog() override;
-
-	void accept() override;
+	AuthKeysConfigurationWidget( AuthKeysConfiguration& configuration, AuthKeysManager& manager );
+	~AuthKeysConfigurationWidget() override;
 
 private:
 	void openPublicKeyBaseDir();
@@ -57,7 +55,7 @@ private:
 	QString selectedKey() const;
 	void showResultMessage( bool success, const QString& title, const QString& message );
 
-	Ui::AuthKeysConfigurationDialog* ui;
+	Ui::AuthKeysConfigurationWidget* ui;
 	AuthKeysConfiguration& m_configuration;
 	AuthKeysManager& m_manager;
 	AuthKeysTableModel m_authKeyTableModel;

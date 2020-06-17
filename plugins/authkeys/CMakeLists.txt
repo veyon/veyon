@@ -2,12 +2,12 @@ include(BuildVeyonPlugin)
 
 build_veyon_plugin(authkeys
 	AuthKeysPlugin.cpp
-	AuthKeysConfigurationDialog.cpp
-	AuthKeysConfigurationDialog.ui
+	AuthKeysConfigurationWidget.cpp
+	AuthKeysConfigurationWidget.ui
 	AuthKeysTableModel.cpp
 	AuthKeysManager.cpp
 	AuthKeysPlugin.h
-	AuthKeysConfigurationDialog.h
+	AuthKeysConfigurationWidget.h
 	AuthKeysConfiguration.h
 	AuthKeysTableModel.h
 	AuthKeysManager.h

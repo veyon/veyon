@@ -49,7 +49,7 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return QStringLiteral("4790bad8-4c56-40d5-8361-099a68f0c24b");
+		return QStringLiteral("0c69b301-81b4-42d6-8fae-128cdd113314");
 	}
 
 	QVersionNumber version() const override
@@ -81,14 +81,14 @@ public:
 
 	QString authenticationTypeName() const override
 	{
-		return description();
+		return tr("Key file");
 	}
+
+	QWidget* createAuthenticationConfigurationWidget() override;
 
 	bool initializeCredentials() override;
 	bool hasCredentials() const override;
 	bool checkCredentials() const override;
-
-	void configureCredentials() override;
 
 	// server side authentication
 	VncServerClient::AuthState performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const override;

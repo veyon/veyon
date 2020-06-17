@@ -210,8 +210,8 @@ bool RemoteAccessFeaturePlugin::remoteControlEnabled() const
 
 bool RemoteAccessFeaturePlugin::initAuthentication()
 {
-	return VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() &&
-			VeyonCore::authenticationManager().configuredPlugin()->checkCredentials();
+	return VeyonCore::authenticationManager().initializeCredentials() &&
+			VeyonCore::authenticationManager().initializedPlugin()->checkCredentials();
 }
 
 

@@ -1,5 +1,5 @@
 /*
- * AuthLdapConfigurationDialog.h - header for the AuthLdapConfigurationDialog class
+ * AuthLdapConfigurationWidget.cpp - implementation of the authentication configuration page
  *
  * Copyright (c) 2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,27 +22,28 @@
  *
  */
 
-#pragma once
+#include "AuthLdapConfiguration.h"
+#include "AuthLdapConfigurationWidget.h"
+#include "VeyonConfiguration.h"
+#include "Configuration/UiMapping.h"
 
-#include <QDialog>
+#include "ui_AuthLdapConfigurationWidget.h"
 
-namespace Ui {
-class AuthLdapConfigurationDialog;
+
+AuthLdapConfigurationWidget::AuthLdapConfigurationWidget( AuthLdapConfiguration& configuration ) :
+	QWidget( QApplication::activeWindow() ),
+	ui( new Ui::AuthLdapConfigurationWidget ),
+	m_configuration( configuration )
+{
+	ui->setupUi(this);
+
+	FOREACH_AUTH_LDAP_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
+	FOREACH_AUTH_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
 }
 
-class AuthLdapConfiguration;
 
-class AuthLdapConfigurationDialog : public QDialog
+
+AuthLdapConfigurationWidget::~AuthLdapConfigurationWidget()
 {
-	Q_OBJECT
-public:
-	AuthLdapConfigurationDialog( AuthLdapConfiguration& configuration );
-	~AuthLdapConfigurationDialog() override;
-
-	void accept() override;
-
-private:
-	Ui::AuthLdapConfigurationDialog* ui;
-	AuthLdapConfiguration& m_configuration;
-
-};
+	delete ui;
+}

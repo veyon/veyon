@@ -29,11 +29,16 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_AUTH_KEYS_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), QString, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "AuthKeys", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ), Configuration::Property::Flag::Advanced )	\
-	OP( VeyonConfiguration, VeyonCore::config(), QString, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "AuthKeys", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ), Configuration::Property::Flag::Advanced )	\
-	OP( VeyonConfiguration, VeyonCore::config(), QString, legacyPrivateKeyBaseDir, setLegacyPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ), Configuration::Property::Flag::Legacy )	\
-	OP( VeyonConfiguration, VeyonCore::config(), QString, legacyPublicKeyBaseDir, setLegacyPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ), Configuration::Property::Flag::Legacy )	\
+	OP( VeyonConfiguration, m_configuration, QString, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "AuthKeys", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ), Configuration::Property::Flag::Advanced )	\
+	OP( VeyonConfiguration, m_configuration, QString, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "AuthKeys", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ), Configuration::Property::Flag::Advanced )	\
+
+#define FOREACH_AUTH_KEYS_LEGACY_CONFIG_PROPERTY(OP) \
+	OP( VeyonConfiguration, m_configuration, QString, legacyPrivateKeyBaseDir, setLegacyPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ), Configuration::Property::Flag::Legacy )	\
+	OP( VeyonConfiguration, m_configuration, QString, legacyPublicKeyBaseDir, setLegacyPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication", QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ), Configuration::Property::Flag::Legacy )	\
+
+#define FOREACH_AUTH_KEYS_ALL_CONFIG_PROPERTY(OP) \
+	FOREACH_AUTH_KEYS_CONFIG_PROPERTY(OP) \
+	FOREACH_AUTH_KEYS_LEGACY_CONFIG_PROPERTY(OP)
 
 // clazy:excludeall=missing-qobject-macro
-
-DECLARE_CONFIG_PROXY(AuthKeysConfiguration, FOREACH_AUTH_KEYS_CONFIG_PROPERTY)
+DECLARE_CONFIG_PROXY(AuthKeysConfiguration, FOREACH_AUTH_KEYS_ALL_CONFIG_PROPERTY)

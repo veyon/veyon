@@ -159,13 +159,13 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initAuthentication()
 {
-	if( VeyonCore::authenticationManager().configuredPlugin()->initializeCredentials() == false )
+	if( VeyonCore::authenticationManager().initializeCredentials() == false )
 	{
 		vCritical() << "failed to initialize credentials";
 		return false;
 	}
 
-	if( VeyonCore::authenticationManager().configuredPlugin()->checkCredentials() == false )
+	if( VeyonCore::authenticationManager().initializedPlugin()->checkCredentials() == false )
 	{
 		vCritical() << "failed to check credentials";
 		return false;
@@ -179,9 +179,9 @@ bool MainWindow::initAuthentication()
 bool MainWindow::initAccessControl()
 {
 	if( VeyonCore::config().accessControlForMasterEnabled() &&
-		VeyonCore::authenticationManager().configuredPlugin()->requiresAccessControl() )
+		VeyonCore::authenticationManager().initializedPlugin()->requiresAccessControl() )
 	{
-		const auto username = VeyonCore::authenticationManager().configuredPlugin()->accessControlUser();
+		const auto username = VeyonCore::authenticationManager().initializedPlugin()->accessControlUser();
 		const auto accessControlResult =
 				AccessControlProvider().checkAccess( username,
 													 QHostAddress( QHostAddress::LocalHost ).toString(),

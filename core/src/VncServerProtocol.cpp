@@ -203,7 +203,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 	{
 		const auto chosenAuthPluginUid = message.read().toUuid();
 
-		if( chosenAuthPluginUid .isNull() ||
+		if( chosenAuthPluginUid.isNull() ||
 			supportedAuthPluginUids().contains( chosenAuthPluginUid  ) == false )
 		{
 			vCritical() << "unsupported authentication type chosen by client!";

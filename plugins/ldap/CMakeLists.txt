@@ -7,9 +7,9 @@ build_veyon_plugin(ldap
 	LdapPlugin.cpp
 	LdapPlugin.h
 	AuthLdapConfiguration.h
-	AuthLdapConfigurationDialog.cpp
-	AuthLdapConfigurationDialog.h
-	AuthLdapConfigurationDialog.ui
+	AuthLdapConfigurationWidget.cpp
+	AuthLdapConfigurationWidget.h
+	AuthLdapConfigurationWidget.ui
 	AuthLdapCore.cpp
 	AuthLdapCore.h
 	AuthLdapDialog.cpp

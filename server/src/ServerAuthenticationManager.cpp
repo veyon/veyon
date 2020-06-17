@@ -42,9 +42,12 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 			 << "host" << client->hostAddress()
 			 << "user" << client->username();
 
-	if( client->authPluginUid() == VeyonCore::config().authenticationPlugin()  )
+	auto authPlugin = VeyonCore::authenticationManager().plugins().value( client->authPluginUid() );
+
+	if( authPlugin &&
+		VeyonCore::authenticationManager().isEnabled( client->authPluginUid() ) )
 	{
-		client->setAuthState( VeyonCore::authenticationManager().configuredPlugin()->performAuthentication( client, message ) );
+		client->setAuthState( authPlugin->performAuthentication( client, message ) );
 	}
 	else
 	{

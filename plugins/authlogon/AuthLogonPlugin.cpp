@@ -86,12 +86,6 @@ bool AuthLogonPlugin::checkCredentials() const
 
 
 
-void AuthLogonPlugin::configureCredentials()
-{
-}
-
-
-
 VncServerClient::AuthState AuthLogonPlugin::performAuthentication( VncServerClient* client, VariantArrayMessage& message ) const
 {
 	switch( client->authState() )

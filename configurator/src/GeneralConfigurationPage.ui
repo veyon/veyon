@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>GeneralConfigurationPage</class>
  <widget class="QWidget" name="GeneralConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>631</width>
+    <height>858</height>
+   </rect>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
    <property name="topMargin">
     <number>0</number>
@@ -46,60 +54,6 @@
          <string>Veyon</string>
         </property>
        </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Authentication</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Method:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="testAuthenticationButton">
-        <property name="text">
-         <string>Test</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../../core/resources/core.qrc">
-          <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="configureAuthenticationButton">
-        <property name="text">
-         <string>Configure</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../../core/resources/core.qrc">
-          <normaloff>:/core/document-edit.png</normaloff>:/core/document-edit.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QComboBox" name="authenticationPlugin"/>
-      </item>
-      <item row="1" column="2">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
@@ -356,9 +310,6 @@
  <tabstops>
   <tabstop>applicationName</tabstop>
   <tabstop>uiLanguage</tabstop>
-  <tabstop>authenticationPlugin</tabstop>
-  <tabstop>configureAuthenticationButton</tabstop>
-  <tabstop>testAuthenticationButton</tabstop>
   <tabstop>networkObjectDirectoryPlugin</tabstop>
   <tabstop>networkObjectDirectoryUpdateInterval</tabstop>
   <tabstop>logFileDirectory</tabstop>

@@ -60,13 +60,13 @@ bool AuthLdapCore::authenticate()
 	ldapConfig.setUseBindCredentials( true );
 	ldapConfig.setBindPassword( Configuration::Password::fromPlainText( m_password ) );
 
-	if( m_configuration.usernnameBindDnMapping().isEmpty() )
+	if( m_configuration.usernameBindDnMapping().isEmpty() )
 	{
 		ldapConfig.setBindDn( m_username );
 	}
 	else
 	{
-		ldapConfig.setBindDn( m_configuration.usernnameBindDnMapping().replace( QStringLiteral("%username%"), m_username ) );
+		ldapConfig.setBindDn( m_configuration.usernameBindDnMapping().replace( QStringLiteral("%username%"), m_username ) );
 	}
 
 	return LdapClient( ldapConfig ).isBound();

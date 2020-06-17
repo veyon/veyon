@@ -1,7 +1,7 @@
 /*
- * GeneralConfigurationPage.h - configuration page with general settings
+ * AuthenticationPageTab.cpp - implementation of the AuthenticationPageTab class
  *
- * Copyright (c) 2016-2020 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2020 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,29 +22,41 @@
  *
  */
 
-#pragma once
+#include "AuthenticationPageTab.h"
 
-#include "ConfigurationPage.h"
+#include "ui_AuthenticationPageTab.h"
 
-namespace Ui { class GeneralConfigurationPage; }
-
-class GeneralConfigurationPage : public ConfigurationPage
+AuthenticationPageTab::AuthenticationPageTab( QWidget* parent ) :
+	QWidget( parent ),
+	ui(new Ui::AuthenticationPageTab)
 {
-	Q_OBJECT
-public:
-	GeneralConfigurationPage( QWidget* parent = nullptr );
-	~GeneralConfigurationPage() override;
+	ui->setupUi(this);
+}
 
-	void resetWidgets() override;
-	void connectWidgetsToProperties() override;
-	void applyConfiguration() override;
 
-private:
-	void openLogFileDirectory();
-	void clearLogFiles();
 
-	void populateNetworkObjectDirectories();
+AuthenticationPageTab::~AuthenticationPageTab()
+{
+	delete ui;
+}
 
-	Ui::GeneralConfigurationPage* ui;
 
-} ;
+
+QBoxLayout* AuthenticationPageTab::tabLayout() const
+{
+	return ui->tabLayout;
+}
+
+
+
+QCheckBox* AuthenticationPageTab::enabledCheckBox() const
+{
+	return ui->enabledCheckBox;
+}
+
+
+
+QPushButton* AuthenticationPageTab::testButton() const
+{
+	return ui->testButton;
+}

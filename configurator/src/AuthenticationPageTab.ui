@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AuthenticationPageTab</class>
+ <widget class="QWidget" name="AuthenticationPageTab">
+  <property name="windowTitle">
+   <string notr="true">Authentication</string>
+  </property>
+  <layout class="QVBoxLayout" name="tabLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="hboxLayout">
+     <item>
+      <widget class="QCheckBox" name="enabledCheckBox">
+       <property name="text">
+        <string>Enabled</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>80</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="testButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Test</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../core/resources/core.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>enabledCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>66</x>
+     <y>31</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>254</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
