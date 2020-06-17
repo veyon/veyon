@@ -40,7 +40,7 @@ public:
 		return m_plugins;
 	}
 
-	Types availableTypes() const;
+	Types availableMethods() const;
 
 	void setEnabled( Plugin::Uid uid, bool enabled );
 	bool isEnabled( Plugin::Uid uid ) const;

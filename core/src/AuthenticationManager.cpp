@@ -48,7 +48,7 @@ AuthenticationManager::AuthenticationManager( QObject* parent ) :
 
 
 
-AuthenticationManager::Types AuthenticationManager::availableTypes() const
+AuthenticationManager::Types AuthenticationManager::availableMethods() const
 {
 	Types types;
 	for( auto it = m_plugins.constBegin(), end = m_plugins.constEnd(); it != end; ++it )
