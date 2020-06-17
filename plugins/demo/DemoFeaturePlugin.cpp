@@ -78,6 +78,11 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 	{
 		const auto demoServerPort = VeyonCore::config().demoServerPort() + VeyonCore::sessionId();
 
+		if( hasCredentials() == false )
+		{
+			initializeCredentials();
+		}
+
 		FeatureMessage featureMessage( m_demoServerFeature.uid(), StartDemoServer );
 		featureMessage.addArgument( DemoAccessToken, accessToken().toByteArray() );
 		featureMessage.addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() );
