@@ -34,8 +34,6 @@
 class LinuxSessionFunctions : public PlatformSessionFunctions
 {
 public:
-	static constexpr auto MaxSessions = 100;
-
 	using LoginDBusSession = struct {
 		QString id;
 		quint32 uid{0};
