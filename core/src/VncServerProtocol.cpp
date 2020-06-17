@@ -77,8 +77,8 @@ bool VncServerProtocol::read()
 	case SecurityInit:
 		return receiveSecurityTypeResponse();
 
-	case AuthenticationTypes:
-		return receiveAuthenticationTypeResponse();
+	case AuthenticationMethods:
+		return receiveAuthenticationMethodResponse();
 
 	case Authenticating:
 		return receiveAuthenticationMessage();
@@ -168,9 +168,9 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 			return false;
 		}
 
-		setState( AuthenticationTypes );
+		setState( AuthenticationMethods );
 
-		return sendAuthenticationTypes();
+		return sendAuthenticationMethods();
 	}
 
 	return false;
@@ -178,9 +178,9 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 
 
 
-bool VncServerProtocol::sendAuthenticationTypes()
+bool VncServerProtocol::sendAuthenticationMethods()
 {
-	const auto authTypes = supportedAuthPluginUids();
+	const auto authTypes = supportedAuthMethodUids();
 
 	VariantArrayMessage message( m_socket );
 	message.write( authTypes.count() );
@@ -195,16 +195,16 @@ bool VncServerProtocol::sendAuthenticationTypes()
 
 
 
-bool VncServerProtocol::receiveAuthenticationTypeResponse()
+bool VncServerProtocol::receiveAuthenticationMethodResponse()
 {
 	VariantArrayMessage message( m_socket );
 
 	if( message.isReadyForReceive() && message.receive() )
 	{
-		const auto chosenAuthPluginUid = message.read().toUuid();
+		const auto chosenAuthMethodUid = message.read().toUuid();
 
-		if( chosenAuthPluginUid.isNull() ||
-			supportedAuthPluginUids().contains( chosenAuthPluginUid  ) == false )
+		if( chosenAuthMethodUid.isNull() ||
+			supportedAuthMethodUids().contains( chosenAuthMethodUid  ) == false )
 		{
 			vCritical() << "unsupported authentication type chosen by client!";
 			m_socket->close();
@@ -214,7 +214,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 		const auto username = message.read().toString();
 
-		m_client->setAuthPluginUid( chosenAuthPluginUid  );
+		m_client->setAuthMethodUid( chosenAuthMethodUid );
 		m_client->setUsername( username );
 		m_client->setHostAddress( m_socket->peerAddress().toString() );
 

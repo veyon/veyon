@@ -43,9 +43,9 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 void ServerAccessControlManager::addClient( VncServerClient* client )
 {
 	const auto plugins = VeyonCore::authenticationManager().plugins();
-	if( plugins.contains( client->authPluginUid() ) )
+	if( plugins.contains( client->authMethodUid() ) )
 	{
-		if( plugins[client->authPluginUid()]->requiresAccessControl() )
+		if( plugins[client->authMethodUid()]->requiresAccessControl() )
 		{
 			performAccessControl( client );
 		}

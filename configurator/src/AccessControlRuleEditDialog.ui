@@ -210,7 +210,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="authenticationTypesComboBox">
+         <widget class="QComboBox" name="authenticationMethodsComboBox">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -294,7 +294,7 @@
   <tabstop>ignoreConditionsCheckBox</tabstop>
   <tabstop>invertConditionsCheckBox</tabstop>
   <tabstop>isAuthenticatedViaMethodCheckBox</tabstop>
-  <tabstop>authenticationTypesComboBox</tabstop>
+  <tabstop>authenticationMethodsComboBox</tabstop>
   <tabstop>isMemberOfGroupCheckBox</tabstop>
   <tabstop>isMemberOfGroupSubjectComboBox</tabstop>
   <tabstop>groupsComboBox</tabstop>
@@ -445,7 +445,7 @@
   <connection>
    <sender>isAuthenticatedViaMethodCheckBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>authenticationTypesComboBox</receiver>
+   <receiver>authenticationMethodsComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

@@ -37,13 +37,13 @@ class VncServerClient;
 class VEYON_CORE_EXPORT VncServerProtocol
 {
 public:
-	using AuthPluginUids = QVector<Plugin::Uid>;
+	using AuthMethodUids = QVector<Plugin::Uid>;
 
 	enum State {
 		Disconnected,
 		Protocol,
 		SecurityInit,
-		AuthenticationTypes,
+		AuthenticationMethods,
 		Authenticating,
 		AccessControl,
 		FramebufferInit,
@@ -67,7 +67,7 @@ public:
 	}
 
 protected:
-	virtual AuthPluginUids supportedAuthPluginUids() const = 0;
+	virtual AuthMethodUids supportedAuthMethodUids() const = 0;
 	virtual void processAuthenticationMessage( VariantArrayMessage& message ) = 0;
 	virtual void performAccessControl() = 0;
 
@@ -87,8 +87,8 @@ private:
 	bool readProtocol();
 	bool sendSecurityTypes();
 	bool receiveSecurityTypeResponse();
-	bool sendAuthenticationTypes();
-	bool receiveAuthenticationTypeResponse();
+	bool sendAuthenticationMethods();
+	bool receiveAuthenticationMethodResponse();
 	bool receiveAuthenticationMessage();
 
 	bool processAuthentication( VariantArrayMessage& message );

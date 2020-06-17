@@ -36,7 +36,7 @@ DemoServerProtocol::DemoServerProtocol( const DemoAuthentication& authentication
 
 
 
-DemoServerProtocol::AuthPluginUids DemoServerProtocol::supportedAuthPluginUids() const
+DemoServerProtocol::AuthMethodUids DemoServerProtocol::supportedAuthMethodUids() const
 {
 	return { m_authentication.pluginUid() };
 }
@@ -45,7 +45,7 @@ DemoServerProtocol::AuthPluginUids DemoServerProtocol::supportedAuthPluginUids()
 
 void DemoServerProtocol::processAuthenticationMessage( VariantArrayMessage& message )
 {
-	if( client()->authPluginUid() == m_authentication.pluginUid() )
+	if( client()->authMethodUid() == m_authentication.pluginUid() )
 	{
 		client()->setAuthState( performTokenAuthentication( message ) );
 	}

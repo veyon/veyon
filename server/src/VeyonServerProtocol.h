@@ -40,7 +40,7 @@ public:
 						  ServerAccessControlManager& serverAccessControlManager );
 
 protected:
-	AuthPluginUids supportedAuthPluginUids() const override;
+	AuthMethodUids supportedAuthMethodUids() const override;
 	void processAuthenticationMessage( VariantArrayMessage& message ) override;
 	void performAccessControl() override;
 

@@ -37,7 +37,7 @@ public:
 	DemoServerProtocol( const DemoAuthentication& authentication, QTcpSocket* socket, VncServerClient* client );
 
 protected:
-	AuthPluginUids supportedAuthPluginUids() const override;
+	AuthMethodUids supportedAuthMethodUids() const override;
 	void processAuthenticationMessage( VariantArrayMessage& message ) override;
 	void performAccessControl() override;
 

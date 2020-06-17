@@ -44,11 +44,11 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	AccessControlProvider accessControlProvider;
 
 	const auto authenticationMethods = VeyonCore::authenticationManager().availableMethods();
-	for( auto it = authenticationMethods .constBegin(), end = authenticationMethods .constEnd(); it != end; ++it )
+	for( auto it = authenticationMethods.constBegin(), end = authenticationMethods.constEnd(); it != end; ++it )
 	{
 		if( it.value().isEmpty() == false )
 		{
-			ui->authenticationTypesComboBox->addItem( it.value(), it.key() );
+			ui->authenticationMethodsComboBox->addItem( it.value(), it.key() );
 		}
 	}
 
@@ -92,7 +92,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->isAtLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::LocatedAt ) ) );
 
 	// load condition arguments
-	ui->authenticationTypesComboBox->setCurrentText( authenticationMethods .value( rule.argument( AccessControlRule::Condition::AuthenticationMethod ) ) );
+	ui->authenticationMethodsComboBox->setCurrentText( authenticationMethods.value( rule.argument( AccessControlRule::Condition::AuthenticationMethod ) ) );
 	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::MemberOfUserGroup ) );
 	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::LocatedAt ) );
 
@@ -129,7 +129,7 @@ void AccessControlRuleEditDialog::accept()
 	m_rule.setConditionEnabled( AccessControlRule::Condition::AuthenticationMethod,
 								ui->isAuthenticatedViaMethodCheckBox->isChecked() );
 	m_rule.setArgument( AccessControlRule::Condition::AuthenticationMethod,
-						VeyonCore::formattedUuid( ui->authenticationTypesComboBox->currentData().toUuid() ) );
+						VeyonCore::formattedUuid( ui->authenticationMethodsComboBox->currentData().toUuid() ) );
 
 	// member of user group
 	m_rule.setConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup,

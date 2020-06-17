@@ -41,22 +41,22 @@ VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,
 
 
 
-VeyonServerProtocol::AuthPluginUids VeyonServerProtocol::supportedAuthPluginUids() const
+VeyonServerProtocol::AuthMethodUids VeyonServerProtocol::supportedAuthMethodUids() const
 {
 	const auto authPlugins = VeyonCore::authenticationManager().plugins();
 
-	AuthPluginUids authPluginUids;
-	authPluginUids.reserve( authPlugins.size() );
+	AuthMethodUids authMethodUids;
+	authMethodUids.reserve( authPlugins.size() );
 
 	for( auto it = authPlugins.constBegin(), end = authPlugins.constEnd(); it != end; ++it )
 	{
 		if( VeyonCore::authenticationManager().isEnabled( it.key() ) )
 		{
-			authPluginUids.append( it.key() );
+			authMethodUids.append( it.key() );
 		}
 	}
 
-	return authPluginUids;
+	return authMethodUids;
 }
 
 
