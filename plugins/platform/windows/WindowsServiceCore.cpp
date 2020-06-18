@@ -59,13 +59,6 @@ public:
 										 QString::fromUtf8( token.toByteArray() ) )
 		};
 
-		if( multiSession )
-		{
-			extraEnv.append( QStringLiteral("%1=%2").
-							 arg( VeyonCore::sessionIdEnvironmentVariable() ).
-							 arg( wtsSessionId % PlatformServiceCore::MaximumSessionCount ) );
-		}
-
 		vInfo() << "Starting server for session" << wtsSessionId << "with user" << user;
 		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), {},
 																		extraEnv,
