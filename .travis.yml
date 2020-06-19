@@ -13,6 +13,7 @@ matrix:
         - env: TARGET_OS=debian.buster
         - env: TARGET_OS=fedora.31
         - env: TARGET_OS=opensuse.15.1
+        - env: TARGET_OS=opensuse.15.2
         - env: TARGET_OS=ubuntu.bionic
         - env: TARGET_OS=ubuntu.xenial
         - env: TARGET_OS=sast
