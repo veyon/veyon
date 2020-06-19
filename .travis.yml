@@ -15,6 +15,7 @@ matrix:
         - env: TARGET_OS=opensuse.15.1
         - env: TARGET_OS=opensuse.15.2
         - env: TARGET_OS=ubuntu.bionic
+        - env: TARGET_OS=ubuntu.focal
         - env: TARGET_OS=sast
 script:
     - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:latest || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.ci/${TRAVIS_OS_NAME}.${TARGET_OS}/
