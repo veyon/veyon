@@ -200,7 +200,11 @@ else()
 	find_package(Threads REQUIRED)
 endif()
 
-if(SANITIZE)
+option(WITH_LTO "Build with link-time optimization" ON)
+option(WITH_PCH "Reduce compile time by using precompiled headers" ON)
+option(WITH_SANITIZERS "Build with thread and UB sanitizers" OFF)
+
+if(WITH_SANITIZERS)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
 endif()
@@ -211,7 +215,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions
 
 if(CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0)
 message(WARNING "Not using -fvisibility=hidden and/or LTO with GCC < 6.0")
-set(DISABLE_LTO TRUE)
+set(WITH_LTO OFF)
 else()
 set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
@@ -219,7 +223,7 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 endif()
 
 if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
-set(DISABLE_LTO TRUE)
+set(WITH_LTO OFF)
 endif()
 
 add_definitions(
@@ -310,4 +314,7 @@ message("\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
+"* Link-time optimization      : ${WITH_LTO}\n"
+"* Use precompiled headers     : ${WITH_PCH}\n"
+"* Build with sanitizers       : ${WITH_SANITIZERS}\n"
 )
