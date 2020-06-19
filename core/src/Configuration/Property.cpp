@@ -99,7 +99,7 @@ void Property::setVariantValue( const QVariant& value ) const
 	}
 	else
 	{
-		qFatal(Q_FUNC_INFO);
+		vCritical();
 	}
 }
 
