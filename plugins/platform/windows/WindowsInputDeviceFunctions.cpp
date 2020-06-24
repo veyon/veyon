@@ -29,9 +29,11 @@
 
 #include "ConfigurationManager.h"
 #include "PlatformServiceFunctions.h"
+#include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsKeyboardShortcutTrapper.h"
+#include "WindowsPlatformConfiguration.h"
 #include "WtsSessionManager.h"
 
 
@@ -107,18 +109,21 @@ void WindowsInputDeviceFunctions::synthesizeKeyEvent( KeySym key, bool down )
 
 void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 {
-	const auto context = interception_create_context();
-	if( context )
+	if( WindowsPlatformConfiguration( &VeyonCore::config() ).useInterceptionDriver() )
 	{
-		// a valid context means the interception driver is installed properly
-		// so nothing to do here
-		interception_destroy_context( context );
-	}
-	// try to (re)install interception driver
-	else if( installInterception() == false )
-	{
-		// failed to uninstall it so we can try to install it again on next reboot
-		uninstallInterception();
+		const auto context = interception_create_context();
+		if( context )
+		{
+			// a valid context means the interception driver is installed properly
+			// so nothing to do here
+			interception_destroy_context( context );
+		}
+		// try to (re)install interception driver
+		else if( installInterception() == false )
+		{
+			// failed to uninstall it so we can try to install it again on next reboot
+			uninstallInterception();
+		}
 	}
 }
 
@@ -134,11 +139,17 @@ void WindowsInputDeviceFunctions::stopOnScreenKeyboard()
 
 void WindowsInputDeviceFunctions::enableInterception()
 {
-	m_interceptionContext = interception_create_context();
+	if( WindowsPlatformConfiguration( &VeyonCore::config() ).useInterceptionDriver() )
+	{
+		m_interceptionContext = interception_create_context();
 
-	interception_set_filter( m_interceptionContext,
-							 interception_is_any,
-							 INTERCEPTION_FILTER_KEY_ALL | INTERCEPTION_FILTER_MOUSE_ALL );
+		if( m_interceptionContext )
+		{
+			interception_set_filter( m_interceptionContext,
+									 interception_is_any,
+									 INTERCEPTION_FILTER_KEY_ALL | INTERCEPTION_FILTER_MOUSE_ALL );
+		}
+	}
 }
 
 
