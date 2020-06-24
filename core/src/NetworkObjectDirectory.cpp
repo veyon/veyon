@@ -60,7 +60,7 @@ const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& p
 {
 	if( parent.type() == NetworkObject::Type::Root ||
 		parent.type() == NetworkObject::Type::Location ||
-		parent.type() == NetworkObject::Type::RemoteSessionServer )
+		parent.type() == NetworkObject::Type::DesktopGroup )
 	{
 		const auto it = m_objects.constFind( parent.modelId() );
 		if( it != m_objects.end() )
@@ -286,7 +286,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 
 		objectList.append( completeNetworkObject );
 		if( completeNetworkObject.type() == NetworkObject::Type::Location ||
-			completeNetworkObject.type() == NetworkObject::Type::RemoteSessionServer )
+			completeNetworkObject.type() == NetworkObject::Type::DesktopGroup )
 		{
 			m_objects[completeNetworkObject.modelId()] = {};
 		}
@@ -318,7 +318,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 		if( removeObjectFilter( *it ) )
 		{
 			if( it->type() == NetworkObject::Type::Location ||
-				it->type() == NetworkObject::Type::RemoteSessionServer )
+				it->type() == NetworkObject::Type::DesktopGroup )
 			{
 				objectsToRemove.append( it->modelId() );
 			}

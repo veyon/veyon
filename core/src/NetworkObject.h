@@ -46,8 +46,7 @@ public:
 		Location,
 		Host,
 		Label,
-		RemoteSessionServer,
-		TypeCount
+		DesktopGroup
 	} ;
 	Q_ENUM(Type)
 
