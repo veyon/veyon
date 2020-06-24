@@ -32,6 +32,7 @@
 	OP( WindowsPlatformConfiguration, m_configuration, bool, hideDesktopForScreenLock, setHideDesktopForScreenLock, "HideDesktopForScreenLock", "Windows", true, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, hideTaskbarForScreenLock, setHideTaskbarForScreenLock, "HideTaskbarForScreenLock", "Windows", true, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, hideStartMenuForScreenLock, setHideStartMenuForScreenLock, "HideStartMenuForScreenLock", "Windows", true, Configuration::Property::Flag::Advanced ) \
+	OP( WindowsPlatformConfiguration, m_configuration, bool, useInterceptionDriver, setUseInterceptionDriver, "UseInterceptionDriver", "Windows", true, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, int, logonInputStartDelay, setLogonInputStartDelay, "LogonInputStartDelay", "Windows", 1000, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, int, logonKeyPressInterval, setLogonKeyPressInterval, "LogonKeyPressInterval", "Windows", 10, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, logonConfirmLegalNotice, setLogonConfirmLegalNotice, "LogonConfirmLegalNotice", "Windows", false, Configuration::Property::Flag::Advanced ) \

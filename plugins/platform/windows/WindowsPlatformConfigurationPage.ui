@@ -137,6 +137,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="useInterceptionDriver">
+        <property name="text">
+         <string>Use input device interception driver</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
