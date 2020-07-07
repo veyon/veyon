@@ -180,14 +180,12 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 		}
 		else
 		{
-			featureWorkerManager.startWorker( m_powerDownConfirmedFeature, FeatureWorkerManager::ManagedSystemProcess );
-			featureWorkerManager.sendMessage( message );
+			featureWorkerManager.sendMessageToManagedSystemWorker( message );
 		}
 	}
 	else if( message.featureUid() == m_powerDownDelayedFeature.uid() )
 	{
-		featureWorkerManager.startWorker( m_powerDownDelayedFeature, FeatureWorkerManager::ManagedSystemProcess );
-		featureWorkerManager.sendMessage( message );
+		featureWorkerManager.sendMessageToManagedSystemWorker( message );
 	}
 	else if( message.featureUid() == m_rebootFeature.uid() )
 	{

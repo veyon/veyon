@@ -53,20 +53,19 @@ DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
 
 bool DesktopAccessDialog::isBusy( FeatureWorkerManager* featureWorkerManager ) const
 {
-	return featureWorkerManager->isWorkerRunning( m_desktopAccessDialogFeature );
+	return featureWorkerManager->isWorkerRunning( m_desktopAccessDialogFeature.uid() );
 }
 
 
 
 void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, const QString& user, const QString& host )
 {
-	featureWorkerManager->startWorker( m_desktopAccessDialogFeature, FeatureWorkerManager::ManagedSystemProcess );
-
 	m_choice = ChoiceNone;
 
-	featureWorkerManager->sendMessage( FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess ).
-									   addArgument( UserArgument, user ).
-									   addArgument( HostArgument, host ) );
+	featureWorkerManager->sendMessageToManagedSystemWorker(
+		FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess )
+			.addArgument( UserArgument, user )
+			.addArgument( HostArgument, host ) );
 
 	connect( &m_abortTimer, &QTimer::timeout, this, [=]() { abort( featureWorkerManager ); } );
 	m_abortTimer.start( DialogTimeout );
@@ -76,7 +75,7 @@ void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, cons
 
 void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 {
-	featureWorkerManager->stopWorker( m_desktopAccessDialogFeature );
+	featureWorkerManager->stopWorker( m_desktopAccessDialogFeature.uid() );
 
 	m_choice = ChoiceNone;
 
@@ -96,7 +95,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 	{
 		m_choice = QVariantHelper<Choice>::value( message.argument( ChoiceArgument ) );
 
-		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature );
+		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature.uid() );
 
 		m_abortTimer.stop();
 

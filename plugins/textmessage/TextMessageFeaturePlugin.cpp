@@ -114,11 +114,7 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serve
 	if( m_textMessageFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
-		if( server.featureWorkerManager().isWorkerRunning( m_textMessageFeature ) == false )
-		{
-			server.featureWorkerManager().startWorker( m_textMessageFeature, FeatureWorkerManager::UnmanagedSessionProcess );
-		}
-		server.featureWorkerManager().sendMessage( message );
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker( message );
 
 		return true;
 	}

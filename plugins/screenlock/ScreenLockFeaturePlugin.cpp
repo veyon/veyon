@@ -109,14 +109,14 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
-		if( server.featureWorkerManager().isWorkerRunning( m_screenLockFeature ) == false &&
-				message.command() != StopLockCommand )
+		if( server.featureWorkerManager().isWorkerRunning( m_screenLockFeature.uid() ) == false &&
+			message.command() == StopLockCommand )
 		{
-			server.featureWorkerManager().startWorker( m_screenLockFeature, FeatureWorkerManager::ManagedSystemProcess );
+			return true;
 		}
 
 		// forward message to worker
-		server.featureWorkerManager().sendMessage( message );
+		server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
 
 		return true;
 	}
