@@ -146,11 +146,6 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 	if( m_fileTransferFeature.uid() == message.featureUid() )
 	{
-		if( server.featureWorkerManager().isWorkerRunning( m_fileTransferFeature ) == false )
-		{
-			server.featureWorkerManager().startWorker( m_fileTransferFeature, FeatureWorkerManager::UnmanagedSessionProcess );
-		}
-
 		if( message.command() == FileTransferFinishCommand )
 		{
 			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
@@ -160,7 +155,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 		}
 
 		// forward message to worker
-		server.featureWorkerManager().sendMessage( message );
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker( message );
 
 		return true;
 	}

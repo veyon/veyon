@@ -39,27 +39,26 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	enum WorkerProcessMode {
-		ManagedSystemProcess,
-		UnmanagedSessionProcess,
-		WorkerProcessModeCount
-	} ;
-
 	FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
-	Q_INVOKABLE void startWorker( const Feature& feature, FeatureWorkerManager::WorkerProcessMode workerProcessMode );
-	Q_INVOKABLE void stopWorker( const Feature& feature );
+	bool startManagedSystemWorker( Feature::Uid featureUid );
+	bool startUnmanagedSessionWorker( Feature::Uid featureUid );
 
-	void sendMessage( const FeatureMessage& message );
+	bool stopWorker( Feature::Uid featureUid );
 
-	bool isWorkerRunning( const Feature& feature );
+	void sendMessageToManagedSystemWorker( const FeatureMessage& message );
+	void sendMessageToUnmanagedSessionWorker( const FeatureMessage& message );
+
+	bool isWorkerRunning( Feature::Uid featureUid );
 	FeatureUidList runningWorkers();
 
 private:
 	void acceptConnection();
 	void processConnection( QTcpSocket* socket );
 	void closeConnection( QTcpSocket* socket );
+
+	void sendMessage( const FeatureMessage& message );
 
 	void sendPendingMessages();
 

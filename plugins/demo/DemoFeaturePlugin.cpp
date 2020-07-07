@@ -170,25 +170,21 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
-		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature ) == false )
-		{
-			server.featureWorkerManager().startWorker( m_demoServerFeature, FeatureWorkerManager::ManagedSystemProcess );
-		}
-
 		if( message.command() == StartDemoServer )
 		{
 			// add VNC server password to message
 			server.featureWorkerManager().
-					sendMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
-								 addArgument( DemoServerPort, message.argument( DemoServerPort ) ).
-								 addArgument( VncServerPort, message.argument( VncServerPort ) ).
-								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ).
-								 addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
+				sendMessageToManagedSystemWorker(
+					FeatureMessage( m_demoServerFeature.uid(), StartDemoServer )
+						.addArgument( DemoServerPort, message.argument( DemoServerPort ) )
+						.addArgument( VncServerPort, message.argument( VncServerPort ) )
+						.addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() )
+						.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
 		}
 		else
 		{
 			// forward message to worker
-			server.featureWorkerManager().sendMessage( message );
+			server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
 		}
 
 		return true;
@@ -200,16 +196,16 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 		// if a demo server is started, it's likely that the demo accidentally was
 		// started on master computer as well therefore we deny starting a demo on
 		// hosts on which a demo server is running - exception: debug mode
-		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature ) &&
-				VeyonCore::config().logLevel() < Logger::LogLevel::Debug )
+		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) &&
+			VeyonCore::config().logLevel() < Logger::LogLevel::Debug )
 		{
 			return false;
 		}
 
-		if( server.featureWorkerManager().isWorkerRunning( Feature( message.featureUid() ) ) == false &&
-				message.command() != StopDemoClient )
+		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
+			message.command() == StopDemoClient )
 		{
-			server.featureWorkerManager().startWorker( Feature( message.featureUid() ), FeatureWorkerManager::ManagedSystemProcess );
+			return true;
 		}
 
 		auto socket = qobject_cast<QTcpSocket *>( messageContext.ioDevice() );
@@ -226,12 +222,12 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			startDemoClientMessage.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) );
 			startDemoClientMessage.addArgument( DemoServerHost, socket->peerAddress().toString() );
 			startDemoClientMessage.addArgument( DemoServerPort, message.argument( DemoServerPort ) );
-			server.featureWorkerManager().sendMessage( startDemoClientMessage );
+			server.featureWorkerManager().sendMessageToManagedSystemWorker( startDemoClientMessage );
 		}
 		else
 		{
 			// forward message to worker
-			server.featureWorkerManager().sendMessage( message );
+			server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
 		}
 
 		return true;

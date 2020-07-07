@@ -142,12 +142,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 	else if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
 		// forward message to worker running with user privileges
-		if( server.featureWorkerManager().isWorkerRunning( m_openWebsiteFeature ) == false )
-		{
-			server.featureWorkerManager().startWorker( m_openWebsiteFeature, FeatureWorkerManager::UnmanagedSessionProcess );
-		}
-
-		server.featureWorkerManager().sendMessage( message );
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker( message );
 	}
 	else
 	{
@@ -161,7 +156,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 
 bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(message)
+	Q_UNUSED(worker)
 
 	if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
