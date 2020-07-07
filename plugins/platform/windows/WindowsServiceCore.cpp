@@ -146,6 +146,8 @@ bool WindowsServiceCore::runAsService()
 		{ nullptr, nullptr }
 	} ;
 
+	WindowsInputDeviceFunctions::checkInterceptionInstallation();
+
 	if( !StartServiceCtrlDispatcher( dispatchTable ) )
 	{
 		vCritical() << "StartServiceCtrlDispatcher failed.";
@@ -159,8 +161,6 @@ bool WindowsServiceCore::runAsService()
 
 void WindowsServiceCore::manageServerInstances()
 {
-	WindowsInputDeviceFunctions::checkInterceptionInstallation();
-
 	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
 	ResetEvent( m_serverShutdownEvent );
 
