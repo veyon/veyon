@@ -100,7 +100,7 @@ public:
 
 private:
 	static constexpr auto ServerQueryTime = 100;
-	static constexpr auto ServerWaitTime = 10000;
+	static constexpr auto ServerWaitTime = 5000;
 	static constexpr auto ServerPostStopWaitTime = 1000;
 
 	HANDLE m_subProcessHandle{nullptr};
