@@ -60,6 +60,7 @@ Q_SIGNALS:
 private:
 	void acceptConnection();
 	void closeConnection( VncProxyConnection* );
+	void handleAcceptError( QAbstractSocket::SocketError socketError );
 
 	int m_vncServerPort;
 	Password m_vncServerPassword;
