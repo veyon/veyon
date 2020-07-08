@@ -119,17 +119,11 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	}
 
 	const auto seat = LinuxSessionFunctions::getSessionSeat( sessionPath );
-	const auto display = LinuxSessionFunctions::getSessionDisplay( sessionPath );
+	const auto sessionId = LinuxSessionFunctions::toSessionId( sessionPath );
 
 	vInfo() << "Starting server for new session" << sessionPath
-			<< "with display" << display
+			<< "with ID" << sessionId
 			<< "at seat" << seat.path;
-
-	if( multiSession() )
-	{
-		const auto sessionId = openSession( QStringList( { sessionPath, display, seat.path } ) );
-		sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
-	}
 
 	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
 							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
@@ -208,11 +202,6 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 			process->kill();
 			ProcessHelper::waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
 		}
-	}
-
-	if( multiSession() )
-	{
-		closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
 	}
 
 	delete process;
