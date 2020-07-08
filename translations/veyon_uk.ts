@@ -3741,6 +3741,10 @@ Typically this is required to support terminal servers.</source>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Підтвердити прочитання правового зауваження (повідомлення, яке показано до входу до системи)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Скористатися драйвером-перехоплювачем пристроїв введення</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

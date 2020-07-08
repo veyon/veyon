@@ -3740,6 +3740,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Potvrdite pravnu napomenu (poruka se prikazuje pre nego što se korisnik prijavi)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

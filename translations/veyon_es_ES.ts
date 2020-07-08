@@ -3216,7 +3216,7 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo abrir el archivo de captura de pantalla %1 para escribir.</translation>
     </message>
 </context>
 <context>
@@ -3743,6 +3743,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Confirmar aviso legal (mensaje que se muestra antes de que el usuario inicie sesión)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Utilice el controlador de interceptación del dispositivo de entrada</translation>
     </message>
 </context>
 <context>

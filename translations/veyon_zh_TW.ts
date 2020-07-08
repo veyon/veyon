@@ -3742,6 +3742,10 @@ Typically this is required to support terminal servers.</source>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>確認法律通知 (在使用者登入前顯示訊息)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

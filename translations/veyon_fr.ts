@@ -3742,6 +3742,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Confirmer les mentions légales (message affiché avant la connexion de l&apos;utilisateur)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Utiliser le pilote d&apos;interception du périphérique d&apos;entrée</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

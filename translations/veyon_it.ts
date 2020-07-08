@@ -3201,7 +3201,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile aprire il file screenshot %1 per la scrittura.</translation>
     </message>
 </context>
 <context>
@@ -3727,6 +3727,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Conferma avviso legale (messaggio visualizzato prima dell&apos;accesso dell&apos;utente)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

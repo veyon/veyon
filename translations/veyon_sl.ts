@@ -3740,6 +3740,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

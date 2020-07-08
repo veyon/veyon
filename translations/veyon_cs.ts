@@ -3738,6 +3738,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Potvrďte právní upozornění (zprávu zobrazovanou před tím, než se uživatel přihlásí)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

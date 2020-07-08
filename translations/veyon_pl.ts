@@ -3737,6 +3737,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Potwierdź informację prawną (komunikat wyświetlany przed zalogowaniem się użytkownika)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

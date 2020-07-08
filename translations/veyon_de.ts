@@ -3739,6 +3739,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Rechtshinweis bestätigen (Nachricht, die vor Benutzeranmeldung angezeigt wird)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Eingabegeräte-Interception-Treiber verwenden</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
