@@ -39,12 +39,6 @@ public:
 
 	PlatformServiceCore();
 
-	SessionId openSession( const QVariant& sessionData );
-	void closeSession( SessionId sessionId );
-
-	QVariant sessionDataFromId( SessionId sessionId ) const;
-	SessionId sessionIdFromData( const QVariant& data ) const;
-
 	bool multiSession() const
 	{
 		return m_multiSession;
