@@ -26,45 +26,7 @@
 #include "VeyonConfiguration.h"
 
 
-
 PlatformServiceCore::PlatformServiceCore() :
-	m_multiSession( VeyonCore::config().multiSessionModeEnabled() )
+    m_multiSession( VeyonCore::config().multiSessionModeEnabled() )
 {
-}
-
-
-
-PlatformServiceCore::SessionId PlatformServiceCore::openSession( const QVariant& sessionData )
-{
-	for( SessionId i = 0; i <= SessionIdMax; ++i )
-	{
-		if( m_sessions.contains( i ) == false )
-		{
-			m_sessions[i] = sessionData;
-			return i;
-		}
-	}
-
-	return SessionIdInvalid;
-}
-
-
-
-void PlatformServiceCore::closeSession( SessionId sessionId )
-{
-	m_sessions.remove( sessionId );
-}
-
-
-
-QVariant PlatformServiceCore::sessionDataFromId( PlatformServiceCore::SessionId sessionId ) const
-{
-	return m_sessions.value( sessionId );
-}
-
-
-
-PlatformServiceCore::SessionId PlatformServiceCore::sessionIdFromData( const QVariant& data ) const
-{
-	return m_sessions.key( data, static_cast<SessionId>( SessionIdInvalid ) );
 }
