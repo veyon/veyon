@@ -49,16 +49,24 @@ public:
 		return m_objects;
 	}
 
-	const QJsonArray& update( const T& object )
+	const QJsonArray& update( const T& object, bool addIfNotFound = false )
 	{
+		bool found = false;
+
 		for( auto it = m_objects.begin(); it != m_objects.end(); ++it )
 		{
 			T currentObject( it->toObject() );
 			if( currentObject.uid() == object.uid() )
 			{
 				*it = object.toJson();
+				found = true;
 				break;
 			}
+		}
+
+		if( !found )
+		{
+			add( object );
 		}
 
 		return m_objects;
