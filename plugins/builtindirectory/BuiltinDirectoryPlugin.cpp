@@ -596,18 +596,18 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 		else if( parentLocation.isValid() == false )
 		{
 			parentLocation = NetworkObject( NetworkObject::Type::Location, it.key() );
-			objectManager.add( parentLocation );
+			objectManager.update( parentLocation, true );
 			parentLocationUid = parentLocation.uid();
 		}
 
 		for( const NetworkObject& networkObject : qAsConst(it.value()) )
 		{
-			objectManager.add( NetworkObject( networkObject.type(),
-											  networkObject.name(),
-											  networkObject.hostAddress(),
-											  networkObject.macAddress(),
-											  {}, NetworkObject::Uid(),
-											  parentLocationUid ) );
+			objectManager.update( NetworkObject( networkObject.type(),
+												 networkObject.name(),
+												 networkObject.hostAddress(),
+												 networkObject.macAddress(),
+												 {}, NetworkObject::Uid(),
+												 parentLocationUid ), true );
 		}
 	}
 
