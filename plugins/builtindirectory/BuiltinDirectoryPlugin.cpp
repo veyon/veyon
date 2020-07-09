@@ -657,7 +657,7 @@ bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& forma
 	// append empty string to generate final newline at end of file
 	lines += QString();
 
-	outputFile.write( lines.join( QStringLiteral("\r\n") ).toUtf8() );
+	outputFile.write( lines.join( QStringLiteral("\n") ).toUtf8() );
 
 	return true;
 }
