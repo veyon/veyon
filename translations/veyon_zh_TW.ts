@@ -3727,7 +3727,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟寫入的螢幕快照檔案 %1。</translation>
     </message>
 </context>
 <context>
@@ -4265,6 +4265,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>確認法律通知 (在使用者登入前顯示訊息)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>使用輸入裝置攔截驅動程式</translation>
     </message>
 </context>
 <context>

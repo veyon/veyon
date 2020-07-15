@@ -267,7 +267,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>Autenticado por método</translation>
     </message>
 </context>
 <context>
@@ -910,7 +910,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña simple</translation>
     </message>
 </context>
 <context>
@@ -928,7 +928,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2802,7 +2802,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"/>
+        <translation>Enlace LDAP</translation>
     </message>
 </context>
 <context>
@@ -4267,6 +4267,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Confirmar aviso legal (mensaje que se muestra antes de que el usuario inicie sesión)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Utilice el controlador de interceptación del dispositivo de entrada</translation>
     </message>
 </context>
 <context>

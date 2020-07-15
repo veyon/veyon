@@ -39,7 +39,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation> %1 %2 Hakkında</translation>
+        <translation>%1 %2 Hakkında</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
@@ -265,7 +265,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>Yöntemle kimlik doğrulaması yapıldı</translation>
     </message>
 </context>
 <context>
@@ -320,7 +320,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Authentication method</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama yöntemi</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,10 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Bir kimlik doğrulama anahtarı çifti, özel ve genel anahtar olmak üzere iki bağlantılı şifreleme anahtarından oluşur.
+Özel anahtar, ana bilgisayardaki kullanıcıların istemci bilgisayarlara erişmesine olanak tanır.
+Özel anahtar dosyasına yalnızca yetkili kullanıcıların okuma erişimi olması önemlidir.
+Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini doğrulamak için kullanılır.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -467,7 +470,10 @@ The public key is used on client computers to authenticate incoming connection r
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Bir kimlik doğrulama anahtarı çifti, özel ve genel anahtar olmak üzere iki bağlantılı şifreleme anahtarından oluşur.
+Özel anahtar, ana bilgisayardaki kullanıcıların istemci bilgisayarlara erişmesine olanak tanır.
+Özel anahtar dosyasına yalnızca yetkili kullanıcıların okuma erişimi olması önemlidir.
+Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini doğrulamak için kullanılır.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -519,11 +525,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen &quot;%1&quot; anahtarına erişim izni verilecek bir kullanıcı grubu seçin:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen erişim grubunu ayarlamak için bir anahtar seçin!</translation>
     </message>
 </context>
 <context>
@@ -594,7 +600,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation> &quot;%1&quot; dosyası geçerli genel anahtar içermiyor!</translation>
+        <translation>&quot;%1&quot; dosyası geçerli genel anahtar içermiyor!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
@@ -602,11 +608,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation> &quot;%1&quot; anahtar dosyasına yazılamadı.</translation>
+        <translation>&quot;%1&quot; anahtar dosyasına yazılamadı.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation> &quot;%1&quot; anahtar dosyası için izinler ayarlanamadı!</translation>
+        <translation>&quot;%1&quot; anahtar dosyası için izinler ayarlanamadı!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -689,7 +695,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Bir anahtara erişmesine izin verilen kullanıcı grubunu ayarla</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -701,7 +707,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, dosya erişim izinlerini yalnızca &lt;ACCESS GROUP&gt; kullanıcı grubunun okuma erişimine sahip olacağı şekilde &lt;KEY&gt; olarak ayarlar.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -713,19 +719,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, &lt;KEY&gt; kimlik doğrulama anahtarını &lt;FILE&gt; öğesine dışa aktarır. &lt;FILE&gt; belirtilmezse, &lt;KEY&gt; adından ve türünden bir ad oluşturulur.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, &lt;FILE&gt; öğesinden &lt;KEY&gt; kimlik doğrulama anahtarını alır. &lt;FILE&gt; belirtilmezse, &lt;KEY&gt; adından ve türünden bir ad oluşturulur.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, yapılandırılmış anahtar dizinindeki tüm kullanılabilir kimlik doğrulama anahtarlarını listeler. &quot;%1&quot; seçeneği belirtilirse, bunun yerine anahtar ayrıntılarını içeren bir tablo görüntülenir. Bir anahtara erişilemiyorsa bazı ayrıntılar eksik olabilir; okuma izinlerinin olmaması nedeniyle.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yardım görüntüleme komutunu belirtin!</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -733,27 +739,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ÇİFT ID</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama anahtarlarını yönetme komutları</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, &lt;NAME&gt; adında yeni bir kimlik doğrulama anahtarı çifti oluşturur ve özel ve genel anahtarı yapılandırılmış anahtar dizinlerine kaydeder. Parametre, anahtar için yalnızca harf içerebilecek bir ad olmalıdır.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, &lt;KEY&gt; kimlik doğrulama anahtarını yapılandırılmış anahtar dizininden siler. Bir anahtar silindikten sonra kurtarılamayacağını lütfen unutmayın.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, ortak anahtar bölümünü &lt;KEY&gt; özel anahtarından çıkarır ve karşılık gelen ortak anahtar olarak kaydeder. Başka bir ana bilgisayar kurarken, yalnızca özel anahtarı aktarmak yeterlidir. Genel anahtar daha sonra çıkarılabilir.</translation>
     </message>
     <message>
         <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama anahtarı dosyaları bu bilgisayarda düzgün ayarlanmamış. Lütfen yeni anahtar dosyaları oluşturun veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
     </message>
     <message>
         <source>Key file authentication</source>
@@ -761,7 +767,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosya</translation>
     </message>
 </context>
 <context>
@@ -772,22 +778,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tür</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Erişim grubu</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Çift ID</translation>
     </message>
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"/>
+        <translation>LDAP kimlik doğrulaması</translation>
     </message>
     <message>
         <source>General</source>
@@ -795,11 +801,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"/>
+        <translation>DN eşlemesini bağlamak için kullanıcı adı:</translation>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</translation>
     </message>
 </context>
 <context>
@@ -810,7 +816,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarlara erişmek için lütfen alan/LDAP kullanıcı adınızı ve şifrenizi girin.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -860,7 +866,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLogonPlugin</name>
     <message>
         <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Verilen kullanıcı adı veya şifre yanlış. Lütfen geçerli kimlik bilgilerini girin veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -868,7 +874,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>Oturum Aç</translation>
     </message>
 </context>
 <context>
@@ -879,7 +885,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the Veyon password:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen Veyon şifresini girin:</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -887,22 +893,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon failed with given password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>Oturum açma, verilen parola ile başarısız oldu. Lütfen tekrar deneyin!</translation>
     </message>
 </context>
 <context>
     <name>AuthSimplePlugin</name>
     <message>
         <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Verilen şifre yanlış. Lütfen doğru şifreyi girin veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
     </message>
     <message>
         <source>Simple password authentication</source>
-        <translation type="unfinished"/>
+        <translation>Basit şifre doğrulaması</translation>
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>Basit şifre</translation>
     </message>
 </context>
 <context>
@@ -913,14 +919,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama bu bilgisayarda doğru şekilde ayarlandı.</translation>
     </message>
 </context>
 <context>
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Aktif edildi</translation>
     </message>
     <message>
         <source>Test</source>
@@ -959,31 +965,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Yerleşik dizin</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Konumlar ve bilgisayarlar</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Konumlar</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Yeni konum ekle</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen konumu sil</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>CSV dosyalarının içe aktarılması, komut satırı arayüzü üzerinden mümkündür. Daha fazla bilgi için &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt; çevrimiçi belgelere &lt;/a&gt; bakın.</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Yeni konum</translation>
     </message>
 </context>
 <context>
@@ -994,19 +1000,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Verilen dosyadan nesne içe aktarma</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Nesneleri verilen dosyaya aktarma</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz tür belirtildi. Geçerli değerler &quot;%1&quot; veya &quot;%2&quot; dir.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tür</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1014,7 +1020,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Host adresi</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -1022,107 +1028,107 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen nesne bulunamadı.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası mevcut değil!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası okumak için açılamıyor!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen argüman &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar &quot;%1&quot; (ana bilgisayar adresi: &quot;%2&quot; MAC adresi: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%2&quot; kimliğine sahip sınıflandırılmamış nesne &quot;%1&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Kök</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 satırı ayrıştırılırken hata oluştu.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Nesneleri yerel yapılandırmada depolayan ağ nesnesi dizini</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Yerleşik ağ nesnesi dizinini yönetme komutları</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>Biçim dizesi veya normal ifade belirtilmedi!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası yazmak için açılamıyor!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>Biçim dizesi belirtilmedi!</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Nesne UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Üst UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Konum veya bilgisayar ekleyin</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Tüm konumları ve bilgisayarları temizle</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Tüm veya tek tek konumları ve bilgisayarları boşalt</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Tüm yerleri ve bilgisayarları listele</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Bir konumu veya bilgisayarı kaldır</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Konum &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Yerleşik (yerel yapılandırmadaki bilgisayarlar ve konumlar)</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Konum</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -1130,7 +1136,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>KONUM</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -1142,35 +1148,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Verilen biçim dizesini veya bir veya birden çok yer tutucu içeren normal ifadeyi kullanarak nesneleri belirtilen metin dosyasından içe aktarır. Geçerli yer tutucular:%1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>Basit CSV dosyasını tek bir odaya aktar</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>İlk sütunda konum adına sahip CSV dosyasını içe aktar</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Normal ifadeleri kullanarak anahtar/değer çiftleriyle metin dosyasını içe aktar</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>Rasgele biçimlendirilmiş verileri içe aktar</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Bir veya daha fazla yer tutucu içeren verilen biçim dizesini kullanarak nesneleri belirtilen metin dosyasına aktarır. Geçerli yer tutucular: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Tüm nesneleri CSV dosyasına aktar</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Belirli bir konumdaki tüm bilgisayarları bir CSV dosyasına aktar</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -1182,51 +1188,51 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>VELİ</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>%1 öğesinin &quot;%2&quot; veya &quot;%3&quot; öğelerinden biri olabileceği bir nesne ekler. %4, ad veya UUID ile belirtilebilir.</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>Bir oda ekle</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 odasına bir bilgisayar ekleyin</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>NESNE</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen nesneyi dizinden kaldırır. %1, ad veya UUID ile belirtilebilir. Konum kaldırıldığında ilgili tüm bilgisayarlar da kaldırılır.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarı ada göre kaldır</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>Bir nesneyi UUID&apos;e göre kaldır</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Oda 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Bilgisayar 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>HOST ADRESİ</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC ADRESİ</translation>
     </message>
 </context>
 <context>
@@ -1287,14 +1293,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>Konum: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmet %2&apos;de %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1306,30 +1312,30 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%2&quot; ana bilgisayarındaki &quot;%1&quot; kullanıcısı bu bilgisayara erişiyor.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%2&quot; ana bilgisayarındaki &quot;%1&quot; kullanıcısı bu bilgisayara erişmeye çalıştı, ancak kimlik doğrulaması başarıyla gerçekleştirilemedi.</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>Erişim kontrolü hatası</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%2&quot; ana bilgisayarındaki &quot;%1&quot; kullanıcısı bu bilgisayara erişmeye çalıştı, ancak erişim denetimi ayarları nedeniyle engellendi.</translation>
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Etkin bağlantılar:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Grup %1</translation>
     </message>
 </context>
 <context>
@@ -1348,15 +1354,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Konum algılama başarısız</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar adı; Ana bilgisayar adı; Kullanıcı</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Bu bilgisayarın konumu belirlenemedi. Bu, sistem yapılandırmasında bir sorun olduğunu gösterir. Bunun yerine tüm konumlar bilgisayar seçim panelinde gösterilir.</translation>
     </message>
 </context>
 <context>
@@ -1371,19 +1377,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Hepsini seç</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Tüm seçimi kaldır</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Gruba ekle</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Gruptan kaldır</translation>
     </message>
 </context>
 <context>
@@ -1398,7 +1404,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>Konum ekle</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1453,7 +1459,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Program ve eklentilerin yapılandırmasını yükseltin ve kaydedin</translation>
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
@@ -1504,23 +1510,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>%1 sunucusu için güvenlik duvarı yapılandırması yapılandırılamadı.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>%1 çalışan için güvenlik duvarı yapılandırması yapılandırılamadı.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma yazılabilir değil. Lütfen izinlerinizi kontrol edin!</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>Platforma özgü yapılandırma ayarları uygulanamadı.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 hizmeti için güvenlik duvarı yapılandırması yapılandırılamadı.</translation>
     </message>
 </context>
 <context>
@@ -1542,7 +1548,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1558,7 +1564,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1566,11 +1572,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> s</source>
-        <translation>s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Demo çalışırken küçük resim güncellemelerini yavaşlatın</translation>
     </message>
 </context>
 <context>
@@ -1631,11 +1637,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Programlar ve web siteleri</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>Önceden tanımlanmış programlar</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1643,35 +1649,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Yol</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Yeni program ekle</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Seçili programı kaldır</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>Önceden tanımlanmış web siteleri</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen web sitesini kaldır</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>Yeni program</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>Yeni web sitesi</translation>
     </message>
 </context>
 <context>
@@ -1698,19 +1704,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; programını çalıştır</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Özel program</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Web sitesini &quot;%1&quot; açın</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Özel web sitesi</translation>
     </message>
 </context>
 <context>
@@ -1721,31 +1727,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>Oda %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen tüm görevleri önümüzdeki 5 dakika içinde tamamlayın.</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Özel web sitesi</translation>
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>Dosya yöneticisini aç</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Öğrenme aracını başlat</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>Eğitici videoyu oynat</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Özel program</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1753,11 +1759,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Okunacak metinler</translation>
     </message>
     <message>
         <source>generic-student-user</source>
-        <translation type="unfinished"/>
+        <translation>Jenerik-öğrenci-kullanıcı</translation>
     </message>
 </context>
 <context>
@@ -1793,80 +1799,80 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası okumak için açılamadı! Lütfen izinlerinizi kontrol edin!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Dosya transferi</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Seçenekler</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca aktar</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>İlişkili programla dosya aktarma ve açma</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Hedef klasörü aktarma ve açma</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Dosyalar</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Başlat</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut dosyaların üzerine yaz</translation>
     </message>
 </context>
 <context>
     <name>FileTransferFileDialog</name>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Aktarılacak bir veya daha fazla dosya seçin</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Dosya transferi</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Dosyaları bilgisayarınızdan tüm bilgisayarlara aktarmak için bu düğmeyi tıklatın.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Aktarılacak bir veya daha fazla dosya seçin</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>Uzak bilgisayara dosya aktarma</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Alınan dosya &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Zaten var olduğundan &quot;%1&quot; dosyası alınamadı.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Yazılmak için açılamadığı için &quot;%1&quot; dosyası alınamadı!</translation>
     </message>
 </context>
 <context>
@@ -1977,7 +1983,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1989,7 +1995,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> seconds</source>
-        <translation>saniye</translation>
+        <translation> saniye</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -2001,7 +2007,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>Yöntem:</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2009,14 +2015,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Configure</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandır</translation>
     </message>
 </context>
 <context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>LDAP&apos;ye göz at</translation>
     </message>
 </context>
 <context>
@@ -2519,7 +2525,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen MAC adresi sorgulanacak bir bilgisayarın DN&apos;sini girin:</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2591,7 +2597,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2778,7 +2784,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Verilen kullanıcı adı veya şifre yanlış. Lütfen geçerli kimlik bilgilerini girin veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
     </message>
     <message>
         <source>LDAP bind</source>
@@ -2836,23 +2842,23 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı kimlik doğrulaması için özel PAM hizmeti</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı doğrulama</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Oturum yönetimi</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Görüntü yöneticisi kullanıcıları</translation>
     </message>
 </context>
 <context>
@@ -2866,7 +2872,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>Konum seç</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2904,15 +2910,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>Dosya</translation>
+        <translation>&amp;Dosya</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>Yardım</translation>
+        <translation>&amp;Yardım</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>Çıkış</translation>
+        <translation>&amp;Çıkış</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2964,7 +2970,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Usta</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3008,7 +3014,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>Özellik etkin</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
@@ -3032,7 +3038,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarları ızgaraya hizala</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -3056,23 +3062,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Görünüm</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Standart</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Gelişmiş</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>Özel bilgisayar düzenlemesi kullan</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Konumlar ve &amp;&amp; bilgisayarlar</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -3095,7 +3101,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarda çift tıklama özelliği:</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3155,15 +3161,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Program başlat</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Modlar ve özellikler</translation>
     </message>
     <message>
         <source>User and computer name</source>
@@ -3183,55 +3189,55 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Text color</source>
-        <translation type="unfinished"/>
+        <translation>Metin rengi</translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Sıralama düzeni</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ve kullanıcı adı</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar konumları</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca geçerli konumu göster</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>Gizli yerleri manuel olarak eklemeye izin ver</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>Boş yerleri gizle</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>Güvenli olmayabilecek işlemler için onay iletişim kutusunu göster</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>Erişim kontrolü gerçekleştir</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli konumu otomatik olarak seç</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarın küçük resim boyutunu otomatik olarak ayarla</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar seçme panelini otomatik olarak aç</translation>
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Modern kullanıcı arayüzü kullanın (deneysel)</translation>
     </message>
 </context>
 <context>
@@ -3246,7 +3252,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>Bu mod, bir veya daha fazla konumdaki tüm bilgisayarları izlemenizi sağlar.</translation>
     </message>
 </context>
 <context>
@@ -3325,7 +3331,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Session scan limit</source>
@@ -3333,7 +3339,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Seçenekler</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -3344,7 +3350,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>Konumlar/Bilgisayarlar</translation>
     </message>
 </context>
 <context>
@@ -3355,15 +3361,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Örn. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Unutmayın ve web sitesi menüsüne ekleyin</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>örn. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3371,18 +3377,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>İsim:</translation>
     </message>
 </context>
 <context>
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Yüklü tüm eklentilerin adlarını listele</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Yüklü tüm eklentilerin ayrıntılarını içeren tabloyu göster</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3390,23 +3396,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Açıklama</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Sürüm</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Eklentiyle ilgili CLI işlemleri</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Eklentileri yönetme komutları</translation>
     </message>
 </context>
 <context>
@@ -3461,7 +3467,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC ADRESİ</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -3469,7 +3475,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yardım görüntüleme komutunu belirtin!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3514,15 +3520,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen seçilen bilgisayarları kapatmak için bir zaman aşımı süresi belirtin:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>dakika</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>saniye</translation>
     </message>
 </context>
 <context>
@@ -3564,14 +3570,14 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan erişim:%1</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 -%2 Uzaktan Erişim</translation>
     </message>
 </context>
 <context>
@@ -3642,7 +3648,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Çıkış</translation>
     </message>
 </context>
 <context>
@@ -3661,15 +3667,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>İsim:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
+        <translation>Unutmayın ve program menüsüne ekleyin</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>örn. VLC</translation>
     </message>
 </context>
 <context>
@@ -3699,7 +3705,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>% 1 dizini  olmadığı ve oluşturulamadığı için bir ekran görüntüsü alınamadı.</translation>
+        <translation>%1 dizini  olmadığı ve oluşturulamadığı için bir ekran görüntüsü alınamadı.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3707,7 +3713,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ekran görüntüsü dosyası yazmak için açılamadı.</translation>
     </message>
 </context>
 <context>
@@ -3852,42 +3858,43 @@ Please save your work and close all programs.</source>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Bu seçeneğin etkinleştirilmesi, hizmetin bilgisayardaki her etkileşimli oturum için bir sunucu işlemi başlatmasını sağlar.
+Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>Uzak bağlantıda bildirim göster</translation>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation type="unfinished"/>
+        <translation>Çoklu oturum modu (terminal ve uzak masaüstü sunucuları için)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
+        <translation>Yetkisiz erişim engellendiğinde bildirim göster</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet başlatılıyor %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet durduruluyor %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet kaydediliyor %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet kaydedilimiyor %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet kontrolü</translation>
     </message>
 </context>
 <context>
@@ -3937,19 +3944,19 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>Komut dosyasını çalıştır</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası mevcut değil!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Kontrol için etkileşimli kabuk ve komut dosyası yürütme</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>Kabuk işlevleri için komutlar</translation>
     </message>
 </context>
 <context>
@@ -3963,29 +3970,29 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>Sistem kullanıcı grupları için kullanıcı grupları arka ucu</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan (sistem kullanıcı grupları)</translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Dahili Veyon bileşenlerini ve fonksiyonlarını test et</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon&apos;un dahili bileşenlerini ve işlevlerini test etme komutları</translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Metin iletisi gönder </translation>
+        <translation>Metin iletisi gönder</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -4019,7 +4026,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"/>
+        <translation>Anket tam ekranı (bunu varsayılan olarak etkin bırakın)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4031,11 +4038,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Çoklu monitör desteğini etkinleştir</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Windows 8 ve daha yeni sürümlerde Masaüstü Çoğaltma Altyapısını etkinleştir</translation>
     </message>
 </context>
 <context>
@@ -4053,11 +4060,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı Girişi</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen tüm bilgisayarlarda otomatik oturum açmak için bir kullanıcı adı ve şifre girin.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4072,27 +4079,27 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Giriş</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarlarda belirli bir kullanıcıya giriş yapmak için bu düğmeyi tıklatın.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Çıkış</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarlardaki kullanıcıların oturumlarını kapatmak için bu düğmeyi tıklayın.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturumunu kapatmayı onayla</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen kullanıcıların oturumunu gerçekten kapatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -4135,46 +4142,46 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Modül belirtilmedi veya modül bulunamadı - kullanılabilir modüller:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti lisanslı değil</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>BİLGİ</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>HATA</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>KULLANIMI</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>AÇIKLAMA</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>ÖRNEKLER</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>UYARI</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama testi</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Hizmeti</translation>
     </message>
 </context>
 <context>
@@ -4188,7 +4195,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
+        <translation>SAS üretimi ayarı yazılımla değiştirilemedi. Uzaktan kontrol ile Ctrl + Alt + Del gönderme özelliği çalışmaz!</translation>
     </message>
 </context>
 <context>
@@ -4223,7 +4230,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı doğrulama</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4231,7 +4238,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı Girişi</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -4243,6 +4250,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4257,31 +4268,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti zaten yüklü.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti yüklenemedi.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti başarıyla yüklendi.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti kaldırılamadı.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti başarıyla kaldırıldı.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmetinin başlangıç ​​türü değiştirilemedi.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti bulunamadı.</translation>
     </message>
 </context>
 <context>
@@ -4303,7 +4314,7 @@ Typically this is required to support terminal servers.</source>
     <name>main</name>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Usta</translation>
     </message>
 </context>
 </TS>
