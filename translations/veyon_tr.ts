@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -263,10 +265,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <source>is located at</source>
         <translation>bulunduğu yer</translation>
     </message>
-    <message>
-        <source>Authenticated via method</source>
-        <translation>Yöntemle kimlik doğrulaması yapıldı</translation>
-    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -318,24 +316,9 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <source>Test result</source>
         <translation>Sınama sonuçları</translation>
     </message>
-    <message>
-        <source>Authentication method</source>
-        <translation>Kimlik doğrulama yöntemi</translation>
-    </message>
 </context>
 <context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Genel</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
+    <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
         <translation>Yetkilendirme anahtarları</translation>
@@ -343,26 +326,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <message>
         <source>Introduction</source>
         <translation>Giriş</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Anahtar dosyası yetkilendirmesi için lütfen bu adımları gerçekleştirin:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Ana bilgisayarda anahtar çifti oluşturun.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Diğer bilgisayarlara giriş yetkisi olan bir giriş grubu oluşturun.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Genel anahtarı dışarı verin ve tüm katılımcı bilgisayarlara aynı isimle ekleyin.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Lütfen &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Yönetici Kılavuzuna &lt;/a&gt; daha fazla bilgi için göz atın.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -383,97 +346,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <message>
         <source>Available authentication keys</source>
         <translation>Kullanılabilir yetkilendirme anahtarları</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Bir kimlik doğrulama anahtarı çifti, özel ve genel anahtar olmak üzere iki bağlantılı şifreleme anahtarından oluşur.
-Özel anahtar, ana bilgisayardaki kullanıcıların istemci bilgisayarlara erişmesine olanak tanır.
-Özel anahtar dosyasına yalnızca yetkili kullanıcıların okuma erişimi olması önemlidir.
-Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini doğrulamak için kullanılır.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Anahtar çifti oluştur</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Anahtarı sil</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Anahtarı içe aktar</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Anahtarı dışa aktar</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Erişim grubunu ayarla</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationWidget</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Yetkilendirme anahtarları</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Giriş</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Anahtar dosyası yetkilendirmesi için lütfen bu adımları gerçekleştirin:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Ana bilgisayarda anahtar çifti oluşturun.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Diğer bilgisayarlara giriş yetkisi olan bir giriş grubu oluşturun.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Genel anahtarı dışarı verin ve tüm katılımcı bilgisayarlara aynı isimle ekleyin.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Lütfen &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Yönetici Kılavuzuna &lt;/a&gt; daha fazla bilgi için göz atın.</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Anahtar dosyası dizinleri</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Genel anahtar dizin yolu</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Özel anahtar dizin yolu</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Kullanılabilir yetkilendirme anahtarları</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Bir kimlik doğrulama anahtarı çifti, özel ve genel anahtar olmak üzere iki bağlantılı şifreleme anahtarından oluşur.
-Özel anahtar, ana bilgisayardaki kullanıcıların istemci bilgisayarlara erişmesine olanak tanır.
-Özel anahtar dosyasına yalnızca yetkili kullanıcıların okuma erişimi olması önemlidir.
-Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini doğrulamak için kullanılır.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -530,6 +402,36 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Lütfen erişim grubunu ayarlamak için bir anahtar seçin!</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Anahtar dosya kimlik doğrulamasını ayarlamak için lütfen aşağıdaki adımları uygulayın:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Ana bilgisayarda bir anahtar çifti oluşturun.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Üyelerinin diğer bilgisayarlara erişmesine izin verilmesi gereken bir erişim grubu ayarlayın.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Ortak anahtarı verin ve aynı ada sahip tüm istemci bilgisayarlara alın.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Daha fazla bilgi için lütfen &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon Yönetici Kılavuzuna &lt;/a&gt; bakın.</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Bir kimlik doğrulama anahtarı çifti, özel ve ortak anahtar olmak üzere iki bağlantılı şifreleme anahtarından oluşur.
+Özel anahtar, ana bilgisayardaki kullanıcıların istemci bilgisayarlara erişmesine olanak tanır.
+Özel anahtar dosyasına yalnızca yetkili kullanıcıların okuma erişimi olması önemlidir.
+Ortak anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini doğrulamak için kullanılır.</translation>
     </message>
 </context>
 <context>
@@ -742,6 +644,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>ÇİFT ID</translation>
     </message>
     <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation>Kimlik doğrulama anahtarlarını yönetmek için komut satırı desteği</translation>
+    </message>
+    <message>
         <source>Commands for managing authentication keys</source>
         <translation>Kimlik doğrulama anahtarlarını yönetme komutları</translation>
     </message>
@@ -756,18 +662,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Bu komut, ortak anahtar bölümünü &lt;KEY&gt; özel anahtarından çıkarır ve karşılık gelen ortak anahtar olarak kaydeder. Başka bir ana bilgisayar kurarken, yalnızca özel anahtarı aktarmak yeterlidir. Genel anahtar daha sonra çıkarılabilir.</translation>
-    </message>
-    <message>
-        <source>Authentication key files are not set up properly on this computer. Please create new key files or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>Kimlik doğrulama anahtarı dosyaları bu bilgisayarda düzgün ayarlanmamış. Lütfen yeni anahtar dosyaları oluşturun veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Anahtar dosya yetkilendirmesi</translation>
-    </message>
-    <message>
-        <source>Key file</source>
-        <translation>Anahtar dosya</translation>
     </message>
 </context>
 <context>
@@ -787,150 +681,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Pair ID</source>
         <translation>Çift ID</translation>
-    </message>
-</context>
-<context>
-    <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>LDAP kimlik doğrulaması</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Genel</translation>
-    </message>
-    <message>
-        <source>Username to bind DN mapping:</source>
-        <translation>DN eşlemesini bağlamak için kullanıcı adı:</translation>
-    </message>
-    <message>
-        <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</translation>
-    </message>
-</context>
-<context>
-    <name>AuthLdapDialog</name>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon Girişi</translation>
-    </message>
-    <message>
-        <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation>Bilgisayarlara erişmek için lütfen alan/LDAP kullanıcı adınızı ve şifrenizi girin.</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Kullanıcı adı</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Parola</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Yetkilendirme hatası</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Verilen kullanıcı adı ve parola ile giriş başarısız. Lütfen yeniden deneyin!</translation>
-    </message>
-</context>
-<context>
-    <name>AuthLogonDialog</name>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon Girişi</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Lütfen bilgisayarlara erişmek için kullanıcı adı ve parolanızı girin.</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Kullanıcı adı</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Parola</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Yetkilendirme hatası</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Verilen kullanıcı adı ve parola ile giriş başarısız. Lütfen yeniden deneyin!</translation>
-    </message>
-</context>
-<context>
-    <name>AuthLogonPlugin</name>
-    <message>
-        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>Verilen kullanıcı adı veya şifre yanlış. Lütfen geçerli kimlik bilgilerini girin veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Oturum açma yetkilendirmesi</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Oturum Aç</translation>
-    </message>
-</context>
-<context>
-    <name>AuthSimpleDialog</name>
-    <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon Girişi</translation>
-    </message>
-    <message>
-        <source>Please enter the Veyon password:</source>
-        <translation>Lütfen Veyon şifresini girin:</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Yetkilendirme hatası</translation>
-    </message>
-    <message>
-        <source>Logon failed with given password. Please try again!</source>
-        <translation>Oturum açma, verilen parola ile başarısız oldu. Lütfen tekrar deneyin!</translation>
-    </message>
-</context>
-<context>
-    <name>AuthSimplePlugin</name>
-    <message>
-        <source>The supplied password is wrong. Please enter the correct password or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>Verilen şifre yanlış. Lütfen doğru şifreyi girin veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
-    </message>
-    <message>
-        <source>Simple password authentication</source>
-        <translation>Basit şifre doğrulaması</translation>
-    </message>
-    <message>
-        <source>Simple password</source>
-        <translation>Basit şifre</translation>
-    </message>
-</context>
-<context>
-    <name>AuthenticationPage</name>
-    <message>
-        <source>Authentication methods</source>
-        <translation>Yetkilendirme yöntemleri</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Kimlik doğrulama bu bilgisayarda doğru şekilde ayarlandı.</translation>
-    </message>
-</context>
-<context>
-    <name>AuthenticationPageTab</name>
-    <message>
-        <source>Enabled</source>
-        <translation>Aktif edildi</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Sına</translation>
     </message>
 </context>
 <context>
@@ -1140,11 +890,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation></translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation></translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
@@ -1332,13 +1082,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
 </context>
 <context>
-    <name>ComputerGroupSelector</name>
-    <message>
-        <source>Group %1</source>
-        <translation>Grup %1</translation>
-    </message>
-</context>
-<context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
@@ -1363,33 +1106,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Bu bilgisayarın konumu belirlenemedi. Bu, sistem yapılandırmasında bir sorun olduğunu gösterir. Bunun yerine tüm konumlar bilgisayar seçim panelinde gösterilir.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerMonitoring</name>
-    <message>
-        <source>Computers</source>
-        <translation>Bilgisayarlar</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>Kullanıcı ve bilgisayarları ara</translation>
-    </message>
-    <message>
-        <source>Select all</source>
-        <translation>Hepsini seç</translation>
-    </message>
-    <message>
-        <source>Unselect all</source>
-        <translation>Tüm seçimi kaldır</translation>
-    </message>
-    <message>
-        <source>Add to group</source>
-        <translation>Gruba ekle</translation>
-    </message>
-    <message>
-        <source>Remove from group</source>
-        <translation>Gruptan kaldır</translation>
     </message>
 </context>
 <context>
@@ -1428,7 +1144,43 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
 </context>
 <context>
-    <name>ConfigCommands</name>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Lütfen içe aktarmak için mevcut bir yapılandırma dosyasını belirtin.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Lütfen yapılandırma dışa aktarımı için geçerli bir dosya adı belirtin.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Lütfen geçerli bir anahtar belirtin.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Belirtilen anahtar mevcut yapılandırmada mevcut değil!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Lütfen geçerli bir değer belirtin.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Veyon&apos;u komut satırında yapılandırma</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Çıktı dosyası yazılabilir değil!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Çıktı dizini yazılabilir değil!</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Yapılandırma dosyası okunamıyor!</translation>
+    </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Sistem geneli Veyon yapılandırmasını temizle</translation>
@@ -1458,48 +1210,12 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Verilen yapılandırma anahtarını kaldır</translation>
     </message>
     <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon yapılandırmasını yönetme komutları</translation>
+    </message>
+    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Program ve eklentilerin yapılandırmasını yükseltin ve kaydedin</translation>
-    </message>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Lütfen içe aktarmak için var olan yapılandırma dosyasını belirtin.</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Yapılandırma dosyası okunabilir değil!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Lütfen yapılandırmayı dışarı aktarmak için geçerli bir ad belirtin.</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Çıktı dosyası yazılabilir değil!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Çıktı dizini yazılabilir değil!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Lütfen geçerli bir anahtar belirtin.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Belirtilen anahtar geçerli yapılandırmada bulunmuyor!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Lütfen geçerli bir değer belirtin.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Veyon&apos;u komut satırında yapılandır</translation>
-    </message>
-    <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon&apos;un yapılandırmasını yönetmek için komutlar</translation>
     </message>
 </context>
 <context>
@@ -1523,10 +1239,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Platforma özgü yapılandırma ayarları uygulanamadı.</translation>
-    </message>
-    <message>
-        <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation>%1 hizmeti için güvenlik duvarı yapılandırması yapılandırılamadı.</translation>
     </message>
 </context>
 <context>
@@ -1755,7 +1467,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation></translation>
     </message>
     <message>
         <source>Texts to read</source>
@@ -1835,13 +1547,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Overwrite existing files</source>
         <translation>Mevcut dosyaların üzerine yaz</translation>
-    </message>
-</context>
-<context>
-    <name>FileTransferFileDialog</name>
-    <message>
-        <source>Select one or more files to transfer</source>
-        <translation>Aktarılacak bir veya daha fazla dosya seçin</translation>
     </message>
 </context>
 <context>
@@ -2010,12 +1715,28 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Yöntem:</translation>
     </message>
     <message>
+        <source>Logon authentication</source>
+        <translation>Oturum açma kimlik doğrulaması</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Anahtar dosya kimlik doğrulaması</translation>
+    </message>
+    <message>
         <source>Test</source>
         <translation>Sına</translation>
     </message>
     <message>
         <source>Configure</source>
         <translation>Yapılandır</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Kimlik doğrulama anahtarları bu bilgisayarda düzgün ayarlanmamış.</translation>
+    </message>
+    <message>
+        <source>Authentication test</source>
+        <translation>Kimlik doğrulama testi</translation>
     </message>
 </context>
 <context>
@@ -2030,319 +1751,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>LDAP error description: %1</source>
         <translation>LDAP hata açıklaması: %1</translation>
-    </message>
-</context>
-<context>
-    <name>LdapConfiguration</name>
-    <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP bağlantısı başarısız</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>LDAP sunucusuna bağlanılamadı. Lütfen sunucu parametrelerini gözden geçirin.
-
-%1</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP base DN test failed</source>
-        <translation>LDAP temel DN sınaması başarısız</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP base DN test successful</source>
-        <translation>LDAP temel DN sınaması başarılı</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP naming context test failed</source>
-        <translation>LDAP adlandırma bağlamı sınaması başarısız</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP naming context test successful</source>
-        <translation>LDAP adlandırma bağlamı sınaması başarılı</translation>
-    </message>
-    <message>
-        <source>The LDAP naming context has been queried successfully. The following base DN was found:
-%1</source>
-        <translation>LDAP adlandırma bağlamı başarıyla sorgulandı. Şu temel DN bulundu:
-%1</translation>
-    </message>
-    <message>
-        <source>user tree</source>
-        <translation>kullanıcı ağacı</translation>
-    </message>
-    <message>
-        <source>User tree</source>
-        <translation>Kullanıcı ağacı</translation>
-    </message>
-    <message>
-        <source>group tree</source>
-        <translation>küme ağacı</translation>
-    </message>
-    <message>
-        <source>Group tree</source>
-        <translation>Küme ağacı</translation>
-    </message>
-    <message>
-        <source>computer tree</source>
-        <translation>bilgisayar ağacı</translation>
-    </message>
-    <message>
-        <source>Computer tree</source>
-        <translation>Bilgisayar ağacı</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>bilgisayar kümesi ağacı</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>Bilgisayar kümesi ağacı</translation>
-    </message>
-    <message>
-        <source>user objects</source>
-        <translation>kullanıcı nesneleri</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>group members</source>
-        <translation>küme üyeleri</translation>
-    </message>
-    <message>
-        <source>Group member attribute</source>
-        <translation>Küme üyesi özniteliği</translation>
-    </message>
-    <message>
-        <source>Group not found</source>
-        <translation>Küme bulunamadı</translation>
-    </message>
-    <message>
-        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>&quot;%1&quot; adlı bir küme bulunamadı.. Lütfen küme adını veya küme ağacı parametresini gözden geçirin.</translation>
-    </message>
-    <message>
-        <source>computer objects</source>
-        <translation>bilgisayar nesneleri</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer MAC addresses</source>
-        <translation>bilgisayar MAC adresleri</translation>
-    </message>
-    <message>
-        <source>Computer MAC address attribute</source>
-        <translation>Bilgisayar MAC adresi özniteliği</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>users</source>
-        <translation>kullanıcılar</translation>
-    </message>
-    <message>
-        <source>user groups</source>
-        <translation>kullanıcı kümeleri</translation>
-    </message>
-    <message>
-        <source>computers</source>
-        <translation>bilgisayarlar</translation>
-    </message>
-    <message>
-        <source>computer groups</source>
-        <translation>bilgisayar kümeleri</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>groups of user</source>
-        <translation>kullanıcı kümeleri</translation>
-    </message>
-    <message>
-        <source>User not found</source>
-        <translation>Kullanıcı bulunamadı</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>groups of computer</source>
-        <translation>bilgisayar kümeleri</translation>
-    </message>
-    <message>
-        <source>Computer not found</source>
-        <translation>Bilgisayar bulunamadı</translation>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer groups filter</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Filter for computer groups</source>
-        <translation>Bilgisayar kümeleri için süzme</translation>
-    </message>
-    <message>
-        <source>Invalid test value</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP %1 test failed</source>
-        <translation>LDAP %1 sınaması başarısız</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP %1 test successful</source>
-        <translation>LDAP %1 sınaması başarılı</translation>
-    </message>
-    <message>
-        <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>%1 sorgulandı ve %2 girdi bulundu.</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>and</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully:
-
-%3</source>
-        <translation>%1 %2 başarıyla sorgulandı.
-
-%3</translation>
-    </message>
-    <message>
-        <source>LDAP filter test failed</source>
-        <translation>LDAP süzgeç sınaması başarısız</translation>
-    </message>
-    <message>
-        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
-
-%2</source>
-        <translation>Yapılandırılmış süzgeç kullanılarak herhangi bir %1 sorgulanamadı. Lütfen %1 için LDAP süzgecini denetleyin.
-
-%2</translation>
-    </message>
-    <message>
-        <source>LDAP filter test successful</source>
-        <translation>LDAP süzgeç sınaması başarılı</translation>
-    </message>
-    <message>
-        <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>Yapılandırılmış süzgeç kullanılarak %1 %2 başarıyla sorgulandı.</translation>
     </message>
 </context>
 <context>
@@ -2361,19 +1769,19 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Bind DN</source>
-        <translation type="unfinished"/>
+        <translation>DN Bağlama</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation type="unfinished"/>
+        <translation>Parolayı bağlama</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished"/>
+        <translation>Anonim bağlama</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation type="unfinished"/>
+        <translation>Bağlama kimlik bilgilerini kullan</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2500,12 +1908,66 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>IP adresiyle bilgisayar nesnesi al</translation>
     </message>
     <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP bağlantısı başarısız oldu</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP bağlama başarısız</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP bağlama başarılı</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>LDAP sunucusuna başarıyla bağlandı ve bir LDAP bağlantısı gerçekleştirdi. Temel LDAP ayarları doğru şekilde yapılandırıldı.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>LDAP temel DN testi başarısız</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>LDAP temel DN testi başarılı</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>LDAP adlandırma bağlamı testi başarısız oldu</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>LDAP adlandırma bağlam testi başarılı</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>LDAP adlandırma içeriği başarıyla sorgulandı. Aşağıdaki temel DN bulundu:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>kullanıcı ağacı</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>grup ağacı</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>bilgisayar ağacı</translation>
+    </message>
+    <message>
         <source>Enter username</source>
         <translation>Kullanıcı adı gir</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
         <translation>Sorgulanacak kullanıcı giriş adını (joker karakterlere izin verilir) girin:</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>kullanıcı nesneleri</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2516,8 +1978,24 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Üyeleri sorgulanacak küme adını girin:</translation>
     </message>
     <message>
+        <source>group members</source>
+        <translation>grup üyeleri</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Grup bulunamadı</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>&quot;%1&quot; adında bir grup bulunamadı. Lütfen grup adını veya grup ağacı parametresini kontrol edin.</translation>
+    </message>
+    <message>
         <source>Enter computer name</source>
         <translation>Bilgisayar adı gir</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>bilgisayar nesneleri</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2528,8 +2006,40 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Lütfen MAC adresi sorgulanacak bir bilgisayarın DN&apos;sini girin:</translation>
     </message>
     <message>
+        <source>computer MAC addresses</source>
+        <translation>bilgisayar MAC adresleri</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>kullanıcılar</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>Kullanıcı Grupları</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>bilgisayar grupları</translation>
+    </message>
+    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Küme üyelikleri sorgulanacak kullanıcı giriş adı girin:</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>kullanıcı grupları</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Kullanıcı bulunamadı</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>bilgisayar grupları</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Bilgisayar bulunamadı</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2540,6 +2050,50 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Bilgisayar nesnesine çıkan bir bilgisayar IP adresi girin:</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>bilgisayarlar</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>bilgisayar LDAP %1 sınaması başarısız oldu</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>LDAP %1 testi başarılı</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>%1 başarıyla sorgulandı ve %2 kayıt bulundu.</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 başarıyla sorgulandı:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>LDAP filtre testi başarısız</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>Yapılandırılmış filtreyi kullanarak %1 öğesinden herhangi biri sorgulanamadı. Lütfen %1 için LDAP filtresini kontrol edin.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>LDAP filtre testi başarılı</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2, yapılandırılmış filtre kullanılarak başarıyla sorgulandı.</translation>
+    </message>
+    <message>
         <source>(only if different from group tree)</source>
         <translation>(eğer yalnızca küme ağacından farklıysa)</translation>
     </message>
@@ -2548,8 +2102,12 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Bilgisayar kümesi ağacı</translation>
     </message>
     <message>
+        <source>computer group tree</source>
+        <translation>bilgisayar grup ağacı</translation>
+    </message>
+    <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarlar için filtre</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
@@ -2569,31 +2127,31 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar kapları için filtre</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar kapları veya OU&apos;ları</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı güvenliği</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS sertifika doğrulaması</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Sistem varsayılanları</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>Asla (güvensiz!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Özel CA sertifika dosyası</translation>
     </message>
     <message>
         <source>None</source>
@@ -2601,35 +2159,75 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=bilgisayar)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=grup)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=kişi)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=oda) veya (objectClass=Bilgisayar laboratuvarı)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=kasa) veya (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Yapılandırılmış temel DN sorgulanamadı. Lütfen temel DN parametresini kontrol edin.
+
+%1</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>LDAP temel DN&apos;si başarıyla sorgulandı. Aşağıdaki girişler bulundu:
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Adlandırma bağlamları aracılığıyla temel DN sorgulanamadı. Lütfen adlandırma bağlamı özellik parametresini kontrol edin.
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
         <translation>Sertifika dosyaları (*.pem)</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>LDAP sunucusuna bağlanılamadı. Lütfen sunucu parametrelerini kontrol edin.
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>LDAP sunucusuna bağlanılamadı. Lütfen sunucu parametrelerini kontrol edin ve kimlik bilgilerini bağlayın.
+
+%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2637,67 +2235,103 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarın konum özelliği</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar görünen adı özniteliği</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Konum adı özelliği</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>Örneğin. cn veya görünen ad</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar konumlarının tanımlanması</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar konumlarını (örn. odalar) şu yollarla tanımlayın:</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar nesnelerindeki konum özelliği</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>Bir yerin tüm girişlerini listele</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>Tüm yerleri listele</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarın görünen adını girin</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulamak için bir bilgisayar görünen adı girin:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarın konum adını girin</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen bir bilgisayar konumunun adını girin (joker karakterlere izin verilir):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>bilgisayar konumları</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>Konum adını girin</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen girişleri sorgulanacak bir konumun adını girin:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>konum girişleri</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP testi başarısız</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>%1 sorgulanamadı. Lütfen %2 parametrelerini kontrol edin ve mevcut bir nesnenin adını girin.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>ve</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP testi başarılı</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Yapılandırılmış %1 içindeki hiçbir giriş sorgulanamadı. Lütfen &quot;%2&quot; parametresini kontrol edin.
+
+%3</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Araştır</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2705,31 +2339,63 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Tam etki alanı adları olarak depolanan ana makine adları (FQDN, ör. myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana bilgisayar adı özniteliği</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulamak için bir bilgisayar ana bilgisayar adı girin:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Geçersiz ana bilgisayar adı</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Bilgisayar ana bilgisayar adlarını tam etki alanı adları (FQDN) olarak saklanacak şekilde yapılandırdınız, ancak etki alanı olmayan bir ana bilgisayar adı girdiniz.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Bilgisayar ana bilgisayar adlarını, etki alanı adı olmadan basit ana bilgisayar adları olarak depolanacak şekilde yapılandırdınız, ancak etki alanı adı bölümü olan bir ana bilgisayar adı girdiniz.</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>&quot;%1&quot; adında bir kullanıcı bulunamadı. Lütfen kullanıcı adını veya kullanıcı ağacı parametresini kontrol edin.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>Ana bilgisayar adını girin</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen grup üyeliklerini sorgulayacak bir bilgisayar ana bilgisayar adı girin:</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>&quot;%1&quot; ana bilgisayar adına sahip bir bilgisayar bulunamadı. Lütfen ana bilgisayar adını veya bilgisayar ağacı parametresini kontrol edin.</translation>
+    </message>
+    <message>
+        <source>Hostname lookup failed</source>
+        <translation>Ana bilgisayar adı araması başarısız oldu</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>%1 IP adresi için ana makine adı aranamadı. Lütfen DNS sunucusu ayarlarınızı kontrol edin.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı giriş adı özelliği</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturum açma adı veya bilgisayar ana bilgisayar adı için yapılandırılmış öznitelik (OpenLDAP)</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>bilgisayar kasaları</translation>
     </message>
 </context>
 <context>
@@ -2752,90 +2418,31 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon için temel LDAP/AD desteği</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP / AD&apos;den bilgisayar ve konum yükleyin)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP / AD&apos;den kullanıcıları ve grupları yükle)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen &quot;ldap [s]://[kullanıcı[:şifre] @] ana bilgisayar adı [: bağlantı noktası]&quot; şemasından sonra geçerli bir LDAP URL&apos;si belirtin</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Adlandırma bağlamı özellik adı belirtilmedi - yapılandırılan değere geri dönüyor.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN sorgulanamadı. Lütfen LDAP yapılandırmanızı kontrol edin.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test binding to an LDAP server</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation>Verilen kullanıcı adı veya şifre yanlış. Lütfen geçerli kimlik bilgilerini girin veya Veyon Configurator&apos;ı kullanarak farklı bir kimlik doğrulama yöntemine geçin.</translation>
-    </message>
-    <message>
-        <source>LDAP bind</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Lisans</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Kurulu lisanslar</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Yeni Ağ aralığı ekle</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Seçili Ağ aralığını sil</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Geçerli tarih</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Lisans</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Bilgi</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Kurulum  ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Bu lisans için kullanılabilir eklentiler</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Eklenti</translation>
+        <translation>%1&apos;i temel DN olarak yapılandırma ve adlandırma bağlamı sorgularını devre dışı bırakma.</translation>
     </message>
 </context>
 <context>
@@ -2941,6 +2548,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Qt Hakkında</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>Kimlik doğrulaması imkansız</translation>
+    </message>
+    <message>
         <source>Configuration not writable</source>
         <translation>Yapılandırma yazılabilir değil</translation>
     </message>
@@ -2999,6 +2610,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Yerel yapılandırma arka ucu, yapılandırmanın yazılabilir olmadığını bildirdi! Lütfen %1 Yapılandırıcıyı yüksek ayrıcalıklarla çalıştırın.</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation>Kimlik doğrulama anahtarı dosyası bulunamadı veya mevcut dosyalarınız güncel değil. Lütfen %1 Konfigüratörünü kullanarak yeni anahtar dosyalar oluşturun. Alternatif olarak %1 Configurator&apos;ı kullanarak oturum açma kimlik doğrulamasını ayarlayın. Aksi takdirde, %1 kullanarak bilgisayarlara erişemezsiniz.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3079,10 +2694,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Locations &amp;&amp; computers</source>
         <translation>Konumlar ve &amp;&amp; bilgisayarlar</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Kimlik</translation>
     </message>
 </context>
 <context>
@@ -3235,10 +2846,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Automatically open computer select panel</source>
         <translation>Bilgisayar seçme panelini otomatik olarak aç</translation>
     </message>
-    <message>
-        <source>Use modern user interface (experimental)</source>
-        <translation>Modern kullanıcı arayüzü kullanın (deneysel)</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3253,97 +2860,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Bu mod, bir veya daha fazla konumdaki tüm bilgisayarları izlemenizi sağlar.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>Örnek: 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Sına</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Yeni Ağ aralığı ekle</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Seçili Ağ aralığını sil</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Seçenekler</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3369,6 +2885,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
+        <translatorcomment>örn. www.veyon.io</translatorcomment>
         <translation>örn. www.veyon.io</translation>
     </message>
     <message>
@@ -3381,38 +2898,30 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PasswordDialog</name>
     <message>
-        <source>List names of all installed plugins</source>
-        <translation>Yüklü tüm eklentilerin adlarını listele</translation>
+        <source>Username</source>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
-        <source>Show table with details of all installed plugins</source>
-        <translation>Yüklü tüm eklentilerin ayrıntılarını içeren tabloyu göster</translation>
+        <source>Password</source>
+        <translation>Parola</translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>Ad</translation>
+        <source>Veyon Logon</source>
+        <translation>Veyon Oturum Aç</translation>
     </message>
     <message>
-        <source>Description</source>
-        <translation>Açıklama</translation>
+        <source>Authentication error</source>
+        <translation>Doğrulama hatası</translation>
     </message>
     <message>
-        <source>Version</source>
-        <translation>Sürüm</translation>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Oturum açma, verilen kullanıcı adı ve şifre ile başarısız oldu. Lütfen tekrar deneyin!</translation>
     </message>
     <message>
-        <source>UID</source>
-        <translation>UID</translation>
-    </message>
-    <message>
-        <source>Plugin-related CLI operations</source>
-        <translation>Eklentiyle ilgili CLI işlemleri</translation>
-    </message>
-    <message>
-        <source>Commands for managing plugins</source>
-        <translation>Eklentileri yönetme komutları</translation>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Bilgisayarlara erişmek için lütfen kullanıcı adınızı ve şifrenizi girin.</translation>
     </message>
 </context>
 <context>
@@ -3463,7 +2972,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
+        <translation>Wake-on-LAN (WOL) ile bilgisayarı açma</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3471,7 +2980,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>Bu komut, bilgisayarı verilen MAC adresiyle açmak için bir Wake-on-LAN (WOL) paketini ağa yayınlar.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -3479,37 +2988,39 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz MAC adresi belirtildi!</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarların güç durumunu denetleme komutları</translation>
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Şimdi gücü kes</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeleri yükleyin ve gücü kapatın</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı onayından sonra gücü kapatın</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Zaman aşımından sonra gücü kapatma</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarın uzaktan kapatılması istendi. Bilgisayarı şimdi kapatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar %1 dakika,%2 saniye içinde kapatılacak.
+
+Lütfen çalışmanızı kaydedin ve tüm programları kapatın.</translation>
     </message>
 </context>
 <context>
@@ -3564,13 +3075,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show help about command</source>
         <translation>Komut hakkında bilgi göster</translation>
-    </message>
-</context>
-<context>
-    <name>RemoteAccessPage</name>
-    <message>
-        <source>Remote access: %1</source>
-        <translation>Uzaktan erişim:%1</translation>
     </message>
 </context>
 <context>
@@ -3737,13 +3241,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
         <translation>Bilgisayarların ekran görüntülerini al ve yerel olarak kaydet.</translation>
-    </message>
-</context>
-<context>
-    <name>ScreenshotManagementPage</name>
-    <message>
-        <source>Screenshots</source>
-        <translation>Ekran görüntüleri</translation>
     </message>
 </context>
 <context>
@@ -4172,10 +3669,6 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <source>WARNING</source>
         <translation>UYARI</translation>
     </message>
-    <message>
-        <source>Authentication test</source>
-        <translation>Kimlik doğrulama testi</translation>
-    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4202,7 +3695,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4210,23 +3703,23 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation type="unfinished"/>
+        <translation>Yazılımla SAS oluşturmayı etkinleştirme (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Ekran kilidi</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Görev çubuğunu gizle</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Başlat menüsünü gizle</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Masaüstünü gizle</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -4234,7 +3727,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Alternatif kullanıcı kimlik doğrulama mekanizması kullan</translation>
     </message>
     <message>
         <source>User login</source>
@@ -4242,19 +3735,19 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Giriş başlatma gecikmesi</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Simüle edilmiş tuşa basma aralığı</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Yasal bildirimi onaylayın (kullanıcı oturum açmadan önce görüntülenen mesaj)</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Giriş aygıtı yakalama sürücüsünü kullan</translation>
     </message>
 </context>
 <context>
@@ -4308,13 +3801,6 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     <message>
         <source>Do not use X Damage extension</source>
         <translation>X Damage eklentisini kullanma</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Usta</translation>
     </message>
 </context>
 </TS>
