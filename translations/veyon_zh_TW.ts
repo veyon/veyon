@@ -3214,7 +3214,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟寫入的螢幕快照檔案 %1。</translation>
     </message>
 </context>
 <context>
@@ -3678,7 +3678,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>建立連線到 %1...</translation>
+        <translation>正在建立與 %1 連線...</translation>
     </message>
 </context>
 <context>
@@ -3744,7 +3744,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>使用輸入裝置攔截驅動程式</translation>
     </message>
 </context>
 <context>

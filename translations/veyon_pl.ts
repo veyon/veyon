@@ -3209,7 +3209,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Nie udało się zapisać zrzutu ekranu do pliku %1</translation>
     </message>
 </context>
 <context>
@@ -3739,7 +3739,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Użyj sterownika przechwytywania urządzenia wejściowego</translation>
     </message>
 </context>
 <context>

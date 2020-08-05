@@ -1076,7 +1076,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Активные соединения:</translation>
     </message>
 </context>
 <context>
@@ -3214,7 +3214,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл снимка экрана %1 для записи.</translation>
     </message>
 </context>
 <context>
@@ -3744,7 +3744,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Использовать драйвер перехвата устройства ввода</translation>
     </message>
 </context>
 <context>
