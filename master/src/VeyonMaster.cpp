@@ -146,6 +146,13 @@ void VeyonMaster::reloadSubFeatures()
 
 
 
+ComputerControlInterfaceList VeyonMaster::selectedComputerControlInterfaces() const
+{
+	return m_mainWindow->selectedComputerControlInterfaces();
+}
+
+
+
 ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 {
 	const auto rowCount = m_computerMonitoringModel->rowCount();
