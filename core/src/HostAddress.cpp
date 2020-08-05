@@ -24,6 +24,7 @@
 
 #include <QHostInfo>
 #include <QNetworkInterface>
+#include <QUrl>
 
 #include "HostAddress.h"
 
@@ -120,6 +121,34 @@ QStringList HostAddress::lookupIpAddresses() const
 	}
 
 	return ipAddresses;
+}
+
+
+static QUrl parseAddressToUrl( const QString& address )
+{
+	const auto colonCount = address.count( QLatin1Char(':') );
+	if( colonCount > 1 )
+	{
+		const auto parts = address.split( QLatin1Char(':') );
+		return QUrl( QStringLiteral("scheme://[%1]:%2").arg( parts.mid( 0, colonCount ).join( QLatin1Char(':') ),
+															   parts.last() ) );
+	}
+
+	return QUrl( QStringLiteral("scheme://%1").arg( address ) );
+}
+
+
+
+QString HostAddress::parseHost( const QString& address )
+{
+	return parseAddressToUrl( address ).host();
+}
+
+
+
+int HostAddress::parsePortNumber( const QString& address )
+{
+	return parseAddressToUrl( address ).port();
 }
 
 

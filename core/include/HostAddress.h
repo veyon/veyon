@@ -53,6 +53,9 @@ public:
 
 	QStringList lookupIpAddresses() const;
 
+	static QString parseHost( const QString& address );
+	static int parsePortNumber( const QString& address );
+
 	static QString localFQDN();
 
 private:
