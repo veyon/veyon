@@ -41,6 +41,11 @@ public:
 
 	ComputerControlInterface& localSessionControlInterface() override;
 
+	ComputerControlInterfaceList selectedComputerControlInterfaces() const override
+	{
+		return {};
+	}
+
 	void registerMessageHandler( ComputerControlInterface* controlInterface );
 
 	FeatureList availableFeatures() const;

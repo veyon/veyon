@@ -94,6 +94,8 @@ public:
 		return m_localSessionControlInterface;
 	}
 
+	ComputerControlInterfaceList selectedComputerControlInterfaces() const override;
+
 	ComputerControlInterfaceList filteredComputerControlInterfaces();
 
 public Q_SLOTS:
