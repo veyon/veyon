@@ -218,6 +218,13 @@ void MainWindow::reloadSubFeatures()
 
 
 
+ComputerControlInterfaceList MainWindow::selectedComputerControlInterfaces() const
+{
+	return ui->computerMonitoringWidget->selectedComputerControlInterfaces();
+}
+
+
+
 void MainWindow::closeEvent( QCloseEvent* event )
 {
 	if( m_master.currentMode() != VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
