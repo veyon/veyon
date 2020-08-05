@@ -26,7 +26,7 @@
 
 #include <QMainWindow>
 
-#include "Feature.h"
+#include "ComputerControlInterface.h"
 
 class QButtonGroup;
 class QToolButton;
@@ -56,6 +56,8 @@ public:
 	}
 
 	void reloadSubFeatures();
+
+	ComputerControlInterfaceList selectedComputerControlInterfaces() const;
 
 protected:
 	void closeEvent( QCloseEvent* event ) override;
