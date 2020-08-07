@@ -63,8 +63,8 @@ bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 	if( message.featureUid() == m_queryLoggedOnUserInfoFeature.uid() )
 	{
-		computerControlInterface->setUserLoginName( message.argument( UserLoginName ).toString() );
-		computerControlInterface->setUserFullName( message.argument( UserFullName ).toString() );
+		computerControlInterface->setUserInformation( message.argument( UserLoginName ).toString(),
+													  message.argument( UserFullName ).toString() );
 
 		return true;
 	}

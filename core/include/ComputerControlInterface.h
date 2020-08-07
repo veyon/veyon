@@ -80,14 +80,12 @@ public:
 		return m_userLoginName;
 	}
 
-	void setUserLoginName( const QString& userLoginName );
-
 	const QString& userFullName() const
 	{
 		return m_userFullName;
 	}
 
-	void setUserFullName( const QString& userFullName );
+	void setUserInformation( const QString& userLoginName, const QString& userFullName );
 
 	const FeatureUidList& activeFeatures() const
 	{
