@@ -230,6 +230,7 @@ SET(ultravnc_DIR ${3rdparty_DIR}/ultravnc)
 SET(libvncserver_DIR ${3rdparty_DIR}/libvncserver)
 SET(x11vnc_DIR ${3rdparty_DIR}/x11vnc)
 SET(libfakekey_DIR ${3rdparty_DIR}/libfakekey)
+set(qthttpserver_DIR ${3rdparty_DIR}/qthttpserver)
 
 SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
