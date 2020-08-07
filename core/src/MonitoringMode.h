@@ -94,10 +94,12 @@ private:
 	{
 		UserLoginName,
 		UserFullName,
+		UserSessionId,
 	};
 
 	QReadWriteLock m_userDataLock;
 	QString m_userLoginName;
 	QString m_userFullName;
+	int m_userSessionId{0};
 
 };

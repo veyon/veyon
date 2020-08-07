@@ -345,7 +345,7 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 
 	controlInterface->disconnect( &m_master->computerManager() );
 
-	controlInterface->setUserInformation( {}, {} );
+	controlInterface->setUserInformation( {}, {}, -1 );
 	m_master->computerManager().updateUser( controlInterface );
 }
 
