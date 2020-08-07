@@ -265,7 +265,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>透過方法進行身份驗證</translation>
     </message>
 </context>
 <context>
@@ -793,7 +793,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 身份驗證</translation>
     </message>
     <message>
         <source>General</source>
@@ -801,11 +801,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"/>
+        <translation>繫結 DN 對應的使用者名稱:</translation>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>例如: %username%@DOMAIN 或 cn=%username%,ou=users,dc=example,dc=org</translation>
     </message>
 </context>
 <context>
@@ -816,7 +816,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>請輸入您的網域/LDAP使用者名稱和密碼以便存取電腦。</translation>
     </message>
     <message>
         <source>Username</source>
@@ -908,7 +908,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>簡單密碼</translation>
     </message>
 </context>
 <context>
@@ -926,7 +926,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>啟用</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1526,7 +1526,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>無法組態 %1 服務的防火牆設定。</translation>
     </message>
 </context>
 <context>
@@ -2800,7 +2800,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 繫結</translation>
     </message>
 </context>
 <context>
@@ -3727,7 +3727,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟寫入的螢幕快照檔案 %1。</translation>
     </message>
 </context>
 <context>
@@ -4265,6 +4265,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>確認法律通知 (在使用者登入前顯示訊息)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>使用輸入裝置攔截驅動程式</translation>
     </message>
 </context>
 <context>

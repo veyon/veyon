@@ -265,7 +265,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>Autenticato tramite metodo</translation>
     </message>
 </context>
 <context>
@@ -902,7 +902,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>Password semplice</translation>
     </message>
 </context>
 <context>
@@ -920,7 +920,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Abilitato</translation>
     </message>
     <message>
         <source>Test</source>
@@ -4248,6 +4248,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Conferma avviso legale (messaggio visualizzato prima dell&apos;accesso dell&apos;utente)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

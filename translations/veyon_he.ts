@@ -325,7 +325,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>אנדרואיד</translation>
     </message>
     <message>
         <source>General</source>
@@ -4234,6 +4234,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
 </context>

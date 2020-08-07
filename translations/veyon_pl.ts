@@ -265,7 +265,7 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelniony metodą</translation>
     </message>
 </context>
 <context>
@@ -793,7 +793,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie LDAP</translation>
     </message>
     <message>
         <source>General</source>
@@ -805,7 +805,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>np.: %username%@DOMAIN lub cn=%username%,ou=users,dc=example,dc=org</translation>
     </message>
 </context>
 <context>
@@ -926,7 +926,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Włączony</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1526,7 +1526,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można ustawić konfiguracji zapory dla usługi %1.</translation>
     </message>
 </context>
 <context>
@@ -3722,7 +3722,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Nie udało się zapisać zrzutu ekranu do pliku %1</translation>
     </message>
 </context>
 <context>
@@ -4260,6 +4260,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Potwierdź informację prawną (komunikat wyświetlany przed zalogowaniem się użytkownika)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Użyj sterownika przechwytywania urządzenia wejściowego</translation>
     </message>
 </context>
 <context>

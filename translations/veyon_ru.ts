@@ -265,7 +265,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>Аутентификация помощью</translation>
     </message>
 </context>
 <context>
@@ -320,7 +320,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication method</source>
-        <translation type="unfinished"/>
+        <translation>Метод проверки подлинности</translation>
     </message>
 </context>
 <context>
@@ -767,7 +767,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"/>
+        <translation>Ключевой файл</translation>
     </message>
 </context>
 <context>
@@ -793,7 +793,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"/>
+        <translation>LDAP аутентификация</translation>
     </message>
     <message>
         <source>General</source>
@@ -801,11 +801,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"/>
+        <translation>Имя пользователя для привязки сопоставления DN:</translation>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>например %username%@DOMAIN или cn=%username%,ou=users,dc=example,dc=org</translation>
     </message>
 </context>
 <context>
@@ -816,7 +816,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, введите ваш домен/имя пользователя и пароль LDAP для доступа к компьютерам.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -874,7 +874,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>Вход в систему</translation>
     </message>
 </context>
 <context>
@@ -908,7 +908,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>Простой пароль</translation>
     </message>
 </context>
 <context>
@@ -926,7 +926,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Включено</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1328,14 +1328,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Активные соединения:</translation>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>Группа %1</translation>
     </message>
 </context>
 <context>
@@ -1377,19 +1377,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Выбрать все</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Отменить выбор всего</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>Добавить в группу</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>Удалить из группы</translation>
     </message>
 </context>
 <context>
@@ -1526,7 +1526,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось настроить конфигурацию брандмауэра для службы %1.</translation>
     </message>
 </context>
 <context>
@@ -2270,7 +2270,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>Фильтр групп компьютеров</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2282,11 +2282,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>Неверное значение теста</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"/>
+        <translation>Для этого теста было предоставлено пустое или неверное значение.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2792,7 +2792,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
-        <translation type="unfinished"/>
+        <translation>Тест настройки сервера LDAP</translation>
     </message>
     <message>
         <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
@@ -2800,7 +2800,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"/>
+        <translation>Связывание LDAP</translation>
     </message>
 </context>
 <context>
@@ -3249,7 +3249,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Использовать современный пользовательский интерфейс (экспериментально)</translation>
     </message>
 </context>
 <context>
@@ -3396,11 +3396,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Список имен всех установленных плагинов</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Показать таблицу с деталями всех установленных плагинов</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3408,23 +3408,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Описание</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Версия</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Связанные с плагином операции CLI</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Команды для управления плагинами</translation>
     </message>
 </context>
 <context>
@@ -3584,7 +3584,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Удаленный доступ: %1</translation>
     </message>
 </context>
 <context>
@@ -3727,7 +3727,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл снимка экрана %1 для записи.</translation>
     </message>
 </context>
 <context>
@@ -4266,6 +4266,10 @@ Typically this is required to support terminal servers.</source>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Подтвердить официальное уведомление (сообщение отображается перед входом пользователя)</translation>
     </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Использовать драйвер перехвата устройства ввода</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4324,7 +4328,7 @@ Typically this is required to support terminal servers.</source>
     <name>main</name>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Мастер</translation>
     </message>
 </context>
 </TS>
