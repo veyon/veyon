@@ -43,6 +43,15 @@ ScreenLockFeaturePlugin::ScreenLockFeaturePlugin( QObject* parent ) :
 							 "In this mode all input devices are locked and "
 							 "the screens are blacked." ),
 						 QStringLiteral(":/screenlock/system-lock-screen.png") ),
+	m_lockInputDevicesFeature( QStringLiteral( "InputDevicesLock" ),
+							   Feature::Mode | Feature::AllComponents,
+							   Feature::Uid( "e4a77879-e544-4fec-bc18-e534f33b934c" ),
+							   m_screenLockFeature.uid(),
+							   tr( "Lock input devices" ), tr( "Unlock input devices" ),
+							   tr( "To reclaim all user's full attention you can lock "
+								   "their computers using this button. "
+								   "In this mode all input devices are locked while the desktop is still visible." ),
+							   QStringLiteral(":/screenlock/system-lock-screen.png") ),
 	m_features( { m_screenLockFeature } ),
 	m_lockWidget( nullptr )
 {
@@ -62,9 +71,10 @@ bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const 
 {
 	Q_UNUSED(master);
 
-	if( feature == m_screenLockFeature )
+	if( feature == m_screenLockFeature ||
+		feature == m_lockInputDevicesFeature )
 	{
-		return sendFeatureMessage( FeatureMessage( m_screenLockFeature.uid(), StartLockCommand ),
+		return sendFeatureMessage( FeatureMessage( feature.uid(), StartLockCommand ),
 								   computerControlInterfaces );
 	}
 
@@ -78,9 +88,10 @@ bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const F
 {
 	Q_UNUSED(master);
 
-	if( feature == m_screenLockFeature )
+	if( feature == m_screenLockFeature ||
+		feature == m_lockInputDevicesFeature )
 	{
-		return sendFeatureMessage( FeatureMessage( m_screenLockFeature.uid(), StopLockCommand ),
+		return sendFeatureMessage( FeatureMessage( feature.uid(), StopLockCommand ),
 								   computerControlInterfaces );
 	}
 
@@ -107,9 +118,10 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 {
 	Q_UNUSED(messageContext)
 
-	if( m_screenLockFeature.uid() == message.featureUid() )
+	if( message.featureUid() == m_screenLockFeature.uid() ||
+		message.featureUid() == m_lockInputDevicesFeature.uid() )
 	{
-		if( server.featureWorkerManager().isWorkerRunning( m_screenLockFeature.uid() ) == false &&
+		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
 			message.command() == StopLockCommand )
 		{
 			return true;
@@ -130,7 +142,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 {
 	Q_UNUSED(worker);
 
-	if( m_screenLockFeature.uid() == message.featureUid() )
+	if( message.featureUid() == m_screenLockFeature.uid() ||
+		message.featureUid() == m_lockInputDevicesFeature.uid() )
 	{
 		switch( message.command() )
 		{
@@ -139,7 +152,13 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 			{
 				VeyonCore::platform().coreFunctions().disableScreenSaver();
 
-				m_lockWidget = new LockWidget( LockWidget::BackgroundPixmap,
+				auto mode = LockWidget::BackgroundPixmap;
+				if( message.featureUid() == m_lockInputDevicesFeature.uid() )
+				{
+					mode = LockWidget::DesktopVisible;
+				}
+
+				m_lockWidget = new LockWidget( mode,
 											   QPixmap( QStringLiteral(":/screenlock/locked-screen-background.png" ) ) );
 			}
 			return true;

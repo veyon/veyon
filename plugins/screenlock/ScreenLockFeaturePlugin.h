@@ -96,6 +96,7 @@ private:
 	};
 
 	const Feature m_screenLockFeature;
+	const Feature m_lockInputDevicesFeature;
 	const FeatureList m_features;
 
 	LockWidget* m_lockWidget;
