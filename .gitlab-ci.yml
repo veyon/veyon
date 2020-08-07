@@ -22,5 +22,5 @@ build-win64:
     expire_in: 1 day
 
 variables:
-  GIT_SUBMODULE_STRATEGY: normal
+  GIT_SUBMODULE_STRATEGY: recursive
   IMAGE: $CI_REGISTRY/veyon/ci-mingw-w64:5.0
