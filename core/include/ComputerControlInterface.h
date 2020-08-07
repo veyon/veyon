@@ -85,7 +85,12 @@ public:
 		return m_userFullName;
 	}
 
-	void setUserInformation( const QString& userLoginName, const QString& userFullName );
+	int userSessionId() const
+	{
+		return m_userSessionId;
+	}
+
+	void setUserInformation( const QString& userLoginName, const QString& userFullName, int sessionId );
 
 	const FeatureUidList& activeFeatures() const
 	{
@@ -128,6 +133,7 @@ private:
 	State m_state;
 	QString m_userLoginName;
 	QString m_userFullName;
+	int m_userSessionId{0};
 	FeatureUidList m_activeFeatures;
 	Feature::Uid m_designatedModeFeature;
 

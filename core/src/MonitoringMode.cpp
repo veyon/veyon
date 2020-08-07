@@ -25,6 +25,7 @@
 #include <QtConcurrent>
 
 #include "MonitoringMode.h"
+#include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonServerInterface.h"
 
@@ -64,7 +65,8 @@ bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const F
 	if( message.featureUid() == m_queryLoggedOnUserInfoFeature.uid() )
 	{
 		computerControlInterface->setUserInformation( message.argument( UserLoginName ).toString(),
-													  message.argument( UserFullName ).toString() );
+													  message.argument( UserFullName ).toString(),
+													  message.argument( UserSessionId ).toInt() );
 
 		return true;
 	}
@@ -88,11 +90,13 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 			queryUserInformation();
 			reply.addArgument( UserLoginName, QString() );
 			reply.addArgument( UserFullName, QString() );
+			reply.addArgument( UserSessionId, -1 );
 		}
 		else
 		{
 			reply.addArgument( UserLoginName, m_userLoginName );
 			reply.addArgument( UserFullName, m_userFullName );
+			reply.addArgument( UserSessionId, m_userSessionId );
 		}
 		m_userDataLock.unlock();
 
@@ -111,9 +115,11 @@ void MonitoringMode::queryUserInformation()
 	QtConcurrent::run( [=]() {
 		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
 		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
+		const auto userSessionId = VeyonCore::platform().sessionFunctions().currentSessionId();
 		m_userDataLock.lockForWrite();
 		m_userLoginName = userLoginName;
 		m_userFullName = userFullName;
+		m_userSessionId = userSessionId;
 		m_userDataLock.unlock();
 	} );
 }

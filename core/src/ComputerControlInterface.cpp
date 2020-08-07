@@ -164,13 +164,15 @@ QImage ComputerControlInterface::screen() const
 
 
 
-void ComputerControlInterface::setUserInformation( const QString& userLoginName, const QString& userFullName )
+void ComputerControlInterface::setUserInformation( const QString& userLoginName, const QString& userFullName, int sessionId )
 {
 	if( userLoginName != m_userLoginName ||
-		userFullName != m_userFullName )
+		userFullName != m_userFullName ||
+		sessionId != m_userSessionId )
 	{
 		m_userLoginName = userLoginName;
 		m_userFullName = userFullName;
+		m_userSessionId = sessionId;
 
 		Q_EMIT userChanged();
 	}
@@ -313,7 +315,7 @@ void ComputerControlInterface::updateUser()
 	}
 	else
 	{
-		setUserInformation( {}, {} );
+		setUserInformation( {}, {}, -1 );
 	}
 }
 
