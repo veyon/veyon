@@ -220,9 +220,9 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	authReplyMessage.write( chosenAuthType );
 
 	// send username which is used when displaying an access confirm dialog
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
+	if( connection->authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
 	{
-		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
+		authReplyMessage.write( connection->authenticationCredentials().logonUsername() );
 	}
 	else
 	{
@@ -237,7 +237,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	switch( chosenAuthType )
 	{
 	case RfbVeyonAuth::KeyFile:
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::PrivateKey ) )
+		if( connection->authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::PrivateKey ) )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
@@ -250,7 +250,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			}
 
 			// create local copy of private key so we can modify it within our own thread
-			auto key = VeyonCore::authenticationCredentials().privateKey();
+			auto key = connection->authenticationCredentials().privateKey();
 			if( key.isNull() || key.canSign() == false )
 			{
 				vCritical() << QThread::currentThreadId() << "invalid private key!";
@@ -279,7 +279,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			return false;
 		}
 
-		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword() );
+		CryptoCore::SecureArray plainTextPassword( connection->authenticationCredentials().logonPassword() );
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
@@ -296,7 +296,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	case RfbVeyonAuth::Token:
 	{
 		VariantArrayMessage tokenAuthMessage( &socketDevice );
-		tokenAuthMessage.write( VeyonCore::authenticationCredentials().token().toByteArray() );
+		tokenAuthMessage.write( connection->authenticationCredentials().token().toByteArray() );
 		tokenAuthMessage.send();
 		break;
 	}
@@ -320,4 +320,16 @@ void VeyonConnection::hookPrepareAuthentication( rfbClient* client )
 		// which means that the host is reachable
 		connection->setServerReachable();
 	}
+}
+
+
+
+AuthenticationCredentials VeyonConnection::authenticationCredentials() const
+{
+	if( m_authenticationProxy )
+	{
+		return m_authenticationProxy->credentials();
+	}
+
+	return VeyonCore::authenticationCredentials();
 }

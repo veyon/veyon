@@ -102,6 +102,8 @@ private:
 	static int8_t handleSecTypeVeyon( rfbClient* client, uint32_t authScheme );
 	static void hookPrepareAuthentication( rfbClient* client );
 
+	AuthenticationCredentials authenticationCredentials() const;
+
 	QPointer<VncConnection> m_vncConnection;
 
 	RfbVeyonAuth::Type m_veyonAuthType;
