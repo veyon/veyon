@@ -164,11 +164,6 @@ public:
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
 
-	const QString& authenticationKeyName() const
-	{
-		return m_authenticationKeyName;
-	}
-
 	static bool isAuthenticationKeyNameValid( const QString& authKeyName );
 
 	enum class AuthenticationMethod
@@ -212,7 +207,6 @@ private:
 
 	Component m_component;
 	QString m_applicationName;
-	QString m_authenticationKeyName;
 	bool m_debugging;
 
 Q_SIGNALS:

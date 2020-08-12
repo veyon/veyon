@@ -260,7 +260,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
-			challengeResponseMessage.write( VeyonCore::instance()->authenticationKeyName() );
+			challengeResponseMessage.write( connection->authenticationCredentials().authenticationKeyName() );
 			challengeResponseMessage.write( signature );
 			challengeResponseMessage.send();
 		}

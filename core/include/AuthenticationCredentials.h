@@ -58,6 +58,16 @@ public:
 		return m_privateKey;
 	}
 
+	const QString& authenticationKeyName() const
+	{
+		return m_authenticationKeyName;
+	}
+
+	void setAuthenticationKeyName( const QString& authenticationKeyName )
+	{
+		m_authenticationKeyName = authenticationKeyName;
+	}
+
 	// user logon auth
 	void setLogonUsername( const QString& username )
 	{
@@ -101,6 +111,7 @@ public:
 
 private:
 	CryptoCore::PrivateKey m_privateKey;
+	QString m_authenticationKeyName;
 
 	QString m_logonUsername;
 	Password m_logonPassword;

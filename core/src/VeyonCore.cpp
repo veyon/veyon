@@ -71,7 +71,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	m_localComputerControlInterface( nullptr ),
 	m_component( component ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
-	m_authenticationKeyName(),
 	m_debugging( false )
 {
 	Q_ASSERT( application != nullptr );
@@ -661,7 +660,7 @@ bool VeyonCore::initKeyFileAuthentication()
 		if( isAuthenticationKeyNameValid( authKeyName ) &&
 				m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
 		{
-			m_authenticationKeyName = authKeyName;
+			m_authenticationCredentials->setAuthenticationKeyName( authKeyName );
 		}
 	}
 	else
@@ -674,7 +673,7 @@ bool VeyonCore::initKeyFileAuthentication()
 		{
 			if( m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( privateKeyDir ) ) )
 			{
-				m_authenticationKeyName = privateKeyDir;
+				m_authenticationCredentials->setAuthenticationKeyName( privateKeyDir );
 				return true;
 			}
 		}
