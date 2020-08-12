@@ -29,7 +29,7 @@
 #include "RfbVeyonAuth.h"
 #include "VncConnection.h"
 
-
+class AuthenticationProxy;
 class FeatureMessage;
 
 class VEYON_CORE_EXPORT VeyonConnection : public QObject
@@ -74,6 +74,16 @@ public:
 		return m_veyonAuthType;
 	}
 
+	void setAuthenticationProxy( AuthenticationProxy* authenticationProxy )
+	{
+		m_authenticationProxy = authenticationProxy;
+	}
+
+	AuthenticationProxy* authenticationProxy()
+	{
+		return m_authenticationProxy;
+	}
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
@@ -95,6 +105,8 @@ private:
 	QPointer<VncConnection> m_vncConnection;
 
 	RfbVeyonAuth::Type m_veyonAuthType;
+
+	AuthenticationProxy* m_authenticationProxy{nullptr};
 
 	QString m_user;
 	QString m_userHomeDir;

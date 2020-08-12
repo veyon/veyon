@@ -24,7 +24,7 @@
 
 #include "rfb/rfbclient.h"
 
-#include "AuthenticationCredentials.h"
+#include "AuthenticationProxy.h"
 #include "CryptoCore.h"
 #include "PlatformUserFunctions.h"
 #include "SocketDevice.h"
@@ -82,6 +82,8 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 VeyonConnection::~VeyonConnection()
 {
 	unregisterConnection();
+
+	delete m_authenticationProxy;
 }
 
 
@@ -165,6 +167,8 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		return false;
 	}
 
+	auto proxy = connection->m_authenticationProxy;
+
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
 	message.receive();
@@ -177,6 +181,11 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	for( int i = 0; i < authTypeCount; ++i )
 	{
 		authTypes.append( QVariantHelper<RfbVeyonAuth::Type>::value( message.read() ) );
+	}
+
+	if( proxy )
+	{
+		proxy->setAuthenticationTypes( authTypes );
 	}
 
 	vDebug() << QThread::currentThreadId() << "received authentication types:" << authTypes;
@@ -197,6 +206,11 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 				chosenAuthType = authType;
 			}
 		}
+	}
+
+	if( proxy )
+	{
+		chosenAuthType = proxy->initCredentials();
 	}
 
 	vDebug() << QThread::currentThreadId() << "chose authentication type:" << authTypes;
