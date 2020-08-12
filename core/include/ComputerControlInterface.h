@@ -36,6 +36,7 @@
 
 class QImage;
 
+class AuthenticationProxy;
 class FeatureMessage;
 class VncConnection;
 class VeyonConnection;
@@ -51,8 +52,10 @@ public:
 	explicit ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
-	void start( QSize scaledScreenSize );
+	void start( QSize scaledScreenSize, AuthenticationProxy* authenticationProxy = nullptr );
 	void stop();
+
+	AuthenticationProxy* authenticationProxy() const;
 
 	const Computer& computer() const
 	{

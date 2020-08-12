@@ -63,7 +63,7 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( QSize scaledScreenSize )
+void ComputerControlInterface::start( QSize scaledScreenSize, AuthenticationProxy* authenticationProxy )
 {
 	// make sure we do not leak
 	stop();
@@ -80,6 +80,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize )
 		enableUpdates();
 
 		m_connection = new VeyonConnection( m_vncConnection );
+		m_connection->setAuthenticationProxy( authenticationProxy );
 
 		m_vncConnection->start();
 
@@ -122,6 +123,18 @@ void ComputerControlInterface::stop()
 	m_connectionWatchdogTimer.stop();
 
 	m_state = State::Disconnected;
+}
+
+
+
+AuthenticationProxy* ComputerControlInterface::authenticationProxy() const
+{
+	if( m_connection )
+	{
+		return m_connection->authenticationProxy();
+	}
+
+	return nullptr;
 }
 
 
