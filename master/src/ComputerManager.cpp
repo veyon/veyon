@@ -300,7 +300,8 @@ QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, c
 
 		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
 
-		if( objectType == NetworkObject::Type::Location )
+		if( objectType == NetworkObject::Type::Location ||
+			objectType == NetworkObject::Type::DesktopGroup )
 		{
 			const auto location = findLocationOfComputer( hostNames, hostAddresses, entryIndex );
 			if( location.isEmpty() == false )
@@ -343,6 +344,7 @@ ComputerList ComputerManager::getComputersAtLocation( const QString& locationNam
 		switch( objectType )
 		{
 		case NetworkObject::Type::Location:
+		case NetworkObject::Type::DesktopGroup:
 			if( model->data( entryIndex, NetworkObjectModel::NameRole ).toString() == locationName )
 			{
 				computers += getComputersAtLocation( locationName, entryIndex );
@@ -416,7 +418,8 @@ QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObject
 
 		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
 
-		if( objectType == NetworkObject::Type::Location )
+		if( objectType == NetworkObject::Type::Location ||
+			objectType == NetworkObject::Type::DesktopGroup )
 		{
 			QModelIndex index = findNetworkObject( networkObjectUid, entryIndex );
 			if( index.isValid() )
