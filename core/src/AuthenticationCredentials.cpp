@@ -79,7 +79,19 @@ bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
 		return false;
 	}
 
-	m_privateKey = CryptoCore::PrivateKey( privateKeyFile );
+	return setPrivateKey( CryptoCore::PrivateKey( privateKeyFile ) );
+}
 
-	return m_privateKey.isNull() == false && m_privateKey.isPrivate();
+
+
+bool AuthenticationCredentials::setPrivateKey( const CryptoCore::PrivateKey& privateKey )
+{
+	if( privateKey.isNull() == false && privateKey.isPrivate() )
+	{
+		m_privateKey = privateKey;
+
+		return true;
+	}
+
+	return false;
 }
