@@ -57,6 +57,11 @@ public:
 	{
 		QMutex m;
 		m.lock();
+		if( authenticationTypes().isEmpty() == false )
+		{
+			m.unlock();
+			return true;
+		}
 		return m_authenticationMethodsAvailable.wait( &m, QDeadlineTimer( timeout ) );
 	}
 
