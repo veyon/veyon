@@ -227,15 +227,7 @@ FeatureUidList FeatureWorkerManager::runningWorkers()
 {
 	QMutexLocker locker( &m_workersMutex );
 
-	FeatureUidList featureUidList;
-	featureUidList.reserve( m_workers.size() );
-
-	for( auto it = m_workers.begin(); it != m_workers.end(); ++it )
-	{
-		featureUidList.append( it.key().toString() );
-	}
-
-	return featureUidList;
+	return m_workers.keys();
 }
 
 

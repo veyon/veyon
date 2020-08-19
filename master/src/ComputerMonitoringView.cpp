@@ -180,7 +180,10 @@ FeatureUidList ComputerMonitoringView::activeFeatures( const ComputerControlInte
 		featureUidList.append( controlInterface->activeFeatures() );
 	}
 
-	featureUidList.removeDuplicates();
-
-	return featureUidList;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	const auto featureUidSet = QSet<QUuid>{ featureUidList.constBegin(), featureUidList.constEnd() };
+	return { featureUidSet.constBegin(), featureUidSet.constEnd() };
+#else
+	return FeatureUidList::fromSet( featureUidList.toSet() );
+#endif
 }
