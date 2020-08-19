@@ -56,7 +56,17 @@ bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{
-		computerControlInterface->setActiveFeatures( message.argument( ActiveFeatureList ).toStringList() );
+		const auto featureUidStrings = message.argument( ActiveFeatureList ).toStringList();
+
+		FeatureUidList activeFeatures{};
+		activeFeatures.reserve( featureUidStrings.size() );
+
+		for( const auto& featureUidString : featureUidStrings )
+		{
+			activeFeatures.append( featureUidString );
+		}
+
+		computerControlInterface->setActiveFeatures( activeFeatures );
 
 		return true;
 	}
@@ -72,8 +82,18 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server,
 {
 	if( m_featureControlFeature.uid() == message.featureUid() )
 	{
+		const auto featureUids = server.featureWorkerManager().runningWorkers();
+
+		QStringList featureUidStrings;
+		featureUidStrings.reserve( featureUids.size() );
+
+		for( const auto& featureUid : featureUids )
+		{
+			featureUidStrings.append( featureUid.toString() );
+		}
+
 		FeatureMessage reply( message.featureUid(), message.command() );
-		reply.addArgument( ActiveFeatureList, server.featureWorkerManager().runningWorkers() );
+		reply.addArgument( ActiveFeatureList, featureUidStrings );
 
 		return server.sendFeatureMessageReply( messageContext, reply );
 	}
