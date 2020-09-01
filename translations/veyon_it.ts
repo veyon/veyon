@@ -3730,7 +3730,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Usa il driver di intercettazione del dispositivo di input</translation>
     </message>
 </context>
 <context>
