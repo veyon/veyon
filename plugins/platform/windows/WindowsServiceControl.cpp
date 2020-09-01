@@ -158,6 +158,8 @@ bool WindowsServiceControl::stop()
 
 bool WindowsServiceControl::install( const QString& filePath, const QString& displayName  )
 {
+	const auto binaryPath = QStringLiteral("\"%1\"").arg( QString( filePath ).replace( QLatin1Char('"'), QString() ) );
+
 	m_serviceHandle = CreateService(
 				m_serviceManager,		// SCManager database
 				WindowsCoreFunctions::toConstWCharArray( m_name ),	// name of service
@@ -167,7 +169,7 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 				// service type
 				SERVICE_AUTO_START,	// start type
 				SERVICE_ERROR_NORMAL,	// error control type
-				WindowsCoreFunctions::toConstWCharArray( filePath ),		// service's binary
+				WindowsCoreFunctions::toConstWCharArray( binaryPath ),		// service's binary
 				nullptr,			// no load ordering group
 				nullptr,			// no tag identifier
 				L"Tcpip\0RpcSs\0\0",		// dependencies
