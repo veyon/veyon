@@ -282,6 +282,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	connect( m_vncView, &VncView::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
 	connect( m_vncView, &VncView::keyEvent, this, &RemoteAccessWidget::checkKeyEvent );
 	connect( m_vncView, &VncView::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
+	m_vncView->installEventFilter( this );
 
 	showMaximized();
 	VeyonCore::platform().coreFunctions().raiseWindow( this, false );
@@ -315,7 +316,7 @@ void RemoteAccessWidget::enterEvent( QEvent* event )
 void RemoteAccessWidget::leaveEvent( QEvent* event )
 {
 	QTimer::singleShot( AppearDelay, this, [this]() {
-		if( underMouse() == false )
+		if( underMouse() == false && window()->isActiveWindow() )
 		{
 			m_toolBar->appear();
 		}
@@ -332,6 +333,18 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 	m_toolBar->setFixedSize( width(), m_toolBar->height() );
 
 	QWidget::resizeEvent( event );
+}
+
+
+
+bool RemoteAccessWidget::eventFilter( QObject* object, QEvent* event )
+{
+	if( object == m_vncView && event->type() == QEvent::FocusOut )
+	{
+		m_toolBar->disappear();
+	}
+
+	return QWidget::eventFilter( object, event );
 }
 
 
