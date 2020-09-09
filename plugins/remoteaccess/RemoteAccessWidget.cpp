@@ -281,7 +281,7 @@ RemoteAccessWidget::~RemoteAccessWidget()
 
 
 
-bool RemoteAccessWidget::eventFilter( QObject* obj, QEvent* event )
+bool RemoteAccessWidget::eventFilter( QObject* object, QEvent* event )
 {
 	if( event->type() == QEvent::KeyRelease &&
 		dynamic_cast<QKeyEvent *>( event )->key() == Qt::Key_Escape &&
@@ -291,7 +291,12 @@ bool RemoteAccessWidget::eventFilter( QObject* obj, QEvent* event )
 		return true;
 	}
 
-	return QWidget::eventFilter( obj, event );
+	if( object == m_vncView && event->type() == QEvent::FocusOut )
+	{
+		m_toolBar->disappear();
+	}
+
+	return QWidget::eventFilter( object, event );
 }
 
 
@@ -308,7 +313,7 @@ void RemoteAccessWidget::enterEvent( QEvent* event )
 void RemoteAccessWidget::leaveEvent( QEvent* event )
 {
 	QTimer::singleShot( AppearDelay, this, [this]() {
-		if( underMouse() == false )
+		if( underMouse() == false && window()->isActiveWindow() )
 		{
 			m_toolBar->appear();
 		}
