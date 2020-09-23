@@ -1,82 +1,84 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="th" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="et" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation>Programmist</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>การแปลภาษา</translation>
+        <translation>Tõlkimine</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>ลิขสิทธิ์</translation>
+        <translation>Litsents</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>เกี่ยวกับ Veyon</translation>
+        <translation>Programmist Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>ผู้มีส่วนช่วยเหลือ</translation>
+        <translation>Kaastöötajad</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>เวอร์ชั่น:</translation>
+        <translation>Versioon:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>เว็บไซต์:</translation>
+        <translation>Koduleht:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Praegune keel pole veel tõlgitud (või emakeel).
+
+Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde või soovite olemasolevat tõlget paremaks muuta, võtke ühendust Veyoni arendajaga!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>เกี่ยวกับ %1 %2</translation>
+        <translation>Programmist %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>สนับสนุนโครงการ Veyon ด้วยการบริจาค</translation>
+        <translation>Toetage Veyon projekti annetusega</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti juurdepääsu juhtimine</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Andke juurdepääs igale autentitud kasutajale (vaikimisi)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>ทดสอบ</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Protsessi juurdepääsu juhtimise reeglid</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajarühmad, kellel on juurdepääs arvutile</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Palun lisage rühmad, mille liikmetel peaks olema õigus pääseda juurde teie Veyoni võrgu arvutitele.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>กลุ่มผู้ใช้ที่ได้รับอนุญาต</translation>
+        <translation>Volitatud kasutajagrupid</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>กลุ่มทั้งหมด</translation>
+        <translation>Kõik grupid</translation>
     </message>
     <message>
         <source>...</source>
@@ -84,256 +86,256 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääsu reeglid</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Lisa juurdepääsu reegel</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda juurdepääsu reegel</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Teisalda valitud reegel alla</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Teisalda valitud reegel üles</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>แก้ไขกฏที่เลือก</translation>
+        <translation>Muuda valitud reeglit</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>ใส่ชื่อผู้ใช้</translation>
+        <translation>Sisestage kasutajanimi</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage kasutaja sisselogimisnimi, mille  juurdepääsuluba testida:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>การเข้าถึงได้รับอนุญาต</translation>
+        <translation>Juurdepääs lubatud</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Valitud kasutajal on juurdepääs selle konfiguratsiooniga arvutitele.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>การเข้าถึงถูกปฏิเสธ</translation>
+        <translation>Juurdepääs keelatud</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud kasutajal pole lubatud selle konfiguratsiooniga arvutitele juurde pääseda.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation>เปิดอนุญาตการให้ใช้งานกลุ่มโดเมน</translation>
+        <translation>Domeeni gruppide juurdepääsu lubamine</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajarühmade taustaprogramm:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajate rühmade vaikepistikprogrammi ei leitud. Palun kontrollige oma installimist!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Määratud gruppide liikmete juurdepääsu keelamine</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Redigeeri juurdepääsu reeglit</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation>Üldine</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>sisestage siia reegli lühinimi</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>ชื่อกฏ:</translation>
+        <translation>Reegli nimi:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>sisestage siia reegli kirjeldus</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>คำอธิบายกฏ:</translation>
+        <translation>Reegli kirjeldus:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Pöörake kõik tingimused ümber (&quot;on/on&quot; tõlgendatud kui &quot;on/ei ole&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>เงื่อนไข</translation>
+        <translation>Tingimused</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>เป็นสมาชิกของกลุ่ม</translation>
+        <translation>on rühma liige</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Arvutile juurdepääs on kohalik host</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääs kasutajale on sisse logitud kasutaja</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääs kasutajale on juba ühendatud</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Kui aktiveeritakse rohkem kui üks tingimus, peavad reegli rakendamiseks kõik tingimused vastama (loogiline JA). Kui peab vastama ainult üks mitmest tingimusest (loogiline VÕI), siis looge mitu juurdepääsu kontrollreeglit.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>การกระทำ</translation>
+        <translation>Tegevus</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>อนุญาตเข้าถึง</translation>
+        <translation>Luba juurdepääs</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>ปฏิเสธการเข้าถึง</translation>
+        <translation>Keela juurdepääs</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>ถามผู้ใช้ที่อยู่ในระบบเพื่อขออนุญาต</translation>
+        <translation>Küsige sisselogitud kasutajalt luba</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>ไม่มี (ปิดการใช้งานกฏ)</translation>
+        <translation>Puudub (reegel on keelatud)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>ผู้ใช้ที่เข้าถึง</translation>
+        <translation>Kasutajale juurdepääs</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>คอมพิวเตอร์ที่เข้าถึง</translation>
+        <translation>Arvutile juurdepääs</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>ผู้ใช้ท้องที่ (อยู่ในระบบ)</translation>
+        <translation>Kohalik (sisse logitud) kasutaja</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>คอมพิวเตอร์ท้องที่</translation>
+        <translation>Kohalik arvuti</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage reeglit alati ja eirake tingimusi</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
+        <translation>Ükski kasutaja pole sisse loginud</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajal, kellel on juurdepääs, on üks või mitu kohaliku (sisse logitud) kasutajaga ühist rühma</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääs arvutile ja kohalikule arvutile asuvad samas asukohas</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>on asukohas</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääsu reeglite test</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajale juurdepääs:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Kohalik arvuti:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Arvutile juurdepääs:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureeritud reeglistiku testimiseks sisestage järgmine kasutaja ja arvuti teave.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Kohalik kasutaja:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>ผู้ใช้ที่เชื่อมต่ออยู่:</translation>
+        <translation>ühenduses kasutajad</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Antud stsenaariumi korral on juurdepääs lubatud.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Antud stsenaariumi korral on juurdepääs keelatud.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Antud stsenaariumi korral vajab juurdepääs sisseloginud kasutaja luba.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>ข้อผิดพลาด: การกระทำที่ไม่รู้จัก</translation>
+        <translation>Viga: Tundmatu tegevus</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation>ผลการทดสอบ</translation>
+        <translation>Testi tulemus</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Autentimisvõtmed</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Juhend</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>ไดเรกทอรีเก็บไฟล์กุญแจ</translation>
+        <translation>Võtmefailide kataloogid</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Avaliku võtme failibaasi kataloog</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Privaatvõtme failibaasi kataloog</translation>
     </message>
     <message>
         <source>...</source>
@@ -341,220 +343,220 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Saadaval olevad autentimisvõtmed</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>สร้างคู่กุญแจ</translation>
+        <translation>Loo võtmepaar</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>ลบกุญแจ</translation>
+        <translation>Kustuta võti</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>นำเข้ากุญแจ</translation>
+        <translation>Impordi võti</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>ส่งออกกุญแจ</translation>
+        <translation>Ekspordi võti</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Määra juurdepääsugrupp</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>ไฟล์กุญแจ (*.pem)</translation>
+        <translation>Võtmefailid (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Autentimisvõtme nimi</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage kasutajagrupi või rolli nimi, mille jaoks autentimisvõtmepaari luua:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti autentimisvõtme &quot;%1/%2&quot; kustutada?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>โปรดเลือกกุญแจที่จะลบก่อน!</translation>
+        <translation>Valige kustutamiseks võti!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage kasutajagrupi või rolli nimi, mille jaoks autentimisvõtit importida:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>กรุณาเลือกกุญแจที่จะส่งออกก่อน!</translation>
+        <translation>Valige eksportimiseks võti!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Valige võtmerühmale &quot;%1&quot; juurdepääsuks kasutajagrupp:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Valige võti, millele juurdepääsugrupp määrata!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefaili autentimise seadistamiseks toimige järgmiselt:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
+        <translation>1) Looge Masterarvutis võtmepaar.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
+        <translation>2) Määrake juurdepääsugrupp, mille liikmetel peaks olema juurdepääs teistele arvutitele.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
+        <translation>3) Eksportige avalik võti ja importige see kõigisse samanimelistesse klientarvutitesse.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Lisateavet leiate &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administraatori käsiraamatust&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
-กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
-ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
-ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
+        <translation>Autentimisvõtmete paar koosneb kahest ühendatud krüptovõtmest, privaatsest ja avalikust võtmest.
+Privaatvõti võimaldab peaarvuti kasutajatel pääseda juurde klientarvutitele.
+On oluline, et ainult volitatud kasutajatel oleks juurdepääs privaatvõtme failile.
+Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu autentimiseks.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>กรุณาตรวจสอบสิทธิ์อนุญาตของคุณ</translation>
+        <translation>Kontrollige oma õigusi.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>ชื่อไฟล์กุญแจประกอบด้วยตัวอักษรที่ไม่สามารถใช้ได้</translation>
+        <translation>Võtme nimi sisaldab valesid tähemärke!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud on vale võtmetüüp! Palun määrake &quot;%1&quot; või &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud võtit pole olemas! Kõigi installitud võtmete loetlemiseks kasutage käsku &quot;nimekiri&quot;.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Üks või mitu võtmefaili on juba olemas! Kustutage need käsuga &quot;kustuta&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>กำลังสร้างคู่กุญแจใหม่สำหรับ &quot;%1&quot;</translation>
+        <translation>&quot;%1&quot; jaoks uue võtmepaari loomine</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>ล้มเหลวในการสร้างกุญแจสาธารณะหรือส่วนตัว</translation>
+        <translation>Avaliku või privaatse võtme loomine ebaõnnestus!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>คู่กุญแจที่ถูกสร้างขึ้นใหม่ได้บันทึกลงใน &quot;%1&quot; และ &quot;%2&quot;</translation>
+        <translation>Äsja loodud võtmepaar on salvestatud kaustadesse &quot;%1&quot; ja &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>ไม่สามารถลบไฟล์กุญแจ &quot;%1&quot; ได้!</translation>
+        <translation>Võtmefaili &quot;%1&quot; ei saanud eemaldada!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefailide kataloogi &quot;%1&quot; ei saanud eemaldada!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Väljundfaili kataloogi loomine nurjus.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>ไฟล์ &quot;%1&quot; มีอยู่แล้ว</translation>
+        <translation>Fail &quot;%1&quot; on juba olemas</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Faili kirjutamine ebaõnnestus</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Võti &quot;%1/%2&quot; on edukalt eksporditud kausta &quot;%3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Sisendfaili lugemine ei õnnestu.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>Fail &quot;%1&quot; ei sisalda kehtivat privaatvõtit!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>Fail &quot;%1&quot; ei sisalda kehtivat avalikku võtit!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefaili kataloogi loomine nurjus.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefaili &quot;%1&quot; kirjutamine nurjus.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefaili &quot;%1&quot; õiguste seadistamine nurjus!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>Võtme &quot;%1/%2&quot; importimine õnnestus. Volitamata juurdepääsu vältimiseks kontrollige faili &quot;%3&quot; õigusi.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Privaatvõtme avalikuks võtmeks teisendamine nurjus</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Kataloogi loomine privaatvõtme failile &quot;%1&quot; nurjus.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Privaatvõtme salvestamine faili &quot;%1&quot; nurjus!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Privaatvõtme faili &quot;%1&quot; õiguste seadistamine nurjus!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Avaliku võtme faili &quot;%1&quot; kataloogi loomine nurjus.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Faili &quot;%1&quot; avaliku võtme salvestamine ebaõnnestus!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Avaliku võtme faili &quot;%1&quot; lubade seadistamine nurjus!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefaili &quot;%1&quot; omaniku määramine väärtuseks &quot;%2&quot; nurjus.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Võtmefaili &quot;%1&quot; õiguste seadistamine nurjus.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Võtmele &quot;%1&quot; pääseb nüüd kasutajarühm &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -562,697 +564,697 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>ไม่สามารถอ่านไฟล์กุญแจได้</translation>
+        <translation>Võtmefaili lugemine nurjus.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation>สร้างคู่กุญแจยืนยันตัวตนใหม่</translation>
+        <translation>Looge uus autentimisvõtmepaar</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>ลบกุญแจยืนยันตัวตน</translation>
+        <translation>Kustutage autentimisvõti</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Loendage autentimisvõtmed</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Importige avalik või privaatne võti</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Eksportige avalik või privaatne võti</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Eemaldage avalik võti olemasolevast privaatvõtmest</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Määra kasutajagrupp, kellel on juurdepääs võtmele</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>VÕTI</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>JUURDEPÄÄSU GRUPP</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk reguleerib failile juurdepääsuõigused  &lt;KEY&gt; selliseks, et ainult kasutajagrupil &lt;ACCESS GROUP&gt; on sellele lugemisõigus.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NIMI</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAIL</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk ekspordib autentimisvõtme &lt;KEY&gt; võtmeks &lt;FILE&gt;. Kui &lt;FILE&gt; pole täpsustatud, koostatakse nimi nime ja tüübi &lt;KEY&gt; järgi.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk impordib autentimisvõtme &lt;KEY&gt; kohast &lt;FILE&gt;. Kui &lt;FILE&gt;pole täpsustatud, koostatakse nimi nime ja tüübi &lt;KEY&gt; järgi.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk loetleb kõik saadaolevad autentimisvõtmed konfigureeritud võtmete kataloogis. Kui määratakse suvand &quot;%1&quot;, kuvatakse selle asemel võtme üksikasjadega tabel. Mõni detail võib puududa, kui võtmele pole juurdepääsu, nt. lugemisõiguste puudumise tõttu.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TÜÜP</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>PAARI ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Käsurea tugi autentimisvõtmete haldamiseks</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Käsud autentimisvõtmete haldamiseks</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk loob uue autentimisvõtmepaari nimega &lt;NAME&gt; ja salvestab privaatse ja avaliku võtme konfigureeritud võtmete kataloogidesse. Parameeter peab olema võtme nimi, mis võib sisaldada ainult tähti.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk kustutab autentimisvõtme &lt;KEY&gt; konfigureeritud võtmete kataloogist. Pange tähele, et võtit ei saa pärast selle kustutamist taastada.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk eraldab avaliku võtme osa privaatvõtmest &lt;KEY&gt;  ja salvestab selle vastava avaliku võtmena. Teise põhiarvuti seadistamisel piisab seetõttu ainult privaatvõtme edastamisest. Seejärel saab avaliku võtme välja tõmmata.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>ประเภท</translation>
+        <translation>Tüüp</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>กลุ่มการเข้าถึง</translation>
+        <translation>Juurdepääsugrupp</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>Paari ID</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation>คอมพิวเตอร์</translation>
+        <translation>Arvutid</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>โฮสแอดแดรส/IP</translation>
+        <translation>Seadme aadress/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC แอดแดรส</translation>
+        <translation>MAC aadress</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>เพิ่มคอมพิวเตอร์ใหม่</translation>
+        <translation>Lisa arvuti</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>ลบคอมพิวเตอร์ที่เลือก</translation>
+        <translation>Eemalda valitud arvutid</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>คอมพิวเตอร์ใหม่</translation>
+        <translation>Uus arvuti</translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Sisseehitatud kataloog</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>สถานที่และคอมพิวเตอร์</translation>
+        <translation>Asukohad &amp; arvutid</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>สถานที่</translation>
+        <translation>Asukohad</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>เพิ่มสถานที่ใหม่</translation>
+        <translation>Uus asukoht</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>ลบสถานที่ที่เลือก</translation>
+        <translation>Eemalda valitud asukohad</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>CSV-failide importimine on võimalik käsurea liidese kaudu. Lisateavet leiate &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;veebidokumentatsioonist&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation>สถานที่ใหม่</translation>
+        <translation>Uus asukoht</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Näita valitud käsu abi</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Objektide importimine antud failist</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Objektide eksportimine antud faili</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud kehtetu tüüp. Kehtivad väärtused on &quot;%1&quot; või &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>ประเภท</translation>
+        <translation>Tüüp</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>โฮสแอดแดรส</translation>
+        <translation>Seadme aadress</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC แอดแดรส</translation>
+        <translation>MAC aadress</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud objekti ei leia.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
+        <translation>Faili &quot;%1&quot; ei ole!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Ei saa avada faili &quot;%1&quot; lugemiseks!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Tundmatu argument &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti &quot;%1&quot; (IP aadress: &quot;%2&quot; MAC aadress: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Klassifitseerimata objekt &quot;%1&quot; ID-ga &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation>Puudub</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation>คอมพิวเตอร์</translation>
+        <translation>Arvuti</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Juur</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>ไม่ถูกต้อง</translation>
+        <translation>Kehtetu</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>Viga rea %1 lahendamisel.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Võrguobjektide kataloog, mis salvestab objekte kohalikus konfiguratsioonis</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Käsud sisseehitatud võrguobjektide kataloogi haldamiseks</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>Vormingustringi ega regulaaravaldist pole määratud!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Faili &quot;%1&quot; ei saa kirjutamiseks avada!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>Vormingustringi pole määratud!</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objekti UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Vanema UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>เพิ่มสถานที่หรือคอมพิวเตอร์</translation>
+        <translation>Lisage asukoht või arvuti</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>ล้างรายการสถานที่และคอมพิวเตอร์ทั้งหมด</translation>
+        <translation>Kustutage kõik asukohad ja arvutid</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Kõigi või üksikute asukohtade ja arvutite ladustamine</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Vaata kõiki asukohti ja arvuteid</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Eemaldage asukoht või arvuti</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Asukoht &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Sissemised (arvutid ja asukohad kohalikus konfiguratsioonis)</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Asukoht</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAIL</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>ASUKOHT</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>VORMING-STRING-KOHALIKEGA</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>REGULAARAVALDISE-KOHATÄIDE</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Impordib objekte määratud tekstifailist, kasutades antud vormingu stringi või regulaaravaldist, mis sisaldab ühte või mitut kohahoidjat. Kehtivad kohatäited on: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation type="unfinished"/>
+        <translation>Importige lihtne CSV-fail ühte ruumi</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation type="unfinished"/>
+        <translation>Importige CSV-fail, mille esimeses veerus on asukoha nimi</translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Tekstifaili import koos võtme/väärtuse paaridega, kasutades regulaaravaldisi</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation type="unfinished"/>
+        <translation>Importige suvaliselt vormindatud andmeid</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordib objektid määratud tekstifaili, kasutades antud vormingustringi, mis sisaldab ühte või mitut kohahoidjat. Kehtivad kohatäited on: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Eksportige kõik objektid CSV-faili</translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation type="unfinished"/>
+        <translation>Eksportige kõik kindlas asukohas olevad arvutid CSV-faili</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TÜÜP</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NIMI</translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>VANEM</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation type="unfinished"/>
+        <translation>Lisab objekti, kus %1 võib olla üks &quot;%2&quot; või &quot;%3&quot;. %4 saab määrata nime või UUID-i järgi.</translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation>เพิ่มห้อง</translation>
+        <translation>Lisa ruum</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>เพิ่มคอมพิวเตอร์ไปยังห้อง %1</translation>
+        <translation>Lisa arvuti ruumi %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>OBJEKT</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>Eemaldab määratud objekti kataloogist. %1 saab määrata nime või UUID-i järgi. Asukoha eemaldamine eemaldab ka kõik seotud arvutid.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>Eemaldage arvuti nime järgi</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation type="unfinished"/>
+        <translation>Eemaldage objekt UUID järgi</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>&quot;ห้อง 01&quot;</translation>
+        <translation>&quot;Ruum 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation>&quot;คอมพิวเตอร์ 01&quot;</translation>
+        <translation>&quot;Arvuti 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>IP AADRESS</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC AADRESS</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation>เซิฟเวอร์ VNC ในตัว (UltraVNC)</translation>
+        <translation>Sisemine VNC server (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>เซิฟเวอร์ VNC ในตัว (x11vnc)</translation>
+        <translation>Sisemine VNC server (x11vnc)</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Host/IP aadress: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivsed funktsioonid: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>ออนไลน์และเชื่อมต่อแล้ว</translation>
+        <translation>Veebis ja ühendatud</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>กำลังสร้างการเชื่อมต่อ</translation>
+        <translation>Ühenduse loomine</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>คอมพิวเตอร์ออฟไลน์หรือปิดเครื่องอยู่</translation>
+        <translation>Arvuti on võrguühenduseta või välja lülitatud</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>ไม่สามารถเข้าถึงเซอร์วิสได้ หรือไม่ได้ทำงาน</translation>
+        <translation>Teenus pole kättesaadav või ei tööta</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation type="unfinished"/>
+        <translation>Autentimine nurjus või juurdepääs keelati</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>ถูกตัดการเชื่อมต่อ</translation>
+        <translation>Ühendus katkestatud</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
+        <translation>Ükski kasutaja pole sisse loginud</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>ผู้ใช้ที่เข้าสู่ระบบ: %1</translation>
+        <translation>Sisseloginud kasutaja: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>Asukoht: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
+        <translation>%1 Teenus %2 kohas %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>การยืนยันตัวตนผิดพลาด</translation>
+        <translation>Autentimise viga</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>การเข้าถึงระยะไกล</translation>
+        <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot;  pääseb nüüd sellele arvutile ligi.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot; üritas sellele arvutile juurde pääseda, kuid ei suutnud edukalt autentida.</translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääsu viga</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot; üritas sellele arvutile juurde pääseda, kuid on juurdepääsu seadete tõttu blokeeritud.</translation>
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivsed ühendused:</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>ผู้ใช้</translation>
+        <translation>Kasutaja</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>Võrguobjektide kataloogi pistikprogramm puudub</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Vaikevõrguobjektide kataloogi pistikprogrammi ei leitud. Kontrollige installimist või konfigureerige %1 konfiguraatori kaudu mõni muu võrguobjektide kataloogi taustaprogramm.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Asukoha tuvastamine nurjus</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti nimi;Hostinimi;Kasutaja</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Selle arvuti asukohta ei õnnestunud kindlaks teha. See viitab probleemile süsteemi konfiguratsioonis. Kõik asukohad kuvatakse selle asemel arvuti valimise paneelil.</translation>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
     <message>
         <source>Computer management</source>
-        <translation>การจัดการคอมพิวเตอร์</translation>
+        <translation>Arvuti haldus</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation>การค้นหาคอมพิวเตอร์</translation>
+        <translation>Arvuti otsing</translation>
     </message>
     <message>
         <source>Add location</source>
-        <translation>เพิ่มสถานที่</translation>
+        <translation>Lisa asukoht</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>Salvesta arvuti/kasutajate loend</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>Vali väljundfaili nimi</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>ไฟล์ CSV (*.csv)</translation>
+        <translation>CSV failid (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>ไฟล์มีข้อผิดพลาด</translation>
+        <translation>Vigane fail</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Arvutit ja kasutajate loendi %1 kirjutamine nurjus! Kontrollige failidele juurdepääsu õigusi.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake imporditav olemasolev konfiguratsioonifail.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake konfiguratsiooni eksportimiseks kehtiv failinimi.</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake kehtiv võti.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>Määratud võtit pole praeguses konfiguratsioonis olemas!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake kehtiv väärtus.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>Seadistage Veyon käsureal</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Väljundfaili ei saa kirjutada!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Väljundkausta ei saa kirjutada!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratsioonifail pole loetav!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation type="unfinished"/>
+        <translation>Tühi kogu süsteemi hõlmav Veyoni konfiguratsioon</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation type="unfinished"/>
+        <translation>Loetlege kõik konfiguratsioonivõtmed ja väärtused</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation type="unfinished"/>
+        <translation>Impordi konfiguratsioon antud failist</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation type="unfinished"/>
+        <translation>Ekspordi konfiguratsioon antud faili</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>Loe ja väljasta  antud võtme konfiguratsiooni väärtus</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Kirjutage etteantud väärtus antud konfiguratsioonivõtmele</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Tühjendage (eemaldage) antud konfiguratsioonivõti</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Käsud Veyoni konfiguratsiooni haldamiseks</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Uuendage ja salvestage programmi ja pistikprogrammide konfiguratsioon</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 teenuse automaatse käivitamise atribuuti ei saanud muuta.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>%1 serveri tulemüüri konfiguratsiooni ei õnnestunud konfigureerida.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>%1 töötaja tulemüüri konfiguratsiooni ei õnnestunud konfigureerida.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratsiooni ei saa kirjutada. Palun kontrollige oma õigusi!</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>Platvormispetsiifilisi konfiguratsiooniseadeid ei saanud rakendada.</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>สาธิต %1</translation>
+        <translation>%1 Demo</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>เซิฟเวอร์สาธิต</translation>
+        <translation>Demo server</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>Häälestatavad</translation>
     </message>
     <message>
         <source> ms</source>
@@ -1260,15 +1262,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>Võtmekaadri intervall</translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>จำกัดหน่วยความจำ</translation>
+        <translation>Mälupiirang</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation type="unfinished"/>
+        <translation> Lõimtöötluse kasutamine (eksperimentaalne)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1276,319 +1278,319 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>Värskendamise intervall</translation>
     </message>
     <message>
         <source> s</source>
-        <translation>วิ</translation>
+        <translation> s</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Demo töötamise ajal pidurdage pisipiltide värskendusi</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>สาธิตแบบเต็มจอ</translation>
+        <translation>Täisekraaniga demo</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>หยุดการสาธิต</translation>
+        <translation>Peata demo</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>สาธิตแบบมีหน้าต่าง</translation>
+        <translation>Akna demo</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>อธิบายสาธิตด้วยการถ่ายทอดสดจากหน้าจอ</translation>
+        <translation>Andke juhiseid ekraanil edastamise kaudu</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>เซิฟเวอร์สาธิต</translation>
+        <translation>Demo server</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>ในโหมดนี้ หน้าจอของคุณจะถูกแสดงในแบบเต็มจอบนเครื่องคอมพิวเตอร์ทั้งหมดในขณะที่อุปกรณ์นำเข้าของผู้ใช้งานจะถูกล็อกไว้</translation>
+        <translation>Selles režiimis kuvatakse teie ekraani täisekraanirežiimis kõikides arvutites, kui kasutajate sisendseadmed on lukus.</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse teie ekraan aknas kõigis arvutites. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation type="unfinished"/>
+        <translation>Töölaua juurdepääsu dialoog</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation type="unfinished"/>
+        <translation>Kinnitage töölauale juurdepääs</translation>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation type="unfinished"/>
+        <translation>Mitte kunagi selle seansi jaoks</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation type="unfinished"/>
+        <translation>Alati selle sessiooni jaoks</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja %1 arvutis %2 soovib teie töölauale juurde pääseda. Kas soovite lubada juurdepääsu?</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation>โปรแกรมและเว็บไซต์</translation>
+        <translation>Programmid ja veebisaidid</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation>โปรแกรมที่กำหนดไว้</translation>
+        <translation>Eelmääratud programmid</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Rada</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation>เพิ่มโปรแกรมใหม่</translation>
+        <translation>Lisa uus programm</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation>ลบโปรแกรมที่เลือก</translation>
+        <translation>Eemalda valitud programm</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>Eelmääratud veebilehed</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda valitud veebileht</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation>URL aadress</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation>โปรแกรมใหม่</translation>
+        <translation>Uus programm</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>เว็บไซต์ใหม่</translation>
+        <translation>Uus veebileht</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation>สั่งเปิดโปรแกรม</translation>
+        <translation>Programmi käivitamine</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>เปิดเว็บไซต์</translation>
+        <translation>Weebilehe avamine</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>คลิกที่ปุ่มนี้เพื่อเปิดเว็บไซต์ทั้งหมด</translation>
+        <translation>Kõigil arvutitel veebisaidi avamiseks klõpsake seda nuppu.</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage programmid ja teenused kasutaja töölaual</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>คลิกปุ่มนี้เพื่อสั่งเปิดโปรแกรมบนเครื่องคอมพิวเตอร์ทุกเครื่อง</translation>
+        <translation>Programmi käivitamiseks kõigis arvutites klõpsake seda nuppu.</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation>สั่งเปิดโปรแกรม &quot;%1&quot;</translation>
+        <translation>Käivitage programm &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation>โปรแกรมกำหนดเอง</translation>
+        <translation>Kohandatud programm</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>เปิดเว็บไซต์ &quot;%1&quot;</translation>
+        <translation>Avage veebileht &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>เว็บไซต์กำหนดเอง</translation>
+        <translation>Kohandatud veebileht</translation>
     </message>
 </context>
 <context>
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>ครู</translation>
+        <translation>Õpetaja</translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>ห้อง %1</translation>
+        <translation>Ruum %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation>กรุณาทำงานตามที่ได้มอบหมายที่ให้ไว้ภายใน 5 นาทีข้างหน้า</translation>
+        <translation>Palun lõpetage kõik ülesanded järgmise 5 minuti jooksul.</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>เว็บไซต์กำหนดเอง</translation>
+        <translation>Kohandatud veebileht</translation>
     </message>
     <message>
         <source>Open file manager</source>
-        <translation type="unfinished"/>
+        <translation>Avage failihaldur</translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage õppevahend</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation type="unfinished"/>
+        <translation>Esitage õppevideot</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation>โปรแกรมกำหนดเอง</translation>
+        <translation>Kohandatud programm</translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>Jaotusmaterjal</translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Loetavad tekstid</translation>
     </message>
     <message>
         <source>generic-student-user</source>
-        <translation type="unfinished"/>
+        <translation>üldine-õpilane-kasutaja</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>เซิฟเวอร์ VNC ภายนอก</translation>
+        <translation>Väline VNC-server</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>การตั้งค่าเซิฟเวอร์ VNC ภายนอก</translation>
+        <translation>Välise VNC-serveri konfiguratsioon</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation>พอร์ท:</translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>รหัสผ่าน:</translation>
+        <translation>Parool:</translation>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation type="unfinished"/>
+        <translation>Funktsiooni juhtimine</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Faili &quot;%1&quot; ei õnnestunud lugemiseks avada! Palun kontrollige oma õigusi!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>การถ่ายโอนไฟล์</translation>
+        <translation>Faili edastamine</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>ตัวเลือก</translation>
+        <translation>Valikud</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation>ถ่ายโอนไฟล์เท่านั้น</translation>
+        <translation>Edasta vaid</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>ถ่ายโอนและเปิดไฟล์ด้วยโปรแกรมที่เกี่ยวข้อง</translation>
+        <translation>Faili(de) edastamine ja avamine seotud programmiga</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation>ถ่ายโอนและเปิดโฟลเดอร์ที่เก็บปลายทาง</translation>
+        <translation>Sihtkausta teisaldamine ja avamine</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>ไฟล์</translation>
+        <translation>Failid</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>เริ่ม</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation>บันทึกทับไฟล์ที่มีอยู่แล้ว</translation>
+        <translation>Kirjutage olemasolevad failid üle</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation>การถ่ายโอนไฟล์</translation>
+        <translation>Faili edastamine</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>คลิกที่ปุ่มนี้เพื่อถ่ายโอนไฟล์ในคอมพิวเตอร์ของคุณไปยังคอมพิวเตอร์ทุกเครื่อง</translation>
+        <translation>Klõpsake seda nuppu, et faile arvutist kõikidesse arvutitesse edastada.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>เลือกไฟล์อย่างน้อยหนึ่งไฟล์เพื่อนำไปถ่ายโอน</translation>
+        <translation>Valige üks või mitu edastatavat faili</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation>ส่งไฟล์ไปยังคอมพิวเตอร์ระยะไกล</translation>
+        <translation>Failide edastamine kaugarvutisse</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation>ได้รับไฟล์ &quot;%1&quot;</translation>
+        <translation>Vastuvõetud fail &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Faili &quot;%1&quot; ei saanud vastu võtta, kuna see on juba olemas.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Faili &quot;%1&quot; ei saanud vastu võtta, kuna seda ei saanud kirjutamiseks avada!</translation>
     </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>ส่วนติดต่อผู้ใช้</translation>
+        <translation>Kasutajaliides</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>ภาษา:</translation>
+        <translation>Keel:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>ใช้การตั้งค่าภาษาตามระบบ</translation>
+        <translation>Kasutage süsteemi keele seadistust</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1596,11 +1598,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Logimine</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"/>
+        <translation>Logifailide kataloog</translation>
     </message>
     <message>
         <source>...</source>
@@ -1608,79 +1610,79 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Log level</source>
-        <translation type="unfinished"/>
+        <translation>Logi tase</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>ไม่มี</translation>
+        <translation>Ei midagi</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation type="unfinished"/>
+        <translation>Ainult kriitilised sõnumid</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation type="unfinished"/>
+        <translation>Vead ja kriitilised teated</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation type="unfinished"/>
+        <translation>Hoiatused ja vead</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation type="unfinished"/>
+        <translation>Teave, hoiatused ja vead</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation type="unfinished"/>
+        <translation>Siluge sõnumeid ja kõike muud</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation type="unfinished"/>
+        <translation>Logi faili suuruse piirang</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation type="unfinished"/>
+        <translation>Kustutage kõik logifailid</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation type="unfinished"/>
+        <translation>Logige standardvea väljundisse</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Võrguobjektide kataloog</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Taustaprogramm:</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <translation>Värskenduse sagedus:</translation>
     </message>
     <message>
         <source>%1 service</source>
-        <translation type="unfinished"/>
+        <translation>%1 teenus</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Logifailide eemaldamiseks tuleb teenus %1 ajutiselt peatada. Kas jätkata?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation type="unfinished"/>
+        <translation>Logifailid on kustutatud</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Kõik logifailid kustutati edukalt.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Viga</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation type="unfinished"/>
+        <translation>Kõiki logifaile ei saanud eemaldada.</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1688,7 +1690,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>Rotate log files</translation>
     </message>
     <message>
         <source>x</source>
@@ -1696,457 +1698,462 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> seconds</source>
-        <translation>วินาที</translation>
+        <translation>sekundit</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>Kirjutage operatsioonisüsteemi logimissüsteemi</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>การยืนยันตัวตน</translation>
+        <translation>Autentimine</translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation>วิธีการ:</translation>
+        <translation>Meetod:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
+        <translation>Sisselogimise autentimine</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
+        <translation>Võtmefaili autentimine</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>ทดสอบ</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนถูกติดตั้งบนคอมพิวเตอร์ได้อย่างถูกต้องแล้ว</translation>
+        <translation>Autentimine on selles arvutis õigesti seadistatud.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนยังไม่ได้รับถูกติดตั้งบนคอมพิวเตอร์อย่างถูกต้อง</translation>
+        <translation>Autentimisvõtmed pole selles arvutis õigesti seadistatud.</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>การทดสอบการยืนยันตัวตน</translation>
+        <translation>Autentimiskatse</translation>
     </message>
 </context>
 <context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>Sirvige LDAP-d</translation>
     </message>
 </context>
 <context>
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-tõrke kirjeldus: %1</translation>
     </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>การตั้งค่าพื้นฐาน</translation>
+        <translation>Üldised seaded</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation>Üldine</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation type="unfinished"/>
+        <translation>LDAP server ja port</translation>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation type="unfinished"/>
+        <translation>Siduv DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation type="unfinished"/>
+        <translation>Siduge parool</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished"/>
+        <translation>Anonüümne side</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage sidumismandaate</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"/>
+        <translation>Baas DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation type="unfinished"/>
+        <translation>Fikseeritud baas DN</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>เช่น dc=example,dc=org</translation>
+        <translation>näit. dc=näide,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
+        <translation>Avastage baasi DN, nimetades konteksti</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
+        <translation>näit. namingContexts või defaultNamingContext</translation>
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>Keskkonna seaded</translation>
     </message>
     <message>
         <source>Object trees</source>
-        <translation type="unfinished"/>
+        <translation>Objektipuud</translation>
     </message>
     <message>
         <source>Computer tree</source>
-        <translation type="unfinished"/>
+        <translation>Arvutipuu</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation type="unfinished"/>
+        <translation>näit. OU=Grupid</translation>
     </message>
     <message>
         <source>User tree</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajapuu</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>เช่น OU=Users</translation>
+        <translation>näit. OU=kasutajad</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>เช่น OU=Computers</translation>
+        <translation>näit. OU=arvutid</translation>
     </message>
     <message>
         <source>Group tree</source>
-        <translation type="unfinished"/>
+        <translation>Grupipuu</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation type="unfinished"/>
+        <translation>Tehke rekursiivsed otsinguoperatsioonid objektipuudes</translation>
     </message>
     <message>
         <source>Object attributes</source>
-        <translation type="unfinished"/>
+        <translation>Objekti atribuudid</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation type="unfinished"/>
+        <translation>näit. riistvara aadress</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"/>
+        <translation>näit. liige või liikmeUiD</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation type="unfinished"/>
+        <translation>näit. dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti MAC-aadressi atribuut</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>Grupi liikme atribuut</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"/>
+        <translation>näit. uid või sAMAccountName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>การตั้งค่าขั้นสูง</translation>
+        <translation>Täpsemad seaded</translation>
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation type="unfinished"/>
+        <translation>Valikulised objektifiltrid</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation type="unfinished"/>
+        <translation>Filter kasutajagruppide jaoks</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajatele mõeldud filter</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Filter arvutigruppide jaoks</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation type="unfinished"/>
+        <translation>Grupi liikme identifitseerimine</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"/>
+        <translation>Eraldatud nimi (Samba/AD)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation type="unfinished"/>
+        <translation>Loetlege kõik kasutaja grupid</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Loetlege kõik arvuti grupid</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation type="unfinished"/>
+        <translation>Hankige arvutiobjekt IP-aadressi järgi</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-ühendus ebaõnnestus</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-sidumine nurjus</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-sidumine õnnestus</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-serveriga ühenduse loomine ja LDAP-sidumine. LDAP põhiseaded on õigesti konfigureeritud.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>การทดสอบ LDAP base DN ล้มเหลว</translation>
+        <translation>LDAP baasi DN test ebaõnnestus</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>การทดสอบ LDAP base DN สำเร็จลุล่วง</translation>
+        <translation>LDAP baasi DN test õnnestus</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-i nimetamise kontekstitest ebaõnnestus</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-i nimetamise kontekstitest õnnestus</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-i nimetamise kontekst on edukalt päritud. Leiti järgmine alus DN:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
-        <translation type="unfinished"/>
+        <translation>kasutajapuu</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation type="unfinished"/>
+        <translation>grupipuu</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation type="unfinished"/>
+        <translation>arvutipuu</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>ใส่ชื่อผู้ใช้</translation>
+        <translation>Sisestage kasutajanimi</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage päringuks kasutajanimi (lubatud on metamärgid):</translation>
     </message>
     <message>
         <source>user objects</source>
-        <translation type="unfinished"/>
+        <translation>kasutaja objektid</translation>
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage grupi nimi</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage grupi nimi, mille liikmed päringuid teevad:</translation>
     </message>
     <message>
         <source>group members</source>
-        <translation>สมาชิกกลุ่ม</translation>
+        <translation>grupi liikmed</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>ไม่พบกลุ่ม</translation>
+        <translation>Gruppi ei leidnud</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Gruppi nimega &quot;%1&quot; ei leitud. Kontrollige grupi nime või grupipuu parameetrit.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti nimi</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation type="unfinished"/>
+        <translation>arvuti objektid</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti DN</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage selle arvuti DN, mille MAC-aadress päringuks:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>arvuti MAC-aadressid</translation>
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>kasutajad</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>kasutaja grupid</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>arvuti grupid</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage sisselogimiseks kasutajanimi, kelle grupi liikmesused päringu esitamiseks:</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation type="unfinished"/>
+        <translation>kasutaja grupid</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation>ไม่พบผู้ใช้</translation>
+        <translation>Kasutajat ei leidnud</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>arvuti grupid</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation type="unfinished"/>
+        <translation>Arvutit ei leidnud</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti IP aadress</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti IP-aadress arvutiobjekti lahendamiseks:</translation>
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>arvutid</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>การทดสอบ LDAP %1 ล้มเหลว</translation>
+        <translation>LDAP %1 test ebaõnnestus</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>การทดสอบ LDAP %1 สำเร็จลุล่วง</translation>
+        <translation>LDAP %1 test õnnestus</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>%1 on edukalt päritud ja leitud %2 kirjet.</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 on edukalt päritud:
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-filtri test ebaõnnestus</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureeritud filtrit kasutades ei saa üheltki %1 päringut teha. Palun kontrollige, kas LDAP-filtris pole %1.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-filtri test õnnestus</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 on konfigureeritud filtri abil edukalt päritud.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(ainult siis, kui see erineb grupipuust)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti grupipuu</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>arvuti grupipuu</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>Filter arvutite jaoks</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>näit. ruum või computerLab</translation>
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>Integratsioonitestid</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Arvutigrupid</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation type="unfinished"/>
+        <translation>näit. nimi või kirjeldus</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Filter arvutikonteinerite jaoks</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Arvutikonteinerid või OU-d</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Ühenduse turvalisus</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS-sertifikaadi kontroll</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Süsteemi vaikesätted</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>ไม่เลย (ไม่ปลอดภัย!)</translation>
+        <translation>Mitte kunagi (ebakindel!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Kohandatud CA-sertifikaadi fail</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation>Puudub</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2158,351 +2165,365 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation>เช่น (objectClass=computer)</translation>
+        <translation>näit. (objectClass=arvuti)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>เช่น (objectClass=group)</translation>
+        <translation>näit. (objectClass=grupp)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>เช่น (objectClass=person)</translation>
+        <translation>näit. (objectClass=isik)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>เช่น (objectClass=room) หรือ (objectClass=computerLab)</translation>
+        <translation>näit. (objectClass=ruum) või (objectClass=arvuti)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>เช่น (objectClass=container) หรือ (objectClass=organizationalUnit)</translation>
+        <translation>näit. (objectClass=container) or (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureeritud baasi DN-i ei saanud pärida. Kontrollige põhiparameetrit DN.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-i baasi DN-i kohta on edukalt päringuid tehtud. Leiti järgmised kirjed:
+
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Põhi-DN-i ei saanud päringukontekstide kaudu pärida. Palun kontrollige nimetamise konteksti atribuudi parameetrit.
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaadifailid (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-serveriga ei saanud ühendust luua. Palun kontrollige serveri parameetreid.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-serveriga ei saanud siduda. Kontrollige serveri parameetreid ja siduge mandaadid.
+
+%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Krüptimisprotokoll</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti asukoha atribuut</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti kuvanime atribuut</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Asukoha nime atribuut</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>näit. cn või displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>Asukoha nime atribuut</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
+        <translation>Tehke kindlaks arvuti asukohad (nt ruumid):</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Asukoha atribuut arvutiobjektides</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>Loetlege kõik asukoha kirjed</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation>แสดงรายชื่อสถานที่ทั้งหมด</translation>
+        <translation>Loetlege kõik asukohad</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti kuvatav nimi</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti kuvatav nimi</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti asukoha nimi</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>กรุณากรอกชื่อของสถานที่ของคอมพิวเตอร์ (อนุญาตใช้อักขระแทนได้ เช่น ดอกจัน):</translation>
+        <translation>Sisestage arvuti asukoha nimi (metamärgid on lubatud):</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>arvuti asukohad</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage asukoha nimi</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage asukoha nimi, mille sisestuste kohta päringu teha:</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation type="unfinished"/>
+        <translation>asukohtade kirjed</translation>
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation>การทดสอบ LDAP ล้มเหลว</translation>
+        <translation>LDAP-test ebaõnnestus</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1. päringu esitamine nurjus. Kontrollige parameetre(id) %2 päringu esitamine nurjus. Kontrollige parameetreid
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>ning</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation>การทดสอบ LDAP สำเร็จลุล่วง</translation>
+        <translation>LDAP-test õnnestus</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureeritud %1. kirjeid ei saa pärida. Kontrollige parameetrit &quot;%2&quot;.
+
+%3</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Sirvi</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>ทดสอบ</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Hosti nimed, mis on salvestatud täielikult kvalifitseeritud domeeninimedena (FQDN, nt myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti hosti nime atribuut</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage päringuks arvuti hostinimi:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>Tundmatu hosti nimi</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureerisite arvuti hostinimed salvestamiseks täielikult kvalifitseeritud domeeninimedena (FQDN), kuid sisestasite hostinime ilma domeenita.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureerisite arvuti hostinimed salvestamiseks lihtsate hostinimedena ilma domeeninimeta, kuid sisestasite hostinime koos domeeninime osaga.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajat nimega &quot;%1&quot; ei leitud. Kontrollige kasutajanime või kasutajapuu parameetrit.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage hosti nimi</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage arvuti hostinimi, mille rühma liikmesused päringu esitamiseks:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Ei leitud arvutit hostinimega &quot;%1&quot;. Kontrollige hostinime või arvutipuu parameetrit.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>Hostinime otsimine nurjus</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>IP-aadressi %1 hostinime otsimine nurjus. Palun kontrollige oma DNS-serveri seadeid.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja sisselogimise nime atribuut</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Konfigureeritud atribuut kasutaja sisselogimisnimele või arvuti hostinimele (OpenLDAP)</translation>
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>arvutikonteinerid</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"/>
+        <translation>Alam-DN automaatne konfigureerimine nimekonteksti kaudu</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>Objektide pärimine LDAP-kataloogist</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Näita abi käsu kohta</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
+        <translation>Käsud LDAP/AD integreerimise konfigureerimiseks ja testimiseks</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Põhiline LDAP/AD tugi Veyonile</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (laadige arvutid ja asukohad LDAP/AD-st)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (laadige kasutajad ja grupid LDAP/AD-st)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake kehtiv LDAP-URL järgides skeemi &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Nimetamise konteksti atribuudi nime pole antud - langeb tagasi konfigureeritud väärtuse juurde.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>DN-i päringu esitamine nurjus. Palun kontrollige oma LDAP konfiguratsiooni.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>%1 konfigureerimine baas-DN-ks ja kontekstipäringute nimetamise keelamine.</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja autentimiseks kohandatud PAM-teenus</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>การยืนยันตัวตนผู้ใช้</translation>
+        <translation>Kasutaja autentimine</translation>
     </message>
     <message>
         <source>Session management</source>
-        <translation type="unfinished"/>
+        <translation>Sessiooni haldus</translation>
     </message>
     <message>
         <source>Display manager users</source>
-        <translation type="unfinished"/>
+        <translation>Kuvahalduri kasutajad</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin, mis rakendab abstraktseid funktsioone Linuxi platvormile</translation>
     </message>
 </context>
 <context>
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation>เลือกสถานที่</translation>
+        <translation>Vali asukoht</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>sisesta otsingufilter ...</translation>
     </message>
 </context>
 <context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratsioon</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Keelake tööriistavihjed</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>แสดงไอคอนเท่านั้น</translation>
+        <translation>Kuva ainult ikoone</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation type="unfinished"/>
+        <translation>PeaAken</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>Tööriistariba</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation>Üldine</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>ไ&amp;ฟล์ </translation>
+        <translation>&amp;Fail</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>วิ&amp;ธีใช้</translation>
+        <translation>&amp;Abi</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;ออก</translation>
+        <translation>&amp;Välju</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2514,7 +2535,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>โ&amp;หลดการตั้งค่าจากไฟล์</translation>
+        <translation>L&amp;oe seaded failist</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -2522,162 +2543,162 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>About Qt</source>
-        <translation>เกี่ยวกับ Qt</translation>
+        <translation>Qt kohta</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation type="unfinished"/>
+        <translation>Autentimine on võimatu</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratsiooni ei saa kirjutada</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>โหลดการตั้งค่าจากไฟล์</translation>
+        <translation>Loe seaded failist</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>บันทึกการตั้งค่าลงในไฟล์</translation>
+        <translation>Salvesta seaded faili</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation type="unfinished"/>
+        <translation>Salvestamata seaded</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Seal on salvestamata seadeid. Kas ikkagi lõpetada?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
+        <translation>Veyoni konfiguraator</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Teenus</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Master</translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääsu juhtimine</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>เกี่ยวกับ Veyon</translation>
+        <translation>Programmist Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation>Programmist</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation type="unfinished"/>
+        <translation>%1  Konfiguraator %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>ไฟล์ JSON (*.json)</translation>
+        <translation>JSON failid (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Kohaliku konfiguratsiooni taustaprogramm teatas, et konfiguratsiooni ei saa kirjutada! Palun käivitage %1 konfiguraator suuremate õigustega.</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
+        <translation>Autentimisvõtme faile ei leitud või teie praegused on aegunud. Looge %1 Konfiguraatori abil uued võtmefailid. Teise võimalusena seadistage sisselogimise autentimine %1 Konfiguraatori abil. Vastasel juhul ei pääse te arvutitele juurde, kasutades %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>การเข้าถึงถูกปฏิเสธ</translation>
+        <translation>Juurdepääs keelatud</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Kohaliku konfiguratsiooni kohaselt pole teil lubatud võrgus olevatele arvutitele juurde pääseda. Logige sisse teise kontoga või laske oma süsteemiadministraatoril kohalikku konfiguratsiooni kontrollida.</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>ภาพถ่ายหน้าจอ</translation>
+        <translation>Ekraanipildid</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>Funktsioon on aktiivne</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>ฟีเจอร์ &quot;%1&quot; ยังถูกในระหว่างการใช้งานอยู่ กรุณาหยุดการใช้งานก่อนปิด %2</translation>
+        <translation>Funktsioon &quot;%1&quot; on endiselt aktiivne. Enne %2 sulgemist peatage see.</translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Lähtesta konfiguratsioon</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti lähtestada kohaliku konfiguratsiooni ja taastada kõigi seadete vaikeväärtused?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Otsige kasutajaid ja arvuteid</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
+        <translation>Reguleerige optimaalset suurust</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Joondage arvutid</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation type="unfinished"/>
+        <translation>%1 Konfiguraator</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation>สิทธิไม่เพียงพอ</translation>
+        <translation>Ebapiisavad privileegid</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Ei saanud alustada administraatoriõigustega. Veenduge, et teie töölaua keskkonda oleks installitud sudo-laadne programm! Programmi käivitatakse tavaliste kasutajaõigustega.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation>แสดงเฉพาะคอมพิวเตอร์ที่เปิดอยู่เท่านั้น</translation>
+        <translation>Näita ainult töötavaid arvuteid</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Salvesta seaded faili</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;มุมมอง</translation>
+        <translation>&amp;Vaade</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>&amp;มาตรฐาน</translation>
+        <translation>&amp;Standard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>&amp;ขั้นสูง</translation>
+        <translation>&amp;Edasijõudnud</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation>ใช้การจัดเรียงคอมพิวเตอร์แบบกำหนดเอง</translation>
+        <translation>Kasutage kohandatud arvutikorraldust</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>สถานที่ &amp;&amp; คอมพิวเตอร์</translation>
+        <translation>Asukohad &amp;&amp; arvutid</translation>
     </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Kataloogid</translation>
     </message>
     <message>
         <source>...</source>
@@ -2685,27 +2706,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja konfiguratsioon</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Funktsioon arvutis topeltklõpsake:</translation>
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Funktsioonid</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Kõik funktsioonid</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Keelatud funktsioonid</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>ภาพถ่ายหน้าจอ</translation>
+        <translation>Ekraanipildid</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2713,39 +2734,39 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>การตั้งค่าพื้นฐาน</translation>
+        <translation>Üldised seaded</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Käitumine</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>Valitud režiimi rakendamine klientarvutite jaoks</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation>ซ่อนคอมพิวเตอร์ท้องที่</translation>
+        <translation>Peida kohalik arvuti</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>Peida arvuti filtri väli</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>การกระทำอย่างเช่นการสั่งบู๊ตเครื่องใหม่ หรือการสั่งปิดคอมพิวเตอร์</translation>
+        <translation>Sellised toimingud nagu arvutite taaskäivitamine või toide</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>ส่วนติดต่อผู้ใช้</translation>
+        <translation>Kasutajaliides</translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation>สีพื้นหลัง</translation>
+        <translation>Taustavärv</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>Pisipiltide uuendamise sagedus</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2753,333 +2774,334 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Käivita programm</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Režiimid ja funktsioonid</translation>
     </message>
     <message>
         <source>User and computer name</source>
-        <translation>ผู้ใช้และชื่อคอมพิวเตอร์</translation>
+        <translation>Kasutaja ja arvuti nimi</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>เฉพาะชื่อผู้ใช้</translation>
+        <translation>Vaid kasutaja nimi</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation>เฉพาะชื่อคอมพิวเตอร์</translation>
+        <translation>Vaid arvuti nimi</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti pisipiltide pealdis</translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>สีของข้อความ</translation>
+        <translation>Teksti värv</translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation>การจัดเรียงลำดับ</translation>
+        <translation>Järjestamine</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>คอมพิวเตอร์และชื่อผู้ใช้</translation>
+        <translation>Arvuti ja kasutajanimi</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation>สถานที่ของคอมพิวเตอร์</translation>
+        <translation>Arvuti asukoht</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation>แสดงสถานที่ปัจจุบันเท่านั้น</translation>
+        <translation>Kuva ainult praegune asukoht</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>Luba peidetud asukohtade käsitsi lisamine</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation>ซ่อนสถานที่ว่างเปล่า</translation>
+        <translation>Peida tühjad asukohad</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>Kuva potentsiaalselt ohtlike toimingute kinnitusdialoog</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation type="unfinished"/>
+        <translation>Tehke juurdepääsu kontroll</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>Valige praegune asukoht automaatselt</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
+        <translation>Reguleerige arvuti pisipildi suurust automaatselt</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>Avage arvuti valimispaneel automaatselt</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>สังเกตการณ์</translation>
+        <translation>Jälgimine</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Sisemine jälgimisrežiim</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>See režiim võimaldab teil jälgida kõiki arvuteid ühes või mitmes kohas.</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>สถานที่/คอมพิวเตอร์</translation>
+        <translation>Asukohad/Arvutid</translation>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>เปิดเว็บไซต์</translation>
+        <translation>Weebilehe avamine</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation>เช่น Veyon</translation>
+        <translation>näit. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>จำไว้และเพิ่มไปยังเมนูเว็บไซต์</translation>
+        <translation>Pidage meeles ja lisage veebisaidi menüüsse</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation>เช่น www.veyon.io</translation>
+        <translation>näit. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>กรุณากรอก URL ของเว็บไซต์ที่ต้องการเปิด:</translation>
+        <translation>Avamiseks sisestage palun veebisaidi URL:</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>ชื่อ:</translation>
+        <translation>Nimi:</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>ชื่อผู้ใช้</translation>
+        <translation>Kasutajanimi</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>รหัสผ่าน</translation>
+        <translation>Parool</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyoni sisselogimine</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>การยืนยันตัวตนผิดพลาด</translation>
+        <translation>Autentimise viga</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>Sisselogimine nurjus antud kasutajanime ja parooliga. Palun proovi uuesti!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Arvutitele juurdepääsu saamiseks sisestage oma kasutajanimi ja parool.</translation>
     </message>
 </context>
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>เปิดเครื่อง</translation>
+        <translation>Lülita sisse</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>คลิกที่นี่เพื่อเปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่ต้องเดินไปเปิดเครื่องทีละเครื่อง</translation>
+        <translation>Kõigi arvutite sisselülitamiseks klõpsake seda nuppu. Nii ei pea te igat arvutit käsitsi sisse lülitama.</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation>รีบู๊ต</translation>
+        <translation>Taaskäivitamine</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>คลิกปุ่มนี้ เพื่อทำการรีบู๊ตคอมพิวเตอร์ทุกเครื่อง</translation>
+        <translation>Kõigi arvutite taaskäivitamiseks klõpsake seda nuppu.</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation>ปิดเครื่อง</translation>
+        <translation>Lülita välja</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>คลิกที่ปุ่มนี้เพื่อทำการสั่งปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่จำเป็นต้องเดินไปปิดคอมพิวเตอร์ด้วยตัวเองทีละเครื่อง</translation>
+        <translation>Kõigi arvutite väljalülitamiseks klõpsake seda nuppu. Nii ei pea te iga arvutit käsitsi välja lülitama.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>เปิด/ปิดเครื่อง หรือรีสตาร์ทคอมพิวเตอร์ใหม่</translation>
+        <translation>Lülitage arvuti sisse/välja või taaskäivitage</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>ยืนยันการรีบู๊ต</translation>
+        <translation>Kinnitage taaskäivitamine</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>ยืนยันการปิดเครื่อง</translation>
+        <translation>Kinnitage väljalülitamine</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti valitud arvutid taaskäivitada?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation>คุณต้องการที่จะสั่งปิดเครื่องคอมพิวเตอร์ที่เลือกไว้หรือไม่?</translation>
+        <translation>Kas soovite tõesti valitud arvutid välja lülitada?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>เปิดเครื่องคอมพิวเตอร์โดยใช้ Wake-on-LAN (WOL)</translation>
+        <translation>Lülitage arvuti sisse Wake-on-LAN (WOL) kaudu</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC AADRESS</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>See käsk edastab võrgus Wake-on-LAN (WOL) paketi, et antud MAC-aadressiga arvuti sisse lülitada.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Määratud on kehtetu MAC-aadress!</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
+        <translation>Käsud arvutite toiteoleku kontrollimiseks</translation>
     </message>
     <message>
         <source>Power down now</source>
-        <translation>ปิดเครื่องตอนนี้</translation>
+        <translation>Lülita kohe välja</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>ติดตั้งอัปเดตแล้วปิดเครื่อง</translation>
+        <translation>Uuenda ja lülita välja</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>ปิดเครื่องหลังจากการยืนยันของผู้ใช้</translation>
+        <translation>Lülita välja kasutaja nõustumisel</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>ปิดเครื่องหลังจากหมดเวลา</translation>
+        <translation>Lülita välja aja möödumisel</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti paluti eemalt välja lülitada. Kas soovite arvuti kohe välja lülitada?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation>คอมพิวเตอร์จะปิดลงใน %1 นาที %2 วินาที
-กรุณาบันทึกงานให้เรียบร้อยแล้วปิดโปรแกรมทุกโปรแกรม</translation>
+        <translation>Arvuti lülitatakse välja %1 minuti, %2 sekundi pärast.
+
+Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
 </context>
 <context>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>ปิดเครื่อง</translation>
+        <translation>Lülita välja</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Määrake valitud arvutite väljalülitamise aeg:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>นาที</translation>
+        <translation>minutit</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>วินาที</translation>
+        <translation>sekundit</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>มองระยะไกล</translation>
+        <translation>Kaugvaade</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>เปิดการดูจากระยะไกลโดยไม่ต้องมีการควบคุมอะไร</translation>
+        <translation>Avage arvuti kaugvaade ilma suhtlemiseta.</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>ควบคุมระยะไกล</translation>
+        <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Avage arvuti kaughalduse aken.</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>การเข้าถึงระยะไกล</translation>
+        <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>ดูจากระยะไกลหรือเข้าควบคุมคอมพิวเตอร์</translation>
+        <translation>Kaugvaatamine või arvuti kaughaldus</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>Palun sisestage juurdepääsuks arvuti hostinimi või IP-aadress:</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Näita abi käsu kohta</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Kaugjuurdepääs</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>ดูเท่านั้น</translation>
+        <translation>Ainult vaade</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>ควบคุมระยะไกล</translation>
+        <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation>ส่งคีย์ลัด</translation>
+        <translation>Saada otsetee</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>เต็มหน้าจอ</translation>
+        <translation>Täisekraan</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>หน้าต่าง</translation>
+        <translation>Aken</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3107,7 +3129,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Menu</source>
-        <translation>เมนู</translation>
+        <translation>Menüü</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
@@ -3115,666 +3137,667 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>กำลังเชื่อมต่อ %1</translation>
+        <translation>Ühendamine %1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>เชื่อมต่อแล้ว</translation>
+        <translation>Ühendatud</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation>Ekraanipilt</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>ออก</translation>
+        <translation>Välju</translation>
     </message>
 </context>
 <context>
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage palun valitud arvutis (arvutites) käivitamiseks programmid või käsud. Eraldage programmid/ käskud uutel ridadel.</translation>
     </message>
     <message>
         <source>Run programs</source>
-        <translation>สั่งเปิดโปรแกรม</translation>
+        <translation>Käivita programmid</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>เช่น &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation>näit. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>ชื่อ:</translation>
+        <translation>Nimi:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
-        <translation>จำไว้และเพิ่มไปยังเมนูโปรแกรม</translation>
+        <translation>Pea meeles ja lisa programmi menüüsse</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>เช่น VLC</translation>
+        <translation>näit. VLC</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>ล็อก</translation>
+        <translation>Lukusta</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>ปลดล็อก</translation>
+        <translation>Ava</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation>ล็อกหน้าจอและอุปกรณ์นำเข้าของคอมพิวเตอร์</translation>
+        <translation>Lukusta arvuti ekraan ja sisendseadmed</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>เพื่อที่จะดึงความสนใจจากผู้ใช้ทั้งหมดให้กลับมา คุณสามารถล็อกคอมพิวเตอร์ของเขาโดยใช้ปุ่มนี้ ในโหมดนี้ อุปกรณ์ประเภทนำเข้าข้อมูล เช่น เมาส์ คีย์บอร์ด จะถูกล็อกและหน้าจอจะดับลง</translation>
+        <translation>Kasutaja tähelepanu äratamiseks võite selle nupu abil tema arvutid lukustada. Selles režiimis on kõik sisendseadmed lukustatud ja ekraanid mustad.</translation>
     </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>ไม่รู้จัก</translation>
+        <translation>tundmatu</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"/>
+        <translation>Ekraanipilti ei õnnestunud teha, kuna kataloogi %1 pole olemas ja seda ei saa luua.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation>Ekraanipilt</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Ekraanipilti faili %1 ei saanud kirjutamiseks avada.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation>Ekraanipilt</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>ใช้ฟังก์ชั่นนี้เพื่อเก็บภาพหน้าจอจากคอมพิวเตอร์ที่เลือกไว้</translation>
+        <translation>Selle funktsiooni abil saate valitud arvutitest ekraanipildi teha.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>ถ่ายภาพหน้าจอแล้ว</translation>
+        <translation>Ekraanipilt on tehtud</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>%1 arvuti ekraanipilt on edukalt tehtud.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>Tehke arvutitest ekraanipilte ja salvestage need lokaalselt.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>Kõik teie tehtud ekraanipildid on loetletud siin. Ekraanipilte saate teha, klõpsates arvuti kontekstimenüüs üksusel „Ekraanipilt”. Ekraanipilte saab hallata allolevate nuppude abil.</translation>
     </message>
     <message>
         <source>User:</source>
-        <translation>ผู้ใช้:</translation>
+        <translation>Kasutaja:</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>คอมพิวเตอร์:</translation>
+        <translation>Arvuti:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>วันที่:</translation>
+        <translation>Kuupäev:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>เวลา:</translation>
+        <translation>Kellaaeg:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>แสดง</translation>
+        <translation>Näita</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>ลบ</translation>
+        <translation>Kustuta</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation>Üldine</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>เริ่มอัตโนมัติ</translation>
+        <translation>Autostart</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Peida salveikoon</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>เริ่ม service</translation>
+        <translation>Käivita teenus</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>หยุดแล้ว</translation>
+        <translation>Peatatud</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>หยุด service</translation>
+        <translation>Peata teenus</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation type="unfinished"/>
+        <translation>Seisund:</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>เครือข่าย</translation>
+        <translation>Võrk</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation type="unfinished"/>
+        <translation>Demo serveri port</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
+        <translation>Luba tulemüüri erisused</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>อนุญาตการเชื่อมต่อจาก localhost เท่านั้น</translation>
+        <translation>Luba ühendused ainult localhostilt</translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation>พอร์ตของเซิฟเวอร์ VNC ภายใน</translation>
+        <translation>Sisemise VNC serveri port</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>เซิฟเวอร์ VNC</translation>
+        <translation>VNC server</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation>ปลั๊กอิน:</translation>
+        <translation>Pistikprogramm:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>เริ่มต้นเซอร์วิส %1 ใหม่</translation>
+        <translation>Taaskäivita %1 teenus</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Kõik seaded salvestati edukalt. Jõustumiseks tuleb %1 teenus taaskäivitada. Kas taaskäivitada see kohe?</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation>กำลังทำงาน</translation>
+        <translation>Käib</translation>
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation type="unfinished"/>
+        <translation>Funktsioonihalduri port</translation>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation type="unfinished"/>
+        <translation>Esmane teenuse port</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Selle suvandi lubamine käivitab teenuse serveriprotsessi iga arvuti interaktiivse seansi jaoks.
+Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
+        <translation>Kuva teated kaugühenduse korral</translation>
     </message>
     <message>
         <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation type="unfinished"/>
+        <translation>Mitme seansi režiim (terminali ja kaugtöölaua serverite jaoks)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
+        <translation>Kuva teade, kui volitamata juurdepääs on blokeeritud</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation>กำลังเริ่มเซอร์วิส %1</translation>
+        <translation>Käivita teenus %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation>กำลังหยุดเซอร์วิส %1</translation>
+        <translation>Teenuse peatamine %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation>กำลังลงทะเบียนเซอร์วิส %1</translation>
+        <translation>Teenuse registreerimine %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation>กำลังถอนการลงทะเบียนเซอร์วิส %1</translation>
+        <translation>Teenuse registreerimise tühistamine %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation>การควบคุมเซอร์วิส</translation>
+        <translation>Teenuse kontroll</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation>เซอร์วิสกำลังทำงาน</translation>
+        <translation>Teenus töötab</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>เซอร์วิสไม่ได้ทำงาน</translation>
+        <translation>Teenus on peatatud</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>ตั้งค่าและควบคุม Veyon Service</translation>
+        <translation>Veyoni teenuse konfigureerimine ja juhtimine</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation>ลงทะเบียน Veyon Service</translation>
+        <translation>Registreerige Veyoni teenus</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>ถอนการลงทะเบียน Veyon Service</translation>
+        <translation>Tühistage Veyoni teenuse registreerimine</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>เริ่ม Veyon Service</translation>
+        <translation>Käivitage Veyoni teenus</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>หยุด Veyon Service</translation>
+        <translation>Peatage Veyoni teenus</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>เริ่ม Veyon Service ใหม่</translation>
+        <translation>Taaskäivitage Veyoni teenus</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyoni teenuse päringu olek</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Käsud Veyon Service&apos;i konfigureerimiseks ja juhtimiseks</translation>
     </message>
 </context>
 <context>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage käsufail</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
+        <translation>Faili &quot;%1&quot; ei ole!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Interaktiivne kesta ja skripti käivitamine Veyon-i juhtimisele</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>Käsud kestade funktsionaalsuste jaoks</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Süsteemse salve ikoon</translation>
     </message>
 </context>
 <context>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>Kasutajarühmade taustaprogramm süsteemi kasutajagruppide jaoks</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>Vaikimisi (süsteemi kasutajagrupid)</translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Testige Veyoni sisemisi komponente ja funktsioone</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Käsud Veyoni sisemiste komponentide ja funktsioonide testimiseks</translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>ส่งข้อความอักษระ</translation>
+        <translation>Saada tekstisõnum</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage allolevat välja, et sisestada sõnum, mis saadetakse kõigile valitud kasutajatele.</translation>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>ข้อความอักษระ</translation>
+        <translation>Tekstisõnum</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>ใช้ฟังก์ชั่นนี้เพื่อส่งข้อความอักษระให้ผู้ใช้ทุกคน เช่น การสั่งงานใหม่ เป็นต้น</translation>
+        <translation>Selle funktsiooni abil saate tekstisõnumi saata kõigile kasutajatele, näit. neile uusi ülesandeid määrata.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>ข้อความจากครูผู้สอน</translation>
+        <translation>Sõnum õpetajalt</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>ส่งข้อความไปยังผู้ใช้</translation>
+        <translation>Saada kasutajale sõnum</translation>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"/>
+        <translation>Luba kihiliste (poolläbipaistvate) akende hõivamine</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"/>
+        <translation>Küsitlus täisekraanil (jätke see vaikimisi lubatuks)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>ความแม่นยำต่ำ (โหมดเทอร์โบ)</translation>
+        <translation>Madal täpsus (turborežiim)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>การตั้งค่าเซิฟเวอร์ UltraVNC ในตัว</translation>
+        <translation>Sissemise UltraVNC serveri konfiguratsioon</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>เปิดใช้การสนับสนุนการแสดงหลายหน้าจอ</translation>
+        <translation>Lubage mitme monitori tugi</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Luba töölaua laiendamismootor Windows 8 ja uuemates versioonides</translation>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"/>
+        <translation>Kirjutusjuurdepääs puudub</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Teie isiklikke seadeid ei õnnestunud salvestada! Kontrollige kasutaja konfiguratsioonifaili teed %1 Konfiguraatori abil</translation>
     </message>
 </context>
 <context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja sisselogimine</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kõigi arvutite automaatseks sisselogimiseks sisestage kasutajanimi ja parool.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>ชื่อผู้ใช้</translation>
+        <translation>Kasutajanimi</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>รหัสผ่าน</translation>
+        <translation>Parool</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Logi sisse</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kõigil arvutitel konkreetse kasutaja sisselogimiseks klõpsake seda nuppu.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation>ล็อกออฟ</translation>
+        <translation>Logi välja</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>คลิกปุ่มนี้เพื่อล็อกออฟผู้ใช้จากคอมพิวเตอร์ทุกเครื่อง</translation>
+        <translation>Kasutajate kõigist arvutitest väljalogimiseks klõpsake seda nuppu.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>ยืนยันการล็อกออฟผู้ใช้</translation>
+        <translation>Kinnitage kasutaja väljalogimine</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
+        <translation>Kas soovite tõesti valitud kasutajad välja logida?</translation>
     </message>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja seansi juhtimine</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[เรียบร้อย]</translation>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[ล้มเหลว]</translation>
+        <translation>[FAIL]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>คำสั่งไม่ถูกต้อง!</translation>
+        <translation>Vigane käsk!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Saadaolevad käsud:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>Esitatud valed argumendid</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation type="unfinished"/>
+        <translation>Ei ole piisavalt argumente esitatud - lisateabe saamiseks kasutage &quot;%1 abi&quot;</translation>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>ผลลัพธ์ที่ไม่รู้จัก!</translation>
+        <translation>Tundmatu tulemus!</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Saadaval olevad moodulid:</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Moodulit pole määratud või moodulit ei leitud - saadaval on:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Pistikprogramm pole litsentsitud</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>VIGA</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>KASUTA</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>KIRJELDUS</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>NÄITED</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>HOIATUSED</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon Service</translation>
+        <translation>Veyoni teenus</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>กำลังสร้างการเชื่อมต่อไปยัง %1 ...</translation>
+        <translation>Ühenduse loomine kasutajaga %1 ...</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
+        <translation>Tarkvara järgi ei saanud SAS-i genereerimise seadet muuta. Ctrl+Alt+Del saatmine kaughalduse kaudu ei toimi!</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation>Üldine</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation type="unfinished"/>
+        <translation>Luba tarkvara SAS genereerimine (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation>ล็อกจอ</translation>
+        <translation>Ekraanilukk</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Peida tegumiriba</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Peida Start menüü</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation>ซ่อนเดสก์ท็อป</translation>
+        <translation>Peida töölaud</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>การยืนยันตัวตนผู้ใช้</translation>
+        <translation>Kasutaja autentimine</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage alternatiivset kasutaja autentimismehhanismi</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja sisselogimine</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Sisendi käivitamise viivitus</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Simuleeritud klahvivajutuste intervall</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Kinnitage juriidiline teade (teade kuvatakse enne kasutaja sisselogimist)</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage sisendseadme pealtkuulamise draiverit</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Pistikprogramm, mis rakendab Windowsi platvormi jaoks abstraktseid funktsioone</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ถูกติดตั้งอยู่ก่อนแล้ว</translation>
+        <translation>Teenus &quot;%1&quot; on juba installitud.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ไม่สามารถทำการติดตั้งได้</translation>
+        <translation>Teenus &quot;%1&quot; ei ole installitud.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ได้รับการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
+        <translation>Teenus &quot;%1&quot; installiti edukalt.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ไม่สามารถทำการยกเลิกการติดตั้งได้</translation>
+        <translation>Teenust &quot;%1&quot; ei saanud desinstallida.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ได้รับการยกเลิกการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
+        <translation>Teenuse &quot;%1&quot; desinstallimine õnnestus.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Teenuse algustüüpi &quot;%1&quot; ei saanud muuta.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Teenust &quot;%1&quot; ei leitud.</translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Sisemise x11vnc serveri konfiguratsioon</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>Kohandatud x11vnc parameetrid:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>ห้ามใช่ส่วนเสริม X Damage เป็นอันขาด</translation>
+        <translation>Ärge kasutage laiendust X Damage</translation>
     </message>
 </context>
 </TS>
