@@ -105,11 +105,8 @@ void ComputerControlInterface::start( QSize scaledScreenSize, AuthenticationProx
 
 void ComputerControlInterface::stop()
 {
-	if( m_connection )
-	{
-		delete m_connection;
-		m_connection = nullptr;
-	}
+	// VeyonConnection destroys itself when VncConnection is destroyed
+	m_connection = nullptr;
 
 	if( m_vncConnection )
 	{

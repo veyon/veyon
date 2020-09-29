@@ -75,6 +75,7 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 	}
 
 	connect( m_vncConnection, &VncConnection::connectionPrepared, this, &VeyonConnection::registerConnection, Qt::DirectConnection );
+	connect( m_vncConnection, &VncConnection::destroyed, this, &VeyonConnection::deleteLater );
 }
 
 
