@@ -214,6 +214,11 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		chosenAuthType = proxy->initCredentials();
 	}
 
+	if( chosenAuthType == RfbVeyonAuth::None )
+	{
+		return false;
+	}
+
 	vDebug() << QThread::currentThreadId() << "chose authentication type:" << authTypes;
 
 	VariantArrayMessage authReplyMessage( &socketDevice );
