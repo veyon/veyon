@@ -79,11 +79,6 @@ public:
 		m_authenticationProxy = authenticationProxy;
 	}
 
-	AuthenticationProxy* authenticationProxy()
-	{
-		return m_authenticationProxy;
-	}
-
 	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );

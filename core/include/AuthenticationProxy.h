@@ -99,5 +99,5 @@ private:
 	AuthenticationCredentials m_credentials;
 	AuthenticationMethods m_authenticationTypes;
 	QWaitCondition m_authenticationMethodsAvailable;
-};
 
+};

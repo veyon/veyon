@@ -167,8 +167,6 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		return false;
 	}
 
-	auto proxy = connection->m_authenticationProxy;
-
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
 	message.receive();
@@ -182,6 +180,8 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	{
 		authTypes.append( QVariantHelper<RfbVeyonAuth::Type>::value( message.read() ) );
 	}
+
+	auto proxy = connection->m_authenticationProxy;
 
 	if( proxy )
 	{

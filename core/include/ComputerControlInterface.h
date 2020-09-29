@@ -55,8 +55,6 @@ public:
 	void start( QSize scaledScreenSize, AuthenticationProxy* authenticationProxy = nullptr );
 	void stop();
 
-	AuthenticationProxy* authenticationProxy() const;
-
 	const Computer& computer() const
 	{
 		return m_computer;

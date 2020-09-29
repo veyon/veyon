@@ -127,18 +127,6 @@ void ComputerControlInterface::stop()
 
 
 
-AuthenticationProxy* ComputerControlInterface::authenticationProxy() const
-{
-	if( m_connection )
-	{
-		return m_connection->authenticationProxy();
-	}
-
-	return nullptr;
-}
-
-
-
 void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 {
 	m_scaledScreenSize = scaledScreenSize;
