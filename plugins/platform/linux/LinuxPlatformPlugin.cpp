@@ -22,6 +22,8 @@
  *
  */
 
+#include <signal.h>
+
 #include "LinuxPlatformPlugin.h"
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxPlatformConfigurationPage.h"
@@ -31,6 +33,9 @@ LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
 {
 	// make sure to load global config from default config dirs independent of environment variables
 	qunsetenv( "XDG_CONFIG_DIRS" );
+
+	// don't abort with SIGPIPE when writing to closed sockets e.g. while shutting down VncConnection
+	signal( SIGPIPE, SIG_IGN );
 }
 
 
