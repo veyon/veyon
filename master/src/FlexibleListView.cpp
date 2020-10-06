@@ -22,6 +22,7 @@
  *
  */
 
+#include <QHelpEvent>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QUuid>
@@ -131,6 +132,42 @@ void FlexibleListView::doItemsLayout()
 	if( movement() == QListView::Free )
 	{
 		restorePositions();
+	}
+}
+
+
+
+bool FlexibleListView::viewportEvent( QEvent* event )
+{
+	const auto ret = QListView::viewportEvent( event );
+	if( event->type() == QEvent::ToolTip )
+	{
+		m_toolTipPos = ret ? static_cast<QHelpEvent*>(event)->pos() : QPoint{};
+	}
+
+	return ret;
+}
+
+
+
+void FlexibleListView::dataChanged( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles )
+{
+	QListView::dataChanged( topLeft, bottomRight, roles );
+
+	if( m_toolTipPos.isNull() == false && ( roles.isEmpty() || roles.contains(Qt::ToolTipRole) ) )
+	{
+		if( viewport()->mapToGlobal(m_toolTipPos) != QCursor::pos() )
+		{
+			m_toolTipPos = QPoint();
+			return;
+		}
+
+		const auto index = indexAt( m_toolTipPos );
+		if( index.row() >= topLeft.row() && index.row() <= bottomRight.row() )
+		{
+			QHelpEvent he( QEvent::ToolTip, m_toolTipPos, viewport()->mapToGlobal(m_toolTipPos) );
+			QListView::viewportEvent( &he );
+		}
 	}
 }
 

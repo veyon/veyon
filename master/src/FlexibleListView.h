@@ -46,11 +46,15 @@ public:
 public:
 	void doItemsLayout() override;
 
+protected:
+	bool viewportEvent( QEvent* event ) override;
+	void dataChanged( const QModelIndex& topLeft, const QModelIndex& bottomRight,
+					  const QVector<int>& roles ) override;
+
 private:
 	void restorePositions();
 	void updatePositions();
 
-private:
 	QSizeF effectiveGridSize() const;
 	QPointF toGridPoint( QPoint pos ) const;
 	QPoint toItemPosition( QPointF gridPoint ) const;
@@ -58,4 +62,5 @@ private:
 	int m_uidRole;
 	QHash<QUuid, QPointF> m_positions;
 
+	QPoint m_toolTipPos;
 };
