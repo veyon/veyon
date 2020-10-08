@@ -357,7 +357,7 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 
 void VncConnection::rescaleScreen()
 {
-	if( hasValidFrameBuffer() == false || m_scaledSize.isNull() )
+	if( hasValidFramebuffer() == false || m_scaledSize.isNull() )
 	{
 		m_scaledScreen = {};
 		return;
