@@ -42,6 +42,8 @@ add_custom_target(windows-binaries
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/crypto
 	COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${WINDOWS_INSTALL_FILES}/crypto
 	COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${DLLDIR}/Qt5Qml.dll ${DLLDIR}/Qt5Quick.dll ${DLLDIR}/Qt5QuickControls2.dll ${DLLDIR}/Qt5QuickTemplates2.dll ${WINDOWS_INSTALL_FILES}
+	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/imageformats
+	COMMAND cp ${DLLDIR_LIB}/qt5/plugins/imageformats/qjpeg.dll ${WINDOWS_INSTALL_FILES}/imageformats
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/platforms
 	COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${WINDOWS_INSTALL_FILES}/platforms
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/styles

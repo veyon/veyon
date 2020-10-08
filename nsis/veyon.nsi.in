@@ -178,6 +178,9 @@ File "translations/*.qm"
 # QCA plugins
 SetOutPath "$INSTDIR\crypto"
 File "crypto/*.dll"
+# Qt image format plugin
+SetOutPath "$INSTDIR\imageformats"
+File "imageformats/qjpeg.dll"
 # Qt platform plugin
 SetOutPath "$INSTDIR\platforms"
 File "platforms/qwindows.dll"
