@@ -127,7 +127,7 @@ public:
 	bool isEventQueueEmpty();
 
 	/** \brief Returns whether framebuffer data is valid, i.e. at least one full FB update received */
-	bool hasValidFrameBuffer() const
+	bool hasValidFramebuffer() const
 	{
 		return m_framebufferState == FramebufferState::Valid;
 	}
