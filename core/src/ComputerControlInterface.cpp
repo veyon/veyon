@@ -130,6 +130,13 @@ void ComputerControlInterface::stop()
 
 
 
+bool ComputerControlInterface::hasValidFramebuffer() const
+{
+	return m_vncConnection->hasValidFramebuffer();
+}
+
+
+
 void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 {
 	m_scaledScreenSize = scaledScreenSize;
