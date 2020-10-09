@@ -116,9 +116,17 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 	Worker worker;
 
 	vDebug() << "Starting worker (unmanaged session process) for feature" << featureUid;
+
+	const auto currentUser = VeyonCore::platform().userFunctions().currentUser();
+	if( currentUser.isEmpty() )
+	{
+		vDebug() << "could not determine current user - probably a console session with logon screen";
+		return false;
+	}
+
 	const auto ret = VeyonCore::platform().coreFunctions().
 					 runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { featureUid.toString() },
-									   VeyonCore::platform().userFunctions().currentUser(),
+									   currentUser,
 									   VeyonCore::platform().coreFunctions().activeDesktopName() );
 	if( ret == false )
 	{
