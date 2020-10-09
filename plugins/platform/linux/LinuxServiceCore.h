@@ -25,14 +25,14 @@
 #pragma once
 
 #include "LinuxCoreFunctions.h"
-#include "PlatformServiceCore.h"
+#include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
 
 class QProcess;
 
 // clazy:excludeall=copyable-polymorphic
 
-class LinuxServiceCore : public QObject, PlatformServiceCore
+class LinuxServiceCore : public QObject
 {
 	Q_OBJECT
 public:
@@ -65,5 +65,6 @@ private:
 	QMap<QString, QProcess *> m_serverProcesses;
 
 	ServiceDataManager m_dataManager{};
+	PlatformSessionManager m_sessionManager{};
 
 };

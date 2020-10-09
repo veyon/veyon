@@ -22,18 +22,19 @@
  *
  */
 
+#include "PlatformSessionManager.h"
 #include "WindowsSessionFunctions.h"
 #include "WtsSessionManager.h"
 
 
-WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId() const
+WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 {
 	const auto currentSession = WtsSessionManager::currentSession();
 
-	if( currentSession == WtsSessionManager::activeConsoleSession() )
+/*	if( currentSession == WtsSessionManager::activeConsoleSession() )
 	{
-		return DefaultSession;
-	}
+		return DefaultSessionId;
+	}*/
 
-	return currentSession;
+	return PlatformSessionManager::resolveSessionId( QString::number(currentSession) );
 }

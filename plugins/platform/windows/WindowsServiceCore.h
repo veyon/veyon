@@ -26,11 +26,11 @@
 
 #include <windows.h>
 
-#include "PlatformServiceCore.h"
 #include "PlatformServiceFunctions.h"
+#include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
 
-class WindowsServiceCore : public PlatformServiceCore
+class WindowsServiceCore
 {
 public:
 	WindowsServiceCore( const QString& name, const PlatformServiceFunctions::ServiceEntryPoint& serviceEntryPoint );
@@ -64,6 +64,7 @@ private:
 	QAtomicInt m_sessionChangeEvent{0};
 
 	ServiceDataManager m_dataManager{};
+	PlatformSessionManager m_sessionManager{};
 
 	static constexpr auto SessionPollingInterval = 100;
 	static constexpr auto MinimumServerUptimeTime = 10000;

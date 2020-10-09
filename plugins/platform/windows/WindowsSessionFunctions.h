@@ -31,6 +31,6 @@
 class WindowsSessionFunctions : public PlatformSessionFunctions
 {
 public:
-    SessionId currentSessionId() const override;
+    SessionId currentSessionId() override;
 
 };

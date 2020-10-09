@@ -44,7 +44,6 @@
 #include "NetworkObjectDirectoryManager.h"
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
-#include "PlatformServiceCore.h"
 #include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
 #include "QmlCore.h"
@@ -240,7 +239,7 @@ int VeyonCore::sessionId()
 		return platform().sessionFunctions().currentSessionId();
 	}
 
-	return PlatformSessionFunctions::DefaultSession;
+	return PlatformSessionFunctions::DefaultSessionId;
 }
 
 
@@ -543,7 +542,7 @@ void VeyonCore::initLogging( const QString& appComponentName )
 {
 	const auto currentSessionId = sessionId();
 
-	if( currentSessionId != PlatformSessionFunctions::DefaultSession )
+	if( currentSessionId != PlatformSessionFunctions::DefaultSessionId )
 	{
 		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( currentSessionId ) );
 	}

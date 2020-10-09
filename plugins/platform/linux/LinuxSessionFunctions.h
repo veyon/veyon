@@ -47,10 +47,7 @@ public:
 		QString path;
 	} ;
 
-
-	SessionId currentSessionId() const override;
-
-	static SessionId toSessionId( const QString& session );
+	SessionId currentSessionId() override;
 
 	static QVariant getSessionProperty( const QString& session, const QString& property );
 
@@ -58,10 +55,9 @@ public:
 	static qint64 getSessionUptimeSeconds( const QString& session );
 	static QString getSessionType( const QString& session );
 	static QString getSessionDisplay( const QString& session );
-	static QString getSessionIdString( const QString& session );
+	static QString getSessionId( const QString& session );
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
-
 
 };

@@ -47,6 +47,8 @@ build_veyon_plugin(linux-platform
 	../common/LogonHelper.cpp
 	../common/PersistentLogonCredentials.h
 	../common/PersistentLogonCredentials.cpp
+	../common/PlatformSessionManager.h
+	../common/PlatformSessionManager.cpp
 	../common/ServiceDataManager.h
 	../common/ServiceDataManager.cpp
 	${libfakekey_SOURCES}

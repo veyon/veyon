@@ -43,6 +43,8 @@ build_veyon_plugin(windows-platform
 	../common/LogonHelper.cpp
 	../common/PersistentLogonCredentials.h
 	../common/PersistentLogonCredentials.cpp
+	../common/PlatformSessionManager.h
+	../common/PlatformSessionManager.cpp
 	../common/ServiceDataManager.h
 	../common/ServiceDataManager.cpp
 	XEventLog.h

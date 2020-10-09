@@ -63,7 +63,7 @@ public:
 										 QString::fromUtf8( token.toByteArray() ) )
 		};
 
-		vInfo() << "Starting server for session" << wtsSessionId << "with user" << user;
+		vInfo() << "Starting server for WTS session" << wtsSessionId << "with user" << user;
 		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), {},
 																		extraEnv,
 																		baseProcessId, {} );
@@ -164,7 +164,7 @@ void WindowsServiceCore::manageServerInstances()
 	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
 	ResetEvent( m_serverShutdownEvent );
 
-	if( multiSession() )
+	if( m_sessionManager.multiSession() )
 	{
 		manageServersForAllSessions();
 	}
@@ -193,11 +193,12 @@ void WindowsServiceCore::manageServersForAllSessions()
 			wtsSessionIds.append( consoleSessionId );
 		}
 
-		for( auto it = serverProcesses.begin(), end = serverProcesses.end(); it != end; )
+		for( auto it = serverProcesses.begin(); it != serverProcesses.end(); )
 		{
 			if( wtsSessionIds.contains( it.key() ) == false )
 			{
 				delete it.value();
+				m_sessionManager.closeSession( QString::number(it.key() ) );
 				it = serverProcesses.erase( it );
 			}
 			else
@@ -210,6 +211,8 @@ void WindowsServiceCore::manageServersForAllSessions()
 		{
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
+				m_sessionManager.openSession( QString::number(wtsSessionId) );
+
 				auto serverProcess = new VeyonServerProcess;
 				serverProcess->start( wtsSessionId, m_dataManager.token() );
 

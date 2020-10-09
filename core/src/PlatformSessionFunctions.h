@@ -33,10 +33,11 @@ class PlatformSessionFunctions
 public:
 	using SessionId = int;
 
-	static constexpr SessionId DefaultSession = 0;
+	static constexpr SessionId DefaultSessionId = 0;
+	static constexpr SessionId InvalidSessionId = -1;
 
 	virtual ~PlatformSessionFunctions() = default;
 
-	virtual SessionId currentSessionId() const = 0;
+	virtual SessionId currentSessionId() = 0;
 
 };
