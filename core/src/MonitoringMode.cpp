@@ -115,7 +115,7 @@ void MonitoringMode::queryUserInformation()
 	QtConcurrent::run( [=]() {
 		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
 		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
-		const auto userSessionId = VeyonCore::platform().sessionFunctions().currentSessionId();
+		const auto userSessionId = VeyonCore::sessionId();
 		m_userDataLock.lockForWrite();
 		m_userLoginName = userLoginName;
 		m_userFullName = userFullName;
