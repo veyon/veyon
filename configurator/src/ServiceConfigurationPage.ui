@@ -5,7 +5,7 @@
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
     <number>0</number>
    </property>
@@ -18,90 +18,14 @@
       <string>General</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_12">
-      <item row="2" column="0" colspan="5">
-       <widget class="QCheckBox" name="remoteConnectionNotificationsEnabled">
-        <property name="text">
-         <string>Show notification on remote connection</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="5">
+      <item row="1" column="0" colspan="2">
        <widget class="QCheckBox" name="failedAuthenticationNotificationsEnabled">
         <property name="text">
          <string>Show notification when an unauthorized access is blocked</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="5">
-       <widget class="QCheckBox" name="isTrayIconHidden">
-        <property name="text">
-         <string>Hide tray icon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_16">
-        <property name="text">
-         <string>State:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="3">
-       <widget class="QPushButton" name="startService">
-        <property name="text">
-         <string>Start service</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/media-playback-start.png</normaloff>:/configurator/media-playback-start.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="5">
-       <widget class="QCheckBox" name="autostartService">
-        <property name="text">
-         <string>Autostart</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="4">
-       <widget class="QPushButton" name="stopService">
-        <property name="text">
-         <string>Stop service</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/media-playback-stop.png</normaloff>:/configurator/media-playback-stop.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="2">
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="serviceState">
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Stopped</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="5">
+      <item row="3" column="0" colspan="2">
        <widget class="QCheckBox" name="multiSessionModeEnabled">
         <property name="toolTip">
          <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -111,6 +35,120 @@ Typically this is required to support terminal servers.</string>
          <string>Multi session mode (for terminal and remote desktop servers)</string>
         </property>
        </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Maximum session count</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="maximumSessionCount">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="remoteConnectionNotificationsEnabled">
+        <property name="text">
+         <string>Show notification on remote connection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="isTrayIconHidden">
+        <property name="text">
+         <string>Hide tray icon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="autostartService">
+        <property name="text">
+         <string>Autostart</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>State:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="serviceState">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Stopped</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="startService">
+          <property name="text">
+           <string>Start service</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/configurator.qrc">
+            <normaloff>:/configurator/media-playback-start.png</normaloff>:/configurator/media-playback-start.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="stopService">
+          <property name="text">
+           <string>Stop service</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/configurator.qrc">
+            <normaloff>:/configurator/media-playback-stop.png</normaloff>:/configurator/media-playback-stop.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -256,6 +294,7 @@ Typically this is required to support terminal servers.</string>
   <tabstop>failedAuthenticationNotificationsEnabled</tabstop>
   <tabstop>remoteConnectionNotificationsEnabled</tabstop>
   <tabstop>multiSessionModeEnabled</tabstop>
+  <tabstop>maximumSessionCount</tabstop>
   <tabstop>autostartService</tabstop>
   <tabstop>startService</tabstop>
   <tabstop>stopService</tabstop>
