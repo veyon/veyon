@@ -27,33 +27,13 @@
 
 #include <proc/readproc.h>
 
-
 #include "LinuxSessionFunctions.h"
-#include "PlatformServiceCore.h"
+#include "PlatformSessionManager.h"
 
 
-LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId() const
+LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 {
-	return toSessionId( QStringLiteral("/org/freedesktop/login1/session/self") );
-}
-
-
-
-LinuxSessionFunctions::SessionId LinuxSessionFunctions::toSessionId( const QString& session )
-{
-	auto display = getSessionDisplay( session );
-	if( display.isEmpty() == false )
-	{
-		return display.replace( QLatin1Char(':'), QString() ).toInt() % PlatformServiceCore::MaximumSessionCount;
-	}
-
-	auto sessionId = getSessionIdString( session );
-	if( sessionId.isEmpty() == false )
-	{
-		return sessionId.replace( QLatin1Char('c'), QString() ).toInt() % PlatformServiceCore::MaximumSessionCount;
-	}
-
-	return DefaultSession;
+	return PlatformSessionManager::resolveSessionId( getSessionId( QStringLiteral("/org/freedesktop/login1/session/self") ) );
 }
 
 
@@ -128,7 +108,7 @@ QString LinuxSessionFunctions::getSessionDisplay( const QString& session )
 
 
 
-QString LinuxSessionFunctions::getSessionIdString( const QString& session )
+QString LinuxSessionFunctions::getSessionId( const QString& session )
 {
 	return getSessionProperty( session, QStringLiteral("Id") ).toString();
 }

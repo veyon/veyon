@@ -103,7 +103,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
-	if( multiSession() == false && m_serverProcesses.isEmpty() == false )
+	if( m_sessionManager.multiSession() == false && m_serverProcesses.isEmpty() == false )
 	{
 		// make sure no other server is still running
 		stopAllServers();
@@ -119,10 +119,11 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	}
 
 	const auto seat = LinuxSessionFunctions::getSessionSeat( sessionPath );
-	const auto sessionId = LinuxSessionFunctions::toSessionId( sessionPath );
+
+	const auto veyonSessionId = m_sessionManager.openSession( LinuxSessionFunctions::getSessionId( sessionPath ) );
 
 	vInfo() << "Starting server for new session" << sessionPath
-			<< "with ID" << sessionId
+			<< "with ID" << veyonSessionId
 			<< "at seat" << seat.path;
 
 	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
@@ -180,6 +181,8 @@ void LinuxServiceCore::connectToLoginManager()
 
 void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
+	m_sessionManager.closeSession( LinuxSessionFunctions::getSessionId( sessionPath ) );
+
 	if( m_serverProcesses.contains( sessionPath ) == false )
 	{
 		return;
