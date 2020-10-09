@@ -20,4 +20,4 @@
 	branch = master
 [submodule "3rdparty/qthttpserver"]
 	path = 3rdparty/qthttpserver
-	url = http://code.qt.io/qt-labs/qthttpserver.git
+	url = https://code.qt.io/qt-labs/qthttpserver.git
