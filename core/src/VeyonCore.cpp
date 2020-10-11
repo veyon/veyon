@@ -85,6 +85,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 	initConfiguration();
 
+	initSession();
+
 	initLogging( appComponentName );
 
 	initLocaleAndTranslation();
@@ -222,24 +224,6 @@ void VeyonCore::setupApplicationParameters()
 	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
 
 	QApplication::setAttribute( Qt::AA_UseHighDpiPixmaps );
-}
-
-
-
-int VeyonCore::sessionId()
-{
-	if( config().multiSessionModeEnabled() )
-	{
-		const auto systemEnv = QProcessEnvironment::systemEnvironment();
-		if( systemEnv.contains( sessionIdEnvironmentVariable() ) )
-		{
-			return systemEnv.value( sessionIdEnvironmentVariable() ).toInt();
-		}
-
-		return platform().sessionFunctions().currentSessionId();
-	}
-
-	return PlatformSessionFunctions::DefaultSessionId;
 }
 
 
@@ -518,6 +502,31 @@ void VeyonCore::initPlatformPlugin()
 	m_platformPlugin = m_platformPluginManager->platformPlugin();
 }
 
+
+
+void VeyonCore::initSession()
+{
+	if( config().multiSessionModeEnabled() )
+	{
+		const auto systemEnv = QProcessEnvironment::systemEnvironment();
+		if( systemEnv.contains( sessionIdEnvironmentVariable() ) )
+		{
+			m_sessionId = systemEnv.value( sessionIdEnvironmentVariable() ).toInt();
+		}
+		else
+		{
+			const auto sessionId = platform().sessionFunctions().currentSessionId();
+			if( sessionId != PlatformSessionFunctions::InvalidSessionId )
+			{
+				m_sessionId = sessionId;
+			}
+		}
+	}
+	else
+	{
+		m_sessionId = PlatformSessionFunctions::DefaultSessionId;
+	}
+}
 
 
 void VeyonCore::initConfiguration()

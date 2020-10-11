@@ -168,7 +168,10 @@ public:
 
 	static void setupApplicationParameters();
 
-	static int sessionId();
+	static int sessionId()
+	{
+		return instance()->m_sessionId;
+	}
 
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
@@ -185,6 +188,7 @@ public:
 
 private:
 	void initPlatformPlugin();
+	void initSession();
 	void initConfiguration();
 	void initLogging( const QString& appComponentName );
 	void initLocaleAndTranslation();
@@ -217,6 +221,8 @@ private:
 	Component m_component;
 	QString m_applicationName;
 	bool m_debugging;
+
+	int m_sessionId{0};
 
 Q_SIGNALS:
 	void applicationLoaded();
