@@ -119,6 +119,9 @@ WindowsServiceCore::WindowsServiceCore( const QString& name,
 {
 	s_instance = this;
 
+	// allocate session 0 (PlatformSessionFunctions::DefaultSessionId) so we can always assign it to the console session
+	m_sessionManager.openSession( QStringLiteral("0 (console)") );
+
 	// enable privileges required to create process with access token from other process
 	WindowsCoreFunctions::enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	WindowsCoreFunctions::enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
@@ -197,7 +200,10 @@ void WindowsServiceCore::manageServersForAllSessions()
 			if( wtsSessionIds.contains( it.key() ) == false )
 			{
 				delete it.value();
-				m_sessionManager.closeSession( QString::number(it.key() ) );
+				if( it.key() != consoleSessionId )
+				{
+					m_sessionManager.closeSession( QString::number(it.key() ) );
+				}
 				it = serverProcesses.erase( it );
 			}
 			else
@@ -210,7 +216,10 @@ void WindowsServiceCore::manageServersForAllSessions()
 		{
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
-				m_sessionManager.openSession( QString::number(wtsSessionId) );
+				if( wtsSessionId != consoleSessionId )
+				{
+					m_sessionManager.openSession( QString::number(wtsSessionId) );
+				}
 
 				auto serverProcess = new VeyonServerProcess;
 				serverProcess->start( wtsSessionId, m_dataManager.token() );

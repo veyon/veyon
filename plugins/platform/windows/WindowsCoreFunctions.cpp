@@ -29,7 +29,6 @@
 #include <shlobj.h>
 #include <userenv.h>
 
-#include "PlatformServiceCore.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsPlatformConfiguration.h"
