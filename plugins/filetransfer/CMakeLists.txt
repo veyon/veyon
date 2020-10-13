@@ -3,6 +3,10 @@ INCLUDE(BuildVeyonPlugin)
 build_veyon_plugin(filetransfer
 	FileTransferPlugin.cpp
 	FileTransferPlugin.h
+	FileTransferConfiguration.h
+	FileTransferConfigurationPage.cpp
+	FileTransferConfigurationPage.h
+	FileTransferConfigurationPage.ui
 	FileTransferController.cpp
 	FileTransferController.h
 	FileTransferListModel.cpp

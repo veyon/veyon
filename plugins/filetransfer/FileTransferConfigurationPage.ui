@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FileTransferConfigurationPage</class>
+ <widget class="QWidget" name="FileTransferConfigurationPage">
+  <property name="windowTitle">
+   <string>File transfer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="filetransfer.qrc">
+    <normaloff>:/filetransfer/document-share.png</normaloff>:/filetransfer/document-share.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Directories</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Destination directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="fileTransferDefaultSourceDirectory"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QToolButton" name="browseDestinationDirectory">
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="browseDefaultSourceDirectory">
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="fileTransferDestinationDirectory"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Default source directory</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Options</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="rememberLastFileTransferSourceDirectory">
+        <property name="text">
+         <string>Remember last source directory</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="fileTransferCreateDestinationDirectory">
+        <property name="text">
+         <string>Create destination directory if it does not exist</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../core/resources/core.qrc"/>
+  <include location="filetransfer.qrc"/>
+ </resources>
+ <connections/>
+</ui>

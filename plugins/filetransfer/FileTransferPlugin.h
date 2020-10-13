@@ -26,15 +26,19 @@
 
 #include <QFile>
 
+#include "ConfigurationPagePluginInterface.h"
 #include "FeatureProviderInterface.h"
+#include "FileTransferConfiguration.h"
 
 class FileTransferController;
 
-class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface
+class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FileTransfer")
-	Q_INTERFACES(PluginInterface FeatureProviderInterface)
+	Q_INTERFACES(PluginInterface
+					  FeatureProviderInterface
+						  ConfigurationPagePluginInterface)
 public:
 	explicit FileTransferPlugin( QObject* parent = nullptr );
 	~FileTransferPlugin() override;
@@ -97,7 +101,11 @@ public:
 							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 
+	ConfigurationPage* createConfigurationPage() override;
+
 private:
+	QString destinationDirectory() const;
+
 	enum Commands
 	{
 		FileTransferStartCommand,
@@ -121,7 +129,11 @@ private:
 	const Feature m_fileTransferFeature;
 	const FeatureList m_features;
 
-	FileTransferController* m_fileTransferController;
+	FileTransferConfiguration m_configuration;
+
+	QString m_lastFileTransferSourceDirectory;
+
+	FileTransferController* m_fileTransferController{nullptr};
 
 	QFile m_currentFile{};
 	QString m_currentFileName{};

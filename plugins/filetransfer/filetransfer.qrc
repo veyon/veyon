@@ -4,5 +4,6 @@
         <file>file-scheduled.png</file>
         <file>file-transferring.png</file>
         <file>file-finished.png</file>
+        <file>document-share.png</file>
     </qresource>
 </RCC>
