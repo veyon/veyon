@@ -123,7 +123,8 @@ private:
 
 	FileTransferController* m_fileTransferController;
 
-	QFile m_currentFile;
-	QUuid m_currentTransferId;
+	QFile m_currentFile{};
+	QString m_currentFileName{};
+	QUuid m_currentTransferId{};
 
 };
