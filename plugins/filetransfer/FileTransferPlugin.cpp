@@ -175,8 +175,10 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 		{
 		case FileTransferStartCommand:
 			m_currentFile.close();
+
 			// TODO: make path configurable
-			m_currentFile.setFileName( QDir::homePath() + QDir::separator() + message.argument( Filename ).toString() );
+			m_currentFileName = QDir::homePath() + QDir::separator() + message.argument( Filename ).toString();
+			m_currentFile.setFileName( m_currentFileName );
 			if( m_currentFile.exists() && message.argument( OverwriteExistingFile ).toBool() == false )
 			{
 				QMessageBox::critical( nullptr, m_fileTransferFeature.displayName(),
@@ -226,7 +228,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			m_currentFile.close();
 			if( message.argument( OpenFileInApplication ).toBool() )
 			{
-				QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFile.fileName() ) );
+				QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFileName ) );
 			}
 			m_currentFile.setFileName( {} );
 			return true;

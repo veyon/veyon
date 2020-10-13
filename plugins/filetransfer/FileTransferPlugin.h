@@ -141,6 +141,7 @@ private:
 	FileTransferController* m_fileTransferController{nullptr};
 
 	QFile m_currentFile{};
+	QString m_currentFileName;
 	QUuid m_currentTransferId{};
 
 };
