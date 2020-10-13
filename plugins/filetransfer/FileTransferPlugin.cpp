@@ -29,6 +29,8 @@
 #include <QQuickWindow>
 
 #include "BuiltinFeatures.h"
+#include "Filesystem.h"
+#include "FileTransferConfigurationPage.h"
 #include "FileTransferController.h"
 #include "FileTransferDialog.h"
 #include "FileTransferPlugin.h"
@@ -51,7 +53,8 @@ FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 						   tr( "File transfer" ), {},
 						   tr( "Click this button to transfer files from your computer to all computers." ),
 						   QStringLiteral(":/filetransfer/applications-office.png") ),
-	m_features( { m_fileTransferFeature } )
+	m_features( { m_fileTransferFeature } ),
+	m_configuration( &VeyonCore::config() )
 {
 }
 
@@ -75,6 +78,11 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 	const auto userConfigObject = master.userConfigurationObject();
 
 	m_lastFileTransferSourceDirectory = FileTransferUserConfiguration( userConfigObject ).lastFileTransferSourceDirectory();
+	if( m_configuration.rememberLastFileTransferSourceDirectory() == false ||
+		QDir( m_lastFileTransferSourceDirectory ).exists() == false )
+	{
+		m_lastFileTransferSourceDirectory = VeyonCore::filesystem().expandPath( m_configuration.fileTransferDefaultSourceDirectory() );
+	}
 
 	if( master.appWindow() )
 	{
@@ -176,8 +184,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 		case FileTransferStartCommand:
 			m_currentFile.close();
 
-			// TODO: make path configurable
-			m_currentFileName = QDir::homePath() + QDir::separator() + message.argument( Filename ).toString();
+			m_currentFileName = destinationDirectory() + QDir::separator() + message.argument( Filename ).toString();
 			m_currentFile.setFileName( m_currentFileName );
 			if( m_currentFile.exists() && message.argument( OverwriteExistingFile ).toBool() == false )
 			{
@@ -234,7 +241,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			return true;
 
 		case OpenTransferFolder:
-			QDesktopServices::openUrl( QUrl::fromLocalFile( QDir::homePath() ) );
+			QDesktopServices::openUrl( QUrl::fromLocalFile( destinationDirectory() ) );
 			return true;
 
 		default:
@@ -297,6 +304,20 @@ void FileTransferPlugin::sendOpenTransferFolderMessage( const ComputerControlInt
 
 
 
+QString FileTransferPlugin::destinationDirectory() const
+{
+	auto dir = VeyonCore::filesystem().expandPath( m_configuration.fileTransferDestinationDirectory() );
+	if( QDir( dir ).exists() == false &&
+		m_configuration.fileTransferCreateDestinationDirectory() &&
+		VeyonCore::filesystem().ensurePathExists( dir ) == false )
+	{
+		return QDir::homePath();
+	}
+
+	return dir;
+}
+
+
 void FileTransferPlugin::startFileTransfer( const QStringList& files, Configuration::Object* userConfigObject,
 											const ComputerControlInterfaceList& interfaces )
 {
@@ -322,3 +343,13 @@ void FileTransferPlugin::startFileTransfer( const QStringList& files, Configurat
 	m_fileTransferController->setFiles( relativeFiles );
 	m_fileTransferController->setInterfaces( interfaces );
 }
+
+
+
+ConfigurationPage* FileTransferPlugin::createConfigurationPage()
+{
+	return new FileTransferConfigurationPage( m_configuration );
+}
+
+
+IMPLEMENT_CONFIG_PROXY(FileTransferConfiguration)

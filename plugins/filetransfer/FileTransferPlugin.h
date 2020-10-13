@@ -27,17 +27,20 @@
 #include <QFile>
 #include <QUrl>
 
-#include "Configuration/Object.h"
+#include "ConfigurationPagePluginInterface.h"
 #include "FeatureProviderInterface.h"
+#include "FileTransferConfiguration.h"
 
 class FileTransferController;
 class FileTransferUserConfiguration;
 
-class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface
+class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FileTransfer")
-	Q_INTERFACES(PluginInterface FeatureProviderInterface)
+	Q_INTERFACES(PluginInterface
+					  FeatureProviderInterface
+						  ConfigurationPagePluginInterface)
 	Q_PROPERTY(QString lastFileTransferSourceDirectory READ lastFileTransferSourceDirectory)
 public:
 	explicit FileTransferPlugin( QObject* parent = nullptr );
@@ -101,6 +104,8 @@ public:
 							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 
+	ConfigurationPage* createConfigurationPage() override;
+
 Q_SIGNALS:
 	Q_INVOKABLE void acceptSelectedFiles( const QList<QUrl>& fileUrls );
 
@@ -109,6 +114,8 @@ private:
 	{
 		return m_lastFileTransferSourceDirectory;
 	}
+
+	QString destinationDirectory() const;
 
 	void startFileTransfer( const QStringList& files, Configuration::Object* config,
 							const ComputerControlInterfaceList& interfaces );
@@ -135,6 +142,8 @@ private:
 
 	const Feature m_fileTransferFeature;
 	const FeatureList m_features;
+
+	FileTransferConfiguration m_configuration;
 
 	QString m_lastFileTransferSourceDirectory;
 
