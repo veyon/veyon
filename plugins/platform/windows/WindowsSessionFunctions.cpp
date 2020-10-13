@@ -31,10 +31,10 @@ WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 {
 	const auto currentSession = WtsSessionManager::currentSession();
 
-/*	if( currentSession == WtsSessionManager::activeConsoleSession() )
+	if( currentSession == WtsSessionManager::activeConsoleSession() )
 	{
 		return DefaultSessionId;
-	}*/
+	}
 
 	return PlatformSessionManager::resolveSessionId( QString::number(currentSession) );
 }
