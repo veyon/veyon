@@ -70,7 +70,6 @@ add_custom_target(prepare-dev-nsi
 	DEPENDS windows-binaries)
 
 add_custom_target(dev-nsi
-	DEPENDS prepare-dev-nsi
-	DEPENDS create-windows-installer
+	DEPENDS prepare-dev-nsi create-windows-installer
 )
 
