@@ -413,6 +413,8 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 		{
 		case WTS_SESSION_LOGON:
 		case WTS_SESSION_LOGOFF:
+		case WTS_REMOTE_CONNECT:
+		case WTS_REMOTE_DISCONNECT:
 			m_sessionChangeEvent = 1;
 			break;
 		}
