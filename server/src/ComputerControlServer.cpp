@@ -94,7 +94,13 @@ VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket*
 																	 const Password& vncServerPassword,
 																	 QObject* parent )
 {
-	return new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
+	auto client = new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
+
+	connect( client, &ComputerControlClient::serverConnectionClosed, this,
+		[=]() { checkForIncompleteAuthentication( client->serverClient() ); },
+		Qt::DirectConnection );
+
+	return client;
 }
 
 
@@ -131,6 +137,21 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 	context.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
 
 	return reply.send( context.ioDevice() );
+}
+
+
+
+void ComputerControlServer::checkForIncompleteAuthentication( VncServerClient* client )
+{
+	// connection to client closed during authentication?
+	if( client->protocolState() == VncServerProtocol::AuthenticationTypes ||
+		client->protocolState() == VncServerProtocol::Authenticating )
+	{
+		// then mark as failed authentication and report it
+		client->setAuthState( VncServerClient::AuthState::Failed );
+
+		showAuthenticationMessage( client );
+	}
 }
 
 

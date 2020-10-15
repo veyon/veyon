@@ -72,6 +72,7 @@ public:
 
 
 private:
+	void checkForIncompleteAuthentication( VncServerClient* client );
 	void showAuthenticationMessage( VncServerClient* client );
 	void showAccessControlMessage( VncServerClient* client );
 
