@@ -35,6 +35,7 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 										int vncServerPort,
 										QObject* parent ) :
 	QObject( parent ),
+	m_vncServerPort( vncServerPort ),
 	m_proxyClientSocket( clientSocket ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
 	m_rfbClientToServerMessageSizes( {
@@ -50,8 +51,6 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 
 	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed );
 	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed );
-
-	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( vncServerPort ) );
 }
 
 
@@ -64,6 +63,13 @@ VncProxyConnection::~VncProxyConnection()
 
 	delete m_vncServerSocket;
 	delete m_proxyClientSocket;
+}
+
+
+
+void VncProxyConnection::start()
+{
+	serverProtocol().start();
 }
 
 
@@ -91,6 +97,14 @@ void VncProxyConnection::readFromClient()
 	{
 		// try again as client connection is not yet ready and we can't forward data
 		readFromClientLater();
+	}
+
+	if( serverProtocol().state() == VncServerProtocol::FramebufferInit &&
+		clientProtocol().state() == VncClientProtocol::Disconnected )
+	{
+		m_vncServerSocket->connectToHost( QHostAddress::LocalHost, quint16(m_vncServerPort) );
+
+		clientProtocol().start();
 	}
 }
 

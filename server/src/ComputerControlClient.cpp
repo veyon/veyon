@@ -42,8 +42,6 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 					  server->accessControlManager() ),
 	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
-	m_serverProtocol.start();
-	m_clientProtocol.start();
 }
 
 
