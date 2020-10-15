@@ -6,7 +6,7 @@
 	url = https://invent.kde.org/pim/kldap.git
 [submodule "3rdparty/libvncserver"]
 	path = 3rdparty/libvncserver
-	url = https://github.com/veyon/libvncserver.git
+	url = https://github.com/LibVNC/libvncserver.git
 [submodule "3rdparty/x11vnc"]
 	path = 3rdparty/x11vnc
 	url = https://github.com/veyon/x11vnc.git
