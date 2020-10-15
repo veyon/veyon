@@ -46,6 +46,11 @@ public:
 
 	bool receiveClientMessage() override;
 
+	VncServerClient* serverClient()
+	{
+		return &m_serverClient;
+	}
+
 protected:
 	VncClientProtocol& clientProtocol() override
 	{
