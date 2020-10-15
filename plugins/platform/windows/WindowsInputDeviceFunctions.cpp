@@ -109,7 +109,11 @@ void WindowsInputDeviceFunctions::synthesizeKeyEvent( KeySym key, bool down )
 
 void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 {
-	if( WindowsPlatformConfiguration( &VeyonCore::config() ).useInterceptionDriver() )
+	if( VeyonCore::config().multiSessionModeEnabled() )
+	{
+		uninstallInterception();
+	}
+	else if( WindowsPlatformConfiguration( &VeyonCore::config() ).useInterceptionDriver() )
 	{
 		const auto context = interception_create_context();
 		if( context )
