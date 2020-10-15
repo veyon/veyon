@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/webapi" >
+        <file>webapi.png</file>
+    </qresource>
+</RCC>
