@@ -1790,6 +1790,41 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
@@ -3683,6 +3718,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3857,6 +3904,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4236,6 +4287,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
