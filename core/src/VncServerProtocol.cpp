@@ -40,6 +40,7 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 	m_client( client ),
 	m_serverInitMessage()
 {
+	m_client->setHostAddress( m_socket->peerAddress().toString() );
 	m_client->setAccessControlState( VncServerClient::AccessControlState::Init );
 }
 
@@ -223,7 +224,6 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 		m_client->setAuthType( chosenAuthType );
 		m_client->setUsername( username );
-		m_client->setHostAddress( m_socket->peerAddress().toString() );
 
 		setState( Authenticating );
 
