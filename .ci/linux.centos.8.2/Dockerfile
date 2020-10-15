@@ -6,7 +6,7 @@ RUN \
 	yum config-manager --set-enabled PowerTools && \
 	dnf install -y https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm && \
 	yum install -y git gcc-c++ make cmake rpm-build fakeroot \
-		qt5-qtbase-devel qt5-qtbase qt5-linguist qt5-qttools \
+		qt5-qtbase-devel qt5-qtbase-private-devel qt5-qtbase qt5-linguist qt5-qttools \
 		libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel \
 		libfakekey-devel \
 		libjpeg-turbo-devel \
