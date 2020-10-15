@@ -106,6 +106,8 @@ void VncProxyServer::acceptConnection()
 	connect( connection, &VncProxyConnection::clientConnectionClosed, this, [=]() { closeConnection( connection ); } );
 	connect( connection, &VncProxyConnection::serverConnectionClosed, this, [=]() { closeConnection( connection ); } );
 
+	connection->start();
+
 	m_connections += connection;
 }
 
