@@ -39,7 +39,8 @@ class VEYON_CORE_EXPORT VncServerProtocol
 public:
 	using AuthMethodUids = QVector<Plugin::Uid>;
 
-	enum State {
+	enum class State
+	{
 		Disconnected,
 		Protocol,
 		SecurityInit,

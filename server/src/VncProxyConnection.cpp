@@ -76,7 +76,7 @@ void VncProxyConnection::start()
 
 void VncProxyConnection::readFromClient()
 {
-	if( serverProtocol().state() != VncServerProtocol::Running )
+	if( serverProtocol().state() != VncServerProtocol::State::Running )
 	{
 		while( serverProtocol().read() ) // Flawfinder: ignore
 		{
@@ -99,7 +99,7 @@ void VncProxyConnection::readFromClient()
 		readFromClientLater();
 	}
 
-	if( serverProtocol().state() == VncServerProtocol::FramebufferInit &&
+	if( serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
 		clientProtocol().state() == VncClientProtocol::Disconnected )
 	{
 		m_vncServerSocket->connectToHost( QHostAddress::LocalHost, quint16(m_vncServerPort) );
@@ -130,7 +130,7 @@ void VncProxyConnection::readFromServer()
 			readFromServerLater();
 		}
 	}
-	else if( serverProtocol().state() == VncServerProtocol::Running )
+	else if( serverProtocol().state() == VncServerProtocol::State::Running )
 	{
 		while( receiveServerMessage() )
 		{

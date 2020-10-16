@@ -52,7 +52,7 @@ public:
 
 	explicit VncServerClient( QObject* parent = nullptr ) :
 		QObject( parent ),
-		m_protocolState( VncServerProtocol::Disconnected ),
+		m_protocolState( VncServerProtocol::State::Disconnected ),
 		m_authState( AuthState::Init ),
 		m_authMethodUid(),
 		m_accessControlState( AccessControlState::Init ),

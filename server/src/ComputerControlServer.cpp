@@ -140,8 +140,8 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 void ComputerControlServer::checkForIncompleteAuthentication( VncServerClient* client )
 {
 	// connection to client closed during authentication?
-	if( client->protocolState() == VncServerProtocol::AuthenticationMethods ||
-		client->protocolState() == VncServerProtocol::Authenticating )
+	if( client->protocolState() == VncServerProtocol::State::AuthenticationMethods ||
+		client->protocolState() == VncServerProtocol::State::Authenticating )
 	{
 		// then mark as failed authentication and report it
 		client->setAuthState( VncServerClient::AuthState::Failed );

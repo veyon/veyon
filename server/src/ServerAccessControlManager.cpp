@@ -86,7 +86,7 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 			prevClient->accessControlState() != VncServerClient::AccessControlState::Pending )
 		{
 			vDebug() << "closing connection as client does not pass access control any longer";
-			prevClient->setProtocolState( VncServerProtocol::Close );
+			prevClient->setProtocolState( VncServerProtocol::State::Close );
 		}
 	}
 }
@@ -131,7 +131,7 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 
 	default:
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
-		client->setProtocolState( VncServerProtocol::Close );
+		client->setProtocolState( VncServerProtocol::State::Close );
 		break;
 	}
 
@@ -207,7 +207,7 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 	else
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
-		client->setProtocolState( VncServerProtocol::Close );
+		client->setProtocolState( VncServerProtocol::State::Close );
 	}
 }
 

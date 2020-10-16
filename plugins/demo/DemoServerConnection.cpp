@@ -65,7 +65,7 @@ DemoServerConnection::~DemoServerConnection()
 
 void DemoServerConnection::processClient()
 {
-	if( m_serverProtocol.state() != VncServerProtocol::Running )
+	if( m_serverProtocol.state() != VncServerProtocol::State::Running )
 	{
 		while( m_serverProtocol.read() )
 		{
