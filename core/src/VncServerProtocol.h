@@ -36,7 +36,8 @@ class VncServerClient;
 class VEYON_CORE_EXPORT VncServerProtocol
 {
 public:
-	enum State {
+	enum class State
+	{
 		Disconnected,
 		Protocol,
 		SecurityInit,

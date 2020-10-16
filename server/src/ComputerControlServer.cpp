@@ -170,8 +170,8 @@ void ComputerControlServer::setMinimumFramebufferUpdateInterval(const MessageCon
 void ComputerControlServer::checkForIncompleteAuthentication( VncServerClient* client )
 {
 	// connection to client closed during authentication?
-	if( client->protocolState() == VncServerProtocol::AuthenticationTypes ||
-		client->protocolState() == VncServerProtocol::Authenticating )
+	if( client->protocolState() == VncServerProtocol::State::AuthenticationTypes ||
+		client->protocolState() == VncServerProtocol::State::Authenticating )
 	{
 		// then mark as failed authentication and report it
 		client->setAuthState( VncServerClient::AuthState::Failed );
