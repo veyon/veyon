@@ -80,7 +80,7 @@ VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const Password& vncPas
 
 void VncClientProtocol::start()
 {
-	m_state = Protocol;
+	m_state = State::Protocol;
 }
 
 
@@ -89,19 +89,19 @@ bool VncClientProtocol::read() // Flawfinder: ignore
 {
 	switch( m_state )
 	{
-	case Protocol:
+	case State::Protocol:
 		return readProtocol();
 
-	case SecurityInit:
+	case State::SecurityInit:
 		return receiveSecurityTypes();
 
-	case SecurityChallenge:
+	case State::SecurityChallenge:
 		return receiveSecurityChallenge();
 
-	case SecurityResult:
+	case State::SecurityResult:
 		return receiveSecurityResult();
 
-	case FramebufferInit:
+	case State::FramebufferInit:
 		return receiveServerInitMessage();
 
 	default:
@@ -249,7 +249,7 @@ bool VncClientProtocol::readProtocol()
 
 		m_socket->write( protocol );
 
-		m_state = SecurityInit;
+		m_state = State::SecurityInit;
 
 		return true;
 	}
@@ -296,7 +296,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 		m_socket->write( &securityType, sizeof(securityType) );
 
-		m_state = SecurityChallenge;
+		m_state = State::SecurityChallenge;
 
 		return true;
 	}
@@ -318,7 +318,7 @@ bool VncClientProtocol::receiveSecurityChallenge()
 
 		m_socket->write( challenge.data(), CHALLENGESIZE );
 
-		m_state = SecurityResult;
+		m_state = State::SecurityResult;
 
 		return true;
 	}
@@ -351,7 +351,7 @@ bool VncClientProtocol::receiveSecurityResult()
 		m_socket->write( reinterpret_cast<const char *>( &clientInitMessage ), sz_rfbClientInitMsg );
 
 		// wait for server init message
-		m_state = FramebufferInit;
+		m_state = State::FramebufferInit;
 
 		return true;
 	}
@@ -390,7 +390,7 @@ bool VncClientProtocol::receiveServerInitMessage()
 			m_framebufferWidth = qFromBigEndian( serverInitMessage->framebufferWidth );
 			m_framebufferHeight = qFromBigEndian( serverInitMessage->framebufferHeight );
 
-			m_state = Running;
+			m_state = State::Running;
 
 			return true;
 		}

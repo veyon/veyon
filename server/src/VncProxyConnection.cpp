@@ -87,7 +87,7 @@ void VncProxyConnection::readFromClient()
 		// and already have RFB messages in receive queue
 		readFromClientLater();
 	}
-	else if( clientProtocol().state() == VncClientProtocol::Running )
+	else if( clientProtocol().state() == VncClientProtocol::State::Running )
 	{
 		while( receiveClientMessage() )
 		{
@@ -100,7 +100,7 @@ void VncProxyConnection::readFromClient()
 	}
 
 	if( serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
-		clientProtocol().state() == VncClientProtocol::Disconnected )
+		clientProtocol().state() == VncClientProtocol::State::Disconnected )
 	{
 		m_vncServerSocket->connectToHost( QHostAddress::LocalHost, quint16(m_vncServerPort) );
 
@@ -112,7 +112,7 @@ void VncProxyConnection::readFromClient()
 
 void VncProxyConnection::readFromServer()
 {
-	if( clientProtocol().state() != VncClientProtocol::Running )
+	if( clientProtocol().state() != VncClientProtocol::State::Running )
 	{
 		while( clientProtocol().read() ) // Flawfinder: ignore
 		{
@@ -121,7 +121,7 @@ void VncProxyConnection::readFromServer()
 		// did we finish client protocol initialization? then we must not miss this
 		// read signaĺ from server but process it as the server is still waiting
 		// for our response
-		if( clientProtocol().state() == VncClientProtocol::Running )
+		if( clientProtocol().state() == VncClientProtocol::State::Running )
 		{
 			// if client protocol is running we have the server init message which
 			// we can forward to the real client

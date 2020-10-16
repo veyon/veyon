@@ -38,7 +38,8 @@ class VEYON_CORE_EXPORT VncClientProtocol
 public:
 	using Password = CryptoCore::PlaintextPassword;
 
-	enum State {
+	enum class State
+	{
 		Disconnected,
 		Protocol,
 		SecurityInit,

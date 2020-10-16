@@ -120,7 +120,7 @@ void DemoServer::lockDataForRead()
 
 void DemoServer::acceptPendingConnections()
 {
-	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
+	if( m_vncClientProtocol->state() != VncClientProtocol::State::Running )
 	{
 		return;
 	}
@@ -144,13 +144,13 @@ void DemoServer::reconnectToVncServer()
 
 void DemoServer::readFromVncServer()
 {
-	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
+	if( m_vncClientProtocol->state() != VncClientProtocol::State::Running )
 	{
 		while( m_vncClientProtocol->read() )
 		{
 		}
 
-		if( m_vncClientProtocol->state() == VncClientProtocol::Running )
+		if( m_vncClientProtocol->state() == VncClientProtocol::State::Running )
 		{
 			start();
 		}
@@ -167,7 +167,7 @@ void DemoServer::readFromVncServer()
 
 void DemoServer::requestFramebufferUpdate()
 {
-	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
+	if( m_vncClientProtocol->state() != VncClientProtocol::State::Running )
 	{
 		return;
 	}
