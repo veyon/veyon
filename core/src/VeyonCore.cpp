@@ -632,7 +632,7 @@ void VeyonCore::initLocalComputerControlInterface()
 {
 	const Computer localComputer( NetworkObject::Uid::createUuid(),
 								  QStringLiteral("localhost"),
-								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().primaryServicePort() + sessionId() ) );
+								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().veyonServerPort() + sessionId() ) );
 
 	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
 }

@@ -85,7 +85,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QUuid, vncServerPlugin, setVncServerPlugin, "Plugin", "VncServer", QUuid(), Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), int, primaryServicePort, setPrimaryServicePort, "PrimaryServicePort", "Network", 11100, Configuration::Property::Flag::Advanced )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, veyonServerPort, setVeyonServerPort, "VeyonServerPort", "Network", 11100, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), int, vncServerPort, setVncServerPort, "VncServerPort", "Network", 11200, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), int, featureWorkerManagerPort, setFeatureWorkerManagerPort, "FeatureWorkerManagerPort", "Network", 11300, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), int, demoServerPort, setDemoServerPort, "DemoServerPort", "Network", 11400, Configuration::Property::Flag::Advanced )			\
@@ -141,6 +141,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyIsSoftwareSASEnabled, setLegacySoftwareSASEnabled, "SoftwareSASEnabled", "Service", true, Configuration::Property::Flag::Legacy )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyLocalComputerHidden, setLegacyLocalComputerHidden, "LocalComputerHidden", "Master", false, Configuration::Property::Flag::Legacy )       \
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyComputerFilterHidden, setLegacyComputerFilterHidden, "ComputerFilterHidden", "Master", false, Configuration::Property::Flag::Legacy )	\
+	OP( VeyonConfiguration, VeyonCore::config(), int, legacyPrimaryServicePort, setLegacyPrimaryServicePort, "PrimaryServicePort", "Network", 11100, Configuration::Property::Flag::Legacy )			\
 
 #define FOREACH_VEYON_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)			\

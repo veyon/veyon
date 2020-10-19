@@ -240,7 +240,7 @@ void ComputerManager::initNetworkObjectLayer()
 
 		if( hideOwnSession )
 		{
-			const auto sessionServerPort = QString::number( VeyonCore::config().primaryServicePort() +
+			const auto sessionServerPort = QString::number( VeyonCore::config().veyonServerPort() +
 															 VeyonCore::sessionId() );
 
 			for( const auto& localHostName : localHostNames )

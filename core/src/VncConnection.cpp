@@ -171,7 +171,7 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_quality( Quality::Default ),
 	m_host(),
 	m_port( -1 ),
-	m_defaultPort( VeyonCore::config().primaryServicePort() ),
+	m_defaultPort( VeyonCore::config().veyonServerPort() ),
 	m_globalMutex(),
 	m_eventQueueMutex(),
 	m_updateIntervalSleeper(),
