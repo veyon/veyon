@@ -41,7 +41,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),
 	m_vncProxyServer( VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
-					  VeyonCore::config().primaryServicePort() + VeyonCore::sessionId(),
+					  VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
 					  this,
 					  this )
 {
@@ -230,7 +230,7 @@ void ComputerControlServer::updateTrayIconToolTip()
 {
 	auto toolTip = tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::versionString(),
 													   HostAddress::localFQDN(),
-												QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) );
+												QString::number( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) );
 
 	QStringList clients;
 	for( const auto* client : m_vncProxyServer.clients() )
