@@ -264,7 +264,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="localComputerHidden">
+           <widget class="QCheckBox" name="hideLocalComputer">
             <property name="text">
              <string>Hide local computer</string>
             </property>
@@ -285,7 +285,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="computerFilterHidden">
+           <widget class="QCheckBox" name="hideComputerFilter">
             <property name="text">
              <string>Hide computer filter field</string>
             </property>
@@ -449,10 +449,10 @@
   <tabstop>autoOpenComputerSelectPanel</tabstop>
   <tabstop>showCurrentLocationOnly</tabstop>
   <tabstop>allowAddingHiddenLocations</tabstop>
-  <tabstop>localComputerHidden</tabstop>
+  <tabstop>hideLocalComputer</tabstop>
   <tabstop>hideOwnSession</tabstop>
   <tabstop>hideEmptyLocations</tabstop>
-  <tabstop>computerFilterHidden</tabstop>
+  <tabstop>hideComputerFilter</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>

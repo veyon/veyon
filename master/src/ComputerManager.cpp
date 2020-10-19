@@ -217,7 +217,7 @@ void ComputerManager::initNetworkObjectLayer()
 	m_computerTreeModel->setException( NetworkObjectModel::TypeRole, QVariant::fromValue( NetworkObject::Type::Label ) );
 	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
 
-	const auto hideLocalComputer = VeyonCore::config().localComputerHidden();
+	const auto hideLocalComputer = VeyonCore::config().hideLocalComputer();
 	const auto hideOwnSession = VeyonCore::config().hideOwnSession();
 
 	if( hideLocalComputer || hideOwnSession )
