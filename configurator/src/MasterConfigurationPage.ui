@@ -278,6 +278,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="hideOwnSession">
+            <property name="text">
+             <string>Hide local session</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="hideEmptyLocations">
             <property name="text">
              <string>Hide empty locations</string>
@@ -450,6 +457,7 @@
   <tabstop>showCurrentLocationOnly</tabstop>
   <tabstop>allowAddingHiddenLocations</tabstop>
   <tabstop>localComputerHidden</tabstop>
+  <tabstop>hideOwnSession</tabstop>
   <tabstop>hideEmptyLocations</tabstop>
   <tabstop>computerFilterHidden</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
