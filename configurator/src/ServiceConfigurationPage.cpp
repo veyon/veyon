@@ -43,7 +43,8 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( ui->networkGroupBox, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags( ui->networkPortNumbersGroupBox, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags( ui->miscNetworkSettingsGroupBox, Configuration::Property::Flag::Advanced );
 
 	updateServiceControl();
 	populateVncServerPluginComboBox();
