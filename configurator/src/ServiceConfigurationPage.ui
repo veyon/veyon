@@ -182,56 +182,18 @@ Typically this is required to support terminal servers.</string>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="networkGroupBox">
+    <widget class="QGroupBox" name="networkPortNumbersGroupBox">
      <property name="title">
-      <string>Network</string>
+      <string>Network port numbers</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_11">
-      <item row="2" column="1">
-       <widget class="QSpinBox" name="featureWorkerManagerPort">
-        <property name="minimum">
-         <number>1024</number>
-        </property>
-        <property name="maximum">
-         <number>65535</number>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Demo server port</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="primaryServicePort">
+       <widget class="QSpinBox" name="veyonServerPort">
         <property name="minimum">
          <number>1024</number>
         </property>
         <property name="maximum">
          <number>65535</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_14">
-        <property name="text">
-         <string>Feature manager port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>Primary service port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2">
-       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
-        <property name="text">
-         <string>Enable firewall exception</string>
         </property>
        </widget>
       </item>
@@ -245,17 +207,41 @@ Typically this is required to support terminal servers.</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0" colspan="2">
-       <widget class="QCheckBox" name="localConnectOnly">
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="featureWorkerManagerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_12">
         <property name="text">
-         <string>Allow connections from localhost only</string>
+         <string>Veyon server</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_15">
         <property name="text">
-         <string>Internal VNC server port</string>
+         <string>Internal VNC server</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>Feature manager</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Demo server</string>
         </property>
        </widget>
       </item>
@@ -266,6 +252,29 @@ Typically this is required to support terminal servers.</string>
         </property>
         <property name="maximum">
          <number>65535</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="miscNetworkSettingsGroupBox">
+     <property name="title">
+      <string>Miscellaneous network settings</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
+        <property name="text">
+         <string>Enable firewall exception</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="localConnectOnly">
+        <property name="text">
+         <string>Allow connections from localhost only</string>
         </property>
        </widget>
       </item>
@@ -317,6 +326,24 @@ Typically this is required to support terminal servers.</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>isTrayIconHidden</tabstop>
+  <tabstop>failedAuthenticationNotificationsEnabled</tabstop>
+  <tabstop>remoteConnectionNotificationsEnabled</tabstop>
+  <tabstop>autostartService</tabstop>
+  <tabstop>startService</tabstop>
+  <tabstop>stopService</tabstop>
+  <tabstop>singleSessionModeEnabled</tabstop>
+  <tabstop>multiSessionModeEnabled</tabstop>
+  <tabstop>maximumSessionCount</tabstop>
+  <tabstop>veyonServerPort</tabstop>
+  <tabstop>vncServerPort</tabstop>
+  <tabstop>featureWorkerManagerPort</tabstop>
+  <tabstop>demoServerPort</tabstop>
+  <tabstop>isFirewallExceptionEnabled</tabstop>
+  <tabstop>localConnectOnly</tabstop>
+  <tabstop>vncServerPlugin</tabstop>
+ </tabstops>
  <resources>
   <include location="../resources/configurator.qrc"/>
  </resources>
