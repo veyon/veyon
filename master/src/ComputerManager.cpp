@@ -217,7 +217,10 @@ void ComputerManager::initNetworkObjectLayer()
 	m_computerTreeModel->setException( NetworkObjectModel::TypeRole, QVariant::fromValue( NetworkObject::Type::Label ) );
 	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
 
-	if( VeyonCore::config().localComputerHidden() )
+	const auto hideLocalComputer = VeyonCore::config().localComputerHidden();
+	const auto hideOwnSession = VeyonCore::config().hideOwnSession();
+
+	if( hideLocalComputer || hideOwnSession )
 	{
 		QStringList localHostNames( {
 										QStringLiteral("localhost"),
@@ -232,9 +235,32 @@ void ComputerManager::initNetworkObjectLayer()
 			localHostNames.append( address.toString() ); // clazy:exclude=reserve-candidates
 		}
 
-		vDebug() << "excluding local computer via" << localHostNames;
+		QStringList ownSessionNames;
+		ownSessionNames.reserve( localHostNames.size() );
 
-		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames );
+		if( hideOwnSession )
+		{
+			const auto sessionServerPort = QString::number( VeyonCore::config().primaryServicePort() +
+															 VeyonCore::sessionId() );
+
+			for( const auto& localHostName : localHostNames )
+			{
+				ownSessionNames.append( QStringLiteral("%1:%2").arg( localHostName, sessionServerPort ) );
+			}
+
+			vDebug() << "excluding own session via" << ownSessionNames;
+		}
+
+		if( hideLocalComputer )
+		{
+			vDebug() << "excluding local computer via" << localHostNames;
+		}
+		else
+		{
+			localHostNames.clear();
+		}
+
+		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames + ownSessionNames );
 	}
 
 	m_networkObjectFilterProxyModel->setEmptyGroupsExcluded( VeyonCore::config().hideEmptyLocations() );
