@@ -59,4 +59,11 @@ void VeyonConfiguration::upgrade()
 
 		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_2 );
 	}
+	else if( applicationVersion() < VeyonCore::ApplicationVersion::Version_4_4 )
+	{
+		setHideLocalComputer( legacyLocalComputerHidden() );
+		setHideComputerFilter( legacyComputerFilterHidden() );
+
+		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_4 );
+	}
 }

@@ -56,7 +56,7 @@ ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, Comp
 	ui->addLocationButton->setVisible( VeyonCore::config().showCurrentLocationOnly() &&
 									   VeyonCore::config().allowAddingHiddenLocations() );
 
-	ui->filterLineEdit->setHidden( VeyonCore::config().computerFilterHidden() );
+	ui->filterLineEdit->setHidden( VeyonCore::config().hideComputerFilter() );
 
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
 			 this, &ComputerSelectPanel::updateFilter );
