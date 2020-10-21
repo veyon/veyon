@@ -71,6 +71,11 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
+	QStringList supportedSessionTypes() const override
+	{
+		return { QStringLiteral("x11") };
+	}
+
 	QWidget* configurationWidget() override;
 
 	void prepareServer() override;
