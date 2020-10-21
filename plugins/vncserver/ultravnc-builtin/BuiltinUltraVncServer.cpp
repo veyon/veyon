@@ -175,14 +175,14 @@ BuiltinUltraVncServer::~BuiltinUltraVncServer()
 
 
 QWidget* BuiltinUltraVncServer::configurationWidget()
- {
+{
 	return new UltraVncConfigurationWidget( m_configuration );
- }
+}
 
 
 
 void BuiltinUltraVncServer::prepareServer()
- {
+{
 	// initialize global instance handler and main thread ID
 	hAppInstance = GetModuleHandle( nullptr );
 	mainthreadId = GetCurrentThreadId();
@@ -190,7 +190,7 @@ void BuiltinUltraVncServer::prepareServer()
 	hInstResDLL = hAppInstance;
 
 	m_logoffEventFilter = new LogoffEventFilter;
- }
+}
 
 
 
