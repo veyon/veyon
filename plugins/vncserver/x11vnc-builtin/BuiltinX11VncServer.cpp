@@ -55,7 +55,7 @@ void BuiltinX11VncServer::prepareServer()
 
 
 
-void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
+bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 {
 	QStringList cmdline = { QStringLiteral("-localhost"),
 							QStringLiteral("-nosel"),			// do not exchange clipboard-contents
@@ -115,12 +115,14 @@ void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 	{
 		vCritical() << "Could not start external x11vnc:" << x11vnc.errorString();
 		vCritical() << "Please make sure x11vnc is installed and installation directory is in PATH!";
-		QThread::msleep( 5000 );
+		return false;
 	}
 	else
 	{
 		x11vnc.waitForFinished( -1 );
 	}
+
+	return true;
 #else
 	cmdline.append( { QStringLiteral("-passwd"), QString::fromUtf8( password.toByteArray() ) } );
 
@@ -139,7 +141,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 	}
 
 	// run x11vnc-server
-	x11vnc_main( argc, argv );
+	const auto result = x11vnc_main( argc, argv );
 
 	for( int i = 0; i < argc; ++i )
 	{
@@ -147,6 +149,8 @@ void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 	}
 
 	delete[] argv;
+
+	return result == 0;
 #endif
 }
 

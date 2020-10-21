@@ -194,8 +194,8 @@ void BuiltinUltraVncServer::prepareServer()
 
 
 
-void BuiltinUltraVncServer::runServer( int serverPort, const Password& password )
- {
+bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password )
+{
 	m_serverPort = serverPort;
 	m_password = password;
 
@@ -232,7 +232,7 @@ void BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 		FreeLibrary( hSHCore );
 	}
 
-	WinVNCAppMain();
+	return WinVNCAppMain() == 1;
 }
 
 
