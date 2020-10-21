@@ -145,7 +145,10 @@ void VncServer::run()
 			VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_pluginInterface->configuredPassword() );
 		}
 
-		m_pluginInterface->runServer( serverPort(), password() );
+		if( m_pluginInterface->runServer( serverPort(), password() ) == false )
+		{
+			vCritical() << "An error occurred while running the VNC server plugin";
+		}
 
 		vDebug() << "finished";
 	}
