@@ -40,4 +40,6 @@ public:
 
 	virtual SessionId currentSessionId() = 0;
 
+	virtual QString currentSessionType() const = 0;
+
 };

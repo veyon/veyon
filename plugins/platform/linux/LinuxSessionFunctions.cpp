@@ -24,6 +24,7 @@
 
 #include <QDateTime>
 #include <QDBusReply>
+#include <QProcessEnvironment>
 
 #include <proc/readproc.h>
 
@@ -33,7 +34,7 @@
 
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 {
-	return PlatformSessionManager::resolveSessionId( getSessionId( QStringLiteral("/org/freedesktop/login1/session/self") ) );
+	return PlatformSessionManager::resolveSessionId( getSessionId( currentSessionPath() ) );
 }
 
 
@@ -161,3 +162,33 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 	return sessionEnv;
 }
 
+
+
+QString LinuxSessionFunctions::currentSessionType() const
+{
+	const auto env = QProcessEnvironment::systemEnvironment();
+
+	if( env.contains( QStringLiteral("WAYLAND_DISPLAY") ) )
+	{
+		return QStringLiteral("wayland");
+	}
+	else if( env.contains( QStringLiteral("DISPLAY") ) )
+	{
+		return QStringLiteral("x11");
+	}
+
+	return getSessionType( currentSessionPath() );
+}
+
+
+
+QString LinuxSessionFunctions::currentSessionPath()
+{
+	const auto xdgSessionId = QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_SESSION_ID") );
+	if( xdgSessionId.isEmpty() )
+	{
+		return QStringLiteral("/org/freedesktop/login1/session/self");
+	}
+
+	return QStringLiteral("/org/freedesktop/login1/session/%1").arg( xdgSessionId );
+}
