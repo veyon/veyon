@@ -67,12 +67,14 @@ void ExternalVncServer::prepareServer()
 
 
 
-void ExternalVncServer::runServer( int serverPort, const Password& password )
+bool ExternalVncServer::runServer( int serverPort, const Password& password )
 {
 	Q_UNUSED(serverPort)
 	Q_UNUSED(password)
 
 	QEventLoop().exec();
+
+	return true;
 }
 
 

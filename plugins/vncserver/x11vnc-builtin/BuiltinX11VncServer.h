@@ -80,7 +80,7 @@ public:
 
 	void prepareServer() override;
 
-	void runServer( int serverPort, const Password& password ) override;
+	bool runServer( int serverPort, const Password& password ) override;
 
 	int configuredServerPort() override
 	{
