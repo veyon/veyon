@@ -36,6 +36,8 @@ public:
 
 	virtual ~VncServerPluginInterface() = default;
 
+	virtual QStringList supportedSessionTypes() const = 0;
+
 	/*!
 	 * \brief Create configuration widget for VNC server plugin - used in Configurator
 	 */

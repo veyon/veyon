@@ -71,6 +71,11 @@ public:
 		return Plugin::NoFlags;
 	}
 
+	QStringList supportedSessionTypes() const override
+	{
+		return {};
+	}
+
 	void upgrade( const QVersionNumber& oldVersion ) override;
 
 	QWidget* configurationWidget() override;
