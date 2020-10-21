@@ -289,19 +289,26 @@ bool VncClientProtocol::receiveSecurityTypes()
 			return false;
 		}
 
-		const char securityType = rfbSecTypeVncAuth;
+		char securityType = rfbSecTypeInvalid;
 
-		if( securityTypeList.contains( securityType ) == false )
+		if( securityTypeList.contains( rfbSecTypeVncAuth ) )
 		{
-			vCritical() << "no supported security type!";
-			m_socket->close();
-
+			securityType = rfbSecTypeVncAuth;
+			m_state = State::SecurityChallenge;
+		}
+		else if( securityTypeList.contains( rfbSecTypeNone ) )
+		{
+			securityType = rfbSecTypeNone;
+			m_state = State::SecurityResult;
+		}
+		else
+		{
+			vCritical() << "unsupported security types!" << securityTypeList;
 			return false;
+			m_socket->close();
 		}
 
 		m_socket->write( &securityType, sizeof(securityType) );
-
-		m_state = SecurityChallenge;
 
 		return true;
 	}
