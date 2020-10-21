@@ -31,6 +31,8 @@
 class WindowsSessionFunctions : public PlatformSessionFunctions
 {
 public:
-    SessionId currentSessionId() override;
+	SessionId currentSessionId() override;
+
+	QString currentSessionType() const override;
 
 };

@@ -49,6 +49,8 @@ public:
 
 	SessionId currentSessionId() override;
 
+	QString currentSessionType() const override;
+
 	static QVariant getSessionProperty( const QString& session, const QString& property );
 
 	static int getSessionLeaderPid( const QString& session );
@@ -59,5 +61,7 @@ public:
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
+
+	static QString currentSessionPath();
 
 };

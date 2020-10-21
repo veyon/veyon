@@ -38,3 +38,15 @@ WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 
 	return PlatformSessionManager::resolveSessionId( QString::number(currentSession) );
 }
+
+
+
+QString WindowsSessionFunctions::currentSessionType() const
+{
+	if(WtsSessionManager::currentSession() == WtsSessionManager::activeConsoleSession() )
+	{
+		return QStringLiteral("console");
+	}
+
+	return QStringLiteral("rdp");
+}
