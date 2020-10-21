@@ -56,7 +56,6 @@ public:
 	static int getSessionLeaderPid( const QString& session );
 	static qint64 getSessionUptimeSeconds( const QString& session );
 	static QString getSessionType( const QString& session );
-	static QString getSessionDisplay( const QString& session );
 	static QString getSessionId( const QString& session );
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 

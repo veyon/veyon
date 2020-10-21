@@ -102,13 +102,6 @@ QString LinuxSessionFunctions::getSessionType( const QString& session )
 
 
 
-QString LinuxSessionFunctions::getSessionDisplay( const QString& session )
-{
-	return getSessionProperty( session, QStringLiteral("Display") ).toString();
-}
-
-
-
 QString LinuxSessionFunctions::getSessionId( const QString& session )
 {
 	return getSessionProperty( session, QStringLiteral("Id") ).toString();
