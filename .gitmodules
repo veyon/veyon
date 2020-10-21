@@ -24,3 +24,12 @@
 [submodule "3rdparty/krfb"]
 	path = 3rdparty/krfb
 	url = https://invent.kde.org/network/krfb.git
+[submodule "3rdparty/aml"]
+	path = 3rdparty/aml
+	url = https://github.com/any1/aml.git
+[submodule "3rdparty/neatvnc"]
+	path = 3rdparty/neatvnc
+	url = https://github.com/any1/neatvnc.git
+[submodule "3rdparty/wayvnc"]
+	path = 3rdparty/wayvnc
+	url = https://github.com/any1/wayvnc.git

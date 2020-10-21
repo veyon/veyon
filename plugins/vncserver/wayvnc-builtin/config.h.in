@@ -1,0 +1,7 @@
+#pragma once
+
+#cmakedefine ENABLE_SCREENCOPY_DMABUF 1
+#cmakedefine ENABLE_TLS 1
+#cmakedefine HAVE_USDT 1
+#cmakedefine HAVE_MEMFD 1
+#cmakedefine HAVE_MEMFD_CREATE 1
