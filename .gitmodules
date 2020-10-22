@@ -21,3 +21,6 @@
 [submodule "3rdparty/qthttpserver"]
 	path = 3rdparty/qthttpserver
 	url = https://code.qt.io/qt-labs/qthttpserver.git
+[submodule "3rdparty/krfb"]
+	path = 3rdparty/krfb
+	url = https://invent.kde.org/network/krfb.git
