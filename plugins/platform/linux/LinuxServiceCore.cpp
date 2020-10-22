@@ -130,7 +130,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	const auto veyonSessionId = m_sessionManager.openSession( LinuxSessionFunctions::getSessionId( sessionPath ) );
 
-	vInfo() << "Starting server for new session" << sessionPath
+	vInfo() << "Starting server for new" << qUtf8Printable(sessionType) << "session" << sessionPath
 			<< "with ID" << veyonSessionId
 			<< "at seat" << seat.path;
 
