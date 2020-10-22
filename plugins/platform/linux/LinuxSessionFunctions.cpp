@@ -109,6 +109,21 @@ QString LinuxSessionFunctions::getSessionId( const QString& session )
 
 
 
+LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QString& session )
+{
+	static const QMap<QString, State> stateMap{
+		{ QStringLiteral("offline"), State::Offline },
+		{ QStringLiteral("lingering"), State::Lingering },
+		{ QStringLiteral("online"), State::Online },
+		{ QStringLiteral("active"), State::Active },
+		{ QStringLiteral("closing"), State::Closing },
+	};
+
+	return stateMap.value( getSessionProperty( session, QStringLiteral("State") ).toString(), State::Unknown );
+}
+
+
+
 LinuxSessionFunctions::LoginDBusSessionSeat LinuxSessionFunctions::getSessionSeat( const QString& session )
 {
 	const auto seatArgument = getSessionProperty( session, QStringLiteral("Seat") ).value<QDBusArgument>();

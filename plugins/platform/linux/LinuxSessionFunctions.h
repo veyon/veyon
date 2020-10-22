@@ -47,6 +47,16 @@ public:
 		QString path;
 	} ;
 
+	enum class State
+	{
+		Unknown,
+		Offline,
+		Lingering,
+		Online,
+		Active,
+		Closing
+	};
+
 	SessionId currentSessionId() override;
 
 	QString currentSessionType() const override;
@@ -57,6 +67,7 @@ public:
 	static qint64 getSessionUptimeSeconds( const QString& session );
 	static QString getSessionType( const QString& session );
 	static QString getSessionId( const QString& session );
+	static State getSessionState( const QString& session );
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
