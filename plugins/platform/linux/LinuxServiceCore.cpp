@@ -85,6 +85,14 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
+	// only start server for online or active sessions
+	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
+	if( sessionState != LinuxSessionFunctions::State::Online &&
+		sessionState != LinuxSessionFunctions::State::Active )
+	{
+		return;
+	}
+
 	const auto sessionLeader = LinuxSessionFunctions::getSessionLeaderPid( sessionPath );
 	if( sessionLeader < 0 )
 	{
