@@ -59,12 +59,12 @@ void VeyonConfiguration::upgrade()
 
 		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_2 );
 	}
-	else if( applicationVersion() < VeyonCore::ApplicationVersion::Version_4_4 )
+	else if( applicationVersion() < VeyonCore::ApplicationVersion::Version_4_5 )
 	{
 		setVeyonServerPort( legacyPrimaryServicePort() );
 		setHideLocalComputer( legacyLocalComputerHidden() );
 		setHideComputerFilter( legacyComputerFilterHidden() );
 
-		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_4 );
+		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_5 );
 	}
 }
