@@ -60,24 +60,25 @@ First grab the latest sources by cloning the Git repository and fetching all sub
 
 Requirements for Debian-based distributions:
 
-- Build tools: g++ make cmake
-- Qt5: qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools
-- X11: xorg-dev libxtst-dev
+- Build tools: g++ libc6-dev make cmake dpkg-dev
+- Qt5: qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools
+- X11: xorg-dev libxtst-dev libfakekey-dev
 - libjpeg: libjpeg-dev provided by libjpeg-turbo8-dev or libjpeg62-turbo-dev
 - zlib: zlib1g-dev
 - OpenSSL: libssl-dev
 - PAM: libpam0g-dev
 - procps: libprocps-dev
 - LZO: liblzo2-dev
-- QCA: libqca2-dev libqca-qt5-2-dev
+- QCA: libqca-qt5-2-dev
 - LDAP: libldap2-dev
 - SASL: libsasl2-dev
 
 As root you can run
 
-	apt install g++ make cmake qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
-	            xorg-dev libxtst-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
-	            libprocps-dev liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev \
+	apt install g++ libc6-dev make cmake qtbase5-dev qtbase5-private-dev \
+	            qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
+	            xorg-dev libxtst-dev libfakekey-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
+	            libprocps-dev liblzo2-dev libqca-qt5-2-dev libldap2-dev \
 	            libsasl2-dev
 
 
@@ -85,8 +86,8 @@ As root you can run
 Requirements for RedHat-based distributions:
 
 - Build tools: gcc-c++ make cmake rpm-build
-- Qt5: qt5-devel
-- X11: libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel
+- Qt5: qt5-devel qt5-qtbase-private-devel
+- X11: libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libfakekey-devel
 - libjpeg: libjpeg-turbo-devel
 - zlib: zlib-devel
 - OpenSSL: openssl-devel
