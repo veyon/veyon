@@ -22,6 +22,7 @@
  *
  */
 
+#include <QHostAddress>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickStyle>
@@ -52,6 +53,12 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_computerMonitoringModel( new ComputerMonitoringModel( m_computerControlListModel, this ) ),
 	m_computerSelectModel( new ComputerSelectModel( m_computerManager->computerTreeModel(), this ) ),
+	m_localSessionControlInterface( Computer( NetworkObject::Uid::createUuid(),
+											  QStringLiteral("localhost"),
+											  QStringLiteral("%1:%2").
+											  arg( QHostAddress( QHostAddress::LocalHost ).toString() ).
+											  arg( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) ),
+									this ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
 	if( VeyonCore::config().enforceSelectedModeForClients() )
@@ -60,12 +67,12 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 				 this, &VeyonMaster::enforceDesignatedMode );
 	}
 
-	connect( &VeyonCore::localComputerControlInterface(), &ComputerControlInterface::featureMessageReceived,
+	connect( &m_localSessionControlInterface, &ComputerControlInterface::featureMessageReceived,
 			 this, [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
 			 m_featureManager->handleFeatureMessage( *this, featureMessage, computerControlInterface );
 	} );
 
-	VeyonCore::localComputerControlInterface().start( QSize(), ComputerControlInterface::UpdateMode::Monitoring );
+	m_localSessionControlInterface.start();
 
 	initUserInterface();
 }

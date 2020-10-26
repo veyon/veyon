@@ -28,6 +28,7 @@
 #include "VeyonCore.h"
 
 class BuiltinFeatures;
+class ComputerControlInterface;
 class QQuickItem;
 class QQuickWindow;
 class QWidget;
@@ -49,5 +50,7 @@ public:
 
 	virtual Configuration::Object* userConfigurationObject() = 0;
 	virtual void reloadSubFeatures() = 0;
+
+	virtual ComputerControlInterface& localSessionControlInterface() = 0;
 
 };

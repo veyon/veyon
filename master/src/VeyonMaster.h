@@ -118,6 +118,11 @@ public:
 	Configuration::Object* userConfigurationObject() override;
 	void reloadSubFeatures() override;
 
+	ComputerControlInterface& localSessionControlInterface() override
+	{
+		return m_localSessionControlInterface;
+	}
+
 	ComputerControlInterfaceList filteredComputerControlInterfaces();
 
 public Q_SLOTS:
@@ -145,6 +150,8 @@ private:
 	ComputerControlListModel* m_computerControlListModel;
 	ComputerMonitoringModel* m_computerMonitoringModel;
 	ComputerSelectModel* m_computerSelectModel;
+
+	ComputerControlInterface m_localSessionControlInterface;
 
 	MainWindow* m_mainWindow{nullptr};
 	QQmlApplicationEngine* m_qmlAppEngine{nullptr};
