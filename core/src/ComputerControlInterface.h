@@ -62,7 +62,7 @@ public:
 		return m_connection;
 	}
 
-	void start( QSize scaledScreenSize, UpdateMode updateMode );
+	void start( QSize scaledScreenSize = {}, UpdateMode updateMode = UpdateMode::Monitoring );
 	void stop();
 
 	const Computer& computer() const
