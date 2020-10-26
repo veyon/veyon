@@ -29,7 +29,6 @@
 #include <QApplication>
 #include <QDir>
 #include <QGroupBox>
-#include <QHostAddress>
 #include <QLabel>
 #include <QProcessEnvironment>
 #include <QSysInfo>
@@ -70,7 +69,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	m_builtinFeatures( nullptr ),
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
-	m_localComputerControlInterface( nullptr ),
 	m_component( component ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_debugging( false )
@@ -100,8 +98,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	initPlugins();
 
 	initManagers();
-
-	initLocalComputerControlInterface();
 
 	initSystemInfo();
 }
@@ -629,17 +625,6 @@ void VeyonCore::initManagers()
 	m_authenticationManager = new AuthenticationManager( this );
 	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
-}
-
-
-
-void VeyonCore::initLocalComputerControlInterface()
-{
-	const Computer localComputer( NetworkObject::Uid::createUuid(),
-								  QStringLiteral("localhost"),
-								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().veyonServerPort() + sessionId() ) );
-
-	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
 }
 
 

@@ -47,7 +47,6 @@ class QWidget;
 class AuthenticationCredentials;
 class AuthenticationManager;
 class BuiltinFeatures;
-class ComputerControlInterface;
 class CryptoCore;
 class Filesystem;
 class Logger;
@@ -163,11 +162,6 @@ public:
 		return *( instance()->m_filesystem );
 	}
 
-	static ComputerControlInterface& localComputerControlInterface()
-	{
-		return *( instance()->m_localComputerControlInterface );
-	}
-
 	static void setupApplicationParameters();
 
 	static int sessionId()
@@ -217,8 +211,6 @@ private:
 	BuiltinFeatures* m_builtinFeatures;
 	UserGroupsBackendManager* m_userGroupsBackendManager;
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
-
-	ComputerControlInterface* m_localComputerControlInterface;
 
 	Component m_component;
 	QString m_applicationName;
