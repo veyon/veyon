@@ -304,8 +304,8 @@ bool VncClientProtocol::receiveSecurityTypes()
 		else
 		{
 			vCritical() << "unsupported security types!" << securityTypeList;
-			return false;
 			m_socket->close();
+			return false;
 		}
 
 		m_socket->write( &securityType, sizeof(securityType) );
