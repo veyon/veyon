@@ -39,6 +39,8 @@ public:
 	Configuration::Object* userConfigurationObject() override;
 	void reloadSubFeatures() override;
 
+	ComputerControlInterface& localSessionControlInterface() override;
+
 	void registerMessageHandler( ComputerControlInterface* controlInterface );
 
 	FeatureList availableFeatures() const;
@@ -49,5 +51,7 @@ public:
 private:
 	FeatureManager m_featureManager;
 	Configuration::Object m_dummyConfiguration{};
+
+	ComputerControlInterface m_sessionControlInterface;
 
 };

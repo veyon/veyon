@@ -27,7 +27,8 @@
 
 WebApiFeatureMaster::WebApiFeatureMaster( QObject* parent ) :
 	VeyonMasterInterface( parent ),
-	m_featureManager( this )
+	m_featureManager( this ),
+	m_sessionControlInterface( Computer{}, this )
 {
 }
 
@@ -51,6 +52,13 @@ Configuration::Object* WebApiFeatureMaster::userConfigurationObject()
 
 void WebApiFeatureMaster::reloadSubFeatures()
 {
+}
+
+
+
+ComputerControlInterface& WebApiFeatureMaster::localSessionControlInterface()
+{
+	return m_sessionControlInterface;
 }
 
 

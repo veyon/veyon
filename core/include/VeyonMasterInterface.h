@@ -28,6 +28,7 @@
 #include "VeyonCore.h"
 
 class BuiltinFeatures;
+class ComputerControlInterface;
 class QWidget;
 
 class VEYON_CORE_EXPORT VeyonMasterInterface : public QObject
@@ -44,5 +45,7 @@ public:
 	virtual QWidget* mainWindow() = 0;
 	virtual Configuration::Object* userConfigurationObject() = 0;
 	virtual void reloadSubFeatures() = 0;
+
+	virtual ComputerControlInterface& localSessionControlInterface() = 0;
 
 };

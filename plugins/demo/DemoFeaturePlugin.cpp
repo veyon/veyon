@@ -34,6 +34,7 @@
 #include "Logger.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonConfiguration.h"
+#include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
 
 
@@ -76,8 +77,6 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
-
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
 		const auto demoServerPort = VeyonCore::config().demoServerPort() + VeyonCore::sessionId();
@@ -87,7 +86,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		featureMessage.addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() );
 		featureMessage.addArgument( DemoServerPort, demoServerPort );
 
-		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
+		master.localSessionControlInterface().sendFeatureMessage( featureMessage, true );
 
 		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
 
@@ -116,8 +115,6 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
 									 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master);
-
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
 		sendFeatureMessage( FeatureMessage( feature.uid(), StopDemoClient ), computerControlInterfaces );
@@ -140,7 +137,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		{
 			// then we can stop the server
 			const FeatureMessage featureMessage( m_demoServerFeature.uid(), StopDemoServer );
-			VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage, true );
+			master.localSessionControlInterface().sendFeatureMessage( featureMessage, true );
 		}
 
 		return true;

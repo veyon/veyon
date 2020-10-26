@@ -22,6 +22,8 @@
  *
  */
 
+#include <QHostAddress>
+
 #include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
@@ -45,6 +47,12 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_computerSortFilterProxyModel( new ComputerSortFilterProxyModel( this ) ),
+	m_localSessionControlInterface( Computer( NetworkObject::Uid::createUuid(),
+											  QStringLiteral("localhost"),
+											  QStringLiteral("%1:%2").
+											  arg( QHostAddress( QHostAddress::LocalHost ).toString() ).
+											  arg( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) ),
+									this ),
 	m_mainWindow( nullptr ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
@@ -54,12 +62,12 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 				 this, &VeyonMaster::enforceDesignatedMode );
 	}
 
-	connect( &VeyonCore::localComputerControlInterface(), &ComputerControlInterface::featureMessageReceived,
+	connect( &m_localSessionControlInterface, &ComputerControlInterface::featureMessageReceived,
 			 this, [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
 			 m_featureManager->handleFeatureMessage( *this, featureMessage, computerControlInterface );
 	} );
 
-	VeyonCore::localComputerControlInterface().start( QSize() );
+	m_localSessionControlInterface.start();
 
 	// attach computer list model to proxy model
 	m_computerSortFilterProxyModel->setSourceModel( m_computerControlListModel );
