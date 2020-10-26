@@ -52,7 +52,7 @@ public:
 	explicit ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
-	void start( QSize scaledScreenSize, AuthenticationProxy* authenticationProxy = nullptr );
+	void start( QSize scaledScreenSize = {}, AuthenticationProxy* authenticationProxy = nullptr );
 	void stop();
 
 	const Computer& computer() const
