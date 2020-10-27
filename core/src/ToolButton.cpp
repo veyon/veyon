@@ -205,7 +205,7 @@ void ToolButton::paintEvent( QPaintEvent* )
 
 	if( s_iconOnlyMode == false )
 	{
-		const auto label = ( active && m_altLabel.isEmpty() == false ) ? m_altLabel : m_label;
+		const auto label = ( isChecked() && m_altLabel.isEmpty() == false ) ? m_altLabel : m_label;
 		const int labelX = 1 + ( width() - painter.fontMetrics().boundingRect( label ).width() ) / 2;
 		const int deltaNormal = delta - 1;
 		const int deltaShadow = deltaNormal + 1;
