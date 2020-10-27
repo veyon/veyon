@@ -202,7 +202,8 @@ void VeyonMaster::runFeature( const Feature& feature )
 	{
 		stopAllModeFeatures( computerControlInterfaces );
 
-		if( m_currentMode == feature.uid() )
+		if( m_currentMode == feature.uid() ||
+			subFeatures( feature.uid() ).contains( m_featureManager->feature( m_currentMode ) ) )
 		{
 			const Feature& monitoringModeFeature = VeyonCore::builtinFeatures().monitoringMode().feature();
 
@@ -231,9 +232,10 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 		auto designatedModeFeature = m_featureManager->feature( controlInterface->designatedModeFeature() );
 
 		// stop all other active mode feature
-		for( const auto& currentFeature : features() )
+		const auto features = modeFeatures();
+		for( const auto& currentFeature : features )
 		{
-			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != designatedModeFeature )
+			if( currentFeature != designatedModeFeature )
 			{
 				featureManager().stopFeature( *this, currentFeature, { controlInterface } );
 			}
@@ -250,13 +252,11 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 
 void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	// stop any previously active featues
-	for( const auto& feature : qAsConst( features() ) )
+	const auto features = modeFeatures();
+
+	for( const auto& feature : features )
 	{
-		if( feature.testFlag( Feature::Mode ) )
-		{
-			m_featureManager->stopFeature( *this, feature, computerControlInterfaces );
-		}
+		m_featureManager->stopFeature( *this, feature, computerControlInterfaces );
 	}
 }
 
