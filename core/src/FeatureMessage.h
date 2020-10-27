@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT FeatureMessage
 public:
 	using FeatureUid = Feature::Uid;
 	using Command = qint32;
-	using Arguments = QMap<QString, QVariant>;
+	using Arguments = QVariantMap;
 
 	static constexpr unsigned char RfbMessageType = 41;
 
