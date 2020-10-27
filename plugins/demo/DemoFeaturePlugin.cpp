@@ -174,11 +174,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			// add VNC server password to message
 			server.featureWorkerManager().
 				sendMessageToManagedSystemWorker(
-					FeatureMessage( m_demoServerFeature.uid(), StartDemoServer )
-						.addArgument( DemoServerPort, message.argument( DemoServerPort ) )
-						.addArgument( VncServerPort, message.argument( VncServerPort ) )
-						.addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() )
-						.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
+					FeatureMessage{ message }
+						.addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ) );
 		}
 		else if( message.command() != StopDemoServer ||
 				 server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) )
@@ -217,12 +214,10 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 		if( message.command() == StartDemoClient &&
 			message.argument( DemoServerHost ).toString().isEmpty() )
 		{
-			// construct a new message as we have to append the peer address as demo server host
-			FeatureMessage startDemoClientMessage( message.featureUid(), message.command() );
-			startDemoClientMessage.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) );
-			startDemoClientMessage.addArgument( DemoServerHost, socket->peerAddress().toString() );
-			startDemoClientMessage.addArgument( DemoServerPort, message.argument( DemoServerPort ) );
-			server.featureWorkerManager().sendMessageToManagedSystemWorker( startDemoClientMessage );
+			// set the peer address as demo server host
+			server.featureWorkerManager().sendMessageToManagedSystemWorker(
+				FeatureMessage{ message }
+					.addArgument( DemoServerHost, socket->peerAddress().toString() ) );
 		}
 		else
 		{
