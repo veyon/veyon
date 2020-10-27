@@ -214,7 +214,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			return false;
 		}
 
-		if( message.command() == StartDemoClient )
+		if( message.command() == StartDemoClient &&
+			message.argument( DemoServerHost ).toString().isEmpty() )
 		{
 			// construct a new message as we have to append the peer address as demo server host
 			FeatureMessage startDemoClientMessage( message.featureUid(), message.command() );
