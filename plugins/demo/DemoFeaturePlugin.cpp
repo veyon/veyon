@@ -181,7 +181,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 						.addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() )
 						.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
 		}
-		else
+		else if( message.command() != StopDemoServer ||
+				 server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) )
 		{
 			// forward message to worker
 			server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
@@ -263,6 +264,9 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 		case StopDemoServer:
 			delete m_demoServer;
 			m_demoServer = nullptr;
+
+			QCoreApplication::quit();
+
 			return true;
 
 		default:
