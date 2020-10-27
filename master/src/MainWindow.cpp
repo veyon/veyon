@@ -297,6 +297,10 @@ void MainWindow::addFeaturesToToolBar()
 		connect( btn, &QToolButton::clicked, this, [=] () {
 			m_master.runFeature( feature );
 			updateModeButtonGroup();
+			if( feature.testFlag( Feature::Mode ) )
+			{
+				reloadSubFeatures();
+			}
 		} );
 		btn->setObjectName( feature.name() );
 		btn->addTo( ui->toolBar );
@@ -320,9 +324,11 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 		button->setMenu( nullptr );
 	}
 
+	const auto parentFeatureIsMode = parentFeature.testFlag( Feature::Mode );
 	const auto subFeatures = m_master.subFeatures( parentFeature.uid() );
 
-	if( subFeatures.isEmpty() )
+	if( subFeatures.isEmpty() ||
+		( parentFeatureIsMode && button->isChecked() ) )
 	{
 		return;
 	}
@@ -337,10 +343,27 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 #warning Building legacy compat code for unsupported version of Qt
 		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName() );
 		action->setShortcut( subFeature.shortcut() );
-		connect( action, &QAction::triggered, this, [=] () { m_master.runFeature( subFeature ); } );
+		connect( action, &QAction::triggered, this,
+			[=]() {
+				m_master.runFeature( subFeature );
+				if( parentFeatureIsMode )
+				{
+					button->setChecked( true );
+					reloadSubFeatures();
+				}
+			}
+		);
 #else
 		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
-									   [=]() { m_master.runFeature( subFeature ); }, subFeature.shortcut() );
+			[=]() {
+				m_master.runFeature( subFeature );
+				if( parentFeatureIsMode )
+				{
+					button->setChecked( true );
+					reloadSubFeatures();
+				}
+			},
+			subFeature.shortcut() );
 #endif
 		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
