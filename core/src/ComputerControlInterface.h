@@ -143,9 +143,9 @@ public:
 		return m_updateMode;
 	}
 
-private:
 	Pointer weakPointer();
 
+private:
 	void resetWatchdog();
 	void restartConnection();
 
