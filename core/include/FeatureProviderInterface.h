@@ -38,13 +38,40 @@ class VeyonWorkerInterface;
 
 class VEYON_CORE_EXPORT FeatureProviderInterface
 {
+	Q_GADGET
 public:
+	enum class Operation
+	{
+		Start,
+		Stop
+	};
+	Q_ENUM(Operation)
+
 	virtual ~FeatureProviderInterface() = default;
 
 	/*!
 	 * \brief Returns a list of features implemented by the feature class
 	 */
 	virtual const FeatureList& featureList() const = 0;
+
+	/*!
+	 * \brief Control feature in a generic way based on passed arguments
+	 * \param feature the feature to control
+	 * \param operation the operation to perform for the feature
+	 * \param arguments the arguments specifying what and how to control
+	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
+	 */
+	virtual bool controlFeature( const Feature& feature,
+						Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces )
+	{
+		Q_UNUSED(feature)
+		Q_UNUSED(operation)
+		Q_UNUSED(arguments)
+		Q_UNUSED(computerControlInterfaces)
+
+		return false;
+	}
 
 	/*!
 	 * \brief Start a feature on master side for given computer control interfaces
