@@ -80,6 +80,8 @@ public:
 
 	FeatureList subFeatures( Feature::Uid parentFeatureUid ) const;
 
+	FeatureList modeFeatures() const;
+
 	const Feature::Uid& currentMode() const
 	{
 		return m_currentMode;

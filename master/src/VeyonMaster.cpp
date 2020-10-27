@@ -122,6 +122,28 @@ FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 
 
 
+FeatureList VeyonMaster::modeFeatures() const
+{
+	FeatureList featureList;
+
+	for( const auto& feature : qAsConst( features() ) )
+	{
+		if( feature.testFlag( Feature::Mode ) )
+		{
+			featureList.append( feature );
+			const auto modeSubFeatures = subFeatures( feature.uid() );
+			for( const auto& subFeature : modeSubFeatures )
+			{
+				featureList.append( subFeature );
+			}
+		}
+	}
+
+	return featureList;
+}
+
+
+
 QWidget* VeyonMaster::mainWindow()
 {
 	return m_mainWindow;
