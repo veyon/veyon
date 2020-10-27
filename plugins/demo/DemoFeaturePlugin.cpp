@@ -59,7 +59,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 							 "able to switch to other windows as needed." ),
 						 QStringLiteral(":/demo/presentation-window.png") ),
 	m_demoServerFeature( QStringLiteral( "DemoServer" ),
-						 Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
+						 Feature::Session | Feature::Service | Feature::Worker,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 Feature::Uid(),
 						 tr( "Demo server" ), {}, {} ),
