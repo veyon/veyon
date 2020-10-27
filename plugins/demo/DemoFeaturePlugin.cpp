@@ -30,6 +30,7 @@
 #include "DemoConfigurationPage.h"
 #include "DemoFeaturePlugin.h"
 #include "DemoServer.h"
+#include "EnumHelper.h"
 #include "FeatureWorkerManager.h"
 #include "Logger.h"
 #include "VeyonConfiguration.h"
@@ -70,42 +71,37 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 
 
 
+bool DemoFeaturePlugin::controlFeature( const Feature& feature,
+									   Operation operation,
+									   const QVariantMap& arguments,
+									   const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( feature == m_demoServerFeature )
+	{
+		return controlDemoServer( operation, arguments, computerControlInterfaces );
+	}
+
+	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
+	{
+		return controlDemoClient( feature, operation, arguments, computerControlInterfaces );
+	}
+
+	return false;
+}
+
+
+
 bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-									  const ComputerControlInterfaceList& computerControlInterfaces )
+									 const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
-		const auto demoServerPort = VeyonCore::config().demoServerPort() + VeyonCore::sessionId();
+		// start demo server
+		controlFeature( m_demoServerFeature, Operation::Start, {},
+						{ master.localSessionControlInterface().weakPointer() } );
 
-		if( hasCredentials() == false )
-		{
-			initializeCredentials();
-		}
-
-		FeatureMessage featureMessage( m_demoServerFeature.uid(), StartDemoServer );
-		featureMessage.addArgument( DemoAccessToken, accessToken().toByteArray() );
-		featureMessage.addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() );
-		featureMessage.addArgument( DemoServerPort, demoServerPort );
-
-		master.localSessionControlInterface().sendFeatureMessage( featureMessage, true );
-
-		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
-
-		for( const auto& computerControlInterface : computerControlInterfaces )
-		{
-			m_demoClientHosts += computerControlInterface->computer().hostAddress();
-			if( disableUpdates )
-			{
-				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Disabled );
-			}
-		}
-
-		vDebug() << "clients:" << m_demoClientHosts;
-
-		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).
-								   addArgument( DemoAccessToken, accessToken().toByteArray() ).
-								   addArgument( DemoServerPort, demoServerPort ),
-								   computerControlInterfaces );
+		// start demo clients
+		controlFeature( feature, Operation::Start, {}, computerControlInterfaces );
 	}
 
 	return false;
@@ -114,31 +110,18 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 
 bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									 const ComputerControlInterfaceList& computerControlInterfaces )
+									const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
-		sendFeatureMessage( FeatureMessage( feature.uid(), StopDemoClient ), computerControlInterfaces );
-
-		const auto enableUpdates = m_configuration.slowDownThumbnailUpdates();
-
-		for( const auto& computerControlInterface : computerControlInterfaces )
-		{
-			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
-			if( enableUpdates )
-			{
-				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
-			}
-		}
-
-		vDebug() << "clients:" << m_demoClientHosts;
+		controlFeature( feature, Operation::Stop, {}, computerControlInterfaces );
 
 		// no demo clients left?
 		if( m_demoClientHosts.isEmpty() )
 		{
 			// then we can stop the server
-			const FeatureMessage featureMessage( m_demoServerFeature.uid(), StopDemoServer );
-			master.localSessionControlInterface().sendFeatureMessage( featureMessage, true );
+			controlFeature( m_demoServerFeature, Operation::Stop, {},
+							{ master.localSessionControlInterface().weakPointer() } );
 
 			// reset demo access token
 			initializeCredentials();
@@ -153,7 +136,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 
 
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-											  ComputerControlInterface::Pointer computerControlInterface )
+											 ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(master)
 	Q_UNUSED(message)
@@ -165,8 +148,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, cons
 
 
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
-											  const MessageContext& messageContext,
-											  const FeatureMessage& message )
+											 const MessageContext& messageContext,
+											 const FeatureMessage& message )
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
@@ -309,6 +292,91 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
 {
 	return new DemoConfigurationPage( m_configuration );
+}
+
+
+
+bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMap& arguments,
+										  const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( operation == Operation::Start )
+	{
+		if( hasCredentials() == false )
+		{
+			initializeCredentials();
+		}
+
+		const auto demoServerPort = arguments.value( EnumHelper::itemName(Arguments::DemoServerPort).toLower(),
+													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
+		const auto vncServerPort = arguments.value( EnumHelper::itemName(Arguments::VncServerPort).toLower(),
+													VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).toInt();
+		const auto demoAccessToken = arguments.value( EnumHelper::itemName(Arguments::DemoAccessToken).toLower(),
+													  accessToken().toByteArray() ).toByteArray();
+
+		return sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
+									   .addArgument( DemoAccessToken, demoAccessToken )
+									   .addArgument( VncServerPort, vncServerPort )
+									   .addArgument( DemoServerPort, demoServerPort ),
+								   computerControlInterfaces );
+	}
+
+	if( operation == Operation::Stop )
+	{
+		return sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
+								   computerControlInterfaces );
+	}
+
+	return false;
+}
+
+
+
+bool DemoFeaturePlugin::controlDemoClient( const Feature& feature, Operation operation, const QVariantMap& arguments,
+										  const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( operation == Operation::Start )
+	{
+		const auto demoAccessToken = arguments.value( EnumHelper::itemName(Arguments::DemoAccessToken).toLower(),
+													  accessToken().toByteArray() ).toByteArray();
+		const auto demoServerHost = arguments.value( EnumHelper::itemName(Arguments::DemoServerHost).toLower() ).toString();
+		const auto demoServerPort = arguments.value( EnumHelper::itemName(Arguments::DemoServerPort).toLower(),
+													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
+
+		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
+
+		for( const auto& computerControlInterface : computerControlInterfaces )
+		{
+			m_demoClientHosts += computerControlInterface->computer().hostAddress();
+			if( disableUpdates )
+			{
+				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Disabled );
+			}
+		}
+
+		return sendFeatureMessage( FeatureMessage{ feature.uid(), StartDemoClient }
+									   .addArgument( DemoAccessToken, demoAccessToken )
+									   .addArgument( DemoServerHost, demoServerHost )
+									   .addArgument( DemoServerPort, demoServerPort ),
+								   computerControlInterfaces );
+	}
+
+	if( operation == Operation::Stop )
+	{
+		const auto enableUpdates = m_configuration.slowDownThumbnailUpdates();
+
+		for( const auto& computerControlInterface : computerControlInterfaces )
+		{
+			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
+			if( enableUpdates )
+			{
+				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
+			}
+		}
+
+		return sendFeatureMessage( FeatureMessage{ feature.uid(), StopDemoClient }, computerControlInterfaces );
+	}
+
+	return false;
 }
 
 

@@ -42,6 +42,15 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 				 ConfigurationPagePluginInterface
 				 AuthenticationPluginInterface)
 public:
+	enum Arguments {
+		DemoAccessToken,
+		VncServerPort,
+		VncServerPassword,
+		DemoServerHost,
+		DemoServerPort
+	};
+	Q_ENUM(Arguments)
+
 	explicit DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override = default;
 
@@ -80,6 +89,9 @@ public:
 		return m_features;
 	}
 
+	bool controlFeature( const Feature& feature, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
@@ -98,19 +110,16 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
+	bool controlDemoServer( Operation operation, const QVariantMap& arguments,
+						   const ComputerControlInterfaceList& computerControlInterfaces );
+	bool controlDemoClient( const Feature& feature, Operation operation, const QVariantMap& arguments,
+						   const ComputerControlInterfaceList& computerControlInterfaces );
+
 	enum Commands {
 		StartDemoServer,
 		StopDemoServer,
 		StartDemoClient,
 		StopDemoClient
-	};
-
-	enum Arguments {
-		DemoAccessToken,
-		VncServerPort,
-		VncServerPassword,
-		DemoServerHost,
-		DemoServerPort
 	};
 
 	const Feature m_fullscreenDemoFeature;
