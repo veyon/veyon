@@ -37,7 +37,7 @@ public:
 	using MessageSize = quint32;
 	using FeatureUid = Feature::Uid;
 	using Command = qint32;
-	using Arguments = QMap<QString, QVariant>;
+	using Arguments = QVariantMap;
 
 	static constexpr unsigned char RfbMessageType = 41;
 
