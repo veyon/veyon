@@ -138,6 +138,9 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 			// then we can stop the server
 			const FeatureMessage featureMessage( m_demoServerFeature.uid(), StopDemoServer );
 			master.localSessionControlInterface().sendFeatureMessage( featureMessage, true );
+
+			// reset demo access token
+			m_demoAccessToken = CryptoCore::generateChallenge();
 		}
 
 		return true;
