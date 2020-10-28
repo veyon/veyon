@@ -32,14 +32,14 @@
 #include "DemoServerConnection.h"
 
 
-DemoServerConnection::DemoServerConnection( const Password& demoAccessToken,
-											QTcpSocket* socket,
-											DemoServer* demoServer ) :
-	QObject( demoServer ),
+DemoServerConnection::DemoServerConnection( DemoServer* demoServer,
+											const Password& demoAccessToken,
+											quintptr socketDescriptor ) :
+	QThread(),
+	m_demoAccessToken( demoAccessToken ),
 	m_demoServer( demoServer ),
-	m_socket( socket ),
+	m_socketDescriptor( socketDescriptor ),
 	m_vncServerClient(),
-	m_serverProtocol( demoAccessToken, m_socket, &m_vncServerClient ),
 	m_rfbClientToServerMessageSizes( {
 									 std::pair<int, int>( rfbSetPixelFormat, sz_rfbSetPixelFormatMsg ),
 									 std::pair<int, int>( rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg ),
@@ -50,34 +50,53 @@ DemoServerConnection::DemoServerConnection( const Password& demoAccessToken,
 	m_framebufferUpdateMessageIndex( 0 ),
 	m_framebufferUpdateInterval( m_demoServer->configuration().framebufferUpdateInterval() )
 {
-	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerConnection::processClient );
-	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerConnection::deleteLater );
-
-	m_serverProtocol.setServerInitMessage( m_demoServer->serverInitMessage() );
-	m_serverProtocol.start();
+	start();
 }
 
 
 
-DemoServerConnection::~DemoServerConnection()
+void DemoServerConnection::run()
 {
-	delete m_socket;
+	m_socket = new QTcpSocket;
+
+	if( m_socket->setSocketDescriptor( m_socketDescriptor ) == false )
+	{
+		vCritical() << "failed to set socket descriptor";
+		delete m_socket;
+		return;
+	}
+
+	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerConnection::processClient, Qt::DirectConnection );
+	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerConnection::quit );
+
+	m_serverProtocol = new DemoServerProtocol( m_demoAccessToken, m_socket, &m_vncServerClient ),
+
+	m_serverProtocol->setServerInitMessage( m_demoServer->serverInitMessage() );
+	m_serverProtocol->start();
+
+	exec();
+
+	delete m_serverProtocol;
+
+	m_socket->deleteLater();
+
+	deleteLater();
 }
 
 
 
 void DemoServerConnection::processClient()
 {
-	if( m_serverProtocol.state() != VncServerProtocol::Running )
+	if( m_serverProtocol->state() != VncServerProtocol::State::Running )
 	{
-		while( m_serverProtocol.read() )
+		while( m_serverProtocol->read() )
 		{
 		}
 
 		// try again later in case we could not proceed because of
 		// external protocol dependencies or in case we're finished
 		// and already have RFB messages in receive queue
-		QTimer::singleShot( ProtocolRetryTime, this, &DemoServerConnection::processClient );
+		QTimer::singleShot( ProtocolRetryTime, [this]() { processClient(); } );
 	}
 	else
 	{
@@ -170,6 +189,6 @@ void DemoServerConnection::sendFramebufferUpdate()
 	if( sentUpdates == false )
 	{
 		// did not send updates but client still waiting for update? then try again soon
-		QTimer::singleShot( m_framebufferUpdateInterval, this, &DemoServerConnection::sendFramebufferUpdate );
+		QTimer::singleShot( m_framebufferUpdateInterval, [this]() { sendFramebufferUpdate(); } );
 	}
 }

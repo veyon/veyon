@@ -27,6 +27,7 @@
 
 #include <QElapsedTimer>
 #include <QReadWriteLock>
+#include <QTcpServer>
 #include <QTimer>
 
 #include "CryptoCore.h"
@@ -36,7 +37,7 @@ class QTcpServer;
 class QTcpSocket;
 class VncClientProtocol;
 
-class DemoServer : public QObject
+class DemoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
@@ -72,6 +73,7 @@ public:
 	}
 
 private:
+	void incomingConnection( qintptr socketDescriptor ) override;
 	void acceptPendingConnections();
 	void reconnectToVncServer();
 	void readFromVncServer();
@@ -86,13 +88,15 @@ private:
 	bool setVncServerPixelFormat();
 	bool setVncServerEncodings();
 
+	static constexpr auto ConnectionThreadWaitTime = 5000;
+
 	const DemoConfiguration& m_configuration;
 	const qint64 m_memoryLimit;
 	const int m_keyFrameInterval;
 	const int m_vncServerPort;
 	const Password m_demoAccessToken;
 
-	QTcpServer* m_tcpServer;
+	QList<quintptr> m_pendingConnections;
 	QTcpSocket* m_vncServerSocket;
 	VncClientProtocol* m_vncClientProtocol;
 
