@@ -119,6 +119,7 @@ private:
 		StopDemoClient
 	};
 
+	const Feature m_demoFeature;
 	const Feature m_fullscreenDemoFeature;
 	const Feature m_windowDemoFeature;
 	const Feature m_demoServerFeature;
