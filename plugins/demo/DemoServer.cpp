@@ -25,7 +25,6 @@
 
 #include "rfb/rfbproto.h"
 
-#include <QTcpServer>
 #include <QTcpSocket>
 
 #include "DemoConfiguration.h"
@@ -37,24 +36,21 @@
 
 DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const DemoAuthentication& authentication,
 						const DemoConfiguration& configuration, int demoServerPort, QObject *parent ) :
-	QObject( parent ),
+	QTcpServer( parent ),
 	m_authentication( authentication ),
 	m_configuration( configuration ),
 	m_memoryLimit( m_configuration.memoryLimit() * 1024*1024 ),
 	m_keyFrameInterval( m_configuration.keyFrameInterval() * 1000 ),
 	m_vncServerPort( vncServerPort ),
-	m_tcpServer( new QTcpServer( this ) ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
 	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) )
 {
-	connect( m_tcpServer, &QTcpServer::newConnection, this, &DemoServer::acceptPendingConnections );
-
 	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer );
 	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer );
 
 	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
 
-	if( m_tcpServer->listen( QHostAddress::Any, demoServerPort ) == false )
+	if( listen( QHostAddress::Any, demoServerPort ) == false )
 	{
 		vCritical() << "could not listen on demo server port";
 		return;
@@ -71,24 +67,23 @@ DemoServer::~DemoServer()
 {
 	vDebug() << "disconnecting signals";
 	m_vncServerSocket->disconnect( this );
-	m_tcpServer->disconnect( this );
 
 	vDebug() << "deleting connections";
 
 	QList<DemoServerConnection *> l;
 	while( !( l = findChildren<DemoServerConnection *>() ).isEmpty() )
 	{
-		delete l.front();
+		l.front()->quit();
+		l.front()->wait( ConnectionThreadWaitTime );
+		l.front()->terminate();
+		l.front()->deleteLater();
 	}
-
-	vDebug() << "deleting server socket";
-	delete m_vncServerSocket;
-
-	vDebug() << "deleting TCP server";
-	delete m_tcpServer;
 
 	vDebug() << "deleting VNC client protocol";
 	delete m_vncClientProtocol;
+
+	vDebug() << "deleting server socket";
+	delete m_vncServerSocket;
 
 	vDebug() << "finished";
 }
@@ -118,16 +113,25 @@ void DemoServer::lockDataForRead()
 
 
 
-void DemoServer::acceptPendingConnections()
+void DemoServer::incomingConnection( qintptr socketDescriptor )
 {
+	m_pendingConnections.append( socketDescriptor );
+
 	if( m_vncClientProtocol->state() != VncClientProtocol::State::Running )
 	{
 		return;
 	}
 
-	while( m_tcpServer->hasPendingConnections() )
+	acceptPendingConnections();
+}
+
+
+
+void DemoServer::acceptPendingConnections()
+{
+	while( m_pendingConnections.isEmpty() == false )
 	{
-		new DemoServerConnection( m_authentication, m_tcpServer->nextPendingConnection(), this );
+		new DemoServerConnection( this, m_authentication, m_pendingConnections.takeFirst() );
 	}
 }
 
