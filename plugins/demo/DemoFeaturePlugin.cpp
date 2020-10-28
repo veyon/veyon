@@ -23,6 +23,7 @@
  */
 
 #include <QCoreApplication>
+#include <QMessageBox>
 
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
@@ -31,8 +32,8 @@
 #include "DemoConfigurationPage.h"
 #include "DemoFeaturePlugin.h"
 #include "DemoServer.h"
-#include "EnumHelper.h"
 #include "FeatureWorkerManager.h"
+#include "HostAddress.h"
 #include "Logger.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonConfiguration.h"
@@ -49,30 +50,61 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 				   tr( "Demo" ), tr( "Stop demo" ),
 				   tr( "Share your screen or allow a user to share his screen with other users." ),
 				   QStringLiteral(":/demo/demo.png") ),
-	m_fullscreenDemoFeature( QStringLiteral( "FullscreenDemo" ),
-							 Feature::Mode | Feature::AllComponents,
-							 Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
-							 m_demoFeature.uid(),
-							 tr( "Share your own screen in fullscreen mode" ), {},
-							 tr( "In this mode your screen is being displayed in "
-								 "fullscreen mode on all computers while the input "
-								 "devices of the users are locked." ),
-							 QStringLiteral(":/demo/presentation-fullscreen.png") ),
-	m_windowDemoFeature( QStringLiteral( "WindowDemo" ),
-						 Feature::Mode | Feature::AllComponents,
-						 Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
-						 m_demoFeature.uid(),
-						 tr( "Share your own screen in a window" ), {},
-						 tr( "In this mode your screen being displayed in a "
-							 "window on all computers. The users are "
-							 "able to switch to other windows as needed." ),
-						 QStringLiteral(":/demo/presentation-window.png") ),
+	m_demoClientFullScreenFeature( QStringLiteral( "FullScreenDemo" ),
+								   Feature::Internal | Feature::AllComponents,
+								   Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
+								   {}, tr("Full screen demo"), {}, {} ),
+	m_demoClientWindowFeature( QStringLiteral( "WindowDemo" ),
+							   Feature::Internal | Feature::AllComponents,
+							   Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
+							   {}, tr("Window demo"), {}, {} ),
+	m_shareOwnScreenFullScreenFeature( QStringLiteral( "ShareOwnScreenFullScreen" ),
+									   Feature::Mode | Feature::AllComponents,
+									   Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
+									   m_demoFeature.uid(),
+									   tr( "Share your own screen in fullscreen mode" ), {},
+									   tr( "In this mode your screen is being displayed in "
+										   "full screen mode on all computers while the input "
+										   "devices of the users are locked." ),
+									   QStringLiteral(":/demo/presentation-fullscreen.png") ),
+	m_shareOwnScreenWindowFeature( QStringLiteral( "ShareOwnScreenWindow" ),
+								   Feature::Mode | Feature::AllComponents,
+								   Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
+								   m_demoFeature.uid(),
+								   tr( "Share your own screen in a window" ), {},
+								   tr( "In this mode your screen being displayed in a "
+									   "window on all computers. The users are "
+									   "able to switch to other windows as needed." ),
+								   QStringLiteral(":/demo/presentation-window.png") ),
+	m_shareUserScreenFullScreenFeature( QStringLiteral( "ShareUserScreenFullScreen" ),
+										Feature::Mode | Feature::AllComponents,
+										Feature::Uid( "b4e542e2-1deb-48ac-910a-bbf8ac9a0bde" ),
+										m_demoFeature.uid(),
+										tr( "Share selected user's screen in fullscreen mode" ), {},
+										tr( "In this mode the screen of the selected user is being displayed "
+											"in full screen mode on all computers while the input "
+											"devices of the users are locked." ),
+										QStringLiteral(":/demo/presentation-fullscreen.png") ),
+	m_shareUserScreenWindowFeature( QStringLiteral( "ShareUserScreenWindow" ),
+									Feature::Mode | Feature::AllComponents,
+									Feature::Uid( "ebfc5ec4-f725-4bfc-a93a-c6d4864c6806" ),
+									m_demoFeature.uid(),
+									tr( "Share selected user's screen in a window" ), {},
+									tr( "In this mode the screen of the selected user being displayed "
+										"in a window on all computers. The users are "
+										"able to switch to other windows as needed." ),
+									QStringLiteral(":/demo/presentation-window.png") ),
 	m_demoServerFeature( QStringLiteral( "DemoServer" ),
 						 Feature::Session | Feature::Service | Feature::Worker,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 m_demoFeature.uid(),
 						 tr( "Demo server" ), {}, {} ),
-	m_features( { m_demoFeature, m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
+	m_features( {
+		m_demoFeature, m_demoServerFeature,
+		m_demoClientFullScreenFeature, m_demoClientWindowFeature,
+		m_shareOwnScreenFullScreenFeature, m_shareOwnScreenWindowFeature,
+		m_shareUserScreenFullScreenFeature, m_shareUserScreenWindowFeature
+	} ),
 	m_demoAccessToken( CryptoCore::generateChallenge() ),
 	m_demoClientHosts(),
 	m_configuration( &VeyonCore::config() ),
@@ -93,7 +125,7 @@ bool DemoFeaturePlugin::controlFeature( const Feature& feature,
 		return controlDemoServer( operation, arguments, computerControlInterfaces );
 	}
 
-	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
+	if( feature == m_demoClientFullScreenFeature || feature == m_demoClientWindowFeature )
 	{
 		return controlDemoClient( feature, operation, arguments, computerControlInterfaces );
 	}
@@ -106,14 +138,73 @@ bool DemoFeaturePlugin::controlFeature( const Feature& feature,
 bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
+	if( feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature )
 	{
 		// start demo server
 		controlFeature( m_demoServerFeature, Operation::Start, {},
 						{ master.localSessionControlInterface().weakPointer() } );
 
 		// start demo clients
-		controlFeature( feature, Operation::Start, {}, computerControlInterfaces );
+		controlFeature( feature == m_shareOwnScreenFullScreenFeature ? m_demoClientFullScreenFeature
+																	 : m_demoClientWindowFeature,
+						Operation::Start, {}, computerControlInterfaces );
+
+		return true;
+	}
+
+	if( feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
+	{
+		if( master.selectedComputerControlInterfaces().size() < 1 )
+		{
+			QMessageBox::critical( master.mainWindow(), feature.name(),
+								   tr( "Please select a user screen to share.") );
+			return true;
+		}
+
+		if( master.selectedComputerControlInterfaces().size() > 1 )
+		{
+			QMessageBox::critical( master.mainWindow(), feature.name(),
+								   tr( "Please select only one user screen to share.") );
+			return true;
+		}
+
+		auto vncServerPort = VeyonCore::config().vncServerPort();
+		auto demoServerPort = VeyonCore::config().demoServerPort();
+
+		const auto demoServerInterface = master.selectedComputerControlInterfaces().first();
+		const auto demoServerHost = demoServerInterface->computer().hostAddress();
+		const auto primaryServerPort = HostAddress::parsePortNumber( demoServerHost );
+
+		if( primaryServerPort > 0 )
+		{
+			const auto sessionId = primaryServerPort - VeyonCore::config().veyonServerPort();
+			vncServerPort += sessionId;
+			demoServerPort += sessionId;
+		}
+
+		// start demo server
+		controlFeature( m_demoServerFeature, Operation::Start,
+						{
+							{ a2s(Arguments::VncServerPort), vncServerPort },
+							{ a2s(Arguments::DemoServerPort), demoServerPort },
+						},
+						master.selectedComputerControlInterfaces() );
+
+		// start demo clients
+		auto userDemoControlInterfaces = computerControlInterfaces;
+		userDemoControlInterfaces.removeAll( demoServerInterface );
+
+		const QVariantMap demoClientArgs{
+			{ a2s(Arguments::DemoServerHost), HostAddress::parseHost(demoServerHost) },
+			{ a2s(Arguments::DemoServerPort), demoServerPort },
+		};
+
+		controlFeature( feature == m_shareUserScreenFullScreenFeature ? m_demoClientFullScreenFeature
+																	  : m_demoClientWindowFeature,
+						Operation::Start, demoClientArgs, userDemoControlInterfaces );
+
+		controlFeature( m_demoClientWindowFeature, Operation::Start, demoClientArgs,
+						{ master.localSessionControlInterface().weakPointer() } );
 
 		return true;
 	}
@@ -126,9 +217,14 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
 									const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
+	if( feature == m_demoFeature ||
+		feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature ||
+		feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
 	{
 		controlFeature( feature, Operation::Stop, {}, computerControlInterfaces );
+
+		controlFeature( m_demoClientWindowFeature, Operation::Stop, {},
+						{ master.localSessionControlInterface().weakPointer() } );
 
 		// no demo clients left?
 		if( m_demoClientHosts.isEmpty() )
@@ -136,6 +232,8 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 			// then we can stop the server
 			controlFeature( m_demoServerFeature, Operation::Stop, {},
 							{ master.localSessionControlInterface().weakPointer() } );
+
+			controlFeature( m_demoServerFeature, Operation::Stop, {}, computerControlInterfaces );
 
 			// reset demo access token
 			m_demoAccessToken = CryptoCore::generateChallenge();
@@ -184,20 +282,22 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 		return true;
 	}
-	else if( message.featureUid() == m_fullscreenDemoFeature.uid() ||
-			 message.featureUid() == m_windowDemoFeature.uid() )
+
+	if( message.featureUid() == m_demoClientFullScreenFeature.uid() ||
+		message.featureUid() == m_demoClientWindowFeature.uid() )
 	{
 		// if a demo server is started, it's likely that the demo accidentally was
 		// started on master computer as well therefore we deny starting a demo on
 		// hosts on which a demo server is running - exception: debug mode
-		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) &&
+		if( message.featureUid() == m_demoClientFullScreenFeature.uid() &&
+			server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) &&
 			VeyonCore::config().logLevel() < Logger::LogLevel::Debug )
 		{
 			return false;
 		}
 
-		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
-			message.command() == StopDemoClient )
+		if( message.command() == StopDemoClient &&
+			server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false )
 		{
 			return true;
 		}
@@ -263,8 +363,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			break;
 		}
 	}
-	else if( message.featureUid() == m_fullscreenDemoFeature.uid() ||
-			 message.featureUid() == m_windowDemoFeature.uid() )
+	else if( message.featureUid() == m_demoClientFullScreenFeature.uid() ||
+			 message.featureUid() == m_demoClientWindowFeature.uid() )
 	{
 		switch( message.command() )
 		{
@@ -275,7 +375,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			{
 				const auto demoServerHost = message.argument( DemoServerHost ).toString();
 				const auto demoServerPort = message.argument( DemoServerPort ).toInt();
-				const auto isFullscreenDemo = message.featureUid() == m_fullscreenDemoFeature.uid();
+				const auto isFullscreenDemo = message.featureUid() == m_demoClientFullScreenFeature.uid();
 
 				vDebug() << "connecting with master" << demoServerHost;
 				m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo );
@@ -312,11 +412,11 @@ bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMa
 {
 	if( operation == Operation::Start )
 	{
-		const auto demoServerPort = arguments.value( EnumHelper::itemName(Arguments::DemoServerPort).toLower(),
+		const auto demoServerPort = arguments.value( a2s(Arguments::DemoServerPort),
 													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto vncServerPort = arguments.value( EnumHelper::itemName(Arguments::VncServerPort).toLower(),
+		const auto vncServerPort = arguments.value( a2s(Arguments::VncServerPort),
 													VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto demoAccessToken = arguments.value( EnumHelper::itemName(Arguments::DemoAccessToken).toLower(),
+		const auto demoAccessToken = arguments.value( a2s(Arguments::DemoAccessToken),
 													  m_demoAccessToken.toByteArray() ).toByteArray();
 
 		return sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
@@ -342,10 +442,10 @@ bool DemoFeaturePlugin::controlDemoClient( const Feature& feature, Operation ope
 {
 	if( operation == Operation::Start )
 	{
-		const auto demoAccessToken = arguments.value( EnumHelper::itemName(Arguments::DemoAccessToken).toLower(),
+		const auto demoAccessToken = arguments.value( a2s(Arguments::DemoAccessToken),
 													  m_demoAccessToken.toByteArray() ).toByteArray();
-		const auto demoServerHost = arguments.value( EnumHelper::itemName(Arguments::DemoServerHost).toLower() ).toString();
-		const auto demoServerPort = arguments.value( EnumHelper::itemName(Arguments::DemoServerPort).toLower(),
+		const auto demoServerHost = arguments.value( a2s(Arguments::DemoServerHost) ).toString();
+		const auto demoServerPort = arguments.value( a2s(Arguments::DemoServerPort),
 													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
 
 		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();

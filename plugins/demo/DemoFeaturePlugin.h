@@ -26,6 +26,7 @@
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
+#include "EnumHelper.h"
 #include "FeatureProviderInterface.h"
 
 class DemoServer;
@@ -107,6 +108,11 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
+	static QString a2s( Arguments arg )
+	{
+		return EnumHelper::itemName( arg ).toLower();
+	}
+
 	bool controlDemoServer( Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 	bool controlDemoClient( const Feature& feature, Operation operation, const QVariantMap& arguments,
@@ -120,8 +126,12 @@ private:
 	};
 
 	const Feature m_demoFeature;
-	const Feature m_fullscreenDemoFeature;
-	const Feature m_windowDemoFeature;
+	const Feature m_demoClientFullScreenFeature;
+	const Feature m_demoClientWindowFeature;
+	const Feature m_shareOwnScreenFullScreenFeature;
+	const Feature m_shareOwnScreenWindowFeature;
+	const Feature m_shareUserScreenFullScreenFeature;
+	const Feature m_shareUserScreenWindowFeature;
 	const Feature m_demoServerFeature;
 	const FeatureList m_features;
 
