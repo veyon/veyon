@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/demo" >
+        <file>demo.png</file>
         <file>presentation-fullscreen.png</file>
         <file>presentation-window.png</file>
         <file>window-duplicate.png</file>

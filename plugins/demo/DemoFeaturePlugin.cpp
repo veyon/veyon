@@ -41,20 +41,27 @@
 DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	DemoAuthentication( uid() ),
+	m_demoFeature( QStringLiteral( "Demo" ),
+				   Feature::Mode | Feature::AllComponents,
+				   Feature::Uid( "6f4cd922-b63e-40bf-9451-536065c7cdf9" ),
+				   Feature::Uid(),
+				   tr( "Demo" ), tr( "Stop demo" ),
+				   tr( "Share your screen or allow a user to share his screen with other users." ),
+				   QStringLiteral(":/demo/demo.png") ),
 	m_fullscreenDemoFeature( QStringLiteral( "FullscreenDemo" ),
 							 Feature::Mode | Feature::AllComponents,
 							 Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
-							 Feature::Uid(),
-							 tr( "Fullscreen demo" ), tr( "Stop demo" ),
+							 m_demoFeature.uid(),
+							 tr( "Share your own screen in fullscreen mode" ), {},
 							 tr( "In this mode your screen is being displayed in "
-								 "fullscreen mode on all computers while input "
+								 "fullscreen mode on all computers while the input "
 								 "devices of the users are locked." ),
 							 QStringLiteral(":/demo/presentation-fullscreen.png") ),
 	m_windowDemoFeature( QStringLiteral( "WindowDemo" ),
 						 Feature::Mode | Feature::AllComponents,
 						 Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
-						 Feature::Uid(),
-						 tr( "Window demo" ), tr( "Stop demo" ),
+						 m_demoFeature.uid(),
+						 tr( "Share your own screen in a window" ), {},
 						 tr( "In this mode your screen being displayed in a "
 							 "window on all computers. The users are "
 							 "able to switch to other windows as needed." ),
@@ -62,9 +69,9 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	m_demoServerFeature( QStringLiteral( "DemoServer" ),
 						 Feature::Session | Feature::Service | Feature::Worker,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
-						 Feature::Uid(),
+						 m_demoFeature.uid(),
 						 tr( "Demo server" ), {}, {} ),
-	m_features( { m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
+	m_features( { m_demoFeature, m_fullscreenDemoFeature, m_windowDemoFeature, m_demoServerFeature } ),
 	m_configuration( &VeyonCore::config() )
 {
 }
@@ -102,6 +109,8 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		// start demo clients
 		controlFeature( feature, Operation::Start, {}, computerControlInterfaces );
+
+		return true;
 	}
 
 	return false;
