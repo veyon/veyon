@@ -43,7 +43,7 @@ public:
 		Mode = 0x0001,
 		Action = 0x0002,
 		Session = 0x0004,
-		Operation = 0x0008,
+		Internal = 0x0008,
 		Dialog = 0x0010,
 		Master = 0x0100,
 		Service = 0x0200,
