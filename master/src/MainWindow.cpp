@@ -289,6 +289,11 @@ void MainWindow::addFeaturesToToolBar()
 {
 	for( const auto& feature : m_master.features() )
 	{
+		if( feature.testFlag( Feature::Internal ) )
+		{
+			continue;
+		}
+
 		ToolButton* btn = new ToolButton( QIcon( feature.iconUrl() ),
 										  feature.displayName(),
 										  feature.displayNameActive(),

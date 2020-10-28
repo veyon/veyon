@@ -316,6 +316,11 @@ void ComputerMonitoringWidget::populateFeatureMenu( const FeatureUidList& active
 
 	for( const auto& feature : m_master->features() )
 	{
+		if( feature.testFlag( Feature::Internal ) )
+		{
+			continue;
+		}
+
 		Plugin::Uid pluginUid = m_master->featureManager().pluginUid( feature );
 
 		if( previousPluginUid.isNull() == false &&
