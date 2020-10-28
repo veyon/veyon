@@ -41,7 +41,8 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, Featur
 	QObject( parent ),
 	m_server( server ),
 	m_featureManager( featureManager ),
-	m_tcpServer( this )
+	m_tcpServer( this ),
+	m_workersMutex( QMutex::Recursive )
 {
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );
@@ -253,6 +254,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 		if( m_workers[message.featureUid()].socket.isNull() )
 		{
 			m_workers[message.featureUid()].socket = socket;
+			sendPendingMessages();
 		}
 
 		m_workersMutex.unlock();
@@ -261,7 +263,6 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 		{
 			m_featureManager.handleFeatureMessage( m_server, MessageContext( socket ), message );
 		}
-
 	}
 	else
 	{
