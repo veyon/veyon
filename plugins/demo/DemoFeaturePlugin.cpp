@@ -110,19 +110,19 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 
 
 
-bool DemoFeaturePlugin::controlFeature( const Feature& feature,
+bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 									   Operation operation,
 									   const QVariantMap& arguments,
 									   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature == m_demoServerFeature )
+	if( featureUid == m_demoServerFeature.uid() )
 	{
 		return controlDemoServer( operation, arguments, computerControlInterfaces );
 	}
 
-	if( feature == m_demoClientFullScreenFeature || feature == m_demoClientWindowFeature )
+	if( featureUid == m_demoClientFullScreenFeature.uid() || featureUid == m_demoClientWindowFeature.uid() )
 	{
-		return controlDemoClient( feature, operation, arguments, computerControlInterfaces );
+		return controlDemoClient( featureUid, operation, arguments, computerControlInterfaces );
 	}
 
 	return false;
@@ -136,12 +136,12 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 	if( feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature )
 	{
 		// start demo server
-		controlFeature( m_demoServerFeature, Operation::Start, {},
+		controlFeature( m_demoServerFeature.uid(), Operation::Start, {},
 						{ master.localSessionControlInterface().weakPointer() } );
 
 		// start demo clients
-		controlFeature( feature == m_shareOwnScreenFullScreenFeature ? m_demoClientFullScreenFeature
-																	 : m_demoClientWindowFeature,
+		controlFeature( feature == m_shareOwnScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid()
+																	 : m_demoClientWindowFeature.uid(),
 						Operation::Start, {}, computerControlInterfaces );
 
 		return true;
@@ -178,7 +178,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		}
 
 		// start demo server
-		controlFeature( m_demoServerFeature, Operation::Start,
+		controlFeature( m_demoServerFeature.uid(), Operation::Start,
 						{
 							{ a2s(Arguments::VncServerPort), vncServerPort },
 							{ a2s(Arguments::DemoServerPort), demoServerPort },
@@ -194,11 +194,11 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 			{ a2s(Arguments::DemoServerPort), demoServerPort },
 		};
 
-		controlFeature( feature == m_shareUserScreenFullScreenFeature ? m_demoClientFullScreenFeature
-																	  : m_demoClientWindowFeature,
+		controlFeature( feature == m_shareUserScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid()
+																	  : m_demoClientWindowFeature.uid(),
 						Operation::Start, demoClientArgs, userDemoControlInterfaces );
 
-		controlFeature( m_demoClientWindowFeature, Operation::Start, demoClientArgs,
+		controlFeature( m_demoClientWindowFeature.uid(), Operation::Start, demoClientArgs,
 						{ master.localSessionControlInterface().weakPointer() } );
 
 		return true;
@@ -216,19 +216,19 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature ||
 		feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
 	{
-		controlFeature( feature, Operation::Stop, {}, computerControlInterfaces );
+		controlFeature( feature.uid(), Operation::Stop, {}, computerControlInterfaces );
 
-		controlFeature( m_demoClientWindowFeature, Operation::Stop, {},
+		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {},
 						{ master.localSessionControlInterface().weakPointer() } );
 
 		// no demo clients left?
 		if( m_demoClientHosts.isEmpty() )
 		{
 			// then we can stop the server
-			controlFeature( m_demoServerFeature, Operation::Stop, {},
+			controlFeature( m_demoServerFeature.uid(), Operation::Stop, {},
 							{ master.localSessionControlInterface().weakPointer() } );
 
-			controlFeature( m_demoServerFeature, Operation::Stop, {}, computerControlInterfaces );
+			controlFeature( m_demoServerFeature.uid(), Operation::Stop, {}, computerControlInterfaces );
 
 			// reset demo access token
 			initializeCredentials();
@@ -439,7 +439,7 @@ bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMa
 
 
 
-bool DemoFeaturePlugin::controlDemoClient( const Feature& feature, Operation operation, const QVariantMap& arguments,
+bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 										  const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	if( operation == Operation::Start )
@@ -461,7 +461,7 @@ bool DemoFeaturePlugin::controlDemoClient( const Feature& feature, Operation ope
 			}
 		}
 
-		return sendFeatureMessage( FeatureMessage{ feature.uid(), StartDemoClient }
+		return sendFeatureMessage( FeatureMessage{ featureUid, StartDemoClient }
 									   .addArgument( DemoAccessToken, demoAccessToken )
 									   .addArgument( DemoServerHost, demoServerHost )
 									   .addArgument( DemoServerPort, demoServerPort ),
@@ -481,7 +481,7 @@ bool DemoFeaturePlugin::controlDemoClient( const Feature& feature, Operation ope
 			}
 		}
 
-		return sendFeatureMessage( FeatureMessage{ feature.uid(), StopDemoClient }, computerControlInterfaces );
+		return sendFeatureMessage( FeatureMessage{ featureUid, StopDemoClient }, computerControlInterfaces );
 	}
 
 	return false;
