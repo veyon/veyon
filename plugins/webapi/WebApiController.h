@@ -25,7 +25,7 @@
 #pragma once
 
 #include "EnumHelper.h"
-#include "WebApiFeatureMaster.h"
+#include "FeatureManager.h"
 
 class WebApiConfiguration;
 class WebApiConnection;
@@ -134,7 +134,7 @@ private:
 	Response checkFeature( const QString& featureUid ) const;
 
 	const WebApiConfiguration& m_configuration;
-	WebApiFeatureMaster m_featureMaster{this};
+	FeatureManager m_featureManager;
 	QMap<QUuid, WebApiConnection *> m_connections{};
 
 };

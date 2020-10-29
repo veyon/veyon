@@ -181,7 +181,10 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		lifetimeTimer->setInterval( m_configuration.connectionLifetime() * MillisecondsPerHour );
 		lifetimeTimer->start();
 
-		m_featureMaster.registerMessageHandler( connection->controlInterface() );
+		connect( connection->controlInterface().data(), &ComputerControlInterface::featureMessageReceived, this,
+				 [this]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
+					 m_featureManager.handleFeatureMessage( computerControlInterface, featureMessage );
+				 } );
 
 		return QVariantMap{
 			{ connectionUidHeaderFieldName().toLower(), uuidToString( uuid ) },
@@ -266,7 +269,7 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 		return checkResponse;
 	}
 
-	const auto features = m_featureMaster.availableFeatures(); // clazy:exclude=inefficient-qlist
+	const auto& features = m_featureManager.features(); // clazy:exclude=inefficient-qlist
 
 	QVariantList featureList; // clazy:exclude=inefficient-qlist
 	featureList.reserve( features.size() );
@@ -300,14 +303,10 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 		return Error::InvalidData;
 	}
 
-	if( request.data[k2s(Key::Active)].toBool() )
-	{
-		m_featureMaster.startFeature( feature, controlInterface );
-	}
-	else
-	{
-		m_featureMaster.stopFeature( feature, controlInterface );
-	}
+	const auto operation = request.data[k2s(Key::Active)].toBool() ? FeatureProviderInterface::Operation::Start
+																	 : FeatureProviderInterface::Operation::Stop;
+
+	m_featureManager.controlFeature( feature, operation, {}, { controlInterface } );
 
 	return {};
 }
@@ -415,7 +414,7 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 
 WebApiController::Response WebApiController::checkFeature( const QString& featureUid ) const
 {
-	if( m_featureMaster.hasFeature( featureUid ) == false )
+	if( m_featureManager.feature( featureUid ).isValid() == false )
 	{
 		return Error::InvalidFeature;
 	}

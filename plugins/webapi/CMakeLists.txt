@@ -15,8 +15,6 @@ build_veyon_plugin(webapi
 	WebApiConnection.h
 	WebApiController.cpp
 	WebApiController.h
-	WebApiFeatureMaster.cpp
-	WebApiFeatureMaster.h
 	WebApiHttpServer.cpp
 	WebApiHttpServer.h
 	webapi.qrc
