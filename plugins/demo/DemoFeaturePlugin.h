@@ -87,7 +87,7 @@ public:
 		return m_features;
 	}
 
-	bool controlFeature( const Feature& feature, Operation operation, const QVariantMap& arguments,
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
@@ -115,7 +115,7 @@ private:
 
 	bool controlDemoServer( Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
-	bool controlDemoClient( const Feature& feature, Operation operation, const QVariantMap& arguments,
+	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 
 	enum Commands {

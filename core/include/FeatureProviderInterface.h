@@ -56,16 +56,16 @@ public:
 
 	/*!
 	 * \brief Control feature in a generic way based on passed arguments
-	 * \param feature the feature to control
+	 * \param featureUid the UID of the feature to control
 	 * \param operation the operation to perform for the feature
 	 * \param arguments the arguments specifying what and how to control
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 */
-	virtual bool controlFeature( const Feature& feature,
+	virtual bool controlFeature( Feature::Uid featureUid,
 						Operation operation, const QVariantMap& arguments,
 						const ComputerControlInterfaceList& computerControlInterfaces )
 	{
-		Q_UNUSED(feature)
+		Q_UNUSED(featureUid)
 		Q_UNUSED(operation)
 		Q_UNUSED(arguments)
 		Q_UNUSED(computerControlInterfaces)
