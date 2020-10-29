@@ -42,6 +42,7 @@ class VEYON_CORE_EXPORT FeatureProviderInterface
 public:
 	enum class Operation
 	{
+		Initialize,
 		Start,
 		Stop
 	};
