@@ -54,7 +54,7 @@ private:
 	void loadComputerPositions( const QJsonArray& positions ) override;
 	void setIconSize( const QSize& size ) override;
 
-	void populateFeatureMenu( const FeatureUidList& activeFeatures );
+	void populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces );
 	void addFeatureToMenu( const Feature& feature, const QString& label );
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 

@@ -78,7 +78,8 @@ protected:
 
 	ComputerMonitoringModel* listModel() const;
 
-	FeatureUidList activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
+	bool isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
+									 Feature::Uid featureUid ) const;
 
 private:
 	VeyonMaster* m_master{nullptr};

@@ -137,7 +137,7 @@ void ComputerMonitoringWidget::alignComputers()
 
 void ComputerMonitoringWidget::showContextMenu( QPoint globalPos )
 {
-	populateFeatureMenu( activeFeatures( selectedComputerControlInterfaces() ) );
+	populateFeatureMenu( selectedComputerControlInterfaces() );
 
 	m_featureMenu->exec( globalPos );
 }
@@ -182,7 +182,7 @@ void ComputerMonitoringWidget::setIconSize( const QSize& size )
 
 
 
-void ComputerMonitoringWidget::populateFeatureMenu( const FeatureUidList& activeFeatures )
+void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	Plugin::Uid previousPluginUid;
 
@@ -206,16 +206,18 @@ void ComputerMonitoringWidget::populateFeatureMenu( const FeatureUidList& active
 
 		previousPluginUid = pluginUid;
 
+		auto active = false;
+
 		auto label = feature.displayName();
-		if( activeFeatures.contains( feature.uid().toString() ) &&
-			feature.displayNameActive().isEmpty() == false )
+		if( feature.displayNameActive().isEmpty() == false &&
+			isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
 		{
 			label = feature.displayNameActive();
+			active = true;
 		}
 
 		const auto subFeatures = master()->subFeatures( feature.uid() );
-
-		if( subFeatures.isEmpty() )
+		if( subFeatures.isEmpty() || active )
 		{
 			addFeatureToMenu( feature, label );
 		}
