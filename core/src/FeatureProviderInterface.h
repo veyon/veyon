@@ -77,15 +77,7 @@ public:
 	 */
 	virtual bool controlFeature( Feature::Uid featureUid,
 						Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces )
-	{
-		Q_UNUSED(featureUid)
-		Q_UNUSED(operation)
-		Q_UNUSED(arguments)
-		Q_UNUSED(computerControlInterfaces)
-
-		return false;
-	}
+						const ComputerControlInterfaceList& computerControlInterfaces ) = 0;
 
 	/*!
 	 * \brief Start a feature on master side for given computer control interfaces
@@ -95,7 +87,12 @@ public:
 	 */
 	virtual bool startFeature( VeyonMasterInterface& master,
 							   const Feature& feature,
-							   const ComputerControlInterfaceList& computerControlInterfaces ) = 0;
+							   const ComputerControlInterfaceList& computerControlInterfaces )
+	{
+		Q_UNUSED(master)
+
+		return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
+	}
 
 	/*!
 	 * \brief Stops a feature on master side for given computer control interfaces
@@ -105,17 +102,26 @@ public:
 	 */
 	virtual bool stopFeature( VeyonMasterInterface& master,
 							  const Feature& feature,
-							  const ComputerControlInterfaceList& computerControlInterfaces ) = 0;
+							  const ComputerControlInterfaceList& computerControlInterfaces )
+	{
+		Q_UNUSED(master)
+
+		return controlFeature( feature.uid(), Operation::Stop, {}, computerControlInterfaces );
+	}
 
 	/*!
-	 * \brief Handles a received feature message inside master
-	 * \param master a reference to a master instance implementing the VeyonMasterInterface
+	 * \brief Handles a received feature message received on a certain ComputerControlInterface
 	 * \param message the message which has been received and needs to be handled
 	 * \param computerControlInterfaces the interface over which the message has been received
 	 */
-	virtual bool handleFeatureMessage( VeyonMasterInterface& master,
-									   const FeatureMessage& message,
-									   ComputerControlInterface::Pointer computerControlInterface ) = 0;
+	virtual bool handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface ,
+							  const FeatureMessage& message )
+	{
+		Q_UNUSED(computerControlInterface)
+		Q_UNUSED(message)
+
+		return false;
+	}
 
 	/*!
 	 * \brief Handles a received feature message inside server
@@ -124,17 +130,30 @@ public:
 	 */
 	virtual bool handleFeatureMessage( VeyonServerInterface& server,
 									   const MessageContext& messageContext,
-									   const FeatureMessage& message ) = 0;
+									   const FeatureMessage& message )
+	{
+		Q_UNUSED(server)
+		Q_UNUSED(messageContext)
+		Q_UNUSED(message)
+
+		return false;
+	}
 
 	/*!
 	 * \brief Handles a received feature message inside worker
 	 * \param worker a reference to a worker instance implementing the VeyonWorkerInterface
 	 * \param message the message which has been received and needs to be handled
 	 */
-	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) = 0;
+	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
+	{
+		Q_UNUSED(worker)
+		Q_UNUSED(message)
+
+		return false;
+	}
 
 protected:
-	bool sendFeatureMessage( const FeatureMessage& message,
+	void sendFeatureMessage( const FeatureMessage& message,
 							 const ComputerControlInterfaceList& computerControlInterfaces,
 							 bool wake = true )
 	{
@@ -142,8 +161,6 @@ protected:
 		{
 			controlInterface->sendFeatureMessage( message, wake );
 		}
-
-		return true;
 	}
 
 };

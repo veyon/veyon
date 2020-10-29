@@ -25,9 +25,9 @@
 #pragma once
 
 #include "Feature.h"
-#include "SimpleFeatureProvider.h"
+#include "FeatureProviderInterface.h"
 
-class ScreenshotFeaturePlugin : public QObject, SimpleFeatureProvider, PluginInterface
+class ScreenshotFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Screenshot")
@@ -67,6 +67,9 @@ public:
 	}
 
 	const FeatureList& featureList() const override;
+
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;

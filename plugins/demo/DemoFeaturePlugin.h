@@ -43,14 +43,14 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 				 ConfigurationPagePluginInterface
 				 AuthenticationPluginInterface)
 public:
-	enum Arguments {
+	enum class Argument {
 		DemoAccessToken,
 		VncServerPort,
 		VncServerPassword,
 		DemoServerHost,
 		DemoServerPort
 	};
-	Q_ENUM(Arguments)
+	Q_ENUM(Argument)
 
 	explicit DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override = default;
@@ -99,9 +99,6 @@ public:
 	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
 					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
-
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
@@ -111,7 +108,7 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	static QString a2s( Arguments arg )
+	static QString a2s( Argument arg )
 	{
 		return EnumHelper::itemName( arg ).toLower();
 	}

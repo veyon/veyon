@@ -26,14 +26,21 @@
 
 #include <QReadWriteLock>
 
-#include "SimpleFeatureProvider.h"
+#include "FeatureProviderInterface.h"
 
-class UserSessionControlPlugin : public QObject, public SimpleFeatureProvider, public PluginInterface
+class UserSessionControlPlugin : public QObject, public FeatureProviderInterface, public PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.UserSessionControl")
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
+	enum class Arguments
+	{
+		Username,
+		Password
+	};
+	Q_ENUM(Arguments)
+
 	explicit UserSessionControlPlugin( QObject* parent = nullptr );
 	~UserSessionControlPlugin() override = default;
 
@@ -72,6 +79,9 @@ public:
 		return m_features;
 	}
 
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
@@ -81,11 +91,6 @@ public:
 
 private:
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
-
-	enum class Argument {
-		Username,
-		Password
-	};
 
 	const Feature m_userLoginFeature;
 	const Feature m_userLogoffFeature;

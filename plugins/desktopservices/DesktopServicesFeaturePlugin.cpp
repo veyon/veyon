@@ -32,6 +32,7 @@
 #include "ComputerControlInterface.h"
 #include "DesktopServicesConfigurationPage.h"
 #include "DesktopServicesFeaturePlugin.h"
+#include "EnumHelper.h"
 #include "FeatureWorkerManager.h"
 #include "ObjectManager.h"
 #include "OpenWebsiteDialog.h"
@@ -68,6 +69,41 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 
 
 
+bool DesktopServicesFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+												  const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( operation != Operation::Start )
+	{
+		return false;
+	}
+
+	if( featureUid == m_runProgramFeature.uid() )
+	{
+		const auto programs = arguments.value( EnumHelper::itemName(Argument::Programs) ).toStringList();
+
+		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
+								.addArgument( Argument::Programs, programs ),
+							computerControlInterfaces );
+
+		return true;
+	}
+
+	if( featureUid == m_openWebsiteFeature.uid() )
+	{
+		const auto websites = arguments.value( EnumHelper::itemName(Argument::WebsiteUrl) ).toStringList();
+
+		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
+								.addArgument( Argument::WebsiteUrl, websites ),
+							computerControlInterfaces );
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
 bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 												 const ComputerControlInterfaceList& computerControlInterfaces )
 {
@@ -82,13 +118,13 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 	else if( m_predefinedProgramsFeatures.contains( feature ) )
 	{
 		sendFeatureMessage( FeatureMessage( m_runProgramFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( ProgramsArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+							addArgument( Argument::Programs, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
 
 	}
 	else if( m_predefinedWebsitesFeatures.contains( feature ) )
 	{
 		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( WebsiteUrlArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+							addArgument( Argument::WebsiteUrl, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
 
 	}
 	else
@@ -101,30 +137,6 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 
 
 
-bool DesktopServicesFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-												const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master)
-	Q_UNUSED(feature)
-	Q_UNUSED(computerControlInterfaces)
-
-	return false;
-}
-
-
-
-bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-														 ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master)
-	Q_UNUSED(message)
-	Q_UNUSED(computerControlInterface)
-
-	return false;
-}
-
-
-
 bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 														 const MessageContext& messageContext,
 														 const FeatureMessage& message )
@@ -133,7 +145,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 
 	if( message.featureUid() == m_runProgramFeature.uid() )
 	{
-		const auto programs = message.argument( ProgramsArgument ).toStringList();
+		const auto programs = message.argument( Argument::Programs ).toStringList();
 		for( const auto& program : programs )
 		{
 			runProgramAsUser( program );
@@ -160,7 +172,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& w
 
 	if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
-		openWebsite( message.argument( WebsiteUrlArgument ).toString() );
+		openWebsite( message.argument( Argument::WebsiteUrl ).toString() );
 		return true;
 	}
 
@@ -267,9 +279,11 @@ void DesktopServicesFeaturePlugin::runProgram( VeyonMasterInterface& master,
 
 	if( runProgramDialog.exec() == QDialog::Accepted )
 	{
-		sendFeatureMessage( FeatureMessage( m_runProgramFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( ProgramsArgument, runProgramDialog.programs().split( QLatin1Char('\n') ) ),
-							computerControlInterfaces );
+		const auto programs = runProgramDialog.programs().split( QLatin1Char('\n') );
+
+		controlFeature( m_runProgramFeature.uid(), Operation::Start,
+						{ { EnumHelper::itemName(Argument::Programs), programs } },
+						computerControlInterfaces );
 
 		if( runProgramDialog.remember() )
 		{
@@ -296,9 +310,9 @@ void DesktopServicesFeaturePlugin::openWebsite( VeyonMasterInterface& master,
 
 	if( openWebsiteDialog.exec() == QDialog::Accepted )
 	{
-		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( WebsiteUrlArgument, openWebsiteDialog.website() ),
-							computerControlInterfaces );
+		controlFeature( m_openWebsiteFeature.uid(), Operation::Start,
+						{ { EnumHelper::itemName(Argument::WebsiteUrl), openWebsiteDialog.website() } },
+						computerControlInterfaces );
 
 		if( openWebsiteDialog.remember() )
 		{
