@@ -40,7 +40,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	FlexibleListView( parent ),
 	m_featureMenu( new QMenu( this ) )
 {
-    const auto computerMonitoringThumbnailSpacing = VeyonCore::config().computerMonitoringThumbnailSpacing();
+	const auto computerMonitoringThumbnailSpacing = VeyonCore::config().computerMonitoringThumbnailSpacing();
 
 	setContextMenuPolicy( Qt::CustomContextMenu );
 	setAcceptDrops( true );
@@ -51,7 +51,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	setFlow( QListView::LeftToRight );
 	setWrapping( true );
 	setResizeMode( QListView::Adjust );
-    setSpacing( computerMonitoringThumbnailSpacing  );
+	setSpacing( computerMonitoringThumbnailSpacing  );
 	setViewMode( QListView::IconMode );
 	setUniformItemSizes( true );
 	setSelectionRectVisible( true );
