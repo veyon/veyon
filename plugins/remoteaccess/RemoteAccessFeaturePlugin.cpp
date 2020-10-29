@@ -68,11 +68,49 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 
 
 
+bool RemoteAccessFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+											   const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( hasFeature( featureUid ) == false ||
+		operation != Operation::Start )
+	{
+		return false;
+	}
+
+	auto viewOnly = featureUid == m_remoteViewFeature.uid();
+	if( remoteControlEnabled() == false )
+	{
+		viewOnly = true;
+	}
+
+	Computer computer;
+	computer.setHostAddress( arguments.value( argToString(Argument::HostName) ).toString() );
+	computer.setName( computer.hostAddress() );
+
+	if( computer.hostAddress().isEmpty() )
+	{
+		if( computerControlInterfaces.isEmpty() == false )
+		{
+			computer = computerControlInterfaces.first()->computer();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( computer ), viewOnly,
+							remoteViewEnabled() && remoteControlEnabled() );
+
+	return true;
+}
+
+
+
 bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature.uid() != m_remoteViewFeature.uid() &&
-		feature.uid() != m_remoteControlFeature.uid() )
+	if( hasFeature( feature.uid() ) == false )
 	{
 		return false;
 	}

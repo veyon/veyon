@@ -26,11 +26,11 @@
 
 #include <QTimer>
 
-#include "SimpleFeatureProvider.h"
+#include "FeatureProviderInterface.h"
 
 class FeatureWorkerManager;
 
-class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public SimpleFeatureProvider, public PluginInterface
+class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeatureProviderInterface, public PluginInterface
 {
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
@@ -94,6 +94,17 @@ public:
 		return m_features;
 	}
 
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override
+	{
+		Q_UNUSED(featureUid)
+		Q_UNUSED(operation)
+		Q_UNUSED(arguments)
+		Q_UNUSED(computerControlInterfaces)
+
+		return false;
+	}
+
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
@@ -115,11 +126,11 @@ private:
 		ReportDesktopAccessChoice
 	};
 
-	enum Arguments
+	enum class Argument
 	{
-		UserArgument,
-		HostArgument,
-		ChoiceArgument
+		User,
+		Host,
+		Choice
 	};
 
 	const Feature m_desktopAccessDialogFeature;

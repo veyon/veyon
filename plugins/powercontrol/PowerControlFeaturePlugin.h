@@ -27,18 +27,24 @@
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
 #include "Feature.h"
-#include "SimpleFeatureProvider.h"
+#include "FeatureProviderInterface.h"
 
 class PowerControlFeaturePlugin : public QObject,
 		PluginInterface,
 		CommandLineIO,
 		CommandLinePluginInterface,
-		SimpleFeatureProvider
+		FeatureProviderInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.PowerControl")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface FeatureProviderInterface)
 public:
+	enum class Argument
+	{
+		ShutdownTimeout
+	};
+	Q_ENUM(Argument)
+
 	explicit PowerControlFeaturePlugin( QObject* parent = nullptr );
 	~PowerControlFeaturePlugin() override = default;
 
@@ -87,6 +93,9 @@ public:
 
 	const FeatureList& featureList() const override;
 
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
@@ -101,10 +110,6 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_on( const QStringList& arguments );
 
 private:
-	enum Arguments {
-		ShutdownTimeout
-	};
-
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 	static bool broadcastWOLPacket( QString macAddress );
 

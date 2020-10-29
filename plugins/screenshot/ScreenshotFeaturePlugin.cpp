@@ -57,17 +57,32 @@ const FeatureList &ScreenshotFeaturePlugin::featureList() const
 
 
 
-bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces )
+bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
+											 Operation operation, const QVariantMap& arguments,
+											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature.uid() == m_screenshotFeature.uid() )
+	Q_UNUSED(arguments)
+
+	if( hasFeature( featureUid ) && operation != Operation::Start )
 	{
 		for( const auto& controlInterface : computerControlInterfaces )
 		{
 			Screenshot().take( controlInterface );
-
 		}
 
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+											const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces ) )
+	{
 		QMessageBox::information( master.mainWindow(),
 								  tr( "Screenshots taken" ),
 								  tr( "Screenshot of %1 computer have been taken successfully." ).
@@ -76,7 +91,7 @@ bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const 
 		return true;
 	}
 
-	return true;
+	return false;
 }
 
 

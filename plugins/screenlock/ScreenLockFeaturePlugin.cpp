@@ -66,46 +66,28 @@ ScreenLockFeaturePlugin::~ScreenLockFeaturePlugin()
 
 
 
-bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces )
+bool ScreenLockFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation operation,
+											 const QVariantMap& arguments,
+											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master)
-
-	if( feature == m_screenLockFeature ||
-		feature == m_lockInputDevicesFeature )
+	if( hasFeature( featureUid ) == false )
 	{
-		return sendFeatureMessage( FeatureMessage( feature.uid(), StartLockCommand ),
-								   computerControlInterfaces );
+		return false;
 	}
 
-	return false;
-}
-
-
-
-bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-										   const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master)
-
-	if( feature == m_screenLockFeature ||
-		feature == m_lockInputDevicesFeature )
+	if( operation == Operation::Start )
 	{
-		return sendFeatureMessage( FeatureMessage( feature.uid(), StopLockCommand ),
-								   computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage{ featureUid, StartLockCommand }, computerControlInterfaces );
+
+		return true;
 	}
 
-	return false;
-}
+	if( operation == Operation::Stop )
+	{
+		sendFeatureMessage( FeatureMessage{ featureUid, StopLockCommand }, computerControlInterfaces );
 
-
-
-bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-													ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master)
-	Q_UNUSED(message)
-	Q_UNUSED(computerControlInterface)
+		return true;
+	}
 
 	return false;
 }

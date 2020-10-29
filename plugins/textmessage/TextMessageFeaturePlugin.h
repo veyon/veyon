@@ -33,6 +33,12 @@ class TextMessageFeaturePlugin : public QObject, FeatureProviderInterface, Plugi
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.TextMessage")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
+	enum class Argument {
+		Text,
+		Icon
+	};
+	Q_ENUM(Argument)
+
 	explicit TextMessageFeaturePlugin( QObject* parent = nullptr );
 	~TextMessageFeaturePlugin() override = default;
 
@@ -68,14 +74,11 @@ public:
 
 	const FeatureList& featureList() const override;
 
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
@@ -87,16 +90,8 @@ Q_SIGNALS:
 	Q_INVOKABLE void acceptTextMessage( const QString& textMessage );
 
 private:
-	void sendTextMessage( const QString& textMessage, const ComputerControlInterfaceList& computerControlInterfaces );
-
 	enum Commands {
 		ShowTextMessage
-	};
-
-	enum FeatureMessageArguments {
-		MessageTextArgument,
-		MessageIcon,
-		FeatureMessageArgumentCount
 	};
 
 	const Feature m_textMessageFeature;
