@@ -54,6 +54,19 @@ public:
 	 */
 	virtual const FeatureList& featureList() const = 0;
 
+	virtual bool hasFeature( Feature::Uid featureUid ) const
+	{
+		for( const auto& feature : featureList() )
+		{
+			if( feature.uid() == featureUid )
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	/*!
 	 * \brief Control feature in a generic way based on passed arguments
 	 * \param featureUid the UID of the feature to control
