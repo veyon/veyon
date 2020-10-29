@@ -252,8 +252,16 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	m_vncView( new VncViewWidget( computerControlInterface->computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, startViewOnly, showViewOnlyToggleButton ) )
 {
-	setWindowTitle( tr( "%1 - %2 Remote Access" ).arg( computerControlInterface->computer().name(),
-													   VeyonCore::applicationName() ) );
+	if( computerControlInterface->userFullName().isEmpty() )
+	{
+		setWindowTitle( tr( "%1 - %2 Remote Access" ).arg( computerControlInterface->computer().name(),
+															VeyonCore::applicationName() ) );
+	} else
+	{
+		setWindowTitle( tr( "%1 - %2 - %3 Remote Access" ).arg( computerControlInterface->userFullName(),
+															computerControlInterface->computer().name(),
+															VeyonCore::applicationName() ) );
+	}
 	setWindowIcon( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
