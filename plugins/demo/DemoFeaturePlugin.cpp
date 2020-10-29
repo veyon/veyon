@@ -185,8 +185,8 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		// start demo server
 		controlFeature( m_demoServerFeature.uid(), Operation::Start,
 						{
-							{ a2s(Arguments::VncServerPort), vncServerPort },
-							{ a2s(Arguments::DemoServerPort), demoServerPort },
+							{ argToString(Argument::VncServerPort), vncServerPort },
+							{ argToString(Argument::DemoServerPort), demoServerPort },
 						},
 						master.selectedComputerControlInterfaces() );
 
@@ -195,8 +195,8 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		userDemoControlInterfaces.removeAll( demoServerInterface );
 
 		const QVariantMap demoClientArgs{
-			{ a2s(Arguments::DemoServerHost), HostAddress::parseHost(demoServerHost) },
-			{ a2s(Arguments::DemoServerPort), demoServerPort },
+			{ argToString(Argument::DemoServerHost), HostAddress::parseHost(demoServerHost) },
+			{ argToString(Argument::DemoServerPort), demoServerPort },
 		};
 
 		controlFeature( feature == m_shareUserScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid()
@@ -247,18 +247,6 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 
 
 
-bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-											 ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
-
-
-
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 											 const MessageContext& messageContext,
 											 const FeatureMessage& message )
@@ -271,7 +259,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			server.featureWorkerManager().
 				sendMessageToManagedSystemWorker(
 					FeatureMessage{ message }
-						.addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ) );
+						.addArgument( Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ) );
 		}
 		else if( message.command() != StopDemoServer ||
 				 server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) )
@@ -310,12 +298,12 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 		}
 
 		if( message.command() == StartDemoClient &&
-			message.argument( DemoServerHost ).toString().isEmpty() )
+			message.argument( Argument::DemoServerHost ).toString().isEmpty() )
 		{
 			// set the peer address as demo server host
 			server.featureWorkerManager().sendMessageToManagedSystemWorker(
 				FeatureMessage{ message }
-					.addArgument( DemoServerHost, socket->peerAddress().toString() ) );
+					.addArgument( Argument::DemoServerHost, socket->peerAddress().toString() ) );
 		}
 		else
 		{
@@ -342,11 +330,11 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 		case StartDemoServer:
 			if( m_demoServer == nullptr )
 			{
-				m_demoServer = new DemoServer( message.argument( VncServerPort ).toInt(),
-											   message.argument( VncServerPassword ).toByteArray(),
-											   message.argument( DemoAccessToken ).toByteArray(),
+				m_demoServer = new DemoServer( message.argument( Argument::VncServerPort ).toInt(),
+											   message.argument( Argument::VncServerPassword ).toByteArray(),
+											   message.argument( Argument::DemoAccessToken ).toByteArray(),
 											   m_configuration,
-											   message.argument( DemoServerPort ).toInt(),
+											   message.argument( Argument::DemoServerPort ).toInt(),
 											   this );
 			}
 			return true;
@@ -369,12 +357,12 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 		switch( message.command() )
 		{
 		case StartDemoClient:
-			VeyonCore::authenticationCredentials().setToken( message.argument( DemoAccessToken ).toByteArray() );
+			VeyonCore::authenticationCredentials().setToken( message.argument( Argument::DemoAccessToken ).toByteArray() );
 
 			if( m_demoClient == nullptr )
 			{
-				const auto demoServerHost = message.argument( DemoServerHost ).toString();
-				const auto demoServerPort = message.argument( DemoServerPort ).toInt();
+				const auto demoServerHost = message.argument( Argument::DemoServerHost ).toString();
+				const auto demoServerPort = message.argument( Argument::DemoServerPort ).toInt();
 				const auto isFullscreenDemo = message.featureUid() == m_demoClientFullScreenFeature.uid();
 
 				vDebug() << "connecting with master" << demoServerHost;
@@ -412,24 +400,28 @@ bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMa
 {
 	if( operation == Operation::Start )
 	{
-		const auto demoServerPort = arguments.value( a2s(Arguments::DemoServerPort),
+		const auto demoServerPort = arguments.value( argToString(Argument::DemoServerPort),
 													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto vncServerPort = arguments.value( a2s(Arguments::VncServerPort),
+		const auto vncServerPort = arguments.value( argToString(Argument::VncServerPort),
 													VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto demoAccessToken = arguments.value( a2s(Arguments::DemoAccessToken),
+		const auto demoAccessToken = arguments.value( argToString(Argument::DemoAccessToken),
 													  m_demoAccessToken.toByteArray() ).toByteArray();
 
-		return sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
-									   .addArgument( DemoAccessToken, demoAccessToken )
-									   .addArgument( VncServerPort, vncServerPort )
-									   .addArgument( DemoServerPort, demoServerPort ),
-								   computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
+								.addArgument( Argument::DemoAccessToken, demoAccessToken )
+								.addArgument( Argument::VncServerPort, vncServerPort )
+								.addArgument( Argument::DemoServerPort, demoServerPort ),
+							computerControlInterfaces );
+
+		return true;
 	}
 
 	if( operation == Operation::Stop )
 	{
-		return sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
-								   computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
+							computerControlInterfaces );
+
+		return true;
 	}
 
 	return false;
@@ -442,10 +434,10 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 {
 	if( operation == Operation::Start )
 	{
-		const auto demoAccessToken = arguments.value( a2s(Arguments::DemoAccessToken),
+		const auto demoAccessToken = arguments.value( argToString(Argument::DemoAccessToken),
 													  m_demoAccessToken.toByteArray() ).toByteArray();
-		const auto demoServerHost = arguments.value( a2s(Arguments::DemoServerHost) ).toString();
-		const auto demoServerPort = arguments.value( a2s(Arguments::DemoServerPort),
+		const auto demoServerHost = arguments.value( argToString(Argument::DemoServerHost) ).toString();
+		const auto demoServerPort = arguments.value( argToString(Argument::DemoServerPort),
 													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
 
 		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
@@ -459,11 +451,13 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 			}
 		}
 
-		return sendFeatureMessage( FeatureMessage{ featureUid, StartDemoClient }
-									   .addArgument( DemoAccessToken, demoAccessToken )
-									   .addArgument( DemoServerHost, demoServerHost )
-									   .addArgument( DemoServerPort, demoServerPort ),
-								   computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage{ featureUid, StartDemoClient }
+								.addArgument( Argument::DemoAccessToken, demoAccessToken )
+								.addArgument( Argument::DemoServerHost, demoServerHost )
+								.addArgument( Argument::DemoServerPort, demoServerPort ),
+							computerControlInterfaces );
+
+		return true;
 	}
 
 	if( operation == Operation::Stop )
@@ -479,7 +473,9 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 			}
 		}
 
-		return sendFeatureMessage( FeatureMessage{ featureUid, StopDemoClient }, computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage{ featureUid, StopDemoClient }, computerControlInterfaces );
+
+		return true;
 	}
 
 	return false;

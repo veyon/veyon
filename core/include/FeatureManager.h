@@ -64,9 +64,8 @@ public:
 					  const Feature& feature,
 					  const ComputerControlInterfaceList& computerControlInterfaces );
 
-public Q_SLOTS:
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   const ComputerControlInterface::Pointer& computerControlInterface );
+	bool handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
+							  const FeatureMessage& message );
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message );

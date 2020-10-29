@@ -64,8 +64,8 @@ void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, cons
 
 	featureWorkerManager->sendMessageToManagedSystemWorker(
 		FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess )
-			.addArgument( UserArgument, user )
-			.addArgument( HostArgument, host ) );
+			.addArgument( Argument::User, user )
+			.addArgument( Argument::Host, host ) );
 
 	connect( &m_abortTimer, &QTimer::timeout, this, [=]() { abort( featureWorkerManager ); } );
 	m_abortTimer.start( DialogTimeout );
@@ -93,7 +93,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 		message.command() == ReportDesktopAccessChoice )
 	{
-		m_choice = QVariantHelper<Choice>::value( message.argument( ChoiceArgument ) );
+		m_choice = QVariantHelper<Choice>::value( message.argument( Argument::Choice ) );
 
 		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature.uid() );
 
@@ -117,11 +117,11 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, co
 		return false;
 	}
 
-	const auto result = requestDesktopAccess( message.argument( UserArgument ).toString(),
-											  message.argument( HostArgument ).toString() );
+	const auto result = requestDesktopAccess( message.argument( Argument::User ).toString(),
+											  message.argument( Argument::Host ).toString() );
 
 	FeatureMessage reply( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessChoice );
-	reply.addArgument( ChoiceArgument, result );
+	reply.addArgument( Argument::Choice, result );
 
 	return worker.sendFeatureMessageReply( reply );
 }

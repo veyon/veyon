@@ -41,22 +41,20 @@ FeatureControl::FeatureControl( QObject* parent ) :
 
 
 
-bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
+void FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	return sendFeatureMessage( FeatureMessage( m_featureControlFeature.uid(), QueryActiveFeatures ),
-							   computerControlInterfaces, false );
+	sendFeatureMessage( FeatureMessage{ m_featureControlFeature.uid(), QueryActiveFeatures },
+						computerControlInterfaces, false );
 }
 
 
 
-bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-										   ComputerControlInterface::Pointer computerControlInterface )
+bool FeatureControl::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
+										  const FeatureMessage& message )
 {
-	Q_UNUSED(master);
-
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{
-		const auto featureUidStrings = message.argument( ActiveFeatureList ).toStringList();
+		const auto featureUidStrings = message.argument( Argument::ActiveFeatureList ).toStringList();
 
 		FeatureUidList activeFeatures{};
 		activeFeatures.reserve( featureUidStrings.size() );
@@ -93,7 +91,7 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server,
 		}
 
 		FeatureMessage reply( message.featureUid(), message.command() );
-		reply.addArgument( ActiveFeatureList, featureUidStrings );
+		reply.addArgument( Argument::ActiveFeatureList, featureUidStrings );
 
 		return server.sendFeatureMessageReply( messageContext, reply );
 	}

@@ -39,6 +39,13 @@ class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
 				 FeatureProviderInterface
 				 ConfigurationPagePluginInterface)
 public:
+	enum class Argument
+	{
+		Programs,
+		WebsiteUrl
+	};
+	Q_ENUM(Argument)
+
 	explicit DesktopServicesFeaturePlugin( QObject* parent = nullptr );
 	~DesktopServicesFeaturePlugin() override = default;
 
@@ -77,14 +84,11 @@ public:
 		return m_features;
 	}
 
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
@@ -113,11 +117,6 @@ private:
 	void updatePredefinedWebsiteFeatures();
 
 	QString predefinedServicePath( Feature::Uid subFeatureUid ) const;
-
-	enum Arguments {
-		ProgramsArgument,
-		WebsiteUrlArgument
-	};
 
 	DesktopServicesConfiguration m_configuration;
 

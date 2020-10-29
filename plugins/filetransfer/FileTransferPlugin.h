@@ -40,6 +40,17 @@ class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInter
 					  FeatureProviderInterface
 						  ConfigurationPagePluginInterface)
 public:
+	enum class Argument
+	{
+		TransferId,
+		Filename,
+		DataChunk,
+		OpenFileInApplication,
+		OverwriteExistingFile,
+		Files
+	};
+	Q_ENUM(Argument)
+
 	explicit FileTransferPlugin( QObject* parent = nullptr );
 	~FileTransferPlugin() override;
 
@@ -78,14 +89,11 @@ public:
 		return m_features;
 	}
 
+	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
@@ -114,16 +122,6 @@ private:
 		FileTransferFinishCommand,
 		OpenTransferFolder,
 		CommandCount
-	};
-
-	enum Arguments
-	{
-		TransferId,
-		Filename,
-		DataChunk,
-		OpenFileInApplication,
-		OverwriteExistingFile,
-		ArgumentsCount
 	};
 
 	const Feature m_fileTransferFeature;

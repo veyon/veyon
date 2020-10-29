@@ -55,6 +55,33 @@ const FeatureList &TextMessageFeaturePlugin::featureList() const
 
 
 
+bool TextMessageFeaturePlugin::controlFeature( Feature::Uid featureUid,
+											  Operation operation,
+											  const QVariantMap& arguments,
+											  const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	if( operation != Operation::Start )
+	{
+		return false;
+	}
+
+	if( featureUid == m_textMessageFeature.uid() )
+	{
+		const auto text = arguments.value( argToString(Argument::Text) ).toString();
+		const auto icon = arguments.value( argToString(Argument::Icon) ).toInt();
+
+		sendFeatureMessage( FeatureMessage{ featureUid, ShowTextMessage }
+								.addArgument( Argument::Text, text )
+								.addArgument( Argument::Icon, icon ), computerControlInterfaces );
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
 bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
@@ -69,39 +96,17 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 
 	if( textMessage.isEmpty() == false )
 	{
-		FeatureMessage featureMessage( m_textMessageFeature.uid(), ShowTextMessage );
-		featureMessage.addArgument( MessageTextArgument, textMessage );
-		featureMessage.addArgument( MessageIcon, QMessageBox::Information );
-
-		sendFeatureMessage( featureMessage, computerControlInterfaces );
+		controlFeature( m_textMessageFeature.uid(), Operation::Start,
+						{
+							{ argToString(Argument::Text), textMessage },
+							{ argToString(Argument::Icon), QMessageBox::Information }
+						},
+						computerControlInterfaces );
 	}
 
 	return true;
 }
 
-
-
-bool TextMessageFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-													 ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
 
 
 
@@ -130,9 +135,9 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{
-		QMessageBox* messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( MessageIcon ).toInt() ),
+		QMessageBox* messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( Argument::Icon ).toInt() ),
 												   tr( "Message from teacher" ),
-												   message.argument( MessageTextArgument ).toString() );
+												   message.argument( Argument::Text ).toString() );
 		messageBox->show();
 
 		connect( messageBox, &QMessageBox::accepted, messageBox, &QMessageBox::deleteLater );

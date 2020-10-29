@@ -258,7 +258,7 @@ void ComputerControlListModel::startComputerControlInterface( const ComputerCont
 	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived, this,
 			 [this]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface )
 			 {
-				 m_master->featureManager().handleFeatureMessage( *m_master, featureMessage, computerControlInterface );
+				 m_master->featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
 			 } );
 
 	connect( controlInterface.data(), &ComputerControlInterface::screenUpdated,

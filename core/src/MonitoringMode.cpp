@@ -49,24 +49,22 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 
 
-bool MonitoringMode::queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces )
+void MonitoringMode::queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	return sendFeatureMessage( FeatureMessage( m_queryLoggedOnUserInfoFeature.uid(), FeatureMessage::DefaultCommand ),
-							   computerControlInterfaces, false );
+	sendFeatureMessage( FeatureMessage{ m_queryLoggedOnUserInfoFeature.uid(), FeatureMessage::DefaultCommand },
+						computerControlInterfaces, false );
 }
 
 
 
-bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-										   ComputerControlInterface::Pointer computerControlInterface )
+bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
+										  const FeatureMessage& message )
 {
-	Q_UNUSED(master)
-
 	if( message.featureUid() == m_queryLoggedOnUserInfoFeature.uid() )
 	{
-		computerControlInterface->setUserInformation( message.argument( UserLoginName ).toString(),
-													  message.argument( UserFullName ).toString(),
-													  message.argument( UserSessionId ).toInt() );
+		computerControlInterface->setUserInformation( message.argument( Argument::UserLoginName ).toString(),
+													  message.argument( Argument::UserFullName ).toString(),
+													  message.argument( Argument::UserSessionId ).toInt() );
 
 		return true;
 	}
@@ -88,15 +86,15 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 		if( m_userLoginName.isEmpty() )
 		{
 			queryUserInformation();
-			reply.addArgument( UserLoginName, QString() );
-			reply.addArgument( UserFullName, QString() );
-			reply.addArgument( UserSessionId, -1 );
+			reply.addArgument( Argument::UserLoginName, QString() );
+			reply.addArgument( Argument::UserFullName, QString() );
+			reply.addArgument( Argument::UserSessionId, -1 );
 		}
 		else
 		{
-			reply.addArgument( UserLoginName, m_userLoginName );
-			reply.addArgument( UserFullName, m_userFullName );
-			reply.addArgument( UserSessionId, m_userSessionId );
+			reply.addArgument( Argument::UserLoginName, m_userLoginName );
+			reply.addArgument( Argument::UserFullName, m_userFullName );
+			reply.addArgument( Argument::UserSessionId, m_userSessionId );
 		}
 		m_userDataLock.unlock();
 

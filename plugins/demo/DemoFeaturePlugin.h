@@ -26,7 +26,6 @@
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
-#include "EnumHelper.h"
 #include "FeatureProviderInterface.h"
 
 class DemoServer;
@@ -40,14 +39,14 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 public:
 	using Token = CryptoCore::PlaintextPassword;
 
-	enum Arguments {
+	enum class Argument {
 		DemoAccessToken,
 		VncServerPort,
 		VncServerPassword,
 		DemoServerHost,
 		DemoServerPort
 	};
-	Q_ENUM(Arguments)
+	Q_ENUM(Argument)
 
 	explicit DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override = default;
@@ -96,9 +95,6 @@ public:
 	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
 					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
-
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
@@ -108,11 +104,6 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	static QString a2s( Arguments arg )
-	{
-		return EnumHelper::itemName( arg ).toLower();
-	}
-
 	bool controlDemoServer( Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
