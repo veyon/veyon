@@ -48,6 +48,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 
 	ui->setupUi( this );
 
+	ui->listView->setSpacing( VeyonCore::config().computerMonitoringThumbnailSpacing() );
 	ui->listView->setUidRole( ComputerControlListModel::UidRole );
 
 	connect( ui->listView, &QListView::doubleClicked,
