@@ -154,18 +154,19 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 	connect( &authenticationTimeoutTimer, &QTimer::timeout, &eventLoop,
 			 [&eventLoop]() { eventLoop.exit(ResultAuthTimedOut); } );
-	connect( connection->controlInterface(), &ComputerControlInterface::stateChanged, &eventLoop, [connection, &eventLoop]() { // clazy:exclude=lambda-in-connect
-		switch( connection->controlInterface()->state() )
-		{
-		case ComputerControlInterface::State::AuthenticationFailed:
-			eventLoop.exit( ResultAuthFailed );
-			break;
-		case ComputerControlInterface::State::Connected:
-			eventLoop.exit( ResultAuthSucceeded );
-		default:
-			break;
-		}
-	} );
+	connect( connection->controlInterface().data(), &ComputerControlInterface::stateChanged, &eventLoop,
+			 [connection, &eventLoop]() { // clazy:exclude=lambda-in-connect
+				 switch( connection->controlInterface()->state() )
+				 {
+				 case ComputerControlInterface::State::AuthenticationFailed:
+					 eventLoop.exit( ResultAuthFailed );
+					 break;
+				 case ComputerControlInterface::State::Connected:
+					 eventLoop.exit( ResultAuthSucceeded );
+				 default:
+					 break;
+				 }
+			 } );
 
 	authenticationTimeoutTimer.start( m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond );
 

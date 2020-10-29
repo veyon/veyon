@@ -27,6 +27,8 @@
 #include <QElapsedTimer>
 #include <QtConcurrent>
 
+#include "ComputerControlInterface.h"
+
 class ComputerControlInterface;
 class QTimer;
 
@@ -36,7 +38,7 @@ public:
 	WebApiConnection( const QString& hostAddress );
 	~WebApiConnection();
 
-	ComputerControlInterface* controlInterface() const
+	ComputerControlInterface::Pointer controlInterface() const
 	{
 		return m_controlInterface;
 	}
@@ -63,7 +65,7 @@ public:
 private:
 	void runFramebufferEncoder();
 
-	ComputerControlInterface* m_controlInterface{nullptr};
+	ComputerControlInterface::Pointer m_controlInterface;
 	QTimer* m_idleTimer{nullptr};
 	QTimer* m_lifetimeTimer{nullptr};
 

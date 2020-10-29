@@ -30,7 +30,7 @@
 
 
 WebApiConnection::WebApiConnection( const QString& hostAddress ) :
-	m_controlInterface( new ComputerControlInterface( Computer( {}, hostAddress, hostAddress ) ) ),
+	m_controlInterface( ComputerControlInterface::Pointer::create( Computer( {}, hostAddress, hostAddress ) ) ),
 	m_idleTimer( new QTimer ),
 	m_lifetimeTimer( new QTimer )
 {
@@ -114,7 +114,7 @@ QByteArray WebApiConnection::encodedFramebufferData( QSize size, const QByteArra
 	if( preencodeInterval >= MinimumPreencodeInterval )
 	{
 		QTimer::singleShot( preencodeInterval,
-							m_controlInterface, [this]() { runFramebufferEncoder(); } );
+							m_controlInterface.data(), [this]() { runFramebufferEncoder(); } );
 	}
 	else
 	{
