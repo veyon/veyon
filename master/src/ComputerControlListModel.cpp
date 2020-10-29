@@ -480,7 +480,7 @@ QString ComputerControlListModel::activeFeatures( const ComputerControlInterface
 
 	for( const auto& feature : m_master->features() )
 	{
-		if( controlInterface->activeFeatures().contains( feature.uid().toString() ) )
+		if( controlInterface->activeFeatures().contains( feature.uid() ) )
 		{
 			featureNames.append( feature.displayName() );
 		}
