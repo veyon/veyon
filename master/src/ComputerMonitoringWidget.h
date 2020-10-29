@@ -72,9 +72,10 @@ private:
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
 
-	FeatureUidList activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
+	bool isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
+									 Feature::Uid featureUid ) const;
 
-	void populateFeatureMenu( const FeatureUidList& activeFeatures );
+	void populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces );
 	void addFeatureToMenu( const Feature& feature, const QString& label );
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 

@@ -193,7 +193,7 @@ void ComputerMonitoringWidget::alignComputers()
 
 void ComputerMonitoringWidget::showContextMenu( QPoint pos )
 {
-	populateFeatureMenu( activeFeatures( selectedComputerControlInterfaces() ) );
+	populateFeatureMenu( selectedComputerControlInterfaces() );
 
 	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
 }
@@ -224,7 +224,7 @@ void ComputerMonitoringWidget::runFeature( const Feature& feature )
 
 	// mode feature already active?
 	if( feature.testFlag( Feature::Mode ) &&
-			activeFeatures( computerControlInterfaces ).contains( feature.uid().toString() ) )
+		isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
 	{
 		// then stop it
 		m_master->featureManager().stopFeature( *m_master, feature, computerControlInterfaces );
@@ -289,26 +289,28 @@ void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 
 
 
-FeatureUidList ComputerMonitoringWidget::activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
+bool ComputerMonitoringWidget::isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
+														 Feature::Uid featureUid ) const
 {
-	FeatureUidList featureUidList;
+	const auto featureList = FeatureUidList{ featureUid } + m_master->subFeaturesUids( featureUid );
 
 	for( const auto& controlInterface : computerControlInterfaces )
 	{
-		featureUidList.append( controlInterface->activeFeatures() );
+		for( const auto& activeFeature : controlInterface->activeFeatures() )
+		{
+			if( featureList.contains( activeFeature ) )
+			{
+				return true;
+			}
+		}
 	}
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-	const auto featureUidSet = QSet<QUuid>{ featureUidList.constBegin(), featureUidList.constEnd() };
-	return { featureUidSet.constBegin(), featureUidSet.constEnd() };
-#else
-	return FeatureUidList::fromSet( featureUidList.toSet() );
-#endif
+	return false;
 }
 
 
 
-void ComputerMonitoringWidget::populateFeatureMenu( const FeatureUidList& activeFeatures )
+void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	Plugin::Uid previousPluginUid;
 
@@ -332,16 +334,18 @@ void ComputerMonitoringWidget::populateFeatureMenu( const FeatureUidList& active
 
 		previousPluginUid = pluginUid;
 
+		auto active = false;
+
 		auto label = feature.displayName();
-		if( activeFeatures.contains( feature.uid().toString() ) &&
-				feature.displayNameActive().isEmpty() == false )
+		if( feature.displayNameActive().isEmpty() == false &&
+			isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
 		{
 			label = feature.displayNameActive();
+			active = true;
 		}
 
 		const auto subFeatures = m_master->subFeatures( feature.uid() );
-
-		if( subFeatures.isEmpty() )
+		if( subFeatures.isEmpty() || active )
 		{
 			addFeatureToMenu( feature, label );
 		}
