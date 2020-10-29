@@ -122,6 +122,32 @@ FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 
 
 
+FeatureUidList VeyonMaster::subFeaturesUids( Feature::Uid parentFeatureUid ) const
+{
+	FeatureUidList featureUids;
+
+	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
+	const auto pluginUids = VeyonCore::pluginManager().pluginUids();
+
+	for( const auto& pluginUid : pluginUids )
+	{
+		for( const auto& feature : m_featureManager->features( pluginUid ) )
+		{
+			if( feature.testFlag( Feature::Master ) &&
+				feature.parentUid() == parentFeatureUid &&
+				disabledFeatures.contains( parentFeatureUid.toString() ) == false &&
+				disabledFeatures.contains( feature.uid().toString() ) == false )
+			{
+				featureUids += feature.uid();
+			}
+		}
+	}
+
+	return featureUids;
+}
+
+
+
 FeatureList VeyonMaster::modeFeatures() const
 {
 	FeatureList featureList;

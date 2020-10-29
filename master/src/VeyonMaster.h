@@ -79,6 +79,7 @@ public:
 	}
 
 	FeatureList subFeatures( Feature::Uid parentFeatureUid ) const;
+	FeatureUidList subFeaturesUids( Feature::Uid parentFeatureUid ) const;
 
 	FeatureList modeFeatures() const;
 
