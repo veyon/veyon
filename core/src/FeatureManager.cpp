@@ -111,6 +111,19 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 
 
 
+void FeatureManager::controlFeature( Feature::Uid featureUid,
+									FeatureProviderInterface::Operation operation,
+									const QVariantMap& arguments,
+									const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	{
+		featureInterface->controlFeature( featureUid, operation, arguments, computerControlInterfaces );
+	}
+}
+
+
+
 void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
 								   const ComputerControlInterfaceList& computerControlInterfaces )
