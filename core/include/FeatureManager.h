@@ -52,6 +52,11 @@ public:
 
 	Plugin::Uid pluginUid( const Feature& feature ) const;
 
+	void controlFeature( Feature::Uid featureUid,
+						FeatureProviderInterface::Operation operation,
+						const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces );
+
 	void startFeature( VeyonMasterInterface& master,
 					   const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces );
