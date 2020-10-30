@@ -77,4 +77,9 @@ public:
 
 	static QString currentSessionPath();
 
+	static QString xdgSessionIdEnvVarName()
+	{
+		return QStringLiteral("XDG_SESSION_ID");
+	}
+
 };
