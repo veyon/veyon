@@ -95,6 +95,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	initManagers();
 
 	initSystemInfo();
+
+	Q_EMIT initialized();
 }
 
 
