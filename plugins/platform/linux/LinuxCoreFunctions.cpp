@@ -63,6 +63,9 @@ void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Log
 
 void LinuxCoreFunctions::reboot()
 {
+	systemdLoginManager()->asyncCall( QStringLiteral("Reboot"), false );
+	consoleKitManager()->asyncCall( QStringLiteral("Restart") );
+
 	if( isRunningAsAdmin() )
 	{
 		QProcess::startDetached( QStringLiteral("reboot"), {} );
@@ -76,8 +79,6 @@ void LinuxCoreFunctions::reboot()
 		gnomeSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
 		mateSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
 		xfcePowerManager()->asyncCall( QStringLiteral("Reboot") );
-		systemdLoginManager()->asyncCall( QStringLiteral("Reboot") );
-		consoleKitManager()->asyncCall( QStringLiteral("Restart") );
 	}
 }
 
@@ -86,6 +87,9 @@ void LinuxCoreFunctions::reboot()
 void LinuxCoreFunctions::powerDown( bool installUpdates )
 {
 	Q_UNUSED(installUpdates)
+
+	systemdLoginManager()->asyncCall( QStringLiteral("PowerOff"), false );
+	consoleKitManager()->asyncCall( QStringLiteral("Stop") );
 
 	if( isRunningAsAdmin() )
 	{
@@ -100,8 +104,6 @@ void LinuxCoreFunctions::powerDown( bool installUpdates )
 		gnomeSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
 		mateSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
 		xfcePowerManager()->asyncCall( QStringLiteral("Shutdown") );
-		systemdLoginManager()->asyncCall( QStringLiteral("PowerOff") );
-		consoleKitManager()->asyncCall( QStringLiteral("Stop") );
 	}
 }
 
