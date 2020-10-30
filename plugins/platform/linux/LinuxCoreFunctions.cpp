@@ -22,6 +22,7 @@
  *
  */
 
+#include <QFileInfo>
 #include <QDBusPendingCall>
 #include <QProcess>
 #include <QProcessEnvironment>
@@ -68,6 +69,15 @@ void LinuxCoreFunctions::reboot()
 
 	if( isRunningAsAdmin() )
 	{
+		for( const auto& file : { QStringLiteral("/sbin/reboot"), QStringLiteral("/usr/sbin/reboot") } )
+		{
+			if( QFileInfo::exists( file ) )
+			{
+				QProcess::startDetached( file, {} );
+				return;
+			}
+		}
+
 		QProcess::startDetached( QStringLiteral("reboot"), {} );
 	}
 	else
@@ -93,6 +103,15 @@ void LinuxCoreFunctions::powerDown( bool installUpdates )
 
 	if( isRunningAsAdmin() )
 	{
+		for( const auto& file : { QStringLiteral("/sbin/poweroff"), QStringLiteral("/usr/sbin/poweroff") } )
+		{
+			if( QFileInfo::exists( file ) )
+			{
+				QProcess::startDetached( file, {} );
+				return;
+			}
+		}
+
 		QProcess::startDetached( QStringLiteral("poweroff"), {} );
 	}
 	else
