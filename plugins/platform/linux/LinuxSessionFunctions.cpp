@@ -120,7 +120,14 @@ LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QStri
 		{ QStringLiteral("closing"), State::Closing },
 	};
 
-	return stateMap.value( getSessionProperty( session, QStringLiteral("State") ).toString(), State::Unknown );
+	const auto stateString = getSessionProperty( session, QStringLiteral("State") ).toString();
+	const auto state = stateMap.value( stateString, State::Unknown );
+	if( state == State::Unknown )
+	{
+		vDebug() << stateString;
+	}
+
+	return state;
 }
 
 
