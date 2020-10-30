@@ -219,6 +219,7 @@ private:
 	int m_sessionId{0};
 
 Q_SIGNALS:
+	void initialized();
 	void applicationLoaded();
 
 };
