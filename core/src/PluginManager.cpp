@@ -68,8 +68,6 @@ void PluginManager::loadPlatformPlugins()
 void PluginManager::loadPlugins()
 {
 	loadPlugins( QStringLiteral("*") + VeyonCore::sharedLibrarySuffix() );
-
-	Q_EMIT pluginsLoaded();
 }
 
 
