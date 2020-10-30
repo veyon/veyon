@@ -31,6 +31,14 @@ class MonitoringMode : public QObject, FeatureProviderInterface, PluginInterface
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
+	enum class Argument
+	{
+		UserLoginName,
+		UserFullName,
+		UserSessionId
+	};
+	Q_ENUM(Argument)
+
 	explicit MonitoringMode( QObject* parent = nullptr );
 
 	const Feature& feature() const
@@ -100,13 +108,6 @@ private:
 	const Feature m_monitoringModeFeature;
 	const Feature m_queryLoggedOnUserInfoFeature;
 	const FeatureList m_features;
-
-	enum class Argument
-	{
-		UserLoginName,
-		UserFullName,
-		UserSessionId,
-	};
 
 	QReadWriteLock m_userDataLock;
 	QString m_userLoginName;
