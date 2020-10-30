@@ -30,6 +30,7 @@
 #include "LinuxDesktopIntegration.h"
 #include "LinuxKeyboardInput.h"
 #include "LinuxPlatformConfiguration.h"
+#include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
 
@@ -319,7 +320,7 @@ void LinuxUserFunctions::logoff()
 
 	// terminate session via systemd
 	LinuxCoreFunctions::systemdLoginManager()->asyncCall( QStringLiteral("TerminateSession"),
-														  QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_SESSION_ID") ) );
+														  QProcessEnvironment::systemEnvironment().value( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) );
 
 	// close session via ConsoleKit as a last resort
 	LinuxCoreFunctions::consoleKitManager()->asyncCall( QStringLiteral("CloseSession"),
