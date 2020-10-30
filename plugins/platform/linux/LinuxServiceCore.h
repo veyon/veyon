@@ -52,6 +52,7 @@ private:
 	static constexpr auto ServerKillTimeout = 10000;
 	static constexpr auto ServerWaitSleepInterval = 100;
 	static constexpr auto SessionEnvironmentProbingInterval = 1000;
+	static constexpr auto SessionStateProbingInterval = 1000;
 	static constexpr auto SessionUptimeSecondsMinimum = 3;
 	static constexpr auto SessionUptimeProbingInterval = 1000;
 
