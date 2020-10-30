@@ -164,7 +164,8 @@ void MasterConfigurationPage::updateFeatureLists()
 	for( const auto& feature : qAsConst( m_featureManager.features() ) )
 	{
 		if( feature.testFlag( Feature::Master ) == false ||
-				feature == VeyonCore::builtinFeatures().monitoringMode().feature() )
+			feature.testFlag( Feature::Internal ) ||
+			feature == VeyonCore::builtinFeatures().monitoringMode().feature() )
 		{
 			continue;
 		}
