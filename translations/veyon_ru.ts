@@ -1269,10 +1269,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Предел памяти</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Использовать многопоточность (экспериментально)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>МБ</translation>
     </message>
@@ -1292,10 +1288,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Полноэкранное демо</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Оставить демонстрацию</translation>
     </message>
@@ -1312,12 +1304,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Демонстрационный сервер</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>В этом режиме изображение с экрана вашего компьютера будет демонстрироваться на весь экран на всех компьютерах, а устройства ввода данных на компьютерах будут заблокированы.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>В этом режиме изображение с вашего экрана будет показано в окне на всех компьютерах. Пользователи, если захотят, смогут переключаться на другие окна.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1539,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>Управление функциями</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Каталоги</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2844,6 +2915,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Automatically open computer select panel</source>
         <translation>Автоматически открыть панель выбора компьютера</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3197,6 +3272,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Чтобы завладеть вниманием пользователей, вы можете заблокировать их компьютеры с помощью этой кнопки. В этом режиме все устройства ввода данных будут заблокированы, а экраны станут чёрными.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3302,24 +3389,12 @@ Please save your work and close all programs.</source>
         <translation>Состояние:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Сеть</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Порт демонстрационного сервера</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Включить исключения брандмауэра</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Разрешить только локальные подключения</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Порт внутреннего сервера VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3342,14 +3417,6 @@ Please save your work and close all programs.</source>
         <translation>Работает</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Порт управления функциями</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Порт основного сервиса</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Включение этого пункта приведёт к тому, что сервис будет запускать процесс сервера для каждого интерактивного сеанса на компьютере.
@@ -3360,12 +3427,48 @@ Typically this is required to support terminal servers.</source>
         <translation>Показывать оповещение по удалённому доступу</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Режим со многими сеансами (для сервера-терминала и сервера удалённого рабочего стола)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Показывать оповещения, когда программа блокирует неавторизованный доступ</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Сессии</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Демонстрационный сервер</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3679,6 +3782,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Восстановление соединения с %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Главное</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>с</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

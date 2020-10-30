@@ -173,7 +173,7 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>tutaj wprowadź opis reguły</translation>
+        <translation>wprowadź opis reguły</translation>
     </message>
     <message>
         <source>Rule description:</source>
@@ -500,7 +500,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>Plik „% 1” nie zawiera poprawnego klucza publicznego!</translation>
+        <translation>Plik „%1” nie zawiera poprawnego klucza publicznego!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
@@ -752,7 +752,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>Eksportuj obiekty do wskazanego pliku</translation>
+        <translation>Eksportuj obiekty do  pliku</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -792,7 +792,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Komputer %1 (adres hosta: %2 adres MAC: %3)</translation>
+        <translation>Komputer &quot;%1&quot; (adres hosta: &quot;%2&quot; adres MAC: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
@@ -828,7 +828,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation>Nie podano ciągu ani wyrażenia!</translation>
+        <translation>Nie podano prawidłowego ciągu ani wyrażenia!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
@@ -876,7 +876,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Location</source>
-        <translation>Lolalizacja</translation>
+        <translation>Lokalizacja</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -900,7 +900,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation>Zaimportuj prosty plik CSV</translation>
+        <translation>Zaimportuj plik CSV</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
@@ -916,7 +916,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Eksportuje obiekty do określonego pliku tekstowego przy użyciu ciągu formatu podanego zawierającego jeden lub wiele symboli zastępczych. Prawidłowe symbole zastępcze to:% 1</translation>
+        <translation>Eksportuje obiekty do określonego pliku tekstowego przy użyciu ciągu formatu podanego zawierającego jeden lub wiele symboli zastępczych. Prawidłowe symbole zastępcze to: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -944,11 +944,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Add a room</source>
-        <translation>Dodaj pokój</translation>
+        <translation>Dodaj salę</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>Dodaj komputer do pokoju %1</translation>
+        <translation>Dodaj komputer do sali %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
@@ -1048,7 +1048,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Serwis %2 w %3:%4</translation>
+        <translation>%1 Usługa %2 w %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1243,7 +1243,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>Demo %1</translation>
+        <translation>Prezentacja  %1</translation>
     </message>
 </context>
 <context>
@@ -1269,10 +1269,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Limit pamięci</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Użyj wielowątkowości (eksperymentalne)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>MB</translation>
     </message>
@@ -1292,16 +1288,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Demonstracja (pełny ekran)</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Zakończ demonstrację</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Demonstracja (w oknie)</translation>
+        <translation>Demonstracja w trybie okienkowym</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1312,12 +1304,56 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Serwer demo</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>W tym trybie twój ekran jest wyświetlany w trybie pełnoekranowym na wszystkich komputerach. Urządzenia wejścia użytkowników są zablokowane.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>W tym trybie twój ekran jest wyświetlany w oknie na wszystkich komputerach. Użytkownicy mogą się przełączać między oknami.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1506,10 +1542,45 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transfer plików</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Lokalizacje</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Katalog docelowy</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Domyślny katalog źródłowy</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opcje</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Zapamiętaj ostatni katalog źródłowy</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Utwórz katalog docelowy jeśli nie istnieje</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Nie można otworzyć pliku „% 1”! Sprawdź uprawnienia!</translation>
+        <translation>Nie można otworzyć pliku „%1”! Sprawdź uprawnienia!</translation>
     </message>
 </context>
 <context>
@@ -1532,7 +1603,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation>Wyślij plik(i) i otwórz folder docelowy</translation>
+        <translation>Wyślij plik i otwórz folder docelowy</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1555,7 +1626,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Kliknij ten przycisk, aby wysłać pliki z twojego komputera na wszystkie komputery.</translation>
+        <translation>Kliknij ten przycisk, aby przesłać pliki z twojego komputera na wszystkie komputery.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1783,7 +1854,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Podstawowy serrwer DNS</translation>
+        <translation>Podstawowy serwer DNS</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
@@ -1807,7 +1878,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Drzewo objektów</translation>
+        <translation>Drzewa obiektów</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -1915,7 +1986,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>Połączenie LDAP powiodło się</translation>
+        <translation>Podłączenie LDAP powiodło się</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
@@ -1931,7 +2002,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation>Test kontekstu nazewnictwa LDAP nie powiódł się</translation>
+        <translation>Test  LDAP nie powiódł się</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1960,7 +2031,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Wprowadź nazwę logowania użytkownika (dozwolone są symbole):</translation>
+        <translation>Wprowadź nazwę logowania użytkownika (dozwolone są symbole), którą chcesz sprawdzić:</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2067,7 +2138,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 zostało pomyślnie odpytanych:
+        <translation>Zadania %1 %2 zostały pomyślnie wykonane
 
 %3</translation>
     </message>
@@ -2384,7 +2455,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Skonfigurowany użytkownik lub komputer (OpenLDAP)</translation>
+        <translation>Skonfigurowany atrybut użytkownik lub komputer (OpenLDAP)</translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -2839,6 +2910,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Automatically open computer select panel</source>
         <translation>Automatycznie otwórz panel wyboru komputera</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2913,7 +2988,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>By uzyskać dostęp do komputerów wprowadź nazwę użytkownika i hasło.</translation>
+        <translation>Aby uzyskać dostęp do komputerów wprowadź nazwę użytkownika i hasło.</translation>
     </message>
 </context>
 <context>
@@ -3192,6 +3267,18 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Żeby zdobyć pełną uwagę użytkowników, możesz zablokować ich komputery za pomocą tego przycisku. W tym trybie wszystkie urządzenia wejścia oraz ekran są zablokowane. </translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Zablokuj urządzenia wejściowe</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Odblokuj urządzenie wejściowe</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Aby odzyskać pełną uwagę wszystkich użytkowników, możesz zablokować ich komputery za pomocą tego przycisku. W tym trybie wszystkie urządzenia wejściowe są zablokowane, podczas gdy pulpit jest nadal widoczny. </translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3297,24 +3384,12 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Stan</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Sieć</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>port serwera demo</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Uruchom wyjątki w zaporze sieciowej</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Zezwalaj tylko na połączenia z localhosta</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Wewnętrzny port VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3337,14 +3412,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Uruchomiona</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Port managera</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Główny port usługi</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Włączenie tej opcji spowoduje, że usługa uruchomi proces serwera dla każdej interaktywnej sesji na komputerze.
@@ -3355,12 +3422,48 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>Pokaż powiadomienie o zdalnym połączeniu</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Tryb wielu sesji (dla serwerów terminalowych i zdalnych pulpitów)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Pokaż powiadomienie, gdy zostanie zablokowany nieautoryzowany dostęp</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sesje</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Tryb wielosesyjny (utwórz instancję serwera dla każdej sesji pulpitu lokalnego i zdalnego)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Maksymalna liczba sesji</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Wewnętrzny serwer VNC</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Menedżer funkcji</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Serwer demo</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3677,6 +3780,96 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
 </context>
 <context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>Web API</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Ogólne</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Port sieciowy</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>Włącz serwer WebAPI </translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Ustawienia połączenia</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation>g</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>limit czasu bezczynności</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Limit czasu uwierzytelniania</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Maksymalna liczba otwartych połączeń</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Szyfrowanie połączenia</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>plik certyfikatu TLS</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>prywatny klucz TLS</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>Używaj HTTPS z TLS 1.3 zamiast HTTP</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>Uruchom serwer WebAPI</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>Nie udało się uruchomić serwera WebAPI na porcie %1</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>Serwer WebAPI uruchomiony na porcie %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Zapewnij dostęp do komputera przez HTTP</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Polecenia do uruchamiania serwera WebAPI</translation>
+    </message>
+</context>
+<context>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -3753,7 +3946,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>sługa „%1” jest już zainstalowana.</translation>
+        <translation>Usługa „%1” jest już zainstalowana.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>

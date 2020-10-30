@@ -1269,10 +1269,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Omejitev pomnilnika</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Uporabite večnitnostnost (eksperimentalno)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1292,10 +1288,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Predavaj v celem zaslonu</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Ustavi predavanje</translation>
     </message>
@@ -1312,12 +1304,56 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Demonstracijski strežnik</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>V tem načinu se vaš zaslon prikaže v celozaslonskem načinu na vseh računalnikih, medtem ko so vhodne naprave uporabnikov zaklenjene.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>V tem načinu se zaslon prikaže v oknu na vseh računalnikih. Uporabniki lahko po potrebi preklopijo na druga okna.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1539,41 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Feature control</source>
         <translation>Funkcija nadzora</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Prenos datoteke</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Imeniki</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Možnosti</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2844,6 +2915,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Automatically open computer select panel</source>
         <translation>Samodejno odpri izbrano okno računalnika</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3195,6 +3270,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Če želite povrniti celotno pozornost vseh uporabnikov, lahko z uporabo tega gumba zaklenete njihove računalnike. V tem načinu so vse vhodne naprave zaklenjene in zasloni so črni.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3300,24 +3387,12 @@ Please save your work and close all programs.</source>
         <translation>Stanje:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Omrežje</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Vrata strežnika za predavanja</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Omogoči izjemo požarnega zidu</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Omogočite povezave samo z lokalnega gostitelja</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Vrata notranjega strežnika VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3340,14 +3415,6 @@ Please save your work and close all programs.</source>
         <translation>V teku</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Vrata upravitelja funkcij</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Primarna vrata storitve </translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Če omogočite to možnost, bo storitev zagnala proces strežnika za vsako interaktivno sejo v računalniku.
@@ -3358,11 +3425,47 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <translation>Prikaži obvestilo o oddaljeni povezavi</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <source>Show notification when an unauthorized access is blocked</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Notranji VNC strežnik </translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Upravitelj funkcij</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demonstracijski strežnik</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3677,6 +3780,96 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Vzspostavljam povezavo na %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Splošno</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Omrežna vrata</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

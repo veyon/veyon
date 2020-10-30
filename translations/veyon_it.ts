@@ -1266,10 +1266,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Limite memoria</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Utilizzo multithreading (sperimentale)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1289,10 +1285,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Presenta su schermo intero</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Ferma Presentazione</translation>
     </message>
@@ -1309,12 +1301,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Server per la modalità Presentazione</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>In questa modalità il tuo schermo sarà visualizzato su tutti i computer client a tutto schermo. Inoltre gli utenti non saranno in grado di svolgere altre azioni, in quanto le periferiche di input saranno bloccate.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>In questa modalità il tuo schermo sarà visualizzato in una finestra su tutti i computer client. Gli utenti, pertanto, potranno cambiare finestra e continuare il loro lavoro.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1500,6 +1536,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>Controllo delle opzioni</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Trasferimento di file</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Cartelle</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Directory di destinazione</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Directory di origine predefinita</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opzioni</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Ricorda l&apos;ultima directory di origine</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Crea la directory di destinazione se non esiste</translation>
     </message>
 </context>
 <context>
@@ -2831,6 +2902,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Automatically open computer select panel</source>
         <translation>Apri automaticamente il pannello di selezione del computer</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Nascondi sessione locale</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3184,6 +3259,18 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Per richiamare la completa attenzione di tutti gli utenti, puoi bloccare i loro computer utilizzando questo pulsante. In questo modo tutti i dispositivi di input saranno bloccati e gli schermi saranno colorati di nero.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Blocca i dispositivi di input</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Sblocca i dispositivi di input</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Per recuperare la totale attenzione di tutti gli utenti, puoi bloccare i loro computer utilizzando questo pulsante. In questa modalità tutti i dispositivi di input sono bloccati mentre il desktop è ancora visibile.</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3289,24 +3376,12 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <translation>Stato:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Rete</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Porta per la modalità Presentazione</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Abilita le eccezioni del firewall</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Consenti connessioni solo da questo computer &apos;localhost&apos;</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Porta interna server VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3329,14 +3404,6 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <translation>In esecuzione</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Porta manager funzionalita&apos;</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Porta servizio primario</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Abilitando questa opzione, il servizio avvierà un processo server per ogni sessione interattiva su un computer. In genere ciò è necessario per supportare i server terminal.</translation>
@@ -3346,12 +3413,48 @@ Typically this is required to support terminal servers.</source>
         <translation>Mostra notifica sulla connessione remota</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Modalità multi sessione (per terminali e server desktop remoti)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Mostra notifica quando viene bloccato un accesso non autorizzato</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sessioni</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Modalità sessione singola (crea istanza del server solo per sessione locale/fisica)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Modalità multisessione (crea istanza del server per ogni sessione desktop locale e remota)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Numero massimo di sessioni</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Numeri di porta di rete</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Server Veyon</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Server VNC interno</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Manager delle funzionalità</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Server per la modalità Presentazione</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Impostazioni di rete varie</translation>
     </message>
 </context>
 <context>
@@ -3665,6 +3768,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Connessione a %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>Web API</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Generale</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Porta di rete</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>Abilita il server API Web</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Impostazioni di connessione</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>A vita</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation> h</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Timeout di inattività</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Timeout di autenticazione</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Numero massimo di connessioni aperte</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Crittografia della connessione</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>File del certificato TLS</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>File della chiave privata TLS</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>Usa HTTPS con TLS 1.3 invece di HTTP</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>Esegui il server API Web</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>Impossibile avviare il server API Web sulla porta %1</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>Server WebAPI in esecuzione sulla porta %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Fornire l&apos;accesso a un computer tramite HTTP</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Comandi per l&apos;esecuzione del server API Web</translation>
     </message>
 </context>
 <context>

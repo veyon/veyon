@@ -233,7 +233,7 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Pristup kompjuteru</translation>
+        <translation>Pristup računaru</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -619,7 +619,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ova naredba izvozi ključ  autentičnosti &lt;KEY&gt; u &lt;FILE&gt;.Ako &lt;FILE&gt; nije specifičan i ime će se konstruisati iz imena i tipa &lt;KEY&gt; .</translation>
+        <translation>Ova naredba izvozi ključ  autentičnosti &lt;KEY&gt; u &lt;FILE&gt;.Ako &lt;FILE&gt; nije specifičan i ime će se konstruisati iz imena i tipa &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -768,7 +768,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Host address</source>
-        <translation>Host adresa</translation>
+        <translation>Domaćin adresa</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -776,11 +776,11 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>Navedeni objekt nije pronađen.</translation>
+        <translation>Navedeni objekt nije pronađjen.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Fajl &quot;%1&quot; nije pronadjen!</translation>
+        <translation>Datoteka &quot;%1&quot; nije pronadjena!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -888,7 +888,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>FORMAT-NIZ-SA-MESTIMA</translation>
+        <translation>FORMAT-NIZ-SA-PLOČA</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
@@ -896,7 +896,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervirana mesta su:% 1</translation>
+        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:% 1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -908,7 +908,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation>Uvezi tekstualnu datoteku s parovima ključ / vrijednost koristeći regularne izraze</translation>
+        <translation>Uvezi tekstualnu datoteku s parovima ključ / vrednost koristeći regularne izraze</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
@@ -948,7 +948,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>Dodaj računar u prostoriju</translation>
+        <translation>Dodaj računar u prostoriju %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
@@ -1060,7 +1060,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; sada pristupa ovom računalu.</translation>
+        <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; sada pristupa ovom računaru.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
@@ -1269,10 +1269,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Memorijski limit</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Koristite višeslojno (eksperimentalno)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>MB</translation>
     </message>
@@ -1292,10 +1288,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Demonstracija u punom ekranu</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Zaustavi demonstraciju</translation>
     </message>
@@ -1312,12 +1304,56 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Demo server</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>U ovom režimu se ekran prikazuje u režimu punog ekrana na svim računarima dok su ulazni uređaji korisnika zaključani.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>U ovom režimu se vaš ekran prikazuje u prozoru na svim računarima. Korisnici se po potrebi mogu prebaciti na druge prozore.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1398,11 +1434,11 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Open website</source>
-        <translation>Otvori websajt</translation>
+        <translation>Otvori web lokaciju</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Klikni ovo dugme da otvorite websajt na svim računarima.</translation>
+        <translation>Klikni ovo dugme da biste otvorili web lokaciju na svim računarima.</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -1495,7 +1531,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Password:</source>
-        <translation>Lozinka</translation>
+        <translation>Lozinka:</translation>
     </message>
 </context>
 <context>
@@ -1503,6 +1539,41 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Feature control</source>
         <translation>Kontrola funkcija</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Prenos datoteka</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Direktorijumi</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opcije</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1516,7 +1587,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Otpremanje datoteka</translation>
+        <translation>Prenos datoteka</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1551,7 +1622,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation>Otpremanje datoteka</translation>
+        <translation>Prenos datoteka</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -1783,7 +1854,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Osnovni DN</translation>
+        <translation>Baza DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
@@ -1799,7 +1870,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation>npr. imenovanje Konteksta ili podrazumevaoImenovanjeKonteksta</translation>
+        <translation>npr. imenovanje Konteksta ili podrazumevanoImenovanjeKonteksta</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1807,7 +1878,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Objektna stabla</translation>
+        <translation>Objekt prikaz stablo</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -2187,7 +2258,9 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>Ne može se zatražiti konfigurisana baza DN. Molimo proverite osnovni DN parametar.</translation>
+        <translation>Ne može se zatražiti konfigurisana baza DN. Molimo proverite osnovni DN parametar.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
@@ -2426,7 +2499,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation>Navedite valjani LDAP URL prateći šemu &quot;ldap [s]: // [korisnik [: lozinka] @] ime hosta [: port]&quot;</translation>
+        <translation>Navedite valjani LDAP URL prateći šemu &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
@@ -2445,7 +2518,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation>LINUX</translation>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2669,7 +2742,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>% Sačuvajte postavke u datoteci</translation>
+        <translation>%Sačuvajte postavke u datoteci</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -2842,6 +2915,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Automatically open computer select panel</source>
         <translation>Automatski otvorite panel za odabir računara</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2869,7 +2946,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Otvori websajt</translation>
+        <translation>Otvori web lokaciju</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -2877,7 +2954,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>Zapamti i dodaj website meniju</translation>
+        <translation>Zapamti i dodaj meniju web stranice</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
@@ -2885,7 +2962,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Molimo unesite adresu (URL) stranice za otvaranje:</translation>
+        <translation>Molimo unesite adresu-URL web stranice za otvaranje:</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -2999,7 +3076,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>Isključiti poslije potvrde od strane korisnika</translation>
+        <translation>Isključiti posle potvrde od strane korisnika</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
@@ -3195,6 +3272,18 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Da biste privukli punu pažnju svih korisnika možete zaključati njihove kompjutere upotrebom ovog dugmeta. Na ovaj način svi ulazni uređaji su zaključani a ekrani su zatamnjeni.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Zaključaj ulazne uređaje</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3281,7 +3370,7 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Sakri ikonu u tray-u</translation>
+        <translation>Sakrij ikonu u tray-u</translation>
     </message>
     <message>
         <source>Start service</source>
@@ -3300,24 +3389,12 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Stanje:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Mreža</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Demo server port</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Uključi firewall izuzetak</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Dozvoli samo konekcije od lokalnog kompjutera</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Unutrašnji VNC server port</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3340,14 +3417,6 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Pokrenut</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Port za upravljanje ksrakteristika</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Glavni servisni port</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Omogućavanjem ove opcije postići ćete da servis pokrene server proces za svaku interaktivnu sesiju na kompjuteru.
@@ -3358,12 +3427,48 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Prikaži obaveštenje na daljinskoj vezi</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Više sesijski način (za terminal i daljinske desktop servere)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Prikaži obavest kada je zabranjeni pristup blokiran.</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Interni VNC server</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Upravitelj svojstava</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3413,7 +3518,7 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Pokretanje Veyon servisa</translation>
+        <translation>Pokreni Veyon servis</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
@@ -3440,7 +3545,7 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Fajl &quot;%1&quot; nije pronadjen!</translation>
+        <translation>Datoteka &quot;%1&quot; nije pronadjena!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
@@ -3583,7 +3688,7 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Klik na ovo dugme za odjavu korisnika sa svih kompjutera</translation>
+        <translation>Klik na ovo dugme za odjavu korisnika sa svih kompjutera.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
@@ -3618,11 +3723,11 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Određeni pogrešni argumenti</translation>
+        <translation>Određeni-dati pogrešni argumenti</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>nije dato dovoljno argumenata - upotrebiti &quot;1 help&quot; za više informacija</translation>
+        <translation>Nije dato dovoljno argumenata - upotrebiti &quot;1 help&quot; za više informacija</translation>
     </message>
     <message>
         <source>Unknown result!</source>
@@ -3677,6 +3782,96 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Uspostava konekcije prema %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Opšte</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Mrežni port</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

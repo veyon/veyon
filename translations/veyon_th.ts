@@ -1267,10 +1267,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>จำกัดหน่วยความจำ</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1290,10 +1286,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>สาธิตแบบเต็มจอ</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>หยุดการสาธิต</translation>
     </message>
@@ -1310,11 +1302,55 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>เซิฟเวอร์สาธิต</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>ในโหมดนี้ หน้าจอของคุณจะถูกแสดงในแบบเต็มจอบนเครื่องคอมพิวเตอร์ทั้งหมดในขณะที่อุปกรณ์นำเข้าของผู้ใช้งานจะถูกล็อกไว้</translation>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1500,6 +1536,41 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>การถ่ายโอนไฟล์</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>ตัวเลือก</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2823,6 +2894,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3175,6 +3250,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>เพื่อที่จะดึงความสนใจจากผู้ใช้ทั้งหมดให้กลับมา คุณสามารถล็อกคอมพิวเตอร์ของเขาโดยใช้ปุ่มนี้ ในโหมดนี้ อุปกรณ์ประเภทนำเข้าข้อมูล เช่น เมาส์ คีย์บอร์ด จะถูกล็อกและหน้าจอจะดับลง</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3280,24 +3367,12 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Network</source>
-        <translation>เครือข่าย</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>อนุญาตการเชื่อมต่อจาก localhost เท่านั้น</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>พอร์ตของเซิฟเวอร์ VNC ภายใน</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3320,14 +3395,6 @@ Please save your work and close all programs.</source>
         <translation>กำลังทำงาน</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
@@ -3337,12 +3404,48 @@ Typically this is required to support terminal servers.</source>
         <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>เซิฟเวอร์สาธิต</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3656,6 +3759,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>กำลังสร้างการเชื่อมต่อไปยัง %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>ทั่วไป</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>วิ</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

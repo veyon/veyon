@@ -1266,10 +1266,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Speicherlimit</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Multithreading benutzen (experimentell)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1289,10 +1285,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Vollbild-Demo</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Demo beenden</translation>
     </message>
@@ -1309,12 +1301,56 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Demo-Server</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>In diesem Modus wird Ihr Bildschirm als Vollbild auf allen Computern angezeigt während die Eingabegeräte der Benutzer gesperrt werden.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>In diesem Modus wird Ihr Bildschirm in einem Fenster auf allen Computern angezeigt. Die Benutzer können bei Bedarf zu anderen Fenstern wechseln.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation>Demo</translation>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation>Eigenen Bildschirm teilen oder einem Benutzer erlauben, seinen Bildschirm mit anderen Benutzern zu teilen.</translation>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation>Vollbild-Demo</translation>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation>Eigenen Bildschirm im Vollbildmodus teilen</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation>In diesem Modus wird Ihr Bildschirm im Vollbild auf allen Computern angezeigt, während die Eingabegeräte der Benutzer gesperrt werden.</translation>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation>Eigenen Bildschirm in einem Fenster teilen</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation>Bildschirm des ausgewählten Benutzers im Vollbild teilen</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation>In diesem Modus wird der Bildschirm des gewählten Benutzers im Vollbild auf allen Computern angezeigt, während die Eingabegeräte der Benutzer gesperrt werden.</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation>Bildschirm des ausgewählten Benutzers in einem Fenster teilen</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>In diesem Modus wird der Bildschirm des gewählten Benutzers in einem Fenster auf allen Computern angezeigt. Die Benutzer können bei Bedarf zu anderen Fenstern wechseln.</translation>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation>Bitte wählen Sie einen Benutzer, dessen Bildschirm geteilt werden soll.</translation>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation>Bitte wählen Sie nur einen Benutzer-Bildschirm zum Teilen.</translation>
     </message>
 </context>
 <context>
@@ -1500,6 +1536,41 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Feature control</source>
         <translation>Funktionssteuerung</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Dateiübertragung</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Verzeichnisse</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Zielverzeichnis</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Standardquellverzeichnis</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Optionen</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Letztes Quellverzeichnis merken</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Zielverzeichnis erstellen, wenn es nicht existiert</translation>
     </message>
 </context>
 <context>
@@ -2841,6 +2912,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Automatically open computer select panel</source>
         <translation>Automatisch Computerauswahlbedienfeld öffnen</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Lokale Sitzung ausblenden</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3194,6 +3269,18 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Mit diesem Button können Sie alle Computer sperren und die volle Aufmerksamkeit der Benutzer zurückerhalten. In diesem Modus werden alle Eingabegeräte gesperrt und die Bildschirme der Benutzer schwarz eingefärbt.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Eingabegeräte sperren</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Eingabegeräte entsperren</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Mit diesem Button können Sie alle Computer sperren und die volle Aufmerksamkeit der Benutzer zurückerhalten. In diesem Modus werden alle Eingabegeräte gesperrt, während der Desktop sichtbar bleibt.</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3299,24 +3386,12 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Status:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Netzwerk</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Demoserver-Port</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Firewall-Ausnahme aktivieren</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Nur Verbindungen vom lokalen Computer erlauben</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Port des internen VNC-Servers</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3339,14 +3414,6 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Läuft</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Funktionsverwalter-Port</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Primärer Dienst-Port</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Wenn diese Option aktiviert wird, startet der Dienst einen Serverprozess für jede interaktive Sitzung auf einem Computer.
@@ -3357,12 +3424,48 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Benachrichtigung bei Fernzugriff anzeigen</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Mehrfachsitzungsmodus (für Terminal- und Remote-Desktop-Server)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Benachrichtigung bei unerlaubtem Zugriff anzeigen</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sitzungen</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Einzelsitzungsmodus (Serverinstanz nur für lokale/physische Sitzung erstellen)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Mehrfachsitzungsmodus (Serverinstanz für jede lokale und Remote-Desktop-Sitzung erstellen)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Maximale Sitzungsanzahl</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Netzwerk-Portnummern</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Veyon-Server</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Interner VNC-Server</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Funktionsverwalter</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo-Server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Diverse Netzwerkeinstellungen</translation>
     </message>
 </context>
 <context>
@@ -3676,6 +3779,96 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Verbindung zu %1 wird hergestellt ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>Web API</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Netzwerkport</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>WebAPI-Server aktivieren</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Verbindungseinstellungen</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>Gültigkeitsdauer</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation>h</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Inaktivitätstimeout</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Authentifizierungstimeout</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Maximale Anzahl offener Verbindungen</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Verbindungsverschlüsselung</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>TLS-Zertifikatsdatei</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>Private TLS-Schlüsseldatei</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>HTTPS mit TLS 1.3 anstatt HTTP verwenden</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>WebAPI-Server ausführen</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>Starten des WebAPI-Servers auf Port %1 fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>WebAPI-Server wird auf Port %1 ausgeführt</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Zugriff auf einen Computer über HTTP ermöglichen</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Befehle zum Ausführen des WebAPI-Servers</translation>
     </message>
 </context>
 <context>

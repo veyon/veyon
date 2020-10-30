@@ -39,7 +39,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation> %1 %2 Hakkında</translation>
+        <translation>%1 %2 Hakkında</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
@@ -500,7 +500,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation> &quot;%1&quot; dosyası geçerli genel anahtar içermiyor!</translation>
+        <translation>&quot;%1&quot; dosyası geçerli genel anahtar içermiyor!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
@@ -508,11 +508,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation> &quot;%1&quot; anahtar dosyasına yazılamadı.</translation>
+        <translation>&quot;%1&quot; anahtar dosyasına yazılamadı.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation> &quot;%1&quot; anahtar dosyası için izinler ayarlanamadı!</translation>
+        <translation>&quot;%1&quot; anahtar dosyası için izinler ayarlanamadı!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -1258,7 +1258,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1269,12 +1269,8 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Bellek sınırı</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Çoklu iş parçacığı kullanımı (deneysel)</translation>
-    </message>
-    <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1282,7 +1278,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source> s</source>
-        <translation>s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1291,10 +1287,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Tam ekran kipinde tanıtım</translation>
-    </message>
     <message>
         <source>Stop demo</source>
         <translation>Tanıtımı durdur</translation>
@@ -1312,12 +1304,56 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Tanıtım sunucusu</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>Bu kipte, kullanıcıların giriş aygıtları kilitlenirken ekranınız tüm bilgisayarlarda tam ekran kipinde görüntülenir.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Bu kipte, ekranınız tüm bilgisayarlarda bir pencerede görüntülenir. Kullanıcılar, gerektiğinde diğer pencerelere geçiş yapabilirler.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1506,6 +1542,41 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
 </context>
 <context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Dosya transferi</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Dizinler</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Seçenekler</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
@@ -1686,7 +1757,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1698,7 +1769,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source> seconds</source>
-        <translation>saniye</translation>
+        <translation> saniye</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -2187,7 +2258,9 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>Yapılandırılmış temel DN kuyruklaması başarısız. Lütfen temel DN değişkenini kontrol ediniz.</translation>
+        <translation>Yapılandırılmış temel DN kuyruklaması başarısız. Lütfen temel DN değişkenini kontrol ediniz.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
@@ -2231,7 +2304,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation>Bilgisayar görüntü adı özniteliği</translation>
+        <translation>Bilgisayar görüntü adı niteliği</translation>
     </message>
     <message>
         <source>Location name attribute</source>
@@ -2331,7 +2404,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation>Bilgisayar ana makine adı özniteliği</translation>
+        <translation>Bilgisayar ana makine adı niteliği</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
@@ -2375,7 +2448,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>Kullanıcı giriş özniteliği</translation>
+        <translation>Kullanıcı giriş niteliği</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2505,15 +2578,15 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>Dosya</translation>
+        <translation>&amp;Dosya</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>Yardım</translation>
+        <translation>&amp;Yardım</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>Çıkış</translation>
+        <translation>&amp;Çıkış</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2760,7 +2833,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2833,6 +2906,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Automatically open computer select panel</source>
         <translation>Bilgisayar seçme panelini otomatik olarak aç</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3187,6 +3264,18 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Tüm kullanıcının dikkatini toplamak için bilgisayarlarını bu düğmeyi kullanarak kilitleyebilirsiniz. Bu kipte tüm giriş aygıtları kilitlenir ve ekranlar karartılır.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3196,7 +3285,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>% 1 dizini  olmadığı ve oluşturulamadığı için bir ekran görüntüsü alınamadı.</translation>
+        <translation>%1 dizini  olmadığı ve oluşturulamadığı için bir ekran görüntüsü alınamadı.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3292,24 +3381,12 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <translation>Durum:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Ağ</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Tanıtım sunucusu bağlantı noktası</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Güvenlik duvarı özel durumu etkinleştir</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Yalnızca yerel sunucu bağlantılarına izin ver</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Dahili VNC sunucu bağlantı noktası</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3332,14 +3409,6 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <translation>Çalışıyor</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Özellik yöneticisi bağlantı noktası</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Birincil hizmet bağlantı noktası</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Bu seçeneğin etkinleştirilmesi, hizmetin bilgisayardaki her etkileşimli oturum için bir sunucu işlemi başlatmasını sağlar.
@@ -3350,12 +3419,48 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation>Uzak bağlantıda bildirim göster</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Çoklu oturum modu (terminal ve uzak masaüstü sunucuları için)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Yetkisiz erişim engellendiğinde bildirim göster</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Tanıtım sunucusu</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3476,7 +3581,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Metin iletisi gönder </translation>
+        <translation>Metin iletisi gönder</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3672,6 +3777,96 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
 </context>
 <context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Genel</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -3714,7 +3909,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>Kullanıcı yetkilendirme için alternatif mekanizma kullan</translation>
+        <translation>Kullanıcı yetkilendirmesi için alternatif mekanizma kullan</translation>
     </message>
     <message>
         <source>User login</source>
@@ -3734,7 +3929,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation>Kullanıcı girdi cihazı müdahale sürücüsü</translation>
+        <translation>Girdi cihazı müdahale sürücüsü kullan</translation>
     </message>
 </context>
 <context>

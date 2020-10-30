@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>License</source>
-        <translation>Licenc</translation>
+        <translation>Licensz</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -1269,10 +1269,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Memóriakorlát</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Többszálúság használata (kísérleti)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>MB</translation>
     </message>
@@ -1292,10 +1288,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Teljes képernyős demó</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Demó leállítása</translation>
     </message>
@@ -1312,12 +1304,56 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Demószerver</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>Ebben a módban a képernyőd az összes számítógépén teljes képernyőn jelenik meg, ezalatt a felhasználók bemeneti eszközeit blokkoljuk.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Ebben a módban a képernyőd az összes számítógépen ablakban jelenik meg. A felhasználók eközben ablakot tudnak váltani.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1539,41 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Feature control</source>
         <translation>Szolgáltatásvezérlés</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Fájlátvitel</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Mappák</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Lehetőség</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2844,6 +2915,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Automatically open computer select panel</source>
         <translation>Számítógépkiválasztási-panel automatikus megnyitása</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3195,6 +3270,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbak zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk és a képernyő elfeketedik.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Beviteli eszközök zárolása</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3300,24 +3387,12 @@ Please save your work and close all programs.</source>
         <translation>Állapot:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Hálózat</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Demó szerver port</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Fűzfal-kivétel bekapcsolása</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Kapcsolatok engedélyezése csak a localhost-ból</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Belső VNC szerver port</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3340,14 +3415,6 @@ Please save your work and close all programs.</source>
         <translation>Jelenleg fut</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Szolgáltatáskezelő port</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Elsődleges szolgáltatási port</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>A funkció bekapcsolása esetén a szerver minden egyes számítógépen létrejövő interaktív munkamenethez külön szerverfolyamatot indít.</translation>
@@ -3357,12 +3424,48 @@ Typically this is required to support terminal servers.</source>
         <translation>Távoli csatlakozás esetén értesítés megjelenítése</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Többmunka-menetes mód (terminál és távoli asztal szerverekhez)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Értesítés jelenjen meg amikor egy nem hitelesített hozzáférést blokkolunk.</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Beépített VNC</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Funkciókezelő</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demószerver</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3676,6 +3779,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Kapcsolat létrehozása: %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Általános</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Hálózati port</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>mp</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

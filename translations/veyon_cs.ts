@@ -1269,10 +1269,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Paměťový limit</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Provozovat vícevláknově (experimentální)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1292,10 +1288,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Ukázka na celou obrazovku</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Zastavit ukázku</translation>
     </message>
@@ -1312,12 +1304,56 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Ukázkový server</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>V tomto režimu bude vaše obrazovka zobrazována v celoobrazovkovém režimu na všech počítačích a jejich vstupní zařízení budou uzamčena.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>V tomto režimu bude vaše obrazovka zobrazována v okně na všech počítačích. Uživatelé přitom budou moci v případě potřeby přepínat na další okna.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1539,41 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Feature control</source>
         <translation>Ovládání funkce</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Přenos souboru</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Složky</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>…</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Volby</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2840,6 +2911,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Automatically open computer select panel</source>
         <translation>Automaticky otevřít panel výběru počítače</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3193,6 +3268,18 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Abyste upoutali plnou pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout jejich počítače. Ty v tomto režimu nebudou reagovat na klávesnici a myš a jejich obrazovky potemní.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Uzamknout vstupní zařízení</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3298,24 +3385,12 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Stav:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Síť</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Port ukázkového serveru</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Vytvořit výjimku na bráně firewall</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Umožnit připojení pouze v rámci tohoto počítače (localhost)</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Port vnitřního VNC serveru</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3338,14 +3413,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Spuštěné</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Port správce funkce</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Port hlavní služby</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Zapnutím této volby bude serverový proces spouštěn pro každé z interaktivních sezení na počítači.
@@ -3356,12 +3423,48 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Zobrazovat upozornění na připojení na dálku</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Režim vícero relací (pro terminály a servery pro vzdálenou plochu)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Zobrazit oznámení když je zablokován nepověřený přístup</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Ukázkový server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3675,6 +3778,96 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Připojování k %1…</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Obecné</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>…</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

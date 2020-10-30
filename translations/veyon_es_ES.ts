@@ -1271,10 +1271,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Límite de memoria</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Utilizar multithreading (experimental)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1294,10 +1290,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Demo a pantalla completa</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Detener demo</translation>
     </message>
@@ -1314,12 +1306,56 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Servidor demo</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>En este modo, la pantalla se muestra en modo de pantalla completa en todos los equipos mientras los dispositivos de entrada de los usuarios están bloqueados.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>En este modo, la pantalla se mostrará en una ventana de todos los ordenadores. Los usuarios pueden cambiar a otras ventanas según sea necesario.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1505,6 +1541,41 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Feature control</source>
         <translation>Control de funciones</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transferir archivo</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Directorios</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Directorio de destino</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Directorio de origen predeterminado</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opciones</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Recordar el último directorio de origen</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Crear directorio de destino si no existe</translation>
     </message>
 </context>
 <context>
@@ -1885,7 +1956,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Filtro para grupos de ordenadores</translation>
+        <translation>Filtro para grupos de computadoras</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2846,6 +2917,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Automatically open computer select panel</source>
         <translation>Abrir automáticamente el panel de selección de equipo</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Ocultar sesión local</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3107,7 +3182,7 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation>Ctrl+Alt+Supr</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
@@ -3198,6 +3273,18 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Para recuperar toda la atención del usuario puede bloquear sus equipos con este botón. En este modo, todos los dispositivos de entrada están bloqueados y las pantallas son inhabilitadas .</translation>
+    </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Bloquear dispositivos de entrada</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Desbloquear dispositivos de entrada</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Para reclamar la atención de todos los usuarios, puede bloquear sus computadoras usando este botón. En este modo, todos los dispositivos de entrada están bloqueados mientras el escritorio aún está visible.</translation>
     </message>
 </context>
 <context>
@@ -3304,24 +3391,12 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <translation>Estado:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Red</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Puerto de servidor demo</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Habilitar excepción en el cortafuegos</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Solo permitir conexiones desde equipo local</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Puerto del servidor VNC interno</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3344,14 +3419,6 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <translation>Funcionando</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Puerto del administrador de funciones</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Puerto de servicio principal</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Al habilitar esta opción, el servicio iniciará un proceso de servidor para cada sesión interactiva en un equipo.
@@ -3362,12 +3429,48 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Mostrar notificación en conexión remota</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Modo de sesión múltiple (para servidores de terminales y de escritorio remoto)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Mostrar notificación cuando un acceso no autorizado está bloqueado</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sesiones</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Modo de sesión única (crear una instancia de servidor para sesión local/física únicamente)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Modo de sesión múltiple (crear una instancia de servidor para cada sesión de escritorio local y remota)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Número máximo de sesiones</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Números de puerto de red</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Servidor Veyon</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Servidor VNC interno</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Gerente de funciones</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Servidor demo</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Configuraciones de red diversas</translation>
     </message>
 </context>
 <context>
@@ -3684,6 +3787,96 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
 </context>
 <context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>API web</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Puerto de red</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>Habilitar servidor WebAPI</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Configuraciones de conexión</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>Tiempo de vida</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation> h</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Tiempo de inactividad</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Tiempo de espera de autenticación</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Número máximo de conexiones abiertas</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Cifrado de conexión</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>Archivo de certificado TLS</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>Archivo de clave privada TLS</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>Usar HTTPS con TLS 1.3 en lugar de HTTP</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>Ejecutar servidor WebAPI</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>No se pudo iniciar el servidor WebAPI en el puerto %1</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>Servidor WebAPI ejecutándose en el puerto %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Proporcionar acceso a una computadora a través de HTTP</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Comandos para ejecutar el servidor WebAPI</translation>
+    </message>
+</context>
+<context>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -3702,7 +3895,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Habilitar la generación de SAS por software (Ctrl+Alt+Del)</translation>
+        <translation>Habilitar la generación de SAS por software (Ctrl+Alt+Supr)</translation>
     </message>
     <message>
         <source>Screen lock</source>

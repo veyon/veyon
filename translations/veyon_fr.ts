@@ -1021,7 +1021,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>Service injoignable ou inactif</translation>
+        <translation>Service injoignable ou éteint</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1269,10 +1269,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Limite de mémoire</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Utiliser le multithreading (expérimental)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>MB</translation>
     </message>
@@ -1292,10 +1288,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Démo en plein écran</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Arrêter la démo</translation>
     </message>
@@ -1312,12 +1304,56 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Serveur de démo</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>Dans ce mode votre écran sera affiché en plein écran sur tout les ordinateur, les périphériques d&apos;entrée des utilisateurs seront verrouillés dans ce mode.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Dans ce mode votre écran est diffusé dans une fenêtre sur tous les autres ordinateurs. Les utilisateurs sont librement en mesure de changer de fenêtre comme ils le souhaitent.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation>Démo</translation>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation>Partagez votre écran ou autorisez un utilisateur à partager son écran avec d&apos;autres utilisateurs.</translation>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation>Partagez votre propre écran en mode plein écran</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation>Dans ce mode, votre écran est affiché en mode plein écran sur tous les ordinateurs tandis que les périphériques d&apos;entrée des utilisateurs sont verrouillés.</translation>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation>Partagez votre propre écran dans une fenêtre</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation>Partager l&apos;écran de l&apos;utilisateur sélectionné en mode plein écran</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation>Dans ce mode, l&apos;écran de l&apos;utilisateur sélectionné est affiché en mode plein écran sur tous les ordinateurs tandis que les périphériques d&apos;entrée des utilisateurs sont verrouillés.</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation>Partager l&apos;écran de l&apos;utilisateur sélectionné dans une fenêtre</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>Dans ce mode, l&apos;écran de l&apos;utilisateur sélectionné est affiché dans une fenêtre sur tous les ordinateurs. Les utilisateurs peuvent consulter d&apos;autres fenêtres selon leurs besoins.</translation>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1457,7 +1493,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>Lire le didacticiel vidéo</translation>
+        <translation>Démarrer le didacticiel vidéo</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1503,6 +1539,41 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Feature control</source>
         <translation>Contrôle des fonctionnalités</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transfert de fichier</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Répertoires</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Répertoire de destination</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Répertoire source par défaut</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Options</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Se souvenir du dernier répertoire source</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Créer un répertoire de destination s&apos;il n&apos;existe pas</translation>
     </message>
 </context>
 <context>
@@ -1714,7 +1785,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Authentification par un identifiant</translation>
+        <translation>Authentification par identifiant</translation>
     </message>
     <message>
         <source>Key file authentication</source>
@@ -1767,19 +1838,19 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Authentification DN</translation>
+        <translation>Liaison DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Mot de passe d&apos;authentification</translation>
+        <translation>Mot de passe lié</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Authentification anonyme</translation>
+        <translation>Liaison anonyme</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Utiliser des informations d&apos;identification</translation>
+        <translation>Utiliser des informations d&apos;identification par liaison</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1911,15 +1982,15 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>Échec de l&apos;authentification LDAP</translation>
+        <translation>Échec de la liaison LDAP</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>Authentification LDAP réussie</translation>
+        <translation>Liaison LDAP réussie</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>La connexion au serveur LDAP ainsi que l&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
+        <translation>La connexion au serveur LDAP ainsi que la liaison d&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2223,7 +2294,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>Authentification au serveur LDAP impossible. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
+        <translation>Impossible de créer une liaison au serveur LDAP. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
 
 %1</translation>
     </message>
@@ -2746,7 +2817,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation>Masquer l&apos;ordinateur</translation>
+        <translation>Masquer l&apos;ordinateur local</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2762,7 +2833,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Background color</source>
-        <translation>Couleur de fond</translation>
+        <translation>Couleur d&apos;arrière plan</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -2778,7 +2849,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Modes and features</source>
-        <translation>Modes et paramétrages</translation>
+        <translation>Modes et fonctionnalités</translation>
     </message>
     <message>
         <source>User and computer name</source>
@@ -2786,7 +2857,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Nom d&apos;utilisateur seulement</translation>
+        <translation>Uniquement le nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -2843,6 +2914,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Automatically open computer select panel</source>
         <translation>Ouvrir automatiquement le panneau de sélection ordinateur</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Masquer la session locale</translation>
     </message>
 </context>
 <context>
@@ -3197,6 +3272,18 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Pour attirer toute l&apos;attention de tous les utilisateurs, vous pouvez verrouiller les ordinateurs en utilisant ce bouton. Dans ce mode, tous les périphériques d&apos;entrée sont verrouillés et l&apos;écran est noir.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Verrouiller les périphériques d&apos;entrée</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Déverrouiller les périphériques d&apos;entrée</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Pour conserver toute l&apos;attention de tous les utilisateurs, vous pouvez verrouiller leurs ordinateurs à l&apos;aide de ce bouton. Dans ce mode, tous les périphériques d&apos;entrée sont verrouillés tandis que le bureau est toujours visible.</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3302,24 +3389,12 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>État :</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Réseau</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Port du serveur de démonstration</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Autoriser une exception pour le pare-feu</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Autoriser les connexions seulement à partir de l&apos;hôte local </translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Port du serveur interne VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3339,15 +3414,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation>En cours</translation>
-    </message>
-    <message>
-        <source>Feature manager port</source>
-        <translation>Port du gestionnaire de fonction</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Port de service primaire</translation>
+        <translation>En cours d’exécution</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3360,12 +3427,48 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Afficher la notification sur la connexion à distance</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Mode multi-session (pour les serveurs de bureau terminaux et distants)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Afficher une notification quand un accès non autorisé est bloqué</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sessions</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Mode de session unique (créer une instance de serveur pour une session locale / physique uniquement)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Mode multi-session (créer une instance de serveur pour chaque session de bureau local et distant)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Nombre maximum de sessions</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Numéros de port réseau</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>serveur Veyon</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Serveur VNC interne</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Gestionnaire de fonctionnalités</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Serveur de démo</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Divers paramètres réseau</translation>
     </message>
 </context>
 <context>
@@ -3395,11 +3498,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation>Le service fonctionne</translation>
+        <translation>Le service est en cours d’exécution</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Le service ne fonctionne pas</translation>
+        <translation>Le service n&apos;est pas en fonctionnement</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -3679,6 +3782,96 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Établissement de la connexion à %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>API Web</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Général</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Port réseau</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>Activer le serveur API Web</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Paramètres de connexion</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>Durée de vie</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation> h</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Délai d&apos;inactivité</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Délai d&apos;authentification</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Nombre maximum de connexions ouvertes</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Cryptage de la connexion</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>Fichier de certificat TLS</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>Fichier de clé privée TLS</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>Utilisez HTTPS avec TLS 1.3 au lieu de HTTP</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>Exécuter le serveur API Web</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>Échec du démarrage du serveur API Web sur le port %1</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>Serveur WebAPI exécuté sur le port %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Fournir l&apos;accès à un ordinateur via HTTP</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Commandes pour exécuter le serveur API Web</translation>
     </message>
 </context>
 <context>

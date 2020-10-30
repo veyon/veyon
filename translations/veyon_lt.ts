@@ -97,7 +97,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Pakelti pasirinktą taisyklę aukštyn</translation>
+        <translation>Pakelti pasirinktą taisyklę žemyn</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
@@ -224,7 +224,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Taisyklė išjungta</translation>
+        <translation>Nėra (Taisyklė išjungta)</translation>
     </message>
     <message>
         <source>Accessing user</source>
@@ -256,7 +256,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>Pasiekiamas kompiuteris ir vietinis kompiuteris yra toje pačioje vietoje</translation>
+        <translation>Prisijungiantis kompiuteris ir vietinis kompiuteris yra toje pačioje vietoje</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -275,7 +275,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Vietinis kompiuteris</translation>
+        <translation>Vietinis kompiuteris:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -334,7 +334,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Katalogas kuriame saugomas privatus raktas</translation>
+        <translation>Privataus rakto saugojimo direktorija</translation>
     </message>
     <message>
         <source>...</source>
@@ -382,7 +382,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Pasirinkite raktą kurį norite ištrinti</translation>
+        <translation>Pasirinkite raktą kurį norite ištrinti!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -410,7 +410,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Nustatykite prieigos grupę, kurios nariams bus leista pasiekti kitus kompiuterius</translation>
+        <translation>2) Nustatykite prieigos grupę, kurios nariams bus leista pasiekti kitus kompiuterius.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
@@ -467,11 +467,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Negalima ištrinti rakto failo &quot;%1&quot;!</translation>
+        <translation>Nepavyko ištrinti rakto failo &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Negalima ištrinti rakto failo direktorijos &quot;%1&quot;!</translation>
+        <translation>Nepavyko ištrinti rakto failo direktorijos &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
@@ -696,7 +696,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>MAC address</source>
-        <translation>Mac adresas</translation>
+        <translation>MAC adresas</translation>
     </message>
     <message>
         <source>Add new computer</source>
@@ -720,8 +720,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Locations</source>
-        <translation>Vietos
-</translation>
+        <translation>Vietos</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -748,8 +747,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>Importuoti objektus iš failo
-</translation>
+        <translation>Importuoti objektus iš failo</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
@@ -773,7 +771,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>MAC address</source>
-        <translation>Mac adresas</translation>
+        <translation>MAC adresas</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -837,7 +835,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation>Nenurodytas formatas</translation>
+        <translation>Nenurodytas formatas!</translation>
     </message>
     <message>
         <source>Object UUID</source>
@@ -849,7 +847,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>Pridėti vietą ar kompiuter</translation>
+        <translation>Pridėti vietą ar kompiuterį</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
@@ -1170,7 +1168,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Neįmanoma rašyti į išvesties failą</translation>
+        <translation>Neįmanoma rašyti į išvesties failą!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
@@ -1190,7 +1188,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>Importuoti konfigūraciją iš duoto failo.</translation>
+        <translation>Importuoti konfigūraciją iš nurodyto failo.</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
@@ -1251,7 +1249,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Prezantacijų serveris</translation>
+        <translation>Demonstracinis serveris</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1268,10 +1266,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Memory limit</source>
         <translation>Atminties riba</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Naudoti daugiasluoksniavimą (eksperimentinis)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1293,10 +1287,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Pilno ekrano prezentacija</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Sustabdyti demonstraciją</translation>
     </message>
@@ -1310,14 +1300,58 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Prezantacijų serveris</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Demonstracinis serveris</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1403,7 +1437,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Paspauskite šį mygtuką, akd atidarytumėte puslapį visuose kompiuteriuose.</translation>
+        <translation>Paspauskite šį mygtuką, kad atidarytumėte puslapį visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -1415,11 +1449,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation>Paleisti programą&quot;%1&quot;</translation>
+        <translation>Paleisti programą &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation>Nestandartinė programa</translation>
+        <translation>Pasirinktinė programa</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1462,7 +1496,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Custom program</source>
-        <translation>Nestandartinė programa</translation>
+        <translation>Pasirinktinė programa</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1504,6 +1538,41 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Feature control</source>
         <translation>Funkcijų valdymas</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Failų perkėlimas</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Katalogai</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Nustatymai</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1599,7 +1668,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Logging</source>
-        <translation>Įvykių žurnalas</translation>
+        <translation>Įrašymas į įvykių žurnalą</translation>
     </message>
     <message>
         <source>Log file directory</source>
@@ -1667,7 +1736,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Servisas %1 turi būti sustabdytas laikinai, norint ištrinti log failus. Tęsti??</translation>
+        <translation>Servisas %1 turi būti sustabdytas laikinai, norint ištrinti įvykių žurnalo failus. Tęsti??</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1715,11 +1784,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Autorizacija prisijungiant į sistemą</translation>
+        <translation>Autorizacija naudojant prisijungimą prie sistemos</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Autorizuotis naudojant pasiekiamumo raktą</translation>
+        <translation>Autorizuotis naudojant prieigos raktą</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1731,7 +1800,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Autentifikacijos raktai nenustatyti tinkamai šiame kompiuteryje</translation>
+        <translation>Autentifikacijos raktai nenustatyti tinkamai šiame kompiuteryje.</translation>
     </message>
     <message>
         <source>Authentication test</source>
@@ -1832,7 +1901,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Grupės medis</translation>
+        <translation>Grupių medis</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
@@ -2827,6 +2896,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3178,6 +3251,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3260,11 +3345,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Automatinė paleistis</translation>
+        <translation>Paleisti automatiškai</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Paslėpti piktogramas</translation>
+        <translation>Paslėpti piktogramą Start juostoje</translation>
     </message>
     <message>
         <source>Start service</source>
@@ -3283,24 +3368,12 @@ Please save your work and close all programs.</source>
         <translation>Būsena:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Tinklas</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Prezaentacinio serverio šliuzas</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
-        <translation>Įjungti ugnesienės išimtį</translation>
+        <translation>Pridėti išimtį ugniasienėje </translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Leisti prisijungimus tik vietiniam tinkle</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Vidinio VNC serverio prievadas</translation>
+        <translation>Leisti prisijungimus tik iš vietinio tinklo</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3323,14 +3396,6 @@ Please save your work and close all programs.</source>
         <translation>Veikia</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Funkcijų valdymo prievadas</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Pagrindinės tarnybos šliuzas</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
@@ -3340,12 +3405,48 @@ Typically this is required to support terminal servers.</source>
         <translation>Rodyti pranešimą nuotoliniame kompiuteryje</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Daugelio sesijų darbo rėžimas (naudojant terminalą ir remote desktop serverius)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Rodyti pranešimą, kai neautorizuota prieiga užblokuota</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Vidinis VNC serveris</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Funkcijų valdymas</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demonstracinis serveris</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3459,7 +3560,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation>Komandos naudojamos testavimui vidiniams komponentams ir funkcijoms Veyon programinėje įrangoje</translation>
+        <translation>Komandos naudojamos tikrinti vidinius komponentus ir funkcijas Veyon programinėje įrangoje</translation>
     </message>
 </context>
 <context>
@@ -3496,7 +3597,7 @@ Typically this is required to support terminal servers.</source>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Leisti įrašinėti su permatomu langu</translation>
+        <translation>Leisti įrašinėti sluoksniuotus ( permatomus ) langus</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -3504,7 +3605,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Žemos kokybės (Didelio įrašymo greičio)</translation>
+        <translation>Žemo tikslumo (Didelio greičio rėžimas)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
@@ -3600,7 +3701,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Gauti klaidingi argumentai</translation>
+        <translation>Klaidingi argumentai</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
@@ -3632,7 +3733,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>VARTOJIMAS</translation>
+        <translation>NAUDOJIMAS</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
@@ -3659,6 +3760,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Vykdomas sujungimas su  %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Pagrindinis</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Tiklo prievadas</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3754,7 +3945,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Tarnyba &quot;%&quot; buvo sėkmingai išdiegta.</translation>
+        <translation>Tarnyba &quot;%1&quot; buvo sėkmingai išdiegta.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>

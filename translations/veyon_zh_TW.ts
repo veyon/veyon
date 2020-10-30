@@ -1269,10 +1269,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>記憶體限制</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>使用多執行緒 (實驗性)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1292,10 +1288,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>全螢幕示範</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>停止示範</translation>
     </message>
@@ -1312,12 +1304,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>示範伺服器</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>在這個模式下，所有電腦上的畫面都以全螢幕模式顯示，使用者的輸入裝置鎖定。</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>在這個模式下，所有電腦上的畫面都以視窗顯示，使用者可以視需要切換到其它視窗。</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1539,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>功能控制</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>檔案傳輸</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>目錄</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>目的地目錄</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>預設來源目錄</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>選項</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>記住上次來源目錄</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>如果目的地目錄不存在則建立</translation>
     </message>
 </context>
 <context>
@@ -2844,6 +2915,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Automatically open computer select panel</source>
         <translation>自動開啟電腦選取面板</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>隱藏本機工作階段</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3197,6 +3272,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>若要收回所有使用者的完全注意，您可以使用此按鈕鎖定其電腦。 在這種模式下，所有的輸入設備鎖定和畫面全黑。</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>鎖定輸入裝置</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>解鎖輸入裝置</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>若要收回所有使用者的完全注意，您可以使用此按鈕鎖定其電腦。 在這種模式下，桌面仍可見時輸入設備鎖定。</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3302,24 +3389,12 @@ Please save your work and close all programs.</source>
         <translation>狀態:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>網路</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>示範伺服器連接埠</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>啟用防火牆例外</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>只允許來自 localhost 的連線</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>內部 VNC 伺服器埠</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3342,14 +3417,6 @@ Please save your work and close all programs.</source>
         <translation>執行中</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>功能管理員埠</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>主服務埠</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>啟用這個選項將使服務為電腦上的每個互動式工作階段啟動伺服器處理程序。
@@ -3360,12 +3427,48 @@ Typically this is required to support terminal servers.</source>
         <translation>遠端連線時顯示通知</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>多工作階段模式 (適用於終端機和遠端桌面伺服器)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>未授權的存取已封鎖時顯示通知</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>工作階段</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>單一工作階段模式 (只為本地端/實體工作階段建立伺服器實例)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>多工作階段模式 (為每個本地端與遠端桌面工作階段建立伺服器實例)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>最大工作階段數</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>網路埠號</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Veyon 伺服器</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>內部 VNC 伺服器</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>功能管理員</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>示範伺服器</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>其它網路設定</translation>
     </message>
 </context>
 <context>
@@ -3679,6 +3782,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>正在建立與 %1 連線...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>網路 API</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>網路埠</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>啟用 WebAPI 伺服器</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>連線設定</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>終生</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation> h</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> 秒</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>閒置逾時</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>身份驗證逾時</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>開啟連線的最大數量</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>連線加密</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>TLS 憑證檔</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>TLS 私密金鑰檔</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>將 HTTPS 與 TLS 1.3 而不是 HTTP 一起使用</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>執行 WebAPI 伺服器</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>在連接埠 %1 啟動 WebAPI 伺服器失敗</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>正在執行 WebAPI 伺服器於連接埠 %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>透過 HTTP 提供對電腦的存取</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>執行 WebAPI 伺服器的命令</translation>
     </message>
 </context>
 <context>

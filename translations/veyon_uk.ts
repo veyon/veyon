@@ -1266,10 +1266,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Межа пам’яті</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Використовувати багатопоточність (експериментальне)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>МБ</translation>
     </message>
@@ -1289,10 +1285,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Повноекранне демо</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Припинити демонстрацію</translation>
     </message>
@@ -1309,12 +1301,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Демосервер</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation>Демонстрація</translation>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation>Оприлюдніть зображення з вашого екрана або дозвольте користувачам оприлюднювати зображення з їхнього екрана для інших користувачів.</translation>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation>Повноекранне демо</translation>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation>Оприлюднити ваш екран у повноекранному режимі</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
         <translation>У цьому режимі зображення з екрана вашого комп&apos;ютера демонструватиметься на увесь екран на усіх комп&apos;ютерах, а пристрої введення даних на комп&apos;ютерах буде заблоковано.</translation>
     </message>
     <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
+        <source>Share your own screen in a window</source>
+        <translation>Оприлюднити ваш екран у вікні</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation>Оприлюднити екран вибраного користувача у повноекранному режимі</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation>У цьому режимі зображення з екрана комп&apos;ютера вибраного користувача демонструватиметься на увесь екран на усіх комп&apos;ютерах, а пристрої введення даних на комп&apos;ютерах буде заблоковано.</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation>Оприлюднити екран вибраного користувача у вікні</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>У цьому режимі зображення з екрана вибраного користувача буде показано у вікні на всіх комп&apos;ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation>Будь ласка, виберіть екран користувача для оприлюднення.</translation>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation>Будь ласка, виберіть лише один екран користувача для оприлюднення.</translation>
     </message>
 </context>
 <context>
@@ -1500,6 +1536,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>Керування можливосями</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передавання файлів</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Каталоги</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Каталог призначення</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Типовий каталог початкових даних</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Параметри</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Запам&apos;ятовувати останній каталог початкових даних</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Створювати каталог призначення, якщо його не існує</translation>
     </message>
 </context>
 <context>
@@ -2843,6 +2914,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Automatically open computer select panel</source>
         <translation>Автоматично відкрити панель вибору комп&apos;ютера</translation>
     </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Приховати локальний сеанс</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3196,6 +3271,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп’ютери за допомогою цієї кнопки. У цьому режимі всі пристрої введення даних буде заблоковано, а екрани стануть чорними.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Блокування пристроїв введення</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Розблокувати пристрої введення</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп&apos;ютери за допомогою цієї кнопки. У цьому режимі всі пристрої введення даних буде заблоковано, а зображення на екрані лишиться видимим.</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3301,24 +3388,12 @@ Please save your work and close all programs.</source>
         <translation>Стан:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Мережа</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Порт демосервера</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Увімкнути виключення брандмауера</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Дозволити з’єднання лише з локального вузла</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Порт внутрішнього сервера VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3341,14 +3416,6 @@ Please save your work and close all programs.</source>
         <translation>Запущено</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Порт керування можливостями</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Порт основної служби</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Позначення цього пункту призведе до того, що служба запускатиме процес сервера для кожного інтерактивного сеансу на комп&apos;ютері.
@@ -3359,12 +3426,48 @@ Typically this is required to support terminal servers.</source>
         <translation>Показувати сповіщення щодо віддаленого з&apos;єднання</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Режим із багатьма сеансами (для сервера-термінала та сервера віддаленої стільниці)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Показувати сповіщення, коли програма блокує неуповноважений доступ</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Сеанси</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Режим єдиного сеансу (створювати екземпляр сервера лише для локального/фізичного сеансу)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Режим із багатьма сеансами (створювати екземпляр сервера для кожного локального і віддаленого сеансу)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Максимальна кількість сеансів</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Номери портів мережі</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Сервер Veyon</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Вбудований сервер VNC</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Керування можливостями</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Демосервер</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Різноманітні параметри мережі</translation>
     </message>
 </context>
 <context>
@@ -3678,6 +3781,96 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Встановлення зв’язку з %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>Програмний вебінтерфейс</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Порт мережі</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>Увімкнути сервер WebAPI</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Параметри з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>Строк служби</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation>год.</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>с</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Час очікування бездіяльності</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Час очікування на розпізнавання</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Максимальна кількість відкритих з&apos;єднань</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Шифрування з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>Файл сертифіката TLS</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>Файл закритого ключа TLS</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>Використовувати HTTPS з TLS 1.3 замість HTTP</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>Запустити сервер WebAPI</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>Не вдалося запустити сервер WebAPI на порту %1</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>Сервер WebAPI запущено на порту %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Надати доступ до комп&apos;ютера за допомогою HTTP</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Команди для запуску сервера WebAPI</translation>
     </message>
 </context>
 <context>

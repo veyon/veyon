@@ -419,7 +419,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Lisateavet leiate &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administraatori käsiraamatust&lt;/a&gt;.</translation>
+        <translation>Kasutage &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon administraatori käsiraamatut&lt;/a&gt; lisateabe saamiseks.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -717,7 +717,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>Asukohad &amp; arvutid</translation>
+        <translation>Asukohad&amp;arvutid</translation>
     </message>
     <message>
         <source>Locations</source>
@@ -1224,7 +1224,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>%1 serveri tulemüüri konfiguratsiooni ei õnnestunud konfigureerida.</translation>
+        <translation>%1 serveri tulemüüri konfiguratsiooni ei õnnestunud seadistada.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
@@ -1269,10 +1269,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Mälupiirang</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation> Lõimtöötluse kasutamine (eksperimentaalne)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1286,15 +1282,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>Demo töötamise ajal pidurdage pisipiltide värskendusi</translation>
+        <translation>Demo töötamise ajal vähendage pisipiltide värskendussagedustt</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Täisekraaniga demo</translation>
-    </message>
     <message>
         <source>Stop demo</source>
         <translation>Peata demo</translation>
@@ -1312,12 +1304,56 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Demo server</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>Selles režiimis kuvatakse teie ekraani täisekraanirežiimis kõikides arvutites, kui kasutajate sisendseadmed on lukus.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Selles režiimis kuvatakse teie ekraan aknas kõigis arvutites. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1506,6 +1542,41 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Faili edastamine</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Kataloogid</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Sihtkataloog</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Vaikeallika kataloog</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Valikud</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Pidage meeles viimane lähtekataloog</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Looge sihtkataloog, kui seda pole olemas</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
@@ -1690,7 +1761,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation>Rotate log files</translation>
+        <translation>Korraldage logifaile</translation>
     </message>
     <message>
         <source>x</source>
@@ -1734,7 +1805,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>Autentimiskatse</translation>
+        <translation>Autentimistest</translation>
     </message>
 </context>
 <context>
@@ -1791,7 +1862,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>näit. dc=näide,dc=org</translation>
+        <translation>näit. dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2109,7 +2180,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>näit. ruum või computerLab</translation>
+        <translation>näit. ruum või arvutiLab</translation>
     </message>
     <message>
         <source>Integration tests</source>
@@ -2173,15 +2244,15 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>näit. (objectClass=isik)</translation>
+        <translation>näit. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>näit. (objectClass=ruum) või (objectClass=arvuti)</translation>
+        <translation>näit. (objectClass=ruum) või (objectClass=arvutiLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>näit. (objectClass=container) or (objectClass=organizationalUnit)</translation>
+        <translation>näit. (objectClass=konteiner) või (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2273,7 +2344,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>Sisestage arvuti kuvatav nimi</translation>
+        <translation>Sisestage arvuti kuvatav nimi:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -2307,7 +2378,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation>%1. päringu esitamine nurjus. Kontrollige parameetre(id) %2 päringu esitamine nurjus. Kontrollige parameetreid
+        <translation>%1. päringu esitamine nurjus. Kontrollige parameetr(eid) %2 ja sisestage olemasoleva objekti nimi.
 
 %3</translation>
     </message>
@@ -2373,7 +2444,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Ei leitud arvutit hostinimega &quot;%1&quot;. Kontrollige hostinime või arvutipuu parameetrit.</translation>
+        <translation>Ei leidnud arvutit hostinimega &quot;%1&quot;. Palun kontrolli hostinime või arvutipuu parameetrit.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
@@ -2754,7 +2825,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>Sellised toimingud nagu arvutite taaskäivitamine või toide</translation>
+        <translation>Sellised toimingud nagu arvutite taaskäivitamine või väljalülitamine</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2843,6 +2914,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Automatically open computer select panel</source>
         <translation>Avage arvuti valimispaneel automaatselt</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Peida kohalik seanss</translation>
     </message>
 </context>
 <context>
@@ -3187,7 +3262,7 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Ava</translation>
+        <translation>Lukusta lahti</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3196,6 +3271,18 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Kasutaja tähelepanu äratamiseks võite selle nupu abil tema arvutid lukustada. Selles režiimis on kõik sisendseadmed lukustatud ja ekraanid mustad.</translation>
+    </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Lukusta sisendseadmed</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Sisendseadmete avamine</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Kasutaja tähelepanu äratamiseks võite selle nupu abil tema arvutid lukustada. Selles režiimis on kõik sisendseadmed lukustatud, kuid töölaud on endiselt nähtav.</translation>
     </message>
 </context>
 <context>
@@ -3229,7 +3316,7 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>Ekraanipilt on tehtud</translation>
+        <translation>Tehtud ekraanipildid</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
@@ -3302,24 +3389,12 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Seisund:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Võrk</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Demo serveri port</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Luba tulemüüri erisused</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Luba ühendused ainult localhostilt</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Sisemise VNC serveri port</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3342,14 +3417,6 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Käib</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Funktsioonihalduri port</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Esmane teenuse port</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Selle suvandi lubamine käivitab teenuse serveriprotsessi iga arvuti interaktiivse seansi jaoks.
@@ -3360,12 +3427,48 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Kuva teated kaugühenduse korral</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Mitme seansi režiim (terminali ja kaugtöölaua serverite jaoks)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Kuva teade, kui volitamata juurdepääs on blokeeritud</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sessioonid</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Ühe seansi režiim (loo serveri eksemplar ainult kohaliku/füüsilise seansi jaoks)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Mitme seansi režiim (looge iga kohaliku ja kaugtöölaua seansi jaoks serveri eksemplar)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Maksimaalne seansside arv</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Võrgu pordi numbrid</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Veyoni server</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Sisemine VNC server</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Funktsioonihaldur</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Mitmesugused võrguseaded</translation>
     </message>
 </context>
 <context>
@@ -3388,7 +3491,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation>Teenuse kontroll</translation>
+        <translation>Teenuse juhtimine</translation>
     </message>
 </context>
 <context>
@@ -3419,7 +3522,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Peatage Veyoni teenus</translation>
+        <translation>Peatan Veyoni teenuse</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
@@ -3532,7 +3635,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>Lubage mitme monitori tugi</translation>
+        <translation>Luba mitme kuvari tugi</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
@@ -3612,7 +3715,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Vigane käsk!</translation>
+        <translation>Tundmatu käsk!</translation>
     </message>
     <message>
         <source>Available commands:</source>
@@ -3664,7 +3767,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation>HOIATUSED</translation>
+        <translation>HOIATUS</translation>
     </message>
 </context>
 <context>
@@ -3679,6 +3782,96 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Ühenduse loomine kasutajaga %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiConfigurationPage</name>
+    <message>
+        <source>Web API</source>
+        <translation>Veebi API</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Üldine</translation>
+    </message>
+    <message>
+        <source>Network port</source>
+        <translation>Võrgu port</translation>
+    </message>
+    <message>
+        <source>Enable WebAPI server</source>
+        <translation>Luba veebi API server</translation>
+    </message>
+    <message>
+        <source>Connection settings</source>
+        <translation>Ühenduse seaded</translation>
+    </message>
+    <message>
+        <source>Lifetime</source>
+        <translation>Eluaegne</translation>
+    </message>
+    <message>
+        <source> h</source>
+        <translation> h</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Tühikäigu aegumine</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Autentimise aegumine</translation>
+    </message>
+    <message>
+        <source>Maximum number of open connections</source>
+        <translation>Maksimaalne avatud ühenduste arv</translation>
+    </message>
+    <message>
+        <source>Connection encryption</source>
+        <translation>Ühenduse krüptimine</translation>
+    </message>
+    <message>
+        <source>TLS certificate file</source>
+        <translation>TLS-i sertifikaadifail</translation>
+    </message>
+    <message>
+        <source>TLS private key file</source>
+        <translation>TLS-i privaatvõtme fail</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
+        <translation>Kasutage HTTP asemel TLT 1.3-ga HTTPS-i</translation>
+    </message>
+</context>
+<context>
+    <name>WebApiPlugin</name>
+    <message>
+        <source>Run WebAPI server</source>
+        <translation>Käivitage veebi API server</translation>
+    </message>
+    <message>
+        <source>Failed to start WebAPI server at port %1</source>
+        <translation>Veebi API serveri käivitamine pordis%1 nurjus</translation>
+    </message>
+    <message>
+        <source>WebAPI server running at port %1</source>
+        <translation>Veebi API server töötab pordis %1</translation>
+    </message>
+    <message>
+        <source>Provide access to a computer via HTTP</source>
+        <translation>Andke arvutile juurdepääs HTTP kaudu</translation>
+    </message>
+    <message>
+        <source>Commands for running the WebAPI server</source>
+        <translation>Käsklused veebi API serveri käitamiseks</translation>
     </message>
 </context>
 <context>
@@ -3762,7 +3955,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Teenus &quot;%1&quot; ei ole installitud.</translation>
+        <translation>Teenust &quot;%1&quot; ei saanud installida.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
