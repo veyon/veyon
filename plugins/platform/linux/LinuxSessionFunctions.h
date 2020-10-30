@@ -54,6 +54,7 @@ public:
 		Lingering,
 		Online,
 		Active,
+		Opening,
 		Closing
 	};
 

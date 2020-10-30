@@ -116,6 +116,7 @@ LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QStri
 		{ QStringLiteral("lingering"), State::Lingering },
 		{ QStringLiteral("online"), State::Online },
 		{ QStringLiteral("active"), State::Active },
+		{ QStringLiteral("opening"), State::Opening },
 		{ QStringLiteral("closing"), State::Closing },
 	};
 
