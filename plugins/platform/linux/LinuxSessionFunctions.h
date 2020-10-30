@@ -33,6 +33,7 @@
 
 class LinuxSessionFunctions : public PlatformSessionFunctions
 {
+	Q_GADGET
 public:
 	using LoginDBusSession = struct {
 		QString id;
@@ -57,6 +58,7 @@ public:
 		Opening,
 		Closing
 	};
+	Q_ENUM(State)
 
 	SessionId currentSessionId() override;
 
