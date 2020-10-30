@@ -135,8 +135,15 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	}
 
 	const auto seat = LinuxSessionFunctions::getSessionSeat( sessionPath );
+	const auto sessionId = LinuxSessionFunctions::getSessionId( sessionPath );
 
-	const auto veyonSessionId = m_sessionManager.openSession( LinuxSessionFunctions::getSessionId( sessionPath ) );
+	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
+	if( sessionEnvironment.contains( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) == false )
+	{
+		sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionIdEnvVarName(), sessionId );
+	}
+
+	const auto veyonSessionId = m_sessionManager.openSession( sessionId );
 
 	vInfo() << "Starting server for new" << qUtf8Printable(sessionType) << "session" << sessionPath
 			<< "with ID" << veyonSessionId
