@@ -90,6 +90,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	if( sessionState != LinuxSessionFunctions::State::Online &&
 		sessionState != LinuxSessionFunctions::State::Active )
 	{
+		vDebug() << "Not starting server for session" << sessionPath << "in state" << sessionState;
 		return;
 	}
 
