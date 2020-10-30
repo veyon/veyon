@@ -31,6 +31,12 @@ class VEYON_CORE_EXPORT FeatureControl : public QObject, public FeatureProviderI
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
+	enum class Argument
+	{
+		ActiveFeaturesList
+	};
+	Q_ENUM(Argument)
+
 	explicit FeatureControl( QObject* parent = nullptr );
 	~FeatureControl() override = default;
 
@@ -93,11 +99,6 @@ private:
 	enum Commands
 	{
 		QueryActiveFeatures,
-	};
-
-	enum class Argument
-	{
-		ActiveFeatureList
 	};
 
 	const Feature m_featureControlFeature;

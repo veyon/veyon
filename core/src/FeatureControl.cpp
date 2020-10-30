@@ -54,7 +54,7 @@ bool FeatureControl::handleFeatureMessage( ComputerControlInterface::Pointer com
 {
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{
-		const auto featureUidStrings = message.argument( Argument::ActiveFeatureList ).toStringList();
+		const auto featureUidStrings = message.argument( Argument::ActiveFeaturesList ).toStringList();
 
 		FeatureUidList activeFeatures{};
 		activeFeatures.reserve( featureUidStrings.size() );
@@ -91,7 +91,7 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server,
 		}
 
 		FeatureMessage reply( message.featureUid(), message.command() );
-		reply.addArgument( Argument::ActiveFeatureList, featureUidStrings );
+		reply.addArgument( Argument::ActiveFeaturesList, featureUidStrings );
 
 		return server.sendFeatureMessageReply( messageContext, reply );
 	}

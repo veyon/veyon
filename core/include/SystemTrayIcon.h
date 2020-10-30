@@ -34,6 +34,14 @@ class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeatureProviderI
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
+	enum class Argument
+	{
+		ToolTipText,
+		MessageTitle,
+		MessageText
+	};
+	Q_ENUM(Argument)
+
 	explicit SystemTrayIcon( QObject* parent = nullptr );
 	~SystemTrayIcon() override = default;
 
@@ -101,13 +109,6 @@ private:
 	{
 		SetToolTipCommand,
 		ShowMessageCommand
-	};
-
-	enum class Argument
-	{
-		ToolTipText,
-		MessageTitle,
-		MessageText
 	};
 
 	const Feature m_systemTrayIconFeature;

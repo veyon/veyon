@@ -35,6 +35,14 @@ class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeatureProv
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
+	enum class Argument
+	{
+		User,
+		Host,
+		Choice
+	};
+	Q_ENUM(Argument)
+
 	enum Choice
 	{
 		ChoiceNone,
@@ -124,13 +132,6 @@ private:
 	{
 		RequestDesktopAccess,
 		ReportDesktopAccessChoice
-	};
-
-	enum class Argument
-	{
-		User,
-		Host,
-		Choice
 	};
 
 	const Feature m_desktopAccessDialogFeature;
