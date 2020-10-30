@@ -150,7 +150,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Beperk toegang tot leden van bepaalde groepen</translation>
     </message>
 </context>
 <context>
@@ -257,11 +257,11 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>Toegangzoekende computer bevindt zich in hetzelfde lokaal als lokale computer</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>bevind zich in</translation>
     </message>
     <message>
         <source>Authenticated via method</source>
@@ -327,7 +327,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <name>AndroidPlatformConfigurationPage</name>
     <message>
         <source>Android</source>
-        <translation type="unfinished"/>
+        <translation>Android</translation>
     </message>
     <message>
         <source>General</source>
@@ -366,7 +366,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Sleutelbestand folder</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -382,7 +382,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Beschikbare authenticatie sleutels</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -409,7 +409,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Stel toegangsgroep in</translation>
     </message>
 </context>
 <context>
@@ -444,7 +444,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Sleutelbestand folder</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -460,7 +460,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Beschikbare authenticatie sleutels</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -487,7 +487,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Stel toegangsgroep in</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
@@ -983,7 +983,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Nieuwe locatie</translation>
     </message>
 </context>
 <context>
@@ -1054,7 +1054,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Root</translation>
     </message>
     <message>
         <source>Invalid</source>
@@ -1122,7 +1122,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Locatie</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -1130,7 +1130,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>LOCATIE</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -1190,7 +1190,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>Voeg een ruimte toe</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
@@ -1206,7 +1206,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder een computer op naam</translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
@@ -1576,10 +1576,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Volledige scherm demo</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Stop demo</translation>
     </message>
@@ -1592,16 +1588,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Geef een demonstratie door het uitzenden van het scherm</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Demo server</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>In deze modus wordt uw scherm in de fullscreen modus op alle computers weergegeven, terwijl de invoerapparaten van de gebruikers vergrendeld zijn.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>In deze modus wordt uw scherm in een venster op alle computers weergegeven. De gebruikers kunnen, indien nodig, overstappen naar andere vensters.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1787,6 +1823,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>Kenmerkencontrole</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Mappen</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3233,6 +3304,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Use modern user interface (experimental)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3690,6 +3773,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Om de volledige aandacht van alle gebruikers te eisen, kunt u hun computers vergrendelen met deze knop. In deze modus zijn alle invoerapparaten vergrendeld en de schermen zijn zwart.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3864,6 +3959,46 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4243,6 +4378,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
 </context>

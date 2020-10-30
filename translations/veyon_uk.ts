@@ -265,7 +265,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"/>
+        <translation>Розпізнавання за методом</translation>
     </message>
 </context>
 <context>
@@ -902,7 +902,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>Простий пароль</translation>
     </message>
 </context>
 <context>
@@ -920,7 +920,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Увімкнено</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1576,10 +1576,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Повноекранне демо</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Припинити демонстрацію</translation>
     </message>
@@ -1592,16 +1588,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Виконати демонстрацію трансляцією зображення на екрані</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Демосервер</translation>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <source>Demo</source>
+        <translation>Демонстрація</translation>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation>Оприлюдніть зображення з вашого екрана або дозвольте користувачам оприлюднювати зображення з їхнього екрана для інших користувачів.</translation>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation>Повноекранне демо</translation>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation>Оприлюднити ваш екран у повноекранному режимі</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
         <translation>У цьому режимі зображення з екрана вашого комп&apos;ютера демонструватиметься на увесь екран на усіх комп&apos;ютерах, а пристрої введення даних на комп&apos;ютерах буде заблоковано.</translation>
     </message>
     <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
+        <source>Share your own screen in a window</source>
+        <translation>Оприлюднити ваш екран у вікні</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation>Оприлюднити екран вибраного користувача у повноекранному режимі</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation>У цьому режимі зображення з екрана комп&apos;ютера вибраного користувача демонструватиметься на увесь екран на усіх комп&apos;ютерах, а пристрої введення даних на комп&apos;ютерах буде заблоковано.</translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation>Оприлюднити екран вибраного користувача у вікні</translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>У цьому режимі зображення з екрана вибраного користувача буде показано у вікні на всіх комп&apos;ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation>Будь ласка, виберіть екран користувача для оприлюднення.</translation>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation>Будь ласка, виберіть лише один екран користувача для оприлюднення.</translation>
     </message>
 </context>
 <context>
@@ -1787,6 +1823,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>Керування можливосями</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передавання файлів</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Каталоги</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Каталог призначення</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Типовий каталог початкових даних</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Параметри</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Запам&apos;ятовувати останній каталог початкових даних</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Створювати каталог призначення, якщо його не існує</translation>
     </message>
 </context>
 <context>
@@ -2796,7 +2867,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"/>
+        <translation>Прив&apos;язка до LDAP</translation>
     </message>
 </context>
 <context>
@@ -3246,6 +3317,18 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Use modern user interface (experimental)</source>
         <translation>Сучасний інтерфейс користувача (експериментальне)</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Приховати локальний сеанс</translation>
     </message>
 </context>
 <context>
@@ -3706,6 +3789,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп’ютери за допомогою цієї кнопки. У цьому режимі всі пристрої введення даних буде заблоковано, а екрани стануть чорними.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Блокування пристроїв введення</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Розблокувати пристрої введення</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп&apos;ютери за допомогою цієї кнопки. У цьому режимі всі пристрої введення даних буде заблоковано, а зображення на екрані лишиться видимим.</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3882,6 +3977,46 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Показувати сповіщення, коли програма блокує неуповноважений доступ</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Максимальна кількість сеансів</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Сеанси</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Режим єдиного сеансу (створювати екземпляр сервера лише для локального/фізичного сеансу)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Режим із багатьма сеансами (створювати екземпляр сервера для кожного локального і віддаленого сеансу)</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Номери портів мережі</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Сервер Veyon</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Вбудований сервер VNC</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Керування можливостями</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Демосервер</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Різноманітні параметри мережі</translation>
     </message>
 </context>
 <context>
@@ -4261,6 +4396,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Підтвердити прочитання правового зауваження (повідомлення, яке показано до входу до системи)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation>Скористатися драйвером-перехоплювачем пристроїв введення</translation>
     </message>
 </context>
 <context>

@@ -1574,10 +1574,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>عرض على كامل الشاشة</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation type="unfinished"/>
     </message>
@@ -1590,15 +1586,55 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>خادم العرض</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1784,6 +1820,41 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>أدلة </translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3224,6 +3295,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Use modern user interface (experimental)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3681,6 +3764,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3855,6 +3950,46 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>خادم العرض</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4234,6 +4369,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
 </context>

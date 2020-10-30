@@ -1582,10 +1582,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Ukázka na celou obrazovku</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Zastavit ukázku</translation>
     </message>
@@ -1598,16 +1594,56 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Předvést ostatním vysíláním obsahu obrazovky</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Ukázkový server</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>V tomto režimu bude vaše obrazovka zobrazována v celoobrazovkovém režimu na všech počítačích a jejich vstupní zařízení budou uzamčena.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>V tomto režimu bude vaše obrazovka zobrazována v okně na všech počítačích. Uživatelé přitom budou moci v případě potřeby přepínat na další okna.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1793,6 +1829,41 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Feature control</source>
         <translation>Ovládání funkce</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Přenos souboru</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Složky</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>…</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Volby</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3247,6 +3318,18 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Use modern user interface (experimental)</source>
         <translation>Použít moderní uživatelské rozhraní (experimentální)</translation>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3706,6 +3789,18 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Abyste upoutali plnou pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout jejich počítače. Ty v tomto režimu nebudou reagovat na klávesnici a myš a jejich obrazovky potemní.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Uzamknout vstupní zařízení</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3882,6 +3977,46 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Zobrazit oznámení když je zablokován nepověřený přístup</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Ukázkový server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4261,6 +4396,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Potvrďte právní upozornění (zprávu zobrazovanou před tím, než se uživatel přihlásí)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

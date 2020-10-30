@@ -320,7 +320,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication method</source>
-        <translation type="unfinished"/>
+        <translation>验证模式</translation>
     </message>
 </context>
 <context>
@@ -769,7 +769,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"/>
+        <translation>密钥文件</translation>
     </message>
 </context>
 <context>
@@ -795,7 +795,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"/>
+        <translation>LDAP验证</translation>
     </message>
     <message>
         <source>General</source>
@@ -876,7 +876,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>登录</translation>
     </message>
 </context>
 <context>
@@ -928,7 +928,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>已启用</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1330,7 +1330,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>活跃连接：</translation>
     </message>
 </context>
 <context>
@@ -1379,19 +1379,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>选择全部</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>取消选择全部</translation>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>添加到组</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>从组中移除</translation>
     </message>
 </context>
 <context>
@@ -1584,10 +1584,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>全屏演示</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>停止演示</translation>
     </message>
@@ -1600,16 +1596,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>通过屏幕广播进行演示</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>演示服务</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>在此模式下，您的屏幕将以全屏模式显示在所有电脑上，用户的输入设备将被锁定。</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>在此模式下，您的屏幕将作为窗口显示在所有计算机中。用户可以根据需要切换到其他窗口。</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1795,6 +1831,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>功能控制</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>发布文件</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>文件夹</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>目标文件夹</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>默认源目录</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>首选项</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>记住上次的源目录</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>如果不存在则创建目标目录</translation>
     </message>
 </context>
 <context>
@@ -3253,6 +3324,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Use modern user interface (experimental)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3410,11 +3493,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>介绍</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>版本</translation>
     </message>
     <message>
         <source>UID</source>
@@ -3712,6 +3795,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>要集中所有用户的注意力，您可以使用此按钮锁定他们的计算机。 在这种模式下，所有输入设备都被锁定，屏幕变黑。</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>锁定输入设备</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>解锁输入设备</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3888,6 +3983,46 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>当未授权访问被阻止时显示通知</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>演示服务</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4266,6 +4401,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
 </context>

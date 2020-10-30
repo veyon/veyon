@@ -1582,10 +1582,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>全螢幕示範</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>停止示範</translation>
     </message>
@@ -1598,16 +1594,56 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>透過螢幕廣播給予示範</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>示範伺服器</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>在這個模式下，所有電腦上的畫面都以全螢幕模式顯示，使用者的輸入裝置鎖定。</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>在這個模式下，所有電腦上的畫面都以視窗顯示，使用者可以視需要切換到其它視窗。</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1793,6 +1829,41 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Feature control</source>
         <translation>功能控制</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>檔案傳輸</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>目錄</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>目的地目錄</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>預設來源目錄</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>選項</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>記住上次來源目錄</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>如果目的地目錄不存在則建立</translation>
     </message>
 </context>
 <context>
@@ -3251,6 +3322,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Use modern user interface (experimental)</source>
         <translation>使用現代使用者介面 (實驗性)</translation>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>隱藏本機工作階段</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3710,6 +3793,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>若要收回所有使用者的完全注意，您可以使用此按鈕鎖定其電腦。 在這種模式下，所有的輸入設備鎖定和畫面全黑。</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>鎖定輸入裝置</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>解鎖輸入裝置</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>若要收回所有使用者的完全注意，您可以使用此按鈕鎖定其電腦。 在這種模式下，桌面仍可見時輸入設備鎖定。</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3886,6 +3981,46 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>未授權的存取已封鎖時顯示通知</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>最大工作階段數</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>工作階段</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>單一工作階段模式 (只為本地端/實體工作階段建立伺服器實例)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>多工作階段模式 (為每個本地端與遠端桌面工作階段建立伺服器實例)</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>網路埠號</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Veyon 伺服器</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>內部 VNC 伺服器</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>功能管理員</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>示範伺服器</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>其它網路設定</translation>
     </message>
 </context>
 <context>

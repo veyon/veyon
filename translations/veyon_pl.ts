@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Współpraca</translation>
+        <translation>Współtwórcy</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -33,17 +33,17 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Bieżący język nie jest jeszcze do końca przetłumaczony.
+        <translation>Bieżący język nie został jeszcze przetłumaczony (lub wybrano angielski).
 
-Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące tłumaczenie, skontaktuj się z twórcami Veyon.</translation>
+Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne tłumaczenie, należy skontaktować się z twórcą Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>O %1 %2</translation>
+        <translation>Informacje o %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Wesprzyj projekt Veyon za pomocą dotacji</translation>
+        <translation>Przekaż dotację na projekt Veyon</translation>
     </message>
 </context>
 <context>
@@ -98,11 +98,11 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Przesuń regułę niżej</translation>
+        <translation>Przenieś regułę niżej</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Przesuń regułę wyżej</translation>
+        <translation>Przenieś regułę wyżej</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
@@ -874,7 +874,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>Zaloguj się</translation>
     </message>
 </context>
 <context>
@@ -908,7 +908,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>Proste hasło</translation>
     </message>
 </context>
 <context>
@@ -1582,10 +1582,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Demonstracja tryb pełnoekranowy</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Zakończ demonstrację</translation>
     </message>
@@ -1598,16 +1594,56 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Transmituj demonstrację na ekran</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Serwer demo</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>W tym trybie twój ekran jest wyświetlany w trybie pełnoekranowym na wszystkich komputerach. Urządzenia wejścia użytkowników są zablokowane.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>W tym trybie twój ekran jest wyświetlany w oknie na wszystkich komputerach. Użytkownicy mogą się przełączać między oknami.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1793,6 +1829,41 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Feature control</source>
         <translation>Zarządzanie funkcjami</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transfer plików</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Lokalizacje</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Katalog docelowy</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Domyślny katalog źródłowy</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opcje</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Zapamiętaj ostatni katalog źródłowy</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Utwórz katalog docelowy jeśli nie istnieje</translation>
     </message>
 </context>
 <context>
@@ -2795,7 +2866,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"/>
+        <translation>Powiąż z LDAP</translation>
     </message>
 </context>
 <context>
@@ -3245,6 +3316,18 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Use modern user interface (experimental)</source>
         <translation>Użyj nowoczesnego interfejsu użytkownika (eksperymentalne)</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3705,6 +3788,18 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Żeby zdobyć pełną uwagę użytkowników, możesz zablokować ich komputery za pomocą tego przycisku. W tym trybie wszystkie urządzenia wejścia oraz ekran są zablokowane. </translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Zablokuj urządzenia wejściowe</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Odblokuj urządzenie wejsciowe</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Aby odzyskać pełną uwagę wszystkich użytkowników, możesz zablokować ich komputery za pomocą tego przycisku. W tym trybie wszystkie urządzenia wejściowe są zablokowane, podczas gdy pulpit jest nadal widoczny. </translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3881,6 +3976,46 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Pokaż powiadomienie, gdy zostanie zablokowany nieautoryzowany dostęp</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Maksymalna liczba sesji</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sesje</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Tryb wielosesyjny (utwórz instancję serwera dla każdej sesji pulpitu lokalnego i zdalnego)</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Wewnętrzny serwer VNC</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Menedżer funkcji</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Serwer demo</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

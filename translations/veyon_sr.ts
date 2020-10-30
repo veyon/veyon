@@ -1584,10 +1584,6 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Demonstracija u punom ekranu</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Zaustavi demonstraciju</translation>
     </message>
@@ -1600,16 +1596,56 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <translation>Pokažite demonstraciju ekranskim emitovanjem</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Demo server</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>U ovom režimu se ekran prikazuje u režimu punog ekrana na svim računarima dok su ulazni uređaji korisnika zaključani.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>U ovom režimu se vaš ekran prikazuje u prozoru na svim računarima. Korisnici se po potrebi mogu prebaciti na druge prozore.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1795,6 +1831,41 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>Feature control</source>
         <translation>Kontrola funkcija</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Prenos datoteka</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Direktorijumi</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opcije</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3253,6 +3324,18 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <source>Use modern user interface (experimental)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3712,6 +3795,18 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Da biste privukli punu pažnju svih korisnika možete zaključati njihove kompjutere upotrebom ovog dugmeta. Na ovaj način svi ulazni uređaji su zaključani a ekrani su zatamnjeni.</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Zaključaj ulazne uređaje</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3888,6 +3983,46 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Prikaži obavest kada je zabranjeni pristup blokiran.</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Interni VNC server</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Upravitelj svojstava</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4267,6 +4402,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
         <translation>Potvrdite pravnu napomenu (poruka se prikazuje pre nego što se korisnik prijavi)</translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

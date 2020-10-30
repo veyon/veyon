@@ -1581,10 +1581,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Pilno ekrano prezentacija</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Sustabdyti demonstraciją</translation>
     </message>
@@ -1597,15 +1593,55 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <translation>Pateikite demonstraciją transliuodami ekraną</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Prezantacijų serveris</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1792,6 +1828,41 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Feature control</source>
         <translation>Funkcijų valdymas</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Failų perkėlimas</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Katalogai</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Nustatymai</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3232,6 +3303,18 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Use modern user interface (experimental)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3689,6 +3772,18 @@ Please save your work and close all programs.</source>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3864,6 +3959,46 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Rodyti pranešimą, kai neautorizuota prieiga užblokuota</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Vidinis VNC serveris</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Funkcijų valdymas</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demonstracinis serveris</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4242,6 +4377,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
 </context>

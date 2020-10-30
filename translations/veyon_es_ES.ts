@@ -1584,10 +1584,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Demo a pantalla completa</translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation>Detener demo</translation>
     </message>
@@ -1600,16 +1596,56 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Dar una demostración por difusión de pantalla</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Servidor demo</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>En este modo, la pantalla se muestra en modo de pantalla completa en todos los equipos mientras los dispositivos de entrada de los usuarios están bloqueados.</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>En este modo, la pantalla se mostrará en una ventana de todos los ordenadores. Los usuarios pueden cambiar a otras ventanas según sea necesario.</translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1795,6 +1831,41 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Feature control</source>
         <translation>Control de funciones</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferConfigurationPage</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transferir archivo</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Directorios</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Directorio de destino</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Directorio de origen predeterminado</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opciones</translation>
+    </message>
+    <message>
+        <source>Remember last source directory</source>
+        <translation>Recordar el último directorio de origen</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Crear directorio de destino si no existe</translation>
     </message>
 </context>
 <context>
@@ -3253,6 +3324,18 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Use modern user interface (experimental)</source>
         <translation>Usar una interfaz de usuario moderna (experimental)</translation>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Ocultar sesión local</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3712,6 +3795,18 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Para recuperar toda la atención del usuario puede bloquear sus equipos con este botón. En este modo, todos los dispositivos de entrada están bloqueados y las pantallas son inhabilitadas .</translation>
     </message>
+    <message>
+        <source>Lock input devices</source>
+        <translation>Bloquear dispositivos de entrada</translation>
+    </message>
+    <message>
+        <source>Unlock input devices</source>
+        <translation>Desbloquear dispositivos de entrada</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
+        <translation>Para reclamar la atención de todos los usuarios, puede bloquear sus computadoras usando este botón. En este modo, todos los dispositivos de entrada están bloqueados mientras el escritorio aún está visible.</translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
@@ -3888,6 +3983,46 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Mostrar notificación cuando un acceso no autorizado está bloqueado</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Número máximo de sesiones</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Sesiones</translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation>Modo de sesión única (crear una instancia de servidor para sesión local/física únicamente)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation>Modo de sesión múltiple (crear una instancia de servidor para cada sesión de escritorio local y remota)</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Números de puerto de red</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Servidor Veyon</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Servidor VNC interno</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Gerente de funciones</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Servidor demo</translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
+        <translation>Configuraciones de red diversas</translation>
     </message>
 </context>
 <context>

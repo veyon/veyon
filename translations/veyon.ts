@@ -1576,10 +1576,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Fullscreen demo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Stop demo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1592,15 +1588,55 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share your screen or allow a user to share his screen with other users.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full screen demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share your own screen in fullscreen mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share your own screen in a window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in fullscreen mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share selected user&apos;s screen in a window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a user screen to share.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select only one user screen to share.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3261,6 +3297,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Use modern user interface (experimental)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3908,6 +3956,42 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum session count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single session mode (create server instance for local/physical session only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Miscellaneous network settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
