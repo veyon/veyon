@@ -23,7 +23,6 @@
  */
 
 #include "CommandLineIO.h"
-#include "PluginManager.h"
 #include "WebApiConfigurationPage.h"
 #include "WebApiHttpServer.h"
 #include "WebApiPlugin.h"
@@ -40,7 +39,7 @@ WebApiPlugin::WebApiPlugin( QObject* parent ) :
 	if( VeyonCore::component() == VeyonCore::Component::Service &&
 		m_configuration.httpServerEnabled() )
 	{
-	    connect( &VeyonCore::pluginManager(), &PluginManager::pluginsLoaded,
+		connect( VeyonCore::instance(), &VeyonCore::initialized,
 				 this, &WebApiPlugin::startHttpServerThread );
 	}
 }
