@@ -372,8 +372,16 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::consoleKitManager()
 
 int LinuxCoreFunctions::systemctl( const QStringList& arguments )
 {
-	return QProcess::execute( QStringLiteral("systemctl"),
+	QProcess process;
+	process.start( QStringLiteral("systemctl"),
 							  QStringList( { QStringLiteral("--no-pager"), QStringLiteral("-q") } ) + arguments );
+
+	if( process.waitForFinished() && process.exitStatus() == QProcess::NormalExit )
+	{
+		return process.exitCode();
+	}
+
+	return -1;
 }
 
 
