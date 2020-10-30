@@ -305,8 +305,9 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 
 	const auto operation = request.data[k2s(Key::Active)].toBool() ? FeatureProviderInterface::Operation::Start
 																	 : FeatureProviderInterface::Operation::Stop;
+	const auto arguments = request.data[k2s(Key::Arguments)].toMap();
 
-	m_featureManager.controlFeature( feature, operation, {}, { controlInterface } );
+	m_featureManager.controlFeature( feature, operation, arguments, { controlInterface } );
 
 	return {};
 }

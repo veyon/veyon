@@ -50,6 +50,7 @@ public:
 		Uid,
 		ParentUid,
 		Active,
+		Arguments,
 		Login,
 		FullName,
 		Session,
