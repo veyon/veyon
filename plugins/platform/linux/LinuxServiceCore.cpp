@@ -85,8 +85,15 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
-	// only start server for online or active sessions
 	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
+	if( sessionState == LinuxSessionFunctions::State::Opening )
+	{
+		vDebug() << "Session" << sessionPath << "still opening - retrying in" << SessionStateProbingInterval << "msecs";
+		QTimer::singleShot( SessionStateProbingInterval, this, [=]() { startServer( login1SessionId, sessionObjectPath ); } );
+		return;
+	}
+
+	// only start server for online or active sessions
 	if( sessionState != LinuxSessionFunctions::State::Online &&
 		sessionState != LinuxSessionFunctions::State::Active )
 	{
