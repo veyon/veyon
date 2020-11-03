@@ -47,12 +47,13 @@ public:
 
 	void showContextMenu( QPoint globalPos );
 
+	void setIconSize( const QSize& size ) override;
+
 private:
 	void setColors( const QColor& backgroundColor, const QColor& textColor ) override;
 	QJsonArray saveComputerPositions() override;
 	bool useCustomComputerPositions() override;
 	void loadComputerPositions( const QJsonArray& positions ) override;
-	void setIconSize( const QSize& size ) override;
 
 	void populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces );
 	void addFeatureToMenu( const Feature& feature, const QString& label );

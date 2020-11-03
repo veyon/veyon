@@ -145,6 +145,13 @@ void ComputerMonitoringWidget::showContextMenu( QPoint globalPos )
 
 
 
+void ComputerMonitoringWidget::setIconSize( const QSize& size )
+{
+	QAbstractItemView::setIconSize( size );
+}
+
+
+
 void ComputerMonitoringWidget::setColors( const QColor& backgroundColor, const QColor& textColor )
 {
 	auto pal = palette();
@@ -172,13 +179,6 @@ bool ComputerMonitoringWidget::useCustomComputerPositions()
 void ComputerMonitoringWidget::loadComputerPositions( const QJsonArray& positions )
 {
 	loadPositions( positions );
-}
-
-
-
-void ComputerMonitoringWidget::setIconSize( const QSize& size )
-{
-	QAbstractItemView::setIconSize( size );
 }
 
 
