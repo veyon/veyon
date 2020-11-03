@@ -37,7 +37,8 @@ class ComputerControlListModel : public QAbstractListModel
 public:
 	enum {
 		UidRole = Qt::UserRole,
-		StateRole
+		StateRole,
+		ScreenRole,
 	};
 
 	enum DisplayRoleContent {
