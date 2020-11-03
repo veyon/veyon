@@ -71,7 +71,6 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 
 ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlInterfaces() const
 {
-	const auto& computerControlListModel = master()->computerControlListModel();
 	ComputerControlInterfaceList computerControlInterfaces;
 
 	const auto selectedIndices = selectionModel()->selectedIndexes(); // clazy:exclude=inefficient-qlist
@@ -79,8 +78,8 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 	for( const auto& index : selectedIndices )
 	{
-		const auto sourceIndex = listModel()->mapToSource( index );
-		computerControlInterfaces.append( computerControlListModel.computerControlInterface( sourceIndex ) );
+		computerControlInterfaces.append( model()->data( index, ComputerControlListModel::ControlInterfaceRole )
+											  .value<ComputerControlInterface::Pointer>() );
 	}
 
 	return computerControlInterfaces;
