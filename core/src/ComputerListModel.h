@@ -38,6 +38,7 @@ public:
 		ImageIdRole,
 		GroupsRole,
 		ScreenRole,
+		ControlInterfaceRole
 	};
 
 	enum class DisplayRoleContent {

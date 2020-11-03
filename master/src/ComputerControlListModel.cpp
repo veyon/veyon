@@ -114,6 +114,9 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case ScreenRole:
 		return computerControl->screen();
 
+	case ControlInterfaceRole:
+		return QVariant::fromValue( computerControl );
+
 	default:
 		break;
 	}
