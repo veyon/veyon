@@ -97,7 +97,6 @@ void ComputerMonitoringWidget::setVeyonMaster( VeyonMaster& masterCore )
 
 ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlInterfaces()
 {
-	const auto& computerControlListModel = m_master->computerControlListModel();
 	ComputerControlInterfaceList computerControlInterfaces;
 
 	const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
@@ -105,8 +104,8 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 	for( const auto& index : selectedIndices )
 	{
-		const auto sourceIndex = listModel().mapToSource( index );
-		computerControlInterfaces.append( computerControlListModel.computerControlInterface( sourceIndex ) );
+		computerControlInterfaces.append( listModel().data( index, ComputerControlListModel::ControlInterfaceRole )
+											  .value<ComputerControlInterface::Pointer>() );
 	}
 
 	return computerControlInterfaces;
