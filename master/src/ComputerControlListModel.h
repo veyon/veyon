@@ -39,6 +39,7 @@ public:
 		UidRole = Qt::UserRole,
 		StateRole,
 		ScreenRole,
+		ControlInterfaceRole
 	};
 
 	enum DisplayRoleContent {

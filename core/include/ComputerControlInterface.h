@@ -168,3 +168,5 @@ Q_SIGNALS:
 };
 
 using ComputerControlInterfaceList = QVector<ComputerControlInterface::Pointer>;
+
+Q_DECLARE_METATYPE(ComputerControlInterface::Pointer)
