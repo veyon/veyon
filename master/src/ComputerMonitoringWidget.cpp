@@ -281,7 +281,8 @@ void ComputerMonitoringWidget::showEvent( QShowEvent* event )
 
 void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 {
-	if( event->modifiers().testFlag( Qt::ControlModifier ) )
+	if( m_ignoreWheelEvent == false &&
+		event->modifiers().testFlag( Qt::ControlModifier ) )
 	{
 		setComputerScreenSize( iconSize().width() + event->angleDelta().y() / 8 );
 

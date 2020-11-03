@@ -49,6 +49,11 @@ public:
 
 	void setIconSize( const QSize& size ) override;
 
+	void setIgnoreWheelEvent( bool enabled )
+	{
+		m_ignoreWheelEvent = enabled;
+	}
+
 private:
 	void setColors( const QColor& backgroundColor, const QColor& textColor ) override;
 	QJsonArray saveComputerPositions() override;
@@ -65,6 +70,7 @@ private:
 	void wheelEvent( QWheelEvent* event ) override;
 
 	QMenu* m_featureMenu{};
+	bool m_ignoreWheelEvent{false};
 
 Q_SIGNALS:
 	void computerScreenSizeAdjusted( int size );
