@@ -46,7 +46,7 @@ ScreenLockFeaturePlugin::ScreenLockFeaturePlugin( QObject* parent ) :
 	m_lockInputDevicesFeature( QStringLiteral( "InputDevicesLock" ),
 							   Feature::Mode | Feature::AllComponents | Feature::Internal,
 							   Feature::Uid( "e4a77879-e544-4fec-bc18-e534f33b934c" ),
-							   m_screenLockFeature.uid(),
+							   {},
 							   tr( "Lock input devices" ), tr( "Unlock input devices" ),
 							   tr( "To reclaim all user's full attention you can lock "
 								   "their computers using this button. "
@@ -70,6 +70,8 @@ bool ScreenLockFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation
 											 const QVariantMap& arguments,
 											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(arguments)
+
 	if( hasFeature( featureUid ) == false )
 	{
 		return false;
