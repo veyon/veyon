@@ -63,6 +63,11 @@ public:
 
 	void showContextMenu( QPoint pos );
 
+	void setIgnoreWheelEvent( bool enabled )
+	{
+		m_ignoreWheelEvent = enabled;
+	}
+
 private:
 	void runDoubleClickFeature( const QModelIndex& index );
 	void runFeature( const Feature& feature );
@@ -83,6 +88,7 @@ private:
 
 	VeyonMaster* m_master;
 	QMenu* m_featureMenu;
+	bool m_ignoreWheelEvent{false};
 
 Q_SIGNALS:
 	void computerScreenSizeAdjusted( int size );

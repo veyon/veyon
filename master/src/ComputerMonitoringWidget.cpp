@@ -270,7 +270,8 @@ void ComputerMonitoringWidget::showEvent( QShowEvent* event )
 
 void ComputerMonitoringWidget::wheelEvent( QWheelEvent* event )
 {
-	if( event->modifiers().testFlag( Qt::ControlModifier ) )
+	if( m_ignoreWheelEvent == false &&
+		event->modifiers().testFlag( Qt::ControlModifier ) )
 	{
 		setComputerScreenSize( qBound<int>( MinimumComputerScreenSize,
 											ui->listView->iconSize().width() + event->angleDelta().y() / 8,
