@@ -111,6 +111,9 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case GroupsRole:
 		return computerControl->groups();
 
+	case ScreenRole:
+		return computerControl->screen();
+
 	default:
 		break;
 	}
@@ -281,14 +284,14 @@ void ComputerControlListModel::update()
 
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
-	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole, ScreenRole } );
 }
 
 
 
 void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
-	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, ImageIdRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, ImageIdRole, ScreenRole } );
 }
 
 

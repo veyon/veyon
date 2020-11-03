@@ -37,6 +37,7 @@ public:
 		StateRole,
 		ImageIdRole,
 		GroupsRole,
+		ScreenRole,
 	};
 
 	enum class DisplayRoleContent {
