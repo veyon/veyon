@@ -70,12 +70,14 @@ Q_SIGNALS:
 private:
 	void update();
 
+	QModelIndex interfaceIndex( ComputerControlInterface* controlInterface ) const;
+
 	void updateState( const QModelIndex& index );
 	void updateScreen( const QModelIndex& index );
 	void updateActiveFeatures( const QModelIndex& index );
 	void updateUser( const QModelIndex& index );
 
-	void startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface, const QModelIndex& index );
+	void startComputerControlInterface( ComputerControlInterface* controlInterface );
 	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );
 
 	QSize computerScreenSize() const;
