@@ -98,7 +98,7 @@
        </property>
        <property name="icon">
         <iconset resource="../resources/master.qrc">
-         <normaloff>:/master/applications-education.png</normaloff>:/master/applications-education.png</iconset>
+         <normaloff>:/master/computers.png</normaloff>:/master/computers.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
