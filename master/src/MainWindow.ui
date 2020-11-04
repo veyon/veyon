@@ -39,7 +39,7 @@
       <widget class="QToolButton" name="autoFitButton">
        <property name="geometry">
         <rect>
-         <x>790</x>
+         <x>890</x>
          <y>570</y>
          <width>69</width>
          <height>37</height>
@@ -55,11 +55,17 @@
         <iconset resource="../resources/master.qrc">
          <normaloff>:/master/zoom-fit-best.png</normaloff>:/master/zoom-fit-best.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
       <widget class="QSlider" name="gridSizeSlider">
        <property name="geometry">
         <rect>
-         <x>660</x>
+         <x>760</x>
          <y>580</y>
          <width>111</width>
          <height>25</height>
@@ -84,58 +90,6 @@
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QToolButton" name="computerSelectPanelButton">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>570</y>
-         <width>227</width>
-         <height>37</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Locations &amp;&amp; computers</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/master.qrc">
-         <normaloff>:/master/computers.png</normaloff>:/master/computers.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
-       <attribute name="buttonGroup">
-        <string notr="true">buttonGroup</string>
-       </attribute>
-      </widget>
-      <widget class="QToolButton" name="screenshotManagementPanelButton">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>570</y>
-         <width>158</width>
-         <height>37</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Screenshots</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/master.qrc">
-         <normaloff>:/master/camera-photo.png</normaloff>:/master/camera-photo.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
-       <attribute name="buttonGroup">
-        <string notr="true">buttonGroup</string>
-       </attribute>
-      </widget>
       <widget class="QLabel" name="spacerLabel1">
        <property name="geometry">
         <rect>
@@ -152,7 +106,7 @@
       <widget class="QToolButton" name="aboutButton">
        <property name="geometry">
         <rect>
-         <x>1230</x>
+         <x>1260</x>
          <y>570</y>
          <width>71</width>
          <height>37</height>
@@ -168,11 +122,17 @@
         <iconset resource="../../core/resources/core.qrc">
          <normaloff>:/core/help-about.png</normaloff>:/core/help-about.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
       <widget class="QLabel" name="spacerLabel3">
        <property name="geometry">
         <rect>
-         <x>840</x>
+         <x>910</x>
          <y>570</y>
          <width>99</width>
          <height>30</height>
@@ -182,7 +142,7 @@
       <widget class="QLineEdit" name="filterLineEdit">
        <property name="geometry">
         <rect>
-         <x>480</x>
+         <x>560</x>
          <y>570</y>
          <width>113</width>
          <height>38</height>
@@ -195,8 +155,8 @@
       <widget class="QLabel" name="spacerLabel2">
        <property name="geometry">
         <rect>
-         <x>610</x>
-         <y>570</y>
+         <x>620</x>
+         <y>560</y>
          <width>31</width>
          <height>30</height>
         </rect>
@@ -211,7 +171,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>1100</x>
+         <x>1110</x>
          <y>570</y>
          <width>69</width>
          <height>37</height>
@@ -224,11 +184,17 @@
         <iconset resource="../resources/master.qrc">
          <normaloff>:/master/align-grid.png</normaloff>:/master/align-grid.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
       </widget>
       <widget class="QToolButton" name="useCustomComputerArrangementButton">
        <property name="geometry">
         <rect>
-         <x>960</x>
+         <x>1010</x>
          <y>570</y>
          <width>69</width>
          <height>37</height>
@@ -241,6 +207,12 @@
         <iconset resource="../resources/master.qrc">
          <normaloff>:/master/exchange-positions-zorder.png</normaloff>:/master/exchange-positions-zorder.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
        <property name="checkable">
         <bool>true</bool>
        </property>
@@ -248,7 +220,7 @@
       <widget class="QLabel" name="spacerLabel4">
        <property name="geometry">
         <rect>
-         <x>1110</x>
+         <x>1170</x>
          <y>570</y>
          <width>99</width>
          <height>30</height>
@@ -258,7 +230,7 @@
       <widget class="QToolButton" name="filterPoweredOnComputersButton">
        <property name="geometry">
         <rect>
-         <x>580</x>
+         <x>680</x>
          <y>570</y>
          <width>69</width>
          <height>37</height>
@@ -271,9 +243,143 @@
         <iconset resource="../resources/master.qrc">
          <normaloff>:/master/powered-on.png</normaloff>:/master/powered-on.png</iconset>
        </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
        <property name="checkable">
         <bool>true</bool>
        </property>
+      </widget>
+      <widget class="QWidget" name="panelButtons" native="true">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>702</width>
+         <height>39</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMinimumSize</enum>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QToolButton" name="computerSelectPanelButton">
+          <property name="text">
+           <string>Locations &amp;&amp; computers</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/master.qrc">
+            <normaloff>:/master/computers.png</normaloff>:/master/computers.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">buttonGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="slideshowPanelButton">
+          <property name="text">
+           <string>Slideshow</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/master.qrc">
+            <normaloff>:/master/computer-slideshow.png</normaloff>:/master/computer-slideshow.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="spotlightPanelButton">
+          <property name="text">
+           <string>Spotlight</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/master.qrc">
+            <normaloff>:/master/spotlight.png</normaloff>:/master/spotlight.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="screenshotManagementPanelButton">
+          <property name="text">
+           <string>Screenshots</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/master.qrc">
+            <normaloff>:/master/camera-photo.png</normaloff>:/master/camera-photo.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">buttonGroup</string>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -300,7 +406,7 @@
   </customwidget>
   <customwidget>
    <class>ComputerMonitoringWidget</class>
-   <extends>QWidget</extends>
+   <extends>QListView</extends>
    <header>ComputerMonitoringWidget.h</header>
    <container>1</container>
   </customwidget>

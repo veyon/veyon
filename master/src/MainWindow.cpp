@@ -42,6 +42,8 @@
 #include "MonitoringMode.h"
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectDirectoryManager.h"
+#include "SlideshowPanel.h"
+#include "SpotlightPanel.h"
 #include "ToolButton.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMaster.h"
@@ -66,8 +68,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->computerMonitoringWidget->setVeyonMaster( m_master );
 
 	// add widgets to status bar
-	ui->statusBar->addWidget( ui->computerSelectPanelButton );
-	ui->statusBar->addWidget( ui->screenshotManagementPanelButton );
+	ui->statusBar->addWidget( ui->panelButtons );
 	ui->statusBar->addWidget( ui->spacerLabel1 );
 	ui->statusBar->addWidget( ui->filterLineEdit, 2 );
 	ui->statusBar->addWidget( ui->filterPoweredOnComputersButton );
@@ -84,21 +85,40 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	auto splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
 	splitter->setChildrenCollapsible( false );
 
+	auto monitoringSplitter = new QSplitter( Qt::Vertical, splitter );
+	monitoringSplitter->setChildrenCollapsible( false );
+
+	auto specialMonitoringSplitter = new QSplitter( Qt::Horizontal, monitoringSplitter );
+	specialMonitoringSplitter->setChildrenCollapsible( false );
+
 	ui->centralLayout->addWidget( splitter );
 
 	m_computerSelectPanel = new ComputerSelectPanel( m_master.computerManager(), splitter );
 	m_screenshotManagementPanel = new ScreenshotManagementPanel( splitter );
 
+	auto slideshowPanel = new SlideshowPanel( m_master.userConfig(), ui->computerMonitoringWidget, specialMonitoringSplitter );
+	auto spotlightPanel = new SpotlightPanel( ui->computerMonitoringWidget, specialMonitoringSplitter );
+
+	specialMonitoringSplitter->addWidget( slideshowPanel );
+	specialMonitoringSplitter->addWidget( spotlightPanel );
+
+	monitoringSplitter->addWidget( specialMonitoringSplitter );
+	monitoringSplitter->addWidget( ui->computerMonitoringWidget );
+
 	splitter->addWidget( m_computerSelectPanel );
 	splitter->addWidget( m_screenshotManagementPanel );
-	splitter->addWidget( ui->computerMonitoringWidget );
+	splitter->addWidget( monitoringSplitter );
 
 	// hide views per default and connect related button
 	m_computerSelectPanel->hide();
+	slideshowPanel->hide();
+	spotlightPanel->hide();
 	m_screenshotManagementPanel->hide();
 
 	connect( ui->computerSelectPanelButton, &QAbstractButton::toggled,
 			 m_computerSelectPanel, &QWidget::setVisible );
+	connect( ui->slideshowPanelButton, &QAbstractButton::toggled, slideshowPanel, &QWidget::setVisible );
+	connect( ui->spotlightPanelButton, &QAbstractButton::toggled, spotlightPanel, &QWidget::setVisible );
 	connect( ui->screenshotManagementPanelButton, &QAbstractButton::toggled,
 			 m_screenshotManagementPanel, &QWidget::setVisible );
 
