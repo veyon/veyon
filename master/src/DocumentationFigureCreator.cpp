@@ -128,7 +128,7 @@ void DocumentationFigureCreator::createFeatureFigures()
 		if( pluginUid != previousPluginUid || separatedFeature )
 		{
 			auto fileName = VeyonCore::pluginManager().pluginName( previousPluginUid );
-			if( separatedFeature )
+			if( separatedFeature && previousFeature )
 			{
 				fileName = previousFeature->name();
 			}
