@@ -162,7 +162,7 @@ void ComputerControlListModel::reload()
 	{
 		const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
 		m_computerControlInterfaces.append( controlInterface );
-		startComputerControlInterface( controlInterface, index( row ) );
+		startComputerControlInterface( controlInterface.data() );
 		++row;
 	}
 
@@ -203,7 +203,7 @@ void ComputerControlListModel::update()
 			beginInsertRows( QModelIndex(), row, row );
 			const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
 			m_computerControlInterfaces.insert( row, controlInterface );
-			startComputerControlInterface( controlInterface, index( row ) );
+			startComputerControlInterface( controlInterface.data() );
 			endInsertRows();
 		}
 		else if( row >= m_computerControlInterfaces.count() )
@@ -211,12 +211,19 @@ void ComputerControlListModel::update()
 			beginInsertRows( QModelIndex(), row, row );
 			const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
 			m_computerControlInterfaces.append( controlInterface );
-			startComputerControlInterface( controlInterface, index( row ) ); // clazy:exclude=detaching-member
+			startComputerControlInterface( controlInterface.data() );
 			endInsertRows();
 		}
 
 		++row;
 	}
+}
+
+
+
+QModelIndex ComputerControlListModel::interfaceIndex( ComputerControlInterface* controlInterface ) const
+{
+	return QAbstractListModel::index( m_computerControlInterfaces.indexOf( controlInterface->weakPointer() ), 0 );
 }
 
 
@@ -256,28 +263,26 @@ void ComputerControlListModel::updateUser( const QModelIndex& index )
 
 
 
-void ComputerControlListModel::startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface,
-															  const QModelIndex& index )
+void ComputerControlListModel::startComputerControlInterface( ComputerControlInterface* controlInterface )
 {
 	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
-	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived, this,
-			 [this]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface )
-			 {
+	connect( controlInterface, &ComputerControlInterface::featureMessageReceived, this,
+			 [=]( const FeatureMessage& featureMessage, const ComputerControlInterface::Pointer& computerControlInterface ) {
 				 m_master->featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
-			 } );
+	} );
 
-	connect( controlInterface.data(), &ComputerControlInterface::screenUpdated,
-			 this, [=] () { updateScreen( index ); } );
+	connect( controlInterface, &ComputerControlInterface::screenUpdated,
+			 this, [=] () { updateScreen( interfaceIndex( controlInterface ) ); } );
 
-	connect( controlInterface.data(), &ComputerControlInterface::activeFeaturesChanged,
-			 this, [=] () { updateActiveFeatures( index ); } );
+	connect( controlInterface, &ComputerControlInterface::activeFeaturesChanged,
+			 this, [=] () { updateActiveFeatures( interfaceIndex( controlInterface ) ); } );
 
-	connect( controlInterface.data(), &ComputerControlInterface::stateChanged,
-			 this, [=] () { updateState( index ); } );
+	connect( controlInterface, &ComputerControlInterface::stateChanged,
+			 this, [=] () { updateState( interfaceIndex( controlInterface ) ); } );
 
-	connect( controlInterface.data(), &ComputerControlInterface::userChanged,
-			 this, [=]() { updateUser( index ); } );
+	connect( controlInterface, &ComputerControlInterface::userChanged,
+			 this, [=]() { updateUser( interfaceIndex( controlInterface ) ); } );
 }
 
 
