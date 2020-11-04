@@ -12,5 +12,8 @@
         <file>align-grid.png</file>
         <file>exchange-positions-zorder.png</file>
         <file>powered-on.png</file>
+        <file>computer-slideshow.png</file>
+        <file>media-playback-start.png</file>
+        <file>media-playback-pause.png</file>
     </qresource>
 </RCC>

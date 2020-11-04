@@ -29,6 +29,7 @@
 #include "Configuration/Object.h"
 #include "Configuration/Property.h"
 #include "ComputerMonitoringWidget.h"
+#include "SlideshowPanel.h"
 #include "VeyonMaster.h"
 
 // clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
@@ -45,6 +46,7 @@ public:
 	OP( UserConfig, VeyonMaster::userConfig(), bool, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI", false, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), bool, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI", false, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), int, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI", ComputerMonitoringWidget::DefaultComputerScreenSize, Configuration::Property::Flag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), int, slideshowDuration, setSlideshowDuration, "SlideshowDuration", "UI", SlideshowPanel::DefaultDuration, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), int, defaultRole, setDefaultRole, "DefaultRole", "Authentication", 0, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), bool, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI", false, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), bool, noToolTips, setNoToolTips, "NoToolTips", "UI", false, Configuration::Property::Flag::Standard )	\
