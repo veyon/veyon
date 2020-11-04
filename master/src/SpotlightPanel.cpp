@@ -30,13 +30,15 @@
 #include "ComputerMonitoringWidget.h"
 #include "SpotlightModel.h"
 #include "SpotlightPanel.h"
+#include "UserConfig.h"
 
 #include "ui_SpotlightPanel.h"
 
 
-SpotlightPanel::SpotlightPanel( ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent ) :
+SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent ) :
 	QWidget( parent ),
 	ui( new Ui::SpotlightPanel ),
+	m_config( config ),
 	m_computerMonitoringWidget( computerMonitoringWidget ),
 	m_model( new SpotlightModel( &m_computerMonitoringWidget->dataModel(), this ) )
 {
@@ -50,9 +52,12 @@ SpotlightPanel::SpotlightPanel( ComputerMonitoringWidget* computerMonitoringWidg
 
 	connect( ui->addButton, &QAbstractButton::clicked, this, &SpotlightPanel::add );
 	connect( ui->removeButton, &QAbstractButton::clicked, this, &SpotlightPanel::remove );
+	connect( ui->realtimeViewButton, &QAbstractButton::toggled, this, &SpotlightPanel::setRealtimeView );
 
 	connect( m_computerMonitoringWidget->listView(), &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
 	connect( ui->monitoringWidget->listView(), &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
+
+	setRealtimeView( m_config.spotlightRealtime() );
 }
 
 
@@ -112,6 +117,17 @@ void SpotlightPanel::remove()
 		m_model->remove( m_model->data( index, SpotlightModel::ControlInterfaceRole )
 							 .value<ComputerControlInterface::Pointer>() );
 	}
+}
+
+
+
+void SpotlightPanel::setRealtimeView( bool enabled )
+{
+	m_model->setUpdateInRealtime( enabled );
+
+	m_config.setSpotlightRealtime( enabled );
+
+	ui->realtimeViewButton->setChecked( enabled );
 }
 
 

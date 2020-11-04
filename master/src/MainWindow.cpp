@@ -97,7 +97,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	m_screenshotManagementPanel = new ScreenshotManagementPanel( splitter );
 
 	auto slideshowPanel = new SlideshowPanel( m_master.userConfig(), ui->computerMonitoringWidget, specialMonitoringSplitter );
-	auto spotlightPanel = new SpotlightPanel( ui->computerMonitoringWidget, specialMonitoringSplitter );
+	auto spotlightPanel = new SpotlightPanel( m_master.userConfig(), ui->computerMonitoringWidget, specialMonitoringSplitter );
 
 	specialMonitoringSplitter->addWidget( slideshowPanel );
 	specialMonitoringSplitter->addWidget( spotlightPanel );

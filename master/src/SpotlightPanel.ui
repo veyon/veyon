@@ -36,10 +36,7 @@
       <item>
        <widget class="QToolButton" name="addButton">
         <property name="toolTip">
-         <string>Previous</string>
-        </property>
-        <property name="text">
-         <string>Add selected computer</string>
+         <string>Add selected computers</string>
         </property>
         <property name="icon">
          <iconset resource="../../core/resources/core.qrc">
@@ -51,18 +48,12 @@
           <height>32</height>
          </size>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="removeButton">
         <property name="toolTip">
-         <string>Next</string>
-        </property>
-        <property name="text">
-         <string>Remove selected computer</string>
+         <string>Remove selected computers</string>
         </property>
         <property name="icon">
          <iconset resource="../../core/resources/core.qrc">
@@ -73,9 +64,6 @@
           <width>32</width>
           <height>32</height>
          </size>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -91,6 +79,30 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QToolButton" name="realtimeViewButton">
+        <property name="toolTip">
+         <string>Update computers in realtime</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/master.qrc">
+          <normaloff>:/master/update-realtime-disabled.png</normaloff>
+          <normalon>:/master/update-realtime-enabled.png</normalon>:/master/update-realtime-disabled.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="durationLabel">
@@ -114,6 +126,7 @@
  </customwidgets>
  <resources>
   <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/master.qrc"/>
  </resources>
  <connections/>
 </ui>
