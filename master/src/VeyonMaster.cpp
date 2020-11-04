@@ -63,7 +63,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	}
 
 	connect( &m_localSessionControlInterface, &ComputerControlInterface::featureMessageReceived,
-			 this, [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
+			 this, [=]( const FeatureMessage& featureMessage, const ComputerControlInterface::Pointer& computerControlInterface ) {
 			 m_featureManager->handleFeatureMessage( computerControlInterface, featureMessage );
 	} );
 
