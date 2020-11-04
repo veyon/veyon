@@ -45,6 +45,8 @@ public:
 
 	void saveConfiguration();
 
+	ComputerMonitoringModel* dataModel() const;
+
 	virtual ComputerControlInterfaceList selectedComputerControlInterfaces() const = 0;
 	ComputerControlInterfaceList filteredComputerControlInterfaces() const;
 
@@ -75,8 +77,6 @@ protected:
 	}
 
 	void runFeature( const Feature& feature );
-
-	ComputerMonitoringModel* listModel() const;
 
 	bool isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
 									 Feature::Uid featureUid ) const;

@@ -95,7 +95,7 @@ void ComputerMonitoringItem::runFeature( QString uid )
 
 QObject* ComputerMonitoringItem::model() const
 {
-	return listModel();
+	return dataModel();
 }
 
 

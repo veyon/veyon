@@ -54,30 +54,37 @@ void ComputerMonitoringView::initializeView()
 
 void ComputerMonitoringView::saveConfiguration()
 {
-	m_master->userConfig().setFilterPoweredOnComputers( listModel()->stateFilter() != ComputerControlInterface::State::None );
+	m_master->userConfig().setFilterPoweredOnComputers( dataModel()->stateFilter() != ComputerControlInterface::State::None );
 	m_master->userConfig().setComputerPositions( saveComputerPositions() );
 	m_master->userConfig().setUseCustomComputerPositions( useCustomComputerPositions() );
 }
 
 
 
+ComputerMonitoringModel* ComputerMonitoringView::dataModel() const
+{
+	return m_master->computerMonitoringModel();
+}
+
+
+
 QString ComputerMonitoringView::searchFilter() const
 {
-	return listModel()->filterRegExp().pattern();
+	return dataModel()->filterRegExp().pattern();
 }
 
 
 
 void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
 {
-	listModel()->setFilterRegExp( searchFilter );
+	dataModel()->setFilterRegExp( searchFilter );
 }
 
 
 
 void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
 {
-	listModel()->setStateFilter( enabled ? ComputerControlInterface::State::Connected :
+	dataModel()->setStateFilter( enabled ? ComputerControlInterface::State::Connected :
 										   ComputerControlInterface::State::None );
 }
 
@@ -86,10 +93,10 @@ void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
 QStringList ComputerMonitoringView::groupFilter() const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-	const auto groupsFilter = listModel()->groupsFilter();
+	const auto groupsFilter = dataModel()->groupsFilter();
 	return { groupsFilter.begin(), groupsFilter.end() };
 #else
-	return listModel()->groupsFilter().toList();
+	return dataModel()->groupsFilter().toList();
 #endif
 }
 
@@ -97,7 +104,7 @@ QStringList ComputerMonitoringView::groupFilter() const
 
 void ComputerMonitoringView::setGroupFilter( const QStringList& groups )
 {
-	listModel()->setGroupsFilter( groups );
+	dataModel()->setGroupsFilter( groups );
 }
 
 
@@ -160,13 +167,6 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 
 		m_master->featureManager().startFeature( *m_master, feature, computerControlInterfaces );
 	}
-}
-
-
-
-ComputerMonitoringModel* ComputerMonitoringView::listModel() const
-{
-	return m_master->computerMonitoringModel();
 }
 
 

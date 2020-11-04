@@ -64,7 +64,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 
 	initializeView();
 
-	setModel( listModel() );
+	setModel( dataModel() );
 }
 
 
