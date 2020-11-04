@@ -42,9 +42,27 @@ void SpotlightModel::setIconSize( QSize size )
 
 
 
+void SpotlightModel::setUpdateInRealtime( bool enabled )
+{
+	m_updateInRealtime = enabled;
+
+	for( const auto& controlInterface : m_controlInterfaces )
+	{
+		controlInterface->setUpdateMode( m_updateInRealtime
+											 ? ComputerControlInterface::UpdateMode::Live
+											 : ComputerControlInterface::UpdateMode::Monitoring );
+	}
+}
+
+
+
 void SpotlightModel::add( const ComputerControlInterface::Pointer& controlInterface )
 {
 	m_controlInterfaces.append( controlInterface );
+
+	controlInterface->setUpdateMode( m_updateInRealtime
+										 ? ComputerControlInterface::UpdateMode::Live
+										 : ComputerControlInterface::UpdateMode::Monitoring );
 
 	invalidateFilter();
 }
@@ -55,9 +73,10 @@ void SpotlightModel::remove( const ComputerControlInterface::Pointer& controlInt
 {
 	m_controlInterfaces.removeAll( controlInterface );
 
+	controlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
+
 	invalidateFilter();
 }
-
 
 
 

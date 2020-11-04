@@ -37,6 +37,7 @@ public:
 	SpotlightModel( QAbstractItemModel* sourceModel, QObject* parent = nullptr );
 
 	void setIconSize( QSize size );
+	void setUpdateInRealtime( bool enabled );
 
 	void add( const ComputerControlInterface::Pointer& controlInterface );
 	void remove( const ComputerControlInterface::Pointer& controlInterface );
@@ -48,6 +49,7 @@ protected:
 
 private:
 	QSize m_iconSize;
+	bool m_updateInRealtime;
 
 	ComputerControlInterfaceList m_controlInterfaces;
 
