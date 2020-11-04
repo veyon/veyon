@@ -243,7 +243,7 @@ void ComputerManager::initNetworkObjectLayer()
 			const auto sessionServerPort = QString::number( VeyonCore::config().veyonServerPort() +
 															 VeyonCore::sessionId() );
 
-			for( const auto& localHostName : localHostNames )
+			for( const auto& localHostName : qAsConst(localHostNames) )
 			{
 				ownSessionNames.append( QStringLiteral("%1:%2").arg( localHostName, sessionServerPort ) );
 			}
