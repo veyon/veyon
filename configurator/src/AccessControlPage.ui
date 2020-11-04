@@ -173,23 +173,17 @@
         </item>
         <item>
          <widget class="QToolButton" name="addAccessGroupButton">
-          <property name="text">
-           <string>...</string>
-          </property>
           <property name="icon">
-           <iconset resource="../resources/configurator.qrc">
-            <normaloff>:/configurator/go-next.png</normaloff>:/configurator/go-next.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/go-next.png</normaloff>:/core/go-next.png</iconset>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QToolButton" name="removeAccessGroupButton">
-          <property name="text">
-           <string>...</string>
-          </property>
           <property name="icon">
-           <iconset resource="../resources/configurator.qrc">
-            <normaloff>:/configurator/go-previous.png</normaloff>:/configurator/go-previous.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/go-previous.png</normaloff>:/core/go-previous.png</iconset>
           </property>
          </widget>
         </item>
@@ -238,12 +232,9 @@
         <property name="toolTip">
          <string>Move selected rule up</string>
         </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="icon">
-         <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/go-up.png</normaloff>:/configurator/go-up.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/go-up.png</normaloff>:/core/go-up.png</iconset>
         </property>
        </widget>
       </item>
@@ -304,12 +295,9 @@
         <property name="toolTip">
          <string>Move selected rule down</string>
         </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="icon">
-         <iconset resource="../resources/configurator.qrc">
-          <normaloff>:/configurator/go-down.png</normaloff>:/configurator/go-down.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/go-down.png</normaloff>:/core/go-down.png</iconset>
         </property>
        </widget>
       </item>
@@ -344,7 +332,6 @@
  </tabstops>
  <resources>
   <include location="../../core/resources/core.qrc"/>
-  <include location="../resources/configurator.qrc"/>
  </resources>
  <connections>
   <connection>

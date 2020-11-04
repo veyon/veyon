@@ -36,5 +36,9 @@
     <file>dialog-ok-apply.png</file>
     <file>document-edit.png</file>
     <file>default-pkey.pem</file>
+    <file>go-up.png</file>
+    <file>go-down.png</file>
+    <file>go-previous.png</file>
+    <file>go-next.png</file>
   </qresource>
 </RCC>
