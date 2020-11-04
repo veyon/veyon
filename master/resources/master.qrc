@@ -24,5 +24,7 @@
         <file>spotlight.png</file>
         <file>media-playback-start.png</file>
         <file>media-playback-pause.png</file>
+        <file>update-realtime-enabled.png</file>
+        <file>update-realtime-disabled.png</file>
     </qresource>
 </RCC>

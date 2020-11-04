@@ -28,6 +28,7 @@
 
 class ComputerMonitoringWidget;
 class SpotlightModel;
+class UserConfig;
 
 namespace Ui {
 class SpotlightPanel;
@@ -37,7 +38,7 @@ class SpotlightPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit SpotlightPanel( ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent );
+	explicit SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent );
 	~SpotlightPanel() override;
 
 protected:
@@ -46,11 +47,14 @@ protected:
 private:
 	void add();
 	void remove();
+	void setRealtimeView( bool enabled );
 
 	void addPressedItem( const QModelIndex& index );
 	void removePressedItem( const QModelIndex& index );
 
 	Ui::SpotlightPanel* ui;
+
+	UserConfig& m_config;
 
 	ComputerMonitoringWidget* m_computerMonitoringWidget;
 	SpotlightModel* m_model;
