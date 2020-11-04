@@ -20,5 +20,8 @@
         <file>application-menu.png</file>
         <file>go-previous.png</file>
         <file>go-next.png</file>
+        <file>computer-slideshow.png</file>
+        <file>media-playback-start.png</file>
+        <file>media-playback-pause.png</file>
     </qresource>
 </RCC>
