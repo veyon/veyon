@@ -132,6 +132,9 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	for( auto* splitter : { slideshowSpotlightSplitter, monitoringSplitter, mainSplitter } )
 	{
+		splitter->setHandleWidth( 7 );
+		splitter->setStyleSheet( QStringLiteral("QSplitter::handle:hover{background-color:#66a0b3;}") );
+
 		splitter->installEventFilter( this );
 
 		QList<int> splitterSizes;
