@@ -35,7 +35,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="ComputerMonitoringWidget" name="computerMonitoringWidget" native="true">
+     <widget class="ComputerMonitoringWidget" name="computerMonitoringWidget">
       <widget class="QToolButton" name="autoFitButton">
        <property name="geometry">
         <rect>
@@ -308,6 +308,32 @@
          </widget>
         </item>
         <item>
+         <widget class="QToolButton" name="screenshotManagementPanelButton">
+          <property name="text">
+           <string>Screenshots</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/master.qrc">
+            <normaloff>:/master/camera-photo.png</normaloff>:/master/camera-photo.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">buttonGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="slideshowPanelButton">
           <property name="text">
            <string>Slideshow</string>
@@ -353,32 +379,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QToolButton" name="screenshotManagementPanelButton">
-          <property name="text">
-           <string>Screenshots</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../resources/master.qrc">
-            <normaloff>:/master/camera-photo.png</normaloff>:/master/camera-photo.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">buttonGroup</string>
-          </attribute>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -400,15 +400,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MainToolBar</class>
-   <extends>QToolBar</extends>
-   <header>MainToolBar.h</header>
-  </customwidget>
-  <customwidget>
    <class>ComputerMonitoringWidget</class>
    <extends>QListView</extends>
    <header>ComputerMonitoringWidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MainToolBar</class>
+   <extends>QToolBar</extends>
+   <header>MainToolBar.h</header>
   </customwidget>
  </customwidgets>
  <resources>
