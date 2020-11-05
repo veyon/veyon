@@ -38,7 +38,8 @@ class SlideshowPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget *parent );
+	explicit SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget,
+							 QWidget* parent = nullptr );
 	~SlideshowPanel() override;
 
 	static constexpr auto DefaultDuration = 3000;

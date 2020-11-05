@@ -80,45 +80,104 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
-	auto splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
-	splitter->setChildrenCollapsible( false );
+	auto mainSplitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
+	mainSplitter->setChildrenCollapsible( false );
+	mainSplitter->setObjectName( QStringLiteral("MainSplitter") );
 
-	auto monitoringSplitter = new QSplitter( Qt::Vertical, splitter );
+	auto monitoringSplitter = new QSplitter( Qt::Vertical, mainSplitter );
 	monitoringSplitter->setChildrenCollapsible( false );
+	monitoringSplitter->setObjectName( QStringLiteral("MonitoringSplitter") );
 
-	auto specialMonitoringSplitter = new QSplitter( Qt::Horizontal, monitoringSplitter );
-	specialMonitoringSplitter->setChildrenCollapsible( false );
+	auto slideshowSpotlightSplitter = new QSplitter( Qt::Horizontal, monitoringSplitter );
+	slideshowSpotlightSplitter->setChildrenCollapsible( false );
+	slideshowSpotlightSplitter->setObjectName( QStringLiteral("SlideshowSpotlightSplitter") );
 
-	ui->centralLayout->addWidget( splitter );
+	auto computerSelectPanel = new ComputerSelectPanel( m_master.computerManager(), m_master.computerSelectModel() );
+	auto screenshotManagementPanel = new ScreenshotManagementPanel();
+	auto slideshowPanel = new SlideshowPanel( m_master.userConfig(), ui->computerMonitoringWidget );
+	auto spotlightPanel = new SpotlightPanel( m_master.userConfig(), ui->computerMonitoringWidget );
 
-	m_computerSelectPanel = new ComputerSelectPanel( m_master.computerManager(), m_master.computerSelectModel(), splitter );
-	m_screenshotManagementPanel = new ScreenshotManagementPanel( splitter );
+	slideshowSpotlightSplitter->addWidget( slideshowPanel );
+	slideshowSpotlightSplitter->addWidget( spotlightPanel );
+	slideshowSpotlightSplitter->setStretchFactor( slideshowSpotlightSplitter->indexOf(slideshowPanel), 1 );
+	slideshowSpotlightSplitter->setStretchFactor( slideshowSpotlightSplitter->indexOf(spotlightPanel), 1 );
 
-	auto slideshowPanel = new SlideshowPanel( m_master.userConfig(), ui->computerMonitoringWidget, specialMonitoringSplitter );
-	auto spotlightPanel = new SpotlightPanel( m_master.userConfig(), ui->computerMonitoringWidget, specialMonitoringSplitter );
-
-	specialMonitoringSplitter->addWidget( slideshowPanel );
-	specialMonitoringSplitter->addWidget( spotlightPanel );
-
-	monitoringSplitter->addWidget( specialMonitoringSplitter );
+	monitoringSplitter->addWidget( slideshowSpotlightSplitter );
 	monitoringSplitter->addWidget( ui->computerMonitoringWidget );
+	monitoringSplitter->setStretchFactor( monitoringSplitter->indexOf(slideshowSpotlightSplitter), 1 );
+	monitoringSplitter->setStretchFactor( monitoringSplitter->indexOf(ui->computerMonitoringWidget), 1 );
 
-	splitter->addWidget( m_computerSelectPanel );
-	splitter->addWidget( m_screenshotManagementPanel );
-	splitter->addWidget( monitoringSplitter );
+	mainSplitter->addWidget( computerSelectPanel );
+	mainSplitter->addWidget( screenshotManagementPanel );
+	mainSplitter->addWidget( monitoringSplitter );
 
-	// hide views per default and connect related button
-	m_computerSelectPanel->hide();
-	slideshowPanel->hide();
-	spotlightPanel->hide();
-	m_screenshotManagementPanel->hide();
+	mainSplitter->setStretchFactor( mainSplitter->indexOf(monitoringSplitter), 1 );
 
-	connect( ui->computerSelectPanelButton, &QAbstractButton::toggled,
-			 m_computerSelectPanel, &QWidget::setVisible );
-	connect( ui->slideshowPanelButton, &QAbstractButton::toggled, slideshowPanel, &QWidget::setVisible );
-	connect( ui->spotlightPanelButton, &QAbstractButton::toggled, spotlightPanel, &QWidget::setVisible );
-	connect( ui->screenshotManagementPanelButton, &QAbstractButton::toggled,
-			 m_screenshotManagementPanel, &QWidget::setVisible );
+
+	static const QMap<QWidget *, QAbstractButton *> panelButtons{
+		{ computerSelectPanel, ui->computerSelectPanelButton },
+		{ screenshotManagementPanel, ui->screenshotManagementPanelButton },
+		{ slideshowPanel, ui->slideshowPanelButton },
+		{ spotlightPanel, ui->spotlightPanelButton }
+	};
+
+	for( auto it = panelButtons.constBegin(), end = panelButtons.constEnd(); it != end; ++it )
+	{
+		it.key()->hide();
+		it.key()->installEventFilter( this );
+		connect( *it, &QAbstractButton::toggled, it.key(), &QWidget::setVisible );
+	}
+
+	for( auto* splitter : { slideshowSpotlightSplitter, monitoringSplitter, mainSplitter } )
+	{
+		splitter->installEventFilter( this );
+
+		QList<int> splitterSizes;
+		int index = 0;
+
+		for( const auto& sizeObject : m_master.userConfig().splitterStates()[splitter->objectName()].toArray() )
+		{
+			auto size = sizeObject.toInt();
+			const auto widget = splitter->widget( index );
+			const auto button = panelButtons.value( widget );
+			if( widget && button )
+			{
+				widget->setVisible( size > 0 );
+				button->setChecked( size > 0 );
+			}
+
+			size = qAbs( size );
+			if( splitter->orientation() == Qt::Horizontal )
+			{
+				widget->resize( size, widget->height() );
+			}
+			else
+			{
+				widget->resize( widget->width(), size );
+			}
+
+			widget->setProperty( originalSizePropertyName(), widget->size() );
+			splitterSizes.append( size );
+			++index;
+		}
+		splitter->setSizes( splitterSizes );
+	}
+
+	const auto SplitterContentBaseSize = 500;
+
+	if( spotlightPanel->property( originalSizePropertyName() ).isNull() ||
+		slideshowPanel->property( originalSizePropertyName() ).isNull() )
+	{
+		slideshowSpotlightSplitter->setSizes( { SplitterContentBaseSize, SplitterContentBaseSize } );
+	}
+
+	if( slideshowSpotlightSplitter->property( originalSizePropertyName() ).isNull() ||
+		ui->computerMonitoringWidget->property( originalSizePropertyName() ).isNull() )
+	{
+		monitoringSplitter->setSizes( { SplitterContentBaseSize, SplitterContentBaseSize } );
+	}
+
+	ui->centralLayout->addWidget( mainSplitter );
 
 	if( VeyonCore::config().autoOpenComputerSelectPanel() )
 	{
@@ -258,10 +317,56 @@ void MainWindow::closeEvent( QCloseEvent* event )
 		return;
 	}
 
+	QJsonObject splitterStates;
+	for( const auto* splitter : findChildren<QSplitter *>() )
+	{
+		QJsonArray splitterSizes;
+		int i = 0;
+		int hiddenSize = 0;
+		for( auto size : splitter->sizes() )
+		{
+			auto widget = splitter->widget(i);
+			const auto originalSize = widget->property( originalSizePropertyName() ).toSize();
+			if( widget->size().isEmpty() && originalSize.isEmpty() == false )
+			{
+				size = splitter->orientation() == Qt::Horizontal ? -originalSize.width() : -originalSize.height();
+				hiddenSize += qAbs(size);
+			}
+			else
+			{
+				size -= hiddenSize;
+			}
+
+			splitterSizes.append( size );
+			++i;
+		}
+		splitterStates[splitter->objectName()] = splitterSizes;
+	}
+
+	m_master.userConfig().setSplitterStates( splitterStates );
+
 	m_master.userConfig().setWindowState( QString::fromLatin1( saveState().toBase64() ) );
 	m_master.userConfig().setWindowGeometry( QString::fromLatin1( saveGeometry().toBase64() ) );
 
 	QMainWindow::closeEvent( event );
+}
+
+
+
+bool MainWindow::eventFilter( QObject* object, QEvent* event )
+{
+	if( event->type() == QEvent::Resize )
+	{
+		const auto widget = qobject_cast<QWidget *>( object );
+		const auto resizeEvent = static_cast<QResizeEvent *>( event );
+
+		if( resizeEvent->oldSize().isEmpty() == false )
+		{
+			widget->setProperty( originalSizePropertyName(), resizeEvent->oldSize() );
+		}
+	}
+
+	return QMainWindow::eventFilter( object, event );
 }
 
 

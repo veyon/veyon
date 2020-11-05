@@ -38,7 +38,8 @@ class SpotlightPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent );
+	explicit SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget,
+							 QWidget* parent = nullptr );
 	~SpotlightPanel() override;
 
 protected:

@@ -31,8 +31,6 @@
 class QButtonGroup;
 class QToolButton;
 
-class ComputerSelectPanel;
-class ScreenshotManagementPanel;
 class VeyonMaster;
 
 namespace Ui {
@@ -61,6 +59,7 @@ public:
 
 protected:
 	void closeEvent( QCloseEvent* event ) override;
+	bool eventFilter( QObject* object, QEvent* event ) override;
 	void keyPressEvent( QKeyEvent *e ) override;
 
 
@@ -73,6 +72,11 @@ private:
 		return static_cast<int>( qHash( feature.uid() ) );
 	}
 
+	static constexpr const char* originalSizePropertyName()
+	{
+		return "originalSize";
+	}
+
 	void addFeaturesToToolBar();
 	void addSubFeaturesToToolButton( QToolButton* button, const Feature& parentFeature );
 
@@ -83,8 +87,5 @@ private:
 	VeyonMaster& m_master;
 
 	QButtonGroup* m_modeGroup;
-
-	ComputerSelectPanel* m_computerSelectPanel;
-	ScreenshotManagementPanel* m_screenshotManagementPanel;
 
 } ;
