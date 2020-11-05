@@ -38,7 +38,7 @@ class ScreenshotManagementPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit ScreenshotManagementPanel( QWidget *parent );
+	explicit ScreenshotManagementPanel( QWidget *parent = nullptr );
 	~ScreenshotManagementPanel() override;
 
 	void setPreview( const Screenshot& screenshot );
