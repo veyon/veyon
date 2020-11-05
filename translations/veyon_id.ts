@@ -81,10 +81,6 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <translation>Semua grup</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Aturan kontrol akses</translation>
     </message>
@@ -1108,10 +1104,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Computer search</source>
         <translation type="unfinished"/>
@@ -2745,6 +2737,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Locations &amp;&amp; computers</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3531,6 +3531,56 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
         <translation type="unfinished"/>
     </message>
 </context>

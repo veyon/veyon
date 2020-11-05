@@ -79,10 +79,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Alle Gruppen</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Zugriffskontrollregeln</translation>
     </message>
@@ -1105,10 +1101,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Computerverwaltung</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Computersuche</translation>
@@ -2761,6 +2753,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Locations &amp;&amp; computers</source>
         <translation>Standorte &amp;&amp; Computer</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Diashow</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Scheinwerfer</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3551,6 +3551,56 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Befehle für Shellfunktionalitäten</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Starten/pausieren</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Weiter</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Dauer:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Gewählte Computer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Gewählte Computer entfernen</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Computer in Echtzeit aktualisieren</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Scheinwerfer</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Bitte wählen Sie mindestens einen hinzuzufügenden Computer aus.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Bitte wählen Sie mindestens einen zu entfernenden Computer aus.</translation>
     </message>
 </context>
 <context>

@@ -81,10 +81,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Všechny skupiny</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>…</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Pravidla řízení přístupu</translation>
     </message>
@@ -1108,10 +1104,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Správa počítače</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Vyhledání počítače</translation>
@@ -2760,6 +2752,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Locations &amp;&amp; computers</source>
         <translation>Umístění &amp;&amp; počítače</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3550,6 +3550,56 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Příkazy pro shellové funkce</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

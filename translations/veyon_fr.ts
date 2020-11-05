@@ -81,10 +81,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Tous les groupes</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Règles du contrôle d&apos;accès</translation>
     </message>
@@ -1108,10 +1104,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Gestion ordinateur</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Recherche d&apos;ordinateur</translation>
@@ -2764,6 +2756,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Locations &amp;&amp; computers</source>
         <translation>Emplacements &amp;&amp; ordinateurs</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3554,6 +3554,56 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Commandes pour les fonctionnalités du terminal</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

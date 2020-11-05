@@ -81,10 +81,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Kõik grupid</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Juurdepääsu reeglid</translation>
     </message>
@@ -1109,10 +1105,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation>Arvuti haldus</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>Arvuti otsing</translation>
     </message>
@@ -1309,51 +1301,51 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Jagage oma ekraani või lubage kasutajal oma ekraani teiste kasutajatega jagada.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Täisekraaniga demo</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Jagage oma ekraani täisekraanirežiimis</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse teie ekraani täisekraanirežiimis kõikides arvutites, kui kasutajate sisendseadmed on lukus.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Jagage oma ekraani aknas</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Jagage valitud kasutaja ekraani täisekraanirežiimis</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse valitud kasutaja ekraan täisekraani režiimis kõigis arvutites, kui kasutajate sisendseadmed on lukus.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Jaga valitud kasutaja ekraani aknas</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse valitud arvuti ekraan kõigi arvutite aknas. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Valige jagamiseks kasutajaekraan.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Valige jagamiseks ainult üks kasutajaekraan.</translation>
     </message>
 </context>
 <context>
@@ -2764,6 +2756,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Locations &amp;&amp; computers</source>
         <translation>Asukohad &amp;&amp; arvutid</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3554,6 +3554,56 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Käsud kestade funktsionaalsuste jaoks</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

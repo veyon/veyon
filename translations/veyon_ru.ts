@@ -81,10 +81,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Все группы</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Правила контроля доступа</translation>
     </message>
@@ -1108,10 +1104,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation> Управление компьютером</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Компьютерный поиск</translation>
@@ -2764,6 +2756,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp;&amp; computers</source>
         <translation>Места &amp;&amp; компьютеры</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3554,6 +3554,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Команды для возможностей оболочки</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

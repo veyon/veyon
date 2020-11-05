@@ -81,10 +81,6 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
         <translation>Wszystkie grupy</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Reguły dostępu</translation>
     </message>
@@ -1108,10 +1104,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Zarządzanie komputerem</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Znajdź komputer</translation>
@@ -2759,6 +2751,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Locations &amp;&amp; computers</source>
         <translation>Lokalizacje i komputery</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3549,6 +3549,56 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Komendy dotyczące  funkcjonalności powłoki</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

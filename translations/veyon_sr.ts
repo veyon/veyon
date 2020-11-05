@@ -81,10 +81,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Sve grupe</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Pravila kotrole pristupa</translation>
     </message>
@@ -1108,10 +1104,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Upravljanje računarom</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Pretraživanje računara</translation>
@@ -2764,6 +2756,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Locations &amp;&amp; computers</source>
         <translation>Lokacije i računari</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3554,6 +3554,56 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Komande za funkcije ljuske - shell</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

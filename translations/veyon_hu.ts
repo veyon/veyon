@@ -81,10 +81,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Összes csoport</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Hozzáférési szabályok</translation>
     </message>
@@ -1108,10 +1104,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Számítógép-kezelés</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Számítógép keresése</translation>
@@ -2764,6 +2756,14 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Locations &amp;&amp; computers</source>
         <translation>Helyszínek &amp;&amp; számítógépek</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3551,6 +3551,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Parancsok héjfunkciókhoz</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

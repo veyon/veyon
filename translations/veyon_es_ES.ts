@@ -83,10 +83,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Todos los grupos</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Reglas de control de acceso</translation>
     </message>
@@ -1110,10 +1106,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Gestión de equipo</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Búsqueda de equipos</translation>
@@ -2766,6 +2758,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Locations &amp;&amp; computers</source>
         <translation>Ubicaciones &amp;&amp; equipos</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3556,6 +3556,56 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Comandos para funcionalidades de shell</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

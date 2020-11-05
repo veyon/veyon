@@ -80,10 +80,6 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
         <translation>Visos grupės</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Prieigos valdymas</translation>
     </message>
@@ -1107,10 +1103,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Kompiuterio valdymas</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Kompiuterio paieška</translation>
@@ -2745,6 +2737,14 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Locations &amp;&amp; computers</source>
         <translation>Vietos bei kompiuteriai</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3532,6 +3532,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Shell funkcijų komandos</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

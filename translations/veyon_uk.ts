@@ -81,10 +81,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Всі групи</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Правила керування доступом</translation>
     </message>
@@ -1105,10 +1101,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>Керування комп&apos;ютерами</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>Пошук комп’ютера</translation>
@@ -2763,6 +2755,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp;&amp; computers</source>
         <translation>Місця &amp;&amp; комп&apos;ютери</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Показ слайдів</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Акцент</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3553,6 +3553,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Команди для можливостей оболонки</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Назад</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Старт/Пауза</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Далі</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Тривалість:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Додати позначені комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Вилучити позначені комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
+        <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки.</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Оновлювати комп&apos;ютери у реальному часу</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Акцент</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Будь ласка, позначте принаймні один комп&apos;ютер для додавання.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Будь ласка, позначте принаймні один комп&apos;ютер для вилучення.</translation>
     </message>
 </context>
 <context>
