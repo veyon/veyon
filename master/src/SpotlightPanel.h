@@ -49,6 +49,7 @@ private:
 	void add();
 	void remove();
 	void setRealtimeView( bool enabled );
+	void updateIconSize();
 
 	void addPressedItem( const QModelIndex& index );
 	void removePressedItem( const QModelIndex& index );

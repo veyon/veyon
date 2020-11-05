@@ -57,6 +57,13 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 	connect( m_computerMonitoringWidget->listView(), &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
 	connect( ui->monitoringWidget->listView(), &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
 
+	connect( m_model, &QAbstractItemModel::rowsRemoved, this, [=]() {
+		if( m_model->rowCount() <= 0 )
+		{
+			ui->stackedWidget->setCurrentWidget( ui->helpPage );
+		}
+	} );
+
 	setRealtimeView( m_config.spotlightRealtime() );
 }
 
@@ -71,12 +78,7 @@ SpotlightPanel::~SpotlightPanel()
 
 void SpotlightPanel::resizeEvent( QResizeEvent* event )
 {
-	const auto w = ui->monitoringWidget->listView()->width() - 40;
-	const auto h = ui->monitoringWidget->listView()->height() - 40;
-
-	ui->monitoringWidget->listView()->setIconSize( { qMin(w, h * 16 / 9),
-							 qMin(h, w * 9 / 16) } );
-	m_model->setIconSize( ui->monitoringWidget->listView()->iconSize() );
+	updateIconSize();
 
 	QWidget::resizeEvent( event );
 }
@@ -97,6 +99,14 @@ void SpotlightPanel::add()
 	for( const auto& controlInterface : selectedComputerControlInterfaces )
 	{
 		m_model->add( controlInterface );
+	}
+
+	if( ui->stackedWidget->currentWidget() != ui->viewPage )
+	{
+		ui->stackedWidget->setCurrentWidget( ui->viewPage );
+
+		// due to a bug in QListView force relayout of all items to show decorations (thumbnails) properly
+		updateIconSize();
 	}
 }
 
@@ -128,6 +138,18 @@ void SpotlightPanel::setRealtimeView( bool enabled )
 	m_config.setSpotlightRealtime( enabled );
 
 	ui->realtimeViewButton->setChecked( enabled );
+}
+
+
+
+void SpotlightPanel::updateIconSize()
+{
+	const auto w = ui->monitoringWidget->listView()->width() - 40;
+	const auto h = ui->monitoringWidget->listView()->height() - 40;
+
+	ui->monitoringWidget->listView()->setIconSize( { qMin(w, h * 16 / 9),
+													 qMin(h, w * 9 / 16) } );
+	m_model->setIconSize( ui->monitoringWidget->listView()->iconSize() );
 }
 
 
