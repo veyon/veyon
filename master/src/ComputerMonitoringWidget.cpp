@@ -61,7 +61,7 @@ ComputerMonitoringWidget::~ComputerMonitoringWidget()
 {
 	if( m_master )
 	{
-		m_master->userConfig().setFilterPoweredOnComputers( listModel().stateFilter() != ComputerControlInterface::State::None );
+		m_master->userConfig().setFilterPoweredOnComputers( dataModel().stateFilter() != ComputerControlInterface::State::None );
 		m_master->userConfig().setComputerPositions( ui->listView->savePositions() );
 		m_master->userConfig().setUseCustomComputerPositions( ui->listView->flexible() );
 	}
@@ -86,7 +86,7 @@ void ComputerMonitoringWidget::setVeyonMaster( VeyonMaster& masterCore )
 	ui->listView->setPalette( palette );
 
 	// attach proxy model to view
-	ui->listView->setModel( &listModel() );
+	ui->listView->setModel( &dataModel() );
 
 	// load custom positions
 	ui->listView->loadPositions( m_master->userConfig().computerPositions() );
@@ -104,7 +104,7 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 	for( const auto& index : selectedIndices )
 	{
-		computerControlInterfaces.append( listModel().data( index, ComputerControlListModel::ControlInterfaceRole )
+		computerControlInterfaces.append( dataModel().data( index, ComputerControlListModel::ControlInterfaceRole )
 											  .value<ComputerControlInterface::Pointer>() );
 	}
 
@@ -115,14 +115,14 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 void ComputerMonitoringWidget::setSearchFilter( const QString& searchFilter )
 {
-	listModel().setFilterRegExp( searchFilter );
+	dataModel().setFilterRegExp( searchFilter );
 }
 
 
 
 void ComputerMonitoringWidget::setFilterPoweredOnComputers( bool enabled )
 {
-	listModel().setStateFilter( enabled ? ComputerControlInterface::State::Connected : ComputerControlInterface::State::None );
+	dataModel().setStateFilter( enabled ? ComputerControlInterface::State::Connected : ComputerControlInterface::State::None );
 }
 
 
@@ -248,7 +248,7 @@ void ComputerMonitoringWidget::runFeature( const Feature& feature )
 
 
 
-ComputerSortFilterProxyModel& ComputerMonitoringWidget::listModel()
+ComputerSortFilterProxyModel& ComputerMonitoringWidget::dataModel()
 {
 	return m_master->computerSortFilterProxyModel();
 }

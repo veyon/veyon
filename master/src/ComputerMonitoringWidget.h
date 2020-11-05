@@ -52,6 +52,8 @@ public:
 
 	void setVeyonMaster( VeyonMaster& masterCore );
 
+	ComputerSortFilterProxyModel& dataModel();
+
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
 	void setSearchFilter( const QString& searchFilter );
@@ -71,8 +73,6 @@ public:
 private:
 	void runDoubleClickFeature( const QModelIndex& index );
 	void runFeature( const Feature& feature );
-
-	ComputerSortFilterProxyModel& listModel();
 
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
