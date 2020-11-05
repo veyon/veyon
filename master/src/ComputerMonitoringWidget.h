@@ -28,6 +28,7 @@
 
 #include <QWidget>
 
+class QListView;
 class QMenu;
 
 namespace Ui {
@@ -53,6 +54,8 @@ public:
 	void setVeyonMaster( VeyonMaster& masterCore );
 
 	ComputerSortFilterProxyModel& dataModel();
+
+	QListView* listView() const;
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 

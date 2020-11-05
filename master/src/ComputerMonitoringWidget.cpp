@@ -255,6 +255,13 @@ ComputerSortFilterProxyModel& ComputerMonitoringWidget::dataModel()
 
 
 
+QListView* ComputerMonitoringWidget::listView() const
+{
+	return ui->listView;
+}
+
+
+
 void ComputerMonitoringWidget::showEvent( QShowEvent* event )
 {
 	if( event->spontaneous() == false &&
