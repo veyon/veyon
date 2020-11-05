@@ -46,8 +46,8 @@
          <string>Previous</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources/master.qrc">
-          <normaloff>:/master/go-previous.png</normaloff>:/master/go-previous.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/go-previous.png</normaloff>:/core/go-previous.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -87,8 +87,8 @@
          <string>Next</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources/master.qrc">
-          <normaloff>:/master/go-next.png</normaloff>:/master/go-next.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/go-next.png</normaloff>:/core/go-next.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -161,6 +161,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../../core/resources/core.qrc"/>
   <include location="../resources/master.qrc"/>
  </resources>
  <connections/>

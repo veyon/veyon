@@ -44,7 +44,7 @@ Drawer {
 			onClicked: drawerMenu.model.rootIndex = drawerMenu.model.parentModelIndex()
 			Image {
 				anchors.left: parent.left
-				source: "qrc:/master/go-previous.png"
+				source: "qrc:/core/go-previous.png"
 				width: height
 				height: parent.implicitHeight*0.8
 				anchors.verticalCenter: parent.verticalCenter
@@ -82,7 +82,7 @@ Drawer {
 						Image {
 							anchors.right: parent.right
 							anchors.verticalCenter: parent.verticalCenter
-							source: "qrc:/master/go-next.png"
+							source: "qrc:/core/go-next.png"
 							width: height
 							height: parent.implicitHeight*0.8
 						}
