@@ -51,7 +51,7 @@ public:
 	explicit ComputerMonitoringWidget( QWidget *parent = nullptr );
 	~ComputerMonitoringWidget() override;
 
-	void setVeyonMaster( VeyonMaster& masterCore );
+	void loadSettings();
 
 	ComputerSortFilterProxyModel& dataModel();
 

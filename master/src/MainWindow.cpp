@@ -65,7 +65,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	restoreState( QByteArray::fromBase64( m_master.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_master.userConfig().windowGeometry().toUtf8() ) );
 
-	ui->computerMonitoringWidget->setVeyonMaster( m_master );
+	ui->computerMonitoringWidget->loadSettings();
 
 	// add widgets to status bar
 	ui->statusBar->addWidget( ui->panelButtons );

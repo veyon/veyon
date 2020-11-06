@@ -41,9 +41,11 @@
 ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerMonitoringWidget),
-	m_master( nullptr ),
+	m_master( VeyonCore::instance()->findChild<VeyonMaster *>() ),
 	m_featureMenu( new QMenu( this ) )
 {
+	Q_ASSERT(m_master != nullptr);
+
 	ui->setupUi( this );
 
 	ui->listView->setUidRole( ComputerControlListModel::UidRole );
@@ -71,15 +73,8 @@ ComputerMonitoringWidget::~ComputerMonitoringWidget()
 
 
 
-void ComputerMonitoringWidget::setVeyonMaster( VeyonMaster& masterCore )
+void ComputerMonitoringWidget::loadSettings()
 {
-	if( m_master )
-	{
-		return;
-	}
-
-	m_master = &masterCore;
-
 	auto palette = ui->listView->palette();
 	palette.setColor( QPalette::Base, VeyonCore::config().computerMonitoringBackgroundColor() );
 	palette.setColor( QPalette::Text, VeyonCore::config().computerMonitoringTextColor() );
