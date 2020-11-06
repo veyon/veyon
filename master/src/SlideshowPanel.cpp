@@ -72,11 +72,16 @@ SlideshowPanel::~SlideshowPanel()
 
 void SlideshowPanel::resizeEvent( QResizeEvent* event )
 {
-	const auto w = ui->monitoringWidget->listView()->width() - 40;
-	const auto h = ui->monitoringWidget->listView()->height() - 40;
+	static constexpr auto ExtraMargin = 10;
+
+	const auto spacing = ui->monitoringWidget->listView()->spacing();
+	const auto labelHeight = ui->monitoringWidget->listView()->fontMetrics().height();
+
+	const auto w = ui->monitoringWidget->listView()->width() - ExtraMargin - spacing * 2;
+	const auto h = ui->monitoringWidget->listView()->height() - ExtraMargin - labelHeight - spacing * 2;
 
 	ui->monitoringWidget->listView()->setIconSize( { qMin(w, h * 16 / 9),
-							 qMin(h, w * 9 / 16) } );
+													 qMin(h, w * 9 / 16) } );
 
 	QWidget::resizeEvent( event );
 }
