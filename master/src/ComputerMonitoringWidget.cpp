@@ -94,12 +94,13 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 {
 	ComputerControlInterfaceList computerControlInterfaces;
 
+	const auto model = ui->listView->model();
 	const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
 	computerControlInterfaces.reserve( selectedIndices.size() );
 
 	for( const auto& index : selectedIndices )
 	{
-		computerControlInterfaces.append( dataModel().data( index, ComputerControlListModel::ControlInterfaceRole )
+		computerControlInterfaces.append( model->data( index, ComputerControlListModel::ControlInterfaceRole )
 											  .value<ComputerControlInterface::Pointer>() );
 	}
 
