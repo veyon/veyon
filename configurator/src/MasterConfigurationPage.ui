@@ -82,43 +82,10 @@
           <string>User interface</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Text color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Computer thumbnail caption</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QComboBox" name="computerMonitoringSortOrder">
-            <item>
-             <property name="text">
-              <string>Computer and user name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Only user name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Only computer name</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
-          </item>
           <item row="4" column="1">
+           <widget class="QPushButton" name="computerMonitoringTextColor"/>
+          </item>
+          <item row="5" column="1">
            <widget class="QComboBox" name="computerDisplayRoleContent">
             <item>
              <property name="text">
@@ -137,43 +104,38 @@
             </item>
            </widget>
           </item>
+          <item row="9" column="1">
+           <widget class="QSpinBox" name="computerMonitoringThumbnailSpacing">
+            <property name="suffix">
+             <string> px</string>
+            </property>
+            <property name="prefix">
+             <string/>
+            </property>
+            <property name="minimum">
+             <number>2</number>
+            </property>
+            <property name="maximum">
+             <number>50</number>
+            </property>
+            <property name="value">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Computer thumbnail caption</string>
+            </property>
+           </widget>
+          </item>
           <item row="7" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Thumbnail spacing</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="modernUserInterface">
-            <property name="text">
-             <string>Use modern user interface (experimental)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Background color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Thumbnail update interval</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
            <widget class="QLabel" name="label_10">
             <property name="text">
              <string>Sort order</string>
             </property>
            </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QPushButton" name="computerMonitoringTextColor"/>
           </item>
           <item row="1" column="1">
            <widget class="QSpinBox" name="computerMonitoringUpdateInterval">
@@ -194,23 +156,97 @@
             </property>
            </widget>
           </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Background color</string>
+            </property>
+           </widget>
+          </item>
           <item row="7" column="1">
-           <widget class="QSpinBox" name="computerMonitoringThumbnailSpacing">
-            <property name="suffix">
-             <string> px</string>
+           <widget class="QComboBox" name="computerMonitoringSortOrder">
+            <item>
+             <property name="text">
+              <string>Computer and user name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only user name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only computer name</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Thumbnail spacing</string>
             </property>
-            <property name="prefix">
-             <string/>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Thumbnail update interval</string>
             </property>
-            <property name="minimum">
-             <number>2</number>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Text color</string>
             </property>
-            <property name="maximum">
-             <number>50</number>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="modernUserInterface">
+            <property name="text">
+             <string>Use modern user interface (experimental)</string>
             </property>
-            <property name="value">
-             <number>16</number>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Thumbnail aspect ratio</string>
             </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="computerMonitoringAspectRatio">
+            <item>
+             <property name="text">
+              <string>Auto</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">16:9</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">16:10</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">3:2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">4:3</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -423,7 +459,7 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="../resources/configurator.qrc">
+              <iconset>
                <normaloff>:/configurator/go-next.png</normaloff>:/configurator/go-next.png</iconset>
              </property>
             </widget>
@@ -434,7 +470,7 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="../resources/configurator.qrc">
+              <iconset>
                <normaloff>:/configurator/go-previous.png</normaloff>:/configurator/go-previous.png</iconset>
              </property>
             </widget>
@@ -473,6 +509,7 @@
   <tabstop>openScreenshotDirectory</tabstop>
   <tabstop>modernUserInterface</tabstop>
   <tabstop>computerMonitoringUpdateInterval</tabstop>
+  <tabstop>computerMonitoringAspectRatio</tabstop>
   <tabstop>computerMonitoringBackgroundColor</tabstop>
   <tabstop>computerMonitoringTextColor</tabstop>
   <tabstop>computerDisplayRoleContent</tabstop>
@@ -497,7 +534,6 @@
   <tabstop>disabledFeaturesListWidget</tabstop>
  </tabstops>
  <resources>
-  <include location="../resources/configurator.qrc"/>
   <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
