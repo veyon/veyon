@@ -29,7 +29,8 @@
 ComputerListModel::ComputerListModel( QObject* parent ) :
 	QAbstractListModel( parent ),
 	m_displayRoleContent( VeyonCore::config().computerDisplayRoleContent() ),
-	m_sortOrder( VeyonCore::config().computerMonitoringSortOrder() )
+	m_sortOrder( VeyonCore::config().computerMonitoringSortOrder() ),
+	m_aspectRatio( VeyonCore::config().computerMonitoringAspectRatio() )
 {
 }
 

@@ -55,6 +55,15 @@ public:
 	};
 	Q_ENUM(SortOrder)
 
+	enum class AspectRatio {
+		Auto,
+		AR16_9,
+		AR16_10,
+		AR3_2,
+		AR4_3
+	};
+	Q_ENUM(AspectRatio)
+
 	explicit ComputerListModel( QObject* parent = nullptr );
 
 	Qt::ItemFlags flags( const QModelIndex& index ) const override;
@@ -72,8 +81,14 @@ public:
 		return m_sortOrder;
 	}
 
+	AspectRatio aspectRatio() const
+	{
+		return m_aspectRatio;
+	}
+
 private:
 	DisplayRoleContent m_displayRoleContent;
 	SortOrder m_sortOrder;
+	AspectRatio m_aspectRatio;
 
 };
