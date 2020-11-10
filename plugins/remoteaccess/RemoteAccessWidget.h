@@ -96,7 +96,6 @@ public:
 	void toggleViewOnly( bool viewOnly );
 	void takeScreenshot();
 
-
 protected:
 	bool eventFilter( QObject* object, QEvent* event ) override;
 	void enterEvent( QEvent* event ) override;
@@ -105,6 +104,7 @@ protected:
 
 private:
 	void updateSize();
+	void updateRemoteAccessTitle();
 
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncViewWidget* m_vncView;
