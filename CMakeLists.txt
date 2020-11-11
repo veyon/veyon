@@ -155,10 +155,6 @@ find_package(Qt5QuickControls2 REQUIRED)
 if(VEYON_BUILD_ANDROID)
 find_package(Qt5AndroidExtras REQUIRED)
 endif()
-if(VEYON_DEBUG)
-find_package(Qt5Test REQUIRED)
-set(VEYON_DEBUG_LIBRARIES Qt5::Test)
-endif()
 
 # find required libraries
 find_package(QCA REQUIRED)
@@ -203,6 +199,7 @@ endif()
 option(WITH_LTO "Build with link-time optimization" ON)
 option(WITH_PCH "Reduce compile time by using precompiled headers" ON)
 option(WITH_SANITIZERS "Build with thread and UB sanitizers" OFF)
+option(WITH_MODEL_TESTERS "Build with model testers (turn on for debugging only)" OFF)
 
 if(WITH_SANITIZERS)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
@@ -224,6 +221,11 @@ endif()
 
 if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
 set(WITH_LTO OFF)
+endif()
+
+if(WITH_MODEL_TESTERS)
+find_package(Qt5Test REQUIRED)
+set(VEYON_DEBUG_LIBRARIES Qt5::Test)
 endif()
 
 add_definitions(
