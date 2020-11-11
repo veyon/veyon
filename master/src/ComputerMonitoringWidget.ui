@@ -53,7 +53,7 @@
       <bool>true</bool>
      </property>
      <property name="resizeMode">
-      <enum>QListView::Adjust</enum>
+      <enum>QListView::Fixed</enum>
      </property>
      <property name="spacing">
       <number>16</number>
