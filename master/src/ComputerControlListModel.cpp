@@ -54,6 +54,8 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	connect( &m_master->computerManager(), &ComputerManager::computerSelectionChanged,
 			 this, &ComputerControlListModel::update );
 
+	updateComputerScreenSize();
+
 	reload();
 }
 
@@ -122,11 +124,24 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 void ComputerControlListModel::updateComputerScreenSize()
 {
-	const auto size = computerScreenSize();
+	auto ratio = 1.0;
+
+	switch( aspectRatio() )
+	{
+	case AspectRatio::Auto: ratio = averageAspectRatio(); break;
+	case AspectRatio::AR16_9: ratio = 16.0 / 9.0; break;
+	case AspectRatio::AR16_10: ratio = 16.0 / 10.0; break;
+	case AspectRatio::AR3_2: ratio = 3.0 / 2.0; break;
+	case AspectRatio::AR4_3: ratio = 4.0 / 3.0; break;
+
+	}
+
+	m_computerScreenSize = { m_master->userConfig().monitoringScreenSize(),
+							 int(m_master->userConfig().monitoringScreenSize() / ratio) };
 
 	for( auto& controlInterface : m_computerControlInterfaces )
 	{
-		controlInterface->setScaledScreenSize( size );
+		controlInterface->setScaledScreenSize( m_computerScreenSize );
 	}
 }
 
@@ -297,10 +312,20 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 
 
 
-QSize ComputerControlListModel::computerScreenSize() const
+double ComputerControlListModel::averageAspectRatio() const
 {
-	return { m_master->userConfig().monitoringScreenSize(),
-				m_master->userConfig().monitoringScreenSize() * 9 / 16 };
+	QSize size{ 16, 9 };
+
+	for( const auto& controlInterface : m_computerControlInterfaces )
+	{
+		const auto currentSize = controlInterface->screen().size();
+		if( currentSize.isValid() )
+		{
+			size += currentSize;
+		}
+	}
+
+	return double(size.width()) / double(size.height());
 }
 
 
