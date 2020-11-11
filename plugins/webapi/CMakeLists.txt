@@ -1,4 +1,6 @@
-if(Qt5Core_VERSION VERSION_GREATER 5.12.0 AND TARGET Qt5::CorePrivate AND TARGET Qt5::NetworkPrivate)
+find_package(Qt5HttpServer)
+
+if(Qt5HttpServer_DIR OR (Qt5Core_VERSION VERSION_GREATER 5.12.0 AND TARGET Qt5::CorePrivate AND TARGET Qt5::NetworkPrivate))
 
 include(BuildVeyonPlugin)
 
@@ -20,12 +22,16 @@ build_veyon_plugin(webapi
 	webapi.qrc
 	)
 
-add_subdirectory(qthttpserver)
+if(Qt5HttpServer_DIR)
+	target_link_libraries(webapi Qt5::HttpServer)
+else()
+	add_subdirectory(qthttpserver)
 
-target_link_libraries(webapi qthttpserver)
+	target_link_libraries(webapi qthttpserver)
+endif()
 
 else()
 
-message(WARNING "Qt >= 5.12 or private headers not found - omitting WebAPI plugin from build")
+message(WARNING "Neither Qt5HttpServer nor Qt >= 5.12 with private headers found - omitting WebAPI plugin from build")
 
 endif()
