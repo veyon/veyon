@@ -85,7 +85,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Add computers by clicking with the middle mouse button or using the first button.</string>
+          <string>Add computers by clicking with the middle mouse button or clicking the first button below.</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
