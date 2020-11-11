@@ -52,7 +52,7 @@ CryptoCore::~CryptoCore()
 
 QByteArray CryptoCore::generateChallenge()
 {
-	BIGNUM * challengeBigNum = BN_new();
+	const auto challengeBigNum = BN_new();
 
 	if( challengeBigNum == nullptr )
 	{
