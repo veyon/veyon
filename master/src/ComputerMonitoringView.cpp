@@ -123,7 +123,7 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 		m_master->computerControlListModel().updateComputerScreenSize();
 
-		setIconSize( QSize( size, size * 9 / 16 ) );
+		setIconSize( m_master->computerControlListModel().computerScreenSize() );
 	}
 }
 
