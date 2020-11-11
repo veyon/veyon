@@ -147,10 +147,6 @@ FIND_PACKAGE(Qt5Gui REQUIRED)
 FIND_PACKAGE(Qt5Widgets REQUIRED)
 FIND_PACKAGE(Qt5Network REQUIRED)
 FIND_PACKAGE(Qt5LinguistTools REQUIRED)
-IF(VEYON_DEBUG)
-FIND_PACKAGE(Qt5Test REQUIRED)
-SET(VEYON_DEBUG_LIBRARIES Qt5::Test)
-ENDIF()
 
 # find required libraries
 find_package(QCA REQUIRED)
@@ -190,6 +186,12 @@ else()
 	find_package(LZO REQUIRED)
 	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 	find_package(Threads REQUIRED)
+endif()
+
+option(WITH_MODEL_TESTERS "Build with model testers (turn on for debugging only)" OFF)
+if(WITH_MODEL_TESTERS)
+find_package(Qt5Test REQUIRED)
+set(VEYON_DEBUG_LIBRARIES Qt5::Test)
 endif()
 
 IF(SANITIZE)
