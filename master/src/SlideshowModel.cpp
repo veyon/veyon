@@ -131,8 +131,9 @@ void SlideshowModel::showNext()
 
 bool SlideshowModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
-	return m_currentControlInterface == sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-															 ComputerControlListModel::ControlInterfaceRole )
+	return sourceRow < sourceModel()->rowCount() &&
+		   m_currentControlInterface == sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+															 ComputerListModel::ControlInterfaceRole )
 											.value<ComputerControlInterface::Pointer>();
 }
 
