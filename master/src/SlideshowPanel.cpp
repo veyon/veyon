@@ -75,11 +75,8 @@ void SlideshowPanel::resizeEvent( QResizeEvent* event )
 	const auto spacing = ui->list->spacing();
 	const auto labelHeight = ui->list->fontMetrics().height();
 
-	const auto w = ui->list->width() - ExtraMargin - spacing * 2;
-	const auto h = ui->list->height() - ExtraMargin - labelHeight - spacing * 2;
-
-	ui->list->setIconSize( { qMin(w, h * 16 / 9),
-							 qMin(h, w * 9 / 16) } );
+	ui->list->setIconSize( { ui->list->width() - ExtraMargin - spacing * 2,
+							 ui->list->height() - ExtraMargin - labelHeight - spacing * 2 } );
 
 	QWidget::resizeEvent( event );
 }
