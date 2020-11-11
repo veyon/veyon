@@ -54,6 +54,11 @@ public:
 
 	void updateComputerScreenSize();
 
+	QSize computerScreenSize() const
+	{
+		return m_computerScreenSize;
+	}
+
 	const ComputerControlInterfaceList& computerControlInterfaces() const
 	{
 		return m_computerControlInterfaces;
@@ -80,7 +85,7 @@ private:
 	void startComputerControlInterface( ComputerControlInterface* controlInterface );
 	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );
 
-	QSize computerScreenSize() const;
+	double averageAspectRatio() const;
 
 	void loadIcons();
 	QImage prepareIcon( const QImage& icon );
@@ -98,6 +103,8 @@ private:
 	QImage m_iconDefault{};
 	QImage m_iconConnectionProblem{};
 	QImage m_iconDemoMode{};
+
+	QSize m_computerScreenSize{};
 
 	ComputerControlInterfaceList m_computerControlInterfaces{};
 
