@@ -132,7 +132,7 @@ void ComputerMonitoringWidget::setComputerScreenSize( int size )
 
 		m_master->computerControlListModel().updateComputerScreenSize();
 
-		ui->listView->setIconSize( QSize( size, size * 9 / 16 ) );
+		ui->listView->setIconSize( m_master->computerControlListModel().computerScreenSize() );
 	}
 }
 
