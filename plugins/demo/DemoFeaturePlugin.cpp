@@ -364,9 +364,10 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 				const auto demoServerHost = message.argument( Argument::DemoServerHost ).toString();
 				const auto demoServerPort = message.argument( Argument::DemoServerPort ).toInt();
 				const auto isFullscreenDemo = message.featureUid() == m_demoClientFullScreenFeature.uid();
+				const auto viewport = message.argument( Argument::Viewport ).toRect();
 
 				vDebug() << "connecting with master" << demoServerHost;
-				m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo );
+				m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo, viewport );
 			}
 			return true;
 
@@ -440,6 +441,13 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 		const auto demoServerPort = arguments.value( argToString(Argument::DemoServerPort),
 													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
 
+		QRect viewport{
+			arguments.value( argToString(Argument::ViewportX) ).toInt(),
+			arguments.value( argToString(Argument::ViewportY) ).toInt(),
+			arguments.value( argToString(Argument::ViewportWidth) ).toInt(),
+			arguments.value( argToString(Argument::ViewportHeight) ).toInt()
+		};
+
 		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
 
 		for( const auto& computerControlInterface : computerControlInterfaces )
@@ -454,7 +462,8 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 		sendFeatureMessage( FeatureMessage{ featureUid, StartDemoClient }
 								.addArgument( Argument::DemoAccessToken, demoAccessToken )
 								.addArgument( Argument::DemoServerHost, demoServerHost )
-								.addArgument( Argument::DemoServerPort, demoServerPort ),
+								.addArgument( Argument::DemoServerPort, demoServerPort )
+								.addArgument( Argument::Viewport, viewport ),
 							computerControlInterfaces );
 
 		return true;
