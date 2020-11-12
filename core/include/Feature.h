@@ -44,6 +44,8 @@ public:
 		Action = 0x0002,
 		Session = 0x0004,
 		Internal = 0x0008,
+		Option = 0x0010,
+		Checked = 0x0020,
 		Master = 0x0100,
 		Service = 0x0200,
 		Worker = 0x0400,
