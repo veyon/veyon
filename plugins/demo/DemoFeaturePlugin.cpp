@@ -22,8 +22,8 @@
  *
  */
 
-#include <QCoreApplication>
 #include <QMessageBox>
+#include <QScreen>
 
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
@@ -98,7 +98,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 m_demoFeature.uid(),
 						 {}, {}, {} ),
-	m_features( {
+	m_staticFeatures( {
 		m_demoFeature, m_demoServerFeature,
 		m_demoClientFullScreenFeature, m_demoClientWindowFeature,
 		m_shareOwnScreenFullScreenFeature, m_shareOwnScreenWindowFeature,
@@ -106,6 +106,10 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	} ),
 	m_configuration( &VeyonCore::config() )
 {
+	connect( qGuiApp, &QGuiApplication::screenAdded, this, &DemoFeaturePlugin::addScreen );
+	connect( qGuiApp, &QGuiApplication::screenRemoved, this, &DemoFeaturePlugin::removeScreen );
+
+	updateFeatures();
 }
 
 
@@ -202,6 +206,14 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 						{ master.localSessionControlInterface().weakPointer() } );
 
 		return true;
+	}
+
+	const auto screenIndex = m_screenSelectionFeatures.indexOf( feature );
+	if( screenIndex >= 0 )
+	{
+		m_screenSelection = screenIndex;
+
+		updateFeatures();
 	}
 
 	return false;
@@ -393,6 +405,116 @@ ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
 
 
 
+void DemoFeaturePlugin::addScreen( QScreen* screen )
+{
+	m_screens = QGuiApplication::screens();
+
+	const auto screenIndex = m_screens.indexOf( screen ) + 1;
+	if( m_screenSelection > ScreenSelectionNone &&
+		screenIndex <= m_screenSelection )
+	{
+		m_screenSelection++;
+	}
+
+	updateFeatures();
+}
+
+
+
+void DemoFeaturePlugin::removeScreen( QScreen* screen )
+{
+	const auto screenIndex = m_screens.indexOf( screen ) + 1;
+	if( screenIndex == m_screenSelection )
+	{
+		m_screenSelection = ScreenSelectionNone;
+	}
+
+	m_screens = QGuiApplication::screens();
+
+	m_screenSelection = qMin( m_screenSelection, m_screens.size() );
+
+	updateFeatures();
+}
+
+
+
+void DemoFeaturePlugin::updateFeatures()
+{
+	m_screenSelectionFeatures.clear();
+
+	if( m_screens.size() > 1 )
+	{
+		m_screenSelectionFeatures.reserve( m_screens.size() + 1 );
+
+		auto allScreensFlags = Feature::Option | Feature::Master;
+		if( m_screenSelection <= ScreenSelectionNone )
+		{
+			allScreensFlags |= Feature::Checked;
+		}
+
+		m_screenSelectionFeatures.append( Feature{ QStringLiteral("DemoAllScreens"),
+												   allScreensFlags,
+												   Feature::Uid("2aca1e9f-25f9-4d0f-9729-01b03c80ab28"),
+												   m_demoFeature.uid(), tr("All screens"), {}, {}, {} } );
+
+		int index = 1;
+		for( auto screen : qAsConst(m_screens) )
+		{
+			const auto name = QStringLiteral( "DemoScreen%1" ).arg( index );
+
+			auto displayName = tr( "Screen %1 [%2]" ).arg( index ).arg( screen->name() );
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
+			if( screen->manufacturer().isEmpty() == false &&
+				screen->model().isEmpty() == false )
+			{
+				displayName += QStringLiteral(" – %1 %2").arg( screen->manufacturer(), screen->model() );
+			}
+#endif
+
+			auto flags = Feature::Option | Feature::Master;
+			if( index == m_screenSelection )
+			{
+				flags |= Feature::Checked;
+			}
+
+			m_screenSelectionFeatures.append( Feature{ name, flags,
+													   Feature::Uid::createUuidV5( m_demoFeature.uid(), name ),
+													   m_demoFeature.uid(), displayName, {}, {}, {} } );
+			++index;
+		}
+	}
+
+	m_features = m_staticFeatures + m_screenSelectionFeatures;
+
+	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	if( master )
+	{
+		master->reloadSubFeatures();
+	}
+}
+
+
+
+
+QRect DemoFeaturePlugin::viewportFromScreenSelection() const
+{
+	if( m_screenSelection <= ScreenSelectionNone )
+	{
+		return {};
+	}
+
+	const auto screen = m_screens.value( m_screenSelection - 1 );
+	if( screen )
+	{
+		return screen->geometry();
+	}
+
+	return {};
+}
+
+
+
 bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMap& arguments,
 										  const ComputerControlInterfaceList& computerControlInterfaces )
 {
@@ -444,6 +566,11 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 			arguments.value( argToString(Argument::ViewportWidth) ).toInt(),
 			arguments.value( argToString(Argument::ViewportHeight) ).toInt()
 		};
+
+		if( viewport.isNull() || viewport.isEmpty() )
+		{
+			viewport = viewportFromScreenSelection();
+		}
 
 		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
 
