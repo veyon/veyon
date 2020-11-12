@@ -466,13 +466,22 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 				m_master.runFeature( subFeature );
 				if( parentFeatureIsMode )
 				{
-					button->setChecked( true );
+					if( subFeature.testFlag( Feature::Option ) == false )
+					{
+						button->setChecked( true );
+					}
 					reloadSubFeatures();
 				}
 			},
 			subFeature.shortcut() );
 		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
+
+		if( subFeature.testFlag( Feature::Option ) )
+		{
+			action->setCheckable( true );
+			action->setChecked( subFeature.testFlag( Feature::Checked ) );
+		}
 	}
 
 	button->setMenu( menu );
