@@ -384,7 +384,7 @@ void RemoteAccessWidget::updateRemoteAccessTitle()
 														   VeyonCore::applicationName() ) );
 	} else
 	{
-		setWindowTitle( tr( "%1 - %2 - %3 - Remote Access" ).arg( m_computerControlInterface->userFullName(),
+		setWindowTitle( tr( "%1 - %2 - %3 Remote Access" ).arg( m_computerControlInterface->userFullName(),
 																  m_computerControlInterface->computer().name(),
 																  VeyonCore::applicationName() ) );
 	}
