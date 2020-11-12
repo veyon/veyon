@@ -47,7 +47,12 @@ public:
 		VncServerPort,
 		VncServerPassword,
 		DemoServerHost,
-		DemoServerPort
+		DemoServerPort,
+		Viewport,
+		ViewportX,
+		ViewportY,
+		ViewportWidth,
+		ViewportHeight
 	};
 	Q_ENUM(Argument)
 
