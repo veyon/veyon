@@ -24,9 +24,13 @@
 
 #pragma once
 
+#include <QGuiApplication>
+
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
 #include "FeatureProviderInterface.h"
+
+class QScreen;
 
 class DemoServer;
 class DemoClient;
@@ -109,6 +113,15 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
+	static constexpr auto ScreenSelectionNone = 0;
+
+	void addScreen( QScreen* screen );
+	void removeScreen( QScreen* screen );
+
+	void updateFeatures();
+
+	QRect viewportFromScreenSelection() const;
+
 	bool controlDemoServer( Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
@@ -129,7 +142,12 @@ private:
 	const Feature m_shareUserScreenFullScreenFeature;
 	const Feature m_shareUserScreenWindowFeature;
 	const Feature m_demoServerFeature;
-	const FeatureList m_features;
+	const FeatureList m_staticFeatures{};
+	FeatureList m_features{};
+
+	FeatureList m_screenSelectionFeatures{};
+	int m_screenSelection{ScreenSelectionNone};
+	QList<QScreen *> m_screens{QGuiApplication::screens()};
 
 	Token m_demoAccessToken;
 	QStringList m_demoClientHosts;
