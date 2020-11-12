@@ -50,7 +50,7 @@
 #include "ScreenshotManagementPanel.h"
 #include "ToolButton.h"
 #include "VeyonConfiguration.h"
-#include "VncView.h"
+#include "VncViewWidget.h"
 
 
 #ifdef VEYON_DEBUG
@@ -464,7 +464,7 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 
 			scheduleUiOperation( [this]() {
 				auto window = QApplication::activeWindow();
-				auto vncView = window->findChild<VncView *>();
+				auto vncView = window->findChild<VncViewWidget *>();
 				Q_ASSERT(vncView != nullptr);
 
 				for( auto timeline : window->findChildren<QTimeLine *>() )

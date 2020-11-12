@@ -28,8 +28,7 @@
 #include <QTimeLine>
 #include <QWidget>
 
-class VncView;
-class VeyonConnection;
+class VncViewWidget;
 class RemoteAccessWidget;
 class ToolButton;
 
@@ -88,7 +87,7 @@ public:
 								 bool startViewOnly, bool showViewOnlyToggleButton );
 	~RemoteAccessWidget() override;
 
-	VncView* vncView() const
+	VncViewWidget* vncView() const
 	{
 		return m_vncView;
 	}
@@ -99,18 +98,16 @@ public:
 
 
 protected:
+	bool eventFilter( QObject* object, QEvent* event ) override;
 	void enterEvent( QEvent* event ) override;
 	void leaveEvent( QEvent* event ) override;
 	void resizeEvent( QResizeEvent* event ) override;
-	bool eventFilter( QObject* object, QEvent* event ) override;
 
 private:
-	void checkKeyEvent( unsigned int, bool );
 	void updateSize();
 
 	ComputerControlInterface::Pointer m_computerControlInterface;
-	VncView* m_vncView;
-	VeyonConnection* m_connection;
+	VncViewWidget* m_vncView;
 	RemoteAccessWidgetToolBar* m_toolBar;
 
 	static constexpr int AppearDelay = 500;
