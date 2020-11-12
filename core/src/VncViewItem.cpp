@@ -69,7 +69,17 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 		node->setTexture( texture );
 	}
 
-	dynamic_cast<QSGImageTexture *>( node->texture() )->setImage(m_computerControlInterface->screen() );
+	const auto texture = dynamic_cast<QSGImageTexture *>( node->texture() );
+
+	if( viewport().isValid() )
+	{
+		texture->setImage( m_computerControlInterface->screen().copy( viewport() ) );
+	}
+	else
+	{
+		texture->setImage( m_computerControlInterface->screen() );
+	}
+
 	node->setRect( boundingRect() );
 
 	return node;

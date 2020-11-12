@@ -62,10 +62,24 @@ QSize VncView::scaledSize() const
 {
 	if( isScaledView() == false )
 	{
-		return m_framebufferSize;
+		return effectiveFramebufferSize();
 	}
 
-	return m_framebufferSize.scaled( viewSize(), Qt::KeepAspectRatio );
+	return effectiveFramebufferSize().scaled( viewSize(), Qt::KeepAspectRatio );
+}
+
+
+
+QSize VncView::effectiveFramebufferSize() const
+{
+	const auto viewportSize = m_viewport.size();
+
+	if( viewportSize.isEmpty() == false )
+	{
+		return viewportSize;
+	}
+
+	return m_framebufferSize;
 }
 
 
@@ -162,8 +176,8 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 
 bool VncView::isScaledView() const
 {
-	return viewSize().width() < m_framebufferSize.width() ||
-		   viewSize().height() < m_framebufferSize.height();
+	return viewSize().width() < effectiveFramebufferSize().width() ||
+		   viewSize().height() < effectiveFramebufferSize().height();
 }
 
 
@@ -172,7 +186,7 @@ qreal VncView::scaleFactor() const
 {
 	if( isScaledView() )
 	{
-		return qreal( scaledSize().width() ) / m_framebufferSize.width();
+		return qreal( scaledSize().width() ) / effectiveFramebufferSize().width();
 	}
 
 	return 1;
@@ -182,26 +196,28 @@ qreal VncView::scaleFactor() const
 
 QPoint VncView::mapToFramebuffer( QPoint pos )
 {
-	if( m_framebufferSize.isEmpty() )
+	if( effectiveFramebufferSize().isEmpty() )
 	{
 		return { 0, 0 };
 	}
 
-	return { pos.x() * m_framebufferSize.width() / scaledSize().width(),
-			pos.y() * m_framebufferSize.height() / scaledSize().height() };
+	return { pos.x() * effectiveFramebufferSize().width() / scaledSize().width() + viewport().x(),
+			 pos.y() * effectiveFramebufferSize().height() / scaledSize().height() + viewport().y() };
 }
 
 
 
 QRect VncView::mapFromFramebuffer( QRect r )
 {
-	if( m_framebufferSize.isEmpty() )
+	if( effectiveFramebufferSize().isEmpty() )
 	{
 		return {};
 	}
 
-	const auto dx = scaledSize().width() / qreal( m_framebufferSize.width() );
-	const auto dy = scaledSize().height() / qreal( m_framebufferSize.height() );
+	r.translate( -viewport().x(), -viewport().y() );
+
+	const auto dx = scaledSize().width() / qreal( effectiveFramebufferSize().width() );
+	const auto dy = scaledSize().height() / qreal( effectiveFramebufferSize().height() );
 
 	return { int(r.x()*dx), int(r.y()*dy),
 			int(r.width()*dx), int(r.height()*dy) };
@@ -255,8 +271,10 @@ void VncView::updateFramebufferSize( int w, int h )
 
 void VncView::updateImage( int x, int y, int w, int h )
 {
-	const auto scale = scaleFactor();
+	x -= viewport().x();
+	y -= viewport().y();
 
+	const auto scale = scaleFactor();
 	updateView( qMax( 0, qFloor( x*scale - 1 ) ), qMax( 0, qFloor( y*scale - 1 ) ),
 				qCeil( w*scale + 2 ), qCeil( h*scale + 2 ) );
 }

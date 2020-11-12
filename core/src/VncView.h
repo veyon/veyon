@@ -77,9 +77,17 @@ public:
 	}
 
 	QSize scaledSize() const;
-	QSize framebufferSize() const
+
+	QSize effectiveFramebufferSize() const;
+
+	const QRect& viewport() const
 	{
-		return m_framebufferSize;
+		return m_viewport;
+	}
+
+	void setViewport( const QRect& viewport )
+	{
+		m_viewport = viewport;
 	}
 
 	virtual void setViewOnly( bool viewOnly );
@@ -153,6 +161,8 @@ private:
 	QPoint m_cursorHot{0, 0};
 	QSize m_framebufferSize{0, 0};
 	bool m_viewOnly{true};
+
+	QRect m_viewport{};
 
 	uint m_buttonMask{0};
 	QMap<unsigned int, bool> m_mods;

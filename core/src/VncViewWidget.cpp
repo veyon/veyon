@@ -34,11 +34,13 @@
 #include "VncViewWidget.h"
 
 
-VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode ) :
+VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode, const QRect& viewport ) :
 	QWidget( parent ),
 	VncView( new VncConnection( QCoreApplication::instance() ) ),
 	m_veyonConnection( new VeyonConnection( connection() ) )
 {
+	setViewport( viewport );
+
 	connectUpdateFunctions( this );
 
 	connection()->setHost( host );
@@ -101,7 +103,7 @@ VncViewWidget::~VncViewWidget()
 
 QSize VncViewWidget::sizeHint() const
 {
-	return framebufferSize();
+	return effectiveFramebufferSize();
 }
 
 
@@ -274,14 +276,20 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 		return;
 	}
 
+	auto source = viewport();
+	if( source.isNull() || source.isEmpty() )
+	{
+		source = { QPoint{ 0, 0 }, image.size() };
+	}
+
 	if( isScaledView() )
 	{
 		// repaint everything in scaled mode to avoid artifacts at rectangle boundaries
-		p.drawImage( QRect( QPoint( 0, 0 ), scaledSize() ), image );
+		p.drawImage( QRect( QPoint( 0, 0 ), scaledSize() ), image, source );
 	}
 	else
 	{
-		p.drawImage( 0, 0, image );
+		p.drawImage( { 0, 0 }, image, source );
 	}
 
 	if( viewOnly() && cursorShape().isNull() == false )

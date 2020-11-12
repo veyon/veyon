@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT VncViewWidget : public QWidget, public VncView
 {
 	Q_OBJECT
 public:
-	VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode );
+	VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode, const QRect& viewport = {} );
 	~VncViewWidget() override;
 
 	QSize sizeHint() const override;
