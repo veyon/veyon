@@ -119,7 +119,7 @@ private:
 
 	static QString k2s( Key key )
 	{
-		return EnumHelper::itemName( key ).toLower();
+		return EnumHelper::toCamelCaseString( key );
 	}
 
 	static QString connectionUidHeaderFieldName()
