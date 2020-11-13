@@ -22,8 +22,6 @@
  *
  */
 
-#include <QListView>
-
 #include "ComputerMonitoringModel.h"
 #include "ComputerMonitoringWidget.h"
 #include "SlideshowModel.h"
@@ -41,10 +39,11 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 {
 	ui->setupUi( this );
 
+	ui->monitoringWidget->setAutoAdjustIconSize( false );
 	ui->monitoringWidget->setUseCustomComputerPositions( false );
-	ui->monitoringWidget->setIgnoreWheelEvent( true );
 	ui->monitoringWidget->setAcceptDrops( false );
 	ui->monitoringWidget->setDragEnabled( false );
+	ui->monitoringWidget->setIgnoreWheelEvent( true );
 	ui->monitoringWidget->setSelectionMode( QListView::SingleSelection );
 	ui->monitoringWidget->setModel( m_model );
 

@@ -72,7 +72,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->filterPoweredOnComputersButton );
 	ui->statusBar->addWidget( ui->spacerLabel2, 1 );
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
-	ui->statusBar->addWidget( ui->autoFitButton );
+	ui->statusBar->addWidget( ui->autoAdjustComputerIconSizeButton );
 	ui->statusBar->addWidget( ui->spacerLabel3 );
 	ui->statusBar->addWidget( ui->useCustomComputerArrangementButton );
 	ui->statusBar->addWidget( ui->alignComputersButton );
@@ -198,12 +198,17 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->gridSizeSlider->setMinimum( ComputerMonitoringWidget::MinimumComputerScreenSize );
 	ui->gridSizeSlider->setMaximum( ComputerMonitoringWidget::MaximumComputerScreenSize );
 
+	ui->autoAdjustComputerIconSizeButton->setChecked( ui->computerMonitoringWidget->autoAdjustIconSize() );
+
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 this, [this]( int size ) { ui->computerMonitoringWidget->setComputerScreenSize( size ); } );
 	connect( ui->computerMonitoringWidget, &ComputerMonitoringWidget::computerScreenSizeAdjusted,
 			 ui->gridSizeSlider, &QSlider::setValue );
-	connect( ui->autoFitButton, &QToolButton::clicked,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::autoAdjustComputerScreenSize );
+	connect( ui->autoAdjustComputerIconSizeButton, &QToolButton::toggled,
+			 this, [this]( bool enabled ) {
+				 ui->computerMonitoringWidget->setAutoAdjustIconSize( enabled );
+				 m_master.userConfig().setAutoAdjustMonitoringIconSize( enabled );
+			 } );
 
 	int size = ComputerMonitoringWidget::DefaultComputerScreenSize;
 	if( m_master.userConfig().monitoringScreenSize() >= ComputerMonitoringWidget::MinimumComputerScreenSize )

@@ -58,7 +58,7 @@ private:
 
 	UserConfig& m_config;
 
-	ComputerMonitoringWidget* m_computerMonitoringWidget;
+	ComputerMonitoringWidget* m_globalComputerMonitoringWidget;
 	SpotlightModel* m_model;
 
 } ;

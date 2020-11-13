@@ -23,7 +23,6 @@
  */
 
 #include <QGuiApplication>
-#include <QListView>
 #include <QMessageBox>
 
 #include "ComputerMonitoringModel.h"
@@ -39,22 +38,23 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 	QWidget( parent ),
 	ui( new Ui::SpotlightPanel ),
 	m_config( config ),
-	m_computerMonitoringWidget( computerMonitoringWidget ),
-	m_model( new SpotlightModel( m_computerMonitoringWidget->dataModel(), this ) )
+	m_globalComputerMonitoringWidget( computerMonitoringWidget ),
+	m_model( new SpotlightModel( m_globalComputerMonitoringWidget->dataModel(), this ) )
 {
 	ui->setupUi( this );
 
-	ui->monitoringWidget->setIgnoreWheelEvent( true );
+	ui->monitoringWidget->setAutoAdjustIconSize( false );
 	ui->monitoringWidget->setUseCustomComputerPositions( false );
 	ui->monitoringWidget->setAcceptDrops( false );
 	ui->monitoringWidget->setDragEnabled( false );
+	ui->monitoringWidget->setIgnoreWheelEvent( true );
 	ui->monitoringWidget->setModel( m_model );
 
 	connect( ui->addButton, &QAbstractButton::clicked, this, &SpotlightPanel::add );
 	connect( ui->removeButton, &QAbstractButton::clicked, this, &SpotlightPanel::remove );
 	connect( ui->realtimeViewButton, &QAbstractButton::toggled, this, &SpotlightPanel::setRealtimeView );
 
-	connect( m_computerMonitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
+	connect( m_globalComputerMonitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
 	connect( ui->monitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
 
 	connect( m_model, &QAbstractItemModel::rowsRemoved, this, [=]() {
@@ -87,7 +87,7 @@ void SpotlightPanel::resizeEvent( QResizeEvent* event )
 
 void SpotlightPanel::add()
 {
-	const auto selectedComputerControlInterfaces = m_computerMonitoringWidget->selectedComputerControlInterfaces();
+	const auto selectedComputerControlInterfaces = m_globalComputerMonitoringWidget->selectedComputerControlInterfaces();
 
 	if( selectedComputerControlInterfaces.isEmpty() )
 	{
@@ -160,7 +160,7 @@ void SpotlightPanel::addPressedItem( const QModelIndex& index )
 {
 	if( QGuiApplication::mouseButtons().testFlag( Qt::MidButton ) )
 	{
-		m_computerMonitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		m_globalComputerMonitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
 
 		add();
 	}

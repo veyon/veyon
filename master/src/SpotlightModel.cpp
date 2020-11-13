@@ -90,7 +90,7 @@ QVariant SpotlightModel::data( const QModelIndex& index, int role ) const
 
 	if( role == Qt::DecorationRole )
 	{
-		auto screen = sourceModel()->data( sourceIndex, ComputerControlListModel::ScreenRole ).value<QImage>();
+		auto screen = sourceModel()->data( sourceIndex, ComputerListModel::ScreenRole ).value<QImage>();
 		if( screen.isNull() )
 		{
 			screen = sourceModel()->data( sourceIndex, Qt::DecorationRole ).value<QImage>();
@@ -107,6 +107,6 @@ QVariant SpotlightModel::data( const QModelIndex& index, int role ) const
 bool SpotlightModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	return m_controlInterfaces.contains( sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-													   ComputerControlListModel::ControlInterfaceRole )
-									  .value<ComputerControlInterface::Pointer>() );
+															  ComputerListModel::ControlInterfaceRole )
+											 .value<ComputerControlInterface::Pointer>() );
 }

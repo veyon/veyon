@@ -64,6 +64,7 @@ void VeyonConfiguration::upgrade()
 		setVeyonServerPort( legacyPrimaryServicePort() );
 		setHideLocalComputer( legacyLocalComputerHidden() );
 		setHideComputerFilter( legacyComputerFilterHidden() );
+		setAutoAdjustMonitoringIconSize( legacyAutoAdjustGridSize() );
 
 		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_5 );
 	}

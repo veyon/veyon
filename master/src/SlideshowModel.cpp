@@ -22,7 +22,7 @@
  *
  */
 
-#include "ComputerControlListModel.h"
+#include "ComputerListModel.h"
 #include "SlideshowModel.h"
 
 
@@ -76,7 +76,7 @@ QVariant SlideshowModel::data( const QModelIndex& index, int role ) const
 
 	if( role == Qt::DecorationRole )
 	{
-		auto screen = sourceModel()->data( sourceIndex, ComputerControlListModel::ScreenRole ).value<QImage>();
+		auto screen = sourceModel()->data( sourceIndex, ComputerListModel::ScreenRole ).value<QImage>();
 		if( screen.isNull() )
 		{
 			screen = sourceModel()->data( sourceIndex, Qt::DecorationRole ).value<QImage>();
@@ -146,7 +146,7 @@ void SlideshowModel::setCurrentRow( int row )
 		m_currentRow = qMax( 0, row ) % qMax( 1, sourceModel()->rowCount() );
 
 		m_currentControlInterface = sourceModel()->data( sourceModel()->index( m_currentRow, 0 ),
-														 ComputerControlListModel::ControlInterfaceRole )
+														 ComputerListModel::ControlInterfaceRole )
 										.value<ComputerControlInterface::Pointer>();
 	}
 	else

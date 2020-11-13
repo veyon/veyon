@@ -280,9 +280,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="autoAdjustGridSize">
+           <widget class="QCheckBox" name="autoAdjustMonitoringIconSize">
             <property name="text">
-             <string>Automatically adjust computer thumbnail size</string>
+             <string>Automatically adjust computer icon size</string>
             </property>
            </widget>
           </item>
