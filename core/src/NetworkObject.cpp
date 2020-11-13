@@ -163,7 +163,7 @@ QVariant NetworkObject::property( Property property ) const
 
 QString NetworkObject::propertyKey( Property property )
 {
-	return EnumHelper::itemName(property);
+	return EnumHelper::toString(property);
 }
 
 
