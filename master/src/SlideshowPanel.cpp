@@ -39,15 +39,15 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 {
 	ui->setupUi( this );
 
-	ui->list->setAutoAdjustIconSize( false );
-	ui->list->setUseCustomComputerPositions( false );
-	ui->list->setAcceptDrops( false );
-	ui->list->setDragEnabled( false );
-	ui->list->setIgnoreWheelEvent( true );
-	ui->list->setSelectionMode( QListView::SingleSelection );
-	ui->list->setModel( m_model );
+	ui->monitoringWidget->setAutoAdjustIconSize( false );
+	ui->monitoringWidget->setUseCustomComputerPositions( false );
+	ui->monitoringWidget->setAcceptDrops( false );
+	ui->monitoringWidget->setDragEnabled( false );
+	ui->monitoringWidget->setIgnoreWheelEvent( true );
+	ui->monitoringWidget->setSelectionMode( QListView::SingleSelection );
+	ui->monitoringWidget->setModel( m_model );
 
-	connect( ui->list, &QListView::iconSizeChanged, m_model, &SlideshowModel::setIconSize );
+	connect( ui->monitoringWidget, &QListView::iconSizeChanged, m_model, &SlideshowModel::setIconSize );
 
 	connect( ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration );
 	connect( ui->durationSlider, &QSlider::valueChanged, this, &SlideshowPanel::updateDuration );
@@ -73,11 +73,11 @@ void SlideshowPanel::resizeEvent( QResizeEvent* event )
 {
 	static constexpr auto ExtraMargin = 10;
 
-	const auto spacing = ui->list->spacing();
-	const auto labelHeight = ui->list->fontMetrics().height();
+	const auto spacing = ui->monitoringWidget->spacing();
+	const auto labelHeight = ui->monitoringWidget->fontMetrics().height();
 
-	ui->list->setIconSize( { ui->list->width() - ExtraMargin - spacing * 2,
-							 ui->list->height() - ExtraMargin - labelHeight - spacing * 2 } );
+	ui->monitoringWidget->setIconSize( { ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
+										 ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2 } );
 
 	QWidget::resizeEvent( event );
 }

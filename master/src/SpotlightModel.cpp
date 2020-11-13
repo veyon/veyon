@@ -107,6 +107,6 @@ QVariant SpotlightModel::data( const QModelIndex& index, int role ) const
 bool SpotlightModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	return m_controlInterfaces.contains( sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-													   ComputerListModel::ControlInterfaceRole )
-									  .value<ComputerControlInterface::Pointer>() );
+															  ComputerListModel::ControlInterfaceRole )
+											 .value<ComputerControlInterface::Pointer>() );
 }
