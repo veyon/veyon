@@ -26,7 +26,6 @@
 #include <QMenu>
 #include <QScrollBar>
 #include <QShowEvent>
-#include <QTimer>
 
 #include "ComputerControlListModel.h"
 #include "ComputerMonitoringWidget.h"
@@ -62,7 +61,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	connect( this, &QListView::customContextMenuRequested,
 			 this, [this]( QPoint pos ) { showContextMenu( mapToGlobal( pos ) ); } );
 
-	initializeView();
+	initializeView( this );
 
 	setModel( dataModel() );
 }
@@ -87,38 +86,45 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 
 
-void ComputerMonitoringWidget::autoAdjustComputerScreenSize()
+bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 {
-	int size = iconSize().width();
-
-	if( verticalScrollBar()->isVisible() ||
-		horizontalScrollBar()->isVisible() )
+	if( ComputerMonitoringView::performIconSizeAutoAdjust() == false)
 	{
-		while( ( verticalScrollBar()->isVisible() ||
-				 horizontalScrollBar()->isVisible() ) &&
-			   size > MinimumComputerScreenSize )
-		{
-			size -= 10;
-			setComputerScreenSize( size );
-			QApplication::processEvents();
-		}
+		return false;
 	}
-	else
-	{
-		while( verticalScrollBar()->isVisible() == false &&
-			   horizontalScrollBar()->isVisible() == false &&
-			   size < MaximumComputerScreenSize )
-		{
-			size += 10;
-			setComputerScreenSize( size );
-			QApplication::processEvents();
-		}
 
-		setComputerScreenSize( size-20 );
+	m_ignoreResizeEvent = true;
+
+	auto size = iconSize().width();
+
+	setComputerScreenSize( size );
+	QApplication::processEvents();
+
+	while( verticalScrollBar()->isVisible() == false &&
+		   horizontalScrollBar()->isVisible() == false &&
+		   size < MaximumComputerScreenSize )
+	{
+		size += IconSizeAdjustStepSize;
+		setComputerScreenSize( size );
+		QApplication::processEvents();
+	}
+
+	while( ( verticalScrollBar()->isVisible() ||
+			 horizontalScrollBar()->isVisible() ) &&
+		   size > MinimumComputerScreenSize )
+	{
+		size -= IconSizeAdjustStepSize;
+		setComputerScreenSize( size );
+		QApplication::processEvents();
 	}
 
 	Q_EMIT computerScreenSizeAdjusted( size );
+
+	m_ignoreResizeEvent = false;
+
+	return true;
 }
+
 
 
 
@@ -266,12 +272,23 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 
 
 
+void ComputerMonitoringWidget::resizeEvent( QResizeEvent* event )
+{
+	FlexibleListView::resizeEvent( event );
+
+	if( m_ignoreResizeEvent == false )
+	{
+		initiateIconSizeAutoAdjust();
+	}
+}
+
+
+
 void ComputerMonitoringWidget::showEvent( QShowEvent* event )
 {
-	if( event->spontaneous() == false &&
-		VeyonCore::config().autoAdjustGridSize() )
+	if( event->spontaneous() == false )
 	{
-		QTimer::singleShot( 250, this, &ComputerMonitoringWidget::autoAdjustComputerScreenSize );
+		initiateIconSizeAutoAdjust();
 	}
 
 	FlexibleListView::showEvent( event );

@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "ComputerControlInterface.h"
 
 class ComputerMonitoringModel;
@@ -38,10 +40,13 @@ public:
 	static constexpr int MaximumComputerScreenSize = 1000;
 	static constexpr int DefaultComputerScreenSize = 150;
 
+	static constexpr auto IconSizeAdjustStepSize = 10;
+	static constexpr auto IconSizeAdjustDelay = 250;
+
 	ComputerMonitoringView();
 	virtual ~ComputerMonitoringView() = default;
 
-	void initializeView();
+	void initializeView( QObject* self );
 
 	void saveConfiguration();
 
@@ -63,6 +68,12 @@ public:
 
 	virtual void alignComputers() = 0;
 
+	bool autoAdjustIconSize() const
+	{
+		return m_autoAdjustIconSize;
+	}
+	void setAutoAdjustIconSize( bool enabled );
+
 protected:
 	virtual void setColors( const QColor& backgroundColor, const QColor& textColor ) = 0;
 	virtual QJsonArray saveComputerPositions() = 0;
@@ -70,6 +81,10 @@ protected:
 	virtual void loadComputerPositions( const QJsonArray& positions ) = 0;
 	virtual void setUseCustomComputerPositions( bool enabled ) = 0;
 	virtual void setIconSize( const QSize& size ) = 0;
+
+	virtual bool performIconSizeAutoAdjust();
+
+	void initiateIconSizeAutoAdjust();
 
 	VeyonMaster* master() const
 	{
@@ -84,5 +99,8 @@ protected:
 private:
 	VeyonMaster* m_master{nullptr};
 	int m_computerScreenSize{DefaultComputerScreenSize};
+
+	bool m_autoAdjustIconSize{false};
+	QTimer m_iconSizeAutoAdjustTimer{};
 
 };

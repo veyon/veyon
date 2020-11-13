@@ -43,6 +43,7 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 {
 	ui->setupUi( this );
 
+	ui->list->setAutoAdjustIconSize( false );
 	ui->list->setUseCustomComputerPositions( false );
 	ui->list->setAcceptDrops( false );
 	ui->list->setDragEnabled( false );

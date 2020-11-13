@@ -47,6 +47,7 @@ public:
 	OP( UserConfig, VeyonMaster::userConfig(), bool, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI", false, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), bool, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI", false, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), int, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI", ComputerMonitoringView::DefaultComputerScreenSize, Configuration::Property::Flag::Standard )	\
+	OP( UserConfig, VeyonMaster::userConfig(), bool, autoAdjustMonitoringIconSize, setAutoAdjustMonitoringIconSize, "AutoAdjustMonitoringIconSize", "UI", false, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), int, slideshowDuration, setSlideshowDuration, "SlideshowDuration", "UI", SlideshowPanel::DefaultDuration, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), bool, spotlightRealtime, setSpotlightRealtime, "SpotlightRealtime", "UI", true, Configuration::Property::Flag::Standard )	\
 	OP( UserConfig, VeyonMaster::userConfig(), int, defaultRole, setDefaultRole, "DefaultRole", "Authentication", 0, Configuration::Property::Flag::Standard )	\

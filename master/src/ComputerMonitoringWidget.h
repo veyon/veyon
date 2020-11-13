@@ -40,8 +40,6 @@ public:
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces() const override;
 
-	void autoAdjustComputerScreenSize();
-
 	void setUseCustomComputerPositions( bool enabled ) override;
 	void alignComputers() override;
 
@@ -60,17 +58,21 @@ private:
 	bool useCustomComputerPositions() override;
 	void loadComputerPositions( const QJsonArray& positions ) override;
 
+	bool performIconSizeAutoAdjust() override;
+
 	void populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces );
 	void addFeatureToMenu( const Feature& feature, const QString& label );
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 
 	void runDoubleClickFeature( const QModelIndex& index );
 
+	void resizeEvent( QResizeEvent* event ) override;
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
 
 	QMenu* m_featureMenu{};
 	bool m_ignoreWheelEvent{false};
+	bool m_ignoreResizeEvent{false};
 
 Q_SIGNALS:
 	void computerScreenSizeAdjusted( int size );

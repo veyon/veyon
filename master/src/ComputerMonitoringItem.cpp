@@ -56,20 +56,14 @@ ComputerControlInterfaceList ComputerMonitoringItem::selectedComputerControlInte
 
 void ComputerMonitoringItem::componentComplete()
 {
-	initializeView();
+	initializeView( this );
 
-	if( VeyonCore::config().autoAdjustGridSize() )
+	if( VeyonCore::config().autoAdjustMonitoringIconSize() )
 	{
-		autoAdjustComputerScreenSize();
+		initiateIconSizeAutoAdjust();
 	}
 
 	QQuickItem::componentComplete();
-}
-
-
-
-void ComputerMonitoringItem::autoAdjustComputerScreenSize()
-{
 }
 
 

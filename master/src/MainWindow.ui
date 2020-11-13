@@ -36,7 +36,7 @@
     </property>
     <item>
      <widget class="ComputerMonitoringWidget" name="computerMonitoringWidget">
-      <widget class="QToolButton" name="autoFitButton">
+      <widget class="QToolButton" name="autoAdjustComputerIconSizeButton">
        <property name="geometry">
         <rect>
          <x>890</x>
@@ -46,7 +46,7 @@
         </rect>
        </property>
        <property name="toolTip">
-        <string>Adjust optimal size</string>
+        <string>Adjust size of computer icons automatically</string>
        </property>
        <property name="text">
         <string>Auto</string>
@@ -60,6 +60,9 @@
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QSlider" name="gridSizeSlider">
@@ -132,7 +135,7 @@
       <widget class="QLabel" name="spacerLabel3">
        <property name="geometry">
         <rect>
-         <x>910</x>
+         <x>940</x>
          <y>570</y>
          <width>99</width>
          <height>30</height>

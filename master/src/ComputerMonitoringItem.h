@@ -57,8 +57,6 @@ public:
 
 	void componentComplete() override;
 
-	void autoAdjustComputerScreenSize();
-
 	void setUseCustomComputerPositions( bool enabled ) override;
 	void alignComputers() override;
 

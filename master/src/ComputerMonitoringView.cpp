@@ -35,12 +35,23 @@
 ComputerMonitoringView::ComputerMonitoringView() :
 	m_master( VeyonCore::instance()->findChild<VeyonMaster *>() )
 {
+	m_autoAdjustIconSize = VeyonCore::config().autoAdjustMonitoringIconSize() ||
+						   master()->userConfig().autoAdjustMonitoringIconSize();
+
+	m_iconSizeAutoAdjustTimer.setInterval( IconSizeAdjustDelay );
+	m_iconSizeAutoAdjustTimer.setSingleShot( true );
 }
 
 
 
-void ComputerMonitoringView::initializeView()
+void ComputerMonitoringView::initializeView( QObject* self )
 {
+	const auto autoAdjust = [this]() { performIconSizeAutoAdjust(); };
+
+	QObject::connect( &m_iconSizeAutoAdjustTimer, &QTimer::timeout, self, autoAdjust );
+	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsInserted, self, autoAdjust );
+	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsRemoved, self, autoAdjust );
+
 	setColors( VeyonCore::config().computerMonitoringBackgroundColor(),
 			   VeyonCore::config().computerMonitoringTextColor() );
 
@@ -132,6 +143,35 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 int ComputerMonitoringView::computerScreenSize() const
 {
 	return m_computerScreenSize;
+}
+
+
+
+void ComputerMonitoringView::setAutoAdjustIconSize( bool enabled )
+{
+	m_autoAdjustIconSize = enabled;
+
+	if( m_autoAdjustIconSize )
+	{
+		performIconSizeAutoAdjust();
+	}
+}
+
+
+
+bool ComputerMonitoringView::performIconSizeAutoAdjust()
+{
+	m_iconSizeAutoAdjustTimer.stop();
+
+	return m_autoAdjustIconSize && dataModel()->rowCount() > 0;
+}
+
+
+
+
+void ComputerMonitoringView::initiateIconSizeAutoAdjust()
+{
+	m_iconSizeAutoAdjustTimer.start();
 }
 
 
