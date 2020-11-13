@@ -334,10 +334,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Imenik datoteke z zasebnim ključem</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Razpoložljivi ključi za preverjanje pristnosti</translation>
     </message>
@@ -1292,10 +1288,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Podaj predstavitev z zaslonom predvajanja</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Demonstracijski strežnik</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>V tem načinu se zaslon prikaže v oknu na vseh računalnikih. Uporabniki lahko po potrebi preklopijo na druga okna.</translation>
     </message>
@@ -1345,6 +1337,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1666,10 +1662,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Log file directory</source>
         <translation>Imenik datoteke dnevnikov</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2709,10 +2701,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Iskanje uporabnikov in računalnikov</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Prilagodi optimalno velikost</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Poravnaj računalnike z mrežo</translation>
     </message>
@@ -2764,16 +2752,16 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Imeniki</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2908,15 +2896,31 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Samodejno izberi trenutno lokacijo</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Samodejno prilagodi velikost računalniške sličice</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Samodejno odpri izbrano okno računalnika</translation>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Samodejno</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3152,6 +3156,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 oddaljen dostop</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3584,10 +3592,6 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3601,6 +3605,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3826,7 +3834,7 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Vzspostavljam povezavo na %1 ...</translation>

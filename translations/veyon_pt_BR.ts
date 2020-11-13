@@ -334,10 +334,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Diretório base do arquivo de chave privada</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Chaves de autenticação disponíveis</translation>
     </message>
@@ -1292,10 +1288,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Exibir por transmissão de tela</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Servidor de exibição</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Neste modo a sua tela está sendo exibida em uma janela em todos os computadores. Os usuários podem mudar para outras janelas como necessário.</translation>
     </message>
@@ -1345,6 +1337,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1666,10 +1662,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Log file directory</source>
         <translation>Diretório de arquivo de log</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2695,10 +2687,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Buscar usuários e computadores</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Ajustar janelas e seus tamanhos</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation type="unfinished"/>
     </message>
@@ -2750,16 +2738,16 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Diretórios</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2894,15 +2882,31 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3137,6 +3141,10 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3569,10 +3577,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3586,6 +3590,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3811,7 +3819,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Estabelecendo conexão para %1 ...</translation>

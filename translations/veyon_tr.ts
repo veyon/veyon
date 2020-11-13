@@ -334,10 +334,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <translation>Özel anahtar dizin yolu</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Kullanılabilir yetkilendirme anahtarları</translation>
     </message>
@@ -1292,10 +1288,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Ekran yayını ile bir tanıtım gerçekleştir</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Tanıtım sunucusu</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Bu kipte, ekranınız tüm bilgisayarlarda bir pencerede görüntülenir. Kullanıcılar, gerektiğinde diğer pencerelere geçiş yapabilirler.</translation>
     </message>
@@ -1345,6 +1337,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1666,10 +1662,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Log file directory</source>
         <translation>Günlük dosyası dizini</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2701,10 +2693,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Kullanıcı ve bilgisayarları ara</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>En uygun boyuta ayarla</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Bilgisayarları ızgaraya hizala</translation>
     </message>
@@ -2756,16 +2744,16 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Dizinler</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2900,15 +2888,31 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Geçerli konumu otomatik olarak seç</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Bilgisayarın küçük resim boyutunu otomatik olarak ayarla</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Bilgisayar seçme panelini otomatik olarak aç</translation>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Kendiliğinden</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3146,6 +3150,10 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 -%2 Uzaktan Erişim</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3578,10 +3586,6 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3595,6 +3599,10 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3820,7 +3828,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>%1 ile bağlantı kuruluyor...</translation>

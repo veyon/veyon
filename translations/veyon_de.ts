@@ -332,10 +332,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Basisverzeichnis der privaten Schlüsseldatei</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Verfügbare Authentifizierungsschlüssel</translation>
     </message>
@@ -1289,10 +1285,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Eine Präsentation durch Bildschirmübertragung</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Demo-Server</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>In diesem Modus wird Ihr Bildschirm in einem Fenster auf allen Computern angezeigt. Die Benutzer können bei Bedarf zu anderen Fenstern wechseln.</translation>
     </message>
@@ -1343,6 +1335,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Please select only one user screen to share.</source>
         <translation>Bitte wählen Sie nur einen Benutzer-Bildschirm zum Teilen.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Alle Bildschirme</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Bildschirm %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1545,10 +1545,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Zielverzeichnis</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>Standardquellverzeichnis</translation>
     </message>
@@ -1663,10 +1659,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Log file directory</source>
         <translation>Logdateiverzeichnis</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2706,10 +2698,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Benutzer und Computer suchen</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Optimale Größe einstellen</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Computer an Gitter ausrichten</translation>
     </message>
@@ -2761,16 +2749,16 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Spotlight</source>
         <translation>Scheinwerfer</translation>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Größe der Computer-Icons automatisch anpassen</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Verzeichnisse</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2905,16 +2893,32 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Automatisch aktuellen Standort auswählen</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Automatisch Computerauswahlbedienfeld öffnen</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Lokale Sitzung ausblenden</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation>Abstand Miniaturbilder</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Seitenverhältnis Miniaturbilder</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation>Automatisch die Größe der Computer-Icons anpassen</translation>
     </message>
 </context>
 <context>
@@ -3151,6 +3155,10 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Fernzugriff</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation>%1 - %2 - %3 Fernzugriff</translation>
     </message>
 </context>
 <context>
@@ -3583,10 +3591,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Gewählte Computer entfernen</translation>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.</translation>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation>Computer in Echtzeit aktualisieren</translation>
     </message>
@@ -3601,6 +3605,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Bitte wählen Sie mindestens einen zu entfernenden Computer aus.</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.</translation>
     </message>
 </context>
 <context>
@@ -3825,7 +3833,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Verbindung zu %1 wird hergestellt ...</translation>

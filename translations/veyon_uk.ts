@@ -334,10 +334,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Основний каталог файлів закритих ключів</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Доступні ключі розпізнавання</translation>
     </message>
@@ -1289,10 +1285,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Виконати демонстрацію трансляцією зображення на екрані</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Демосервер</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
     </message>
@@ -1343,6 +1335,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select only one user screen to share.</source>
         <translation>Будь ласка, виберіть лише один екран користувача для оприлюднення.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Усі екрани</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Екран %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1545,10 +1545,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Каталог призначення</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>Типовий каталог початкових даних</translation>
     </message>
@@ -1663,10 +1659,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Log file directory</source>
         <translation>Каталог файла журналу</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2708,10 +2700,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Пошук користувачів і комп&apos;ютерів</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Скоригувати оптимальний розмір</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Вирівняти комп&apos;ютери за ґраткою</translation>
     </message>
@@ -2763,16 +2751,16 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>Акцент</translation>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Каталоги</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2907,16 +2895,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Автоматично вибирати поточне місце</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Автоматично коригувати розмір мініатюри комп&apos;ютера</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Автоматично відкрити панель вибору комп&apos;ютера</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Приховати локальний сеанс</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation>пк</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation>Інтервали між мініатюрами</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Співвідношення розмірів мініатюри</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3153,6 +3157,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 — %2, віддалений доступ</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation>%1 — %2 — %3, віддалений доступ</translation>
     </message>
 </context>
 <context>
@@ -3585,10 +3593,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Вилучити позначені комп&apos;ютери</translation>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки.</translation>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation>Оновлювати комп&apos;ютери у реальному часу</translation>
     </message>
@@ -3603,6 +3607,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Будь ласка, позначте принаймні один комп&apos;ютер для вилучення.</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки нижче.</translation>
     </message>
 </context>
 <context>
@@ -3827,7 +3835,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Встановлення зв’язку з %1 ...</translation>

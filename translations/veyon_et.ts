@@ -334,10 +334,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Privaatvõtme failibaasi kataloog</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Saadaval olevad autentimisvõtmed</translation>
     </message>
@@ -1292,10 +1288,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Andke juhiseid ekraanil edastamise kaudu</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Demo server</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>Selles režiimis kuvatakse teie ekraan aknas kõigis arvutites. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
     </message>
@@ -1346,6 +1338,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Please select only one user screen to share.</source>
         <translation>Valige jagamiseks ainult üks kasutajaekraan.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1548,10 +1548,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Sihtkataloog</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>Vaikeallika kataloog</translation>
     </message>
@@ -1666,10 +1662,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Log file directory</source>
         <translation>Logifailide kataloog</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2709,10 +2701,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Otsige kasutajaid ja arvuteid</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Reguleerige optimaalset suurust</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Joondage arvutid</translation>
     </message>
@@ -2764,16 +2752,16 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Kataloogid</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2908,16 +2896,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Valige praegune asukoht automaatselt</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Reguleerige arvuti pisipildi suurust automaatselt</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Avage arvuti valimispaneel automaatselt</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Peida kohalik seanss</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation>Pisipiltide vahe</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3154,6 +3158,10 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Kaugjuurdepääs</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3586,10 +3594,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3603,6 +3607,10 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3828,7 +3836,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Ühenduse loomine kasutajaga %1 ...</translation>

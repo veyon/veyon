@@ -334,10 +334,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Základní složka pro soukromou část klíče</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>…</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Ověřovací klíče k dispozici</translation>
     </message>
@@ -1292,10 +1288,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Předvést ostatním vysíláním obsahu obrazovky</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Ukázkový server</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>V tomto režimu bude vaše obrazovka zobrazována v okně na všech počítačích. Uživatelé přitom budou moci v případě potřeby přepínat na další okna.</translation>
     </message>
@@ -1345,6 +1337,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>…</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1666,10 +1662,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Log file directory</source>
         <translation>Složka pro soubor se záznamy událostí</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>…</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2705,10 +2697,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Hledání uživatelů a počítačů</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Upravit optimální velikost</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Zarovnat počítače do mřížky</translation>
     </message>
@@ -2760,16 +2748,16 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Složky</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>…</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2904,15 +2892,31 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Automaticky vybrat stávající umístění</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automaticky přizpůsobit velikost náhledu počítače</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Automaticky otevřít panel výběru počítače</translation>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automaticky</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3150,6 +3154,10 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 – %2 vzdálený přístup</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3582,10 +3590,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3599,6 +3603,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3824,7 +3832,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Připojování k %1…</translation>

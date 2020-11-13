@@ -334,10 +334,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>Cartella chiave Privata</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Chiavi di autenticazione disponibili</translation>
     </message>
@@ -1289,59 +1285,63 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Esemplificare trasmettendo il proprio schermo</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Server per la modalità Presentazione</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>In questa modalità il tuo schermo sarà visualizzato in una finestra su tutti i computer client. Gli utenti, pertanto, potranno cambiare finestra e continuare il loro lavoro.</translation>
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Condividi il tuo schermo o consenti a un utente di condividere il suo schermo con altri utenti.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo a schermo intero</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Condividi il tuo schermo in modalità a schermo intero</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>In questa modalità lo schermo viene visualizzato in modalità a schermo intero su tutti i computer mentre i dispositivi di input degli utenti sono bloccati.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Condividi il tuo schermo in una finestra</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Condividi lo schermo dell&apos;utente selezionato in modalità a schermo intero</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>In questa modalità lo schermo dell&apos;utente selezionato viene visualizzato in modalità a schermo intero su tutti i computer mentre i dispositivi di input degli utenti sono bloccati.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Condividi lo schermo dell&apos;utente selezionato in una finestra</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>In questa modalità lo schermo dell&apos;utente selezionato viene visualizzato in una finestra su tutti i computer. Gli utenti possono passare ad altre finestre secondo necessità.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona una schermata utente da condividere.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation>Seleziona solo uno schermo utente da condividere.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1545,10 +1545,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Directory di destinazione</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>Directory di origine predefinita</translation>
     </message>
@@ -1663,10 +1659,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Log file directory</source>
         <translation>Cartella per il Log file</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2696,10 +2688,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Cerca utenti e computer</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Sistema dimensione ottimale</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Allinea i computer alla griglia</translation>
     </message>
@@ -2745,10 +2733,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Presentazione</translation>
     </message>
     <message>
         <source>Spotlight</source>
+        <translation>Spotlight</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2757,10 +2749,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Directories</source>
         <translation>Cartelle</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2895,16 +2883,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Seleziona automaticamente la posizione corrente</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Regola automaticamente le dimensioni della miniatura del computer</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Apri automaticamente il pannello di selezione del computer</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Nascondi sessione locale</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation>Spaziatura delle miniature</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatico</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3141,6 +3145,10 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 -%2 Accesso remoto</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3546,49 +3554,49 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Precedente</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Avvia/pausa</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Prossimo</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Durata:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi computer selezionati</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi i computer selezionati</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Aggiorna i computer in tempo reale</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Spotlight</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona almeno un computer da aggiungere.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation>Seleziona almeno un computer da rimuovere.</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3814,7 +3822,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Connessione a %1 ...</translation>

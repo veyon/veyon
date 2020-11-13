@@ -336,10 +336,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Directorio base para archivo de clave privada</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Claves de autenticación disponibles</translation>
     </message>
@@ -1294,59 +1290,63 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Dar una demostración por difusión de pantalla</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Servidor demo</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>En este modo, la pantalla se mostrará en una ventana de todos los ordenadores. Los usuarios pueden cambiar a otras ventanas según sea necesario.</translation>
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Comparta su pantalla o permita que un usuario comparta su pantalla con otros usuarios.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo a pantalla completa</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Compartir tu propia pantalla en modo de pantalla completa</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>En este modo, su pantalla se muestra en modo de pantalla completa en todas las computadoras mientras los dispositivos de entrada de los usuarios están bloqueados.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Compartir tu propia pantalla en una ventana</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Compartir la pantalla del usuario seleccionado en modo de pantalla completa</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>En este modo, la pantalla del usuario seleccionado se muestra en modo de pantalla completa en todas las computadoras mientras los dispositivos de entrada de los usuarios están bloqueados.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Compartir la pantalla del usuario seleccionado en una ventana</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>En este modo, la pantalla del usuario seleccionado se muestra en una ventana en todas las computadoras. Los usuarios pueden cambiar a otras ventanas según sea necesario.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione una pantalla de usuario para compartir.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation>Seleccione solo una pantalla de usuario para compartir.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1550,10 +1550,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Directorio de destino</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>Directorio de origen predeterminado</translation>
     </message>
@@ -1668,10 +1664,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Log file directory</source>
         <translation>Directorio de registro</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2711,10 +2703,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Buscar usuarios y equipos</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Ajustar el tamaño óptimo</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Alinear equipos a la rejilla</translation>
     </message>
@@ -2760,10 +2748,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Diapositivas</translation>
     </message>
     <message>
         <source>Spotlight</source>
+        <translation>Destacar</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2772,10 +2764,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Directories</source>
         <translation>Directorios</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2910,16 +2898,32 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Seleccionar automáticamente la ubicación actual</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Ajustar automáticamente el tamaño de la miniatura del equipo</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Abrir automáticamente el panel de selección de equipo</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Ocultar sesión local</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation>Espaciado de miniaturas</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3156,6 +3160,10 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Acceso remoto</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3562,49 +3570,49 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Previo</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Inicio/pausa</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Siguiente</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Duración:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Añadir las computadoras seleccionadas</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar las computadoras seleccionadas</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Actualizar computadoras en tiempo real</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Destacar</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione al menos una computadora para añadir.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation>Seleccione al menos una computadora para eliminar.</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3830,7 +3838,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Estableciendo conexión con %1 ...</translation>

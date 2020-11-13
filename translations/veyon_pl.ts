@@ -334,10 +334,6 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
         <translation>Katalog z plikami kluczy prywatnych</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Dostępne klucze uwierzytelniające</translation>
     </message>
@@ -1292,59 +1288,63 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Transmituj demonstrację na ekran</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Serwer demo</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>W tym trybie twój ekran jest wyświetlany w oknie na wszystkich komputerach. Użytkownicy mogą się przełączać między oknami.</translation>
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij swój ekran lub zezwól użytkownikowi na udostępnienie jego ekranu innym użytkownikom.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo pełnoekranowe</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij swój ekran w trybie pełnoekranowym</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>W tym trybie ekran jest wyświetlany w trybie pełnoekranowym na wszystkich komputerach, podczas gdy urządzenia wejściowe użytkowników są zablokowane.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij swój ekran w oknie</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij ekran wybranego użytkownika w trybie pełnoekranowym</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>W tym trybie ekran wybranego użytkownika jest wyświetlany w trybie pełnoekranowym na wszystkich komputerach, podczas gdy urządzenia wejściowe użytkowników są zablokowane.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij ekran wybranego użytkownika w oknie</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>W tym trybie ekran wybranego użytkownika jest wyświetlany w oknie na wszystkich komputerach. Użytkownicy mogą w razie potrzeby przełączać się do innych okien.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz ekran użytkownika do udostępnienia.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation>Wybierz tylko jeden ekran użytkownika do udostępnienia.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Katalog docelowy</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>Domyślny katalog źródłowy</translation>
     </message>
@@ -1666,10 +1662,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Log file directory</source>
         <translation>Katalog plików dziennika logowania</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2704,10 +2696,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wyszukaj użytkowników i komputery</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Dopasuj optymalny rozmiar</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Dopasuj komputery w siatkę</translation>
     </message>
@@ -2753,10 +2741,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Pokaz slajdów</translation>
     </message>
     <message>
         <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2765,10 +2757,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Directories</source>
         <translation>Lokalizacje</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2903,15 +2891,31 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Automatycznie wybierz bieżącą lokalizację</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automatycznie dostosuj rozmiar miniatury komputera</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Automatycznie otwórz panel wyboru komputera</translation>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3149,6 +3153,10 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 -%2 dostęp zdalny</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3563,7 +3571,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Następny</translation>
     </message>
     <message>
         <source>Duration:</source>
@@ -3581,10 +3589,6 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3598,6 +3602,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3823,7 +3831,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Nawiązywanie połączenia z %1</translation>

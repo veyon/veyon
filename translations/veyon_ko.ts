@@ -334,10 +334,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>개인 키 화일 기본 폴더</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>사용 가능한 인증키들</translation>
     </message>
@@ -1292,10 +1288,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>화면 전송으로 데모를 보여 줍니다.</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>데모 서버</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>이 모드에서는 교사의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 필요할 경우 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
     </message>
@@ -1345,6 +1337,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1666,10 +1662,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Log file directory</source>
         <translation>로그 화일 폴더</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2707,10 +2699,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 또는 컴퓨터 검색</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>최적 크기로 조정</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>컴퓨터를 그리드에 맞춤</translation>
     </message>
@@ -2762,16 +2750,16 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>디렉토리</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2906,15 +2894,31 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>자동으로 현재 위치를 선택</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>컴퓨터 썸네일 사진 크기를 자동조정</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>컴퓨터 선택 패너을 자동으로 열기</translation>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>자동</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3152,6 +3156,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 원격 접근</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3584,10 +3592,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3601,6 +3605,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3826,7 +3834,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>... %1 로 연결 중입니다</translation>

@@ -334,10 +334,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>私密金鑰檔基礎目錄</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>可用身份驗證金鑰</translation>
     </message>
@@ -1292,10 +1288,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>透過螢幕廣播給予示範</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>示範伺服器</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation>在這個模式下，所有電腦上的畫面都以視窗顯示，使用者可以視需要切換到其它視窗。</translation>
     </message>
@@ -1345,6 +1337,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1548,10 +1548,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>目的地目錄</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation>預設來源目錄</translation>
     </message>
@@ -1666,10 +1662,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Log file directory</source>
         <translation>紀錄檔目錄</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2709,10 +2701,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>搜尋使用者和電腦</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>調整最佳大小</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>將電腦對齊格線</translation>
     </message>
@@ -2764,16 +2752,16 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>目錄</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2908,16 +2896,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>自動選取目前位置</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>自動調整電腦縮圖大小</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>自動開啟電腦選取面板</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>隱藏本機工作階段</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3154,6 +3158,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 遠端存取</translation>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3586,10 +3594,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3603,6 +3607,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3828,7 +3836,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>正在建立與 %1 連線...</translation>

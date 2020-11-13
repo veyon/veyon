@@ -334,12 +334,8 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <translation>Direktori basis file kunci pribadi</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Kunci autentikasi tersedia</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -464,19 +460,19 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menghaps file kunci &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menghapus kunci file direktori &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal dalam membuat direktori untuk output file.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>File &quot;%1&quot; telah tersedia&apos;</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -556,7 +552,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Tidak Diketahui&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -1292,10 +1288,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Server demo</translation>
-    </message>
-    <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
         <translation type="unfinished"/>
     </message>
@@ -1345,6 +1337,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1407,7 +1407,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1548,16 +1548,12 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Default source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opsi</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1583,7 +1579,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opsi</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1668,10 +1664,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation type="unfinished"/>
     </message>
@@ -1717,7 +1709,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Backend:</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -2464,11 +2456,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (memuat komputer dan lokasi untuk LDAP/AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (memuat pengguna dan group untuk LDAP/AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2690,10 +2682,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation>Cari pengguna dan komputer</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation type="unfinished"/>
     </message>
@@ -2745,16 +2733,16 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Direktori</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2889,15 +2877,31 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3132,6 +3136,10 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3410,7 +3418,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Sessions</source>
-        <translation type="unfinished"/>
+        <translation>Sesi sesi</translation>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
@@ -3564,10 +3572,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add computers by clicking with the middle mouse button or using the first button.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Update computers in realtime</source>
         <translation type="unfinished"/>
     </message>
@@ -3581,6 +3585,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3806,7 +3814,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncView</name>
+    <name>VncViewWidget</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation type="unfinished"/>
