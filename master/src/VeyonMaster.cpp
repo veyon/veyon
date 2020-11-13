@@ -27,7 +27,7 @@
 #include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
-#include "ComputerSortFilterProxyModel.h"
+#include "ComputerMonitoringModel.h"
 #include "FeatureManager.h"
 #include "VncConnection.h"
 #include "VeyonConfiguration.h"
@@ -46,7 +46,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_features( featureList() ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
-	m_computerSortFilterProxyModel( new ComputerSortFilterProxyModel( this ) ),
+	m_computerMonitoringModel( new ComputerMonitoringModel( this ) ),
 	m_localSessionControlInterface( Computer( NetworkObject::Uid::createUuid(),
 											  QStringLiteral("localhost"),
 											  QStringLiteral("%1:%2").
@@ -70,10 +70,10 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_localSessionControlInterface.start();
 
 	// attach computer list model to proxy model
-	m_computerSortFilterProxyModel->setSourceModel( m_computerControlListModel );
-	m_computerSortFilterProxyModel->setSortRole( Qt::InitialSortOrderRole );
-	m_computerSortFilterProxyModel->setStateRole( ComputerControlListModel::StateRole );
-	m_computerSortFilterProxyModel->sort( 0 );
+	m_computerMonitoringModel->setSourceModel( m_computerControlListModel );
+	m_computerMonitoringModel->setSortRole( Qt::InitialSortOrderRole );
+	m_computerMonitoringModel->setStateRole( ComputerControlListModel::StateRole );
+	m_computerMonitoringModel->sort( 0 );
 
 	m_mainWindow = new MainWindow( *this );
 }
@@ -200,15 +200,15 @@ ComputerControlInterfaceList VeyonMaster::selectedComputerControlInterfaces() co
 
 ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 {
-	const auto rowCount = m_computerSortFilterProxyModel->rowCount();
+	const auto rowCount = m_computerMonitoringModel->rowCount();
 
 	ComputerControlInterfaceList computerControlInterfaces;
 	computerControlInterfaces.reserve( rowCount );
 
 	for( int i = 0; i < rowCount; ++i )
 	{
-		const auto index = m_computerSortFilterProxyModel->index( i, 0 );
-		const auto sourceIndex = m_computerSortFilterProxyModel->mapToSource( index );
+		const auto index = m_computerMonitoringModel->index( i, 0 );
+		const auto sourceIndex = m_computerMonitoringModel->mapToSource( index );
 		computerControlInterfaces.append( m_computerControlListModel->computerControlInterface( sourceIndex ) );
 	}
 

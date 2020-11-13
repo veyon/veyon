@@ -24,7 +24,7 @@
 
 #include <QListView>
 
-#include "ComputerSortFilterProxyModel.h"
+#include "ComputerMonitoringModel.h"
 #include "ComputerMonitoringWidget.h"
 #include "SlideshowModel.h"
 #include "SlideshowPanel.h"
@@ -37,18 +37,18 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 	QWidget( parent ),
 	ui( new Ui::SlideshowPanel ),
 	m_config( config ),
-	m_model( new SlideshowModel( &computerMonitoringWidget->dataModel(), this ) )
+	m_model( new SlideshowModel( computerMonitoringWidget->dataModel(), this ) )
 {
 	ui->setupUi( this );
 
 	ui->monitoringWidget->setUseCustomComputerPositions( false );
 	ui->monitoringWidget->setIgnoreWheelEvent( true );
-	ui->monitoringWidget->listView()->setAcceptDrops( false );
-	ui->monitoringWidget->listView()->setDragEnabled( false );
-	ui->monitoringWidget->listView()->setSelectionMode( QListView::SingleSelection );
-	ui->monitoringWidget->listView()->setModel( m_model );
+	ui->monitoringWidget->setAcceptDrops( false );
+	ui->monitoringWidget->setDragEnabled( false );
+	ui->monitoringWidget->setSelectionMode( QListView::SingleSelection );
+	ui->monitoringWidget->setModel( m_model );
 
-	connect( ui->monitoringWidget->listView(), &QListView::iconSizeChanged, m_model, &SlideshowModel::setIconSize );
+	connect( ui->monitoringWidget, &QListView::iconSizeChanged, m_model, &SlideshowModel::setIconSize );
 
 	connect( ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration );
 	connect( ui->durationSlider, &QSlider::valueChanged, this, &SlideshowPanel::updateDuration );
@@ -74,13 +74,11 @@ void SlideshowPanel::resizeEvent( QResizeEvent* event )
 {
 	static constexpr auto ExtraMargin = 10;
 
-	const auto spacing = ui->monitoringWidget->listView()->spacing();
-	const auto labelHeight = ui->monitoringWidget->listView()->fontMetrics().height();
+	const auto spacing = ui->monitoringWidget->spacing();
+	const auto labelHeight = ui->monitoringWidget->fontMetrics().height();
 
-	const auto w = ui->monitoringWidget->listView()->width() - ExtraMargin - spacing * 2;
-	const auto h = ui->monitoringWidget->listView()->height() - ExtraMargin - labelHeight - spacing * 2;
-
-	ui->monitoringWidget->listView()->setIconSize( { w, h } );
+	ui->monitoringWidget->setIconSize( { ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
+										 ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2 } );
 
 	QWidget::resizeEvent( event );
 }

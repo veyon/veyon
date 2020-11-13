@@ -26,7 +26,7 @@
 #include <QListView>
 #include <QMessageBox>
 
-#include "ComputerSortFilterProxyModel.h"
+#include "ComputerMonitoringModel.h"
 #include "ComputerMonitoringWidget.h"
 #include "SpotlightModel.h"
 #include "SpotlightPanel.h"
@@ -40,22 +40,22 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 	ui( new Ui::SpotlightPanel ),
 	m_config( config ),
 	m_computerMonitoringWidget( computerMonitoringWidget ),
-	m_model( new SpotlightModel( &m_computerMonitoringWidget->dataModel(), this ) )
+	m_model( new SpotlightModel( m_computerMonitoringWidget->dataModel(), this ) )
 {
 	ui->setupUi( this );
 
 	ui->monitoringWidget->setIgnoreWheelEvent( true );
 	ui->monitoringWidget->setUseCustomComputerPositions( false );
-	ui->monitoringWidget->listView()->setAcceptDrops( false );
-	ui->monitoringWidget->listView()->setDragEnabled( false );
-	ui->monitoringWidget->listView()->setModel( m_model );
+	ui->monitoringWidget->setAcceptDrops( false );
+	ui->monitoringWidget->setDragEnabled( false );
+	ui->monitoringWidget->setModel( m_model );
 
 	connect( ui->addButton, &QAbstractButton::clicked, this, &SpotlightPanel::add );
 	connect( ui->removeButton, &QAbstractButton::clicked, this, &SpotlightPanel::remove );
 	connect( ui->realtimeViewButton, &QAbstractButton::toggled, this, &SpotlightPanel::setRealtimeView );
 
-	connect( m_computerMonitoringWidget->listView(), &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
-	connect( ui->monitoringWidget->listView(), &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
+	connect( m_computerMonitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
+	connect( ui->monitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
 
 	connect( m_model, &QAbstractItemModel::rowsRemoved, this, [=]() {
 		if( m_model->rowCount() <= 0 )
@@ -114,7 +114,7 @@ void SpotlightPanel::add()
 
 void SpotlightPanel::remove()
 {
-	const auto selection = ui->monitoringWidget->listView()->selectionModel()->selectedIndexes();
+	const auto selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
 	if( selection.isEmpty() )
 	{
 		QMessageBox::information( this, tr("Spotlight"),
@@ -146,14 +146,12 @@ void SpotlightPanel::updateIconSize()
 {
 	static constexpr auto ExtraMargin = 10;
 
-	const auto spacing = ui->monitoringWidget->listView()->spacing();
-	const auto labelHeight = ui->monitoringWidget->listView()->fontMetrics().height();
+	const auto spacing = ui->monitoringWidget->spacing();
+	const auto labelHeight = ui->monitoringWidget->fontMetrics().height();
 
-	const auto w = ui->monitoringWidget->listView()->width() - ExtraMargin - spacing * 2;
-	const auto h = ui->monitoringWidget->listView()->height() - ExtraMargin - labelHeight - spacing * 2;
-
-	ui->monitoringWidget->listView()->setIconSize( { w, h } );
-	m_model->setIconSize( ui->monitoringWidget->listView()->iconSize() );
+	ui->monitoringWidget->setIconSize( { ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
+										 ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2 } );
+	m_model->setIconSize( ui->monitoringWidget->iconSize() );
 }
 
 
@@ -162,7 +160,7 @@ void SpotlightPanel::addPressedItem( const QModelIndex& index )
 {
 	if( QGuiApplication::mouseButtons().testFlag( Qt::MidButton ) )
 	{
-		m_computerMonitoringWidget->listView()->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		m_computerMonitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
 
 		add();
 	}
@@ -174,7 +172,7 @@ void SpotlightPanel::removePressedItem( const QModelIndex& index )
 {
 	if( QGuiApplication::mouseButtons().testFlag( Qt::MidButton ) )
 	{
-		ui->monitoringWidget->listView()->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		ui->monitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
 
 		remove();
 	}

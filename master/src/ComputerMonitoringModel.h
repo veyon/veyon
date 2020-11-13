@@ -1,5 +1,5 @@
 /*
- * ComputerSortFilterProxyModel.h - header file for ComputerSortFilterProxyModel
+ * ComputerMonitoringModel.h - header file for ComputerMonitoringModel
  *
  * Copyright (c) 2018-2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -28,11 +28,11 @@
 
 #include "ComputerControlInterface.h"
 
-class ComputerSortFilterProxyModel : public QSortFilterProxyModel
+class ComputerMonitoringModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:
-	explicit ComputerSortFilterProxyModel( QObject* parent );
+	explicit ComputerMonitoringModel( QObject* parent );
 
 	int stateRole() const
 	{

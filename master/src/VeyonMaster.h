@@ -36,7 +36,7 @@ class QModelIndex;
 class BuiltinFeatures;
 class ComputerControlListModel;
 class ComputerManager;
-class ComputerSortFilterProxyModel;
+class ComputerMonitoringModel;
 class FeatureManager;
 class MainWindow;
 class UserConfig;
@@ -68,9 +68,9 @@ public:
 		return *m_computerControlListModel;
 	}
 
-	ComputerSortFilterProxyModel& computerSortFilterProxyModel()
+	ComputerMonitoringModel* computerMonitoringModel() const
 	{
-		return *m_computerSortFilterProxyModel;
+		return m_computerMonitoringModel;
 	}
 
 	const FeatureList& features() const
@@ -114,7 +114,7 @@ private:
 	const FeatureList m_features;
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;
-	ComputerSortFilterProxyModel* m_computerSortFilterProxyModel;
+	ComputerMonitoringModel* m_computerMonitoringModel;
 
 	ComputerControlInterface m_localSessionControlInterface;
 

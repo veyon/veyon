@@ -1,5 +1,5 @@
 /*
- * ComputerSortFilterProxyModel.cpp - implementation of ComputerSortFilterProxyModel
+ * ComputerMonitoringModel.cpp - implementation of ComputerMonitoringModel
  *
  * Copyright (c) 2018-2020 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,14 +22,14 @@
  *
  */
 
-#include "ComputerSortFilterProxyModel.h"
+#include "ComputerMonitoringModel.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
 #endif
 
 
-ComputerSortFilterProxyModel::ComputerSortFilterProxyModel( QObject* parent ) :
+ComputerMonitoringModel::ComputerMonitoringModel( QObject* parent ) :
 	QSortFilterProxyModel( parent ),
 	m_stateRole( -1 ),
 	m_stateFilter( ComputerControlInterface::State::None )
@@ -43,7 +43,7 @@ ComputerSortFilterProxyModel::ComputerSortFilterProxyModel( QObject* parent ) :
 
 
 
-void ComputerSortFilterProxyModel::setStateRole( int role )
+void ComputerMonitoringModel::setStateRole( int role )
 {
 	beginResetModel();
 	m_stateRole = role;
@@ -52,7 +52,7 @@ void ComputerSortFilterProxyModel::setStateRole( int role )
 
 
 
-void ComputerSortFilterProxyModel::setStateFilter( ComputerControlInterface::State state )
+void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State state )
 {
 	beginResetModel();
 	m_stateFilter = state;
@@ -61,7 +61,7 @@ void ComputerSortFilterProxyModel::setStateFilter( ComputerControlInterface::Sta
 
 
 
-bool ComputerSortFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
+bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	if( m_stateFilter != ComputerControlInterface::State::None &&
 		m_stateRole >= 0 &&

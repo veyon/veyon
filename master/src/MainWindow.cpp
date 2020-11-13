@@ -65,8 +65,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	restoreState( QByteArray::fromBase64( m_master.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_master.userConfig().windowGeometry().toUtf8() ) );
 
-	ui->computerMonitoringWidget->loadSettings();
-
 	// add widgets to status bar
 	ui->statusBar->addWidget( ui->panelButtons );
 	ui->statusBar->addWidget( ui->spacerLabel1 );
@@ -192,16 +190,16 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	// initialize search filter
 	ui->filterPoweredOnComputersButton->setChecked( m_master.userConfig().filterPoweredOnComputers() );
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setSearchFilter );
+			 this, [this]( const QString& filter ) { ui->computerMonitoringWidget->setSearchFilter( filter ); } );
 	connect( ui->filterPoweredOnComputersButton, &QToolButton::toggled,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setFilterPoweredOnComputers );
+			 this, [this]( bool enabled ) { ui->computerMonitoringWidget->setFilterPoweredOnComputers( enabled ); } );
 
 	// initialize monitoring screen size slider
 	ui->gridSizeSlider->setMinimum( ComputerMonitoringWidget::MinimumComputerScreenSize );
 	ui->gridSizeSlider->setMaximum( ComputerMonitoringWidget::MaximumComputerScreenSize );
 
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setComputerScreenSize );
+			 this, [this]( int size ) { ui->computerMonitoringWidget->setComputerScreenSize( size ); } );
 	connect( ui->computerMonitoringWidget, &ComputerMonitoringWidget::computerScreenSizeAdjusted,
 			 ui->gridSizeSlider, &QSlider::setValue );
 	connect( ui->autoFitButton, &QToolButton::clicked,
@@ -242,6 +240,8 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 MainWindow::~MainWindow()
 {
+	ui->computerMonitoringWidget->saveConfiguration();
+
 	delete ui;
 }
 

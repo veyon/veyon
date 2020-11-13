@@ -24,49 +24,30 @@
 
 #pragma once
 
-#include "ComputerControlInterface.h"
+#include "ComputerMonitoringView.h"
+#include "FlexibleListView.h"
 
 #include <QWidget>
 
-class QListView;
-class QMenu;
+class FlexibleListView;
 
-namespace Ui {
-class ComputerMonitoringWidget;
-}
-
-class ComputerSortFilterProxyModel;
-class VeyonMaster;
-
-class ComputerMonitoringWidget : public QWidget
+class ComputerMonitoringWidget : public FlexibleListView, public ComputerMonitoringView
 {
 	Q_OBJECT
 public:
-	enum {
-		MinimumComputerScreenSize = 50,
-		MaximumComputerScreenSize = 1000,
-		DefaultComputerScreenSize = 150
-	};
-
 	explicit ComputerMonitoringWidget( QWidget *parent = nullptr );
-	~ComputerMonitoringWidget() override;
+	~ComputerMonitoringWidget() override = default;
 
-	void loadSettings();
+	ComputerControlInterfaceList selectedComputerControlInterfaces() const override;
 
-	ComputerSortFilterProxyModel& dataModel();
-
-	QListView* listView() const;
-
-	ComputerControlInterfaceList selectedComputerControlInterfaces();
-
-	void setSearchFilter( const QString& searchFilter );
-	void setFilterPoweredOnComputers( bool enabled );
-	void setComputerScreenSize( int size );
 	void autoAdjustComputerScreenSize();
-	void setUseCustomComputerPositions( bool enabled );
-	void alignComputers();
 
-	void showContextMenu( QPoint pos );
+	void setUseCustomComputerPositions( bool enabled ) override;
+	void alignComputers() override;
+
+	void showContextMenu( QPoint globalPos );
+
+	void setIconSize( const QSize& size ) override;
 
 	void setIgnoreWheelEvent( bool enabled )
 	{
@@ -74,23 +55,21 @@ public:
 	}
 
 private:
-	void runDoubleClickFeature( const QModelIndex& index );
-	void runFeature( const Feature& feature );
-
-	void showEvent( QShowEvent* event ) override;
-	void wheelEvent( QWheelEvent* event ) override;
-
-	bool isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
-									 Feature::Uid featureUid ) const;
+	void setColors( const QColor& backgroundColor, const QColor& textColor ) override;
+	QJsonArray saveComputerPositions() override;
+	bool useCustomComputerPositions() override;
+	void loadComputerPositions( const QJsonArray& positions ) override;
 
 	void populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces );
 	void addFeatureToMenu( const Feature& feature, const QString& label );
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 
-	Ui::ComputerMonitoringWidget *ui;
+	void runDoubleClickFeature( const QModelIndex& index );
 
-	VeyonMaster* m_master;
-	QMenu* m_featureMenu;
+	void showEvent( QShowEvent* event ) override;
+	void wheelEvent( QWheelEvent* event ) override;
+
+	QMenu* m_featureMenu{};
 	bool m_ignoreWheelEvent{false};
 
 Q_SIGNALS:
