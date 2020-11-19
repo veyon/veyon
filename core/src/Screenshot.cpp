@@ -147,6 +147,8 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	m_image.setText( metaDataKey( MetaData::Time ), time );
 
 	m_image.save( &outputFile, "PNG", 50 );
+
+	Q_EMIT VeyonCore::filesystem().screenshotDirectoryModified();
 }
 
 
