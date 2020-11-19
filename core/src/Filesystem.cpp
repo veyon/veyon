@@ -128,6 +128,13 @@ bool Filesystem::ensurePathExists( const QString &path ) const
 
 
 
+QString Filesystem::screenshotDirectoryPath() const
+{
+	return expandPath( VeyonCore::config().screenshotDirectory() );
+}
+
+
+
 QString Filesystem::serviceFilePath() const
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
