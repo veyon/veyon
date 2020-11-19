@@ -182,7 +182,8 @@ void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
 
 void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 {
-	if( client->accessControlState() == VncServerClient::AccessControlState::Successful )
+	if( client->accessControlState() == VncServerClient::AccessControlState::Successful &&
+		client->protocolState() == VncServerProtocol::State::AccessControl )
 	{
 		vInfo() << "Access control successful for" << client->hostAddress() << client->username();
 
