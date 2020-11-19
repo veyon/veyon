@@ -42,4 +42,7 @@ public:
 	QString serverFilePath() const;
 	QString workerFilePath() const;
 
+Q_SIGNALS:
+	void screenshotDirectoryModified();
+
 };
