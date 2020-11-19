@@ -58,7 +58,7 @@ bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
 {
 	Q_UNUSED(arguments)
 
-	if( hasFeature( featureUid ) && operation != Operation::Start )
+	if( hasFeature( featureUid ) && operation == Operation::Start )
 	{
 		for( const auto& controlInterface : computerControlInterfaces )
 		{
