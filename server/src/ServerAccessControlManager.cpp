@@ -77,7 +77,7 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 	m_clients.removeAll( client );
 
 	// force all remaining clients to pass access control again as conditions might
-	// have changed (e.g. AccessControlRule::ConditionAccessFromAlreadyConnectedUser)
+	// have changed (e.g. AccessControlRule::Condition::AccessFromAlreadyConnectedUser)
 
 	const VncServerClientList previousClients = m_clients;
 	m_clients.clear();
