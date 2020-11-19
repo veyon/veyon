@@ -49,7 +49,7 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	setSelectionMode( QAbstractItemView::ExtendedSelection );
 	setFlow( QListView::LeftToRight );
 	setWrapping( true );
-	setResizeMode( QListView::Fixed );
+	setResizeMode( QListView::Adjust );
 	setSpacing( computerMonitoringThumbnailSpacing  );
 	setViewMode( QListView::IconMode );
 	setUniformItemSizes( true );
