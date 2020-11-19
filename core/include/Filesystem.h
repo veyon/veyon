@@ -28,8 +28,9 @@
 
 // clazy:excludeall=rule-of-three
 
-class VEYON_CORE_EXPORT Filesystem
+class VEYON_CORE_EXPORT Filesystem : public QObject
 {
+	Q_OBJECT
 public:
 	QString expandPath( QString path ) const;
 	QString shrinkPath( QString path ) const;
