@@ -8,6 +8,9 @@
      <property name="toolTip">
       <string>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</string>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
     </widget>
    </item>
    <item>
@@ -99,7 +102,7 @@
         <string>Show</string>
        </property>
        <property name="icon">
-        <iconset resource="../core/resources/core.qrc">
+        <iconset resource="../../core/resources/core.qrc">
          <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
        </property>
        <property name="iconSize">
@@ -149,7 +152,6 @@
  </widget>
  <resources>
   <include location="../../core/resources/core.qrc"/>
-  <include location="../resources/master.qrc"/>
  </resources>
  <connections/>
 </ui>
