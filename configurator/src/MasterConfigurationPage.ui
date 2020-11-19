@@ -505,7 +505,7 @@
   <tabstop>modernUserInterface</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSelectCurrentLocation</tabstop>
-  <tabstop>autoAdjustGridSize</tabstop>
+  <tabstop>autoAdjustMonitoringIconSize</tabstop>
   <tabstop>autoOpenComputerSelectPanel</tabstop>
   <tabstop>showCurrentLocationOnly</tabstop>
   <tabstop>allowAddingHiddenLocations</tabstop>
