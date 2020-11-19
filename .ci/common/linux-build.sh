@@ -9,7 +9,7 @@ CPUS=$(nproc)
 mkdir -p $BUILD
 cd $BUILD
 
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr -DLTO=ON $SRC
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr -DLTO=ON $CMAKE_FLAGS $SRC
 
 echo Building on $CPUS CPUs
 
