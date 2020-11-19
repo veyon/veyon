@@ -24,6 +24,7 @@
 
 #include <QDir>
 #include <QFileInfo>
+#include <QMessageBox>
 
 #include "Filesystem.h"
 #include "ScreenshotManagementPanel.h"
@@ -150,9 +151,18 @@ void ScreenshotManagementPanel::showScreenshot()
 
 void ScreenshotManagementPanel::deleteScreenshot()
 {
-	if( ui->list->currentIndex().isValid() )
+	const auto selection = ui->list->selectionModel()->selectedIndexes();
+	if( selection.size() > 1 &&
+		QMessageBox::question( this,
+							   tr("Screenshot"),
+							   tr("Do you really want to delete all selected screenshots?") ) != QMessageBox::Yes )
 	{
-		QFile::remove( filePath( ui->list->currentIndex() ) );
+		return;
+	}
+
+	for( const auto& index : selection )
+	{
+		QFile::remove( filePath( index ) );
 	}
 
 	updateModel();
