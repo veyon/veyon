@@ -3360,6 +3360,14 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Zrzut ekranu</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

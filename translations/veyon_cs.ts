@@ -3361,6 +3361,14 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Snímek obrazovky</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

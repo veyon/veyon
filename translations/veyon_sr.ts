@@ -3365,6 +3365,14 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <source>Delete</source>
         <translation>Pobrisati</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Snimka ekrana</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

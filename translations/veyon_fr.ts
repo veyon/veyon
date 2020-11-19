@@ -1341,11 +1341,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Tous les écrans</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Ecran %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -2750,11 +2750,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>focalisation</translation>
+        <translation>Focalisation</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Ajuster automatiquement la taille des icônes d&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -2917,11 +2917,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Rapport hauteur / largeur de la miniature</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Ajuster automatiquement la taille de l&apos;icône de l&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -3161,7 +3161,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Accès à distance</translation>
     </message>
 </context>
 <context>
@@ -3364,6 +3364,14 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <message>
         <source>Delete</source>
         <translation>Supprimer</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Capture d&apos;écran</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation>Voulez-vous vraiment supprimer toutes les captures d&apos;écran sélectionnées?</translation>
     </message>
 </context>
 <context>
@@ -3599,7 +3607,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>focalisation</translation>
+        <translation>Focalisation</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -3611,7 +3619,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Ajoutez des ordinateurs en cliquant avec le bouton central de la souris ou en cliquant sur le premier bouton ci-dessous.</translation>
     </message>
 </context>
 <context>

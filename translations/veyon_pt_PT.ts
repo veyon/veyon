@@ -3341,6 +3341,14 @@ Please save your work and close all programs.</source>
         <source>Delete</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

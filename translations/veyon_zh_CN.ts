@@ -3366,6 +3366,14 @@ Please save your work and close all programs.</source>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>屏幕截图</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

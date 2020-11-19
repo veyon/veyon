@@ -1341,11 +1341,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Kõik ekraanid</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Ekraan %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -2746,15 +2746,15 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Slaidiseanss</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Tähelepanu keskpunktis</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Kohandage arvuti ikoonide suurust automaatselt</translation>
     </message>
 </context>
 <context>
@@ -2917,11 +2917,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Pisipildi kuvasuhe</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Reguleerige arvuti ikooni suurust automaatselt</translation>
     </message>
 </context>
 <context>
@@ -3161,7 +3161,7 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Kaugjuurdepääs</translation>
     </message>
 </context>
 <context>
@@ -3364,6 +3364,14 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Delete</source>
         <translation>Kustuta</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Ekraanipilt</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation>Kas soovite tõesti kõik valitud ekraanipildid kustutada?</translation>
     </message>
 </context>
 <context>
@@ -3568,50 +3576,50 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Eelmine</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Start/paus</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Järgmine</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Kestus:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Lisage valitud arvutid</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Eemaldage valitud arvutid</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Värskendage arvuteid reaalajas</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Tähelepanu keskpunktis</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Valige lisamiseks vähemalt üks arvuti.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Valige eemaldamiseks vähemalt üks arvuti.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.</translation>
     </message>
 </context>
 <context>

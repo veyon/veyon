@@ -1343,11 +1343,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Todas las pantallas</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Pantalla %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -2756,7 +2756,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Ajustar el tamaño de los iconos de la computadora automáticamente</translation>
     </message>
 </context>
 <context>
@@ -2919,11 +2919,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Relación de aspecto de la miniatura</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Ajustar automáticamente el tamaño del icono de la computadora</translation>
     </message>
 </context>
 <context>
@@ -3163,7 +3163,7 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>Acceso Remoto %1 - %2 - %3</translation>
     </message>
 </context>
 <context>
@@ -3366,6 +3366,14 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>Delete</source>
         <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Captura</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation>¿Realmente desea eliminar todas las capturas de pantalla seleccionadas?</translation>
     </message>
 </context>
 <context>
@@ -3613,7 +3621,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Añada computadoras haciendo clic con el botón central del ratón o haciendo clic en el primer botón a continuación.</translation>
     </message>
 </context>
 <context>

@@ -1338,11 +1338,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Tutti gli schermi</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Schermo %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -2741,7 +2741,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Regola automaticamente la dimensione delle icone del computer</translation>
     </message>
 </context>
 <context>
@@ -2904,11 +2904,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Proporzioni delle miniature</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Regola automaticamente la dimensione dell&apos;icona del computer</translation>
     </message>
 </context>
 <context>
@@ -3148,7 +3148,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Accesso Remoto</translation>
     </message>
 </context>
 <context>
@@ -3351,6 +3351,14 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Delete</source>
         <translation>Elimina</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Screenshot</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3597,7 +3605,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi computer facendo clic con il pulsante centrale del mouse o facendo clic sul primo pulsante in basso.</translation>
     </message>
 </context>
 <context>

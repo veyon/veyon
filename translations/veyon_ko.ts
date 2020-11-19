@@ -3363,6 +3363,14 @@ Please save your work and close all programs.</source>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>화면캡쳐</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

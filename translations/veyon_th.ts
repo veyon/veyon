@@ -3343,6 +3343,14 @@ Please save your work and close all programs.</source>
         <source>Delete</source>
         <translation>ลบ</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>ภาพหน้าจอ</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

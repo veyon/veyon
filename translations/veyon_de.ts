@@ -3362,6 +3362,14 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Bildschirmfoto</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation>Möchten Sie wirklich alle ausgewählten Screenshots löschen?</translation>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>

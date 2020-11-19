@@ -2753,7 +2753,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Автоматично коригувати розмір піктограм комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -2920,7 +2920,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Автоматично коригувати розмір піктограм комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -3363,6 +3363,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Delete</source>
         <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Знімок вікна</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation>Справді хочете вилучити усі позначені знімки вікон?</translation>
     </message>
 </context>
 <context>

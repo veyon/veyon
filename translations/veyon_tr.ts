@@ -3357,6 +3357,14 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Ekran görüntüsü</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
