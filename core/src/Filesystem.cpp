@@ -148,6 +148,13 @@ QString Filesystem::publicKeyPath( const QString& name ) const
 
 
 
+QString Filesystem::screenshotDirectoryPath() const
+{
+	return expandPath( VeyonCore::config().screenshotDirectory() );
+}
+
+
+
 QString Filesystem::serverFilePath() const
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +

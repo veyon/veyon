@@ -39,6 +39,8 @@ public:
 	QString privateKeyPath( const QString& name ) const;
 	QString publicKeyPath( const QString& name ) const;
 
+	QString screenshotDirectoryPath() const;
+
 	QString serverFilePath() const;
 	QString workerFilePath() const;
 
