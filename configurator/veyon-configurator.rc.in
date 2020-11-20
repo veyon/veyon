@@ -1,11 +1,11 @@
 veyonconfiguratoricon ICON data/veyon-configurator.ico
 #include <windows.h>
 
-ID_MANIFEST RT_MANIFEST data/veyon-configurator.exe.manifest
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST data/veyon-configurator.exe.manifest
 
 VS_VERSION_INFO	VERSIONINFO
   FILEVERSION	@VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@,@VERSION_BUILD@
-  FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+  FILEFLAGSMASK 0
   FILEOS	VOS_NT_WINDOWS32
   FILETYPE	VFT_APP
   FILESUBTYPE	VFT2_UNKNOWN
@@ -17,11 +17,16 @@ BEGIN
     BEGIN
       VALUE "Comments",		"Virtual Eye On Networks (https://veyon.io)\0"
       VALUE "CompanyName",	"Veyon Solutions\0"
+      VALUE "ProductName",	"Veyon\0"
+      VALUE "ProductVersion",	"@VERSION_STRING@\0"
       VALUE "FileDescription",	"Veyon Configurator\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2010-2020 Tobias Junghans\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2017-2020 Veyon Solutions / Tobias Junghans\0"
       VALUE "OriginalFilename",	"veyon-configurator.exe\0"
-      VALUE "ProductName",	"Veyon\0"
     END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0409, 0x04E4
   END
 END
