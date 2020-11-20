@@ -30,5 +30,6 @@ if [ -z "$3" ] ; then
 	./cli/veyon-cli about
 else
 	make ${@:3} -j$CPUS
+	fakeroot make package
 fi
 
