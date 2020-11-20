@@ -40,6 +40,8 @@ target_include_directories(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
 target_include_directories(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 set_default_target_properties(kldap-light)
 set_target_properties(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+if(NOT WITH_CORE_ONLY)
 install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
+endif()
 cotire_veyon(kldap-light)
 
