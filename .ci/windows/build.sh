@@ -12,7 +12,7 @@ rm -rf $BUILDDIR
 mkdir $BUILDDIR
 cd $BUILDDIR
 
-cmake $BASEDIR -DCMAKE_TOOLCHAIN_FILE=$BASEDIR/cmake/modules/Win${1}Toolchain.cmake -DCMAKE_MODULE_PATH=$BASEDIR/cmake/modules/
+cmake $BASEDIR -DCMAKE_TOOLCHAIN_FILE=$BASEDIR/cmake/modules/Win${1}Toolchain.cmake -DCMAKE_MODULE_PATH=$BASEDIR/cmake/modules/ $CMAKE_FLAGS
 
 echo Building on $CPUS CPUs
 
