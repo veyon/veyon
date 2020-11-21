@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>MasterConfigurationPage</class>
  <widget class="QWidget" name="MasterConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>592</width>
+    <height>523</height>
+   </rect>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
    <property name="topMargin">
     <number>0</number>
@@ -363,13 +371,6 @@
           <string>Modes and features</string>
          </property>
          <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="enforceSelectedModeForClients">
-            <property name="text">
-             <string>Enforce selected mode for client computers</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0" colspan="2">
            <widget class="QCheckBox" name="confirmUnsafeActions">
             <property name="toolTip">
@@ -380,13 +381,30 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="3" column="1">
            <widget class="QComboBox" name="computerDoubleClickFeature"/>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Feature on computer double click:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="enforceSelectedModeForClients">
+            <property name="text">
+             <string>Enforce selected mode for client computers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="openOnMasterScreen">
+            <property name="toolTip">
+             <string>Else it will open on the main screen always</string>
+            </property>
+            <property name="text">
+             <string>Open remote access window on the same screen as the master</string>
             </property>
            </widget>
           </item>
@@ -515,6 +533,7 @@
   <tabstop>hideComputerFilter</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>confirmUnsafeActions</tabstop>
+  <tabstop>openOnMasterScreen</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
