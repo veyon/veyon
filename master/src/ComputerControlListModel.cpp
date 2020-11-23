@@ -42,7 +42,7 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	m_master( masterCore ),
 	m_iconDefault( QStringLiteral(":/master/preferences-desktop-display-gray.png") ),
 	m_iconConnectionProblem( QStringLiteral(":/master/preferences-desktop-display-red.png") ),
-	m_iconDemoMode( QStringLiteral(":/master/preferences-desktop-display-orange.png") )
+	m_iconServerNotRunning( QStringLiteral(":/master/preferences-desktop-display-orange.png") )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
@@ -447,6 +447,8 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 	}
 
 	case ComputerControlInterface::State::ServerNotRunning:
+		return scaleAndAlignIcon( m_iconServerNotRunning, controlInterface->scaledScreenSize() );
+
 	case ComputerControlInterface::State::AuthenticationFailed:
 		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledScreenSize() );
 
