@@ -73,6 +73,8 @@ public:
 
 	bool hasValidFramebuffer() const;
 
+	QSize screenSize() const;
+
 	const QSize& scaledScreenSize() const
 	{
 		return m_scaledScreenSize;
