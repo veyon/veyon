@@ -80,7 +80,7 @@ public:
 		Disconnected,
 		Connecting,
 		HostOffline,
-		ServiceUnreachable,
+		ServerNotRunning,
 		AuthenticationFailed,
 		ConnectionFailed,
 		Connected

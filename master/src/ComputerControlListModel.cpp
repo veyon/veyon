@@ -446,8 +446,8 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 		return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
 	}
 
+	case ComputerControlInterface::State::ServerNotRunning:
 	case ComputerControlInterface::State::AuthenticationFailed:
-	case ComputerControlInterface::State::ServiceUnreachable:
 		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledScreenSize() );
 
 	default:
@@ -546,8 +546,8 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 	case ComputerControlInterface::State::HostOffline:
 		return tr( "Computer offline or switched off" );
 
-	case ComputerControlInterface::State::ServiceUnreachable:
-		return tr( "Service unreachable or not running" );
+	case ComputerControlInterface::State::ServerNotRunning:
+		return tr( "Veyon Server unreachable or not running" );
 
 	case ComputerControlInterface::State::AuthenticationFailed:
 		return tr( "Authentication failed or access denied" );
