@@ -148,8 +148,6 @@ void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 	{
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 	}
-
-	Q_EMIT screenUpdated();
 }
 
 
