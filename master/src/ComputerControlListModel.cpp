@@ -136,12 +136,24 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 	}
 
-	m_computerScreenSize = { m_master->userConfig().monitoringScreenSize(),
-							 int(m_master->userConfig().monitoringScreenSize() / ratio) };
+	const QSize newSize{ m_master->userConfig().monitoringScreenSize(),
+						 int(m_master->userConfig().monitoringScreenSize() / ratio) };
 
 	for( auto& controlInterface : m_computerControlInterfaces )
 	{
-		controlInterface->setScaledScreenSize( m_computerScreenSize );
+		controlInterface->setScaledScreenSize( newSize );
+	}
+
+	if( m_computerScreenSize != newSize )
+	{
+		m_computerScreenSize = newSize;
+
+		for( int i = 0; i < rowCount(); ++i )
+		{
+			updateScreen( index( i ) );
+		}
+
+		Q_EMIT computerScreenSizeChanged();
 	}
 }
 
@@ -230,6 +242,8 @@ void ComputerControlListModel::update()
 
 		++row;
 	}
+
+	updateComputerScreenSize();
 }
 
 
@@ -284,6 +298,9 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 			 [=]( const FeatureMessage& featureMessage, const ComputerControlInterface::Pointer& computerControlInterface ) {
 				 m_master->featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
 	} );
+
+	connect( controlInterface, &ComputerControlInterface::screenSizeChanged,
+			 this, &ComputerControlListModel::updateComputerScreenSize );
 
 	connect( controlInterface, &ComputerControlInterface::screenUpdated,
 			 this, [=] () { updateScreen( interfaceIndex( controlInterface ) ); } );
