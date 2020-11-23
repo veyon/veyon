@@ -72,7 +72,7 @@ public:
 	template<class T>
 	static QString argToString( T item )
 	{
-		return EnumHelper::toCamelCaseString( item ).toLower();
+		return EnumHelper::toCamelCaseString( item );
 	}
 
 	/*!
