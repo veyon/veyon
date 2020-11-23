@@ -3,24 +3,17 @@ image: docker:latest
 stages:
   - build
 
-build-win32:
+build-windows:
   stage: build
-  image: $IMAGE
+  image: $CI_REGISTRY/veyon/ci-mingw-w64:5.0
   script:
-    - .ci/windows/build.sh 32
+    - .ci/windows/build.sh $BITS
+  parallel:
+    matrix:
+      - BITS: [32, 64]
   artifacts:
-    paths: [ veyon-win32* ]
-    expire_in: 1 day
-
-build-win64:
-  stage: build
-  image: $IMAGE
-  script:
-    - .ci/windows/build.sh 64
-  artifacts:
-    paths: [ veyon-win64* ]
+    paths: [ veyon-win* ]
     expire_in: 1 day
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
-  IMAGE: $CI_REGISTRY/veyon/ci-mingw-w64:5.0
