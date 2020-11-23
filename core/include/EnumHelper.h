@@ -41,7 +41,7 @@ public:
 	static QString toCamelCaseString( T item )
 	{
 		const auto name = toString( item );
-		return name.mid( 0 ).toLower() + name.mid( 1 );
+		return name.mid( 0, 1 ).toLower() + name.mid( 1 );
 	}
 
 } ;
