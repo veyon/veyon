@@ -318,7 +318,7 @@ double ComputerControlListModel::averageAspectRatio() const
 
 	for( const auto& controlInterface : m_computerControlInterfaces )
 	{
-		const auto currentSize = controlInterface->screen().size();
+		const auto currentSize = controlInterface->screenSize();
 		if( currentSize.isValid() )
 		{
 			size += currentSize;
