@@ -71,6 +71,7 @@ public:
 
 Q_SIGNALS:
 	void activeFeaturesChanged( QModelIndex );
+	void computerScreenSizeChanged();
 
 private:
 	void update();
