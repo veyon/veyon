@@ -90,7 +90,7 @@ private:
 
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;
-	QImage m_iconDemoMode;
+	QImage m_iconServerNotRunning;
 
 	QSize m_computerScreenSize{};
 
