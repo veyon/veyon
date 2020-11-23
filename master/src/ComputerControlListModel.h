@@ -77,8 +77,7 @@ private:
 
 	double averageAspectRatio() const;
 
-	void loadIcons();
-	QImage prepareIcon( const QImage& icon );
+	QImage scaleAndAlignIcon( const QImage& icon, QSize size ) const;
 	QImage computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const;
