@@ -495,7 +495,7 @@ void VncConnection::establishConnection()
 				}
 				else
 				{
-					setState( State::ServiceUnreachable );
+					setState( State::ServerNotRunning );
 				}
 			}
 			else if( m_framebufferState == FramebufferState::Invalid )
