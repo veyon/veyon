@@ -51,6 +51,8 @@ void ComputerMonitoringView::initializeView( QObject* self )
 	QObject::connect( &m_iconSizeAutoAdjustTimer, &QTimer::timeout, self, autoAdjust );
 	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsInserted, self, autoAdjust );
 	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsRemoved, self, autoAdjust );
+	QObject::connect( &m_master->computerControlListModel(), &ComputerControlListModel::computerScreenSizeChanged, self,
+					  [this]() { setIconSize( m_master->computerControlListModel().computerScreenSize() ); } );
 
 	setColors( VeyonCore::config().computerMonitoringBackgroundColor(),
 			   VeyonCore::config().computerMonitoringTextColor() );
@@ -133,8 +135,6 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 		m_master->userConfig().setMonitoringScreenSize( size );
 
 		m_master->computerControlListModel().updateComputerScreenSize();
-
-		setIconSize( m_master->computerControlListModel().computerScreenSize() );
 	}
 }
 
