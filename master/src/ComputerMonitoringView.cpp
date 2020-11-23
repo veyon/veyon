@@ -46,9 +46,9 @@ ComputerMonitoringView::ComputerMonitoringView() :
 
 void ComputerMonitoringView::initializeView( QObject* self )
 {
-	const auto autoAdjust = [this]() { performIconSizeAutoAdjust(); };
+	const auto autoAdjust = [this]() { initiateIconSizeAutoAdjust(); };
 
-	QObject::connect( &m_iconSizeAutoAdjustTimer, &QTimer::timeout, self, autoAdjust );
+	QObject::connect( &m_iconSizeAutoAdjustTimer, &QTimer::timeout, self, [this]() { performIconSizeAutoAdjust(); } );
 	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsInserted, self, autoAdjust );
 	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsRemoved, self, autoAdjust );
 	QObject::connect( &m_master->computerControlListModel(), &ComputerControlListModel::computerScreenSizeChanged, self,
