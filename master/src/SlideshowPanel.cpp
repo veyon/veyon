@@ -47,8 +47,6 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 	ui->monitoringWidget->setSelectionMode( QListView::SingleSelection );
 	ui->monitoringWidget->setModel( m_model );
 
-	connect( ui->monitoringWidget, &QListView::iconSizeChanged, m_model, &SlideshowModel::setIconSize );
-
 	connect( ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration );
 	connect( ui->durationSlider, &QSlider::valueChanged, this, &SlideshowPanel::updateDuration );
 
@@ -78,6 +76,8 @@ void SlideshowPanel::resizeEvent( QResizeEvent* event )
 
 	ui->monitoringWidget->setIconSize( { ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
 										 ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2 } );
+
+	m_model->setIconSize( ui->monitoringWidget->iconSize() );
 
 	QWidget::resizeEvent( event );
 }
