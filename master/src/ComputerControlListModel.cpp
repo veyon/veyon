@@ -176,7 +176,7 @@ QImage ComputerControlListModel::requestImage( const QString& id, QSize* size, c
 
 void ComputerControlListModel::updateComputerScreenSize()
 {
-	auto ratio = 1.0;
+	auto ratio = 16.0 / 9.0;
 
 	switch( aspectRatio() )
 	{
