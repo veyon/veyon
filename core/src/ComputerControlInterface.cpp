@@ -93,6 +93,8 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 			Q_EMIT scaledScreenUpdated();
 		} );
 
+		connect( m_vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::screenSizeChanged );
+
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
