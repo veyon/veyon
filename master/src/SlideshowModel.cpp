@@ -38,7 +38,7 @@ SlideshowModel::SlideshowModel( QAbstractItemModel* sourceModel, QObject* parent
 				 Q_UNUSED(end)
 				 if( start <= m_currentRow )
 				 {
-					 setCurrentRow( m_currentRow + 1 );
+					 showNext();
 				 }
 			 } );
 	connect( sourceModel, &QAbstractItemModel::rowsRemoved, this,
@@ -48,7 +48,7 @@ SlideshowModel::SlideshowModel( QAbstractItemModel* sourceModel, QObject* parent
 				 Q_UNUSED(end)
 				 if( start <= m_currentRow )
 				 {
-					 setCurrentRow( m_currentRow - 1 );
+					 showPrevious();
 				 }
 			 } );
 
@@ -68,6 +68,11 @@ void SlideshowModel::setIconSize( QSize size )
 
 QVariant SlideshowModel::data( const QModelIndex& index, int role ) const
 {
+	if( m_currentControlInterface.isNull() )
+	{
+		return {};
+	}
+
 	const auto sourceIndex = mapToSource( index );
 	if( sourceIndex.isValid() == false )
 	{
@@ -105,7 +110,26 @@ void SlideshowModel::setRunning( bool running, int duration )
 
 void SlideshowModel::showPrevious()
 {
-	setCurrentRow( m_currentRow - 1 );
+	auto valid = false;
+
+	for( int i = 0; i < sourceModel()->rowCount(); ++i )
+	{
+		setCurrentRow( m_currentRow - 1 );
+
+		if( m_currentControlInterface &&
+			m_currentControlInterface->state() == ComputerControlInterface::State::Connected &&
+			m_currentControlInterface->hasValidFramebuffer() )
+		{
+			valid = true;
+			break;
+		}
+	}
+
+	if( valid == false )
+	{
+		m_currentRow = 0;
+		m_currentControlInterface.clear();
+	}
 
 	if( m_timer.isActive() )
 	{
@@ -118,7 +142,26 @@ void SlideshowModel::showPrevious()
 
 void SlideshowModel::showNext()
 {
-	setCurrentRow( m_currentRow + 1 );
+	auto valid = false;
+
+	for( int i = 0; i < sourceModel()->rowCount(); ++i )
+	{
+		setCurrentRow( m_currentRow + 1 );
+
+		if( m_currentControlInterface &&
+			m_currentControlInterface->state() == ComputerControlInterface::State::Connected &&
+			m_currentControlInterface->hasValidFramebuffer() )
+		{
+			valid = true;
+			break;
+		}
+	}
+
+	if( valid == false )
+	{
+		m_currentRow = 0;
+		m_currentControlInterface.clear();
+	}
 
 	if( m_timer.isActive() )
 	{
