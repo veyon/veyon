@@ -504,7 +504,7 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		return controlInterface->computer().name();
 	}
 
-	return {};
+	return tr("[no user]");
 }
 
 
