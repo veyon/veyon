@@ -1012,10 +1012,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 오프라인 또는 전원 꺼짐</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>서비스에 연결할 수 없거나 실행중이 아님</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>인증 실패 또는 접근 거부됨</translation>
     </message>
@@ -1034,6 +1030,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>장소: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

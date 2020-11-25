@@ -1009,10 +1009,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Computer disconnesso o spento</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Servizio irraggiungibile o non in esecuzione</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Autenticazione fallita o accesso negato</translation>
     </message>
@@ -1031,6 +1027,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>Posizione: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyon Server irraggiungibile o non in esecuzione</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[nessun utente]</translation>
     </message>
 </context>
 <context>
@@ -3358,7 +3362,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi davvero eliminare tutti gli screenshot selezionati?</translation>
     </message>
 </context>
 <context>

@@ -1013,10 +1013,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>计算机离线或者已关机</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>服务无法访问或未运行</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>验证失败或访问被拒绝</translation>
     </message>
@@ -1035,6 +1031,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>地点：%1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

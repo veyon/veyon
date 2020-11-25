@@ -1009,10 +1009,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computer offline oder ausgeschalten</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Dienst nicht erreichbar oder läuft nicht</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Authentifizierung fehgeschlagen oder Zugriff verweigert</translation>
     </message>
@@ -1031,6 +1027,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Location: %1</source>
         <translation>Standort: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyon-Server nicht erreichbar oder läuft nicht</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[Kein Benutzer]</translation>
     </message>
 </context>
 <context>

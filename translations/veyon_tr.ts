@@ -1012,10 +1012,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Bilgisayar çevrim dışı veya kapalı</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Hizmet erişilebilir değil veya çalışmıyor</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Yetkilendirme başarısız veya erişim reddedildi</translation>
     </message>
@@ -1034,6 +1030,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Location: %1</source>
         <translation>Konum: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

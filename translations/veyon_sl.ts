@@ -1012,10 +1012,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Računalnik je brez povezave ali izklopljen</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Storitev ni dosegljiva ali se ne izvaja</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Preverjanje pristnosti ni uspelo ali je dostop zavrnjen</translation>
     </message>
@@ -1034,6 +1030,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Location: %1</source>
         <translation>Lokacija: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

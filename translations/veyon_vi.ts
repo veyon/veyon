@@ -1012,10 +1012,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation type="unfinished"/>
     </message>
@@ -1033,6 +1029,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
         <translation type="unfinished"/>
     </message>
 </context>

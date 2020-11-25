@@ -1012,10 +1012,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation type="unfinished"/>
     </message>
@@ -1033,6 +1029,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
         <translation type="unfinished"/>
     </message>
 </context>

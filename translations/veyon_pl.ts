@@ -1012,10 +1012,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Komputer nie połączony z siecią lub wyłączony</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Usługa jest  niedostępna lub nie uruchomiona </translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Uwierzytelnienie nie powiodło się lub dostęp jest zabroniony</translation>
     </message>
@@ -1034,6 +1030,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Location: %1</source>
         <translation>Lokalizacja: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

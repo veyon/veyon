@@ -1012,10 +1012,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Računar nije mreži ili je isključen</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Usluga nedostupna ili ne radi</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Autentifikacija nije uspela ili je pristup odbijen</translation>
     </message>
@@ -1034,6 +1030,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Location: %1</source>
         <translation>Lokacija: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

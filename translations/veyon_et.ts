@@ -1012,10 +1012,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Arvuti on võrguühenduseta või välja lülitatud</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Teenus pole kättesaadav või ei tööta</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Autentimine nurjus või juurdepääs keelati</translation>
     </message>
@@ -1034,6 +1030,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Location: %1</source>
         <translation>Asukoht: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyon Server pole kättesaadav või ei tööta</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[ükski kasutaja]</translation>
     </message>
 </context>
 <context>

@@ -1011,10 +1011,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <translation>Kompiuteris nepasiekiamas arba išjungtas</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Tarnyba nepasiekiama arba nevykdoma</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Autorizacija nepavyko arba prieiga negalima</translation>
     </message>
@@ -1033,6 +1029,14 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Location: %1</source>
         <translation>Vieta: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

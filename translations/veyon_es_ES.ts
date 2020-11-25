@@ -1014,10 +1014,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>El equipo está desconectado o apagado</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Servicio inaccesible o no ejecutándose</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Error de autenticación o acceso denegado</translation>
     </message>
@@ -1036,6 +1032,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Location: %1</source>
         <translation>Ubicación: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyon Server es inaccesible o no se está ejecutando</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[ningún usuario]</translation>
     </message>
 </context>
 <context>

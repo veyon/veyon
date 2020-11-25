@@ -1012,10 +1012,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Ordinateur hors ligne ou éteint</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Service injoignable ou éteint</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>L&apos;authentification a échouée ou l&apos;accès est refusé</translation>
     </message>
@@ -1034,6 +1030,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Location: %1</source>
         <translation>Emplacement: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Serveur Veyon inaccessible ou ne fonctionne pas</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[aucun utilisateur]</translation>
     </message>
 </context>
 <context>

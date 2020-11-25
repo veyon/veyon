@@ -1012,10 +1012,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Počítač není dostupný na síti nebo je vypnutý</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Služba není dosažitelná nebo není spuštěná</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Ověření se nezdařilo nebo odepřen přístup</translation>
     </message>
@@ -1034,6 +1030,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Location: %1</source>
         <translation>Umístění: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

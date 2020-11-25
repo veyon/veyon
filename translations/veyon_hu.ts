@@ -1012,10 +1012,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>A számítógép nincs hálózaton vagy kikapcsolták</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>A szolgáltatás nem érhető el vagy jelenleg nem fut </translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>A hitelesítés sikertelen vagy a hozzáférés nem engedélyezett</translation>
     </message>
@@ -1034,6 +1030,14 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Location: %1</source>
         <translation>Helyszín: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1012,10 +1012,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Computador offline ou desligado</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Serviço inacessível ou parado</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Falha na autenticação ou acesso negado</translation>
     </message>
@@ -1033,6 +1029,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
         <translation type="unfinished"/>
     </message>
 </context>

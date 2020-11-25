@@ -1009,10 +1009,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Computer offline of uitgeschakeld</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Service onbereikbaar of niet draaiende</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Verificatie mislukt of toegang geweigerd</translation>
     </message>
@@ -1030,6 +1026,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
         <translation type="unfinished"/>
     </message>
 </context>

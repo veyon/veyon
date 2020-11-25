@@ -1009,10 +1009,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Комп’ютер перебуває поза мережею або його вимкнено</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Служба недоступна або її не запущено</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Не пройдено розпізнавання або заборонено доступ</translation>
     </message>
@@ -1031,6 +1027,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>Місце: %1</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Сервер Veyon є недоступним або сервер не запущено</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[немає користувача]</translation>
     </message>
 </context>
 <context>
