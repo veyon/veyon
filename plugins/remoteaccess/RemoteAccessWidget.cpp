@@ -254,7 +254,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	m_vncView( new VncViewWidget( computerControlInterface->computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, startViewOnly, showViewOnlyToggleButton ) )
 {
-	const auto openOnMasterScreen = VeyonCore::config().openOnMasterScreen();
+	const auto openOnMasterScreen = VeyonCore::config().ShowFeatureWindowsOnSameScreen();
 	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
 	const auto masterWindow = master->mainWindow();
 	if( master && openOnMasterScreen )
@@ -270,7 +270,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	setWindowIcon( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
-	m_vncView->move( this->x(), this->y() );
+	m_vncView->move( x(), y() );
 	m_vncView->installEventFilter( this );
 	connect( m_vncView, &VncViewWidget::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &RemoteAccessWidget::updateSize );

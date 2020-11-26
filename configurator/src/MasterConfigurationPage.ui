@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>MasterConfigurationPage</class>
  <widget class="QWidget" name="MasterConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>592</width>
-    <height>523</height>
-   </rect>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
    <property name="topMargin">
     <number>0</number>
@@ -399,12 +391,12 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QCheckBox" name="openOnMasterScreen">
+           <widget class="QCheckBox" name="ShowFeatureWindowsOnSameScreen">
             <property name="toolTip">
-             <string>Else it will open on the main screen always</string>
+             <string>This option affects the placement of e.g. remote access windows when working with multiple screens.</string>
             </property>
             <property name="text">
-             <string>Open remote access window on the same screen as the master</string>
+             <string>Open feature windows on the same screen as the main window</string>
             </property>
            </widget>
           </item>
@@ -533,7 +525,7 @@
   <tabstop>hideComputerFilter</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>confirmUnsafeActions</tabstop>
-  <tabstop>openOnMasterScreen</tabstop>
+  <tabstop>ShowFeatureWindowsOnSameScreen</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
