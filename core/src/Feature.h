@@ -50,6 +50,8 @@ public:
 		Service = 0x0200,
 		Worker = 0x0400,
 		Builtin = 0x1000,
+		NoContext = 0x2000,
+		NoMenu = 0x4000,
 		AllComponents = Master | Service | Worker
 	} ;
 

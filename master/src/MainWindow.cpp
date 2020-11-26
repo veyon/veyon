@@ -411,7 +411,7 @@ void MainWindow::addFeaturesToToolBar()
 {
 	for( const auto& feature : m_master.features() )
 	{
-		if( feature.testFlag( Feature::Internal ) )
+		if( feature.testFlag( Feature::Internal ) || feature.testFlag( Feature::NoMenu ) )
 		{
 			continue;
 		}
