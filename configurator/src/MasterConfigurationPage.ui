@@ -391,7 +391,7 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QCheckBox" name="ShowFeatureWindowsOnSameScreen">
+           <widget class="QCheckBox" name="showFeatureWindowsOnSameScreen">
             <property name="toolTip">
              <string>This option affects the placement of e.g. remote access windows when working with multiple screens.</string>
             </property>
