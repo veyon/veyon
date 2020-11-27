@@ -31,7 +31,9 @@
 
 #include "RemoteAccessWidget.h"
 #include "VncViewWidget.h"
+#include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
+#include "VeyonMasterInterface.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "PlatformCoreFunctions.h"
@@ -252,6 +254,16 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	m_vncView( new VncViewWidget( computerControlInterface->computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, startViewOnly, showViewOnlyToggleButton ) )
 {
+	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
+	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
+	const auto masterWindow = master->mainWindow();
+	if( master && openOnMasterScreen )
+	{
+		move( masterWindow->x(), masterWindow->y() );
+	} else {
+		move( 0, 0 );
+	}
+
 	updateRemoteAccessTitle();
 	connect( m_computerControlInterface.data(), &ComputerControlInterface::userChanged, this, &RemoteAccessWidget::updateRemoteAccessTitle );
 
@@ -267,8 +279,6 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	VeyonCore::platform().coreFunctions().raiseWindow( this, false );
 
 	showNormal();
-
-	move( 0, 0 );
 
 	toggleViewOnly( startViewOnly );
 }
