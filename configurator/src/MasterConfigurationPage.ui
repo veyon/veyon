@@ -525,7 +525,7 @@
   <tabstop>hideComputerFilter</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>confirmUnsafeActions</tabstop>
-  <tabstop>ShowFeatureWindowsOnSameScreen</tabstop>
+  <tabstop>showFeatureWindowsOnSameScreen</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
