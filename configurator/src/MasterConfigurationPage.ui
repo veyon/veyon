@@ -380,13 +380,20 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="3" column="1">
            <widget class="QComboBox" name="computerDoubleClickFeature"/>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Feature on computer double click:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="showFeatureWindowsOnSameScreen">
+            <property name="text">
+             <string>Open feature windows on the same screen as the main window</string>
             </property>
            </widget>
           </item>
@@ -515,6 +522,7 @@
   <tabstop>hideComputerFilter</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>confirmUnsafeActions</tabstop>
+  <tabstop>showFeatureWindowsOnSameScreen</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
