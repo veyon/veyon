@@ -147,6 +147,16 @@ This PPA contains official Veyon packages for Ubuntu suitable for use both on de
 
 	sudo add-apt-repository ppa:veyon/stable
 	sudo apt-get update
+	
+### openSUSE
+
+Veyon is available on official openSUSE Tumbleweed repository.
+
+	sudo zypper in veyon
+	
+For openSUSE Leap 15.2, use the unofficial package from Education repository.
+	 
+	 https://software.opensuse.org/package/veyon?search_term=veyon
 
 ## Join development
 
