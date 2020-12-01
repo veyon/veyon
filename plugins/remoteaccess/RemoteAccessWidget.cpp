@@ -118,7 +118,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_iconStateTimeLine.setFrameRange( 0, 100 );
 	m_iconStateTimeLine.setDuration( 1500 );
 	m_iconStateTimeLine.setUpdateInterval( 60 );
-	m_iconStateTimeLine.setCurveShape( QTimeLine::SineCurve );
+	m_iconStateTimeLine.easingCurve().setType( QEasingCurve::SineCurve );
 	connect( &m_iconStateTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updateConnectionAnimation );
 	connect( &m_iconStateTimeLine, &QTimeLine::finished, &m_iconStateTimeLine, &QTimeLine::start );
 }
