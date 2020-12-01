@@ -12,7 +12,7 @@ else()
 endif()
 
 add_custom_target(windows-binaries
-    COMMAND +env ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --config $<CONFIGURATION>
+	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --config $<CONFIGURATION>
 	COMMAND rm -rf ${WINDOWS_INSTALL_FILES}*
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/interception
 	COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/* ${WINDOWS_INSTALL_FILES}/interception
