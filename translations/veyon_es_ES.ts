@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -458,10 +460,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Private key file base directory</source>
         <translation>Directorio base para archivo de clave privada</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1274,10 +1272,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>El equipo está desconectado o apagado</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Servicio inaccesible o no ejecutándose</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Error de autenticación o acceso denegado</translation>
     </message>
@@ -1297,12 +1291,20 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Location: %1</source>
         <translation>Ubicación: %1</translation>
     </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation> Servicio %1 %2 en %3:%4</translation>
+        <translation>&#xa0;Servicio %1 %2 en %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1601,51 +1603,59 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Compartir tu pantalla o permitir que un usuario comparta su pantalla con otros usuarios.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo a pantalla completa</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Compartir tu propia pantalla en modo de pantalla completa</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>En este modo, su pantalla se muestra en modo de pantalla completa en todas las computadoras mientras los dispositivos de entrada de los usuarios están bloqueados.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Compartir tu propia pantalla en una ventana</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Compartir la pantalla del usuario seleccionado en modo de pantalla completa</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>En este modo, la pantalla del usuario seleccionado se muestra en modo de pantalla completa en todas las computadoras mientras los dispositivos de entrada de los usuarios están bloqueados.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Compartir la pantalla del usuario seleccionado en una ventana</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>En este modo, la pantalla del usuario seleccionado se muestra en una ventana en todas las computadoras. Los usuarios pueden cambiar a otras ventanas según sea necesario.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione una pantalla de usuario para compartir.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione solo una pantalla de usuario para compartir.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Todas las pantallas</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Pantalla %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1846,10 +1856,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Destination directory</source>
         <translation>Directorio de destino</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3169,6 +3175,18 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Authentication</source>
         <translation>Autenticación</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Diapositivas</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Foco</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3326,15 +3344,27 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Espaciado de miniaturas</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Ocultar sesión local</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Relación de aspecto de la miniatura</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3678,6 +3708,10 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Acceso remoto</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3886,6 +3920,14 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>Delete</source>
         <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">Captura</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4108,6 +4150,56 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Comandos para funcionalidades de shell</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Anterior</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Inicio/pausa</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Siguiente</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Duración:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Añada computadoras haciendo clic con el botón central del ratón o haciendo clic en el primer botón a continuación.</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Añadir las computadoras seleccionadas</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Eliminar las computadoras seleccionadas</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Actualizar computadoras en tiempo real</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Foco</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Seleccione al menos una computadora para añadir.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Seleccione al menos una computadora para eliminar.</translation>
     </message>
 </context>
 <context>

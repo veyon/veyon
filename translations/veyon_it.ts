@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="it">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -453,10 +455,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Private key file base directory</source>
         <translation>Cartella chiave Privata</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1266,10 +1264,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Computer disconnesso o spento</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Servizio irraggiungibile o non in esecuzione</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Autenticazione fallita o accesso negato</translation>
     </message>
@@ -1288,6 +1282,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>Posizione: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1593,51 +1595,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Condividi il tuo schermo o consenti a un utente di condividere il suo schermo con altri utenti.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo a schermo intero</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Condividi il tuo schermo in modalità a schermo intero</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>In questa modalità lo schermo viene visualizzato in modalità a schermo intero su tutti i computer mentre i dispositivi di input degli utenti sono bloccati.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Condividi il tuo schermo in una finestra</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Condividi lo schermo dell&apos;utente selezionato in modalità a schermo intero</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>In questa modalità lo schermo dell&apos;utente selezionato viene visualizzato in modalità a schermo intero su tutti i computer mentre i dispositivi di input degli utenti sono bloccati.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Condividi lo schermo dell&apos;utente selezionato in una finestra</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>In questa modalità lo schermo dell&apos;utente selezionato viene visualizzato in una finestra su tutti i computer. Gli utenti possono passare ad altre finestre secondo necessità.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona una schermata utente da condividere.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona solo uno schermo utente da condividere.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Tutti gli schermi</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Schermo %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1838,10 +1848,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Destination directory</source>
         <translation>Directory di destinazione</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3151,6 +3157,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Authentication</source>
         <translation>Autenticazione</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Presentazione</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Spotlight</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3308,15 +3326,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Spaziatura delle miniature</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Nascondi sessione locale</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Proporzioni delle miniature</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatico</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3660,6 +3690,10 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 -%2 Accesso remoto</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3868,6 +3902,14 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Delete</source>
         <translation>Elimina</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">Screenshot</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4089,6 +4131,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Comandi per le funzionalità della shell</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Precedente</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Avvia/pausa</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Prossimo</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Durata:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Aggiungi computer facendo clic con il pulsante centrale del mouse o facendo clic sul primo pulsante in basso.</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Aggiungi computer selezionati</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Rimuovi i computer selezionati</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Aggiorna i computer in tempo reale</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Spotlight</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Seleziona almeno un computer da aggiungere.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Seleziona almeno un computer da rimuovere.</translation>
     </message>
 </context>
 <context>

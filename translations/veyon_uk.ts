@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="uk">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -453,10 +455,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Private key file base directory</source>
         <translation>Основний каталог файлів закритих ключів</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1266,10 +1264,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Комп’ютер перебуває поза мережею або його вимкнено</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Служба недоступна або її не запущено</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Не пройдено розпізнавання або заборонено доступ</translation>
     </message>
@@ -1288,6 +1282,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>Місце: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1639,6 +1641,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please select only one user screen to share.</source>
         <translation>Будь ласка, виберіть лише один екран користувача для оприлюднення.</translation>
     </message>
+    <message>
+        <source>All screens</source>
+        <translation>Усі екрани</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Екран %1 [%2]</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1838,10 +1848,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Destination directory</source>
         <translation>Каталог призначення</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3163,6 +3169,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Authentication</source>
         <translation>Розпізнавання</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Показ слайдів</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Акцент</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3320,15 +3338,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Інтервали між мініатюрами</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>пк</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Приховати локальний сеанс</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Співвідношення розмірів мініатюри</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3672,6 +3702,10 @@ Please save your work and close all programs.</source>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 — %2, віддалений доступ</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3880,6 +3914,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Delete</source>
         <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">Знімок вікна</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4102,6 +4144,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Команди для можливостей оболонки</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Назад</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Старт/Пауза</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Далі</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Тривалість:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки нижче.</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Додати позначені комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Вилучити позначені комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Оновлювати комп&apos;ютери у реальному часу</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Акцент</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Будь ласка, позначте принаймні один комп&apos;ютер для додавання.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Будь ласка, позначте принаймні один комп&apos;ютер для вилучення.</translation>
     </message>
 </context>
 <context>

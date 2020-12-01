@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="et" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="et">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -456,10 +458,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Private key file base directory</source>
         <translation>Privaatvõtme failibaasi kataloog</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1272,10 +1270,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Arvuti on võrguühenduseta või välja lülitatud</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Teenus pole kättesaadav või ei tööta</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Autentimine nurjus või juurdepääs keelati</translation>
     </message>
@@ -1294,6 +1288,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Location: %1</source>
         <translation>Asukoht: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1599,51 +1601,59 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Jagage oma ekraani või lubage kasutajal oma ekraani teiste kasutajatega jagada.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Täisekraaniga demo</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Jagage oma ekraani täisekraanirežiimis</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse teie ekraani täisekraanirežiimis kõikides arvutites, kui kasutajate sisendseadmed on lukus.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Jagage oma ekraani aknas</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Jagage valitud kasutaja ekraani täisekraanrežiimis</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse valitud kasutaja ekraan täisekraani režiimis kõigis arvutites, kui kasutajate sisendseadmed on lukus.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Jaga valitud kasutaja ekraani aknas</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Selles režiimis kuvatakse valitud arvuti ekraan kõigi arvutite aknas. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Valige jagamiseks kasutajaekraan.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Valige jagamiseks ainult üks kasutajaekraan.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Kõik ekraanid</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Ekraan %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1844,10 +1854,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Destination directory</source>
         <translation>Sihtkataloog</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3167,6 +3173,18 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Authentication</source>
         <translation>Autentimine</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Slaidiseanss</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Tähelepanu keskpunktis</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3324,15 +3342,27 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Pisipiltide vahe</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Peida kohalik seanss</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Pisipildi kuvasuhe</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3676,6 +3706,10 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Kaugjuurdepääs</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3884,6 +3918,14 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Delete</source>
         <translation>Kustuta</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">Ekraanipilt</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4106,6 +4148,56 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Käsud kestade funktsionaalsuste jaoks</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Eelmine</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Start/paus</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Järgmine</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Kestus:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Lisage valitud arvutid</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Eemaldage valitud arvutid</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Värskendage arvuteid reaalajas</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Tähelepanu keskpunktis</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Valige lisamiseks vähemalt üks arvuti.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Valige eemaldamiseks vähemalt üks arvuti.</translation>
     </message>
 </context>
 <context>

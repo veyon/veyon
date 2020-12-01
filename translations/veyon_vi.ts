@@ -458,10 +458,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation>Thư mục cơ sở tập tin khóa riêng</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Available authentication keys</source>
         <translation>Khóa xác thực khả dụng</translation>
     </message>
@@ -1272,10 +1268,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation type="unfinished"/>
     </message>
@@ -1293,6 +1285,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1645,6 +1645,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Please select only one user screen to share.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1844,10 +1852,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Destination directory</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3148,6 +3152,18 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Authentication</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3313,6 +3329,18 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3655,6 +3683,10 @@ Please save your work and close all programs.</source>
         <source>%1 - %2 Remote Access</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3862,6 +3894,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Delete</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4083,6 +4123,56 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
         <translation type="unfinished"/>
     </message>
 </context>

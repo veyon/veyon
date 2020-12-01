@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -453,10 +455,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Private key file base directory</source>
         <translation>Basisverzeichnis der privaten Schlüsseldatei</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1268,10 +1266,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computer offline oder ausgeschalten</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Dienst nicht erreichbar oder läuft nicht</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>Authentifizierung fehgeschlagen oder Zugriff verweigert</translation>
     </message>
@@ -1290,6 +1284,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Location: %1</source>
         <translation>Standort: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1641,6 +1643,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Please select only one user screen to share.</source>
         <translation>Bitte wählen Sie nur einen Benutzer-Bildschirm zum Teilen.</translation>
     </message>
+    <message>
+        <source>All screens</source>
+        <translation>Alle Bildschirme</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Bildschirm %1 [%2]</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1840,10 +1850,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Destination directory</source>
         <translation>Zielverzeichnis</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3163,6 +3169,18 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Authentication</source>
         <translation>Authentifizierung</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Diashow</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Scheinwerfer</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3236,7 +3254,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>Aktualisierungsintervall Vorschaubilder</translation>
+        <translation>Aktualisierungsintervall Miniaturbilder</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3308,7 +3326,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
+        <translation>Automatisch die Größe der Computer-Miniaturbilder anpassen</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
@@ -3320,7 +3338,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation>Miniaturbildabstand</translation>
+        <translation>Abstand Miniaturbilder</translation>
     </message>
     <message>
         <source> px</source>
@@ -3329,6 +3347,18 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Hide local session</source>
         <translation>Lokale Sitzung ausblenden</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Seitenverhältnis Miniaturbilder</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3672,6 +3702,10 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Fernzugriff</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3880,6 +3914,14 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Delete</source>
         <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">Bildschirmfoto</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4102,6 +4144,56 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Befehle für Shellfunktionalitäten</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Starten/pausieren</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Weiter</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Dauer:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Gewählte Computer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Gewählte Computer entfernen</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Computer in Echtzeit aktualisieren</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Scheinwerfer</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Bitte wählen Sie mindestens einen hinzuzufügenden Computer aus.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Bitte wählen Sie mindestens einen zu entfernenden Computer aus.</translation>
     </message>
 </context>
 <context>

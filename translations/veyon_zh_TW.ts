@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -456,10 +458,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Private key file base directory</source>
         <translation>私密金鑰檔基礎目錄</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1272,10 +1270,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>電腦離線或關機</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>服務無法存取或未執行</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>身份驗證失敗或存取拒絕</translation>
     </message>
@@ -1294,6 +1288,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Location: %1</source>
         <translation>位置: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1599,51 +1601,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>演示</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>共用螢幕或允許使用者與其他使用者共用其螢幕。</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>全螢幕演示</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>以全螢幕模式共用您自己的螢幕</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，使用者的輸入裝置鎖定時，您的螢幕以全螢幕模式在所有電腦上顯示。</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>在視窗共用您自己的螢幕</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>以全螢幕模式共用選取使用者的螢幕</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，使用者的輸入裝置鎖定時，選取使用者的螢幕以全螢幕模式在所有電腦上顯示。</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>在視窗共用選取使用者的螢幕</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，選取使用者的螢幕顯示在所有電腦的視窗中。 使用者能夠根據需要切換到其它視窗。</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>請選取要共用的使用者螢幕。</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>請只選取一個使用者螢幕進行共用。</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>所有螢幕</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>螢幕 %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1844,10 +1854,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Destination directory</source>
         <translation>目的地目錄</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3167,6 +3173,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Authentication</source>
         <translation>身份驗證</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>投影片</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>聚光燈</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3324,15 +3342,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>縮圖間距</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>隱藏本機工作階段</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>縮圖外觀比例</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3676,6 +3706,10 @@ Please save your work and close all programs.</source>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 遠端存取</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3884,6 +3918,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Delete</source>
         <translation>刪除</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">螢幕快照</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4106,6 +4148,56 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Commands for shell functionalities</source>
         <translation>殼層功能的命令</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>上一頁</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>開始/暫停</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>持續時間:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>使用滑鼠中鍵按一下或按下以下的第一個按鈕來加入電腦。</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>加入選取的電腦</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>移除選取的電腦</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>即時更新電腦</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>聚光燈</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>請選擇至少一台電腦來加入。</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>請選擇至少一台電腦來移除。</translation>
     </message>
 </context>
 <context>

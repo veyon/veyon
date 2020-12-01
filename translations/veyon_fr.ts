@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -456,10 +458,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Private key file base directory</source>
         <translation>Répertoire de base des clés d&apos;accès privées</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -1272,10 +1270,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Ordinateur hors ligne ou éteint</translation>
     </message>
     <message>
-        <source>Service unreachable or not running</source>
-        <translation>Service injoignable ou éteint</translation>
-    </message>
-    <message>
         <source>Authentication failed or access denied</source>
         <translation>L&apos;authentification a échouée ou l&apos;accès est refusé</translation>
     </message>
@@ -1294,6 +1288,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Location: %1</source>
         <translation>Emplacement: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1607,7 +1609,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Démo en plein écran</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1639,11 +1641,19 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez sélectionner un écran d&apos;utilisateur à partager.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez sélectionner un seul écran utilisateur à partager.</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Tous les écrans</translation>
+    </message>
+    <message>
+        <source>Screen %1 [%2]</source>
+        <translation>Écran %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1844,10 +1854,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Destination directory</source>
         <translation>Répertoire de destination</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Default source directory</source>
@@ -3167,6 +3173,18 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Authentication</source>
         <translation>Authentification</translation>
     </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Diaporama</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Focalisation</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3324,15 +3342,27 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Espacement des miniatures</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Masquer la session locale</translation>
+    </message>
+    <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Rapport hauteur / largeur de la miniature</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3676,6 +3706,10 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <source>%1 - %2 Remote Access</source>
         <translation>%1 - %2 Accès distant</translation>
     </message>
+    <message>
+        <source>%1 - %2 - %3 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
@@ -3884,6 +3918,14 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <message>
         <source>Delete</source>
         <translation>Supprimer</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished">Capture d&apos;écran</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4106,6 +4148,56 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Commands for shell functionalities</source>
         <translation>Commandes pour les fonctionnalités du terminal</translation>
+    </message>
+</context>
+<context>
+    <name>SlideshowPanel</name>
+    <message>
+        <source>Previous</source>
+        <translation>Précédent</translation>
+    </message>
+    <message>
+        <source>Start/pause</source>
+        <translation>Démarrage/pause</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Suivant</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Durée:</translation>
+    </message>
+</context>
+<context>
+    <name>SpotlightPanel</name>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Ajoutez des ordinateurs en cliquant avec le bouton central de la souris ou en cliquant sur le premier bouton ci-dessous.</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Ajouter les ordinateurs sélectionnés</translation>
+    </message>
+    <message>
+        <source>Remove selected computers</source>
+        <translation>Supprimer les ordinateurs sélectionnés</translation>
+    </message>
+    <message>
+        <source>Update computers in realtime</source>
+        <translation>Mettre à jour les ordinateurs en temps réel</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Focalisation</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to add.</source>
+        <translation>Veuillez sélectionner au moins un ordinateur à ajouter.</translation>
+    </message>
+    <message>
+        <source>Please select at least one computer to remove.</source>
+        <translation>Veuillez sélectionner au moins un ordinateur à supprimer.</translation>
     </message>
 </context>
 <context>
