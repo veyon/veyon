@@ -85,6 +85,24 @@ void SpotlightPanel::resizeEvent( QResizeEvent* event )
 
 
 
+void SpotlightPanel::hideEvent(QHideEvent* event)
+{
+	Q_EMIT visibilityChanged( false );
+
+	QWidget::hideEvent( event );
+}
+
+
+
+void SpotlightPanel::showEvent(QShowEvent* event)
+{
+	Q_EMIT visibilityChanged( true );
+
+	QWidget::showEvent( event );
+}
+
+
+
 void SpotlightPanel::add()
 {
 	const auto selectedComputerControlInterfaces = m_globalComputerMonitoringWidget->selectedComputerControlInterfaces();
@@ -108,6 +126,8 @@ void SpotlightPanel::add()
 		// due to a bug in QListView force relayout of all items to show decorations (thumbnails) properly
 		updateIconSize();
 	}
+
+	show();
 }
 
 
@@ -126,6 +146,11 @@ void SpotlightPanel::remove()
 	{
 		m_model->remove( m_model->data( index, SpotlightModel::ControlInterfaceRole )
 							 .value<ComputerControlInterface::Pointer>() );
+	}
+
+	if( m_model->rowCount() <= 0 )
+	{
+		hide();
 	}
 }
 

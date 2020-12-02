@@ -218,6 +218,11 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	connect( ui->alignComputersButton, &QToolButton::clicked,
 			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::alignComputers );
 
+	// connect spotlight panel visibility to spotlight panel button checked state
+	connect( spotlightPanel, &SpotlightPanel::visibilityChanged,
+			 ui->spotlightPanelButton, [this](bool isVisible) {
+				 ui->spotlightPanelButton->setChecked (isVisible);
+			 } );
 
 	// create the main toolbar
 	ui->toolBar->layout()->setSpacing( 2 );
