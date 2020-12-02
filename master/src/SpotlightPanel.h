@@ -42,8 +42,13 @@ public:
 							 QWidget* parent = nullptr );
 	~SpotlightPanel() override;
 
+Q_SIGNALS:
+	void visibilityChanged( bool isVisible );
+
 protected:
 	void resizeEvent( QResizeEvent* event ) override;
+	void hideEvent( QHideEvent* event) override;
+	void showEvent( QShowEvent* event) override;
 
 private:
 	void add();
