@@ -138,7 +138,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 		QList<int> splitterSizes;
 		int index = 0;
 
-		for( const auto& sizeObject : m_master.userConfig().splitterStates()[splitter->objectName()].toArray() )
+		for( const auto sizeObject : m_master.userConfig().splitterStates()[splitter->objectName()].toArray() )
 		{
 			auto size = sizeObject.toInt();
 			const auto widget = splitter->widget( index );

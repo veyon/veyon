@@ -26,7 +26,13 @@ target_include_directories(ldap-common PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories(ldap-common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(ldap-common kldap-light veyon-core)
 set_default_target_properties(ldap-common)
+
+if(VEYON_BUILD_APPLE)
+set_target_properties(ldap-common PROPERTIES LINK_FLAGS "-Wl,-undefined,error")
+else()
 set_target_properties(ldap-common PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+endif()
+
 if(NOT WITH_CORE_ONLY)
 install(TARGETS ldap-common DESTINATION ${VEYON_LIB_DIR})
 endif()

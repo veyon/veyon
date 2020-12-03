@@ -18,7 +18,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 if(COMMAND CMAKE_POLICY)
 	cmake_policy(SET CMP0009 NEW)
 	cmake_policy(SET CMP0020 NEW)
-	cmake_policy(SET CMP0058 NEW)
 	cmake_policy(SET CMP0063 NEW)
 	if(${CMAKE_VERSION} VERSION_GREATER "3.8.0")
 		cmake_policy(SET CMP0069 NEW)
@@ -103,7 +102,7 @@ endif()
 if(APPLE)
 	set(VEYON_BUILD_APPLE 1)
 endif()
-if(UNIX AND NOT ANDROID)
+if(UNIX AND NOT ANDROID AND NOT APPLE)
 	set(VEYON_BUILD_LINUX 1)
 endif()
 if(ANDROID)
@@ -112,6 +111,21 @@ endif()
 
 if(WIN64)
 	set(VEYON_BUILD_WIN64 TRUE)
+endif()
+
+if(VEYON_BUILD_APPLE)
+	if(EXISTS /usr/local/opt/qt5)
+		list(APPEND CMAKE_PREFIX_PATH "/usr/local/opt/qt5")
+	endif()
+	set(OPENSSL_ROOT_DIR /usr/local/opt/openssl)
+	set(Ldap_INCLUDE_DIRS /usr/local/opt/openldap/include)
+	set(Ldap_LIBRARIES /usr/local/opt/openldap/lib/libldap.dylib)
+	set(Lber_LIBRARIES /usr/local/opt/openldap/lib/liblber.dylib)
+
+	set(Sasl2_INCLUDE_DIRS /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sasl)
+
+	set(PKG_CONFIG_EXECUTABLE /usr/local/bin/pkg-config)
+	set(PKG_CONFIG_PATH /usr/local/opt/qt/lib/pkgconfig:/usr/local/lib/pkgconfig)
 endif()
 
 # set up library and plugin path variables
@@ -140,7 +154,6 @@ else()
 		set(VEYON_TRANSLATIONS_DIR "../share/veyon/translations")
 	endif()
 endif()
-
 
 set(VEYON_CORE_INCLUDE_DIR core/src)
 
@@ -209,7 +222,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
 endif()
 
-set(VEYON_COMPILE_OPTIONS "-Wall;-Werror")
+if(VEYON_BUILD_APPLE)
+	set(VEYON_COMPILE_OPTIONS "-Wall;-Werror;-Wno-error=deprecated-declarations")
+else()
+	set(VEYON_COMPILE_OPTIONS "-Wall;-Werror")
+endif()
+
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions ${CXXFLAGS}")
 
