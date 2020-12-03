@@ -15,7 +15,13 @@ macro(build_veyon_plugin PLUGIN_NAME)
 
 	set_default_target_properties(${PLUGIN_NAME})
 	set_target_properties(${PLUGIN_NAME} PROPERTIES PREFIX "")
-	set_target_properties(${PLUGIN_NAME} PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+	if(VEYON_BUILD_APPLE)
+		set_target_properties(${PLUGIN_NAME} PROPERTIES LINK_FLAGS "-Wl,-undefined,error")
+	else()
+		set_target_properties(${PLUGIN_NAME} PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+	endif()
+
+	
 	install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION ${VEYON_INSTALL_PLUGIN_DIR})
 
 	cotire_veyon(${PLUGIN_NAME})
