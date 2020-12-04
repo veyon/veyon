@@ -7,3 +7,4 @@ ADD_SUBDIRECTORY(x11vnc-builtin)
 ENDIF()
 
 ADD_SUBDIRECTORY(external)
+add_subdirectory(headless)
