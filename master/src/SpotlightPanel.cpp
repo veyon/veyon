@@ -134,7 +134,7 @@ void SpotlightPanel::add()
 
 void SpotlightPanel::remove()
 {
-	const auto selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
+	auto selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
 	if( selection.isEmpty() )
 	{
 		QMessageBox::information( this, tr("Spotlight"),
@@ -142,10 +142,12 @@ void SpotlightPanel::remove()
 		return;
 	}
 
-	for( const auto& index : selection )
+	while( selection.isEmpty() == false )
 	{
-		m_model->remove( m_model->data( index, SpotlightModel::ControlInterfaceRole )
+		m_model->remove( m_model->data( selection.first(), SpotlightModel::ControlInterfaceRole )
 							 .value<ComputerControlInterface::Pointer>() );
+
+		selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
 	}
 
 	if( m_model->rowCount() <= 0 )
