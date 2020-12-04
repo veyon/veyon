@@ -137,9 +137,16 @@ void SpotlightPanel::remove()
 	auto selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
 	if( selection.isEmpty() )
 	{
-		QMessageBox::information( this, tr("Spotlight"),
-								  tr( "Please select at least one computer to remove.") );
-		return;
+		if( m_model->rowCount() > 0 )
+		{
+			const auto lastIndex = m_model->index(m_model->rowCount() - 1, 0);
+			ui->monitoringWidget->selectionModel()->select(lastIndex, QItemSelectionModel::Select);
+			selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
+		} else {
+			QMessageBox::information( this, tr("Spotlight"),
+									  tr( "Please select at least one computer to remove.") );
+			return;
+		}
 	}
 
 	while( selection.isEmpty() == false )
