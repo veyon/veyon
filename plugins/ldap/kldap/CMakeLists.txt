@@ -17,8 +17,8 @@ CHECK_SYMBOL_EXISTS(ldap_extended_operation_s ldap.h HAVE_LDAP_EXTENDED_OPERATIO
 CHECK_INCLUDE_FILES(ldap.h HAVE_LDAP_H)
 SET(LDAP_FOUND TRUE)
 
-SET(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap/src)
-CONFIGURE_FILE(${kldap_SOURCE_DIR}/kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
+set(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap/src/core)
+configure_file(${kldap_SOURCE_DIR}/../kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
 
 SET(kldap_SOURCES
 	${kldap_SOURCE_DIR}/ber.cpp
