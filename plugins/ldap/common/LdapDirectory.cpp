@@ -403,7 +403,18 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 												 m_defaultSearchScope );
 	}
 
-	auto memberComputers = groupMembers( computerGroups( locationName ).value( 0 ) );
+	const auto groups = computerGroups( locationName );
+	if( groups.size() != 1 )
+	{
+		vWarning() << "location" << locationName << "does not resolve to exactly one computer group:" << groups;
+	}
+
+	if( groups.isEmpty() )
+	{
+		return {};
+	}
+
+	auto memberComputers = groupMembers( groups.value( 0 ) );
 
 	// computer filter configured?
 	if( m_computersFilter.isEmpty() == false )
