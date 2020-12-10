@@ -124,6 +124,7 @@ if(VEYON_BUILD_APPLE)
 
 	set(Sasl2_INCLUDE_DIRS /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sasl)
 
+	set(PKG_CONFIG /usr/local/bin/pkg-config)
 	set(PKG_CONFIG_EXECUTABLE /usr/local/bin/pkg-config)
 	set(PKG_CONFIG_PATH /usr/local/opt/qt/lib/pkgconfig:/usr/local/lib/pkgconfig)
 endif()

@@ -7,8 +7,12 @@ include(SetDefaultTargetProperties)
 
 macro(build_veyon_plugin PLUGIN_NAME)
 
-	add_library(${PLUGIN_NAME} MODULE ${ARGN})
 
+	if(VEYON_BUILD_APPLE)
+		add_library(${PLUGIN_NAME} SHARED ${ARGN})
+	else()
+		add_library(${PLUGIN_NAME} MODULE ${ARGN})
+	endif()
 	target_include_directories(${PLUGIN_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 	target_link_libraries(${PLUGIN_NAME} veyon-core)
 	target_compile_options(${PLUGIN_NAME} PRIVATE ${VEYON_COMPILE_OPTIONS})
