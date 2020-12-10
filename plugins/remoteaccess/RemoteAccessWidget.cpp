@@ -276,9 +276,9 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 {
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
-	const auto masterWindow = master->mainWindow();
 	if( master && openOnMasterScreen )
 	{
+		const auto masterWindow = master->mainWindow();
 		move( masterWindow->x(), masterWindow->y() );
 	} else {
 		move( 0, 0 );
