@@ -92,6 +92,11 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 		*out = vncServerInstance->configuration().ultraVncDeskDupEngineEnabled() ? 1 : 0;
 		return true;
 	}
+	if( strcmp( valname, "MaxCpu2" ) == 0 )
+	{
+		*out = vncServerInstance->configuration().ultraVncMaxCpu();
+		return true;
+	}
 	if( strcmp( valname, "NewMSLogon" ) == 0 )
 	{
 		*out = 0;

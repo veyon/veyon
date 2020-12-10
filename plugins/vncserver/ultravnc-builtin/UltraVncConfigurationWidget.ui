@@ -18,38 +18,58 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item row="3" column="0">
-    <widget class="QCheckBox" name="ultraVncPollFullScreen">
+   <item row="6" column="0">
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>Poll full screen (leave this enabled per default)</string>
+      <string>Maximum CPU usage</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QCheckBox" name="ultraVncMultiMonitorSupportEnabled">
-     <property name="text">
-      <string>Enable multi monitor support</string>
+   <item row="6" column="1">
+    <widget class="QSpinBox" name="ultraVncMaxCpu">
+     <property name="suffix">
+      <string notr="true">%</string>
+     </property>
+     <property name="minimum">
+      <number>10</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QCheckBox" name="ultraVncCaptureLayeredWindows">
-     <property name="text">
-      <string>Enable capturing of layered (semi-transparent) windows</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
+   <item row="4" column="0" colspan="2">
     <widget class="QCheckBox" name="ultraVncLowAccuracy">
      <property name="text">
       <string>Low accuracy (turbo mode)</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="ultraVncPollFullScreen">
+     <property name="text">
+      <string>Poll full screen (leave this enabled per default)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
     <widget class="QCheckBox" name="ultraVncDeskDupEngineEnabled">
      <property name="text">
       <string>Enable Desktop Duplication Engine on Windows 8 and newer</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="ultraVncMultiMonitorSupportEnabled">
+     <property name="text">
+      <string>Enable multi monitor support</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QCheckBox" name="ultraVncCaptureLayeredWindows">
+     <property name="text">
+      <string>Enable capturing of layered (semi-transparent) windows</string>
      </property>
     </widget>
    </item>

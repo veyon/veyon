@@ -32,6 +32,7 @@
 	OP( UltraVncConfiguration, m_configuration, bool, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC", true, Configuration::Property::Flag::Advanced )			\
 	OP( UltraVncConfiguration, m_configuration, bool, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC", true, Configuration::Property::Flag::Advanced )					\
 	OP( UltraVncConfiguration, m_configuration, bool, ultraVncDeskDupEngineEnabled, setUltraVncDeskDupEngineEnabled, "DeskDupEngine", "UltraVNC", true, Configuration::Property::Flag::Advanced )	\
+	OP( UltraVncConfiguration, m_configuration, int, ultraVncMaxCpu, setUltraVncMaxCpu, "MaxCPU", "UltraVNC", 100, Configuration::Property::Flag::Advanced )	\
 
 DECLARE_CONFIG_PROXY(UltraVncConfiguration, FOREACH_ULTRAVNC_CONFIG_PROPERTY)
 
