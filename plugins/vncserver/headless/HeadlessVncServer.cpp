@@ -110,6 +110,7 @@ bool HeadlessVncServer::initVncServer( int serverPort, const VncServerPluginInte
 	rfbScreen->desktopName = "VeyonVNC";
 	rfbScreen->frameBuffer = reinterpret_cast<char *>( screen->framebuffer.bits() );
 	rfbScreen->port = serverPort;
+	rfbScreen->ipv6port = serverPort;
 
 	rfbScreen->authPasswdData = screen->passwords.data();
 	rfbScreen->passwordCheck = rfbCheckPasswordByList;
