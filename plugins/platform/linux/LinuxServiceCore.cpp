@@ -24,6 +24,7 @@
 
 #include <QDBusReply>
 #include <QEventLoop>
+#include <QFileInfo>
 #include <QProcess>
 #include <QTimer>
 
@@ -154,7 +155,16 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	auto process = new QProcess( this );
 	process->setProcessEnvironment( sessionEnvironment );
-	process->start( VeyonCore::filesystem().serverFilePath(), QStringList{} );
+
+	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
+	if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
+	{
+		process->start( catchsegv, { VeyonCore::filesystem().serverFilePath() } );
+	}
+	else
+	{
+		process->start( VeyonCore::filesystem().serverFilePath(), QStringList{} );
+	}
 
 	m_serverProcesses[sessionPath] = process;
 }
