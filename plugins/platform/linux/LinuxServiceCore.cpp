@@ -36,6 +36,7 @@
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
 #include "ProcessHelper.h"
+#include "VeyonConfiguration.h"
 
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
@@ -155,6 +156,11 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	auto process = new QProcess( this );
 	process->setProcessEnvironment( sessionEnvironment );
+
+	if( VeyonCore::config().logToSystem() )
+	{
+		process->setProcessChannelMode( QProcess::ForwardedChannels );
+	}
 
 	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
 	if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
