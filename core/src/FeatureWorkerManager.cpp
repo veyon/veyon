@@ -202,6 +202,13 @@ void FeatureWorkerManager::sendMessageToManagedSystemWorker( const FeatureMessag
 
 void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker( const FeatureMessage& message )
 {
+	// don't start worker for logon screen sessions
+	if( VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false ||
+		VeyonCore::platform().coreFunctions().activeDesktopName().contains( QStringLiteral("winlogon"), Qt::CaseInsensitive ) )
+	{
+		return;
+	}
+
 	if( isWorkerRunning( message.featureUid() ) == false &&
 		startUnmanagedSessionWorker( message.featureUid() ) == false )
 	{
