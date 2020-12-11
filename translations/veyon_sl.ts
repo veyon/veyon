@@ -1797,6 +1797,13 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2927,6 +2934,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3708,6 +3719,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Omogoči pogon za podvajanje namizja računalnika na Windows 8 in novejših</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

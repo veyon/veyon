@@ -1797,6 +1797,13 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2927,6 +2934,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Automatically adjust computer icon size</source>
         <translation>Ajuster automatiquement la taille de l&apos;icône de l&apos;ordinateur</translation>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3710,6 +3721,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Activer le processus de duplication du bureau sur Windows 8 ou supérieur</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

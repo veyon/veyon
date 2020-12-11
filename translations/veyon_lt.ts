@@ -1796,6 +1796,13 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2908,6 +2915,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3688,6 +3699,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Įgalinti darbalaukio dubliavimo variklį Windows 8 ar naujesnėje versijoje</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

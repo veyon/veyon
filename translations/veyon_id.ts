@@ -1797,6 +1797,13 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2908,6 +2915,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3687,6 +3698,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
         <translation type="unfinished"/>
     </message>
 </context>

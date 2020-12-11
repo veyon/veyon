@@ -1797,6 +1797,13 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2922,6 +2929,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3705,6 +3716,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Włącz mechanizm  kopiowania pulpitu w systemie Windows 8 i nowszych</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

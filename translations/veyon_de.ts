@@ -1794,6 +1794,13 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation>Headless VNC-Server</translation>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2924,6 +2931,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Automatically adjust computer icon size</source>
         <translation>Automatisch die Größe der Computer-Icons anpassen</translation>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation>Funktionsfenster auf dem gleichen Bildschirm wie der des Hauptfensters öffnen</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3707,6 +3718,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Desktop-Duplication-Engine unter Windows 8 und neuer aktivieren</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation>Maximale CPU-Auslastung</translation>
     </message>
 </context>
 <context>

@@ -1037,7 +1037,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[沒有使用者]</translation>
     </message>
 </context>
 <context>
@@ -1794,6 +1794,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>身份驗證測試</translation>
+    </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2927,6 +2934,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Automatically adjust computer icon size</source>
         <translation>自動調整電腦圖示大小</translation>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3710,6 +3721,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>在 Windows 8 和以上啟用「桌面複製引擎」</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1001,7 +1001,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Online és sikeren csatlakozott</translation>
+        <translation>Online és sikeresen csatlakozott</translation>
     </message>
     <message>
         <source>Establishing connection</source>
@@ -1099,7 +1099,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-panelen az összes helyszínt megjelentjük.</translation>
+        <translation>Nem sikerült azt a helyszínt azonosítani, amelyikhez a számítógép tartozik. Ez a rendszer hibás konfigurálására utal. Ehelyett a számítógépkijelölés-panelen az összes helyszínt megjelenítjük.</translation>
     </message>
 </context>
 <context>
@@ -1618,7 +1618,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Kattints erre gombra, hogy számítógépedről fájlokat küld át az összes számítógépre.</translation>
+        <translation>Kattints erre gombra, hogy számítógépedről fájlokat küldj át az összes számítógépre.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1794,6 +1794,13 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Authentication test</source>
         <translation>Hitelesítési teszt</translation>
+    </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2927,6 +2934,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3280,7 +3291,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbak zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk és a képernyő elfeketedik.</translation>
+        <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbal zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk és a képernyő elfeketedik.</translation>
     </message>
     <message>
         <source>Lock input devices</source>
@@ -3428,7 +3439,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Az összes beállítást sikeresen mentette. A változások életbe lépéséhez %1 szolgáltatást új kell indítani. Újraindítod most?</translation>
+        <translation>Az összes beállítást sikeresen mentette. A változások életbe lépéséhez %1 szolgáltatást újra kell indítani. Újraindítod most?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -3708,6 +3719,10 @@ Typically this is required to support terminal servers.</source>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Asztalduplikációs motor bekapcsolása Windows 8 vagy újabb rendszeren</translation>
     </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -3747,7 +3762,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation>Kattints erre a gombra, hogy egy megadott felhasználó bejelentkezzen az össze számítógépre.</translation>
+        <translation>Kattints erre a gombra, hogy egy megadott felhasználó bejelentkezzen az összes számítógépre.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -3755,7 +3770,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
+        <translation>Kattints erre a gombra, hogy a felhasználókat kijelentkeztesd az összes számítógépről.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>

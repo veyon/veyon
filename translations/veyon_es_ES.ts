@@ -1799,6 +1799,13 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2929,6 +2936,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Automatically adjust computer icon size</source>
         <translation>Ajustar automáticamente el tamaño del icono de la computadora</translation>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3712,6 +3723,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Habilitar duplicación de escritorio en Windows 8 y versiones posteriores</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

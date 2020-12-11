@@ -1797,6 +1797,13 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
 </context>
 <context>
+    <name>HeadlessVncServer</name>
+    <message>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
@@ -2927,6 +2934,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3710,6 +3721,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Uključi Desktop Duplication Engine- mogućnost dupliciranja desktopa na Windows 8 i novijim</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
