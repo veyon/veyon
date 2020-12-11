@@ -32,7 +32,7 @@ BrandingText "${APP_NAME} ${VERSION}"
 XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
 InstallDir "$PROGRAMFILES64\Veyon"
-ShowInstDetails show
+ShowInstDetails hide
 RequestExecutionLevel admin
 
 ######################################################################
