@@ -121,5 +121,6 @@ bool MacOsServiceFunctions::runAsService( const QString& name, const ServiceEntr
 
 void MacOsServiceFunctions::manageServerInstances()
 {
-
+	MacOsServiceCore serviceCore;
+	serviceCore.run();
 }

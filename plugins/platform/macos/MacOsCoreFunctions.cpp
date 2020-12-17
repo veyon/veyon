@@ -158,7 +158,10 @@ bool MacOsCoreFunctions::isRunningAsAdmin() const
 bool MacOsCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
 {
 	const auto commandLine = QStringList( program ) + parameters;
-	return QProcess::execute( QStringLiteral("sudo -b "), commandLine ) == 0;
+	QString script = QStringLiteral("do shell script \"") + program + QStringLiteral(" ") +
+			commandLine.join(QStringLiteral(" ")) + QStringLiteral("  > /dev/null 2>&1 &\" with administrator privileges");
+	 runAppleScript(script);
+	return true;
 }
 
 
@@ -211,11 +214,15 @@ QString MacOsCoreFunctions::genericUrlHandler() const
 
 
 
-void MacOsCoreFunctions::runAppleScript(const QString &script) {
+bool MacOsCoreFunctions::runAppleScript(const QString &script) {
 	QString osascriptBin = QStringLiteral("/usr/bin/osascript");
-	QProcess osascriptProcess;
-	osascriptProcess.start(osascriptBin, {QStringLiteral("-l"), QStringLiteral("AppleScript")});
-	osascriptProcess.write(script.toUtf8());
-	osascriptProcess.closeWriteChannel();
-	osascriptProcess.waitForFinished();
+	QStringList processArguments;
+	processArguments << QStringLiteral("-l") << QStringLiteral("AppleScript");
+	QProcess p;
+	p.start(osascriptBin, processArguments);
+	p.write(script.toUtf8());
+	p.closeWriteChannel();
+	p.waitForReadyRead(-1);
+	QByteArray result = p.readAll();
+	return true;
 }

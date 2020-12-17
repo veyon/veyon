@@ -127,6 +127,8 @@ if(VEYON_BUILD_APPLE)
 	set(PKG_CONFIG /usr/local/bin/pkg-config)
 	set(PKG_CONFIG_EXECUTABLE /usr/local/bin/pkg-config)
 	set(PKG_CONFIG_PATH /usr/local/opt/qt/lib/pkgconfig:/usr/local/lib/pkgconfig)
+
+	set(VEYON_APPLE_INSTALL_DIR /Applications/Veyon)
 endif()
 
 # set up library and plugin path variables
@@ -150,6 +152,9 @@ else()
 	if(WIN32)
 		set(VEYON_PLUGIN_DIR "plugins")
 		set(VEYON_TRANSLATIONS_DIR "translations")
+	elseif (VEYON_BUILD_APPLE)
+		set(VEYON_PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}")
+		set(VEYON_TRANSLATIONS_DIR "../share/veyon/translations")
 	else()
 		set(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
 		set(VEYON_TRANSLATIONS_DIR "../share/veyon/translations")

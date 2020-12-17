@@ -4,6 +4,8 @@ include(WindowsBuildHelpers)
 file(GLOB configurator_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.*)
 set(configurator_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/configurator.qrc)
 
+set(VEYON_BUILD_APPLE_BUNDLE 1)
+
 build_veyon_application(veyon-configurator ${configurator_SOURCES} ${configurator_RESOURCES})
 
 add_windows_resource(veyon-configurator)

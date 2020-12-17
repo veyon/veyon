@@ -59,7 +59,7 @@ public:
 
 	QString genericUrlHandler() const override;
 
-	static void runAppleScript (const QString& script);
+	static bool runAppleScript (const QString& script);
 
 private:
 //	int m_screenSaverTimeout{0};
