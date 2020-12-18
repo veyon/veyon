@@ -29,6 +29,7 @@
 #include <QString>
 #include <QDebug>
 
+#include <array>
 #include <atomic>
 #include <functional>
 #include <type_traits>
