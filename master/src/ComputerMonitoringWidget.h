@@ -26,6 +26,7 @@
 
 #include "ComputerMonitoringView.h"
 #include "FlexibleListView.h"
+#include "ComputerZoomWidget.h"
 
 #include <QWidget>
 
@@ -52,6 +53,8 @@ public:
 		m_ignoreWheelEvent = enabled;
 	}
 
+	QTimer m_mousePressAndHold;
+
 private:
 	void setColors( const QColor& backgroundColor, const QColor& textColor ) override;
 	QJsonArray saveComputerPositions() override;
@@ -65,14 +68,22 @@ private:
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 
 	void runDoubleClickFeature( const QModelIndex& index );
+	void runMousePressAndHoldFeature( );
+	void stopMousePressAndHoldFeature( );
 
+	void mousePressEvent( QMouseEvent* event ) override;
+	void mouseReleaseEvent( QMouseEvent* event ) override;
+	void mouseMoveEvent( QMouseEvent * event ) override;
 	void resizeEvent( QResizeEvent* event ) override;
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
 
 	QMenu* m_featureMenu{};
+	bool m_ignoreMousePressAndHoldEvent{false};
 	bool m_ignoreWheelEvent{false};
 	bool m_ignoreResizeEvent{false};
+
+	ComputerZoomWidget* m_computerZoomWidget{nullptr};
 
 Q_SIGNALS:
 	void computerScreenSizeAdjusted( int size );
