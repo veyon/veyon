@@ -272,6 +272,75 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 
 
 
+void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
+{
+   const auto selectedInterfaces = selectedComputerControlInterfaces();
+   if ( !m_ignoreMousePressAndHoldEvent &&
+		selectedInterfaces.count() > 0 &&
+		selectedInterfaces.count() < 2 &&
+		selectedInterfaces.first()->state() == ComputerControlInterface::State::Connected &&
+		selectedInterfaces.first()->hasValidFramebuffer() )
+   {
+		m_ignoreMousePressAndHoldEvent = true;
+		delete m_computerZoomWidget;
+		m_computerZoomWidget = new ComputerZoomWidget( selectedInterfaces.first()  );
+		QApplication::setOverrideCursor(Qt::BlankCursor);
+   }
+}
+
+
+
+void ComputerMonitoringWidget::stopMousePressAndHoldFeature( )
+{
+	delete m_computerZoomWidget;
+	m_computerZoomWidget = nullptr;
+	QApplication::restoreOverrideCursor();
+}
+
+
+
+void ComputerMonitoringWidget::mousePressEvent( QMouseEvent* event )
+{
+	if( event->buttons() == Qt::LeftButton && indexAt(event->pos()).isValid() )
+	{
+		if( !m_ignoreMousePressAndHoldEvent )
+		{
+			m_mousePressAndHold.setInterval( 500 );
+			m_mousePressAndHold.start();
+			connect(&m_mousePressAndHold, &QTimer::timeout, this, &ComputerMonitoringWidget::runMousePressAndHoldFeature );
+		}
+	}
+	QListView::mousePressEvent( event );
+}
+
+
+
+void ComputerMonitoringWidget::mouseReleaseEvent( QMouseEvent* event )
+{
+	m_mousePressAndHold.stop();
+	if ( m_ignoreMousePressAndHoldEvent )
+	{
+		stopMousePressAndHoldFeature();
+	}
+	m_ignoreMousePressAndHoldEvent = false;
+	QListView::mouseReleaseEvent( event );
+}
+
+
+
+void ComputerMonitoringWidget::mouseMoveEvent( QMouseEvent* event )
+{
+	m_mousePressAndHold.stop();
+	if ( m_ignoreMousePressAndHoldEvent )
+	{
+		stopMousePressAndHoldFeature();
+	}
+	m_ignoreMousePressAndHoldEvent = false;
+	QListView::mouseMoveEvent( event );
+}
+
+
+
 void ComputerMonitoringWidget::resizeEvent( QResizeEvent* event )
 {
 	FlexibleListView::resizeEvent( event );
