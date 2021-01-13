@@ -55,21 +55,21 @@ public:
 	void controlFeature( Feature::Uid featureUid,
 						FeatureProviderInterface::Operation operation,
 						const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces );
+						const ComputerControlInterfaceList& computerControlInterfaces ) const;
 
 	void startFeature( VeyonMasterInterface& master,
 					   const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces );
+					   const ComputerControlInterfaceList& computerControlInterfaces ) const;
 	void stopFeature( VeyonMasterInterface& master,
 					  const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces );
+					  const ComputerControlInterfaceList& computerControlInterfaces ) const;
 
 	bool handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
-							  const FeatureMessage& message );
+							  const FeatureMessage& message ) const;
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
-							   const FeatureMessage& message );
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message );
+							   const FeatureMessage& message ) const;
+	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const;
 
 private:
 	FeatureList m_features;
