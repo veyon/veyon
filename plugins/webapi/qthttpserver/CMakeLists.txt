@@ -7,11 +7,13 @@ set(QTHTTPSERVER_SOURCES
 	${qthttpserver_DIR}/src/httpserver/qabstracthttpserver.cpp
 	${qthttpserver_DIR}/src/httpserver/qhttpserver.cpp
 	${qthttpserver_DIR}/src/httpserver/qhttpserverresponse.h
+	${qthttpserver_DIR}/src/httpserver/qhttpserverfutureresponse.h
 	${qthttpserver_DIR}/src/httpserver/qhttpserverliterals_p.h
 	${qthttpserver_DIR}/src/httpserver/qhttpserverrouterrule.cpp
 	${qthttpserver_DIR}/src/httpserver/qhttpserverrouterrule.h
 	${qthttpserver_DIR}/src/httpserver/qhttpserverrouterviewtraits.h
 	${qthttpserver_DIR}/src/httpserver/qhttpserverresponse.cpp
+	${qthttpserver_DIR}/src/httpserver/qhttpserverfutureresponse.cpp
 	${qthttpserver_DIR}/src/httpserver/qhttpserverrouterrule_p.h
 	${qthttpserver_DIR}/src/httpserver/qhttpserverrequest.cpp
 	${qthttpserver_DIR}/src/httpserver/qhttpserverliterals.cpp
@@ -62,6 +64,6 @@ target_include_directories(qthttpserver PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
 )
 
-target_link_libraries(qthttpserver PRIVATE Qt5::CorePrivate Qt5::NetworkPrivate)
+target_link_libraries(qthttpserver PRIVATE Qt5::CorePrivate Qt5::Concurrent Qt5::NetworkPrivate)
 
 install(TARGETS qthttpserver DESTINATION ${VEYON_LIB_DIR})
