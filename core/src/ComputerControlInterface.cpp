@@ -301,6 +301,8 @@ void ComputerControlInterface::restartConnection()
 
 void ComputerControlInterface::updateState()
 {
+	lock();
+
 	if( m_vncConnection )
 	{
 		switch( m_vncConnection->state() )
@@ -318,12 +320,16 @@ void ComputerControlInterface::updateState()
 	{
 		m_state = State::Disconnected;
 	}
+
+	unlock();
 }
 
 
 
 void ComputerControlInterface::updateUser()
 {
+	lock();
+
 	if( m_vncConnection && m_connection && state() == State::Connected )
 	{
 		if( userLoginName().isEmpty() )
@@ -335,12 +341,16 @@ void ComputerControlInterface::updateUser()
 	{
 		setUserInformation( {}, {}, -1 );
 	}
+
+	unlock();
 }
 
 
 
 void ComputerControlInterface::updateActiveFeatures()
 {
+	lock();
+
 	if( m_vncConnection && m_connection && state() == State::Connected )
 	{
 		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
@@ -349,6 +359,8 @@ void ComputerControlInterface::updateActiveFeatures()
 	{
 		setActiveFeatures( {} );
 	}
+
+	unlock();
 }
 
 
