@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -81,10 +79,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>All groups</source>
         <translation>Všechny skupiny</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>…</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -267,7 +261,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -322,99 +316,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     </message>
     <message>
         <source>Authentication method</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Obecné</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Ověřovací klíče</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Úvod</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Pro nastavení ověřování souborem s klíčem proveďte následující kroky:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Vytvořte dvojici klíčů na řídícím počítači.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2( Nastavte přístupovou skupinu jejíž členům by mělo být umožněno přistupovat k ostatním počítačům.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exportujte veřejnou část klíče a importujte ji na všechny klientské počítače pod stejným názvem.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Nahlédněte do &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Příručky správy Veyon&lt;/a&gt; pro další informace.</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Složky souboru s klíčem</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Základní složka pro veřejnou část klíče</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Základní složka pro soukromou část klíče</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>…</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Ověřovací klíče k dispozici</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Dvojice ověřovacích klíčů je tvořena propojovacími šifrovacími klíči, soukromým a veřejným.
-Soukromá část umožňuje uživatelům na hlavním počítači přistupovat ke klientským počítačům.
-Je důležité aby pouze pověření uživatelé mohli číst soubor se soukromou částí klíče.
-Veřejná část je použita na klientských počítačích pro ověření příchozího požadavku na připojení.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Vytvořit dvojici klíčů</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Smazat klíč</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Importovat klíč</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Exportovat klíč</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Nastavit přístupovou skupinu</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -765,7 +667,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -791,7 +693,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
@@ -799,11 +701,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -814,7 +716,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
@@ -872,7 +774,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -906,7 +808,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -924,7 +826,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test</source>
@@ -1291,11 +1193,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1397,10 +1299,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation>Správa počítače</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>Vyhledání počítače</translation>
     </message>
@@ -1427,6 +1325,17 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nedaří se zapsat seznam počítačů a uživatelů do %1! Zkontrolujte přístupová práva souboru.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1528,7 +1437,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1559,10 +1468,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Memory limit</source>
         <translation>Paměťový limit</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Provozovat vícevláknově (experimentální)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1601,59 +1506,59 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1853,11 +1758,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Options</source>
@@ -1865,11 +1770,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1979,10 +1884,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Složka pro soubor se záznamy událostí</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>…</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>Úroveň podrobností záznamu událostí</translation>
     </message>
@@ -2078,21 +1979,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Write to logging system of operating system</source>
         <translation>Zapisovat do systému záznamu událostí operačního systému</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>Ověření</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Metoda:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Vyzkoušet funkčnost</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>Nastavit</translation>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2873,54 +2765,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Licencování</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Nainstalované licence</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Přidat nový síťový rozsah</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Odebrat označený síťový rozsah</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>Identif.</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Platné do</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Držitel licence</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informace</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Identifikátor instalace</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Doplňky které je možné si licencovat</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Doplněk</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3118,10 +2963,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Hledání uživatelů a počítačů</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Upravit optimální velikost</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Zarovnat počítače do mřížky</translation>
     </message>
@@ -3170,16 +3011,16 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Ověření</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3187,10 +3028,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Directories</source>
         <translation>Složky</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>…</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3325,10 +3162,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Automaticky vybrat stávající umístění</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automaticky přizpůsobit velikost náhledu počítače</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Automaticky otevřít panel výběru počítače</translation>
     </message>
@@ -3338,27 +3171,31 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
         <translation>Automaticky</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3374,97 +3211,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Tento režim umožňuje monitorovat veškeré počítače v jednom a více umístěních.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Prozkoumávání sítě</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Režim</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Skenovat síťové rozsahy</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>např. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Skenovat všechny podsítě počítače</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Skenovat uživatelsky určenou podsíť</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Skenovací relace na tomto počítači</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Vyzkoušet funkčnost</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Síťové rozsahy</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Přidat novou skupinu</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Odebrat označenou skupinu</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Skupiny</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>První adresa</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Poslední adresa</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Přidat nový síťový rozsah</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Odebrat označený síťový rozsah</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Souběžné skeny</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Časový limit skenování</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Limit skenu relace</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Volby</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Překládat objevené IP adresy na názvy strojů</translation>
     </message>
 </context>
 <context>
@@ -3525,7 +3271,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
@@ -3704,7 +3450,7 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3829,11 +3575,11 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3852,7 +3598,7 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3917,11 +3663,11 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">Snímek obrazovky</translation>
+        <translation>Snímek obrazovky</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3955,24 +3701,12 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Stav:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Síť</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Port ukázkového serveru</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Vytvořit výjimku na bráně firewall</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Umožnit připojení pouze v rámci tohoto počítače (localhost)</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Port vnitřního VNC serveru</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3995,14 +3729,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Spuštěné</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Port správce funkce</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Port hlavní služby</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Zapnutím této volby bude serverový proces spouštěn pro každé z interaktivních sezení na počítači.
@@ -4013,44 +3739,40 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Zobrazovat upozornění na připojení na dálku</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Režim vícero relací (pro terminály a servery pro vzdálenou plochu)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Zobrazit oznámení když je zablokován nepověřený přístup</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sessions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server</source>
@@ -4058,7 +3780,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4150,50 +3872,51 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4280,6 +4003,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Zapnout Desktop Duplication Engine na Windows 8 a novějších</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4491,7 +4218,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

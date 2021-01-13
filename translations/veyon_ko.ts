@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ko">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -81,10 +79,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>All groups</source>
         <translation>모든 그룹</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -267,7 +261,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Authenticated via method</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -322,99 +316,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Authentication method</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>일반사항</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>인증 키</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>소개</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>키 파일 인증을 설정하기 위해 다음 단계들을 실행하세요:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) 마스터 컴퓨터에서 키페어를 생성하시오.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) 다른 컴퓨터에 접근을 허용할 멤버가 속한 그룹을 설정하세요.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) 공개키를 내보내고 그키를 같은 이름을 가진 모든 클라이언트 컴퓨터에서 읽어들이기.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>더 자세한 정보는  &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon 관리자 매뉴얼을 참조하세요 &lt;/a&gt; .</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>키 파일 폴더</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>공개 키 화일 기본 폴더</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>개인 키 화일 기본 폴더</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>사용 가능한 인증키들</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>인증 키는 두 부분으로 구성되어 있습니다, 공개 키 파트와 개인 키 파트.
-개인 키를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다.
-오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는 것이 아주 중요합니다.
-공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>키 페어 생성</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>키 삭제</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>키 불러오기</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>키 내보내기</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>접근 그룹 설정</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -765,7 +667,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -791,7 +693,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLdapConfigurationWidget</name>
     <message>
         <source>LDAP authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
@@ -799,11 +701,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -814,7 +716,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
@@ -872,7 +774,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -906,7 +808,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -924,7 +826,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test</source>
@@ -1291,11 +1193,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1330,14 +1232,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1379,27 +1281,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer management</source>
-        <translation>컴퓨터 관리</translation>
-    </message>
     <message>
         <source>Computer search</source>
         <translation>컴퓨터 검색</translation>
@@ -1427,6 +1325,17 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>컴퓨터와 사용자 리스트를 %1에 저장하지 못함. 접근 권한을 확인하세요.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1528,7 +1437,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1559,10 +1468,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Memory limit</source>
         <translation>메모리 한계</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>멀티쓰레딩 사용(개발중임)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1601,59 +1506,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1853,11 +1758,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Options</source>
@@ -1865,11 +1770,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1979,10 +1884,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>로그 화일 폴더</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>로그 수준</translation>
     </message>
@@ -2078,21 +1979,12 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Write to logging system of operating system</source>
         <translation>운영체계의 로깅시스템에 기록</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>인증</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>방법:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>테스트</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>설정</translation>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2345,7 +2237,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2357,11 +2249,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2867,7 +2759,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
@@ -2875,54 +2767,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Licensing</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>설치된 라이센스</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>새로운 네트워크 범위 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>선택된 네트워크 범위 삭제</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>다음 기간동안 유효함</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>사용권자</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>정보</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>설치 ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>라이센싱 가능한 애드온들</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>애드온</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3120,10 +2965,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 또는 컴퓨터 검색</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>최적 크기로 조정</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>컴퓨터를 그리드에 맞춤</translation>
     </message>
@@ -3172,16 +3013,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>인증</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3189,10 +3030,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Directories</source>
         <translation>디렉토리</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3327,40 +3164,40 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>자동으로 현재 위치를 선택</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>컴퓨터 썸네일 사진 크기를 자동조정</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>컴퓨터 선택 패너을 자동으로 열기</translation>
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
         <translation>자동</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3376,97 +3213,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>이모드는 하나 또는 많은 위치에 있는 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>네트워크 발견</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>모드</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>네트워크 범위 검색</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>e.g. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>컴퓨터의 모든 서브넷 검색</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>사용자 서브넷 검색</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>로컬 컴퓨터 스캔 세션</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>테스트</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>네트워크 범위</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>새 그룹 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>선택된 그룹 삭제</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>그룹</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>첫번째 주소</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>마지막 주소</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>새로운 네트워크 범위 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>선택된 네트워크 범위 삭제</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>병행 스캔</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>시간 시간 초과</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>세션 스캔 제한</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>옵션</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>발견된 IP 주소를 호스트 이름으로 검색하기</translation>
     </message>
 </context>
 <context>
@@ -3507,11 +3253,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
@@ -3519,23 +3265,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3695,7 +3441,7 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3706,7 +3452,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3827,15 +3573,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3854,7 +3600,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3919,11 +3665,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">화면캡쳐</translation>
+        <translation>화면캡쳐</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3957,24 +3703,12 @@ Please save your work and close all programs.</source>
         <translation>상태:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>네트워크</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>데모 서버 포트</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>방화벽 예외 적용 활성화</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>로컬 호스트 연결만 허용함</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>내부 VNC server 포트</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3997,14 +3731,6 @@ Please save your work and close all programs.</source>
         <translation>실행중</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>속성 관리 포트</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>주 서비스 포트</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>이 옵션을 활성화 시키면 서비스가 컴퓨터의 모든 대화 세션용 서버 프로세스를 실행합니다.
@@ -4015,44 +3741,40 @@ Typically this is required to support terminal servers.</source>
         <translation>원격 연결이면 알림 보이기</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>멀티세션 모드 (터미널 또는 원격 데스크탑 서버용)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>허가되지 않은 접속이 차단되었을때 알려줌</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sessions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server</source>
@@ -4060,7 +3782,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4152,50 +3874,51 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4282,6 +4005,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>윈도8 또는 상위버전에서 데스크탑 복제엔진 활성화</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4489,11 +4216,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4553,7 +4280,7 @@ Typically this is required to support terminal servers.</source>
     <name>main</name>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

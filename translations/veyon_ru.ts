@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -81,10 +79,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>All groups</source>
         <translation>Все группы</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -323,98 +317,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Authentication method</source>
         <translation>Метод проверки подлинности</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Главное</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Ключи аутентификации</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Вступление</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Для настройки проверки подлинности ключа выполните следующие действия:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Создайте ключевую пару на главном компьютере.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Установите группу доступа, члены которой должны иметь доступ к другим компьютерам.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Экспортируйте открытый ключ и импортируйте его на всех клиентских компьютерах с тем же именем.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Дополнительную информацию см.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;В Руководстве администратора Veyon&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Файловый каталог с ключами</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Каталог, содержащий открытые ключи</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Каталог, содержащий закрытые ключи</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Доступные ключи аутентификации</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Ключевая пара аутентификации состоит из двух связанных криптографических ключей, частного и открытого ключа. 
-Закрытый ключ позволяет пользователям на главном компьютере обращаться к клиентским компьютерам.
-Важно, чтобы только авторизованные пользователи имели доступ к чтению в файл закрытого ключа.
-Открытый ключ используется на клиентских компьютерах для аутентификации входящего запроса на соединение.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Создать ключевую пару</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Удалить ключ</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Импорт ключа</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Экспорт ключа</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Установить группу доступа</translation>
     </message>
 </context>
 <context>
@@ -1291,11 +1193,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1397,10 +1299,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation> Управление компьютером</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>Компьютерный поиск</translation>
     </message>
@@ -1427,6 +1325,17 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не удалось записать список компьютеров и пользователей в %1! Пожалуйста, проверьте права доступа к файлу.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1561,10 +1470,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Предел памяти</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Использовать многопоточность (экспериментально)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>МБ</translation>
     </message>
@@ -1601,59 +1506,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1853,11 +1758,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Options</source>
@@ -1865,11 +1770,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1979,10 +1884,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Каталог, содержащий файл журнала</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>Уровень журналирования</translation>
     </message>
@@ -2078,21 +1979,12 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Write to logging system of operating system</source>
         <translation>Записывать в журнал операционной системы</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>Аутентификация</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Метод:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Тестировать</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>Конфигурация</translation>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2881,53 +2773,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Лицензирование</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Установленные лицензии</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Добавить новый диапазон сети</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Удалить выделенный диапазон сети</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>Идентификатор</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>В силе до</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Лицензиат</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Информация</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Ид. установки</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Дополнения, доступные для лицензирования</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Дополнение</translation>
-    </message>
-</context>
-<context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
@@ -3122,10 +2967,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Поиск пользователей и компьютеров</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Скорректировать оптимальный размер</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Выравнивать компьютеры по сетке</translation>
     </message>
@@ -3174,16 +3015,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Аутентификация</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3191,10 +3032,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Directories</source>
         <translation>Каталоги</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3329,10 +3166,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Автоматически выбирать текущее место</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Автоматически корректировать размер миниатюры компьютера</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Автоматически открыть панель выбора компьютера</translation>
     </message>
@@ -3342,27 +3175,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3378,97 +3215,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>В этом режиме вы можете наблюдать за всеми компьютерами в одном или нескольких местах.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Обнаружение сети</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Режим</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Сканировать диапазоны сети</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>Например: 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Сканировать все подсети компьютера</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Сканировать нетипичную подсеть</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Сканировать сеансы на локальном компьютере</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Тестировать</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Диапазоны сети</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Добавить новую группу</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Удалить выделенную группу</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Группы</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Первый адрес</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Последний адрес</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Добавить новый диапазон сети</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Удалить выделенный диапазон сети</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Параллельное сканирование</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Время ожидания сканирования</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>мс</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Ограничение сканирования сеансов</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Параметры</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Обратным поиском определены IP-адреса для названий узлов</translation>
     </message>
 </context>
 <context>
@@ -3708,7 +3454,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3829,15 +3575,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3921,11 +3667,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">Скриншот </translation>
+        <translation>Скриншот </translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3959,24 +3705,12 @@ Please save your work and close all programs.</source>
         <translation>Состояние:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Сеть</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Порт демонстрационного сервера</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Включить исключения брандмауэра</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Разрешить только локальные подключения</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Порт внутреннего сервера VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3999,14 +3733,6 @@ Please save your work and close all programs.</source>
         <translation>Работает</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Порт управления функциями</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Порт основного сервиса</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Включение этого пункта приведёт к тому, что сервис будет запускать процесс сервера для каждого интерактивного сеанса на компьютере.
@@ -4017,16 +3743,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Показывать оповещение по удалённому доступу</translation>
     </message>
     <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Режим со многими сеансами (для сервера-терминала и сервера удалённого рабочего стола)</translation>
-    </message>
-    <message>
         <source>Show notification when an unauthorized access is blocked</source>
         <translation>Показывать оповещения, когда программа блокирует неавторизованный доступ</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sessions</source>
@@ -4034,27 +3756,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server</source>
@@ -4062,7 +3784,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4154,50 +3876,51 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4284,6 +4007,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Включить двигатель дублирования рабочего стола в Windows 8 и более новых версиях</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="et">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="et" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -81,10 +79,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>All groups</source>
         <translation>Kõik grupid</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -323,98 +317,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Authentication method</source>
         <translation>Autentimismeetod</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Üldine</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Autentimisvõtmed</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Juhend</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Võtmefaili autentimise seadistamiseks toimige järgmiselt:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Looge põhiarvutis võtmepaar.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Määrake juurdepääsugrupp, mille liikmetel peaks olema juurdepääs teistele arvutitele.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Eksportige avalik võti ja importige see kõigisse samanimelistesse klientarvutitesse.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Lisateavet leiate &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon administraatori käsiraamatust&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Võtmefailide kataloogid</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Avaliku võtme failibaasi kataloog</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Privaatvõtme failibaasi kataloog</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Saadaval olevad autentimisvõtmed</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Autentimisvõtmete paar koosneb kahest ühendatud krüptovõtmest, privaatsest ja avalikust võtmest.
-Privaatvõti võimaldab peaarvuti kasutajatel pääseda juurde klientarvutitele.
-On oluline, et ainult volitatud kasutajatel oleks juurdepääs privaatvõtme failile.
-Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu autentimiseks.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Loo võtmepaar</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Kustuta võti</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Impordi võti</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Ekspordi võti</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Määra juurdepääsugrupp</translation>
     </message>
 </context>
 <context>
@@ -1291,11 +1193,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ükski kasutaja]</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation>Veyon Server pole kättesaadav või ei tööta</translation>
     </message>
 </context>
 <context>
@@ -1397,10 +1299,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation>Arvuti haldus</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>Arvuti otsing</translation>
     </message>
@@ -1427,6 +1325,17 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Arvutit ja kasutajate loendi %1 kirjutamine nurjus! Kontrollige failidele juurdepääsu õigusi.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1559,10 +1468,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Memory limit</source>
         <translation>Mälupiirang</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Use multithreading (experimental)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1979,10 +1884,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Logifailide kataloog</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>Logi tase</translation>
     </message>
@@ -2078,21 +1979,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Write to logging system of operating system</source>
         <translation>Kirjutage operatsioonisüsteemi logimissüsteemi</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>Autentimine</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Meetod:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>Seadistamine</translation>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2881,53 +2773,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Litsenseerimine</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Installitud litsentsid</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Lisa uus võrguvahemik</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Eemalda valitud võrguvahemik</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Kehtiv kuni</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Licensee</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Info</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Installitud ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Litsentsimiseks saadaval olevad lisad</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Lisa</translation>
-    </message>
-</context>
-<context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
@@ -3122,10 +2967,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Otsige kasutajaid ja arvuteid</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Reguleerige optimaalset suurust</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Joondage arvutid</translation>
     </message>
@@ -3174,6 +3015,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Autentimine</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Kohandage arvuti ikoonide suurust automaatselt</translation>
+    </message>
+    <message>
         <source>Slideshow</source>
         <translation>Slaidiseanss</translation>
     </message>
@@ -3181,20 +3026,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Spotlight</source>
         <translation>Tähelepanu keskpunktis</translation>
     </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Kataloogid</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3329,10 +3166,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Valige praegune asukoht automaatselt</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Reguleerige arvuti pisipildi suurust automaatselt</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Avage arvuti valimispaneel automaatselt</translation>
     </message>
@@ -3353,16 +3186,20 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Peida kohalik seanss</translation>
     </message>
     <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Pisipildi kuvasuhe</translation>
-    </message>
-    <message>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Pisipildi kuvasuhe</translation>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguleerige arvuti ikooni suurust automaatselt</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3378,97 +3215,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>See režiim võimaldab teil jälgida kõiki arvuteid ühes või mitmes kohas.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Võrgu avastamine</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Režiim</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Skannige võrgu vahemikke</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>Näiteks 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Skaneeri kõiki arvuti alamvõrke</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Skaneeri kasutaja alamvõrku</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Skaneerige seansid kohalikus arvutis</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Võrgu vahemikud</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Lisa uus grupp</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Eemalda valitud grupp</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Grupid</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Esimene aadress</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Viimane aadress</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Lisa uus võrguvahemik</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Eemalda valitud võrguvahemik</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Paralleelsed skaneerimised</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Skannimise ajalõpp</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Seansi skannimise limiit</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Valikud</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Pöördotsing avastas hostinimedele IP-aadressid</translation>
     </message>
 </context>
 <context>
@@ -3708,7 +3454,7 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - %2 - %3 Kaugjuurdepääs</translation>
     </message>
 </context>
 <context>
@@ -3921,11 +3667,11 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">Ekraanipilt</translation>
+        <translation>Ekraanipilt</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas soovite tõesti kõik valitud ekraanipildid kustutada?</translation>
     </message>
 </context>
 <context>
@@ -3959,24 +3705,12 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Seisund:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Võrk</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Demo serveri port</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Luba tulemüüri erisused</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Luba ühendused ainult localhostilt</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Sisemise VNC serveri port</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3999,14 +3733,6 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Käib</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Funktsioonihalduri port</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Esmane teenuse port</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Selle suvandi lubamine käivitab teenuse serveriprotsessi iga arvuti interaktiivse seansi jaoks.
@@ -4015,10 +3741,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Kuva teated kaugühenduse korral</translation>
-    </message>
-    <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Mitme seansi režiim (terminali ja kaugtöölaua serverite jaoks)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4172,10 +3894,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.</translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
         <translation>Lisage valitud arvutid</translation>
     </message>
@@ -4198,6 +3916,11 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Valige eemaldamiseks vähemalt üks arvuti.</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4284,6 +4007,10 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Luba töölaua laiendamismootor Windows 8 ja uuemates versioonides</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

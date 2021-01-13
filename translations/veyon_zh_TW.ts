@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -81,10 +79,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>All groups</source>
         <translation>所有群組</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -323,98 +317,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Authentication method</source>
         <translation>身份驗證方法</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>一般</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>身份驗證金鑰</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>介紹</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>請執行以下步驟以設定金鑰檔身份驗證:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) 在主電腦上建立金鑰對。</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) 設定一個存取群組，應該允許其成員存取其它電腦。</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) 匯出公開金鑰並將其匯入到具有相同名稱的所有用戶端電腦上。</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;，取得更多資訊。</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>金鑰檔目錄</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>公開金鑰檔基礎目錄</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>私密金鑰檔基礎目錄</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>可用身份驗證金鑰</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>身份驗證金鑰配對由兩個耦合的加密金鑰，一個私有金鑰和一個公開金鑰組成。
-私密金鑰允許主機電腦上的使用者存取用戶端電腦。
-重要的是，只有授權使用者才能對私密金鑰檔進行讀取存取。
-公開金鑰用於用戶端電腦以驗證傳入連線請求。</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>建立金鑰配對</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>刪除金鑰</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>匯入金鑰</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>匯出金鑰</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>設定存取群組</translation>
     </message>
 </context>
 <context>
@@ -1291,11 +1193,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation>[沒有使用者]</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation>無法連線 Veyon 伺服器或未執行</translation>
     </message>
 </context>
 <context>
@@ -1397,10 +1299,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation>電腦管理</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>電腦搜尋</translation>
     </message>
@@ -1427,6 +1325,17 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>無法寫入電腦和使用者清單到 %1! 請檢查檔案的存取權限。</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1559,10 +1468,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Memory limit</source>
         <translation>記憶體限制</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>使用多執行緒 (實驗性)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1979,10 +1884,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>紀錄檔目錄</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>紀錄等級</translation>
     </message>
@@ -2078,21 +1979,12 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Write to logging system of operating system</source>
         <translation>寫入到作業系統的記錄系統</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>身份驗證</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>方式:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>測試</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>組態</translation>
+        <source>Headless VNC server</source>
+        <translation>無標題 VNC 伺服器</translation>
     </message>
 </context>
 <context>
@@ -2881,53 +2773,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>授權</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>已安裝的授權</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>加入新的網路範圍</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>移除選取的網路範圍</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>有效期至</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>授權</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>資訊</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>安裝 ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>授權的附加元件可用</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>附加元件</translation>
-    </message>
-</context>
-<context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
@@ -3122,10 +2967,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>搜尋使用者和電腦</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>調整最佳大小</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>將電腦對齊格線</translation>
     </message>
@@ -3174,6 +3015,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>身份驗證</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>自動調整電腦圖示的大小</translation>
+    </message>
+    <message>
         <source>Slideshow</source>
         <translation>投影片</translation>
     </message>
@@ -3181,20 +3026,12 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>聚光燈</translation>
     </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>目錄</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3329,10 +3166,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>自動選取目前位置</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>自動調整電腦縮圖大小</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>自動開啟電腦選取面板</translation>
     </message>
@@ -3353,16 +3186,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>隱藏本機工作階段</translation>
     </message>
     <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>縮圖外觀比例</translation>
-    </message>
-    <message>
         <source>Auto</source>
         <translation>自動</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>縮圖外觀比例</translation>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>自動調整電腦圖示大小</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation>在與主視窗同一螢幕上開啟功能視窗</translation>
     </message>
 </context>
 <context>
@@ -3378,97 +3215,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>這個模式允許您監視在一個或數個位置的所有電腦。</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>網路探索</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>模式</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>掃描網路範圍</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>例如: 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>掃描電腦的所有子網路</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>掃描自訂子網路</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>掃描本機電腦上的工作階段</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>測試</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>網路範圍</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>加入新群組</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>移除選取的群組</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>群組</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>第一個位址</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>最後位址</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>加入新的網路範圍</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>移除選取的網路範圍</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>並行掃描</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>掃描逾時</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> 毫秒</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>工作階段掃描限制</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>選項</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>反向對應發現的主機名稱的 IP 位址</translation>
     </message>
 </context>
 <context>
@@ -3708,7 +3454,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - %2 - %3 遠端存取</translation>
     </message>
 </context>
 <context>
@@ -3921,11 +3667,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">螢幕快照</translation>
+        <translation>螢幕快照</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation>您真的要刪除所有的螢幕快照嗎?</translation>
     </message>
 </context>
 <context>
@@ -3959,24 +3705,12 @@ Please save your work and close all programs.</source>
         <translation>狀態:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>網路</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>示範伺服器連接埠</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>啟用防火牆例外</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>只允許來自 localhost 的連線</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>內部 VNC 伺服器埠</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3999,14 +3733,6 @@ Please save your work and close all programs.</source>
         <translation>執行中</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>功能管理員埠</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>主服務埠</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>啟用這個選項將使服務為電腦上的每個互動式工作階段啟動伺服器處理程序。
@@ -4015,10 +3741,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>遠端連線時顯示通知</translation>
-    </message>
-    <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>多工作階段模式 (適用於終端機和遠端桌面伺服器)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4172,10 +3894,6 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>使用滑鼠中鍵按一下或按下以下的第一個按鈕來加入電腦。</translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
         <translation>加入選取的電腦</translation>
     </message>
@@ -4198,6 +3916,11 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>請選擇至少一台電腦來移除。</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4284,6 +4007,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>在 Windows 8 和以上啟用「桌面複製引擎」</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation>最大 CPU 使用率</translation>
     </message>
 </context>
 <context>

@@ -81,10 +81,6 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <translation>Tất cả các nhóm</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Access control rules</source>
         <translation>Quy tắc điều khiển truy cập</translation>
     </message>
@@ -321,98 +317,6 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     <message>
         <source>Authentication method</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Chung</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Khóa xác thực</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Giới thiệu</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Vui lòng thực hiện các bước sau để thiết lập xác thực tập tin khóa:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Tạo một cặp khóa trên máy tính chủ.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Thiết lập một nhóm truy cập mà các thành viên sẽ được phép truy cập vào các máy tính khác.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Xuất khóa công và nhập nó trên tất cả các máy tính khách với cùng tên.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Vui lòng tham khảo &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Hướng dẫn quản trị Veyon&lt;/a&gt;để biết thêm thông tin.</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Thư mục tập tin khóa</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Thư mục cơ sở tập tin khóa công</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Thư mục cơ sở tập tin khóa riêng</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Khóa xác thực khả dụng</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Một cặp khóa xác thực bao gồm hai khóa mật mã, một khóa riêng và một khóa công.
-Một khóa riêng cho phép người dùng trên máy tính chủ truy cập vào các máy tính khách.
-Điều quan trọng đó là chỉ những người dùng được cấp quyền mới có truy cập đọc vào tập tin khóa riêng.
-Khóa công được sử dụng trên các máy tính khách để xác thực yêu cầu kết nối đến.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Tặp cặp khóa</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Xóa khóa</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Nhập khóa</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Xuất khóa</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Đặt nhóm truy cập</translation>
     </message>
 </context>
 <context>
@@ -1395,10 +1299,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation type="unfinished"/>
     </message>
@@ -1424,6 +1324,17 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1556,10 +1467,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1977,10 +1884,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation type="unfinished"/>
     </message>
@@ -2076,20 +1979,11 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Kiểm tra</translation>
-    </message>
-    <message>
-        <source>Configure</source>
+        <source>Headless VNC server</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2860,53 +2754,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
 </context>
 <context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
@@ -3101,10 +2948,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation type="unfinished"/>
     </message>
@@ -3170,10 +3013,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Directories</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3308,10 +3147,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation type="unfinished"/>
     </message>
@@ -3343,6 +3178,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3356,97 +3195,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Kiểm tra</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3936,23 +3684,11 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3976,24 +3712,12 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4148,10 +3872,6 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add selected computers</source>
         <translation type="unfinished"/>
     </message>
@@ -4173,6 +3893,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4259,6 +3984,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
         <translation type="unfinished"/>
     </message>
 </context>

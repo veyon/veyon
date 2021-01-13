@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -79,10 +77,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>All groups</source>
         <translation>Alle Gruppen</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -321,97 +315,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Authentication method</source>
         <translation>Authentifizierungsmethode</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Allgemein</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Authentifizierungsschlüssel</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Einführung</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Bitte führen Sie die folgenden Schritte durch, um die Schlüsseldatei-Authentifizierung einzurichten:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Schlüsselpaar auf dem Master-Computer erzeugen.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Zugriffsgruppe festlegen, deren Mitgliedern der Zugriff auf andere Computer erlaubt werden soll.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Öffentlichen Schlüssel exportieren und auf allen Client-Computern mit dem selben Namen importieren.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Weitere Informationen entnehmen Sie bitte dem &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon-Administrationshandbuch&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Schlüsseldateiverzeichnis</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Basisverzeichnis der öffentlichen Schlüsseldatei</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Basisverzeichnis der privaten Schlüsseldatei</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Verfügbare Authentifizierungsschlüssel</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Ein Authentifizierungsschlüsselpaar besteht aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
-Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
-Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Schlüsselpaar erzeugen</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Schlüssel löschen</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Schlüssel importieren</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Schlüssel exportieren</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Zugriffsgruppe setzen</translation>
     </message>
 </context>
 <context>
@@ -1287,11 +1190,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Kein Benutzer]</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation>Veyon-Server nicht erreichbar oder läuft nicht</translation>
     </message>
 </context>
 <context>
@@ -1393,10 +1296,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation>Computerverwaltung</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>Computersuche</translation>
     </message>
@@ -1423,6 +1322,17 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Die Computer- und Benutzerliste konnte nicht in die Datei %1 geschrieben werden. Bitte überprüfen Sie die Dateizugriffsrechte.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1555,10 +1465,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Memory limit</source>
         <translation>Speicherlimit</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Multithreading benutzen (experimentell)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1975,10 +1881,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Logdateiverzeichnis</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>Loglevel</translation>
     </message>
@@ -2074,21 +1976,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Write to logging system of operating system</source>
         <translation>In Ereignisprotokollierung des Betriebssystems schreiben</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>Authentifizierung</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Methode:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testen</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>Konfigurieren</translation>
+        <source>Headless VNC server</source>
+        <translation>Headless VNC-Server</translation>
     </message>
 </context>
 <context>
@@ -2877,53 +2770,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
 </context>
 <context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Lizenzierung</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Installierte Lizenzen</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Neuen Netzwerkbereich hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Gewählten Netzwerkbereich entfernen</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Gültig bis</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Lizenznehmer</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informationen</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Installations-ID</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Lizenzierbare Erweiterungen</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Erweiterung</translation>
-    </message>
-</context>
-<context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
@@ -3118,10 +2964,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Benutzer und Computer suchen</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Optimale Größe einstellen</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Computer an Gitter ausrichten</translation>
     </message>
@@ -3170,6 +3012,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Authentifizierung</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Größe der Computer-Icons automatisch anpassen</translation>
+    </message>
+    <message>
         <source>Slideshow</source>
         <translation>Diashow</translation>
     </message>
@@ -3177,20 +3023,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Spotlight</source>
         <translation>Scheinwerfer</translation>
     </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
         <translation>Verzeichnisse</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3325,10 +3163,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Automatisch aktuellen Standort auswählen</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automatisch die Größe der Computer-Miniaturbilder anpassen</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Automatisch Computerauswahlbedienfeld öffnen</translation>
     </message>
@@ -3349,16 +3183,20 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Lokale Sitzung ausblenden</translation>
     </message>
     <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Seitenverhältnis Miniaturbilder</translation>
-    </message>
-    <message>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Seitenverhältnis Miniaturbilder</translation>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch die Größe der Computer-Icons anpassen</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation>Funktionsfenster auf dem gleichen Bildschirm wie der des Hauptfensters öffnen</translation>
     </message>
 </context>
 <context>
@@ -3374,97 +3212,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Dieser Modus erlaubt es Ihnen, alle Computer an einem oder mehreren Standorten zu beobachten.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Netzwerkerkennung</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Modus</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Netzwerkbereiche scannen</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>z.B. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Alle Subnetze des Computers scannen</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Benutzerdefiniertes Subnetz scannen</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Sitzungen auf lokalem Computer scannen</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testen</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Netzwerkbereiche</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Neue Gruppe hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Gewählte Gruppe entfernen</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Gruppen</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Erste Adresse</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Letzte Adresse</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Neuen Netzwerkbereich hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Gewählten Netzwerkbereich entfernen</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Parallele Scans</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Scan-Timeout</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Limit für Sitzungsscan</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Optionen</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Gefundene IP-Adressen in Hostnamen rückwärts auflösen</translation>
     </message>
 </context>
 <context>
@@ -3704,7 +3451,7 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - %2 - %3 Fernzugriff</translation>
     </message>
 </context>
 <context>
@@ -3917,11 +3664,11 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">Bildschirmfoto</translation>
+        <translation>Bildschirmfoto</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie wirklich alle ausgewählten Screenshots löschen?</translation>
     </message>
 </context>
 <context>
@@ -3955,24 +3702,12 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Status:</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Netzwerk</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Demoserver-Port</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Firewall-Ausnahme aktivieren</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Nur Verbindungen vom lokalen Computer erlauben</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Port des internen VNC-Servers</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3995,14 +3730,6 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Läuft</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Funktionsverwalter-Port</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Primärer Dienst-Port</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Wenn diese Option aktiviert wird, startet der Dienst einen Serverprozess für jede interaktive Sitzung auf einem Computer.
@@ -4011,10 +3738,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Show notification on remote connection</source>
         <translation>Benachrichtigung bei Fernzugriff anzeigen</translation>
-    </message>
-    <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Mehrfachsitzungsmodus (für Terminal- und Remote-Desktop-Server)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4168,10 +3891,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.</translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
         <translation>Gewählte Computer hinzufügen</translation>
     </message>
@@ -4194,6 +3913,11 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Bitte wählen Sie mindestens einen zu entfernenden Computer aus.</translation>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4280,6 +4004,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Desktop-Duplication-Engine unter Windows 8 und neuer aktivieren</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation>Maximale CPU-Auslastung</translation>
     </message>
 </context>
 <context>

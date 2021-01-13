@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -81,10 +79,6 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     <message>
         <source>All groups</source>
         <translation>Wszystkie grupy</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -323,98 +317,6 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     <message>
         <source>Authentication method</source>
         <translation>Metoda uwierzytelnienia</translation>
-    </message>
-</context>
-<context>
-    <name>AndroidPlatformConfigurationPage</name>
-    <message>
-        <source>Android</source>
-        <translation>Android</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Ogólne</translation>
-    </message>
-</context>
-<context>
-    <name>AuthKeysConfigurationDialog</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Klucze uwierzytelniające</translation>
-    </message>
-    <message>
-        <source>Introduction</source>
-        <translation>Wprowadzenie</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Wykonaj poniższe kroki w celu ustawienia pliku klucza uwierzytelniającego:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>)1 Stwórz parę kluczy uwierzytelniających na głównym komputerze.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Utwórz grupę użytkowników którzy mają mieć dostęp do innych komputerów.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Wyeksportuj klucz publiczny i zaimportuj go na wszystkich komputerach klienckich z taką samą nazwą.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Więcej informacji można znaleźć w &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Podręczniku administratora Veyon&lt;/a&gt;. </translation>
-    </message>
-    <message>
-        <source>Key file directories</source>
-        <translation>Lokalizacja plików kluczy</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Katalog z plikami kluczy publicznych</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Katalog z plikami kluczy prywatnych</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Available authentication keys</source>
-        <translation>Dostępne klucze uwierzytelniające</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Para kluczy uwierzytelniających składa się z dwóch kluczy kryptograficznych, prywatnego i publicznego.
-Klucz prywatny umożliwia użytkownikom komputera głównego dostęp do komputerów klienta.
-Ważne jest, aby jedynie autoryzowani użytkownicy mogli odczytać plik klucza prywatnego.
-Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połączeń przychodzących.</translation>
-    </message>
-    <message>
-        <source>Create key pair</source>
-        <translation>Stwórz parę kluczy</translation>
-    </message>
-    <message>
-        <source>Delete key</source>
-        <translation>Usuń klucz</translation>
-    </message>
-    <message>
-        <source>Import key</source>
-        <translation>Importuj klucz</translation>
-    </message>
-    <message>
-        <source>Export key</source>
-        <translation>Eksportuj klucz</translation>
-    </message>
-    <message>
-        <source>Set access group</source>
-        <translation>Ustaw grupę dostępu</translation>
     </message>
 </context>
 <context>
@@ -799,7 +701,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
@@ -814,7 +716,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
@@ -1291,11 +1193,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1397,10 +1299,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 <context>
     <name>ComputerSelectPanel</name>
     <message>
-        <source>Computer management</source>
-        <translation>Zarządzanie komputerem</translation>
-    </message>
-    <message>
         <source>Computer search</source>
         <translation>Znajdź komputer</translation>
     </message>
@@ -1427,6 +1325,17 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nie można zapisać listy komputerów i użytkowników w %1! Sprawdź prawa dostępu do pliku</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerZoomWidget</name>
+    <message>
+        <source>%1 - %2 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 - %2 - %3 Computer Zoom Widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1561,10 +1470,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Limit pamięci</translation>
     </message>
     <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Użyj wielowątkowości (eksperymentalne)</translation>
-    </message>
-    <message>
         <source> MB</source>
         <translation>MB</translation>
     </message>
@@ -1649,11 +1554,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1979,10 +1884,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Katalog plików dziennika logowania</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
         <source>Log level</source>
         <translation>Poziom logowania</translation>
     </message>
@@ -2078,21 +1979,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Write to logging system of operating system</source>
         <translation>Zapisz w logach systemu operacyjnego</translation>
     </message>
+</context>
+<context>
+    <name>HeadlessVncServer</name>
     <message>
-        <source>Authentication</source>
-        <translation>Uwierzytelnienie</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Metoda:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation>Konfiguruj</translation>
+        <source>Headless VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2151,7 +2043,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
@@ -2161,7 +2053,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
@@ -2171,7 +2063,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2180,7 +2072,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>user tree</source>
@@ -2300,7 +2192,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>groups of user</source>
@@ -2377,7 +2269,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>Zapytanie o %1 zakończyło się powodzeniem i znaleziono %2 wpisów.
-&#xa0;</translation>
+ </translation>
     </message>
     <message>
         <source>LDAP test failed</source>
@@ -2608,7 +2500,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2652,11 +2544,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection security</source>
@@ -2744,7 +2636,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>List all entries of a location</source>
@@ -2789,7 +2681,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Nazwy hostów przechowywane jako w pełni kwalifikowane nazwy domen (FQDN, np. myhost.example.org)
-&#xa0;</translation>
+ </translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2820,7 +2712,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
@@ -2856,11 +2748,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
@@ -2873,53 +2765,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>LDAP bind</source>
         <translation>Powiąż z LDAP</translation>
-    </message>
-</context>
-<context>
-    <name>LicensingConfigurationPage</name>
-    <message>
-        <source>Licensing</source>
-        <translation>Licencjonowanie</translation>
-    </message>
-    <message>
-        <source>Installed licenses</source>
-        <translation>Zainstalowane licencje</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Dodaj nowy zakres sieci</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Usuń wybrany zakres sieci</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>Identyfikator</translation>
-    </message>
-    <message>
-        <source>Valid until</source>
-        <translation>Ważne do</translation>
-    </message>
-    <message>
-        <source>Licensee</source>
-        <translation>Właściciel</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informacja</translation>
-    </message>
-    <message>
-        <source>Installation ID</source>
-        <translation>Identyfikator instalacji</translation>
-    </message>
-    <message>
-        <source>Addons available for licensing</source>
-        <translation>Dostępne dodatki do licencjonowania</translation>
-    </message>
-    <message>
-        <source>Addon</source>
-        <translation>Addon</translation>
     </message>
 </context>
 <context>
@@ -3117,10 +2962,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wyszukaj użytkowników i komputery</translation>
     </message>
     <message>
-        <source>Adjust optimal size</source>
-        <translation>Dopasuj optymalny rozmiar</translation>
-    </message>
-    <message>
         <source>Align computers to grid</source>
         <translation>Dopasuj komputery w siatkę</translation>
     </message>
@@ -3169,16 +3010,16 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Uwierzytelnienie</translation>
     </message>
     <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Slideshow</source>
         <translation>Pokaz slajdów</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3186,10 +3027,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Directories</source>
         <translation>Lokalizacje</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3324,10 +3161,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Automatycznie wybierz bieżącą lokalizację</translation>
     </message>
     <message>
-        <source>Automatically adjust computer thumbnail size</source>
-        <translation>Automatycznie dostosuj rozmiar miniatury komputera</translation>
-    </message>
-    <message>
         <source>Automatically open computer select panel</source>
         <translation>Automatycznie otwórz panel wyboru komputera</translation>
     </message>
@@ -3337,27 +3170,31 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
+        <source>Thumbnail aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3373,97 +3210,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ten tryb umożliwia monitorowanie wszystkich komputerów w co najmniej jednej lokalizacji.</translation>
-    </message>
-</context>
-<context>
-    <name>NetworkDiscoveryConfigurationPage</name>
-    <message>
-        <source>Network discovery</source>
-        <translation>Wykrywanie sieci</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Tryb</translation>
-    </message>
-    <message>
-        <source>Scan network ranges</source>
-        <translation>Skanuj zakresy sieci</translation>
-    </message>
-    <message>
-        <source>e.g. 192.168.1.0/24</source>
-        <translation>np. 192.168.1.0/24</translation>
-    </message>
-    <message>
-        <source>Scan all subnets of computer</source>
-        <translation>Przeskanuj wszystkie podsieci</translation>
-    </message>
-    <message>
-        <source>Scan custom subnet</source>
-        <translation>Skanuj zdefiniowaną podsieć</translation>
-    </message>
-    <message>
-        <source>Scan sessions on local computer</source>
-        <translation>Skanuj sesje na lokalnym komputerze</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Network ranges</source>
-        <translation>Zakresy sieci</translation>
-    </message>
-    <message>
-        <source>Add new group</source>
-        <translation>Dodaj nową grupę</translation>
-    </message>
-    <message>
-        <source>Remove selected group</source>
-        <translation>Usuń wybraną grupę</translation>
-    </message>
-    <message>
-        <source>Groups</source>
-        <translation>Grupy</translation>
-    </message>
-    <message>
-        <source>First address</source>
-        <translation>Pierwszy adres</translation>
-    </message>
-    <message>
-        <source>Last address</source>
-        <translation>Ostatni adres</translation>
-    </message>
-    <message>
-        <source>Add new network range</source>
-        <translation>Dodaj nowy zakres sieci</translation>
-    </message>
-    <message>
-        <source>Remove selected network range</source>
-        <translation>Usuń wybrany zakres sieci</translation>
-    </message>
-    <message>
-        <source>Parallel scans</source>
-        <translation>Skanowanie równoległe</translation>
-    </message>
-    <message>
-        <source>Scan timeout</source>
-        <translation>Upłynął limit czasu skanowania</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Session scan limit</source>
-        <translation>Limit skanowania sesji</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation>Opcje</translation>
-    </message>
-    <message>
-        <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation>Odwrócone wyszukiwanie adresów IP na nazwy hostów</translation>
     </message>
 </context>
 <context>
@@ -3703,7 +3449,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3832,7 +3578,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation>Aby odzyskać pełną uwagę wszystkich użytkowników, możesz zablokować ich komputery za pomocą tego przycisku. W tym trybie wszystkie urządzenia wejściowe są zablokowane, podczas gdy pulpit jest nadal widoczny.&#xa0;</translation>
+        <translation>Aby odzyskać pełną uwagę wszystkich użytkowników, możesz zablokować ich komputery za pomocą tego przycisku. W tym trybie wszystkie urządzenia wejściowe są zablokowane, podczas gdy pulpit jest nadal widoczny. </translation>
     </message>
 </context>
 <context>
@@ -3916,11 +3662,11 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished">Zrzut ekranu</translation>
+        <translation>Zrzut ekranu</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3954,24 +3700,12 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Stan</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>Sieć</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>port serwera demo</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Uruchom wyjątki w zaporze sieciowej</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Zezwalaj tylko na połączenia z localhosta</translation>
-    </message>
-    <message>
-        <source>Internal VNC server port</source>
-        <translation>Wewnętrzny port VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3994,14 +3728,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Uruchomiona</translation>
     </message>
     <message>
-        <source>Feature manager port</source>
-        <translation>Port managera</translation>
-    </message>
-    <message>
-        <source>Primary service port</source>
-        <translation>Główny port usługi</translation>
-    </message>
-    <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
         <translation>Włączenie tej opcji spowoduje, że usługa uruchomi proces serwera dla każdej interaktywnej sesji na komputerze.
@@ -4010,10 +3736,6 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Pokaż powiadomienie o zdalnym połączeniu</translation>
-    </message>
-    <message>
-        <source>Multi session mode (for terminal and remote desktop servers)</source>
-        <translation>Tryb wielu sesji (dla serwerów terminalowych i zdalnych pulpitów)</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4029,7 +3751,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multi session mode (create server instance for each local and remote desktop session)</source>
@@ -4037,11 +3759,11 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -4057,7 +3779,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4149,11 +3871,11 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Next</source>
@@ -4161,38 +3883,39 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.
+The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4206,7 +3929,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Default (system user groups)</source>
@@ -4279,6 +4002,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Włącz mechanizm  kopiowania pulpitu w systemie Windows 8 i nowszych</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
