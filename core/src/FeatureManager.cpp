@@ -114,7 +114,7 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 void FeatureManager::controlFeature( Feature::Uid featureUid,
 									FeatureProviderInterface::Operation operation,
 									const QVariantMap& arguments,
-									const ComputerControlInterfaceList& computerControlInterfaces )
+									const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -126,7 +126,7 @@ void FeatureManager::controlFeature( Feature::Uid featureUid,
 
 void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces )
+								   const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
 	vDebug() << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
 
@@ -148,7 +148,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 
 void FeatureManager::stopFeature( VeyonMasterInterface& master,
 								  const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces )
+								  const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
 	vDebug() << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
 
@@ -169,7 +169,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 
 
 bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
-										  const FeatureMessage& message )
+										  const FeatureMessage& message ) const
 {
 	vDebug() << "feature" << message.featureUid()
 			 << "command" << message.command()
@@ -192,7 +192,7 @@ bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer com
 
 bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
-										   const FeatureMessage& message )
+										   const FeatureMessage& message ) const
 {
 	vDebug() << "feature" << message.featureUid()
 			 << "command" << message.command()
@@ -219,7 +219,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 
 
 
-bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
+bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const
 {
 	vDebug() << "feature" << message.featureUid()
 			 << "command" << message.command()
