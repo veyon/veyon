@@ -43,6 +43,16 @@ public:
 		return m_controlInterface;
 	}
 
+	void lock()
+	{
+		m_controlInterface->lock();
+	}
+
+	void unlock()
+	{
+		m_controlInterface->unlock();
+	}
+
 	QTimer* idleTimer() const
 	{
 		return m_idleTimer;
