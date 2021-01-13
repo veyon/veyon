@@ -31,6 +31,7 @@
 
 #include "Computer.h"
 #include "Feature.h"
+#include "Lockable.h"
 #include "VeyonCore.h"
 #include "VncConnection.h"
 
@@ -40,7 +41,7 @@ class FeatureMessage;
 class VncConnection;
 class VeyonConnection;
 
-class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
+class VEYON_CORE_EXPORT ComputerControlInterface : public QObject, public Lockable
 {
 	Q_OBJECT
 public:
