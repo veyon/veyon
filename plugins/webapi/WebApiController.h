@@ -24,11 +24,14 @@
 
 #pragma once
 
+#include <QReadWriteLock>
+
 #include "EnumHelper.h"
 #include "FeatureManager.h"
+#include "LockingPointer.h"
+#include "WebApiConnection.h"
 
 class WebApiConfiguration;
-class WebApiConnection;
 
 class WebApiController : public QObject
 {
@@ -127,15 +130,19 @@ private:
 		return QStringLiteral("Connection-Uid");
 	}
 
-	WebApiConnection* lookupConnection( const Request& request ) const;
+	using WebApiConnectionPointer = QSharedPointer<WebApiConnection>;
+	using LockingConnectionPointer = LockingPointer<WebApiConnectionPointer>;
+
+	LockingConnectionPointer lookupConnection( const Request& request );
 
 	using CheckFunction = std::function<Response(const WebApiController*, const QVariantMap &)>;
 
-	Response checkConnection( const Request& request ) const;
-	Response checkFeature( const QString& featureUid ) const;
+	Response checkConnection( const Request& request );
+	Response checkFeature( const QString& featureUid );
 
 	const WebApiConfiguration& m_configuration;
-	FeatureManager m_featureManager;
-	QMap<QUuid, WebApiConnection *> m_connections{};
+	const FeatureManager m_featureManager;
+	QMap<QUuid, WebApiConnectionPointer> m_connections{};
+	QReadWriteLock m_connectionsLock;
 
 };
