@@ -46,7 +46,6 @@ WebApiConnection::~WebApiConnection()
 	m_lifetimeTimer->deleteLater();
 
 	m_controlInterface->stop();
-	m_controlInterface->deleteLater();
 }
 
 
