@@ -172,7 +172,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Delete>(
 		data[item.first] = item.second;
 	}
 
-	vCritical() << "DELETE" << request.url() << request.headers();
+	vDebug() << "DELETE" << request.url() << request.headers();
 
 	return data;
 }
