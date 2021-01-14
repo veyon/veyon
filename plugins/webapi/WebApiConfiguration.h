@@ -33,7 +33,7 @@
     OP( WebApiConfiguration, m_configuration, int, connectionLifetime, setConnectionLifetime, "ConnectionLifetime", "WebAPI", 3, Configuration::Property::Flag::Advanced )	\
     OP( WebApiConfiguration, m_configuration, int, connectionIdleTimeout, setConnectionIdleTimeout, "ConnectionIdleTimeout", "WebAPI", 60, Configuration::Property::Flag::Advanced )	\
     OP( WebApiConfiguration, m_configuration, int, connectionAuthenticationTimeout, setConnectionAuthenticationTimeout, "ConnectionAuthenticationTimeout", "WebAPI", 15, Configuration::Property::Flag::Advanced )	\
-    OP( WebApiConfiguration, m_configuration, int, connectionLimit, setConnectionLimit, "ConnectionLimit", "WebAPI", 10, Configuration::Property::Flag::Advanced )	\
+    OP( WebApiConfiguration, m_configuration, int, connectionLimit, setConnectionLimit, "ConnectionLimit", "WebAPI", 32, Configuration::Property::Flag::Advanced )	\
     OP( WebApiConfiguration, m_configuration, bool, httpsEnabled, setHttpsEnabled, "HttpsEnabled", "WebAPI", false, Configuration::Property::Flag::Advanced )	\
     OP( WebApiConfiguration, m_configuration, QString, tlsCertificateFile, setTlsCertificateFile, "TlsCertificateFile", "WebAPI", QString(), Configuration::Property::Flag::Advanced )	\
     OP( WebApiConfiguration, m_configuration, QString, tlsPrivateKeyFile, setTlsPrivateKeyFile, "TlsPrivateKeyFile", "WebAPI", QString(), Configuration::Property::Flag::Advanced )	\
