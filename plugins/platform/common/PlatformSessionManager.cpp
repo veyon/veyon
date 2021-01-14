@@ -119,7 +119,12 @@ PlatformSessionManager::SessionId PlatformSessionManager::resolveSessionId( cons
 	socket.connectToServer( serverName(), QLocalSocket::ReadOnly );
 	if( socket.waitForConnected( ServerConnectTimeout ) == false )
 	{
-		vCritical() << "could not read session map";
+		if( VeyonCore::component() != VeyonCore::Component::CLI &&
+			VeyonCore::component() != VeyonCore::Component::Configurator )
+		{
+			vCritical() << "could not read session map";
+		}
+
 		return PlatformSessionFunctions::InvalidSessionId;
 	}
 
