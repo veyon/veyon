@@ -23,6 +23,7 @@
  */
 
 #include <QtHttpServer/qhttpserver.h>
+#include <QtHttpServer/qhttpserverfutureresponse.h>
 #include <QJsonDocument>
 
 #include "Filesystem.h"
@@ -92,6 +93,7 @@ WebApiHttpServer::WebApiHttpServer( const WebApiConfiguration& configuration, QO
 	m_controller( new WebApiController( configuration, this ) ),
 	m_server( new QHttpServer( this ) )
 {
+	m_threadPool.setMaxThreadCount( m_configuration.connectionLimit() );
 }
 
 
@@ -192,10 +194,16 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			case Method::Delete: return QHttpServerRequest::Method::Delete;
 			}
 		}(),
-		[=]( Args... args, const QHttpServerRequest& request ) {
-			return convertResponse( (m_controller->*controllerMethod)(
-				{ request.headers(), dataFromRequest<M>( request ) },
-				std::forward<Args>(args)... ) );
+		[=]( Args... args, const QHttpServerRequest& request ) -> QHttpServerFutureResponse
+		{
+			const auto headers = request.headers();
+			const auto data = dataFromRequest<M>( request );
+
+			return QtConcurrent::run( &m_threadPool, [=] {
+				return convertResponse( (m_controller->*controllerMethod)(
+					{ headers, data },
+					std::forward<Args>(args)... ) );
+			} );
 		} );
 }
 

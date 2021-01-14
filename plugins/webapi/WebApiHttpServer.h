@@ -61,6 +61,8 @@ private:
 
 	const WebApiConfiguration& m_configuration;
 
+	QThreadPool m_threadPool{this};
+
 	WebApiController* m_controller{nullptr};
 	QHttpServer* m_server{nullptr};
 
