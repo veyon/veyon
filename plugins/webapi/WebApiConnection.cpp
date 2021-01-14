@@ -113,7 +113,11 @@ QByteArray WebApiConnection::encodedFramebufferData( QSize size, const QByteArra
 	if( preencodeInterval >= MinimumPreencodeInterval )
 	{
 		QTimer::singleShot( preencodeInterval,
-							m_controlInterface.data(), [this]() { runFramebufferEncoder(); } );
+							m_controlInterface.data(), [this]() {
+								lock();
+								runFramebufferEncoder();
+								unlock();
+							} );
 	}
 	else
 	{
