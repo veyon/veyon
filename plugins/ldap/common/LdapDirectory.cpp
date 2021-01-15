@@ -330,14 +330,6 @@ QString LdapDirectory::userLoginName( const QString& userDn )
 
 
 
-QString LdapDirectory::computerDisplayName( const QString& computerDn )
-{
-	return m_client.queryAttributeValues( computerDn, m_computerDisplayNameAttribute ).value( 0 );
-
-}
-
-
-
 QString LdapDirectory::computerHostName( const QString& computerDn )
 {
 	if( computerDn.isEmpty() )
