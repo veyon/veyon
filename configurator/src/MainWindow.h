@@ -42,7 +42,8 @@ public:
 	void reset( bool onlyUI = false );
 	void apply();
 
-	void updateView();
+protected:
+	void resizeEvent( QResizeEvent* event ) override;
 
 private Q_SLOTS:
 	void configurationChanged();
@@ -52,8 +53,10 @@ private Q_SLOTS:
 	void resetConfiguration();
 	void aboutVeyon();
 
-
 private:
+	void updateSizes();
+	void updateView();
+
 	void switchToStandardView();
 	void switchToAdvancedView();
 
