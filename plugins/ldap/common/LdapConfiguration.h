@@ -48,11 +48,11 @@
 	OP( LdapConfiguration, m_configuration, bool, recursiveSearchOperations, setRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP", false, Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, userLoginNameAttribute, setUserLoginNameAttribute, "UserLoginNameAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, groupMemberAttribute, setGroupMemberAttribute, "GroupMemberAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
-	OP( LdapConfiguration, m_configuration, QString, computerDisplayNameAttribute, setComputerDisplayNameAttribute, "ComputerDisplayNameAttribute", "LDAP", QStringLiteral("cn"), Configuration::Property::Flag::Standard )	\
+	OP( LdapConfiguration, m_configuration, QString, computerDisplayNameAttribute, setComputerDisplayNameAttribute, "ComputerDisplayNameAttribute", "LDAP", LdapClient::cn(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerHostNameAttribute, setComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, bool, computerHostNameAsFQDN, setComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP", false, Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerMacAddressAttribute, setComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
-	OP( LdapConfiguration, m_configuration, QString, locationNameAttribute, setLocationNameAttribute, "LocationNameAttribute", "LDAP", QStringLiteral("cn"), Configuration::Property::Flag::Standard )	\
+	OP( LdapConfiguration, m_configuration, QString, locationNameAttribute, setLocationNameAttribute, "LocationNameAttribute", "LDAP", LdapClient::cn(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, usersFilter, setUsersFilter, "UsersFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, userGroupsFilter, setUserGroupsFilter, "UserGroupsFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computersFilter, setComputersFilter, "ComputersFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\

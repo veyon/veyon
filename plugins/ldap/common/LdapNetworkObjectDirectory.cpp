@@ -194,13 +194,13 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 	auto displayNameAttribute = directory->computerDisplayNameAttribute();
 	if( displayNameAttribute.isEmpty() )
 	{
-		displayNameAttribute = QStringLiteral("cn");
+		displayNameAttribute = LdapClient::cn();
 	}
 
 	auto hostNameAttribute = directory->computerHostNameAttribute();
 	if( hostNameAttribute.isEmpty() )
 	{
-		hostNameAttribute = QStringLiteral("cn");
+		hostNameAttribute = LdapClient::cn();
 	}
 
 	QStringList computerAttributes{ displayNameAttribute, hostNameAttribute };

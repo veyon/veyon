@@ -51,12 +51,12 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 
 	if( m_computerDisplayNameAttribute.isEmpty() )
 	{
-		m_computerDisplayNameAttribute = QStringLiteral("cn");
+		m_computerDisplayNameAttribute = LdapClient::cn();
 	}
 
 	if( m_locationNameAttribute.isEmpty() )
 	{
-		m_locationNameAttribute = QStringLiteral("cn");
+		m_locationNameAttribute = LdapClient::cn();
 	}
 
 	m_usersFilter = m_configuration.usersFilter();
@@ -178,7 +178,7 @@ QStringList LdapDirectory::users( const QString& filterValue )
 QStringList LdapDirectory::groups( const QString& filterValue )
 {
 	return m_client.queryDistinguishedNames( groupsDn(),
-											 LdapClient::constructQueryFilter( QStringLiteral( "cn" ), filterValue ),
+											 LdapClient::constructQueryFilter( LdapClient::cn(), filterValue ),
 											 m_defaultSearchScope );
 }
 
@@ -187,7 +187,7 @@ QStringList LdapDirectory::groups( const QString& filterValue )
 QStringList LdapDirectory::userGroups( const QString& filterValue )
 {
 	return m_client.queryDistinguishedNames( groupsDn(),
-											 LdapClient::constructQueryFilter( QStringLiteral( "cn" ), filterValue, m_userGroupsFilter ),
+											 LdapClient::constructQueryFilter( LdapClient::cn(), filterValue, m_userGroupsFilter ),
 											 m_defaultSearchScope );
 }
 
