@@ -43,6 +43,7 @@ public:
 	void apply();
 
 protected:
+	void closeEvent( QCloseEvent* event ) override;
 	void resizeEvent( QResizeEvent* event ) override;
 
 private Q_SLOTS:
@@ -54,6 +55,11 @@ private Q_SLOTS:
 	void aboutVeyon();
 
 private:
+	static QString windowGeometryKey()
+	{
+		return QStringLiteral("Configurator/WindowGeometry");
+	}
+
 	void updateSizes();
 	void updateView();
 
@@ -62,8 +68,6 @@ private:
 
 	bool applyConfiguration();
 	void loadConfigurationPagePlugins();
-
-	void closeEvent( QCloseEvent *closeEvent ) override;
 
 	Ui::MainWindow *ui;
 	bool m_configChanged;

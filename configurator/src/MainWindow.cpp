@@ -29,6 +29,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QScrollBar>
+#include <QSettings>
 
 #include "Configuration/JsonStore.h"
 #include "Configuration/UiMapping.h"
@@ -92,6 +93,8 @@ MainWindow::MainWindow( QWidget* parent ) :
 	resize( ui->pageSelector->width() + ui->generalConfigurationPage->minimumSizeHint().width(),
 			ui->generalConfigurationPage->minimumSizeHint().height() );
 
+	restoreGeometry( QSettings{}.value( windowGeometryKey() ).toByteArray() );
+
 	updateView();
 
 	VeyonCore::enforceBranding( this );
@@ -140,6 +143,26 @@ void MainWindow::apply()
 		ui->buttonBox->setEnabled( false );
 		m_configChanged = false;
 	}
+}
+
+
+
+void MainWindow::closeEvent( QCloseEvent* event )
+{
+	if( m_configChanged &&
+		QMessageBox::question( this, tr( "Unsaved settings" ),
+							   tr( "There are unsaved settings. Quit anyway?" ),
+							   QMessageBox::Yes | QMessageBox::No ) !=
+			QMessageBox::Yes )
+	{
+		event->ignore();
+		return;
+	}
+
+	QSettings{}.setValue( windowGeometryKey(), saveGeometry() );
+
+	event->accept();
+	QMainWindow::closeEvent( event );
 }
 
 
@@ -371,23 +394,4 @@ void MainWindow::loadConfigurationPagePlugins()
 	// adjust minimum size
 	ui->pageSelector->setMinimumSize( ui->pageSelector->sizeHintForColumn(0) + 3 * ui->pageSelector->spacing(),
 									  ui->pageSelector->minimumHeight() );
-}
-
-
-
-void MainWindow::closeEvent( QCloseEvent *closeEvent )
-{
-	if( m_configChanged &&
-		QMessageBox::question( this, tr( "Unsaved settings" ),
-							   tr( "There are unsaved settings. "
-								   "Quit anyway?" ),
-							   QMessageBox::Yes | QMessageBox::No ) !=
-		QMessageBox::Yes )
-	{
-		closeEvent->ignore();
-		return;
-	}
-
-	closeEvent->accept();
-	QMainWindow::closeEvent( closeEvent );
 }
