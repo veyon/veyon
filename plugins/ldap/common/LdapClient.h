@@ -121,6 +121,11 @@ public:
 
 	static QStringList toRDNs( const QString& dn );
 
+	static QString cn()
+	{
+		return QStringLiteral("cn");
+	}
+
 private:
 	static constexpr int LdapQueryTimeout = 3000;
 	static constexpr int LdapConnectionTimeout = 60*1000;
