@@ -96,7 +96,7 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 	if( tempFile.open() == false ) // Flawfinder: ignore
 	{
 		vCritical() << "Could not create temporary file!";
-		return;
+		return false;
 	}
 	tempFile.write( password.toByteArray() );
 	tempFile.close();
