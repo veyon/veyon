@@ -239,18 +239,6 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 {
 	const auto commandLine = QStringList( program ) + parameters;
 
-	const auto desktop = QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_CURRENT_DESKTOP") );
-	if( desktop == QLatin1String("KDE") &&
-			QStandardPaths::findExecutable( QStringLiteral("kdesudo") ).isEmpty() == false )
-	{
-		return QProcess::execute( QStringLiteral("kdesudo"), QStringList( QStringLiteral("--") ) + commandLine ) == 0;
-	}
-
-	if( QStandardPaths::findExecutable( QStringLiteral("gksudo") ).isEmpty() == false )
-	{
-		return QProcess::execute( QStringLiteral("gksudo"), QStringList( QStringLiteral("--") ) + commandLine ) == 0;
-	}
-
 	return QProcess::execute( QStringLiteral("pkexec"), commandLine ) == 0;
 }
 
