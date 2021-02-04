@@ -234,7 +234,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 		return QVariantMap{
 			{ connectionUidHeaderFieldName().toLower(), uuidToString( uuid ) },
-			{ k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + lifetimeTimer->remainingTime() / MillisecondsPerSecond }
+			{ k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + connectionLifetime / MillisecondsPerSecond }
 		};
 	}
 
