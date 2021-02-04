@@ -216,9 +216,12 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		connect( idleTimer, &QTimer::timeout, this, [this, uuid]() { removeConnection( uuid ); } );
 		connect( lifetimeTimer, &QTimer::timeout, this, [this, uuid]() { removeConnection( uuid ); } );
 
-		runInMainThread( [&] {
-			idleTimer->start( m_configuration.connectionIdleTimeout() * MillisecondsPerSecond );
-			lifetimeTimer->start( m_configuration.connectionLifetime() * MillisecondsPerHour );
+		const auto connectionIdleTimeout = m_configuration.connectionIdleTimeout() * MillisecondsPerSecond;
+		const auto connectionLifetime = m_configuration.connectionLifetime() * MillisecondsPerHour;
+
+		runInMainThread( [=] {
+			idleTimer->start( connectionIdleTimeout );
+			lifetimeTimer->start( connectionLifetime );
 		} );
 
 		connect( connection->controlInterface().data(), &ComputerControlInterface::featureMessageReceived, this,
