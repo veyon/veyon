@@ -8,7 +8,7 @@ sudo: required
 matrix:
     include:
         - env: TARGET_OS=centos.7.9
-        - env: TARGET_OS=centos.8.2
+        - env: TARGET_OS=centos.8.3
         - env: TARGET_OS=debian.stretch
         - env: TARGET_OS=debian.buster
         - env: TARGET_OS=fedora.31
