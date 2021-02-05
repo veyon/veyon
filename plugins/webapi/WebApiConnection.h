@@ -104,6 +104,6 @@ private:
 
 	QElapsedTimer m_lastFramebufferRequestTimer;
 	qint64 m_lastFramebufferRequestInterval{0};
-	std::atomic<qint64> m_framebufferEncodingTime{0};
+	QAtomicInteger<qint64> m_framebufferEncodingTime{0};
 
 };
