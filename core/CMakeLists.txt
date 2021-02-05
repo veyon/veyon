@@ -29,6 +29,8 @@ endif()
 
 add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
 
+target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
+
 set_default_target_properties(veyon-core)
 
 target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS} -Wno-parentheses)
@@ -96,4 +98,10 @@ if(VEYON_BUILD_ANDROID)
 	target_link_libraries(veyon-core Qt5::AndroidExtras)
 endif()
 
-cotire_veyon(veyon-core)
+if(WITH_PCH)
+	target_precompile_headers(veyon-core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+
+	add_library(veyon-pch STATIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+	target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
+	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+endif()

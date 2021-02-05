@@ -38,7 +38,6 @@ include(CheckFunctionExists)
 include(CheckSymbolExists)
 include(CheckTypeSize)
 include(GNUInstallDirs)
-include(CotireVeyon)
 include(ConfigureFiles)
 include(SetDefaultTargetProperties)
 
@@ -198,11 +197,19 @@ else()
 endif()
 
 option(WITH_LTO "Build with link-time optimization" ON)
-option(WITH_PCH "Reduce compile time by using precompiled headers" ON)
+option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
+option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds (requires CMake >= 3.16)" ON)
 option(WITH_SANITIZERS "Build with thread and UB sanitizers" OFF)
 option(WITH_MODEL_TESTERS "Build with model testers (turn on for debugging only)" OFF)
 option(WITH_CORE_ONLY "Build core library only" OFF)
 option(WITH_ADDONS "Build add-ons" OFF)
+
+if(${CMAKE_VERSION} VERSION_LESS "3.16.0")
+	set(WITH_PCH OFF)
+	set(WITH_UNITY_BUILD OFF)
+elseif(WITH_UNITY_BUILD)
+	set(CMAKE_UNITY_BUILD ON)
+endif()
 
 if(WITH_SANITIZERS)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
@@ -327,5 +334,6 @@ message("\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 "* Link-time optimization      : ${WITH_LTO}\n"
 "* Use precompiled headers     : ${WITH_PCH}\n"
+"* Use unity build             : ${WITH_UNITY_BUILD}\n"
 "* Build with sanitizers       : ${WITH_SANITIZERS}\n"
 )

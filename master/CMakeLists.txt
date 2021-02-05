@@ -26,5 +26,3 @@ make_graphical_app(veyon-master)
 if(VEYON_BUILD_LINUX)
 	xdg_install(${CMAKE_CURRENT_BINARY_DIR}/data/veyon-master.desktop ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.xpm ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.png ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.svg)
 endif()
-
-cotire_veyon(veyon-master)

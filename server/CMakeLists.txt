@@ -14,8 +14,6 @@ target_link_libraries(veyon-server
 	Qt5::Widgets
 	)
 
-cotire_veyon(veyon-server)
-
 if(VEYON_BUILD_ANDROID)
 	set(CMAKE_ANDROID_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
 	androiddeployqt("veyon-server" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core;${ANDROID_INSTALL_DIR}")

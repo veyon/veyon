@@ -70,6 +70,8 @@ set(ultravnc_C_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/vncauth.c
 	)
 
+set(WITH_PCH OFF)
+
 build_veyon_plugin(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp

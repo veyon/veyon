@@ -7,5 +7,3 @@ build_veyon_application(veyon-worker ${worker_SOURCES})
 
 add_windows_resource(veyon-worker)
 make_graphical_app(veyon-worker)
-
-cotire_veyon(veyon-worker)

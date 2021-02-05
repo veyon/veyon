@@ -22,9 +22,8 @@
  *
  */
 
-#define XK_KOREAN
-#include "rfb/keysym.h"
-#include "rfb/rfbproto.h"
+#include <rfb/keysym.h>
+#include <rfb/rfbproto.h>
 
 #include <QCursor>
 #include <QHoverEvent>

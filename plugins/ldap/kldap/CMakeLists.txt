@@ -43,5 +43,3 @@ set_target_properties(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
 if(NOT WITH_CORE_ONLY)
 install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
 endif()
-cotire_veyon(kldap-light)
-

@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QDBusInterface>
+#include <QSharedPointer>
 
 #include "PlatformCoreFunctions.h"
 
