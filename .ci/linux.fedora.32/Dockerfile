@@ -1,4 +1,4 @@
-FROM fedora:31
+FROM fedora:32
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
