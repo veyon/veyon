@@ -26,7 +26,7 @@
 
 #include "FeatureProviderInterface.h"
 
-class MonitoringMode : public QObject, FeatureProviderInterface, PluginInterface
+class VEYON_CORE_EXPORT MonitoringMode : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
