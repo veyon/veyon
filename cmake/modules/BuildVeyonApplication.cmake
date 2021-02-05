@@ -12,5 +12,9 @@ MACRO(build_veyon_application APPLICATION_NAME)
 	ENDIF()
 	set_property(TARGET ${APPLICATION_NAME} PROPERTY POSITION_INDEPENDENT_CODE TRUE)
 	set_default_target_properties(${APPLICATION_NAME})
+
+	if(WITH_PCH)
+		target_precompile_headers(${APPLICATION_NAME} REUSE_FROM veyon-pch)
+	endif()
 ENDMACRO()
 

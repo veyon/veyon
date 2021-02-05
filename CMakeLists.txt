@@ -35,7 +35,6 @@ INCLUDE(CheckFunctionExists)
 INCLUDE(CheckSymbolExists)
 INCLUDE(CheckTypeSize)
 INCLUDE(GNUInstallDirs)
-INCLUDE(CotireVeyon)
 INCLUDE(ConfigureFiles)
 include(SetDefaultTargetProperties)
 
@@ -191,8 +190,18 @@ endif()
 
 option(WITH_CORE_ONLY "Build core library only" OFF)
 option(WITH_ADDONS "Build add-ons" OFF)
+option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
+option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds (requires CMake >= 3.16)" ON)
 
 option(WITH_MODEL_TESTERS "Build with model testers (turn on for debugging only)" OFF)
+
+if(${CMAKE_VERSION} VERSION_LESS "3.16.0")
+	set(WITH_PCH OFF)
+	set(WITH_UNITY_BUILD OFF)
+elseif(WITH_UNITY_BUILD)
+	set(CMAKE_UNITY_BUILD ON)
+endif()
+
 if(WITH_MODEL_TESTERS)
 find_package(Qt5Test REQUIRED)
 set(VEYON_DEBUG_LIBRARIES Qt5::Test)
@@ -287,6 +296,8 @@ MESSAGE("\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
+"* Use precompiled headers     : ${WITH_PCH}\n"
+"* Use unity build             : ${WITH_UNITY_BUILD}\n"
 )
 
 IF(VEYON_BUILD_ANDROID)

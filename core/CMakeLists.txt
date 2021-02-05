@@ -26,9 +26,8 @@ if(NOT LibVNCClient_FOUND)
 	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default")
 endif()
 
-ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
-
 ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
+target_compile_definitions(veyon-core PRIVATE XK_KOREAN BUILD_VEYON_CORE_LIBRARY)
 
 # find Qt's translation directory
 if(NOT VEYON_BUILD_WIN32)
@@ -91,4 +90,10 @@ ELSE()
 	endif()
 ENDIF(VEYON_BUILD_WIN32)
 
-COTIRE_VEYON(veyon-core)
+if(WITH_PCH)
+	target_precompile_headers(veyon-core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+
+	add_library(veyon-pch STATIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+	target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
+	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+endif()

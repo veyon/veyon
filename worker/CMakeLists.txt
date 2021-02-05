@@ -10,5 +10,3 @@ TARGET_LINK_LIBRARIES(veyon-worker veyon-core Qt5::Network)
 
 ADD_WINDOWS_RESOURCE(veyon-worker)
 MAKE_GRAPHICAL_APP(veyon-worker)
-
-COTIRE_VEYON(veyon-worker)

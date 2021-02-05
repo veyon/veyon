@@ -15,6 +15,8 @@ MACRO(build_veyon_plugin PLUGIN_NAME)
 
 	set_default_target_properties(${PLUGIN_NAME})
 
-	COTIRE_VEYON(${PLUGIN_NAME})
+	if(WITH_PCH)
+		target_precompile_headers(${PLUGIN_NAME} REUSE_FROM veyon-pch)
+	endif()
 ENDMACRO()
 

@@ -8,12 +8,12 @@ pkg_check_modules(fakekey libfakekey)
 
 INCLUDE(BuildVeyonPlugin)
 
-IF(NOT fakekey_FOUND)
-SET(libfakekey_SOURCES ${libfakekey_DIR}/src/libfakekey.c)
-SET_SOURCE_FILES_PROPERTIES(${libfakekey_SOURCES} PROPERTIES
-	COMPILE_FLAGS "-Wno-deprecated-declarations -Wno-pointer-sign"
-	COTIRE_EXCLUDED TRUE)
-ENDIF()
+if(NOT fakekey_FOUND)
+	set(libfakekey_SOURCES ${libfakekey_DIR}/src/libfakekey.c)
+	set_source_files_properties(${libfakekey_SOURCES} PROPERTIES
+		COMPILE_FLAGS "-Wno-deprecated-declarations -Wno-pointer-sign"
+		SKIP_PRECOMPILE_HEADERS TRUE)
+endif()
 
 build_veyon_plugin(linux-platform
 	LinuxPlatformPlugin.cpp
@@ -53,6 +53,8 @@ build_veyon_plugin(linux-platform
 	../common/ServiceDataManager.cpp
 	${libfakekey_SOURCES}
 )
+
+set_source_files_properties(LinuxCoreFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
 
 TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE
 	../common
