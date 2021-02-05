@@ -1,4 +1,4 @@
-FROM centos:7.8.2003
+FROM centos:7.9.2009
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
