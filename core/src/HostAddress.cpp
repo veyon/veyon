@@ -170,12 +170,11 @@ QString HostAddress::localFQDN()
 		return localHostName;
 
 	default:
+		vWarning() << "Could not determine local host name:" << localHostName;
 		break;
 	}
 
-	vWarning() << "Could not determine local host name:" << localHostName;
-
-	return HostAddress( localHostName ).convert( Type::FullyQualifiedDomainName );
+	return HostAddress( localHostName ).tryConvert( Type::FullyQualifiedDomainName );
 }
 
 
