@@ -161,7 +161,10 @@ QString HostAddress::localFQDN()
 	switch( type )
 	{
 	case Type::HostName:
-		return localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName();
+		if( QHostInfo::localDomainName().isEmpty() == false )
+		{
+			return localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName();
+		}
 
 	case Type::FullyQualifiedDomainName:
 		return localHostName;
