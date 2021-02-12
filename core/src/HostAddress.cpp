@@ -257,8 +257,10 @@ QString HostAddress::toHostName( HostAddress::Type type, const QString& address 
 		return fqdnToHostName( hostInfo.hostName() );
 	}
 
-	case Type::Invalid:
 	case Type::HostName:
+		return address;
+
+	case Type::Invalid:
 		break;
 	}
 
@@ -291,8 +293,10 @@ QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
 		return hostInfo.hostName();
 	}
 
-	case Type::Invalid:
 	case Type::FullyQualifiedDomainName:
+		return address;
+
+	case Type::Invalid:
 		break;
 	}
 
