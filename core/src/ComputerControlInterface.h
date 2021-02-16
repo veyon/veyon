@@ -125,6 +125,11 @@ public:
 		return m_designatedModeFeature;
 	}
 
+	void setDesignatedModeFeature( Feature::Uid designatedModeFeature )
+	{
+		m_designatedModeFeature = designatedModeFeature;
+	}
+
 	const QStringList& groups() const
 	{
 		return m_groups;
@@ -135,7 +140,6 @@ public:
 		m_groups = groups;
 	}
 
-	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
 
 	void updateActiveFeatures();
 
