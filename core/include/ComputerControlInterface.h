@@ -116,7 +116,10 @@ public:
 		return m_designatedModeFeature;
 	}
 
-	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
+	void setDesignatedModeFeature( Feature::Uid designatedModeFeature )
+	{
+		m_designatedModeFeature = designatedModeFeature;
+	}
 
 	void updateActiveFeatures();
 
