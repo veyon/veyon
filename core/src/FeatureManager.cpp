@@ -124,6 +124,8 @@ void FeatureManager::controlFeature( Feature::Uid featureUid,
 	{
 		featureInterface->controlFeature( featureUid, operation, arguments, computerControlInterfaces );
 	}
+
+	updateActiveFeatures( computerControlInterfaces );
 }
 
 
@@ -146,6 +148,8 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 			controlInterface->setDesignatedModeFeature( feature.uid() );
 		}
 	}
+
+	updateActiveFeatures( computerControlInterfaces );
 }
 
 
@@ -168,6 +172,8 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 			controlInterface->setDesignatedModeFeature( Feature::Uid() );
 		}
 	}
+
+	updateActiveFeatures( computerControlInterfaces );
 }
 
 
