@@ -223,6 +223,24 @@ void ComputerControlInterface::setDesignatedModeFeature( Feature::Uid designated
 
 
 
+void ComputerControlInterface::updateActiveFeatures()
+{
+	lock();
+
+	if( m_vncConnection && m_connection && state() == State::Connected )
+	{
+		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
+	}
+	else
+	{
+		setActiveFeatures( {} );
+	}
+
+	unlock();
+}
+
+
+
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage, bool wake )
 {
 	if( m_connection && m_connection->isConnected() )
@@ -349,24 +367,6 @@ void ComputerControlInterface::updateUser()
 	else
 	{
 		setUserInformation( {}, {}, -1 );
-	}
-
-	unlock();
-}
-
-
-
-void ComputerControlInterface::updateActiveFeatures()
-{
-	lock();
-
-	if( m_vncConnection && m_connection && state() == State::Connected )
-	{
-		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
-	}
-	else
-	{
-		setActiveFeatures( {} );
 	}
 
 	unlock();

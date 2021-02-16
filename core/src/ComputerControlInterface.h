@@ -137,6 +137,8 @@ public:
 
 	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
 
+	void updateActiveFeatures();
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
 	bool isMessageQueueEmpty();
 
@@ -154,7 +156,6 @@ private:
 
 	void updateState();
 	void updateUser();
-	void updateActiveFeatures();
 
 	void handleFeatureMessage( const FeatureMessage& message );
 
