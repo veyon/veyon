@@ -64,6 +64,8 @@ public:
 					  const Feature& feature,
 					  const ComputerControlInterfaceList& computerControlInterfaces ) const;
 
+	void updateActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces ) const;
+
 	bool handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 							  const FeatureMessage& message ) const;
 	bool handleFeatureMessage( VeyonServerInterface& server,

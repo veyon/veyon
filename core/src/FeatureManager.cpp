@@ -168,6 +168,16 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 
 
 
+void FeatureManager::updateActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces ) const
+{
+	for( const auto& controlInterface : computerControlInterfaces )
+	{
+		controlInterface->updateActiveFeatures();
+	}
+}
+
+
+
 bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 										  const FeatureMessage& message ) const
 {
