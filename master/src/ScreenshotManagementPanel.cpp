@@ -43,7 +43,7 @@ ScreenshotManagementPanel::ScreenshotManagementPanel( QWidget *parent ) :
 
 	VeyonCore::filesystem().ensurePathExists( VeyonCore::config().screenshotDirectory() );
 
-	m_fsWatcher.addPath( VeyonCore::config().screenshotDirectory() );
+	m_fsWatcher.addPath( VeyonCore::filesystem().screenshotDirectoryPath() );
 	connect( &m_fsWatcher, &QFileSystemWatcher::directoryChanged, this, &ScreenshotManagementPanel::updateModel );
 
 	m_reloadTimer.setInterval( FsModelResetDelay );
