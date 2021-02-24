@@ -31,6 +31,7 @@
 #include <QHostAddress>
 #include <QMutexLocker>
 #include <QPixmap>
+#include <QRegularExpression>
 #include <QTime>
 
 #include "PlatformNetworkFunctions.h"
@@ -268,26 +269,30 @@ void VncConnection::setHost( const QString& host )
 	QMutexLocker locker( &m_globalMutex );
 	m_host = host;
 
-	// is IPv6-mapped IPv4 address?
-	QRegExp rx( QStringLiteral( "::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)" ) );
-	if( rx.indexIn( m_host ) == 0 )
+	QRegularExpressionMatch match;
+	if(
+		// if IPv6-mapped IPv4 address use plain IPv4 address as libvncclient cannot handle IPv6-mapped IPv4 addresses on Windows properly
+		( match = QRegularExpression( QStringLiteral("^::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)$") ).match( m_host ) ).hasMatch() ||
+		( match = QRegularExpression( QStringLiteral("^::[fF]{4}:(\\d+.\\d+.\\d+.\\d+):(\\d+)$") ).match( m_host ) ).hasMatch() ||
+		( match = QRegularExpression( QStringLiteral("^\\[::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)\\]:(\\d+)$") ).match( m_host ) ).hasMatch() ||
+		// any other IPv6 address with port number
+		( match = QRegularExpression( QStringLiteral("^\\[([0-9a-fA-F:]+)\\]:(\\d+)$") ).match( m_host ) ).hasMatch() ||
+		// irregular IPv6 address + port number specification where port number can be identified if > 9999
+		( match = QRegularExpression( QStringLiteral("^([0-9a-fA-F:]+):(\\d{5})$"), QRegularExpression::InvertedGreedinessOption ).match( m_host ) ).hasMatch() ||
+		// any other notation with trailing port number
+		( match = QRegularExpression( QStringLiteral("^([^:]+):(\\d+)$") ).match( m_host ) ).hasMatch()
+		)
 	{
-		// then use plain IPv4 address as libvncclient cannot handle
-		// IPv6-mapped IPv4 addresses on Windows properly
-		m_host = rx.cap( 1 );
-	}
-	else if( m_host == QLatin1String( "::1" ) )
-	{
-		m_host = QHostAddress( QHostAddress::LocalHost ).toString();
-	}
-	else if( m_host.count( QLatin1Char(':') ) == 1 )
-	{
-		// hostname + port number?
-		QRegExp rx2( QStringLiteral("(.*[^:]):(\\d+)$") );
-		if( rx2.indexIn( m_host ) == 0 )
+		const auto matchedHost = match.captured( 1 );
+		if( matchedHost.isEmpty() == false )
 		{
-			m_host = rx2.cap( 1 );
-			m_port = rx2.cap( 2 ).toInt();
+			m_host = matchedHost;
+		}
+
+		const auto port = match.captured( 2 ).toInt();
+		if( port > 0 )
+		{
+			m_port = port;
 		}
 	}
 }
