@@ -314,6 +314,7 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 	}
 
 	const auto& features = m_featureManager.features(); // clazy:exclude=inefficient-qlist
+	const auto activeFeatures = lookupConnection( request )->controlInterface()->activeFeatures();
 
 	QVariantList featureList; // clazy:exclude=inefficient-qlist
 	featureList.reserve( features.size() );
@@ -322,7 +323,8 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 	{
 		QVariantMap featureObject{ { k2s(Key::Name), feature.name() },
 								   { k2s(Key::Uid), uuidToString(feature.uid()) },
-								   { k2s(Key::ParentUid), uuidToString(feature.parentUid()) } };
+								   { k2s(Key::ParentUid), uuidToString(feature.parentUid()) },
+								   { k2s(Key::Active), activeFeatures.contains(feature.uid()) } };
 		featureList.append( featureObject );
 	}
 
