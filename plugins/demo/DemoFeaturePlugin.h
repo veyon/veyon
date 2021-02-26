@@ -56,7 +56,8 @@ public:
 		ViewportX,
 		ViewportY,
 		ViewportWidth,
-		ViewportHeight
+		ViewportHeight,
+		VncServerPortOffset
 	};
 	Q_ENUM(Argument)
 

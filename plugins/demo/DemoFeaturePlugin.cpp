@@ -167,7 +167,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 			return true;
 		}
 
-		auto vncServerPort = VeyonCore::config().vncServerPort();
+		auto vncServerPortOffset = 0;
 		auto demoServerPort = VeyonCore::config().demoServerPort();
 
 		const auto demoServerInterface = master.selectedComputerControlInterfaces().first();
@@ -177,14 +177,14 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		if( primaryServerPort > 0 )
 		{
 			const auto sessionId = primaryServerPort - VeyonCore::config().veyonServerPort();
-			vncServerPort += sessionId;
+			vncServerPortOffset = sessionId;
 			demoServerPort += sessionId;
 		}
 
 		// start demo server
 		controlFeature( m_demoServerFeature.uid(), Operation::Start,
 						{
-							{ argToString(Argument::VncServerPort), vncServerPort },
+							{ argToString(Argument::VncServerPortOffset), vncServerPortOffset },
 							{ argToString(Argument::DemoServerPort), demoServerPort },
 						},
 						master.selectedComputerControlInterfaces() );
@@ -266,7 +266,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			server.featureWorkerManager().
 				sendMessageToManagedSystemWorker(
 					FeatureMessage{ message }
-						.addArgument( Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() ) );
+						.addArgument( Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() )
+						.addArgument( Argument::VncServerPort, server.vncServerBasePort() + message.argument(Argument::VncServerPortOffset).toInt() ) );
 		}
 		else if( message.command() != StopDemoServer ||
 				 server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) )
@@ -522,14 +523,14 @@ bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMa
 	{
 		const auto demoServerPort = arguments.value( argToString(Argument::DemoServerPort),
 													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto vncServerPort = arguments.value( argToString(Argument::VncServerPort),
-													VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).toInt();
+		const auto vncServerPortOffset = arguments.value( argToString(Argument::VncServerPortOffset),
+														  VeyonCore::sessionId() ).toInt();
 		const auto demoAccessToken = arguments.value( argToString(Argument::DemoAccessToken),
 													  accessToken().toByteArray() ).toByteArray();
 
 		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
 								.addArgument( Argument::DemoAccessToken, demoAccessToken )
-								.addArgument( Argument::VncServerPort, vncServerPort )
+								.addArgument( Argument::VncServerPortOffset, vncServerPortOffset )
 								.addArgument( Argument::DemoServerPort, demoServerPort ),
 							computerControlInterfaces );
 
