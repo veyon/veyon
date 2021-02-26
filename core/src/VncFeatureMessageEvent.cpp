@@ -1,7 +1,7 @@
 /*
  * FeatureMessageEvent.cpp - implementation of FeatureMessageEvent
  *
- * Copyright (c) 2018-2020 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2018-2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

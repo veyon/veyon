@@ -1,7 +1,7 @@
 /*
  * OpenWebsiteDialog.h - declaration of class OpenWebsiteDialog
  *
- * Copyright (c) 2019-2020 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019-2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public

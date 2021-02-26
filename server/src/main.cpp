@@ -1,7 +1,7 @@
 /*
  * main.cpp - main file for Veyon Server
  *
- * Copyright (c) 2006-2020 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2006-2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
