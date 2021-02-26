@@ -134,15 +134,15 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Back-end dos grupos de usuários:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Sem Back-end dos grupos de usuários:</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum plugin padrão de grupos de usuários foi encontrado. Verifique sua instalação!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
@@ -367,7 +367,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor insira o nome do grupo de usuários ou função para o qual deseja criar um par de chaves de autenticação:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -379,7 +379,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor insira o nome do grupo de usuários ou função para o qual deseja importar a chave de autenticação:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -391,7 +391,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Selecione uma chave para a atribuir o grupo de acesso!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
@@ -436,15 +436,15 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Chave inválida! Especifique &quot;%1&quot; or &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>A chave especificada não existe! Use o comando &quot;list&quot; para listar todas as chaves instaladas.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Um ou mais arquivos de chave já existem! Exclua-os usando o comando &quot;delete&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
@@ -456,7 +456,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>O par de chaves recém-criado foi salvo em &quot;% 1&quot; e &quot;% 2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
@@ -508,15 +508,15 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>A chave &quot;%1/%2&quot; foi importada com sucesso. Verifique as permissões de arquivo de &quot;%3&quot; para evitar acessos não autorizados.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao converter chave privada em chave pública.</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao criar diretório para o arquivo de chave privada &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -524,11 +524,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao definir permissões para o arquivo de chave privada &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao criar diretório para o arquivo de chave pública &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
@@ -536,11 +536,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao definir permissões para o arquivo de chave pública &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao definir o proprietário da chave &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
@@ -548,7 +548,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>A chave &quot;%1&quot; agora está acessível ao grupo de usuários &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -587,7 +587,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Definir grupo de usuários com permissão para acessar uma chave</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -599,7 +599,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando ajusta as permissões de acesso ao arquivo &lt;KEY&gt; de modo que apenas o grupo de usuários &lt;ACCESS GROUP&gt; tenha acesso de leitura a ele.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -619,11 +619,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando lista todas as chaves de autenticação disponíveis no diretório de chaves configurado. Se a opção &quot;%1&quot; for especificada, uma tabela com detalhes da chave será exibida. Alguns detalhes podem estar faltando se uma chave não estiver acessível. devido à falta de permissões de leitura.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Especifique o comando para o qual exibir ajuda!</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -631,7 +631,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ID DO PAR</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -639,7 +639,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para gerenciar chaves de autenticação</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
@@ -670,7 +670,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>ID do par</translation>
     </message>
 </context>
 <context>
@@ -705,7 +705,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Diretório integrado</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
@@ -740,15 +740,15 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Importar objetos de arquivo</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Exportar objetos para arquivo</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Tipo inválido especificado. Os valores válidos são &quot;%1&quot; ou &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
@@ -768,7 +768,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Objeto não encontrado.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -776,7 +776,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Não é possível abrir o arquivo &quot;%1&quot; para leitura!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
@@ -784,11 +784,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Computador &quot;%1&quot; (endereço do host: &quot;%2&quot; endereço MAC: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Objeto não classificado &quot;%1&quot; com ID &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
@@ -808,19 +808,19 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>Erro ao analisar a linha %1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Diretório de objetos de rede que armazena objetos em configuração local</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para gerenciar o diretório interno de objetos de rede</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>Nenhuma string de formato ou expressão regular especificada!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
@@ -1205,7 +1205,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Atualize e salve a configuração do programa e plug-ins</translation>
     </message>
 </context>
 <context>
@@ -1224,7 +1224,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>A configuração não é gravável. Por favor, verifique suas permissões!</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1274,7 +1274,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>Diminua a velocidade das atualizações de miniaturas enquanto a demonstração está em execução</translation>
     </message>
 </context>
 <context>
@@ -1297,59 +1297,59 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demonstração</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhe sua tela ou permita que um usuário compartilhe sua tela com outros usuários.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Demonstração em tela inteira</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhe sua própria tela em modo de tela inteira</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Neste modo, sua tela está sendo exibida em modo de tela inteira em todos os computadores enquanto os dispositivos de entrada dos usuários estão bloqueados.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhe sua própria tela em uma janela</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhe a tela do usuário selecionado em modo de tela inteira</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Neste modo, a tela do usuário selecionado é exibida em modo de tela inteira em todos os computadores enquanto os dispositivos de entrada dos usuários estão bloqueados.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhar a tela do usuário selecionado em uma janela</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Neste modo, a tela do usuário selecionado é exibida em uma janela em todos os computadores. Os usuários podem alternar para outras janelas conforme necessário.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Selecione uma tela de um usuário para compartilhar.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Selecione apenas uma tela de usuário para compartilhar.</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Todas as telas</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Tela %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1450,7 +1450,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Programa personalizado</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1458,7 +1458,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Website personalizado</translation>
     </message>
 </context>
 <context>
@@ -1477,7 +1477,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Website personalizado</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1485,7 +1485,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar ferramenta de aprendizagem</translation>
     </message>
     <message>
         <source>Play tutorial video</source>
@@ -1493,7 +1493,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Programa personalizado</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1501,7 +1501,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>Textos para ler</translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1549,11 +1549,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Diretório de destino</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Diretório padrão de origem</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1561,18 +1561,18 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Lembrar último diretório de origem</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Crie o diretório de destino se ele não existir</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível abrir o arquivo &quot;%1&quot; para leitura! Por favor, verifique suas permissões!</translation>
     </message>
 </context>
 <context>
@@ -1591,11 +1591,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>Transferir e abrir arquivo(s) com programa associado</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Transferir e abrir a pasta de destino</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1618,27 +1618,27 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Clique neste botão para transferir arquivos de seu computador para todos os computadores.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Selecione um ou mais arquivos para transferir</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>Transferir arquivos para computador remoto</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo recebido: &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível receber o arquivo &quot;%1&quot; porque ele já existe.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível receber o arquivo &quot;%1&quot; porque ele não pôde ser aberto para gravação!</translation>
     </message>
 </context>
 <context>
@@ -1761,7 +1761,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>Grave no sistema de registro do sistema operacional</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1785,7 +1785,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>A autenticação está configurada corretamente neste computador.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
@@ -1793,7 +1793,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Teste de autenticação</translation>
     </message>
 </context>
 <context>
@@ -1807,7 +1807,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation type="unfinished"/>
+        <translation>Pesquisar LDAP</translation>
     </message>
 </context>
 <context>
@@ -2199,23 +2199,23 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Segurança da conexão</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>Verificação de certificado TLS</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Padrões do sistems</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>Nunca (inseguro!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo personalizado de certificado CA</translation>
     </message>
     <message>
         <source>None</source>
@@ -2231,23 +2231,23 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>ex.: (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>ex.: (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>ex.: (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>ex.: (objectClass=room) or (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>ex.: (objectClass=container) ou (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2269,7 +2269,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Arquivos de certificados (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2285,27 +2285,27 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protocolo de encriptação</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo de nome de localização do computador</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo de nome de exibição do computador</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo de nome de localização</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>Ex.: cn ou displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>Identificação de localização do computador</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
@@ -2317,39 +2317,39 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>Lista todas as entradas de um local</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>Liste todos os locais</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome de exibição do computador</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
+        <translation>Insira um nome de exibição do computador para consultar:</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome do local do computador</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome de um local de computador (caracteres curinga permitidos):</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>localizações de computador</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome do local</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome de um local cujas entradas deseja consultar:</translation>
     </message>
     <message>
         <source>location entries</source>
@@ -2357,7 +2357,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation type="unfinished"/>
+        <translation>Teste LDAP falhou.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
@@ -2367,11 +2367,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>e</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation type="unfinished"/>
+        <translation>Teste LDAP bem sucedio</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
@@ -2381,7 +2381,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Pesquisar</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2393,7 +2393,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo de hostname do computador</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
@@ -2401,23 +2401,23 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>Hostname inválido</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Você configurou nomes de host de computador para serem armazenados como nomes de domínio totalmente qualificados (FQDN), mas inseriu um nome de host sem domínio.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Você configurou nomes de host de computador para serem armazenados como nomes de host simples sem um nome de domínio, mas inseriu um nome de host com uma parte do nome de domínio.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível encontrar um usuário com o nome &quot;%1&quot;. Verifique o nome de usuário ou o parâmetro da árvore do usuário.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome do host</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
@@ -2425,19 +2425,19 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível encontrar um computador com o nome de host &quot;%1&quot;. Verifique o nome do host ou o parâmetro da árvore do computador.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>A pesquisa de nome de host falhou</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível pesquisar o nome do host para o endereço IP &quot;%1&quot;. Verifique as configurações do servidor DNS.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo de nome de login do usuário</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2507,7 +2507,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticaçã ode usuário</translation>
     </message>
     <message>
         <source>Session management</source>
@@ -2971,7 +2971,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nome:</translation>
     </message>
 </context>
 <context>
@@ -3061,7 +3061,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Especifique o comando para o qual exibir ajuda!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3250,7 +3250,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nome:</translation>
     </message>
     <message>
         <source>Remember and add to program menu</source>
@@ -3586,22 +3586,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Duração:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar computadores selecionados</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Remover computadores selecionados</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Atualizar computadores em tempo real</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3609,11 +3609,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Selecione pelo menos um computador para adicionar.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Selecione pelo menos um computador para remover.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
@@ -3707,7 +3707,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Máximo uso de CPU</translation>
     </message>
 </context>
 <context>
@@ -3725,11 +3725,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Usuário:</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Insira um nome de usuário e senha para login automático em todos os computadores.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -3744,27 +3744,27 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Entrar</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Clique neste botão para fazer login de um usuário específico em todos os computadores.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Sair</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Clique neste botão para fazer logoff de usuários de todos os computadores.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>Confirmar logoff</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Você realmente deseja deslogar o usuário selecionado?</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -3807,35 +3807,35 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum módulo especificado ou módulo não encontrado - os módulos disponíveis são:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>Plugin não licenciado</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFORMAÇÃO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>ERRO</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>USO</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>DESCRIÇÃO</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>EXEMPLOS</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>ATENÇÃO</translation>
     </message>
 </context>
 <context>
@@ -3953,7 +3953,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -3965,39 +3965,39 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear tela</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar barra de tarefas</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar menu iniciar</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar desktop</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticaçã ode usuário</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Usar mecanismo de autenticação alternativo</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Usuário:</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Inserir delay de início</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervalo de simulação de pressionamento de teclas</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
@@ -4043,7 +4043,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Serviço &quot;%1&quot; não foi encontrado.</translation>
     </message>
 </context>
 <context>

@@ -7,11 +7,11 @@
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"/>
+        <translation>Översättning</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Licens</translation>
     </message>
     <message>
         <source>About Veyon</source>

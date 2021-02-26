@@ -1032,11 +1032,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Serveris nepasiekiamas ar nepaleistas</translation>
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[vartotojo nėra]</translation>
     </message>
 </context>
 <context>
@@ -1296,39 +1296,39 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demonstracija</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Dalintis savo ekranu, ar leisti vartotojui dalintis savo ekranu su kitais vartotojais.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Pilno ekrano demonstracija.</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Dalintis savo ekranu pilno ekrano rėžime.</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Šiame rėžime jūsų ekranas rodomas visiems kompiuteriams </translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Dalintis savo ekranu lange.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Dalintis pasirinkto vartotojo ekranu pilnojo ekrano režime</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Šiame režime bus rodomas pasirinkto vartotojo ekranas visiems vartotojams pilnojo ekrano režimu. Visuose kompiuteriuose įvesties įrenginiai yra užblokuoti.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Dalintis pasirinkto vartotojo ekranu lange.</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1336,15 +1336,15 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite vartotoją kurio ekranu dalinsitės</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite tik vieną vartotoją kurio ekranu dalinsitės</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Visi ekranai</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>

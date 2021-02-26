@@ -1033,11 +1033,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Сервер Veyon недоступен или не запущен</translation>
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[нет пользователя]</translation>
     </message>
 </context>
 <context>
@@ -1297,59 +1297,59 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Демонстрационный режим</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Поделиться своим экраном или разрешить другим пользователям делиться своим экраном.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Полноэкранная демонстрация</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Демонстрировать собственный экран в полноэкранном режиме</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>В этом режиме изображение с экрана вашего компьютера будет демонстрироваться на весь экран на всех компьютерах, а устройства ввода данных на компьютерах будут заблокированы.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Демонстрировать собственный экран в оконном режиме</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Демонстрировать экран выбранного пользователя в полноэкранном режиме</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>В этом режиме экран выбранного пользователя отображается в полноэкранном режиме на всех компьютерах, в то время как устройства ввода пользователей заблокированы.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Демонстрировать экран выбранного пользователя в оконном режиме</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>В этом режиме экран выбранного пользователя отображается в окне на всех компьютерах. При необходимости пользователи могут переключаться на другие окна.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Выберите экран пользователя, который вы хотите демонстрировать.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, выберите только один пользовательский экран для демонстрации.</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Все экраны</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Экран %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1549,11 +1549,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Целевой каталог</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Исходный каталог по умолчанию</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1561,11 +1561,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Запомнить последний исходный каталог</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Создайте целевой каталог, если он не существует</translation>
     </message>
 </context>
 <context>
@@ -1800,7 +1800,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Автоматический VNC-сервер</translation>
     </message>
 </context>
 <context>
@@ -2757,15 +2757,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Слайд-шоу</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Акцент</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Автоматическая регулировка размера значков компьютера</translation>
     </message>
 </context>
 <context>
@@ -2912,15 +2912,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть локальные сессии</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>пикселей</translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Интервал миниатюр</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2928,15 +2928,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Соотношение сторон миниатюры</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Автоматически настраивать размер значка компьютера</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Открывать окно функций на том же экране, что и главное окно</translation>
     </message>
 </context>
 <context>
@@ -3176,7 +3176,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Удаленный доступ</translation>
     </message>
 </context>
 <context>
@@ -3297,15 +3297,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Заблокировать устройства ввода</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Разблокировать устройства ввода</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>Вы можете использовать эту кнопку для привлечения полного внимания всех пользователей и блокировки их настольных компьютеров. В этом режиме блокируются все устройства ввода.</translation>
     </message>
 </context>
 <context>
@@ -3386,7 +3386,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Вы действительно хотите удалить выбранные скриншоты?</translation>
     </message>
 </context>
 <context>
@@ -3467,31 +3467,31 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
+        <translation>Режим одиночного сеанса (создание сервера только для локального / физического сеанса)</translation>
     </message>
     <message>
         <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Многосессионный режим (создание сервера для каждого сеанса локального и удаленного рабочего стола)</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"/>
+        <translation>Максимальное количество сеансов</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Номера сетевых портов</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Veyon сервер</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Встроенный VNC-сервер</translation>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>Менеджер функций</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -3499,7 +3499,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"/>
+        <translation>Дополнительные настройки сети</translation>
     </message>
 </context>
 <context>
@@ -3591,50 +3591,50 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Предыдущий</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Старт/пауза</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Следующий</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Продолжительность:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Добавить выбранные компьютеры</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Удалить выбранные компьютеры</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Обновлять компьютеры в реальном времени</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Акцент</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Выберите хотя бы один компьютер для добавления.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Выберите хотя бы один компьютер для удаления.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Добавьте компьютеры, щелкнув средней кнопкой мыши или нажав первую кнопку ниже.</translation>
     </message>
 </context>
 <context>
@@ -3724,7 +3724,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Максимальное использование ЦП</translation>
     </message>
 </context>
 <context>
@@ -3873,7 +3873,7 @@ Typically this is required to support terminal servers.</source>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation type="unfinished"/>
+        <translation>Веб-API</translation>
     </message>
     <message>
         <source>General</source>
@@ -3881,23 +3881,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Network port</source>
-        <translation type="unfinished"/>
+        <translation>Сетевой порт</translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Включить Веб-API сервер</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Настройки соединения</translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>Срок службы</translation>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation>ч.</translation>
     </message>
     <message>
         <source> s</source>
@@ -3905,27 +3905,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation type="unfinished"/>
+        <translation>Время ожидания бездействия</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation type="unfinished"/>
+        <translation>Время ожидания на подключение</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation type="unfinished"/>
+        <translation>Максимальное число открытых соединений</translation>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>Шифрование соединения</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Файл TLS сертификата</translation>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation type="unfinished"/>
+        <translation>Файл приватного ключа TLS</translation>
     </message>
     <message>
         <source>...</source>
@@ -3933,30 +3933,30 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Использовать HTTPS совместно с TLS 1.3 вместо HTTP</translation>
     </message>
 </context>
 <context>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Включить Веб-API сервер</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось запустить веб-API сервер на порту %1</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
-        <translation type="unfinished"/>
+        <translation>Веб-API сервер запущен на порту %1</translation>
     </message>
     <message>
         <source>Provide access to a computer via HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Обеспечить доступ к компьютеру по HTTP</translation>
     </message>
     <message>
         <source>Commands for running the WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Команды для запуска Веб-API сервера</translation>
     </message>
 </context>
 <context>

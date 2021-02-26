@@ -1797,7 +1797,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Server VNC headless</translation>
     </message>
 </context>
 <context>
@@ -2923,7 +2923,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Apri le finestre delle funzioni sulla stessa schermata della finestra principale</translation>
     </message>
 </context>
 <context>
@@ -3710,7 +3710,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Utilizzo massimo della CPU</translation>
     </message>
 </context>
 <context>

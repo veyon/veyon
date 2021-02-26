@@ -80,7 +80,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος πρόσβασης</translation>
     </message>
     <message>
         <source>Add access control rule</source>

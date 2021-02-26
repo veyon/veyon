@@ -1800,7 +1800,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Serveur VNC sans périphériques</translation>
     </message>
 </context>
 <context>
@@ -2936,7 +2936,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir les fenêtres de fonctionnalités sur le même écran que la fenêtre principale</translation>
     </message>
 </context>
 <context>
@@ -3724,7 +3724,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Utilisation maximale du processeur</translation>
     </message>
 </context>
 <context>

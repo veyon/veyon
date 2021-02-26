@@ -132,19 +132,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>שרת קבוצות משתמשים:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>חסר שרת קבוצות משתמשים</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>לא נמצא פלאגין של קבוצות משתמשים. בדוק את ההתקנה שלך!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>הגבל הרשאה לחברי קבוצה מסוימת</translation>
     </message>
 </context>
 <context>
@@ -175,31 +175,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>הפוך את כל התנאים (מקיים\קיים הופך ללא מקיים\קיים)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>תנאים</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>חבר קבוצה</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>המחשב הניגש הוא המקומי</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>משתמש ניגש מחובר כמשתמש</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>משתמש ניגש כבר מחובר</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>אם יותר מאחד התנאים מופעל, כל אחד מהתנאים צריך להתקיים על מנת לקיים את התנאי (&quot;וגם&quot; לוגי). אם רק אחד מהתנאים צריך להתקיים, יש ליצור מספר כללי גישה</translation>
     </message>
     <message>
         <source>Action</source>
@@ -219,19 +219,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>אין (כלל מושבת)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>משתמש ניגש</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>מחשב ניגש</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>משתמש מקומי (מחובר)</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -239,7 +239,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>תמיד הפעל את החור והתעלם מהתנאים</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -247,26 +247,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>משתמש ניגש בעל אחת או יותר קבוצות במשותף עם המשתמש המקומי (המחובר)</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
+        <translation>מחשב ניגש ומחשב מקומי נמצאים באותו מיקום</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>ממוקם ב</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>בדיקת כללי גישה</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>משתמש ניגש:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -278,7 +278,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>אנא הזן את המשתמש הבא ואת המידע אודות המחשב על מנת לבדוק את קבוצת החוקים</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -290,228 +290,231 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>הגישה במקרה הניתן מאופשרת</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>הגישה במקרה הניתן נדחית</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>הגישה במקרה הניתן דורשת הרשאה מצד המשתמש המחובר.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>שגיאה: פעולה לא ידועה</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>תוצאות בדיקה</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>מפתחות התחברות</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>מבוא</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>נתיבים של קבצי מפתחות</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>נתיב בסיס למפתחות פומביים</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>נתיב בסיס למפתחות פרטיים</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>מפתחות התחברות זמינים</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>יצירת זוג מפתחות</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>מחק מפתח</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>ייבא מפתח</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>ייצא מפתח</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>הגדר קבוצת גישה</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>קבצי מפתחות (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>שם מפתח אימות</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>אנא הכניסו את שם קבוצת המשתמשים או התפקיד עבורם יש ליצור את זוג המפתחות</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>אתה בטוח שברצונך למחוק את המפתח &quot;%1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>נא לבחור מפתח למחיקה!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>נא להזין את שם קבוצת המשתמשים או התפקיד עבורם יש לייבא את מפתח האימות:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>יש לבחור מפתח לייצוא!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>נא לבחור קבוצת משתמשים עבורה יש לתת גישה למפתח &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>נא לבחור מפתח עבורו יש להגדיר את קבוצת הגישה!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>יש לעקוב אחר הלשבים הבאים על מנת להגדיר התחברות באמצעות מפתחות:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) צור זוג מפתחות על מחשב המאסטר</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) הגדר קבוצת גישה אשר חבריה אמורים לגשת למחשבים אחרים.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>ייצא את המפתח הפומבי וייבא אותו בכל אחד ממחשבי הלקוחות עם שם זהה.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>אנה פנה אל &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;המדריך למנהל של Veyon&lt;/a&gt; למידע נוסף.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>זוג מפתחות אימות כולל זוג מפתחות קריפטוגרפיים, מפתח פרטי ומפתח פומבי.
+מפתח פרט מאפשר למשתמשים על מחשב המאסטר לגשת לכל שאר מחשבי הלקוח.
+זה חשוב שרק מחשבים מורשים יוכלו לקרוא את המפתח הפרטי.
+המפתח הפומבי משמש במחשבי לקוח על מנת שיוכלו לאמת בקשות לחיבורים נכנסים.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>בדוק את ההרשאות שלך.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>שם מפתח כולל תווים לא חוקיים!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>סוג מפתח לא חוקי נבחר! נא לבחור &quot;%1&quot; או &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>המפתח שנבחר אינו קיים. אנא השתמש בפקודה &quot;list&quot; על מנת למנות את כל המפתחות המותקנים.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>אחד או יותר מהמפתחות כבר קיימים! השתמשו בפקודה &quot;delete&quot; ומחקו אותם ראשית.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>יוצר מפתח חדש עבור &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה ליצור מפתח פומבי או פרטי!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>זוג המפתחות שנוצרו נשמרו ל&quot;%1&quot; ול&quot;&quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה להסיר את קובץ המפתח &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה להסיר את נתיב המפתחות &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה ליצור נתיב לקובץ הפלט.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>הקובץ &quot;%1&quot; כבר קיים.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה לכתוב את קובץ הפלט.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>המפתח &quot;%1/%2&quot; יוצא בהצלחה ל&quot;%3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה לקלוט את קובץ הקלט</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>הקובץ &quot;%1&quot; לא כולל מפתח פרטי תקין!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>הקובץ &quot;%1&quot; לא כולל מפתח פומבי תקין!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה ליצור נתיב לקובץ המפתח.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>כתיבת קובץ המפתח &quot;%1&quot; נכשלה.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>הגדרת ההרשאות לקובץ המפתח &quot;%1&quot; נכשלה.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>המפתח &quot;%1\%2&quot; יובר בהצלחה. יש לבדוק את הרשאות הקובץ &quot;%3&quot; על מנת למנוע גישה לא מורשית.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן היה להמיר מפתח פרטי למפתח פומבי.</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>יצירת התיב למפתח הפרטי &quot;%1&quot; נכשלה.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -1788,7 +1791,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>בדיקת התחברות</translation>
     </message>
 </context>
 <context>
@@ -2497,7 +2500,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>אימות משתמש</translation>
     </message>
     <message>
         <source>Session management</source>
@@ -3248,18 +3251,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>לדוגמה VLC</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>נעילה</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>שחרר</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3271,11 +3274,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>נעל מכשירי קלט</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>שחרר מכשירי קלט</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
@@ -3286,7 +3289,7 @@ Please save your work and close all programs.</source>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>לא ידוע</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -3313,7 +3316,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>צילום מסך בוצע</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
@@ -3348,7 +3351,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>הראה</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3371,11 +3374,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"/>
+        <translation>הפעלה אוטומטית</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"/>
+        <translation>הסתרת סמליל מגש</translation>
     </message>
     <message>
         <source>Start service</source>
@@ -3383,7 +3386,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>נעצר</translation>
     </message>
     <message>
         <source>Stop service</source>
@@ -3391,27 +3394,27 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>State:</source>
-        <translation type="unfinished"/>
+        <translation>מצב:</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>הפעל חריגה בחומת אש</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation type="unfinished"/>
+        <translation>אפשר חיבורים ממחשב מקומי בלבד</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>שרת VNC</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>תוסף</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>הפעל מחדש את השירות %1</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3419,7 +3422,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"/>
+        <translation>רץ</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3452,19 +3455,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>מספרי מפתחים (פורטים)</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>שרת Veyon</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"/>
+        <translation>שרת VNC פנימי</translation>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>מנהל מאפיינים</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -3495,46 +3498,46 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>שליטה בשירות</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>שירות רץ</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>שירות לא רץ</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>הגדר ושלוט בשירות Veyon</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>הוסף שירות Veyon</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>מחק שירות Veyon</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>הפעל שירות Veyon</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>עצור שירות Veyon</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>הפעל מחדש את שירות Veyon</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>בדוק מצד של שירות Veyon</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -3564,34 +3567,34 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>הקודם</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>הפעל\השהה</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>הבא</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>משך זמן:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>הוספצ מחשבים נבחרים</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>הסרת מחשבים נבחרים</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>עדכון מחשבים בזמן אמת</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3599,22 +3602,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>נא לבחור לפחות מחשב אחד להוספה.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>נא לבחור לפחות מחשב אחד להסדרה.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מחשבים על ידי לחיצה על כפתור העכבר האמצעי או על ידי לחיצה על הכפתור למטה.</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>סמליל של מגש מערכת</translation>
     </message>
 </context>
 <context>
@@ -3625,18 +3628,18 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>ברירת מחדל (קבוצות משתמשים של מערכת)</translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>בדוק רכיבים פנימיים ופונקציות פנימיות של Veyon</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>פקודות לבדיקת רכיבים פנימיים של Veyon</translation>
     </message>
 </context>
 <context>
@@ -3647,7 +3650,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>השתמש בשדה מטה על מנת להקליד את ההודעה שתישלח לכל המשתמשים</translation>
     </message>
 </context>
 <context>
@@ -3658,7 +3661,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>השתמש באפשרות זאת על מנת לשלוח הודעה לכל המשתמשים (לדוגמה, לתת משימה חדשה)</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3673,7 +3676,7 @@ Typically this is required to support terminal servers.</source>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"/>
+        <translation>אפשר לכידה של חלונות בעלי שכבות (שקופים חלקית)</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -3681,19 +3684,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"/>
+        <translation>דיוק נמוך (מצב טורבו)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות שרת UltraVNC בנוי</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <translation>הפעל תמיכה במספר מסכים</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>הפעל מנוע שכפול שולחן עבודה על ווינדוס 8 ומעלה</translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
@@ -3715,11 +3718,11 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>התחברות משתמש</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>נא להזין שם משתמש וסיסמה להתחברות אוטומטית בכל המחשבים</translation>
     </message>
     <message>
         <source>Username</source>
@@ -3734,27 +3737,27 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>התחברות</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>לחץ על כפתור זה על מנת לחבר משתמש מסוים</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>ניתוק</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>לחץ על כפתור זה על מנת לנתק את כל המשתמשים מכל המחשבים.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>וידוא ניתוק משתמש</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>אתה באמת רוצה לנתק את המשתמשים הנבחרים?</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -3765,23 +3768,23 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[הצלחה]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[כישלון]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>פקודה לא תקינה!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>פקודות זמינות</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>ארגומנט לא תקין ניתן</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
@@ -3789,7 +3792,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>תוצאה לא ידועה!</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -3801,38 +3804,38 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>תוסף אינו מורשה</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>מידע</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>שגיאה</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>שימוש</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>הסבר</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>דוגמות</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>אזהרה</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>שירות Veyon</translation>
     </message>
 </context>
 <context>
@@ -3943,7 +3946,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>ווינדוס</translation>
     </message>
     <message>
         <source>General</source>
@@ -3955,35 +3958,35 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>נעילת מסך</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>הסתר את שורת המשימות</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>הסתר תפריט &quot;התחל&quot;</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>הסתר שולחן עבודה</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>אימות משתמש</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>השתמש במנגנון התחברות משתמש אלטרנטיבי</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>התחברות משתמש</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>עיכוב התחלת הקלט</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
@@ -3991,7 +3994,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>וודא התראה משפטית (הודעה שקופצת לפני שמשתמש מתחבר)</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4002,53 +4005,53 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>התוסף ממש פונקציות אבסטרקטיות של פלטפורמת Windows</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>השירות &quot;%1&quot; כבר מותקן.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>השירות &quot;%1&quot; לא הותקן.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>השירות &quot;%1&quot; הותקן בהצלחה.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>השירות &quot;%1&quot; לא יכול היה להימחק.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>השירות &quot;%1&quot; נמחק בהצלחה.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>סוג ההפעלה של השירות &quot;%1&quot; לא יכול היה לעבור שינוי.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>השירות &quot;%1&quot; לא יכול היה להימצא.</translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>הגדרת שרת x11vnc המובנה</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>פרמטרים מותאמים אישית של x11vnc:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>אין להשתמש בהרחבה X Damage</translation>
     </message>
 </context>
 </TS>

@@ -1033,7 +1033,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Serwer Veyon nieosiagalny lub nie uruchomiony</translation>
     </message>
     <message>
         <source>[no user]</source>
@@ -1345,11 +1345,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Wszystkie ekrany</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Ekran %1 [%2}</translation>
     </message>
 </context>
 <context>
@@ -2907,7 +2907,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Ukryj lokalną sesję</translation>
     </message>
     <message>
         <source> px</source>
@@ -2915,7 +2915,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Odstęp między miniaturami</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2923,15 +2923,15 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Proporcje miniatury</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Automatycznie dostosuj rozmiar ikony komputera</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Otwieraj okna funkcji na tym samym ekranie, co okno główne </translation>
     </message>
 </context>
 <context>
@@ -3171,7 +3171,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Zdalny dostęp</translation>
     </message>
 </context>
 <context>
@@ -3381,7 +3381,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Czy na pewno chcesz usunąć wszystkie zaznaczone zrzuty ekranu?</translation>
     </message>
 </context>
 <context>
@@ -3478,7 +3478,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Serwer Veyon</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -3494,7 +3494,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"/>
+        <translation>Różne ustawienia sieci</translation>
     </message>
 </context>
 <context>
@@ -3586,11 +3586,11 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Poprzedni</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Start/pauza</translation>
     </message>
     <message>
         <source>Next</source>
@@ -3598,18 +3598,18 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Czas trwania:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj wybrane komputery</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Usuń wybrane komputery</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
@@ -3719,7 +3719,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Maksymalne wykorzystanie CPU</translation>
     </message>
 </context>
 <context>

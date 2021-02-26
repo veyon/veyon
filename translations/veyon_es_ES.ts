@@ -1802,7 +1802,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Servidor VNC headless</translation>
     </message>
 </context>
 <context>
@@ -2938,7 +2938,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Abrir ventanas de funciones en la misma pantalla que la ventana principal</translation>
     </message>
 </context>
 <context>
@@ -3726,7 +3726,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Uso máximo de CPU</translation>
     </message>
 </context>
 <context>

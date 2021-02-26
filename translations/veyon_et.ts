@@ -1800,7 +1800,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Peata VNC-server</translation>
     </message>
 </context>
 <context>
@@ -2936,7 +2936,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Avage funktsiooniaknad peaaknaga samal ekraanil</translation>
     </message>
 </context>
 <context>
@@ -3724,7 +3724,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Maksimaalne protsessori kasutamine</translation>
     </message>
 </context>
 <context>
