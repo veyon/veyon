@@ -119,12 +119,10 @@ void DemoServer::incomingConnection( qintptr socketDescriptor )
 
 	m_pendingConnections.append( socketDescriptor );
 
-	if( m_vncClientProtocol->state() != VncClientProtocol::State::Running )
+	if( m_vncClientProtocol->state() == VncClientProtocol::State::Running )
 	{
-		return;
+		acceptPendingConnections();
 	}
-
-	acceptPendingConnections();
 }
 
 
