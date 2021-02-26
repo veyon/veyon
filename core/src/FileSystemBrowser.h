@@ -1,7 +1,7 @@
 /*
  * FileSystemBrowser.h - a wrapper class for easily browsing the file system
  *
- * Copyright (c) 2010-2020 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

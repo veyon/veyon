@@ -1,4 +1,4 @@
-# CreateTranslations.cmake - Copyright (c) 2020 Tobias Junghans
+# CreateTranslations.cmake - Copyright (c) 2020-2021 Tobias Junghans
 #
 # description: create Qt translation files
 # usage: create_translations(<TS FILES> <SOURCE FILES>)

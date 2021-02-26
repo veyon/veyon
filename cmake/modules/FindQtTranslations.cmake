@@ -1,4 +1,4 @@
-# FindQtTranslations.cmake - Copyright (c) 2020 Tobias Junghans
+# FindQtTranslations.cmake - Copyright (c) 2020-2021 Tobias Junghans
 #
 # description: find translation files of Qt and copy them on Windows to current binary dir
 # usage: find_qt_translations()

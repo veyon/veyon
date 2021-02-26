@@ -1,7 +1,7 @@
 /*
  * LdapConfiguration.h - LDAP-auth-specific configuration values
  *
- * Copyright (c) 2020 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2020-2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
