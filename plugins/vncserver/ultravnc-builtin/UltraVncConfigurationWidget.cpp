@@ -36,6 +36,7 @@ UltraVncConfigurationWidget::UltraVncConfigurationWidget( UltraVncConfiguration&
 	ui->setupUi( this );
 
 	Configuration::UiMapping::setFlags( ui->ultraVncMaxCpu, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags( ui->ultraVncMaxCpuLabel, Configuration::Property::Flag::Advanced );
 
 	FOREACH_ULTRAVNC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ULTRAVNC_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
