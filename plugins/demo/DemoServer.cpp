@@ -115,6 +115,8 @@ void DemoServer::lockDataForRead()
 
 void DemoServer::incomingConnection( qintptr socketDescriptor )
 {
+	vDebug() << socketDescriptor;
+
 	m_pendingConnections.append( socketDescriptor );
 
 	if( m_vncClientProtocol->state() != VncClientProtocol::State::Running )
@@ -278,6 +280,8 @@ qint64 DemoServer::framebufferUpdateMessageQueueSize() const
 
 void DemoServer::start()
 {
+	vDebug();
+
 	setVncServerPixelFormat();
 	setVncServerEncodings();
 

@@ -54,6 +54,8 @@ DemoServerConnection::DemoServerConnection( DemoServer* demoServer,
 
 void DemoServerConnection::run()
 {
+	vDebug() << m_socketDescriptor;
+
 	m_socket = new QTcpSocket;
 
 	if( m_socket->setSocketDescriptor( m_socketDescriptor ) == false )
