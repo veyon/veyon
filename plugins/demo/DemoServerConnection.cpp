@@ -63,6 +63,8 @@ void DemoServerConnection::run()
 	{
 		vCritical() << "failed to set socket descriptor";
 		delete m_socket;
+		m_socket = nullptr;
+		deleteLater();
 		return;
 	}
 
