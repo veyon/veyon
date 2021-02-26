@@ -79,8 +79,9 @@ void DemoServerConnection::run()
 	exec();
 
 	delete m_serverProtocol;
+	delete m_socket;
 
-	m_socket->deleteLater();
+	m_socket = nullptr;
 
 	deleteLater();
 }
