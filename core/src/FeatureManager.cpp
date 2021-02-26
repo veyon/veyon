@@ -191,7 +191,7 @@ void FeatureManager::updateActiveFeatures( const ComputerControlInterfaceList& c
 bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 										  const FeatureMessage& message ) const
 {
-	vDebug() << "feature" << message.featureUid()
+	vDebug() << "feature" << feature(message.featureUid()).name()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
 
@@ -214,7 +214,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
 										   const FeatureMessage& message ) const
 {
-	vDebug() << "feature" << message.featureUid()
+	vDebug() << "feature" << feature(message.featureUid()).name()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
 
@@ -241,7 +241,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 
 bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const
 {
-	vDebug() << "feature" << message.featureUid()
+	vDebug() << "feature" << feature(message.featureUid()).name()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
 
