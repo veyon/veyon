@@ -233,7 +233,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature ||
 		feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
 	{
-		controlFeature( feature.uid(), Operation::Stop, {}, computerControlInterfaces );
+		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {}, computerControlInterfaces );
 
 		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {},
 						{ master.localSessionControlInterface().weakPointer() } );
