@@ -42,6 +42,7 @@ public:
 
 	void prepare();
 
+	int serverBasePort() const;
 	int serverPort() const;
 
 	Password password() const;
