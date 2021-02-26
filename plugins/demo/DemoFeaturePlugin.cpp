@@ -505,10 +505,17 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 		return {};
 	}
 
+	QPoint minimumScreenPosition{};
+	for( const auto* screen : m_screens )
+	{
+		minimumScreenPosition.setX( qMin( minimumScreenPosition.x(), screen->geometry().x() ) );
+		minimumScreenPosition.setY( qMin( minimumScreenPosition.y(), screen->geometry().y() ) );
+	}
+
 	const auto screen = m_screens.value( m_screenSelection - 1 );
 	if( screen )
 	{
-		return screen->geometry();
+		return screen->geometry().translated( -minimumScreenPosition );
 	}
 
 	return {};
