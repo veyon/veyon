@@ -70,6 +70,10 @@ public:
 		return m_featureWorkerManager;
 	}
 
+	int vncServerBasePort() const override
+	{
+		return m_vncServer.serverBasePort();
+	}
 
 private:
 	void checkForIncompleteAuthentication( VncServerClient* client );

@@ -105,14 +105,22 @@ void VncServer::prepare()
 
 
 
-int VncServer::serverPort() const
+int VncServer::serverBasePort() const
 {
+
 	if( m_pluginInterface && m_pluginInterface->configuredServerPort() > 0 )
 	{
-		return m_pluginInterface->configuredServerPort() + VeyonCore::sessionId();
+		return m_pluginInterface->configuredServerPort();
 	}
 
-	return VeyonCore::config().vncServerPort() + VeyonCore::sessionId();
+	return VeyonCore::config().vncServerPort();
+}
+
+
+
+int VncServer::serverPort() const
+{
+	return serverBasePort() + VeyonCore::sessionId();
 }
 
 
