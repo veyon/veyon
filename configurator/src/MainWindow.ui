@@ -119,18 +119,18 @@
          <number>0</number>
         </property>
         <property name="topMargin">
-         <number>0</number>
+         <number>10</number>
         </property>
         <property name="rightMargin">
          <number>0</number>
         </property>
         <property name="bottomMargin">
-         <number>0</number>
+         <number>10</number>
         </property>
         <item>
          <widget class="QStackedWidget" name="configPages">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
           <widget class="ServiceConfigurationPage" name="serviceConfigurationPage"/>
