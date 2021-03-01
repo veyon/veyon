@@ -94,6 +94,14 @@ if(WITH_PCH)
 	target_precompile_headers(veyon-core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
 
 	add_library(veyon-pch STATIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+
+	if(${CMAKE_VERSION} VERSION_GREATER "3.17.5")
+		file(GENERATE
+			 OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx
+			 CONTENT "/*empty file*/")
+		set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_AUTOGEN TRUE)
+		target_sources(veyon-pch PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx)
+	endif()
 	target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
 	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
 endif()
