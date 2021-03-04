@@ -103,7 +103,9 @@ void PlatformSessionManager::closeSession( const PlatformSessionId& platformSess
 {
 	QMutexLocker l( &m_mutex );
 
-	vDebug() << "Closing session" << m_sessions.take( platformSessionId ).toInt() << "for platform session" << platformSessionId;
+	const auto closedSessionId = m_sessions.take( platformSessionId ).toInt();
+
+	vDebug() << "Closing session" << closedSessionId << "for platform session" << platformSessionId;
 }
 
 
