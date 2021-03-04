@@ -34,7 +34,7 @@
 
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 {
-	return PlatformSessionManager::resolveSessionId( getSessionId( currentSessionPath() ) );
+	return PlatformSessionManager::resolveSessionId( currentSessionPath() );
 }
 
 
