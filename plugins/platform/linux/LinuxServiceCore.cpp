@@ -136,20 +136,18 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
-	const auto seat = LinuxSessionFunctions::getSessionSeat( sessionPath );
-	const auto sessionId = LinuxSessionFunctions::getSessionId( sessionPath );
-
 	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
 	if( sessionEnvironment.contains( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) == false )
 	{
-		sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionIdEnvVarName(), sessionId );
+		sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionIdEnvVarName(),
+								   LinuxSessionFunctions::getSessionId( sessionPath ) );
 	}
 
-	const auto veyonSessionId = m_sessionManager.openSession( sessionId );
+	const auto sessionId = m_sessionManager.openSession( sessionPath );
 
 	vInfo() << "Starting server for new" << qUtf8Printable(sessionType) << "session" << sessionPath
-			<< "with ID" << veyonSessionId
-			<< "at seat" << seat.path;
+			<< "with ID" << sessionId
+			<< "at seat" << LinuxSessionFunctions::getSessionSeat( sessionPath ).path;
 
 	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
 							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
@@ -220,7 +218,7 @@ void LinuxServiceCore::connectToLoginManager()
 
 void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
-	m_sessionManager.closeSession( LinuxSessionFunctions::getSessionId( sessionPath ) );
+	m_sessionManager.closeSession( sessionPath );
 
 	if( m_serverProcesses.contains( sessionPath ) == false )
 	{
