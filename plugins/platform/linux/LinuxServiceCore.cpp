@@ -121,7 +121,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
-	if( m_sessionManager.multiSession() == false && m_serverProcesses.isEmpty() == false )
+	if( m_sessionManager.multiSession() == false )
 	{
 		// make sure no other server is still running
 		stopAllServers();
