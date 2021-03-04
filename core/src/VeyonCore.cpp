@@ -504,7 +504,7 @@ void VeyonCore::initPlatformPlugin()
 
 void VeyonCore::initSession()
 {
-	if( config().multiSessionModeEnabled() )
+	if( component() != Component::Service && config().multiSessionModeEnabled() )
 	{
 		const auto systemEnv = QProcessEnvironment::systemEnvironment();
 		if( systemEnv.contains( sessionIdEnvironmentVariable() ) )
