@@ -60,6 +60,8 @@ private:
 	void stopServer( const QString& sessionPath );
 	void stopAllServers();
 
+	void checkSessionState( const QString& sessionPath );
+
 	QStringList listSessions();
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};

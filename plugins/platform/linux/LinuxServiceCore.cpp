@@ -171,6 +171,8 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		process->start( VeyonCore::filesystem().serverFilePath(), QStringList{} );
 	}
 
+	connect( process, &QProcess::stateChanged, this, [=]() { checkSessionState( sessionPath ); } );
+
 	m_serverProcesses[sessionPath] = process;
 }
 
@@ -264,7 +266,7 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 		}
 	}
 
-	delete process;
+	process->deleteLater();
 	m_serverProcesses.remove( sessionPath );
 }
 
@@ -275,6 +277,17 @@ void LinuxServiceCore::stopAllServers()
 	while( m_serverProcesses.isEmpty() == false )
 	{
 		stopServer( m_serverProcesses.firstKey() );
+	}
+}
+
+
+
+void LinuxServiceCore::checkSessionState( const QString& sessionPath )
+{
+	if( LinuxSessionFunctions::getSessionState( sessionPath ) == LinuxSessionFunctions::State::Closing )
+	{
+		vDebug() << "Stopping server for currently closing session" << sessionPath;
+		stopServer( sessionPath );
 	}
 }
 
