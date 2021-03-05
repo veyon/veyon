@@ -30,6 +30,7 @@
 #include <QWidget>
 
 #include <unistd.h>
+#include <proc/readproc.h>
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
@@ -387,4 +388,36 @@ void LinuxCoreFunctions::restartDisplayManagers()
 	{
 		systemctl( { QStringLiteral("restart"), displayManager } );
 	}
+}
+
+
+
+void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>& visitor,
+											 int parentPid, int flags, bool visitParent )
+{
+	QProcessEnvironment sessionEnv;
+
+	const auto proc = openproc( flags | PROC_FILLSTAT /* required for proc_t::ppid */ );
+	proc_t* procInfo = nullptr;
+
+	QList<int> ppids;
+
+	while( ( procInfo = readproc( proc, nullptr ) ) )
+	{
+		if( procInfo->ppid == parentPid )
+		{
+			if( visitParent == false || visitor( procInfo ) )
+			{
+				ppids.append( procInfo->tid );
+			}
+		}
+		else if( ppids.contains( procInfo->ppid ) && visitor( procInfo ) )
+		{
+			ppids.append( procInfo->tid );
+		}
+
+		freeproc( procInfo );
+	}
+
+	closeproc( proc );
 }
