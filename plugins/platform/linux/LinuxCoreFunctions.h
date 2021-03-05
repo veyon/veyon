@@ -29,6 +29,8 @@
 
 #include "PlatformCoreFunctions.h"
 
+struct proc_t;
+
 // clazy:excludeall=copyable-polymorphic
 
 class LinuxCoreFunctions : public PlatformCoreFunctions
@@ -74,6 +76,9 @@ public:
 	static int systemctl( const QStringList& arguments );
 
 	static void restartDisplayManagers();
+
+	static void forEachChildProcess( const std::function<bool(proc_t *)>& visitor,
+							 int parentPid, int flags, bool visitParent );
 
 private:
 	int m_screenSaverTimeout{0};
