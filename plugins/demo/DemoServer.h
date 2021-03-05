@@ -49,6 +49,8 @@ public:
 				const DemoConfiguration& configuration, int demoServerPort, QObject *parent );
 	~DemoServer() override;
 
+	void terminate();
+
 	const DemoConfiguration& configuration() const
 	{
 		return m_configuration;
@@ -90,6 +92,7 @@ private:
 	bool setVncServerEncodings();
 
 	static constexpr auto ConnectionThreadWaitTime = 5000;
+	static constexpr auto TerminateRetryInterval = 1000;
 
 	const DemoAuthentication& m_authentication;
 	const DemoConfiguration& m_configuration;

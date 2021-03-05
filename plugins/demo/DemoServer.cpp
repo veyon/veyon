@@ -65,27 +65,35 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 
 DemoServer::~DemoServer()
 {
-	vDebug() << "disconnecting signals";
+	delete m_vncClientProtocol;
+	delete m_vncServerSocket;
+}
+
+
+
+void DemoServer::terminate()
+{
 	m_vncServerSocket->disconnect( this );
 
-	vDebug() << "deleting connections";
-
-	QList<DemoServerConnection *> l;
-	while( !( l = findChildren<DemoServerConnection *>() ).isEmpty() )
+	const auto connections = findChildren<DemoServerConnection *>();
+	if( connections.isEmpty() )
 	{
-		l.front()->quit();
-		l.front()->wait( ConnectionThreadWaitTime );
-		l.front()->terminate();
-		l.front()->deleteLater();
+		deleteLater();
 	}
+	else
+	{
+		for( auto connection : connections )
+		{
+			connection->quit();
+		}
 
-	vDebug() << "deleting VNC client protocol";
-	delete m_vncClientProtocol;
+		for( auto connection : connections )
+		{
+			connection->wait( ConnectionThreadWaitTime );
+		}
 
-	vDebug() << "deleting server socket";
-	delete m_vncServerSocket;
-
-	vDebug() << "finished";
+		QTimer::singleShot( TerminateRetryInterval, 0, &DemoServer::terminate );
+	}
 }
 
 

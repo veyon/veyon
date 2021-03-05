@@ -35,7 +35,7 @@
 DemoServerConnection::DemoServerConnection( DemoServer* demoServer,
 											const DemoAuthentication& authentication,
 											quintptr socketDescriptor ) :
-	QThread(),
+	QThread( demoServer ),
 	m_authentication( authentication ),
 	m_demoServer( demoServer ),
 	m_socketDescriptor( socketDescriptor ),
