@@ -229,8 +229,12 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 
 	auto process = qAsConst(m_serverProcesses)[sessionPath];
 
-	// tell x11vnc to shutdown
-	kill( pid_t(process->processId()), SIGINT );
+	const auto pid = pid_t(process->processId());
+	if( pid > 0 )
+	{
+		// tell x11vnc to shutdown
+		kill( pid, SIGINT );
+	}
 
 	if( ProcessHelper::waitForProcess( process, ServerShutdownTimeout, ServerWaitSleepInterval ) == false )
 	{
