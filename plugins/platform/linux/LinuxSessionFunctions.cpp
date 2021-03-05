@@ -28,6 +28,7 @@
 
 #include <proc/readproc.h>
 
+#include "LinuxCoreFunctions.h"
 #include "LinuxSessionFunctions.h"
 #include "PlatformSessionManager.h"
 
@@ -151,29 +152,26 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 {
 	QProcessEnvironment sessionEnv;
 
-	PROCTAB* proc = openproc( PROC_FILLSTATUS | PROC_FILLENV );
-	proc_t* procInfo = nullptr;
-
-	QList<int> ppids;
-
-	while( ( procInfo = readproc( proc, nullptr ) ) )
-	{
-		if( ( procInfo->ppid == sessionLeaderPid || ppids.contains( procInfo->ppid ) ) &&
-			procInfo->environ != nullptr )
-		{
-			for( int i = 0; procInfo->environ[i]; ++i )
+	LinuxCoreFunctions::forEachChildProcess(
+		[&sessionEnv]( proc_t* procInfo ) {
+			if( procInfo->environ != nullptr )
 			{
-				const auto env = QString::fromUtf8( procInfo->environ[i] ).split( QLatin1Char('=') );
-				sessionEnv.insert( env.first(), env.mid( 1 ).join( QLatin1Char('=') ) );
+				for( int i = 0; procInfo->environ[i]; ++i )
+				{
+					const auto env = QString::fromUtf8( procInfo->environ[i] );
+					const auto separatorPos = env.indexOf( QLatin1Char('=') );
+					if( separatorPos > 0 )
+					{
+						sessionEnv.insert( env.left( separatorPos ), env.mid( separatorPos+1 ) );
+					}
+				}
+
+				return true;
 			}
 
-			ppids.append( procInfo->tid );
-		}
-
-		freeproc( procInfo );
-	}
-
-	closeproc( proc );
+			return false;
+		},
+		sessionLeaderPid, PROC_FILLENV, true );
 
 	return sessionEnv;
 }
