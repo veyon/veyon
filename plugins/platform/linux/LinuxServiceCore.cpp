@@ -29,6 +29,7 @@
 #include <QTimer>
 
 #include <csignal>
+#include <proc/readproc.h>
 #include <sys/types.h>
 
 #include "Filesystem.h"
@@ -229,21 +230,36 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 
 	auto process = qAsConst(m_serverProcesses)[sessionPath];
 
-	const auto pid = pid_t(process->processId());
-	if( pid > 0 )
-	{
-		// tell x11vnc to shutdown
-		kill( pid, SIGINT );
-	}
+	const auto sendSignalRecursively = []( int pid, int sig ) {
+		if( pid > 0 )
+		{
+			LinuxCoreFunctions::forEachChildProcess(
+				[=]( proc_t* procInfo ) {
+					if( procInfo->tid > 0 )
+					{
+						kill( procInfo->tid, sig );
+					}
+					return true;
+				},
+				pid, 0, true );
+		}
+	};
+
+	const auto pid = process->processId();
+
+	// tell x11vnc and child processes (in case spawned via catchsegv) to shutdown
+	sendSignalRecursively( pid, SIGINT );
 
 	if( ProcessHelper::waitForProcess( process, ServerShutdownTimeout, ServerWaitSleepInterval ) == false )
 	{
 		process->terminate();
+		sendSignalRecursively( pid, SIGTERM );
 
 		if( ProcessHelper::waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
 		{
 			vWarning() << "server for session" << sessionPath << "still running - killing now";
 			process->kill();
+			sendSignalRecursively( pid, SIGKILL );
 			ProcessHelper::waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
 		}
 	}
