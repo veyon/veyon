@@ -35,7 +35,7 @@
 DemoServerConnection::DemoServerConnection( DemoServer* demoServer,
 											const Password& demoAccessToken,
 											quintptr socketDescriptor ) :
-	QThread(),
+	QThread( demoServer ),
 	m_demoAccessToken( demoAccessToken ),
 	m_demoServer( demoServer ),
 	m_socketDescriptor( socketDescriptor ),

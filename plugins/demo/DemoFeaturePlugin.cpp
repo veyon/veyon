@@ -353,7 +353,10 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			return true;
 
 		case StopDemoServer:
-			delete m_demoServer;
+			if( m_demoServer )
+			{
+				m_demoServer->terminate();
+			}
 			m_demoServer = nullptr;
 
 			QCoreApplication::quit();
