@@ -72,6 +72,12 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 		cmdline.append( extraArguments.split( QLatin1Char(' ') ) );
 	}
 
+	const auto systemEnv = QProcessEnvironment::systemEnvironment();
+	if( systemEnv.contains( QStringLiteral("XRDP_SESSION") ) )
+	{
+		cmdline.append( QStringLiteral("-noshm") );
+	}
+
 	if( m_configuration.isXDamageDisabled() )
 	{
 		cmdline.append( QStringLiteral("-noxdamage") );
