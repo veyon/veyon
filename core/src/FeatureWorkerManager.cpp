@@ -93,7 +93,19 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 			 worker.process, &QProcess::deleteLater );
 
 	vDebug() << "Starting managed system worker for feature" << featureUid;
-	worker.process->start( VeyonCore::filesystem().workerFilePath(), { featureUid.toString() } );
+	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_WORKERS") )
+	{
+		worker.process->start( QStringLiteral("valgrind"),
+							   { QStringLiteral("--error-limit=no"),
+								 QStringLiteral("--leak-check=full"),
+								 QStringLiteral("--show-leak-kinds=all"),
+								 QStringLiteral("--log-file=valgrind-%1.log").arg(VeyonCore::formattedUuid(featureUid)),
+								 VeyonCore::filesystem().workerFilePath(), featureUid.toString() } );
+	}
+	else
+	{
+		worker.process->start( VeyonCore::filesystem().workerFilePath(), { featureUid.toString() } );
+	}
 
 	m_workersMutex.lock();
 	m_workers[featureUid] = worker;
