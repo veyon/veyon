@@ -180,9 +180,10 @@ void DemoServerConnection::sendFramebufferUpdate()
 	}
 
 	bool sentUpdates = false;
-	for( ; m_framebufferUpdateMessageIndex < framebufferUpdateMessageCount; ++m_framebufferUpdateMessageIndex )
+	while( m_framebufferUpdateMessageIndex < framebufferUpdateMessageCount )
 	{
 		m_socket->write( framebufferUpdateMessages[m_framebufferUpdateMessageIndex] );
+		++m_framebufferUpdateMessageIndex;
 		sentUpdates = true;
 	}
 
