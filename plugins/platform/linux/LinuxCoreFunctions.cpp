@@ -174,7 +174,7 @@ void LinuxCoreFunctions::disableScreenSaver()
 		DPMSGetTimeouts( display, &m_dpmsStandbyTimeout, &m_dpmsSuspendTimeout, &m_dpmsOffTimeout );
 		DPMSSetTimeouts( display, 0, 0, 0 );
 	}
-	else
+	else if( qEnvironmentVariableIsSet("XRDP_SESSION") == false )
 	{
 		vWarning() << "DPMS extension not supported!";
 	}
