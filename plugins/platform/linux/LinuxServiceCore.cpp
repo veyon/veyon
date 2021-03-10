@@ -162,7 +162,14 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	}
 
 	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
-	if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
+	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_SERVERS") )
+	{
+		process->start( QStringLiteral("/usr/bin/valgrind"),
+						{ QStringLiteral("--error-limit=no"),
+						  QStringLiteral("--log-file=valgrind-veyon-server-%1.log").arg(sessionId),
+						  VeyonCore::filesystem().serverFilePath() } );
+	}
+	else if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
 	{
 		process->start( catchsegv, { VeyonCore::filesystem().serverFilePath() } );
 	}
