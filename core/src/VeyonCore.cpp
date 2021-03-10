@@ -274,7 +274,7 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 
 bool VeyonCore::isDebugging()
 {
-	return instance()->m_debugging;
+	return s_instance && s_instance->m_debugging;
 }
 
 
