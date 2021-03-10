@@ -108,6 +108,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 {
 	connect( qGuiApp, &QGuiApplication::screenAdded, this, &DemoFeaturePlugin::addScreen );
 	connect( qGuiApp, &QGuiApplication::screenRemoved, this, &DemoFeaturePlugin::removeScreen );
+	connect( &m_demoServerControlTimer, &QTimer::timeout, this, &DemoFeaturePlugin::controlDemoServer );
 
 	updateFeatures();
 }
@@ -121,7 +122,19 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 {
 	if( featureUid == m_demoServerFeature.uid() )
 	{
-		return controlDemoServer( operation, arguments, computerControlInterfaces );
+		m_demoServerArguments = arguments;
+
+		if( operation == Operation::Start )
+		{
+			m_demoServerControlTimer.start( DemoServerControlInterval );
+			m_demoServerControlInterfaces = computerControlInterfaces;
+		}
+		else
+		{
+			m_demoServerControlTimer.stop();
+		}
+
+		return controlDemoServer();
 	}
 
 	if( featureUid == m_demoClientFullScreenFeature.uid() || featureUid == m_demoClientWindowFeature.uid() )
@@ -139,14 +152,14 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 {
 	if( feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature )
 	{
-		// start demo server
-		controlFeature( m_demoServerFeature.uid(), Operation::Start, {},
-						{ master.localSessionControlInterface().weakPointer() } );
-
 		// start demo clients
 		controlFeature( feature == m_shareOwnScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid()
 																	 : m_demoClientWindowFeature.uid(),
 						Operation::Start, {}, computerControlInterfaces );
+
+		// start demo server
+		controlFeature( m_demoServerFeature.uid(), Operation::Start, {},
+						{ master.localSessionControlInterface().weakPointer() } );
 
 		return true;
 	}
@@ -181,14 +194,6 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 			demoServerPort += sessionId;
 		}
 
-		// start demo server
-		controlFeature( m_demoServerFeature.uid(), Operation::Start,
-						{
-							{ argToString(Argument::VncServerPortOffset), vncServerPortOffset },
-							{ argToString(Argument::DemoServerPort), demoServerPort },
-						},
-						master.selectedComputerControlInterfaces() );
-
 		// start demo clients
 		auto userDemoControlInterfaces = computerControlInterfaces;
 		userDemoControlInterfaces.removeAll( demoServerInterface );
@@ -204,6 +209,14 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		controlFeature( m_demoClientWindowFeature.uid(), Operation::Start, demoClientArgs,
 						{ master.localSessionControlInterface().weakPointer() } );
+
+		// start demo server
+		controlFeature( m_demoServerFeature.uid(), Operation::Start,
+						{
+							{ argToString(Argument::VncServerPortOffset), vncServerPortOffset },
+							{ argToString(Argument::DemoServerPort), demoServerPort },
+							},
+						master.selectedComputerControlInterfaces() );
 
 		return true;
 	}
@@ -234,14 +247,13 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {},
 						{ master.localSessionControlInterface().weakPointer() } );
 
+		controlDemoServer();
+
 		// no demo clients left?
-		if( m_demoClientHosts.isEmpty() )
+		if( m_demoServerClients.isEmpty() )
 		{
 			// then we can stop the server
-			controlFeature( m_demoServerFeature.uid(), Operation::Stop, {},
-							{ master.localSessionControlInterface().weakPointer() } );
-
-			controlFeature( m_demoServerFeature.uid(), Operation::Stop, {}, computerControlInterfaces );
+			m_demoServerControlTimer.stop();
 
 			// reset demo access token
 			initializeCredentials();
@@ -527,31 +539,27 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 
 
 
-bool DemoFeaturePlugin::controlDemoServer( Operation operation, const QVariantMap& arguments,
-										  const ComputerControlInterfaceList& computerControlInterfaces )
+bool DemoFeaturePlugin::controlDemoServer()
 {
-	if( operation == Operation::Start )
+	if( m_demoServerClients.isEmpty() )
 	{
-		const auto demoServerPort = arguments.value( argToString(Argument::DemoServerPort),
-													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto vncServerPortOffset = arguments.value( argToString(Argument::VncServerPortOffset),
-														  VeyonCore::sessionId() ).toInt();
-		const auto demoAccessToken = arguments.value( argToString(Argument::DemoAccessToken),
-													  accessToken().toByteArray() ).toByteArray();
+		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
+							m_demoServerControlInterfaces );
+	}
+	else
+	{
+		const auto demoServerPort = m_demoServerArguments.value( argToString(Argument::DemoServerPort),
+																 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
+		const auto vncServerPortOffset = m_demoServerArguments.value( argToString(Argument::VncServerPortOffset),
+																	  VeyonCore::sessionId() ).toInt();
+		const auto demoAccessToken = m_demoServerArguments.value( argToString(Argument::DemoAccessToken),
+																  accessToken().toByteArray() ).toByteArray();
 
 		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
 								.addArgument( Argument::DemoAccessToken, demoAccessToken )
 								.addArgument( Argument::VncServerPortOffset, vncServerPortOffset )
 								.addArgument( Argument::DemoServerPort, demoServerPort ),
-							computerControlInterfaces );
-
-		return true;
-	}
-
-	if( operation == Operation::Stop )
-	{
-		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
-							computerControlInterfaces );
+							m_demoServerControlInterfaces );
 
 		return true;
 	}
@@ -588,7 +596,8 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
-			m_demoClientHosts += computerControlInterface->computer().hostAddress();
+			m_demoServerClients += computerControlInterface;
+
 			if( disableUpdates )
 			{
 				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Disabled );
@@ -611,7 +620,8 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 
 		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
-			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
+			m_demoServerClients.removeAll( computerControlInterface );
+
 			if( enableUpdates )
 			{
 				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
