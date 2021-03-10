@@ -25,6 +25,7 @@
 #include <QDataStream>
 #include <QDBusReply>
 #include <QProcess>
+#include <QRegularExpression>
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
@@ -37,6 +38,7 @@
 #define XK_MISCELLANY
 
 #include <X11/keysymdef.h>
+#include <X11/Xlib.h>
 
 #include <pwd.h>
 #include <unistd.h>
@@ -289,10 +291,51 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 {
 	LinuxKeyboardInput input;
 
-	input.sendString( username );
-	input.pressAndReleaseKey( XK_Tab );
-	input.sendString( QString::fromUtf8( password.toByteArray() ) );
-	input.pressAndReleaseKey( XK_Return );
+	auto sequence = LinuxPlatformConfiguration( &VeyonCore::config() ).userLoginKeySequence();
+
+	if( sequence.isEmpty() == false )
+	{
+		sequence = QStringLiteral("%username%<Tab>%password%<Return>");
+	}
+
+	auto matchIterator = QRegularExpression( QStringLiteral("(<[\\w\\d_]+>|%username%|%password%|[\\w\\d]+)") )
+							 .globalMatch( sequence );
+	if( matchIterator.hasNext() == false )
+	{
+		vCritical() << "invalid user login key sequence";
+		return false;
+	}
+
+	while( matchIterator.hasNext() )
+	{
+		const auto token = matchIterator.next().captured(0);
+		if( token == QStringLiteral("%username%") )
+		{
+			input.sendString( username );
+		}
+		else if( token == QStringLiteral("%password%") )
+		{
+			input.sendString( QString::fromUtf8( password.toByteArray() ) );
+		}
+		else if( token.startsWith( QLatin1Char('<') ) && token.endsWith( QLatin1Char('>') ) )
+		{
+			const auto keysymString = token.mid( 1, token.length() - 2 );
+			const auto keysym = XStringToKeysym( keysymString.toLatin1().constData() );
+			if( keysym != NoSymbol )
+			{
+				input.pressAndReleaseKey( keysym );
+			}
+			else
+			{
+				vCritical() << "unresolved keysym" << keysymString;
+				return false;
+			}
+		}
+		else if( token.isEmpty() == false )
+		{
+			input.sendString( token );
+		}
+	}
 
 	return true;
 }
