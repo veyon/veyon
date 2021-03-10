@@ -246,9 +246,9 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
 			const auto memTotal = queueSize / 1024;
-			vDebug()
-					 << "   MEMTOTAL:" << memTotal
-					 << "   KB/s:" << ( memTotal * 1000 ) / m_keyFrameTimer.elapsed();
+			vDebug() << "message count:" << m_framebufferUpdateMessages.size()
+					 << "queue size (KB):" << memTotal
+					 << "throughput (KB/s):" << ( memTotal * 1000 ) / m_keyFrameTimer.elapsed();
 		}
 		m_keyFrameTimer.restart();
 		++m_keyFrame;
