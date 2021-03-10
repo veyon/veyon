@@ -115,6 +115,7 @@ public:
 
 private:
 	static constexpr auto ScreenSelectionNone = 0;
+	static constexpr auto DemoServerControlInterval = 1000;
 
 	void addScreen( QScreen* screen );
 	void removeScreen( QScreen* screen );
@@ -123,8 +124,7 @@ private:
 
 	QRect viewportFromScreenSelection() const;
 
-	bool controlDemoServer( Operation operation, const QVariantMap& arguments,
-						   const ComputerControlInterfaceList& computerControlInterfaces );
+	bool controlDemoServer();
 	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 
@@ -151,11 +151,15 @@ private:
 	QList<QScreen *> m_screens{QGuiApplication::screens()};
 
 	Token m_demoAccessToken;
-	QStringList m_demoClientHosts;
 
 	DemoConfiguration m_configuration;
 
 	DemoServer* m_demoServer;
 	DemoClient* m_demoClient;
+
+	ComputerControlInterfaceList m_demoServerControlInterfaces{};
+	ComputerControlInterfaceList m_demoServerClients{};
+	QVariantMap m_demoServerArguments{};
+	QTimer m_demoServerControlTimer{this};
 
 };
