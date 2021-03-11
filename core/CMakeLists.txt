@@ -98,6 +98,10 @@ if(VEYON_BUILD_ANDROID)
 	target_link_libraries(veyon-core Qt5::AndroidExtras)
 endif()
 
+if(VEYON_BUILD_WIN32)
+	target_compile_definitions(veyon-core PUBLIC _WIN32_WINNT=0x0602)
+endif()
+
 if(WITH_PCH)
 	target_precompile_headers(veyon-core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
 
@@ -112,4 +116,7 @@ if(WITH_PCH)
 	endif()
 	target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
 	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
+	if(VEYON_BUILD_WIN32)
+		target_compile_definitions(veyon-pch PUBLIC _WIN32_WINNT=0x0602)
+	endif()
 endif()

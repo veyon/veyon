@@ -1,8 +1,7 @@
 #pragma once
 
-#ifdef WIN32
+#ifdef _WIN32_WINNT
 #include <winsock2.h>
-#include <windows.h>
 #endif
 
 #ifdef __cplusplus

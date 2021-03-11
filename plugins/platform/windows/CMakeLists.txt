@@ -1,6 +1,6 @@
 include(BuildVeyonPlugin)
 
-add_definitions(-DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0600)
+add_definitions(-DUNICODE -D_UNICODE)
 
 set(WITH_PCH OFF)
 
