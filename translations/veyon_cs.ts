@@ -2527,6 +2527,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Display manager users</source>
         <translation>Zobrazit uživatele-správce</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Přihlášení uživatele</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

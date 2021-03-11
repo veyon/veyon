@@ -2526,6 +2526,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Display manager users</source>
         <translation>Wyświetl użytkowników z uprawnieniami managera</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Login użytkownika</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

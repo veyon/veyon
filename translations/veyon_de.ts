@@ -2528,6 +2528,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Display manager users</source>
         <translation>Displaymanager-Benutzer</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Benutzeranmeldung</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Tastensequenz zum Anmelden</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

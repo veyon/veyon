@@ -2531,6 +2531,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Display manager users</source>
         <translation>顯示管理員使用者</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>使用者登入</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

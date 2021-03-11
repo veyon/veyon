@@ -2512,6 +2512,14 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Display manager users</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Naudotojo prisijungimas</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

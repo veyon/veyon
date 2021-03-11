@@ -2512,6 +2512,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Display manager users</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

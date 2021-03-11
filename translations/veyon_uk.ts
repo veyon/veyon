@@ -2530,6 +2530,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Display manager users</source>
         <translation>Користувачі керування дисплеєм</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Вхід від імені користувача</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Послідовність ключів для входу</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

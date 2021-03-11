@@ -2523,6 +2523,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Display manager users</source>
         <translation>Görüntü yöneticisi kullanıcıları</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Kullanıcı Girişi</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

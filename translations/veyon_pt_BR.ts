@@ -2517,6 +2517,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Display manager users</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Usuário:</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

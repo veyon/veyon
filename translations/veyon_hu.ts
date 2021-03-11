@@ -2531,6 +2531,14 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Display manager users</source>
         <translation>Kezelő felhasználók megjelenítése</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Felhasználó bejelentkezése</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

@@ -2533,6 +2533,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Display manager users</source>
         <translation>Usuarios del gestor de pantalla</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Inicio de sesión de usuario</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>

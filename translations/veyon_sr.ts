@@ -2531,6 +2531,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Display manager users</source>
         <translation>Prikaz menadžera korisnika</translation>
     </message>
+    <message>
+        <source>User login</source>
+        <translation>Prijava korisnika</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
