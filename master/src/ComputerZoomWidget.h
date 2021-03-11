@@ -26,7 +26,7 @@
 
 #include "ComputerControlInterface.h"
 
-#include <QObject>
+#include <QWidget>
 
 class VncViewWidget;
 

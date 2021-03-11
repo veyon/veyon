@@ -22,6 +22,8 @@
  *
  */
 
+#include <QRegularExpression>
+
 #include "LdapClient.h"
 #include "LdapConfiguration.h"
 #include "LdapBrowseModel.h"
@@ -334,7 +336,7 @@ void LdapBrowseModel::populateRoot() const
 		{
 			if( context.isEmpty() == false )
 			{
-				namingContexts.replaceInStrings( QRegExp( QStringLiteral(".*,%1").arg( context ) ), {} );
+				namingContexts.replaceInStrings( QRegularExpression( QStringLiteral(".*,%1").arg( context ) ), {} );
 			}
 		}
 		namingContexts.removeAll( {} );

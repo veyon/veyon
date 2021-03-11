@@ -92,7 +92,8 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->isAtLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::LocatedAt ) ) );
 
 	// load condition arguments
-	ui->authenticationMethodsComboBox->setCurrentText( authenticationMethods.value( rule.argument( AccessControlRule::Condition::AuthenticationMethod ) ) );
+	ui->authenticationMethodsComboBox->setCurrentText( authenticationMethods.value(
+		Plugin::Uid{ rule.argument( AccessControlRule::Condition::AuthenticationMethod ) } ) );
 	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::MemberOfUserGroup ) );
 	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::LocatedAt ) );
 

@@ -31,9 +31,10 @@
 #include "ComputerListModel.h"
 #include "ComputerControlInterface.h"
 
+class ComputerImageProvider;
 class VeyonMaster;
 
-class ComputerControlListModel : public ComputerListModel, public QQuickImageProvider
+class ComputerControlListModel : public ComputerListModel
 {
 	Q_OBJECT
 public:
@@ -45,12 +46,10 @@ public:
 
 	bool setData( const QModelIndex& index, const QVariant& value, int role ) override;
 
-	const QString& imageProviderId() const
+	ComputerImageProvider* imageProvider() const
 	{
-		return m_imageProviderId;
+		return m_imageProvider;
 	}
-
-	QImage requestImage( const QString& id, QSize *size, const QSize &requestedSize ) override;
 
 	void updateComputerScreenSize();
 
@@ -66,6 +65,8 @@ public:
 
 	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
 	ComputerControlInterface::Pointer computerControlInterface( NetworkObject::Uid uid ) const;
+
+	QImage computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 
 	void reload();
 
@@ -89,7 +90,6 @@ private:
 	double averageAspectRatio() const;
 
 	QImage scaleAndAlignIcon( const QImage& icon, QSize size ) const;
-	QImage computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const;
@@ -99,7 +99,7 @@ private:
 
 	VeyonMaster* m_master;
 
-	QString m_imageProviderId{ QStringLiteral("computers") };
+	ComputerImageProvider* m_imageProvider;
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;
 	QImage m_iconServerNotRunning;

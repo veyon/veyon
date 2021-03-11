@@ -22,6 +22,7 @@
  *
  */
 
+#include <QActionGroup>
 #include <QDir>
 #include <QProcess>
 #include <QCloseEvent>

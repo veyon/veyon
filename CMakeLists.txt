@@ -143,17 +143,34 @@ endif()
 
 set(VEYON_CORE_INCLUDE_DIR core/src)
 
-# find required Qt5 modules
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Concurrent REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Network REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
-find_package(Qt5Quick REQUIRED)
-find_package(Qt5QuickControls2 REQUIRED)
-if(VEYON_BUILD_ANDROID)
-find_package(Qt5AndroidExtras REQUIRED)
+# find required Qt modules
+option(WITH_QT6 "Build for Qt 6" OFF)
+if(WITH_QT6)
+	find_package(Qt6 COMPONENTS
+		Core
+		Concurrent
+		Gui
+		Widgets
+		Network
+		LinguistTools
+		Quick
+		QuickControls2
+		REQUIRED)
+	if(VEYON_BUILD_ANDROID)
+		find_package(Qt6 COMPONENTS AndroidExtras REQUIRED)
+	endif()
+else()
+	find_package(Qt5Core REQUIRED)
+	find_package(Qt5Concurrent REQUIRED)
+	find_package(Qt5Gui REQUIRED)
+	find_package(Qt5Widgets REQUIRED)
+	find_package(Qt5Network REQUIRED)
+	find_package(Qt5LinguistTools REQUIRED)
+	find_package(Qt5Quick REQUIRED)
+	find_package(Qt5QuickControls2 REQUIRED)
+	if(VEYON_BUILD_ANDROID)
+		find_package(Qt5AndroidExtras REQUIRED)
+	endif()
 endif()
 
 # find required libraries
@@ -234,8 +251,13 @@ set(WITH_LTO OFF)
 endif()
 
 if(WITH_MODEL_TESTERS)
-find_package(Qt5Test REQUIRED)
-set(VEYON_DEBUG_LIBRARIES Qt5::Test)
+	if(WITH_QT6)
+		find_package(Qt6 COMPONENTS Test REQUIRED)
+		set(VEYON_DEBUG_LIBRARIES Qt6::Test)
+	else()
+		find_package(Qt5Test REQUIRED)
+		set(VEYON_DEBUG_LIBRARIES Qt5::Test)
+	endif()
 endif()
 
 add_definitions(

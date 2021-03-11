@@ -23,6 +23,7 @@
  */
 
 #include <QFile>
+#include <QRegularExpression>
 
 #include "BuiltinDirectoryConfigurationPage.h"
 #include "BuiltinDirectory.h"
@@ -680,13 +681,14 @@ bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& forma
 NetworkObject BuiltinDirectoryPlugin::findNetworkObject( const QString& uidOrName ) const
 {
 	const ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	const QUuid uid{uidOrName};
 
-	if( QUuid( uidOrName ).isNull() )
+	if( uid.isNull() )
 	{
 		return objectManager.findByName( uidOrName );
 	}
 
-	return objectManager.findByUid( uidOrName );
+	return objectManager.findByUid( uid );
 }
 
 
@@ -695,13 +697,11 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 													   QString& location )
 {
 	QStringList placeholders;
-	QRegExp varDetectionRX( QStringLiteral("\\((%\\w+%):[^)]+\\)") );
-	int pos = 0;
+	auto varDetectionMatchIterator = QRegularExpression{ QStringLiteral("\\((%\\w+%):[^)]+\\)") }.globalMatch( regExWithPlaceholders );
 
-	while( ( pos = varDetectionRX.indexIn( regExWithPlaceholders, pos ) ) != -1 )
+	while( varDetectionMatchIterator.hasNext() )
 	{
-		placeholders.append( varDetectionRX.cap(1) );
-		pos += varDetectionRX.matchedLength();
+		placeholders.append( varDetectionMatchIterator.next().captured(1) );
 	}
 
 	QString rxString = regExWithPlaceholders;
@@ -710,14 +710,14 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 		rxString.replace( QStringLiteral("%1:").arg( var ), QString() );
 	}
 
-	QRegExp rx( rxString );
-	if( rx.indexIn( line ) != -1 )
+	auto match = QRegularExpression( rxString ).match( line );
+	if( match.hasMatch() )
 	{
 		auto objectType = NetworkObject::Type::Host;
 		const auto typeIndex = placeholders.indexOf( QStringLiteral("%type%") );
 		if( typeIndex != -1 )
 		{
-			objectType = parseNetworkObjectType( rx.cap( 1 + typeIndex ) );
+			objectType = parseNetworkObjectType( match.captured( 1 + typeIndex ) );
 		}
 
 		const auto locationIndex = placeholders.indexOf( QStringLiteral("%location%") );
@@ -725,9 +725,9 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 		const auto hostIndex = placeholders.indexOf( QStringLiteral("%host%") );
 		const auto macIndex = placeholders.indexOf( QStringLiteral("%mac%") );
 
-		auto name = ( nameIndex != -1 ) ? rx.cap( 1 + nameIndex ).trimmed() : QString();
-		auto host = ( hostIndex != -1 ) ? rx.cap( 1 + hostIndex ).trimmed() : QString();
-		auto mac = ( macIndex != -1 ) ? rx.cap( 1 + macIndex ).trimmed() : QString();
+		auto name = ( nameIndex != -1 ) ? match.captured( 1 + nameIndex ).trimmed() : QString();
+		auto host = ( hostIndex != -1 ) ? match.captured( 1 + hostIndex ).trimmed() : QString();
+		auto mac = ( macIndex != -1 ) ? match.captured( 1 + macIndex ).trimmed() : QString();
 
 		if( objectType == NetworkObject::Type::Location )
 		{
@@ -736,7 +736,7 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 
 		if( location.isEmpty() && locationIndex != -1 )
 		{
-			location = rx.cap( 1 + locationIndex ).trimmed();
+			location = match.captured( 1 + locationIndex ).trimmed();
 		}
 
 		if( host.isEmpty() )

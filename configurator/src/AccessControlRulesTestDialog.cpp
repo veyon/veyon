@@ -72,13 +72,13 @@ int AccessControlRulesTestDialog::exec()
 
 void AccessControlRulesTestDialog::accept()
 {
-	const auto result =
-			AccessControlProvider().processAccessControlRules( ui->accessingUserLineEdit->text(),
-															   ui->accessingComputerLineEdit->text(),
-															   ui->localUserLineEdit->text(),
-															   ui->localComputerLineEdit->text(),
-															   ui->connectedUsersLineEdit->text().split( QLatin1Char(',') ),
-															   ui->authenticationMethodsComboBox->currentData().toString() );
+	const auto result = AccessControlProvider{}
+							.processAccessControlRules( ui->accessingUserLineEdit->text(),
+														ui->accessingComputerLineEdit->text(),
+														ui->localUserLineEdit->text(),
+														ui->localComputerLineEdit->text(),
+														ui->connectedUsersLineEdit->text().split( QLatin1Char(',') ),
+														Plugin::Uid{ui->authenticationMethodsComboBox->currentData().toString()} );
 	QString resultText;
 
 	switch( result )

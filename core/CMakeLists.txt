@@ -42,16 +42,26 @@ target_include_directories(veyon-core PUBLIC
 	${QCA_INCLUDE_DIR}
 )
 
+if(WITH_QT6)
+	target_link_libraries(veyon-core
+		Qt6::Concurrent
+		Qt6::Gui
+		Qt6::Network
+		Qt6::Widgets
+		Qt6::QuickControls2)
+else()
+	target_link_libraries(veyon-core
+		Qt5::Concurrent
+		Qt5::Gui
+		Qt5::Network
+		Qt5::Widgets
+		Qt5::QuickControls2)
+endif()
+
 target_link_libraries(veyon-core
-	Qt5::Concurrent
-	Qt5::Gui
-	Qt5::Network
-	Qt5::Widgets
-	Qt5::QuickControls2
 	OpenSSL::SSL
 	${VEYON_DEBUG_LIBRARIES}
-	${QCA_LIBRARY}
-	)
+	${QCA_LIBRARY})
 
 if(LibVNCClient_FOUND)
 	target_link_libraries(veyon-core LibVNC::LibVNCClient)
@@ -114,7 +124,11 @@ if(WITH_PCH)
 		set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_AUTOGEN TRUE)
 		target_sources(veyon-pch PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx)
 	endif()
-	target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
+	if(WITH_QT6)
+		target_link_libraries(veyon-pch Qt6::Core Qt6::Concurrent Qt6::Network Qt6::Widgets)
+	else()
+		target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
+	endif()
 	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
 	if(VEYON_BUILD_WIN32)
 		target_compile_definitions(veyon-pch PUBLIC _WIN32_WINNT=0x0602)

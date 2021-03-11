@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include <QObject>
+#include <QQuickWindow>
 
 #include "Feature.h"
 #include "FeatureListModel.h"

@@ -55,7 +55,11 @@ LocationDialog::~LocationDialog()
 
 void LocationDialog::updateSearchFilter()
 {
-	m_sortFilterProxyModel.setFilterRegExp( QRegExp( ui->filterLineEdit->text() ) );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+	m_sortFilterProxyModel.setFilterRegularExpression( ui->filterLineEdit->text() );
+#else
+	m_sortFilterProxyModel.setFilterRegExp( ui->filterLineEdit->text() );
+#endif
 	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
 
 	ui->listView->selectionModel()->setCurrentIndex( m_sortFilterProxyModel.index( 0, 0 ),

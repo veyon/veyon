@@ -8,12 +8,6 @@ build_veyon_application(veyon-server ${server_SOURCES})
 add_windows_resource(veyon-server)
 make_graphical_app(veyon-server)
 
-target_link_libraries(veyon-server
-	Qt5::Gui
-	Qt5::Network
-	Qt5::Widgets
-	)
-
 if(VEYON_BUILD_ANDROID)
 	set(CMAKE_ANDROID_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
 	androiddeployqt("veyon-server" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core;${ANDROID_INSTALL_DIR}")

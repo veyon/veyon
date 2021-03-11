@@ -20,7 +20,11 @@ if(QCA_INCLUDE_DIR AND QCA_LIBRARY)
 
 else()
 
-  set(QCA_LIBRARY_NAMES qca-qt5 qca2-qt5)
+  if(WITH_QT6)
+    set(QCA_LIBRARY_NAMES qca-qt6 qca2-qt6)
+  else()
+    set(QCA_LIBRARY_NAMES qca-qt5 qca2-qt5)
+  endif()
 
   find_library(QCA_LIBRARY
 	NAMES ${QCA_LIBRARY_NAMES}

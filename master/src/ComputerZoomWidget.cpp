@@ -23,7 +23,6 @@
  */
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QIcon>
 #include <QLayout>
 

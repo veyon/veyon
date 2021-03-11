@@ -30,6 +30,7 @@ extern "C"
 
 #include <QBuffer>
 #include <QRegion>
+#include <QRegularExpression>
 #include <QTcpSocket>
 
 #include "VncClientProtocol.h"
@@ -235,11 +236,12 @@ bool VncClientProtocol::readProtocol()
 			return false;
 		}
 
-		QRegExp protocolRX( QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") );
+		const auto match = QRegularExpression{ QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") }
+							   .match( QString::fromUtf8( protocol ) );
 
-		if( protocolRX.indexIn( QString::fromUtf8( protocol ) ) != 0 ||
-			protocolRX.cap( 1 ).toInt() != 3 ||
-			protocolRX.cap( 2 ).toInt() < 7 )
+		if( match.hasMatch() == false ||
+			match.captured( 1 ).toInt() != 3 ||
+			match.captured( 2 ).toInt() < 7 )
 		{
 			vCritical() << "invalid protocol version";
 			m_socket->close();

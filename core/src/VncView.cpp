@@ -566,7 +566,7 @@ void VncView::mouseEventHandler( QMouseEvent* event )
 
 	static constexpr std::array<ButtonTranslation, 3> buttonTranslationMap{ {
 		{ Qt::LeftButton, rfbButton1Mask },
-		{ Qt::MidButton, rfbButton2Mask },
+		{ Qt::MiddleButton, rfbButton2Mask },
 		{ Qt::RightButton, rfbButton3Mask }
 	} };
 

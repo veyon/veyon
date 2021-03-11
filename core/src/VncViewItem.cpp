@@ -61,6 +61,10 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 {
 	Q_UNUSED(updatePaintNodeData)
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	// TODO
+	return oldNode;
+#else
 	auto* node = static_cast<QSGSimpleTextureNode *>(oldNode);
 	if( !node )
 	{
@@ -79,10 +83,10 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 	{
 		texture->setImage( m_computerControlInterface->screen() );
 	}
-
 	node->setRect( boundingRect() );
 
 	return node;
+#endif
 }
 
 

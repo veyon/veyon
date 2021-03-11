@@ -29,6 +29,7 @@
 
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
+#include "ComputerImageProvider.h"
 #include "ComputerManager.h"
 #include "ComputerMonitoringItem.h"
 #include "ComputerMonitoringModel.h"
@@ -303,7 +304,8 @@ void VeyonMaster::initUserInterface()
 		qmlRegisterType<ComputerMonitoringItem>( "Veyon.Master", majorVersion, minorVersion, "ComputerMonitoringItem" );
 
 		m_qmlAppEngine = new QQmlApplicationEngine( this );
-		m_qmlAppEngine->addImageProvider( m_computerControlListModel->imageProviderId(), m_computerControlListModel );
+		m_qmlAppEngine->addImageProvider( m_computerControlListModel->imageProvider()->id(),
+										  m_computerControlListModel->imageProvider() );
 		m_qmlAppEngine->rootContext()->setContextProperty( QStringLiteral("masterCore"), this );
 		m_qmlAppEngine->load( QStringLiteral(":/master/main.qml") );
 	}

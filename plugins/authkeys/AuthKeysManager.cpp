@@ -469,11 +469,11 @@ QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString
 
 QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 {
-	QRegExp rx( QStringLiteral("^(.*)_(.*)_key.pem$") );
+	const auto keyNameMatch = QRegularExpression( QStringLiteral("^(.*)_(.*)_key.pem$") ).match( keyFile );
 
-	if( rx.indexIn( QFileInfo( keyFile ).fileName() ) == 0 )
+	if( keyNameMatch.hasMatch() )
 	{
-		return rx.cap( 1 );
+		return keyNameMatch.captured( 1 );
 	}
 
 	return {};

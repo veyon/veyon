@@ -25,6 +25,7 @@
 #include <QPainter>
 
 #include "ComputerControlListModel.h"
+#include "ComputerImageProvider.h"
 #include "ComputerManager.h"
 #include "FeatureManager.h"
 #include "VeyonMaster.h"
@@ -38,8 +39,8 @@
 
 ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
 	ComputerListModel( parent ),
-	QQuickImageProvider( QQmlImageProviderBase::Image ),
 	m_master( masterCore ),
+	m_imageProvider( new ComputerImageProvider( this ) ),
 	m_iconDefault( QStringLiteral(":/master/preferences-desktop-display-gray.png") ),
 	m_iconConnectionProblem( QStringLiteral(":/master/preferences-desktop-display-red.png") ),
 	m_iconServerNotRunning( QStringLiteral(":/master/preferences-desktop-display-orange.png") )
@@ -107,7 +108,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 		return QVariant::fromValue( computerControl->state() );
 
 	case ImageIdRole:
-		return QStringLiteral("image://%1/%2/%3").arg( imageProviderId(),
+		return QStringLiteral("image://%1/%2/%3").arg( imageProvider()->id(),
 													   VeyonCore::formattedUuid( computerControl->computer().networkObjectUid() ),
 													   QString::number( computerControl->timestamp() ) );
 
@@ -155,22 +156,6 @@ bool ComputerControlListModel::setData( const QModelIndex& index, const QVariant
 	}
 
 	return false;
-}
-
-
-
-QImage ComputerControlListModel::requestImage( const QString& id, QSize* size, const QSize& requestedSize )
-{
-	Q_UNUSED(size)
-	Q_UNUSED(requestedSize)
-
-	const auto controlInterface = computerControlInterface( NetworkObject::Uid{id} );
-	if( controlInterface )
-	{
-		return computerDecorationRole( controlInterface );
-	}
-
-	return {};
 }
 
 
@@ -235,6 +220,36 @@ ComputerControlInterface::Pointer ComputerControlListModel::computerControlInter
 		}
 	}
 	return {};
+}
+
+
+
+QImage ComputerControlListModel::computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const
+{
+	switch( controlInterface->state() )
+	{
+	case ComputerControlInterface::State::Connected:
+	{
+		const auto image = controlInterface->scaledScreen();
+		if( image.isNull() == false )
+		{
+			return image;
+		}
+
+		return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
+	}
+
+	case ComputerControlInterface::State::ServerNotRunning:
+		return scaleAndAlignIcon( m_iconServerNotRunning, controlInterface->scaledScreenSize() );
+
+	case ComputerControlInterface::State::AuthenticationFailed:
+		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledScreenSize() );
+
+	default:
+		break;
+	}
+
+	return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
 }
 
 
@@ -427,36 +442,6 @@ QImage ComputerControlListModel::scaleAndAlignIcon( const QImage& icon, QSize si
 					   scaledIcon );
 
 	return scaledAndAlignedIcon;
-}
-
-
-
-QImage ComputerControlListModel::computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const
-{
-	switch( controlInterface->state() )
-	{
-	case ComputerControlInterface::State::Connected:
-	{
-		const auto image = controlInterface->scaledScreen();
-		if( image.isNull() == false )
-		{
-			return image;
-		}
-
-		return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
-	}
-
-	case ComputerControlInterface::State::ServerNotRunning:
-		return scaleAndAlignIcon( m_iconServerNotRunning, controlInterface->scaledScreenSize() );
-
-	case ComputerControlInterface::State::AuthenticationFailed:
-		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledScreenSize() );
-
-	default:
-		break;
-	}
-
-	return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
 }
 
 

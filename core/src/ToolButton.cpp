@@ -26,7 +26,9 @@
 #include <QAction>
 #include <QApplication>
 #include <QBitmap>
+#if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
+#endif
 #include <QLabel>
 #include <QLayout>
 #include <QLinearGradient>
@@ -80,7 +82,11 @@ void ToolButton::addTo( QToolBar* toolBar )
 
 
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+void ToolButton::enterEvent( QEnterEvent* event )
+#else
 void ToolButton::enterEvent( QEvent* event )
+#endif
 {
 	m_mouseOver = true;
 	if( !s_toolTipsDisabled && !m_label.isEmpty() && !m_descr.isEmpty() )

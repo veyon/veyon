@@ -23,10 +23,15 @@
  */
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QtMath>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+#include <QScreen>
+#else
+#include <QDesktopWidget>
+#endif
 
 #include "ProgressWidget.h"
 #include "VeyonConnection.h"
@@ -76,7 +81,13 @@ VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mo
 
 	show();
 
-	resize( QApplication::desktop()->availableGeometry( this ).size() - QSize( 10, 30 ) );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	const auto screenGeometry = screen()->availableGeometry();
+#else
+	const auto screenGeometry = QApplication::desktop()->availableGeometry( this );
+#endif
+
+	resize( screenGeometry.size() - QSize( 10, 30 ) );
 
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();

@@ -39,8 +39,8 @@ int main( int argc, char **argv )
 		qFatal( "Not enough arguments (feature)" );
 	}
 
-	const auto featureUid = arguments[1];
-	if( QUuid( featureUid ).isNull() )
+	const auto featureUid = Feature::Uid{arguments[1]};
+	if( featureUid.isNull() )
 	{
 		qFatal( "Invalid feature UID given" );
 	}

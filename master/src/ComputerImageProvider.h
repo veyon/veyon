@@ -1,7 +1,7 @@
 /*
- * VeyonWorker.h - basic implementation of Veyon Worker
+ * ComputerImageProvider.h - image provider for computers
  *
- * Copyright (c) 2018-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,27 +24,23 @@
 
 #pragma once
 
-#include "FeatureManager.h"
-#include "VeyonWorkerInterface.h"
+#include <QQuickImageProvider>
 
-class FeatureWorkerManagerConnection;
+class ComputerControlListModel;
 
-class VeyonWorker : public QObject, VeyonWorkerInterface
+class ComputerImageProvider : public QQuickImageProvider
 {
-	Q_OBJECT
 public:
-	explicit VeyonWorker( QUuid featureUid, QObject* parent = nullptr );
+	explicit ComputerImageProvider( ComputerControlListModel* model );
 
-	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
+	QImage requestImage( const QString& id, QSize *size, const QSize &requestedSize ) override;
 
-	VeyonCore& core()
+	QString id() const
 	{
-		return m_core;
+		return QStringLiteral("computers");
 	}
 
 private:
-	VeyonCore m_core;
-	FeatureManager m_featureManager{};
-	FeatureWorkerManagerConnection* m_workerManagerConnection{nullptr};
+	ComputerControlListModel* m_model;
 
-} ;
+};

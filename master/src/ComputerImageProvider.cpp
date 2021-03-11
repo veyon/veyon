@@ -1,7 +1,7 @@
 /*
- * VeyonWorker.h - basic implementation of Veyon Worker
+ * ComputerImageProvider.cpp - data model for computer control objects
  *
- * Copyright (c) 2018-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,29 +22,27 @@
  *
  */
 
-#pragma once
+#include "ComputerControlListModel.h"
+#include "ComputerImageProvider.h"
 
-#include "FeatureManager.h"
-#include "VeyonWorkerInterface.h"
-
-class FeatureWorkerManagerConnection;
-
-class VeyonWorker : public QObject, VeyonWorkerInterface
+ComputerImageProvider::ComputerImageProvider( ComputerControlListModel* model ) :
+	QQuickImageProvider( QQmlImageProviderBase::Image ),
+	m_model( model )
 {
-	Q_OBJECT
-public:
-	explicit VeyonWorker( QUuid featureUid, QObject* parent = nullptr );
+}
 
-	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
 
-	VeyonCore& core()
+
+QImage ComputerImageProvider::requestImage( const QString& id, QSize* size, const QSize& requestedSize )
+{
+	Q_UNUSED(size)
+	Q_UNUSED(requestedSize)
+
+	const auto controlInterface = m_model->computerControlInterface( NetworkObject::Uid{id} );
+	if( controlInterface )
 	{
-		return m_core;
+		return m_model->computerDecorationRole( controlInterface );
 	}
 
-private:
-	VeyonCore m_core;
-	FeatureManager m_featureManager{};
-	FeatureWorkerManagerConnection* m_workerManagerConnection{nullptr};
-
-} ;
+	return {};
+}

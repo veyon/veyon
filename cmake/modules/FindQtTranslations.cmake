@@ -8,7 +8,11 @@ function(find_qt_translations)
 	# find Qt's translation files
 	set(QT_TRANSLATIONS_STAMP ${CMAKE_CURRENT_BINARY_DIR}/qttranslations.stamp)
 	if(NOT EXISTS "${QT_TRANSLATIONS_STAMP}")
-		get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
+		if(WITH_QT6)
+			get_target_property(QT_QMAKE_EXECUTABLE Qt6::qmake IMPORTED_LOCATION)
+		else()
+			get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
+		endif()
 		execute_process(COMMAND "${QT_QMAKE_EXECUTABLE}" -query QT_INSTALL_TRANSLATIONS
 							OUTPUT_STRIP_TRAILING_WHITESPACE
 							OUTPUT_VARIABLE QT_INSTALL_TRANSLATIONS)

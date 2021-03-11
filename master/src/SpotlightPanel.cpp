@@ -192,7 +192,7 @@ void SpotlightPanel::updateIconSize()
 
 void SpotlightPanel::addPressedItem( const QModelIndex& index )
 {
-	if( QGuiApplication::mouseButtons().testFlag( Qt::MidButton ) )
+	if( QGuiApplication::mouseButtons().testFlag( Qt::MiddleButton ) )
 	{
 		m_globalComputerMonitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
 
@@ -204,7 +204,7 @@ void SpotlightPanel::addPressedItem( const QModelIndex& index )
 
 void SpotlightPanel::removePressedItem( const QModelIndex& index )
 {
-	if( QGuiApplication::mouseButtons().testFlag( Qt::MidButton ) )
+	if( QGuiApplication::mouseButtons().testFlag( Qt::MiddleButton ) )
 	{
 		ui->monitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
 

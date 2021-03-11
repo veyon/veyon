@@ -39,8 +39,9 @@
 
 #pragma once
 
-#include <QSGTexture>
 #include <QImage>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <QSGTexture>
 
 class QSGImageTexture : public QSGTexture
 {
@@ -84,3 +85,4 @@ protected:
 	uint m_owns_texture : 1;
 };
 
+#endif

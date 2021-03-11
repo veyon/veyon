@@ -23,9 +23,10 @@
 
 #pragma once
 
+#include <QQuickItem>
+
 #include "ComputerControlInterface.h"
 
-class QQuickItem;
 class VncViewItem;
 
 // clazy:excludeall=ctor-missing-parent-argument

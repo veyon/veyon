@@ -57,7 +57,8 @@ QString TestingCommandLinePlugin::commandHelp( const QString& command ) const
 CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_checkaccess( const QStringList& arguments )
 {
 
-	switch( AccessControlProvider().checkAccess( arguments.value( 0 ), arguments.value( 1 ), { arguments.value( 2 ) }, arguments.value( 3 ) ) )
+	switch( AccessControlProvider().checkAccess( arguments.value( 0 ), arguments.value( 1 ), { arguments.value( 2 ) },
+												 Plugin::Uid{ arguments.value(3) } ) )
 	{
 	case AccessControlProvider::Access::Allow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return Successful;
 	case AccessControlProvider::Access::Deny: printf( "[TEST]: CheckAccess: DENY\n" ); return Successful;
@@ -90,7 +91,7 @@ CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_accesscon
 	switch( AccessControlProvider().processAccessControlRules( arguments.value( 0 ), arguments.value( 1 ),
 															   arguments.value( 2 ), arguments.value( 3 ),
 															   QStringList( arguments.value( 4 ) ),
-															   arguments.value( 5 ) ) )
+															   Plugin::Uid{ arguments.value(5) } ) )
 	{
 	case AccessControlRule::Action::Allow: printf( "[TEST]: AccessControlRules: ALLOW\n" ); return Successful;
 	case AccessControlRule::Action::Deny: printf( "[TEST]: AccessControlRules: DENY\n" ); return Successful;
