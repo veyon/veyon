@@ -25,6 +25,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QRegularExpression>
 #include <QSettings>
 
 #include "Configuration/LocalStore.h"
@@ -60,12 +61,12 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 
 	for( const auto& k : childKeys )
 	{
-		QString stringValue = s->value( k ).toString();
-		QRegExp jsonValueRX( QStringLiteral("@JsonValue(\\(.*\\))") );
+		const auto stringValue = s->value( k ).toString();
+		const auto jsonValueMatch = QRegularExpression( QStringLiteral("^@JsonValue(\\(.*\\))$") ).match( stringValue );
 
-		if( jsonValueRX.indexIn( stringValue ) == 0 )
+		if( jsonValueMatch.hasMatch() )
 		{
-			auto jsonValue = QJsonDocument::fromJson( QByteArray::fromBase64( jsonValueRX.cap( 1 ).toUtf8() ) ).object();
+			auto jsonValue = QJsonDocument::fromJson( QByteArray::fromBase64( jsonValueMatch.captured( 1 ).toUtf8() ) ).object();
 			if( jsonValue.contains( QStringLiteral( "a" ) ) )
 			{
 				obj->setValue( k, jsonValue[QStringLiteral("a")].toArray(), parentKey );

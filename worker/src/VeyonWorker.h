@@ -33,7 +33,7 @@ class VeyonWorker : public QObject, VeyonWorkerInterface
 {
 	Q_OBJECT
 public:
-	explicit VeyonWorker( const QString& featureUid, QObject* parent = nullptr );
+	explicit VeyonWorker( QUuid featureUid, QObject* parent = nullptr );
 
 	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
 

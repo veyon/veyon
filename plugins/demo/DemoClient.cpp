@@ -23,7 +23,11 @@
  */
 
 #include <QApplication>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+#include <QScreen>
+#else
 #include <QDesktopWidget>
+#endif
 #include <QIcon>
 #include <QLayout>
 
@@ -55,7 +59,14 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, const QR
 	if( fullscreen == false )
 	{
 		m_toplevel->setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
-		m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+		const auto screenGeometry = m_toplevel->screen()->availableGeometry();
+#else
+		const auto screenGeometry = QApplication::desktop()->availableGeometry( m_toplevel );
+#endif
+
+		m_toplevel->resize( screenGeometry.size() - QSize( 10, 30 ) );
 	}
 
 	m_vncView = new VncViewWidget( m_computerControlInterface, viewport, m_toplevel );

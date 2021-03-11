@@ -29,7 +29,7 @@
 #include "VeyonWorker.h"
 
 
-VeyonWorker::VeyonWorker( const QString& featureUid, QObject* parent ) :
+VeyonWorker::VeyonWorker( QUuid featureUid, QObject* parent ) :
 	QObject( parent ),
 	m_core( QCoreApplication::instance(),
 			VeyonCore::Component::Worker,
@@ -52,7 +52,7 @@ VeyonWorker::VeyonWorker( const QString& featureUid, QObject* parent ) :
 		qFatal( "Could not find specified feature" );
 	}
 
-	if( m_core.config().disabledFeatures().contains( featureUid ) )
+	if( m_core.config().disabledFeatures().contains( featureUid.toString() ) )
 	{
 		qFatal( "Specified feature is disabled by configuration!" );
 	}

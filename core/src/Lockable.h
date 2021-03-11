@@ -23,7 +23,11 @@
 
 #pragma once
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+#include <QRecursiveMutex>
+#else
 #include <QMutex>
+#endif
 
 class Lockable
 {
@@ -39,6 +43,10 @@ public:
 	}
 
 private:
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	QRecursiveMutex m_mutex{};
+#else
 	QMutex m_mutex{QMutex::Recursive};
+#endif
 
 };

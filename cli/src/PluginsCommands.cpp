@@ -83,7 +83,11 @@ CommandLinePluginInterface::RunResult PluginsCommands::handle_show( const QStrin
 			plugin->name(),
 			plugin->description(),
 			plugin->version().toString(),
-			VeyonCore::formattedUuid( plugin->uid().toString() )
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+				plugin->uid().toString( QUuid::WithoutBraces )
+#else
+				VeyonCore::formattedUuid( plugin->uid().toString() )
+#endif
 		} );
 	}
 

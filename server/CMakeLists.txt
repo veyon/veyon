@@ -24,9 +24,3 @@ build_veyon_application(veyon-server
 
 add_windows_resource(veyon-server)
 make_graphical_app(veyon-server)
-
-target_link_libraries(veyon-server
-	Qt5::Gui
-	Qt5::Network
-	Qt5::Widgets
-	)

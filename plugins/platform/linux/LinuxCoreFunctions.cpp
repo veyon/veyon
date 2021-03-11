@@ -225,6 +225,21 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 {
 	Q_UNUSED(desktop);
 
+	const auto uid = LinuxUserFunctions::userIdFromName( username );
+	if( uid <= 0 )
+	{
+		return false;
+	}
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	auto process = new QProcess;
+	process->setChildProcessModifier( [uid]() {
+		if( setuid( uid ) != 0 )
+		{
+			qFatal( "Could not set UID for child process!" );
+		};
+	} );
+#else
 	class UserProcess : public QProcess // clazy:exclude=missing-qobject-macro
 	{
 	public:
@@ -246,13 +261,9 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 		const uid_t m_uid;
 	};
 
-	const auto uid = LinuxUserFunctions::userIdFromName( username );
-	if( uid <= 0 )
-	{
-		return false;
-	}
-
 	auto process = new UserProcess( uid );
+#endif
+
 	QObject::connect( process, QOverload<int, QProcess::ExitStatus>::of( &QProcess::finished ), &QProcess::deleteLater );
 	process->start( program, parameters );
 

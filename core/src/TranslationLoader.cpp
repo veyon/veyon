@@ -23,6 +23,7 @@
  */
 
 #include <QCoreApplication>
+#include <QRegularExpression>
 #include <QTranslator>
 
 #include "TranslationLoader.h"
@@ -41,10 +42,11 @@ bool TranslationLoader::load( const QString& resourceName )
 {
 	QLocale configuredLocale( QLocale::C );
 
-	QRegExp localeRegEx( QStringLiteral( "[^(]*\\(([^)]*)\\)") );
-	if( localeRegEx.indexIn( VeyonCore::config().uiLanguage() ) == 0 )
+	const auto configuredLocaleMatch = QRegularExpression{ QStringLiteral( "[^(]*\\(([^)]*)\\)") }
+										   .match( VeyonCore::config().uiLanguage() );
+	if( configuredLocaleMatch.hasMatch() )
 	{
-		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
+		configuredLocale = QLocale( configuredLocaleMatch.captured( 1 ) );
 	}
 
 	if( configuredLocale.language() != QLocale::English &&

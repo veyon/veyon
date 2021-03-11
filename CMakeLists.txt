@@ -144,13 +144,25 @@ else()
 endif()
 
 
-# find required Qt5 modules
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Concurrent REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Network REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
+# find required Qt modules
+option(WITH_QT6 "Build for Qt 6" OFF)
+if(WITH_QT6)
+	find_package(Qt6 COMPONENTS
+		Core
+		Concurrent
+		Gui
+		Widgets
+		Network
+		LinguistTools
+		REQUIRED)
+else()
+	find_package(Qt5Core REQUIRED)
+	find_package(Qt5Concurrent REQUIRED)
+	find_package(Qt5Gui REQUIRED)
+	find_package(Qt5Widgets REQUIRED)
+	find_package(Qt5Network REQUIRED)
+	find_package(Qt5LinguistTools REQUIRED)
+endif()
 
 # find required libraries
 find_package(QCA REQUIRED)
@@ -200,11 +212,26 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 if(WITH_MODEL_TESTERS)
-	find_package(Qt5Test REQUIRED)
-	set(VEYON_DEBUG_LIBRARIES Qt5::Test)
+	if(WITH_QT6)
+		find_package(Qt6 COMPONENTS Test REQUIRED)
+		set(VEYON_DEBUG_LIBRARIES Qt6::Test)
+	else()
+		find_package(Qt5Test REQUIRED)
+		set(VEYON_DEBUG_LIBRARIES Qt5::Test)
+	endif()
 endif()
 
-add_definitions(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050e00 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY -DQT_NO_KEYWORDS)
+add_definitions(
+	-DQT_DEPRECATED_WARNINGS
+	-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00
+	-DQT_NO_CAST_FROM_ASCII
+	-DQT_NO_CAST_TO_ASCII
+	-DQT_NO_CAST_FROM_BYTEARRAY
+	-DQT_NO_KEYWORDS
+	-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT
+	-DQT_USE_QSTRINGBUILDER
+	-DQT_STRICT_ITERATORS
+	)
 
 file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
 configure_files(${IN_FILES})

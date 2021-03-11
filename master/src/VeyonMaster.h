@@ -24,8 +24,6 @@
 
 #pragma once
 
-#include <QObject>
-
 #include "Feature.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"

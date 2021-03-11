@@ -65,6 +65,6 @@ void LinuxKeyboardInput::sendString( const QString& string )
 {
 	for( int i = 0; i < string.size(); ++i )
 	{
-		pressAndReleaseKey( string.midRef( i, 1 ).toUtf8() );
+		pressAndReleaseKey( string.mid( i, 1 ).toUtf8() );
 	}
 }

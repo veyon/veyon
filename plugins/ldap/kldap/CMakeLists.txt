@@ -35,7 +35,12 @@ set(kldap_SOURCES
 
 add_library(kldap-light SHARED ${kldap_SOURCES})
 target_compile_options(kldap-light PRIVATE ${VEYON_COMPILE_OPTIONS})
-target_link_libraries(kldap-light Qt5::Core ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES})
+if(WITH_QT6)
+	target_link_libraries(kldap-light Qt6::Core)
+else()
+	target_link_libraries(kldap-light Qt5::Core)
+endif()
+target_link_libraries(kldap-light ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES})
 target_include_directories(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
 target_include_directories(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 set_target_properties(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")

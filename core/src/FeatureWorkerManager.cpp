@@ -41,8 +41,7 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, Featur
 	QObject( parent ),
 	m_server( server ),
 	m_featureManager( featureManager ),
-	m_tcpServer( this ),
-	m_workersMutex( QMutex::Recursive )
+	m_tcpServer( this )
 {
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );

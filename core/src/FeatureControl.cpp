@@ -61,7 +61,7 @@ bool FeatureControl::handleFeatureMessage( ComputerControlInterface::Pointer com
 
 		for( const auto& featureUidString : featureUidStrings )
 		{
-			activeFeatures.append( featureUidString );
+			activeFeatures.append( Feature::Uid{featureUidString} );
 		}
 
 		computerControlInterface->setActiveFeatures( activeFeatures );

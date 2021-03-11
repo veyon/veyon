@@ -1,7 +1,6 @@
 add_subdirectory(auth-helper)
 
 find_package(X11 REQUIRED)
-find_package(Qt5DBus REQUIRED)
 find_package(PkgConfig QUIET)
 pkg_check_modules(procps REQUIRED libprocps)
 pkg_check_modules(fakekey libfakekey)
@@ -64,11 +63,17 @@ target_include_directories(linux-platform PRIVATE
 	${procps_INCLUDE_DIRS}
 	)
 
+if(WITH_QT6)
+	find_package(Qt6 COMPONENTS DBus REQUIRED)
+	target_link_libraries(linux-platform Qt6::DBus)
+else()
+	find_package(Qt5DBus REQUIRED)
+	target_link_libraries(linux-platform Qt5::DBus)
+endif()
+
 target_link_libraries(linux-platform
 	${X11_LIBRARIES}
-	Qt5::DBus
-	${procps_LDFLAGS}
-	)
+	${procps_LDFLAGS})
 
 if(fakekey_FOUND)
 	target_include_directories(linux-platform PRIVATE ${fakekey_INCLUDE_DIRS})

@@ -184,8 +184,8 @@ QString Screenshot::host() const
 
 QString Screenshot::date() const
 {
-	return QDate::fromString( property( metaDataKey( MetaData::Date ), 2 ),
-										Qt::ISODate ).toString( Qt::LocalDate );
+	return QLocale::system().toString( QDate::fromString( property( metaDataKey( MetaData::Date ), 2 ), Qt::ISODate ),
+									   QLocale::ShortFormat );
 }
 
 

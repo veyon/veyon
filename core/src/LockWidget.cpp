@@ -26,7 +26,9 @@
 #include "PlatformInputDeviceFunctions.h"
 
 #include <QApplication>
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
 #include <QDesktopWidget>
+#endif
 #include <QPainter>
 #include <QScreen>
 #include <QWindow>
@@ -58,7 +60,11 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 	setWindowTitle( {} );
 	show();
 	move( 0, 0 );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	setFixedSize( screen()->size() );
+#else
 	setFixedSize( qApp->desktop()->size() );
+#endif
 	VeyonCore::platform().coreFunctions().raiseWindow( this, true );
 	showFullScreen();
 	setFocusPolicy( Qt::StrongFocus );

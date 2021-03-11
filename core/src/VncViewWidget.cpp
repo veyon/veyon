@@ -23,7 +23,6 @@
  */
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QtMath>
@@ -69,7 +68,13 @@ VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlI
 
 	show();
 
-	resize( QApplication::desktop()->availableGeometry( this ).size() - QSize( 10, 30 ) );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	const auto screenGeometry = screen()->availableGeometry();
+#else
+	const auto screenGeometry = QApplication::desktop()->availableGeometry( this );
+#endif
+
+	resize( screenGeometry.size() - QSize( 10, 30 ) );
 
 	setFocusPolicy( Qt::WheelFocus );
 	setFocus();

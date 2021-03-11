@@ -25,6 +25,7 @@
 #include "rfb/rfbproto.h"
 
 #include <QHostAddress>
+#include <QRegularExpression>
 #include <QTcpSocket>
 
 #include "AuthenticationCredentials.h"
@@ -125,9 +126,8 @@ bool VncServerProtocol::readProtocol()
 			return false;
 		}
 
-		QRegExp protocolRX( QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") );
-
-		if( protocolRX.indexIn( QString::fromUtf8( protocol ) ) != 0 )
+		if( QRegularExpression{ QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") }
+				.match( QString::fromUtf8( protocol ) ).hasMatch() == false )
 		{
 			vCritical() << "invalid protocol version";
 			m_socket->close();
