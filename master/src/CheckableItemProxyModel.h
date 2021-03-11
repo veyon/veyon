@@ -43,7 +43,6 @@ public:
 	bool setData(const QModelIndex &index, const QVariant &value, int role) override;
 
 	void updateNewRows(const QModelIndex &parent, int first, int last);
-	void removeRowStates(const QModelIndex &parent, int first, int last);
 
 	QJsonArray saveStates();
 	void loadStates( const QJsonArray& data );
