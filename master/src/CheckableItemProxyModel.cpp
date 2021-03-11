@@ -38,8 +38,6 @@ CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent )
 {
 	connect( this, &QIdentityProxyModel::rowsInserted,
 			 this, &CheckableItemProxyModel::updateNewRows );
-	connect( this, &QIdentityProxyModel::rowsAboutToBeRemoved,
-			 this, &CheckableItemProxyModel::removeRowStates );
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
@@ -117,23 +115,30 @@ bool CheckableItemProxyModel::setData( const QModelIndex& index, const QVariant&
 
 void CheckableItemProxyModel::updateNewRows(const QModelIndex &parent, int first, int last)
 {
-	// also set newly inserted items checked if parent is checked
-	if( parent.isValid() && checkStateFromVariant( data( parent, Qt::CheckStateRole ) ) == Qt::Checked )
+	if( parent.isValid() )
 	{
-		for( int i = first; i <= last; ++i )
+		auto parentState = checkStateFromVariant( data( parent, Qt::CheckStateRole ) );
+		if( parentState == Qt::Checked )
 		{
-			setData( index( i, 0, parent ), Qt::Checked, Qt::CheckStateRole );
+			// also set newly inserted items checked if parent is checked
+			for( int i = first; i <= last; ++i )
+			{
+				setData( index( i, 0, parent ), Qt::Checked, Qt::CheckStateRole );
+			}
 		}
-	}
-}
+		else if( parentState == Qt::Unchecked )
+		{
+			// make sure parent is (partially) checked if one of the newly inserted items was checked previously
+			for( int i = first; i <= last; ++i )
+			{
+				if( checkStateFromVariant( data( index( i, 0, parent ), Qt::CheckStateRole ) ) == Qt::Checked )
+				{
+					parentState = Qt::Checked;
+				}
+			}
 
-
-
-void CheckableItemProxyModel::removeRowStates(const QModelIndex &parent, int first, int last)
-{
-	for( int i = first; i <= last; ++i )
-	{
-		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_uidRole ).toUuid() );
+			setParentData( parent, parentState );
+		}
 	}
 }
 
@@ -145,7 +150,8 @@ QJsonArray CheckableItemProxyModel::saveStates()
 
 	for( auto it = m_checkStates.constBegin(), end = m_checkStates.constEnd(); it != end; ++it )
 	{
-		if( it.value() == Qt::Checked )
+		if( it.value() == Qt::Checked &&
+			match( index( 0, 0 ), m_uidRole, it.key(), 1, Qt::MatchExactly | Qt::MatchRecursive ).isEmpty() == false )
 		{
 			data += it.key().toString();
 		}
@@ -165,13 +171,16 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 	for( const auto& item : data )
 	{
 		const QUuid uid = QUuid( item.toString() );
-		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,
+		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1, // clazy:exclude=inefficient-qlist
 									  Qt::MatchExactly | Qt::MatchRecursive );
 		if( indexList.isEmpty() == false &&
 				hasChildren( indexList.first() ) == false )
 		{
 			setData( indexList.first(), Qt::Checked, Qt::CheckStateRole );
 		}
+
+		// allow items being added dynamically even if we can't propagate the check state at the moment
+		m_checkStates[uid] = Qt::Checked;
 	}
 
 	endResetModel();
