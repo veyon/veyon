@@ -22,7 +22,7 @@ build_veyon_plugin(webapi
 	webapi.qrc
 	)
 
-set_source_files_properties(WebApiHttpServer.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
+set_source_files_properties(WebApiHttpServer.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)
 
 if(Qt5HttpServer_DIR)
 	target_link_libraries(webapi Qt5::HttpServer)

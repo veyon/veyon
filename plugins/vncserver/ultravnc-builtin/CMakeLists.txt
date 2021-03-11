@@ -6,8 +6,6 @@ find_package(ZLIB REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(LZO REQUIRED)
 
-add_definitions(-D_WIN32_WINNT=0x0602)
-
 set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
