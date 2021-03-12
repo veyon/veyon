@@ -120,6 +120,9 @@
 /* video4linux build environment present */
 #cmakedefine HAVE_LINUX_VIDEODEV_H 1
 
+/* video4linux2 build environment present */
+#cmakedefine HAVE_LINUX_VIDEODEV2_H 1
+
 /* build MacOS X native display support */
 #cmakedefine HAVE_MACOSX_NATIVE_DISPLAY 1
 
