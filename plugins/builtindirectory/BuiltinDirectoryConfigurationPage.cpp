@@ -177,6 +177,8 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 	ui->locationTableWidget->setUpdatesEnabled( false );
 	ui->locationTableWidget->clear();
 
+	ui->addComputerButton->setEnabled( false );
+
 	int rowCount = 0;
 
 	const auto networkObjects = m_configuration.networkObjects();
@@ -193,6 +195,9 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 	}
 
 	ui->locationTableWidget->setUpdatesEnabled( true );
+
+	if( rowCount > 0 )
+		ui->addComputerButton->setEnabled( true );
 }
 
 
