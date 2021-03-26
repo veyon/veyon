@@ -111,11 +111,22 @@ void BuiltinDirectoryConfigurationPage::updateLocation()
 
 void BuiltinDirectoryConfigurationPage::removeLocation()
 {
+	auto currentRow = ui->locationTableWidget->currentRow();
+
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.remove( currentLocationObject().uid(), true );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateLocations();
+
+	if( currentRow > 0 )
+	{
+		ui->locationTableWidget->setCurrentCell( currentRow-1, 0 );
+	}
+	else if ( ui->locationTableWidget->rowCount() > 0 )
+	{
+		ui->locationTableWidget->setCurrentCell( currentRow, 0 );
+	}
 }
 
 
