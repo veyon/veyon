@@ -208,7 +208,9 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 	ui->locationTableWidget->setUpdatesEnabled( true );
 
 	if( rowCount > 0 )
+	{
 		ui->addComputerButton->setEnabled( true );
+	}
 }
 
 
