@@ -2524,7 +2524,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Sequenza di tasti di accesso</translation>
     </message>
 </context>
 <context>

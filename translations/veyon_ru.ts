@@ -2753,7 +2753,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>&amp;Рвсширенный</translation>
+        <translation>&amp;Расширенный</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>

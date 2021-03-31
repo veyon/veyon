@@ -167,7 +167,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>กรอกคำอธิบายสำหรับกฏได้ที่นี่</translation>
     </message>
     <message>
         <source>Rule description:</source>
@@ -1272,7 +1272,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>ลดความเร็วการอัปเดตภาพทัมเนลลงเมื่ออยู่ในโหมดสาธิต</translation>
     </message>
 </context>
 <context>
@@ -1295,19 +1295,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิต</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปันหน้าจอของคุณเอง หรืออนุญาตให้ผู้ใช้ได้แบ่งหน้าจอของเขาให้ผู้ใช้คนอื่น</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิตแบบเต็มจอ</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปันหน้าจอของคุณในโหมดเต็มหน้าจอ</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1315,7 +1315,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปันหน้าจอของคุณในหน้าต่างแยก</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -2534,7 +2534,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>กรอกตัวกรองการค้นหา...</translation>
     </message>
 </context>
 <context>
@@ -2696,7 +2696,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>ค้นหาผู้ใช้และคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
@@ -2744,15 +2744,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>สไลด์โชว์</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>สปอร์ตไลท์</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>ตั้งค่าขนาดไอคอนคอมพิวเตอร์โดยอัตโนมัติ</translation>
     </message>
 </context>
 <context>
@@ -2919,7 +2919,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>ปรับเปลี่ยนขนาดไอคอนของคอมพิวเตอร์โดยอัตโนมัติ</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
@@ -2938,7 +2938,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>โหมดนี้จะให้คุณได้สังเกตการณ์คอมพิวเตอร์ทุกเครื่องจากสถานที่ใดสถานที่หนึ่งหรือมากกว่านั้น</translation>
     </message>
 </context>
 <context>
@@ -3090,7 +3090,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ได้รับการร้องขอจากระยะไกลให้ปิดเครื่องลง คุณต้องการปิดเครื่องลงตอนนี้หรือไม่?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
@@ -3135,7 +3135,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>เปิดหน้าต่างการเข้าควบคุมระยะไกลสำหรับคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3588,7 +3588,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>ระยะเวลา:</translation>
     </message>
 </context>
 <context>
@@ -3607,7 +3607,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>สปอร์ตไลท์</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>

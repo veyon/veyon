@@ -2539,7 +2539,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Secuencia de clave de inicio de sesión</translation>
     </message>
 </context>
 <context>

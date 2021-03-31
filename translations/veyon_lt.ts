@@ -1086,7 +1086,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Nerastas numatytasis tinklo objiektų plėtinys. Patikrinkite savo instaliaciją arba nustatykite kitą tinklo objektų katalogą panaudojant %1 konfigūratorių.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1098,7 +1098,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Negalima nustatyti kompiuterio vietos. Tai galėjo įvykti dėl problemos su sistemos konfigūracija. Visos vietos bus nurodytos kompiuterio pasirinkimo lange.</translation>
     </message>
 </context>
 <context>
@@ -1129,18 +1129,18 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma įrašyti kompiuterio ir vartotojų sąrašo į %1! Patikrinkite failo prieigos teises.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytkite esamą konfigūraciją kurią norite importuoti.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite tinkamą failo vardą eksportuojamai konfigūracijai.</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
@@ -1148,7 +1148,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>Nurodyta vertė neegzistuoja esamoje konfigūracijoje</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
@@ -1172,11 +1172,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti Veyon konfigūraciją sistemos lygmeniu.</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti visus konfigūracijos parametrus.</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
@@ -1188,46 +1188,46 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>Nuskaityti ir išvesti konfigūracijos vertę pasirinktam parametrui.</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Įrašyti nurodytą vertę pasirinktam parametrui.</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Atstatyti (pašalinti) pasirinktą parametrą.</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Komandos skirtos valdyti Veyon konfigūraciją</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinti ir išsaugoti programos ir plėtinių konfigūraciją.</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>Negalima pakeisti automatinio paleidimo parametro %1 servisui.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>Negalima pakeisti ugniasienės (firewall) konfigūracijos serveriui: %1</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti ugniasienės konfigūracijos darbuotojui: %1</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Konfigūracija nėra įrašoma. Patikrinkite konfigūracijos prieigos teises</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pritaikyti konfigūracijos parametrų specifinei platformai.</translation>
     </message>
 </context>
 <context>
@@ -1292,7 +1292,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Šiame rėžime jūsų ekranas bus demonstruojamas lange visiems kompiuteriams. Vartotojai gali perjungti langus pagal poreikį.</translation>
     </message>
     <message>
         <source>Demo</source>
@@ -1332,7 +1332,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Šiame režime bus rodomas pasirinkto vartotojo ekranas visiems vartotojams lange. Vartotojai gali perjungti į kitus langus pagal poreikį.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
@@ -1348,7 +1348,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Ekranas %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1548,11 +1548,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Paskirties vieta</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Numatytoji pradinė failų vieta.</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1560,11 +1560,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Atsiminti paskutinę šakninę direktoriją.</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Sukurti paskirties direktoriją jeigu ji neegistuoja.</translation>
     </message>
 </context>
 <context>
@@ -1799,7 +1799,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Nevaldomas VNC serveris.</translation>
     </message>
 </context>
 <context>

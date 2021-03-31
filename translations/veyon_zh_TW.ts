@@ -1033,7 +1033,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation>無法連線 Veyon 伺服器或未執行</translation>
+        <translation>Veyon 伺服器無法存取或未執行</translation>
     </message>
     <message>
         <source>[no user]</source>
@@ -2537,7 +2537,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>登入金鑰序列</translation>
     </message>
 </context>
 <context>
