@@ -62,83 +62,234 @@
      <property name="title">
       <string>Conditions</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout" columnstretch="0,1,0,1">
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="isAtLocationCheckBox">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="4">
-       <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
-        <property name="text">
-         <string>Accessing computer is localhost</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0" colspan="4">
-       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is already connected</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QComboBox" name="groupsComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="editable">
-         <bool>true</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="isAtLocationSubjectComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>is located at</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>is member of group</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="4">
-       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is logged on user</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="4">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0,2,1,0,2">
         <item>
-         <widget class="QCheckBox" name="isAuthenticatedViaMethodCheckBox">
+         <widget class="QCheckBox" name="isMemberOfGroup">
           <property name="text">
-           <string>Authenticated via method</string>
+           <string/>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="authenticationMethodsComboBox">
+         <widget class="QComboBox" name="isMemberOfGroupSubject">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsMemberOfGroup">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>is</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is not</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>member of group</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="groups">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,2,1,0,2">
+        <item>
+         <widget class="QCheckBox" name="isAtLocation">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="isAtLocationSubject">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsAtLocation">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>is</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is not</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>located at</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="locations">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,1">
+        <item>
+         <widget class="QCheckBox" name="hasCommonLocations">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Accessing computer and local computer</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertHasCommonLocations">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>are located</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>are not located</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>at the same location</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,1,1">
+        <item>
+         <widget class="QCheckBox" name="isLocalHostAccess">
+          <property name="text">
+           <string>Accessing computer</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsLocalHostAccess">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>is</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is not</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>localhost</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,2">
+        <item>
+         <widget class="QCheckBox" name="isAuthenticatedViaMethod">
+          <property name="text">
+           <string>Accessing user</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsAuthenticatedViaMethod">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>is</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is not</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>authenticated via</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="authenticationMethods">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -146,34 +297,166 @@
         </item>
        </layout>
       </item>
-      <item row="2" column="3">
-       <widget class="QComboBox" name="locationsComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="editable">
-         <bool>true</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
-        </property>
-       </widget>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1,1">
+        <item>
+         <widget class="QCheckBox" name="hasCommonGroups">
+          <property name="text">
+           <string>Accessing user</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertHasCommonGroups">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>has one or more</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>has no</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>groups in common with user being accessed</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="8" column="0" colspan="4">
-       <widget class="QCheckBox" name="noUserLoggedInLocallyCheckBox">
-        <property name="text">
-         <string>No user logged in locally</string>
-        </property>
-       </widget>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1,1">
+        <item>
+         <widget class="QCheckBox" name="isSameUserAccess">
+          <property name="text">
+           <string>Accessing user</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsSameUserAccess">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <item>
+           <property name="text">
+            <string>equals</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is different from</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>user being accessed</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="5" column="0" colspan="4">
-       <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
-        <property name="text">
-         <string>Accessing user has one or more groups in common with local (logged on) user</string>
-        </property>
-       </widget>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0,1,1">
+        <item>
+         <widget class="QCheckBox" name="isUserConnected">
+          <property name="text">
+           <string>Accessing user</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsUserConnected">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>is already</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is not</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>connected</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="10" column="0" colspan="4">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,1">
+        <item>
+         <widget class="QCheckBox" name="isNoUserLoggedInLocally"/>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsNoUserLoggedInLocally">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>No user is logged in locally</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>One or multiple users are logged in locally</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,1">
+        <item>
+         <widget class="QCheckBox" name="isNoUserLoggedInRemotely"/>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsNoUserLoggedInRemotely">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>No user is logged in remotely</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>One or multiple users are logged in remotely</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -185,43 +468,6 @@
         </property>
         <property name="wordWrap">
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="isMemberOfGroupSubjectComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="4">
-       <widget class="QCheckBox" name="hasCommonLocationsCheckBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Accessing computer and local computer are at the same location</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0" colspan="4">
-       <widget class="QCheckBox" name="noUserLoggedInRemotelyCheckBox">
-        <property name="text">
-         <string>No user logged in remotely</string>
         </property>
        </widget>
       </item>
@@ -300,21 +546,31 @@
   <tabstop>ruleDescriptionLineEdit</tabstop>
   <tabstop>ignoreConditionsCheckBox</tabstop>
   <tabstop>invertConditionsCheckBox</tabstop>
-  <tabstop>isAuthenticatedViaMethodCheckBox</tabstop>
-  <tabstop>authenticationMethodsComboBox</tabstop>
-  <tabstop>isMemberOfGroupCheckBox</tabstop>
-  <tabstop>isMemberOfGroupSubjectComboBox</tabstop>
-  <tabstop>groupsComboBox</tabstop>
-  <tabstop>isAtLocationCheckBox</tabstop>
-  <tabstop>isAtLocationSubjectComboBox</tabstop>
-  <tabstop>locationsComboBox</tabstop>
-  <tabstop>hasCommonLocationsCheckBox</tabstop>
-  <tabstop>isLocalHostAccessCheckBox</tabstop>
-  <tabstop>hasCommonGroupsCheckBox</tabstop>
-  <tabstop>isLocalUserAccessCheckBox</tabstop>
-  <tabstop>isSameUserAccessCheckBox</tabstop>
-  <tabstop>noUserLoggedInLocallyCheckBox</tabstop>
-  <tabstop>noUserLoggedInRemotelyCheckBox</tabstop>
+  <tabstop>isMemberOfGroup</tabstop>
+  <tabstop>isMemberOfGroupSubject</tabstop>
+  <tabstop>invertIsMemberOfGroup</tabstop>
+  <tabstop>groups</tabstop>
+  <tabstop>isAtLocation</tabstop>
+  <tabstop>isAtLocationSubject</tabstop>
+  <tabstop>invertIsAtLocation</tabstop>
+  <tabstop>locations</tabstop>
+  <tabstop>hasCommonLocations</tabstop>
+  <tabstop>invertHasCommonLocations</tabstop>
+  <tabstop>isLocalHostAccess</tabstop>
+  <tabstop>invertIsLocalHostAccess</tabstop>
+  <tabstop>isAuthenticatedViaMethod</tabstop>
+  <tabstop>invertIsAuthenticatedViaMethod</tabstop>
+  <tabstop>authenticationMethods</tabstop>
+  <tabstop>hasCommonGroups</tabstop>
+  <tabstop>invertHasCommonGroups</tabstop>
+  <tabstop>isSameUserAccess</tabstop>
+  <tabstop>invertIsSameUserAccess</tabstop>
+  <tabstop>isUserConnected</tabstop>
+  <tabstop>invertIsUserConnected</tabstop>
+  <tabstop>isNoUserLoggedInLocally</tabstop>
+  <tabstop>invertIsNoUserLoggedInLocally</tabstop>
+  <tabstop>isNoUserLoggedInRemotely</tabstop>
+  <tabstop>invertIsNoUserLoggedInRemotely</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
   <tabstop>actionAskForPermissionRadioButton</tabstop>
@@ -355,9 +611,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isMemberOfGroupCheckBox</sender>
+   <sender>isMemberOfGroup</sender>
    <signal>toggled(bool)</signal>
-   <receiver>groupsComboBox</receiver>
+   <receiver>groups</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -371,9 +627,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isAtLocationCheckBox</sender>
+   <sender>isAtLocation</sender>
    <signal>toggled(bool)</signal>
-   <receiver>locationsComboBox</receiver>
+   <receiver>locations</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -387,9 +643,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isMemberOfGroupCheckBox</sender>
+   <sender>isMemberOfGroup</sender>
    <signal>toggled(bool)</signal>
-   <receiver>isMemberOfGroupSubjectComboBox</receiver>
+   <receiver>isMemberOfGroupSubject</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -403,9 +659,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isAtLocationCheckBox</sender>
+   <sender>isAtLocation</sender>
    <signal>toggled(bool)</signal>
-   <receiver>isAtLocationSubjectComboBox</receiver>
+   <receiver>isAtLocationSubject</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -451,9 +707,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isAuthenticatedViaMethodCheckBox</sender>
+   <sender>isAuthenticatedViaMethod</sender>
    <signal>toggled(bool)</signal>
-   <receiver>authenticationMethodsComboBox</receiver>
+   <receiver>authenticationMethods</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -463,6 +719,166 @@
     <hint type="destinationlabel">
      <x>665</x>
      <y>306</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isMemberOfGroup</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsMemberOfGroup</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>307</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>408</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isAtLocation</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsAtLocation</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>352</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>444</x>
+     <y>352</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hasCommonLocations</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertHasCommonLocations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>397</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>550</x>
+     <y>397</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLocalHostAccess</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsLocalHostAccess</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>442</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isAuthenticatedViaMethod</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsAuthenticatedViaMethod</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>487</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>294</x>
+     <y>487</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hasCommonGroups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertHasCommonGroups</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>532</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>381</x>
+     <y>532</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isSameUserAccess</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsSameUserAccess</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>381</x>
+     <y>577</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isUserConnected</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsUserConnected</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>622</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>381</x>
+     <y>622</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isNoUserLoggedInLocally</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsNoUserLoggedInLocally</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>667</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>492</x>
+     <y>667</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isNoUserLoggedInRemotely</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsNoUserLoggedInRemotely</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>712</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>492</x>
+     <y>712</y>
     </hint>
    </hints>
   </connection>

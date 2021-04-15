@@ -48,25 +48,25 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	{
 		if( it.value().isEmpty() == false )
 		{
-			ui->authenticationMethodsComboBox->addItem( it.value(), it.key() );
+			ui->authenticationMethods->addItem( it.value(), it.key() );
 		}
 	}
 
 	// populate user subject combobox
-	ui->isMemberOfGroupSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::AccessingUser],
+	ui->isMemberOfGroupSubject->addItem( m_subjectNameMap[AccessControlRule::Subject::AccessingUser],
 			static_cast<int>( AccessControlRule::Subject::AccessingUser ) );
-	ui->isMemberOfGroupSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::LocalUser],
+	ui->isMemberOfGroupSubject->addItem( m_subjectNameMap[AccessControlRule::Subject::LocalUser],
 			static_cast<int>( AccessControlRule::Subject::LocalUser ) );
 
 	// populate computer subject comboboxes
-	ui->isAtLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::AccessingComputer],
+	ui->isAtLocationSubject->addItem( m_subjectNameMap[AccessControlRule::Subject::AccessingComputer],
 			static_cast<int>( AccessControlRule::Subject::AccessingComputer ) );
-	ui->isAtLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::LocalComputer],
+	ui->isAtLocationSubject->addItem( m_subjectNameMap[AccessControlRule::Subject::LocalComputer],
 			static_cast<int>( AccessControlRule::Subject::LocalComputer ) );
 
 	// populate groups and locations comboboxes
-	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
-	ui->locationsComboBox->addItems( accessControlProvider.locations() );
+	ui->groups->addItems( accessControlProvider.userGroups() );
+	ui->locations->addItems( accessControlProvider.locations() );
 
 	// load general settings
 	ui->ruleNameLineEdit->setText( rule.name() );
@@ -74,29 +74,38 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 
 	// load general condition processing settings
 	ui->ignoreConditionsCheckBox->setChecked( rule.areConditionsIgnored() );
-	ui->invertConditionsCheckBox->setChecked( rule.areConditionsInverted() );
+	ui->invertConditionsCheckBox->setChecked( rule.areAllConditionsInverted() );
 
 	// load condition states
-	ui->isAuthenticatedViaMethodCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AuthenticationMethod ) );
-	ui->isMemberOfGroupCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup ) );
-	ui->hasCommonGroupsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::GroupsInCommon ) );
-	ui->isAtLocationCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::LocatedAt ) );
-	ui->hasCommonLocationsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::SameLocation ) );
-	ui->isLocalHostAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost ) );
-	ui->isLocalUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalUser ) );
-	ui->isSameUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser ) );
-	ui->noUserLoggedInLocallyCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInLocally ) );
-	ui->noUserLoggedInRemotelyCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInRemotely ) );
+	const auto loadCondition = [&rule]( QCheckBox* checkBox,
+												QComboBox* comboBox,
+												AccessControlRule::Condition condition )
+	{
+		checkBox->setChecked( rule.isConditionEnabled( condition ) );
+		comboBox->setCurrentIndex( rule.isConditionInverted( condition ) ? 1 : 0 );
+	};
+
+	// load condition settings
+	loadCondition ( ui->isAuthenticatedViaMethod, ui->invertIsAuthenticatedViaMethod, AccessControlRule::Condition::AuthenticationMethod );
+	loadCondition ( ui->isMemberOfGroup, ui->invertIsMemberOfGroup, AccessControlRule::Condition::MemberOfGroup );
+	loadCondition ( ui->hasCommonGroups, ui->invertHasCommonGroups, AccessControlRule::Condition::GroupsInCommon );
+	loadCondition ( ui->isAtLocation, ui->invertIsAtLocation, AccessControlRule::Condition::LocatedAt );
+	loadCondition ( ui->hasCommonLocations, ui->invertHasCommonLocations, AccessControlRule::Condition::LocationsInCommon );
+	loadCondition ( ui->isLocalHostAccess, ui->invertIsLocalHostAccess, AccessControlRule::Condition::AccessFromLocalHost );
+	loadCondition ( ui->isSameUserAccess, ui->invertIsSameUserAccess, AccessControlRule::Condition::AccessFromSameUser );
+	loadCondition ( ui->isUserConnected, ui->invertIsUserConnected, AccessControlRule::Condition::AccessFromAlreadyConnectedUser );
+	loadCondition ( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
+	loadCondition ( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
 
 	// load selected condition subjects
-	ui->isMemberOfGroupSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::MemberOfUserGroup ) ) );
-	ui->isAtLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::LocatedAt ) ) );
+	ui->isMemberOfGroupSubject->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::MemberOfGroup ) ) );
+	ui->isAtLocationSubject->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::LocatedAt ) ) );
 
 	// load condition arguments
-	ui->authenticationMethodsComboBox->setCurrentText( authenticationMethods.value(
+	ui->authenticationMethods->setCurrentText( authenticationMethods.value(
 		Plugin::Uid{ rule.argument( AccessControlRule::Condition::AuthenticationMethod ) } ) );
-	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::MemberOfUserGroup ) );
-	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::LocatedAt ) );
+	ui->groups->setCurrentText( rule.argument( AccessControlRule::Condition::MemberOfGroup ) );
+	ui->locations->setCurrentText( rule.argument( AccessControlRule::Condition::LocatedAt ) );
 
 	// load action
 	ui->actionNoneRadioButton->setChecked( rule.action() == AccessControlRule::Action::None );
@@ -122,56 +131,48 @@ void AccessControlRuleEditDialog::accept()
 
 	// save general condition processing settings
 	m_rule.setConditionsIgnored( ui->ignoreConditionsCheckBox->isChecked() );
-	m_rule.setConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
+	m_rule.setAllConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
 
 	// save conditions
 	m_rule.clearParameters();
 
+	const auto saveCondition = [this]( QCheckBox* checkBox,
+										QComboBox* comboBox,
+										AccessControlRule::Condition condition )
+	{
+		m_rule.setConditionEnabled( condition, checkBox->isChecked() );
+		m_rule.setConditionInverted( condition, comboBox->currentIndex() > 0 );
+	};
+
 	// authentication method
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AuthenticationMethod,
-								ui->isAuthenticatedViaMethodCheckBox->isChecked() );
+	saveCondition( ui->isAuthenticatedViaMethod, ui->invertIsAuthenticatedViaMethod, AccessControlRule::Condition::AuthenticationMethod );
 	m_rule.setArgument( AccessControlRule::Condition::AuthenticationMethod,
-						VeyonCore::formattedUuid( ui->authenticationMethodsComboBox->currentData().toUuid() ) );
+						VeyonCore::formattedUuid( ui->authenticationMethods->currentData().toUuid() ) );
 
 	// member of user group
-	m_rule.setConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup,
-								ui->isMemberOfGroupCheckBox->isChecked() );
-	m_rule.setSubject( AccessControlRule::Condition::MemberOfUserGroup,
-					   m_subjectNameMap.key( ui->isMemberOfGroupSubjectComboBox->currentText() ) );
-	m_rule.setArgument( AccessControlRule::Condition::MemberOfUserGroup,
-						ui->groupsComboBox->currentText() );
+	saveCondition( ui->isMemberOfGroup, ui->invertIsMemberOfGroup, AccessControlRule::Condition::MemberOfGroup );
+	m_rule.setSubject( AccessControlRule::Condition::MemberOfGroup,
+					   m_subjectNameMap.key( ui->isMemberOfGroupSubject->currentText() ) );
+	m_rule.setArgument( AccessControlRule::Condition::MemberOfGroup, ui->groups->currentText() );
 
 	// common groups
-	m_rule.setConditionEnabled( AccessControlRule::Condition::GroupsInCommon,
-								ui->hasCommonGroupsCheckBox->isChecked() );
+	saveCondition( ui->hasCommonGroups, ui->invertHasCommonGroups, AccessControlRule::Condition::GroupsInCommon );
 
 	// located at
-	m_rule.setConditionEnabled( AccessControlRule::Condition::LocatedAt,
-								ui->isAtLocationCheckBox->isChecked() );
+	saveCondition( ui->isAtLocation, ui->invertIsAtLocation, AccessControlRule::Condition::LocatedAt );
 	m_rule.setSubject( AccessControlRule::Condition::LocatedAt,
-					   m_subjectNameMap.key( ui->isAtLocationSubjectComboBox->currentText() ) );
-	m_rule.setArgument( AccessControlRule::Condition::LocatedAt,
-						ui->locationsComboBox->currentText() );
+					   m_subjectNameMap.key( ui->isAtLocationSubject->currentText() ) );
+	m_rule.setArgument( AccessControlRule::Condition::LocatedAt, ui->locations->currentText() );
 
 	// same location
-	m_rule.setConditionEnabled( AccessControlRule::Condition::SameLocation,
-								ui->hasCommonLocationsCheckBox->isChecked() );
+	saveCondition( ui->hasCommonLocations, ui->invertHasCommonLocations, AccessControlRule::Condition::LocationsInCommon );
 
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost,
-								ui->isLocalHostAccessCheckBox->isChecked() );
+	saveCondition( ui->isLocalHostAccess, ui->invertIsLocalHostAccess, AccessControlRule::Condition::AccessFromLocalHost );
+	saveCondition( ui->isSameUserAccess, ui->invertIsSameUserAccess, AccessControlRule::Condition::AccessFromSameUser );
+	saveCondition( ui->isUserConnected, ui->invertIsUserConnected, AccessControlRule::Condition::AccessFromAlreadyConnectedUser );
 
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AccessFromLocalUser,
-								ui->isLocalUserAccessCheckBox->isChecked() );
-
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser,
-								ui->isSameUserAccessCheckBox->isChecked() );
-
-	m_rule.setConditionEnabled( AccessControlRule::Condition::NoUserLoggedInLocally,
-								ui->noUserLoggedInLocallyCheckBox->isChecked() );
-
-	m_rule.setConditionEnabled( AccessControlRule::Condition::NoUserLoggedInRemotely,
-								ui->noUserLoggedInRemotelyCheckBox->isChecked() );
-
+	saveCondition( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
+	saveCondition( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
 
 	// save action
 	if( ui->actionAllowRadioButton->isChecked() )

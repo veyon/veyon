@@ -47,12 +47,12 @@ public:
 	enum class Condition
 	{
 		None,
-		MemberOfUserGroup,
+		MemberOfGroup,
 		GroupsInCommon,
 		LocatedAt,
-		SameLocation,
+		LocationsInCommon,
 		AccessFromLocalHost,
-		AccessFromLocalUser,
+		AccessFromSameUser,
 		AccessFromAlreadyConnectedUser,
 		NoUserLoggedInLocally,
 		NoUserLoggedInRemotely,
@@ -77,6 +77,7 @@ public:
 	struct ConditionParameters
 	{
 		bool enabled{false};
+		bool inverted{false};
 		Subject subject{Subject::None};
 		ConditionArgument argument;
 	};
@@ -147,12 +148,12 @@ public:
 		m_ignoreConditions = ignored;
 	}
 
-	bool areConditionsInverted() const
+	bool areAllConditionsInverted() const
 	{
 		return m_invertConditions;
 	}
 
-	void setConditionsInverted( bool inverted )
+	void setAllConditionsInverted( bool inverted )
 	{
 		m_invertConditions = inverted;
 	}
@@ -165,6 +166,16 @@ public:
 	void setConditionEnabled( Condition condition, bool enabled )
 	{
 		m_parameters[condition].enabled = enabled;
+	}
+
+	bool isConditionInverted( Condition condition ) const
+	{
+		return m_parameters.value( condition ).inverted;
+	}
+
+	void setConditionInverted( Condition condition, bool inverted )
+	{
+		m_parameters[condition].inverted = inverted;
 	}
 
 	ConditionArgument argument( Condition condition ) const

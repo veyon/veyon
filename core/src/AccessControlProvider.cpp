@@ -350,18 +350,14 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 											 const QString& localUser, const QString& localComputer,
 											 const QStringList& connectedUsers, Plugin::Uid authMethodUid ) const
 {
-	bool hasConditions = false;
+	vDebug() << rule.toJson();
 
-	// normally all selected conditions have to match in order to make the whole rule match
-	// if conditions should be inverted (i.e. "is member of" is to be interpreted as "is NOT member of")
-	// we have to check against the opposite boolean value
-	bool matchResult = rule.areConditionsInverted() == false;
-
-	vDebug() << rule.toJson() << matchResult;
+	AccessControlRule::Condition condition{AccessControlRule::Condition::None};
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AuthenticationMethod ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::AuthenticationMethod;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		const auto allowedAuthMethod = Plugin::Uid( rule.argument( AccessControlRule::Condition::AuthenticationMethod ) );
 		if( authMethodUid.isNull() ||
@@ -372,11 +368,12 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfGroup ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::MemberOfGroup;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		const auto condition = AccessControlRule::Condition::MemberOfUserGroup;
+		const auto condition = AccessControlRule::Condition::MemberOfGroup;
 		const auto user = lookupSubject( rule.subject( condition ), accessingUser, {}, localUser, {} );
 		const auto group = rule.argument( condition );
 
@@ -389,7 +386,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::GroupsInCommon ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::GroupsInCommon;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( accessingUser.isEmpty() || localUser.isEmpty() ||
 			haveGroupsInCommon( accessingUser, localUser ) != matchResult )
@@ -400,9 +398,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::LocatedAt ) )
 	{
-		hasConditions = true;
-
-		const auto condition = AccessControlRule::Condition::LocatedAt;
+		condition = AccessControlRule::Condition::LocatedAt;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 		const auto computer = lookupSubject( rule.subject( condition ), {}, accessingComputer, {}, localComputer );
 		const auto location = rule.argument( condition );
 
@@ -413,9 +410,10 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::Condition::SameLocation ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::LocationsInCommon ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::LocationsInCommon;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( accessingComputer.isEmpty() || localComputer.isEmpty() ||
 			haveSameLocations( accessingComputer, localComputer ) != matchResult )
@@ -426,7 +424,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::AccessFromLocalHost;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( isLocalHost( accessingComputer ) != matchResult )
 		{
@@ -434,9 +433,10 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalUser ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromSameUser ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::AccessFromSameUser;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( isLocalUser( accessingUser, localUser ) != matchResult )
 		{
@@ -446,7 +446,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::AccessFromAlreadyConnectedUser;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( connectedUsers.contains( accessingUser ) != matchResult )
 		{
@@ -456,7 +457,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInLocally ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::NoUserLoggedInLocally;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( isNoUserLoggedInLocally() != matchResult )
 		{
@@ -466,7 +468,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInRemotely ) )
 	{
-		hasConditions = true;
+		condition = AccessControlRule::Condition::NoUserLoggedInRemotely;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( isNoUserLoggedInRemotely() != matchResult )
 		{
@@ -475,7 +478,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	}
 
 	// do not match the rule if no conditions are set at all
-	if( hasConditions == false )
+	if( condition == AccessControlRule::Condition::None )
 	{
 		return false;
 	}
