@@ -28,7 +28,6 @@
 
 #define FOREACH_LINUX_PLATFORM_CONFIG_PROPERTY(OP) \
 	OP( LinuxPlatformConfiguration, m_configuration, QString, pamServiceName, setPamServiceName, "PamServiceName", "Linux", QString(), Configuration::Property::Flag::Advanced ) \
-	OP( LinuxPlatformConfiguration, m_configuration, QString, displayManagerUsers, setDisplayManagerUsers, "DisplayManagerUsers", "Linux", QStringLiteral("gdm,lightdm,sddm,mdm,Debian-gdm"), Configuration::Property::Flag::Advanced ) \
 	OP( LinuxPlatformConfiguration, m_configuration, int, minimumUserSessionLifetime, setMinimumUserSessionLifetime, "MinimumUserSessionLifetime", "Linux", 3, Configuration::Property::Flag::Advanced ) \
 	OP( LinuxPlatformConfiguration, m_configuration, QString, userLoginKeySequence, setUserLoginKeySequence, "UserLoginKeySequence", "Linux", QStringLiteral("%username%<Tab>%password%<Return>"), Configuration::Property::Flag::Advanced ) \
 
