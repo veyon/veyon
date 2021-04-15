@@ -104,4 +104,7 @@ public:
 		return QStringLiteral("XDG_SESSION_ID");
 	}
 
+	static bool isOpen( const QString& session );
+	static bool isGraphical( const QString& session );
+
 };

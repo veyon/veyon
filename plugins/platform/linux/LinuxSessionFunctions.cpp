@@ -276,3 +276,24 @@ QStringList LinuxSessionFunctions::listSessions()
 
 	return sessions;
 }
+
+
+
+bool LinuxSessionFunctions::isOpen( const QString& session )
+{
+	const auto state = getSessionState( session );
+
+	return state == State::Active ||
+		   state == State::Online ||
+		   state == State::Opening;
+}
+
+
+bool LinuxSessionFunctions::isGraphical( const QString& session )
+{
+	const auto type = getSessionType( session );
+
+	return type == Type::X11 ||
+		   type == Type::Wayland ||
+		   type == Type::Mir;
+}
