@@ -69,6 +69,16 @@ public:
 	};
 	Q_ENUM(Class)
 
+	enum class Type
+	{
+		Unspecified,
+		TTY,
+		X11,
+		Mir,
+		Wayland
+	};
+	Q_ENUM(Type)
+
 	SessionId currentSessionId() override;
 
 	QString currentSessionType() const override;
@@ -80,7 +90,7 @@ public:
 	static int getSessionLeaderPid( const QString& session );
 	static qint64 getSessionUptimeSeconds( const QString& session );
 	static Class getSessionClass( const QString& session );
-	static QString getSessionType( const QString& session );
+	static Type getSessionType( const QString& session );
 	static QString getSessionId( const QString& session );
 	static State getSessionState( const QString& session );
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );

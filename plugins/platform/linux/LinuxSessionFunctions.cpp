@@ -117,9 +117,27 @@ LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass( const QStri
 
 
 
-QString LinuxSessionFunctions::getSessionType( const QString& session )
+LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString& session )
 {
-	return getSessionProperty( session, QStringLiteral("Type") ).toString();
+	const auto type = getSessionProperty( session, QStringLiteral("Type") ).toString();
+	if( type == QLatin1String("tty") )
+	{
+		return Type::TTY;
+	}
+	else if( type == QLatin1String("x11") )
+	{
+		return Type::X11;
+	}
+	else if( type == QLatin1String("mir") )
+	{
+		return Type::Mir;
+	}
+	else if( type == QLatin1String("wayland") )
+	{
+		return Type::Wayland;
+	}
+
+	return Type::Unspecified;
 }
 
 
@@ -139,7 +157,7 @@ LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QStri
 		{ QStringLiteral("online"), State::Online },
 		{ QStringLiteral("active"), State::Active },
 		{ QStringLiteral("opening"), State::Opening },
-		{ QStringLiteral("closing"), State::Closing },
+		{ QStringLiteral("closing"), State::Closing }
 	};
 
 	const auto stateString = getSessionProperty( session, QStringLiteral("State") ).toString();
@@ -212,7 +230,7 @@ QString LinuxSessionFunctions::currentSessionType() const
 		return QStringLiteral("x11");
 	}
 
-	return getSessionType( currentSessionPath() );
+	return getSessionProperty( currentSessionPath(), QStringLiteral("Type") ).toString();
 }
 
 
