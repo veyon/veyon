@@ -73,6 +73,8 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 		}
 	}
 
+	WTSFreeMemory( sessions );
+
 	return sessionList;
 }
 
