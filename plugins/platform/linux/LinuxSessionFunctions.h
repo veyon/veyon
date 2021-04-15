@@ -64,6 +64,8 @@ public:
 
 	QString currentSessionType() const override;
 
+	static QStringList listSessions();
+
 	static QVariant getSessionProperty( const QString& session, const QString& property );
 
 	static int getSessionLeaderPid( const QString& session );
