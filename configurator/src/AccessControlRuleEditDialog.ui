@@ -63,27 +63,24 @@
       <string>Conditions</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" columnstretch="0,1,0,1">
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="isAtLocationCheckBox">
         <property name="text">
          <string/>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="isMemberOfGroupSubjectComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
+      <item row="4" column="0" colspan="4">
+       <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
+        <property name="text">
+         <string>Accessing computer is localhost</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="label_2">
+      <item row="7" column="0" colspan="4">
+       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
         <property name="text">
-         <string>is member of group</string>
+         <string>Accessing user is already connected</string>
         </property>
        </widget>
       </item>
@@ -97,13 +94,6 @@
         </property>
         <property name="sizeAdjustPolicy">
          <enum>QComboBox::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="isAtLocationCheckBox">
-        <property name="text">
-         <string/>
         </property>
        </widget>
       </item>
@@ -124,51 +114,17 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="QComboBox" name="locationsComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="editable">
-         <bool>true</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>is member of group</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="4">
-       <widget class="QCheckBox" name="hasCommonLocationsCheckBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+      <item row="6" column="0" colspan="4">
+       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
         <property name="text">
-         <string>Accessing computer and local computer are at the same location</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0" colspan="4">
-       <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
-        <property name="text">
-         <string>Accessing user has one or more groups in common with local (logged on) user</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0" colspan="4">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <italic>true</italic>
-         </font>
-        </property>
-        <property name="text">
-         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
+         <string>Accessing user is logged on user</string>
         </property>
        </widget>
       </item>
@@ -190,24 +146,16 @@
         </item>
        </layout>
       </item>
-      <item row="4" column="0" colspan="4">
-       <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
-        <property name="text">
-         <string>Accessing computer is localhost</string>
+      <item row="2" column="3">
+       <widget class="QComboBox" name="locationsComboBox">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="4">
-       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is logged on user</string>
+        <property name="editable">
+         <bool>true</bool>
         </property>
-       </widget>
-      </item>
-      <item row="7" column="0" colspan="4">
-       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is already connected</string>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
         </property>
        </widget>
       </item>
@@ -215,6 +163,65 @@
        <widget class="QCheckBox" name="noUserLoggedInLocallyCheckBox">
         <property name="text">
          <string>No user logged in locally</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="4">
+       <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
+        <property name="text">
+         <string>Accessing user has one or more groups in common with local (logged on) user</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0" colspan="4">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="isMemberOfGroupSubjectComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="4">
+       <widget class="QCheckBox" name="hasCommonLocationsCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Accessing computer and local computer are at the same location</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0" colspan="4">
+       <widget class="QCheckBox" name="noUserLoggedInRemotelyCheckBox">
+        <property name="text">
+         <string>No user logged in remotely</string>
         </property>
        </widget>
       </item>
@@ -307,6 +314,7 @@
   <tabstop>isLocalUserAccessCheckBox</tabstop>
   <tabstop>isSameUserAccessCheckBox</tabstop>
   <tabstop>noUserLoggedInLocallyCheckBox</tabstop>
+  <tabstop>noUserLoggedInRemotelyCheckBox</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
   <tabstop>actionAskForPermissionRadioButton</tabstop>

@@ -68,6 +68,7 @@ private:
 	bool isLocalHost( const QString& accessingComputer ) const;
 	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
 	bool isNoUserLoggedInLocally() const;
+	bool isNoUserLoggedInRemotely() const;
 
 	QString lookupSubject( AccessControlRule::Subject subject,
 						   const QString& accessingUser, const QString& accessingComputer,

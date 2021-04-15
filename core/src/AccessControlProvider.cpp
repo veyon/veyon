@@ -320,6 +320,13 @@ bool AccessControlProvider::isNoUserLoggedInLocally() const
 
 
 
+bool AccessControlProvider::isNoUserLoggedInRemotely() const
+{
+	return VeyonCore::platform().userFunctions().isAnyUserLoggedInRemotely() == false;
+}
+
+
+
 QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject,
 											  const QString &accessingUser, const QString &accessingComputer,
 											  const QString &localUser, const QString &localComputer ) const
@@ -452,6 +459,16 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		hasConditions = true;
 
 		if( isNoUserLoggedInLocally() != matchResult )
+		{
+			return false;
+		}
+	}
+
+	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInRemotely ) )
+	{
+		hasConditions = true;
+
+		if( isNoUserLoggedInRemotely() != matchResult )
 		{
 			return false;
 		}
