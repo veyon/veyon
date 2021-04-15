@@ -50,3 +50,10 @@ QString WindowsSessionFunctions::currentSessionType() const
 
 	return QStringLiteral("rdp");
 }
+
+
+
+bool WindowsSessionFunctions::currentSessionIsRemote() const
+{
+	return WtsSessionManager::isRemote( WtsSessionManager::currentSession() );
+}

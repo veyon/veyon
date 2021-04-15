@@ -235,6 +235,13 @@ QString LinuxSessionFunctions::currentSessionType() const
 
 
 
+bool LinuxSessionFunctions::currentSessionIsRemote() const
+{
+	return isRemote( currentSessionPath() );
+}
+
+
+
 QString LinuxSessionFunctions::currentSessionPath()
 {
 	const auto xdgSessionId = QProcessEnvironment::systemEnvironment().value( xdgSessionIdEnvVarName() );
