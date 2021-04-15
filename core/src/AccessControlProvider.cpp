@@ -33,6 +33,7 @@
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "PlatformPluginInterface.h"
+#include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
 
 
@@ -450,6 +451,17 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( connectedUsers.contains( accessingUser ) != matchResult )
+		{
+			return false;
+		}
+	}
+
+	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessedUserLoggedInLocally ) )
+	{
+		condition = AccessControlRule::Condition::AccessedUserLoggedInLocally;
+		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
+
+		if( VeyonCore::platform().sessionFunctions().currentSessionIsRemote() != matchResult )
 		{
 			return false;
 		}

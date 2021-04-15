@@ -56,6 +56,7 @@ public:
 		AccessFromAlreadyConnectedUser,
 		NoUserLoggedInLocally,
 		NoUserLoggedInRemotely,
+		AccessedUserLoggedInLocally,
 		AuthenticationMethod
 	} ;
 

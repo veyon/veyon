@@ -94,6 +94,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	loadCondition ( ui->isLocalHostAccess, ui->invertIsLocalHostAccess, AccessControlRule::Condition::AccessFromLocalHost );
 	loadCondition ( ui->isSameUserAccess, ui->invertIsSameUserAccess, AccessControlRule::Condition::AccessFromSameUser );
 	loadCondition ( ui->isUserConnected, ui->invertIsUserConnected, AccessControlRule::Condition::AccessFromAlreadyConnectedUser );
+	loadCondition ( ui->isAccessedUserLoggedInLocally, ui->invertIsAccessedUserLoggedInLocally, AccessControlRule::Condition::AccessedUserLoggedInLocally );
 	loadCondition ( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
 	loadCondition ( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
 
@@ -170,6 +171,7 @@ void AccessControlRuleEditDialog::accept()
 	saveCondition( ui->isLocalHostAccess, ui->invertIsLocalHostAccess, AccessControlRule::Condition::AccessFromLocalHost );
 	saveCondition( ui->isSameUserAccess, ui->invertIsSameUserAccess, AccessControlRule::Condition::AccessFromSameUser );
 	saveCondition( ui->isUserConnected, ui->invertIsUserConnected, AccessControlRule::Condition::AccessFromAlreadyConnectedUser );
+	saveCondition( ui->isAccessedUserLoggedInLocally, ui->invertIsAccessedUserLoggedInLocally, AccessControlRule::Condition::AccessedUserLoggedInLocally );
 
 	saveCondition( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
 	saveCondition( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );

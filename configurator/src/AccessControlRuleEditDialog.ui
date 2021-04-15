@@ -409,6 +409,34 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="0,1">
+        <item>
+         <widget class="QCheckBox" name="isAccessedUserLoggedInLocally">
+          <property name="text">
+           <string>User being accessed</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsAccessedUserLoggedInLocally">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>is logged in locally</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>is logged in remotely</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,1">
         <item>
          <widget class="QCheckBox" name="isNoUserLoggedInLocally"/>
@@ -567,6 +595,8 @@
   <tabstop>invertIsSameUserAccess</tabstop>
   <tabstop>isUserConnected</tabstop>
   <tabstop>invertIsUserConnected</tabstop>
+  <tabstop>isAccessedUserLoggedInLocally</tabstop>
+  <tabstop>invertIsAccessedUserLoggedInLocally</tabstop>
   <tabstop>isNoUserLoggedInLocally</tabstop>
   <tabstop>invertIsNoUserLoggedInLocally</tabstop>
   <tabstop>isNoUserLoggedInRemotely</tabstop>
@@ -879,6 +909,22 @@
     <hint type="destinationlabel">
      <x>492</x>
      <y>712</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isAccessedUserLoggedInLocally</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsAccessedUserLoggedInLocally</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>137</x>
+     <y>665</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>665</y>
     </hint>
    </hints>
   </connection>
