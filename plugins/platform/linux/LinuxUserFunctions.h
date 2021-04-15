@@ -51,7 +51,6 @@ public:
 	static uid_t userIdFromName( const QString& username );
 
 private:
-	static constexpr auto WhoProcessTimeout = 3000;
 	static constexpr auto AuthHelperTimeout = 10000;
 
 	LogonHelper m_logonHelper{};

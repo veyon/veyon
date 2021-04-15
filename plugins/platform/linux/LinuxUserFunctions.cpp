@@ -205,24 +205,12 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 
 bool LinuxUserFunctions::isAnyUserLoggedOn()
 {
-	QProcess whoProcess;
-	whoProcess.start( QStringLiteral("who"), QStringList{} );
-	whoProcess.waitForFinished( WhoProcessTimeout );
-
-	if( whoProcess.exitCode() != 0 )
+	const auto sessions = LinuxSessionFunctions::listSessions();
+	for( const auto& session : sessions )
 	{
-		return false;
-	}
-
-	const auto displayManagerUsers = LinuxPlatformConfiguration( &VeyonCore::config() ).displayManagerUsers().
-			split( QLatin1Char(',') );
-
-	const auto lines = whoProcess.readAll().split( '\n' );
-	for( const auto& line : lines )
-	{
-		const auto user = QString::fromUtf8( line.split( ' ' ).value( 0 ) );
-		if( user.isEmpty() == false &&
-			displayManagerUsers.contains( user ) == false )
+		if( LinuxSessionFunctions::isOpen( session ) &&
+			LinuxSessionFunctions::isGraphical( session ) &&
+			LinuxSessionFunctions::getSessionClass( session ) == LinuxSessionFunctions::Class::User )
 		{
 			return true;
 		}
