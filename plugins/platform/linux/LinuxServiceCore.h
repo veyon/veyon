@@ -61,8 +61,6 @@ private:
 
 	void checkSessionState( const QString& sessionPath );
 
-	QStringList listSessions();
-
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, QProcess *> m_serverProcesses;
 

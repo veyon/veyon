@@ -206,3 +206,34 @@ QString LinuxSessionFunctions::currentSessionPath()
 
 	return QStringLiteral("/org/freedesktop/login1/session/%1").arg( xdgSessionId );
 }
+
+
+
+QStringList LinuxSessionFunctions::listSessions()
+{
+	QStringList sessions;
+
+	const QDBusReply<QDBusArgument> reply = LinuxCoreFunctions::systemdLoginManager()->call( QStringLiteral("ListSessions") );
+
+	if( reply.isValid() )
+	{
+		const auto data = reply.value();
+
+		data.beginArray();
+		while( data.atEnd() == false )
+		{
+			LoginDBusSession session;
+
+			data.beginStructure();
+			data >> session.id >> session.uid >> session.name >> session.seatId >> session.path;
+			data.endStructure();
+
+			sessions.append( session.path.path() );
+		}
+		return sessions;
+	}
+
+	vCritical() << "Could not query sessions:" << reply.error().message();
+
+	return sessions;
+}

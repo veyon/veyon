@@ -58,7 +58,7 @@ LinuxServiceCore::~LinuxServiceCore()
 
 void LinuxServiceCore::run()
 {
-	const auto sessions = listSessions();
+	const auto sessions = LinuxSessionFunctions::listSessions();
 
 	for( const auto& s : sessions )
 	{
@@ -299,35 +299,3 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 		stopServer( sessionPath );
 	}
 }
-
-
-
-QStringList LinuxServiceCore::listSessions()
-{
-	QStringList sessions;
-
-	const QDBusReply<QDBusArgument> reply = m_loginManager->call( QStringLiteral("ListSessions") );
-
-	if( reply.isValid() )
-	{
-		const auto data = reply.value();
-
-		data.beginArray();
-		while( data.atEnd() == false )
-		{
-			LinuxSessionFunctions::LoginDBusSession session;
-
-			data.beginStructure();
-			data >> session.id >> session.uid >> session.name >> session.seatId >> session.path;
-			data.endStructure();
-
-			sessions.append( session.path.path() );
-		}
-		return sessions;
-	}
-
-	vCritical() << "Could not query sessions:" << reply.error().message();
-
-	return sessions;
-}
-
