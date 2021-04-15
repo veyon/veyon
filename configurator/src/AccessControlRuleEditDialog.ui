@@ -150,38 +150,10 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0" colspan="2">
-       <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
-        <property name="text">
-         <string>Accessing computer is localhost</string>
-        </property>
-       </widget>
-      </item>
       <item row="5" column="0" colspan="4">
        <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
         <property name="text">
          <string>Accessing user has one or more groups in common with local (logged on) user</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="2">
-       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is logged on user</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0" colspan="2">
-       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is already connected</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0" colspan="2">
-       <widget class="QCheckBox" name="noUserLoggedOnCheckBox">
-        <property name="text">
-         <string>No user logged on</string>
         </property>
        </widget>
       </item>
@@ -217,6 +189,34 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="4" column="0" colspan="4">
+       <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
+        <property name="text">
+         <string>Accessing computer is localhost</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="4">
+       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
+        <property name="text">
+         <string>Accessing user is logged on user</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="4">
+       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
+        <property name="text">
+         <string>Accessing user is already connected</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" colspan="4">
+       <widget class="QCheckBox" name="noUserLoggedOnCheckBox">
+        <property name="text">
+         <string>No user logged on</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
