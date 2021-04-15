@@ -203,13 +203,33 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 
 
 
-bool LinuxUserFunctions::isAnyUserLoggedOn()
+bool LinuxUserFunctions::isAnyUserLoggedInLocally()
 {
 	const auto sessions = LinuxSessionFunctions::listSessions();
 	for( const auto& session : sessions )
 	{
 		if( LinuxSessionFunctions::isOpen( session ) &&
 			LinuxSessionFunctions::isGraphical( session ) &&
+			LinuxSessionFunctions::isRemote( session ) == false &&
+			LinuxSessionFunctions::getSessionClass( session ) == LinuxSessionFunctions::Class::User )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+
+bool LinuxUserFunctions::isAnyUserLoggedInRemotely()
+{
+	const auto sessions = LinuxSessionFunctions::listSessions();
+	for( const auto& session : sessions )
+	{
+		if( LinuxSessionFunctions::isOpen( session ) &&
+			LinuxSessionFunctions::isGraphical( session ) &&
+			LinuxSessionFunctions::isRemote( session ) &&
 			LinuxSessionFunctions::getSessionClass( session ) == LinuxSessionFunctions::Class::User )
 		{
 			return true;

@@ -313,9 +313,9 @@ bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QSt
 
 
 
-bool AccessControlProvider::isNoUserLoggedOn() const
+bool AccessControlProvider::isNoUserLoggedInLocally() const
 {
-	return VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false;
+	return VeyonCore::platform().userFunctions().isAnyUserLoggedInLocally() == false;
 }
 
 
@@ -447,11 +447,11 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
-	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedOn ) )
+	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInLocally ) )
 	{
 		hasConditions = true;
 
-		if( isNoUserLoggedOn() != matchResult )
+		if( isNoUserLoggedInLocally() != matchResult )
 		{
 			return false;
 		}

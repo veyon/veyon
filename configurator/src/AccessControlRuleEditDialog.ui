@@ -212,9 +212,9 @@
        </widget>
       </item>
       <item row="8" column="0" colspan="4">
-       <widget class="QCheckBox" name="noUserLoggedOnCheckBox">
+       <widget class="QCheckBox" name="noUserLoggedInLocallyCheckBox">
         <property name="text">
-         <string>No user logged on</string>
+         <string>No user logged in locally</string>
         </property>
        </widget>
       </item>
@@ -306,7 +306,7 @@
   <tabstop>hasCommonGroupsCheckBox</tabstop>
   <tabstop>isLocalUserAccessCheckBox</tabstop>
   <tabstop>isSameUserAccessCheckBox</tabstop>
-  <tabstop>noUserLoggedOnCheckBox</tabstop>
+  <tabstop>noUserLoggedInLocallyCheckBox</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
   <tabstop>actionAskForPermissionRadioButton</tabstop>

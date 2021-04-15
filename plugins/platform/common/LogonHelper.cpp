@@ -40,7 +40,7 @@ LogonHelper::LogonHelper( QObject* parent ) :
 
 bool LogonHelper::prepare( const QString& username, const Password& password )
 {
-	if( VeyonCore::platform().userFunctions().isAnyUserLoggedOn() )
+	if( VeyonCore::platform().userFunctions().isAnyUserLoggedInLocally() )
 	{
 		vInfo() << "Skipping user logon as a user is already logged on";
 		return false;
@@ -55,7 +55,7 @@ void LogonHelper::checkPendingLogonTasks()
 {
 	if( VeyonCore::component() == VeyonCore::Component::Server &&
 		ServiceDataManager::serviceDataTokenFromEnvironment().isEmpty() == false &&
-		VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false )
+		VeyonCore::platform().userFunctions().isAnyUserLoggedInLocally() == false )
 	{
 		vDebug() << "Reading logon credentials";
 		QString username;

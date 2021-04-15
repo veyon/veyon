@@ -41,7 +41,8 @@ public:
 	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
 	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
 
-	virtual bool isAnyUserLoggedOn() = 0;
+	virtual bool isAnyUserLoggedInLocally() = 0;
+	virtual bool isAnyUserLoggedInRemotely() = 0;
 	virtual QString currentUser() = 0;
 
 	virtual bool prepareLogon( const QString& username, const Password& password ) = 0;

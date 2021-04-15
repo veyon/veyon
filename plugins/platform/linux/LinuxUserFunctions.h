@@ -39,7 +39,8 @@ public:
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
 
-	bool isAnyUserLoggedOn() override;
+	bool isAnyUserLoggedInLocally() override;
+	bool isAnyUserLoggedInRemotely() override;
 	QString currentUser() override;
 
 	bool prepareLogon( const QString& username, const Password& password ) override;

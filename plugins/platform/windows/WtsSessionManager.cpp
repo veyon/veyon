@@ -122,6 +122,27 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 
 
 
+bool WtsSessionManager::isRemote( SessionId sessionId )
+{
+	const auto WTSIsRemoteSession = static_cast<WTS_INFO_CLASS>(29);
+
+	BOOL *isRDP = nullptr;
+	DWORD dataLen = 0;
+
+	if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionId, WTSIsRemoteSession,
+									reinterpret_cast<LPTSTR *>(&isRDP), &dataLen ) &&
+		isRDP )
+	{
+		const auto result = *isRDP;
+		WTSFreeMemory( isRDP );
+		return result;
+	}
+
+	return false;
+}
+
+
+
 WtsSessionManager::ProcessId WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
 {
 	if( sessionId == InvalidSession )

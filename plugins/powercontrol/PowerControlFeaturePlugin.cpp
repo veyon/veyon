@@ -200,7 +200,8 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 	}
 	else if( message.featureUid() == m_powerDownConfirmedFeature.uid() )
 	{
-		if( VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false )
+		if( VeyonCore::platform().userFunctions().isAnyUserLoggedInLocally() == false &&
+			VeyonCore::platform().userFunctions().isAnyUserLoggedInRemotely() == false )
 		{
 			VeyonCore::platform().coreFunctions().powerDown( false );
 		}

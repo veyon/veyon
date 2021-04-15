@@ -297,3 +297,10 @@ bool LinuxSessionFunctions::isGraphical( const QString& session )
 		   type == Type::Wayland ||
 		   type == Type::Mir;
 }
+
+
+
+bool LinuxSessionFunctions::isRemote( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Remote") ).toBool();
+}

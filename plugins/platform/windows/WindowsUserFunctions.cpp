@@ -120,9 +120,36 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 
 
 
-bool WindowsUserFunctions::isAnyUserLoggedOn()
+bool WindowsUserFunctions::isAnyUserLoggedInLocally()
 {
-	return WtsSessionManager::loggedOnUsers().isEmpty() == false;
+	const auto sessions = WtsSessionManager::activeSessions();
+	for( const auto session : sessions )
+	{
+		if( WtsSessionManager::querySessionInformation( session, WtsSessionManager::SessionInfo::UserName ).isEmpty() == false &&
+			WtsSessionManager::isRemote( session ) == false )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+
+bool WindowsUserFunctions::isAnyUserLoggedInRemotely()
+{
+	const auto sessions = WtsSessionManager::activeSessions();
+	for( const auto session : sessions )
+	{
+		if( WtsSessionManager::querySessionInformation( session, WtsSessionManager::SessionInfo::UserName ).isEmpty() == false &&
+			WtsSessionManager::isRemote( session ) )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

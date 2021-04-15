@@ -106,5 +106,6 @@ public:
 
 	static bool isOpen( const QString& session );
 	static bool isGraphical( const QString& session );
+	static bool isRemote( const QString& session );
 
 };

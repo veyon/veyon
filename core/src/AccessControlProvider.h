@@ -67,7 +67,7 @@ private:
 	bool haveSameLocations( const QString& computerOne, const QString& computerTwo ) const;
 	bool isLocalHost( const QString& accessingComputer ) const;
 	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
-	bool isNoUserLoggedOn() const;
+	bool isNoUserLoggedInLocally() const;
 
 	QString lookupSubject( AccessControlRule::Subject subject,
 						   const QString& accessingUser, const QString& accessingComputer,
