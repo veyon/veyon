@@ -34,6 +34,7 @@
 
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
+#include "LinuxPlatformConfiguration.h"
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
 #include "ProcessHelper.h"
@@ -130,7 +131,8 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds( sessionPath );
 
-	if( sessionUptime >= 0 && sessionUptime < SessionUptimeSecondsMinimum )
+	if( sessionUptime >= 0 &&
+		sessionUptime < LinuxPlatformConfiguration(&VeyonCore::config()).minimumUserSessionLifetime() )
 	{
 		vDebug() << "Session" << sessionPath << "too young - retrying in" << SessionUptimeProbingInterval << "msecs";
 		QTimer::singleShot( SessionUptimeProbingInterval, this, [=]() { startServer( login1SessionId, sessionObjectPath ); } );
