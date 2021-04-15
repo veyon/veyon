@@ -96,6 +96,27 @@ qint64 LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
 
 
 
+LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass( const QString& session )
+{
+	const auto sessionClass = getSessionProperty( session, QStringLiteral("Class") ).toString();
+	if( sessionClass == QLatin1String("user") )
+	{
+		return Class::User;
+	}
+	else if( sessionClass == QLatin1String("greeter") )
+	{
+		return Class::Greeter;
+	}
+	else if( sessionClass == QLatin1String("lock-screen") )
+	{
+		return Class::LockScreen;
+	}
+
+	return Class::Unknown;
+}
+
+
+
 QString LinuxSessionFunctions::getSessionType( const QString& session )
 {
 	return getSessionProperty( session, QStringLiteral("Type") ).toString();
