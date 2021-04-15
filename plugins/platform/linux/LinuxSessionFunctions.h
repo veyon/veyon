@@ -60,6 +60,15 @@ public:
 	};
 	Q_ENUM(State)
 
+	enum class Class
+	{
+		Unknown,
+		User,
+		Greeter,
+		LockScreen
+	};
+	Q_ENUM(Class)
+
 	SessionId currentSessionId() override;
 
 	QString currentSessionType() const override;
@@ -70,6 +79,7 @@ public:
 
 	static int getSessionLeaderPid( const QString& session );
 	static qint64 getSessionUptimeSeconds( const QString& session );
+	static Class getSessionClass( const QString& session );
 	static QString getSessionType( const QString& session );
 	static QString getSessionId( const QString& session );
 	static State getSessionState( const QString& session );
