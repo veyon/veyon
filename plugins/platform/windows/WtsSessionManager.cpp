@@ -52,17 +52,16 @@ WtsSessionManager::SessionId WtsSessionManager::activeConsoleSession()
 
 WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 {
-	SessionList sessionList;
-
 	PWTS_SESSION_INFO sessions;
 	DWORD sessionCount = 0;
 
-	auto result = WTSEnumerateSessions( WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessions, &sessionCount );
+	const auto result = WTSEnumerateSessions( WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessions, &sessionCount );
 	if( result == false )
 	{
-		return sessionList;
+		return {};
 	}
 
+	SessionList sessionList;
 	sessionList.reserve( sessionCount );
 
 	for( DWORD sessionIndex = 0; sessionIndex < sessionCount; ++sessionIndex )
