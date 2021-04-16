@@ -148,6 +148,25 @@ FeatureUidList VeyonMaster::subFeaturesUids( Feature::Uid parentFeatureUid ) con
 
 
 
+FeatureUidList VeyonMaster::metaFeaturesUids( const FeatureUidList& featureUids ) const
+{
+	FeatureUidList metaFeatureUids;
+	metaFeatureUids.reserve( featureUids.size() );
+
+	for( const auto& featureUid : featureUids )
+	{
+		const auto metaFeatureUid = m_featureManager->metaFeatureUid( featureUid );
+		if( metaFeatureUid.isNull() == false )
+		{
+			metaFeatureUids.append( metaFeatureUid );
+		}
+	}
+
+	return metaFeatureUids;
+}
+
+
+
 FeatureList VeyonMaster::modeFeatures() const
 {
 	FeatureList featureList;
