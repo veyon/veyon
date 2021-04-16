@@ -99,6 +99,8 @@ public:
 		return m_features;
 	}
 
+	Feature::Uid metaFeature( Feature::Uid featureUid ) const override;
+
 	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
