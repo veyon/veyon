@@ -149,16 +149,6 @@ public:
 		m_ignoreConditions = ignored;
 	}
 
-	bool areAllConditionsInverted() const
-	{
-		return m_invertConditions;
-	}
-
-	void setAllConditionsInverted( bool inverted )
-	{
-		m_invertConditions = inverted;
-	}
-
 	bool isConditionEnabled( Condition condition ) const
 	{
 		return m_parameters.value( condition ).enabled;
@@ -202,7 +192,6 @@ private:
 	QString m_description;
 	Action m_action;
 	ConditionParameterMap m_parameters;
-	bool m_invertConditions;
 	bool m_ignoreConditions;
 
 } ;

@@ -74,7 +74,6 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 
 	// load general condition processing settings
 	ui->ignoreConditionsCheckBox->setChecked( rule.areConditionsIgnored() );
-	ui->invertConditionsCheckBox->setChecked( rule.areAllConditionsInverted() );
 
 	// load condition states
 	const auto loadCondition = [&rule]( QCheckBox* checkBox,
@@ -132,7 +131,6 @@ void AccessControlRuleEditDialog::accept()
 
 	// save general condition processing settings
 	m_rule.setConditionsIgnored( ui->ignoreConditionsCheckBox->isChecked() );
-	m_rule.setAllConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
 
 	// save conditions
 	m_rule.clearParameters();

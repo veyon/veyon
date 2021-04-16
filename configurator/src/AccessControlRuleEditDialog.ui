@@ -12,24 +12,10 @@
       <string>General</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="ruleNameLineEdit">
-        <property name="placeholderText">
-         <string>enter a short name for the rule here</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Rule name:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="ruleDescriptionLineEdit">
-        <property name="placeholderText">
-         <string>enter a description for the rule here</string>
         </property>
        </widget>
       </item>
@@ -40,10 +26,17 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QCheckBox" name="invertConditionsCheckBox">
-        <property name="text">
-         <string>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</string>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="ruleDescriptionLineEdit">
+        <property name="placeholderText">
+         <string>enter a description for the rule here</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="ruleNameLineEdit">
+        <property name="placeholderText">
+         <string>enter a short name for the rule here</string>
         </property>
        </widget>
       </item>
@@ -573,7 +566,6 @@
   <tabstop>ruleNameLineEdit</tabstop>
   <tabstop>ruleDescriptionLineEdit</tabstop>
   <tabstop>ignoreConditionsCheckBox</tabstop>
-  <tabstop>invertConditionsCheckBox</tabstop>
   <tabstop>isMemberOfGroup</tabstop>
   <tabstop>isMemberOfGroupSubject</tabstop>
   <tabstop>invertIsMemberOfGroup</tabstop>
@@ -717,22 +709,6 @@
     <hint type="destinationlabel">
      <x>548</x>
      <y>516</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ignoreConditionsCheckBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>invertConditionsCheckBox</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>548</x>
-     <y>179</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>548</x>
-     <y>225</y>
     </hint>
    </hints>
   </connection>

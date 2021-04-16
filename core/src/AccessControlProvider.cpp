@@ -358,12 +358,11 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AuthenticationMethod ) )
 	{
 		condition = AccessControlRule::Condition::AuthenticationMethod;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		const auto allowedAuthMethod = Plugin::Uid( rule.argument( AccessControlRule::Condition::AuthenticationMethod ) );
 		if( authMethodUid.isNull() ||
 			allowedAuthMethod.isNull() ||
-			( authMethodUid == allowedAuthMethod ) != matchResult )
+			( authMethodUid == allowedAuthMethod ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -372,14 +371,13 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfGroup ) )
 	{
 		condition = AccessControlRule::Condition::MemberOfGroup;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		const auto condition = AccessControlRule::Condition::MemberOfGroup;
 		const auto user = lookupSubject( rule.subject( condition ), accessingUser, {}, localUser, {} );
 		const auto group = rule.argument( condition );
 
 		if( user.isEmpty() || group.isEmpty() ||
-			isMemberOfUserGroup( user, group ) != matchResult )
+			isMemberOfUserGroup( user, group ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -388,10 +386,9 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::GroupsInCommon ) )
 	{
 		condition = AccessControlRule::Condition::GroupsInCommon;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( accessingUser.isEmpty() || localUser.isEmpty() ||
-			haveGroupsInCommon( accessingUser, localUser ) != matchResult )
+			haveGroupsInCommon( accessingUser, localUser ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -400,12 +397,12 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::LocatedAt ) )
 	{
 		condition = AccessControlRule::Condition::LocatedAt;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
+
 		const auto computer = lookupSubject( rule.subject( condition ), {}, accessingComputer, {}, localComputer );
 		const auto location = rule.argument( condition );
 
 		if( computer.isEmpty() || location.isEmpty() ||
-			isLocatedAt( computer, location ) != matchResult )
+			isLocatedAt( computer, location ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -414,10 +411,9 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::LocationsInCommon ) )
 	{
 		condition = AccessControlRule::Condition::LocationsInCommon;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
 		if( accessingComputer.isEmpty() || localComputer.isEmpty() ||
-			haveSameLocations( accessingComputer, localComputer ) != matchResult )
+			haveSameLocations( accessingComputer, localComputer ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -426,9 +422,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost ) )
 	{
 		condition = AccessControlRule::Condition::AccessFromLocalHost;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		if( isLocalHost( accessingComputer ) != matchResult )
+		if( isLocalHost( accessingComputer ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -437,9 +432,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromSameUser ) )
 	{
 		condition = AccessControlRule::Condition::AccessFromSameUser;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		if( isLocalUser( accessingUser, localUser ) != matchResult )
+		if( isLocalUser( accessingUser, localUser ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -448,9 +442,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser ) )
 	{
 		condition = AccessControlRule::Condition::AccessFromAlreadyConnectedUser;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		if( connectedUsers.contains( accessingUser ) != matchResult )
+		if( connectedUsers.contains( accessingUser ) == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -459,9 +452,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::AccessedUserLoggedInLocally ) )
 	{
 		condition = AccessControlRule::Condition::AccessedUserLoggedInLocally;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		if( VeyonCore::platform().sessionFunctions().currentSessionIsRemote() != matchResult )
+		if( VeyonCore::platform().sessionFunctions().currentSessionIsRemote() == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -470,9 +462,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInLocally ) )
 	{
 		condition = AccessControlRule::Condition::NoUserLoggedInLocally;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		if( isNoUserLoggedInLocally() != matchResult )
+		if( isNoUserLoggedInLocally() == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}
@@ -481,9 +472,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedInRemotely ) )
 	{
 		condition = AccessControlRule::Condition::NoUserLoggedInRemotely;
-		const auto matchResult = rule.areAllConditionsInverted() == rule.isConditionInverted( condition );
 
-		if( isNoUserLoggedInRemotely() != matchResult )
+		if( isNoUserLoggedInRemotely() == rule.isConditionInverted(condition) )
 		{
 			return false;
 		}

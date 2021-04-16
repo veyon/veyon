@@ -23,6 +23,7 @@
  */
 
 #include <QJsonArray>
+#include <QMetaEnum>
 
 #include "AccessControlRule.h"
 
@@ -30,7 +31,6 @@ AccessControlRule::AccessControlRule() :
 	m_name(),
 	m_description(),
 	m_action( Action::None ),
-	m_invertConditions( false ),
 	m_ignoreConditions( false )
 {
 }
@@ -42,18 +42,16 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 	m_description( other.description() ),
 	m_action( other.action() ),
 	m_parameters( other.parameters() ),
-	m_invertConditions( other.areAllConditionsInverted() ),
 	m_ignoreConditions( other.areConditionsIgnored() )
 {
 }
 
 
 
-AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
+AccessControlRule::AccessControlRule( const QJsonValue& jsonValue ) :
 	m_name(),
 	m_description(),
 	m_action( Action::None ),
-	m_invertConditions( false ),
 	m_ignoreConditions( false )
 {
 	if( jsonValue.isObject() )
@@ -63,10 +61,9 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 		m_name = json[QStringLiteral("Name")].toString();
 		m_description = json[QStringLiteral("Description")].toString();
 		m_action = static_cast<Action>( json[QStringLiteral("Action")].toInt() );
-		m_invertConditions = json[QStringLiteral("InvertConditions")].toBool();
 		m_ignoreConditions = json[QStringLiteral("IgnoreConditions")].toBool();
 
-		auto parameters = json[QStringLiteral("Parameters")].toArray();
+		const auto parameters = json[QStringLiteral("Parameters")].toArray();
 
 		for( auto parametersValue : parameters )
 		{
@@ -77,6 +74,16 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 			m_parameters[condition].inverted = parametersObj[QStringLiteral("Inverted")].toBool();
 			m_parameters[condition].subject = static_cast<Subject>( parametersObj[QStringLiteral("Subject")].toInt() );
 			m_parameters[condition].argument = parametersObj[QStringLiteral("Argument")].toString();
+		}
+
+		// migrate global inversion setting from Veyon 4
+		if( json[QStringLiteral("InvertConditions")].toBool() )
+		{
+			const auto conditionCount = QMetaEnum::fromType<Condition>().keyCount();
+			for( int i = 0; i < conditionCount; ++i )
+			{
+				m_parameters[Condition(i)].inverted ^= true;
+			}
 		}
 	}
 }
@@ -89,7 +96,6 @@ AccessControlRule& AccessControlRule::operator=( const AccessControlRule& other 
 	m_description = other.description();
 	m_action = other.action();
 	m_parameters = other.parameters();
-	m_invertConditions = other.areAllConditionsInverted();
 	m_ignoreConditions = other.areConditionsIgnored();
 
 	return *this;
@@ -104,7 +110,6 @@ QJsonObject AccessControlRule::toJson() const
 	json[QStringLiteral("Name")] = m_name;
 	json[QStringLiteral("Description")] = m_description;
 	json[QStringLiteral("Action")] = static_cast<int>( m_action );
-	json[QStringLiteral("InvertConditions")] = m_invertConditions;
 	json[QStringLiteral("IgnoreConditions")] = m_ignoreConditions;
 
 	QJsonArray parameters;
