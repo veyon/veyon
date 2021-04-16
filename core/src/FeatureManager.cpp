@@ -96,6 +96,24 @@ const Feature& FeatureManager::feature( Feature::Uid featureUid ) const
 
 
 
+Feature::Uid FeatureManager::metaFeatureUid( Feature::Uid featureUid ) const
+{
+	for( const auto& featureInterface : m_featurePluginInterfaces )
+	{
+		for( const auto& feature : featureInterface->featureList() )
+		{
+			if( feature.uid() == featureUid )
+			{
+				return featureInterface->metaFeature( featureUid );
+			}
+		}
+	}
+
+	return {};
+}
+
+
+
 Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 {
 	for( auto pluginObject : m_pluginObjects )
