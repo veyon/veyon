@@ -122,7 +122,16 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 
 bool WindowsUserFunctions::isAnyUserLoggedOn()
 {
-	return WtsSessionManager::loggedOnUsers().isEmpty() == false;
+	const auto sessions = WtsSessionManager::activeSessions();
+	for( const auto session : sessions )
+	{
+		if( WtsSessionManager::querySessionInformation( session, WtsSessionManager::SessionInfo::UserName ).isEmpty() == false )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
