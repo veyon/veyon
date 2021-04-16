@@ -119,6 +119,24 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 
 
 
+Feature::Uid DemoFeaturePlugin::metaFeature( Feature::Uid featureUid ) const
+{
+	if( featureUid == m_shareOwnScreenFullScreenFeature.uid() ||
+		featureUid == m_shareUserScreenFullScreenFeature.uid() )
+	{
+		return m_demoClientFullScreenFeature.uid();
+	}
+	else if( featureUid == m_shareOwnScreenWindowFeature.uid() ||
+			 featureUid == m_shareUserScreenWindowFeature.uid() )
+	{
+		return m_demoClientWindowFeature.uid();
+	}
+
+	return FeatureProviderInterface::metaFeature( featureUid );
+}
+
+
+
 bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 									   Operation operation,
 									   const QVariantMap& arguments,
