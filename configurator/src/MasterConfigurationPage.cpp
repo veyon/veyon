@@ -141,7 +141,7 @@ void MasterConfigurationPage::populateFeatureComboBox()
 	for( const auto& feature : m_featureManager.features() )
 	{
 		if( feature.testFlag( Feature::Master ) &&
-			feature.testFlag( Feature::Internal ) == false )
+			feature.testFlag( Feature::Meta ) == false )
 		{
 			ui->computerDoubleClickFeature->addItem( QIcon( feature.iconUrl() ),
 													 feature.displayName(),
@@ -163,7 +163,7 @@ void MasterConfigurationPage::updateFeatureLists()
 	for( const auto& feature : qAsConst( m_featureManager.features() ) )
 	{
 		if( feature.testFlag( Feature::Master ) == false ||
-			feature.testFlag( Feature::Internal ) ||
+			feature.testFlag( Feature::Meta ) ||
 			feature == VeyonCore::builtinFeatures().monitoringMode().feature() )
 		{
 			continue;
