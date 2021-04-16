@@ -35,8 +35,8 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	m_subjectNameMap( {
 { AccessControlRule::Subject::AccessingUser, tr( "Accessing user" ) },
 { AccessControlRule::Subject::AccessingComputer, tr( "Accessing computer" ) },
-{ AccessControlRule::Subject::LocalUser, tr( "Local (logged on) user" ) },
-{ AccessControlRule::Subject::LocalComputer, tr( "Local computer" ) },
+{ AccessControlRule::Subject::LocalUser, tr( "User being accessed" ) },
+{ AccessControlRule::Subject::LocalComputer, tr( "Computer being accessed" ) },
 					  } )
 {
 	ui->setupUi(this);

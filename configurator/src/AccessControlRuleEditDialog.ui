@@ -57,7 +57,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0,2,1,0,2">
+       <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0,1,1,1">
         <item>
          <widget class="QCheckBox" name="isMemberOfGroup">
           <property name="text">
@@ -82,21 +82,14 @@
           </property>
           <item>
            <property name="text">
-            <string>is</string>
+            <string>is member of group</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>is not</string>
+            <string>is not member of group</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>member of group</string>
-          </property>
          </widget>
         </item>
         <item>
@@ -115,7 +108,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,2,1,0,2">
+       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,1,1">
         <item>
          <widget class="QCheckBox" name="isAtLocation">
           <property name="text">
@@ -140,21 +133,14 @@
           </property>
           <item>
            <property name="text">
-            <string>is</string>
+            <string>is located at</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>is not</string>
+            <string>is not located at</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>located at</string>
-          </property>
          </widget>
         </item>
         <item>
@@ -173,7 +159,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
         <item>
          <widget class="QCheckBox" name="hasCommonLocations">
           <property name="sizePolicy">
@@ -194,27 +180,20 @@
           </property>
           <item>
            <property name="text">
-            <string>are located</string>
+            <string>are located at the same location</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>are not located</string>
+            <string>are not located the same location</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>at the same location</string>
-          </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,1">
         <item>
          <widget class="QCheckBox" name="isLocalHostAccess">
           <property name="text">
@@ -229,27 +208,20 @@
           </property>
           <item>
            <property name="text">
-            <string>is</string>
+            <string>is local computer</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>is not</string>
+            <string>is not local computer</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>localhost</string>
-          </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,2">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,1">
         <item>
          <widget class="QCheckBox" name="isAuthenticatedViaMethod">
           <property name="text">
@@ -264,21 +236,14 @@
           </property>
           <item>
            <property name="text">
-            <string>is</string>
+            <string>is authenticated via</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>is not</string>
+            <string>is not authenticated via</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>authenticated via</string>
-          </property>
          </widget>
         </item>
         <item>
@@ -291,7 +256,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1">
         <item>
          <widget class="QCheckBox" name="hasCommonGroups">
           <property name="text">
@@ -306,27 +271,20 @@
           </property>
           <item>
            <property name="text">
-            <string>has one or more</string>
+            <string>has one or more groups in common with user being accessed</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>has no</string>
+            <string>has no groups in common with user being accessed</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>groups in common with user being accessed</string>
-          </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
         <item>
          <widget class="QCheckBox" name="isSameUserAccess">
           <property name="text">
@@ -347,27 +305,20 @@
           </property>
           <item>
            <property name="text">
-            <string>equals</string>
+            <string>equals user being accessed</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>is different from</string>
+            <string>is different from user being accessed</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>user being accessed</string>
-          </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0,1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0,1">
         <item>
          <widget class="QCheckBox" name="isUserConnected">
           <property name="text">
@@ -382,21 +333,14 @@
           </property>
           <item>
            <property name="text">
-            <string>is already</string>
+            <string>is already connected</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>is not</string>
+            <string>is not connected</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>connected</string>
-          </property>
          </widget>
         </item>
        </layout>
