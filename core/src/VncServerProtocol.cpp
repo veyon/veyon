@@ -57,7 +57,7 @@ void VncServerProtocol::start()
 {
 	if( state() == Disconnected )
 	{
-		char protocol[sz_rfbProtocolVersionMsg+1]; // Flawfinder: ignore
+		rfbProtocolVersionMsg protocol; // Flawfinder: ignore
 
 		sprintf( protocol, rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
 
