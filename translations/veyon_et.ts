@@ -2524,19 +2524,19 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutaja autentimine</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Sessiooni haldus</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Kuvahalduri kasutajad</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Kasutaja sisselogimine</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

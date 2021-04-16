@@ -2524,19 +2524,19 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Authentification utilisateur</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Gestion de session</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Gestionnaire d&apos;affichage utilisateurs</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Identifiant utilisateur</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

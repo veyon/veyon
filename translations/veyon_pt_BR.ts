@@ -2510,19 +2510,19 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Autenticaçã ode usuário</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Usuário:</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

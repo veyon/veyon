@@ -33,7 +33,9 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Δεν υπάρχει μετάφραση σε αυτήν την γλώσσα ακόμα (ή Αγγλικά).
+
+Εάν ενδιαφέρεσται να μεταφράσετε το Veyon στην γλώσσα σας ή σε κάποια άλλη ή θέλεται να βελτιόσεται την παρούσα μετάφραση, πρακαλούμαι εποικοινωνίσται με κάποιον προγραμματιστή του Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -48,11 +50,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος πρόσβασης υπολογιστή</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Παραχώρηση πρόσβασης σε όλους τους πιστοποιημένους χρήστες (προεπιλογή)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -60,7 +62,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργασία κανόνα ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -84,11 +86,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη κανόνα ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση κανόνα ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
@@ -128,30 +130,30 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποιήση χρήσης ομάδων τομέα</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Υποστίρηξη ομάδων χρηστών</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Έλλειψη υποστίριξης ομαδών χρηστών</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Δεν βρέθηκε κάνένα πρόσθετο για ομάδες χρηστών. Παρακαλούμε ελέγχξται την εγκατάσταση σας!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Περιορισμός πρόσβασης σε μέλη συγκεκριμένης ομάδας χρηστών</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργασία κανόνα ελέγχου</translation>
     </message>
     <message>
         <source>General</source>
@@ -187,7 +189,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Προσβασημότητα υπολογιστή είναι σε τοπικό δίκτυο </translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -199,7 +201,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Εάν παραπάνω από μία συνθήκη είναι ενεργή κάθε συνθήκη πρέπει να επαλυθεύετει για να εφαρμοστεί ο κανόνας (λογικό AND). Εάν πρέπει μόνο μία απο όλες τις συνθήκες να επαλυθευτεί  (λογικό OR) παρακαλούμε διμιουργήσται πολλαπλούς κανόνες πρόσβασης.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -2500,19 +2502,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User login</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

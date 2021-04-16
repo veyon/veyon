@@ -2505,19 +2505,19 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <translation>Naudotojo autorizavimas</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Seanso valdymas</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Naudotojo prisijungimas</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

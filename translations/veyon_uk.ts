@@ -2523,20 +2523,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Розпізнавання користувача</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Керування сеансами</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Користувачі керування дисплеєм</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Вхід від імені користувача</translation>
     </message>
     <message>
         <source>Login key sequence</source>
         <translation>Послідовність ключів для входу</translation>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation>Сеанси користувачів</translation>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
+        <translation>Мінімальна тривалість сеансу до запуску сервера</translation>
     </message>
 </context>
 <context>

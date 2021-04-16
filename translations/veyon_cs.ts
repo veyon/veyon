@@ -2520,19 +2520,19 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Ověření uživatele</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Správa relace</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Zobrazit uživatele-správce</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Přihlášení uživatele</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

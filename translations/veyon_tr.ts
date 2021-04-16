@@ -2516,19 +2516,19 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Kullanıcı doğrulama</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Oturum yönetimi</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Görüntü yöneticisi kullanıcıları</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Kullanıcı Girişi</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

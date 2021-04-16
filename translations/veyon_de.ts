@@ -2521,20 +2521,20 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Benutzerauthentifizierung</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Sitzungsverwaltung</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Displaymanager-Benutzer</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Benutzeranmeldung</translation>
     </message>
     <message>
         <source>Login key sequence</source>
         <translation>Tastensequenz zum Anmelden</translation>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation>Benutzersitzungen</translation>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
+        <translation>Minimale Sitzungsdauer vor Serverstart</translation>
     </message>
 </context>
 <context>

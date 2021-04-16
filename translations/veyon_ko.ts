@@ -2522,19 +2522,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 인증</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>세션 관리</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>매니저 유저를 표시</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>유저 로긴</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

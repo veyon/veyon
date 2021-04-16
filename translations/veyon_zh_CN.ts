@@ -2525,19 +2525,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>用户验证</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>会话管理</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>显示管理员用户</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>用户登陆</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -2524,19 +2524,19 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Felhasználó hitelesítés</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Munkamenet-kezelés</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Kezelő felhasználók megjelenítése</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Felhasználó bejelentkezése</translation>
     </message>
     <message>
         <source>Login key sequence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
         <translation type="unfinished"/>
     </message>
 </context>

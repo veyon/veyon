@@ -2526,20 +2526,20 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Autenticacion de usuario</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Gestión de sesiones</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Usuarios del gestor de pantalla</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Inicio de sesión de usuario</translation>
     </message>
     <message>
         <source>Login key sequence</source>
         <translation>Secuencia de clave de inicio de sesión</translation>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

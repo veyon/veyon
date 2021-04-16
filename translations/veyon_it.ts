@@ -2511,20 +2511,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Autenticazione utente</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Gestione della sessione</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>Display gestione utenti</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>Login utente</translation>
     </message>
     <message>
         <source>Login key sequence</source>
         <translation>Sequenza di tasti di accesso</translation>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation>Sessioni utente</translation>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
+        <translation>Durata minima della sessione prima dell&apos;avvio del server</translation>
     </message>
 </context>
 <context>

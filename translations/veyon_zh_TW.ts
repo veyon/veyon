@@ -2524,20 +2524,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>使用者身份驗證</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>工作階段管理</translation>
-    </message>
-    <message>
-        <source>Display manager users</source>
-        <translation>顯示管理員使用者</translation>
-    </message>
-    <message>
         <source>User login</source>
         <translation>使用者登入</translation>
     </message>
     <message>
         <source>Login key sequence</source>
         <translation>登入金鑰序列</translation>
+    </message>
+    <message>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
