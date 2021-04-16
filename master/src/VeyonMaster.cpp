@@ -275,10 +275,13 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
 	if( controlInterface )
 	{
-		auto designatedModeFeature = m_featureManager->feature( controlInterface->designatedModeFeature() );
-		if( designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature() )
+		const auto designatedModeFeature = controlInterface->designatedModeFeature();
+
+		if( designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature().uid() &&
+			controlInterface->activeFeatures().contains( designatedModeFeature ) == false &&
+			controlInterface->activeFeatures().contains( m_featureManager->metaFeatureUid(designatedModeFeature) ) == false )
 		{
-			featureManager().startFeature( *this, designatedModeFeature, { controlInterface } );
+			featureManager().startFeature( *this, m_featureManager->feature(designatedModeFeature), { controlInterface } );
 		}
 	}
 }
