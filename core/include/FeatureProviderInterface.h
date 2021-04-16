@@ -69,6 +69,11 @@ public:
 		return false;
 	}
 
+	virtual Feature::Uid metaFeature( Feature::Uid ) const
+	{
+		return {};
+	}
+
 	template<class T>
 	static QString argToString( T item )
 	{
