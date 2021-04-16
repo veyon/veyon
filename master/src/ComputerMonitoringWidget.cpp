@@ -197,7 +197,7 @@ void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterf
 
 	for( const auto& feature : master()->features() )
 	{
-		if( feature.testFlag( Feature::Internal ) )
+		if( feature.testFlag( Feature::Meta ) )
 		{
 			continue;
 		}

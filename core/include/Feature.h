@@ -43,7 +43,7 @@ public:
 		Mode = 0x0001,
 		Action = 0x0002,
 		Session = 0x0004,
-		Internal = 0x0008,
+		Meta = 0x0008,
 		Option = 0x0010,
 		Checked = 0x0020,
 		Master = 0x0100,
