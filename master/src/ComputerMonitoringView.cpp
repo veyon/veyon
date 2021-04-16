@@ -195,7 +195,8 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 bool ComputerMonitoringView::isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
 														 Feature::Uid featureUid ) const
 {
-	const auto featureList = FeatureUidList{ featureUid } + m_master->subFeaturesUids( featureUid );
+	auto featureList = FeatureUidList{ featureUid } + m_master->subFeaturesUids( featureUid );
+	featureList.append( m_master->metaFeaturesUids( featureList ) );
 
 	for( const auto& controlInterface : computerControlInterfaces )
 	{
