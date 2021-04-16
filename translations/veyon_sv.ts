@@ -7,11 +7,11 @@
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"/>
+        <translation>Översättning</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Licens</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -176,28 +176,8 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
         <translation>Regelbeskrivning:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Invertera alla villkor (&quot;är/har&quot; tolkas som &quot;är/har inte&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Villkor</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>är medlem av gruppen</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Åtkomstdator är localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Åtkomstanvändare är inloggad användare</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Åtkomstanvändare är redan ansluten</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,27 +212,39 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
         <translation>Åtkomstdator</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Lokal (inloggad) användare</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Lokal dator</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Bearbeta alltid regel- och ignoreringsvillkor</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Ingen användare inloggad</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Åtkomstanvändaren har en eller flera grupper gemensamt med lokal (inloggad) användare</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -260,7 +252,67 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>är medlem av gruppen</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2765,11 +2817,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session management</source>
+        <source>User sessions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>

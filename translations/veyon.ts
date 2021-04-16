@@ -176,27 +176,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Conditions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -232,27 +212,39 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No user logged on</source>
+        <source>Accessing computer and local computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <source>User being accessed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
+        <source>is logged in locally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -260,7 +252,67 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2765,11 +2817,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Session management</source>
+        <source>User sessions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display manager users</source>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

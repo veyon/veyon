@@ -176,28 +176,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Опис правила:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Інверсія усіх умов («є або має» буде вважатися записом «не є або не має»)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Умови</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>є учасником групи</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Комп’ютер для доступу є локальним</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Користувач для доступу є розпізнаним користувачем системи</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Користувача для доступу вже з’єднано</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,36 +212,108 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Комп’ютер для доступу</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Локальний користувач (у системі)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Локальний комп’ютер</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Завжди обробляти правило і ігнорувати умови</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Немає користувачів у системі</translation>
+        <source>Accessing computer and local computer</source>
+        <translation>Доступ до комп&apos;ютера і локальний комп&apos;ютер</translation>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Користувач для доступу є учасником однієї або декількох груп, які є спільними із локальним (поточним) користувачем</translation>
+        <source>User being accessed</source>
+        <translation>Доступ до користувача</translation>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Комп’ютер для доступу розташовано у тому самому місці, що і локальний комп’ютер</translation>
+        <source>is logged in locally</source>
+        <translation>який увійшов локально</translation>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation>який увійшов віддалено</translation>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation>Жоден користувач не увійшов локально</translation>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation>Один або декілька користувачів увійшли локально</translation>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation>Жоден користувач не увійшов віддалено</translation>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation>Один або декілька користувачів увійшли віддалено</translation>
     </message>
     <message>
         <source>is located at</source>
         <translation>розташовано у</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Розпізнавання за методом</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>є учасником групи</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1328,11 +1380,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 — віджет масштабування комп&apos;ютерів %2</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 — %2 — віджет масштабування комп&apos;ютерів %3</translation>
     </message>
 </context>
 <context>
@@ -2786,12 +2838,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Розпізнавання користувача</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Керування сеансами</translation>
+        <source>User sessions</source>
+        <translation>Сеанси користувачів</translation>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Користувачі керування дисплеєм</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation>Мінімальна тривалість сеансу до запуску сервера</translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Вхід від імені користувача</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Послідовність ключів для входу</translation>
     </message>
 </context>
 <context>
@@ -3919,7 +3979,8 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки нижче.
+Другу кнопку призначено для вилучення позначеного комп&apos;ютера. Якщо нічого не позначено, буде вилучено останній з комп&apos;ютерів.</translation>
     </message>
 </context>
 <context>

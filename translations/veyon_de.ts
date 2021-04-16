@@ -174,28 +174,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Regelbeschreibung:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Alle Bedingungen umkehren (&quot;ist/hat&quot; wird als &quot;ist/hat nicht&quot; interpretiert)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Bedingungen</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>ist Mitglied von Gruppe</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Zugreifender Computer ist localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Zugreifender Benutzer ist angemeldeter Benutzer</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Zugreifender Benutzer ist bereits verbunden</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -230,36 +210,108 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Zugreifender Computer</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Lokaler (angemeldeter) Benutzer</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Lokaler Computer</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Regel immer verarbeiten und Bedingungen ignorieren</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Kein Benutzer angemeldet</translation>
+        <source>Accessing computer and local computer</source>
+        <translation>Zugreifender und lokaler Computer</translation>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Zugreifender Benutzer hat eine oder mehrere gemeinsame Gruppen mit lokalem (angemeldeten) Benutzer</translation>
+        <source>User being accessed</source>
+        <translation>Benutzer, auf den zugegriffen wird</translation>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Zugreifender Computer und lokaler Computer befinden sich am selben Standort</translation>
+        <source>is logged in locally</source>
+        <translation>ist lokal angemeldet</translation>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation>ist aus der Ferne angemeldet</translation>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation>Kein Benutzer ist lokal angemeldet</translation>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation>Ein oder mehrere Benutzer sind lokal angemeldet</translation>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation>Kein Benutzer ist aus der Ferne angemeldet</translation>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation>Ein oder mehrere Benutzer sind aus der Ferne angemeldet</translation>
     </message>
     <message>
         <source>is located at</source>
         <translation>befindet sich in</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Authentifiziert über Methode</translation>
+        <source>is not located at</source>
+        <translation>befindet sich nicht in</translation>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation>befinden sich am selben Standort</translation>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation>befinden sich nicht am selben Standort</translation>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>ist Mitglied der Gruppe</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation>ist nicht Mitglied der Gruppe</translation>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation>ist authentifiziert über</translation>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation>ist nicht authentifiziert über</translation>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation>hat gemeinsame Gruppen mit dem Benutzer, auf den zugegriffen wird</translation>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation>hat keine gemeinsame Gruppen mit dem Benutzer, auf den zugegriffen wird</translation>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation>entspricht Benutzer, auf den zugegriffen wird</translation>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation>unterscheidet sich von Benutzer, auf den zugegriffen wird</translation>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation>ist bereits verbunden</translation>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation>ist nicht verbunden</translation>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation>ist lokaler Computer</translation>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation>ist nicht lokaler Computer</translation>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation>Computer, auf den zugegriffen wird</translation>
     </message>
 </context>
 <context>
@@ -1328,11 +1380,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Computer-Zoom-Ansicht</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Computer-Zoom-Ansicht</translation>
     </message>
 </context>
 <context>
@@ -2784,12 +2836,20 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Benutzerauthentifizierung</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Sitzungsverwaltung</translation>
+        <source>User sessions</source>
+        <translation>Benutzersitzungen</translation>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Displaymanager-Benutzer</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation>Minimale Sitzungsdauer vor Serverstart</translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Benutzeranmeldung</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Tastensequenz zum Anmelden</translation>
     </message>
 </context>
 <context>
@@ -3917,7 +3977,8 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.
+Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist, wird der letzte Computer entfernt.</translation>
     </message>
 </context>
 <context>

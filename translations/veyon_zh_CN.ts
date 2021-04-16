@@ -176,28 +176,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>规则描述：</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>反转所有条件（“是/有”变成“否/没有”）</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>条件</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>是组成员</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>正在访问局域网中的计算机</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>访问的用户已登录</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>访问的用户已连接</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,35 +212,107 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>访问计算机</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>本地（登录）用户</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>本地计算机</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>总是按规则运行并忽略条件</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>没有用户登录</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>访问用户有一个或多个与本地（登录）用户相同的组</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>访问计算机和本地计算机位于同一地点</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>位于</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>是组成员</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2788,12 +2840,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>用户验证</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>会话管理</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>显示管理员用户</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>用户登陆</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

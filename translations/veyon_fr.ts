@@ -176,28 +176,8 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Description de la règle:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Inverser toutes les conditions (&quot;est&quot; sera interprété par &quot;n&apos;est pas&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Conditions</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>est membre du groupe</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>L&apos;ordinateur accédant est l&apos;hôte local</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>L&apos;utilisateur accédant est identifié en utilisateur</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>L&apos;utilisateur accédant est déjà connecté</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,36 +212,108 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>L&apos;ordinateur accédant</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>L&apos;utilisateur local (connecté)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>L&apos;ordinateur local</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Toujours appliquer la règle et ignorer les conditions</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Aucun utilisateur connecté</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>L&apos;utilisateur accédant est membre d&apos;un ou plusieurs groupes en commun avec l&apos;utilisateur local (connecté)</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>L&apos;accès à l&apos;ordinateur et l&apos;ordinateur local se trouvent au même endroit</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>est situé à</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Authentifié via la méthode</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>est membre du groupe</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1331,11 +1383,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Widget Zoom de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Widget Zoom de l&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -2787,12 +2839,20 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Authentification utilisateur</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Gestion de session</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Gestionnaire d&apos;affichage utilisateurs</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Identifiant utilisateur</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3920,7 +3980,8 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>Ajoutez des ordinateurs en cliquant avec le bouton central de la souris ou en cliquant sur le premier bouton ci-dessous.
+Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;est sélectionné, le dernier sera supprimé.</translation>
     </message>
 </context>
 <context>

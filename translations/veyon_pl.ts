@@ -176,28 +176,8 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <translation>Opis reguły:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Odwróć wszystkie warunki („jest / ma” interpretowane jako „nie jest / nie ma”)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Warunki</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>jest członkiem grupy</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Łączący  się komputer to localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Logujący się użytkownik jest już zalogowany</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Logujący się użytkownik jest już połączony</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,36 +212,108 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <translation>Łączący się komputer</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Użytkownik lokalny (zalogowany)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Komputer lokalny</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Zawsze stosuj regułę i ignoruj warunki</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Brak zalogowanych użytkowników.</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Logujący się użytkownik ma jedną lub więcej grup wspólnych z użytkownikiem lokalnym (zalogowanym)</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Logujący się komputer i lokalny komputer są w tej samej lokalizacji</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>jest w</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Uwierzytelniony metodą</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>jest członkiem grupy</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -716,7 +768,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Wprowadź nazwę użytkownika i hasło domeny/LDAP, aby uzyskać dostęp do komputerów. </translation>
     </message>
     <message>
         <source>Username</source>
@@ -1197,7 +1249,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Serwer Veyon nieosiagalny lub nie uruchomiony</translation>
     </message>
 </context>
 <context>
@@ -1554,11 +1606,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Wszystkie ekrany</translation>
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Ekran %1 [%2}</translation>
     </message>
 </context>
 <context>
@@ -2782,12 +2834,20 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Uwierzytelnianie użytkownika</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Zarządzanie sesją</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Wyświetl użytkowników z uprawnieniami managera</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Login użytkownika</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3170,7 +3230,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Odstęp między miniaturami</translation>
     </message>
     <message>
         <source> px</source>
@@ -3178,7 +3238,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Ukryj lokalną sesję</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3186,15 +3246,15 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Proporcje miniatury</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Automatycznie dostosuj rozmiar ikony komputera</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Otwieraj okna funkcji na tym samym ekranie, co okno główne </translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3509,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Zdalny dostęp</translation>
     </message>
 </context>
 <context>
@@ -3666,7 +3726,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Czy na pewno chcesz usunąć wszystkie zaznaczone zrzuty ekranu?</translation>
     </message>
 </context>
 <context>
@@ -3763,7 +3823,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Serwer Veyon</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -3779,7 +3839,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"/>
+        <translation>Różne ustawienia sieci</translation>
     </message>
 </context>
 <context>
@@ -3871,11 +3931,11 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Poprzedni</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Start/pauza</translation>
     </message>
     <message>
         <source>Next</source>
@@ -3883,18 +3943,18 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Czas trwania:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj wybrane komputery</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Usuń wybrane komputery</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
@@ -4005,7 +4065,7 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Maksymalne wykorzystanie CPU</translation>
     </message>
 </context>
 <context>

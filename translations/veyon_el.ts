@@ -33,7 +33,9 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Δεν υπάρχει μετάφραση σε αυτήν την γλώσσα ακόμα (ή Αγγλικά).
+
+Εάν ενδιαφέρεσται να μεταφράσετε το Veyon στην γλώσσα σας ή σε κάποια άλλη ή θέλεται να βελτιόσεται την παρούσα μετάφραση, πρακαλούμαι εποικοινωνίσται με κάποιον προγραμματιστή του Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -48,11 +50,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος πρόσβασης υπολογιστή</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Παραχώρηση πρόσβασης σε όλους τους πιστοποιημένους χρήστες (προεπιλογή)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -60,7 +62,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργασία κανόνα ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -80,15 +82,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος πρόσβασης</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη κανόνα ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση κανόνα ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
@@ -128,30 +130,30 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποιήση χρήσης ομάδων τομέα</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Υποστίρηξη ομάδων χρηστών</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Έλλειψη υποστίριξης ομαδών χρηστών</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Δεν βρέθηκε κάνένα πρόσθετο για ομάδες χρηστών. Παρακαλούμε ελέγχξται την εγκατάσταση σας!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>Περιορισμός πρόσβασης σε μέλη συγκεκριμένης ομάδας χρηστών</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργασία κανόνα ελέγχου</translation>
     </message>
     <message>
         <source>General</source>
@@ -174,32 +176,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Περιγραφή κανόνα:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Αντιστροφή όλων των συνθηκών (&quot;είναι/έχει&quot; θα είναι &quot;δεν είναι/δεν έχει&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Συνθήκες</translation>
     </message>
     <message>
-        <source>is member of group</source>
-        <translation>είναι μέλος της ομάδας</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Εάν παραπάνω από μία συνθήκη είναι ενεργή κάθε συνθήκη πρέπει να επαλυθεύετει για να εφαρμοστεί ο κανόνας (λογικό AND). Εάν πρέπει μόνο μία απο όλες τις συνθήκες να επαλυθευτεί  (λογικό OR) παρακαλούμε διμιουργήσται πολλαπλούς κανόνες πρόσβασης.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -230,27 +212,39 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Τοπικός υπολογιστής</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>No user logged on</source>
+        <source>Accessing computer and local computer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <source>User being accessed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -258,7 +252,67 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>είναι μέλος της ομάδας</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2763,11 +2817,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session management</source>
+        <source>User sessions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>

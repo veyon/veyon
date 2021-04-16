@@ -176,28 +176,8 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <translation>Mô tả quy tắc:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Đảo ngược tất cả các điều kiện (có được hiểu là không)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Điều kiện</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>là thành viên của nhóm</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Máy tính đang truy cập là localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Người dùng đang truy cập là người dùng đã đăng nhập</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Người dùng đang truy cập đã được kết nối</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,27 +212,39 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <translation>Máy tính đang truy cập</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Người dùng cục bộ (đã đăng nhập)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Máy tính cục bộ</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Luôn xử lý quy tắc và bỏ qua các điều kiện</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Không có người dùng đã đăng nhập</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Người dùng đang truy cập có một hoặc nhiều nhóm chung với người dùng cục bộ (đã đăng nhập)</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -260,7 +252,67 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>là thành viên của nhóm</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2768,11 +2820,19 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session management</source>
+        <source>User sessions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>

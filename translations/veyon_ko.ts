@@ -176,28 +176,8 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>규칙 설명:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>모든 조건 반대로 (&quot;is/has&quot; 는  &quot;is/has not&quot; 로 변경됨)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>조건</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>는 그룹의 멤버임</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>연결하는 컴퓨터는 로컬 호스트입니다</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>접속하는 사용자는 로그온되어 있습니다</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>접속하는 사용자는 이미 연결되어 있습니다</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,35 +212,107 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>연결하는 컴퓨터</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>(로그온된)로컬 사용자</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>로컬 컴퓨터</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>조건 무시하고 항상 규칙 수행</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>로그온된 사용자 없음</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>연결하는 사용자는 로컬 사용자(로그온됨)와 하나 또는 그이상의 공통 그룹을 갖고 있습니다</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>같은 장소에 있는 다른 컴퓨터와 로컬 컴퓨터에 접근</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>에 위치함</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>는 그룹의 멤버임</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2785,12 +2837,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 인증</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>세션 관리</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>매니저 유저를 표시</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>유저 로긴</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -167,35 +167,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>กรอกคำอธิบายสำหรับกฏได้ที่นี่</translation>
     </message>
     <message>
         <source>Rule description:</source>
         <translation>คำอธิบายกฏ:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>เงื่อนไข</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>เป็นสมาชิกของกลุ่ม</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -230,27 +210,39 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>คอมพิวเตอร์ที่เข้าถึง</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>ผู้ใช้ท้องที่ (อยู่ในระบบ)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>คอมพิวเตอร์ท้องที่</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <source>Accessing computer and local computer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -258,7 +250,67 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authenticated via method</source>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>เป็นสมาชิกของกลุ่ม</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1275,7 +1327,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>ค้นหาผู้ใช้และคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Select all</source>
@@ -1481,7 +1533,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation type="unfinished"/>
+        <translation>ลดความเร็วการอัปเดตภาพทัมเนลลงเมื่ออยู่ในโหมดสาธิต</translation>
     </message>
 </context>
 <context>
@@ -1504,19 +1556,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิต</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปันหน้าจอของคุณเอง หรืออนุญาตให้ผู้ใช้ได้แบ่งหน้าจอของเขาให้ผู้ใช้คนอื่น</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>สาธิตแบบเต็มจอ</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปันหน้าจอของคุณในโหมดเต็มหน้าจอ</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1524,7 +1576,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปันหน้าจอของคุณในหน้าต่างแยก</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -2766,11 +2818,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>การยืนยันตัวตนผู้ใช้</translation>
     </message>
     <message>
-        <source>Session management</source>
+        <source>User sessions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2789,7 +2849,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>กรอกตัวกรองการค้นหา...</translation>
     </message>
 </context>
 <context>
@@ -2943,7 +3003,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>ค้นหาผู้ใช้และคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
@@ -2995,15 +3055,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>ตั้งค่าขนาดไอคอนคอมพิวเตอร์โดยอัตโนมัติ</translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>สไลด์โชว์</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>สปอร์ตไลท์</translation>
     </message>
 </context>
 <context>
@@ -3174,7 +3234,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>ปรับเปลี่ยนขนาดไอคอนของคอมพิวเตอร์โดยอัตโนมัติ</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
@@ -3193,7 +3253,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>โหมดนี้จะให้คุณได้สังเกตการณ์คอมพิวเตอร์ทุกเครื่องจากสถานที่ใดสถานที่หนึ่งหรือมากกว่านั้น</translation>
     </message>
 </context>
 <context>
@@ -3353,7 +3413,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์ได้รับการร้องขอจากระยะไกลให้ปิดเครื่องลง คุณต้องการปิดเครื่องลงตอนนี้หรือไม่?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
@@ -3398,7 +3458,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>เปิดหน้าต่างการเข้าควบคุมระยะไกลสำหรับคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3865,7 +3925,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>ระยะเวลา:</translation>
     </message>
 </context>
 <context>
@@ -3884,7 +3944,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>สปอร์ตไลท์</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>

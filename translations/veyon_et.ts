@@ -176,28 +176,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Reegli kirjeldus:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Pöörake kõik tingimused ümber (&quot;on/on&quot; tõlgendatud kui &quot;on/ei ole&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Tingimused</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>on rühma liige</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Arvutile juurdepääs on kohalik host</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Juurdepääs kasutajale on sisse logitud kasutaja</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Juurdepääs kasutajale on juba ühendatud</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,36 +212,108 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Arvutile juurdepääs</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Kohalik (sisse logitud) kasutaja</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Kohalik arvuti</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Kasutage reeglit alati ja eirake tingimusi</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Ükski kasutaja pole sisse loginud</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Kasutajal, kellel on juurdepääs, on üks või mitu kohaliku (sisse logitud) kasutajaga ühist rühma</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Juurdepääs arvutile ja kohalikule arvutile asuvad samas kohas</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>on asukohas</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Autentitud meetodi abil</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>on rühma liige</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1331,11 +1383,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Arvuti suumi vidin</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Arvuti suumi vidin</translation>
     </message>
 </context>
 <context>
@@ -1984,7 +2036,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Peata VNC-server</translation>
     </message>
 </context>
 <context>
@@ -2787,12 +2839,20 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutaja autentimine</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Sessiooni haldus</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Kuvahalduri kasutajad</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Kasutaja sisselogimine</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3199,7 +3259,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Avage funktsiooniaknad peaaknaga samal ekraanil</translation>
     </message>
 </context>
 <context>
@@ -3920,7 +3980,8 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.
+Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viimane.</translation>
     </message>
 </context>
 <context>
@@ -4010,7 +4071,7 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Maksimaalne protsessori kasutamine</translation>
     </message>
 </context>
 <context>

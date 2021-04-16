@@ -178,28 +178,8 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Descripción de regla:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Invertir todas las condiciones (&quot;está/tiene&quot; interpretado como &quot;no está/no tiene&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Condiciones</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>es miembro del grupo</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>El computador de acceso es localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>El usuario de acceso ha iniciado sesión</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>El usuario de acceso ya está conectado</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -234,36 +214,108 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Acceso al equipo</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Usuario local (conectado)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Equipo local</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Siempre procesar reglas e ignorar condiciones</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Ningún usuario ha iniciado sesión</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>El acceso al usuario tiene uno o más grupos en común con el usuario local (conectado)</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>El acceso al equipo y el equipo local están en la misma ubicación</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>se encuentra en</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Autenticado por método</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>es miembro del grupo</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1333,11 +1385,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Widget de Zoom de Computadora</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Widget de Zoom de Computadora</translation>
     </message>
 </context>
 <context>
@@ -2789,12 +2841,20 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Autenticacion de usuario</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Gestión de sesiones</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Usuarios del gestor de pantalla</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Inicio de sesión de usuario</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Secuencia de clave de inicio de sesión</translation>
     </message>
 </context>
 <context>
@@ -3922,7 +3982,8 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>Añada computadoras haciendo clic con el botón central del ratón o haciendo clic en el primer botón a continuación.
+El segundo botón eliminará la computadora seleccionada. Si no se selecciona nada, se eliminará el último.</translation>
     </message>
 </context>
 <context>

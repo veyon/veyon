@@ -176,28 +176,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>規則描述:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>反向所有條件 (&quot;是/有&quot; 解釋為 &quot;不是/沒有&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>條件</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>是群組的成員</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>存取電腦是 localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>存取使用者是登入的使用者</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>存取使用者已經連線</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,36 +212,108 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>存取電腦</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>本機 (登入的) 使用者</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>本機電腦</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>始終處理規則和忽略條件</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>沒有使用者登入</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>存取使用者與本機 (登入的) 使用者有一個或數個群組在通用</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>存取電腦和本機電腦位於同一位置</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>位於</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>透過方法進行身份驗證</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>是群組的成員</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1197,7 +1249,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation>無法連線 Veyon 伺服器或未執行</translation>
+        <translation>Veyon 伺服器無法存取或未執行</translation>
     </message>
 </context>
 <context>
@@ -1331,11 +1383,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 電腦縮放小工具</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 電腦縮放小工具</translation>
     </message>
 </context>
 <context>
@@ -1506,7 +1558,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation>演示</translation>
+        <translation>示範</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1514,7 +1566,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>全螢幕演示</translation>
+        <translation>全螢幕示範</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -2787,12 +2839,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>使用者身份驗證</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>工作階段管理</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>顯示管理員使用者</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>使用者登入</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>登入金鑰序列</translation>
     </message>
 </context>
 <context>
@@ -3920,7 +3980,8 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>使用按一下滑鼠中鍵或按一下以下的第一個按鈕來加入電腦。
+第二個按鈕將移除選取的電腦。 如果未選取任何內容，則將移除最後一個。</translation>
     </message>
 </context>
 <context>

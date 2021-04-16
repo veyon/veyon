@@ -175,28 +175,8 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
         <translation>Taisyklės aprašymas</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Invertuoti visas sąlygas (&quot;yra turi&quot; interpretuojama kaip &quot;nėra/neturi&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Sąlygos</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>yra grupės narys</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Pasiekiamas kompiuteris yra vietiniame tinkle</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Prisijungiantis vartotojas yra prisijungęs prie vartotojo</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>Vartotojas kuris bando prisijungti jau yra prisijungęs</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -231,36 +211,108 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
         <translation>Prisijungiama prie kompiuterio</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Vietinis (prisijungęs) vartotojas</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Vietinis kompiuteris</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Visados vykdyti šią taisyklę ir ignoruoti sąlygas</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Nėra prisijungusių vartotojų</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Vartotojas kurį bandoma pasiekti turi viena ar daugiau bendrų grupių su vietiniu (prisijungusiu) vartotoju</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Prisijungiantis kompiuteris ir vietinis kompiuteris yra toje pačioje vietoje</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>yra šioje vietoje</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Autorizuotas panaudojant:</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>yra grupės narys</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -715,7 +767,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite savo domeno/LDAP vartotojo vardą ir slaptažodį, kad pasiekti kompiuterius.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1253,7 +1305,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Nerastas numatytasis tinklo objiektų plėtinys. Patikrinkite savo instaliaciją arba nustatykite kitą tinklo objektų katalogą panaudojant %1 konfigūratorių.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1265,7 +1317,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
+        <translation>Negalima nustatyti kompiuterio vietos. Tai galėjo įvykti dėl problemos su sistemos konfigūracija. Visos vietos bus nurodytos kompiuterio pasirinkimo lange.</translation>
     </message>
 </context>
 <context>
@@ -1323,29 +1375,29 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma įrašyti kompiuterio ir vartotojų sąrašo į %1! Patikrinkite failo prieigos teises.</translation>
     </message>
 </context>
 <context>
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Kompiuterio priartinimo valdiklis.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Kompiuterio priartinimo valdiklis.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti Veyon konfigūraciją sistemos lygmeniu.</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation type="unfinished"/>
+        <translation>Parodyti visus konfigūracijos parametrus.</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
@@ -1357,23 +1409,23 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>Nuskaityti ir išvesti konfigūracijos vertę pasirinktam parametrui.</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Įrašyti nurodytą vertę pasirinktam parametrui.</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>Atstatyti (pašalinti) pasirinktą parametrą.</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinti ir išsaugoti programos ir plėtinių konfigūraciją.</translation>
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytkite esamą konfigūraciją kurią norite importuoti.</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -1381,7 +1433,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite tinkamą failo vardą eksportuojamai konfigūracijai.</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
@@ -1397,7 +1449,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>Nurodyta vertė neegzistuoja esamoje konfigūracijoje</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
@@ -1409,34 +1461,34 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Komandos skirtos valdyti Veyon konfigūraciją</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti automatinio paleidimo parametro servisui: %1 </translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti ugniasienės konfigūracijos serveriui: %1</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti ugniasienės konfigūracijos darbuotojui: %1</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Konfigūracija nėra įrašoma. Patikrinkite konfigūracijos prieigos teises</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pritaikyti konfigūracijos parametrų specifinei platformai.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukonfigūruoti ugniasienės servisui: %1</translation>
     </message>
 </context>
 <context>
@@ -1501,7 +1553,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Šiame rėžime jūsų ekranas bus demonstruojamas lange visiems kompiuteriams. Vartotojai gali perjungti langus pagal poreikį.</translation>
     </message>
     <message>
         <source>Demo</source>
@@ -1541,7 +1593,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Šiame režime bus rodomas pasirinkto vartotojo ekranas visiems vartotojams lange. Vartotojai gali perjungti į kitus langus pagal poreikį.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
@@ -1557,7 +1609,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Ekranas %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1757,11 +1809,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Paskirties vieta</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Numatytoji pradinė failų vieta.</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1769,11 +1821,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Atsiminti paskutinę pradinę direktoriją.</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Sukurti paskirties direktoriją jeigu ji neegistuoja.</translation>
     </message>
 </context>
 <context>
@@ -1983,7 +2035,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Nevaldomas VNC serveris.</translation>
     </message>
 </context>
 <context>
@@ -2768,11 +2820,19 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <translation>Vartotojo patvirtinimas</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Seanso valdymas</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Naudotojo prisijungimas</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -176,28 +176,8 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>Descrizione della regola:</translation>
     </message>
     <message>
-        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Inverti tutte le condizioni (&quot;è/ha&quot; interpretato come &quot;non è/ha&quot;)</translation>
-    </message>
-    <message>
         <source>Conditions</source>
         <translation>Condizioni</translation>
-    </message>
-    <message>
-        <source>is member of group</source>
-        <translation>è membro del gruppo</translation>
-    </message>
-    <message>
-        <source>Accessing computer is localhost</source>
-        <translation>Il computer in cui si sta entrando è localhost</translation>
-    </message>
-    <message>
-        <source>Accessing user is logged on user</source>
-        <translation>L&apos;utente che sta entrando è registrato sull&apos;utente</translation>
-    </message>
-    <message>
-        <source>Accessing user is already connected</source>
-        <translation>L&apos;utente che sta entrando è già connesso</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -232,36 +212,108 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>Il computer che sta entrando</translation>
     </message>
     <message>
-        <source>Local (logged on) user</source>
-        <translation>Utente locale (collegato)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Computer locale</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Elabora sempre la regola ed ignora le condizioni</translation>
     </message>
     <message>
-        <source>No user logged on</source>
-        <translation>Nessun utente connesso</translation>
+        <source>Accessing computer and local computer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>L&apos;utente a cui si sta accedendo ha uno o più gruppi in comune con l&apos;utente locale (l&apos;utente ora loggato).</translation>
+        <source>User being accessed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>L&apos;accesso al computer e al computer locale si trovano nella stessa posizione</translation>
+        <source>is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in locally</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user is logged in remotely</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or multiple users are logged in remotely</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
         <translation>si trova a</translation>
     </message>
     <message>
-        <source>Authenticated via method</source>
-        <translation>Autenticato tramite metodo</translation>
+        <source>is not located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are located at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>are not located the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>è membro del gruppo</translation>
+    </message>
+    <message>
+        <source>is not member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not authenticated via</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has no groups in common with user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>equals user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is different from user being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is not local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer being accessed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1328,11 +1380,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerZoomWidget</name>
     <message>
         <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 -%2 Widget per lo Zoom del Computer</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
+        <translation>%1 -%2 -%3 Widget per lo Zoom del Computer</translation>
     </message>
 </context>
 <context>
@@ -2774,12 +2826,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Autenticazione utente</translation>
     </message>
     <message>
-        <source>Session management</source>
-        <translation>Gestione della sessione</translation>
+        <source>User sessions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Display manager users</source>
-        <translation>Display gestione utenti</translation>
+        <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Login utente</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Sequenza di tasti di accesso</translation>
     </message>
 </context>
 <context>
@@ -3906,7 +3966,8 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi computer facendo clic con il pulsante centrale del mouse o facendo clic sul primo pulsante in basso.
+Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato nulla, l&apos;ultimo verrà rimosso.</translation>
     </message>
 </context>
 <context>
