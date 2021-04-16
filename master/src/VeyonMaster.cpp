@@ -276,17 +276,6 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 	if( controlInterface )
 	{
 		auto designatedModeFeature = m_featureManager->feature( controlInterface->designatedModeFeature() );
-
-		// stop all other active mode feature
-		const auto features = modeFeatures();
-		for( const auto& currentFeature : features )
-		{
-			if( currentFeature != designatedModeFeature )
-			{
-				featureManager().stopFeature( *this, currentFeature, { controlInterface } );
-			}
-		}
-
 		if( designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature() )
 		{
 			featureManager().startFeature( *this, designatedModeFeature, { controlInterface } );
