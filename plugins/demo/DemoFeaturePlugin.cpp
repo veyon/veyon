@@ -60,7 +60,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 							   {}, tr("Window demo"), {}, {} ),
 	m_shareOwnScreenFullScreenFeature( QStringLiteral( "ShareOwnScreenFullScreen" ),
 									   Feature::Mode | Feature::AllComponents,
-									   Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
+									   Feature::Uid( "07b375e1-8ab6-4b48-bcb7-75fb3d56035b" ),
 									   m_demoFeature.uid(),
 									   tr( "Share your own screen in fullscreen mode" ), {},
 									   tr( "In this mode your screen is being displayed in "
@@ -69,7 +69,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 									   QStringLiteral(":/demo/presentation-fullscreen.png") ),
 	m_shareOwnScreenWindowFeature( QStringLiteral( "ShareOwnScreenWindow" ),
 								   Feature::Mode | Feature::AllComponents,
-								   Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
+								   Feature::Uid( "68c55fb9-127e-4c9f-9c90-28b998bf1a47" ),
 								   m_demoFeature.uid(),
 								   tr( "Share your own screen in a window" ), {},
 								   tr( "In this mode your screen being displayed in a "
