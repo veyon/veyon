@@ -221,6 +221,8 @@ void VeyonCore::setupApplicationParameters()
 	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
 	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
 
+	QCoreApplication::setAttribute( Qt::AA_ShareOpenGLContexts );
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 	QApplication::setAttribute( Qt::AA_UseHighDpiPixmaps );
 #endif
