@@ -28,6 +28,7 @@
 #include "FeatureWorkerManager.h"
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformSessionFunctions.h"
 #include "VeyonServerInterface.h"
 
 
@@ -108,6 +109,12 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
 			message.command() == StopLockCommand )
 		{
+			return true;
+		}
+
+		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() == false )
+		{
+			vDebug() << "not locking screen since not running in a user session";
 			return true;
 		}
 
