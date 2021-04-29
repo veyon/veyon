@@ -40,9 +40,65 @@ LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 
 
 
+QString LinuxSessionFunctions::currentSessionType() const
+{
+	const auto env = QProcessEnvironment::systemEnvironment();
+
+	if( env.contains( QStringLiteral("WAYLAND_DISPLAY") ) )
+	{
+		return QStringLiteral("wayland");
+	}
+	else if( env.contains( QStringLiteral("DISPLAY") ) )
+	{
+		return QStringLiteral("x11");
+	}
+
+	return getSessionProperty( currentSessionPath(), QStringLiteral("Type") ).toString();
+}
+
+
+
 bool LinuxSessionFunctions::currentSessionHasUser() const
 {
 	return getSessionClass( currentSessionPath() ) == Class::User;
+}
+
+
+
+bool LinuxSessionFunctions::currentSessionIsRemote() const
+{
+	return isRemote( currentSessionPath() );
+}
+
+
+
+QStringList LinuxSessionFunctions::listSessions()
+{
+	QStringList sessions;
+
+	const QDBusReply<QDBusArgument> reply = LinuxCoreFunctions::systemdLoginManager()->call( QStringLiteral("ListSessions") );
+
+	if( reply.isValid() )
+	{
+		const auto data = reply.value();
+
+		data.beginArray();
+		while( data.atEnd() == false )
+		{
+			LoginDBusSession session;
+
+			data.beginStructure();
+			data >> session.id >> session.uid >> session.name >> session.seatId >> session.path;
+			data.endStructure();
+
+			sessions.append( session.path.path() );
+		}
+		return sessions;
+	}
+
+	vCritical() << "Could not query sessions:" << reply.error().message();
+
+	return sessions;
 }
 
 
@@ -224,31 +280,6 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 
 
 
-QString LinuxSessionFunctions::currentSessionType() const
-{
-	const auto env = QProcessEnvironment::systemEnvironment();
-
-	if( env.contains( QStringLiteral("WAYLAND_DISPLAY") ) )
-	{
-		return QStringLiteral("wayland");
-	}
-	else if( env.contains( QStringLiteral("DISPLAY") ) )
-	{
-		return QStringLiteral("x11");
-	}
-
-	return getSessionProperty( currentSessionPath(), QStringLiteral("Type") ).toString();
-}
-
-
-
-bool LinuxSessionFunctions::currentSessionIsRemote() const
-{
-	return isRemote( currentSessionPath() );
-}
-
-
-
 QString LinuxSessionFunctions::currentSessionPath()
 {
 	const auto xdgSessionId = QProcessEnvironment::systemEnvironment().value( xdgSessionIdEnvVarName() );
@@ -258,37 +289,6 @@ QString LinuxSessionFunctions::currentSessionPath()
 	}
 
 	return QStringLiteral("/org/freedesktop/login1/session/%1").arg( xdgSessionId );
-}
-
-
-
-QStringList LinuxSessionFunctions::listSessions()
-{
-	QStringList sessions;
-
-	const QDBusReply<QDBusArgument> reply = LinuxCoreFunctions::systemdLoginManager()->call( QStringLiteral("ListSessions") );
-
-	if( reply.isValid() )
-	{
-		const auto data = reply.value();
-
-		data.beginArray();
-		while( data.atEnd() == false )
-		{
-			LoginDBusSession session;
-
-			data.beginStructure();
-			data >> session.id >> session.uid >> session.name >> session.seatId >> session.path;
-			data.endStructure();
-
-			sessions.append( session.path.path() );
-		}
-		return sessions;
-	}
-
-	vCritical() << "Could not query sessions:" << reply.error().message();
-
-	return sessions;
 }
 
 
