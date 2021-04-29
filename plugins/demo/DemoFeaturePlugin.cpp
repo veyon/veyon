@@ -35,7 +35,7 @@
 #include "FeatureWorkerManager.h"
 #include "HostAddress.h"
 #include "Logger.h"
-#include "FeatureWorkerManager.h"
+#include "PlatformSessionFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
@@ -330,6 +330,12 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 		if( message.command() == StopDemoClient &&
 			server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false )
 		{
+			return true;
+		}
+
+		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() == false )
+		{
+			vDebug() << "not starting demo client since not running in a user session";
 			return true;
 		}
 
