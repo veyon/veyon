@@ -82,6 +82,7 @@ public:
 	SessionId currentSessionId() override;
 
 	QString currentSessionType() const override;
+	bool currentSessionHasUser() const override;
 
 	static QStringList listSessions();
 

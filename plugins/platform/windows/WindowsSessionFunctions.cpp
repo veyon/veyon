@@ -50,3 +50,11 @@ QString WindowsSessionFunctions::currentSessionType() const
 
 	return QStringLiteral("rdp");
 }
+
+
+
+bool WindowsSessionFunctions::currentSessionHasUser() const
+{
+	return WtsSessionManager::querySessionInformation( WtsSessionManager::currentSession(),
+													   WtsSessionManager::SessionInfo::UserName ).isEmpty() == false;
+}

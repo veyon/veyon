@@ -40,6 +40,13 @@ LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 
 
 
+bool LinuxSessionFunctions::currentSessionHasUser() const
+{
+	return getSessionClass( currentSessionPath() ) == Class::User;
+}
+
+
+
 QVariant LinuxSessionFunctions::getSessionProperty( const QString& session, const QString& property )
 {
 	QDBusInterface loginManager( QStringLiteral("org.freedesktop.login1"),
