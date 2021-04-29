@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include <QDBusInterface>
+#include <QDBusObjectPath>
 #include <QProcessEnvironment>
 
 #include "PlatformSessionFunctions.h"
