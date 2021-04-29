@@ -34,6 +34,7 @@ public:
 	SessionId currentSessionId() override;
 
 	QString currentSessionType() const override;
+	bool currentSessionHasUser() const override;
 	bool currentSessionIsRemote() const override;
 
 };

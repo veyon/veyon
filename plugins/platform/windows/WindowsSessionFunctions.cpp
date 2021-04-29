@@ -57,3 +57,11 @@ bool WindowsSessionFunctions::currentSessionIsRemote() const
 {
 	return WtsSessionManager::isRemote( WtsSessionManager::currentSession() );
 }
+
+
+
+bool WindowsSessionFunctions::currentSessionHasUser() const
+{
+	return WtsSessionManager::querySessionInformation( WtsSessionManager::currentSession(),
+													   WtsSessionManager::SessionInfo::UserName ).isEmpty() == false;
+}
