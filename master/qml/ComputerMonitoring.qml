@@ -6,7 +6,7 @@ import Veyon.Master 5.0
 Page {
 
 	title: qsTr("Computers")
-	property bool canBeClosed: false
+	readonly property bool canBeClosed: false
 
 	header: Flow {
 		Repeater {
@@ -38,13 +38,13 @@ Page {
 		groupFilter: computerGroupSelector.selectedGroups
 		anchors.fill: parent
 
-		selectedObjects : {
-			var objectUids = [];
-			for( var item in computerMonitoringView.selectedItems )
+		selectedObjects: {
+			let objectUids = []
+			for( let item in computerMonitoringView.selectedItems )
 			{
 				objectUids.push(computerMonitoringView.selectedItems[item].objectUid)
 			}
-			return objectUids;
+			return objectUids
 		}
 
 		Rectangle {
@@ -72,56 +72,56 @@ Page {
 
 			function setAllSelected( selected )
 			{
-				for( var child in contentItem.children )
+				for( let child in contentItem.children )
 				{
-					var item = contentItem.children[child];
+					var item = contentItem.children[child]
 					if( item.isComputerItem )
 					{
-						item.selected = selected;
+						item.selected = selected
 					}
 				}
 			}
 
 			function addSelectedToGroup( group )
 			{
-				for( var item in selectedItems )
+				for( let item in selectedItems )
 				{
-					selectedItems[item].addGroup( [group] );
+					selectedItems[item].addGroup( [group] )
 				}
 			}
 
 			function removeSelectedFromGroup( group )
 			{
-				for( var item in selectedItems )
+				for( let item in selectedItems )
 				{
-					selectedItems[item].removeGroup( [group] );
+					selectedItems[item].removeGroup( [group] )
 				}
 			}
 
 			property var selectedItems : {
-				var items = [];
-				for( var child in contentItem.children )
+				var items = []
+				for( let child in contentItem.children )
 				{
-					var item = contentItem.children[child];
+					let item = contentItem.children[child]
 					if( item.isComputerItem && item.selected )
 					{
 						items.push(item)
 					}
 				}
-				return items;
+				return items
 			}
 
 			property var allItems : {
-				var items = [];
-				for( var child in contentItem.children )
+				var items = []
+				for( let child in contentItem.children )
 				{
-					var item = contentItem.children[child];
+					var item = contentItem.children[child]
 					if( item.isComputerItem )
 					{
 						items.push(item)
 					}
 				}
-				return items;
+				return items
 			}
 
 			property bool selecting: selectedItems.length > 0

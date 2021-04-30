@@ -7,19 +7,19 @@ Repeater {
 
 	property var availableGroups: {
 		var groups = []
-		for( var i = 0; i < count; ++i )
+		for( let i = 0; i < count; ++i )
 		{
-			var item = itemAt(i)
+			let item = itemAt(i)
 			groups.push( { "text": item.name, "color": item.groupColor } )
 		}
 		return groups
 	}
 
 	property var selectedGroups: {
-		var groups = []
-		for( var i = 0; i < count; ++i )
+		let groups = []
+		for( let i = 0; i < count; ++i )
 		{
-			var item = itemAt(i)
+			let item = itemAt(i)
 			if( item.checked )
 			{
 				groups.push( item.groupColor )
