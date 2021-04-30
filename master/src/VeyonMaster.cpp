@@ -329,7 +329,7 @@ void VeyonMaster::initUserInterface()
 		m_qmlAppEngine->addImageProvider( m_computerControlListModel->imageProvider()->id(),
 										  m_computerControlListModel->imageProvider() );
 		m_qmlAppEngine->rootContext()->setContextProperty( QStringLiteral("masterCore"), this );
-		m_qmlAppEngine->load( QStringLiteral(":/master/main.qml") );
+		m_qmlAppEngine->load( QStringLiteral(":/master/MainWindow.qml") );
 	}
 	else
 	{

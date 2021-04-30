@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/master">
-        <file>main.qml</file>
+        <file>MainWindow.qml</file>
         <file>TitleBarTab.qml</file>
         <file>FeatureButton.qml</file>
         <file>ButtonMenu.qml</file>
