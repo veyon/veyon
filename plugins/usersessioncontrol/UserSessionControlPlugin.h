@@ -90,7 +90,7 @@ public:
 							   const FeatureMessage& message ) override;
 
 private:
-	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
+	bool confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent );
 
 	const Feature m_userLoginFeature;
 	const Feature m_userLogoffFeature;

@@ -95,11 +95,6 @@ bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const
 {
 	Q_UNUSED(master)
 
-	if( confirmFeatureExecution( feature, master.mainWindow() ) == false )
-	{
-		return false;
-	}
-
 	if( feature == m_userLoginFeature )
 	{
 		UserLoginDialog loginDialog( master.mainWindow() );
@@ -115,6 +110,15 @@ bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const
 	}
 	else if( feature == m_userLogoffFeature )
 	{
+		const auto selectionCount = master.selectedComputerControlInterfaces().size();
+
+		if( confirmFeatureExecution( feature,
+									 selectionCount == 0 || selectionCount == computerControlInterfaces.size(),
+									 master.mainWindow() ) == false )
+		{
+			return true;
+		}
+
 		return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
 	}
 
@@ -148,7 +152,7 @@ bool UserSessionControlPlugin::handleFeatureMessage( VeyonServerInterface& serve
 
 
 
-bool UserSessionControlPlugin::confirmFeatureExecution( const Feature& feature, QWidget* parent )
+bool UserSessionControlPlugin::confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent )
 {
 	if( VeyonCore::config().confirmUnsafeActions() == false )
 	{
@@ -158,7 +162,8 @@ bool UserSessionControlPlugin::confirmFeatureExecution( const Feature& feature, 
 	if( feature == m_userLogoffFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm user logoff" ),
-									  tr( "Do you really want to log off the selected users?" ) ) ==
+									  all ? tr( "Do you really want to log off <b>ALL</b> users?" )
+										  : tr( "Do you really want to log off the selected users?" ) ) ==
 				QMessageBox::Yes;
 	}
 
