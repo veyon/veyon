@@ -308,9 +308,10 @@ FeatureList VeyonMaster::featureList() const
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
-					feature.testFlag( Feature::Mode ) &&
-					feature.parentUid().isNull() &&
-					disabledFeatures.contains( feature.uid().toString() ) == false )
+				feature.testFlag( Feature::Mode ) &&
+				feature.testFlag( Feature::Meta ) == false &&
+				feature.parentUid().isNull() &&
+				disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;
 			}
@@ -322,9 +323,10 @@ FeatureList VeyonMaster::featureList() const
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
-					feature.testFlag( Feature::Mode ) == false &&
-					feature.parentUid().isNull() &&
-					disabledFeatures.contains( feature.uid().toString() ) == false )
+				feature.testFlag( Feature::Mode ) == false &&
+				feature.testFlag( Feature::Meta ) == false &&
+				feature.parentUid().isNull() &&
+				disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;
 			}
