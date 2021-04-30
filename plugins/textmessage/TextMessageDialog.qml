@@ -20,7 +20,9 @@ Dialog {
 	ColumnLayout {
 		anchors.fill: parent
 		Label {
-			text: qsTr("Use the field below to type your message which will be sent to all selected users.")
+			text: qsTr("Please enter your message which send to all selected users.")
+			wrapMode: Label.WordWrap
+			Layout.fillWidth: true
 		}
 
 		TextArea {

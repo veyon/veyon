@@ -14,7 +14,7 @@
    <item>
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Use the field below to type your message which will be sent to all selected users.</string>
+      <string>Please enter your message which send to all selected users.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
