@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtQml.Models 2.12
 import Veyon.Master 5.0
 
 Page {
