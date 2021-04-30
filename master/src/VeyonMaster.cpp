@@ -216,7 +216,18 @@ void VeyonMaster::reloadSubFeatures()
 
 ComputerControlInterfaceList VeyonMaster::selectedComputerControlInterfaces() const
 {
-	return m_mainWindow->selectedComputerControlInterfaces();
+	if( m_mainWindow )
+	{
+		return m_mainWindow->selectedComputerControlInterfaces();
+	}
+
+	const auto monitoringItem = m_appContainer->findChild<ComputerMonitoringItem *>();
+	if( monitoringItem )
+	{
+		return monitoringItem->selectedComputerControlInterfaces();
+	}
+
+	return {};
 }
 
 
