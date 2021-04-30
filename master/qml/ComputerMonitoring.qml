@@ -65,6 +65,11 @@ Page {
 				textColor: computerMonitoring.textColor
 			}
 
+			ScrollBar.vertical: ScrollBar {
+				visible: computerMonitoringView.contentHeight > computerMonitoringView.height
+				policy: visible ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+			}
+
 			Label {
 				id: dummyLabel
 				visible: false
