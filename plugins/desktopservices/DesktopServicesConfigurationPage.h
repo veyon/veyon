@@ -46,9 +46,9 @@ public:
 	void applyConfiguration() override;
 
 private Q_SLOTS:
-	void addProgram();
-	void updateProgram();
-	void removeProgram();
+	void addApplication();
+	void updateApplication();
+	void removeApplication();
 	void addWebsite();
 	void updateWebsite();
 	void removeWebsite();

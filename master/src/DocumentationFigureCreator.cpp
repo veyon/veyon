@@ -74,8 +74,8 @@ void DocumentationFigureCreator::run()
 	createTextMessageDialogFigure();
 	createOpenWebsiteDialogFigure();
 	createWebsiteMenuFigure();
-	createRunProgramDialogFigure();
-	createProgramMenuFigure();
+	createStartAppDialogFigure();
+	createAppMenuFigure();
 	createRemoteAccessHostDialogFigure();
 	createRemoteAccessWindowFigure();
 	createPowerDownOptionsFigure();
@@ -386,14 +386,14 @@ void DocumentationFigureCreator::createWebsiteMenuFigure()
 
 
 
-void DocumentationFigureCreator::createRunProgramDialogFigure()
+void DocumentationFigureCreator::createStartAppDialogFigure()
 {
 	scheduleUiOperation( []() {
 		auto dialog = qobject_cast<QDialog *>( QApplication::activeWindow() );
 		dialog->findChild<QTextEdit *>()->setText( QStringLiteral("notepad") );
 		dialog->setFocus();
 
-		grabDialog( dialog, {}, QStringLiteral("RunProgramDialog.png") );
+		grabDialog( dialog, {}, QStringLiteral("StartAppDialog.png") );
 	});
 
 	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
@@ -401,16 +401,16 @@ void DocumentationFigureCreator::createRunProgramDialogFigure()
 
 
 
-void DocumentationFigureCreator::createProgramMenuFigure()
+void DocumentationFigureCreator::createAppMenuFigure()
 {
 	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
-	auto runProgramButton = toolbar->findChild<ToolButton *>( QStringLiteral("RunProgram") );
+	auto runProgramButton = toolbar->findChild<ToolButton *>( QStringLiteral("StartApp") );
 
 	auto menu = new QMenu;
 	menu->addAction( tr("Open file manager") );
 	menu->addAction( tr("Start learning tool") );
 	menu->addAction( tr("Play tutorial video") );
-	menu->addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom program") );
+	menu->addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom application") );
 
 	scheduleUiOperation( [this, runProgramButton, menu]() {
 		scheduleUiOperation( [this, runProgramButton, menu]() {

@@ -54,8 +54,8 @@ private:
 	void createTextMessageDialogFigure();
 	void createOpenWebsiteDialogFigure();
 	void createWebsiteMenuFigure();
-	void createRunProgramDialogFigure();
-	void createProgramMenuFigure();
+	void createStartAppDialogFigure();
+	void createAppMenuFigure();
 	void createRemoteAccessHostDialogFigure();
 	void createRemoteAccessWindowFigure();
 	void createFileTransferDialogFigure();

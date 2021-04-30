@@ -1,5 +1,5 @@
 /*
- * RunProgramDialog.cpp - implementation of RunProgramDialog
+ * StartAppDialog.cpp - implementation of StartAppDialog
  *
  * Copyright (c) 2004-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,49 +24,49 @@
 
 #include <QPushButton>
 
-#include "RunProgramDialog.h"
+#include "StartAppDialog.h"
 
-#include "ui_RunProgramDialog.h"
+#include "ui_StartAppDialog.h"
 
-RunProgramDialog::RunProgramDialog( QWidget* parent ) :
+StartAppDialog::StartAppDialog( QWidget* parent ) :
 	QDialog( parent ),
-	ui( new Ui::RunProgramDialog ),
-	m_programs(),
+	ui( new Ui::StartAppDialog ),
+	m_apps(),
 	m_remember( false ),
 	m_presetName()
 {
 	ui->setupUi( this );
 
-	connect( ui->programInputTextEdit, &QTextEdit::textChanged, this, &RunProgramDialog::validate );
-	connect( ui->rememberCheckBox, &QCheckBox::toggled, this, &RunProgramDialog::validate );
-	connect( ui->presetNameEdit, &QLineEdit::textChanged, this, &RunProgramDialog::validate );
+	connect( ui->appInputTextEdit, &QTextEdit::textChanged, this, &StartAppDialog::validate );
+	connect( ui->rememberCheckBox, &QCheckBox::toggled, this, &StartAppDialog::validate );
+	connect( ui->presetNameEdit, &QLineEdit::textChanged, this, &StartAppDialog::validate );
 
 	validate();
 
-	ui->programInputTextEdit->setFocus();
+	ui->appInputTextEdit->setFocus();
 }
 
 
 
-RunProgramDialog::~RunProgramDialog()
+StartAppDialog::~StartAppDialog()
 {
 	delete ui;
 }
 
 
 
-void RunProgramDialog::validate()
+void StartAppDialog::validate()
 {
 	ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled(
-				ui->programInputTextEdit->toPlainText().isEmpty() == false &&
+				ui->appInputTextEdit->toPlainText().isEmpty() == false &&
 				( ui->rememberCheckBox->isChecked() == false || ui->presetNameEdit->text().isEmpty() == false ) );
 }
 
 
 
-void RunProgramDialog::accept()
+void StartAppDialog::accept()
 {
-	m_programs = ui->programInputTextEdit->toPlainText();
+	m_apps = ui->appInputTextEdit->toPlainText();
 	m_remember = ui->rememberCheckBox->isChecked();
 	m_presetName = ui->presetNameEdit->text();
 

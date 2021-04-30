@@ -3,5 +3,7 @@
         <file>internet-web-browser.png</file>
         <file>preferences-desktop-launch-feedback.png</file>
         <file>desktop-services.png</file>
+        <file>OpenWebsiteDialog.qml</file>
+        <file>StartAppDialog.qml</file>
     </qresource>
 </RCC>
