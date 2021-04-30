@@ -48,7 +48,7 @@ DesktopServicesConfigurationPage::~DesktopServicesConfigurationPage()
 
 void DesktopServicesConfigurationPage::resetWidgets()
 {
-	loadObjects( m_configuration.predefinedPrograms(), ui->programTable );
+	loadObjects( m_configuration.predefinedApplications(), ui->applicationTable );
 	loadObjects( m_configuration.predefinedWebsites(), ui->websiteTable );
 }
 
@@ -66,35 +66,35 @@ void DesktopServicesConfigurationPage::applyConfiguration()
 
 
 
-void DesktopServicesConfigurationPage::addProgram()
+void DesktopServicesConfigurationPage::addApplication()
 {
-	auto programs = m_configuration.predefinedPrograms();
+	auto applications = m_configuration.predefinedApplications();
 
-	addServiceObject( ui->programTable, DesktopServiceObject::Type::Program, tr( "New program" ), programs );
+	addServiceObject( ui->applicationTable, DesktopServiceObject::Type::Application, tr( "New application" ), applications );
 
-	m_configuration.setPredefinedPrograms( programs );
+	m_configuration.setPredefinedApplications( applications );
 }
 
 
 
-void DesktopServicesConfigurationPage::updateProgram()
+void DesktopServicesConfigurationPage::updateApplication()
 {
-	auto programs = m_configuration.predefinedPrograms();
+	auto applications = m_configuration.predefinedApplications();
 
-	updateServiceObject( ui->programTable, DesktopServiceObject::Type::Program, programs );
+	updateServiceObject( ui->applicationTable, DesktopServiceObject::Type::Application, applications );
 
-	m_configuration.setPredefinedPrograms( programs );
+	m_configuration.setPredefinedApplications( applications );
 }
 
 
 
-void DesktopServicesConfigurationPage::removeProgram()
+void DesktopServicesConfigurationPage::removeApplication()
 {
-	auto programs = m_configuration.predefinedPrograms();
+	auto applications = m_configuration.predefinedApplications();
 
-	removeServiceObject( ui->programTable, DesktopServiceObject::Type::Program, programs );
+	removeServiceObject( ui->applicationTable, DesktopServiceObject::Type::Application, applications );
 
-	m_configuration.setPredefinedPrograms( programs );
+	m_configuration.setPredefinedApplications( applications );
 }
 
 

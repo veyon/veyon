@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <author>Tobias Junghans</author>
- <class>RunProgramDialog</class>
- <widget class="QDialog" name="RunProgramDialog">
+ <class>StartAppDialog</class>
+ <widget class="QDialog" name="StartAppDialog">
   <property name="windowTitle">
-   <string>Run programs</string>
+   <string>Start application</string>
   </property>
   <property name="windowIcon">
    <iconset resource="desktopservices.qrc">
@@ -39,7 +39,7 @@
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
-    <widget class="QTextEdit" name="programInputTextEdit">
+    <widget class="QTextEdit" name="appInputTextEdit">
      <property name="placeholderText">
       <string>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</string>
      </property>
@@ -48,7 +48,7 @@
    <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="rememberCheckBox">
      <property name="text">
-      <string>Remember and add to program menu</string>
+      <string>Remember and add to application menu</string>
      </property>
     </widget>
    </item>
@@ -65,7 +65,7 @@
    <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</string>
+      <string>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -94,7 +94,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>RunProgramDialog</receiver>
+   <receiver>StartAppDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -110,7 +110,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>RunProgramDialog</receiver>
+   <receiver>StartAppDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

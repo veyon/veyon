@@ -39,7 +39,7 @@ public:
 	enum class Type
 	{
 		None,
-		Program,
+		Application,
 		Website,
 	} ;
 

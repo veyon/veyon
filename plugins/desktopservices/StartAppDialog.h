@@ -1,5 +1,5 @@
 /*
- * RunProgramDialog.h - declaration of class RunProgramDialog
+ * StartAppDialog.h - declaration of class StartAppDialog
  *
  * Copyright (c) 2004-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,18 +24,18 @@
 
 #include <QDialog>
 
-namespace Ui { class RunProgramDialog; }
+namespace Ui { class StartAppDialog; }
 
-class RunProgramDialog : public QDialog
+class StartAppDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit RunProgramDialog( QWidget *parent );
-	~RunProgramDialog() override;
+	explicit StartAppDialog( QWidget *parent );
+	~StartAppDialog() override;
 
-	const QString& programs() const
+	const QString& apps() const
 	{
-		return m_programs;
+		return m_apps;
 	}
 
 	bool remember() const
@@ -52,8 +52,8 @@ private:
 	void validate();
 	void accept() override;
 
-	Ui::RunProgramDialog* ui;
-	QString m_programs;
+	Ui::StartAppDialog* ui;
+	QString m_apps;
 	bool m_remember;
 	QString m_presetName;
 

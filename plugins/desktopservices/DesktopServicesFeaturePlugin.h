@@ -41,7 +41,7 @@ class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
 public:
 	enum class Argument
 	{
-		Programs,
+		Applications,
 		WebsiteUrl
 	};
 	Q_ENUM(Argument)
@@ -56,7 +56,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber( 2, 0 );
 	}
 
 	QString name() const override
@@ -66,7 +66,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Start programs and services in user desktop" );
+		return tr( "Start apps and open websites in user sessions" );
 	}
 
 	QString vendor() const override
@@ -78,6 +78,8 @@ public:
 	{
 		return QStringLiteral("Tobias Junghans");
 	}
+
+	void upgrade( const QVersionNumber& oldVersion );
 
 	const FeatureList& featureList() const override
 	{
@@ -98,36 +100,47 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
+Q_SIGNALS:
+	Q_INVOKABLE void acceptStartAppDialog( const QString& app, const QString& saveItemName );
+	Q_INVOKABLE void acceptOpenWebsiteDialog( const QString& website, const QString& saveItemName );
+
 private:
 	bool eventFilter( QObject* object, QEvent* event ) override;
 
 	void updateFeatures();
 	void openMenu( const QString& objectName );
 
-	void runProgram( VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
-	void openWebsite( VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
+	void executeStartAppDialog( VeyonMasterInterface& master,
+							 const ComputerControlInterfaceList& computerControlInterfaces );
+	void startApp( const QString& app, const QString& saveItemName,
+				  VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
 
-	void runProgramAsUser( const QString& commandLine );
+	void executeOpenWebsiteDialog( VeyonMasterInterface& master,
+								  const ComputerControlInterfaceList& computerControlInterfaces );
+	void openWebsite( const QString& website, const QString& saveItemName,
+					 VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
+
+	void runApplicationAsUser( const QString& commandLine );
 	bool openWebsite( const QString& urlString );
 
-	void updatePredefinedPrograms();
+	void updatePredefinedApplications();
 	void updatePredefinedWebsites();
 
-	void updatePredefinedProgramFeatures();
+	void updatePredefinedApplicationFeatures();
 	void updatePredefinedWebsiteFeatures();
 
 	QString predefinedServicePath( Feature::Uid subFeatureUid ) const;
 
 	DesktopServicesConfiguration m_configuration;
 
-	QJsonArray m_predefinedPrograms;
+	QJsonArray m_predefinedApps;
 	QJsonArray m_predefinedWebsites;
 
-	const Feature m_runProgramFeature;
+	const Feature m_startAppFeature;
 	const Feature m_openWebsiteFeature;
 
-	FeatureList m_predefinedProgramsFeatures;
-	FeatureList m_predefinedWebsitesFeatures;
+	FeatureList m_predefinedAppsFeatures{};
+	FeatureList m_predefinedWebsitesFeatures{};
 
 	FeatureList m_features;
 

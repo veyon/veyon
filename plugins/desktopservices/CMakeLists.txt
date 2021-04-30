@@ -5,9 +5,9 @@ build_veyon_plugin(desktopservices
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesConfigurationPage.ui
 	DesktopServicesFeaturePlugin.cpp
-	RunProgramDialog.cpp
-	RunProgramDialog.h
-	RunProgramDialog.ui
+	StartAppDialog.cpp
+	StartAppDialog.h
+	StartAppDialog.ui
 	OpenWebsiteDialog.cpp
 	OpenWebsiteDialog.h
 	OpenWebsiteDialog.ui
