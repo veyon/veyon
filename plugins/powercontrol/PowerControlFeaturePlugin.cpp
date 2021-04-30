@@ -121,7 +121,7 @@ bool PowerControlFeaturePlugin::controlFeature( Feature::Uid featureUid,
 											   const QVariantMap& arguments,
 											   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( hasFeature( featureUid ) == false || operation != Operation::Start )
+	if( operation != Operation::Start )
 	{
 		return false;
 	}
@@ -154,6 +154,11 @@ bool PowerControlFeaturePlugin::controlFeature( Feature::Uid featureUid,
 bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	if( hasFeature( feature.uid() ) == false )
+	{
+		return false;
+	}
+
 	if( feature == m_powerOnFeature )
 	{
 		return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
