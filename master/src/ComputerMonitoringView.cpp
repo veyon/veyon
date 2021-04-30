@@ -57,6 +57,8 @@ void ComputerMonitoringView::initializeView( QObject* self )
 	setColors( VeyonCore::config().computerMonitoringBackgroundColor(),
 			   VeyonCore::config().computerMonitoringTextColor() );
 
+	setIconSize( m_master->computerControlListModel().computerScreenSize() );
+
 	setComputerScreenSize( m_master->userConfig().monitoringScreenSize() );
 
 	loadComputerPositions( m_master->userConfig().computerPositions() );
