@@ -45,9 +45,7 @@ ApplicationWindow {
 			Layout.fillHeight: true
 			Layout.fillWidth: true
 
-			ComputerMonitoring {
-				id: computerMonitoring
-			}
+			ComputerMonitoring { }
 		}
 	}
 }
