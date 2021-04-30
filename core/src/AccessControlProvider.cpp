@@ -479,6 +479,16 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
+	if( rule.isConditionEnabled( AccessControlRule::Condition::UserSession ) )
+	{
+		condition = AccessControlRule::Condition::UserSession;
+
+		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() == rule.isConditionInverted(condition) )
+		{
+			return false;
+		}
+	}
+
 	// do not match the rule if no conditions are set at all
 	if( condition == AccessControlRule::Condition::None )
 	{

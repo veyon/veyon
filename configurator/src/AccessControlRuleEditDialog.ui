@@ -422,6 +422,30 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="0,1">
+        <item>
+         <widget class="QCheckBox" name="isUserSession"/>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertIsUserSession">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Session being accessed is a user session</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Session being accessed is a login screen</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -537,6 +561,8 @@
   <tabstop>invertIsNoUserLoggedInLocally</tabstop>
   <tabstop>isNoUserLoggedInRemotely</tabstop>
   <tabstop>invertIsNoUserLoggedInRemotely</tabstop>
+  <tabstop>isUserSession</tabstop>
+  <tabstop>invertIsUserSession</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
   <tabstop>actionAskForPermissionRadioButton</tabstop>
@@ -845,6 +871,22 @@
     <hint type="destinationlabel">
      <x>590</x>
      <y>665</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isUserSession</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertIsUserSession</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>761</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>492</x>
+     <y>761</y>
     </hint>
    </hints>
   </connection>

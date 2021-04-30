@@ -57,6 +57,7 @@ public:
 		NoUserLoggedInLocally,
 		NoUserLoggedInRemotely,
 		AccessedUserLoggedInLocally,
+		UserSession,
 		AuthenticationMethod
 	} ;
 

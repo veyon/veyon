@@ -96,6 +96,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	loadCondition ( ui->isAccessedUserLoggedInLocally, ui->invertIsAccessedUserLoggedInLocally, AccessControlRule::Condition::AccessedUserLoggedInLocally );
 	loadCondition ( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
 	loadCondition ( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
+	loadCondition ( ui->isUserSession, ui->invertIsUserSession, AccessControlRule::Condition::UserSession );
 
 	// load selected condition subjects
 	ui->isMemberOfGroupSubject->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::MemberOfGroup ) ) );
@@ -173,6 +174,7 @@ void AccessControlRuleEditDialog::accept()
 
 	saveCondition( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
 	saveCondition( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
+	saveCondition( ui->isUserSession, ui->invertIsUserSession, AccessControlRule::Condition::UserSession );
 
 	// save action
 	if( ui->actionAllowRadioButton->isChecked() )
