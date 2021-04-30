@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDialogButtonBox>
 #include <QGuiApplication>
 #include <QMessageBox>
 #include <QPushButton>
@@ -142,6 +143,8 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QSt
 				   tr( "Confirm desktop access" ),
 				   tr( "The user %1 at computer %2 wants to access your desktop. Do you want to grant access?" ).
 				   arg( user, hostName ), QMessageBox::Yes | QMessageBox::No );
+
+	m.setStyleSheet( QStringLiteral("button-layout:%1").arg(QDialogButtonBox::WinLayout) );
 
 	auto neverBtn = m.addButton( tr( "Never for this session" ), QMessageBox::NoRole );
 	auto alwaysBtn = m.addButton( tr( "Always for this session" ), QMessageBox::YesRole );
