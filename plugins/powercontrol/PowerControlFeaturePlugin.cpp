@@ -173,7 +173,11 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		return true;
 	}
 
-	if( confirmFeatureExecution( feature, master.mainWindow() ) == false )
+	const auto selectionCount = master.selectedComputerControlInterfaces().size();
+
+	if( confirmFeatureExecution( feature,
+								 selectionCount == 0 || selectionCount == computerControlInterfaces.size(),
+								 master.mainWindow() ) == false )
 	{
 		return false;
 	}
@@ -286,7 +290,7 @@ CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_on( cons
 
 
 
-bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature, QWidget* parent )
+bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent )
 {
 	if( VeyonCore::config().confirmUnsafeActions() == false )
 	{
@@ -296,7 +300,8 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 	if( feature == m_rebootFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm reboot" ),
-									  tr( "Do you really want to reboot the selected computers?" ) ) ==
+									  all ? tr( "Do you really want to reboot <b>ALL</b> computers?" )
+										  : tr( "Do you really want to reboot the selected computers?" ) ) ==
 				QMessageBox::Yes;
 	}
 
@@ -307,7 +312,8 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 			 feature == m_powerDownDelayedFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm power down" ),
-									  tr( "Do you really want to power down the selected computer?" ) ) ==
+									  all ? tr( "Do you really want to power down <b>ALL</b> computers?" )
+										  : tr( "Do you really want to power down the selected computers?" ) ) ==
 				QMessageBox::Yes;
 	}
 

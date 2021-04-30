@@ -110,7 +110,7 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_on( const QStringList& arguments );
 
 private:
-	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
+	bool confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent );
 	static bool broadcastWOLPacket( QString macAddress );
 
 	void confirmShutdown();
