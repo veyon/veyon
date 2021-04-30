@@ -11,6 +11,7 @@ ApplicationWindow {
 	visible: true
 	width: 1600
 	height: 900
+	font.pointSize: 10
 
 	property color themeColor: "#00BCD4";
 	property bool landscape: width > height

@@ -18,7 +18,7 @@ Menu {
 		id: repeater
 		model: groupSelector.availableGroups
 		MenuItem {
-			contentItem: Text {
+			contentItem: Label {
 				text: modelData.text
 				color: modelData.color
 				horizontalAlignment: Text.AlignLeft

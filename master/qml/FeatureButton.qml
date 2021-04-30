@@ -11,7 +11,7 @@ Button {
 	topInset: 0
 	bottomInset: 0
 	padding: 4
-	width: height*1.2
+	width: height*1.3
 
 	background: Rectangle {
 		color: control.down ? "#ddd" : control.hovered ? "#eee" : "transparent"
@@ -31,14 +31,14 @@ Button {
 		Label {
 			id: label
 			text: control.text
-			verticalAlignment: Text.AlignBottom
+			horizontalAlignment: Label.AlignHCenter
+			verticalAlignment: Label.AlignBottom
 			fontSizeMode: Label.Fit
+			Layout.fillWidth: true
 			Layout.leftMargin: 5
 			Layout.rightMargin: 5
 			Layout.bottomMargin: 5
-			Layout.maximumWidth: control.width - 2*control.padding
-			Layout.alignment: Qt.AlignCenter | Qt.AlignBottom
-			clip: true
+			minimumPointSize: font.pointSize * 0.75
 			elide: Label.ElideRight
 		}
 	}
