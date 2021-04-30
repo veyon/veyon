@@ -9,6 +9,7 @@ Dialog {
 	y: (parent.height - height) / 2
 	standardButtons: Dialog.Ok | Dialog.Cancel
 	visible: true
+	modal: true
 
 	onAccepted: {
 		context.acceptTextMessage(textArea.text)
