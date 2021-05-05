@@ -2529,15 +2529,15 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Séquence de touches de connexion</translation>
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Sessions utilisateurs</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Durée de vie minimale de la session avant le démarrage du serveur</translation>
     </message>
 </context>
 <context>
@@ -3066,10 +3066,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Souhaitez-vous réellement redémarrer les ordinateurs sélectionnés ?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Souhaitez-vous réellement éteindre les ordinateurs sélectionnés ?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Allumer un ordinateur via Wake-on-LAN (WOL)</translation>
     </message>
@@ -3120,6 +3116,18 @@ Please save your work and close all programs.</source>
         <translation>L&apos;ordinateur s&apos;éteindra dans %1 minutes, %2 secondes.
 
 Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Voulez-vous vraiment redémarrer &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Voulez-vous vraiment éteindre  &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Souhaitez-vous vraiment éteindre les ordinateurs sélectionnés?</translation>
     </message>
 </context>
 <context>
@@ -3794,6 +3802,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>User session control</source>
         <translation>Contrôle de session utilisateur</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Voulez-vous vraiment déconnecter &lt;b&gt;TOUS&lt;/b&gt; les utilisateurs?</translation>
     </message>
 </context>
 <context>

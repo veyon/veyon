@@ -3061,10 +3061,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Czy na pewno chcesz uruchomić ponownie wybrane komputery?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Czy na pewno chcesz wyłączyć wybrany komputer?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Włącz komputer przez Wake-on-LAN (WOL)</translation>
     </message>
@@ -3115,6 +3111,18 @@ Please save your work and close all programs.</source>
         <translation>Komputer zostanie wyłączony za %1 minut, %2 sekund.
 
 Zapisz swoją pracę i zamknij wszystkie programy.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3789,6 +3797,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>User session control</source>
         <translation>Kontrola sesji użytkownika</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

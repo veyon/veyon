@@ -3066,10 +3066,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Da li stvarno želite ponovo pokrenuti sistem izabranih kompjutera?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Da li stvarno želite isključiti izabrane kompjutere?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Uključivanje kompjutera preko Wake-on-LAN (WOL)</translation>
     </message>
@@ -3120,6 +3116,18 @@ Please save your work and close all programs.</source>
         <translation>Kompjuter će biti isljučen za %1 minuta, %2 sekundi.
 
 Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3794,6 +3802,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>User session control</source>
         <translation>Kontrola sesije korisnika</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -3053,10 +3053,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Vuoi veramente riavviare i computer selezionati?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Vuoi veramente spegnere il computer selezionato?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Accendi un computer tramite Wake-on-LAN (WOL)</translation>
     </message>
@@ -3107,6 +3103,18 @@ Please save your work and close all programs.</source>
         <translation>Il computer verrà spento in %1 minuti, %2 secondi. 
 
 Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Vuoi davvero riavviare&lt;b&gt;TUTTI&lt;/b&gt; i computer?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Vuoi davvero spegnere &lt;b&gt;TUTTI&lt;/b&gt; i computer?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Vuoi davvero spegnere i computer selezionati?</translation>
     </message>
 </context>
 <context>
@@ -3780,6 +3788,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>Controllo sessione utente</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Vuoi davvero disconnettere &lt;b&gt;TUTTI&lt;/b&gt; gli utenti?</translation>
     </message>
 </context>
 <context>

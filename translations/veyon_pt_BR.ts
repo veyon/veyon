@@ -3052,10 +3052,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Tem certeza que quer reiniciar todos os computadores selecionados?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Tem certeza que quer desligar os computadores selecionados?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation type="unfinished"/>
     </message>
@@ -3103,6 +3099,18 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3777,6 +3785,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>Controle de sessão do usuário.</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

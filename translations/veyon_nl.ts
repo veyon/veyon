@@ -3051,10 +3051,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Wilt u werkelijk de geselecteerde computers heropstarten?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Wilt u werkelijk de geselecteerde computers uitschakelen?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation type="unfinished"/>
     </message>
@@ -3102,6 +3098,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3776,6 +3784,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>Gebruikers sessie controle</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

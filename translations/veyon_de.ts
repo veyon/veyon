@@ -2829,7 +2829,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>Aktionen wie Computer neustarten oder ausschalten</translation>
+        <translation>Aktionen wie Computer neu starten oder ausschalten</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3032,7 +3032,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Neustarten</translation>
+        <translation>Neustart</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -3048,7 +3048,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Computer ein-/ausschalten oder neustarten</translation>
+        <translation>Computer ein-/ausschalten oder neu starten</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3060,11 +3060,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>Möchten Sie wirklich die gewählten Computer neustarten?</translation>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
+        <translation>Möchten Sie wirklich die gewählten Computer neu starten?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3117,6 +3113,18 @@ Please save your work and close all programs.</source>
         <translation>Der Computer wird in %1 Minuten, %2 Sekunden heruntergefahren.
 
 Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Möchten Sie wirklich &lt;b&gt;ALLE&lt;/b&gt; Computer neu starten?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Möchten Sie wirklich &lt;b&gt;ALLE&lt;/b&gt; Computer herunterfahren?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
     </message>
 </context>
 <context>
@@ -3442,11 +3450,11 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>%1 Dienst neustarten</translation>
+        <translation>%1 Dienst neu starten</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
+        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neu gestartet werden. Jetzt neu starten?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -3562,7 +3570,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Veyon-Dienst neustarten</translation>
+        <translation>Veyon-Dienst neu starten</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3791,6 +3799,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>User session control</source>
         <translation>Benutzersitzungssteuerung</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Möchten Sie wirklich &lt;b&gt;ALLE&lt;/b&gt; Benutzer abmelden?</translation>
     </message>
 </context>
 <context>

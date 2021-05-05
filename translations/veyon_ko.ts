@@ -3064,10 +3064,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>선택된 컴퓨터를 리부팅하시겠습니까 ?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>선택된 컴퓨터 파워를 끄시겠습니까 ?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Wake-on-LAN(WOL)을 사용하여 컴퓨터 파워를 켬</translation>
     </message>
@@ -3118,6 +3114,18 @@ Please save your work and close all programs.</source>
         <translation>이컴퓨터는  %1 분, %2 초 후에 전원이 꺼집니다.
 
 작업을 저장하고 모든 프로그램을 닫기 바랍니다.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3792,6 +3800,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>사용자 세션제어</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

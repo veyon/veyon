@@ -3066,10 +3066,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Ali res želite ponovno zagnati izbrane računalnike?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Ste prepričani, da želite izklopiti izbrani računalnik?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Zagon računalnika preko Wake-on-LAN (WOL)</translation>
     </message>
@@ -3117,6 +3113,18 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3792,6 +3800,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>User session control</source>
         <translation>Nadzor seje uporabnika</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

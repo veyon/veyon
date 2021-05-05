@@ -3066,10 +3066,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>您真的要重新啟動選取的電腦嗎?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>您真的要關閉選取的電腦嗎?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>透過 Wake-on-LAN (WOL) 開啟電腦電源</translation>
     </message>
@@ -3120,6 +3116,18 @@ Please save your work and close all programs.</source>
         <translation>電腦將在 %1 分鐘 %2 秒內關閉電源。
 
 請儲存您的工作並關閉所有程式。</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3794,6 +3802,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>使用者工作階段控制</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

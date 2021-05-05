@@ -3066,10 +3066,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kas soovite tõesti valitud arvutid taaskäivitada?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Kas soovite tõesti valitud arvutid välja lülitada?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Lülitage arvuti sisse Wake-on-LAN (WOL) kaudu</translation>
     </message>
@@ -3120,6 +3116,18 @@ Please save your work and close all programs.</source>
         <translation>Arvuti lülitatakse välja %1 minuti, %2 sekundi pärast.
 
 Salvestage oma töö ja sulgege kõik programmid.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3794,6 +3802,10 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>User session control</source>
         <translation>Kasutaja seansi juhtimine</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

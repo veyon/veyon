@@ -3065,10 +3065,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ви справді хочете перезавантажити позначені комп&apos;ютери?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Ви справді хочете вимкнути позначений комп&apos;ютер?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Увімкнути комп&apos;ютер за допомогою Wake-on-LAN (WOL)</translation>
     </message>
@@ -3119,6 +3115,18 @@ Please save your work and close all programs.</source>
         <translation>Комп&apos;ютер буде вимкнено за %1 хвилин, %2 секунд.
 
 Будь ласка, збережіть результати вашої роботи і завершіть роботу усіх програм.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Ви справді хочете перезавантажити &lt;b&gt;УСІ&lt;/b&gt; комп&apos;ютери?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Ви справді хочете вимкнути &lt;b&gt;УСІ&lt;/b&gt; комп&apos;ютери?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Ви справді хочете вимкнути позначені комп&apos;ютери?</translation>
     </message>
 </context>
 <context>
@@ -3793,6 +3801,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>Керування сеансами користувачів</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Ви справді хочете виконати вихід з системи для &lt;b&gt;УСІХ&lt;/b&gt; користувачів?</translation>
     </message>
 </context>
 <context>

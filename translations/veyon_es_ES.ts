@@ -3068,10 +3068,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>¿Realmente desea reiniciar los equipos seleccionados?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>¿Realmente desea apagar el equipo seleccionado?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Encienda un equipo a través de Wake-on-LAN (WOL)</translation>
     </message>
@@ -3122,6 +3118,18 @@ Please save your work and close all programs.</source>
         <translation>El equipo se apagará en %1 minutos, %2 segundos.
 
 Por favor guarde su trabajo y cierre todos los programas.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3796,6 +3804,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>User session control</source>
         <translation>Control de sesión de usuario</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

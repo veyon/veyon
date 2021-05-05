@@ -3062,10 +3062,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Opravdu chcete vybrané počítače restartovat?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Opravdu chcete vybrané počítače vypnout?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Zapnout počítač prostřednictvím probouzení po síti (WoL)</translation>
     </message>
@@ -3116,6 +3112,18 @@ Please save your work and close all programs.</source>
         <translation>Počítač bude z %1 minut, %2 sekund vypnut.
 
 Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3790,6 +3798,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>User session control</source>
         <translation>Ovládání relace uživatele</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

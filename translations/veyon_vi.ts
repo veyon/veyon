@@ -3047,10 +3047,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation type="unfinished"/>
     </message>
@@ -3098,6 +3094,18 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3771,6 +3779,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User session control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
         <translation type="unfinished"/>
     </message>
 </context>

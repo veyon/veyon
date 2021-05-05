@@ -3066,10 +3066,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Biztos, hogy újraindítod a kiválasztott számítógépeket?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Egy számítógép bekapcsolása hálózati ébresztéssel (WOL)</translation>
     </message>
@@ -3118,6 +3114,18 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 
 Please save your work and close all programs.</source>
         <translation>A számítógép %1 perc %2 másodperc múlva automatikusan le fog állni.  Kérjük, mentse el munkáját és zárja be az összes futó programot.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3791,6 +3799,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>User session control</source>
         <translation>Felhasználói munkamenet-vezérlés</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
