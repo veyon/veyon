@@ -576,16 +576,12 @@ void VeyonCore::initLocaleAndTranslation()
 {
 	TranslationLoader::load( QStringLiteral("qt") );
 
-	const auto configuredLocale = TranslationLoader::load( QStringLiteral("veyon") );
+	TranslationLoader::load( QStringLiteral("veyon") );
 
-	if( configuredLocale.language() == QLocale::Hebrew ||
-		configuredLocale.language() == QLocale::Arabic )
+	const auto app = qobject_cast<QGuiApplication *>( QCoreApplication::instance() );
+	if( app )
 	{
-		auto app = qobject_cast<QApplication *>( QCoreApplication::instance() );
-		if( app )
-		{
-			QApplication::setLayoutDirection( Qt::RightToLeft );
-		}
+		QGuiApplication::setLayoutDirection( QLocale{}.textDirection() );
 	}
 }
 
