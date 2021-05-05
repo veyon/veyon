@@ -30,6 +30,7 @@
 #include <QDir>
 #include <QGroupBox>
 #include <QLabel>
+#include <QLibraryInfo>
 #include <QProcessEnvironment>
 #include <QSysInfo>
 
@@ -167,11 +168,13 @@ QString VeyonCore::translationsDirectory()
 
 QString VeyonCore::qtTranslationsDirectory()
 {
-#ifdef QT_TRANSLATIONS_DIR
-	return QStringLiteral( QT_TRANSLATIONS_DIR );
-#else
+	const auto path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+	if( QDir{path}.exists() )
+	{
+		return path;
+	}
+
 	return translationsDirectory();
-#endif
 }
 
 
