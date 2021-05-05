@@ -55,19 +55,9 @@
 
 #ifdef VEYON_DEBUG
 
-DocumentationFigureCreator::DocumentationFigureCreator() :
-	QObject(),
-	m_master( nullptr ),
-	m_eventLoop( this )
-{
-	m_master = new VeyonMaster;
-}
-
-
-
 void DocumentationFigureCreator::run()
 {
-	auto mainWindow = m_master->mainWindow();
+	auto mainWindow = m_master.mainWindow();
 
 	mainWindow->move( 0, 0 );
 	mainWindow->resize( 3000, 1000 );
@@ -103,18 +93,18 @@ void DocumentationFigureCreator::createFeatureFigures()
 	int x = -1;
 	int w = 0;
 
-	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
 
 	const QStringList separatedPluginFeatures( { QStringLiteral("a54ee018-42bf-4569-90c7-0d8470125ccf"),
 												 QStringLiteral("80580500-2e59-4297-9e35-e53959b028cd")
 											   } );
 
-	const auto& features = m_master->features();
+	const auto& features = m_master.features();
 
 	for( const auto& feature : features )
 	{
 		auto btn = toolbar->findChild<ToolButton *>( feature.name() );
-		const auto pluginUid = m_master->featureManager().pluginUid( feature );
+		const auto pluginUid = m_master.featureManager().pluginUid( feature );
 
 		if( previousPluginUid.isNull() )
 		{
@@ -162,7 +152,7 @@ void DocumentationFigureCreator::createFeatureFigures()
 
 void DocumentationFigureCreator::createContextMenuFigure()
 {
-	auto view = m_master->mainWindow()->findChild<ComputerMonitoringWidget *>();
+	auto view = m_master.mainWindow()->findChild<ComputerMonitoringWidget *>();
 	auto menu = view->findChild<QMenu *>();
 
 	connect( menu, &QMenu::aboutToShow, this, [menu]() {
@@ -177,7 +167,7 @@ void DocumentationFigureCreator::createContextMenuFigure()
 
 void DocumentationFigureCreator::createLogonDialogFigure()
 {
-	PasswordDialog dialog( m_master->mainWindow() );
+	PasswordDialog dialog( m_master.mainWindow() );
 	dialog.show();
 	dialog.findChild<QLineEdit *>( QStringLiteral("password") )->setText( QStringLiteral( "TeacherPassword") );
 	dialog.findChild<QLineEdit *>( QStringLiteral("password") )->cursorForward( false );
@@ -201,7 +191,7 @@ void DocumentationFigureCreator::createLocationDialogFigure()
 	}
 
 	QStringListModel locationsModel( locations, this );
-	LocationDialog dialog( &locationsModel, m_master->mainWindow() );
+	LocationDialog dialog( &locationsModel, m_master.mainWindow() );
 
 	grabDialog( &dialog, QSize( 300, 200 ), QStringLiteral("LocationDialog.png") );
 
@@ -212,7 +202,7 @@ void DocumentationFigureCreator::createLocationDialogFigure()
 
 void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 {
-	auto window = m_master->mainWindow();
+	auto window = m_master.mainWindow();
 	auto panel = window->findChild<ScreenshotManagementPanel *>();
 	auto panelButton = window->findChild<QToolButton *>( QStringLiteral("screenshotManagementPanelButton") );
 	auto list = panel->findChild<QListView *>();
@@ -274,14 +264,14 @@ void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 
 void DocumentationFigureCreator::createPowerDownOptionsFigure()
 {
-	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
 	auto powerDownButton = toolbar->findChild<ToolButton *>( QStringLiteral("PowerDown") );
 
 	scheduleUiOperation( [this, powerDownButton]() {
 		scheduleUiOperation( [this, powerDownButton]() {
 			auto menu = powerDownButton->menu();
 
-			grabWindow( m_master->mainWindow(), powerDownButton->mapTo( m_master->mainWindow(), QPoint( 0, 0 ) ),
+			grabWindow( m_master.mainWindow(), powerDownButton->mapTo( m_master.mainWindow(), QPoint( 0, 0 ) ),
 						QSize( qMax( powerDownButton->width(), menu->width() ),
 							   powerDownButton->height() + menu->height() ),
 						QStringLiteral("PowerDownOptions.png") );
@@ -309,7 +299,7 @@ void DocumentationFigureCreator::createPowerDownTimeInputDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("PowerDownTimeInputDialog.png") );
 	});
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ) ) );
 }
 
 
@@ -326,7 +316,7 @@ void DocumentationFigureCreator::createUserLoginDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("UserLoginDialog.png") );
 	});
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "7310707d-3918-460d-a949-65bd152cb958" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "7310707d-3918-460d-a949-65bd152cb958" ) ) );
 }
 
 
@@ -341,7 +331,7 @@ void DocumentationFigureCreator::createTextMessageDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("TextMessageDialog.png") );
 	});
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ) ) );
 }
 
 
@@ -356,14 +346,14 @@ void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("OpenWebsiteDialog.png") );
 	});
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ) ) );
 }
 
 
 
 void DocumentationFigureCreator::createWebsiteMenuFigure()
 {
-	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
 	auto openWebsiteButton = toolbar->findChild<ToolButton *>( QStringLiteral("OpenWebsite") );
 
 	auto menu = new QMenu;
@@ -374,7 +364,7 @@ void DocumentationFigureCreator::createWebsiteMenuFigure()
 	scheduleUiOperation( [this, openWebsiteButton, menu]() {
 		scheduleUiOperation( [this, openWebsiteButton, menu]() {
 
-			grabWindow( m_master->mainWindow(), openWebsiteButton->mapTo( m_master->mainWindow(), QPoint( 0, 0 ) ),
+			grabWindow( m_master.mainWindow(), openWebsiteButton->mapTo( m_master.mainWindow(), QPoint( 0, 0 ) ),
 						QSize( qMax( openWebsiteButton->width(), menu->width() ),
 							   openWebsiteButton->height() + menu->height() ),
 						QStringLiteral("OpenWebsiteMenu.png") );
@@ -401,14 +391,14 @@ void DocumentationFigureCreator::createRunProgramDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("RunProgramDialog.png") );
 	});
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
 }
 
 
 
 void DocumentationFigureCreator::createProgramMenuFigure()
 {
-	auto toolbar = m_master->mainWindow()->findChild<MainToolBar *>();
+	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
 	auto runProgramButton = toolbar->findChild<ToolButton *>( QStringLiteral("RunProgram") );
 
 	auto menu = new QMenu;
@@ -420,7 +410,7 @@ void DocumentationFigureCreator::createProgramMenuFigure()
 	scheduleUiOperation( [this, runProgramButton, menu]() {
 		scheduleUiOperation( [this, runProgramButton, menu]() {
 
-			grabWindow( m_master->mainWindow(), runProgramButton->mapTo( m_master->mainWindow(), QPoint( 0, 0 ) ),
+			grabWindow( m_master.mainWindow(), runProgramButton->mapTo( m_master.mainWindow(), QPoint( 0, 0 ) ),
 						QSize( qMax( runProgramButton->width(), menu->width() ),
 							   runProgramButton->height() + menu->height() ),
 						QStringLiteral("RunProgramMenu.png") );
@@ -446,7 +436,7 @@ void DocumentationFigureCreator::createRemoteAccessHostDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("RemoteAccessHostDialog.png") );
 	} );
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ) ) );
 }
 
 
@@ -501,7 +491,7 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 		} );
 	} );
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ) ) );
 	m_eventLoop.exec();
 }
 
@@ -533,14 +523,14 @@ void DocumentationFigureCreator::createFileTransferDialogFigure()
 		} );
 	} );
 
-	m_master->runFeature( m_master->featureManager().feature( Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ) ) );
+	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ) ) );
 }
 
 
 
 void DocumentationFigureCreator::hideComputers()
 {
-	auto view = m_master->mainWindow()->findChild<ComputerMonitoringWidget *>();
+	auto view = m_master.mainWindow()->findChild<ComputerMonitoringWidget *>();
 	view->setSearchFilter( QStringLiteral("XXXXXX") );
 }
 

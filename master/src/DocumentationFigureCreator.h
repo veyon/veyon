@@ -35,7 +35,7 @@ class DocumentationFigureCreator : public QObject
 {
 	Q_OBJECT
 public:
-	DocumentationFigureCreator();
+	DocumentationFigureCreator() = default;
 
 	void run();
 
@@ -68,8 +68,8 @@ private:
 	static void grabWindow( QWidget* widget, const QString& fileName );
 	static void grabWindow( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
 
-	VeyonMaster* m_master;
-	QEventLoop m_eventLoop;
+	VeyonMaster m_master{VeyonCore::instance()};
+	QEventLoop m_eventLoop{};
 
 } ;
 
