@@ -69,7 +69,7 @@ private:
 	static void grabWindow( QWidget* widget, const QString& fileName );
 	static void grabWindow( QWidget* widget, QPoint pos, const QSize size, const QString& fileName );
 
-	VeyonMaster* m_master{new VeyonMaster};
+	VeyonMaster m_master{VeyonCore::instance()};
 	QEventLoop m_eventLoop{};
 
 } ;
