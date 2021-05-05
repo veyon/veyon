@@ -84,13 +84,6 @@ else()
 	)
 endif()
 
-# find Qt's translation directory
-if(NOT VEYON_BUILD_WIN32)
-	include(FindQtTranslations)
-	find_qt_translations()
-	target_compile_definitions(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
-endif()
-
 if(VEYON_BUILD_WIN32)
 	# add Windows Socket library required by libvncclient
 	target_link_libraries(veyon-core -lws2_32)
