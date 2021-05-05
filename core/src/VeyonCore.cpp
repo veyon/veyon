@@ -574,7 +574,10 @@ void VeyonCore::initLogging( const QString& appComponentName )
 
 void VeyonCore::initLocaleAndTranslation()
 {
-	TranslationLoader::load( QStringLiteral("qt") );
+	if( TranslationLoader::load( QStringLiteral("qtbase") ) == false )
+	{
+		TranslationLoader::load( QStringLiteral("qt") );
+	}
 
 	TranslationLoader::load( QStringLiteral("veyon") );
 
