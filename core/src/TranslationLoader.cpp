@@ -52,20 +52,24 @@ QLocale TranslationLoader::load( const QString& resourceName )
 	if( configuredLocale.language() != QLocale::English &&
 		VeyonCore::instance()->findChild<QTranslator *>( resourceName ) == nullptr )
 	{
+		const auto translationsDirectory = resourceName.startsWith( QLatin1String("qt") )
+											  ? VeyonCore::qtTranslationsDirectory()
+											  : VeyonCore::translationsDirectory();
+
 		auto translator = new QTranslator( VeyonCore::instance() );
 		translator->setObjectName( resourceName );
 
 		if( configuredLocale == QLocale::C ||
 			translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.name() ),
-							  VeyonCore::translationsDirectory() ) == false )
+							  translationsDirectory ) == false )
 		{
 			configuredLocale = QLocale::system(); // Flawfinder: ignore
 
 			if( translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.name() ),
-								  VeyonCore::translationsDirectory() ) == false )
+								  translationsDirectory ) == false )
 			{
 				(void) translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.language() ),
-										 VeyonCore::translationsDirectory() );
+										 translationsDirectory() );
 			}
 		}
 
