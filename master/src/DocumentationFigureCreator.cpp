@@ -503,7 +503,7 @@ void DocumentationFigureCreator::createFileTransferDialogFigure()
 
 		auto dialog = qobject_cast<QFileDialog *>( QApplication::activeWindow() );
 		dialog->setDirectory( QDir::current() );
-		dialog->findChildren<QLineEdit *>().first()->setText( QStringLiteral("\"%1.pdf\" \"%2.pdf\"").arg( tr("Handout"), tr("Texts to read") ) );
+		dialog->findChildren<QLineEdit *>().constFirst()->setText( QStringLiteral("\"%1.pdf\" \"%2.pdf\"").arg( tr("Handout"), tr("Texts to read") ) );
 		dialog->setResult( QDialog::Accepted );
 		dialog->setVisible( false );
 
