@@ -38,7 +38,7 @@ TranslationLoader::TranslationLoader( const QString& resourceName )
 
 
 
-QLocale TranslationLoader::load( const QString& resourceName )
+bool TranslationLoader::load( const QString& resourceName )
 {
 	QLocale configuredLocale( QLocale::C );
 
@@ -68,8 +68,8 @@ QLocale TranslationLoader::load( const QString& resourceName )
 			if( translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.name() ),
 								  translationsDirectory ) == false )
 			{
-				(void) translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.language() ),
-										 translationsDirectory() );
+				delete translator;
+				return false;
 			}
 		}
 
@@ -78,5 +78,5 @@ QLocale TranslationLoader::load( const QString& resourceName )
 		QCoreApplication::installTranslator( translator );
 	}
 
-	return configuredLocale;
+	return true;
 }
