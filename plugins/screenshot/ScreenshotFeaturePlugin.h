@@ -43,7 +43,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber( 2, 0 );
 	}
 
 	QString name() const override

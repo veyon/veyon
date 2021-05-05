@@ -23,10 +23,12 @@
  */
 
 #include <QMessageBox>
+#include <QQmlEngine>
 
 #include "ComputerControlInterface.h"
 #include "Screenshot.h"
 #include "ScreenshotFeaturePlugin.h"
+#include "ScreenshotListModel.h"
 #include "QmlCore.h"
 #include "VeyonMasterInterface.h"
 
@@ -101,6 +103,8 @@ void ScreenshotFeaturePlugin::initUi()
 	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
 	if( master->appContainer() )
 	{
+		qmlRegisterType<ScreenshotListModel>( "Veyon.Plugins.Screenshot", version().majorVersion(), version().minorVersion(),
+											  "ScreenshotListModel" );
 		VeyonCore::qmlCore().createItemFromFile( QStringLiteral("qrc:/screenshot/ScreenshotManagementPage.qml"),
 													 master->appContainer(),
 													 this );
