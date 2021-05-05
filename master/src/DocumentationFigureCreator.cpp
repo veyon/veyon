@@ -519,13 +519,16 @@ void DocumentationFigureCreator::createFileTransferDialogFigure()
 			dialog->setFocus();
 			dialog->move( 0, 0 );
 
-			grabWindow( dialog,  QStringLiteral("FileTransferDialogStart.png") );
+			scheduleUiOperation( [dialog, this]() {
 
-			dialog->findChild<QDialogButtonBox *>()->button( QDialogButtonBox::Ok )->click();
+				grabWindow( dialog, QStringLiteral("FileTransferDialogStart.png") );
 
-			scheduleUiOperation( [dialog]() {
-				grabDialog( dialog, {}, QStringLiteral("FileTransferDialogFinished.png") );
-			});
+				dialog->findChild<QDialogButtonBox *>()->button( QDialogButtonBox::Ok )->click();
+
+				scheduleUiOperation( [dialog]() {
+					grabDialog( dialog, {}, QStringLiteral("FileTransferDialogFinished.png") );
+				});
+			} );
 		} );
 	} );
 
