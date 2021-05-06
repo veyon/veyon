@@ -313,6 +313,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1637,28 +1645,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>โปรแกรมและเว็บไซต์</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>โปรแกรมที่กำหนดไว้</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Path</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>เพิ่มโปรแกรมใหม่</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>ลบโปรแกรมที่เลือก</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1673,20 +1665,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>โปรแกรมใหม่</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>เว็บไซต์ใหม่</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>สั่งเปิดโปรแกรม</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>เปิดเว็บไซต์</translation>
@@ -1696,28 +1704,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>คลิกที่ปุ่มนี้เพื่อเปิดเว็บไซต์ทั้งหมด</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>คลิกปุ่มนี้เพื่อสั่งเปิดโปรแกรมบนเครื่องคอมพิวเตอร์ทุกเครื่อง</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>สั่งเปิดโปรแกรม &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>โปรแกรมกำหนดเอง</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>เปิดเว็บไซต์ &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>เว็บไซต์กำหนดเอง</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1751,10 +1763,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>โปรแกรมกำหนดเอง</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation type="unfinished"/>
     </message>
@@ -1764,6 +1772,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3065,6 +3077,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>สปอร์ตไลท์</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3289,6 +3305,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation>ชื่อ:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3368,10 +3388,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>คุณต้องการที่จะสั่งปิดเครื่องคอมพิวเตอร์ที่เลือกไว้หรือไม่?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>เปิดเครื่องคอมพิวเตอร์โดยใช้ Wake-on-LAN (WOL)</translation>
     </message>
@@ -3421,6 +3437,18 @@ The public key is used on client computers to authenticate incoming connection r
 Please save your work and close all programs.</source>
         <translation>คอมพิวเตอร์จะปิดลงใน %1 นาที %2 วินาที
 กรุณาบันทึกงานให้เรียบร้อยแล้วปิดโปรแกรมทุกโปรแกรม</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3564,33 +3592,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>ออก</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>สั่งเปิดโปรแกรม</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>เช่น &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>ชื่อ:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>จำไว้และเพิ่มไปยังเมนูโปรแกรม</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>เช่น VLC</translation>
     </message>
 </context>
 <context>
@@ -3961,6 +3962,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>เช่น &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>ชื่อ:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>เช่น VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -3996,7 +4028,7 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>ส่งข้อความอักษระ</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
+        <source>Please enter your message which send to all selected users.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4108,6 +4140,10 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
     <message>
         <source>User session control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4313,13 +4349,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>ห้ามใช่ส่วนเสริม X Damage เป็นอันขาด</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

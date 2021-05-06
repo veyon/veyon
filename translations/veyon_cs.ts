@@ -315,6 +315,14 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programy a webové stránky</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Přednastavené aplikace</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Umístění</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Přidat novou aplikaci</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Odebrat označenou aplikaci</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nová aplikace</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nová webová stránka</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Spustit aplikaci</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Otevřít webovou stránku</translation>
@@ -1698,28 +1706,32 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Kliknutím na toto tlačítko otevřete webovou stránku na všech počítačích.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Spustit aplikace a služby na počítači uživatele</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Kliknutím na toto tlačítko spustíte aplikaci na všech počítačích.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Spustit aplikaci „%1“</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Uživatelem určená aplikace</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Otevřít webovou stránku „%1“</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Uživatelsky určené webová stránka</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Přehrát výukové video</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Uživatelem určená aplikace</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Předání</translation>
     </message>
@@ -1767,6 +1775,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>generic-student-user</source>
         <translation>obecný student-uživatel</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3082,6 +3094,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3306,6 +3322,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Name:</source>
         <translation>Název:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3385,10 +3405,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Opravdu chcete vybrané počítače restartovat?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Opravdu chcete vybrané počítače vypnout?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Zapnout počítač prostřednictvím probouzení po síti (WoL)</translation>
     </message>
@@ -3439,6 +3455,18 @@ Please save your work and close all programs.</source>
         <translation>Počítač bude z %1 minut, %2 sekund vypnut.
 
 Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3582,33 +3610,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Exit</source>
         <translation>Ukončit</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Zadejte aplikace nebo příkazy které mají být spuštěné na označených počítačích. Každou z aplikací/příkazů uvádějte na samostatný řádek</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Spustit aplikace</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>např.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Název:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Zapamatovat a přidat do nabídky programů</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>např. VLC</translation>
     </message>
 </context>
 <context>
@@ -3980,6 +3981,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>např.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Název:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>např. VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4015,8 +4047,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Poslat textovou zprávu</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Do kolonky níže zadejte svou zprávu, určenou všem označeným uživatelům.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4128,6 +4160,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Ovládání relace uživatele</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4332,13 +4368,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Nezjišťovat změny ve zobrazení pomocí rozšíření Damage pro X zobrazovací server</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon – hlavní</translation>
     </message>
 </context>
 </TS>

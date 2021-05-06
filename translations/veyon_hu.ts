@@ -315,6 +315,14 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programok és weboldalak</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Előre definiált programok</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Megnevezés</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Útvonal</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Új program hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Kiválasztott program eltávolítása</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Új program</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Új weboldal</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Program futtatása</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Weboldal megnyitása</translation>
@@ -1698,28 +1706,32 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kattints erre a gombra, hogy az összes számítógépen megnyíljon egy weboldal.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Programok és szolgáltatások indítása a felhasználó asztalon</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Kattints erre a gombra, hogy egy programot futtass az összes számítógépen. </translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; program futtatása</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Egyéni program</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>&quot;%1&quot; weboldal megnyitása </translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Egyéni weboldal</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Bemutató videó lejátszása</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Egyéni program</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Kiosztás</translation>
     </message>
@@ -1767,6 +1775,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>generic-student-user</source>
         <translation>generic-student-user</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3086,6 +3098,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3310,6 +3326,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Name:</source>
         <translation>Név:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3389,10 +3409,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Biztos, hogy újraindítod a kiválasztott számítógépeket?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Egy számítógép bekapcsolása hálózati ébresztéssel (WOL)</translation>
     </message>
@@ -3441,6 +3457,18 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 
 Please save your work and close all programs.</source>
         <translation>A számítógép %1 perc %2 másodperc múlva automatikusan le fog állni.  Kérjük, mentse el munkáját és zárja be az összes futó programot.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3584,33 +3612,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Kilépés</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Kérem, add meg a kiválasztott számítógép(ek)en futtatandó programokat vagy parancsokat. Több programot/parancsot soronként adj meg.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Programok futtatása</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>például &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Név:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Emlékezz és add a programmenühöz</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>pl. VLC</translation>
     </message>
 </context>
 <context>
@@ -3981,6 +3982,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>például &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Név:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>pl. VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4016,8 +4048,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Szöveges üzenet küldése</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Az alábbi mezőbe gépeld az összes kiválasztott felhasználóknak küldendő üzenetedet.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4129,6 +4161,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Felhasználói munkamenet-vezérlés</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4333,13 +4369,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Ne használd az X Damage bővítményt</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

@@ -315,6 +315,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programmid ja veebisaidid</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Eelmääratud programmid</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Rada</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Lisa uus programm</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Eemalda valitud programm</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>URL aadress</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Uus programm</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Uus veebileht</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Programmi käivitamine</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Weebilehe avamine</translation>
@@ -1698,28 +1706,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kõigil arvutitel veebisaidi avamiseks klõpsake seda nuppu.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Käivitage programmid ja teenused kasutaja töölaual</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Programmi käivitamiseks kõigis arvutites klõpsake seda nuppu.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Käivitage programm &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Kohandatud programm</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Avage veebileht &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Kohandatud veebileht</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Esitage õppevideot</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Kohandatud programm</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Jaotusmaterjal</translation>
     </message>
@@ -1767,6 +1775,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>generic-student-user</source>
         <translation>üldine-õpilane-kasutaja</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2187,7 +2199,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Gruppi nimega &quot;% 1&quot; ei leitud. Kontrollige grupi nime või grupipuu parameetrit.</translation>
+        <translation>Gruppi nimega &quot;%1&quot; ei leitud. Kontrollige grupi nime või grupipuu parameetrit.</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -3086,6 +3098,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Spotlight</source>
         <translation>Tähelepanu keskpunktis</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3310,6 +3326,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Name:</source>
         <translation>Nimi:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3389,10 +3409,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kas soovite tõesti valitud arvutid taaskäivitada?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Kas soovite tõesti valitud arvutid välja lülitada?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Lülitage arvuti sisse Wake-on-LAN (WOL) kaudu</translation>
     </message>
@@ -3443,6 +3459,18 @@ Please save your work and close all programs.</source>
         <translation>Arvuti lülitatakse välja %1 minuti, %2 sekundi pärast.
 
 Salvestage oma töö ja sulgege kõik programmid.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3586,33 +3614,6 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Exit</source>
         <translation>Välju</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Sisestage palun valitud arvutis (arvutites) käivitamiseks programmid või käsud. Eraldage programmid/ käskud uutel ridadel.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Käivita programmid</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>näit. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Nimi:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Pea meeles ja lisa programmi menüüsse</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>näit. VLC</translation>
     </message>
 </context>
 <context>
@@ -3985,6 +3986,37 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>näit. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nimi:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>näit. VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4020,8 +4052,8 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
         <translation>Saada tekstisõnum</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Kasutage allolevat välja, et sisestada sõnum, mis saadetakse kõigile valitud kasutajatele.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4133,6 +4165,10 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     <message>
         <source>User session control</source>
         <translation>Kasutaja seansi juhtimine</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4337,13 +4373,6 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Ärge kasutage laiendust X Damage</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Master</translation>
     </message>
 </context>
 </TS>

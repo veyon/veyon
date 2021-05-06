@@ -315,6 +315,14 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programy i strony internetowe</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Predefiniowane programy</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Ścieżka</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Dodaj nowy program</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Usuń wybrane programy</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Adres</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nowy program</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nowa strona</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Uruchom program</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Otwórz stronę WWW</translation>
@@ -1698,28 +1706,32 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Przyciśnij ten przycisk żeby otworzyć stronę WWW na wszystkich komputerach</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Uruchom programy i usługi na pulpicie użytkownika</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Przyciśnij ten przycisk żeby uruchomić program na wszystkich komputerach</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Uruchom program &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Inny program</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Otwórz stronę &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Inna strona</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Odtwórz film instruktażowy</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Inny program</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Materiały informacyjne</translation>
     </message>
@@ -1767,6 +1775,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>generic-student-user</source>
         <translation>generic-student-user</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3081,6 +3093,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3305,6 +3321,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Name:</source>
         <translation>Nazwa:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3384,10 +3404,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Czy na pewno chcesz uruchomić ponownie wybrane komputery?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Czy na pewno chcesz wyłączyć wybrany komputer?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Włącz komputer przez Wake-on-LAN (WOL)</translation>
     </message>
@@ -3438,6 +3454,18 @@ Please save your work and close all programs.</source>
         <translation>Komputer zostanie wyłączony za %1 minut, %2 sekund.
 
 Zapisz swoją pracę i zamknij wszystkie programy.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3581,33 +3609,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Exit</source>
         <translation>Wyjście</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Wprowadź nazwę programów lub komendy do uruchomienia na zdalnym komputerze(komputerach). Możesz oddzielić je, zapisując w osobnych wierszach.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Uruchom programy</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>np. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Nazwa:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Zapamiętaj i dodaj do menu programów</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>np.: VLC</translation>
     </message>
 </context>
 <context>
@@ -3979,6 +3980,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>np. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nazwa:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>np.: VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4014,8 +4046,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Wyślij wiadomość tekstową</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>W polu poniżej napisz wiadomość, która ma zostać wysłana do wybranych użytkowników.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4127,6 +4159,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Kontrola sesji użytkownika</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4331,13 +4367,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Nie używaj rozszerzenia X Damage</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Master</translation>
     </message>
 </context>
 </TS>

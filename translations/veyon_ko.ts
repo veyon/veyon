@@ -315,6 +315,14 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>프로그램과 웹사이트들</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>미리 지정된 프로그램들</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>경로</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>새 프로그램 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>선택한 프로그램 삭제</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>새 프로그램</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>새 웹사이트</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>프로그램 실행</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>웹사이트 열기</translation>
@@ -1698,28 +1706,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>클릭하면 모든 컴퓨터에서 같은 웹사이트를 오픈합니다.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>사용자 데스크탑에서 프로그램과 서비스를 시작</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 프로그램을 실행합니다.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>프로그램  &quot;%1&quot; 실행</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>사용자 프로그램</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>웹사이트 &quot;%1&quot; 열기</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>사용자 지정 웹사이트</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>튜토리얼 동영상 재생</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>사용자 프로그램</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>자료 배포 핸드아웃</translation>
     </message>
@@ -1767,6 +1775,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>일반-학생-사용자</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3084,6 +3096,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3308,6 +3324,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation>이름:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3387,10 +3407,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>선택된 컴퓨터를 리부팅하시겠습니까 ?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>선택된 컴퓨터 파워를 끄시겠습니까 ?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Wake-on-LAN(WOL)을 사용하여 컴퓨터 파워를 켬</translation>
     </message>
@@ -3441,6 +3457,18 @@ Please save your work and close all programs.</source>
         <translation>이컴퓨터는  %1 분, %2 초 후에 전원이 꺼집니다.
 
 작업을 저장하고 모든 프로그램을 닫기 바랍니다.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3584,33 +3612,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>나가기</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>선택된 컴퓨터(들)에서 실행할 명령어 또는 프로그램을 입력하세요.  각각의 라인으로 다수의 프로그램/명령어를 구분할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>프로그램 실행</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>예. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>이름:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>기억하고 프로그램 메뉴에 추가하기</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>예: VLC</translation>
     </message>
 </context>
 <context>
@@ -3982,6 +3983,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>예. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>이름:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>예: VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4017,8 +4049,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>문자 메세지 보내기</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>선택된 사용자에세 메세지를 보내려면 아래 빈칸에 내용을 입력하세요</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4130,6 +4162,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>사용자 세션제어</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4334,13 +4370,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>X 손상 확장 사용하지 않음</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

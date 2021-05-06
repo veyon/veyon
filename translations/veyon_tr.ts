@@ -315,6 +315,14 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programlar ve web siteleri</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Önceden tanımlanmış programlar</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Yol</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Yeni program ekle</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Seçili programı kaldır</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Yeni program</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Yeni web sitesi</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Program çalıştır</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Web sitesi aç</translation>
@@ -1698,28 +1706,32 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Kullanıcı masaüstünde program ve hizmetler başlat</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Tüm bilgisayarlarda bir program çalıştırmak için bu düğmeye tıklayın.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; programını çalıştır</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Özel program</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Web sitesini &quot;%1&quot; açın</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Özel web sitesi</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Eğitici videoyu oynat</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Özel program</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Elden çıkar</translation>
     </message>
@@ -1767,6 +1775,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>generic-student-user</source>
         <translation>Jenerik-öğrenci-kullanıcı</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3078,6 +3090,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3302,6 +3318,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Name:</source>
         <translation>İsim:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3381,10 +3401,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Seçilen bilgisayarları yeniden başlatmak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Seçilen bilgisayarları kapatmak istediğinize emin misiniz?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Bir bilgisayarı ağdan uyandır (WOL)</translation>
     </message>
@@ -3435,6 +3451,18 @@ Please save your work and close all programs.</source>
         <translation>Bilgisayarınız %1 dakika, %2 saniye sonra kapatılacak.
 
 Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3578,33 +3606,6 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     <message>
         <source>Exit</source>
         <translation>Çıkış</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Lütfen seçilen bilgisayar(lar)da çalıştırılacak programları veya komutları girin. Birden çok program/komut satır ile ayrılabilir.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Program çalıştır</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>örnek. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>İsim:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Unutmayın ve program menüsüne ekleyin</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>örn. VLC</translation>
     </message>
 </context>
 <context>
@@ -3976,6 +3977,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>örnek. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>İsim:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>örn. VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4011,8 +4043,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Metin iletisi gönder</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Tüm seçili kullanıcılara gönderilecek iletinizi yazmak için aşağıdaki alanı kullanın.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4124,6 +4156,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Kullanıcı oturum denetimi</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4328,13 +4364,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>X Damage eklentisini kullanma</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Usta</translation>
     </message>
 </context>
 </TS>

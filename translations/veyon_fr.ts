@@ -217,35 +217,35 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>Accès à l&apos;ordinateur et à l&apos;ordinateur local</translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Utilisateur en accès</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>est connecté localement</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>est connecté à distance</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Aucun utilisateur n&apos;est connecté localement</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Un ou plusieurs utilisateurs sont connectés localement</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Aucun utilisateur n&apos;est connecté à distance</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Un ou plusieurs utilisateurs sont connectés à distance</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -253,15 +253,15 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>n&apos;est pas situé à</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>sont situés au même endroit</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>ne sont pas situés au même endroit</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -269,51 +269,59 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>n&apos;est pas membre du groupe</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>est authentifié via</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>n&apos;est pas authentifié via</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>a un ou plusieurs groupes en commun avec l&apos;utilisateur auquel on accède</translation>
     </message>
     <message>
         <source>has no groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>n&apos;a aucun groupe en commun avec l&apos;utilisateur auquel on accède</translation>
     </message>
     <message>
         <source>equals user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>équivaut à l&apos;utilisateur auquel on accède</translation>
     </message>
     <message>
         <source>is different from user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>est différent de l&apos;utilisateur auquel on accède</translation>
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>est déjà connecté</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>n&apos;est pas connecté</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>est un ordinateur local</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>n&apos;est pas un ordinateur local</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Ordinateur en accès</translation>
+    </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation>La session en cours d&apos;accès est une session utilisateur</translation>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation>La session en cours d&apos;accès est un écran de connexion</translation>
     </message>
 </context>
 <context>
@@ -1639,28 +1647,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programmes et sites internet</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Programmes prédéfinis</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Chemin</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Ajouter un nouveau programme</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Retirer le programme sélectionné</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nouveau programme</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nouveau site internet</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Applications &amp; sites internet</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Applications prédéfinies</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Ajouter une nouvelle application</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Retirer l&apos;application sélectionnée</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Ajouter un nouveau site internet</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Nouvelle application</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Exécuter un programme</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Ouvrir une page internet</translation>
@@ -1698,28 +1706,32 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Cliquez sur ce bouton pour ouvrir un site internet sur tous les ordinateurs.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Démarrer les programmes et les services dans le bureau utilisateur</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Cliquez sur ce bouton pour exécuter un programme sur tous les ordinateurs.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Lance le programme &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Programme personnalisé</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Ouvre le site internet &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Site internet personnalisé</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Démarrer l&apos;application</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Cliquez sur ce bouton pour exécuter une application sur tous les ordinateurs.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Démarrer l&apos;application &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Application personnalisée</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Démarrez des applications et ouvrez des sites internet dans les sessions utilisateur</translation>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Démarrer le didacticiel vidéo</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Programme personnalisé</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>don</translation>
     </message>
@@ -1767,6 +1775,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>generic-student-user</source>
         <translation>utilisateur-élève-générique</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Application personnalisée</translation>
     </message>
 </context>
 <context>
@@ -2840,11 +2852,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Sessions utilisateurs</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Durée de vie minimale de la session avant le démarrage du serveur</translation>
     </message>
     <message>
         <source>User login</source>
@@ -2852,7 +2864,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Séquence de touches de connexion</translation>
     </message>
 </context>
 <context>
@@ -3020,7 +3032,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Voulez-vous vraiment reset la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
+        <translation>Souhaitez-vous vraiment réinitialiser la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -3085,6 +3097,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Spotlight</source>
         <translation>Focalisation</translation>
+    </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3310,6 +3326,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Name:</source>
         <translation>Nom:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation>Nom de site internet</translation>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3389,10 +3409,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Souhaitez-vous réellement redémarrer les ordinateurs sélectionnés ?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Souhaitez-vous réellement éteindre les ordinateurs sélectionnés ?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Allumer un ordinateur via Wake-on-LAN (WOL)</translation>
     </message>
@@ -3443,6 +3459,18 @@ Please save your work and close all programs.</source>
         <translation>L&apos;ordinateur s&apos;éteindra dans %1 minutes, %2 secondes.
 
 Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Souhaitez-vous vraiment redémarrer &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Souhaitez-vous vraiment éteindre  &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Souhaitez-vous vraiment éteindre les ordinateurs sélectionnés?</translation>
     </message>
 </context>
 <context>
@@ -3589,33 +3617,6 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
 </context>
 <context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Veuillez entrer les programmes ou les commandes à exécuter sur les ordinateurs sélectionnés. Vous pouvez séparer vos différents programmes/commandes ligne par ligne.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Exécuter des programmes</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>ex: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Nom:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Mémoriser et ajouter au menu du programme</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>ex: VLC</translation>
-    </message>
-</context>
-<context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
@@ -3731,7 +3732,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation>Voulez-vous vraiment supprimer toutes les captures d&apos;écran sélectionnées?</translation>
+        <translation>Souhaitez-vous vraiment supprimer toutes les captures d&apos;écran sélectionnées?</translation>
     </message>
 </context>
 <context>
@@ -3985,6 +3986,37 @@ Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;e
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Démarrer l&apos;application</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Veuillez entrer les applications à démarrer sur les ordinateurs sélectionnés. Vous pouvez séparer plusieurs applications en les inscrivant sur chaque ligne.</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>ex: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Se souvenir et ajouter au menu de l&apos;application</translation>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation>Nom d&apos;application</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nom:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>ex: VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4020,8 +4052,8 @@ Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;e
         <translation>Envoyer un message écrit</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Utilisez le champ ci-dessous pour saisir votre message, il sera envoyé à tous les utilisateurs sélectionnés.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation>Veuillez saisir votre message qui sera envoyé à tous les utilisateurs sélectionnés.</translation>
     </message>
 </context>
 <context>
@@ -4133,6 +4165,10 @@ Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;e
     <message>
         <source>User session control</source>
         <translation>Contrôle de session utilisateur</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Souhaitez-vous vraiment déconnecter &lt;b&gt;TOUS&lt;/b&gt; les utilisateurs?</translation>
     </message>
 </context>
 <context>
@@ -4337,13 +4373,6 @@ Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;e
     <message>
         <source>Do not use X Damage extension</source>
         <translation>N&apos;utilise pas l&apos;extension X Damage</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Maître</translation>
     </message>
 </context>
 </TS>

@@ -315,6 +315,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Программы и сайты</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Предварительно определённые программы</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Путь</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Добавить новую программу</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Удалить выделенную программу</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Адрес</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Новая программа</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Новый сайт</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Запустить программу</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Открыть веб-сайт</translation>
@@ -1698,28 +1706,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Нажмите эту кнопку для открытия веб-сайта на всех компьютерах.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Запуск программ и сервисов на рабочем столе пользователя</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Нажмите эту кнопку для запуска программы на всех компьютерах.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Выполнить программу &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Необычная программа</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Открыть сайт &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Необычный сайт</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Воспроизвести обучающее видео</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Необычная программа</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Бесплатный образец</translation>
     </message>
@@ -1767,6 +1775,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>типичный-ученик-пользователь</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3086,6 +3098,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>Акцент</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3310,6 +3326,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation>Имя:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3389,10 +3409,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Вы действительно хотите перезагрузить выбранные компьютеры?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Вы действительно хотите выключить выбранный компьютер?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Включить компьютер через пробуждение по сигналу из локальной сети Wake-on-LAN (WOL)</translation>
     </message>
@@ -3443,6 +3459,18 @@ Please save your work and close all programs.</source>
         <translation>Компьютер выключится через %1 минут, %2 секунд.
 
 Пожалуйста, сохраните результаты вашей работы и завершите работу всех программ.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3586,33 +3614,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Выход</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Пожалуйста, введите программы или команды для их выполнения на выбранных компьютерах. Вы можете записать несколько программ/команд, по одной в строке.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Запустить программы</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>например, &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Имя:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Запомнить и добавить в меню программ</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>например VLC</translation>
     </message>
 </context>
 <context>
@@ -3985,6 +3986,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>например, &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Имя:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>например VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4020,8 +4052,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Послать текстовое сообщение</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Используйте это поле снизу для набора сообщения, которое хотите послать всем выбранным пользователям.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4133,6 +4165,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Управление сеансами пользователей</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4337,13 +4373,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Не использовать расширение X Damage</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Мастер</translation>
     </message>
 </context>
 </TS>

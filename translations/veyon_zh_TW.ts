@@ -315,6 +315,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1639,28 +1647,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>程式 &amp; 網站</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>預先定義程式</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>路徑</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>加入新的程式</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>移除所選程式</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1675,20 +1667,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>新程式</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>新網站</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>執行程式</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>開啟網站</translation>
@@ -1698,28 +1706,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>按一下這個按鈕可以在所有電腦上開啟一個網站。</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>啟動程式和服務在使用者桌面</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>按一下這個按鈕可以在所有電腦上執行一個程式。</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>執行程式 &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>自訂程式</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>開啟網站 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>自訂網站</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1753,10 +1765,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>播放指南視訊</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>自訂程式</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>講義</translation>
     </message>
@@ -1767,6 +1775,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>通用學生使用者</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3086,6 +3098,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>聚光燈</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3310,6 +3326,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation>名稱:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3389,10 +3409,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>您真的要重新啟動選取的電腦嗎?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>您真的要關閉選取的電腦嗎?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>透過 Wake-on-LAN (WOL) 開啟電腦電源</translation>
     </message>
@@ -3443,6 +3459,18 @@ Please save your work and close all programs.</source>
         <translation>電腦將在 %1 分鐘 %2 秒內關閉電源。
 
 請儲存您的工作並關閉所有程式。</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3586,33 +3614,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>結束</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>請輸入程式或在選取電腦上執行的命令。 您可以用行分隔多個程式/命令。</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>執行程式</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>例如: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>名稱:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>記住並加入到程式功能表</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>例如: VLC</translation>
     </message>
 </context>
 <context>
@@ -3985,6 +3986,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>例如: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>名稱:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>例如: VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4020,8 +4052,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>傳送文字訊息</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>使用下列欄位輸入您要傳送給所有選取使用者的訊息。</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4133,6 +4165,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>使用者工作階段控制</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4337,13 +4373,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>不使用 X Damage 擴充功能</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Master</translation>
     </message>
 </context>
 </TS>

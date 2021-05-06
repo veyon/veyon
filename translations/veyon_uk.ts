@@ -315,6 +315,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Computer being accessed</source>
         <translation>Комп&apos;ютер для доступу</translation>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation>Сеанс доступу є сеансом користувача</translation>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation>Сеанс доступу є вікном вітання</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1636,28 +1644,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Програми і сайти</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Попередньо визначені програми</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Назва</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Шлях</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Додати нову програму</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Вилучити позначену програму</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1672,20 +1664,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Адреса</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Нова програма</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Новий сайт</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Програми і сайти</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Попередньо визначені програми</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Додати нову програму</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Вилучити позначену програму</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Додати новий сайт</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Нова програма</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Виконати програму</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Відкрити сайт</translation>
@@ -1695,28 +1703,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Натисніть цю кнопку, щоб відкрити сайт на усіх комп’ютерах.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Запустити програми і служби на робочій станції користувача</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Виконати програму «%1»</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Нетипова програма</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Відкрити сайт «%1»</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Нетиповий сайт</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Запустити програму</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп&apos;ютерах.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Запустити програму «%1»</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Нетипова програма</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Запустити програми і відкрити сайти у сеансах користувачів</translation>
     </message>
 </context>
 <context>
@@ -1750,10 +1762,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Відтворити навчальне відео</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Нетипова програма</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Безкоштовний зразок</translation>
     </message>
@@ -1764,6 +1772,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>типовий-користувач-учень</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Нетипова програма</translation>
     </message>
 </context>
 <context>
@@ -3085,6 +3097,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>Акцент</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3309,6 +3325,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation>Назва:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation>Назва сайта</translation>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3388,10 +3408,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ви справді хочете перезавантажити позначені комп&apos;ютери?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Ви справді хочете вимкнути позначений комп&apos;ютер?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Увімкнути комп&apos;ютер за допомогою Wake-on-LAN (WOL)</translation>
     </message>
@@ -3442,6 +3458,18 @@ Please save your work and close all programs.</source>
         <translation>Комп&apos;ютер буде вимкнено за %1 хвилин, %2 секунд.
 
 Будь ласка, збережіть результати вашої роботи і завершіть роботу усіх програм.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Ви справді хочете перезавантажити &lt;b&gt;УСІ&lt;/b&gt; комп&apos;ютери?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Ви справді хочете вимкнути &lt;b&gt;УСІ&lt;/b&gt; комп&apos;ютери?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Ви справді хочете вимкнути позначені комп&apos;ютери?</translation>
     </message>
 </context>
 <context>
@@ -3585,33 +3613,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Вийти</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Будь ласка, вкажіть програми або команди, які слід виконати на позначених комп’ютерах. Ви можете вказати декілька програм або команд, записавши їх в окремих рядках.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Виконати програми</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>наприклад, «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Назва:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Запам&apos;ятати і додати до меню програм</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>наприклад VLC</translation>
     </message>
 </context>
 <context>
@@ -3984,6 +3985,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Запустити програму</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Будь ласка, вкажіть програми, які слід запустити на позначених комп&apos;ютерах. Ви можете вказати декілька програм, відокремивши записи символом розриву рядка.</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>наприклад, «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Запам&apos;ятати і додати до меню програм</translation>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation>Назва програми</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Назва:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>наприклад VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4019,8 +4051,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Надіслати текстове повідомлення</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Використовуйте це поле, щоб набрати текст повідомлення, яке буде надіслано всім позначеним користувачам.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation>Будь ласка, вкажіть ваше повідомлення, яке слід надіслати усім позначеним користувачам.</translation>
     </message>
 </context>
 <context>
@@ -4132,6 +4164,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Керування сеансами користувачів</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Ви справді хочете виконати вихід з системи для &lt;b&gt;УСІХ&lt;/b&gt; користувачів?</translation>
     </message>
 </context>
 <context>
@@ -4336,13 +4372,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Не використовувати розширення X Damage</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Головний комп&apos;ютер Veyon (Veyon Master)</translation>
     </message>
 </context>
 </TS>

@@ -313,6 +313,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Computer being accessed</source>
         <translation>Computer, auf den zugegriffen wird</translation>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation>Sitzung, auf die zugegriffen wird, ist eine Benutzersitzung</translation>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation>Sitzung, auf die zugegriffen wird, ist ein Anmeldebildschirm</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1636,28 +1644,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programme &amp; Webseiten</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Vordefinierte Programme</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Pfad</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Neues Programm hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Ausgewähltes Programm entfernen</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1672,20 +1664,36 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Neues Programm</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Neue Webseite</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Anwendungen &amp; Webseiten</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Vordefinierte Anwendungen</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Neue Anwendung hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Gewählte Anwendung entfernen</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Neue Website hinzufügen</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Neue Anwendung</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Programm starten</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Webseite öffnen</translation>
@@ -1695,28 +1703,32 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Klicken Sie auf diesen Button, um eine Webseite auf allen Computern zu öffnen.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Programme und Dienste im Benutzerdesktop starten</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um Programme auf allen Computern zu starten.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Programm &quot;%1&quot; ausführen</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Benutzerdefiniertes Programm</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Webseite &quot;%1&quot; öffnen</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Benutzerdefinierte Webseite</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Anwendung starten</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um eine Anwendung auf allen Computern zu starten.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Anwendung &quot;%1&quot; ausführen</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Benutzerdefinierte Anwendung</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Anwendungen starten und Webseiten öffnen in Benutzersitzungen</translation>
     </message>
 </context>
 <context>
@@ -1750,10 +1762,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Tutorial-Video abspielen</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Benutzerdefiniertes Programm</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Arbeitsblatt</translation>
     </message>
@@ -1764,6 +1772,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>generic-student-user</source>
         <translation>allgemeiner-schueler-benutzer</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Benutzerdefinierte Anwendung</translation>
     </message>
 </context>
 <context>
@@ -3083,6 +3095,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Spotlight</source>
         <translation>Scheinwerfer</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3140,7 +3156,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>Aktionen wie Computer neustarten oder ausschalten</translation>
+        <translation>Aktionen wie Computer neu starten oder ausschalten</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3307,6 +3323,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation>Webseitenname</translation>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3355,7 +3375,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Neustarten</translation>
+        <translation>Neustart</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -3371,7 +3391,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Computer ein-/ausschalten oder neustarten</translation>
+        <translation>Computer ein-/ausschalten oder neu starten</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3383,11 +3403,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>Möchten Sie wirklich die gewählten Computer neustarten?</translation>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
+        <translation>Möchten Sie wirklich die gewählten Computer neu starten?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3440,6 +3456,18 @@ Please save your work and close all programs.</source>
         <translation>Der Computer wird in %1 Minuten, %2 Sekunden heruntergefahren.
 
 Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Möchten Sie wirklich &lt;b&gt;ALLE&lt;/b&gt; Computer neu starten?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Möchten Sie wirklich &lt;b&gt;ALLE&lt;/b&gt; Computer herunterfahren?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
     </message>
 </context>
 <context>
@@ -3583,33 +3611,6 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Exit</source>
         <translation>Beenden</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Bitte geben Sie die Programme oder die Befehle ein, die auf den gewählten Computern gestartet werden sollen. Sie können mehrere Programme/Befehle über einzelne Zeilen angeben.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Programme starten</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>z.B. &quot;C:\Programme\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Name:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Merken und zum Programmmenü hinzufügen</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>z.B. VLC</translation>
     </message>
 </context>
 <context>
@@ -3779,11 +3780,11 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>%1 Dienst neustarten</translation>
+        <translation>%1 Dienst neu starten</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
+        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neu gestartet werden. Jetzt neu starten?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -3899,7 +3900,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Veyon-Dienst neustarten</translation>
+        <translation>Veyon-Dienst neu starten</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3982,6 +3983,37 @@ Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist,
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Anwendung starten</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Bitte geben Sie die Anwendungen ein, die auf den gewählten Computern gestartet werden sollen. Sie können mehrere Anwendungen über einzelne Zeilen angeben.</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>z.B. &quot;C:\Programme\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Merken und zum Anwendungsmenü hinzufügen</translation>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation>Anwendungsname</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Name:</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>z.B. VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4017,8 +4049,8 @@ Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist,
         <translation>Textnachricht übermitteln</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Nutzen Sie das Feld unterhalb, um Ihre Nachricht zu tippen, die an alle Benutzer übermittelt wird.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation>Bitte geben Sie die Nachricht ein, die an alle gewählten Benutzer übermittelt werden soll.</translation>
     </message>
 </context>
 <context>
@@ -4130,6 +4162,10 @@ Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist,
     <message>
         <source>User session control</source>
         <translation>Benutzersitzungssteuerung</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Möchten Sie wirklich &lt;b&gt;ALLE&lt;/b&gt; Benutzer abmelden?</translation>
     </message>
 </context>
 <context>
@@ -4334,13 +4370,6 @@ Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist,
     <message>
         <source>Do not use X Damage extension</source>
         <translation>X-Damage-Erweiterung nicht nutzen</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Master</translation>
     </message>
 </context>
 </TS>

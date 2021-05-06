@@ -315,6 +315,14 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <source>Computer being accessed</source>
         <translation>Computer a cui si accede</translation>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation>La sessione a cui si accede è una sessione utente</translation>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation>La sessione a cui si accede è una schermata di accesso</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1636,28 +1644,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programmi e siti Web</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Programmi predefiniti</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Percorso</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Aggiungi un nuovo programma</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Rimuovi il programma selezionato</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1672,20 +1664,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nuovo programma</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nuovo sito web</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Applicazioni e siti web</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Applicazioni predefinite</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Aggiungi nuova applicazione</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Rimuovi l&apos;applicazione selezionata</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Aggiungi nuovo sito web</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Nuova applicazione</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Apri un programma</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Apri sito web</translation>
@@ -1695,28 +1703,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Clicca su questo pulsante per aprire un sito internet su tutti i PC.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Attiva il programma sul PC remoto</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Clicca su questo pulsante per lanciare un programma su tutti i PC</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Esegui il programma &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Programma personalizzato</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Apri il sito web &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Sito web personalizzato</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Avvia applicazione</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Fare clic su questo pulsante per avviare un&apos;applicazione su tutti i computer.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Avvia l&apos;applicazione &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Applicazione personalizzata</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Avvia app e apri siti web nelle sessioni utente</translation>
     </message>
 </context>
 <context>
@@ -1750,10 +1762,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Riproduci video tutorial</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Programma personalizzato</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Volantino</translation>
     </message>
@@ -1764,6 +1772,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>utente-generico-studente</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Applicazione personalizzata</translation>
     </message>
 </context>
 <context>
@@ -3073,6 +3085,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation>Spotlight</translation>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3297,6 +3313,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation>Nome</translation>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation>Nome del sito web</translation>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3376,10 +3396,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Vuoi veramente riavviare i computer selezionati?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Vuoi veramente spegnere il computer selezionato?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation>Accendi un computer tramite Wake-on-LAN (WOL)</translation>
     </message>
@@ -3430,6 +3446,18 @@ Please save your work and close all programs.</source>
         <translation>Il computer verrà spento in %1 minuti, %2 secondi. 
 
 Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Vuoi davvero riavviare&lt;b&gt;TUTTI&lt;/b&gt; i computer?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Vuoi davvero spegnere &lt;b&gt;TUTTI&lt;/b&gt; i computer?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Vuoi davvero spegnere i computer selezionati?</translation>
     </message>
 </context>
 <context>
@@ -3573,33 +3601,6 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Exit</source>
         <translation>Uscita</translation>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Inserisci i programmi o i comandi da eseguire nei computer selezionati. Puoi separare programmi/comandi multipli andando a capo.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Esegui programmi</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>es. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Nome</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Ricorda e aggiungi al menu del programma</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>per esempio, VLC</translation>
     </message>
 </context>
 <context>
@@ -3971,6 +3972,37 @@ Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Avvia applicazione</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Immettere le applicazioni da avviare sui computer selezionati. È possibile separare più applicazioni per riga.</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>es. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Ricorda e aggiungi al menu dell&apos;applicazione</translation>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation>Nome dell&apos;applicazione</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nome</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>per esempio, VLC</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4006,8 +4038,8 @@ Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato
         <translation>Invia un messaggio di testo</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Utilizza il campo qui sotto per scrivere il messaggio che vuoi inviare agli utenti selezionati.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation>Inserisci il messaggio che verrà inviato a tutti gli utenti selezionati.</translation>
     </message>
 </context>
 <context>
@@ -4119,6 +4151,10 @@ Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato
     <message>
         <source>User session control</source>
         <translation>Controllo sessione utente</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Vuoi davvero disconnettere &lt;b&gt;TUTTI&lt;/b&gt; gli utenti?</translation>
     </message>
 </context>
 <context>
@@ -4323,13 +4359,6 @@ Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Non usare l&apos;estensione X Damage</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation>Veyon Master</translation>
     </message>
 </context>
 </TS>

@@ -315,6 +315,14 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>Computer being accessed</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Session being accessed is a user session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session being accessed is a login screen</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -1303,7 +1311,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via% 1 Configurator.</translation>
+        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via%1 Configurator.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1373,7 +1381,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Kon de computer en gebruikerslijst niet schrijven naar% 1! Controleer de toegangsrechten voor het bestand.</translation>
+        <translation>Kon de computer en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
     </message>
 </context>
 <context>
@@ -1636,28 +1644,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programma&apos;s &amp; websites</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Naam</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Pad</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Nieuw programma toevoegen</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Geselecteerd programma verwijderen</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1672,20 +1664,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nieuw programma</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nieuwe website</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Voer programma uit</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Open website</translation>
@@ -1695,28 +1703,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Klik op deze knop om een website op alle computers te openen.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Start programma&apos;s en services in de gebruikersdesktop</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Klik op deze knop om een programma op alle computers uit te voeren.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Programma &quot;%1&quot; uitvoeren</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Aangepast programma</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Open website &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Aangepaste website</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1750,10 +1762,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Aangepast programma</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation type="unfinished"/>
     </message>
@@ -1763,6 +1771,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3071,6 +3083,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Spotlight</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Veyon Master</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3295,6 +3311,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name:</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Website name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PluginsCommands</name>
@@ -3374,10 +3394,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Wilt u werkelijk de geselecteerde computers heropstarten?</translation>
     </message>
     <message>
-        <source>Do you really want to power down the selected computer?</source>
-        <translation>Wilt u werkelijk de geselecteerde computers uitschakelen?</translation>
-    </message>
-    <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
         <translation type="unfinished"/>
     </message>
@@ -3425,6 +3441,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3568,33 +3596,6 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Voer alsjeblieft de programma&apos;s of commando&apos;s in om op de geselecteerde computer(s) te draaien. U kunt meerdere programma&apos;s / opdrachten per lijn scheiden.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Voer programma&apos;s uit</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>bv. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3966,6 +3967,37 @@ The second button will remove the selected computer. If nothing is selected the 
     </message>
 </context>
 <context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>bv. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Application name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -4001,8 +4033,8 @@ The second button will remove the selected computer. If nothing is selected the 
         <translation>Stuur tekstbericht</translation>
     </message>
     <message>
-        <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Gebruik de onderstaande veld om uw bericht dat voor alle geselecteerde gebruikers wordt verzonden te typen.</translation>
+        <source>Please enter your message which send to all selected users.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4114,6 +4146,10 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>User session control</source>
         <translation>Gebruikers sessie controle</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4318,13 +4354,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Do not use X Damage extension</source>
         <translation>Gebruik geen X Damage extensie</translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <source>Veyon Master</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
