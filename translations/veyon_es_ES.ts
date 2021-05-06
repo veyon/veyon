@@ -2535,11 +2535,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Sesiones de usuario</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Duración mínima de la sesión antes del inicio del servidor</translation>
     </message>
 </context>
 <context>
@@ -3121,15 +3121,15 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente desea reiniciar &lt;b&gt;TODAS&lt;/b&gt; las computadoras?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente desea apagar &lt;b&gt;TODAS&lt;/b&gt; las computadoras?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente desea apagar las computadoras seleccionadas?</translation>
     </message>
 </context>
 <context>
@@ -3807,7 +3807,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente quiere cerrar sesión a &lt;b&gt;TODOS&lt;/b&gt; los usuarios?</translation>
     </message>
 </context>
 <context>

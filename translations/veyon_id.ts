@@ -448,7 +448,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Membuat pasangan kunci baru untuk &quot;% 1&quot;</translation>
+        <translation>Membuat pasangan kunci baru untuk &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>

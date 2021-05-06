@@ -456,7 +456,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>O par de chaves recém-criado foi salvo em &quot;% 1&quot; e &quot;% 2&quot;.</translation>
+        <translation>O par de chaves recém-criado foi salvo em &quot;%1&quot; e &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>

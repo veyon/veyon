@@ -371,7 +371,7 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>Želite li stvarno izbrisati autentifikacijski ključ &quot;% 1 /% 2&quot;?</translation>
+        <translation>Želite li stvarno izbrisati autentifikacijski ključ &quot;%1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
@@ -387,7 +387,7 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Odaberite grupu korisnika koja će odobriti pristup ključu &quot;% 1&quot;:</translation>
+        <translation>Odaberite grupu korisnika koja će odobriti pristup ključu &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -436,7 +436,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Navedena je nevažeća vrsta ključa! Navedite &quot;% 1&quot; ili &quot;% 2&quot;.</translation>
+        <translation>Navedena je nevažeća vrsta ključa! Navedite &quot;%1&quot; ili &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
@@ -448,7 +448,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Izrada novog para ključeva za &quot;% 1&quot;</translation>
+        <translation>Izrada novog para ključeva za &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -456,15 +456,15 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>Novostvoreni par ključeva sačuvan je u „% 1“ i „% 2“.</translation>
+        <translation>Novostvoreni par ključeva sačuvan je u „%1“ i „%2“.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Nije moguće ukloniti datoteku s ključevima &quot;% 1&quot;!</translation>
+        <translation>Nije moguće ukloniti datoteku s ključevima &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Nije moguće ukloniti direktorijum ključnih datoteka &quot;% 1&quot;!</translation>
+        <translation>Nije moguće ukloniti direktorijum ključnih datoteka &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
@@ -472,7 +472,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>Datoteka &quot;% 1&quot; već postoji.</translation>
+        <translation>Datoteka &quot;%1&quot; već postoji.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -480,7 +480,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>Ključ &quot;% 1 /% 2&quot; je uspešno izvezen u &quot;% 3&quot;.</translation>
+        <translation>Ključ &quot;%1/%2&quot; je uspešno izvezen u &quot;%3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
@@ -488,11 +488,11 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>Datoteka &quot;% 1&quot; ne sadrži validni privatni ključ!</translation>
+        <translation>Datoteka &quot;%1&quot; ne sadrži validni privatni ključ!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>Datoteka &quot;% 1&quot; ne sadrži validni javni ključ!</translation>
+        <translation>Datoteka &quot;%1&quot; ne sadrži validni javni ključ!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
@@ -500,15 +500,15 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>Nije uspelo pisanje datoteke ključa &quot;% 1&quot;.</translation>
+        <translation>Nije uspelo pisanje datoteke ključa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>Nije moguće postaviti dozvole za ključnu datoteku &quot;% 1&quot;!</translation>
+        <translation>Nije moguće postaviti dozvole za ključnu datoteku &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>Ključ &quot;% 1 /% 2&quot; je uspešno uvežen. Proverite dozvole datoteka &quot;% 3&quot; kako biste sprečili neovlašćeni pristup.</translation>
+        <translation>Ključ &quot;%1/%2&quot; je uspešno uvežen. Proverite dozvole datoteka &quot;%3&quot; kako biste sprečili neovlašćeni pristup.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -516,19 +516,19 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>Nije uspelo kreiranje direktorijuma za datoteku privatnog ključa &quot;% 1&quot;.</translation>
+        <translation>Nije uspelo kreiranje direktorijuma za datoteku privatnog ključa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation>Privatni ključ u datoteci &quot;% 1&quot; nije uspešno sačuvan!</translation>
+        <translation>Privatni ključ u datoteci &quot;%1&quot; nije uspešno sačuvan!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation>Neuspešno postavljanje dozvola za datoteku privatnog ključa &quot;% 1&quot;!</translation>
+        <translation>Neuspešno postavljanje dozvola za datoteku privatnog ključa &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>Neuspešno kreiranje direktorijuma za datoteku javnog ključa &quot;% 1&quot;.</translation>
+        <translation>Neuspešno kreiranje direktorijuma za datoteku javnog ključa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
@@ -536,19 +536,19 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation>Nije moguće postaviti dozvole za datoteku javnog ključa &quot;% 1&quot;!</translation>
+        <translation>Nije moguće postaviti dozvole za datoteku javnog ključa &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Neuspešno postavljanje vlasnika datoteke ključa &quot;% 1&quot; na &quot;% 2&quot;.</translation>
+        <translation>Neuspešno postavljanje vlasnika datoteke ključa &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation>Neuspešno postavljanje dozvola za ključnu datoteku &quot;% 1&quot;.</translation>
+        <translation>Neuspešno postavljanje dozvola za ključnu datoteku &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>Ključ &quot;% 1&quot; je sada dostupan grupi korisnika &quot;% 2&quot;.</translation>
+        <translation>Ključ &quot;%1&quot; je sada dostupan grupi korisnika &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -619,7 +619,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Ova naredba navodi sve dostupne ključeve za proveru autentičnosti u konfiguracionom direktorijumu ključeva. Ako je navedena opcija &quot;% 1&quot;,specifična tablica s ključnim detaljima biće prikazana umesto opcija. Neki detalji možda nedostaju ako ključ nije dostupan, npr. zbog nedostatka dozvola za čitanje.</translation>
+        <translation>Ova naredba navodi sve dostupne ključeve za proveru autentičnosti u konfiguracionom direktorijumu ključeva. Ako je navedena opcija &quot;%1&quot;,specifična tablica s ključnim detaljima biće prikazana umesto opcija. Neki detalji možda nedostaju ako ključ nije dostupan, npr. zbog nedostatka dozvola za čitanje.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -748,7 +748,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Naveden nevažeći tip. Važeće vrednosti su „% 1“ ili „% 2“.</translation>
+        <translation>Naveden nevažeći tip. Važeće vrednosti su „%1“ ili „%2“.</translation>
     </message>
     <message>
         <source>Type</source>
@@ -776,19 +776,19 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Nije moguće otvoriti datoteku &quot;% 1&quot; za čitanje!</translation>
+        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za čitanje!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Nepoznati argument &quot;% 1&quot;.</translation>
+        <translation>Nepoznati argument &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Računar &quot;% 1&quot; (adresa domaćina: &quot;% 2&quot; MAC adresa: &quot;% 3&quot;)</translation>
+        <translation>Računar &quot;%1&quot; (adresa domaćina: &quot;%2&quot; MAC adresa: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Nerazvrstani objekt &quot;% 1&quot; sa ID-om &quot;% 2&quot;</translation>
+        <translation>Nerazvrstani objekt &quot;%1&quot; sa ID-om &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
@@ -808,7 +808,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Greška prilikom raščlanjivanja linije% 1.</translation>
+        <translation>Greška prilikom raščlanjivanja linije%1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
@@ -824,7 +824,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Nije moguće otvoriti datoteku &quot;% 1&quot; za pisanje!</translation>
+        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za pisanje!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -888,7 +888,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:% 1</translation>
+        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:%1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -908,7 +908,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Izvezi objekte u navedenu tekstualnu datoteku koristeći zadani format niza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:% 1</translation>
+        <translation>Izvezi objekte u navedenu tekstualnu datoteku koristeći zadani format niza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:%1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -932,7 +932,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>Dodaje objekt u kojem % 1 može biti jedan od &quot;% 2&quot; ili &quot;% 3&quot;. % 4 može se odrediti imenom ili UUID-om.</translation>
+        <translation>Dodaje objekt u kojem %1 može biti jedan od &quot;%2&quot; ili &quot;%3&quot;. %4 može se odrediti imenom ili UUID-om.</translation>
     </message>
     <message>
         <source>Add a room</source>
@@ -948,7 +948,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation>Uklanja navedeni objekt iz direktorijuma. % 1 može se odrediti imenom ili UUID-om. Ako uklonite lokaciju, uklonite i sva povezana računara.</translation>
+        <translation>Uklanja navedeni objekt iz direktorijuma. %1 može se odrediti imenom ili UUID-om. Ako uklonite lokaciju, uklonite i sva povezana računara.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
@@ -997,7 +997,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation>Aktivne karakteristike:% 1</translation>
+        <translation>Aktivne karakteristike: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1025,7 +1025,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Prijavljeni korisnik:% 1</translation>
+        <translation>Prijavljeni korisnik: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1060,7 +1060,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Korisnik &quot;% 1&quot; kod domaćina &quot;% 2&quot; pokušao je pristupiti ovom računaru, ali nije uspeo uspješno proveriti identitet.</translation>
+        <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; pokušao je pristupiti ovom računaru, ali nije uspeo uspješno proveriti identitet.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1068,7 +1068,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>Korisnik &quot;% 1&quot; kod računara &quot;% 2&quot; pokušao je pristupiti ovom računaru, ali je blokiran zbog postavki kontrole pristupa.</translation>
+        <translation>Korisnik &quot;%1&quot; kod računara &quot;%2&quot; pokušao je pristupiti ovom računaru, ali je blokiran zbog postavki kontrole pristupa.</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1087,7 +1087,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nije pronađen nijedan podrazumevani dodatak mrežnog objekta. Proverite vašu instalaciju ili konfigurišite drugačiju poziciju direktorijuma mrežnih objekata putem% 1 Konfigurator.</translation>
+        <translation>Nije pronađen nijedan podrazumevani dodatak mrežnog objekta. Proverite vašu instalaciju ili konfigurišite drugačiju poziciju direktorijuma mrežnih objekata putem %1 Konfigurator.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1130,7 +1130,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Ne može se zapisati lista računara i korisnika na% 1! Proverite dozvole za pristup datoteci.</translation>
+        <translation>Ne može se zapisati lista računara i korisnika na %1! Proverite dozvole za pristup datoteci.</translation>
     </message>
 </context>
 <context>
@@ -1212,15 +1212,15 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Nije moguće izmeniti svojstvo automatskog pokretanja za uslugu% 1.</translation>
+        <translation>Nije moguće izmeniti svojstvo automatskog pokretanja za uslugu %1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za% 1 Server.</translation>
+        <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za %1 Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za% 1 Radnika.</translation>
+        <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za %1 Radnika.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
@@ -1372,7 +1372,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Korisnik % 1 na računaru % 2 želi pristupiti vašoj radnoj površini. Želite li odobriti pristup?</translation>
+        <translation>Korisnik %1 na računaru %2 želi pristupiti vašoj radnoj površini. Želite li odobriti pristup?</translation>
     </message>
 </context>
 <context>
@@ -1572,7 +1572,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Nije moguće otvoriti datoteku &quot;% 1&quot; za čitanje! Molimo proverite svoje dozvole!</translation>
+        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za čitanje! Molimo proverite svoje dozvole!</translation>
     </message>
 </context>
 <context>
@@ -1634,11 +1634,11 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Nije moguće primiti datoteku &quot;% 1&quot; jer ona već postoji.</translation>
+        <translation>Nije moguće primiti datoteku &quot;%1&quot; jer ona već postoji.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Ne mogu primiti datoteku &quot;% 1&quot; jer se ne može otvoriti za pisanje!</translation>
+        <translation>Ne mogu primiti datoteku &quot;%1&quot; jer se ne može otvoriti za pisanje!</translation>
     </message>
 </context>
 <context>
@@ -1814,7 +1814,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation>Opis greške LDAP:% 1</translation>
+        <translation>Opis greške LDAP: %1</translation>
     </message>
 </context>
 <context>
@@ -2051,7 +2051,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Nije bilo moguće pronaći grupu sa nazivom &quot;% 1&quot;. Proverite naziv grupe ili parametar stabla grupe.</translation>
+        <translation>Nije bilo moguće pronaći grupu sa nazivom &quot;%1&quot;. Proverite naziv grupe ili parametar stabla grupe.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
@@ -2119,21 +2119,21 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>LDAP% 1 test je neuspešan</translation>
+        <translation>LDAP %1 test je neuspešan</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>LDAP% 1 test je uspešan</translation>
+        <translation>LDAP %1 test je uspešan</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>% 1 je uspešno upitan i pronađjeni su unosi % 2.</translation>
+        <translation>%1 je uspešno upitan i pronađjeni su unosi %2.</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>% 1% 2 uspešno je prosledjen upit:
+        <translation>%1 %2 uspešno je prosledjen upit:
 
 %3</translation>
     </message>
@@ -2145,7 +2145,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation>Nije moguće proslediti upit nijednog % 1 pomoću konfigurisanog filtera. Molimo proverite LDAP filter za% 1.
+        <translation>Nije moguće proslediti upit nijednog %1 pomoću konfigurisanog filtera. Molimo proverite LDAP filter za %1.
 
 %2</translation>
     </message>
@@ -2155,7 +2155,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>% 1% 2 uspešno je ispitan pomoću konfigurisanog filtera.</translation>
+        <translation>%1 %2 uspešno je ispitan pomoću konfigurisanog filtera.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
@@ -2427,7 +2427,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Ne mogu pronaći korisnika s imenom &quot;% 1&quot;. Proverite korisničko ime ili parametar korisničkog stabla.</translation>
+        <translation>Ne mogu pronaći korisnika s imenom &quot;%1&quot;. Proverite korisničko ime ili parametar korisničkog stabla.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
@@ -2439,7 +2439,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Ne mogu pronaći računar s imenom domaćina &quot;% 1&quot;. Molimo proverite naziv domaćina ili parametar stabla računara.</translation>
+        <translation>Ne mogu pronaći računar s imenom domaćina &quot;%1&quot;. Molimo proverite naziv domaćina ili parametar stabla računara.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
@@ -2447,7 +2447,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Nije moguće potražiti ime hosta za IP adresu% 1. Proverite postavke DNS servera.</translation>
+        <translation>Nije moguće potražiti ime hosta za IP adresu %1. Proverite postavke DNS servera.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2681,7 +2681,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Lokalni pomoćni program za konfiguraciju izveštava da konfiguracija ne može biti napisana! Molimo pokrenite% 1 konfigurator s većim privilegijama.</translation>
+        <translation>Lokalni pomoćni program za konfiguraciju izveštava da konfiguracija ne može biti napisana! Molimo pokrenite %1 konfigurator s većim privilegijama.</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2705,7 +2705,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Funkcija  &quot;%1&quot; i dalje je aktivna. Molim zaustavite pre zatvaranja %2.</translation>
+        <translation>Funkcija &quot;%1&quot; i dalje je aktivna. Molim zaustavite pre zatvaranja %2.</translation>
     </message>
     <message>
         <source>Reset configuration</source>

@@ -1084,7 +1084,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via% 1 Configurator.</translation>
+        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via%1 Configurator.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1127,7 +1127,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Kon de computer en gebruikerslijst niet schrijven naar% 1! Controleer de toegangsrechten voor het bestand.</translation>
+        <translation>Kon de computer en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
     </message>
 </context>
 <context>
