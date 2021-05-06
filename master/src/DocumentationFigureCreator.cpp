@@ -545,9 +545,10 @@ void DocumentationFigureCreator::hideComputers()
 
 
 
-void DocumentationFigureCreator::scheduleUiOperation( const std::function<void(void)>& operation )
+void DocumentationFigureCreator::scheduleUiOperation( const std::function<void(void)>& operation,
+													 QObject* context )
 {
-	QTimer::singleShot( DialogDelay, this, operation );
+	QTimer::singleShot( DialogDelay, context, operation );
 }
 
 
