@@ -67,6 +67,7 @@ void DocumentationFigureCreator::run()
 
 	createFeatureFigures();
 	createContextMenuFigure();
+	createDemoMenuFigure();
 	createLogonDialogFigure();
 	createLocationDialogFigure();
 	createScreenshotManagementPanelFigure();
@@ -258,6 +259,13 @@ void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 	} );
 
 	m_eventLoop.exec();
+}
+
+
+
+void DocumentationFigureCreator::createDemoMenuFigure()
+{
+	grabMenu( m_master.mainWindow(), QStringLiteral("Demo"), QStringLiteral("DemoMenu.png") );
 }
 
 

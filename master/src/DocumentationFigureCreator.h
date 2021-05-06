@@ -47,6 +47,7 @@ private:
 	void createLogonDialogFigure();
 	void createLocationDialogFigure();
 	void createScreenshotManagementPanelFigure();
+	void createDemoMenuFigure();
 	void createPowerDownOptionsFigure();
 	void createPowerDownTimeInputDialogFigure();
 	void createUserLoginDialogFigure();
