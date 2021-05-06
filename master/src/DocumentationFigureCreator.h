@@ -61,7 +61,12 @@ private:
 
 	void hideComputers();
 
-	void scheduleUiOperation( const std::function<void(void)>& operation );
+	void scheduleUiOperation( const std::function<void(void)>& operation )
+	{
+		scheduleUiOperation( operation, this );
+	}
+
+	static void scheduleUiOperation( const std::function<void(void)>& operation, QObject* context );
 
 	static void grabWidget( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
 	static void grabDialog( QDialog* dialog, const QSize& size, const QString& fileName );
