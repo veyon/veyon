@@ -553,6 +553,33 @@ void DocumentationFigureCreator::scheduleUiOperation( const std::function<void(v
 
 
 
+void DocumentationFigureCreator::grabMenu( QWidget* window, const QString& buttonName, const QString& fileName )
+{
+	const auto button = window->findChild<ToolButton *>( buttonName );
+
+	scheduleUiOperation( [window, button, &fileName]() {
+		scheduleUiOperation( [window, button, &fileName]() {
+			auto menu = button->menu();
+
+			grabWindow( window, button->mapTo( window, QPoint( 0, 0 ) ),
+						QSize( qMax( button->width(), menu->width() ),
+							   button->height() + menu->height() ),
+						fileName );
+			menu->close();
+		}, window );
+		auto menu = button->menu();
+		menu->close();
+
+		button->setDown(true);
+		button->showMenu();
+	}, window );
+
+	button->setDown(true);
+	button->showMenu();
+}
+
+
+
 void DocumentationFigureCreator::grabWidget(QWidget* widget, QPoint pos, QSize size, const QString& fileName)
 {
 	QPixmap pixmap( size );
