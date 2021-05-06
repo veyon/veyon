@@ -68,6 +68,7 @@ private:
 
 	static void scheduleUiOperation( const std::function<void(void)>& operation, QObject* context );
 
+	static void grabMenu( QWidget* window, const QString& buttonName, const QString& fileName );
 	static void grabWidget( QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName );
 	static void grabDialog( QDialog* dialog, const QSize& size, const QString& fileName );
 	static void grabWindow( QWidget* widget, const QString& fileName );
