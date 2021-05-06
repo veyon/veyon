@@ -264,27 +264,7 @@ void DocumentationFigureCreator::createScreenshotManagementPanelFigure()
 
 void DocumentationFigureCreator::createPowerDownOptionsFigure()
 {
-	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
-	auto powerDownButton = toolbar->findChild<ToolButton *>( QStringLiteral("PowerDown") );
-
-	scheduleUiOperation( [this, powerDownButton]() {
-		scheduleUiOperation( [this, powerDownButton]() {
-			auto menu = powerDownButton->menu();
-
-			grabWindow( m_master.mainWindow(), powerDownButton->mapTo( m_master.mainWindow(), QPoint( 0, 0 ) ),
-						QSize( qMax( powerDownButton->width(), menu->width() ),
-							   powerDownButton->height() + menu->height() ),
-						QStringLiteral("PowerDownOptions.png") );
-			menu->close();
-		} );
-		auto menu = powerDownButton->menu();
-		menu->close();
-
-		powerDownButton->click();
-
-	} );
-
-	powerDownButton->showMenu();
+	grabMenu( m_master.mainWindow(), QStringLiteral("PowerDown"), QStringLiteral("PowerDownOptions.png") );
 }
 
 
@@ -353,30 +333,16 @@ void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 
 void DocumentationFigureCreator::createWebsiteMenuFigure()
 {
-	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
-	auto openWebsiteButton = toolbar->findChild<ToolButton *>( QStringLiteral("OpenWebsite") );
+	const auto openWebsiteButton = m_master.mainWindow()->findChild<ToolButton *>( QStringLiteral("OpenWebsite") );
 
-	auto menu = new QMenu;
-	menu->addAction( QStringLiteral("Intranet") );
-	menu->addAction( QStringLiteral("Wikipedia") );
-	menu->addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom website") );
+	QMenu menu;
+	menu.addAction( QStringLiteral("Intranet") );
+	menu.addAction( QStringLiteral("Wikipedia") );
+	menu.addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom website") );
 
-	scheduleUiOperation( [this, openWebsiteButton, menu]() {
-		scheduleUiOperation( [this, openWebsiteButton, menu]() {
+	openWebsiteButton->setMenu( &menu );
 
-			grabWindow( m_master.mainWindow(), openWebsiteButton->mapTo( m_master.mainWindow(), QPoint( 0, 0 ) ),
-						QSize( qMax( openWebsiteButton->width(), menu->width() ),
-							   openWebsiteButton->height() + menu->height() ),
-						QStringLiteral("OpenWebsiteMenu.png") );
-			menu->close();
-		} );
-
-		menu->close();
-		openWebsiteButton->showMenu();
-	} );
-
-	openWebsiteButton->setMenu( menu );
-	openWebsiteButton->showMenu();
+	grabMenu( m_master.mainWindow(), openWebsiteButton->objectName(), QStringLiteral("OpenWebsiteMenu.png") );
 }
 
 
@@ -398,31 +364,17 @@ void DocumentationFigureCreator::createRunProgramDialogFigure()
 
 void DocumentationFigureCreator::createProgramMenuFigure()
 {
-	auto toolbar = m_master.mainWindow()->findChild<MainToolBar *>();
-	auto runProgramButton = toolbar->findChild<ToolButton *>( QStringLiteral("RunProgram") );
+	const auto runProgramButton = m_master.mainWindow()->findChild<ToolButton *>( QStringLiteral("RunProgram") );
 
-	auto menu = new QMenu;
-	menu->addAction( tr("Open file manager") );
-	menu->addAction( tr("Start learning tool") );
-	menu->addAction( tr("Play tutorial video") );
-	menu->addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom program") );
+	QMenu menu;
+	menu.addAction( tr("Open file manager") );
+	menu.addAction( tr("Start learning tool") );
+	menu.addAction( tr("Play tutorial video") );
+	menu.addAction( QIcon( QStringLiteral(":/core/document-edit.png") ), tr("Custom program") );
 
-	scheduleUiOperation( [this, runProgramButton, menu]() {
-		scheduleUiOperation( [this, runProgramButton, menu]() {
+	runProgramButton->setMenu( &menu );
 
-			grabWindow( m_master.mainWindow(), runProgramButton->mapTo( m_master.mainWindow(), QPoint( 0, 0 ) ),
-						QSize( qMax( runProgramButton->width(), menu->width() ),
-							   runProgramButton->height() + menu->height() ),
-						QStringLiteral("RunProgramMenu.png") );
-			menu->close();
-		} );
-
-		menu->close();
-		runProgramButton->showMenu();
-	} );
-
-	runProgramButton->setMenu( menu );
-	runProgramButton->showMenu();
+	grabMenu( m_master.mainWindow(), runProgramButton->objectName(), QStringLiteral("RunProgramMenu.png") );
 }
 
 
@@ -473,19 +425,9 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 					auto shortcuts = window->findChild<QToolButton *>( QStringLiteral("shortcuts") );
 					Q_ASSERT(shortcuts != nullptr);
 
-					scheduleUiOperation( [this, window, shortcuts]() {
-						auto menu = shortcuts->menu();
-
-						grabWindow( window, shortcuts->mapTo( window, QPoint( 0, 0 ) ),
-									QSize( qMax( shortcuts->width(), menu->width() ),
-										   shortcuts->height() + menu->height() ),
-									QStringLiteral("RemoteAccessShortcutsMenu.png") );
-						menu->close();
-						window->close();
-						m_eventLoop.quit();
-					} );
-
-					shortcuts->showMenu();
+					grabMenu( window, QStringLiteral("shortcuts"), QStringLiteral("RemoteAccessShortcutsMenu.png") );
+					window->close();
+					m_eventLoop.quit();
 				} );
 			} );
 		} );
