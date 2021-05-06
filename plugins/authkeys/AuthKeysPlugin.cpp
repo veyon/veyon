@@ -164,11 +164,15 @@ VncServerClient::AuthState AuthKeysPlugin::performAuthentication( VncServerClien
 
 		const auto publicKeyPath = m_manager.publicKeyPath( authKeyName );
 
-		vDebug() << "loading public key" << publicKeyPath;
 		CryptoCore::PublicKey publicKey( publicKeyPath );
+		if( publicKey.isNull() || publicKey.isPublic() == false )
+		{
+			vWarning() << "failed to load public key from" << publicKeyPath;
+			return VncServerClient::AuthState::Failed;
+		}
 
-		if( publicKey.isNull() || publicKey.isPublic() == false ||
-			publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) == false )
+		vDebug() << "loaded public key from" << publicKeyPath;
+		if( publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) == false )
 		{
 			vWarning() << "FAIL";
 			return VncServerClient::AuthState::Failed;
