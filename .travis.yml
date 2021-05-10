@@ -11,8 +11,8 @@ matrix:
         - env: TARGET_OS=centos.8.3
         - env: TARGET_OS=debian.stretch
         - env: TARGET_OS=debian.buster
-        - env: TARGET_OS=fedora.32
         - env: TARGET_OS=fedora.33
+        - env: TARGET_OS=fedora.34
         - env: TARGET_OS=opensuse.15.2
         - env: TARGET_OS=ubuntu.bionic
         - env: TARGET_OS=ubuntu.focal
