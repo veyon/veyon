@@ -3,7 +3,7 @@ services:
     - docker
 git:
     depth: false
-dist: bionic
+dist: focal
 sudo: required
 matrix:
     include:
