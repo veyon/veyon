@@ -10,10 +10,6 @@
 [submodule "3rdparty/x11vnc"]
 	path = 3rdparty/x11vnc
 	url = https://github.com/veyon/x11vnc.git
-[submodule "3rdparty/kitemmodels"]
-	path = 3rdparty/kitemmodels
-	url = https://invent.kde.org/frameworks/kitemmodels.git
-	branch = master
 [submodule "3rdparty/libfakekey"]
 	path = 3rdparty/libfakekey
 	url = https://git.yoctoproject.org/git/libfakekey

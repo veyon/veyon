@@ -1,13 +1,7 @@
 include(BuildVeyonApplication)
 include(WindowsBuildHelpers)
 
-set(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src/core)
-set(kitemmodels_SOURCES
-	${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.cpp
-	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.cpp
-	${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.h
-	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.h
-	)
+find_package(KF5ItemModels REQUIRED)
 
 file(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.*)
 
@@ -17,8 +11,9 @@ if(VEYON_DEBUG)
 endif()
 set(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/qml/qml.qrc)
 
-build_veyon_application(veyon-master ${master_SOURCES} ${master_RESOURCES} ${kitemmodels_SOURCES})
-target_include_directories(veyon-master PRIVATE ${kitemmodels_SOURCE_DIR})
+build_veyon_application(veyon-master ${master_SOURCES} ${master_RESOURCES})
+
+target_link_libraries(veyon-master KF5::ItemModels)
 
 add_windows_resource(veyon-master)
 make_graphical_app(veyon-master)
