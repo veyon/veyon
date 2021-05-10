@@ -4,19 +4,16 @@ set -e
 
 SRC=$1
 BUILD=$2
-CPUS=$(nproc)
 
 mkdir -p $BUILD
 cd $BUILD
 
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LTO=ON $CMAKE_FLAGS $SRC
-
-echo Building on $CPUS CPUs
+cmake -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LTO=ON $CMAKE_FLAGS $SRC
 
 if [ -z "$3" ] ; then
-	make -j$CPUS
+	ninja
 
-	fakeroot make package
+	fakeroot ninja package
 
 	LIBDIR=$(grep VEYON_LIB_DIR CMakeCache.txt |cut -d "=" -f2)
 	BUILD_PWD=$(pwd)
@@ -29,7 +26,6 @@ if [ -z "$3" ] ; then
 	./cli/veyon-cli help
 	./cli/veyon-cli about
 else
-	make ${@:3} -j$CPUS
-	fakeroot make package
+	fakeroot ninja package
 fi
 
