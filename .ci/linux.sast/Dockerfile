@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:bullseye
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
