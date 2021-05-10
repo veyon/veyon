@@ -2,10 +2,11 @@ FROM debian:buster
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
+	echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list && \
 	apt-get update && \
 	apt-get install --no-install-recommends -y \
 		dpkg-dev \
-		git binutils gcc g++ ninja-build cmake rename file fakeroot bzip2 \
+		git binutils gcc g++ ninja-build cmake/buster-backports rename file fakeroot bzip2 \
 		qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtwebengine5-dev \
 		libkf5itemmodels-dev \
 		xorg-dev \
