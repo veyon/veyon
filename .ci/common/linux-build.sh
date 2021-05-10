@@ -8,7 +8,15 @@ BUILD=$2
 mkdir -p $BUILD
 cd $BUILD
 
-cmake -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LTO=ON $CMAKE_FLAGS $SRC
+if [ ! -z "$CI_COMMIT_TAG" -o ! -z "$TRAVIS_TAG" ] ; then
+	BUILD_TYPE="RelWithDebInfo"
+	LTO="ON"
+else
+	BUILD_TYPE="Debug"
+	LTO="OFF"
+fi
+
+cmake -G Ninja -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LTO=$LTO $CMAKE_FLAGS $SRC
 
 if [ -z "$3" ] ; then
 	ninja
