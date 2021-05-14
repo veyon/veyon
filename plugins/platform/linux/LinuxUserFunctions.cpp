@@ -281,7 +281,7 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 
 	auto sequence = LinuxPlatformConfiguration( &VeyonCore::config() ).userLoginKeySequence();
 
-	if( sequence.isEmpty() == false )
+	if( sequence.isEmpty() == true )
 	{
 		sequence = QStringLiteral("%username%<Tab>%password%<Return>");
 	}
