@@ -128,14 +128,19 @@ void ComputerControlInterface::stop()
 
 bool ComputerControlInterface::hasValidFramebuffer() const
 {
-	return m_vncConnection->hasValidFramebuffer();
+	return m_vncConnection && m_vncConnection->hasValidFramebuffer();
 }
 
 
 
 QSize ComputerControlInterface::screenSize() const
 {
-	return m_vncConnection->image().size();
+	if( m_vncConnection )
+	{
+		return m_vncConnection->image().size();
+	}
+
+	return {};
 }
 
 
