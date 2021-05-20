@@ -43,6 +43,13 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 
 	m_userLoginNameAttribute = m_configuration.userLoginNameAttribute();
 	m_groupMemberAttribute = m_configuration.groupMemberAttribute();
+
+	if( m_configuration.queryNestedUserGroups() &&
+		m_groupMemberAttribute.contains( QLatin1Char(':') ) == false )
+	{
+		m_groupMemberAttribute.append( QLatin1String(":1.2.840.113556.1.4.1941:") );
+	}
+
 	m_computerDisplayNameAttribute = m_configuration.computerDisplayNameAttribute();
 	m_computerHostNameAttribute = m_configuration.computerHostNameAttribute();
 	m_computerHostNameAsFQDN = m_configuration.computerHostNameAsFQDN();

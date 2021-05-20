@@ -830,6 +830,22 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Query options</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QCheckBox" name="queryNestedUserGroups">
+            <property name="text">
+             <string>Query nested user groups (supported by AD only)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupMemberIdentification">
          <property name="title">
           <string>Group member identification</string>
@@ -1071,6 +1087,7 @@
   <tabstop>testComputersFilter</tabstop>
   <tabstop>testComputerGroupsFilter</tabstop>
   <tabstop>testComputerContainersFilter</tabstop>
+  <tabstop>queryNestedUserGroups</tabstop>
   <tabstop>identifyGroupMembersByDN</tabstop>
   <tabstop>identifyGroupMembersByNameAttribute</tabstop>
   <tabstop>computerLocationsByGroups</tabstop>
@@ -1362,8 +1379,8 @@
  </connections>
  <buttongroups>
   <buttongroup name="baseDnConfigGroup"/>
-  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>

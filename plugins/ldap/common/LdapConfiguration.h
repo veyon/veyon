@@ -56,6 +56,7 @@
 	OP( LdapConfiguration, m_configuration, QString, usersFilter, setUsersFilter, "UsersFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, userGroupsFilter, setUserGroupsFilter, "UserGroupsFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computersFilter, setComputersFilter, "ComputersFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
+	OP( LdapConfiguration, m_configuration, bool, queryNestedUserGroups, setQueryNestedUserGroups, "QueryNestedUserGroups", "LDAP", false, Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, bool, identifyGroupMembersByNameAttribute, setIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP", false, Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerGroupsFilter, setComputerGroupsFilter, "ComputerGroupsFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, computerContainersFilter, setComputerContainersFilter, "ComputerContainersFilter", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
