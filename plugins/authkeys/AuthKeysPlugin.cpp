@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QDir>
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QProcessEnvironment>
 
@@ -398,6 +399,12 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 	if( arguments.isEmpty() )
 	{
 		return NotEnoughArguments;
+	}
+
+	if( QFileInfo::exists( arguments[0] ) )
+	{
+		error( tr( "Please specify the key name (e.g. \"teacher/public\") as the first argument." ) );
+		return InvalidArguments;
 	}
 
 	const auto nameAndType = arguments[0].split( QLatin1Char('/') );
