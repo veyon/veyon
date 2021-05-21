@@ -22,6 +22,8 @@
  *
  */
 
+#include <QFileInfo>
+
 #include "AuthKeysConfigurationPage.h"
 #include "AuthKeysPlugin.h"
 #include "AuthKeysManager.h"
@@ -228,6 +230,12 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 	if( arguments.size() < 1 )
 	{
 		return NotEnoughArguments;
+	}
+
+	if( QFileInfo::exists( arguments[0] ) )
+	{
+		error( tr( "Please specify the key name (e.g. \"teacher/public\") as the first argument." ) );
+		return InvalidArguments;
 	}
 
 	const auto nameAndType = arguments[0].split( QLatin1Char('/') );
