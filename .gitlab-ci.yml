@@ -1,7 +1,27 @@
-image: docker:latest
-
 stages:
   - build
+  - collect
+
+build-linux:
+  stage: build
+  image: veyon/ci.linux.$DISTRO:latest
+  script:
+    - .ci/linux.$DISTRO/script.sh $CI_PROJECT_DIR /tmp
+  parallel:
+    matrix:
+      - DISTRO:
+        - centos.7.9
+        - centos.8.3
+        - debian.buster
+        - debian.bullseye
+        - fedora.33
+        - fedora.34
+        - opensuse.15.2
+        - ubuntu.bionic
+        - ubuntu.focal
+  artifacts:
+    paths: [ "veyon*" ]
+    expire_in: 1 day
 
 build-windows:
   stage: build
@@ -14,6 +34,16 @@ build-windows:
   artifacts:
     paths: [ veyon-win* ]
     expire_in: 1 day
+
+collect-artifacts:
+  stage: collect
+  image: veyon/ci.linux.debian.buster:latest
+  dependencies: [ build-linux ]
+  only: [ tags ]
+  script:
+    - ls -la *.deb *.rpm
+  artifacts:
+    paths: [ "veyon*" ]
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive

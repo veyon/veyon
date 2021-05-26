@@ -17,7 +17,7 @@ $1/.ci/common/strip-libvncserver-sources.sh
 $1/.ci/common/strip-ultravnc-sources.sh
 $1/.ci/common/strip-x11vnc-sources.sh
 
-cd /
+cd ..
 tar --transform "s,^veyon,veyon-$VERSION," --exclude=".git" --exclude="*.deb" -cjf $2/veyon-$VERSION-src.tar.bz2 veyon
 
 mv -v $2/*.tar.bz2 $1
