@@ -15,7 +15,7 @@ set_source_files_properties(${vnchooks_SOURCES} PROPERTIES SKIP_UNITY_BUILD_INCL
 target_compile_options(vnchooks PRIVATE ${VEYON_COMPILE_OPTIONS})
 set_default_target_properties(vnchooks)
 set_target_properties(vnchooks PROPERTIES PREFIX "")
-set_target_properties(vnchooks PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unused-variable -Wno-unknown-pragmas")
+set_target_properties(vnchooks PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unused-variable -Wno-unknown-pragmas -Wno-int-to-pointer-cast")
 set_target_properties(vnchooks PROPERTIES LINK_FLAGS -Wl,-export-all-symbols)
 target_link_libraries(vnchooks -ladvapi32)
 
