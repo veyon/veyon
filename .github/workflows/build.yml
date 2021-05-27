@@ -1,0 +1,18 @@
+on: [push]
+jobs:
+  build-linux:
+    strategy:
+      matrix:
+        dist:
+          - centos.8.3
+          - debian.buster
+          - fedora.34
+          - opensuse.15.2
+          - ubuntu.focal
+    runs-on: ubuntu-latest
+    container: veyon/ci.linux.${{matrix.dist}}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - run: .ci/linux.${{matrix.dist}}/script.sh $GITHUB_WORKSPACE /tmp
