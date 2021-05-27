@@ -2,12 +2,13 @@ set(WINDOWS_INSTALL_FILES "veyon-${MINGW_PLATFORM}-${VERSION_MAJOR}.${VERSION_MI
 
 set(DLLDIR "${MINGW_PREFIX}/bin")
 set(DLLDIR_LIB "${MINGW_PREFIX}/lib")
-set(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${COMPILER_VERSION_MAJOR_MINOR}-posix")
+string(REGEX MATCH "^[^.]+" GCC_VERSION_MAJOR ${CMAKE_CXX_COMPILER_VERSION})
+set(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${GCC_VERSION_MAJOR}-posix")
 if(VEYON_BUILD_WIN64)
 	set(DLL_GCC "libgcc_s_seh-1.dll")
 	set(DLL_DDENGINE "ddengine64.dll")
 else()
-	set(DLL_GCC "libgcc_s_sjlj-1.dll")
+	set(DLL_GCC "libgcc_s_dw2-1.dll")
 	set(DLL_DDENGINE "ddengine.dll")
 endif()
 

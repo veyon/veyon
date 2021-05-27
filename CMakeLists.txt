@@ -93,10 +93,6 @@ else()
 	string(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
 endif()
 
-# set up compiler version variable
-string(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COMPILER_VERSION})
-
-
 # set up basic platform variables
 if(WIN32)
 	set(VEYON_BUILD_WIN32 1)
