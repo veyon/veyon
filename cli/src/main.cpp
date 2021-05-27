@@ -34,6 +34,8 @@
 
 int main( int argc, char **argv )
 {
+	VeyonCore::setupApplicationParameters();
+
 	QCoreApplication* app = nullptr;
 
 #ifdef Q_OS_LINUX

@@ -30,6 +30,8 @@
 
 int main( int argc, char **argv )
 {
+	VeyonCore::setupApplicationParameters();
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 	QGuiApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
 #endif
