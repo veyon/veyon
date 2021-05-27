@@ -34,6 +34,7 @@ if [ -z "$3" ] ; then
 	./cli/veyon-cli help
 	./cli/veyon-cli about
 else
+	ninja
 	fakeroot ninja package
 fi
 
