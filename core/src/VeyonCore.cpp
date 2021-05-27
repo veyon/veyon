@@ -75,8 +75,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 	s_instance = this;
 
-	setupApplicationParameters();
-
 	initPlatformPlugin();
 
 	initConfiguration();
