@@ -29,6 +29,8 @@
 
 int main( int argc, char** argv )
 {
+	VeyonCore::setupApplicationParameters();
+
 	QCoreApplication app( argc, argv );
 	VeyonCore core( &app, VeyonCore::Component::Service, QStringLiteral("Service") );
 
