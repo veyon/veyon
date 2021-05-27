@@ -653,6 +653,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Cette commande extrait la partie clé publique à partir de la clé privée &lt;KEY&gt; et l&apos;enregistre comme la clé publique correspondante. Lors de la configuration d&apos;un autre ordinateur maître, il suffit simplement de ne transférer que la clé privée. La clé publique pourra par la suite être extraite.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Veuillez spécifier le nom de la clé (par exemple &quot;enseignant/public&quot;) comme premier argument.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1038,6 +1042,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>[no user]</source>
         <translation>[aucun utilisateur]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>invalide</translation>
     </message>
 </context>
 <context>
@@ -2460,6 +2468,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>computer containers</source>
         <translation>Conteneurs d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Options de requête</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Interroger des groupes d&apos;utilisateurs imbriqués (pris en charge par AD uniquement)</translation>
     </message>
 </context>
 <context>

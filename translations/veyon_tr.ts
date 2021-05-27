@@ -653,6 +653,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Bu komut, ortak anahtar bölümünü &lt;KEY&gt; özel anahtarından çıkarır ve karşılık gelen ortak anahtar olarak kaydeder. Başka bir ana bilgisayar kurarken, yalnızca özel anahtarı aktarmak yeterlidir. Genel anahtar daha sonra çıkarılabilir.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1037,6 +1041,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>[no user]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2452,6 +2460,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>computer containers</source>
         <translation>bilgisayar taşıyıcıları</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

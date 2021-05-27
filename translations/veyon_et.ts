@@ -653,6 +653,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>See käsk eraldab avaliku võtme osa privaatvõtmest &lt;KEY&gt;  ja salvestab selle vastava avaliku võtmena. Teise põhiarvuti seadistamisel piisab seetõttu ainult privaatvõtme edastamisest. Seejärel saab avaliku võtme välja tõmmata.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1038,6 +1042,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>[no user]</source>
         <translation>[ükski kasutaja]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2460,6 +2468,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>computer containers</source>
         <translation>arvutikonteinerid</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -652,6 +652,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ši komanda sugeneruoja viešajį raktą iš privataus rakto &lt;KEY&gt; ir išsaugo kaip atitinkamą viešajį raktą. Kai bus nustatomas kitas pagrindinis kompiuteris, užtenka perkelti tik privatujį raktą. Viešasis raktas gali būti sugeneruotas iš privataus rakto.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1037,6 +1041,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>[no user]</source>
         <translation>[vartotojo nėra]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2440,6 +2448,14 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
 </context>

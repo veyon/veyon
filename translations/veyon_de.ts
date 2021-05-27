@@ -650,6 +650,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation> Dieser Befehl extrahiert den öffentlichen Schlüsselteil aus dem privaten Schlüssel ``&lt;SCHLÜSSEL&gt;`` und speichert ihn als den zugehörigen öffentlichen Schlüssel. Bei der Einrichtung eines weiteren Mastercomputers genügt somit die Übertragung des privaten Schlüssels. Anschließend kann der öffentliche Schlüssel extrahiert werden.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Bitte geben Sie den Schlüsselname (z.B. &quot;teacher/public&quot;) als erstes Argument an.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1035,6 +1039,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>[no user]</source>
         <translation>[Kein Benutzer]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>ungültig</translation>
     </message>
 </context>
 <context>
@@ -2457,6 +2465,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>computer containers</source>
         <translation>Computercontainer</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Abfrageoptionen</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Verschachtelte Benutzergruppen abfragen (nur von AD unterstützt)</translation>
     </message>
 </context>
 <context>

@@ -653,6 +653,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>這個命令從私密金鑰 &lt;KEY&gt; 中提取公開金鑰部分，並將其儲存為相應的公開金鑰。 因此，在設定另一部主機電腦時，只需要傳輸私密金鑰。接著可以提取公開金鑰。</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1038,6 +1042,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>[no user]</source>
         <translation>[沒有使用者]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2460,6 +2468,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>computer containers</source>
         <translation>電腦容器</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

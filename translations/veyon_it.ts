@@ -650,6 +650,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Questo comando estrae la parte della chiave pubblica dalla chiave privata &lt;KEY&gt; e lo salva come chiave pubblica corrispondente. Quando si configura un altro computer master, è quindi sufficiente trasferire solo la chiave privata. La chiave pubblica può quindi essere estratta.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1035,6 +1039,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>[no user]</source>
         <translation>[nessun utente]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>non valido</translation>
     </message>
 </context>
 <context>
@@ -2447,6 +2455,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>computer containers</source>
         <translation>computer containers</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Opzioni di query</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Interroga gruppi di utenti annidati (supportato solo da AD)</translation>
     </message>
 </context>
 <context>

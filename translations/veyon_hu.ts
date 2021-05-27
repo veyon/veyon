@@ -653,6 +653,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ez a parancs kicsomagolja a nyilvános kulcsrészt &lt;KEY&gt; privát kulcsból és a megfelelő nyilvános kulcsként menti. Amikor egy másik mesterszámítógépet állítasz be, elegendő csak a privát kulcsot átmásolni. A publikus kulcs ebből már előállítható.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1037,6 +1041,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>[no user]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2460,6 +2468,14 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>computer containers</source>
         <translation>számítógép tárolók</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

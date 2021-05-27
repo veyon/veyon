@@ -653,6 +653,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1037,6 +1041,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>[no user]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2440,6 +2448,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
 </context>

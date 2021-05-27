@@ -653,6 +653,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Tento příkaz vytáhne veřejnou část klíče ze soukromého klíče &lt;KEY&gt; a uloží jí do odpovídajícího veřejného klíče. Při nastavování jiného řídícího počítače proto stačí přenést pouze soukromou část klíče. Tu veřejnou z něj lze vytáhnout.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1037,6 +1041,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>[no user]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2456,6 +2464,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>computer containers</source>
         <translation>kontejnery s počítači</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -655,6 +655,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Este comando extrae la parte de la clave pública de la clave privada &lt;KEY&gt; y la guarda como la clave pública correspondiente. Al configurar otra computadora maestra, por lo tanto, es suficiente transferir la clave privada solamente. La clave pública puede entonces ser extraída.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1040,6 +1044,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>[no user]</source>
         <translation>[ningún usuario]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>invalido</translation>
     </message>
 </context>
 <context>
@@ -2462,6 +2470,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>computer containers</source>
         <translation>contenedores de computadoras</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Opciones de consulta</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Consultar grupos de usuarios anidados (compatible solo con AD)</translation>
     </message>
 </context>
 <context>

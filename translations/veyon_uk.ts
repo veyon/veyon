@@ -650,6 +650,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ця команда видобуває частину, пов&apos;язану із відкритим ключем, з закритого ключа &lt;КЛЮЧ&gt; і зберігає її до відповідного файла відкритого ключа. Через це при налаштовуванні додаткового основного комп&apos;ютера достатньо перенести на нього лише закритий ключ. Після перенесення відкритий ключ можна просто видобути.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Будь ласка, вкажіть назву ключа (наприклад «teacher/public») першим аргументом.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1035,6 +1039,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>[no user]</source>
         <translation>[немає користувача]</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>некоректний</translation>
     </message>
 </context>
 <context>
@@ -2459,6 +2467,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>computer containers</source>
         <translation>контейнери комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Параметри запиту</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Опитати вкладені групи користувачів (лише для AD)</translation>
     </message>
 </context>
 <context>

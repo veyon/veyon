@@ -653,6 +653,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
         <translation>Ta ukaz izdela del javnega ključa iz zasebnega ključa &lt;KEY&gt; in ga shrani kot ustrezen javni ključ. Pri nastavljanju drugega glavnega računalnika je torej dovolj, da prenesete samo zasebni ključ. Nato se lahko izvleče javni ključ.</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -1037,6 +1041,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>[no user]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2459,6 +2467,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
 </context>
