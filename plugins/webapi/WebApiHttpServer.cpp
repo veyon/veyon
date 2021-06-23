@@ -273,7 +273,7 @@ bool WebApiHttpServer::setupTls()
 	QSslCertificate certificate( certFile.readAll() );
 	if( certificate.isNull() )
 	{
-		vCritical() << m_configuration.tlsCertificateFile() << "does not contain a valid TLS certificate";
+		vCritical() << certFile.fileName() << "does not contain a valid TLS certificate";
 		return false;
 	}
 
@@ -310,7 +310,7 @@ bool WebApiHttpServer::setupTls()
 
 	if( privateKey.isNull() )
 	{
-		vCritical() << m_configuration.tlsCertificateFile() << "does contains an invalid or unsupported TLS private key";
+		vCritical() << privateKeyFile.fileName() << "contains an invalid or unsupported TLS private key";
 		return false;
 	}
 
