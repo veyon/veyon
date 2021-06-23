@@ -50,9 +50,10 @@ AuthKeysManager::AuthKeysManager( AuthKeysConfiguration& configuration, QObject*
 }
 
 
+
 bool AuthKeysManager::isKeyNameValid( const QString& authKeyName )
 {
-	return QRegularExpression( QStringLiteral("^\\w+$") ).match( authKeyName ).hasMatch();
+	return QRegularExpression( QStringLiteral("^[\\w-]+$") ).match( authKeyName ).hasMatch();
 }
 
 
