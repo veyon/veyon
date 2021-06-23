@@ -46,6 +46,20 @@ GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
 {
 	ui->setupUi(this);
 
+	Configuration::UiMapping::setFlags( ui->securityGroupBox, Configuration::Property::Flag::Advanced );
+
+	connect( ui->browseTlsCaCertificateFile, &QAbstractButton::clicked, this, [this]() {
+		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsCaCertificateFile );
+	} );
+
+	connect( ui->browseTlsHostCertificateFile, &QAbstractButton::clicked, this, [this]() {
+		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsHostCertificateFile );
+	} );
+
+	connect( ui->browseTlsHostPrivateKeyFile, &QAbstractButton::clicked, this, [this]() {
+		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsHostPrivateKeyFile );
+	} );
+
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
 	const auto qmFiles = QDir( VeyonCore::translationsDirectory() ).entryList( { QStringLiteral("veyon*.qm") } );
@@ -88,6 +102,7 @@ void GeneralConfigurationPage::resetWidgets()
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_TLS_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
@@ -97,6 +112,7 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_TLS_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
