@@ -32,6 +32,7 @@
 #include <QLabel>
 #include <QLibraryInfo>
 #include <QProcessEnvironment>
+#include <QRegularExpression>
 #include <QSysInfo>
 
 #include "BuiltinFeatures.h"
@@ -475,7 +476,7 @@ QString VeyonCore::formattedUuid( QUuid uuid )
 
 bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 {
-	return QRegExp( QStringLiteral("\\w+") ).exactMatch( authKeyName );
+	return QRegularExpression( QStringLiteral("^[\\w-]+$") ).match( authKeyName ).hasMatch();
 }
 
 
