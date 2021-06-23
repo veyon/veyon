@@ -32,6 +32,8 @@
 #include <QLabel>
 #include <QLibraryInfo>
 #include <QProcessEnvironment>
+#include <QSslConfiguration>
+#include <QSslKey>
 #include <QSysInfo>
 
 #include "AuthenticationCredentials.h"
@@ -89,6 +91,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	initLocaleAndTranslation();
 
 	initCryptoCore();
+
+	initTlsConfiguration();
 
 	initQmlCore();
 
@@ -640,4 +644,110 @@ void VeyonCore::initSystemInfo()
 	vDebug() << versionString() << HostAddress::localFQDN()
 			 << QSysInfo::kernelType() << QSysInfo::kernelVersion()
 			 << QSysInfo::prettyProductName() << QSysInfo::productType() << QSysInfo::productVersion();
+}
+
+
+
+void VeyonCore::initTlsConfiguration()
+{
+	if( config().tlsEnabled() == false )
+	{
+		return;
+	}
+
+	QFile caCertFile( filesystem().expandPath( config().tlsCaCertificateFile() ) );
+
+	if( caCertFile.exists() == false )
+	{
+		vCritical() << "TLS CA certificate file" << caCertFile.fileName() << "does not exist";
+		return;
+	}
+
+	if( caCertFile.open( QFile::ReadOnly ) == false )
+	{
+		vCritical() << "TLS CA certificate file" << caCertFile.fileName() << "is not readable";
+		return;
+	}
+
+	QSslCertificate caCertificate( caCertFile.readAll() );
+	if( caCertificate.isNull() )
+	{
+		vCritical() << caCertFile.fileName() << "does not contain a valid TLS certificate";
+		return;
+	}
+
+	QFile hostCertFile( filesystem().expandPath( config().tlsHostCertificateFile() ) );
+
+	if( hostCertFile.exists() == false )
+	{
+		vCritical() << "TLS host certificate file" << hostCertFile.fileName() << "does not exist";
+		return;
+	}
+
+	if( hostCertFile.open( QFile::ReadOnly ) == false )
+	{
+		vCritical() << "TLS host certificate file" << hostCertFile.fileName() << "is not readable";
+		return;
+	}
+
+	QSslCertificate hostCertificate( hostCertFile.readAll() );
+	if( hostCertificate.isNull() )
+	{
+		vCritical() << hostCertFile.fileName() << "does not contain a valid TLS certificate";
+		return;
+	}
+
+	QFile hostPrivateKeyFile( filesystem().expandPath( config().tlsHostPrivateKeyFile() ) );
+
+	if( hostPrivateKeyFile.exists() == false )
+	{
+		vCritical() << "TLS private key file" << hostPrivateKeyFile.fileName() << "does not exist";
+		return;
+	}
+
+	if( hostPrivateKeyFile.open( QFile::ReadOnly ) == false )
+	{
+		vCritical() << "TLS private key file" << hostPrivateKeyFile.fileName() << "is not readable";
+		return;
+	}
+
+	const auto hostPrivateKeyFileData = hostPrivateKeyFile.readAll();
+
+	QSslKey hostPrivateKey;
+	for( auto algorithm : { QSsl::KeyAlgorithm::Rsa, QSsl::KeyAlgorithm::Ec
+#if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
+				 , QSsl::KeyAlgorithm::Dh
+#endif
+		 } )
+	{
+		QSslKey currentPrivateKey( hostPrivateKeyFileData, algorithm );
+		if( currentPrivateKey.isNull() == false )
+		{
+			hostPrivateKey = currentPrivateKey;
+			break;
+		}
+	}
+
+	if( hostPrivateKey.isNull() )
+	{
+		vCritical() << hostPrivateKeyFile.fileName() << "does contains an invalid or unsupported TLS private key";
+		return;
+	}
+
+	TlsConfiguration tlsConfig;
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+	tlsConfig.setProtocol( QSsl::TlsV1_3OrLater );
+#else
+	tlsConfig.setProtocol( QSsl::TlsV1_2OrLater );
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+	tlsConfig.addCaCertificate( caCertificate );
+#else
+	tlsConfig.setCaCertificates( tlsConfig.caCertificates() + QList<QSslCertificate>{caCertificate} );
+#endif
+	tlsConfig.setLocalCertificate( hostCertificate );
+	tlsConfig.setPrivateKey( hostPrivateKey );
+
+	TlsConfiguration::setDefaultConfiguration( tlsConfig );
 }

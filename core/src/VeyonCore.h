@@ -26,7 +26,6 @@
 
 #include <QtEndian>
 #include <QVersionNumber>
-#include <QString>
 #include <QDebug>
 
 #include <array>
@@ -43,6 +42,7 @@
 #endif
 
 class QCoreApplication;
+class QSslConfiguration;
 class QWidget;
 
 class AuthenticationCredentials;
@@ -65,6 +65,8 @@ class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
 	Q_OBJECT
 public:
+	using TlsConfiguration = QSslConfiguration;
+
 	enum class ApplicationVersion {
 		Version_4_0,
 		Version_4_1,
@@ -196,6 +198,7 @@ private:
 	void initManagers();
 	void initLocalComputerControlInterface();
 	void initSystemInfo();
+	void initTlsConfiguration();
 
 	static VeyonCore* s_instance;
 

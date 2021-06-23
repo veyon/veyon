@@ -82,6 +82,12 @@
 	OP( VeyonConfiguration, VeyonCore::config(), int, logFileRotationCount, setLogFileRotationCount, "LogFileRotationCount", "Logging", Logger::DefaultFileRotationCount, Configuration::Property::Flag::Advanced )		\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging", QLatin1String(Logger::DefaultLogFileDirectory), Configuration::Property::Flag::Standard )		\
 
+#define FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP) \
+	OP( VeyonConfiguration, VeyonCore::config(), bool, tlsEnabled, setTlsEnabled, "Enabled", "TLS", false, Configuration::Property::Flag::Advanced ) \
+	OP( VeyonConfiguration, VeyonCore::config(), QString, tlsCaCertificateFile, setTlsCaCertificateFile, "CaCertificateFile", "TLS", QString(), Configuration::Property::Flag::Standard )  \
+	OP( VeyonConfiguration, VeyonCore::config(), QString, tlsHostCertificateFile, setTlsHostCertificateFile, "HostCertificateFile", "TLS", QString(), Configuration::Property::Flag::Standard )  \
+	OP( VeyonConfiguration, VeyonCore::config(), QString, tlsHostPrivateKeyFile, setTlsHostPrivateKeyFile, "HostPrivateKeyFile", "TLS", QString(), Configuration::Property::Flag::Standard ) \
+
 #define FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), QUuid, vncServerPlugin, setVncServerPlugin, "Plugin", "VncServer", QUuid(), Configuration::Property::Flag::Standard )	\
 
@@ -151,6 +157,7 @@
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)			\
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(OP)			\
+	FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)\
 	FOREACH_VEYON_FEATURES_CONFIG_PROPERTY(OP)\
 	FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(OP)		\
