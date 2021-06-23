@@ -22,9 +22,9 @@
  *
  */
 
-#include <QTcpServer>
 #include <QTcpSocket>
 
+#include "TlsServer.h"
 #include "VeyonCore.h"
 #include "VncProxyServer.h"
 #include "VncProxyConnection.h"
@@ -38,7 +38,7 @@ VncProxyServer::VncProxyServer( const QHostAddress& listenAddress,
 	QObject( parent ),
 	m_listenAddress( listenAddress ),
 	m_listenPort( listenPort ),
-	m_server( new QTcpServer( this ) ),
+	m_server( new TlsServer( VeyonCore::TlsConfiguration::defaultConfiguration(), this ) ),
 	m_connectionFactory( connectionFactory )
 {
 	connect( m_server, &QTcpServer::newConnection, this, &VncProxyServer::acceptConnection );

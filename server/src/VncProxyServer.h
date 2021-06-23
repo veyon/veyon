@@ -29,7 +29,7 @@
 
 #include "CryptoCore.h"
 
-class QTcpServer;
+class TlsServer;
 class VncProxyConnection;
 class VncProxyConnectionFactory;
 
@@ -66,7 +66,7 @@ private:
 	Password m_vncServerPassword{};
 	QHostAddress m_listenAddress;
 	int m_listenPort;
-	QTcpServer* m_server;
+	TlsServer* m_server;
 	VncProxyConnectionFactory* m_connectionFactory;
 	VncProxyConnectionList m_connections;
 
