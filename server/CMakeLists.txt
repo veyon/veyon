@@ -11,6 +11,8 @@ build_veyon_application(veyon-server
 	src/ServerAccessControlManager.h
 	src/ServerAuthenticationManager.cpp
 	src/ServerAuthenticationManager.h
+	src/TlsServer.cpp
+	src/TlsServer.h
 	src/VeyonServerProtocol.cpp
 	src/VeyonServerProtocol.h
 	src/VncProxyConnection.cpp
