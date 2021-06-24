@@ -2,13 +2,6 @@
 <ui version="4.0">
  <class>AuthKeysConfigurationWidget</class>
  <widget class="QWidget" name="AuthKeysConfigurationWidget">
-  <property name="windowTitle">
-   <string>Authentication keys</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="../../core/resources/core.qrc">
-    <normaloff>:/core/application-x-pem-key.png</normaloff>:/core/application-x-pem-key.png</iconset>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
     <number>0</number>
