@@ -69,10 +69,6 @@ void AuthenticationPage::connectWidgetsToProperties()
 		connect( checkBox, &QCheckBox::toggled, this, [plugin, checkBox]() {
 			VeyonCore::authenticationManager().setEnabled( plugin, checkBox->isChecked() );
 		} );
-
-		connect( checkBox, &QCheckBox::toggled, this, [plugin, checkBox]() {
-			VeyonCore::authenticationManager().setEnabled( plugin, checkBox->isChecked() );
-		} );
 	}
 }
 
