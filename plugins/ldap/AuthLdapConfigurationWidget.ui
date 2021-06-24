@@ -2,13 +2,6 @@
 <ui version="4.0">
  <class>AuthLdapConfigurationWidget</class>
  <widget class="QWidget" name="AuthLdapConfigurationWidget">
-  <property name="windowTitle">
-   <string>LDAP authentication</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="../../core/resources/core.qrc">
-    <normaloff>:/core/application-x-pem-key.png</normaloff>:/core/application-x-pem-key.png</iconset>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
     <number>0</number>
@@ -47,8 +40,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../core/resources/core.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
