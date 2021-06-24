@@ -34,6 +34,7 @@
 #include "LdapConfigurationPage.h"
 #include "LdapConfigurationTest.h"
 #include "LdapDirectory.h"
+#include "LdapNetworkObjectDirectoryConfigurationPage.h"
 #include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
 
@@ -261,6 +262,15 @@ QString LdapPlugin::commandHelp( const QString& command ) const
 NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* parent )
 {
 	return new LdapNetworkObjectDirectory( m_configuration, parent );
+}
+
+
+
+ConfigurationPage* LdapPlugin::createNetworkObjectDirectoryConfigurationPage()
+{
+	auto page = new LdapNetworkObjectDirectoryConfigurationPage;
+	page->setWindowTitle( name() );
+	return page;
 }
 
 

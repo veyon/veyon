@@ -35,16 +35,27 @@ class VEYON_CORE_EXPORT NetworkObjectDirectoryManager : public QObject
 {
 	Q_OBJECT
 public:
+	using Plugins = QMap<Plugin::Uid, NetworkObjectDirectoryPluginInterface *>;
+
 	explicit NetworkObjectDirectoryManager( QObject* parent = nullptr );
 
-	QMap<Plugin::Uid, QString> availableDirectories();
-
-	NetworkObjectDirectory* createDirectory( Plugin::Uid uid, QObject* parent );
+	const Plugins& plugins() const
+	{
+		return m_plugins;
+	}
 
 	NetworkObjectDirectory* configuredDirectory();
 
+	NetworkObjectDirectory* createDirectory( Plugin::Uid uid, QObject* parent );
+
+	void setEnabled( Plugin::Uid uid, bool enabled );
+	bool isEnabled( Plugin::Uid uid ) const;
+
+	void setEnabled( NetworkObjectDirectoryPluginInterface* plugin, bool enabled );
+	bool isEnabled( NetworkObjectDirectoryPluginInterface* plugin ) const;
+
 private:
-	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces{};
+	Plugins m_plugins{};
 	NetworkObjectDirectory* m_configuredDirectory{nullptr};
 
 };

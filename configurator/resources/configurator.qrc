@@ -12,5 +12,6 @@
         <file>vcs-normal.png</file>
         <file>vcs-removed.png</file>
         <file>access-rule-ask.png</file>
+        <file>network-object-directory.png</file>
     </qresource>
 </RCC>

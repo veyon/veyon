@@ -17,6 +17,9 @@ set(ldap_common_SOURCES
 	LdapDirectory.h
 	LdapNetworkObjectDirectory.cpp
 	LdapNetworkObjectDirectory.h
+	LdapNetworkObjectDirectoryConfigurationPage.h
+	LdapNetworkObjectDirectoryConfigurationPage.cpp
+	LdapNetworkObjectDirectoryConfigurationPage.ui
 	ldap.qrc
 	)
 

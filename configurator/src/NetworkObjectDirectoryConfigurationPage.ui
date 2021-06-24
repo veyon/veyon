@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetworkObjectDirectoryConfigurationPage</class>
+ <widget class="QWidget" name="NetworkObjectDirectoryConfigurationPage">
+  <property name="windowTitle">
+   <string notr="true">Locations &amp; computers</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="enabledNetworkObjectDirectoryPlugins">
+       <property name="text">
+        <string>Update interval:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="networkObjectDirectoryUpdateInterval">
+       <property name="suffix">
+        <string> seconds</string>
+       </property>
+       <property name="minimum">
+        <number>10</number>
+       </property>
+       <property name="maximum">
+        <number>3600</number>
+       </property>
+       <property name="value">
+        <number>600</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

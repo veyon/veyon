@@ -1,7 +1,7 @@
 /*
- * GeneralConfigurationPage.h - configuration page with general settings
+ * LdapNetworkObjectDirectoryConfigurationPage.cpp - implementation of the LdapNetworkObjectDirectoryConfigurationPage class
  *
- * Copyright (c) 2016-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,27 +22,20 @@
  *
  */
 
-#pragma once
+#include "LdapNetworkObjectDirectoryConfigurationPage.h"
 
-#include "ConfigurationPage.h"
+#include "ui_LdapNetworkObjectDirectoryConfigurationPage.h"
 
-namespace Ui { class GeneralConfigurationPage; }
-
-class GeneralConfigurationPage : public ConfigurationPage
+LdapNetworkObjectDirectoryConfigurationPage::LdapNetworkObjectDirectoryConfigurationPage( QWidget* parent ) :
+	ConfigurationPage( parent ),
+	ui(new Ui::LdapNetworkObjectDirectoryConfigurationPage)
 {
-	Q_OBJECT
-public:
-	GeneralConfigurationPage( QWidget* parent = nullptr );
-	~GeneralConfigurationPage() override;
+	ui->setupUi(this);
+}
 
-	void resetWidgets() override;
-	void connectWidgetsToProperties() override;
-	void applyConfiguration() override;
 
-private:
-	void openLogFileDirectory();
-	void clearLogFiles();
 
-	Ui::GeneralConfigurationPage* ui;
-
-} ;
+LdapNetworkObjectDirectoryConfigurationPage::~LdapNetworkObjectDirectoryConfigurationPage()
+{
+	delete ui;
+}

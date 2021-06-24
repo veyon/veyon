@@ -9,5 +9,4 @@ build_veyon_plugin(builtindirectory
 	BuiltinDirectoryConfiguration.h
 	BuiltinDirectoryConfigurationPage.h
 	BuiltinDirectory.h
-	builtindirectory.qrc
 )

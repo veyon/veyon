@@ -29,6 +29,12 @@ build_veyon_application(veyon-configurator
 	src/MasterConfigurationPage.cpp
 	src/MasterConfigurationPage.h
 	src/MasterConfigurationPage.ui
+	src/NetworkObjectDirectoryConfigurationPage.cpp
+	src/NetworkObjectDirectoryConfigurationPage.h
+	src/NetworkObjectDirectoryConfigurationPage.ui
+	src/NetworkObjectDirectoryConfigurationPageTab.cpp
+	src/NetworkObjectDirectoryConfigurationPageTab.h
+	src/NetworkObjectDirectoryConfigurationPageTab.ui
 	src/ServiceConfigurationPage.cpp
 	src/ServiceConfigurationPage.h
 	src/ServiceConfigurationPage.ui

@@ -1,5 +1,5 @@
 /*
- * GeneralConfigurationPage.h - configuration page with general settings
+ * NetworkObjectDirectoryConfigurationPage.h - header for the NetworkObjectDirectoryConfigurationPage class
  *
  * Copyright (c) 2016-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,23 +26,29 @@
 
 #include "ConfigurationPage.h"
 
-namespace Ui { class GeneralConfigurationPage; }
+namespace Ui {
+class NetworkObjectDirectoryConfigurationPage;
+}
 
-class GeneralConfigurationPage : public ConfigurationPage
+class NetworkObjectDirectoryPluginInterface;
+class NetworkObjectDirectoryConfigurationPageTab;
+
+class NetworkObjectDirectoryConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	GeneralConfigurationPage( QWidget* parent = nullptr );
-	~GeneralConfigurationPage() override;
+	NetworkObjectDirectoryConfigurationPage( QWidget* parent = nullptr );
+	~NetworkObjectDirectoryConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
 private:
-	void openLogFileDirectory();
-	void clearLogFiles();
+	void populateTabs();
 
-	Ui::GeneralConfigurationPage* ui;
+	Ui::NetworkObjectDirectoryConfigurationPage *ui;
 
-} ;
+	QList<NetworkObjectDirectoryConfigurationPageTab *> m_tabs;
+
+};

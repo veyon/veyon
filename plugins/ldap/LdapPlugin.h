@@ -128,6 +128,8 @@ public:
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
 
+	ConfigurationPage* createNetworkObjectDirectoryConfigurationPage() override;
+
 	QString userGroupsBackendName() const override
 	{
 		return tr( "%1 (load users and groups from LDAP/AD)" ).arg( name() );

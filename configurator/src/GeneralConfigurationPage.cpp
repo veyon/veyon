@@ -29,10 +29,8 @@
 #include "GeneralConfigurationPage.h"
 #include "Filesystem.h"
 #include "FileSystemBrowser.h"
-#include "NetworkObjectDirectoryManager.h"
 #include "PlatformFilesystemFunctions.h"
 #include "PlatformUserFunctions.h"
-#include "PluginManager.h"
 #include "VeyonServiceControl.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
@@ -84,8 +82,6 @@ GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
 
 	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
 	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
-
-	populateNetworkObjectDirectories();
 }
 
 
@@ -101,7 +97,6 @@ void GeneralConfigurationPage::resetWidgets()
 {
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_TLS_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
@@ -111,7 +106,6 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 {
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_TLS_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
@@ -199,17 +193,5 @@ void GeneralConfigurationPage::clearLogFiles()
 	{
 		QMessageBox::critical( this, tr( "Error" ),
 							   tr( "Could not remove all log files." ) );
-	}
-}
-
-
-
-void GeneralConfigurationPage::populateNetworkObjectDirectories()
-{
-	const auto directories = VeyonCore::networkObjectDirectoryManager().availableDirectories();
-
-	for( auto it = directories.constBegin(), end = directories.constEnd(); it != end; ++it )
-	{
-		ui->networkObjectDirectoryPlugin->addItem( it.value(), it.key() );
 	}
 }

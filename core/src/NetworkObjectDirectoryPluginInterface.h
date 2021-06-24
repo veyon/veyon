@@ -27,6 +27,7 @@
 
 #include "PluginInterface.h"
 
+class ConfigurationPage;
 class NetworkObjectDirectory;
 
 // clazy:excludeall=copyable-polymorphic
@@ -36,6 +37,7 @@ class NetworkObjectDirectoryPluginInterface
 public:
 	virtual QString directoryName() const = 0;
 	virtual NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) = 0;
+	virtual ConfigurationPage* createNetworkObjectDirectoryConfigurationPage() = 0;
 
 };
 

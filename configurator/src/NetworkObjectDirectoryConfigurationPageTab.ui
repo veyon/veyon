@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetworkObjectDirectoryConfigurationPageTab</class>
+ <widget class="QWidget" name="NetworkObjectDirectoryConfigurationPageTab">
+  <layout class="QVBoxLayout" name="tabLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <item>
+    <widget class="QCheckBox" name="enabledCheckBox">
+     <property name="text">
+      <string>Enabled</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

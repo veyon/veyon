@@ -69,6 +69,15 @@
       </item>
       <item>
        <property name="text">
+        <string>Locations &amp; computers</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/configurator.qrc">
+         <normaloff>:/configurator/network-object-directory.png</normaloff>:/configurator/network-object-directory.png</iconset>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Master</string>
        </property>
        <property name="icon">
@@ -129,11 +138,9 @@
         </property>
         <item>
          <widget class="QStackedWidget" name="configPages">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
           <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
           <widget class="ServiceConfigurationPage" name="serviceConfigurationPage"/>
+          <widget class="NetworkObjectDirectoryConfigurationPage" name="networkObjectDirectoryConfigurationPage"/>
           <widget class="MasterConfigurationPage" name="masterConfigurationPage"/>
           <widget class="AuthenticationPage" name="authenticationPage"/>
           <widget class="AccessControlPage" name="accessControlPage"/>
@@ -304,6 +311,12 @@
    <class>ServiceConfigurationPage</class>
    <extends>QWidget</extends>
    <header>ServiceConfigurationPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>NetworkObjectDirectoryConfigurationPage</class>
+   <extends>QWidget</extends>
+   <header>NetworkObjectDirectoryConfigurationPage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

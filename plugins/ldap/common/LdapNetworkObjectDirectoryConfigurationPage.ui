@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LdapNetworkObjectDirectoryConfigurationPage</class>
+ <widget class="QWidget" name="LdapNetworkObjectDirectoryConfigurationPage">
+  <property name="windowTitle">
+   <string>LDAP</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

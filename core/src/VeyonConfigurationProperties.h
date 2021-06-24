@@ -66,7 +66,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Property::Flag::Advanced )			\
 
 #define FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
-	OP( VeyonConfiguration, VeyonCore::config(), QUuid, networkObjectDirectoryPlugin, setNetworkObjectDirectoryPlugin, "Plugin", "NetworkObjectDirectory", QUuid(), Configuration::Property::Flag::Standard )			\
+	OP( VeyonConfiguration, VeyonCore::config(), QStringList, enabledNetworkObjectDirectoryPlugins, setEnabledNetworkObjectDirectoryPlugins, "EnabledPlugins", "NetworkObjectDirectory", QStringList(), Configuration::Property::Flag::Standard ) \
 	OP( VeyonConfiguration, VeyonCore::config(), int, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory", NetworkObjectDirectory::DefaultUpdateInterval, Configuration::Property::Flag::Standard )			\
 
 #define FOREACH_VEYON_FEATURES_CONFIG_PROPERTY(OP)				\
@@ -150,6 +150,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyLocalComputerHidden, setLegacyLocalComputerHidden, "LocalComputerHidden", "Master", false, Configuration::Property::Flag::Legacy )       \
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyComputerFilterHidden, setLegacyComputerFilterHidden, "ComputerFilterHidden", "Master", false, Configuration::Property::Flag::Legacy )	\
 	OP( VeyonConfiguration, VeyonCore::config(), int, legacyPrimaryServicePort, setLegacyPrimaryServicePort, "PrimaryServicePort", "Network", 11100, Configuration::Property::Flag::Legacy )			\
+	OP( VeyonConfiguration, VeyonCore::config(), QUuid, legacyNetworkObjectDirectoryPlugin, setLegacyNetworkObjectDirectoryPlugin, "Plugin", "NetworkObjectDirectory", QUuid(), Configuration::Property::Flag::Legacy )			\
 
 #define FOREACH_VEYON_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)			\

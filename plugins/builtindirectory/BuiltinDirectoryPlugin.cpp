@@ -71,9 +71,10 @@ NetworkObjectDirectory *BuiltinDirectoryPlugin::createNetworkObjectDirectory( QO
 
 
 
-ConfigurationPage *BuiltinDirectoryPlugin::createConfigurationPage()
+ConfigurationPage* BuiltinDirectoryPlugin::createNetworkObjectDirectoryConfigurationPage()
 {
 	return new BuiltinDirectoryConfigurationPage( m_configuration );
+
 }
 
 

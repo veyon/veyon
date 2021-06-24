@@ -26,7 +26,6 @@
 
 #include "CommandLinePluginInterface.h"
 #include "CommandLineIO.h"
-#include "ConfigurationPagePluginInterface.h"
 #include "BuiltinDirectoryConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
@@ -36,7 +35,6 @@ class QFile;
 class BuiltinDirectoryPlugin : public QObject,
 		PluginInterface,
 		NetworkObjectDirectoryPluginInterface,
-		ConfigurationPagePluginInterface,
 		CommandLinePluginInterface,
 		CommandLineIO
 {
@@ -44,7 +42,6 @@ class BuiltinDirectoryPlugin : public QObject,
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.BuiltinDirectory")
 	Q_INTERFACES(PluginInterface
 				 NetworkObjectDirectoryPluginInterface
-				 ConfigurationPagePluginInterface
 				 CommandLinePluginInterface)
 public:
 	explicit BuiltinDirectoryPlugin( QObject* paren = nullptr );
@@ -94,7 +91,7 @@ public:
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
 
-	ConfigurationPage* createConfigurationPage() override;
+	ConfigurationPage* createNetworkObjectDirectoryConfigurationPage() override;
 
 	QString commandLineModuleName() const override
 	{
