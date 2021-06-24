@@ -91,8 +91,8 @@ MainWindow::MainWindow( QWidget* parent ) :
 
 	connect( ui->configPages, &QStackedWidget::currentChanged, this, &MainWindow::updateSizes );
 
-	resize( ui->pageSelector->width() + ui->generalConfigurationPage->minimumSizeHint().width(),
-			ui->generalConfigurationPage->minimumSizeHint().height() );
+	resize( ui->pageSelector->width() + ui->masterConfigurationPage->minimumSizeHint().width(),
+			ui->masterConfigurationPage->minimumSizeHint().height() + 100 );
 
 	restoreGeometry( QSettings{}.value( windowGeometryKey() ).toByteArray() );
 
@@ -265,6 +265,11 @@ void MainWindow::updateSizes()
 {
 	ui->configPages->setMinimumSize( ui->scrollArea->width() - ui->scrollArea->verticalScrollBar()->width(),
 									 ui->configPages->currentWidget()->minimumSizeHint().height() );
+
+	ui->scrollAreaWidgetContents->setFixedSize(
+		ui->scrollArea->width() - ui->scrollArea->verticalScrollBar()->width(),
+		qMax( ui->scrollAreaWidgetContents->minimumSizeHint().height(), ui->scrollArea->contentsRect().height() )
+		);
 }
 
 
