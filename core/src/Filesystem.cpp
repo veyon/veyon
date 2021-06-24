@@ -24,6 +24,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QHostInfo>
 
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
@@ -34,6 +35,8 @@ QString Filesystem::expandPath( QString path ) const
 {
 	const auto p = QDir::toNativeSeparators( path.replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
 											 replace( QStringLiteral( "$HOME" ), QDir::homePath() ).
+											 replace( QStringLiteral( "%HOSTNAME%" ), QHostInfo::localHostName() ).
+											 replace( QStringLiteral( "$HOSTNAME" ), QHostInfo::localHostName() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
 											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
 											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
