@@ -1,11 +1,33 @@
 include(BuildVeyonApplication)
 include(WindowsBuildHelpers)
 
-file(GLOB configurator_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
-file(GLOB configurator_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui)
-set(configurator_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/configurator.qrc)
-
-build_veyon_application(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RESOURCES})
+build_veyon_application(veyon-configurator
+	src/AccessControlPage.cpp
+	src/AccessControlPage.h
+	src/AccessControlPage.ui
+	src/AccessControlRuleEditDialog.cpp
+	src/AccessControlRuleEditDialog.h
+	src/AccessControlRuleEditDialog.ui
+	src/AccessControlRuleListModel.cpp
+	src/AccessControlRuleListModel.h
+	src/AccessControlRulesTestDialog.cpp
+	src/AccessControlRulesTestDialog.h
+	src/AccessControlRulesTestDialog.ui
+	src/GeneralConfigurationPage.cpp
+	src/GeneralConfigurationPage.h
+	src/GeneralConfigurationPage.ui
+	src/main.cpp
+	src/MainWindow.cpp
+	src/MainWindow.h
+	src/MainWindow.ui
+	src/MasterConfigurationPage.cpp
+	src/MasterConfigurationPage.h
+	src/MasterConfigurationPage.ui
+	src/ServiceConfigurationPage.cpp
+	src/ServiceConfigurationPage.h
+	src/ServiceConfigurationPage.ui
+	resources/configurator.qrc
+	)
 
 add_windows_resource(veyon-configurator)
 make_graphical_app(veyon-configurator)
