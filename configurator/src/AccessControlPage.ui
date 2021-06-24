@@ -214,19 +214,6 @@
       <string>Access control rules</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_23">
-      <item row="6" column="1">
-       <spacer name="verticalSpacer_12">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>88</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="3" column="1">
        <widget class="QPushButton" name="moveAccessControlRuleUpButton">
         <property name="toolTip">
@@ -307,6 +294,22 @@
          <string/>
         </property>
        </widget>
+      </item>
+      <item row="6" column="1">
+       <spacer name="verticalSpacer_12">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
