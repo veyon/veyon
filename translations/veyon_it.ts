@@ -652,7 +652,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Si prega di specificare il nome della chiave (ad es. &quot;insegnante/pubblico&quot;) come primo argomento.</translation>
     </message>
 </context>
 <context>

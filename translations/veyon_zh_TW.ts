@@ -655,7 +655,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>請指定金鑰名稱 (例如: &quot;teacher/public&quot;) 作為第一個引數。</translation>
     </message>
 </context>
 <context>
@@ -1045,7 +1045,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>無效</translation>
     </message>
 </context>
 <context>
@@ -2471,11 +2471,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>查詢選項</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>查詢巢狀使用者群組 (只有 AD 支援)</translation>
     </message>
 </context>
 <context>
@@ -2549,11 +2549,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>使用者工作階段</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>伺服器啟動前的最小工作階段長度</translation>
     </message>
 </context>
 <context>
@@ -3135,15 +3135,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要重新啟動 &lt;b&gt;所有的&lt;/b&gt; 電腦?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要關閉 &lt;b&gt;所有的&lt;/b&gt; 電腦?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要關閉選取的電腦?</translation>
     </message>
 </context>
 <context>
@@ -3821,7 +3821,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要登出 &lt;b&gt;所有的&lt;/b&gt; 使用者?</translation>
     </message>
 </context>
 <context>

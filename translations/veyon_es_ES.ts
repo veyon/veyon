@@ -657,7 +657,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Especifique el nombre de la clave (p. ej., &quot;teacher/public&quot;) como primer argumento.</translation>
     </message>
 </context>
 <context>
