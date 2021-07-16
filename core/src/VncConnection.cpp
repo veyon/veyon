@@ -37,130 +37,9 @@
 #include "PlatformNetworkFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VncConnection.h"
+#include "RfbClientCallback.h"
 #include "SocketDevice.h"
 #include "VncEvents.h"
-
-
-rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
-	{
-		return connection->initFrameBuffer( client );
-	}
-
-	return false;
-}
-
-
-
-
-void VncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
-	{
-		Q_EMIT connection->imageUpdated( x, y, w, h );
-	}
-}
-
-
-
-
-void VncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
-	{
-		connection->finishFrameBufferUpdate();
-	}
-}
-
-
-
-
-rfbBool VncConnection::hookHandleCursorPos( rfbClient* client, int x, int y )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
-	{
-		Q_EMIT connection->cursorPosChanged( x, y );
-	}
-
-	return true;
-}
-
-
-
-
-void VncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp )
-{
-	if( bpp != 4 )
-	{
-		vWarning() << QThread::currentThreadId() << "bytes per pixel != 4";
-		return;
-	}
-
-	QImage alpha( client->rcMask, w, h, QImage::Format_Indexed8 );
-	alpha.setColorTable( { qRgb(255,255,255), qRgb(0,0,0) } );
-
-	QPixmap cursorShape( QPixmap::fromImage( QImage( client->rcSource, w, h, QImage::Format_RGB32 ) ) );
-	cursorShape.setMask( QBitmap::fromImage( alpha ) );
-
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
-	{
-		Q_EMIT connection->cursorShapeUpdated( cursorShape, xh, yh );
-	}
-}
-
-
-
-void VncConnection::hookCutText( rfbClient* client, const char* text, int textlen )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	const auto cutText = QString::fromUtf8( text, textlen );
-
-	if( connection && cutText.isEmpty() == false  )
-	{
-		Q_EMIT connection->gotCut( cutText );
-	}
-}
-
-
-
-void VncConnection::rfbClientLogDebug( const char* format, ... )
-{
-	va_list args;
-	va_start( args, format );
-
-	static constexpr int MaxMessageLength = 256;
-	std::array<char, MaxMessageLength> message{};
-
-	vsnprintf( message.data(), sizeof(message), format, args );
-	message[MaxMessageLength-1] = 0;
-
-	va_end(args);
-
-	vDebug() << QThread::currentThreadId() << message.data();
-}
-
-
-
-
-void VncConnection::rfbClientLogNone( const char* format, ... )
-{
-	Q_UNUSED(format)
-}
-
-
-
-void VncConnection::framebufferCleanup( void* framebuffer )
-{
-	delete[] static_cast<RfbPixel *>( framebuffer );
-}
-
-
 
 
 VncConnection::VncConnection( QObject* parent ) :
@@ -317,6 +196,33 @@ void VncConnection::setServerReachable()
 
 
 
+void VncConnection::enqueueEvent( VncEvent* event, bool wake )
+{
+	if( state() != State::Connected )
+	{
+		return;
+	}
+
+	m_eventQueueMutex.lock();
+	m_eventQueue.enqueue( event );
+	m_eventQueueMutex.unlock();
+
+	if( wake )
+	{
+		m_updateIntervalSleeper.wakeAll();
+	}
+}
+
+
+
+bool VncConnection::isEventQueueEmpty()
+{
+	QMutexLocker lock( &m_eventQueueMutex );
+	return m_eventQueue.isEmpty();
+}
+
+
+
 void VncConnection::setScaledSize( QSize s )
 {
 	QMutexLocker globalLock( &m_globalMutex );
@@ -396,6 +302,45 @@ void VncConnection::setClientData( int tag, void* data )
 
 
 
+qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
+										   SocketDevice::SocketOperation operation, void* user )
+{
+	auto client = static_cast<rfbClient *>( user );
+	switch( operation )
+	{
+	case SocketDevice::SocketOpRead:
+		return ReadFromRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
+
+	case SocketDevice::SocketOpWrite:
+		return WriteToRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
+	}
+
+	return 0;
+}
+
+
+
+void VncConnection::mouseEvent( int x, int y, uint buttonMask )
+{
+	enqueueEvent( new VncPointerEvent( x, y, buttonMask ), true );
+}
+
+
+
+void VncConnection::keyEvent( unsigned int key, bool pressed )
+{
+	enqueueEvent( new VncKeyEvent( key, pressed ), true );
+}
+
+
+
+void VncConnection::clientCut( const QString& text )
+{
+	enqueueEvent( new VncClientCutEvent( text ), true );
+}
+
+
+
 void VncConnection::run()
 {
 	while( isControlFlagSet( ControlFlag::TerminateThread ) == false )
@@ -421,13 +366,14 @@ void VncConnection::establishConnection()
 		   state() != State::Connected ) // try to connect as long as the server allows
 	{
 		m_client = rfbGetClient( RfbBitsPerSample, RfbSamplesPerPixel, RfbBytesPerPixel );
-		m_client->MallocFrameBuffer = hookInitFrameBuffer;
 		m_client->canHandleNewFBSize = true;
-		m_client->GotFrameBufferUpdate = hookUpdateFB;
-		m_client->FinishedFrameBufferUpdate = hookFinishFrameBufferUpdate;
-		m_client->HandleCursorPos = hookHandleCursorPos;
-		m_client->GotCursorShape = hookCursorShape;
-		m_client->GotXCutText = hookCutText;
+		m_client->MallocFrameBuffer = RfbClientCallback::wrap<&VncConnection::initFrameBuffer>;
+		m_client->GotFrameBufferUpdate = RfbClientCallback::wrap<&VncConnection::imageUpdated>;
+		m_client->FinishedFrameBufferUpdate = RfbClientCallback::wrap<&VncConnection::finishFrameBufferUpdate>;
+		m_client->HandleCursorPos = RfbClientCallback::wrap<&VncConnection::updateCursorPosition>;
+		m_client->GotCursorShape = RfbClientCallback::wrap<&VncConnection::updateCursorShape>;
+		m_client->GotXCutText = RfbClientCallback::wrap<&VncConnection::updateClipboard>;
+
 		m_client->connectTimeout = m_connectTimeout / 1000;
 		m_client->readTimeout = m_readTimeout / 1000;
 		setClientData( VncConnectionTag, this );
@@ -622,7 +568,7 @@ bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
 
 
 
-bool VncConnection::initFrameBuffer( rfbClient* client )
+rfbBool VncConnection::initFrameBuffer( rfbClient* client )
 {
 	if( client->format.bitsPerPixel != RfbBitsPerSample * RfbBytesPerPixel )
 	{
@@ -696,6 +642,45 @@ void VncConnection::finishFrameBufferUpdate()
 
 
 
+rfbBool VncConnection::updateCursorPosition( int x, int y )
+{
+	Q_EMIT cursorPosChanged( x, y );
+	return true;
+}
+
+
+
+void VncConnection::updateCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp )
+{
+	if( bpp != 4 )
+	{
+		vWarning() << QThread::currentThreadId() << "bytes per pixel != 4";
+		return;
+	}
+
+	QImage alpha( client->rcMask, w, h, QImage::Format_Indexed8 );
+	alpha.setColorTable( { qRgb(255,255,255), qRgb(0,0,0) } );
+
+	QPixmap cursorShape( QPixmap::fromImage( QImage( client->rcSource, w, h, QImage::Format_RGB32 ) ) );
+	cursorShape.setMask( QBitmap::fromImage( alpha ) );
+
+	Q_EMIT cursorShapeUpdated( cursorShape, xh, yh );
+}
+
+
+
+void VncConnection::updateClipboard( const char* text, int textlen )
+{
+	const auto cutText = QString::fromUtf8( text, textlen );
+
+	if( cutText.isEmpty() == false  )
+	{
+		Q_EMIT gotCut( cutText );
+	}
+}
+
+
+
 void VncConnection::sendEvents()
 {
 	m_eventQueueMutex.lock();
@@ -723,66 +708,33 @@ void VncConnection::sendEvents()
 
 
 
-void VncConnection::enqueueEvent( VncEvent* event, bool wake )
+void VncConnection::rfbClientLogDebug( const char* format, ... )
 {
-	if( state() != State::Connected )
-	{
-		return;
-	}
+	va_list args;
+	va_start( args, format );
 
-	m_eventQueueMutex.lock();
-	m_eventQueue.enqueue( event );
-	m_eventQueueMutex.unlock();
+	static constexpr int MaxMessageLength = 256;
+	std::array<char, MaxMessageLength> message{};
 
-	if( wake )
-	{
-		m_updateIntervalSleeper.wakeAll();
-	}
+	vsnprintf( message.data(), sizeof(message), format, args );
+	message[MaxMessageLength-1] = 0;
+
+	va_end(args);
+
+	vDebug() << QThread::currentThreadId() << message.data();
 }
 
 
 
-bool VncConnection::isEventQueueEmpty()
+
+void VncConnection::rfbClientLogNone( const char* format, ... )
 {
-	QMutexLocker lock( &m_eventQueueMutex );
-	return m_eventQueue.isEmpty();
+	Q_UNUSED(format)
 }
 
 
 
-void VncConnection::mouseEvent( int x, int y, uint buttonMask )
+void VncConnection::framebufferCleanup( void* framebuffer )
 {
-	enqueueEvent( new VncPointerEvent( x, y, buttonMask ), true );
-}
-
-
-
-void VncConnection::keyEvent( unsigned int key, bool pressed )
-{
-	enqueueEvent( new VncKeyEvent( key, pressed ), true );
-}
-
-
-
-void VncConnection::clientCut( const QString& text )
-{
-	enqueueEvent( new VncClientCutEvent( text ), true );
-}
-
-
-
-qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
-											  SocketDevice::SocketOperation operation, void* user )
-{
-	auto client = static_cast<rfbClient *>( user );
-	switch( operation )
-	{
-	case SocketDevice::SocketOpRead:
-		return ReadFromRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
-
-	case SocketDevice::SocketOpWrite:
-		return WriteToRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
-	}
-
-	return 0;
+	delete[] static_cast<RfbPixel *>( framebuffer );
 }

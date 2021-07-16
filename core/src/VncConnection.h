@@ -189,18 +189,15 @@ private:
 	void setControlFlag( ControlFlag flag, bool on );
 	bool isControlFlagSet( ControlFlag flag );
 
-	bool initFrameBuffer( rfbClient* client );
+	rfbBool initFrameBuffer( rfbClient* client );
 	void finishFrameBufferUpdate();
+
+	rfbBool updateCursorPosition( int x, int y );
+	void updateCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
+	void updateClipboard( const char *text, int textlen );
 
 	void sendEvents();
 
-	// hooks for LibVNCClient
-	static int8_t hookInitFrameBuffer( rfbClient* client );
-	static void hookUpdateFB( rfbClient* client, int x, int y, int w, int h );
-	static void hookFinishFrameBufferUpdate( rfbClient* client );
-	static int8_t hookHandleCursorPos( rfbClient* client, int x, int y );
-	static void hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
-	static void hookCutText( rfbClient* client, const char *text, int textlen );
 	static void rfbClientLogDebug( const char* format, ... );
 	static void rfbClientLogNone( const char* format, ... );
 	static void framebufferCleanup( void* framebuffer );
