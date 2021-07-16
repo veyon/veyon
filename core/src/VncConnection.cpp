@@ -32,6 +32,7 @@
 #include <QMutexLocker>
 #include <QPixmap>
 #include <QRegularExpression>
+#include <QSslSocket>
 #include <QTime>
 
 #include "PlatformNetworkFunctions.h"
@@ -737,4 +738,61 @@ void VncConnection::rfbClientLogNone( const char* format, ... )
 void VncConnection::framebufferCleanup( void* framebuffer )
 {
 	delete[] static_cast<RfbPixel *>( framebuffer );
+}
+
+
+
+int VncConnection::openTlsSocket( const char* hostname, int port )
+{
+	delete m_sslSocket;
+
+	m_sslSocket = new QSslSocket;
+	connect(m_sslSocket, QOverload<const QList<QSslError>&>::of(&QSslSocket::sslErrors),
+			 []( const QList<QSslError> &errors) {
+				 for( const auto& err : errors )
+				 {
+					 vWarning() << "SSL error" << err;
+				 }
+			 } );
+
+	m_sslSocket->connectToHostEncrypted( QString::fromUtf8(hostname), port );
+	if( m_sslSocket->waitForEncrypted() == false || m_sslSocket->socketDescriptor() < 0 )
+	{
+		delete m_sslSocket;
+		m_sslSocket = nullptr;
+		return RFB_INVALID_SOCKET;
+	}
+
+	return m_sslSocket->socketDescriptor();
+}
+
+
+
+int VncConnection::readFromTlsSocket( rfbClient* client, char* buffer, unsigned int len )
+{
+	if( m_sslSocket->bytesAvailable() <= 0 )
+	{
+		if( m_sslSocket->waitForReadyRead(10) == false )
+		{
+			errno = EAGAIN;
+			return -1;
+		}
+	}
+
+	return m_sslSocket->read( buffer, len );
+}
+
+
+
+int VncConnection::writeToTlsSocket( rfbClient* client, const char* buffer, unsigned int len )
+{
+	const auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
+	if( connection )
+	{
+		const auto ret = connection->m_sslSocket->write( buffer, len );
+		connection->m_sslSocket->flush();
+		return ret;
+	}
+
+	return -1;
 }

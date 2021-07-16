@@ -27,6 +27,8 @@
 
 #pragma once
 
+#include <rfb/rfbproto.h>
+
 #include <QElapsedTimer>
 #include <QImage>
 #include <QMutex>
@@ -41,6 +43,7 @@
 
 using rfbClient = struct _rfbClient;
 
+class QSslSocket;
 class VncEvent;
 
 class VEYON_CORE_EXPORT VncConnection : public QThread
@@ -202,6 +205,10 @@ private:
 	static void rfbClientLogNone( const char* format, ... );
 	static void framebufferCleanup( void* framebuffer );
 
+	rfbSocket openTlsSocket( const char* hostname, int port );
+	int readFromTlsSocket( rfbClient* client, char* buffer, unsigned int len );
+	int writeToTlsSocket( rfbClient* client, const char* buffer, unsigned int len );
+
 	// intervals and timeouts
 	int m_threadTerminationTimeout{DefaultThreadTerminationTimeout};
 	int m_connectTimeout{DefaultConnectTimeout};
@@ -218,6 +225,8 @@ private:
 	std::atomic<State> m_state{State::Disconnected};
 	std::atomic<FramebufferState> m_framebufferState{FramebufferState::Invalid};
 	QAtomicInteger<uint> m_controlFlags{};
+
+	QSslSocket* m_sslSocket{nullptr};
 
 	// connection parameters and data
 	rfbClient* m_client{nullptr};
