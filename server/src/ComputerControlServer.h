@@ -24,8 +24,8 @@
 
 #pragma once
 
-#include <QtCore/QMutex>
-#include <QtCore/QStringList>
+#include <QMutex>
+#include <QStringList>
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"

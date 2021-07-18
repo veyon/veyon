@@ -45,6 +45,7 @@
 
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
+	m_verifyServerCertificate( VeyonCore::config().tlsUseCertificateAuthority() ),
 	m_defaultPort( VeyonCore::config().veyonServerPort() )
 {
 	if( VeyonCore::config().useCustomVncConnectionSettings() )
@@ -754,6 +755,8 @@ int VncConnection::openTlsSocket( const char* hostname, int port )
 					 vWarning() << "SSL error" << err;
 				 }
 			 } );
+
+	m_sslSocket->setPeerVerifyMode( m_verifyServerCertificate ? QSslSocket::VerifyPeer : QSslSocket::QueryPeer );
 
 	m_sslSocket->connectToHostEncrypted( QString::fromUtf8(hostname), port );
 	if( m_sslSocket->waitForEncrypted() == false || m_sslSocket->socketDescriptor() < 0 )

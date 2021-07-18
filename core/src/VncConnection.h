@@ -227,6 +227,7 @@ private:
 	QAtomicInteger<uint> m_controlFlags{};
 
 	QSslSocket* m_sslSocket{nullptr};
+	const bool m_verifyServerCertificate{true};
 
 	// connection parameters and data
 	rfbClient* m_client{nullptr};

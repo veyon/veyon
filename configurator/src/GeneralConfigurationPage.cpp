@@ -44,7 +44,7 @@ GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( ui->securityGroupBox, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags( ui->tlsConfigGroupBox, Configuration::Property::Flag::Advanced );
 
 	connect( ui->browseTlsCaCertificateFile, &QAbstractButton::clicked, this, [this]() {
 		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsCaCertificateFile );

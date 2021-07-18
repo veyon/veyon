@@ -54,18 +54,18 @@ void TlsServer::incomingConnection( qintptr socketDescriptor )
 		auto socket = new QSslSocket;
 		if( socket->setSocketDescriptor(socketDescriptor) )
 		{
-			connect(socket, &QSslSocket::encrypted, this, []() {
-				qCritical() << "connected"; } );
-
 			connect(socket, QOverload<const QList<QSslError>&>::of(&QSslSocket::sslErrors),
 					 [this, socket]( const QList<QSslError> &errors) {
 						 for( const auto& err : errors )
 						 {
-							 vCritical() << err;
+							 vCritical() << "SSL error" << err;
 						 }
 
 						 Q_EMIT tlsErrors( socket, errors );
 					 } );
+
+			connect(socket, &QSslSocket::encrypted, this,
+					 []() { vDebug() << "connection encryption established"; } );
 
 			socket->setSslConfiguration( m_tlsConfig );
 			socket->startServerEncryption();

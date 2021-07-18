@@ -650,30 +650,49 @@ void VeyonCore::initSystemInfo()
 
 void VeyonCore::initTlsConfiguration()
 {
-	if( config().tlsEnabled() == false )
+	auto tlsConfig{TlsConfiguration::defaultConfiguration()};
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+	tlsConfig.setProtocol( QSsl::TlsV1_3OrLater );
+#else
+	tlsConfig.setProtocol( QSsl::TlsV1_2OrLater );
+#endif
+
+	if( config().tlsUseCertificateAuthority() )
 	{
-		return;
+		loadCertificateAuthorityFiles( &tlsConfig );
+	}
+	else
+	{
+		addSelfSignedHostCertificate( &tlsConfig );
 	}
 
+	TlsConfiguration::setDefaultConfiguration( tlsConfig );
+}
+
+
+
+bool VeyonCore::loadCertificateAuthorityFiles( TlsConfiguration* tlsConfig )
+{
 	QFile caCertFile( filesystem().expandPath( config().tlsCaCertificateFile() ) );
 
 	if( caCertFile.exists() == false )
 	{
 		vCritical() << "TLS CA certificate file" << caCertFile.fileName() << "does not exist";
-		return;
+		return false;
 	}
 
 	if( caCertFile.open( QFile::ReadOnly ) == false )
 	{
 		vCritical() << "TLS CA certificate file" << caCertFile.fileName() << "is not readable";
-		return;
+		return false;
 	}
 
 	QSslCertificate caCertificate( caCertFile.readAll() );
 	if( caCertificate.isNull() )
 	{
 		vCritical() << caCertFile.fileName() << "does not contain a valid TLS certificate";
-		return;
+		return false;
 	}
 
 	QFile hostCertFile( filesystem().expandPath( config().tlsHostCertificateFile() ) );
@@ -681,20 +700,20 @@ void VeyonCore::initTlsConfiguration()
 	if( hostCertFile.exists() == false )
 	{
 		vCritical() << "TLS host certificate file" << hostCertFile.fileName() << "does not exist";
-		return;
+		return false;
 	}
 
 	if( hostCertFile.open( QFile::ReadOnly ) == false )
 	{
 		vCritical() << "TLS host certificate file" << hostCertFile.fileName() << "is not readable";
-		return;
+		return false;
 	}
 
 	QSslCertificate hostCertificate( hostCertFile.readAll() );
 	if( hostCertificate.isNull() )
 	{
 		vCritical() << hostCertFile.fileName() << "does not contain a valid TLS certificate";
-		return;
+		return false;
 	}
 
 	QFile hostPrivateKeyFile( filesystem().expandPath( config().tlsHostPrivateKeyFile() ) );
@@ -702,13 +721,13 @@ void VeyonCore::initTlsConfiguration()
 	if( hostPrivateKeyFile.exists() == false )
 	{
 		vCritical() << "TLS private key file" << hostPrivateKeyFile.fileName() << "does not exist";
-		return;
+		return false;
 	}
 
 	if( hostPrivateKeyFile.open( QFile::ReadOnly ) == false )
 	{
 		vCritical() << "TLS private key file" << hostPrivateKeyFile.fileName() << "is not readable";
-		return;
+		return false;
 	}
 
 	const auto hostPrivateKeyFileData = hostPrivateKeyFile.readAll();
@@ -731,23 +750,46 @@ void VeyonCore::initTlsConfiguration()
 	if( hostPrivateKey.isNull() )
 	{
 		vCritical() << hostPrivateKeyFile.fileName() << "does contains an invalid or unsupported TLS private key";
-		return;
+		return false;
 	}
 
-	TlsConfiguration tlsConfig;
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-	tlsConfig.setProtocol( QSsl::TlsV1_3OrLater );
-#else
-	tlsConfig.setProtocol( QSsl::TlsV1_2OrLater );
-#endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-	tlsConfig.addCaCertificate( caCertificate );
+	tlsConfig->addCaCertificates( TlsConfiguration::systemCaCertificates() );
+	tlsConfig->addCaCertificate( caCertificate );
 #else
-	tlsConfig.setCaCertificates( tlsConfig.caCertificates() + QList<QSslCertificate>{caCertificate} );
+	tlsConfig->setCaCertificates( TlsConfiguration::systemCaCertificates() + QList<QSslCertificate>{caCertificate} );
 #endif
-	tlsConfig.setLocalCertificate( hostCertificate );
-	tlsConfig.setPrivateKey( hostPrivateKey );
+	tlsConfig->setLocalCertificate( hostCertificate );
+	tlsConfig->setPrivateKey( hostPrivateKey );
 
-	TlsConfiguration::setDefaultConfiguration( tlsConfig );
+	return true;
+}
+
+
+
+bool VeyonCore::addSelfSignedHostCertificate( TlsConfiguration* tlsConfig )
+{
+	const auto privateKey = cryptoCore().createPrivateKey();
+	if( privateKey.isNull() )
+	{
+		vCritical() << "failed to create private key for host certificate";
+		return false;
+	}
+
+	const auto cert = cryptoCore().createSelfSignedHostCertificate( privateKey );
+	if( cert.isNull() )
+	{
+		vCritical() << "failed to create host certificate";
+		return false;
+	}
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+	tlsConfig->addCaCertificates( TlsConfiguration::systemCaCertificates() );
+#else
+	tlsConfig->setCaCertificates( TlsConfiguration::systemCaCertificates() );
+#endif
+	tlsConfig->setLocalCertificate( QSslCertificate( cert.toPEM().toUtf8() ) );
+	tlsConfig->setPrivateKey( QSslKey( privateKey.toPEM().toUtf8(), QSsl::KeyAlgorithm::Rsa ) );
+
+	return true;
 }

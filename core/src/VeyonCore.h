@@ -200,6 +200,9 @@ private:
 	void initSystemInfo();
 	void initTlsConfiguration();
 
+	bool loadCertificateAuthorityFiles( TlsConfiguration* tlsConfig );
+	bool addSelfSignedHostCertificate( TlsConfiguration* tlsConfig );
+
 	static VeyonCore* s_instance;
 
 	Filesystem* m_filesystem;

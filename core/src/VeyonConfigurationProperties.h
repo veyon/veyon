@@ -83,7 +83,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QString, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging", QLatin1String(Logger::DefaultLogFileDirectory), Configuration::Property::Flag::Standard )		\
 
 #define FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), bool, tlsEnabled, setTlsEnabled, "Enabled", "TLS", false, Configuration::Property::Flag::Advanced ) \
+	OP( VeyonConfiguration, VeyonCore::config(), bool, tlsUseCertificateAuthority, setTlsUseCertificateAuthority, "UseCertificateAuthority", "TLS", false, Configuration::Property::Flag::Advanced ) \
 	OP( VeyonConfiguration, VeyonCore::config(), QString, tlsCaCertificateFile, setTlsCaCertificateFile, "CaCertificateFile", "TLS", QStringLiteral("%GLOBALAPPDATA%/tls/ca.pem"), Configuration::Property::Flag::Standard )  \
 	OP( VeyonConfiguration, VeyonCore::config(), QString, tlsHostCertificateFile, setTlsHostCertificateFile, "HostCertificateFile", "TLS", QStringLiteral("%GLOBALAPPDATA%/tls/%HOSTNAME%/cert.pem"), Configuration::Property::Flag::Standard )  \
 	OP( VeyonConfiguration, VeyonCore::config(), QString, tlsHostPrivateKeyFile, setTlsHostPrivateKeyFile, "HostPrivateKeyFile", "TLS", QStringLiteral("%GLOBALAPPDATA%/tls/%HOSTNAME%/private.key"), Configuration::Property::Flag::Standard ) \
