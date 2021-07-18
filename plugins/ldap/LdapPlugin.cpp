@@ -163,7 +163,7 @@ VncServerClient::AuthState LdapPlugin::performAuthentication( VncServerClient* c
 	switch( client->authState() )
 	{
 	case VncServerClient::AuthState::Init:
-		client->setPrivateKey( CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize ) );
+		client->setPrivateKey( VeyonCore::cryptoCore().createPrivateKey() );
 
 		if( VariantArrayMessage( message.ioDevice() ).write( client->privateKey().toPublicKey().toPEM() ).send() )
 		{

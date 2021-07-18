@@ -33,13 +33,11 @@
 class VEYON_CORE_EXPORT CryptoCore
 {
 public:
-	using KeyGenerator = QCA::KeyGenerator;
 	using PrivateKey = QCA::PrivateKey;
 	using PublicKey = QCA::PublicKey;
 	using SecureArray = QCA::SecureArray;
 	using PlaintextPassword = SecureArray;
 
-	static constexpr auto RsaKeySize = 4096;
 	static constexpr auto ChallengeSize = 128;
 	static constexpr auto BitsPerByte = 8;
 
@@ -54,8 +52,13 @@ public:
 	QString encryptPassword( const PlaintextPassword& password ) const;
 	PlaintextPassword decryptPassword( const QString& encryptedPassword ) const;
 
+	PrivateKey createPrivateKey();
+
 private:
+	static constexpr auto RsaKeySize = 4096;
+
 	QCA::Initializer m_qcaInitializer{};
+	QCA::KeyGenerator m_keyGenerator{};
 	PrivateKey m_defaultPrivateKey{};
 
 };

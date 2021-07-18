@@ -77,7 +77,7 @@ bool AuthKeysManager::createKeyPair( const QString& name )
 
 	CommandLineIO::print( tr( "Creating new key pair for \"%1\"" ).arg( name ) );
 
-	const auto privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
+	const auto privateKey = VeyonCore::cryptoCore().createPrivateKey();
 	const auto publicKey = privateKey.toPublicKey();
 
 	if( privateKey.isNull() || publicKey.isNull() )

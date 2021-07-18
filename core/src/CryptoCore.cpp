@@ -93,3 +93,10 @@ CryptoCore::PlaintextPassword CryptoCore::decryptPassword( const QString& encryp
 
 	return {};
 }
+
+
+
+CryptoCore::PrivateKey CryptoCore::createPrivateKey()
+{
+	return m_keyGenerator.createRSA( CryptoCore::RsaKeySize );
+}
