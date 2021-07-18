@@ -33,6 +33,7 @@
 class VEYON_CORE_EXPORT CryptoCore
 {
 public:
+	using Certificate = QCA::Certificate;
 	using PrivateKey = QCA::PrivateKey;
 	using PublicKey = QCA::PublicKey;
 	using SecureArray = QCA::SecureArray;
@@ -44,6 +45,8 @@ public:
 	static constexpr auto DefaultEncryptionAlgorithm = QCA::EME_PKCS1_OAEP;
 	static constexpr auto DefaultSignatureAlgorithm = QCA::EMSA3_SHA512;
 
+	static constexpr auto DefaultCertificateValidity = 30;
+
 	CryptoCore();
 	~CryptoCore();
 
@@ -53,6 +56,7 @@ public:
 	PlaintextPassword decryptPassword( const QString& encryptedPassword ) const;
 
 	PrivateKey createPrivateKey();
+	Certificate createSelfSignedHostCertificate( const PrivateKey& privateKey );
 
 private:
 	static constexpr auto RsaKeySize = 4096;

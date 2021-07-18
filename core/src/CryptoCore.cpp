@@ -24,7 +24,10 @@
 
 #include <openssl/bn.h>
 
+#include <QNetworkInterface>
+
 #include "CryptoCore.h"
+#include "HostAddress.h"
 
 CryptoCore::CryptoCore()
 {
@@ -99,4 +102,31 @@ CryptoCore::PlaintextPassword CryptoCore::decryptPassword( const QString& encryp
 CryptoCore::PrivateKey CryptoCore::createPrivateKey()
 {
 	return m_keyGenerator.createRSA( CryptoCore::RsaKeySize );
+}
+
+
+
+CryptoCore::Certificate CryptoCore::createSelfSignedHostCertificate( const PrivateKey& privateKey )
+{
+	QCA::CertificateInfo certInfo{
+		{ QCA::CertificateInfoTypeKnown::CommonName, HostAddress::localFQDN() },
+		{ QCA::CertificateInfoTypeKnown::DNS, HostAddress::localFQDN() }
+	};
+
+	for( const auto& address : QNetworkInterface::allAddresses() )
+	{
+		certInfo.insert( QCA::CertificateInfoTypeKnown::IPAddress, address.toString() );
+	}
+
+	QCA::CertificateOptions certOpts;
+	certOpts.setInfo( certInfo );
+	certOpts.setConstraints( { QCA::ConstraintTypeKnown::DigitalSignature,
+							   QCA::ConstraintTypeKnown::KeyCertificateSign,
+							   QCA::ConstraintTypeKnown::KeyEncipherment,
+							   QCA::ConstraintTypeKnown::ServerAuth } );
+
+	certOpts.setValidityPeriod( QDateTime::currentDateTime(),
+								QDateTime::currentDateTime().addDays(DefaultCertificateValidity) );
+
+	return QCA::Certificate{certOpts, privateKey};
 }
