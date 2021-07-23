@@ -376,6 +376,11 @@ void VncConnection::establishConnection()
 		m_client->GotCursorShape = RfbClientCallback::wrap<&VncConnection::updateCursorShape>;
 		m_client->GotXCutText = RfbClientCallback::wrap<&VncConnection::updateClipboard>;
 
+		m_client->ConnectToRFBServer = RfbClientCallback::wrap<&VncConnection::openTlsSocket, RFB_INVALID_SOCKET>;
+		m_client->ReadFromSocket = RfbClientCallback::wrap<&VncConnection::readFromTlsSocket, -1>;
+		m_client->WriteToSocket = RfbClientCallback::wrap<&VncConnection::writeToTlsSocket, -1>;
+		m_client->CloseSocket = RfbClientCallback::wrap<&VncConnection::closeTlsSocket>;
+
 		m_client->connectTimeout = m_connectTimeout / 1000;
 		m_client->readTimeout = m_readTimeout / 1000;
 		setClientData( VncConnectionTag, this );

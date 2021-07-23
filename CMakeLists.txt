@@ -180,7 +180,7 @@ if(VEYON_BUILD_LINUX)
 	include(XdgInstall)
 endif()
 
-find_package(LibVNCClient 0.9.13)
+find_package(LibVNCClient 0.9.14)
 
 if(LibVNCClient_FOUND)
 	include(CheckCSourceCompiles)
