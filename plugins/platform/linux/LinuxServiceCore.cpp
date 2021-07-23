@@ -139,6 +139,8 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
+	sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionPathEnvVarName(), sessionPath );
+
 	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
 	if( sessionEnvironment.contains( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) == false )
 	{
