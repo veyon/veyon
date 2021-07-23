@@ -275,13 +275,13 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 
 QString LinuxSessionFunctions::currentSessionPath()
 {
-	const auto xdgSessionId = QProcessEnvironment::systemEnvironment().value( xdgSessionIdEnvVarName() );
-	if( xdgSessionId.isEmpty() )
+	const auto xdgSessionPath = QProcessEnvironment::systemEnvironment().value( xdgSessionPathEnvVarName() );
+	if( xdgSessionPath.isEmpty() )
 	{
 		return QStringLiteral("/org/freedesktop/login1/session/self");
 	}
 
-	return QStringLiteral("/org/freedesktop/login1/session/%1").arg( xdgSessionId );
+	return xdgSessionPath;
 }
 
 
