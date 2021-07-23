@@ -32,6 +32,7 @@
 #include "X11VncConfigurationWidget.h"
 
 extern "C" int x11vnc_main( int argc, char * * argv );
+extern "C" int hasWorkingXShm();
 
 
 BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
@@ -72,23 +73,20 @@ void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 		cmdline.append( extraArguments.split( QLatin1Char(' ') ) );
 	}
 
-	if( m_configuration.isXDamageDisabled() )
+	if( hasWorkingXShm() == false )
 	{
-		cmdline.append( QStringLiteral("-noxdamage") );
+		cmdline.append( QStringLiteral("-noshm") );
 	}
-	else
+
+	const auto systemEnv = QProcessEnvironment::systemEnvironment();
+
+	if( m_configuration.isXDamageDisabled() ||
+		// workaround for x11vnc when running in a NX session or a Thin client LTSP session
+		systemEnv.contains( QStringLiteral("NXSESSIONID") ) ||
+		systemEnv.contains( QStringLiteral("X2GO_SESSION") ) ||
+		systemEnv.contains( QStringLiteral("LTSP_CLIENT_MAC") ) )
 	{
-		// workaround for x11vnc when running in an NX session or a Thin client LTSP session
-		const auto systemEnv = QProcess::systemEnvironment();
-		for( const auto& s : systemEnv )
-		{
-			if( s.startsWith( QStringLiteral("NXSESSIONID=") ) ||
-					s.startsWith( QStringLiteral("X2GO_SESSION=") ) ||
-					s.startsWith( QStringLiteral("LTSP_CLIENT_MAC=") ) )
-			{
-				cmdline.append( QStringLiteral("-noxdamage") );
-			}
-		}
+			cmdline.append( QStringLiteral("-noxdamage") );
 	}
 
 #ifdef VEYON_X11VNC_EXTERNAL
