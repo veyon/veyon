@@ -206,8 +206,9 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	rfbSocket openTlsSocket( const char* hostname, int port );
-	int readFromTlsSocket( rfbClient* client, char* buffer, unsigned int len );
-	int writeToTlsSocket( rfbClient* client, const char* buffer, unsigned int len );
+	int readFromTlsSocket( char* buffer, unsigned int len );
+	int writeToTlsSocket( const char* buffer, unsigned int len );
+	void closeTlsSocket();
 
 	// intervals and timeouts
 	int m_threadTerminationTimeout{DefaultThreadTerminationTimeout};

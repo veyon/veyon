@@ -771,8 +771,13 @@ int VncConnection::openTlsSocket( const char* hostname, int port )
 
 
 
-int VncConnection::readFromTlsSocket( rfbClient* client, char* buffer, unsigned int len )
+int VncConnection::readFromTlsSocket( char* buffer, unsigned int len )
 {
+	if( m_sslSocket == nullptr )
+	{
+		return -1;
+	}
+
 	if( m_sslSocket->bytesAvailable() <= 0 )
 	{
 		if( m_sslSocket->waitForReadyRead(10) == false )
@@ -787,15 +792,22 @@ int VncConnection::readFromTlsSocket( rfbClient* client, char* buffer, unsigned 
 
 
 
-int VncConnection::writeToTlsSocket( rfbClient* client, const char* buffer, unsigned int len )
+int VncConnection::writeToTlsSocket( const char* buffer, unsigned int len )
 {
-	const auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
+	if( m_sslSocket == nullptr )
 	{
-		const auto ret = connection->m_sslSocket->write( buffer, len );
-		connection->m_sslSocket->flush();
-		return ret;
+		return -1;
 	}
 
-	return -1;
+	const auto ret = m_sslSocket->write( buffer, len );
+	m_sslSocket->flush();
+	return ret;
+}
+
+
+
+void VncConnection::closeTlsSocket()
+{
+	delete m_sslSocket;
+	m_sslSocket = nullptr;
 }
