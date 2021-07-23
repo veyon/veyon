@@ -228,9 +228,10 @@ QString Logger::formatMessage( LogLevel ll, const QString& message )
 	default: break;
 	}
 
-	return QStringLiteral( "%1.%2: [%3] %4\n" ).arg(
+	return QStringLiteral( "%1.%2: [%3] [%4] %5\n" ).arg(
 				QDateTime::currentDateTime().toString( Qt::ISODate ),
 				QDateTime::currentDateTime().toString( QStringLiteral( "zzz" ) ),
+				QString::number( VeyonCore::instance()->sessionId() ),
 				messageType,
 				message.trimmed() );
 }
