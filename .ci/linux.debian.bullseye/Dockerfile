@@ -10,6 +10,7 @@ RUN \
 		libkf5itemmodels-dev \
 		xorg-dev \
 		libfakekey-dev \
+		libpng-dev libjpeg-dev zlib1g-dev liblzo2-dev \
 		libvncserver-dev \
 		libssl-dev \
 		libpam0g-dev \

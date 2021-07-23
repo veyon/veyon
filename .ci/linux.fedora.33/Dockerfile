@@ -8,6 +8,7 @@ RUN \
 		kf5-kitemmodels-devel \
 		libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel \
 		libfakekey-devel \
+		libjpeg-turbo-devel zlib-devel libpng-devel lzo-devel \
 		libvncserver-devel \
 		openssl-devel \
 		pam-devel \
