@@ -32,6 +32,7 @@
 #include "X11VncConfigurationWidget.h"
 
 extern "C" int x11vnc_main( int argc, char * * argv );
+extern "C" int hasWorkingXShm();
 
 
 BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
@@ -72,11 +73,12 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 		cmdline.append( extraArguments.split( QLatin1Char(' ') ) );
 	}
 
-	const auto systemEnv = QProcessEnvironment::systemEnvironment();
-	if( systemEnv.contains( QStringLiteral("XRDP_SESSION") ) )
+	if( hasWorkingXShm() == false )
 	{
 		cmdline.append( QStringLiteral("-noshm") );
 	}
+
+	const auto systemEnv = QProcessEnvironment::systemEnvironment();
 
 	if( m_configuration.isXDamageDisabled() ||
 		// workaround for x11vnc when running in a NX session or a Thin client LTSP session
