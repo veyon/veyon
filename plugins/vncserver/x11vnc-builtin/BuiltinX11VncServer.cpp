@@ -75,6 +75,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 
 	if( hasWorkingXShm() == false )
 	{
+		vDebug() << "X shared memory extension not available - passing -noshm to x11vnc";
 		cmdline.append( QStringLiteral("-noshm") );
 	}
 
