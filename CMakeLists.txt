@@ -180,37 +180,6 @@ if(VEYON_BUILD_LINUX)
 	include(XdgInstall)
 endif()
 
-find_package(LibVNCClient 0.9.14)
-
-if(LibVNCClient_FOUND)
-	include(CheckCSourceCompiles)
-	set(CMAKE_REQUIRED_LIBRARIES LibVNC::LibVNCClient)
-	check_c_source_compiles("
-#include <rfb/rfbclient.h>
-
-int main()
-{
-	rfbClient* client = rfbGetClient( 8, 3, 4 );
-	client->connectTimeout = 1;
-	client->readTimeout = 1;
-	return 0;
-}
-"
-	LIBVNCCLIENT_SUPPORTS_TIMEOUTS)
-	if(NOT LIBVNCCLIENT_SUPPORTS_TIMEOUTS)
-		message(FATAL_ERROR "Outdated development version of LibVNCClient found")
-	endif()
-	unset(CMAKE_REQUIRED_LIBRARIES)
-else()
-	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
-	find_package(ZLIB REQUIRED)
-	find_package(PNG REQUIRED)
-	find_package(JPEG REQUIRED)
-	find_package(LZO REQUIRED)
-	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-	find_package(Threads REQUIRED)
-endif()
-
 option(WITH_LTO "Build with link-time optimization" ON)
 option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
 option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds (requires CMake >= 3.16)" ON)
@@ -265,7 +234,7 @@ add_definitions(
 	-DQT_STRICT_ITERATORS
 )
 
-file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "*config.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
+file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
 CONFIGURE_FILES(${IN_FILES})
 
 set(CMAKE_AUTOMOC TRUE)

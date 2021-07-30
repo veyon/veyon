@@ -13,7 +13,11 @@ set(core_RESOURCES
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
 )
 
+find_package(LibVNCClient 0.9.14)
+
 if(NOT LibVNCClient_FOUND)
+	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
+	include(LibVNCServerIntegration)
 	set(libvncclient_SOURCES
 		${libvncserver_DIR}/libvncclient/cursor.c
 		${libvncserver_DIR}/libvncclient/listen.c

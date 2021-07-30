@@ -4,24 +4,7 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 
 find_package(LibVNCServer 0.9.8)
 if(NOT LibVNCServer_FOUND)
-	### BEGIN: libvncserver configuration
 	include(LibVNCServerIntegration)
-
-	set(_RFB_RFBCONFIG_H TRUE)
-	set(LIBVNCSERVER_HAVE_LIBJPEG TRUE)
-	set(LIBVNCSERVER_HAVE_LZO TRUE)
-	set(LIBVNCSERVER_HAVE_LIBPNG TRUE)
-	set(LIBVNCSERVER_HAVE_LIBPTHREAD TRUE)
-	set(LIBVNCSERVER_HAVE_LIBZ TRUE)
-	set(LIBVNCSERVER_HAVE_LIBSSL TRUE)
-	set(LIBVNCSERVER_ALLOW24BPP TRUE)
-	set(LIBVNCSERVER_IPv6 TRUE)
-	### END: libvncserver configuration
-
-	# write libvncserver configuration header
-	file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
-	configure_file(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
-
 endif()
 
 set(FULL_PACKAGE_NAME "Veyon")
@@ -238,7 +221,6 @@ target_link_libraries(builtin-x11vnc-server
 )
 
 if(LibVNCServer_FOUND)
-	#target_include_directories(builtin-x11vnc-server PRIVATE ${3rdparty_DIR} ${x11vnc_DIR}/src)
 	target_link_libraries(builtin-x11vnc-server LibVNC::LibVNCServer)
 else()
 	target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common)
