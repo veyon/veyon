@@ -12,5 +12,7 @@ build_veyon_plugin(headless-vnc-server
 
 target_link_libraries(headless-vnc-server LibVNC::LibVNCServer)
 
+target_compile_options(headless-vnc-server PRIVATE -Wno-parentheses)
+
 endif()
 

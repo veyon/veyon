@@ -12,7 +12,11 @@ FILE(GLOB veyoncore_SOURCES
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
+find_package(LibVNCClient 0.9.13)
+
 if(NOT LibVNCClient_FOUND)
+	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
+	include(LibVNCServerIntegration)
 	set(libvncclient_SOURCES
 		${libvncserver_DIR}/libvncclient/cursor.c
 		${libvncserver_DIR}/libvncclient/listen.c

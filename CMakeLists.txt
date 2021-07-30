@@ -159,36 +159,6 @@ IF(VEYON_BUILD_LINUX)
 	INCLUDE(XdgInstall)
 ENDIF()
 
-find_package(LibVNCClient 0.9.13)
-
-if(LibVNCClient_FOUND)
-	include(CheckCSourceCompiles)
-	set(CMAKE_REQUIRED_LIBRARIES LibVNC::LibVNCClient)
-	check_c_source_compiles("
-#include <rfb/rfbclient.h>
-
-int main()
-{
-	rfbClient* client = rfbGetClient( 8, 3, 4 );
-	client->connectTimeout = 1;
-	client->readTimeout = 1;
-	return 0;
-}
-"
-	LIBVNCCLIENT_SUPPORTS_TIMEOUTS)
-	if(NOT LIBVNCCLIENT_SUPPORTS_TIMEOUTS)
-		message(FATAL_ERROR "Outdated development version of LibVNCClient found")
-	endif()
-	unset(CMAKE_REQUIRED_LIBRARIES)
-else()
-	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
-	find_package(ZLIB REQUIRED)
-	find_package(PNG REQUIRED)
-	find_package(JPEG REQUIRED)
-	find_package(LZO REQUIRED)
-	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-	find_package(Threads REQUIRED)
-endif()
 
 option(WITH_CORE_ONLY "Build core library only" OFF)
 option(WITH_ADDONS "Build add-ons" OFF)
@@ -237,7 +207,7 @@ ENDIF()
 
 add_definitions(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050e00 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY -DQT_NO_KEYWORDS)
 
-FILE(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "*config.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
+FILE(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
 CONFIGURE_FILES(${IN_FILES})
 
 SET(CMAKE_AUTOMOC TRUE)
