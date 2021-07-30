@@ -20,6 +20,7 @@ static int handleXError( Display* display, XErrorEvent* error )
 	if( xshmOpCode > 0 && error->request_code == xshmOpCode )
 	{
 		xshmAttachErrorCount++;
+		return 0;
 	}
 
 	return defaultXErrorHandler(display, error);
@@ -32,7 +33,11 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 	shm->shmid = -1;
 	shm->shmaddr = (char *) -1;
 
-	XImage* xim = XShmCreateImage(display, NULL, 32, ZPixmap, NULL, shm, 1, 1);
+	int screen = DefaultScreen(display);
+
+	XImage* xim = XShmCreateImage(display, DefaultVisual(display, screen),
+								   DefaultDepth(display, screen),
+								   ZPixmap, NULL, shm, 1, 1);
 	if( xim == NULL )
 	{
 		return NULL;
@@ -45,17 +50,25 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 		return xim;
 	}
 
-	shm->shmaddr = xim->data = (char *) shmat(shm->shmid, 0, 0);
+	shm->shmaddr = xim->data = (char *) shmat(shm->shmid, NULL, 0);
+	shm->readOnly = 1;
 
 	if( shm->shmaddr == (char *)-1 )
 	{
 		return xim;
 	}
 
-	if( !XShmAttach(display, shm) )
+	if( XShmAttach(display, shm) )
+	{
+		XSync(display, False);
+		XShmDetach(display, shm);
+	}
+	else
 	{
 		xshmAttachErrorCount++;
 	}
+
+	XSync(display, False);
 
 	return xim;
 }
@@ -94,14 +107,16 @@ int hasWorkingXShm()
 	XShmSegmentInfo shm;
 	XImage* xim = createXShmTestImage(display, &shm);
 
-	XShmDetach(display, &shm);
-	XDestroyImage(xim);
+	XSetErrorHandler(defaultXErrorHandler);
+
+	if( xim )
+	{
+		XDestroyImage(xim);
+	}
 
 	shm_delete(&shm);
 
 	XCloseDisplay(display);
-
-	XSetErrorHandler(defaultXErrorHandler);
 
 	return xshmAttachErrorCount == 0;
 }
