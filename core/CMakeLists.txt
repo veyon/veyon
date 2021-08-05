@@ -13,7 +13,29 @@ set(core_RESOURCES
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
 )
 
-find_package(LibVNCClient 0.9.14)
+find_package(LibVNCClient 0.9.13)
+
+if(LibVNCClient_FOUND)
+	include(CheckCSourceCompiles)
+	set(CMAKE_REQUIRED_LIBRARIES LibVNC::LibVNCClient)
+	check_c_source_compiles("
+		#include <rfb/rfbclient.h>
+
+		int main()
+		{
+		rfbClient* client = rfbGetClient( 8, 3, 4 );
+		client->ReadFromSocketProc = nullptr;
+		client->WriteToSocketProc = nullptr;
+		return 0;
+		}
+		"
+		LIBVNCCLIENT_SUPPORTS_CUSTOM_SOCKET_IO)
+	if(NOT LIBVNCCLIENT_SUPPORTS_CUSTOM_SOCKET_IO)
+		message(WARNING "Outdated development version of LibVNCClient found")
+		unset(LibVNCClient_FOUND)
+	endif()
+	unset(CMAKE_REQUIRED_LIBRARIES)
+endif()
 
 if(NOT LibVNCClient_FOUND)
 	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
