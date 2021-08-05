@@ -1,3 +1,5 @@
+remove_definitions(-DUNICODE -D_UNICODE)
+
 add_subdirectory(vnchooks)
 
 include(BuildVeyonPlugin)

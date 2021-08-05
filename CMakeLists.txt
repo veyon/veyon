@@ -96,6 +96,7 @@ endif()
 # set up basic platform variables
 if(WIN32)
 	set(VEYON_BUILD_WIN32 1)
+	add_definitions(-DUNICODE -D_UNICODE)
 endif()
 if(APPLE)
 	set(VEYON_BUILD_APPLE 1)
