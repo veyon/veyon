@@ -14,6 +14,7 @@ build-linux:
         - centos.8.3
         - debian.stretch
         - debian.buster
+        - debian.bullseye
         - fedora.33
         - fedora.34
         - opensuse.15.2
