@@ -1,9 +1,5 @@
 INCLUDE(BuildVeyonPlugin)
 
-add_definitions(-DUNICODE -D_UNICODE)
-
-set(WITH_PCH OFF)
-
 build_veyon_plugin(windows-platform
 	WindowsPlatformPlugin.cpp
 	WindowsPlatformConfigurationPage.h
@@ -63,4 +59,4 @@ TARGET_INCLUDE_DIRECTORIES(windows-platform PRIVATE
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
 TARGET_COMPILE_DEFINITIONS(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 TARGET_COMPILE_OPTIONS(windows-platform PRIVATE "-Wno-unknown-pragmas")
-set_source_files_properties(WindowsNetworkFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
+set_source_files_properties(WindowsNetworkFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)
