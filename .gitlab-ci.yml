@@ -17,6 +17,7 @@ build-linux:
         - fedora.33
         - fedora.34
         - opensuse.15.2
+        - opensuse.15.3
         - ubuntu.bionic
         - ubuntu.focal
   artifacts:
