@@ -9,6 +9,7 @@ find_package(JPEG REQUIRED)
 find_package(LZO REQUIRED)
 
 set(ultravnc_CXX_SOURCES
+	${ultravnc_DIR}/winvnc/winvnc/MouseSimulator.cpp
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vistahook.cpp
