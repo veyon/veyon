@@ -20,7 +20,7 @@ set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}-${CPACK_SYSTEM_NAME}")
 set(CPACK_PACKAGE_CONTACT "Tobias Junghans <tobydox@veyon.io>")
 set(CPACK_PACKAGE_HOMEPAGE "https://veyon.io")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open source computer monitoring and classroom management")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Cross-platform computer control and classroom management")
 set(CPACK_PACKAGE_VENDOR "Veyon Solutions")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
@@ -29,23 +29,23 @@ set(CPACK_SOURCE_IGNORE_FILES "${CMAKE_SOURCE_DIR}/build/;${CMAKE_SOURCE_DIR}/.g
 set(CPACK_STRIP_FILES  TRUE)
 
 # DEB package
-set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Open source computer monitoring and classroom management software
-  Veyon is a free and open source software for computer monitoring and classroom
-  management supporting Windows and Linux. It enables teachers to view and control
-  computer labs and interact with students. Veyon is available in many different
-  languages and provides numerous features supporting teachers and administrators
-  at their daily work:
-  .
-  * Overview: monitor all computers in one or multiple locations or classrooms
-  * Remote access: view or control computers to watch and support users
-  * Demo: broadcast the teacher's screen in realtime (fullscreen/window)
-  * Screen lock: draw attention to what matters right now
-  * Communication: send text messages to students
-  * Start and end lessons: log in and log out users all at once
-  * Screenshots: record learning progress and document infringements
-  * Programs & websites: launch programs and open website URLs remotely
-  * Teaching material: distribute and open documents, images and videos easily
-  * Administration: power on/off and reboot computers remotely")
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION
+"Veyon is a free and open source software for monitoring and controlling
+computers across multiple platforms. Veyon supports you in teaching in digital
+learning environments, performing virtual trainings or giving remote support.
+
+The following features are available in Veyon:
+
+* Overview: monitor all computers in one or multiple locations or classrooms
+* Remote access: view or control computers to watch and support users
+* Demo: broadcast the teacher's screen in realtime (fullscreen/window)
+* Screen lock: draw attention to what matters right now
+* Communication: send text messages to students
+* Start and end lessons: log in and log out users all at once
+* Screenshots: record learning progress and document infringements
+* Programs & websites: launch programs and open website URLs remotely
+* Teaching material: distribute and open documents, images and videos easily
+* Administration: power on/off and reboot computers remotely")
 set(CPACK_DEBIAN_PACKAGE_SECTION "Education")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins, qml-module-qtquick2, qml-module-qtquick-dialogs, qml-module-qtquick-layouts, qml-module-qtqml-models2, qml-module-qtquick-controls2, qml-module-qtquick-window2")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
