@@ -22,6 +22,7 @@
  *
  */
 
+#include <QElapsedTimer>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QMutexLocker>
