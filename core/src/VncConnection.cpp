@@ -748,7 +748,7 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 
 
-int VncConnection::openTlsSocket( const char* hostname, int port )
+rfbSocket VncConnection::openTlsSocket( const char* hostname, int port )
 {
 	delete m_sslSocket;
 
