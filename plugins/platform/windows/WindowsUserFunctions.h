@@ -49,7 +49,7 @@ public:
 
 
 private:
-	static QString domainController();
+	static QString domainController( const QString& domainName = {} );
 	static QStringList domainUserGroups();
 	static QStringList domainGroupsOfUser( const QString& username );
 

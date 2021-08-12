@@ -279,11 +279,14 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 
 
 
-QString WindowsUserFunctions::domainController()
+QString WindowsUserFunctions::domainController( const QString& domainName )
 {
+	const auto domainNamePointer = domainName.isEmpty() ? nullptr
+														: WindowsCoreFunctions::toConstWCharArray(domainName);
+
 	PDOMAIN_CONTROLLER_INFO dcInfo;
 
-	const auto dsResult = DsGetDcName( nullptr, nullptr, nullptr, nullptr, DS_DIRECTORY_SERVICE_REQUIRED, &dcInfo );
+	const auto dsResult = DsGetDcName( nullptr, domainNamePointer, nullptr, nullptr, DS_DIRECTORY_SERVICE_REQUIRED, &dcInfo );
 	if( dsResult == ERROR_SUCCESS )
 	{
 		const auto dcName = QString::fromUtf16( reinterpret_cast<const ushort *>( dcInfo->DomainControllerName ) ).
@@ -297,7 +300,7 @@ QString WindowsUserFunctions::domainController()
 	vWarning() << "DsGetDcName() failed with" << dsResult << "falling back to NetGetDCName()";
 
 	LPBYTE outBuffer = nullptr;
-	const auto netResult = NetGetDCName( nullptr, nullptr, &outBuffer );
+	const auto netResult = NetGetDCName( nullptr, domainNamePointer, &outBuffer );
 	if( netResult == NERR_Success )
 	{
 		const auto dcName = QString::fromUtf16( reinterpret_cast<const ushort *>( outBuffer ) );
