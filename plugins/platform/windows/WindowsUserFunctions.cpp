@@ -465,18 +465,18 @@ QStringList WindowsUserFunctions::localUserGroups()
 
 QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 {
-	QStringList groupList;
-
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetUserGetLocalGroups( nullptr, WindowsCoreFunctions::toConstWCharArray( username ),
-							   0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
-							   &entriesRead, &totalEntries ) == NERR_Success )
+	const auto result = NetUserGetLocalGroups( nullptr, WindowsCoreFunctions::toConstWCharArray(username),
+											   0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+											   &entriesRead, &totalEntries );
+	if( result == NERR_Success )
 	{
 		const auto* localGroupUsersInfo = reinterpret_cast<LOCALGROUP_USERS_INFO_0 *>( outBuffer );
 
+		QStringList groupList;
 		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
@@ -486,15 +486,17 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 
 		if( entriesRead < totalEntries )
 		{
-			vWarning() << "not all local groups fetched for user" << username;
+			vWarning() << "not all local groups fetched for user" << username << entriesRead << totalEntries;
 		}
 
 		NetApiBufferFree( outBuffer );
+
+		return groupList;
 	}
 	else
 	{
-		vWarning() << "could not fetch local groups for user" << username;
+		vWarning() << "failed to fetch local groups for user" << username << result;
 	}
 
-	return groupList;
+	return {};
 }
