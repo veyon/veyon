@@ -369,7 +369,7 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 
 	if( !LookupPrivilegeValue( nullptr, privilegeName, &luid ) )
 	{
-		vCritical() << "could lookup privilege value";
+		vCritical() << "could not lookup privilege value";
 		return false;
 	}
 
