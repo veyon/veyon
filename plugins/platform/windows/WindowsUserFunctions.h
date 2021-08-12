@@ -51,6 +51,7 @@ public:
 
 
 private:
+	static QString domainFromUsername( const QString& username );
 	static QString domainController( const QString& domainName = {} );
 	static QStringList domainUserGroups();
 	static QStringList domainGroupsOfUser( const QString& username );
