@@ -47,26 +47,23 @@
 
 QString WindowsUserFunctions::fullName( const QString& username )
 {
-	QString fullName;
+	QString dcName;
 
-	auto realUsername = username;
-	LPWSTR domainController = nullptr;
-
-	const auto nameParts = username.split( QLatin1Char('\\') );
-	if( nameParts.size() > 1 )
+	const auto domain = domainFromUsername(username);
+	if( domain.isEmpty() == false )
 	{
-		realUsername = nameParts[1];
-		if( NetGetDCName( nullptr, WindowsCoreFunctions::toConstWCharArray( nameParts[0] ),
-						  reinterpret_cast<LPBYTE *>( &domainController ) ) != NERR_Success )
-		{
-			domainController = nullptr;
-		}
+		dcName = domainController(domain);
 	}
 
+	const auto usernameWithoutDomain = VeyonCore::stripDomain(username);
+
 	LPUSER_INFO_2 buf = nullptr;
-	const auto nStatus = NetUserGetInfo( domainController,
-										 WindowsCoreFunctions::toConstWCharArray( realUsername ),
+	const auto nStatus = NetUserGetInfo( dcName.isEmpty() ? nullptr
+														  : WindowsCoreFunctions::toConstWCharArray(dcName),
+										 WindowsCoreFunctions::toConstWCharArray( usernameWithoutDomain ),
 										 2, reinterpret_cast<LPBYTE *>( &buf ) );
+
+	QString fullName;
 
 	if( nStatus == NERR_Success && buf != nullptr )
 	{
@@ -76,11 +73,6 @@ QString WindowsUserFunctions::fullName( const QString& username )
 	if( buf != nullptr )
 	{
 		NetApiBufferFree( buf );
-	}
-
-	if( domainController != nullptr )
-	{
-		NetApiBufferFree( domainController );
 	}
 
 	return fullName;
