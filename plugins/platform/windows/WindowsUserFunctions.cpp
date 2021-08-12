@@ -22,6 +22,8 @@
  *
  */
 
+#include <dsgetdc.h>
+
 #include <QBuffer>
 
 #include "DesktopInputController.h"
@@ -279,21 +281,35 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 
 QString WindowsUserFunctions::domainController()
 {
-	QString dcName;
-	LPBYTE outBuffer = nullptr;
+	PDOMAIN_CONTROLLER_INFO dcInfo;
 
-	if( NetGetDCName( nullptr, nullptr, &outBuffer ) == NERR_Success )
+	const auto dsResult = DsGetDcName( nullptr, nullptr, nullptr, nullptr, DS_DIRECTORY_SERVICE_REQUIRED, &dcInfo );
+	if( dsResult == ERROR_SUCCESS )
 	{
-		dcName = QString::fromUtf16( reinterpret_cast<const ushort *>( outBuffer ) );
+		const auto dcName = QString::fromUtf16( reinterpret_cast<const ushort *>( dcInfo->DomainControllerName ) ).
+							replace( QLatin1Char('\\'), QString() );
+
+		NetApiBufferFree( dcInfo );
+
+		return dcName;
+	}
+
+	vWarning() << "DsGetDcName() failed with" << dsResult << "falling back to NetGetDCName()";
+
+	LPBYTE outBuffer = nullptr;
+	const auto netResult = NetGetDCName( nullptr, nullptr, &outBuffer );
+	if( netResult == NERR_Success )
+	{
+		const auto dcName = QString::fromUtf16( reinterpret_cast<const ushort *>( outBuffer ) );
 
 		NetApiBufferFree( outBuffer );
-	}
-	else
-	{
-		vWarning() << "could not query domain controller name!";
+
+		return dcName;
 	}
 
-	return dcName;
+	vWarning() << "querying domain controller for domain" << domainName << "failed with:" << netResult;
+
+	return {};
 }
 
 
