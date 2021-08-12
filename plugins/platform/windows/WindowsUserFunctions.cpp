@@ -383,23 +383,22 @@ QStringList WindowsUserFunctions::domainUserGroups()
 
 QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 {
-	const auto dc = domainController();
-
-	QStringList groupList;
+	const auto dc = domainController( domainFromUsername(username) );
+	const auto usernameWithoutDomain = VeyonCore::stripDomain(username);
 
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	const auto usernameWithoutDomain = VeyonCore::stripDomain( username );
-
-	if( NetUserGetGroups( WindowsCoreFunctions::toConstWCharArray( dc ),
-						  WindowsCoreFunctions::toConstWCharArray( usernameWithoutDomain ),
-						  0, &outBuffer, MAX_PREFERRED_LENGTH,
-						  &entriesRead, &totalEntries ) == NERR_Success )
+	const auto status = NetUserGetGroups( WindowsCoreFunctions::toConstWCharArray(dc),
+										  WindowsCoreFunctions::toConstWCharArray(usernameWithoutDomain),
+										  0, &outBuffer, MAX_PREFERRED_LENGTH,
+										  &entriesRead, &totalEntries );
+	if( status == NERR_Success )
 	{
 		const auto* groupUsersInfo = reinterpret_cast<GROUP_USERS_INFO_0 *>( outBuffer );
 
+		QStringList groupList;
 		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
@@ -409,17 +408,20 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 
 		if( entriesRead < totalEntries )
 		{
-			vWarning() << "not all domain groups fetched for user" << username;
+			vWarning() << "not all domain groups fetched for user" << username << "from DC" << dc
+					   << entriesRead << totalEntries;
 		}
 
 		NetApiBufferFree( outBuffer );
+
+		return groupList;
 	}
 	else
 	{
-		vWarning() << "could not fetch domain groups for user" << username;
+		vWarning() << "failed to fetch domain groups for user" << username << "from DC" << dc << status;
 	}
 
-	return groupList;
+	return {};
 }
 
 
