@@ -172,7 +172,7 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 				WindowsCoreFunctions::toConstWCharArray( binaryPath ),		// service's binary
 				nullptr,			// no load ordering group
 				nullptr,			// no tag identifier
-				L"Tcpip\0RpcSs\0\0",		// dependencies
+				L"Tcpip\0RpcSs\0LSM\0LanmanWorkstation\0\0",	// dependencies
 				nullptr,			// LocalSystem account
 				nullptr );			// no password
 
