@@ -344,17 +344,17 @@ QStringList WindowsUserFunctions::domainUserGroups()
 {
 	const auto dc = domainController();
 
-	QStringList groupList;
-
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetGroupEnum( WindowsCoreFunctions::toConstWCharArray( dc ), 0, &outBuffer, MAX_PREFERRED_LENGTH,
-					  &entriesRead, &totalEntries, nullptr ) == NERR_Success )
+	const auto status = NetGroupEnum( WindowsCoreFunctions::toConstWCharArray(dc), 0, &outBuffer, MAX_PREFERRED_LENGTH,
+									  &entriesRead, &totalEntries, nullptr );
+	if( status == NERR_Success )
 	{
 		const auto* groupInfos = reinterpret_cast<GROUP_INFO_0 *>( outBuffer );
 
+		QStringList groupList;
 		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
@@ -364,17 +364,19 @@ QStringList WindowsUserFunctions::domainUserGroups()
 
 		if( entriesRead < totalEntries )
 		{
-			vWarning() << "not all domain groups fetched";
+			vWarning() << "not all domain groups fetched from DC" << dc << entriesRead << totalEntries;
 		}
 
 		NetApiBufferFree( outBuffer );
+
+		return groupList;
 	}
 	else
 	{
-		vWarning() << "could not fetch domain groups";
+		vWarning() << "failed to fetch domain groups from DC" << dc << status;
 	}
 
-	return groupList;
+	return {};
 }
 
 
