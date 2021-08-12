@@ -279,6 +279,19 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 
 
 
+QString WindowsUserFunctions::domainFromUsername( const QString& username )
+{
+	const auto nameParts = username.split( QLatin1Char('\\') );
+	if( nameParts.size() > 1 )
+	{
+		return nameParts[0];
+	}
+
+	return {};
+}
+
+
+
 QString WindowsUserFunctions::domainController( const QString& domainName )
 {
 	const auto domainNamePointer = domainName.isEmpty() ? nullptr
