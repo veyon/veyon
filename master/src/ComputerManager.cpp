@@ -329,8 +329,7 @@ QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, c
 		const auto entryIndex = model->index(i, 0, parent);
 		const auto objectType = NetworkObject::Type(model->data(entryIndex, NetworkObjectModel::TypeRole).toInt());
 
-		if( objectType == NetworkObject::Type::Location ||
-			objectType == NetworkObject::Type::DesktopGroup )
+		if( NetworkObject::isContainer(objectType) )
 		{
 			const auto location = findLocationOfComputer( hostNames, hostAddresses, entryIndex );
 			if( location.isEmpty() == false )
@@ -370,22 +369,19 @@ ComputerList ComputerManager::getComputersAtLocation( const QString& locationNam
 		const auto entryIndex = model->index(i, 0, parent);
 		const auto objectType = NetworkObject::Type(model->data(entryIndex, NetworkObjectModel::TypeRole).toInt());
 
-		switch( objectType )
+		if( NetworkObject::isContainer(objectType) )
 		{
-		case NetworkObject::Type::Location:
-		case NetworkObject::Type::DesktopGroup:
 			if( model->data( entryIndex, NetworkObjectModel::NameRole ).toString() == locationName )
 			{
 				computers += getComputersAtLocation( locationName, entryIndex );
 			}
-			break;
-		case NetworkObject::Type::Host:
+		}
+		else if( objectType == NetworkObject::Type::Host )
+		{
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
 								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
-			break;
-		default: break;
 		}
 	}
 
@@ -411,22 +407,19 @@ ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 			continue;
 		}
 
-		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
+		const auto objectType = NetworkObject::Type( model->data(entryIndex, NetworkObjectModel::TypeRole).toInt() );
 
-		switch( objectType )
+		if( NetworkObject::isContainer(objectType) )
 		{
-		case NetworkObject::Type::Location:
-		case NetworkObject::Type::DesktopGroup:
 			computers += selectedComputers( entryIndex );
-			break;
-		case NetworkObject::Type::Host:
+		}
+		else if( objectType == NetworkObject::Type::Host )
+		{
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
 								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString(),
 								   model->data( parent, NetworkObjectModel::NameRole ).toString() );
-			break;
-		default: break;
 		}
 	}
 
@@ -445,10 +438,9 @@ QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObject
 	{
 		QModelIndex entryIndex = model->index( i, 0, parent );
 
-		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
+		const auto objectType = NetworkObject::Type( model->data(entryIndex, NetworkObjectModel::TypeRole).toInt() );
 
-		if( objectType == NetworkObject::Type::Location ||
-			objectType == NetworkObject::Type::DesktopGroup )
+		if( NetworkObject::isContainer(objectType) )
 		{
 			QModelIndex index = findNetworkObject( networkObjectUid, entryIndex );
 			if( index.isValid() )

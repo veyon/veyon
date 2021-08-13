@@ -62,9 +62,7 @@ void NetworkObjectDirectory::setUpdateInterval( int interval )
 
 const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& parent ) const
 {
-	if( parent.type() == NetworkObject::Type::Root ||
-		parent.type() == NetworkObject::Type::Location ||
-		parent.type() == NetworkObject::Type::DesktopGroup )
+	if( parent.type() == NetworkObject::Type::Root || parent.isContainer() )
 	{
 		const auto it = m_objects.constFind( parent.modelId() );
 		if( it != m_objects.end() )
@@ -288,8 +286,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 		Q_EMIT objectsAboutToBeInserted( parent, objectList.count(), 1 );
 
 		objectList.append( completeNetworkObject );
-		if( completeNetworkObject.type() == NetworkObject::Type::Location ||
-			completeNetworkObject.type() == NetworkObject::Type::DesktopGroup )
+		if( completeNetworkObject.isContainer() )
 		{
 			m_objects[completeNetworkObject.modelId()] = {};
 		}
@@ -320,8 +317,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 	{
 		if( removeObjectFilter( *it ) )
 		{
-			if( it->type() == NetworkObject::Type::Location ||
-				it->type() == NetworkObject::Type::DesktopGroup )
+			if( it->isContainer() )
 			{
 				groupsToRemove.append( it->modelId() );
 			}
