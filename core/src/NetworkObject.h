@@ -48,6 +48,7 @@ public:
 		Location,
 		Host,
 		Label,
+		SubDirectory,
 		DesktopGroup
 	} ;
 	Q_ENUM(Type)
@@ -127,6 +128,7 @@ public:
 	static bool isContainer( Type type )
 	{
 		return type == Type::Location ||
+			   type == Type::SubDirectory ||
 			   type == Type::DesktopGroup;
 	}
 
