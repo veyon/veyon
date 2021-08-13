@@ -26,6 +26,7 @@
 #include "NetworkObjectDirectoryManager.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 #include "PluginManager.h"
+#include "NestedNetworkObjectDirectory.h"
 
 
 NetworkObjectDirectoryManager::NetworkObjectDirectoryManager( QObject* parent ) :
@@ -49,8 +50,20 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::configuredDirectory()
 {
 	if( m_configuredDirectory == nullptr )
 	{
-		m_configuredDirectory = createDirectory( VeyonCore::config().enabledNetworkObjectDirectoryPlugins().value(0),
-												 this );
+		const auto enabledDirectories = VeyonCore::config().enabledNetworkObjectDirectoryPlugins();
+		if( enabledDirectories.count() == 1 )
+		{
+			m_configuredDirectory = createDirectory( enabledDirectories.constFirst(), this );
+		}
+		else if( enabledDirectories.count() > 1 )
+		{
+			const auto nestedDirectory = new NestedNetworkObjectDirectory( this );
+			for( const auto& directoryUid : enabledDirectories )
+			{
+				nestedDirectory->addSubDirectory( createDirectory( directoryUid, this ) );
+			}
+			m_configuredDirectory = nestedDirectory;
+		}
 	}
 
 	return m_configuredDirectory;
