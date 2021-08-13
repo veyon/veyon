@@ -12,14 +12,14 @@
 #include <X11/extensions/XShm.h>
 
 static int xshmOpCode = 0;
-static int xshmAttachErrorCount = 0;
+static int shmErrorCount = 0;
 static XErrorHandler defaultXErrorHandler = NULL;
 
 static int handleXError( Display* display, XErrorEvent* error )
 {
 	if( xshmOpCode > 0 && error->request_code == xshmOpCode )
 	{
-		xshmAttachErrorCount++;
+		shmErrorCount++;
 		return 0;
 	}
 
@@ -33,13 +33,14 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 	shm->shmid = -1;
 	shm->shmaddr = (char *) -1;
 
-	int screen = DefaultScreen(display);
+	const int screen = DefaultScreen(display);
 
 	XImage* xim = XShmCreateImage(display, DefaultVisual(display, screen),
 								   DefaultDepth(display, screen),
 								   ZPixmap, NULL, shm, 1, 1);
 	if( xim == NULL )
 	{
+		shmErrorCount++;
 		return NULL;
 	}
 
@@ -47,14 +48,16 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 
 	if( shm->shmid == -1 )
 	{
+		shmErrorCount++;
 		return xim;
 	}
 
 	shm->shmaddr = xim->data = (char *) shmat(shm->shmid, NULL, 0);
-	shm->readOnly = 1;
+	shm->readOnly = False;
 
 	if( shm->shmaddr == (char *)-1 )
 	{
+		shmErrorCount++;
 		return xim;
 	}
 
@@ -65,7 +68,7 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 	}
 	else
 	{
-		xshmAttachErrorCount++;
+		shmErrorCount++;
 	}
 
 	XSync(display, False);
@@ -77,15 +80,9 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 
 int hasWorkingXShm()
 {
-	xshmAttachErrorCount = 0;
+	shmErrorCount = 0;
 
-	char* displayName = NULL;
-	if( getenv("DISPLAY") )
-	{
-		displayName = getenv("DISPLAY");
-	}
-
-	Display* display = XOpenDisplay(displayName);
+	Display* display = XOpenDisplay(NULL);
 	if( display == NULL )
 	{
 		return 0;
@@ -114,11 +111,21 @@ int hasWorkingXShm()
 		XDestroyImage(xim);
 	}
 
-	shm_delete(&shm);
+	if( shm.shmaddr != (char *) -1 )
+	{
+		shmdt(shm.shmaddr);
+	}
+
+	if( shm.shmid != -1 )
+	{
+		shmctl(shm.shmid, IPC_RMID, 0);
+	}
+
+	XSync(display, False);
 
 	XCloseDisplay(display);
 
-	return xshmAttachErrorCount == 0;
+	return shmErrorCount == 0;
 }
 
 #else
