@@ -78,7 +78,8 @@ void BuiltinDirectoryConfigurationPage::applyConfiguration()
 void BuiltinDirectoryConfigurationPage::addLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.add( NetworkObject( NetworkObject::Type::Location, tr( "New location" ),
+	objectManager.add( NetworkObject( nullptr,
+									  NetworkObject::Type::Location, tr( "New location" ),
 									  {},
 									  QUuid::createUuid() ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
@@ -140,7 +141,8 @@ void BuiltinDirectoryConfigurationPage::addComputer()
 	}
 
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.add( NetworkObject( NetworkObject::Type::Host, tr( "New computer" ),
+	objectManager.add( NetworkObject( nullptr,
+									  NetworkObject::Type::Host, tr( "New computer" ),
 									  {},
 									  QUuid::createUuid(),
 									  currentLocationUid ) );
@@ -195,7 +197,7 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 	const auto networkObjects = m_configuration.networkObjects();
 	for( const auto& networkObjectValue : networkObjects )
 	{
-		const NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject{networkObjectValue.toObject()};
 		if( networkObject.type() == NetworkObject::Type::Location )
 		{
 			auto item = new QTableWidgetItem( networkObject.name() );
@@ -227,7 +229,7 @@ void BuiltinDirectoryConfigurationPage::populateComputers()
 	const auto networkObjects = m_configuration.networkObjects();
 	for( const auto& networkObjectValue : networkObjects )
 	{
-		const NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject{networkObjectValue.toObject()};
 
 		if( networkObject.type() == NetworkObject::Type::Host &&
 			networkObject.parentUid() == parentUid )
@@ -254,7 +256,8 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentLocationObject() const
 	const auto selectedLocation = ui->locationTableWidget->currentItem();
 	if( selectedLocation )
 	{
-		return NetworkObject( NetworkObject::Type::Location,
+		return NetworkObject( nullptr,
+							  NetworkObject::Type::Location,
 							  selectedLocation->text(),
 							  {},
 							  selectedLocation->data( NetworkObjectModel::UidRole ).toUuid(),
@@ -275,7 +278,8 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentComputerObject() const
 		auto hostAddressItem = ui->computerTableWidget->item( row, 1 );
 		auto macAddressItem = ui->computerTableWidget->item( row, 2 );
 
-		return NetworkObject( NetworkObject::Type::Host,
+		return NetworkObject( nullptr,
+							  NetworkObject::Type::Host,
 							  nameItem->text(),
 							  {
 								  { NetworkObject::propertyKey(NetworkObject::Property::HostAddress), hostAddressItem->text().trimmed() },

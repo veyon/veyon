@@ -30,6 +30,8 @@
 #include "HashList.h"
 #include "VeyonCore.h"
 
+class NetworkObjectDirectory;
+
 class VEYON_CORE_EXPORT NetworkObject
 {
 	Q_GADGET
@@ -64,18 +66,24 @@ public:
 	Q_ENUM(Property)
 
 	NetworkObject( const NetworkObject& other );
-	explicit NetworkObject( Type type = Type::None,
+	explicit NetworkObject( NetworkObjectDirectory* directory = nullptr,
+							Type type = Type::None,
 							const Name& name = {},
 							const Properties& properties = {},
 							Uid uid = {},
 							Uid parentUid = {} );
-	explicit NetworkObject( const QJsonObject& jsonObject );
+	explicit NetworkObject( const QJsonObject& jsonObject, NetworkObjectDirectory* directory = nullptr );
 	~NetworkObject() = default;
 
 	NetworkObject& operator=( const NetworkObject& other );
 
 	bool operator==( const NetworkObject& other ) const;
 	bool exactMatch( const NetworkObject& other ) const;
+
+	NetworkObjectDirectory* directory() const
+	{
+		return m_directory;
+	}
 
 	bool isValid() const
 	{
@@ -131,6 +139,7 @@ public:
 private:
 	Uid calculateUid() const;
 
+	NetworkObjectDirectory* m_directory;
 	Properties m_properties;
 	Type m_type;
 	QString m_name;

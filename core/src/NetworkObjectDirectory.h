@@ -53,6 +53,11 @@ public:
 	NetworkObject::ModelId childId( NetworkObject::ModelId parent, int index ) const;
 	NetworkObject::ModelId parentId( NetworkObject::ModelId child ) const;
 
+	const NetworkObject& rootObject() const
+	{
+		return m_rootObject;
+	}
+
 	NetworkObject::ModelId rootId() const;
 
 	virtual NetworkObjectList queryObjects( NetworkObject::Type type,
@@ -74,8 +79,8 @@ protected:
 private:
 	QTimer* m_updateTimer{nullptr};
 	QHash<NetworkObject::ModelId, NetworkObjectList> m_objects{};
-	NetworkObject m_invalidObject{NetworkObject::Type::None};
-	NetworkObject m_rootObject{NetworkObject::Type::Root};
+	NetworkObject m_invalidObject{this, NetworkObject::Type::None};
+	NetworkObject m_rootObject{this, NetworkObject::Type::Root};
 	NetworkObjectList m_defaultObjectList{};
 
 Q_SIGNALS:

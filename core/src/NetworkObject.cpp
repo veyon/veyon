@@ -34,6 +34,7 @@ const QUuid NetworkObject::networkObjectNamespace( QStringLiteral( "8a6c479e-243
 
 
 NetworkObject::NetworkObject( const NetworkObject& other ) :
+	m_directory( other.directory() ),
 	m_properties( other.properties() ),
 	m_type( other.type() ),
 	m_name( other.name() ),
@@ -45,11 +46,13 @@ NetworkObject::NetworkObject( const NetworkObject& other ) :
 
 
 
-NetworkObject::NetworkObject( NetworkObject::Type type,
+NetworkObject::NetworkObject( NetworkObjectDirectory* directory,
+							  NetworkObject::Type type,
 							  const Name& name,
 							  const QVariantMap& properties,
 							  Uid uid,
 							  Uid parentUid ) :
+	m_directory( directory ),
 	m_properties( properties ),
 	m_type( type ),
 	m_name( name ),
@@ -66,7 +69,8 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 
 
 
-NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
+NetworkObject::NetworkObject( const QJsonObject& jsonObject, NetworkObjectDirectory* directory ) :
+	m_directory( directory ),
 	m_properties( jsonObject.toVariantMap() ),
 	m_type( Type( jsonObject.value( propertyKey( Property::Type ) ).toInt() ) ),
 	m_name( jsonObject.value( propertyKey( Property::Name ) ).toString() ),
@@ -80,6 +84,7 @@ NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
 
 NetworkObject& NetworkObject::operator=( const NetworkObject& other )
 {
+	m_directory = other.directory();
 	m_type = other.type();
 	m_name = other.name();
 	m_uid = other.uid();
@@ -100,7 +105,8 @@ bool NetworkObject::operator==( const NetworkObject& other ) const
 
 bool NetworkObject::exactMatch( const NetworkObject& other ) const
 {
-	return uid() == other.uid() &&
+	return directory() == other.directory() &&
+			uid() == other.uid() &&
 			type() == other.type() &&
 			name() == other.name() &&
 			properties() == other.properties() &&

@@ -44,23 +44,22 @@ void BuiltinDirectory::update()
 	const auto networkObjects = m_configuration.networkObjects();
 
 	NetworkObjectUidList groupUids;
-	NetworkObject rootObject{ NetworkObject::Type::Root };
 
 	for( const auto& networkObjectValue : networkObjects )
 	{
-		const NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject{networkObjectValue.toObject(), this};
 
 		if( networkObject.type() == NetworkObject::Type::Location )
 		{
 			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
-			addOrUpdateObject( networkObject, rootObject );
+			addOrUpdateObject( networkObject, rootObject() );
 
 			updateLocation( networkObject, networkObjects );
 		}
 	}
 
-	removeObjects( rootObject, [groupUids]( const NetworkObject& object ) {
+	removeObjects( rootObject(), [groupUids]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Type::Location && groupUids.contains( object.uid() ) == false; } );
 }
 
@@ -72,7 +71,7 @@ void BuiltinDirectory::updateLocation( const NetworkObject& locationObject, cons
 
 	for( const auto& networkObjectValue : networkObjects )
 	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
+		NetworkObject networkObject{networkObjectValue.toObject(), this};
 
 		if( networkObject.parentUid() == locationObject.uid() )
 		{

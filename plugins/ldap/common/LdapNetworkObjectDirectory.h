@@ -37,7 +37,8 @@ public:
 									NetworkObject::Property property, const QVariant& value ) override;
 	NetworkObjectList queryParents( const NetworkObject& childId ) override;
 
-	static NetworkObject computerToObject( LdapDirectory* directory, const QString& computerDn );
+	static NetworkObject computerToObject( NetworkObjectDirectory* directory,
+						  LdapDirectory* ldapDirectory, const QString& computerDn );
 
 private:
 	void update() override;

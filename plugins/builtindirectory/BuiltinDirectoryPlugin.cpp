@@ -202,7 +202,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 
 	if( type == typeLocation() )
 	{
-		object = NetworkObject( NetworkObject::Type::Location, name );
+		object = NetworkObject( nullptr, NetworkObject::Type::Location, name );
 	}
 	else if( type == typeComputer() )
 	{
@@ -213,7 +213,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 		}
 		const auto macAddress = arguments.value( 3 );
 		const auto parent = findNetworkObject( arguments.value( 4 ) );
-		object = NetworkObject( NetworkObject::Type::Host, name,
+		object = NetworkObject( nullptr, NetworkObject::Type::Host, name,
 								{
 									{ NetworkObject::propertyKey(NetworkObject::Property::HostAddress), hostAddress },
 									{ NetworkObject::propertyKey(NetworkObject::Property::MacAddress), macAddress }
@@ -259,7 +259,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const
 	{
 		for( const auto& networkObjectValue : objects )
 		{
-			tableRows.append( dumpNetworkObject( NetworkObject( networkObjectValue.toObject() ) ) );
+			tableRows.append( dumpNetworkObject( NetworkObject{networkObjectValue.toObject()} ) );
 		}
 	}
 	else
@@ -278,7 +278,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const
 {
 	if( arguments.isEmpty() )
 	{
-		listObjects( m_configuration.networkObjects(), NetworkObject( NetworkObject::Type::None ) );
+		listObjects( m_configuration.networkObjects(), NetworkObject{} );
 	}
 	else
 	{
@@ -472,7 +472,7 @@ void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const Netwo
 {
 	for( const auto& networkObjectValue : objects )
 	{
-		const NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject{networkObjectValue.toObject()};
 
 		if( ( parent.type() == NetworkObject::Type::None && networkObject.parentUid().isNull() ) ||
 			networkObject.parentUid() == parent.uid() )
@@ -611,14 +611,15 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 		}
 		else if( parentLocation.isValid() == false )
 		{
-			parentLocation = NetworkObject( NetworkObject::Type::Location, it.key() );
+			parentLocation = NetworkObject( nullptr, NetworkObject::Type::Location, it.key() );
 			objectManager.update( parentLocation, true );
 			parentLocationUid = parentLocation.uid();
 		}
 
 		for( const NetworkObject& networkObject : qAsConst(it.value()) )
 		{
-			objectManager.update( NetworkObject( networkObject.type(),
+			objectManager.update( NetworkObject( nullptr,
+												 networkObject.type(),
 												 networkObject.name(),
 												 networkObject.properties(),
 												 {},
@@ -650,7 +651,7 @@ bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& forma
 
 	for( auto it = networkObjects.constBegin(), end = networkObjects.constEnd(); it != end; ++it )
 	{
-		const NetworkObject networkObject( it->toObject() );
+		const NetworkObject networkObject{it->toObject()};
 
 		auto currentLocation = location;
 
@@ -732,7 +733,7 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 
 		if( objectType == NetworkObject::Type::Location )
 		{
-			return NetworkObject( NetworkObject::Type::Location, name );
+			return NetworkObject( nullptr, NetworkObject::Type::Location, name );
 		}
 
 		if( location.isEmpty() && locationIndex != -1 )
@@ -748,14 +749,15 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 		{
 			name = host;
 		}
-		return NetworkObject( NetworkObject::Type::Host, name,
+		return NetworkObject( nullptr,
+							  NetworkObject::Type::Host, name,
 							  {
 								  { NetworkObject::propertyKey(NetworkObject::Property::HostAddress), host },
 								  { NetworkObject::propertyKey(NetworkObject::Property::MacAddress), mac }
 							  } );
 	}
 
-	return NetworkObject( NetworkObject::Type::None );
+	return NetworkObject{};
 }
 
 

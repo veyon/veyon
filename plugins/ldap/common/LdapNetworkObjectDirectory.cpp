@@ -56,15 +56,15 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject&
 	switch( object.type() )
 	{
 	case NetworkObject::Type::Host:
-		return { NetworkObject( NetworkObject::Type::Location,
+		return { NetworkObject( this, NetworkObject::Type::Location,
 								m_ldapDirectory.locationsOfComputer( object.property( NetworkObject::Property::DirectoryAddress ).toString() ).value( 0 ) ) };
 	case NetworkObject::Type::Location:
-		return { NetworkObject( NetworkObject::Type::Root ) };
+		return { rootObject() };
 	default:
 		break;
 	}
 
-	return { NetworkObject( NetworkObject::Type::None ) };
+	return { NetworkObject( this, NetworkObject::Type::None ) };
 }
 
 
@@ -72,18 +72,17 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject&
 void LdapNetworkObjectDirectory::update()
 {
 	const auto locations = m_ldapDirectory.computerLocations();
-	const NetworkObject rootObject( NetworkObject::Type::Root );
 
 	for( const auto& location : qAsConst( locations ) )
 	{
-		const NetworkObject locationObject( NetworkObject::Type::Location, location );
+		const NetworkObject locationObject{this, NetworkObject::Type::Location, location};
 
-		addOrUpdateObject( locationObject, rootObject );
+		addOrUpdateObject( locationObject, rootObject() );
 
 		updateLocation( locationObject );
 	}
 
-	removeObjects( NetworkObject( NetworkObject::Type::Root ), [locations]( const NetworkObject& object ) {
+	removeObjects( rootObject(), [locations]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Type::Location && locations.contains( object.name() ) == false; } );
 }
 
@@ -95,7 +94,7 @@ void LdapNetworkObjectDirectory::updateLocation( const NetworkObject& locationOb
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
-		const auto hostObject = computerToObject( &m_ldapDirectory, computer );
+		const auto hostObject = computerToObject( this, &m_ldapDirectory, computer );
 		if( hostObject.type() == NetworkObject::Type::Host )
 		{
 			addOrUpdateObject( hostObject, locationObject );
@@ -134,7 +133,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryLocations( NetworkObject::Pro
 
 	for( const auto& location : locations )
 	{
-		locationObjects.append( NetworkObject( NetworkObject::Type::Location, location ) );
+		locationObjects.append( NetworkObject{this, NetworkObject::Type::Location, location} );
 	}
 
 	return locationObjects;
@@ -177,7 +176,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Propert
 
 	for( const auto& computer : qAsConst(computers) )
 	{
-		const auto hostObject = computerToObject( &m_ldapDirectory, computer );
+		const auto hostObject = computerToObject( this, &m_ldapDirectory, computer );
 		if( hostObject.isValid() )
 		{
 			hostObjects.append( hostObject );
@@ -189,15 +188,16 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Propert
 
 
 
-NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* directory, const QString& computerDn )
+NetworkObject LdapNetworkObjectDirectory::computerToObject( NetworkObjectDirectory* directory,
+												  LdapDirectory* ldapDirectory, const QString& computerDn )
 {
-	auto displayNameAttribute = directory->computerDisplayNameAttribute();
+	auto displayNameAttribute = ldapDirectory->computerDisplayNameAttribute();
 	if( displayNameAttribute.isEmpty() )
 	{
 		displayNameAttribute = LdapClient::cn();
 	}
 
-	auto hostNameAttribute = directory->computerHostNameAttribute();
+	auto hostNameAttribute = ldapDirectory->computerHostNameAttribute();
 	if( hostNameAttribute.isEmpty() )
 	{
 		hostNameAttribute = LdapClient::cn();
@@ -205,7 +205,7 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 
 	QStringList computerAttributes{ LdapClient::cn(), displayNameAttribute, hostNameAttribute };
 
-	auto macAddressAttribute = directory->computerMacAddressAttribute();
+	auto macAddressAttribute = ldapDirectory->computerMacAddressAttribute();
 	if( macAddressAttribute.isEmpty() == false )
 	{
 		computerAttributes.append( macAddressAttribute );
@@ -213,8 +213,8 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 
 	computerAttributes.removeDuplicates();
 
-	const auto computers = directory->client().queryObjects( computerDn, computerAttributes,
-															 directory->computersFilter(), LdapClient::Scope::Base );
+	const auto computers = ldapDirectory->client().queryObjects( computerDn, computerAttributes,
+															 ldapDirectory->computersFilter(), LdapClient::Scope::Base );
 	if( computers.isEmpty() == false )
 	{
 		const auto& computerDn = computers.firstKey();
@@ -241,8 +241,8 @@ NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* direc
 		}
 		properties[NetworkObject::propertyKey(NetworkObject::Property::DirectoryAddress)] = computerDn;
 
-		return NetworkObject{ NetworkObject::Type::Host, displayName, properties };
+		return NetworkObject{directory, NetworkObject::Type::Host, displayName, properties};
 	}
 
-	return NetworkObject( NetworkObject::Type::None );
+	return NetworkObject{directory, NetworkObject::Type::None};
 }
