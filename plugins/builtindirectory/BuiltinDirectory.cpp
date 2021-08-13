@@ -30,7 +30,7 @@
 
 
 BuiltinDirectory::BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent ) :
-	NetworkObjectDirectory( parent ),
+	NetworkObjectDirectory( configuration.directoryName(), parent ),
 	m_configuration( configuration )
 {
 }

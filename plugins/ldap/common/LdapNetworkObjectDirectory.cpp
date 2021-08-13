@@ -29,7 +29,7 @@
 
 LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration,
 														QObject* parent ) :
-	NetworkObjectDirectory( parent ),
+	NetworkObjectDirectory( ldapConfiguration.directoryName(), parent ),
 	m_ldapDirectory( ldapConfiguration )
 {
 }

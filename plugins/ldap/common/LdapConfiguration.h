@@ -30,6 +30,7 @@
 #include "LdapCommon.h"
 
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
+	OP( LdapConfiguration, m_configuration, QString, directoryName, setDirectoryName, "DirectoryName", "LDAP", LdapConfiguration::tr("LDAP directory"), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, serverHost, setServerHost, "ServerHost", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, int, serverPort, setServerPort, "ServerPort", "LDAP", 389, Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, int, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP", LdapClient::ConnectionSecurityNone, Configuration::Property::Flag::Standard )	\

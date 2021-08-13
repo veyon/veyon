@@ -41,7 +41,12 @@ public:
 		MaximumUpdateInterval = 3600
 	};
 
-	explicit NetworkObjectDirectory( QObject* parent );
+	explicit NetworkObjectDirectory( const QString& name, QObject* parent );
+
+	const QString& name() const
+	{
+		return m_name;
+	}
 
 	void setUpdateInterval( int interval );
 
@@ -77,6 +82,7 @@ protected:
 	void setObjectPopulated( const NetworkObject& networkObject );
 
 private:
+	const QString m_name;
 	QTimer* m_updateTimer{nullptr};
 	QHash<NetworkObject::ModelId, NetworkObjectList> m_objects{};
 	NetworkObject m_invalidObject{this, NetworkObject::Type::None};

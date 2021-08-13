@@ -56,6 +56,8 @@ BuiltinDirectoryConfigurationPage::~BuiltinDirectoryConfigurationPage()
 
 void BuiltinDirectoryConfigurationPage::resetWidgets()
 {
+	FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
 	populateLocations();
 
 	ui->locationTableWidget->setCurrentCell( 0, 0 );
@@ -65,6 +67,7 @@ void BuiltinDirectoryConfigurationPage::resetWidgets()
 
 void BuiltinDirectoryConfigurationPage::connectWidgetsToProperties()
 {
+	FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 

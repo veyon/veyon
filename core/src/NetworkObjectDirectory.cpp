@@ -29,8 +29,9 @@
 #include "NetworkObjectDirectory.h"
 
 
-NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
+NetworkObjectDirectory::NetworkObjectDirectory( const QString& name, QObject* parent ) :
 	QObject( parent ),
+	m_name( name ),
 	m_updateTimer( new QTimer( this ) )
 {
 	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
