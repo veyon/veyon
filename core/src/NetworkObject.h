@@ -119,6 +119,17 @@ public:
 		return m_type;
 	}
 
+	bool isContainer() const
+	{
+		return isContainer( type() );
+	}
+
+	static bool isContainer( Type type )
+	{
+		return type == Type::Location ||
+			   type == Type::DesktopGroup;
+	}
+
 	const Name& name() const
 	{
 		return m_name;
