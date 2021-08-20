@@ -46,6 +46,11 @@ public:
 
 	QVariant read(); // Flawfinder: ignore
 
+	bool atEnd() const
+	{
+		return m_buffer.atEnd();
+	}
+
 	VariantArrayMessage& write( const QVariant& v );
 
 	QIODevice* ioDevice() const
