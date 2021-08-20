@@ -168,11 +168,17 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		return false;
 	}
 
+	const auto proxy = connection->m_authenticationProxy;
+
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
 	if( message.receive() == false )
 	{
 		vDebug() << QThread::currentThreadId() << "invalid authentication message received";
+		if( proxy )
+		{
+			proxy->notifyProtocolError();
+		}
 		return false;
 	}
 
@@ -181,6 +187,10 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	if( authTypeCount == 0 )
 	{
 		vDebug() << QThread::currentThreadId() << "no auth types received";
+		if( proxy )
+		{
+			proxy->notifyProtocolError();
+		}
 		return false;
 	}
 
@@ -193,12 +203,14 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		if( authType == RfbVeyonAuth::Type::Invalid )
 		{
 			vDebug() << QThread::currentThreadId() << "invalid auth type received";
+			if( proxy )
+			{
+				proxy->notifyProtocolError();
+			}
 			return false;
 		}
 		authTypes.append( authType );
 	}
-
-	auto proxy = connection->m_authenticationProxy;
 
 	if( proxy )
 	{
