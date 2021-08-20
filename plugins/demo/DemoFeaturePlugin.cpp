@@ -148,12 +148,18 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 			m_demoServerControlTimer.start( DemoServerControlInterval );
 			m_demoServerControlInterfaces = computerControlInterfaces;
 		}
-		else
+		else if( operation == Operation::Stop )
 		{
 			m_demoServerControlTimer.stop();
 		}
+		else
+		{
+			return false;
+		}
 
-		return controlDemoServer();
+		controlDemoServer();
+
+		return true;
 	}
 
 	if( featureUid == m_demoClientFullScreenFeature.uid() || featureUid == m_demoClientWindowFeature.uid() )
@@ -266,8 +272,6 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {},
 						{ master.localSessionControlInterface().weakPointer() } );
 
-		controlDemoServer();
-
 		// no demo clients left?
 		if( m_demoServerClients.isEmpty() )
 		{
@@ -277,6 +281,8 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 			// reset demo access token
 			initializeCredentials();
 		}
+
+		controlDemoServer();
 
 		return true;
 	}
@@ -566,12 +572,7 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 
 bool DemoFeaturePlugin::controlDemoServer()
 {
-	if( m_demoServerClients.isEmpty() )
-	{
-		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
-							m_demoServerControlInterfaces );
-	}
-	else
+	if( m_demoServerControlTimer.isActive() )
 	{
 		const auto demoServerPort = m_demoServerArguments.value( argToString(Argument::DemoServerPort),
 																 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
@@ -585,11 +586,14 @@ bool DemoFeaturePlugin::controlDemoServer()
 								.addArgument( Argument::VncServerPortOffset, vncServerPortOffset )
 								.addArgument( Argument::DemoServerPort, demoServerPort ),
 							m_demoServerControlInterfaces );
-
-		return true;
+	}
+	else
+	{
+		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
+							m_demoServerControlInterfaces );
 	}
 
-	return false;
+	return true;
 }
 
 
