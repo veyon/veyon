@@ -173,12 +173,29 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		return false;
 	}
 
+	auto legacyAuth = false;
 	PluginUidList authTypes;
 	authTypes.reserve( authTypeCount );
 
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-		authTypes.append( message.read().toUuid() );
+		if( message.atEnd() )
+		{
+			vDebug() << QThread::currentThreadId() << "less auth types received than announced";
+			return false;
+		}
+		const auto authType = message.read();
+		if( authType.userType() == QMetaType::QUuid )
+		{
+			authTypes.append( authType.toUuid() );
+		}
+		const auto legacyAuthType = VeyonCore::authenticationManager().fromLegacyAuthType(
+			authType.value<AuthenticationManager::LegacyAuthType>() );
+		if( legacyAuthType.isNull() == false )
+		{
+			authTypes.append( legacyAuthType );
+			legacyAuth = true;
+		}
 	}
 
 	vDebug() << QThread::currentThreadId() << "received authentication types:" << authTypes;
@@ -201,12 +218,19 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		return false;
 	}
 
-	vDebug() << QThread::currentThreadId() << "chose authentication type:" << chosenAuthPlugin;
-
 	VariantArrayMessage authReplyMessage( &socketDevice );
 
-	authReplyMessage.write( chosenAuthPlugin );
-
+	if( legacyAuth )
+	{
+		const auto legacyAuthType = VeyonCore::authenticationManager().toLegacyAuthType( chosenAuthPlugin );
+		vDebug() << QThread::currentThreadId() << "chose legacy authentication type:" << legacyAuthType;
+		authReplyMessage.write( legacyAuthType );
+	}
+	else
+	{
+		vDebug() << QThread::currentThreadId() << "chose authentication method:" << chosenAuthPlugin;
+		authReplyMessage.write( chosenAuthPlugin );
+	}
 	// send username which is used when displaying an access confirm dialog
 	authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
 	authReplyMessage.send();
