@@ -38,6 +38,20 @@ public:
 
 	virtual ~AuthenticationProxy() = default;
 
+	void notifyProtocolError()
+	{
+		lock();
+		m_protocolErrorOccurred = true;
+		unlock();
+
+		m_authenticationMethodsAvailable.wakeAll();
+	}
+
+	bool protocolErrorOccurred() const
+	{
+		return m_protocolErrorOccurred;
+	}
+
 	void setAuthenticationTypes( const AuthenticationMethods& authenticationTypes )
 	{
 		lock();
@@ -96,6 +110,7 @@ protected:
 
 private:
 	QMutex m_mutex;
+	QAtomicInteger<bool> m_protocolErrorOccurred{false};
 	AuthenticationCredentials m_credentials;
 	AuthenticationMethods m_authenticationTypes;
 	QWaitCondition m_authenticationMethodsAvailable;
