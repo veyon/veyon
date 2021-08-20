@@ -213,13 +213,6 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 			return false;
 		}
 
-		if( chosenAuthType == RfbVeyonAuth::None )
-		{
-			vWarning() << "skipping authentication.";
-			setState( AccessControl );
-			return true;
-		}
-
 		const auto username = message.read().toString();
 
 		m_client->setAuthType( chosenAuthType );

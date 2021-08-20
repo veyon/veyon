@@ -231,7 +231,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		chosenAuthType = connection->veyonAuthType();
 	}
 
-	if( chosenAuthType == RfbVeyonAuth::None )
+	if( chosenAuthType == RfbVeyonAuth::Invalid )
 	{
 		return false;
 	}

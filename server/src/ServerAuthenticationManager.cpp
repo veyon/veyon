@@ -72,11 +72,6 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 
 	switch( client->authType() )
 	{
-	// no authentication
-	case RfbVeyonAuth::None:
-		client->setAuthState( VncServerClient::AuthState::Successful );
-		break;
-
 		// authentication via DSA-challenge/-response
 	case RfbVeyonAuth::KeyFile:
 		client->setAuthState( performKeyAuthentication( client, message ) );

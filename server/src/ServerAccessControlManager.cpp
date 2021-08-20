@@ -53,7 +53,6 @@ void ServerAccessControlManager::addClient( VncServerClient* client )
 		performAccessControl( client );
 		break;
 
-	case RfbVeyonAuth::None:
 	case RfbVeyonAuth::Token:
 		client->setAccessControlState( VncServerClient::AccessControlState::Successful );
 		break;

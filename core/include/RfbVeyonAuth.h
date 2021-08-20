@@ -38,23 +38,14 @@ public:
 		// invalid/null authentication type
 		Invalid,
 
-		// no authentication needed
-		None,
-
-		// only hosts in an internal whitelist list are allowed
-		HostWhiteListLegacy, // TODO: drop in VEYON5
-
 		// client has to sign some data to verify it's authority
-		KeyFile,
+		KeyFile = 3,
 
 		// authentication is performed using given username and password
 		Logon,
 
 		// client has to prove its authenticity by knowing common token
 		Token,
-
-		AuthTypeCount
-
 	} ;
 
 	Q_ENUM(Type)

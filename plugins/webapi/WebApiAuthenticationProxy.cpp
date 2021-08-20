@@ -73,7 +73,7 @@ WebApiAuthenticationProxy::AuthenticationMethod WebApiAuthenticationProxy::initC
 #if VEYON_VERSION_MAJOR >= 5
 			return {};
 #else
-			return RfbVeyonAuth::None;
+			return RfbVeyonAuth::Invalid;
 #endif
 		}
 		l.relock();
@@ -94,11 +94,11 @@ WebApiAuthenticationProxy::AuthenticationMethod WebApiAuthenticationProxy::initC
 
 	if( m_selectedAuthenticationMethod == m_authDummyUuid )
 	{
-		return RfbVeyonAuth::None;
+		return RfbVeyonAuth::Invalid;
 	}
 
 	vCritical() << "invalid authentication method selected";
-	return RfbVeyonAuth::None;
+	return RfbVeyonAuth::Invalid;
 #endif
 }
 
