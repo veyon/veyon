@@ -48,6 +48,7 @@ VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mo
 
 	if( mode == DemoMode )
 	{
+		m_veyonConnection->setVeyonAuthType( RfbVeyonAuth::Token );
 		connection()->setQuality( VncConnection::Quality::Default );
 		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( connection()->host() ),
