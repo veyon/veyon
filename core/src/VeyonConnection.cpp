@@ -159,9 +159,19 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
-	message.receive();
+	if( message.receive() == false )
+	{
+		vDebug() << QThread::currentThreadId() << "invalid authentication message received";
+		return false;
+	}
 
-	int authTypeCount = message.read().toInt();
+	const auto authTypeCount = message.read().toInt();
+
+	if( authTypeCount == 0 )
+	{
+		vDebug() << QThread::currentThreadId() << "no auth types received";
+		return false;
+	}
 
 	PluginUidList authTypes;
 	authTypes.reserve( authTypeCount );
