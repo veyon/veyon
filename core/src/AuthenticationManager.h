@@ -30,6 +30,14 @@ class VEYON_CORE_EXPORT AuthenticationManager : public QObject
 {
 	Q_OBJECT
 public:
+	enum LegacyAuthType
+	{
+		Invalid = 0,
+		KeyFile = 3,
+		Logon = 4,
+	};
+	Q_ENUM(LegacyAuthType)
+
 	using Plugins = QMap<Plugin::Uid, AuthenticationPluginInterface *>;
 	using Types = QMap<Plugin::Uid, QString>;
 
@@ -39,6 +47,9 @@ public:
 	{
 		return m_plugins;
 	}
+
+	Plugin::Uid fromLegacyAuthType( LegacyAuthType authType ) const;
+	LegacyAuthType toLegacyAuthType( Plugin::Uid uid ) const;
 
 	Plugin::Uid toUid( AuthenticationPluginInterface* authPlugin ) const;
 
@@ -58,6 +69,7 @@ public:
 	}
 
 private:
+	const QMap<LegacyAuthType, Plugin::Uid> m_legacyAuthTypes;
 	Plugins m_plugins{};
 	AuthenticationPluginInterface* m_initializedPlugin{nullptr};
 

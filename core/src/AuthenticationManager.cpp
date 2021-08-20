@@ -27,7 +27,11 @@
 #include "VeyonConfiguration.h"
 
 AuthenticationManager::AuthenticationManager( QObject* parent ) :
-	QObject( parent )
+	QObject( parent ),
+	m_legacyAuthTypes( {
+		{ LegacyAuthType::Logon, QStringLiteral("63611f7c-b457-42c7-832e-67d0f9281085") },
+		{ LegacyAuthType::KeyFile, QStringLiteral("0c69b301-81b4-42d6-8fae-128cdd113314") }
+	} )
 {
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
@@ -44,6 +48,20 @@ AuthenticationManager::AuthenticationManager( QObject* parent ) :
 	{
 		qFatal( "AuthenticationManager: no authentication plugins available!" );
 	}
+}
+
+
+
+Plugin::Uid AuthenticationManager::fromLegacyAuthType( LegacyAuthType authType ) const
+{
+	return m_legacyAuthTypes.value( authType );
+}
+
+
+
+AuthenticationManager::LegacyAuthType AuthenticationManager::toLegacyAuthType( Plugin::Uid uid ) const
+{
+	return m_legacyAuthTypes.key( uid );
 }
 
 
