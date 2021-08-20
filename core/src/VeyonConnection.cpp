@@ -170,16 +170,32 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
-	message.receive();
+	if( message.receive() == false )
+	{
+		vDebug() << QThread::currentThreadId() << "invalid authentication message received";
+		return false;
+	}
 
-	int authTypeCount = message.read().toInt();
+	const auto authTypeCount = message.read().toInt();
+
+	if( authTypeCount == 0 )
+	{
+		vDebug() << QThread::currentThreadId() << "no auth types received";
+		return false;
+	}
 
 	QList<RfbVeyonAuth::Type> authTypes;
 	authTypes.reserve( authTypeCount );
 
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-		authTypes.append( QVariantHelper<RfbVeyonAuth::Type>::value( message.read() ) );
+		const auto authType = QVariantHelper<RfbVeyonAuth::Type>::value( message.read() );
+		if( authType == RfbVeyonAuth::Type::Invalid )
+		{
+			vDebug() << QThread::currentThreadId() << "invalid auth type received";
+			return false;
+		}
+		authTypes.append( authType );
 	}
 
 	auto proxy = connection->m_authenticationProxy;
@@ -191,27 +207,16 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 	vDebug() << QThread::currentThreadId() << "received authentication types:" << authTypes;
 
-	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
-	if( authTypes.count() > 0 )
-	{
-		chosenAuthType = authTypes.first();
-
-		// look whether the VncConnection recommends a specific
-		// authentication type (e.g. VeyonAuthHostBased when running as
-		// demo client)
-
-		for( auto authType : authTypes )
-		{
-			if( connection->veyonAuthType() == authType )
-			{
-				chosenAuthType = authType;
-			}
-		}
-	}
-
+	auto chosenAuthType = authTypes.first();
 	if( proxy )
 	{
 		chosenAuthType = proxy->initCredentials();
+	}
+	// look whether the VncConnection recommends a specific authentication type (e.g. RfbVeyonAuth::Token
+	// when running as demo client)
+	else if( authTypes.contains( connection->veyonAuthType() ) )
+	{
+		chosenAuthType = connection->veyonAuthType();
 	}
 
 	if( chosenAuthType == RfbVeyonAuth::None )
@@ -238,7 +243,11 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	authReplyMessage.send();
 
 	VariantArrayMessage authAckMessage( &socketDevice );
-	authAckMessage.receive();
+	if( authAckMessage.receive() == false )
+	{
+		vWarning() << QThread::currentThreadId() << "failed to receive authentication acknowledge";
+		return false;
+	}
 
 	switch( chosenAuthType )
 	{
