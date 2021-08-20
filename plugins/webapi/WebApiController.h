@@ -75,6 +75,7 @@ public:
 		UnsupportedImageFormat,
 		FramebufferNotAvailable,
 		FramebufferEncodingError,
+		ProtocolMismatch,
 	};
 
 	struct Request

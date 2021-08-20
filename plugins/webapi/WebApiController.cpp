@@ -103,6 +103,11 @@ WebApiController::Response WebApiController::getAuthenticationMethods( const Req
 	if( proxy->waitForAuthenticationMethods(
 			m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond ) == false )
 	{
+		if( proxy->protocolErrorOccurred() )
+		{
+			return Error::ProtocolMismatch;
+		}
+
 		vWarning() << "waiting for authentication methods timed out";
 		return Error::ConnectionTimedOut;
 	}
@@ -163,6 +168,11 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 	{
 		vWarning() << "waiting for authentication methods timed out";
 		return Error::ConnectionTimedOut;
+	}
+
+	if( proxy->protocolErrorOccurred() )
+	{
+		return Error::ProtocolMismatch;
 	}
 
 	if( proxy->authenticationMethods().contains( methodUuid ) == false )
@@ -423,6 +433,7 @@ QString WebApiController::errorString( WebApiController::Error error )
 	case Error::UnsupportedImageFormat: return QStringLiteral("Unsupported image format");
 	case Error::FramebufferNotAvailable: return QStringLiteral("Framebuffer not yet available");
 	case Error::FramebufferEncodingError: return QStringLiteral("Framebuffer encoding error");
+	case Error::ProtocolMismatch: return QStringLiteral("Protocol mismatch error");
 	}
 
 	return {};

@@ -64,6 +64,7 @@ static QHttpServerResponse convertResponse( const WebApiController::Response& re
 		case WebApiController::Error::UnsupportedImageFormat: return QHttpServerResponse::StatusCode::ServiceUnavailable;
 		case WebApiController::Error::FramebufferNotAvailable: return QHttpServerResponse::StatusCode::ServiceUnavailable;
 		case WebApiController::Error::FramebufferEncodingError: return QHttpServerResponse::StatusCode::InternalServerError;
+		case WebApiController::Error::ProtocolMismatch: return QHttpServerResponse::StatusCode::NotImplemented;
 		}
 		return QHttpServerResponse::StatusCode::BadRequest;
 	}();

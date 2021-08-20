@@ -29,6 +29,7 @@ class WebAPIClient(object):
 	ERROR_UNSUPPORTED_IMAGE_FORMAT = 9
 	ERROR_FRAMEBUFFER_NOT_AVAILABLE = 10
 	ERROR_FRAMEBUFFER_ENCODING_ERROR = 11
+	ERROR_PROTOCOL_MISMATCH = 12
 
 	class Error(RuntimeError):
 		def __init__(self, error):
