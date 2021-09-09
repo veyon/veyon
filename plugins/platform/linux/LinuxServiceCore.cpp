@@ -79,8 +79,9 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	}
 
 	// do not start server for non-graphical sessions
-	if( sessionType != LinuxSessionFunctions::Type::X11 )
+	if( sessionType == LinuxSessionFunctions::Type::TTY )
 	{
+		vDebug() << "Not starting Veyon Server in TTY session";
 		return;
 	}
 
