@@ -1662,7 +1662,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>使用するシステム言語設定</translation>
+        <translation>システムの言語設定を使用する</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1718,7 +1718,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>ネットワーク オブジェクト ディレクトリ</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1878,7 +1878,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>環境設定</translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -1942,7 +1942,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>拡張設定</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2183,7 +2183,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>統合テスト</translation>
     </message>
     <message>
         <source>Computer groups</source>
@@ -2309,7 +2309,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターの場所の識別</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
@@ -2325,7 +2325,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all locations</source>
-        <translation type="unfinished"/>
+        <translation>すべての場所をリスト</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
@@ -2345,7 +2345,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターの場所</translation>
     </message>
     <message>
         <source>Enter location name</source>
@@ -2747,11 +2747,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>標準</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>拡張</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
@@ -2759,7 +2759,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>場所とコンピューター</translation>
     </message>
     <message>
         <source>Slideshow</source>
@@ -2786,7 +2786,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターをダブルクリックした時の機能：</translation>
     </message>
     <message>
         <source>Features</source>
@@ -2806,7 +2806,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>機能指定無し</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2818,7 +2818,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>クライアントコンピューターに選択したモードを適用する</translation>
     </message>
     <message>
         <source>Hide local computer</source>
@@ -2850,23 +2850,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>起動設定</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>モードと機能</translation>
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー名とコンピューター名</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー名のみ</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>コンピューター名のみ</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2882,19 +2882,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>コンピューター名とユーザー名</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターの場所</translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation type="unfinished"/>
+        <translation>現在の場所のみを表示</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>非表示の場所を手動で追加することを許可する</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
@@ -2902,7 +2902,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
+        <translation>安全ではない可能性のあるアクションに対する確認ダイアログを表示する</translation>
     </message>
     <message>
         <source>Perform access control</source>
@@ -2922,7 +2922,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
@@ -2942,7 +2942,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>メインウィンドウと同じ画面で機能ウィンドウを開く</translation>
     </message>
 </context>
 <context>
@@ -2964,7 +2964,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>場所とコンピューター</translation>
     </message>
 </context>
 <context>
@@ -2975,7 +2975,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>例：Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
@@ -2983,7 +2983,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>例：www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3093,15 +3093,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>更新をインストールしてシャットダウン</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーに確認後にシャットダウン</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>タイムアウト後にシャットダウン</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3479,11 +3479,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
+        <translation>シングルセッションモード（ローカル/物理セッション専用のサーバーインスタンスを作成）</translation>
     </message>
     <message>
         <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>マルチセッションモード（ローカルおよびリモートデスクトップセッションごとにサーバーインスタンスを作成）</translation>
     </message>
     <message>
         <source>Maximum session count</source>

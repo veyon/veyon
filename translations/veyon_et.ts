@@ -655,7 +655,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake esimese argumendina võtme nimi (näiteks „õpetaja/avalik”).</translation>
     </message>
 </context>
 <context>
@@ -1045,7 +1045,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>kehtetu</translation>
     </message>
 </context>
 <context>
@@ -2471,11 +2471,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Päringu valikud</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>Pesastatud kasutajarühmade päring (toetab ainult AD)</translation>
     </message>
 </context>
 <context>
@@ -2545,15 +2545,15 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Sisselogimisvõtmete järjestus</translation>
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja seansid</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Minimaalne seansi eluiga enne serveri käivitamist</translation>
     </message>
 </context>
 <context>
@@ -3135,15 +3135,15 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti taaskäivitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti välja lülitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti välja lülitada valitud arvutid?</translation>
     </message>
 </context>
 <context>
@@ -3821,7 +3821,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti välja logida &lt;b&gt;KÕIK&lt;/b&gt; kasutajad?</translation>
     </message>
 </context>
 <context>
