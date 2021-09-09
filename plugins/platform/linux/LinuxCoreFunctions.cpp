@@ -65,28 +65,15 @@ void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Log
 
 void LinuxCoreFunctions::reboot()
 {
-	systemdLoginManager()->asyncCall( QStringLiteral("Reboot"), false );
-	consoleKitManager()->asyncCall( QStringLiteral("Restart") );
-
-	if( isRunningAsAdmin() )
+	if( systemdLoginManager()->call( QStringLiteral("Reboot"), false ).type() != QDBusMessage::ReplyMessage &&
+		consoleKitManager()->call( QStringLiteral("Restart") ).type() != QDBusMessage::ReplyMessage )
 	{
-		for( const auto& file : { QStringLiteral("/sbin/reboot"), QStringLiteral("/usr/sbin/reboot") } )
-		{
-			if( QFileInfo::exists( file ) )
-			{
-				QProcess::startDetached( file, {} );
-				return;
-			}
-		}
+		prepareSessionBusAccess();
 
-		QProcess::startDetached( QStringLiteral("reboot"), {} );
-	}
-	else
-	{
 		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
-										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownTypeReboot ),
-										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownModeForceNow ) );
+										LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+										LinuxDesktopIntegration::KDE::ShutdownTypeReboot,
+										LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
 		gnomeSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
 		mateSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
 		xfcePowerManager()->asyncCall( QStringLiteral("Reboot") );
