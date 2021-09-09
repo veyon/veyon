@@ -74,8 +74,8 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	if( sessionType == LinuxSessionFunctions::Type::Wayland )
 	{
-		vCritical() << "Can't start Veyon Server in Wayland sessions as this is not yet supported. Please switch to X11-based sessions!";
-		return;
+		vWarning() << "Wayland session detected but trying to start Veyon Server anyway, even though Veyon Server does "
+					  "not supported Wayland sessions. If you encounter problems, please switch to X11-based sessions!";
 	}
 
 	// do not start server for non-graphical sessions
