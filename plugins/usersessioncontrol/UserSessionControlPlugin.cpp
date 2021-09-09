@@ -24,6 +24,7 @@
 
 #include <QMessageBox>
 
+#include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "UserLoginDialog.h"
 #include "UserSessionControlPlugin.h"
@@ -144,7 +145,14 @@ bool UserSessionControlPlugin::handleFeatureMessage( VeyonServerInterface& serve
 
 	if( message.featureUid() == m_userLogoffFeature.uid() )
 	{
-		VeyonCore::platform().userFunctions().logoff();
+		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() )
+		{
+			VeyonCore::platform().userFunctions().logoff();
+		}
+		else
+		{
+			vDebug() << "not logging off since not running in a user session";
+		}
 		return true;
 	}
 
