@@ -67,8 +67,10 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 
 	for( DWORD sessionIndex = 0; sessionIndex < sessionCount; ++sessionIndex )
 	{
-		auto session = &sessions[sessionIndex];
-		if( session->State == WTSActive )
+		const auto session = &sessions[sessionIndex];
+		if( session->State == WTSActive ||
+			QString::fromWCharArray(session->pWinStationName)
+				.compare( QLatin1String("multiseat"), Qt::CaseInsensitive ) == 0 )
 		{
 			sessionList.append( session->SessionId );
 		}
@@ -101,7 +103,7 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 	}
 
 	QString result;
-	LPTSTR pBuffer = nullptr;
+	LPWSTR pBuffer = nullptr;
 	DWORD dwBufferLen;
 
 	if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionId, infoClass,
