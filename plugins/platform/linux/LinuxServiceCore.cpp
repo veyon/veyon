@@ -58,12 +58,7 @@ LinuxServiceCore::~LinuxServiceCore()
 
 void LinuxServiceCore::run()
 {
-	const auto sessions = LinuxSessionFunctions::listSessions();
-
-	for( const auto& s : sessions )
-	{
-		startServer( s, QDBusObjectPath( s ) );
-	}
+	startServers();
 
 	QEventLoop eventLoop;
 	eventLoop.exec();
@@ -199,6 +194,12 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 	{
 		stopServer( sessionPath );
 	}
+
+	// make sure to (re-)start server instances for preempted/suspended sessions such as the login manager session
+	if( m_sessionManager.multiSession() == false )
+	{
+		startServers();
+	}
 }
 
 
@@ -225,6 +226,22 @@ void LinuxServiceCore::connectToLoginManager()
 	else
 	{
 		vDebug() << "connected to login manager";
+	}
+}
+
+
+
+void LinuxServiceCore::startServers()
+{
+	const auto sessions = LinuxSessionFunctions::listSessions();
+
+	for( const auto& s : sessions )
+	{
+		if( m_serverProcesses.contains( s ) == false &&
+			( m_sessionManager.multiSession() || m_serverProcesses.isEmpty() ) )
+		{
+			startServer( QString{}, QDBusObjectPath( s ) );
+		}
 	}
 }
 

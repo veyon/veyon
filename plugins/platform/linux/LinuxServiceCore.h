@@ -56,6 +56,7 @@ private:
 	static constexpr auto SessionUptimeProbingInterval = 1000;
 
 	void connectToLoginManager();
+	void startServers();
 	void stopServer( const QString& sessionPath );
 	void stopAllServers();
 
