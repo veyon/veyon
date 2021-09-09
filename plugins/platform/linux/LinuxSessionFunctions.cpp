@@ -218,7 +218,7 @@ LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QStri
 
 	const auto stateString = getSessionProperty( session, QStringLiteral("State") ).toString();
 	const auto state = stateMap.value( stateString, State::Unknown );
-	if( state == State::Unknown )
+	if( state == State::Unknown && stateString.isEmpty() == false )
 	{
 		vDebug() << stateString;
 	}
