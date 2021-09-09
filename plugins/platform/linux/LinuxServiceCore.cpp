@@ -295,7 +295,9 @@ void LinuxServiceCore::stopAllServers()
 
 void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 {
-	if( LinuxSessionFunctions::getSessionState( sessionPath ) == LinuxSessionFunctions::State::Closing )
+	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
+	if( sessionState == LinuxSessionFunctions::State::Closing ||
+		sessionState == LinuxSessionFunctions::State::Unknown )
 	{
 		vDebug() << "Stopping server for currently closing session" << sessionPath;
 		stopServer( sessionPath );
