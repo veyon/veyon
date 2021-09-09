@@ -29,19 +29,19 @@ class LinuxDesktopIntegration
 public:
 	class KDE {
 	public:
-		enum ShutdownConfirm {
+		enum ShutdownConfirm : int {
 			ShutdownConfirmDefault = -1,
 			ShutdownConfirmNo = 0,
 			ShutdownConfirmYes = 1
 		};
-		enum ShutdownMode {
+		enum ShutdownMode : int {
 			ShutdownModeDefault = -1,
 			ShutdownModeSchedule = 0,
 			ShutdownModeTryNow = 1,
 			ShutdownModeForceNow = 2,
 			ShutdownModeInteractive = 3
 		};
-		enum ShutdownType {
+		enum ShutdownType : int {
 			ShutdownTypeDefault = -1,
 			ShutdownTypeNone = 0,
 			ShutdownTypeReboot = 1,
@@ -52,7 +52,7 @@ public:
 
 	class Gnome {
 	public:
-		enum GsmManagerLogoutMode {
+		enum GsmLogoutMode : uint {
 			GSM_MANAGER_LOGOUT_MODE_NORMAL = 0,
 			GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION,
 			GSM_MANAGER_LOGOUT_MODE_FORCE
@@ -61,7 +61,7 @@ public:
 
 	class Mate {
 	public:
-		enum {
+		enum GsmLogoutMode : uint {
 			GSM_LOGOUT_MODE_NORMAL = 0,
 			GSM_LOGOUT_MODE_NO_CONFIRMATION,
 			GSM_LOGOUT_MODE_FORCE
