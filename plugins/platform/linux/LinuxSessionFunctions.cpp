@@ -193,6 +193,11 @@ LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString
 		return Type::Wayland;
 	}
 
+	if( type.isEmpty() == false )
+	{
+		vWarning() << "unspecified session type" << type;
+	}
+
 	return Type::Unspecified;
 }
 
