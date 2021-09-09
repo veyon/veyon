@@ -352,6 +352,8 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 
 void LinuxUserFunctions::logoff()
 {
+	LinuxCoreFunctions::prepareSessionBusAccess();
+
 	// logout via common session managers
 	LinuxCoreFunctions::kdeSessionManager()->asyncCall( QStringLiteral("logout"),
 														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
