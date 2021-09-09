@@ -81,6 +81,8 @@ public:
 	static void forEachChildProcess( const std::function<bool(proc_t *)>& visitor,
 							 int parentPid, int flags, bool visitParent );
 
+	static bool waitForProcess( qint64 pid, int timeout, int sleepInterval );
+
 private:
 	int m_screenSaverTimeout{0};
 	int m_screenSaverPreferBlanking{0};

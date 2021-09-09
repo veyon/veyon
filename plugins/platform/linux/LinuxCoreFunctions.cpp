@@ -22,6 +22,7 @@
  *
  */
 
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QDBusPendingCall>
 #include <QProcess>
@@ -427,4 +428,24 @@ void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>
 	}
 
 	closeproc( proc );
+}
+
+
+
+bool LinuxCoreFunctions::waitForProcess( qint64 pid, int timeout, int sleepInterval )
+{
+	QElapsedTimer timeoutTimer;
+	timeoutTimer.start();
+
+	while( QFileInfo::exists( QStringLiteral("/proc/%1").arg( pid ) ) )
+	{
+		if( timeoutTimer.elapsed() >= timeout )
+		{
+			return false;
+		}
+
+		QThread::msleep( static_cast<unsigned long>( sleepInterval ) );
+	}
+
+	return true;
 }
