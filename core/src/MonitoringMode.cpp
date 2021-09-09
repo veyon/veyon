@@ -111,13 +111,16 @@ void MonitoringMode::queryUserInformation()
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
 	QtConcurrent::run( [=]() {
-		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
-		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
-		const auto userSessionId = VeyonCore::sessionId();
-		m_userDataLock.lockForWrite();
-		m_userLoginName = userLoginName;
-		m_userFullName = userFullName;
-		m_userSessionId = userSessionId;
-		m_userDataLock.unlock();
+		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() )
+		{
+			const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
+			const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
+			const auto userSessionId = VeyonCore::sessionId();
+			m_userDataLock.lockForWrite();
+			m_userLoginName = userLoginName;
+			m_userFullName = userFullName;
+			m_userSessionId = userSessionId;
+			m_userDataLock.unlock();
+		}
 	} );
 }
