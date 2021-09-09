@@ -86,28 +86,15 @@ void LinuxCoreFunctions::powerDown( bool installUpdates )
 {
 	Q_UNUSED(installUpdates)
 
-	systemdLoginManager()->asyncCall( QStringLiteral("PowerOff"), false );
-	consoleKitManager()->asyncCall( QStringLiteral("Stop") );
-
-	if( isRunningAsAdmin() )
+	if( systemdLoginManager()->call( QStringLiteral("PowerOff"), false ).type() != QDBusMessage::ReplyMessage &&
+		consoleKitManager()->call( QStringLiteral("Stop") ).type() != QDBusMessage::ReplyMessage )
 	{
-		for( const auto& file : { QStringLiteral("/sbin/poweroff"), QStringLiteral("/usr/sbin/poweroff") } )
-		{
-			if( QFileInfo::exists( file ) )
-			{
-				QProcess::startDetached( file, {} );
-				return;
-			}
-		}
+		prepareSessionBusAccess();
 
-		QProcess::startDetached( QStringLiteral("poweroff"), {} );
-	}
-	else
-	{
 		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
-										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownTypeHalt ),
-										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownModeForceNow ) );
+										LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+										LinuxDesktopIntegration::KDE::ShutdownTypeHalt,
+										LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
 		gnomeSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
 		mateSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
 		xfcePowerManager()->asyncCall( QStringLiteral("Shutdown") );
