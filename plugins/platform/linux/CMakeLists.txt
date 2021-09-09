@@ -24,6 +24,7 @@ build_veyon_plugin(linux-platform
 	LinuxFilesystemFunctions.cpp
 	LinuxInputDeviceFunctions.cpp
 	LinuxNetworkFunctions.cpp
+	LinuxServerProcess.cpp
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
 	LinuxSessionFunctions.cpp
@@ -38,6 +39,7 @@ build_veyon_plugin(linux-platform
 	LinuxKeyboardInput.cpp
 	LinuxKeyboardShortcutTrapper.h
 	LinuxNetworkFunctions.h
+	LinuxServerProcess.h
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
 	LinuxSessionFunctions.h

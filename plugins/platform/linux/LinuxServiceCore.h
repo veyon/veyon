@@ -28,7 +28,7 @@
 #include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
 
-class QProcess;
+class LinuxServerProcess;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -47,10 +47,6 @@ private Q_SLOTS:
 
 private:
 	static constexpr auto LoginManagerReconnectInterval = 3000;
-	static constexpr auto ServerShutdownTimeout = 1000;
-	static constexpr auto ServerTerminateTimeout = 3000;
-	static constexpr auto ServerKillTimeout = 3000;
-	static constexpr auto ServerWaitSleepInterval = 100;
 	static constexpr auto SessionEnvironmentProbingInterval = 1000;
 	static constexpr auto SessionStateProbingInterval = 1000;
 	static constexpr auto SessionUptimeProbingInterval = 1000;
@@ -63,7 +59,7 @@ private:
 	void checkSessionState( const QString& sessionPath );
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
-	QMap<QString, QProcess *> m_serverProcesses;
+	QMap<QString, LinuxServerProcess *> m_serverProcesses;
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};

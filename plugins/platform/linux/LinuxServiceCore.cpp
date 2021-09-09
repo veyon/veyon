@@ -25,19 +25,12 @@
 #include <QDBusReply>
 #include <QEventLoop>
 #include <QFileInfo>
-#include <QProcess>
 #include <QTimer>
 
-#include <csignal>
-#include <proc/readproc.h>
-#include <sys/types.h>
-
-#include "Filesystem.h"
-#include "LinuxCoreFunctions.h"
 #include "LinuxPlatformConfiguration.h"
+#include "LinuxServerProcess.h"
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
-#include "ProcessHelper.h"
 #include "VeyonConfiguration.h"
 
 
@@ -153,34 +146,12 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
 							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
 
-	auto process = new QProcess( this );
-	process->setProcessEnvironment( sessionEnvironment );
+	auto serverProcess = new LinuxServerProcess( sessionEnvironment, sessionPath, sessionId, this );
+	serverProcess->start();
 
-	if( VeyonCore::config().logToSystem() )
-	{
-		process->setProcessChannelMode( QProcess::ForwardedChannels );
-	}
+	connect( serverProcess, &QProcess::stateChanged, this, [=]() { checkSessionState( sessionPath ); } );
 
-	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
-	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_SERVERS") )
-	{
-		process->start( QStringLiteral("/usr/bin/valgrind"),
-						{ QStringLiteral("--error-limit=no"),
-						  QStringLiteral("--log-file=valgrind-veyon-server-%1.log").arg(sessionId),
-						  VeyonCore::filesystem().serverFilePath() } );
-	}
-	else if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
-	{
-		process->start( catchsegv, { VeyonCore::filesystem().serverFilePath() } );
-	}
-	else
-	{
-		process->start( VeyonCore::filesystem().serverFilePath(), QStringList{} );
-	}
-
-	connect( process, &QProcess::stateChanged, this, [=]() { checkSessionState( sessionPath ); } );
-
-	m_serverProcesses[sessionPath] = process;
+	m_serverProcesses[sessionPath] = serverProcess;
 }
 
 
@@ -259,43 +230,11 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 
 	vInfo() << "stopping server for removed session" << sessionPath;
 
-	auto process = qAsConst(m_serverProcesses)[sessionPath];
+	auto serverProcess = qAsConst(m_serverProcesses)[sessionPath];
+	serverProcess->disconnect(this);
+	serverProcess->stop();
+	serverProcess->deleteLater();
 
-	const auto sendSignalRecursively = []( int pid, int sig ) {
-		if( pid > 0 )
-		{
-			LinuxCoreFunctions::forEachChildProcess(
-				[=]( proc_t* procInfo ) {
-					if( procInfo->tid > 0 )
-					{
-						kill( procInfo->tid, sig );
-					}
-					return true;
-				},
-				pid, 0, true );
-		}
-	};
-
-	const auto pid = process->processId();
-
-	// tell x11vnc and child processes (in case spawned via catchsegv) to shutdown
-	sendSignalRecursively( pid, SIGINT );
-
-	if( ProcessHelper::waitForProcess( process, ServerShutdownTimeout, ServerWaitSleepInterval ) == false )
-	{
-		process->terminate();
-		sendSignalRecursively( pid, SIGTERM );
-
-		if( ProcessHelper::waitForProcess( process, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
-		{
-			vWarning() << "server for session" << sessionPath << "still running - killing now";
-			process->kill();
-			sendSignalRecursively( pid, SIGKILL );
-			ProcessHelper::waitForProcess( process, ServerKillTimeout, ServerWaitSleepInterval );
-		}
-	}
-
-	process->deleteLater();
 	m_serverProcesses.remove( sessionPath );
 }
 
