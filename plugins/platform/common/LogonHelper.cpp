@@ -53,7 +53,8 @@ bool LogonHelper::prepare( const QString& username, const Password& password )
 
 void LogonHelper::checkPendingLogonTasks()
 {
-	if( ServiceDataManager::serviceDataTokenFromEnvironment().isEmpty() == false &&
+	if( VeyonCore::component() == VeyonCore::Component::Server &&
+		ServiceDataManager::serviceDataTokenFromEnvironment().isEmpty() == false &&
 		VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false )
 	{
 		vDebug() << "Reading logon credentials";
