@@ -335,14 +335,34 @@ void LinuxUserFunctions::logoff()
 	LinuxCoreFunctions::prepareSessionBusAccess();
 
 	// logout via common session managers
-	LinuxCoreFunctions::kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
-														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownTypeLogout ),
-														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownModeForceNow ) );
-	LinuxCoreFunctions::gnomeSessionManager()->asyncCall( QStringLiteral("Logout"),
-														  static_cast<int>( LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE ) );
-	LinuxCoreFunctions::mateSessionManager()->asyncCall( QStringLiteral("Logout"),
-														 static_cast<int>( LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE ) );
+	// logout via common session managers
+	for( auto call : std::initializer_list<std::function<QDBusMessage()>>
+		 {
+			 []() {
+				 return LinuxCoreFunctions::kdeSessionManager()
+					 ->call( QStringLiteral("logout"),
+							 LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+							 LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
+							 LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
+			 },
+			 []() {
+				 return LinuxCoreFunctions::gnomeSessionManager()
+					 ->call( QStringLiteral("Logout"),
+							 LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE );
+			 },
+			 []() {
+				 return LinuxCoreFunctions::mateSessionManager()
+					 ->call( QStringLiteral("Logout"),
+							 LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE );
+			 }
+		 } )
+	{
+		// call successful?
+		if( call().type() == QDBusMessage::ReplyMessage )
+		{
+			return;
+		}
+	}
 
 	// Xfce logout
 	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout"), {} );
