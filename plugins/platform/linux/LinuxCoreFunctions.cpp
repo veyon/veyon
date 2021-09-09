@@ -293,6 +293,28 @@ QString LinuxCoreFunctions::genericUrlHandler() const
 
 
 
+bool LinuxCoreFunctions::prepareSessionBusAccess()
+{
+	const auto uid = LinuxUserFunctions::userIdFromName( VeyonCore::platform().userFunctions().currentUser() );
+	if( uid > 0 )
+	{
+		if( seteuid(uid) == 0 )
+		{
+			return true;
+		}
+
+		vWarning() << "could not set effective UID - DBus calls on the session bus likely will fail";
+	}
+	else
+	{
+		vWarning() << "could not determine UID of current user - DBus calls on the session bus likely will fail";
+	}
+
+	return false;
+}
+
+
+
 /*! Returns DBus interface for session manager of KDE desktop */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::kdeSessionManager()
 {
