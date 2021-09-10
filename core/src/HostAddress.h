@@ -64,6 +64,9 @@ private:
 	static QString toHostName( Type type, const QString& address );
 	static QString toFQDN( Type type, const QString& address );
 	static QString fqdnToHostName( const QString& fqdn );
+	static QString resolveLocalFQDN();
+
+	static QString s_cachedLocalFQDN;
 
 	Type m_type;
 	QString m_address;
