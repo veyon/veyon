@@ -76,3 +76,9 @@ public:
 private:
 	QByteArray m_text;
 } ;
+
+class VncUpdateFormatAndEncodingsEvent : public VncEvent
+{
+public:
+	void fire( rfbClient* client ) override;
+};

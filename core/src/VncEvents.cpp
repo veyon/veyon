@@ -68,3 +68,10 @@ void VncClientCutEvent::fire( rfbClient* client )
 {
 	SendClientCutText( client, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
 }
+
+
+
+void VncUpdateFormatAndEncodingsEvent::fire( rfbClient* client )
+{
+	SetFormatAndEncodings(client);
+}
