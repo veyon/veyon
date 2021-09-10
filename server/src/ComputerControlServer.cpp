@@ -255,11 +255,28 @@ void ComputerControlServer::updateTrayIconToolTip()
 													   HostAddress::localFQDN(),
 												QString::number( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) );
 
+	QMutexLocker locker( &m_dataMutex );
+
 	QStringList clients;
+	QStringList hostsToResolve;
 	for( const auto* client : m_vncProxyServer.clients() )
 	{
-		const auto clientAddress = HostAddress( client->proxyClientSocket()->peerAddress().toString() );
-		clients.append( clientAddress.tryConvert( HostAddress::Type::FullyQualifiedDomainName ) );
+		const auto clientIpAddress = client->proxyClientSocket()->peerAddress().toString();
+		if( m_resolvedHostNames.contains( clientIpAddress ) == false )
+		{
+			hostsToResolve.append( clientIpAddress );
+			clients.append( clientIpAddress );
+		}
+		else
+		{
+			clients.append( m_resolvedHostNames[clientIpAddress] );
+		}
+	}
+
+	if( hostsToResolve.isEmpty() == false )
+	{
+		auto watcher = resolveFQDNs( hostsToResolve );
+		connect( watcher, &QFutureWatcher<void>::finished, this, &ComputerControlServer::updateTrayIconToolTip );
 	}
 
 	if( clients.isEmpty() == false )
