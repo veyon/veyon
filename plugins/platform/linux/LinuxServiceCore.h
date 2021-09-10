@@ -49,10 +49,11 @@ private:
 	static constexpr auto LoginManagerReconnectInterval = 3000;
 	static constexpr auto SessionEnvironmentProbingInterval = 1000;
 	static constexpr auto SessionStateProbingInterval = 1000;
-	static constexpr auto SessionUptimeProbingInterval = 1000;
 
 	void connectToLoginManager();
 	void startServers();
+	void startServer( const QString& sessionPath );
+	void deferServerStart( const QString& sessionPath, int delay );
 	void stopServer( const QString& sessionPath );
 	void stopAllServers();
 
@@ -60,6 +61,7 @@ private:
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, LinuxServerProcess *> m_serverProcesses;
+	QStringList m_deferredServerSessions;
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};
