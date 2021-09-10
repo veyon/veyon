@@ -303,17 +303,6 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 		p.drawImage( { 0, 0 }, image, source );
 	}
 
-	if( viewOnly() && cursorShape().isNull() == false )
-	{
-		const auto cursorRect = mapFromFramebuffer( QRect( cursorPos() - cursorHot(), cursorShape().size() ) );
-		// parts of cursor within updated region?
-		if( paintEvent->region().intersects( cursorRect ) )
-		{
-			// then repaint it
-			p.drawPixmap( cursorRect.topLeft(), cursorShape() );
-		}
-	}
-
 	// draw black borders if neccessary
 	const int screenWidth = scaledSize().width();
 	if( screenWidth < width() )

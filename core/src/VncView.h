@@ -102,8 +102,6 @@ protected:
 		QObject::connect( connection(), &VncConnection::framebufferSizeChanged, object,
 						  [this]( int w, int h ) { updateFramebufferSize( w, h ); } );
 
-		QObject::connect( connection(), &VncConnection::cursorPosChanged, object,
-						  [this]( int x, int y ) { updateCursorPos( x, y ); } );
 		QObject::connect( connection(), &VncConnection::cursorShapeUpdated, object,
 						  [this]( const QPixmap& cursorShape, int xh, int yh ) { updateCursorShape( cursorShape, xh, yh ); } );
 	}
@@ -112,7 +110,6 @@ protected:
 	virtual QSize viewSize() const = 0;
 	virtual void setViewCursor( const QCursor& cursor ) = 0;
 
-	virtual void updateCursorPos( int x, int y );
 	virtual void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
 	virtual void updateFramebufferSize( int w, int h );
 	virtual void updateImage( int x, int y, int w, int h );
@@ -134,16 +131,6 @@ protected:
 		return m_cursorShape;
 	}
 
-	auto cursorPos() const
-	{
-		return m_cursorPos;
-	}
-
-	auto cursorHot() const
-	{
-		return m_cursorHot;
-	}
-
 	qreal scaleFactor() const;
 	QPoint mapToFramebuffer( QPoint pos );
 	QRect mapFromFramebuffer( QRect rect );
@@ -151,13 +138,11 @@ protected:
 	void updateLocalCursor();
 
 private:
-	void updatePaintedCursor();
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
 
 	VncConnection* m_connection{nullptr};
 	QPixmap m_cursorShape{};
-	QPoint m_cursorPos{0, 0};
 	QPoint m_cursorHot{0, 0};
 	QSize m_framebufferSize{0, 0};
 	bool m_viewOnly{true};

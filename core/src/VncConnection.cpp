@@ -627,9 +627,6 @@ rfbBool VncConnection::initFrameBuffer( rfbClient* client )
 		// make sure to use lossless raw encoding
 		client->appData.encodingsString = "raw";
 		break;
-	case Quality::RemoteControl:
-		client->appData.useRemoteCursor = true;
-		break;
 	case Quality::Thumbnail:
 		client->appData.compressLevel = 9;
 		client->appData.qualityLevel = 5;
