@@ -29,6 +29,8 @@
 #include "HostAddress.h"
 
 
+QString HostAddress::s_cachedLocalFQDN;
+
 HostAddress::HostAddress( const QString& address ) :
 	m_type( determineType( address ) ),
 	m_address( address )
@@ -155,26 +157,12 @@ int HostAddress::parsePortNumber( const QString& address )
 
 QString HostAddress::localFQDN()
 {
-	const auto localHostName = QHostInfo::localHostName();
-	const auto type = determineType( localHostName );
-
-	switch( type )
+	if( s_cachedLocalFQDN.isEmpty() )
 	{
-	case Type::HostName:
-		if( QHostInfo::localDomainName().isEmpty() == false )
-		{
-			return localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName();
-		}
-
-	case Type::FullyQualifiedDomainName:
-		return localHostName;
-
-	default:
-		vWarning() << "Could not determine local host name:" << localHostName;
-		break;
+		s_cachedLocalFQDN = resolveLocalFQDN();
 	}
 
-	return HostAddress( localHostName ).tryConvert( Type::FullyQualifiedDomainName );
+	return s_cachedLocalFQDN;
 }
 
 
@@ -312,4 +300,30 @@ QString HostAddress::fqdnToHostName( const QString& fqdn )
 #else
 		return fqdn.split( QLatin1Char( '.' ) ).constFirst();
 #endif
+}
+
+
+
+QString HostAddress::resolveLocalFQDN()
+{
+	const auto localHostName = QHostInfo::localHostName();
+	const auto type = determineType( localHostName );
+
+	switch( type )
+	{
+	case Type::HostName:
+		if( QHostInfo::localDomainName().isEmpty() == false )
+		{
+			return localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName();
+		}
+
+	case Type::FullyQualifiedDomainName:
+		return localHostName;
+
+	default:
+		vWarning() << "Could not determine local host name:" << localHostName;
+		break;
+	}
+
+	return HostAddress( localHostName ).tryConvert( Type::FullyQualifiedDomainName );
 }
