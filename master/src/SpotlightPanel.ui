@@ -86,7 +86,7 @@
          </property>
          <property name="text">
           <string>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</string>
+The second button removes the selected or last computer.</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
