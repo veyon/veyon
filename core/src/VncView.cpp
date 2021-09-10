@@ -89,18 +89,24 @@ void VncView::setViewOnly( bool viewOnly )
 	{
 		return;
 	}
+
 	m_viewOnly = viewOnly;
+
+	if( m_connection )
+	{
+		m_connection->setUseRemoteCursor( !viewOnly );
+	}
 
 	if( m_viewOnly )
 	{
 		m_keyboardShortcutTrapper->setEnabled( false );
-		updateLocalCursor();
 	}
 	else
 	{
-		updateLocalCursor();
 		m_keyboardShortcutTrapper->setEnabled( true );
 	}
+
+	updateLocalCursor();
 }
 
 
@@ -224,24 +230,6 @@ QRect VncView::mapFromFramebuffer( QRect r )
 
 
 
-void VncView::updateCursorPos( int x, int y )
-{
-	if( viewOnly() )
-	{
-		if( m_cursorShape.isNull() == false )
-		{
-			updatePaintedCursor();
-		}
-		m_cursorPos = { x, y };
-		if( m_cursorShape.isNull() == false )
-		{
-			updatePaintedCursor();
-		}
-	}
-}
-
-
-
 void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 {
 	const auto scale = scaleFactor();
@@ -250,11 +238,6 @@ void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 	m_cursorShape = cursorShape.scaled( int( cursorShape.width()*scale ),
 										int( cursorShape.height()*scale ),
 										Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-
-	if( viewOnly() )
-	{
-		updateView( m_cursorPos.x(), m_cursorPos.y(), m_cursorShape.width(), m_cursorShape.height() );
-	}
 
 	updateLocalCursor();
 }
@@ -625,13 +608,6 @@ void VncView::updateLocalCursor()
 	{
 		setViewCursor( Qt::ArrowCursor );
 	}
-}
-
-
-
-void VncView::updatePaintedCursor()
-{
-	updateView( m_cursorPos.x(), m_cursorPos.y(), m_cursorShape.width(), m_cursorShape.height() );
 }
 
 
