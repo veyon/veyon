@@ -121,6 +121,8 @@ public:
 		m_quality = quality ;
 	}
 
+	void setUseRemoteCursor( bool enabled );
+
 	void setServerReachable();
 
 	void enqueueEvent( VncEvent* event, bool wake );
@@ -228,6 +230,7 @@ private:
 	QString m_host;
 	int m_port;
 	int m_defaultPort{-1};
+	bool m_useRemoteCursor{false};
 
 	// thread and timing control
 	QMutex m_globalMutex;
