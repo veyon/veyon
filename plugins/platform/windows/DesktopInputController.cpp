@@ -115,7 +115,7 @@ void DesktopInputController::run()
 		while( isInterruptionRequested() == false )
 		{
 			waitMutex.lock();
-			m_inputWaitCondition.wait( &waitMutex, QDeadlineTimer( ThreadSleepInterval ) );
+			m_inputWaitCondition.wait( &waitMutex, ThreadSleepInterval );
 			waitMutex.unlock();
 
 			m_dataMutex.lock();
