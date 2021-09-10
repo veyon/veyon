@@ -52,6 +52,11 @@ public:
 		return m_multiSession;
 	}
 
+	int maximumSessionCount() const
+	{
+		return m_maximumSessionCount;
+	}
+
 	using SessionMap = QMap<PlatformSessionId, SessionId>;
 
 protected:
