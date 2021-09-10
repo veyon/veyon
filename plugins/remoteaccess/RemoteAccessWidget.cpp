@@ -69,7 +69,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 		m_viewOnlyButton->setCheckable( true );
 		m_viewOnlyButton->setChecked( startViewOnly );
 		connect( m_viewOnlyButton, &ToolButton::toggled, this, &RemoteAccessWidgetToolBar::updateControls );
-		connect( m_viewOnlyButton, &QAbstractButton::toggled, parent, &RemoteAccessWidget::toggleViewOnly );
+		connect( m_viewOnlyButton, &QAbstractButton::toggled, parent, &RemoteAccessWidget::setViewOnly );
 	}
 
 	m_fullScreenButton->setCheckable( true );
@@ -300,7 +300,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 
 	showNormal();
 
-	toggleViewOnly( startViewOnly );
+	setViewOnly( startViewOnly );
 }
 
 
@@ -390,7 +390,7 @@ void RemoteAccessWidget::toggleFullScreen( bool _on )
 
 
 
-void RemoteAccessWidget::toggleViewOnly( bool viewOnly )
+void RemoteAccessWidget::setViewOnly( bool viewOnly )
 {
 	m_vncView->setViewOnly( viewOnly );
 	m_toolBar->updateControls( viewOnly );

@@ -93,7 +93,7 @@ public:
 	}
 
 	void toggleFullScreen( bool );
-	void toggleViewOnly( bool viewOnly );
+	void setViewOnly( bool viewOnly );
 	void takeScreenshot();
 
 protected:
