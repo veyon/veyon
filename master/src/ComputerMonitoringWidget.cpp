@@ -274,18 +274,18 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 
 void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 {
-   const auto selectedInterfaces = selectedComputerControlInterfaces();
-   if ( !m_ignoreMousePressAndHoldEvent &&
+	const auto selectedInterfaces = selectedComputerControlInterfaces();
+	if ( !m_ignoreMousePressAndHoldEvent &&
 		selectedInterfaces.count() > 0 &&
 		selectedInterfaces.count() < 2 &&
 		selectedInterfaces.first()->state() == ComputerControlInterface::State::Connected &&
 		selectedInterfaces.first()->hasValidFramebuffer() )
-   {
+	{
 		m_ignoreMousePressAndHoldEvent = true;
 		delete m_computerZoomWidget;
 		m_computerZoomWidget = new ComputerZoomWidget( selectedInterfaces.first()  );
 		QApplication::setOverrideCursor(Qt::BlankCursor);
-   }
+	}
 }
 
 
