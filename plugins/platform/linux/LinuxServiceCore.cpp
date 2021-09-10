@@ -61,97 +61,13 @@ void LinuxServiceCore::run()
 
 void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
 {
+	Q_UNUSED(login1SessionId)
+
 	const auto sessionPath = sessionObjectPath.path();
 
-	const auto sessionType = LinuxSessionFunctions::getSessionType( sessionPath );
+	vDebug() << "new session" << sessionPath;
 
-	if( sessionType == LinuxSessionFunctions::Type::Wayland )
-	{
-		vWarning() << "Wayland session detected but trying to start Veyon Server anyway, even though Veyon Server does "
-					  "not supported Wayland sessions. If you encounter problems, please switch to X11-based sessions!";
-	}
-
-	// do not start server for non-graphical sessions
-	if( sessionType == LinuxSessionFunctions::Type::TTY )
-	{
-		vDebug() << "Not starting Veyon Server in TTY session";
-		return;
-	}
-
-	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
-	if( sessionState == LinuxSessionFunctions::State::Opening )
-	{
-		vDebug() << "Session" << sessionPath << "still opening - retrying in" << SessionStateProbingInterval << "msecs";
-		QTimer::singleShot( SessionStateProbingInterval, this, [=]() { startServer( login1SessionId, sessionObjectPath ); } );
-		return;
-	}
-
-	// only start server for online or active sessions
-	if( sessionState != LinuxSessionFunctions::State::Online &&
-		sessionState != LinuxSessionFunctions::State::Active )
-	{
-		vDebug() << "Not starting server for session" << sessionPath << "in state" << sessionState;
-		return;
-	}
-
-	const auto sessionLeader = LinuxSessionFunctions::getSessionLeaderPid( sessionPath );
-	if( sessionLeader < 0 )
-	{
-		vCritical() << "No leader available for session" << sessionPath;
-		return;
-	}
-
-	auto sessionEnvironment = LinuxSessionFunctions::getSessionEnvironment( sessionLeader );
-
-	if( sessionEnvironment.isEmpty() )
-	{
-		vWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
-				   << SessionEnvironmentProbingInterval << "msecs";
-		QTimer::singleShot( SessionEnvironmentProbingInterval, this,
-							[=]() { startServer( login1SessionId, sessionObjectPath ); } );
-		return;
-	}
-
-	if( m_sessionManager.multiSession() == false )
-	{
-		// make sure no other server is still running
-		stopAllServers();
-	}
-
-	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds( sessionPath );
-
-	if( sessionUptime >= 0 &&
-		sessionUptime < LinuxPlatformConfiguration(&VeyonCore::config()).minimumUserSessionLifetime() )
-	{
-		vDebug() << "Session" << sessionPath << "too young - retrying in" << SessionUptimeProbingInterval << "msecs";
-		QTimer::singleShot( SessionUptimeProbingInterval, this, [=]() { startServer( login1SessionId, sessionObjectPath ); } );
-		return;
-	}
-
-	sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionPathEnvVarName(), sessionPath );
-
-	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
-	if( sessionEnvironment.contains( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) == false )
-	{
-		sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionIdEnvVarName(),
-								   LinuxSessionFunctions::getSessionId( sessionPath ) );
-	}
-
-	const auto sessionId = m_sessionManager.openSession( sessionPath );
-
-	vInfo() << "Starting server for new session" << sessionPath
-			<< "with ID" << sessionId
-			<< "at seat" << LinuxSessionFunctions::getSessionSeat( sessionPath ).path;
-
-	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
-							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
-
-	auto serverProcess = new LinuxServerProcess( sessionEnvironment, sessionPath, sessionId, this );
-	serverProcess->start();
-
-	connect( serverProcess, &QProcess::stateChanged, this, [=]() { checkSessionState( sessionPath ); } );
-
-	m_serverProcesses[sessionPath] = serverProcess;
+	startServer( sessionPath );
 }
 
 
@@ -162,15 +78,17 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 
 	const auto sessionPath = sessionObjectPath.path();
 
+	vDebug() << "session removed" << sessionPath;
+
 	if( m_serverProcesses.contains( sessionPath ) )
 	{
 		stopServer( sessionPath );
-	}
 
-	// make sure to (re-)start server instances for preempted/suspended sessions such as the login manager session
-	if( m_sessionManager.multiSession() == false )
-	{
-		startServers();
+		// make sure to (re-)start server instances for preempted/suspended sessions such as the login manager session
+		if( m_sessionManager.multiSession() == false )
+		{
+			startServers();
+		}
 	}
 }
 
@@ -205,15 +123,126 @@ void LinuxServiceCore::connectToLoginManager()
 
 void LinuxServiceCore::startServers()
 {
+	vDebug();
+
 	const auto sessions = LinuxSessionFunctions::listSessions();
 
 	for( const auto& s : sessions )
 	{
 		if( m_serverProcesses.contains( s ) == false &&
+			m_deferredServerSessions.contains( s ) == false &&
 			( m_sessionManager.multiSession() || m_serverProcesses.isEmpty() ) )
 		{
-			startServer( QString{}, QDBusObjectPath( s ) );
+			startServer( s );
 		}
+	}
+}
+
+
+
+void LinuxServiceCore::startServer( const QString& sessionPath )
+{
+	const auto sessionType = LinuxSessionFunctions::getSessionType( sessionPath );
+
+	if( sessionType == LinuxSessionFunctions::Type::Wayland )
+	{
+		vWarning() << "Wayland session detected but trying to start Veyon Server anyway, even though Veyon Server does "
+					  "not supported Wayland sessions. If you encounter problems, please switch to X11-based sessions!";
+	}
+
+	// do not start server for non-graphical sessions
+	if( sessionType == LinuxSessionFunctions::Type::TTY )
+	{
+		vDebug() << "Not starting Veyon Server in TTY session";
+		return;
+	}
+
+	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
+	if( sessionState == LinuxSessionFunctions::State::Opening )
+	{
+		vDebug() << "Session" << sessionPath << "still is being opening - retrying in" << SessionStateProbingInterval << "msecs";
+		deferServerStart( sessionPath, SessionStateProbingInterval );
+		return;
+	}
+
+	// only start server for online or active sessions
+	if( sessionState != LinuxSessionFunctions::State::Online &&
+		sessionState != LinuxSessionFunctions::State::Active )
+	{
+		vInfo() << "Not starting server for session" << sessionPath << "in state" << sessionState;
+		return;
+	}
+
+	const auto sessionLeader = LinuxSessionFunctions::getSessionLeaderPid( sessionPath );
+	if( sessionLeader < 0 )
+	{
+		vCritical() << "No leader available for session" << sessionPath;
+		return;
+	}
+
+	auto sessionEnvironment = LinuxSessionFunctions::getSessionEnvironment( sessionLeader );
+
+	if( sessionEnvironment.isEmpty() )
+	{
+		vWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
+				   << SessionEnvironmentProbingInterval << "msecs";
+		deferServerStart( sessionPath, SessionEnvironmentProbingInterval );
+		return;
+	}
+
+	if( m_sessionManager.multiSession() == false )
+	{
+		// make sure no other server is still running
+		stopAllServers();
+	}
+
+	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds( sessionPath );
+	const auto minimumSessionUptime = LinuxPlatformConfiguration(&VeyonCore::config()).minimumUserSessionLifetime();
+
+	if( sessionUptime >= 0 &&
+		sessionUptime < minimumSessionUptime )
+	{
+		vDebug() << "Session" << sessionPath << "too young - retrying in" << minimumSessionUptime - sessionUptime << "msecs";
+		deferServerStart( sessionPath, minimumSessionUptime - sessionUptime );
+		return;
+	}
+
+	sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionPathEnvVarName(), sessionPath );
+
+	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
+	if( sessionEnvironment.contains( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) == false )
+	{
+		sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionIdEnvVarName(),
+								   LinuxSessionFunctions::getSessionId( sessionPath ) );
+	}
+
+	const auto sessionId = m_sessionManager.openSession( sessionPath );
+
+	vInfo() << "Starting server for new session" << sessionPath
+			<< "with ID" << sessionId
+			<< "at seat" << LinuxSessionFunctions::getSessionSeat( sessionPath ).path;
+
+	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
+							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
+
+	auto serverProcess = new LinuxServerProcess( sessionEnvironment, sessionPath, sessionId, this );
+	serverProcess->start();
+
+	connect( serverProcess, &QProcess::stateChanged, this, [=]() { checkSessionState( sessionPath ); } );
+
+	m_serverProcesses[sessionPath] = serverProcess;
+	m_deferredServerSessions.removeAll( sessionPath );
+}
+
+
+
+void LinuxServiceCore::deferServerStart( const QString& sessionPath, int delay )
+{
+	QTimer::singleShot( delay, this, [=]() { startServer( sessionPath ); } );
+
+	if( m_deferredServerSessions.contains( sessionPath ) == false )
+	{
+		m_deferredServerSessions.append( sessionPath );
 	}
 }
 
