@@ -347,13 +347,6 @@ struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
 };
 #endif
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
-#define QDeadlineTimer(x) static_cast<unsigned long int>(x)
-#else
-#include <QDeadlineTimer>
-#endif
-
-
 template<typename T, typename = void>
 struct QVariantHelper
 {

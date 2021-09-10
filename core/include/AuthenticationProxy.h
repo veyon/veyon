@@ -75,7 +75,7 @@ public:
 		{
 			return true;
 		}
-		return m_authenticationMethodsAvailable.wait( &m, QDeadlineTimer( timeout ) );
+		return m_authenticationMethodsAvailable.wait( &m, timeout );
 	}
 
 	AuthenticationCredentials credentials()

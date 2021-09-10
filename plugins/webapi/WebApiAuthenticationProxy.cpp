@@ -67,7 +67,7 @@ WebApiAuthenticationProxy::AuthenticationMethod WebApiAuthenticationProxy::initC
 		QMutex credentialsWaitMutex;
 		QMutexLocker credentialsWaitMutexLocker( &credentialsWaitMutex );
 
-		if( m_credentialsPopulated.wait( &credentialsWaitMutex, QDeadlineTimer(m_waitConditionWaitTime) ) == false )
+		if( m_credentialsPopulated.wait( &credentialsWaitMutex, m_waitConditionWaitTime ) == false )
 		{
 			vWarning() << "waiting for credentials timed out";
 #if VEYON_VERSION_MAJOR >= 5
