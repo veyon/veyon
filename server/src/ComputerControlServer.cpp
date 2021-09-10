@@ -227,6 +227,28 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 
 
 
+QFutureWatcher<void>* ComputerControlServer::resolveFQDNs( const QStringList& hosts )
+{
+	auto watcher = new QFutureWatcher<void>();
+
+	watcher->setFuture( QtConcurrent::run( [this, hosts]() {
+		for( const auto& host : hosts )
+		{
+			const auto fqdn = HostAddress( host ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+
+			m_dataMutex.lock();
+			m_resolvedHostNames[host] = fqdn;
+			m_dataMutex.unlock();
+		}
+	} ) );
+
+	connect( watcher, &QFutureWatcher<void>::finished, watcher, &QObject::deleteLater );
+
+	return watcher;
+}
+
+
+
 void ComputerControlServer::updateTrayIconToolTip()
 {
 	auto toolTip = tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::versionString(),

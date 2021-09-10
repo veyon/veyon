@@ -25,7 +25,7 @@
 #pragma once
 
 #include <QMutex>
-#include <QStringList>
+#include <QtConcurrent>
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
@@ -78,11 +78,14 @@ private:
 	void checkForIncompleteAuthentication( VncServerClient* client );
 	void showAuthenticationMessage( VncServerClient* client );
 	void showAccessControlMessage( VncServerClient* client );
+	QFutureWatcher<void>* resolveFQDNs( const QStringList& hosts );
 
 	void updateTrayIconToolTip();
 
 	QMutex m_dataMutex{};
 	QStringList m_allowedIPs{};
+
+	QMap<QString, QString> m_resolvedHostNames;
 
 	QStringList m_failedAuthHosts{};
 	QStringList m_failedAccessControlHosts{};
