@@ -120,7 +120,12 @@ WindowsServiceCore::WindowsServiceCore( const QString& name,
 	s_instance = this;
 
 	// allocate session 0 (PlatformSessionFunctions::DefaultSessionId) so we can always assign it to the console session
-	m_sessionManager.openSession( QStringLiteral("0 (console)") );
+	if( m_sessionManager.mode() != PlatformSessionManager::Mode::Active ||
+		( WtsSessionManager::activeSessions().size() <= 1 &&
+		  WtsSessionManager::activeConsoleSession() != WtsSessionManager::InvalidSession ) )
+	{
+		m_sessionManager.openSession( QStringLiteral("0 (console)") );
+	}
 
 	// enable privileges required to create process with access token from other process
 	WindowsCoreFunctions::enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
@@ -184,6 +189,8 @@ void WindowsServiceCore::manageServersForAllSessions()
 {
 	QMap<WtsSessionManager::SessionId, VeyonServerProcess*> serverProcesses;
 
+	const auto activeSessionOnly = m_sessionManager.mode() == PlatformSessionManager::Mode::Active;
+
 	while( WaitForSingleObject( m_stopServiceEvent, SessionPollingInterval ) == WAIT_TIMEOUT )
 	{
 		auto wtsSessionIds = WtsSessionManager::activeSessions();
@@ -195,12 +202,23 @@ void WindowsServiceCore::manageServersForAllSessions()
 			wtsSessionIds.append( consoleSessionId );
 		}
 
+		const auto includeConsoleSession = activeSessionOnly &&
+										   wtsSessionIds.size() == 1 &&
+										   wtsSessionIds.first() == consoleSessionId;
+		const auto excludeConsoleSession = activeSessionOnly &&
+										   wtsSessionIds.size() > 1;
+
+		if( excludeConsoleSession )
+		{
+			wtsSessionIds.removeAll( consoleSessionId );
+		}
+
 		for( auto it = serverProcesses.begin(); it != serverProcesses.end(); )
 		{
 			if( wtsSessionIds.contains( it.key() ) == false )
 			{
 				delete it.value();
-				if( it.key() != consoleSessionId )
+				if( it.key() != consoleSessionId || excludeConsoleSession )
 				{
 					m_sessionManager.closeSession( QString::number(it.key() ) );
 				}
@@ -216,7 +234,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 		{
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
-				if( wtsSessionId != consoleSessionId )
+				if( wtsSessionId != consoleSessionId || includeConsoleSession )
 				{
 					m_sessionManager.openSession( QString::number(wtsSessionId) );
 				}
