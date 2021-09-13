@@ -44,7 +44,7 @@ public:
 
 private:
 	void manageServersForAllSessions();
-	void manageServerForActiveConsoleSession();
+	void manageServerForConsoleSession();
 
 	static void WINAPI serviceMainStatic( DWORD argc, LPWSTR* argv );
 	static DWORD WINAPI serviceCtrlStatic( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context );

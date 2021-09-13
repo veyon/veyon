@@ -35,7 +35,16 @@ class QLocalSocket;
 
 class PlatformSessionManager : public QThread
 {
+	Q_OBJECT
 public:
+	enum class Mode
+	{
+		Local,
+		Active,
+		Multi
+	};
+	Q_ENUM(Mode)
+
 	using SessionId = PlatformSessionFunctions::SessionId;
 	using PlatformSessionId = QString;
 
@@ -47,9 +56,9 @@ public:
 
 	static SessionId resolveSessionId( const PlatformSessionId& platformSessionId );
 
-	bool multiSession() const
+	Mode mode() const
 	{
-		return m_multiSession;
+		return m_mode;
 	}
 
 	int maximumSessionCount() const
@@ -74,7 +83,7 @@ private:
 
 	static bool waitForMessage( QLocalSocket* socket );
 
-	const bool m_multiSession;
+	const Mode m_mode;
 	const int m_maximumSessionCount;
 
 	QMutex m_mutex;

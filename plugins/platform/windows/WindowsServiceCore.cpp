@@ -166,13 +166,13 @@ void WindowsServiceCore::manageServerInstances()
 	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
 	ResetEvent( m_serverShutdownEvent );
 
-	if( m_sessionManager.multiSession() )
+	if( m_sessionManager.mode() != PlatformSessionManager::Mode::Local )
 	{
 		manageServersForAllSessions();
 	}
 	else
 	{
-		manageServerForActiveConsoleSession();
+		manageServerForConsoleSession();
 	}
 
 	CloseHandle( m_serverShutdownEvent );
@@ -238,7 +238,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 
 
 
-void WindowsServiceCore::manageServerForActiveConsoleSession()
+void WindowsServiceCore::manageServerForConsoleSession()
 {
 	VeyonServerProcess veyonServerProcess;
 

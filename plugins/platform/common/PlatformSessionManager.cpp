@@ -34,7 +34,11 @@
 
 PlatformSessionManager::PlatformSessionManager( QObject* parent ) :
 	QThread( parent ),
-	m_multiSession( VeyonCore::config().multiSessionModeEnabled() ),
+	m_mode( VeyonCore::config().multiSessionModeEnabled() ? Mode::Multi :
+					   VeyonCore::config().activeSessionModeEnabled() ?
+					   Mode::Active :
+					   Mode::Local
+				   ),
 	m_maximumSessionCount( VeyonCore::config().maximumSessionCount() )
 {
 	vDebug();
@@ -56,7 +60,7 @@ PlatformSessionManager::~PlatformSessionManager()
 
 void PlatformSessionManager::run()
 {
-	if( m_multiSession )
+	if( mode() == Mode::Multi )
 	{
 		auto server = new QLocalServer;
 		server->setSocketOptions( QLocalServer::WorldAccessOption );

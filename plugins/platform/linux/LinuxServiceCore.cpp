@@ -85,7 +85,7 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 		stopServer( sessionPath );
 
 		// make sure to (re-)start server instances for preempted/suspended sessions such as the login manager session
-		if( m_sessionManager.multiSession() == false )
+		if( m_sessionManager.mode() != PlatformSessionManager::Mode::Multi )
 		{
 			startServers();
 		}
@@ -131,7 +131,7 @@ void LinuxServiceCore::startServers()
 	{
 		if( m_serverProcesses.contains( s ) == false &&
 			m_deferredServerSessions.contains( s ) == false &&
-			( m_sessionManager.multiSession() || m_serverProcesses.isEmpty() ) )
+			( m_sessionManager.mode() == PlatformSessionManager::Mode::Multi || m_serverProcesses.isEmpty() ) )
 		{
 			startServer( s );
 		}
@@ -190,7 +190,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		return;
 	}
 
-	if( m_sessionManager.multiSession() == false )
+	if( m_sessionManager.mode() != PlatformSessionManager::Mode::Multi )
 	{
 		// make sure no other server is still running
 		stopAllServers();
