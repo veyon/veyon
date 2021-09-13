@@ -111,16 +111,30 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Sessions</string>
+      <string>Session mode</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QRadioButton" name="singleSessionModeEnabled">
+       <widget class="QRadioButton" name="localSessionModeEnabled">
         <property name="text">
-         <string>Single session mode (create server instance for local/physical session only)</string>
+         <string>Local session mode (single server instance for primary local session)</string>
         </property>
         <property name="checked">
          <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">sessionModeButtonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="activeSessionModeEnabled">
+        <property name="toolTip">
+         <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</string>
+        </property>
+        <property name="text">
+         <string>Active session mode (single server instance for active local or remote session)</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">sessionModeButtonGroup</string>
@@ -134,7 +148,7 @@
 Typically this is required to support terminal servers.</string>
         </property>
         <property name="text">
-         <string>Multi session mode (create server instance for each local and remote desktop session)</string>
+         <string>Multi session mode (distinct server instance for each local and remote desktop session)</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">sessionModeButtonGroup</string>
@@ -333,7 +347,8 @@ Typically this is required to support terminal servers.</string>
   <tabstop>autostartService</tabstop>
   <tabstop>startService</tabstop>
   <tabstop>stopService</tabstop>
-  <tabstop>singleSessionModeEnabled</tabstop>
+  <tabstop>localSessionModeEnabled</tabstop>
+  <tabstop>activeSessionModeEnabled</tabstop>
   <tabstop>multiSessionModeEnabled</tabstop>
   <tabstop>maximumSessionCount</tabstop>
   <tabstop>veyonServerPort</tabstop>
