@@ -26,6 +26,7 @@
 
 #include <csignal>
 #include <proc/readproc.h>
+#include <sys/errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -94,6 +95,11 @@ void LinuxServerProcess::stop()
 					return true;
 				},
 				pid, 0, true );
+
+			if( ::kill( pid, sig ) < 0 && errno != ESRCH )
+			{
+				vCritical() << "kill() failed with" << errno;
+			}
 
 			// clean up process
 			waitpid( pid, nullptr, WNOHANG );
