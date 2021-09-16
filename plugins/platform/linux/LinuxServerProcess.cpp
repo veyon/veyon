@@ -88,9 +88,9 @@ void LinuxServerProcess::stop()
 		{
 			LinuxCoreFunctions::forEachChildProcess(
 				[=]( proc_t* procInfo ) {
-					if( procInfo->tid > 0 )
+					if( procInfo->tid > 0 && ::kill( procInfo->tid, sig ) < 0 && errno != ESRCH )
 					{
-						::kill( procInfo->tid, sig );
+						vCritical() << "kill() failed with" << errno;
 					}
 					return true;
 				},
