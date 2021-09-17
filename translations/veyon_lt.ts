@@ -1046,6 +1046,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>invalid</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1219,11 +1223,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Negalima pakeisti automatinio paleidimo parametro %1 servisui.</translation>
+        <translation>Nepavyko pakeisti automatinio paleidimo parametro servisui: %1 </translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Negalima pakeisti ugniasienės (firewall) konfigūracijos serveriui: %1</translation>
+        <translation>Nepavyko pakeisti ugniasienės konfigūracijos serveriui: %1</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
@@ -1316,11 +1320,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>Dalintis savo ekranu pilno ekrano rėžime.</translation>
+        <translation>Dalintis savo ekranu pilno ekrano režime.</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Šiame rėžime jūsų ekranas rodomas visiems kompiuteriams </translation>
+        <translation>Šiame režime jūsų ekranas rodomas visiems kompiuteriams pilnojo ekrano režimu. Visuose kompiuteriuose įvesties įrenginiai yra užblokuoti.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
@@ -1568,7 +1572,7 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation>Atsiminti paskutinę šakninę direktoriją.</translation>
+        <translation>Atsiminti paskutinę pradinę direktoriją.</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
@@ -3245,10 +3249,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Jungiamasi su %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Prisijungta.</translation>
     </message>
@@ -3259,6 +3259,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Išeiti</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3472,18 +3476,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Rodyti pranešimą, kai neautorizuota prieiga užblokuota</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation type="unfinished"/>
     </message>
@@ -3509,6 +3501,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3874,13 +3882,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon Service</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Vykdomas sujungimas su  %1 ...</translation>
     </message>
 </context>
 <context>

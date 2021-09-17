@@ -199,7 +199,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>אם יותר מאחד התנאים מופעל, כל אחד מהתנאים צריך להתקיים על מנת לקיים את התנאי (&quot;וגם&quot; לוגי). אם רק אחד מהתנאים צריך להתקיים, יש ליצור מספר כללי גישה</translation>
+        <translation>אם יותר מאחד התנאים מופעל, כל אחד מהתנאים צריך להתקיים על מנת לקיים את התנאי (&quot;וגם&quot; לוגי). אם רק אחד מהתנאים צריך להתקיים (&quot;או&quot; לוגי), יש ליצור מספר כללי גישה.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -278,7 +278,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>אנא הזן את המשתמש הבא ואת המידע אודות המחשב על מנת לבדוק את קבוצת החוקים</translation>
+        <translation>אנא הזן את המשתמש הבא ואת המידע אודות המחשב על מנת לבדוק את קבוצת החוקים.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -290,11 +290,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>הגישה במקרה הניתן מאופשרת</translation>
+        <translation>הגישה במקרה הניתן מאופשרת.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>הגישה במקרה הניתן נדחית</translation>
+        <translation>הגישה במקרה הניתן נדחית.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
@@ -405,7 +405,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>ייצא את המפתח הפומבי וייבא אותו בכל אחד ממחשבי הלקוחות עם שם זהה.</translation>
+        <translation>3) ייצא את המפתח הפומבי וייבא אותו בכל אחד ממחשבי הלקוחות עם שם זהה.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -514,7 +514,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>יצירת התיב למפתח הפרטי &quot;%1&quot; נכשלה.</translation>
+        <translation>יצירת הנתיב למפתח הפרטי &quot;%1&quot; נכשלה.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -1043,6 +1043,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3243,10 +3247,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>מחובר.</translation>
     </message>
@@ -3256,6 +3256,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3294,7 +3298,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>שחרר</translation>
+        <translation>שחרור</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3383,7 +3387,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show</source>
-        <translation>הראה</translation>
+        <translation>הצג</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3470,18 +3474,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation type="unfinished"/>
     </message>
@@ -3507,6 +3499,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3693,7 +3701,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>השתמש באפשרות זאת על מנת לשלוח הודעה לכל המשתמשים (לדוגמה, לתת משימה חדשה)</translation>
+        <translation>השתמש באפשרות זאת על מנת לשלוח הודעה לכל המשתמשים - לדוגמה, לתת משימה חדשה</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3872,13 +3880,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>שירות Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>

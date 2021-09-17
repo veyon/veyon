@@ -1047,6 +1047,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>invalid</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1305,11 +1309,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation>Демонстрационный режим</translation>
+        <translation>Демонстрация</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation>Поделиться своим экраном или разрешить другим пользователям делиться своим экраном.</translation>
+        <translation>Демонстрировать свой экран или разрешить другим пользователям демонстрировать свой экран.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
@@ -3266,10 +3270,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Соединение с %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Подключен.</translation>
     </message>
@@ -3280,6 +3280,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Выход</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3494,18 +3498,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Показывать оповещения, когда программа блокирует неавторизованный доступ</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Сессии</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Режим одиночного сеанса (создание сервера только для локального / физического сеанса)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Многосессионный режим (создание сервера для каждого сеанса локального и удаленного рабочего стола)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Максимальное количество сеансов</translation>
     </message>
@@ -3532,6 +3524,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Дополнительные настройки сети</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3896,13 +3904,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Сервис Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Восстановление соединения с %1 ...</translation>
     </message>
 </context>
 <context>

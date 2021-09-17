@@ -1047,6 +1047,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>invalid</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -3262,10 +3266,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Připojování k %1…</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Připojeno.</translation>
     </message>
@@ -3276,6 +3276,10 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Exit</source>
         <translation>Ukončit</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3490,18 +3494,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Zobrazit oznámení když je zablokován nepověřený přístup</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation type="unfinished"/>
     </message>
@@ -3527,6 +3519,22 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3892,13 +3900,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Veyon Service</source>
         <translation>Služba Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Připojování k %1…</translation>
     </message>
 </context>
 <context>

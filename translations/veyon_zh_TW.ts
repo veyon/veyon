@@ -1047,6 +1047,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>invalid</source>
         <translation>無效</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -3266,10 +3270,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>正在連線 %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>已連線。</translation>
     </message>
@@ -3280,6 +3280,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>結束</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3494,18 +3498,6 @@ Typically this is required to support terminal servers.</source>
         <translation>未授權的存取已封鎖時顯示通知</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>工作階段</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>單一工作階段模式 (只為本地端/實體工作階段建立伺服器實例)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>多工作階段模式 (為每個本地端與遠端桌面工作階段建立伺服器實例)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>最大工作階段數</translation>
     </message>
@@ -3532,6 +3524,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>其它網路設定</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3896,13 +3904,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon 服務</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>正在建立與 %1 連線...</translation>
     </message>
 </context>
 <context>

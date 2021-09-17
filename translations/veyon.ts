@@ -1044,6 +1044,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>invalid</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -3242,10 +3246,6 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3255,6 +3255,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3469,18 +3473,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3506,6 +3498,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3870,13 +3878,6 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

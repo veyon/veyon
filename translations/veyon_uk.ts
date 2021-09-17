@@ -1044,6 +1044,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>invalid</source>
         <translation>некоректний</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Назва: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -3265,10 +3269,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>З’єднання з %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>З’єднано.</translation>
     </message>
@@ -3279,6 +3279,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Вийти</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3493,18 +3497,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Показувати сповіщення, коли програма блокує неуповноважений доступ</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Сеанси</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Режим єдиного сеансу (створювати екземпляр сервера лише для локального/фізичного сеансу)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Режим із багатьма сеансами (створювати екземпляр сервера для кожного локального і віддаленого сеансу)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Максимальна кількість сеансів</translation>
     </message>
@@ -3531,6 +3523,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Різноманітні параметри мережі</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation>Режим сеансу</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Режим локального сеансу (один екземпляр сервера для основного локального сеансу)</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Режим активного сеансу (один екземпляр сервера для активного локального або віддаленого сеансу)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Режим багатьох сеансів (окремий екземпляр сервера для кожного локального і віддаленого стільничного сеансу)</translation>
     </message>
 </context>
 <context>
@@ -3895,13 +3903,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Служба Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Встановлення зв’язку з %1 ...</translation>
     </message>
 </context>
 <context>

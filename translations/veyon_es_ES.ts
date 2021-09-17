@@ -1049,6 +1049,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>invalid</source>
         <translation>invalido</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1311,7 +1315,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation>Comparta su pantalla o permita que un usuario comparta su pantalla con otros usuarios.</translation>
+        <translation>Compartir tu pantalla o permitir que un usuario comparta su pantalla con otros usuarios.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
@@ -2787,7 +2791,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Destacar</translation>
+        <translation>Foco</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
@@ -3268,10 +3272,6 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Conectando %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Conectado.</translation>
     </message>
@@ -3282,6 +3282,10 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>Exit</source>
         <translation>Salir</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3496,18 +3500,6 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Mostrar notificación cuando un acceso no autorizado está bloqueado</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sesiones</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Modo de sesión única (crear una instancia de servidor para sesión local/física únicamente)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Modo de sesión múltiple (crear una instancia de servidor para cada sesión de escritorio local y remota)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Número máximo de sesiones</translation>
     </message>
@@ -3533,7 +3525,23 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation>Configuraciones de red diversas</translation>
+        <translation>Ajustes de red varios</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3625,7 +3633,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation>Previo</translation>
+        <translation>Anterior</translation>
     </message>
     <message>
         <source>Start/pause</source>
@@ -3656,7 +3664,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Destacar</translation>
+        <translation>Foco</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -3898,13 +3906,6 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Veyon Service</source>
         <translation>Veyon Service</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Estableciendo conexión con %1 ...</translation>
     </message>
 </context>
 <context>

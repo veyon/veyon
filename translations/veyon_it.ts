@@ -1044,6 +1044,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>invalid</source>
         <translation>non valido</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Nome: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -3253,10 +3257,6 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Connessione con %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Connesso.</translation>
     </message>
@@ -3267,6 +3267,10 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Exit</source>
         <translation>Uscita</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3480,18 +3484,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Mostra notifica quando viene bloccato un accesso non autorizzato</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sessioni</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Modalità sessione singola (crea istanza del server solo per sessione locale/fisica)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Modalità multisessione (crea istanza del server per ogni sessione desktop locale e remota)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Numero massimo di sessioni</translation>
     </message>
@@ -3518,6 +3510,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Impostazioni di rete varie</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3882,13 +3890,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Servizio Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Connessione a %1 ...</translation>
     </message>
 </context>
 <context>

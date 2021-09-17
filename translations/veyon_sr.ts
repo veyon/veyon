@@ -892,7 +892,7 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervisana mesta su:%1</translation>
+        <translation>Uvozi objekte iz zadane tekstualne datoteke pomoću datog niza formata ili regularnog izraza koji sadrži jedno ili više rezervi. Važeća rezervirana mesta su: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -1045,6 +1045,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3266,10 +3270,6 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Spajanje %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Spojen.</translation>
     </message>
@@ -3280,6 +3280,10 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     <message>
         <source>Exit</source>
         <translation>Izlaz</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3494,18 +3498,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Prikaži obavest kada je zabranjeni pristup blokiran.</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation type="unfinished"/>
     </message>
@@ -3531,6 +3523,22 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3896,13 +3904,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon servis</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Uspostava konekcije prema %1 ...</translation>
     </message>
 </context>
 <context>

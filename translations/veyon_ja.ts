@@ -893,7 +893,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>指定されたフォーマット文字列または正規表現（1つまたは複数のプレースホルダーを含む）を使用して、指定されたテキストファイルからオブジェクトをインポートします。有効なプレースホルダーは次のとおりです。%1</translation>
+        <translation>指定されたフォーマット文字列か、1つまたは複数のプレースホルダーを含む正規表現を使用して、指定されたテキストファイルからオブジェクトをインポートします。 有効なプレースホルダーは次のとおりです：％1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -991,7 +991,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>ビルトインVNCサーバ(x11vnc)</translation>
+        <translation>ビルトインVNCサーバー(x11vnc)</translation>
     </message>
 </context>
 <context>
@@ -1047,6 +1047,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>invalid</source>
         <translation>無効</translation>
+    </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1190,7 +1194,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>与えられたファイルから設定をインポート</translation>
+        <translation>設定をファイルからインポート</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
@@ -1443,7 +1447,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>全てのコンピューターでWebサイトを開く</translation>
+        <translation>全てのコンピューターでWebサイトを開きます。</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -1521,14 +1525,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>外部VNCサーバ</translation>
+        <translation>外部VNCサーバー</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>外部VNCサーバ構成</translation>
+        <translation>外部VNCサーバー構成</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1982,7 +1986,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation>LDAP接続エラー</translation>
+        <translation>LDAP接続失敗</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
@@ -2938,7 +2942,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation>自動的にコンピューターのアイコンサイズを合わせる</translation>
+        <translation>自動的にコンピューターのアイコンサイズを調整する</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
@@ -2964,7 +2968,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>場所とコンピューター</translation>
+        <translation>場所/コンピューター</translation>
     </message>
 </context>
 <context>
@@ -3065,7 +3069,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Wake-on-LANでコンピュータの電源を入れる</translation>
+        <translation>Wake-on-LAN(WOL)でコンピュータの電源を入れる</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3247,10 +3251,6 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation type="unfinished"/>
     </message>
@@ -3260,6 +3260,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3287,7 +3291,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>例） VLC</translation>
+        <translation>（例） VLC</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3387,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Time:</source>
-        <translation>時間:</translation>
+        <translation>時刻:</translation>
     </message>
     <message>
         <source>Show</source>
@@ -3442,7 +3446,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>VNCサーバ</translation>
+        <translation>VNCサーバー</translation>
     </message>
     <message>
         <source>Plugin:</source>
@@ -3474,18 +3478,6 @@ Typically this is required to support terminal servers.</source>
         <translation>許可されていないアクセスがブロックされた時、通知を表示</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>セッション</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>シングルセッションモード（ローカル/物理セッション専用のサーバーインスタンスを作成）</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>マルチセッションモード（ローカルおよびリモートデスクトップセッションごとにサーバーインスタンスを作成）</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>最大セッション数</translation>
     </message>
@@ -3499,7 +3491,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation>内部VNCサーバ</translation>
+        <translation>内部VNCサーバー</translation>
     </message>
     <message>
         <source>Feature manager</source>
@@ -3511,6 +3503,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3565,7 +3573,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Veyonサービスをていsh</translation>
+        <translation>Veyonサービスを停止</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
@@ -3615,7 +3623,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>遅延:</translation>
+        <translation>期限:</translation>
     </message>
 </context>
 <context>
@@ -3724,7 +3732,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>ビルトインUltraVNCサーバ構成</translation>
+        <translation>ビルトインUltraVNCサーバー構成</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
@@ -3876,13 +3884,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon サービス</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>%1 への接続を確立しています...</translation>
     </message>
 </context>
 <context>

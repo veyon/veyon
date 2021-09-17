@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Współpraca</translation>
+        <translation>Współtwórcy</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -33,17 +33,17 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Bieżący język nie jest jeszcze do końca przetłumaczony.
+        <translation>Bieżący język nie został jeszcze przetłumaczony (lub wybrano angielski).
 
-Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące tłumaczenie, skontaktuj się z twórcami Veyon.</translation>
+Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne tłumaczenie, należy skontaktować się z twórcą Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>O %1 %2</translation>
+        <translation>Informacje o %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Wesprzyj projekt Veyon za pomocą dotacji</translation>
+        <translation>Przekaż dotację na projekt Veyon</translation>
     </message>
 </context>
 <context>
@@ -94,11 +94,11 @@ Jeżeli chcesz pomóc w tłumaczeniu programu lub chcesz poprawić istniejące t
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Przesuń regułę niżej</translation>
+        <translation>Przenieś regułę niżej</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Przesuń regułę wyżej</translation>
+        <translation>Przenieś regułę wyżej</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
@@ -1045,6 +1045,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2680,7 +2684,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -3261,10 +3265,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Łączenie z %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Połączono.</translation>
     </message>
@@ -3275,6 +3275,10 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Exit</source>
         <translation>Wyjście</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3489,18 +3493,6 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>Pokaż powiadomienie, gdy zostanie zablokowany nieautoryzowany dostęp</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sesje</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Tryb wielosesyjny (utwórz instancję serwera dla każdej sesji pulpitu lokalnego i zdalnego)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Maksymalna liczba sesji</translation>
     </message>
@@ -3527,6 +3519,22 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Różne ustawienia sieci</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3891,13 +3899,6 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Veyon Service</source>
         <translation>Usługa Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Nawiązywanie połączenia z %1</translation>
     </message>
 </context>
 <context>

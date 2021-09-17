@@ -1047,6 +1047,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>invalid</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2379,7 +2383,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation>Teste LDAP bem sucedio</translation>
+        <translation>Teste LDAP bem sucedido</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
@@ -2523,7 +2527,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Autenticaçã ode usuário</translation>
+        <translation>Autenticação de usuário</translation>
     </message>
     <message>
         <source>User login</source>
@@ -3250,10 +3254,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Conectando %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Conectado.</translation>
     </message>
@@ -3263,6 +3263,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3477,18 +3481,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation type="unfinished"/>
     </message>
@@ -3514,6 +3506,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3882,13 +3890,6 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Estabelecendo conexão para %1 ...</translation>
-    </message>
-</context>
-<context>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
@@ -4017,7 +4018,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Autenticaçã ode usuário</translation>
+        <translation>Autenticação de usuário</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>

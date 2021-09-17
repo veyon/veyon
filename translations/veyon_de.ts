@@ -183,7 +183,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is member of group</source>
-        <translation>ist Mitglied von Gruppe</translation>
+        <translation>ist Mitglied der Gruppe</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -1043,6 +1043,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>invalid</source>
         <translation>ungültig</translation>
+    </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Name: %1</translation>
     </message>
 </context>
 <context>
@@ -2857,7 +2861,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>Aktualisierungsintervall Vorschaubilder</translation>
+        <translation>Aktualisierungsintervall Miniaturbilder</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3263,12 +3267,8 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Alt+Strg+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Verbindung wird hergestellt %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
-        <translation>Verbindung hergestellt.</translation>
+        <translation>Verbunden.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3277,6 +3277,10 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Exit</source>
         <translation>Beenden</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation>Verbinde...</translation>
     </message>
 </context>
 <context>
@@ -3491,18 +3495,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Benachrichtigung bei unerlaubtem Zugriff anzeigen</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sitzungen</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Einzelsitzungsmodus (Serverinstanz nur für lokale/physische Sitzung erstellen)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Mehrfachsitzungsmodus (Serverinstanz für jede lokale und Remote-Desktop-Sitzung erstellen)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Maximale Sitzungsanzahl</translation>
     </message>
@@ -3528,7 +3520,23 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation>Diverse Netzwerkeinstellungen</translation>
+        <translation>Sonstige Netzwerkeinstellungen</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation>Sitzungsmodus</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Lokaler Sitzungsmodus (einzelne Serverinstanz für primäre lokale Sitzung)</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Aktiver Sitzungsmodus (einzelne Serverinstanz für aktive lokale oder entfernte Sitzung)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Mehrsitzungsmodus (eigene Serverinstanz für jede lokale und entfernte Desktop-Sitzung)</translation>
     </message>
 </context>
 <context>
@@ -3893,13 +3901,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Veyon Service</source>
         <translation>Veyon-Dienst</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Verbindung zu %1 wird hergestellt ...</translation>
     </message>
 </context>
 <context>

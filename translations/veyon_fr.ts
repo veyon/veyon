@@ -1047,6 +1047,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>invalid</source>
         <translation>invalide</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Nom: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1357,7 +1361,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Screen %1 [%2]</source>
-        <translation>Ecran %1 [%2]</translation>
+        <translation>Écran %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -2729,7 +2733,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Voulez-vous vraiment reset la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
+        <translation>Souhaitez-vous vraiment réinitialiser la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -3135,11 +3139,11 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Voulez-vous vraiment redémarrer &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+        <translation>Souhaitez-vous vraiment redémarrer &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Voulez-vous vraiment éteindre  &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+        <translation>Souhaitez-vous vraiment éteindre  &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
@@ -3266,10 +3270,6 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Connexion à %1...</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Connecté.</translation>
     </message>
@@ -3280,6 +3280,10 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <message>
         <source>Exit</source>
         <translation>Quitter</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3418,7 +3422,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation>Voulez-vous vraiment supprimer toutes les captures d&apos;écran sélectionnées?</translation>
+        <translation>Souhaitez-vous vraiment supprimer toutes les captures d&apos;écran sélectionnées?</translation>
     </message>
 </context>
 <context>
@@ -3494,18 +3498,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Afficher une notification quand un accès non autorisé est bloqué</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sessions</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Mode de session unique (créer une instance de serveur pour une session locale / physique uniquement)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Mode multi-session (créer une instance de serveur pour chaque session de bureau local et distant)</translation>
-    </message>
-    <message>
         <source>Maximum session count</source>
         <translation>Nombre maximum de sessions</translation>
     </message>
@@ -3532,6 +3524,22 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Divers paramètres réseau</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation>Mode Session</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Mode session locale (instance de serveur unique pour la session locale principale)</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Mode session active (instance de serveur unique pour une session locale ou distante active)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Mode multi-session (instance de serveur distincte pour chaque session de bureau local et distant)</translation>
     </message>
 </context>
 <context>
@@ -3821,7 +3829,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>Voulez-vous vraiment déconnecter &lt;b&gt;TOUS&lt;/b&gt; les utilisateurs?</translation>
+        <translation>Souhaitez-vous vraiment déconnecter &lt;b&gt;TOUS&lt;/b&gt; les utilisateurs?</translation>
     </message>
 </context>
 <context>
@@ -3896,13 +3904,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Veyon Service</source>
         <translation>Service Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Établissement de la connexion à %1 ...</translation>
     </message>
 </context>
 <context>
