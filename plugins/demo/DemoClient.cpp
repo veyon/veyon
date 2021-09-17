@@ -69,7 +69,7 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, const QR
 		m_toplevel->resize( screenGeometry.size() - QSize( 10, 30 ) );
 	}
 
-	m_vncView = new VncViewWidget( m_computerControlInterface, VncView::DemoMode, viewport, m_toplevel );
+	m_vncView = new VncViewWidget( m_computerControlInterface, viewport, m_toplevel );
 
 	auto toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setContentsMargins( 0, 0, 0, 0 );

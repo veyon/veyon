@@ -41,14 +41,6 @@ class KeyboardShortcutTrapper;
 class VEYON_CORE_EXPORT VncView
 {
 public:
-	enum Modes
-	{
-		RemoteControlMode,
-		DemoMode,
-		NumModes
-	} ;
-	using Mode = Modes;
-
 	enum Shortcut
 	{
 		ShortcutCtrlAltDel,
