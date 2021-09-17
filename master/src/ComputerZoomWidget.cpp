@@ -36,7 +36,7 @@
 
 ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer& computerControlInterface ) :
 	QWidget( nullptr ),
-	m_vncView( new VncViewWidget( computerControlInterface, VncView::RemoteControlMode, {}, this ) )
+	m_vncView( new VncViewWidget( computerControlInterface, {}, this ) )
 {
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();

@@ -271,7 +271,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 										bool startViewOnly, bool showViewOnlyToggleButton ) :
 	QWidget( nullptr ),
 	m_computerControlInterface( computerControlInterface ),
-	m_vncView( new VncViewWidget( computerControlInterface, VncView::RemoteControlMode, {}, this ) ),
+	m_vncView( new VncViewWidget( computerControlInterface, {}, this ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, startViewOnly, showViewOnlyToggleButton ) )
 {
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();

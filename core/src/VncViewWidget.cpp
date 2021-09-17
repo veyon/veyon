@@ -39,7 +39,7 @@
 #include "VncViewWidget.h"
 
 
-VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlInterface, Mode mode,
+VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlInterface,
 							  const QRect& viewport, QWidget* parent ) :
 	QWidget( parent ),
 	VncView( computerControlInterface )

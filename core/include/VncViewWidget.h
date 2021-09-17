@@ -34,7 +34,7 @@ class VEYON_CORE_EXPORT VncViewWidget : public QWidget, public VncView
 {
 	Q_OBJECT
 public:
-	VncViewWidget( ComputerControlInterface::Pointer computerControlInterface, Mode mode, const QRect& viewport,
+	VncViewWidget( ComputerControlInterface::Pointer computerControlInterface, const QRect& viewport,
 				   QWidget* parent );
 
 	~VncViewWidget() override;
