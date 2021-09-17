@@ -45,8 +45,6 @@ public:
 
 Q_SIGNALS:
 	void mouseAtBorder();
-	void startConnection();
-	void connectionEstablished();
 	void sizeHintChanged();
 
 protected:
