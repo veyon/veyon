@@ -156,7 +156,6 @@ public:
 
 Q_SIGNALS:
 	void connectionPrepared();
-	void connectionEstablished();
 	void imageUpdated( int x, int y, int w, int h );
 	void framebufferUpdateComplete();
 	void framebufferSizeChanged( int w, int h );
