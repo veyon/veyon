@@ -329,9 +329,12 @@ void VncConnection::setUseRemoteCursor( bool enabled )
 {
 	m_useRemoteCursor = enabled;
 
-	m_client->appData.useRemoteCursor = enabled;
+	if( m_client )
+	{
+		m_client->appData.useRemoteCursor = enabled;
 
-	enqueueEvent( new VncUpdateFormatAndEncodingsEvent, true );
+		enqueueEvent( new VncUpdateFormatAndEncodingsEvent, true );
+	}
 }
 
 
