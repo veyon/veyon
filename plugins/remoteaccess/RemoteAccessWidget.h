@@ -53,16 +53,11 @@ protected:
 
 
 private:
-	void updateConnectionAnimation();
 	void updatePosition();
-	void startConnection();
-	void connectionEstablished();
+	void updateConnectionState();
 
 	RemoteAccessWidget * m_parent;
 	QTimeLine m_showHideTimeLine;
-	QTimeLine m_iconStateTimeLine;
-
-	bool m_connecting;
 
 	ToolButton* m_viewOnlyButton;
 	ToolButton* m_sendShortcutButton;

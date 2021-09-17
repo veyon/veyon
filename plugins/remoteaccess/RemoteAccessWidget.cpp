@@ -47,8 +47,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	QWidget( parent ),
 	m_parent( parent ),
 	m_showHideTimeLine( ShowHideAnimationDuration, this ),
-	m_iconStateTimeLine( 0, this ),
-	m_connecting( false ),
 	m_viewOnlyButton( showViewOnlyToggleButton ? new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) : nullptr ),
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
 	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
@@ -62,7 +60,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	setAttribute( Qt::WA_NoSystemBackground, true );
 	move( 0, 0 );
 	show();
-	startConnection();
 
 	if( m_viewOnlyButton )
 	{
@@ -80,6 +77,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	connect( m_exitButton, &QAbstractButton::clicked, parent, &QWidget::close );
 
 	auto vncView = parent->vncView();
+	connect( vncView->connection(), &VncConnection::stateChanged, this, &RemoteAccessWidgetToolBar::updateConnectionState );
 
 	auto shortcutMenu = new QMenu();
 	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
@@ -108,19 +106,10 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->addWidget( m_fullScreenButton );
 	layout->addWidget( m_exitButton );
 	layout->addSpacing( 5 );
-	connect( vncView, &VncViewWidget::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
-	connect( vncView, &VncViewWidget::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
 	setFixedHeight( m_exitButton->height() );
 
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
-
-	m_iconStateTimeLine.setFrameRange( 0, 100 );
-	m_iconStateTimeLine.setDuration( 1500 );
-	m_iconStateTimeLine.setUpdateInterval( 60 );
-	m_iconStateTimeLine.easingCurve().setType( QEasingCurve::SineCurve );
-	connect( &m_iconStateTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updateConnectionAnimation );
-	connect( &m_iconStateTimeLine, &QTimeLine::finished, &m_iconStateTimeLine, &QTimeLine::start );
 }
 
 
@@ -138,7 +127,7 @@ void RemoteAccessWidgetToolBar::appear()
 
 void RemoteAccessWidgetToolBar::disappear()
 {
-	if( !m_connecting && !rect().contains( mapFromGlobal( QCursor::pos() ) ) )
+	if( rect().contains( mapFromGlobal( QCursor::pos() ) ) == false )
 	{
 		QTimer::singleShot( DisappearDelay, this, [this]() {
 			if( m_showHideTimeLine.state() != QTimeLine::Running )
@@ -170,43 +159,21 @@ void RemoteAccessWidgetToolBar::leaveEvent( QEvent *event )
 void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 {
 	QPainter p( this );
-	QFont f = p.font();
 
-	p.setOpacity( 0.8-0.8*m_showHideTimeLine.currentValue() );
+	p.setOpacity( 0.8 );
 	p.fillRect( paintEv->rect(), palette().brush( QPalette::Window ) );
 	p.setOpacity( 1 );
 
-	f.setPointSize( 12 );
+	auto f = p.font();
+	f.setPointSize( 10 );
 	f.setBold( true );
 	p.setFont( f );
 
-	//p.setPen( Qt::white );
-	//p.drawText( 64, 22, m_parent->windowTitle() );
-
 	p.setPen( QColor( 192, 192, 192 ) );
-	f.setPointSize( 10 );
-	p.setFont( f );
-
-	if( m_connecting )
-	{
-		QString dots;
-		for( int i = 0; i < ( m_iconStateTimeLine.currentTime() / 120 ) % 6; ++i )
-		{
-			dots += QLatin1Char('.');
-		}
-		p.drawText( 32, height() / 2 + fontMetrics().height(), tr( "Connecting %1" ).arg( dots ) );
-	}
-	else
-	{
-		p.drawText( 32, height() / 2 + fontMetrics().height(), tr( "Connected." ) );
-	}
-}
-
-
-
-void RemoteAccessWidgetToolBar::updateConnectionAnimation()
-{
-	repaint();
+	p.drawText( height() / 2, height() / 2 + fontMetrics().height() / 2,
+				m_parent->vncView() && m_parent->vncView()->connection() &&
+						m_parent->vncView()->connection()->state() == VncConnection::State::Connected ?
+					tr( "Connected." ) : tr( "Connecting..." ) );
 }
 
 
@@ -223,27 +190,17 @@ void RemoteAccessWidgetToolBar::updatePosition()
 
 
 
-void RemoteAccessWidgetToolBar::startConnection()
+void RemoteAccessWidgetToolBar::updateConnectionState()
 {
-	m_connecting = true;
-	m_iconStateTimeLine.start();
-	appear();
-	update();
+	if( m_parent->vncView()->connection()->state() == VncConnection::State::Connected )
+	{
+		disappear();
+	}
+	else
+	{
+		appear();
+	}
 }
-
-
-
-
-void RemoteAccessWidgetToolBar::connectionEstablished()
-{
-	m_connecting = false;
-	m_iconStateTimeLine.stop();
-	disappear();
-
-	// within the next 1000ms the username should be known and therefore we update
-	QTimer::singleShot( 1000, this, QOverload<>::of( &RemoteAccessWidgetToolBar::update ) );
-}
-
 
 
 
