@@ -33,7 +33,6 @@
 #include <QDesktopWidget>
 #endif
 
-#include "ProgressWidget.h"
 #include "VeyonConnection.h"
 #include "VncConnection.h"
 #include "VncViewWidget.h"
@@ -48,19 +47,10 @@ VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlI
 
 	connectUpdateFunctions( this );
 
-	if( mode == DemoMode )
-	{
-		connection()->setQuality( VncConnection::Quality::Default );
-		m_establishingConnectionWidget = new ProgressWidget(
-			tr( "Establishing connection to %1 ..." ).arg( connection()->host() ),
-			QStringLiteral( ":/core/watch%1.png" ), 16, this );
-		connect( connection(), &VncConnection::stateChanged,
-				 this, &VncViewWidget::updateConnectionState );
-	}
-	else if( mode == RemoteControlMode )
-	{
-		connection()->setQuality( VncConnection::Quality::RemoteControl );
-	}
+	connect( connection(), &VncConnection::stateChanged, this, &VncViewWidget::updateConnectionState );
+	connect( &m_busyIndicatorTimer, &QTimer::timeout, this, QOverload<>::of(&QWidget::repaint) );
+
+	connection()->setQuality( VncConnection::Quality::Default );
 
 	// set up mouse border signal timer
 	m_mouseBorderSignalTimer.setSingleShot( true );
@@ -88,6 +78,8 @@ VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlI
 
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
+
+	updateConnectionState();
 }
 
 
@@ -272,6 +264,7 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 	if( image.isNull() || image.format() == QImage::Format_Invalid )
 	{
 		p.fillRect( paintEvent->rect(), Qt::black );
+		drawBusyIndicator( &p );
 		return;
 	}
 
@@ -289,6 +282,11 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 	else
 	{
 		p.drawImage( { 0, 0 }, image, source );
+	}
+
+	if( connection()->state() != VncConnection::State::Connected )
+	{
+		drawBusyIndicator( &p );
 	}
 
 	// draw black borders if neccessary
@@ -311,11 +309,6 @@ void VncViewWidget::resizeEvent( QResizeEvent* event )
 {
 	update();
 
-	if( m_establishingConnectionWidget )
-	{
-		m_establishingConnectionWidget->move( 10, 10 );
-	}
-
 	updateLocalCursor();
 
 	QWidget::resizeEvent( event );
@@ -323,10 +316,48 @@ void VncViewWidget::resizeEvent( QResizeEvent* event )
 
 
 
+void VncViewWidget::drawBusyIndicator( QPainter* painter )
+{
+	static constexpr int BusyIndicatorSize = 100;
+	static constexpr int BusyIndicatorSpeed = 5;
+
+	QRect drawingRect{
+		( width() - BusyIndicatorSize ) / 2,
+		( height() - BusyIndicatorSize ) / 2,
+		BusyIndicatorSize, BusyIndicatorSize,
+		};
+
+	QColor color(QStringLiteral("#00acdc"));
+	QConicalGradient gradient;
+	gradient.setCenter(drawingRect.center());
+	gradient.setAngle((360 - m_busyIndicatorState) % 360);
+	gradient.setColorAt(0, color);
+	color.setAlpha(0);
+	gradient.setColorAt(0.75, color);
+	color.setAlpha(255);
+	gradient.setColorAt(1, color);
+
+	QPen pen(QBrush(gradient), 20);
+	pen.setCapStyle(Qt::RoundCap);
+	painter->setPen(pen);
+
+	painter->setRenderHint(QPainter::Antialiasing);
+	painter->drawArc( drawingRect,
+					  ( 360 - ( m_busyIndicatorState % 360 ) ) * 16, 270 * 16 );
+
+	m_busyIndicatorState += BusyIndicatorSpeed;
+}
+
+
+
 void VncViewWidget::updateConnectionState()
 {
-	if( m_establishingConnectionWidget )
+	if( connection()->state() != VncConnection::State::Connected )
 	{
-		m_establishingConnectionWidget->setVisible( connection()->state() != VncConnection::State::Connected );
+		m_busyIndicatorTimer.start( BusyIndicatorUpdateInterval );
+	}
+	else
+	{
+		m_busyIndicatorTimer.stop();
 	}
 }
