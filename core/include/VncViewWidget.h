@@ -30,8 +30,6 @@
 #include "VncView.h"
 #include "ComputerControlInterface.h"
 
-class ProgressWidget;
-
 class VEYON_CORE_EXPORT VncViewWidget : public QWidget, public VncView
 {
 	Q_OBJECT
@@ -68,6 +66,7 @@ protected:
 	void resizeEvent( QResizeEvent* handleEvent ) override;
 
 private:
+	void drawBusyIndicator( QPainter* painter );
 	void updateConnectionState();
 
 	VeyonConnection* m_veyonConnection{nullptr};
@@ -75,7 +74,9 @@ private:
 	bool m_viewOnlyFocus{true};
 	bool m_initDone{false};
 
-	ProgressWidget* m_establishingConnectionWidget{nullptr};
+	static constexpr auto BusyIndicatorUpdateInterval = 25;
+	QTimer m_busyIndicatorTimer{this};
+	int m_busyIndicatorState{0};
 
 	static constexpr int MouseBorderSignalDelay = 500;
 	QTimer m_mouseBorderSignalTimer{this};
