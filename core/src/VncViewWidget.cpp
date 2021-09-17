@@ -159,7 +159,6 @@ void VncViewWidget::updateImage( int x, int y, int w, int h )
 
 		resize( sizeHint() );
 
-		Q_EMIT connectionEstablished();
 		m_initDone = true;
 
 	}
