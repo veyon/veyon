@@ -381,10 +381,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>کلیدهای احراز هویت</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>معرفی</translation>
     </message>
@@ -725,6 +721,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -747,10 +747,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>General</source>
         <translation>عمومی</translation>
@@ -870,10 +866,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>روش های احراز هویت</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation type="unfinished"/>
     </message>
@@ -887,6 +879,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>تست</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -924,10 +923,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Locations</source>
         <translation type="unfinished"/>
     </message>
@@ -940,11 +935,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <source>New location</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>New location</source>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1255,6 +1254,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1381,17 +1388,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>لیست کامپیوتر و کاربران را به٪ 1 نمی توان نوشت! لطفا مجوز دسترسی به فایل را بررسی کنید.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1984,18 +1980,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ثبت گزارش به خروجی استاندارد خطا</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation type="unfinished"/>
     </message>
@@ -2032,11 +2016,31 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source> seconds</source>
+        <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write to logging system of operating system</source>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2364,6 +2368,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP directory</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2753,6 +2761,29 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3079,6 +3110,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Veyon Master</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3267,6 +3302,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3575,10 +3635,6 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>اتصال٪ 1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>متصل شد.</translation>
     </message>
@@ -3588,6 +3644,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3786,18 +3846,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation type="unfinished"/>
     </message>
@@ -3819,6 +3867,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3949,12 +4013,8 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4220,13 +4280,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>ایجاد اتصال به٪ 1 ...</translation>
     </message>
 </context>
 <context>

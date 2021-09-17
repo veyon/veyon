@@ -380,10 +380,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Authentifizierungsschlüssel</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Einführung</translation>
     </message>
@@ -726,6 +722,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Key file</source>
         <translation>Schlüsseldatei</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Bitte geben Sie den Schlüsselname (z.B. &quot;teacher/public&quot;) als erstes Argument an.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -748,10 +748,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>LDAP-Authentifizierung</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Allgemein</translation>
@@ -871,10 +867,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Authentifizierungsmethoden</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>Authentifizierung ist auf diesem Computer ordnungsgemäß eingerichtet.</translation>
     </message>
@@ -888,6 +880,13 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Test</source>
         <translation>Testen</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Integriertes Verzeichnis</translation>
     </message>
 </context>
 <context>
@@ -925,10 +924,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Integriertes Verzeichnis</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Standorte &amp; Computer</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Standorte</translation>
     </message>
@@ -941,12 +936,16 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Gewählten Standort entfernen</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Der Import von CSV-Dateien ist über die Kommandozeilenschnittstelle möglich. Weitere Informationen finden Sie in der &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;Online-Dokumentation&lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Neuer Standort</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Verzeichnisname</translation>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>Der Import von CSV-Dateien ist über die Kommandozeilenschnittstelle möglich. Weitere Informationen finden Sie in der &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;Online-Dokumentation&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1256,6 +1255,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Veyon Server unreachable or not running</source>
         <translation>Veyon-Server nicht erreichbar oder läuft nicht</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Name: %1</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>ungültig</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1382,17 +1389,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Die Computer- und Benutzerliste konnte nicht in die Datei %1 geschrieben werden. Bitte überprüfen Sie die Dateizugriffsrechte.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation>%1 - %2 Computer-Zoom-Ansicht</translation>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation>%1 - %2 - %3 Computer-Zoom-Ansicht</translation>
     </message>
 </context>
 <context>
@@ -1985,18 +1981,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Nach Standardfehlerausgabe loggen</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Netzwerkobjektverzeichnis</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Aktualisierungsintervall:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>%1-Dienst</translation>
     </message>
@@ -2033,12 +2017,32 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> Sekunden</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>In Ereignisprotokollierung des Betriebssystems schreiben</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation>TLS-Konfiguration</translation>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation>Zertifikatsautorität für TLS-Verbindungen verwenden</translation>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation>CA-Zertifikatsdatei</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation>Host-Zertifikatsdatei</translation>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation>Private Host-Schlüsseldatei</translation>
     </message>
 </context>
 <context>
@@ -2385,6 +2389,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 wurden mit dem konfigurierten Filter erfolgreich abgefragt.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation>LDAP-Verzeichnis</translation>
     </message>
 </context>
 <context>
@@ -2773,6 +2781,29 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Konfiguriertes Attribut für Benutzeranmeldename oder Computerhostname (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Verzeichnisname</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Abfrageoptionen</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Verschachtelte Benutzergruppen abfragen (nur von AD unterstützt)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation>Bitte verwenden Sie die globale LDAP-Konfigurationsseite, um festzulegen, wie Standorte und Computer von Ihrem LDAP-basierten Verzeichnisdienst abgefragt werden sollen.</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3097,7 +3128,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Standorte &amp; Computer</translation>
     </message>
 </context>
 <context>
@@ -3288,6 +3323,31 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Dieser Modus erlaubt es Ihnen, alle Computer an einem oder mehreren Standorten zu beobachten.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation>Alle Verzeichnisse</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Aktualisierungsintervall:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> Sekunden</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktiviert</translation>
     </message>
 </context>
 <context>
@@ -3597,12 +3657,8 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Alt+Strg+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Verbindung wird hergestellt %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
-        <translation>Verbindung hergestellt.</translation>
+        <translation>Verbunden.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3611,6 +3667,10 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Exit</source>
         <translation>Beenden</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation>Verbinde...</translation>
     </message>
 </context>
 <context>
@@ -3809,18 +3869,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Maximale Sitzungsanzahl</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sitzungen</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Einzelsitzungsmodus (Serverinstanz nur für lokale/physische Sitzung erstellen)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Mehrfachsitzungsmodus (Serverinstanz für jede lokale und Remote-Desktop-Sitzung erstellen)</translation>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation>Netzwerk-Portnummern</translation>
     </message>
@@ -3843,6 +3891,22 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Diverse Netzwerkeinstellungen</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation>Sitzungsmodus</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Lokaler Sitzungsmodus (einzelne Serverinstanz für primäre lokale Sitzung)</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Aktiver Sitzungsmodus (einzelne Serverinstanz für aktive lokale oder entfernte Sitzung)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Mehrsitzungsmodus (eigene Serverinstanz für jede lokale und entfernte Desktop-Sitzung)</translation>
     </message>
 </context>
 <context>
@@ -3972,14 +4036,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Bitte wählen Sie mindestens einen hinzuzufügenden Computer aus.</translation>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation>Bitte wählen Sie mindestens einen zu entfernenden Computer aus.</translation>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation>Computer durch Klick mit der mittleren Maustaste oder mit Hilfe des ersten Buttons hinzufügen.
-Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist, wird der letzte Computer entfernt.</translation>
+Der zweite Button entfernt den gewählten oder letzten Computer.</translation>
     </message>
 </context>
 <context>
@@ -4244,13 +4304,6 @@ Der zweite Button entfernt den gewählten Computer. Wenn nichts ausgewählt ist,
     <message>
         <source>Veyon Service</source>
         <translation>Veyon-Dienst</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Verbindung zu %1 wird hergestellt ...</translation>
     </message>
 </context>
 <context>

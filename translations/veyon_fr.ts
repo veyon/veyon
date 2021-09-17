@@ -382,10 +382,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Clés d&apos;authentification</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Introduction</translation>
     </message>
@@ -729,6 +725,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Key file</source>
         <translation>Fichier clé</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Veuillez spécifier le nom de la clé (par exemple &quot;enseignant/public&quot;) comme premier argument.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -751,10 +751,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>Authentification LDAP</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Général</translation>
@@ -874,10 +870,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Méthodes d&apos;authentification</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>L&apos;authentification est correctement configurée sur cet ordinateur.</translation>
     </message>
@@ -891,6 +883,13 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Test</source>
         <translation>Test</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Répertoire intégré</translation>
     </message>
 </context>
 <context>
@@ -928,10 +927,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Répertoire intégré</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Emplacements &amp; ordinateurs</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Emplacements</translation>
     </message>
@@ -944,12 +939,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Retirer l&apos;emplacement sélectionné</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>L&apos;import de fichiers CSV est possible à travers l&apos;interface en ligne de commande. Pour plus d&apos;informations, voir la &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;documentation en ligne&lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Nouvel emplacement</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Nom du répertoire</translation>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>L&apos;importation de fichiers CSV est possible via l&apos;interface de ligne de commande. Pour plus d&apos;informations, consultez la &lt;a href=&quot;https://docs.veyon.io/fr/latest/admin/cli.html#network-object-directory&quot;&gt;documentation en ligne&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1259,6 +1258,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Veyon Server unreachable or not running</source>
         <translation>Serveur Veyon inaccessible ou ne fonctionne pas</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Nom: %1</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>invalide</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1385,17 +1392,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Impossible d&apos;écrire la liste des ordinateurs et des utilisateurs dans %1! Vérifiez le fichier des permissions d&apos;accès.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation>%1 - %2 Widget Zoom de l&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation>%1 - %2 - %3 Widget Zoom de l&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -1988,18 +1984,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Journaliser via la sortie standard</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Répertoire objets réseau</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Méthode de fonctionnement:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Intervalle de rafraichissement:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>Service %1</translation>
     </message>
@@ -2036,12 +2020,32 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation> x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> secondes</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Écrire dans le système de journalisation du système d&apos;exploitation</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation>Configuration TLS</translation>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation>Utiliser l&apos;autorité de certification pour les connexions TLS</translation>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation>Fichiers de certificat CA</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation>Fichier de certificat d&apos;hôte</translation>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation>Fichier de clé privée de l&apos;hôte</translation>
     </message>
 </context>
 <context>
@@ -2388,6 +2392,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%2 %1 a été interrogé avec succès en appliquant le filtre.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation>Annuaire LDAP</translation>
     </message>
 </context>
 <context>
@@ -2776,6 +2784,29 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Attribut configuré pour l&apos;identifiant utilisateur ou le nom d&apos;hôte de l&apos;ordinateur (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Nom du répertoire</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Options de requête</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Interroger des groupes d&apos;utilisateurs imbriqués (pris en charge par AD uniquement)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation>Veuillez utiliser la page de configuration LDAP globale pour configurer comment récupérer les emplacements et les ordinateurs de votre service d&apos;annuaire LDAP.</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3100,7 +3131,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Maître</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Emplacements &amp; ordinateurs</translation>
     </message>
 </context>
 <context>
@@ -3291,6 +3326,31 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ce mode vous permet de surveiller tous les ordinateurs d&apos;un ou de plusieurs emplacements.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation>Tous les répertoires</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Intervalle de rafraichissement:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> secondes</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Activé</translation>
     </message>
 </context>
 <context>
@@ -3600,10 +3660,6 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Connexion à %1...</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Connecté.</translation>
     </message>
@@ -3614,6 +3670,10 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <message>
         <source>Exit</source>
         <translation>Quitter</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3812,18 +3872,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Nombre maximum de sessions</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sessions</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Mode de session unique (créer une instance de serveur pour une session locale / physique uniquement)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Mode multi-session (créer une instance de serveur pour chaque session de bureau local et distant)</translation>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation>Numéros de port réseau</translation>
     </message>
@@ -3846,6 +3894,22 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Divers paramètres réseau</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation>Mode Session</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Mode session locale (instance de serveur unique pour la session locale principale)</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Mode session active (instance de serveur unique pour une session locale ou distante active)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Mode multi-session (instance de serveur distincte pour chaque session de bureau local et distant)</translation>
     </message>
 </context>
 <context>
@@ -3975,14 +4039,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Veuillez sélectionner au moins un ordinateur à ajouter.</translation>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation>Veuillez sélectionner au moins un ordinateur à supprimer.</translation>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation>Ajoutez des ordinateurs en cliquant avec le bouton central de la souris ou en cliquant sur le premier bouton ci-dessous.
-Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;est sélectionné, le dernier sera supprimé.</translation>
+Le deuxième bouton supprime l&apos;ordinateur sélectionné ou le dernier ordinateur.</translation>
     </message>
 </context>
 <context>
@@ -4247,13 +4307,6 @@ Le deuxième bouton supprimera l&apos;ordinateur sélectionné. Si rien n&apos;e
     <message>
         <source>Veyon Service</source>
         <translation>Service Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Établissement de la connexion à %1 ...</translation>
     </message>
 </context>
 <context>

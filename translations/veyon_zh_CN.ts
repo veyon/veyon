@@ -217,35 +217,35 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>正在访问计算机和本地计算机</translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>使用者正在访问</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>本地登录</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>远程登录</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>没有用户本地登录</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>一个或多个用户本地登录</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>没有用户远程登录</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>一个或多个用户远程登录</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -253,15 +253,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>没有位于</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>位于同一位置</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>位于不同位置</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -269,59 +269,59 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>不是组成员</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>身份验证通过</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>未身份验证通过</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>有一个或多个公共组的用户正在访问</translation>
     </message>
     <message>
         <source>has no groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>没有公共组的用户正在访问</translation>
     </message>
     <message>
         <source>equals user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>等于用户正在访问</translation>
     </message>
     <message>
         <source>is different from user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>不同于用户被访问</translation>
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>已连接</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>未连接</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>是本地计算机</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>不是本地计算机</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>计算机正在被访问</translation>
     </message>
     <message>
         <source>Session being accessed is a user session</source>
-        <translation type="unfinished"/>
+        <translation>正在被访问的会话是用户会话</translation>
     </message>
     <message>
         <source>Session being accessed is a login screen</source>
-        <translation type="unfinished"/>
+        <translation>正在被访问的会话是登录界面</translation>
     </message>
 </context>
 <context>
@@ -381,10 +381,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationWidget</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>验证密钥</translation>
-    </message>
     <message>
         <source>Introduction</source>
         <translation>介绍</translation>
@@ -730,6 +726,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file</source>
         <translation>密钥文件</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -752,10 +752,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>LDAP验证</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>常规</translation>
@@ -875,10 +871,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>验证模式</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>身份验证已在此计算机上正确配置。</translation>
     </message>
@@ -892,6 +884,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>测试</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>内置目录</translation>
     </message>
 </context>
 <context>
@@ -929,10 +928,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>内置目录</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>地点及计算机</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>地点</translation>
     </message>
@@ -945,12 +940,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>移除选中的地点</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>通过命令行界面可导入CSV文件。更多信息，请参看&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;在线文档&lt;/a&gt;。</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>新地点</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1260,6 +1259,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1386,17 +1393,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>无法将计算机和用户列表写入 %1！请检查文件访问权限。</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1989,18 +1985,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>日志显示于标准输出设备(显示器)</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>网络对象文件夹</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>后端：</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>更新频率：</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>%1 服务</translation>
     </message>
@@ -2037,12 +2021,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation>秒</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>写入操作系统的日志记录系统</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2389,6 +2393,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 使用配置的过滤器成功查询。</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2777,6 +2785,29 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>用户登录名或计算机主机名的配置属性（OpenLDAP）</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3103,6 +3134,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Veyon Master</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>地点及计算机</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3292,6 +3327,31 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>此模式允许您在一个或多个地点监控所有计算机。</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>更新频率：</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>秒</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>已启用</translation>
     </message>
 </context>
 <context>
@@ -3601,10 +3661,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>正在连接 %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>已连接。</translation>
     </message>
@@ -3615,6 +3671,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>退出</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3813,18 +3873,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation type="unfinished"/>
     </message>
@@ -3846,6 +3894,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3976,12 +4040,8 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4247,13 +4307,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation>Veyon 服务</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>正在建立到 %1 的连接...</translation>
     </message>
 </context>
 <context>

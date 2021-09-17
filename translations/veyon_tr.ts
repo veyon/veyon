@@ -382,10 +382,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Yetkilendirme anahtarları</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Giriş</translation>
     </message>
@@ -729,6 +725,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Key file</source>
         <translation>Anahtar dosya</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -751,10 +751,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>LDAP kimlik doğrulaması</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Genel</translation>
@@ -874,10 +870,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Yetkilendirme yöntemleri</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>Kimlik doğrulama bu bilgisayarda doğru şekilde ayarlandı.</translation>
     </message>
@@ -891,6 +883,13 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Test</source>
         <translation>Sına</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Yerleşik dizin</translation>
     </message>
 </context>
 <context>
@@ -928,10 +927,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Yerleşik dizin</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Konumlar ve bilgisayarlar</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Konumlar</translation>
     </message>
@@ -944,12 +939,16 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Seçilen konumu sil</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>CSV dosyalarının içe aktarılması, komut satırı arayüzü üzerinden mümkündür. Daha fazla bilgi için &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt; çevrimiçi belgelere &lt;/a&gt; bakın.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Yeni konum</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,6 +1258,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1385,17 +1392,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Bilgisayar ve kullanıcı listesi %1 konumuna yazılamadı! Lütfen dosya erişim izinlerini gözden geçirin.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1988,18 +1984,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Standart hata çıktısına günlükle</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Ağ nesnesi dizini</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Arka uç:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Güncelleme aralığı:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>%1 hizmeti</translation>
     </message>
@@ -2036,12 +2020,32 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> saniye</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>İşletim sisteminin günlükleme sistemine yaz</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2380,6 +2384,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>Yapılandırılmış süzgeç kullanılarak %1 %2 başarıyla sorgulandı.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2768,6 +2776,29 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3092,7 +3123,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Usta</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Konumlar ve bilgisayarlar</translation>
     </message>
 </context>
 <context>
@@ -3283,6 +3318,31 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Bu mod, bir veya daha fazla konumdaki tüm bilgisayarları izlemenizi sağlar.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Güncelleme aralığı:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> saniye</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktif edildi</translation>
     </message>
 </context>
 <context>
@@ -3592,10 +3652,6 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>%1 bağlanıyor</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Bağlandı.</translation>
     </message>
@@ -3606,6 +3662,10 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     <message>
         <source>Exit</source>
         <translation>Çıkış</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3804,18 +3864,6 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation type="unfinished"/>
     </message>
@@ -3837,6 +3885,22 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3967,12 +4031,8 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4238,13 +4298,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation>Veyon Hizmeti</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>%1 ile bağlantı kuruluyor...</translation>
     </message>
 </context>
 <context>

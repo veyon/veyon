@@ -382,10 +382,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Chiavi di autenticazione</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Introduzione</translation>
     </message>
@@ -726,6 +722,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file</source>
         <translation>File chiave</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Si prega di specificare il nome della chiave (ad es. &quot;insegnante/pubblico&quot;) come primo argomento.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -748,10 +748,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>Autenticazione LDAP</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Generale</translation>
@@ -871,10 +867,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Metodi di autenticazione</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>L&apos;autenticazione è configurata correttamente su questo computer.</translation>
     </message>
@@ -888,6 +880,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>Prova</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Directory incorporata</translation>
     </message>
 </context>
 <context>
@@ -925,10 +924,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Directory incorporata</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Posizioni e computers</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Posizioni</translation>
     </message>
@@ -941,12 +936,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Rimuovi la posizione selezionata</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>L&apos;importazione di file CSV è possibile tramite l&apos;interfaccia della riga di comando. Per ulteriori informazioni, consultare la documentazione online.&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Nuova posizione</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Nome Directory</translation>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>Il&apos;importazione di file CSV è possibile tramite l&apos;interfaccia della riga di comando. Per ulteriori informazioni, vedere la&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;documentazione in linea&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1256,6 +1255,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Veyon Server unreachable or not running</source>
         <translation>Veyon Server irraggiungibile o non in esecuzione</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Nome: %1</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>non valido</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1382,17 +1389,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Impossibile scrivere l&apos;elenco computer e utenti su %1! Controllare i permessi di accesso al file.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation>%1 -%2 Widget per lo Zoom del Computer</translation>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation>%1 -%2 -%3 Widget per lo Zoom del Computer</translation>
     </message>
 </context>
 <context>
@@ -1985,18 +1981,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Log sullo standard error output</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Directory dell&apos;oggetto di rete</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Intervallo di aggiornamento:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>Servizio %1</translation>
     </message>
@@ -2033,12 +2017,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> secondi</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Scrivi nel sistema di log del sistema operativo</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation>Configurazione TLS</translation>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation>Usa l&apos;autorità di certificazione per le connessioni TLS</translation>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation>File certificato CA</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation>File del certificato host</translation>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation>File della chiave privata dell&apos;host</translation>
     </message>
 </context>
 <context>
@@ -2375,6 +2379,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 sono stati interrogati con successo usando il filtro configurato.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation>Directory LDAP</translation>
     </message>
 </context>
 <context>
@@ -2763,6 +2771,29 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Attributo configurato per il nome di accesso dell&apos;utente o il nome host del computer (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Nome Directory</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Opzioni di query</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Interroga gruppi di utenti annidati (supportato solo da AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation>Utilizza la pagina di configurazione LDAP globale per configurare come recuperare posizioni e computer dal servizio di directory basato su LDAP.</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3087,7 +3118,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Posizioni e computers</translation>
     </message>
 </context>
 <context>
@@ -3278,6 +3313,31 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Questa modalità consente di monitorare tutti i computer in una o più posizioni.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation>Tutte le directory</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Intervallo di aggiornamento:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> secondi</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Abilitato</translation>
     </message>
 </context>
 <context>
@@ -3587,10 +3647,6 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Connessione con %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Connesso.</translation>
     </message>
@@ -3601,6 +3657,10 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Exit</source>
         <translation>Uscita</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3798,18 +3858,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Numero massimo di sessioni</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sessioni</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Modalità sessione singola (crea istanza del server solo per sessione locale/fisica)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Modalità multisessione (crea istanza del server per ogni sessione desktop locale e remota)</translation>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation>Numeri di porta di rete</translation>
     </message>
@@ -3832,6 +3880,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Impostazioni di rete varie</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3961,14 +4025,10 @@ Typically this is required to support terminal servers.</source>
         <translation>Seleziona almeno un computer da aggiungere.</translation>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation>Seleziona almeno un computer da rimuovere.</translation>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation>Aggiungi computer facendo clic con il pulsante centrale del mouse o facendo clic sul primo pulsante in basso.
-Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato nulla, l&apos;ultimo verrà rimosso.</translation>
+Il secondo pulsante rimuove il computer selezionato o l&apos;ultimo.</translation>
     </message>
 </context>
 <context>
@@ -4233,13 +4293,6 @@ Il secondo pulsante rimuoverà il computer selezionato. Se non viene selezionato
     <message>
         <source>Veyon Service</source>
         <translation>Servizio Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Connessione a %1 ...</translation>
     </message>
 </context>
 <context>

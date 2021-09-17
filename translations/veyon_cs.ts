@@ -382,10 +382,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Ověřovací klíče</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Úvod</translation>
     </message>
@@ -729,6 +725,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Key file</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -751,10 +751,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>General</source>
         <translation>Obecné</translation>
@@ -874,10 +870,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Metody ověřování</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>Ověřování je na tomto počítači nastaveno správně</translation>
     </message>
@@ -891,6 +883,13 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Test</source>
         <translation>Vyzkoušet funkčnost</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Vestavěný adresář</translation>
     </message>
 </context>
 <context>
@@ -928,10 +927,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Vestavěný adresář</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Umístění a počítače</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Umístění</translation>
     </message>
@@ -944,12 +939,16 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Odebrat označené umístění</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Import CSV souborů je možný prostřednictvím rozhraní pro příkazový řádek. Další informace jsou k dispozici v &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;dokumentaci na webu&lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Nové umístění</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,6 +1258,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1385,17 +1392,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nedaří se zapsat seznam počítačů a uživatelů do %1! Zkontrolujte přístupová práva souboru.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1988,18 +1984,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zaznamenávat na standardní chybový výstup</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Adresář síťových objektů</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Podpůrná vrstva (backend):</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Interval aktualizace:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>služba %1</translation>
     </message>
@@ -2036,12 +2020,32 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> sekund</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Zapisovat do systému záznamu událostí operačního systému</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>…</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2384,6 +2388,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>S nastaveným filtrem úspěšně dotázáno na %1 %2.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2772,6 +2780,29 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Nastavený atribut pro uživatelské jméno nebo název počítače (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3096,7 +3127,11 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon – hlavní</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Umístění a počítače</translation>
     </message>
 </context>
 <context>
@@ -3287,6 +3322,31 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Tento režim umožňuje monitorovat veškeré počítače v jednom a více umístěních.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Interval aktualizace:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> sekund</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3596,10 +3656,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Připojování k %1…</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Připojeno.</translation>
     </message>
@@ -3610,6 +3666,10 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Exit</source>
         <translation>Ukončit</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3808,18 +3868,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation type="unfinished"/>
     </message>
@@ -3841,6 +3889,22 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3971,12 +4035,8 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4242,13 +4302,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation>Služba Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Připojování k %1…</translation>
     </message>
 </context>
 <context>

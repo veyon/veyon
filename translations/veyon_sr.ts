@@ -382,10 +382,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Ključevi za autentifikaciju</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Uvod</translation>
     </message>
@@ -729,6 +725,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Key file</source>
         <translation>Datoteka ključa</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -751,10 +751,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>General</source>
         <translation>Opšte</translation>
@@ -876,10 +872,6 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Metoda provjere</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>Autentifikacija je na ovom računaru pravilno postavljena.</translation>
     </message>
@@ -893,6 +885,13 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>Test</source>
         <translation>Test</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Ugradjeni direktorijum</translation>
     </message>
 </context>
 <context>
@@ -930,10 +929,6 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <translation>Ugradjeni direktorijum</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Lokacije &amp; računari</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Lokacije</translation>
     </message>
@@ -946,12 +941,16 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <translation>Ukloni obeleženu lokaciju</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Uvoz CSV datoteka moguć je putem sistema komandne linije. Za više informacija pogledajte &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt; online dokumentaciju &lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Nova lokacija</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1261,6 +1260,14 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1387,17 +1394,6 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Ne može se zapisati lista računara i korisnika na %1! Proverite dozvole za pristup datoteci.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1990,18 +1986,6 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <translation>Prijavite se na standardni izlaz greške</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Mrežni direktorijum objekata</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Pozadina:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Ažuriraj interval:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>%1 usluga</translation>
     </message>
@@ -2038,12 +2022,32 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation>sekunde</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Zapisati u sistem za prijavu operativnog sistema</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2390,6 +2394,10 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 uspešno je ispitan pomoću konfigurisanog filtera.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2778,6 +2786,29 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Konfigurisani atribut za korisničko ime za prijavu ili  domaćin računara (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3102,7 +3133,11 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Lokacije &amp; računari</translation>
     </message>
 </context>
 <context>
@@ -3293,6 +3328,31 @@ Molimo unesite ispravnu šifru ili se prebacite na drugi metod autentifikacije u
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ovaj način rada omogućuje vam praćenje svih računara na jednoj ili više lokacija.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Ažuriraj interval:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>sekunde</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3602,10 +3662,6 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Spajanje %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Spojen.</translation>
     </message>
@@ -3616,6 +3672,10 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     <message>
         <source>Exit</source>
         <translation>Izlaz</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3814,18 +3874,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation type="unfinished"/>
     </message>
@@ -3847,6 +3895,22 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3977,12 +4041,8 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4248,13 +4308,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation>Veyon servis</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Uspostava konekcije prema %1 ...</translation>
     </message>
 </context>
 <context>

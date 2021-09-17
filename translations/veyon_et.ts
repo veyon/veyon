@@ -217,35 +217,35 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääs arvutile ja kohalikule arvutile</translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääs kasutajale</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>on sisse logitud kohapeal</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>on sisse logitud kaugjuhtimisega</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Ükski kasutaja pole kohapeal sisse logitud</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Üks või mitu kasutajat on kohalikult sisse logitud</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Ükski kasutaja pole kaugjuhtimisega sisse logitud</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Üks või mitu kasutajat on sisse logitud eemalt</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -253,15 +253,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>ei asu aadressil</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>asuvad samal aadressil</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>ei asu samal aadressil</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -269,59 +269,59 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>ei ole grupi liige</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>on autentitud </translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>pole autentitud </translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>on juurdepääsetava kasutajaga üks või mitu ühist rühma</translation>
     </message>
     <message>
         <source>has no groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>ei oma kasutajaga ühiseid rühmi</translation>
     </message>
     <message>
         <source>equals user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>võrdub juurdepääsuga kasutajale</translation>
     </message>
     <message>
         <source>is different from user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>erineb juurdepääsetavast kasutajast</translation>
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>on juba ühendatud</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>ei ole ühendatud</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>on kohalik arvuti</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>ei ole kohalik arvuti</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääs arvutile</translation>
     </message>
     <message>
         <source>Session being accessed is a user session</source>
-        <translation type="unfinished"/>
+        <translation>Seanss, millele pääseb juurde, on kasutaja seanss</translation>
     </message>
     <message>
         <source>Session being accessed is a login screen</source>
-        <translation type="unfinished"/>
+        <translation>Seanss, millele pääseb juurde, on sisselogimisekraan</translation>
     </message>
 </context>
 <context>
@@ -381,10 +381,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AuthKeysConfigurationWidget</name>
-    <message>
-        <source>Authentication keys</source>
-        <translation>Autentimisvõtmed</translation>
-    </message>
     <message>
         <source>Introduction</source>
         <translation>Juhend</translation>
@@ -729,6 +725,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Key file</source>
         <translation>Võtmefail</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Palun määrake esimese argumendina võtme nimi (näiteks „õpetaja/avalik”).</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -751,10 +751,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>LDAP autentimine</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Üldine</translation>
@@ -874,10 +870,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Autentimise meetodid</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>Autentimine on selles arvutis õigesti seadistatud.</translation>
     </message>
@@ -891,6 +883,13 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Test</source>
         <translation>Test</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Sisseehitatud kataloog</translation>
     </message>
 </context>
 <context>
@@ -928,10 +927,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Sisseehitatud kataloog</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Asukohad &amp; arvutid</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Asukohad</translation>
     </message>
@@ -944,12 +939,16 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Eemalda valitud asukohad</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>CSV-failide importimine on võimalik käsurea liidese kaudu. Lisateavet leiate &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;veebidokumentatsioonist&lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Uus asukoht</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,6 +1258,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Veyon Server unreachable or not running</source>
         <translation>Veyon Server pole kättesaadav või ei tööta</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>kehtetu</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1385,17 +1392,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Arvutit ja kasutajate loendi %1 kirjutamine nurjus! Kontrollige failidele juurdepääsu õigusi.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation>%1 - %2 Arvuti suumi vidin</translation>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation>%1 - %2 - %3 Arvuti suumi vidin</translation>
     </message>
 </context>
 <context>
@@ -1672,27 +1668,27 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Rakendused ja veebisaidid</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Eelmääratud rakendused</translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Lisa uus rakendus</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda valitud rakendus</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Lisage uus veebisait</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Uus rakendus</translation>
     </message>
 </context>
 <context>
@@ -1715,23 +1711,23 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Käivita rakendus</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Rakenduse käivitamiseks kõikides arvutites klõpsake seda nuppu.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage rakendus &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Kohandatud rakendus</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage rakendusi ja avage veebisaite kasutajaseanssidel</translation>
     </message>
 </context>
 <context>
@@ -1778,7 +1774,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Kohandatud rakendus</translation>
     </message>
 </context>
 <context>
@@ -1988,18 +1984,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Logige standardvea väljundisse</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Võrguobjektide kataloog</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Taustaprogramm:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Värskenduse sagedus:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>%1 teenus</translation>
     </message>
@@ -2036,12 +2020,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation>sekundit</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Kirjutage operatsioonisüsteemi logimissüsteemi</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2388,6 +2392,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 on konfigureeritud filtri abil edukalt päritud.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2776,6 +2784,29 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Konfigureeritud atribuut kasutaja sisselogimisnimele või arvuti hostinimele (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Päringu valikud</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Pesastatud kasutajarühmade päring (toetab ainult AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2852,11 +2883,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Kasutaja seansid</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Minimaalne seansi eluiga enne serveri käivitamist</translation>
     </message>
     <message>
         <source>User login</source>
@@ -2864,7 +2895,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Sisselogimisvõtmete järjestus</translation>
     </message>
 </context>
 <context>
@@ -3100,7 +3131,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Asukohad&amp;arvutid</translation>
     </message>
 </context>
 <context>
@@ -3294,6 +3329,31 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Värskenduse sagedus:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>sekundit</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Lubatud</translation>
+    </message>
+</context>
+<context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
@@ -3328,7 +3388,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Website name</source>
-        <translation type="unfinished"/>
+        <translation>Veebisaidi nimi</translation>
     </message>
 </context>
 <context>
@@ -3462,15 +3522,15 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti taaskäivitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti välja lülitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti välja lülitada valitud arvutid?</translation>
     </message>
 </context>
 <context>
@@ -3600,10 +3660,6 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Ühendamine %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Ühendatud</translation>
     </message>
@@ -3614,6 +3670,10 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Exit</source>
         <translation>Välju</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3812,18 +3872,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Maksimaalne seansside arv</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sessioonid</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Ühe seansi režiim (loo serveri eksemplar ainult kohaliku/füüsilise seansi jaoks)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Mitme seansi režiim (looge iga kohaliku ja kaugtöölaua seansi jaoks serveri eksemplar)</translation>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation>Võrgu pordi numbrid</translation>
     </message>
@@ -3846,6 +3894,22 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Mitmesugused võrguseaded</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3975,25 +4039,20 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Valige lisamiseks vähemalt üks arvuti.</translation>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation>Valige eemaldamiseks vähemalt üks arvuti.</translation>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
-        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.
-Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viimane.</translation>
+The second button removes the selected or last computer.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Käivita rakendus</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Palun sisestage valitud arvutites käivitamiseks vajalikud rakendused. Saate eraldada mitu rakendust eri ridades.</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4001,11 +4060,11 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Pidage meeles ja lisage rakendus menüüsse</translation>
     </message>
     <message>
         <source>Application name</source>
-        <translation type="unfinished"/>
+        <translation>Rakenduse nimetus</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4053,7 +4112,7 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     </message>
     <message>
         <source>Please enter your message which send to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage oma sõnum, mis saadetakse kõigile valitud kasutajatele.</translation>
     </message>
 </context>
 <context>
@@ -4168,7 +4227,7 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Kas soovite tõesti välja logida &lt;b&gt;KÕIK&lt;/b&gt; kasutajad?</translation>
     </message>
 </context>
 <context>
@@ -4247,13 +4306,6 @@ Teine nupp eemaldab valitud arvuti. Kui midagi pole valitud, eemaldatakse viiman
     <message>
         <source>Veyon Service</source>
         <translation>Veyoni teenus</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Ühenduse loomine kasutajaga %1 ...</translation>
     </message>
 </context>
 <context>

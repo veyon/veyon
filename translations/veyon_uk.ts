@@ -382,10 +382,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Ключі розпізнавання</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Вступ</translation>
     </message>
@@ -726,6 +722,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Key file</source>
         <translation>Файл ключа</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Будь ласка, вкажіть назву ключа (наприклад «teacher/public») першим аргументом.</translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -748,10 +748,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>Розпізнавання у LDAP</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Загальні</translation>
@@ -871,10 +867,6 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Способи розпізнавання</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>На цьому комп&apos;ютері належним чином налаштовано розпізнавання.</translation>
     </message>
@@ -888,6 +880,13 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Test</source>
         <translation>Перевірити</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Вбудований каталог</translation>
     </message>
 </context>
 <context>
@@ -925,10 +924,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Вбудований каталог</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Місця і комп&apos;ютери</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Місця</translation>
     </message>
@@ -941,12 +936,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Вилучити позначене місце</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Імпортування файлів CSV можна виконати за допомогою інтерфейсу командного рядка. Докладніший опис можна знайти у &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;інтернет-документації&lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Нове місце</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Назва каталогу</translation>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation>Імпортування файлів CSV можна виконати за допомогою інтерфейсу командного рядка. Докладніший опис можна знайти у &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;інтернет-документації&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1256,6 +1255,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Veyon Server unreachable or not running</source>
         <translation>Сервер Veyon є недоступним або сервер не запущено</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation>Назва: %1</translation>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation>некоректний</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1382,17 +1389,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не вдалося записати список комп’ютерів і користувачів до %1! Будь ласка, перевірте, чи є у вас належні права для доступу до цього файла.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation>%1 — віджет масштабування комп&apos;ютерів %2</translation>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation>%1 — %2 — віджет масштабування комп&apos;ютерів %3</translation>
     </message>
 </context>
 <context>
@@ -1985,18 +1981,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Виводити повідомлення до стандартного виводу помилок</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Каталог мережевих об’єктів</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Модуль:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Інтервал оновлення:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>Служба %1</translation>
     </message>
@@ -2033,12 +2017,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> секунд</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Записувати до журналу операційної системи</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation>Налаштування TLS</translation>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation>Використовувати службу сертифікації для з&apos;єднань TLS</translation>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation>Файл сертифіката CA</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation>Файл сертифіката вузла</translation>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation>Файл закритого ключа вузла</translation>
     </message>
 </context>
 <context>
@@ -2387,6 +2391,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 було успішно опитано за допомогою налаштованого фільтра.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation>Каталог LDAP</translation>
     </message>
 </context>
 <context>
@@ -2775,6 +2783,29 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation>Назва каталогу</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Параметри запиту</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Опитати вкладені групи користувачів (лише для AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation>Будь ласка, скористайтеся загальною сторінкою налаштувань LDAP для налаштовування способу отримання даних щодо розташування та комп&apos;ютерів з вашої служби каталогів на основі LDAP.</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3099,7 +3130,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Головний комп&apos;ютер Veyon (Veyon Master)</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Місця і комп&apos;ютери</translation>
     </message>
 </context>
 <context>
@@ -3290,6 +3325,31 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>У цьому режимі ви можете спостерігати за усіма комп&apos;ютерами у одному або декількох місцях.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation>Усі каталоги</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Інтервал оновлення:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> секунд</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Увімкнено</translation>
     </message>
 </context>
 <context>
@@ -3599,10 +3659,6 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>З’єднання з %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>З’єднано.</translation>
     </message>
@@ -3613,6 +3669,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Exit</source>
         <translation>Вийти</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3811,18 +3871,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Максимальна кількість сеансів</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Сеанси</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation>Режим єдиного сеансу (створювати екземпляр сервера лише для локального/фізичного сеансу)</translation>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Режим із багатьма сеансами (створювати екземпляр сервера для кожного локального і віддаленого сеансу)</translation>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation>Номери портів мережі</translation>
     </message>
@@ -3845,6 +3893,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Різноманітні параметри мережі</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation>Режим сеансу</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Режим локального сеансу (один екземпляр сервера для основного локального сеансу)</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Режим активного сеансу (один екземпляр сервера для активного локального або віддаленого сеансу)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Режим багатьох сеансів (окремий екземпляр сервера для кожного локального і віддаленого стільничного сеансу)</translation>
     </message>
 </context>
 <context>
@@ -3974,14 +4038,10 @@ Typically this is required to support terminal servers.</source>
         <translation>Будь ласка, позначте принаймні один комп&apos;ютер для додавання.</translation>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation>Будь ласка, позначте принаймні один комп&apos;ютер для вилучення.</translation>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки нижче.
-Другу кнопку призначено для вилучення позначеного комп&apos;ютера. Якщо нічого не позначено, буде вилучено останній з комп&apos;ютерів.</translation>
+Другу кнопку призначено для вилучення позначеного або останнього запису комп&apos;ютера.</translation>
     </message>
 </context>
 <context>
@@ -4246,13 +4306,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation>Служба Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Встановлення зв’язку з %1 ...</translation>
     </message>
 </context>
 <context>

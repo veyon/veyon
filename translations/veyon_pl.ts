@@ -382,10 +382,6 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
 <context>
     <name>AuthKeysConfigurationWidget</name>
     <message>
-        <source>Authentication keys</source>
-        <translation>Klucze uwierzytelniające</translation>
-    </message>
-    <message>
         <source>Introduction</source>
         <translation>Wprowadzenie</translation>
     </message>
@@ -729,6 +725,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Key file</source>
         <translation>Plik z kluczem</translation>
     </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -751,10 +751,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 </context>
 <context>
     <name>AuthLdapConfigurationWidget</name>
-    <message>
-        <source>LDAP authentication</source>
-        <translation>Uwierzytelnienie LDAP</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Ogólne</translation>
@@ -874,10 +870,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 <context>
     <name>AuthenticationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Metody uwierzytelniania</translation>
-    </message>
-    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>Uwierzytelnianie jest poprawnie skonfigurowane na tym komputerze.</translation>
     </message>
@@ -891,6 +883,13 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Test</source>
         <translation>Test</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfiguration</name>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Wbudowany katalog</translation>
     </message>
 </context>
 <context>
@@ -928,10 +927,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wbudowany katalog</translation>
     </message>
     <message>
-        <source>Locations &amp; computers</source>
-        <translation>Sale i komputery</translation>
-    </message>
-    <message>
         <source>Locations</source>
         <translation>Sale</translation>
     </message>
@@ -944,12 +939,16 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Usuń wybraną lokalizację</translation>
     </message>
     <message>
-        <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>Import plików CSV jest możliwy poprzez interfejs wiersza poleceń. Aby uzyskać więcej informacji, zobacz &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;dokumentację online&lt;/a&gt;.</translation>
-    </message>
-    <message>
         <source>New location</source>
         <translation>Nowa lokalizacja</translation>
+    </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,6 +1258,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Veyon Server unreachable or not running</source>
         <translation>Serwer Veyon nieosiagalny lub nie uruchomiony</translation>
     </message>
+    <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1385,17 +1392,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nie można zapisać listy komputerów i użytkowników w %1! Sprawdź prawa dostępu do pliku</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerZoomWidget</name>
-    <message>
-        <source>%1 - %2 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 - %2 - %3 Computer Zoom Widget</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1988,18 +1984,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Loguj do standardowego wyjścia błędów</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Adres obiektu sieciowego</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation>Zaplecze:</translation>
-    </message>
-    <message>
-        <source>Update interval:</source>
-        <translation>Interwał odświeżania:</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>Usługa %1</translation>
     </message>
@@ -2036,12 +2020,32 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>x</translation>
     </message>
     <message>
-        <source> seconds</source>
-        <translation>sekundy</translation>
-    </message>
-    <message>
         <source>Write to logging system of operating system</source>
         <translation>Zapisz w logach systemu operacyjnego</translation>
+    </message>
+    <message>
+        <source>TLS configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use certificate authority for TLS connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Host certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host private key file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2382,6 +2386,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>Zadanie %1 %2 zakończyło się pomyślnie przy użyciu skonfigurowanego filtra.</translation>
+    </message>
+    <message>
+        <source>LDAP directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2771,6 +2779,29 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
         <translation>Skonfigurowany atrybut użytkownik lub komputer (OpenLDAP)</translation>
     </message>
+    <message>
+        <source>Directory name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapNetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3095,7 +3126,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
+    </message>
+    <message>
+        <source>Locations &amp; computers</source>
+        <translation>Sale i komputery</translation>
     </message>
 </context>
 <context>
@@ -3286,6 +3321,31 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ten tryb umożliwia monitorowanie wszystkich komputerów w co najmniej jednej lokalizacji.</translation>
+    </message>
+</context>
+<context>
+    <name>NestedNetworkObjectDirectory</name>
+    <message>
+        <source>All directories</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPage</name>
+    <message>
+        <source>Update interval:</source>
+        <translation>Interwał odświeżania:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>sekundy</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectDirectoryConfigurationPageTab</name>
+    <message>
+        <source>Enabled</source>
+        <translation>Włączony</translation>
     </message>
 </context>
 <context>
@@ -3595,10 +3655,6 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connecting %1</source>
-        <translation>Łączenie z %1</translation>
-    </message>
-    <message>
         <source>Connected.</source>
         <translation>Połączono.</translation>
     </message>
@@ -3609,6 +3665,10 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Exit</source>
         <translation>Wyjście</translation>
+    </message>
+    <message>
+        <source>Connecting...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3807,18 +3867,6 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>Maksymalna liczba sesji</translation>
     </message>
     <message>
-        <source>Sessions</source>
-        <translation>Sesje</translation>
-    </message>
-    <message>
-        <source>Single session mode (create server instance for local/physical session only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (create server instance for each local and remote desktop session)</source>
-        <translation>Tryb wielosesyjny (utwórz instancję serwera dla każdej sesji pulpitu lokalnego i zdalnego)</translation>
-    </message>
-    <message>
         <source>Network port numbers</source>
         <translation type="unfinished"/>
     </message>
@@ -3841,6 +3889,22 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Miscellaneous network settings</source>
         <translation>Różne ustawienia sieci</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3970,12 +4034,8 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
-The second button will remove the selected computer. If nothing is selected the last one will be removed.</source>
+The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4241,13 +4301,6 @@ The second button will remove the selected computer. If nothing is selected the 
     <message>
         <source>Veyon Service</source>
         <translation>Usługa Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VncViewWidget</name>
-    <message>
-        <source>Establishing connection to %1 ...</source>
-        <translation>Nawiązywanie połączenia z %1</translation>
     </message>
 </context>
 <context>
