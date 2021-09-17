@@ -36,7 +36,8 @@
 
 DemoClient::DemoClient( const QString& host, int port, bool fullscreen, const QRect& viewport, QObject* parent ) :
 	QObject( parent ),
-	m_toplevel( nullptr )
+	m_toplevel( nullptr ),
+	m_computerControlInterface( ComputerControlInterface::Pointer::create( Computer( {}, host, host ), port, this ) )
 {
 	if( fullscreen )
 	{
@@ -57,7 +58,7 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, const QR
 		m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 	}
 
-	m_vncView = new VncViewWidget( host, port, m_toplevel, VncView::DemoMode, viewport );
+	m_vncView = new VncViewWidget( m_computerControlInterface, VncView::DemoMode, viewport, m_toplevel );
 
 	auto toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setContentsMargins( 0, 0, 0, 0 );

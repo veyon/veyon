@@ -32,13 +32,23 @@
 
 #include "PlatformInputDeviceFunctions.h"
 #include "KeyboardShortcutTrapper.h"
+#include "VeyonConnection.h"
 #include "VncConnection.h"
 #include "VncView.h"
 
 
-VncView::VncView( VncConnection* connection ) :
-	m_connection( connection ),
-	m_framebufferSize( connection->image().size() ),
+VncView::VncView( ComputerControlInterface::Pointer computerControlInterface ) :
+	m_computerControlInterface( [computerControlInterface]() {
+		if( computerControlInterface->state() == ComputerControlInterface::State::Disconnected ||
+			computerControlInterface->connection() == nullptr )
+		{
+			computerControlInterface->start();
+		}
+		return computerControlInterface;
+	}() ),
+	m_previousUpdateMode( m_computerControlInterface->updateMode() ),
+	m_connection( computerControlInterface->connection()->vncConnection() ),
+	m_framebufferSize( m_connection->image().size() ),
 	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( nullptr ) )
 {
 	// handle/forward trapped keyboard shortcuts
@@ -46,12 +56,18 @@ VncView::VncView( VncConnection* connection ) :
 					  m_keyboardShortcutTrapper, [this]( KeyboardShortcutTrapper::Shortcut shortcut ) {
 						  handleShortcut( shortcut );
 					  } );
+
+	m_computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Live );
 }
 
 
 
 VncView::~VncView()
 {
+	unpressModifiers();
+
+	m_computerControlInterface->setUpdateMode( m_previousUpdateMode );
+
 	delete m_keyboardShortcutTrapper;
 }
 
