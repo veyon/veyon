@@ -71,8 +71,13 @@ VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlI
 
 	resize( QApplication::desktop()->availableGeometry( this ).size() - QSize( 10, 30 ) );
 
-	setFocusPolicy( Qt::StrongFocus );
+	setFocusPolicy( Qt::WheelFocus );
 	setFocus();
+
+	setAttribute( Qt::WA_OpaquePaintEvent );
+	installEventFilter( this );
+
+	setMouseTracking( true );
 
 	updateConnectionState();
 }
@@ -140,30 +145,9 @@ void VncViewWidget::updateFramebufferSize( int w, int h )
 {
 	VncView::updateFramebufferSize( w, h );
 
-	resize( w, h );
+	resize( effectiveFramebufferSize() );
 
 	Q_EMIT sizeHintChanged();
-}
-
-
-
-void VncViewWidget::updateImage( int x, int y, int w, int h )
-{
-	if( m_initDone == false )
-	{
-		setAttribute( Qt::WA_OpaquePaintEvent );
-		installEventFilter( this );
-
-		setMouseTracking( true ); // get mouse events even when there is no mousebutton pressed
-		setFocusPolicy( Qt::WheelFocus );
-
-		resize( sizeHint() );
-
-		m_initDone = true;
-
-	}
-
-	VncView::updateImage( x, y, w, h );
 }
 
 
@@ -353,5 +337,7 @@ void VncViewWidget::updateConnectionState()
 	else
 	{
 		m_busyIndicatorTimer.stop();
+
+		resize( effectiveFramebufferSize() );
 	}
 }

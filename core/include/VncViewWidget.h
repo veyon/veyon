@@ -53,7 +53,6 @@ protected:
 	void setViewCursor( const QCursor& cursor ) override;
 
 	void updateFramebufferSize( int w, int h ) override;
-	void updateImage( int x, int y, int w, int h ) override;
 
 	bool event( QEvent* handleEvent ) override;
 	bool eventFilter( QObject* obj, QEvent* handleEvent ) override;
@@ -70,7 +69,6 @@ private:
 	VeyonConnection* m_veyonConnection{nullptr};
 
 	bool m_viewOnlyFocus{true};
-	bool m_initDone{false};
 
 	static constexpr auto BusyIndicatorUpdateInterval = 25;
 	QTimer m_busyIndicatorTimer{this};
