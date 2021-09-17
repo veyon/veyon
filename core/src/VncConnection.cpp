@@ -424,8 +424,6 @@ void VncConnection::establishConnection()
 		{
 			m_framebufferUpdateWatchdog.restart();
 
-			Q_EMIT connectionEstablished();
-
 			VeyonCore::platform().networkFunctions().
 					configureSocketKeepalive( static_cast<PlatformNetworkFunctions::Socket>( m_client->sock ), true,
 											  m_socketKeepaliveIdleTime, m_socketKeepaliveInterval, m_socketKeepaliveCount );
