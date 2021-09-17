@@ -56,7 +56,7 @@ public:
 
 	using State = VncConnection::State;
 
-	explicit ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
+	explicit ComputerControlInterface( const Computer& computer, int port = -1, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
 	VeyonConnection* connection() const
@@ -151,7 +151,8 @@ private:
 	static constexpr int ConnectionWatchdogTimeout = 10000;
 	static constexpr int UpdateIntervalDisabled = 5000;
 
-	Computer m_computer;
+	const Computer m_computer;
+	const int m_port;
 
 	UpdateMode m_updateMode{UpdateMode::Disabled};
 

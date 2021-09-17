@@ -32,10 +32,10 @@
 #include "VncConnection.h"
 
 
-ComputerControlInterface::ComputerControlInterface( const Computer& computer,
-													QObject* parent ) :
+ComputerControlInterface::ComputerControlInterface( const Computer& computer, int port, QObject* parent ) :
 	QObject( parent ),
 	m_computer( computer ),
+	m_port( port ),
 	m_state( State::Disconnected ),
 	m_userLoginName(),
 	m_userFullName(),
@@ -74,6 +74,10 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 	{
 		m_vncConnection = new VncConnection();
 		m_vncConnection->setHost( m_computer.hostAddress() );
+		if( m_port > 0 )
+		{
+			m_vncConnection->setPort( m_port );
+		}
 		m_vncConnection->setQuality( VncConnection::Quality::Thumbnail );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 

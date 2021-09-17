@@ -49,9 +49,9 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_computerMonitoringModel( new ComputerMonitoringModel( this ) ),
 	m_localSessionControlInterface( Computer( NetworkObject::Uid::createUuid(),
 											  QStringLiteral("localhost"),
-											  QStringLiteral("%1:%2").
-											  arg( QHostAddress( QHostAddress::LocalHost ).toString() ).
-											  arg( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) ),
+											  QStringLiteral("%1").
+											  arg( QHostAddress( QHostAddress::LocalHost ).toString() ) ),
+									VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
 									this ),
 	m_mainWindow( nullptr ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
