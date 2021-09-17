@@ -26,6 +26,8 @@
 
 #include <QObject>
 
+#include "ComputerControlInterface.h"
+
 class VncViewWidget;
 
 class DemoClient : public QObject
@@ -39,7 +41,9 @@ private:
 	void viewDestroyed( QObject* obj );
 	void resizeToplevelWidget();
 
-	QWidget* m_toplevel;
-	VncViewWidget* m_vncView;
+	QWidget* m_toplevel{nullptr};
+
+	ComputerControlInterface::Pointer m_computerControlInterface;
+	VncViewWidget* m_vncView{nullptr};
 
 } ;

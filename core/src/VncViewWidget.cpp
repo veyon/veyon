@@ -39,17 +39,14 @@
 #include "VncViewWidget.h"
 
 
-VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode, const QRect& viewport ) :
+VncViewWidget::VncViewWidget( ComputerControlInterface::Pointer computerControlInterface, Mode mode,
+							  const QRect& viewport, QWidget* parent ) :
 	QWidget( parent ),
-	VncView( new VncConnection( QCoreApplication::instance() ) ),
-	m_veyonConnection( new VeyonConnection( connection() ) )
+	VncView( computerControlInterface )
 {
 	setViewport( viewport );
 
 	connectUpdateFunctions( this );
-
-	connection()->setHost( host );
-	connection()->setPort( port );
 
 	if( mode == DemoMode )
 	{
@@ -91,8 +88,6 @@ VncViewWidget::VncViewWidget( const QString& host, int port, QWidget* parent, Mo
 
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
-
-	connection()->start();
 }
 
 
@@ -101,13 +96,6 @@ VncViewWidget::~VncViewWidget()
 {
 	// do not receive any signals during connection shutdown
 	connection()->disconnect( this );
-
-	unpressModifiers();
-
-	delete m_veyonConnection;
-	m_veyonConnection = nullptr;
-
-	connection()->stopAndDeleteLater();
 }
 
 

@@ -28,15 +28,17 @@
 #include <QWidget>
 
 #include "VncView.h"
+#include "ComputerControlInterface.h"
 
 class ProgressWidget;
-class VeyonConnection;
 
 class VEYON_CORE_EXPORT VncViewWidget : public QWidget, public VncView
 {
 	Q_OBJECT
 public:
-	VncViewWidget( const QString& host, int port, QWidget* parent, Mode mode, const QRect& viewport = {} );
+	VncViewWidget( ComputerControlInterface::Pointer computerControlInterface, Mode mode, const QRect& viewport,
+				   QWidget* parent );
+
 	~VncViewWidget() override;
 
 	QSize sizeHint() const override;

@@ -26,19 +26,14 @@
 #include <QSGSimpleTextureNode>
 
 #include "QSGImageTexture.h"
-#include "VeyonConnection.h"
 #include "VncViewItem.h"
 
 
 VncViewItem::VncViewItem( ComputerControlInterface::Pointer computerControlInterface, QQuickItem* parent ) :
 	QQuickItem( parent ),
-	VncView( computerControlInterface->connection()->vncConnection() ),
-	m_computerControlInterface( computerControlInterface ),
-	m_previousUpdateMode( m_computerControlInterface->updateMode() )
+	VncView( computerControlInterface )
 {
 	connectUpdateFunctions( this );
-
-	m_computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Live );
 
 	setAcceptHoverEvents( true );
 	setAcceptedMouseButtons( Qt::AllButtons );
@@ -52,7 +47,8 @@ VncViewItem::VncViewItem( ComputerControlInterface::Pointer computerControlInter
 
 VncViewItem::~VncViewItem()
 {
-	m_computerControlInterface->setUpdateMode( m_previousUpdateMode );
+	// do not receive any signals during connection shutdown
+	connection()->disconnect( this );
 }
 
 
@@ -77,11 +73,11 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 
 	if( viewport().isValid() )
 	{
-		texture->setImage( m_computerControlInterface->screen().copy( viewport() ) );
+		texture->setImage( computerControlInterface()->screen().copy( viewport() ) );
 	}
 	else
 	{
-		texture->setImage( m_computerControlInterface->screen() );
+		texture->setImage( computerControlInterface()->screen() );
 	}
 	node->setRect( boundingRect() );
 

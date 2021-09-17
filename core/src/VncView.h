@@ -28,14 +28,13 @@
 #include <QPixmap>
 
 #include "KeyboardShortcutTrapper.h"
-#include "VncConnection.h"
+#include "ComputerControlInterface.h"
 
 class QHoverEvent;
 class QKeyEvent;
 class QMouseEvent;
 class QWheelEvent;
 class KeyboardShortcutTrapper;
-class VncConnection;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -63,8 +62,13 @@ public:
 		ShortcutCount
 	} ;
 
-	VncView( VncConnection* connection );
+	VncView( ComputerControlInterface::Pointer computerControlInterface );
 	virtual ~VncView();
+
+	ComputerControlInterface::Pointer computerControlInterface() const
+	{
+		return m_computerControlInterface;
+	}
 
 	VncConnection* connection() const
 	{
@@ -140,6 +144,9 @@ protected:
 private:
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
+
+	ComputerControlInterface::Pointer m_computerControlInterface;
+	ComputerControlInterface::UpdateMode m_previousUpdateMode;
 
 	VncConnection* m_connection{nullptr};
 	QPixmap m_cursorShape{};

@@ -24,9 +24,8 @@
 
 #pragma once
 
-#include <QQuickPaintedItem>
+#include <QQuickItem>
 
-#include "ComputerControlInterface.h"
 #include "VncView.h"
 
 class VEYON_CORE_EXPORT VncViewItem : public QQuickItem, public VncView
@@ -46,8 +45,6 @@ protected:
 	bool event( QEvent* event ) override;
 
 private:
-	ComputerControlInterface::Pointer m_computerControlInterface;
-	ComputerControlInterface::UpdateMode m_previousUpdateMode;
 	QSize m_framebufferSize;
 
 };
