@@ -1,7 +1,7 @@
 /*
  * ComputerZoomWidget.cpp - fullscreen preview widget
  *
- * Copyright (c) 2006-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2021 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,11 +22,8 @@
  *
  */
 
-#include <QApplication>
 #include <QIcon>
-#include <QLayout>
 
-#include "ComputerControlInterface.h"
 #include "ComputerZoomWidget.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
@@ -35,7 +32,7 @@
 
 
 ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer& computerControlInterface ) :
-	QWidget( nullptr ),
+	QWidget(),
 	m_vncView( new VncViewWidget( computerControlInterface, {}, this ) )
 {
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
@@ -49,7 +46,8 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	}
 
 	updateComputerZoomWidgetTitle();
-	connect( m_computerControlInterface.data(), &ComputerControlInterface::userChanged, this, &ComputerZoomWidget::updateComputerZoomWidgetTitle );
+	connect( m_vncView->computerControlInterface().data(), &ComputerControlInterface::userChanged,
+			 this, &ComputerZoomWidget::updateComputerZoomWidgetTitle );
 
 	setWindowIcon( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
@@ -71,14 +69,15 @@ ComputerZoomWidget::~ComputerZoomWidget()
 
 void ComputerZoomWidget::updateComputerZoomWidgetTitle()
 {
-	if ( m_computerControlInterface->userFullName().isEmpty() )
+	if ( m_vncView->computerControlInterface()->userFullName().isEmpty() )
 	{
-		setWindowTitle( tr( "%1 - %2 Computer Zoom Widget" ).arg( m_computerControlInterface->computer().name(),
-														   VeyonCore::applicationName() ) );
-	} else
+		setWindowTitle( QStringLiteral( "%1 - %2" ).arg( m_vncView->computerControlInterface()->computer().name(),
+														 VeyonCore::applicationName() ) );
+	}
+	else
 	{
-		setWindowTitle( tr( "%1 - %2 - %3 Computer Zoom Widget" ).arg( m_computerControlInterface->userFullName(),
-																  m_computerControlInterface->computer().name(),
-																  VeyonCore::applicationName() ) );
+		setWindowTitle( QStringLiteral( "%1 - %2 - %3" ).arg( m_vncView->computerControlInterface()->userFullName(),
+															  m_vncView->computerControlInterface()->computer().name(),
+															  VeyonCore::applicationName() ) );
 	}
 }
