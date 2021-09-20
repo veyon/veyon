@@ -1,4 +1,4 @@
-INCLUDE(BuildVeyonPlugin)
+include(BuildVeyonPlugin)
 
 build_veyon_plugin(powercontrol
 	PowerControlFeaturePlugin.cpp

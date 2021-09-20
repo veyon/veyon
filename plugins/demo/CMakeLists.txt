@@ -1,4 +1,4 @@
-INCLUDE(BuildVeyonPlugin)
+include(BuildVeyonPlugin)
 
 build_veyon_plugin(demo
 	DemoFeaturePlugin.cpp
@@ -18,4 +18,4 @@ build_veyon_plugin(demo
 	demo.qrc
 )
 
-TARGET_LINK_LIBRARIES(demo ${LZO_LIBRARIES})
+target_link_libraries(demo ${LZO_LIBRARIES})

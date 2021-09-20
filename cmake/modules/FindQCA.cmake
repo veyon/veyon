@@ -18,50 +18,50 @@ if(QCA_INCLUDE_DIR AND QCA_LIBRARY)
 
   set(QCA_FOUND TRUE)
 
-else(QCA_INCLUDE_DIR AND QCA_LIBRARY)
+else()
 
-  set(QCA_LIBRARY_NAMES qca-qt5 qca2-qt5)
+  set(QCA_LIBRARY_NAMES qca-qt6 qca2-qt6)
 
   find_library(QCA_LIBRARY
-    NAMES ${QCA_LIBRARY_NAMES}
-    PATHS
-      ${LIB_DIR}
-      $ENV{LIB}
-      "$ENV{LIB_DIR}"
-      /usr/local/lib
+	NAMES ${QCA_LIBRARY_NAMES}
+	PATHS
+	  ${LIB_DIR}
+	  $ENV{LIB}
+	  "$ENV{LIB_DIR}"
+	  /usr/local/lib
   )
 
   set(_qca_fw)
   if(QCA_LIBRARY MATCHES "/qca.*\\.framework")
-    string(REGEX REPLACE "^(.*/qca.*\\.framework).*$" "\\1" _qca_fw "${QCA_LIBRARY}")
+	string(REGEX REPLACE "^(.*/qca.*\\.framework).*$" "\\1" _qca_fw "${QCA_LIBRARY}")
   endif()
 
   find_path(QCA_INCLUDE_DIR
-    NAMES QtCrypto
-    PATHS
-      "${_qca_fw}/Headers"
-      ${LIB_DIR}/include
-      "$ENV{LIB_DIR}/include"
-      $ENV{INCLUDE}
-      /usr/local/include
-      PATH_SUFFIXES QtCrypto qt5/QtCrypto Qca-qt5/QtCrypto qt/Qca-qt5/QtCrypto qt5/Qca-qt5/QtCrypto
+	NAMES QtCrypto
+	PATHS
+	  "${_qca_fw}/Headers"
+	  ${LIB_DIR}/include
+	  "$ENV{LIB_DIR}/include"
+	  $ENV{INCLUDE}
+	  /usr/local/include
+	  PATH_SUFFIXES QtCrypto qt5/QtCrypto Qca-qt5/QtCrypto qt/Qca-qt5/QtCrypto qt5/Qca-qt5/QtCrypto
   )
 
   if(QCA_LIBRARY AND QCA_INCLUDE_DIR)
-    set(QCA_FOUND TRUE)
+	set(QCA_FOUND TRUE)
   endif()
 
-endif(QCA_INCLUDE_DIR AND QCA_LIBRARY)
+endif()
 
 if(NOT QCA_FOUND)
 
   if(QCA_FIND_REQUIRED)
-    message(FATAL_ERROR "Could not find QCA")
+	message(FATAL_ERROR "Could not find QCA")
   else()
-    message(STATUS "Could not find QCA")
+	message(STATUS "Could not find QCA")
   endif()
 
-else(NOT QCA_FOUND)
+else()
 
   # Check version is valid (>= 2.0.3)
   # find_package(QCA 2.0.3) works with 2.1.0+, which has a QcaConfigVersion.cmake, but 2.0.3 does not
@@ -69,31 +69,31 @@ else(NOT QCA_FOUND)
   # qca_version.h header only available with 2.1.0+
   set(_qca_version_h "${QCA_INCLUDE_DIR}/qca_version.h")
   if(EXISTS "${_qca_version_h}")
-    file(STRINGS "${_qca_version_h}" _qca_version_str REGEX "^.*QCA_VERSION_STR +\"[^\"]+\".*$")
-    string(REGEX REPLACE "^.*QCA_VERSION_STR +\"([^\"]+)\".*$" "\\1" QCA_VERSION_STR "${_qca_version_str}")
+	file(STRINGS "${_qca_version_h}" _qca_version_str REGEX "^.*QCA_VERSION_STR +\"[^\"]+\".*$")
+	string(REGEX REPLACE "^.*QCA_VERSION_STR +\"([^\"]+)\".*$" "\\1" QCA_VERSION_STR "${_qca_version_str}")
   else()
-    # qca_core.h contains hexadecimal version in <= 2.0.3
-    set(_qca_core_h "${QCA_INCLUDE_DIR}/qca_core.h")
-    if(EXISTS "${_qca_core_h}")
-      file(STRINGS "${_qca_core_h}" _qca_version_str REGEX "^#define +QCA_VERSION +0x[0-9a-fA-F]+.*")
-      string(REGEX REPLACE "^#define +QCA_VERSION +0x([0-9a-fA-F]+)$" "\\1" _qca_version_int "${_qca_version_str}")
-      if("${_qca_version_int}" STREQUAL "020003")
-        set(QCA_VERSION_STR "2.0.3")
-      endif()
-    endif()
+	# qca_core.h contains hexadecimal version in <= 2.0.3
+	set(_qca_core_h "${QCA_INCLUDE_DIR}/qca_core.h")
+	if(EXISTS "${_qca_core_h}")
+	  file(STRINGS "${_qca_core_h}" _qca_version_str REGEX "^#define +QCA_VERSION +0x[0-9a-fA-F]+.*")
+	  string(REGEX REPLACE "^#define +QCA_VERSION +0x([0-9a-fA-F]+)$" "\\1" _qca_version_int "${_qca_version_str}")
+	  if("${_qca_version_int}" STREQUAL "020003")
+		set(QCA_VERSION_STR "2.0.3")
+	  endif()
+	endif()
   endif()
 
   if(NOT QCA_VERSION_STR)
-    set(QCA_FOUND FALSE)
-    if(QCA_FIND_REQUIRED)
-      message(FATAL_ERROR "Could not find QCA >= 2.0.3")
-    else()
-      message(STATUS "Could not find QCA >= 2.0.3")
-    endif()
+	set(QCA_FOUND FALSE)
+	if(QCA_FIND_REQUIRED)
+	  message(FATAL_ERROR "Could not find QCA >= 2.0.3")
+	else()
+	  message(STATUS "Could not find QCA >= 2.0.3")
+	endif()
   else()
-    if(NOT QCA_FIND_QUIETLY)
-      message(STATUS "Found QCA: ${QCA_LIBRARY} (${QCA_VERSION_STR})")
-    endif()
+	if(NOT QCA_FIND_QUIETLY)
+	  message(STATUS "Found QCA: ${QCA_LIBRARY} (${QCA_VERSION_STR})")
+	endif()
   endif()
 
-endif(NOT QCA_FOUND)
+endif()

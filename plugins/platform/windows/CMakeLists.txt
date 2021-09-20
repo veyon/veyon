@@ -1,4 +1,4 @@
-INCLUDE(BuildVeyonPlugin)
+include(BuildVeyonPlugin)
 
 build_veyon_plugin(windows-platform
 	WindowsPlatformPlugin.cpp
@@ -49,14 +49,14 @@ build_veyon_plugin(windows-platform
 	windows.qrc
 )
 
-TARGET_INCLUDE_DIRECTORIES(windows-platform PRIVATE
+target_include_directories(windows-platform PRIVATE
 	../common
 	${ultravnc_DIR}/addon/ms-logon/authSSP
 	${ultravnc_DIR}/winvnc/winvnc
 	${ultravnc_DIR}
 	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
 )
-TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
-TARGET_COMPILE_DEFINITIONS(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
-TARGET_COMPILE_OPTIONS(windows-platform PRIVATE "-Wno-unknown-pragmas")
+target_link_libraries(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
+target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
+target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")
 set_source_files_properties(WindowsNetworkFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)

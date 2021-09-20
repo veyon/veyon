@@ -1,13 +1,13 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.1.0)
 
-PROJECT(veyon)
+project(veyon)
 
-SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
-IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    SET(VEYON_DEBUG TRUE)
-ELSEIF(NOT CMAKE_BUILD_TYPE)
-    SET(CMAKE_BUILD_TYPE relwithdebinfo)
-ENDIF()
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	set(VEYON_DEBUG TRUE)
+elseif(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE relwithdebinfo)
+endif()
 
 if(VEYON_DEBUG)
 	add_definitions(-DVEYON_DEBUG)
@@ -17,148 +17,148 @@ endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-IF(COMMAND CMAKE_POLICY)
-    CMAKE_POLICY(SET CMP0009 NEW)
-	CMAKE_POLICY(SET CMP0020 NEW)
+if(COMMAND CMAKE_POLICY)
+	cmake_policy(SET CMP0009 NEW)
+	cmake_policy(SET CMP0020 NEW)
 	cmake_policy(SET CMP0058 NEW)
-	CMAKE_POLICY(SET CMP0063 NEW)
+	cmake_policy(SET CMP0063 NEW)
 	if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
 		cmake_policy(SET CMP0075 NEW)
 	endif()
 	if(${CMAKE_VERSION} VERSION_GREATER "3.14.0")
 		cmake_policy(SET CMP0083 NEW)
 	endif()
-ENDIF()
+endif()
 
-INCLUDE(AddFileDependencies)
-INCLUDE(CheckCSourceCompiles)
-INCLUDE(CheckIncludeFiles)
-INCLUDE(CheckFunctionExists)
-INCLUDE(CheckSymbolExists)
-INCLUDE(CheckTypeSize)
-INCLUDE(GNUInstallDirs)
-INCLUDE(ConfigureFiles)
+include(AddFileDependencies)
+include(CheckCSourceCompiles)
+include(CheckIncludeFiles)
+include(CheckFunctionExists)
+include(CheckSymbolExists)
+include(CheckTypeSize)
+include(GNUInstallDirs)
+include(ConfigureFiles)
 include(SetDefaultTargetProperties)
 
-FIND_PACKAGE(Git)
+find_package(Git)
 
-IF(GIT_FOUND)
-    EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-		            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-					OUTPUT_STRIP_TRAILING_WHITESPACE
-					OUTPUT_VARIABLE VERSION_STRING)
-	STRING(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
-	STRING(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
-	STRING(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
+if(GIT_FOUND)
+	execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		OUTPUT_VARIABLE VERSION_STRING)
+	string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
+	string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
+	string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
 
 	# determine build number to use in NSIS installer and resource files
-	EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-		            COMMAND cut -d "-" -f2
-					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-					OUTPUT_STRIP_TRAILING_WHITESPACE
-					OUTPUT_VARIABLE VERSION_BUILD)
-	IF(NOT VERSION_BUILD GREATER 0)
-	    SET(VERSION_BUILD 0)
-	ENDIF()
+	execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags
+		COMMAND cut -d "-" -f2
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		OUTPUT_VARIABLE VERSION_BUILD)
+	if(NOT VERSION_BUILD GREATER 0)
+		set(VERSION_BUILD 0)
+	endif()
 
 	# Get list of all committers from git history, ordered by number of commits.
 	# The CONTRIBUTORS file is used by AboutDialog. This information can be provided
 	# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead. For instance, to generate
 	# this file for version 3.0.2, the command is:
 	#   git shortlog -sne v3.0.2 | cut -c8-
-	SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
-	IF(NOT EXISTS "${CONTRIBUTORS}")
-		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -s d160d147165271516589c304cb1b8f5e48f8527d..HEAD
-			            COMMAND cut -c8-
-						COMMAND sort -f
-						OUTPUT_FILE "${CONTRIBUTORS}"
-						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-						TIMEOUT 10)
-	ENDIF()
+	set(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
+	if(NOT EXISTS "${CONTRIBUTORS}")
+		execute_process(COMMAND "${GIT_EXECUTABLE}" shortlog -s d160d147165271516589c304cb1b8f5e48f8527d..HEAD
+			COMMAND cut -c8-
+			COMMAND sort -f
+			OUTPUT_FILE "${CONTRIBUTORS}"
+			WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+			TIMEOUT 10)
+	endif()
 
-ENDIF()
+endif()
 
 # can't retrieve version information as not building from Git repository?
-IF(NOT VERSION_STRING)
-    SET(VERSION_MAJOR 4)
-	SET(VERSION_MINOR 5)
-	SET(VERSION_PATCH 7)
-	SET(VERSION_BUILD 0)
-	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-ELSE()
-    # remove leading character from tag name
-	STRING(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
-ENDIF()
+if(NOT VERSION_STRING)
+	set(VERSION_MAJOR 4)
+	set(VERSION_MINOR 5)
+	set(VERSION_PATCH 7)
+	set(VERSION_BUILD 0)
+	set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+else()
+	# remove leading character from tag name
+	string(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
+endif()
 
 # set up compiler version variable
-STRING(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COMPILER_VERSION})
+string(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COMPILER_VERSION})
 
 
 # set up basic platform variables
-IF(WIN32)
-    SET(VEYON_BUILD_WIN32 1)
+if(WIN32)
+	set(VEYON_BUILD_WIN32 1)
 	add_definitions(-DUNICODE -D_UNICODE)
-ENDIF()
-IF(APPLE)
-	SET(VEYON_BUILD_APPLE 1)
-ENDIF()
-IF(UNIX AND NOT ANDROID)
-	SET(VEYON_BUILD_LINUX 1)
-ENDIF()
-IF(ANDROID)
-	SET(VEYON_BUILD_ANDROID 1)
-ENDIF()
+endif()
+if(APPLE)
+	set(VEYON_BUILD_APPLE 1)
+endif()
+if(UNIX AND NOT ANDROID)
+	set(VEYON_BUILD_LINUX 1)
+endif()
+if(ANDROID)
+	set(VEYON_BUILD_ANDROID 1)
+endif()
 
-IF(WIN64)
-    SET(VEYON_BUILD_WIN64 TRUE)
-ENDIF(WIN64)
+if(WIN64)
+	set(VEYON_BUILD_WIN64 TRUE)
+endif()
 
 # set up library and plugin path variables
-IF(VEYON_BUILD_ANDROID)
-	SET(CMAKE_INSTALL_PREFIX "/")
-	SET(VEYON_LIB_DIR "libs/${ANDROID_ABI}")
-	SET(VEYON_INSTALL_PLUGIN_DIR "${VEYON_LIB_DIR}/veyon")
-	SET(VEYON_INSTALL_DATA_DIR "${CMAKE_INSTALL_DATADIR}/veyon")
-	SET(VEYON_PLUGIN_DIR "")
-	SET(VEYON_TRANSLATIONS_DIR "/translations")
-ELSE()
-	IF(CMAKE_INSTALL_LIBDIR)
-		SET(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
-	ELSE()
-		SET(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
-	ENDIF()
+if(VEYON_BUILD_ANDROID)
+	set(CMAKE_INSTALL_PREFIX "/")
+	set(VEYON_LIB_DIR "libs/${ANDROID_ABI}")
+	set(VEYON_INSTALL_PLUGIN_DIR "${VEYON_LIB_DIR}/veyon")
+	set(VEYON_INSTALL_DATA_DIR "${CMAKE_INSTALL_DATADIR}/veyon")
+	set(VEYON_PLUGIN_DIR "")
+	set(VEYON_TRANSLATIONS_DIR "/translations")
+else()
+	if(CMAKE_INSTALL_LIBDIR)
+		set(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
+	else()
+		set(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
+	endif()
 
-	SET(VEYON_INSTALL_PLUGIN_DIR "${VEYON_LIB_DIR}")
-	SET(VEYON_INSTALL_DATA_DIR "${CMAKE_INSTALL_DATADIR}/veyon")
+	set(VEYON_INSTALL_PLUGIN_DIR "${VEYON_LIB_DIR}")
+	set(VEYON_INSTALL_DATA_DIR "${CMAKE_INSTALL_DATADIR}/veyon")
 
-	IF(WIN32)
-		SET(VEYON_PLUGIN_DIR "plugins")
-		SET(VEYON_TRANSLATIONS_DIR "translations")
-	ELSE()
-		SET(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
-		SET(VEYON_TRANSLATIONS_DIR "../share/veyon/translations")
-	ENDIF()
-ENDIF()
+	if(WIN32)
+		set(VEYON_PLUGIN_DIR "plugins")
+		set(VEYON_TRANSLATIONS_DIR "translations")
+	else()
+		set(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
+		set(VEYON_TRANSLATIONS_DIR "../share/veyon/translations")
+	endif()
+endif()
 
 
-SET(VEYON_CORE_INCLUDE_DIR core/include)
+set(VEYON_CORE_INCLUDE_DIR core/include)
 
 # find required Qt5 modules
-FIND_PACKAGE(Qt5Core REQUIRED)
-FIND_PACKAGE(Qt5Concurrent REQUIRED)
-FIND_PACKAGE(Qt5Gui REQUIRED)
-FIND_PACKAGE(Qt5Widgets REQUIRED)
-FIND_PACKAGE(Qt5Network REQUIRED)
-FIND_PACKAGE(Qt5LinguistTools REQUIRED)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Concurrent REQUIRED)
+find_package(Qt5Gui REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Network REQUIRED)
+find_package(Qt5LinguistTools REQUIRED)
 
 # find required libraries
 find_package(QCA REQUIRED)
 find_package(OpenSSL REQUIRED)
 
 # find Linux-specific packages
-IF(VEYON_BUILD_LINUX)
-	INCLUDE(XdgInstall)
-ENDIF()
+if(VEYON_BUILD_LINUX)
+	include(XdgInstall)
+endif()
 
 
 option(WITH_CORE_ONLY "Build core library only" OFF)
@@ -176,56 +176,56 @@ elseif(WITH_UNITY_BUILD)
 endif()
 
 if(WITH_MODEL_TESTERS)
-find_package(Qt5Test REQUIRED)
-set(VEYON_DEBUG_LIBRARIES Qt5::Test)
+	find_package(Qt5Test REQUIRED)
+	set(VEYON_DEBUG_LIBRARIES Qt5::Test)
 endif()
 
-IF(SANITIZE)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
-ENDIF()
+if(SANITIZE)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
+endif()
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 -fstack-protector-strong ${CXXFLAGS}")
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fstack-protector-strong ${CFLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 -fstack-protector-strong ${CXXFLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fstack-protector-strong ${CFLAGS}")
 
-IF(CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0)
-MESSAGE(WARNING "Not using -fvisibility=hidden as it is broken with GCC < 6.0")
-ELSE()
-SET(CMAKE_C_VISIBILITY_PRESET hidden)
-SET(CMAKE_CXX_VISIBILITY_PRESET hidden)
-SET(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
-IF(LTO)
-include(ProcessorCount)
-ProcessorCount(CPU_COUNT)
-SET(LTO_FLAGS "-flto=${CPU_COUNT}")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${LTO_FLAGS}")
-SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${LTO_FLAGS}")
-ENDIF()
-ENDIF()
+if(CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0)
+	message(WARNING "Not using -fvisibility=hidden as it is broken with GCC < 6.0")
+else()
+	set(CMAKE_C_VISIBILITY_PRESET hidden)
+	set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+	set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+	if(LTO)
+		include(ProcessorCount)
+		ProcessorCount(CPU_COUNT)
+		set(LTO_FLAGS "-flto=${CPU_COUNT}")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LTO_FLAGS}")
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${LTO_FLAGS}")
+		set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LTO_FLAGS}")
+		set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${LTO_FLAGS}")
+		set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${LTO_FLAGS}")
+	endif()
+endif()
 
 add_definitions(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050e00 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY -DQT_NO_KEYWORDS)
 
-FILE(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
+file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
 CONFIGURE_FILES(${IN_FILES})
 
-SET(CMAKE_AUTOMOC TRUE)
-SET(CMAKE_AUTOUIC TRUE)
-SET(CMAKE_AUTORCC TRUE)
+set(CMAKE_AUTOMOC TRUE)
+set(CMAKE_AUTOUIC TRUE)
+set(CMAKE_AUTORCC TRUE)
 
-SET(3rdparty_DIR ${CMAKE_SOURCE_DIR}/3rdparty)
-SET(ultravnc_DIR ${3rdparty_DIR}/ultravnc)
-SET(libvncserver_DIR ${3rdparty_DIR}/libvncserver)
-SET(x11vnc_DIR ${3rdparty_DIR}/x11vnc)
-SET(libfakekey_DIR ${3rdparty_DIR}/libfakekey)
+set(3rdparty_DIR ${CMAKE_SOURCE_DIR}/3rdparty)
+set(ultravnc_DIR ${3rdparty_DIR}/ultravnc)
+set(libvncserver_DIR ${3rdparty_DIR}/libvncserver)
+set(x11vnc_DIR ${3rdparty_DIR}/x11vnc)
+set(libfakekey_DIR ${3rdparty_DIR}/libfakekey)
 set(qthttpserver_DIR ${3rdparty_DIR}/qthttpserver)
 
-SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}")
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_SKIP_BUILD_RPATH  FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # make sub-directories
 add_subdirectory(core)
@@ -253,7 +253,7 @@ endif()
 #
 # package generation
 #
-INCLUDE(cmake/CPackDefinitions.cmake)
+include(cmake/CPackDefinitions.cmake)
 
 
 
@@ -261,39 +261,39 @@ INCLUDE(cmake/CPackDefinitions.cmake)
 # display configuration information
 #
 
-MESSAGE("\n"
-"Veyon build summary\n"
-"--------------------\n"
-"* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
-"* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
-"* Library directory           : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
-"* Plugin directory            : ${CMAKE_INSTALL_PREFIX}/${VEYON_INSTALL_PLUGIN_DIR}\n"
-"* Build type                  : ${CMAKE_BUILD_TYPE}\n"
-"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
-"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
-"* Use precompiled headers     : ${WITH_PCH}\n"
-"* Use unity build             : ${WITH_UNITY_BUILD}\n"
-)
+message("\n"
+	"Veyon build summary\n"
+	"--------------------\n"
+	"* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
+	"* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
+	"* Library directory           : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
+	"* Plugin directory            : ${CMAKE_INSTALL_PREFIX}/${VEYON_INSTALL_PLUGIN_DIR}\n"
+	"* Build type                  : ${CMAKE_BUILD_TYPE}\n"
+	"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
+	"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
+	"* Use precompiled headers     : ${WITH_PCH}\n"
+	"* Use unity build             : ${WITH_UNITY_BUILD}\n"
+	)
 
-IF(VEYON_BUILD_ANDROID)
-	INCLUDE(AndroidDeployQt)
-	SET(CMAKE_ANDROID_DIR "${CMAKE_SOURCE_DIR}/android")
-	SET(_CMAKE_ANDROID_DIR "${CMAKE_ANDROID_DIR}")
-	SET(ANDROID_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
-	SET(ANDROID_EXTRA_PLUGINS ${ANDROID_INSTALL_DIR}/${VEYON_LIB_DIR}/veyon/ ${QT_DIR}/lib/qca-qt5/crypto)
-	FILE(GLOB ANDROID_EXTRA_LIBS ${ANDROID_INSTALL_DIR}/${VEYON_LIB_DIR}/*.so)
-	LIST(APPEND ANDROID_EXTRA_LIBS "${ANDROID_SYSROOT_GENERIC}/libc++_shared.so")
-	LIST(APPEND ANDROID_EXTRA_LIBS "${QT_DIR}/lib/libldap.so"
-									"${QT_DIR}/lib/liblber.so"
-									"${QT_DIR}/lib/libsasl2.so")
+if(VEYON_BUILD_ANDROID)
+	include(AndroidDeployQt)
+	set(CMAKE_ANDROID_DIR "${CMAKE_SOURCE_DIR}/android")
+	set(_CMAKE_ANDROID_DIR "${CMAKE_ANDROID_DIR}")
+	set(ANDROID_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
+	set(ANDROID_EXTRA_PLUGINS ${ANDROID_INSTALL_DIR}/${VEYON_LIB_DIR}/veyon/ ${QT_DIR}/lib/qca-qt5/crypto)
+	file(GLOB ANDROID_EXTRA_LIBS ${ANDROID_INSTALL_DIR}/${VEYON_LIB_DIR}/*.so)
+	list(APPEND ANDROID_EXTRA_LIBS "${ANDROID_SYSROOT_GENERIC}/libc++_shared.so")
+	list(APPEND ANDROID_EXTRA_LIBS "${QT_DIR}/lib/libldap.so"
+		"${QT_DIR}/lib/liblber.so"
+		"${QT_DIR}/lib/libsasl2.so")
 	androiddeployqt("veyon-master" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core")
-	SET_TARGET_PROPERTIES(create-apk-veyon-master PROPERTIES ANDROID_APK_DIR "${CMAKE_ANDROID_DIR}")
+	set_target_properties(create-apk-veyon-master PROPERTIES ANDROID_APK_DIR "${CMAKE_ANDROID_DIR}")
 
 	add_custom_target(prepare-apk
 		COMMAND rm -rf ${ANDROID_INSTALL_DIR}
 		COMMAND cd ${CMAKE_BINARY_DIR}/core && make DESTDIR=${ANDROID_INSTALL_DIR} install
 		COMMAND cd ${CMAKE_BINARY_DIR}/plugins && make DESTDIR=${ANDROID_INSTALL_DIR} install
-	)
+		)
 
 	add_dependencies(create-apk-veyon-master prepare-apk)
-ENDIF()
+endif()

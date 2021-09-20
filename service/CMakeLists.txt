@@ -1,19 +1,19 @@
-INCLUDE(BuildVeyonApplication)
-INCLUDE(WindowsBuildHelpers)
+include(BuildVeyonApplication)
+include(WindowsBuildHelpers)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 build_veyon_application(veyon-service ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-TARGET_LINK_LIBRARIES(veyon-service veyon-core)
+target_link_libraries(veyon-service veyon-core)
 
-ADD_WINDOWS_RESOURCE(veyon-service)
-MAKE_GRAPHICAL_APP(veyon-service)
+add_windows_resource(veyon-service)
+make_graphical_app(veyon-service)
 
-IF(VEYON_BUILD_LINUX)
-    CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/veyon.service.in ${CMAKE_CURRENT_BINARY_DIR}/veyon.service @ONLY)
-	IF(NOT SYSTEMD_SERVICE_INSTALL_DIR)
-		SET(SYSTEMD_SERVICE_INSTALL_DIR /lib/systemd/system)
-	ENDIF()
-	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/veyon.service DESTINATION ${SYSTEMD_SERVICE_INSTALL_DIR})
-ENDIF()
+if(VEYON_BUILD_LINUX)
+	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/veyon.service.in ${CMAKE_CURRENT_BINARY_DIR}/veyon.service @ONLY)
+	if(NOT SYSTEMD_SERVICE_INSTALL_DIR)
+		set(SYSTEMD_SERVICE_INSTALL_DIR /lib/systemd/system)
+	endif()
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/veyon.service DESTINATION ${SYSTEMD_SERVICE_INSTALL_DIR})
+endif()
 

@@ -1,10 +1,10 @@
-IF(VEYON_BUILD_WIN32)
-ADD_SUBDIRECTORY(ultravnc-builtin)
-ENDIF()
+if(VEYON_BUILD_WIN32)
+add_subdirectory(ultravnc-builtin)
+endif()
 
-IF(VEYON_BUILD_LINUX)
-ADD_SUBDIRECTORY(x11vnc-builtin)
-ENDIF()
+if(VEYON_BUILD_LINUX)
+add_subdirectory(x11vnc-builtin)
+endif()
 
-ADD_SUBDIRECTORY(external)
+add_subdirectory(external)
 add_subdirectory(headless)

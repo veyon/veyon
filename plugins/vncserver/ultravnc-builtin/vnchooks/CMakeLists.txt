@@ -1,5 +1,5 @@
-SET(VH_WINRC "${CMAKE_CURRENT_BINARY_DIR}/vnchooksrc.obj")
-ADD_CUSTOM_COMMAND(OUTPUT ${VH_WINRC}
+set(VH_WINRC "${CMAKE_CURRENT_BINARY_DIR}/vnchooksrc.obj")
+add_custom_command(OUTPUT ${VH_WINRC}
 						COMMAND ${WINDRES}
 							-I${CMAKE_CURRENT_SOURCE_DIR}
 							-o${VH_WINRC}

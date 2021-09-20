@@ -1,4 +1,4 @@
-SET(ldap_common_SOURCES
+set(ldap_common_SOURCES
 	LdapBrowseDialog.cpp
 	LdapBrowseDialog.ui
 	LdapBrowseDialog.h
@@ -18,15 +18,15 @@ SET(ldap_common_SOURCES
 	ldap.qrc
 	)
 
-ADD_LIBRARY(ldap-common SHARED ${ldap_common_SOURCES})
-TARGET_INCLUDE_DIRECTORIES(ldap-common PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-TARGET_INCLUDE_DIRECTORIES(ldap-common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-TARGET_LINK_LIBRARIES(ldap-common kldap-light veyon-core)
+add_library(ldap-common SHARED ${ldap_common_SOURCES})
+target_include_directories(ldap-common PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(ldap-common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(ldap-common kldap-light veyon-core)
 set_default_target_properties(ldap-common)
-SET_TARGET_PROPERTIES(ldap-common PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+set_target_properties(ldap-common PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
 if(WITH_PCH)
 	target_precompile_headers(ldap-common REUSE_FROM veyon-pch)
 endif()
 if(NOT WITH_CORE_ONLY)
-INSTALL(TARGETS ldap-common DESTINATION ${VEYON_LIB_DIR})
+install(TARGETS ldap-common DESTINATION ${VEYON_LIB_DIR})
 endif()

@@ -1,12 +1,12 @@
-ADD_SUBDIRECTORY(auth-helper)
+add_subdirectory(auth-helper)
 
-FIND_PACKAGE(X11 REQUIRED)
-FIND_PACKAGE(Qt5DBus REQUIRED)
-FIND_PACKAGE(PkgConfig QUIET)
+find_package(X11 REQUIRED)
+find_package(Qt5DBus REQUIRED)
+find_package(PkgConfig QUIET)
 pkg_check_modules(procps REQUIRED libprocps)
 pkg_check_modules(fakekey libfakekey)
 
-INCLUDE(BuildVeyonPlugin)
+include(BuildVeyonPlugin)
 
 if(NOT fakekey_FOUND)
 	set(libfakekey_SOURCES ${libfakekey_DIR}/src/libfakekey.c)
@@ -58,22 +58,22 @@ build_veyon_plugin(linux-platform
 
 set_source_files_properties(LinuxCoreFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
 
-TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE
+target_include_directories(linux-platform PRIVATE
 	../common
 	${libfakekey_DIR}
 	${procps_INCLUDE_DIRS}
 )
 
-TARGET_LINK_LIBRARIES(linux-platform
+target_link_libraries(linux-platform
 	${X11_LIBRARIES}
 	Qt5::DBus
 	${procps_LDFLAGS}
 	)
 
-IF(fakekey_FOUND)
-TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE ${fakekey_INCLUDE_DIRS})
-TARGET_LINK_LIBRARIES(linux-platform ${fakekey_LDFLAGS})
-ELSE()
-TARGET_INCLUDE_DIRECTORIES(linux-platform PRIVATE ${libfakekey_DIR})
-TARGET_LINK_LIBRARIES(linux-platform ${X11_XTest_LIB})
-ENDIF()
+if(fakekey_FOUND)
+target_include_directories(linux-platform PRIVATE ${fakekey_INCLUDE_DIRS})
+target_link_libraries(linux-platform ${fakekey_LDFLAGS})
+else()
+target_include_directories(linux-platform PRIVATE ${libfakekey_DIR})
+target_link_libraries(linux-platform ${X11_XTest_LIB})
+endif()

@@ -1,16 +1,16 @@
-FILE(GLOB veyoncore_INCLUDES
+file(GLOB veyoncore_INCLUDES
 						${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 						${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h
 )
-FILE(GLOB veyoncore_SOURCES
+file(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
 )
 
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
-SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
+set(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
 find_package(LibVNCClient 0.9.13)
 
@@ -30,7 +30,7 @@ if(NOT LibVNCClient_FOUND)
 	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default")
 endif()
 
-ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
+add_library(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
 target_compile_definitions(veyon-core PRIVATE XK_KOREAN BUILD_VEYON_CORE_LIBRARY)
 
 # find Qt's translation directory
@@ -50,7 +50,7 @@ target_include_directories(veyon-core PUBLIC
 	${QCA_INCLUDE_DIR}
 )
 
-TARGET_LINK_LIBRARIES(veyon-core
+target_link_libraries(veyon-core
 	Qt5::Concurrent
 	Qt5::Gui
 	Qt5::Network
@@ -81,18 +81,18 @@ else()
 	)
 endif()
 
-IF(VEYON_BUILD_WIN32)
+if(VEYON_BUILD_WIN32)
 	# add Windows Socket library required by libvncclient
-	TARGET_LINK_LIBRARIES(veyon-core -lws2_32)
-	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
+	target_link_libraries(veyon-core -lws2_32)
+	set_target_properties(veyon-core PROPERTIES PREFIX "")
 	if(NOT WITH_CORE_ONLY)
-		INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
+		install(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
 	endif()
-ELSE()
+else()
 	if(NOT WITH_CORE_ONLY)
-		INSTALL(TARGETS veyon-core LIBRARY DESTINATION ${VEYON_LIB_DIR})
+		install(TARGETS veyon-core LIBRARY DESTINATION ${VEYON_LIB_DIR})
 	endif()
-ENDIF(VEYON_BUILD_WIN32)
+endif()
 
 if(VEYON_BUILD_WIN32)
 	target_compile_definitions(veyon-core PUBLIC _WIN32_WINNT=0x0602)
