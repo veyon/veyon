@@ -19,6 +19,7 @@ set(ldap_common_SOURCES
 	)
 
 add_library(ldap-common SHARED ${ldap_common_SOURCES})
+target_compile_options(ldap-common PRIVATE ${VEYON_COMPILE_OPTIONS})
 target_include_directories(ldap-common PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories(ldap-common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(ldap-common kldap-light veyon-core)

@@ -36,7 +36,8 @@ add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvnccli
 target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
 
 set_default_target_properties(veyon-core)
-target_compile_options(veyon-core PRIVATE -Wno-parentheses)
+
+target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS} -Wno-parentheses)
 
 target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}

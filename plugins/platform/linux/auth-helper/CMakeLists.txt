@@ -6,6 +6,9 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
 
 add_executable(veyon-auth-helper ${CMAKE_CURRENT_SOURCE_DIR}/VeyonAuthHelper.cpp)
 
+set_default_target_properties(veyon-auth-helper)
+
+target_compile_options(veyon-auth-helper PRIVATE ${VEYON_COMPILE_OPTIONS})
 target_include_directories(veyon-auth-helper PRIVATE ${PAM_INCLUDE_DIR})
 target_link_libraries(veyon-auth-helper Qt5::Core ${PAM_LIBRARY})
 

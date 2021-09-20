@@ -22,6 +22,9 @@ if(COMMAND CMAKE_POLICY)
 	cmake_policy(SET CMP0020 NEW)
 	cmake_policy(SET CMP0058 NEW)
 	cmake_policy(SET CMP0063 NEW)
+	if(${CMAKE_VERSION} VERSION_GREATER "3.8.0")
+		cmake_policy(SET CMP0069 NEW)
+	endif()
 	if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
 		cmake_policy(SET CMP0075 NEW)
 	endif()
@@ -158,13 +161,13 @@ if(VEYON_BUILD_LINUX)
 	include(XdgInstall)
 endif()
 
-
-option(WITH_CORE_ONLY "Build core library only" OFF)
-option(WITH_ADDONS "Build add-ons" OFF)
+option(WITH_LTO "Build with link-time optimization" ON)
 option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
 option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds (requires CMake >= 3.16)" ON)
-
+option(WITH_SANITIZERS "Build with thread and UB sanitizers" OFF)
 option(WITH_MODEL_TESTERS "Build with model testers (turn on for debugging only)" OFF)
+option(WITH_CORE_ONLY "Build core library only" OFF)
+option(WITH_ADDONS "Build add-ons" OFF)
 
 if(${CMAKE_VERSION} VERSION_LESS "3.16.0")
 	set(WITH_PCH OFF)
@@ -173,35 +176,32 @@ elseif(WITH_UNITY_BUILD)
 	set(CMAKE_UNITY_BUILD ON)
 endif()
 
-if(WITH_MODEL_TESTERS)
-	find_package(Qt5Test REQUIRED)
-	set(VEYON_DEBUG_LIBRARIES Qt5::Test)
+if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
+	set(WITH_LTO OFF)
 endif()
 
-if(SANITIZE)
+if(WITH_LTO)
+	include(ProcessorCount)
+	ProcessorCount(CPU_COUNT)
+	set(GCC_LTO_FLAGS "-flto=${CPU_COUNT} -fno-fat-lto-objects")
+endif()
+
+if(WITH_SANITIZERS)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 -fstack-protector-strong ${CXXFLAGS}")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fstack-protector-strong ${CFLAGS}")
+set(VEYON_COMPILE_OPTIONS "-Wall;-Werror")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions ${CXXFLAGS}")
 
-if(CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0)
-	message(WARNING "Not using -fvisibility=hidden as it is broken with GCC < 6.0")
-else()
-	set(CMAKE_C_VISIBILITY_PRESET hidden)
-	set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-	set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
-	if(LTO)
-		include(ProcessorCount)
-		ProcessorCount(CPU_COUNT)
-		set(LTO_FLAGS "-flto=${CPU_COUNT}")
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LTO_FLAGS}")
-		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${LTO_FLAGS}")
-		set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LTO_FLAGS}")
-		set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${LTO_FLAGS}")
-		set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${LTO_FLAGS}")
-	endif()
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+
+if(WITH_MODEL_TESTERS)
+	find_package(Qt5Test REQUIRED)
+	set(VEYON_DEBUG_LIBRARIES Qt5::Test)
 endif()
 
 add_definitions(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050e00 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_BYTEARRAY -DQT_NO_KEYWORDS)
@@ -269,8 +269,10 @@ message("\n"
 	"* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 	"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
 	"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
+	"* Link-time optimization      : ${WITH_LTO}\n"
 	"* Use precompiled headers     : ${WITH_PCH}\n"
 	"* Use unity build             : ${WITH_UNITY_BUILD}\n"
+	"* Build with sanitizers       : ${WITH_SANITIZERS}\n"
 	)
 
 if(VEYON_BUILD_ANDROID)
