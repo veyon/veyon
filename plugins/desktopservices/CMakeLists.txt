@@ -16,5 +16,4 @@ build_veyon_plugin(desktopservices
 	DesktopServicesConfigurationPage.h
 	DesktopServicesFeaturePlugin.h
 	desktopservices.qrc
-)
-
+	)

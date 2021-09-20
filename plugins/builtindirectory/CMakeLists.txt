@@ -10,4 +10,4 @@ build_veyon_plugin(builtindirectory
 	BuiltinDirectoryConfigurationPage.h
 	BuiltinDirectory.h
 	builtindirectory.qrc
-)
+	)

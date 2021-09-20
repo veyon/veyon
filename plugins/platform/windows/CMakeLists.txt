@@ -47,7 +47,7 @@ build_veyon_plugin(windows-platform
 	../common/ServiceDataManager.cpp
 	XEventLog.h
 	windows.qrc
-)
+	)
 
 target_include_directories(windows-platform PRIVATE
 	../common
@@ -55,7 +55,7 @@ target_include_directories(windows-platform PRIVATE
 	${ultravnc_DIR}/winvnc/winvnc
 	${ultravnc_DIR}
 	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
-)
+	)
 target_link_libraries(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
 target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")

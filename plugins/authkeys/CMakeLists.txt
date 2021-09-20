@@ -10,4 +10,4 @@ build_veyon_plugin(authkeys
 	AuthKeysConfigurationPage.h
 	AuthKeysTableModel.h
 	AuthKeysManager.h
-)
+	)

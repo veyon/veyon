@@ -6,6 +6,6 @@ add_subdirectory(common)
 build_veyon_plugin(ldap
 	LdapPlugin.cpp
 	LdapPlugin.h
-)
+	)
 
 target_link_libraries(ldap ldap-common)

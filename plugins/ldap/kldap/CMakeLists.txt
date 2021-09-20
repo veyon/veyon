@@ -31,7 +31,7 @@ set(kldap_SOURCES
 	${kldap_SOURCE_DIR}/ldapcontrol.cpp
 	${kldap_SOURCE_DIR}/ldapdn.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/KLdapIntegration.cpp
-)
+	)
 
 add_library(kldap-light SHARED ${kldap_SOURCES})
 target_link_libraries(kldap-light Qt5::Core ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES})
@@ -39,5 +39,5 @@ target_include_directories(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
 target_include_directories(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 set_target_properties(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
 if(NOT WITH_CORE_ONLY)
-install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
+	install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
 endif()

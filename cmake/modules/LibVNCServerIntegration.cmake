@@ -30,7 +30,7 @@ check_include_file("sys/types.h"   HAVE_SYS_TYPES_H)
 
 # error out if required headers not found
 if(NOT HAVE_STDINT_H)
-  message(FATAL_ERROR "Could NOT find required header stdint.h")
+	message(FATAL_ERROR "Could NOT find required header stdint.h")
 endif()
 
 check_function_exists(gettimeofday    LIBVNCSERVER_HAVE_GETTIMEOFDAY)
@@ -57,12 +57,12 @@ check_symbol_exists(htobe64 "endian.h" LIBVNCSERVER_HAVE_HTOBE64)
 check_symbol_exists(OSSwapHostToBigInt64 "libkern/OSByteOrder.h" LIBVNCSERVER_HAVE_OSSWAPHOSTTOBIGINT64)
 
 if(LIBVNCSERVER_HAVE_SYS_SOCKET_H)
-  # socklen_t
-  list(APPEND CMAKE_EXTRA_INCLUDE_FILES "sys/socket.h")
+	# socklen_t
+	list(APPEND CMAKE_EXTRA_INCLUDE_FILES "sys/socket.h")
 endif()
 if(HAVE_ARPA_INET_H)
-  # in_addr_t
-  list(APPEND CMAKE_EXTRA_INCLUDE_FILES "arpa/inet.h")
+	# in_addr_t
+	list(APPEND CMAKE_EXTRA_INCLUDE_FILES "arpa/inet.h")
 endif()
 
 check_type_size(pid_t     LIBVNCSERVER_PID_T)
@@ -70,7 +70,7 @@ check_type_size(size_t    LIBVNCSERVER_SIZE_T)
 check_type_size(socklen_t LIBVNCSERVER_SOCKLEN_T)
 check_type_size(in_addr_t LIBVNCSERVER_IN_ADDR_T)
 if(NOT HAVE_LIBVNCSERVER_IN_ADDR_T)
-  set(LIBVNCSERVER_NEED_INADDR_T 1)
+	set(LIBVNCSERVER_NEED_INADDR_T 1)
 endif()
 
 test_big_endian(LIBVNCSERVER_WORDS_BIGENDIAN)

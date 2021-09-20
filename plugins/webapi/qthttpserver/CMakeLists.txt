@@ -51,7 +51,7 @@ add_custom_target(qthttpserver_symlinks
 	COMMAND ${CMAKE_COMMAND} -E create_symlink ${qthttpserver_DIR}/src/sslserver ${CMAKE_CURRENT_BINARY_DIR}/sslserver/private
 	COMMAND ${CMAKE_COMMAND} -E create_symlink ${qthttpserver_DIR}/src/httpserver ${CMAKE_CURRENT_BINARY_DIR}/QtHttpServer
 	COMMAND ${CMAKE_COMMAND} -E create_symlink ${qthttpserver_DIR}/src/sslserver ${CMAKE_CURRENT_BINARY_DIR}/QtSslServer
-)
+	)
 
 add_dependencies(qthttpserver qthttpserver_symlinks)
 
@@ -63,7 +63,7 @@ target_include_directories(qthttpserver PRIVATE
 
 target_include_directories(qthttpserver PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
-)
+	)
 
 target_link_libraries(qthttpserver PRIVATE Qt5::CorePrivate Qt5::Concurrent Qt5::NetworkPrivate)
 

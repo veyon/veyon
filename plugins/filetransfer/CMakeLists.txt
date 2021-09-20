@@ -18,4 +18,4 @@ build_veyon_plugin(filetransfer
 	FileReadThread.cpp
 	FileReadThread.h
 	filetransfer.qrc
-)
+	)

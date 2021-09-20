@@ -7,4 +7,4 @@ build_veyon_plugin(powercontrol
 	PowerDownTimeInputDialog.h
 	PowerDownTimeInputDialog.ui
 	powercontrol.qrc
-)
+	)

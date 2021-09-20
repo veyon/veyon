@@ -54,7 +54,7 @@ build_veyon_plugin(linux-platform
 	../common/ServiceDataManager.h
 	../common/ServiceDataManager.cpp
 	${libfakekey_SOURCES}
-)
+	)
 
 set_source_files_properties(LinuxCoreFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
 
@@ -62,7 +62,7 @@ target_include_directories(linux-platform PRIVATE
 	../common
 	${libfakekey_DIR}
 	${procps_INCLUDE_DIRS}
-)
+	)
 
 target_link_libraries(linux-platform
 	${X11_LIBRARIES}
@@ -71,9 +71,9 @@ target_link_libraries(linux-platform
 	)
 
 if(fakekey_FOUND)
-target_include_directories(linux-platform PRIVATE ${fakekey_INCLUDE_DIRS})
-target_link_libraries(linux-platform ${fakekey_LDFLAGS})
+	target_include_directories(linux-platform PRIVATE ${fakekey_INCLUDE_DIRS})
+	target_link_libraries(linux-platform ${fakekey_LDFLAGS})
 else()
-target_include_directories(linux-platform PRIVATE ${libfakekey_DIR})
-target_link_libraries(linux-platform ${X11_XTest_LIB})
+	target_include_directories(linux-platform PRIVATE ${libfakekey_DIR})
+	target_link_libraries(linux-platform ${X11_XTest_LIB})
 endif()
