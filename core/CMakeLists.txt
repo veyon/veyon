@@ -1,12 +1,10 @@
-file(GLOB veyoncore_INCLUDES
-	${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h
-	)
 file(GLOB veyoncore_SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.h
 	)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
@@ -33,7 +31,7 @@ if(NOT LibVNCClient_FOUND)
 	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default")
 endif()
 
-add_library(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${libvncclient_SOURCES})
+add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
 target_compile_definitions(veyon-core PRIVATE XK_KOREAN BUILD_VEYON_CORE_LIBRARY)
 
 # find Qt's translation directory
@@ -48,8 +46,8 @@ target_compile_options(veyon-core PRIVATE -Wno-parentheses)
 
 target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
-	${CMAKE_CURRENT_SOURCE_DIR}/include
-	${CMAKE_CURRENT_BINARY_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/src
+	${CMAKE_CURRENT_BINARY_DIR}/src
 	${QCA_INCLUDE_DIR}
 	)
 
