@@ -35,13 +35,6 @@ add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvnccli
 
 target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
 
-# find Qt's translation directory
-if(NOT VEYON_BUILD_WIN32)
-	include(FindQtTranslations)
-	find_qt_translations()
-	target_compile_definitions(veyon-core PRIVATE QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}")
-endif()
-
 set_default_target_properties(veyon-core)
 target_compile_options(veyon-core PRIVATE -Wno-parentheses)
 
