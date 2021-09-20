@@ -1,10 +1,13 @@
 include(BuildVeyonApplication)
 include(WindowsBuildHelpers)
 
-file(GLOB worker_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
-file(GLOB worker_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-
-build_veyon_application(veyon-worker ${worker_SOURCES} ${worker_INCLUDES})
+build_veyon_application(veyon-worker
+	src/FeatureWorkerManagerConnection.cpp
+	src/FeatureWorkerManagerConnection.h
+	src/main.cpp
+	src/VeyonWorker.cpp
+	src/VeyonWorker.h
+	)
 
 add_windows_resource(veyon-worker)
 make_graphical_app(veyon-worker)
