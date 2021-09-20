@@ -87,7 +87,6 @@ public:
 
 	static VeyonCore* instance();
 
-	static QVersionNumber version();
 	static QString versionString();
 	static QString pluginDir();
 	static QString translationsDirectory();

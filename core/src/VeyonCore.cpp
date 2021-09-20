@@ -144,13 +144,6 @@ VeyonCore* VeyonCore::instance()
 
 
 
-QVersionNumber VeyonCore::version()
-{
-	return QVersionNumber::fromString( versionString() );
-}
-
-
-
 QString VeyonCore::versionString()
 {
 	return QStringLiteral( VEYON_VERSION );
