@@ -102,10 +102,10 @@ bool DesktopServicesFeaturePlugin::controlFeature( Feature::Uid featureUid, Oper
 
 	if( featureUid == m_openWebsiteFeature.uid() )
 	{
-		const auto websites = arguments.value( argToString(Argument::WebsiteUrl) ).toStringList();
+		const auto websites = arguments.value( argToString(Argument::WebsiteUrls) ).toStringList();
 
 		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
-								.addArgument( Argument::WebsiteUrl, websites ),
+								.addArgument( Argument::WebsiteUrls, websites ),
 							computerControlInterfaces );
 
 		return true;
@@ -136,7 +136,7 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 	else if( m_predefinedWebsitesFeatures.contains( feature ) )
 	{
 		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( Argument::WebsiteUrl, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+							addArgument( Argument::WebsiteUrls, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
 
 	}
 	else
@@ -184,7 +184,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& w
 
 	if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
-		openWebsite( message.argument( Argument::WebsiteUrl ).toString() );
+		openWebsite( message.argument( Argument::WebsiteUrls ).toString() );
 		return true;
 	}
 
@@ -367,7 +367,7 @@ void DesktopServicesFeaturePlugin::openWebsite( const QString& website, const QS
 											   const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	controlFeature( m_openWebsiteFeature.uid(), Operation::Start,
-					{ { argToString(Argument::WebsiteUrl), website } },
+					{ { argToString(Argument::WebsiteUrls), website } },
 					computerControlInterfaces );
 
 	if( saveItemName.isEmpty() == false )

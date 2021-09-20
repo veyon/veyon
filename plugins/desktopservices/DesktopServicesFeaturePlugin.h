@@ -42,7 +42,7 @@ public:
 	enum class Argument
 	{
 		Applications,
-		WebsiteUrl
+		WebsiteUrls
 	};
 	Q_ENUM(Argument)
 
