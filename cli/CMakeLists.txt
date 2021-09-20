@@ -4,7 +4,10 @@ include(WindowsBuildHelpers)
 set(cli_SOURCES
 	src/main.cpp
 	src/ConfigCommands.cpp
-	src/PluginsCommands.cpp)
+	src/ConfigCommands.h
+	src/PluginsCommands.cpp
+	src/PluginsCommands.h
+	)
 
 build_veyon_application(veyon-cli ${cli_SOURCES})
 
