@@ -7,5 +7,4 @@ build_veyon_plugin(textmessage
 	TextMessageFeaturePlugin.h
 	TextMessageDialog.h
 	textmessage.qrc
-)
-
+	)

@@ -31,7 +31,7 @@ set(kldap_SOURCES
 	${kldap_SOURCE_DIR}/ldapcontrol.cpp
 	${kldap_SOURCE_DIR}/ldapdn.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/KLdapIntegration.cpp
-)
+	)
 
 add_library(kldap-light SHARED ${kldap_SOURCES})
 target_compile_options(kldap-light PRIVATE ${VEYON_COMPILE_OPTIONS})
@@ -46,5 +46,5 @@ target_include_directories(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURREN
 set_default_target_properties(kldap-light)
 set_target_properties(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
 if(NOT WITH_CORE_ONLY)
-install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
+	install(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
 endif()

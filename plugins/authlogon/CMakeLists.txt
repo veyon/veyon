@@ -6,4 +6,4 @@ build_veyon_plugin(authlogon
 	AuthLogonDialog.cpp
 	AuthLogonDialog.h
 	AuthLogonDialog.ui
-)
+	)

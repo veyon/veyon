@@ -7,4 +7,5 @@ build_veyon_plugin(remoteaccess
 	RemoteAccessPage.cpp
 	RemoteAccessWidget.h
 	RemoteAccessWidget.cpp
-	remoteaccess.qrc)
+	remoteaccess.qrc
+	)

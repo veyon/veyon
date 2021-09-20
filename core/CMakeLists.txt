@@ -1,17 +1,17 @@
 file(GLOB veyoncore_SOURCES
-						${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
-						${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
-						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
-						${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
-						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
-						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.h
-)
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.h
+	)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 set(core_RESOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
-)
+	)
 
 find_package(LibVNCClient 0.9.13)
 
@@ -66,7 +66,7 @@ target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 	${CMAKE_CURRENT_BINARY_DIR}/src
 	${QCA_INCLUDE_DIR}
-)
+	)
 
 if(WITH_QT6)
 	target_link_libraries(veyon-core
@@ -96,18 +96,18 @@ else()
 		${ZLIB_INCLUDE_DIR}
 		${JPEG_INCLUDE_DIR}
 		${LZO_INCLUDE_DIR}
-	)
+		)
 	target_include_directories(veyon-core PUBLIC
 		${libvncserver_DIR}/common/
 		${libvncserver_DIR}
-	)
+		)
 	target_link_libraries(veyon-core
 		Threads::Threads
 		PNG::PNG
 		${ZLIB_LIBRARIES}
 		${JPEG_LIBRARIES}
 		${LZO_LIBRARIES}
-	)
+		)
 endif()
 
 if(VEYON_BUILD_WIN32)
@@ -138,8 +138,8 @@ if(WITH_PCH)
 
 	if(${CMAKE_VERSION} VERSION_GREATER "3.17.5")
 		file(GENERATE
-			 OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx
-			 CONTENT "/*empty file*/")
+			OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx
+			CONTENT "/*empty file*/")
 		set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_AUTOGEN TRUE)
 		target_sources(veyon-pch PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx)
 	endif()

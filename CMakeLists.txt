@@ -47,19 +47,19 @@ find_package(Git)
 
 if(GIT_FOUND)
 	execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags
-					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-					OUTPUT_STRIP_TRAILING_WHITESPACE
-					OUTPUT_VARIABLE VERSION_STRING)
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		OUTPUT_VARIABLE VERSION_STRING)
 	string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
 	string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
 	string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
 
 	# determine build number to use in NSIS installer and resource files
 	execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags
-					COMMAND cut -d "-" -f2
-					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-					OUTPUT_STRIP_TRAILING_WHITESPACE
-					OUTPUT_VARIABLE VERSION_BUILD)
+		COMMAND cut -d "-" -f2
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		OUTPUT_VARIABLE VERSION_BUILD)
 	if(NOT VERSION_BUILD GREATER 0)
 		set(VERSION_BUILD 0)
 	endif()
@@ -72,11 +72,11 @@ if(GIT_FOUND)
 	set(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
 	if(NOT EXISTS "${CONTRIBUTORS}")
 		execute_process(COMMAND "${GIT_EXECUTABLE}" shortlog -s d160d147165271516589c304cb1b8f5e48f8527d..HEAD
-						COMMAND cut -c8-
-						COMMAND sort -f
-						OUTPUT_FILE "${CONTRIBUTORS}"
-						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-						TIMEOUT 10)
+			COMMAND cut -c8-
+			COMMAND sort -f
+			OUTPUT_FILE "${CONTRIBUTORS}"
+			WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+			TIMEOUT 10)
 	endif()
 
 endif()
@@ -197,8 +197,8 @@ elseif(WITH_UNITY_BUILD)
 endif()
 
 if(WITH_SANITIZERS)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
 endif()
 
 set(VEYON_COMPILE_OPTIONS "-Wall;-Werror")
@@ -210,7 +210,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
-set(WITH_LTO OFF)
+	set(WITH_LTO OFF)
 endif()
 
 if(WITH_MODEL_TESTERS)
@@ -233,10 +233,10 @@ add_definitions(
 	-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 	-DQT_USE_QSTRINGBUILDER
 	-DQT_STRICT_ITERATORS
-)
+	)
 
 file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
-CONFIGURE_FILES(${IN_FILES})
+configure_files(${IN_FILES})
 
 set(CMAKE_AUTOMOC TRUE)
 set(CMAKE_AUTOUIC TRUE)
@@ -262,14 +262,14 @@ if(VEYON_BUILD_ANDROID)
 	set(ANDROID_EXTRA_LIBS)
 	list(APPEND ANDROID_EXTRA_LIBS "${ANDROID_SYSROOT_GENERIC}/libc++_shared.so")
 	list(APPEND ANDROID_EXTRA_LIBS "${QT_DIR}/lib/libldap.so"
-									"${QT_DIR}/lib/liblber.so"
-									"${QT_DIR}/lib/libsasl2.so")
+		"${QT_DIR}/lib/liblber.so"
+		"${QT_DIR}/lib/libsasl2.so")
 
 	add_custom_target(prepare-apk
 		COMMAND rm -rf ${ANDROID_INSTALL_DIR}
 		COMMAND cd ${CMAKE_BINARY_DIR}/core && make DESTDIR=${ANDROID_INSTALL_DIR} install
 		COMMAND cd ${CMAKE_BINARY_DIR}/plugins && make DESTDIR=${ANDROID_INSTALL_DIR} install
-	)
+		)
 endif()
 
 # make sub-directories
@@ -307,17 +307,17 @@ include(cmake/CPackDefinitions.cmake)
 #
 
 message("\n"
-"Veyon build summary\n"
-"--------------------\n"
-"* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
-"* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
-"* Library directory           : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
-"* Plugin directory            : ${CMAKE_INSTALL_PREFIX}/${VEYON_INSTALL_PLUGIN_DIR}\n"
-"* Build type                  : ${CMAKE_BUILD_TYPE}\n"
-"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
-"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
-"* Link-time optimization      : ${WITH_LTO}\n"
-"* Use precompiled headers     : ${WITH_PCH}\n"
-"* Use unity build             : ${WITH_UNITY_BUILD}\n"
-"* Build with sanitizers       : ${WITH_SANITIZERS}\n"
-)
+	"Veyon build summary\n"
+	"--------------------\n"
+	"* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
+	"* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
+	"* Library directory           : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
+	"* Plugin directory            : ${CMAKE_INSTALL_PREFIX}/${VEYON_INSTALL_PLUGIN_DIR}\n"
+	"* Build type                  : ${CMAKE_BUILD_TYPE}\n"
+	"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
+	"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
+	"* Link-time optimization      : ${WITH_LTO}\n"
+	"* Use precompiled headers     : ${WITH_PCH}\n"
+	"* Use unity build             : ${WITH_UNITY_BUILD}\n"
+	"* Build with sanitizers       : ${WITH_SANITIZERS}\n"
+	)

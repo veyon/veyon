@@ -7,5 +7,4 @@ build_veyon_plugin(usersessioncontrol
 	UserLoginDialog.h
 	UserLoginDialog.ui
 	usersessioncontrol.qrc
-)
-
+	)

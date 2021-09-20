@@ -15,6 +15,6 @@ build_veyon_plugin(ldap
 	AuthLdapDialog.cpp
 	AuthLdapDialog.h
 	AuthLdapDialog.ui
-)
+	)
 
 target_link_libraries(ldap ldap-common)

@@ -84,7 +84,7 @@ build_veyon_plugin(builtin-ultravnc-server
 	LogoffEventFilter.h
 	UltraVncConfigurationWidget.h
 	UltraVncConfiguration.h
-)
+	)
 
 target_link_libraries(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${LZO_LIBRARIES})
 target_include_directories(builtin-ultravnc-server PRIVATE

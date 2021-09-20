@@ -7,5 +7,4 @@ build_veyon_plugin(external-vnc-server
 	ExternalVncServer.h
 	ExternalVncServerConfiguration.h
 	ExternalVncServerConfigurationWidget.h
-)
-
+	)

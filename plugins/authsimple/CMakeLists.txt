@@ -7,4 +7,4 @@ build_veyon_plugin(authsimple
 	AuthSimpleDialog.cpp
 	AuthSimpleDialog.h
 	AuthSimpleDialog.ui
-)
+	)

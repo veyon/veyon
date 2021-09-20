@@ -6,4 +6,4 @@ build_veyon_plugin(screenshot
 	ScreenshotListModel.cpp
 	ScreenshotListModel.h
 	screenshot.qrc
-)
+	)

@@ -18,6 +18,4 @@ build_veyon_plugin(demo
 	DemoServerProtocol.h
 	DemoClient.h
 	demo.qrc
-)
-
-target_link_libraries(demo ${LZO_LIBRARIES})
+	)

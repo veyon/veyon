@@ -39,7 +39,7 @@ build_veyon_application(veyon-configurator
 	src/ServiceConfigurationPage.h
 	src/ServiceConfigurationPage.ui
 	resources/configurator.qrc
-)
+	)
 
 add_windows_resource(veyon-configurator)
 make_graphical_app(veyon-configurator)
