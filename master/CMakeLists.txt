@@ -22,9 +22,8 @@ set(WITH_PCH OFF)
 remove_definitions(-DQT_NO_KEYWORDS)
 set_source_files_properties(${master_SOURCES} PROPERTIES COMPILE_DEFINITIONS QT_NO_KEYWORDS)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src ${kitemmodels_SOURCE_DIR})
+include_directories(${kitemmodels_SOURCE_DIR})
 build_veyon_application(veyon-master ${master_SOURCES} ${master_INCLUDES} ${master_RESOURCES} ${kitemmodels_SOURCES})
-target_link_libraries(veyon-master veyon-core)
 
 add_windows_resource(veyon-master)
 make_graphical_app(veyon-master)

@@ -13,6 +13,9 @@ macro(build_veyon_application APPLICATION_NAME)
 	set_property(TARGET ${APPLICATION_NAME} PROPERTY POSITION_INDEPENDENT_CODE TRUE)
 	set_default_target_properties(${APPLICATION_NAME})
 
+	target_include_directories(${APPLICATION_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
+	target_link_libraries(${APPLICATION_NAME} veyon-core)
+
 	if(WITH_PCH)
 		target_precompile_headers(${APPLICATION_NAME} REUSE_FROM veyon-pch)
 	endif()
