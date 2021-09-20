@@ -194,6 +194,16 @@ elseif(WITH_UNITY_BUILD)
 	set(CMAKE_UNITY_BUILD ON)
 endif()
 
+if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
+	set(WITH_LTO OFF)
+endif()
+
+if(WITH_LTO)
+	include(ProcessorCount)
+	ProcessorCount(CPU_COUNT)
+	set(GCC_LTO_FLAGS "-flto=${CPU_COUNT} -fno-fat-lto-objects")
+endif()
+
 if(WITH_SANITIZERS)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
@@ -206,10 +216,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions
 set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
-
-if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
-	set(WITH_LTO OFF)
-endif()
 
 if(WITH_MODEL_TESTERS)
 	if(WITH_QT6)
