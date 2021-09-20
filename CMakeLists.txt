@@ -140,8 +140,6 @@ else()
 endif()
 
 
-set(VEYON_CORE_INCLUDE_DIR core/src)
-
 # find required Qt modules
 option(WITH_QT6 "Build for Qt 6" OFF)
 if(WITH_QT6)
