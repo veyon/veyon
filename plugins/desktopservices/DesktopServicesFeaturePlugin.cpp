@@ -72,7 +72,7 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 
 void DesktopServicesFeaturePlugin::upgrade(const QVersionNumber& oldVersion)
 {
-	if( oldVersion < QVersionNumber( 2, 0 ) &&
+	if( oldVersion < QVersionNumber( 1, 2 ) &&
 		m_configuration.legacyPredefinedPrograms().isEmpty() == false )
 	{
 		m_configuration.setPredefinedApplications( m_configuration.legacyPredefinedPrograms() );
