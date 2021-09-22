@@ -1,5 +1,5 @@
 /*
- * ShellCommandLinePlugin.h - declaration of ShellCommandLinePlugin class
+ * ShellCommands.h - declaration of ShellCommands class
  *
  * Copyright (c) 2018-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,14 +26,14 @@
 
 #include "CommandLinePluginInterface.h"
 
-class ShellCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
+class ShellCommands : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ShellCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	explicit ShellCommandLinePlugin( QObject* parent = nullptr );
-	~ShellCommandLinePlugin() override = default;
+	explicit ShellCommands( QObject* parent = nullptr );
+	~ShellCommands() override = default;
 
 	Plugin::Uid uid() const override
 	{
