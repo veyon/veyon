@@ -96,7 +96,7 @@ void DemoServer::terminate()
 			connection->wait( ConnectionThreadWaitTime );
 		}
 
-		QTimer::singleShot( TerminateRetryInterval, 0, &DemoServer::terminate );
+		QTimer::singleShot( TerminateRetryInterval, this, &DemoServer::terminate );
 	}
 }
 
