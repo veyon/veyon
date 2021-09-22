@@ -242,6 +242,11 @@ QString AuthKeysPlugin::commandHelp( const QString& command ) const
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QStringList& arguments )
 {
 	const auto command = arguments.value( 0 );
+	if( command.isEmpty() )
+	{
+		error( tr("Please specify the command to display help for.") );
+		return NoResult;
+	}
 
 	const QMap<QString, QStringList> commands = {
 		{ QStringLiteral("create"),
@@ -285,9 +290,9 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 		return NoResult;
 	}
 
-	print( tr("Please specify the command to display help for!") );
+	error( tr("The specified command does not exist or no help is available for it.") );
 
-	return Unknown;
+	return NoResult;
 }
 
 
