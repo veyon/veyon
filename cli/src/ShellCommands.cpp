@@ -1,5 +1,5 @@
 /*
- * ShellCommandLinePlugin.cpp - implementation of ShellCommandLinePlugin class
+ * ShellCommands.cpp - implementation of ShellCommands class
  *
  * Copyright (c) 2018-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -27,34 +27,34 @@
 #include <QProcess>
 
 #include "CommandLineIO.h"
-#include "ShellCommandLinePlugin.h"
+#include "ShellCommands.h"
 
 
-ShellCommandLinePlugin::ShellCommandLinePlugin( QObject* parent ) :
+ShellCommands::ShellCommands( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ QStringLiteral("run"), tr( "Run command file" ) },
-				} )
+		{ QStringLiteral("run"), tr( "Run command file" ) },
+		} )
 {
 }
 
 
 
-QStringList ShellCommandLinePlugin::commands() const
+QStringList ShellCommands::commands() const
 {
 	return m_commands.keys();
 }
 
 
 
-QString ShellCommandLinePlugin::commandHelp( const QString& command ) const
+QString ShellCommands::commandHelp( const QString& command ) const
 {
 	return m_commands.value( command );
 }
 
 
 
-CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_main()
+CommandLinePluginInterface::RunResult ShellCommands::handle_main()
 {
 	QTextStream stream( stdin );
 
@@ -78,7 +78,7 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_main()
 
 
 
-CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_run( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ShellCommands::handle_run( const QStringList& arguments )
 {
 	QFile scriptFile( arguments.value( 0 ) );
 	if( scriptFile.exists() == false )
@@ -97,7 +97,7 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_run( const 
 
 
 
-void ShellCommandLinePlugin::runCommand( const QString& command )
+void ShellCommands::runCommand( const QString& command )
 {
 	// TODO: properly split arguments containing spaces
 	QProcess::execute( QCoreApplication::applicationFilePath(), command.split( QLatin1Char(' ') ) );

@@ -7,6 +7,8 @@ set(cli_SOURCES
 	src/ConfigCommands.h
 	src/PluginsCommands.cpp
 	src/PluginsCommands.h
+	src/ShellCommands.cpp
+	src/ShellCommands.h
 	)
 
 build_veyon_application(veyon-cli ${cli_SOURCES})
