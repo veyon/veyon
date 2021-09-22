@@ -42,7 +42,7 @@ rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 	auto connection = reinterpret_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnection::VeyonConnectionTag ) );
 	if( connection )
 	{
-		return connection->handleServerMessage( client, msg->type );
+		return connection->handleServerMessage( client, msg->type ) ? TRUE : FALSE;
 	}
 
 	return false;
@@ -238,7 +238,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	VariantArrayMessage authAckMessage( &socketDevice );
 	authAckMessage.receive();
 
-	return plugins[chosenAuthPlugin]->authenticate( &socketDevice );
+	return plugins[chosenAuthPlugin]->authenticate( &socketDevice ) ? TRUE : FALSE;
 }
 
 
