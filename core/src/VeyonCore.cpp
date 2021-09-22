@@ -238,31 +238,31 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 {
 	const auto appName = QStringLiteral( "Veyon" );
 
-	auto labels = topLevelWidget->findChildren<QLabel *>();
+	const auto labels = topLevelWidget->findChildren<QLabel *>();
 	for( auto label : labels )
 	{
 		label->setText( label->text().replace( appName, VeyonCore::applicationName() ) );
 	}
 
-	auto buttons = topLevelWidget->findChildren<QAbstractButton *>();
+	const auto buttons = topLevelWidget->findChildren<QAbstractButton *>();
 	for( auto button : buttons )
 	{
 		button->setText( button->text().replace( appName, VeyonCore::applicationName() ) );
 	}
 
-	auto groupBoxes = topLevelWidget->findChildren<QGroupBox *>();
+	const auto groupBoxes = topLevelWidget->findChildren<QGroupBox *>();
 	for( auto groupBox : groupBoxes )
 	{
 		groupBox->setTitle( groupBox->title().replace( appName, VeyonCore::applicationName() ) );
 	}
 
-	auto actions = topLevelWidget->findChildren<QAction *>();
+	const auto actions = topLevelWidget->findChildren<QAction *>();
 	for( auto action : actions )
 	{
 		action->setText( action->text().replace( appName, VeyonCore::applicationName() ) );
 	}
 
-	auto widgets = topLevelWidget->findChildren<QWidget *>();
+	const auto widgets = topLevelWidget->findChildren<QWidget *>();
 	for( auto widget : widgets )
 	{
 		widget->setWindowTitle( widget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
@@ -280,7 +280,7 @@ bool VeyonCore::isDebugging()
 
 
 
-QByteArray VeyonCore::shortenFuncinfo( QByteArray info )
+QByteArray VeyonCore::shortenFuncinfo( const QByteArray& info )
 {
 	const auto funcinfo = cleanupFuncinfo( info );
 

@@ -396,7 +396,7 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 		{
 			beginInsertRows( parent, 0, itemCount - 1 );
 
-			for( const auto& dn : dns )
+			for( const auto& dn : qAsConst(dns) )
 			{
 				node->appendChild( new Node( Node::DN, dn, node ) );
 			}

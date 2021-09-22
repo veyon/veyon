@@ -154,7 +154,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 
 QString Screenshot::constructFileName( const QString& user, const QString& hostAddress,
-									   const QDate& date, const QTime& time )
+									   QDate date, QTime time )
 {
 	const auto userSimplified = VeyonCore::stripDomain( user ).toLower().remove(
 				QRegularExpression( QStringLiteral("[^a-z0-9.]") ) );

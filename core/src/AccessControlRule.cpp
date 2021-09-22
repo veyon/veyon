@@ -68,7 +68,7 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 		m_invertConditions = json[QStringLiteral("InvertConditions")].toBool();
 		m_ignoreConditions = json[QStringLiteral("IgnoreConditions")].toBool();
 
-		auto parameters = json[QStringLiteral("Parameters")].toArray();
+		const auto parameters = json[QStringLiteral("Parameters")].toArray();
 
 		for( const auto& parametersValue : parameters )
 		{

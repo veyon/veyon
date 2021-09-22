@@ -172,7 +172,7 @@ int main( int argc, char **argv )
 			std::sort( commands.begin(), commands.end() );
 
 			CommandLineIO::print( VeyonCore::tr( "Available commands:" ) );
-			for( const auto& command : commands )
+			for( const auto& command : qAsConst(commands) )
 			{
 				CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
 			}

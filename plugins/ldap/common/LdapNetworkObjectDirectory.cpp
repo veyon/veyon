@@ -174,7 +174,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Attribu
 	NetworkObjectList hostObjects;
 	hostObjects.reserve( computers.size() );
 
-	for( const auto& computer : computers )
+	for( const auto& computer : qAsConst(computers) )
 	{
 		const auto hostObject = computerToObject( &m_ldapDirectory, computer );
 		if( hostObject.isValid() )

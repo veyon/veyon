@@ -159,7 +159,7 @@ public:
 
 	static bool isDebugging();
 
-	static QByteArray shortenFuncinfo( QByteArray info );
+	static QByteArray shortenFuncinfo( const QByteArray& info );
 	static QByteArray cleanupFuncinfo( QByteArray info );
 
 	static QString stripDomain( const QString& username );

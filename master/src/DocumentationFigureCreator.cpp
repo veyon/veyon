@@ -524,7 +524,7 @@ void DocumentationFigureCreator::grabMenu( QWidget* window, const QString& butto
 
 
 
-void DocumentationFigureCreator::grabWidget(QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::grabWidget(QWidget* widget, QPoint pos, QSize size, const QString& fileName)
 {
 	QPixmap pixmap( size );
 	widget->render( &pixmap, QPoint(), QRegion( QRect( pos, size ) ) );
@@ -533,7 +533,7 @@ void DocumentationFigureCreator::grabWidget(QWidget* widget, const QPoint& pos, 
 
 
 
-void DocumentationFigureCreator::grabDialog(QDialog* dialog, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::grabDialog(QDialog* dialog, QSize size, const QString& fileName)
 {
 	dialog->show();
 	dialog->setFocus();
@@ -564,7 +564,7 @@ void DocumentationFigureCreator::grabWindow(QWidget* widget, const QString& file
 
 
 
-void DocumentationFigureCreator::grabWindow(QWidget* widget, const QPoint& pos, const QSize& size, const QString& fileName)
+void DocumentationFigureCreator::grabWindow(QWidget* widget, QPoint pos, QSize size, const QString& fileName)
 {
 	QGuiApplication::sync();
 

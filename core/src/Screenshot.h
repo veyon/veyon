@@ -69,8 +69,8 @@ public:
 	}
 
 	static QString constructFileName( const QString& user, const QString& hostAddress,
-									  const QDate& date = QDate::currentDate(),
-									  const QTime& time = QTime::currentTime() );
+									  QDate date = QDate::currentDate(),
+									  QTime time = QTime::currentTime() );
 
 	QString user() const;
 	QString host() const;
