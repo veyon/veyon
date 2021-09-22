@@ -54,7 +54,10 @@ public:
 	} ;
 
 	Q_DECLARE_FLAGS(Flags, Flag)
+	// work around QTBUG-47652 where Q_FLAG() is broken for enum classes when using Qt < 5.12
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
 	Q_FLAG(Flags)
+#endif
 
 	explicit Feature( const QString& name,
 					  Flags flags,
