@@ -121,7 +121,7 @@ bool PowerControlFeaturePlugin::controlFeature( Feature::Uid featureUid,
 											   const QVariantMap& arguments,
 											   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( operation != Operation::Start )
+	if( operation != Operation::Start || hasFeature( featureUid ) == false )
 	{
 		return false;
 	}
