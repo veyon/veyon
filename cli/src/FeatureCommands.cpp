@@ -38,8 +38,8 @@
 FeatureCommands::FeatureCommands( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-		{ QStringLiteral("list"), tr( "List names of all available features" ) },
-		{ QStringLiteral("show"), tr( "Show table with details of all available features" ) },
+		{ listCommand(), tr( "List names of all available features" ) },
+		{ showCommand(), tr( "Show table with details of all available features" ) },
 		{ startCommand(), tr( "Start a feature on a remote host" ) },
 		{ stopCommand(), tr( "Stop a feature on a remote host" ) }
 	} )
@@ -68,6 +68,22 @@ CommandLinePluginInterface::RunResult FeatureCommands::handle_help( const QStrin
 	if( command.isEmpty() )
 	{
 		error( tr("Please specify the command to display help for.") );
+		return NoResult;
+	}
+
+	if( command == listCommand() )
+	{
+		printUsage( commandLineModuleName(), listCommand(), {}, {} );
+		printDescription( tr("Displays a list with the names of all available features.") );
+		return NoResult;
+	}
+
+	if( command == showCommand() )
+	{
+		printUsage( commandLineModuleName(), showCommand(), {}, {} );
+		printDescription( tr("Displays a table with detailed information about all available features. "
+							  "These information include a description, the UID, the name of the plugin "
+							  "providing the respective feature and some other implementation related details.") );
 		return NoResult;
 	}
 

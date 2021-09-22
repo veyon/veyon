@@ -87,6 +87,16 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_stop( const QStringList& arguments );
 
 private:
+	static QString listCommand()
+	{
+		return QStringLiteral("list");
+	}
+
+	static QString showCommand()
+	{
+		return QStringLiteral("show");
+	}
+
 	static QString startCommand()
 	{
 		return QStringLiteral("start");
