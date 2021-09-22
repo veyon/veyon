@@ -27,13 +27,13 @@
 #include "CommandLinePluginInterface.h"
 #include "CommandLineIO.h"
 
-class PluginsCommands : public QObject, CommandLinePluginInterface, PluginInterface, CommandLineIO
+class PluginCommands : public QObject, CommandLinePluginInterface, PluginInterface, CommandLineIO
 {
 	Q_OBJECT
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	explicit PluginsCommands( QObject* parent = nullptr );
-	~PluginsCommands() override = default;
+	explicit PluginCommands( QObject* parent = nullptr );
+	~PluginCommands() override = default;
 
 	Plugin::Uid uid() const override
 	{
@@ -47,7 +47,7 @@ public:
 
 	QString name() const override
 	{
-		return QStringLiteral( "Plugins" );
+		return QStringLiteral( "Plugin" );
 	}
 
 	QString description() const override
@@ -67,7 +67,7 @@ public:
 
 	QString commandLineModuleName() const override
 	{
-		return QStringLiteral( "plugins" );
+		return QStringLiteral( "plugin" );
 	}
 
 	QString commandLineModuleHelp() const override
