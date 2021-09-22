@@ -30,6 +30,7 @@
 #include "Logger.h"
 #include "PluginsCommands.h"
 #include "PluginManager.h"
+#include "ServiceControlCommands.h"
 #include "ShellCommands.h"
 
 
@@ -85,6 +86,7 @@ int main( int argc, char **argv )
 	auto core = new VeyonCore( app, VeyonCore::Component::CLI, QStringLiteral("CLI") );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new ConfigCommands( core ) );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new PluginsCommands( core ) );
+	VeyonCore::pluginManager().registerExtraPluginInterface( new ServiceControlCommands( core ) );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new ShellCommands( core ) );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
