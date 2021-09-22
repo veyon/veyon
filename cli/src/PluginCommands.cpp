@@ -23,11 +23,11 @@
  */
 
 #include "CommandLineIO.h"
-#include "PluginsCommands.h"
+#include "PluginCommands.h"
 #include "PluginManager.h"
 
 
-PluginsCommands::PluginsCommands( QObject* parent ) :
+PluginCommands::PluginCommands( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
 		{ QStringLiteral("list"), tr( "List names of all installed plugins" ) },
@@ -38,21 +38,21 @@ PluginsCommands::PluginsCommands( QObject* parent ) :
 
 
 
-QStringList PluginsCommands::commands() const
+QStringList PluginCommands::commands() const
 {
 	return m_commands.keys();
 }
 
 
 
-QString PluginsCommands::commandHelp( const QString& command ) const
+QString PluginCommands::commandHelp( const QString& command ) const
 {
 	return m_commands.value( command );
 }
 
 
 
-CommandLinePluginInterface::RunResult PluginsCommands::handle_list( const QStringList& arguments )
+CommandLinePluginInterface::RunResult PluginCommands::handle_list( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 
@@ -67,7 +67,7 @@ CommandLinePluginInterface::RunResult PluginsCommands::handle_list( const QStrin
 
 
 
-CommandLinePluginInterface::RunResult PluginsCommands::handle_show( const QStringList& arguments )
+CommandLinePluginInterface::RunResult PluginCommands::handle_show( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 
