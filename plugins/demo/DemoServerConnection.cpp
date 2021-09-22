@@ -101,7 +101,7 @@ void DemoServerConnection::processClient()
 		// try again later in case we could not proceed because of
 		// external protocol dependencies or in case we're finished
 		// and already have RFB messages in receive queue
-		QTimer::singleShot( ProtocolRetryTime, this, [this]() { processClient(); } );
+		QTimer::singleShot( ProtocolRetryTime, m_socket, [this]() { processClient(); } );
 	}
 	else
 	{
@@ -195,6 +195,6 @@ void DemoServerConnection::sendFramebufferUpdate()
 	if( sentUpdates == false )
 	{
 		// did not send updates but client still waiting for update? then try again soon
-		QTimer::singleShot( m_framebufferUpdateInterval, this, [this]() { sendFramebufferUpdate(); } );
+		QTimer::singleShot( m_framebufferUpdateInterval, m_socket, [this]() { sendFramebufferUpdate(); } );
 	}
 }
