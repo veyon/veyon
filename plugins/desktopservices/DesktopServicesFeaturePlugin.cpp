@@ -49,14 +49,14 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration( &VeyonCore::config() ),
 	m_startAppFeature( QStringLiteral( "StartApp" ),
-						 Feature::Action | Feature::AllComponents,
+						 Feature::Flag::Action | Feature::Flag::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
 						 Feature::Uid(),
 						 tr( "Start application" ), {},
 						 tr( "Click this button to start an application on all computers." ),
 						 QStringLiteral(":/desktopservices/preferences-desktop-launch-feedback.png") ),
 	m_openWebsiteFeature( QStringLiteral( "OpenWebsite" ),
-						  Feature::Action | Feature::AllComponents,
+						  Feature::Flag::Action | Feature::Flag::AllComponents,
 						  Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ),
 						  Feature::Uid(),
 						  tr( "Open website" ), {},
@@ -495,7 +495,7 @@ void DesktopServicesFeaturePlugin::updatePredefinedApplicationFeatures()
 		for( const auto& app : qAsConst(m_predefinedApps) )
 		{
 			const auto appObject = DesktopServiceObject( app.toObject() );
-			m_predefinedAppsFeatures.append( Feature( m_startAppFeature.name(), Feature::Action | Feature::Master,
+			m_predefinedAppsFeatures.append( Feature( m_startAppFeature.name(), Feature::Flag::Action | Feature::Flag::Master,
 														 appObject.uid(), m_startAppFeature.uid(),
 														 appObject.name(), {},
 														 tr("Start application \"%1\"").arg( appObject.path() ) ) );
@@ -524,7 +524,7 @@ void DesktopServicesFeaturePlugin::updatePredefinedWebsiteFeatures()
 		for( const auto& website : qAsConst(m_predefinedWebsites) )
 		{
 			const auto websiteObject = DesktopServiceObject( website.toObject() );
-			m_predefinedWebsitesFeatures.append( Feature( m_openWebsiteFeature.name(), Feature::Action | Feature::Master,
+			m_predefinedWebsitesFeatures.append( Feature( m_openWebsiteFeature.name(), Feature::Flag::Action | Feature::Flag::Master,
 														 websiteObject.uid(), m_openWebsiteFeature.uid(),
 														 websiteObject.name(), {},
 														 tr("Open website \"%1\"").arg( websiteObject.path() ) ) );

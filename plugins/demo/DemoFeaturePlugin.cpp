@@ -44,22 +44,22 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	DemoAuthentication( uid() ),
 	m_demoFeature( QStringLiteral( "Demo" ),
-				   Feature::Mode | Feature::AllComponents,
+				   Feature::Flag::Mode | Feature::Flag::AllComponents,
 				   Feature::Uid( "6f4cd922-b63e-40bf-9451-536065c7cdf9" ),
 				   Feature::Uid(),
 				   tr( "Demo" ), tr( "Stop demo" ),
 				   tr( "Share your screen or allow a user to share his screen with other users." ),
 				   QStringLiteral(":/demo/demo.png") ),
 	m_demoClientFullScreenFeature( QStringLiteral( "FullScreenDemo" ),
-								   Feature::Meta | Feature::AllComponents,
+								   Feature::Flag::Meta | Feature::Flag::AllComponents,
 								   Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
 								   {}, tr("Full screen demo"), {}, {} ),
 	m_demoClientWindowFeature( QStringLiteral( "WindowDemo" ),
-							   Feature::Meta | Feature::AllComponents,
+							   Feature::Flag::Meta | Feature::Flag::AllComponents,
 							   Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
 							   {}, tr("Window demo"), {}, {} ),
 	m_shareOwnScreenFullScreenFeature( QStringLiteral( "ShareOwnScreenFullScreen" ),
-									   Feature::Mode | Feature::AllComponents,
+									   Feature::Flag::Mode | Feature::Flag::AllComponents,
 									   Feature::Uid( "07b375e1-8ab6-4b48-bcb7-75fb3d56035b" ),
 									   m_demoFeature.uid(),
 									   tr( "Share your own screen in fullscreen mode" ), {},
@@ -68,7 +68,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 										   "devices of the users are locked." ),
 									   QStringLiteral(":/demo/presentation-fullscreen.png") ),
 	m_shareOwnScreenWindowFeature( QStringLiteral( "ShareOwnScreenWindow" ),
-								   Feature::Mode | Feature::AllComponents,
+								   Feature::Flag::Mode | Feature::Flag::AllComponents,
 								   Feature::Uid( "68c55fb9-127e-4c9f-9c90-28b998bf1a47" ),
 								   m_demoFeature.uid(),
 								   tr( "Share your own screen in a window" ), {},
@@ -77,7 +77,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 									   "able to switch to other windows as needed." ),
 								   QStringLiteral(":/demo/presentation-window.png") ),
 	m_shareUserScreenFullScreenFeature( QStringLiteral( "ShareUserScreenFullScreen" ),
-										Feature::Mode | Feature::AllComponents,
+										Feature::Flag::Mode | Feature::Flag::AllComponents,
 										Feature::Uid( "b4e542e2-1deb-48ac-910a-bbf8ac9a0bde" ),
 										m_demoFeature.uid(),
 										tr( "Share selected user's screen in fullscreen mode" ), {},
@@ -86,7 +86,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 											"devices of the users are locked." ),
 										QStringLiteral(":/demo/presentation-fullscreen.png") ),
 	m_shareUserScreenWindowFeature( QStringLiteral( "ShareUserScreenWindow" ),
-									Feature::Mode | Feature::AllComponents,
+									Feature::Flag::Mode | Feature::Flag::AllComponents,
 									Feature::Uid( "ebfc5ec4-f725-4bfc-a93a-c6d4864c6806" ),
 									m_demoFeature.uid(),
 									tr( "Share selected user's screen in a window" ), {},
@@ -95,7 +95,7 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 										"able to switch to other windows as needed." ),
 									QStringLiteral(":/demo/presentation-window.png") ),
 	m_demoServerFeature( QStringLiteral( "DemoServer" ),
-						 Feature::Session | Feature::Service | Feature::Worker,
+						 Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 m_demoFeature.uid(),
 						 {}, {}, {} ),
@@ -494,10 +494,10 @@ void DemoFeaturePlugin::updateFeatures()
 	{
 		m_screenSelectionFeatures.reserve( m_screens.size() + 1 );
 
-		auto allScreensFlags = Feature::Option | Feature::Master;
+		auto allScreensFlags = Feature::Flag::Option | Feature::Flag::Master;
 		if( m_screenSelection <= ScreenSelectionNone )
 		{
-			allScreensFlags |= Feature::Checked;
+			allScreensFlags |= Feature::Flag::Checked;
 		}
 
 		m_screenSelectionFeatures.append( Feature{ QStringLiteral("DemoAllScreens"),
@@ -520,10 +520,10 @@ void DemoFeaturePlugin::updateFeatures()
 			}
 #endif
 
-			auto flags = Feature::Option | Feature::Master;
+			auto flags = Feature::Flag::Option | Feature::Flag::Master;
 			if( index == m_screenSelection )
 			{
-				flags |= Feature::Checked;
+				flags |= Feature::Flag::Checked;
 			}
 
 			m_screenSelectionFeatures.append( Feature{ name, flags,

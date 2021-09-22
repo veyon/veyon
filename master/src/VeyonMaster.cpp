@@ -108,7 +108,7 @@ FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 	{
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
-			if( feature.testFlag( Feature::Master ) &&
+			if( feature.testFlag( Feature::Flag::Master ) &&
 				feature.parentUid() == parentFeatureUid &&
 				disabledFeatures.contains( parentFeatureUid.toString() ) == false &&
 				disabledFeatures.contains( feature.uid().toString() ) == false )
@@ -134,7 +134,7 @@ FeatureUidList VeyonMaster::subFeaturesUids( Feature::Uid parentFeatureUid ) con
 	{
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
-			if( feature.testFlag( Feature::Master ) &&
+			if( feature.testFlag( Feature::Flag::Master ) &&
 				feature.parentUid() == parentFeatureUid &&
 				disabledFeatures.contains( parentFeatureUid.toString() ) == false &&
 				disabledFeatures.contains( feature.uid().toString() ) == false )
@@ -174,7 +174,7 @@ FeatureList VeyonMaster::modeFeatures() const
 
 	for( const auto& feature : qAsConst( features() ) )
 	{
-		if( feature.testFlag( Feature::Mode ) )
+		if( feature.testFlag( Feature::Flag::Mode ) )
 		{
 			featureList.append( feature );
 			const auto modeSubFeatures = subFeatures( feature.uid() );
@@ -255,7 +255,7 @@ void VeyonMaster::runFeature( const Feature& feature )
 {
 	const auto computerControlInterfaces = filteredComputerControlInterfaces();
 
-	if( feature.testFlag( Feature::Mode ) )
+	if( feature.testFlag( Feature::Flag::Mode ) )
 	{
 		stopAllModeFeatures( computerControlInterfaces );
 
@@ -372,9 +372,9 @@ FeatureList VeyonMaster::featureList() const
 	{
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
-			if( feature.testFlag( Feature::Master ) &&
-				feature.testFlag( Feature::Mode ) &&
-				feature.testFlag( Feature::Meta ) == false &&
+			if( feature.testFlag( Feature::Flag::Master ) &&
+				feature.testFlag( Feature::Flag::Mode ) &&
+				feature.testFlag( Feature::Flag::Meta ) == false &&
 				feature.parentUid().isNull() &&
 				disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
@@ -387,9 +387,9 @@ FeatureList VeyonMaster::featureList() const
 	{
 		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
-			if( feature.testFlag( Feature::Master ) &&
-				feature.testFlag( Feature::Mode ) == false &&
-				feature.testFlag( Feature::Meta ) == false &&
+			if( feature.testFlag( Feature::Flag::Master ) &&
+				feature.testFlag( Feature::Flag::Mode ) == false &&
+				feature.testFlag( Feature::Flag::Meta ) == false &&
 				feature.parentUid().isNull() &&
 				disabledFeatures.contains( feature.uid().toString() ) == false )
 			{

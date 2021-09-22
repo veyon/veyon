@@ -39,7 +39,7 @@
 DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
 	QObject( parent ),
 	m_desktopAccessDialogFeature( Feature( QLatin1String( staticMetaObject.className() ),
-										   Feature::Service | Feature::Worker | Feature::Builtin,
+										   Feature::Flag::Service | Feature::Flag::Worker | Feature::Flag::Builtin,
 										   Feature::Uid( "3dd8ec3e-7004-4936-8f2a-70699b9819be" ),
 										   Feature::Uid(),
 										   tr( "Desktop access dialog" ), {}, {} ) ),
