@@ -30,6 +30,7 @@
 #include "DemoConfiguration.h"
 #include "DemoServer.h"
 #include "DemoServerConnection.h"
+#include "FeatureMessage.h"
 
 
 DemoServerConnection::DemoServerConnection( DemoServer* demoServer,
@@ -134,6 +135,18 @@ bool DemoServerConnection::receiveClientMessage()
 			}
 		}
 		break;
+
+	case FeatureMessage::RfbMessageType:
+	{
+		FeatureMessage featureMessage;
+		m_socket->getChar(nullptr);
+		if( featureMessage.isReadyForReceive(m_socket) && featureMessage.receive(m_socket) )
+		{
+			return true;
+		}
+		m_socket->ungetChar(messageType);
+		break;
+	}
 
 	default:
 		if( m_rfbClientToServerMessageSizes.contains( messageType ) == false )
