@@ -1,5 +1,5 @@
 /*
- * ServiceControlPlugin.cpp - implementation of ServiceControlPlugin class
+ * ServiceControlCommands.cpp - implementation of ServiceControlCommands class
  *
  * Copyright (c) 2017-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -23,10 +23,10 @@
  */
 
 #include "CommandLineIO.h"
-#include "ServiceControlPlugin.h"
+#include "ServiceControlCommands.h"
 #include "VeyonServiceControl.h"
 
-ServiceControlPlugin::ServiceControlPlugin( QObject* parent ) :
+ServiceControlCommands::ServiceControlCommands( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
 { QStringLiteral("register"), tr( "Register Veyon Service" ) },
@@ -41,7 +41,7 @@ ServiceControlPlugin::ServiceControlPlugin( QObject* parent ) :
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_register( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 
@@ -53,7 +53,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( con
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_unregister( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_unregister( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 	VeyonServiceControl serviceControl;
@@ -64,7 +64,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_unregister( c
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_start( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_start( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 
@@ -76,7 +76,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_start( const 
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_stop( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_stop( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 
@@ -88,7 +88,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_stop( const Q
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_restart( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_restart( const QStringList& arguments )
 {
 	handle_stop( arguments );
 	return handle_start( arguments );
@@ -96,7 +96,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_restart( cons
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_status( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_status( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 

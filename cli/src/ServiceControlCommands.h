@@ -1,5 +1,5 @@
 /*
- * ServiceControlPlugin.h - declaration of ServiceControlPlugin class
+ * ServiceControlCommands.h - declaration of ServiceControlCommands class
  *
  * Copyright (c) 2017-2021 Tobias Junghans <tobydox@veyon.io>
  *
@@ -26,14 +26,13 @@
 
 #include "CommandLinePluginInterface.h"
 
-class ServiceControlPlugin : public QObject, CommandLinePluginInterface, PluginInterface
+class ServiceControlCommands : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ServiceControl")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	explicit ServiceControlPlugin( QObject* parent = nullptr );
-	~ServiceControlPlugin() override = default;
+	explicit ServiceControlCommands( QObject* parent = nullptr );
+	~ServiceControlCommands() override = default;
 
 	Plugin::Uid uid() const override
 	{
