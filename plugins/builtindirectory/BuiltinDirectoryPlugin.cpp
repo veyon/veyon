@@ -179,7 +179,9 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 		return NoResult;
 	}
 
-	return Unknown;
+	error( tr("The specified command does not exist or no help is available for it.") );
+
+	return NoResult;
 }
 
 
