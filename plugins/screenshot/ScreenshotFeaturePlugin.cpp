@@ -33,7 +33,7 @@
 ScreenshotFeaturePlugin::ScreenshotFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_screenshotFeature( Feature( QStringLiteral( "Screenshot" ),
-								  Feature::Action | Feature::Master,
+								  Feature::Flag::Action | Feature::Flag::Master,
 								  Feature::Uid( "d5ee3aac-2a87-4d05-b827-0c20344490bd" ),
 								  Feature::Uid(),
 								  tr( "Screenshot" ), {},

@@ -35,7 +35,7 @@
 SystemTrayIcon::SystemTrayIcon( QObject* parent ) :
 	QObject( parent ),
 	m_systemTrayIconFeature( Feature( QLatin1String( staticMetaObject.className() ),
-									  Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
+									  Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker | Feature::Flag::Builtin,
 									  Feature::Uid( "8e997d84-ebb9-430f-8f72-d45d9821963d" ),
 									  Feature::Uid(),
 									  tr( "System tray icon"), {}, {} ) ),

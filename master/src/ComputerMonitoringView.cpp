@@ -174,7 +174,7 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 	}
 
 	// mode feature already active?
-	if( feature.testFlag( Feature::Mode ) &&
+	if( feature.testFlag( Feature::Flag::Mode ) &&
 		isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
 	{
 		// then stop it
@@ -183,11 +183,11 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 	else
 	{
 		// stop all other active mode feature
-		if( feature.testFlag( Feature::Mode ) )
+		if( feature.testFlag( Feature::Flag::Mode ) )
 		{
 			for( const auto& currentFeature : m_master->features() )
 			{
-				if( currentFeature.testFlag( Feature::Mode ) && currentFeature != feature )
+				if( currentFeature.testFlag( Feature::Flag::Mode ) && currentFeature != feature )
 				{
 					m_master->featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
 				}

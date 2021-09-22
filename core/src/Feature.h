@@ -37,9 +37,9 @@ class VEYON_CORE_EXPORT Feature
 public:
 	using Uid = QUuid;
 
-	enum FeatureFlag
+	enum class Flag
 	{
-		NoFlags,
+		None = 0x0000,
 		Mode = 0x0001,
 		Action = 0x0002,
 		Session = 0x0004,
@@ -53,7 +53,7 @@ public:
 		AllComponents = Master | Service | Worker
 	} ;
 
-	Q_DECLARE_FLAGS(Flags, FeatureFlag)
+	Q_DECLARE_FLAGS(Flags, Flag)
 	Q_FLAG(Flags)
 
 	explicit Feature( const QString& name,
@@ -79,7 +79,7 @@ public:
 
 	explicit Feature( Uid uid = Uid() ) :
 		m_name(),
-		m_flags( NoFlags ),
+		m_flags( Flag::None ),
 		m_uid( uid ),
 		m_parentUid( QUuid() ),
 		m_displayName(),
@@ -132,10 +132,10 @@ public:
 
 	bool isValid() const
 	{
-		return m_flags != NoFlags;
+		return m_flags != QFlags<Flag>::Int(Flag::None);
 	}
 
-	bool testFlag( FeatureFlag flag ) const
+	bool testFlag( Flag flag ) const
 	{
 		return m_flags.testFlag( flag );
 	}

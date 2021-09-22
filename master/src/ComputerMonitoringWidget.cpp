@@ -197,7 +197,7 @@ void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterf
 
 	for( const auto& feature : master()->features() )
 	{
-		if( feature.testFlag( Feature::Meta ) )
+		if( feature.testFlag( Feature::Flag::Meta ) )
 		{
 			continue;
 		}
@@ -206,7 +206,7 @@ void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterf
 
 		if( previousPluginUid.isNull() == false &&
 			pluginUid != previousPluginUid &&
-			feature.testFlag( Feature::Mode ) == false )
+			feature.testFlag( Feature::Flag::Mode ) == false )
 		{
 			m_featureMenu->addSeparator();
 		}

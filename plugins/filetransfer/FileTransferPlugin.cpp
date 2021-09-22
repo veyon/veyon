@@ -45,7 +45,7 @@
 FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_fileTransferFeature( QStringLiteral( "FileTransfer" ),
-						   Feature::Action | Feature::AllComponents,
+						   Feature::Flag::Action | Feature::Flag::AllComponents,
 						   Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ),
 						   Feature::Uid(),
 						   tr( "File transfer" ), {},

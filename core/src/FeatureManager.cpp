@@ -159,7 +159,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 		featureInterface->startFeature( master, feature, computerControlInterfaces );
 	}
 
-	if( feature.testFlag( Feature::Mode ) )
+	if( feature.testFlag( Feature::Flag::Mode ) )
 	{
 		for( const auto& controlInterface : computerControlInterfaces )
 		{

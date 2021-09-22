@@ -33,14 +33,14 @@
 MonitoringMode::MonitoringMode( QObject* parent ) :
 	QObject( parent ),
 	m_monitoringModeFeature( QLatin1String( staticMetaObject.className() ),
-							 Feature::Mode | Feature::Master | Feature::Builtin,
+							 Feature::Flag::Mode | Feature::Flag::Master | Feature::Flag::Builtin,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
 							 Feature::Uid(),
 							 tr( "Monitoring" ), tr( "Monitoring" ),
 							 tr( "This mode allows you to monitor all computers at one or more locations." ),
 							 QStringLiteral( ":/core/presentation-none.png" ) ),
 	m_queryLoggedOnUserInfoFeature( QStringLiteral("UserSessionInfo"),
-									Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
+									Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker | Feature::Flag::Builtin,
 									Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
 									Feature::Uid(), {}, {}, {} ),
 	m_features( { m_monitoringModeFeature, m_queryLoggedOnUserInfoFeature } )

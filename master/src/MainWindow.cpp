@@ -422,7 +422,7 @@ void MainWindow::addFeaturesToToolBar()
 {
 	for( const auto& feature : m_master.features() )
 	{
-		if( feature.testFlag( Feature::Meta ) )
+		if( feature.testFlag( Feature::Flag::Meta ) )
 		{
 			continue;
 		}
@@ -435,7 +435,7 @@ void MainWindow::addFeaturesToToolBar()
 		connect( btn, &QToolButton::clicked, this, [=] () {
 			m_master.runFeature( feature );
 			updateModeButtonGroup();
-			if( feature.testFlag( Feature::Mode ) )
+			if( feature.testFlag( Feature::Flag::Mode ) )
 			{
 				reloadSubFeatures();
 			}
@@ -443,7 +443,7 @@ void MainWindow::addFeaturesToToolBar()
 		btn->setObjectName( feature.name() );
 		btn->addTo( ui->toolBar );
 
-		if( feature.testFlag( Feature::Mode ) )
+		if( feature.testFlag( Feature::Flag::Mode ) )
 		{
 			btn->setCheckable( true );
 			m_modeGroup->addButton( btn, buttonId( feature ) );
@@ -462,7 +462,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 		button->setMenu( nullptr );
 	}
 
-	const auto parentFeatureIsMode = parentFeature.testFlag( Feature::Mode );
+	const auto parentFeatureIsMode = parentFeature.testFlag( Feature::Flag::Mode );
 	const auto subFeatures = m_master.subFeatures( parentFeature.uid() );
 
 	if( subFeatures.isEmpty() ||
@@ -497,7 +497,7 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 				m_master.runFeature( subFeature );
 				if( parentFeatureIsMode )
 				{
-					if( subFeature.testFlag( Feature::Option ) == false )
+					if( subFeature.testFlag( Feature::Flag::Option ) == false )
 					{
 						button->setChecked( true );
 					}
@@ -509,10 +509,10 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
 
-		if( subFeature.testFlag( Feature::Option ) )
+		if( subFeature.testFlag( Feature::Flag::Option ) )
 		{
 			action->setCheckable( true );
-			action->setChecked( subFeature.testFlag( Feature::Checked ) );
+			action->setChecked( subFeature.testFlag( Feature::Flag::Checked ) );
 		}
 	}
 
