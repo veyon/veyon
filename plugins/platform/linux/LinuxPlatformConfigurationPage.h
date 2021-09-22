@@ -31,6 +31,7 @@ namespace Ui {
 class LinuxPlatformConfigurationPage;
 }
 
+// clazy:excludeall=ctor-missing-parent-argument
 class LinuxPlatformConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT

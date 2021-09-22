@@ -70,7 +70,7 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 
 		auto parameters = json[QStringLiteral("Parameters")].toArray();
 
-		for( auto parametersValue : parameters )
+		for( const auto& parametersValue : parameters )
 		{
 			QJsonObject parametersObj = parametersValue.toObject();
 			auto condition = static_cast<Condition>( parametersObj[QStringLiteral("Condition")].toInt() );

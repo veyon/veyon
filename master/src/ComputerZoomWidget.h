@@ -30,6 +30,7 @@
 
 class VncViewWidget;
 
+// clazy:excludeall=ctor-missing-parent-argument
 class ComputerZoomWidget : public QWidget
 {
 	Q_OBJECT

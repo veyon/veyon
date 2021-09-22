@@ -83,7 +83,7 @@ void LinuxServerProcess::start()
 
 void LinuxServerProcess::stop()
 {
-	const auto sendSignalRecursively = []( int pid, int sig ) {
+	const auto sendSignalRecursively = []( pid_t pid, int sig ) {
 		if( pid > 0 )
 		{
 			LinuxCoreFunctions::forEachChildProcess(
@@ -106,7 +106,7 @@ void LinuxServerProcess::stop()
 		}
 	};
 
-	const auto pid = processId();
+	const auto pid = pid_t(processId());
 
 	// manually set process state since we're managing the process termination on our own
 	setProcessState( QProcess::NotRunning );

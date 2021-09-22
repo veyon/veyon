@@ -49,7 +49,7 @@ protected:
 
 private:
 	QSize m_iconSize;
-	bool m_updateInRealtime;
+	bool m_updateInRealtime{false};
 
 	ComputerControlInterfaceList m_controlInterfaces;
 

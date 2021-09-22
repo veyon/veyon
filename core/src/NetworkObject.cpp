@@ -85,6 +85,11 @@ NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
 
 NetworkObject& NetworkObject::operator=( const NetworkObject& other )
 {
+	if( this == &other )
+	{
+		return *this;
+	}
+
 	m_type = other.type();
 	m_name = other.name();
 	m_hostAddress = other.hostAddress();

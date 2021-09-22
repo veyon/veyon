@@ -28,6 +28,7 @@
 
 // clazy:excludeall=rule-of-three
 
+// clazy:excludeall=ctor-missing-parent-argument
 class VEYON_CORE_EXPORT Filesystem : public QObject
 {
 	Q_OBJECT

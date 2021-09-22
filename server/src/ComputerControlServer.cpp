@@ -263,6 +263,9 @@ void ComputerControlServer::updateTrayIconToolTip()
 
 	QStringList clients;
 	QStringList hostsToResolve;
+	clients.reserve( m_vncProxyServer.clients().size() );
+	hostsToResolve.reserve( m_vncProxyServer.clients().size() );
+
 	for( const auto* client : m_vncProxyServer.clients() )
 	{
 		const auto clientIpAddress = client->proxyClientSocket()->peerAddress().toString();

@@ -30,19 +30,8 @@
 namespace Configuration
 {
 
-
-Object::Object() :
-	m_store( nullptr ),
-	m_customStore( false ),
-	m_data()
-{
-}
-
-
-
 Object::Object( Store::Backend backend, Store::Scope scope, const QString& storeName ) :
 	m_store( createStore( backend, scope ) ),
-	m_customStore( false ),
 	m_data()
 {
 	m_store->setName( storeName );
@@ -62,9 +51,7 @@ Object::Object( Store* store ) :
 
 
 
-Object::Object( const Object& obj ) :
-	m_store( nullptr ),
-	m_customStore( false )
+Object::Object( const Object& obj )
 {
 	*this = obj;
 }

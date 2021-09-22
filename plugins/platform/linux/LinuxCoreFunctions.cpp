@@ -444,7 +444,7 @@ bool LinuxCoreFunctions::waitForProcess( qint64 pid, int timeout, int sleepInter
 			return false;
 		}
 
-		QThread::msleep( static_cast<unsigned long>( sleepInterval ) );
+		QThread::msleep( static_cast<uint64_t>( sleepInterval ) );
 	}
 
 	return true;

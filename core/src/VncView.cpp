@@ -37,7 +37,7 @@
 #include "VncView.h"
 
 
-VncView::VncView( ComputerControlInterface::Pointer computerControlInterface ) :
+VncView::VncView( const ComputerControlInterface::Pointer& computerControlInterface ) :
 	m_computerControlInterface( [computerControlInterface]() {
 		if( computerControlInterface->state() == ComputerControlInterface::State::Disconnected ||
 			computerControlInterface->connection() == nullptr )

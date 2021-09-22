@@ -31,6 +31,7 @@ namespace Ui {
 class AuthKeysConfigurationPage;
 }
 
+// clazy:excludeall=ctor-missing-parent-argument
 class AuthKeysConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT

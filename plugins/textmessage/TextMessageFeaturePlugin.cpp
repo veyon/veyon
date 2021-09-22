@@ -135,9 +135,9 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{
-		QMessageBox* messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( Argument::Icon ).toInt() ),
-												   tr( "Message from teacher" ),
-												   message.argument( Argument::Text ).toString() );
+		auto messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( Argument::Icon ).toInt() ),
+										   tr( "Message from teacher" ),
+										   message.argument( Argument::Text ).toString() );
 		messageBox->show();
 
 		connect( messageBox, &QMessageBox::accepted, messageBox, &QMessageBox::deleteLater );

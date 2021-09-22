@@ -31,6 +31,7 @@
 class FileReadThread;
 class FileTransferPlugin;
 
+// clazy:excludeall=ctor-missing-parent-argument
 class FileTransferController : public QObject
 {
 	Q_OBJECT
