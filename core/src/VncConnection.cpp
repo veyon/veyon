@@ -331,7 +331,7 @@ void VncConnection::setUseRemoteCursor( bool enabled )
 
 	if( m_client )
 	{
-		m_client->appData.useRemoteCursor = enabled;
+		m_client->appData.useRemoteCursor = enabled ? TRUE : FALSE;
 
 		enqueueEvent( new VncUpdateFormatAndEncodingsEvent, true );
 	}
@@ -677,7 +677,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 	client->format.blueMax = 0xff;
 
 	client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
-	client->appData.useRemoteCursor = m_useRemoteCursor;
+	client->appData.useRemoteCursor = m_useRemoteCursor ? TRUE : FALSE;
 	client->appData.compressLevel = 0;
 	client->appData.useBGR233 = false;
 	client->appData.qualityLevel = 9;

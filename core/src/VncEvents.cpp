@@ -36,7 +36,7 @@ VncKeyEvent::VncKeyEvent( unsigned int key, bool pressed ) :
 
 void VncKeyEvent::fire( rfbClient* client )
 {
-	SendKeyEvent( client, m_key, m_pressed );
+	SendKeyEvent( client, m_key, m_pressed ? TRUE : FALSE );
 }
 
 

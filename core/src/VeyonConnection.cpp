@@ -43,10 +43,10 @@ rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 	auto connection = reinterpret_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnection::VeyonConnectionTag ) );
 	if( connection )
 	{
-		return connection->handleServerMessage( client, msg->type );
+		return connection->handleServerMessage( client, msg->type ) ? TRUE : FALSE;
 	}
 
-	return false;
+	return FALSE;
 }
 
 
@@ -153,11 +153,11 @@ void VeyonConnection::unregisterConnection()
 
 
 
-int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authScheme )
+rfbBool VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authScheme )
 {
 	if( authScheme != rfbSecTypeVeyon )
 	{
-		return false;
+		return FALSE;
 	}
 
 	hookPrepareAuthentication( client );
@@ -165,7 +165,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	auto connection = static_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnectionTag ) );
 	if( connection == nullptr )
 	{
-		return false;
+		return FALSE;
 	}
 
 	const auto proxy = connection->m_authenticationProxy;
@@ -179,7 +179,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		{
 			proxy->notifyProtocolError();
 		}
-		return false;
+		return FALSE;
 	}
 
 	const auto authTypeCount = message.read().toInt();
@@ -191,7 +191,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		{
 			proxy->notifyProtocolError();
 		}
-		return false;
+		return FALSE;
 	}
 
 	QList<RfbVeyonAuth::Type> authTypes;
@@ -207,7 +207,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			{
 				proxy->notifyProtocolError();
 			}
-			return false;
+			return FALSE;
 		}
 		authTypes.append( authType );
 	}
@@ -233,7 +233,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 
 	if( chosenAuthType == RfbVeyonAuth::Invalid )
 	{
-		return false;
+		return FALSE;
 	}
 
 	vDebug() << QThread::currentThreadId() << "chose authentication type:" << authTypes;
@@ -258,7 +258,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 	if( authAckMessage.receive() == false )
 	{
 		vWarning() << QThread::currentThreadId() << "failed to receive authentication acknowledge";
-		return false;
+		return FALSE;
 	}
 
 	switch( chosenAuthType )
@@ -273,7 +273,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			if( challenge.size() != CryptoCore::ChallengeSize )
 			{
 				vCritical() << QThread::currentThreadId() << "challenge size mismatch!";
-				return false;
+				return FALSE;
 			}
 
 			// create local copy of private key so we can modify it within our own thread
@@ -281,7 +281,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 			if( key.isNull() || key.canSign() == false )
 			{
 				vCritical() << QThread::currentThreadId() << "invalid private key!";
-				return false;
+				return FALSE;
 			}
 
 			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
@@ -303,7 +303,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		if( publicKey.canEncrypt() == false )
 		{
 			vCritical() << QThread::currentThreadId() << "can't encrypt with given public key!";
-			return false;
+			return FALSE;
 		}
 
 		CryptoCore::SecureArray plainTextPassword( connection->authenticationCredentials().logonPassword() );
@@ -311,7 +311,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		if( encryptedPassword.isEmpty() )
 		{
 			vCritical() << QThread::currentThreadId() << "password encryption failed!";
-			return false;
+			return FALSE;
 		}
 
 		VariantArrayMessage passwordResponse( &socketDevice );
@@ -333,7 +333,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		break;
 	}
 
-	return true;
+	return TRUE;
 }
 
 
