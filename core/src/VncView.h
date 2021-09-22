@@ -54,7 +54,7 @@ public:
 		ShortcutCount
 	} ;
 
-	VncView( ComputerControlInterface::Pointer computerControlInterface );
+	VncView( const ComputerControlInterface::Pointer& computerControlInterface );
 	virtual ~VncView();
 
 	ComputerControlInterface::Pointer computerControlInterface() const
@@ -81,7 +81,7 @@ public:
 		return m_viewport;
 	}
 
-	void setViewport( const QRect& viewport )
+	void setViewport( QRect viewport )
 	{
 		m_viewport = viewport;
 	}

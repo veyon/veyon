@@ -22,7 +22,7 @@
  *
  */
 
-#include <signal.h>
+#include <csignal>
 
 #include "LinuxPlatformPlugin.h"
 #include "LinuxPlatformConfiguration.h"

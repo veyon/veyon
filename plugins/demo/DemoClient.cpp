@@ -38,9 +38,8 @@
 #include "VncViewWidget.h"
 
 
-DemoClient::DemoClient( const QString& host, int port, bool fullscreen, const QRect& viewport, QObject* parent ) :
+DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect viewport, QObject* parent ) :
 	QObject( parent ),
-	m_toplevel( nullptr ),
 	m_computerControlInterface( ComputerControlInterface::Pointer::create( Computer( {}, host, host ), port, this ) )
 {
 	if( fullscreen )

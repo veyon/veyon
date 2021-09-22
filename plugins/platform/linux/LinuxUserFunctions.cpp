@@ -356,7 +356,7 @@ void LinuxUserFunctions::logoff()
 
 	// logout via common session managers
 	// logout via common session managers
-	for( auto call : std::initializer_list<std::function<QDBusMessage()>>
+	for( const auto& call : std::initializer_list<std::function<QDBusMessage()>>
 		 {
 			 []() {
 				 return LinuxCoreFunctions::kdeSessionManager()

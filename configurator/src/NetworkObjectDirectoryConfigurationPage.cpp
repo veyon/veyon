@@ -55,7 +55,7 @@ void NetworkObjectDirectoryConfigurationPage::resetWidgets()
 {
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
-	for( const auto* tab : m_tabs )
+	for( const auto* tab : qAsConst(m_tabs) )
 	{
 		tab->content()->resetWidgets();
 		tab->enabledCheckBox()->setChecked( VeyonCore::networkObjectDirectoryManager().isEnabled( tab->plugin() ) );
@@ -69,7 +69,7 @@ void NetworkObjectDirectoryConfigurationPage::connectWidgetsToProperties()
 {
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 
-	for( const auto* tab : m_tabs )
+	for( const auto* tab : qAsConst(m_tabs) )
 	{
 		const auto plugin = tab->plugin();
 		const auto checkBox = tab->enabledCheckBox();
@@ -84,7 +84,7 @@ void NetworkObjectDirectoryConfigurationPage::connectWidgetsToProperties()
 
 void NetworkObjectDirectoryConfigurationPage::applyConfiguration()
 {
-	for( auto tab : m_tabs )
+	for( const auto* tab : qAsConst(m_tabs) )
 	{
 		tab->content()->applyConfiguration();
 	}

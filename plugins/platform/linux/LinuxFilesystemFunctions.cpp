@@ -163,7 +163,7 @@ bool LinuxFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode 
 		return false;
 	}
 
-	struct stat s;
+	struct stat s{};
 	if( fstat(fd, &s) != 0 )
 	{
 		close(fd);

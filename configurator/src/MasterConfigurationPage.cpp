@@ -169,7 +169,7 @@ void MasterConfigurationPage::updateFeatureLists()
 			continue;
 		}
 
-		QListWidgetItem* item = new QListWidgetItem( QIcon( feature.iconUrl() ), feature.displayName() );
+		auto item = new QListWidgetItem( QIcon( feature.iconUrl() ), feature.displayName() );
 		item->setData( Qt::UserRole, feature.uid().toString() );
 
 		if( m_disabledFeatures.contains( feature.uid().toString() ) )

@@ -128,6 +128,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 		connect( *it, &QAbstractButton::toggled, it.key(), &QWidget::setVisible );
 	}
 
+	QList<int> splitterSizes;
 	for( auto* splitter : { slideshowSpotlightSplitter, monitoringSplitter, mainSplitter } )
 	{
 		splitter->setHandleWidth( 7 );
@@ -135,31 +136,37 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 		splitter->installEventFilter( this );
 
-		QList<int> splitterSizes;
 		int index = 0;
 
-		for( const auto& sizeObject : m_master.userConfig().splitterStates()[splitter->objectName()].toArray() )
+		const auto splitterStates = m_master.userConfig().splitterStates()[splitter->objectName()].toArray();
+		splitterSizes.clear();
+		splitterSizes.reserve( splitterStates.size() );
+
+		for( const auto& sizeObject : splitterStates )
 		{
 			auto size = sizeObject.toInt();
 			const auto widget = splitter->widget( index );
 			const auto button = panelButtons.value( widget );
-			if( widget && button )
-			{
-				widget->setVisible( size > 0 );
-				button->setChecked( size > 0 );
-			}
 
-			size = qAbs( size );
-			if( splitter->orientation() == Qt::Horizontal )
+			if( widget )
 			{
-				widget->resize( size, widget->height() );
-			}
-			else
-			{
-				widget->resize( widget->width(), size );
-			}
+				if( button )
+				{
+					widget->setVisible( size > 0 );
+					button->setChecked( size > 0 );
+				}
+				size = qAbs( size );
+				if( splitter->orientation() == Qt::Horizontal )
+				{
+					widget->resize( size, widget->height() );
+				}
+				else
+				{
+					widget->resize( widget->width(), size );
+				}
 
-			widget->setProperty( originalSizePropertyName(), widget->size() );
+				widget->setProperty( originalSizePropertyName(), widget->size() );
+			}
 			splitterSizes.append( size );
 			++index;
 		}
@@ -331,12 +338,14 @@ void MainWindow::closeEvent( QCloseEvent* event )
 	}
 
 	QJsonObject splitterStates;
-	for( const auto* splitter : findChildren<QSplitter *>() )
+	const auto splitters = findChildren<QSplitter *>();
+	for( const auto* splitter : splitters )
 	{
+		const auto sizes = splitter->sizes();
 		QJsonArray splitterSizes;
 		int i = 0;
 		int hiddenSize = 0;
-		for( auto size : splitter->sizes() )
+		for( auto size : sizes )
 		{
 			auto widget = splitter->widget(i);
 			const auto originalSize = widget->property( originalSizePropertyName() ).toSize();
@@ -421,7 +430,7 @@ void MainWindow::addFeaturesToToolBar()
 			continue;
 		}
 
-		ToolButton* btn = new ToolButton( QIcon( feature.iconUrl() ),
+		auto btn = new ToolButton( QIcon( feature.iconUrl() ),
 										  feature.displayName(),
 										  feature.displayNameActive(),
 										  feature.description(),

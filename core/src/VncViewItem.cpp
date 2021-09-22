@@ -29,7 +29,7 @@
 #include "VncViewItem.h"
 
 
-VncViewItem::VncViewItem( ComputerControlInterface::Pointer computerControlInterface, QQuickItem* parent ) :
+VncViewItem::VncViewItem( const ComputerControlInterface::Pointer& computerControlInterface, QQuickItem* parent ) :
 	QQuickItem( parent ),
 	VncView( computerControlInterface )
 {
@@ -69,7 +69,7 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 		node->setTexture( texture );
 	}
 
-	const auto texture = dynamic_cast<QSGImageTexture *>( node->texture() );
+	const auto texture = qobject_cast<QSGImageTexture *>( node->texture() );
 
 	if( viewport().isValid() )
 	{

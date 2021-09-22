@@ -32,6 +32,7 @@ class AuthLdapConfigurationWidget;
 
 class AuthLdapConfiguration;
 
+// clazy:excludeall=ctor-missing-parent-argument
 class AuthLdapConfigurationWidget : public QWidget
 {
 	Q_OBJECT

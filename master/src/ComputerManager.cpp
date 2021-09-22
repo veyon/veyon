@@ -359,6 +359,7 @@ ComputerList ComputerManager::getComputersAtLocation( const QString& locationNam
 	int rows = model->rowCount( parent );
 
 	ComputerList computers;
+	computers.reserve( rows );
 
 	for( int i = 0; i < rows; ++i )
 	{

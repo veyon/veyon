@@ -203,7 +203,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		sessionUptime < minimumSessionUptime )
 	{
 		vDebug() << "Session" << sessionPath << "too young - retrying in" << minimumSessionUptime - sessionUptime << "msecs";
-		deferServerStart( sessionPath, minimumSessionUptime - sessionUptime );
+		deferServerStart( sessionPath, int(minimumSessionUptime - sessionUptime) );
 		return;
 	}
 

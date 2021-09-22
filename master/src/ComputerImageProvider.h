@@ -28,6 +28,7 @@
 
 class ComputerControlListModel;
 
+// clazy:excludeall=copyable-polymorphic
 class ComputerImageProvider : public QQuickImageProvider
 {
 public:

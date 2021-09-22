@@ -113,7 +113,8 @@ CryptoCore::Certificate CryptoCore::createSelfSignedHostCertificate( const Priva
 		{ QCA::CertificateInfoTypeKnown::DNS, HostAddress::localFQDN() }
 	};
 
-	for( const auto& address : QNetworkInterface::allAddresses() )
+	const auto allAddresses = QNetworkInterface::allAddresses();
+	for( const auto& address : allAddresses )
 	{
 		certInfo.insert( QCA::CertificateInfoTypeKnown::IPAddress, address.toString() );
 	}

@@ -32,7 +32,7 @@ class VEYON_CORE_EXPORT VncViewItem : public QQuickItem, public VncView
 {
 	Q_OBJECT
 public:
-	VncViewItem( ComputerControlInterface::Pointer computerControlInterface, QQuickItem* parent = nullptr );
+	VncViewItem( const ComputerControlInterface::Pointer& computerControlInterface, QQuickItem* parent = nullptr );
 	~VncViewItem() override;
 
 	QSGNode* updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData* updatePaintNodeData ) override;

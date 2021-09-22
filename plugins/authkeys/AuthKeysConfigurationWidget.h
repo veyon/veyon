@@ -35,6 +35,7 @@ class AuthKeysConfigurationWidget;
 class AuthKeysConfiguration;
 class AuthKeysManager;
 
+// clazy:excludeall=ctor-missing-parent-argument
 class AuthKeysConfigurationWidget : public QWidget
 {
 	Q_OBJECT

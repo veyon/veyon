@@ -49,8 +49,7 @@ Object::Object( Store* store ) :
 
 
 
-Object::Object( const Object& obj ) :
-	m_store( nullptr )
+Object::Object( const Object& obj )
 {
 	*this = obj;
 }
