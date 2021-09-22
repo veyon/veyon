@@ -27,6 +27,7 @@
 #include <openssl/crypto.h>
 
 #include "ConfigCommands.h"
+#include "FeatureCommands.h"
 #include "Logger.h"
 #include "PluginCommands.h"
 #include "PluginManager.h"
@@ -85,6 +86,7 @@ int main( int argc, char **argv )
 
 	auto core = new VeyonCore( app, VeyonCore::Component::CLI, QStringLiteral("CLI") );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new ConfigCommands( core ) );
+	VeyonCore::pluginManager().registerExtraPluginInterface( new FeatureCommands( core ) );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new PluginCommands( core ) );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new ServiceControlCommands( core ) );
 	VeyonCore::pluginManager().registerExtraPluginInterface( new ShellCommands( core ) );

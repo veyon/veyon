@@ -5,6 +5,8 @@ set(cli_SOURCES
 	src/main.cpp
 	src/ConfigCommands.cpp
 	src/ConfigCommands.h
+	src/FeatureCommands.cpp
+	src/FeatureCommands.h
 	src/PluginCommands.cpp
 	src/PluginCommands.h
 	src/ServiceControlCommands.cpp
