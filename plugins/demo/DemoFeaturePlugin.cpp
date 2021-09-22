@@ -194,14 +194,15 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 	if( feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
 	{
-		if( master.selectedComputerControlInterfaces().size() < 1 )
+		const auto selectedComputerControlInterfaces = master.selectedComputerControlInterfaces();
+		if( selectedComputerControlInterfaces.size() < 1 )
 		{
 			QMessageBox::critical( master.mainWindow(), feature.name(),
 								   tr( "Please select a user screen to share.") );
 			return true;
 		}
 
-		if( master.selectedComputerControlInterfaces().size() > 1 )
+		if( selectedComputerControlInterfaces.size() > 1 )
 		{
 			QMessageBox::critical( master.mainWindow(), feature.name(),
 								   tr( "Please select only one user screen to share.") );
@@ -211,7 +212,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		auto vncServerPortOffset = 0;
 		auto demoServerPort = VeyonCore::config().demoServerPort();
 
-		const auto demoServerInterface = master.selectedComputerControlInterfaces().first();
+		const auto& demoServerInterface = selectedComputerControlInterfaces.constFirst();
 		const auto demoServerHost = demoServerInterface->computer().hostAddress();
 		const auto primaryServerPort = HostAddress::parsePortNumber( demoServerHost );
 
@@ -244,7 +245,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 							{ argToString(Argument::VncServerPortOffset), vncServerPortOffset },
 							{ argToString(Argument::DemoServerPort), demoServerPort },
 							},
-						master.selectedComputerControlInterfaces() );
+						selectedComputerControlInterfaces );
 
 		return true;
 	}
