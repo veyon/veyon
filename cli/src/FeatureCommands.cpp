@@ -82,8 +82,8 @@ CommandLinePluginInterface::RunResult FeatureCommands::handle_help( const QStrin
 	{
 		printUsage( commandLineModuleName(), showCommand(), {}, {} );
 		printDescription( tr("Displays a table with detailed information about all available features. "
-							  "These information include a description, the UID, the name of the plugin "
-							  "providing the respective feature and some other implementation related details.") );
+							  "This information include a description, the UID, the name of the plugin "
+							  "providing the respective feature and some other implementation-related details.") );
 		return NoResult;
 	}
 
