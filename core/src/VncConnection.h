@@ -88,7 +88,6 @@ public:
 	Q_ENUM(State)
 
 	explicit VncConnection( QObject *parent = nullptr );
-	~VncConnection() override;
 
 	static void initLogging( bool debug );
 
@@ -179,7 +178,10 @@ private:
 		ServerReachable = 0x02,
 		TerminateThread = 0x04,
 		RestartConnection = 0x08,
+		DeleteAfterFinished = 0x10
 	};
+
+	~VncConnection() override;
 
 	void establishConnection();
 	void handleConnection();
@@ -194,6 +196,8 @@ private:
 	void finishFrameBufferUpdate();
 
 	void sendEvents();
+
+	void deleteLaterInMainThread();
 
 	// hooks for LibVNCClient
 	static int8_t hookInitFrameBuffer( rfbClient* client );

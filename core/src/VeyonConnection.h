@@ -36,8 +36,9 @@ class VEYON_CORE_EXPORT VeyonConnection : public QObject
 {
 	Q_OBJECT
 public:
-	explicit VeyonConnection( VncConnection* vncConnection );
-	~VeyonConnection() override;
+	VeyonConnection();
+
+	void stopAndDeleteLater();
 
 	VncConnection* vncConnection()
 	{
@@ -90,6 +91,8 @@ Q_SIGNALS:
 	void featureMessageReceived( const FeatureMessage& );
 
 private:
+	~VeyonConnection() override;
+
 	void registerConnection();
 	void unregisterConnection();
 
@@ -99,7 +102,7 @@ private:
 
 	AuthenticationCredentials authenticationCredentials() const;
 
-	QPointer<VncConnection> m_vncConnection;
+	VncConnection* m_vncConnection{new VncConnection};
 
 	RfbVeyonAuth::Type m_veyonAuthType;
 

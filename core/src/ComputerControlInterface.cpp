@@ -40,7 +40,6 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	m_userLoginName(),
 	m_userFullName(),
 	m_scaledScreenSize(),
-	m_vncConnection( nullptr ),
 	m_connection( nullptr ),
 	m_connectionWatchdogTimer( this ),
 	m_userUpdateTimer( this ),
@@ -72,34 +71,34 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
-		m_vncConnection = new VncConnection();
-		m_vncConnection->setHost( m_computer.hostAddress() );
-		if( m_port > 0 )
-		{
-			m_vncConnection->setPort( m_port );
-		}
-		m_vncConnection->setQuality( VncConnection::Quality::Thumbnail );
-		m_vncConnection->setScaledSize( m_scaledScreenSize );
-
-		setUpdateMode( updateMode );
-
-		m_connection = new VeyonConnection( m_vncConnection );
+		m_connection = new VeyonConnection;
 		m_connection->setAuthenticationProxy( authenticationProxy );
 
-		m_vncConnection->start();
+		auto vncConnection = m_connection->vncConnection();
+		vncConnection->setHost( m_computer.hostAddress() );
+		if( m_port > 0 )
+		{
+			vncConnection->setPort( m_port );
+		}
+		vncConnection->setQuality( VncConnection::Quality::Thumbnail );
+		vncConnection->setScaledSize( m_scaledScreenSize );
 
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::screenUpdated );
+		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
+		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::screenUpdated );
 
-		connect( m_vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::screenSizeChanged );
+		connect( vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::screenSizeChanged );
 
-		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
-		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
-		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
-		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
+
+		setUpdateMode( updateMode );
+
+		vncConnection->start();
 	}
 	else
 	{
@@ -111,14 +110,10 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 
 void ComputerControlInterface::stop()
 {
-	// VeyonConnection destroys itself when VncConnection is destroyed
-	m_connection = nullptr;
-
-	if( m_vncConnection )
+	if( m_connection )
 	{
-		// do not delete VNC connection but let it delete itself after stopping automatically
-		m_vncConnection->stopAndDeleteLater();
-		m_vncConnection = nullptr;
+		m_connection->stopAndDeleteLater();
+		m_connection = nullptr;
 	}
 
 	m_activeFeaturesUpdateTimer.stop();
@@ -132,16 +127,16 @@ void ComputerControlInterface::stop()
 
 bool ComputerControlInterface::hasValidFramebuffer() const
 {
-	return m_vncConnection && m_vncConnection->hasValidFramebuffer();
+	return vncConnection() && vncConnection()->hasValidFramebuffer();
 }
 
 
 
 QSize ComputerControlInterface::screenSize() const
 {
-	if( m_vncConnection )
+	if( vncConnection() )
 	{
-		return m_vncConnection->image().size();
+		return vncConnection()->image().size();
 	}
 
 	return {};
@@ -153,9 +148,9 @@ void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 {
 	m_scaledScreenSize = scaledScreenSize;
 
-	if( m_vncConnection )
+	if( vncConnection() )
 	{
-		m_vncConnection->setScaledSize( m_scaledScreenSize );
+		vncConnection()->setScaledSize( m_scaledScreenSize );
 	}
 }
 
@@ -163,9 +158,9 @@ void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 
 QImage ComputerControlInterface::scaledScreen() const
 {
-	if( m_vncConnection && m_vncConnection->isConnected() )
+	if( vncConnection() && vncConnection()->isConnected() )
 	{
-		return m_vncConnection->scaledScreen();
+		return vncConnection()->scaledScreen();
 	}
 
 	return {};
@@ -175,9 +170,9 @@ QImage ComputerControlInterface::scaledScreen() const
 
 QImage ComputerControlInterface::screen() const
 {
-	if( m_vncConnection && m_vncConnection->isConnected() )
+	if( vncConnection() && vncConnection()->isConnected() )
 	{
-		return m_vncConnection->image();
+		return vncConnection()->image();
 	}
 
 	return {};
@@ -217,7 +212,7 @@ void ComputerControlInterface::updateActiveFeatures()
 {
 	lock();
 
-	if( m_vncConnection && m_connection && state() == State::Connected )
+	if( vncConnection() && state() == State::Connected )
 	{
 		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
 	}
@@ -243,9 +238,9 @@ void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& feature
 
 bool ComputerControlInterface::isMessageQueueEmpty()
 {
-	if( m_vncConnection && m_vncConnection->isConnected() )
+	if( vncConnection() && vncConnection()->isConnected() )
 	{
-		return m_vncConnection->isEventQueueEmpty();
+		return vncConnection()->isEventQueueEmpty();
 	}
 
 	return true;
@@ -262,9 +257,9 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 	switch( updateMode )
 	{
 	case UpdateMode::Disabled:
-		if( m_vncConnection )
+		if( vncConnection() )
 		{
-			m_vncConnection->setFramebufferUpdateInterval( UpdateIntervalDisabled );
+			vncConnection()->setFramebufferUpdateInterval( UpdateIntervalDisabled );
 		}
 
 		m_userUpdateTimer.stop();
@@ -273,9 +268,9 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 	case UpdateMode::Monitoring:
 	case UpdateMode::Live:
-		if( m_vncConnection )
+		if( vncConnection() )
 		{
-			m_vncConnection->setFramebufferUpdateInterval( updateMode == UpdateMode::Monitoring ?
+			vncConnection()->setFramebufferUpdateInterval( updateMode == UpdateMode::Monitoring ?
 															   computerMonitoringUpdateInterval : -1 );
 		}
 
@@ -306,10 +301,10 @@ void ComputerControlInterface::resetWatchdog()
 
 void ComputerControlInterface::restartConnection()
 {
-	if( m_vncConnection )
+	if( vncConnection() )
 	{
 		vDebug();
-		m_vncConnection->restart();
+		vncConnection()->restart();
 
 		m_connectionWatchdogTimer.stop();
 	}
@@ -321,9 +316,9 @@ void ComputerControlInterface::updateState()
 {
 	lock();
 
-	if( m_vncConnection )
+	if( vncConnection() )
 	{
-		switch( m_vncConnection->state() )
+		switch( vncConnection()->state() )
 		{
 		case VncConnection::State::Disconnected: m_state = State::Disconnected; break;
 		case VncConnection::State::Connecting: m_state = State::Connecting; break;
@@ -348,7 +343,7 @@ void ComputerControlInterface::updateUser()
 {
 	lock();
 
-	if( m_vncConnection && m_connection && state() == State::Connected )
+	if( vncConnection() && state() == State::Connected )
 	{
 		if( userLoginName().isEmpty() )
 		{

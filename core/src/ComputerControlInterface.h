@@ -24,23 +24,11 @@
 
 #pragma once
 
-#include <QList>
-#include <QObject>
-#include <QSize>
-#include <QTimer>
-
 #include "Computer.h"
 #include "Feature.h"
 #include "Lockable.h"
 #include "VeyonCore.h"
-#include "VncConnection.h"
-
-class QImage;
-
-class AuthenticationProxy;
-class FeatureMessage;
-class VncConnection;
-class VeyonConnection;
+#include "VeyonConnection.h"
 
 class VEYON_CORE_EXPORT ComputerControlInterface : public QObject, public Lockable
 {
@@ -62,6 +50,11 @@ public:
 	VeyonConnection* connection() const
 	{
 		return m_connection;
+	}
+
+	VncConnection* vncConnection() const
+	{
+		return m_connection ? m_connection->vncConnection() : nullptr;
 	}
 
 	void start( QSize scaledScreenSize = {}, UpdateMode updateMode = UpdateMode::Monitoring, AuthenticationProxy* authenticationProxy = nullptr );
@@ -165,7 +158,6 @@ private:
 
 	QSize m_scaledScreenSize;
 
-	VncConnection* m_vncConnection;
 	VeyonConnection* m_connection;
 	QTimer m_connectionWatchdogTimer;
 	QTimer m_userUpdateTimer;

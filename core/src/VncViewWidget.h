@@ -66,8 +66,6 @@ private:
 	void drawBusyIndicator( QPainter* painter );
 	void updateConnectionState();
 
-	VeyonConnection* m_veyonConnection{nullptr};
-
 	bool m_viewOnlyFocus{true};
 
 	static constexpr auto BusyIndicatorUpdateInterval = 25;
