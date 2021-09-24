@@ -67,8 +67,6 @@ VncConnection::VncConnection( QObject* parent ) :
 
 VncConnection::~VncConnection()
 {
-	stop();
-
 	if( isRunning() )
 	{
 		vWarning() << "Waiting for VNC connection thread to finish.";
@@ -134,12 +132,12 @@ void VncConnection::stopAndDeleteLater()
 {
 	if( isRunning() )
 	{
-		connect( this, &VncConnection::finished, this, &VncConnection::deleteLater );
+		setControlFlag( ControlFlag::DeleteAfterFinished, true );
 		stop();
 	}
 	else
 	{
-		deleteLater();
+		deleteLaterInMainThread();
 	}
 }
 
@@ -365,6 +363,11 @@ void VncConnection::run()
 		handleConnection();
 		closeConnection();
 	}
+
+	if( isControlFlagSet( ControlFlag::DeleteAfterFinished ) )
+	{
+		deleteLaterInMainThread();
+	}
 }
 
 
@@ -419,8 +422,20 @@ void VncConnection::establishConnection()
 
 		setControlFlag( ControlFlag::ServerReachable, false );
 
-		if( rfbInitClient( m_client, nullptr, nullptr ) &&
-			isControlFlagSet( ControlFlag::TerminateThread ) == false )
+		const auto clientInitialized = rfbInitClient( m_client, nullptr, nullptr );
+		if( clientInitialized == FALSE )
+		{
+			// rfbInitClient() calls rfbClientCleanup() when failed
+			m_client = nullptr;
+		}
+
+		// do not continue/sleep when already requested to stop
+		if( isControlFlagSet( ControlFlag::TerminateThread ) )
+		{
+			return;
+		}
+
+		if( clientInitialized )
 		{
 			m_framebufferUpdateWatchdog.restart();
 
@@ -432,15 +447,6 @@ void VncConnection::establishConnection()
 		}
 		else
 		{
-			// rfbInitClient() calls rfbClientCleanup() when failed
-			m_client = nullptr;
-
-			// do not sleep when already requested to stop
-			if( isControlFlagSet( ControlFlag::TerminateThread ) )
-			{
-				break;
-			}
-
 			// guess reason why connection failed
 			if( isControlFlagSet( ControlFlag::ServerReachable ) == false )
 			{
@@ -720,6 +726,13 @@ void VncConnection::sendEvents()
 	}
 
 	m_eventQueueMutex.unlock();
+}
+
+
+
+void VncConnection::deleteLaterInMainThread()
+{
+	QTimer::singleShot( 0, VeyonCore::instance(), [this]() { delete this; } );
 }
 
 

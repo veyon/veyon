@@ -50,8 +50,7 @@ rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 
 
 
-VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
-	m_vncConnection( vncConnection ),
+VeyonConnection::VeyonConnection():
 	m_user(),
 	m_userHomeDir()
 {
@@ -68,27 +67,32 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 	}
 
 	connect( m_vncConnection, &VncConnection::connectionPrepared, this, &VeyonConnection::registerConnection, Qt::DirectConnection );
-	connect( m_vncConnection, &VncConnection::destroyed, this, &VeyonConnection::deleteLater );
+	connect( m_vncConnection, &VncConnection::destroyed, VeyonCore::instance(), [this]() {
+		delete this;
+	} );
 }
 
 
 
-VeyonConnection::~VeyonConnection()
+void VeyonConnection::stopAndDeleteLater()
 {
 	unregisterConnection();
+
+	if( m_vncConnection )
+	{
+		m_vncConnection->stopAndDeleteLater();
+		m_vncConnection = nullptr;
+	}
 }
 
 
 
 void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage, bool wake )
 {
-	if( m_vncConnection.isNull() )
+	if( m_vncConnection )
 	{
-		vCritical() << "cannot enqueue event as VNC connection is invalid";
-		return;
+		m_vncConnection->enqueueEvent( new VncFeatureMessageEvent( featureMessage ), wake );
 	}
-
-	m_vncConnection->enqueueEvent( new VncFeatureMessageEvent( featureMessage ), wake );
 }
 
 
@@ -124,7 +128,7 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 
 void VeyonConnection::registerConnection()
 {
-	if( m_vncConnection.isNull() == false )
+	if( m_vncConnection )
 	{
 		m_vncConnection->setClientData( VeyonConnectionTag, this );
 	}
@@ -134,7 +138,7 @@ void VeyonConnection::registerConnection()
 
 void VeyonConnection::unregisterConnection()
 {
-	if( m_vncConnection.isNull() == false )
+	if( m_vncConnection )
 	{
 		m_vncConnection->setClientData( VeyonConnectionTag, nullptr );
 	}
