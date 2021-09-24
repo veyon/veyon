@@ -170,7 +170,8 @@ private:
 		ServerReachable = 0x02,
 		TerminateThread = 0x04,
 		RestartConnection = 0x08,
-		DeleteAfterFinished = 0x10
+		DeleteAfterFinished = 0x10,
+		SkipHostPing = 0x20
 	};
 
 	~VncConnection() override;

@@ -450,7 +450,8 @@ void VncConnection::establishConnection()
 			// guess reason why connection failed
 			if( isControlFlagSet( ControlFlag::ServerReachable ) == false )
 			{
-				if( VeyonCore::platform().networkFunctions().ping( m_host ) == false )
+				if( isControlFlagSet( ControlFlag::SkipHostPing ) ||
+					VeyonCore::platform().networkFunctions().ping( m_host ) == false )
 				{
 					setState( State::HostOffline );
 				}
