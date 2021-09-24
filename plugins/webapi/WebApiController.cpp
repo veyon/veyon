@@ -98,7 +98,7 @@ WebApiController::Response WebApiController::getAuthenticationMethods( const Req
 	const auto proxy = new WebApiAuthenticationProxy( m_configuration );
 	proxy->populateCredentials( proxy->dummyAuthenticationMethod(), {} );
 
-	connection.controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Monitoring, proxy );
+	connection.controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Basic, proxy );
 
 	if( proxy->waitForAuthenticationMethods(
 			m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond ) == false )
@@ -155,7 +155,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 	// create connection (including timer resources) in main thread
 	auto connection = runInMainThread<WebApiConnectionPointer>( [host, proxy]() {
 		auto connection = new WebApiConnection{host.isEmpty() ? QStringLiteral("localhost") : host};
-		connection->controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Monitoring, proxy );
+		connection->controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Basic, proxy );
 
 		// make shared pointer destroy the connection in main thread again
 		return WebApiConnectionPointer{ connection,
