@@ -254,7 +254,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 	const auto computerMonitoringUpdateInterval = VeyonCore::config().computerMonitoringUpdateInterval();
 
-	switch( updateMode )
+	switch( m_updateMode )
 	{
 	case UpdateMode::Disabled:
 		if( vncConnection() )
@@ -266,17 +266,24 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 		m_activeFeaturesUpdateTimer.start( UpdateIntervalDisabled );
 		break;
 
+	case UpdateMode::Basic:
 	case UpdateMode::Monitoring:
 	case UpdateMode::Live:
 		if( vncConnection() )
 		{
-			vncConnection()->setFramebufferUpdateInterval( updateMode == UpdateMode::Monitoring ?
+			vncConnection()->setFramebufferUpdateInterval( ( m_updateMode == UpdateMode::Basic ||
+															 m_updateMode == UpdateMode::Monitoring ) ?
 															   computerMonitoringUpdateInterval : -1 );
 		}
 
 		m_userUpdateTimer.start( computerMonitoringUpdateInterval );
 		m_activeFeaturesUpdateTimer.start( computerMonitoringUpdateInterval );
 		break;
+	}
+
+	if( m_updateMode == UpdateMode::Basic )
+	{
+		vncConnection()->setSkipHostPing( true );
 	}
 }
 
