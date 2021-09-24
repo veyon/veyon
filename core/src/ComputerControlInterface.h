@@ -36,6 +36,7 @@ class VEYON_CORE_EXPORT ComputerControlInterface : public QObject, public Lockab
 public:
 	enum class UpdateMode {
 		Disabled,
+		Basic,
 		Monitoring,
 		Live
 	};
