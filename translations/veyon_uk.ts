@@ -619,10 +619,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ця команда виводить список усіх доступних ключів розпізнавання у налаштованому каталозі ключів. Якщо вказано параметр «%1», замість списку буде виведено таблицю із подробицями щодо ключів. Деякі параметри ключа може бути не показано, якщо доступ до ключа обмежено, наприклад через брак прав на читання файла ключа.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>ТИП</translation>
     </message>
@@ -653,6 +649,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation>Будь ласка, вкажіть назву ключа (наприклад «teacher/public») першим аргументом.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
     </message>
 </context>
 <context>
@@ -975,6 +979,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>MAC-АДРЕСА</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1143,43 +1151,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Будь ласка, вкажіть файл наявних налаштувань для імпортування.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Будь ласка, вкажіть коректну назву файла для експортування налаштувань.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Будь ласка, вкажіть коректний ключ.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Вказаного ключа не існує у поточних налаштуваннях!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Будь ласка, вкажіть коректне значення.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Налаштувати Veyon з командного рядка</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Файл для виведення даних непридатний до запису!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Каталог для виведення даних непридатний до запису!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Не вдалося прочитати файл налаштувань!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Вилучити загальносистемні налаштування Veyon</translation>
@@ -1209,12 +1181,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Скинути (вилучити) вказаний ключ налаштування</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Команди для керування налаштуваннями Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Оновити і зберегти налаштування програми і додатків</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Будь ласка, вкажіть файл наявних налаштувань для імпортування.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Не вдалося прочитати файл налаштувань!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Будь ласка, вкажіть коректну назву файла для експортування налаштувань.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Файл для виведення даних непридатний до запису!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Каталог для виведення даних непридатний до запису!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Будь ласка, вкажіть коректний ключ.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Вказаного ключа не існує у поточних налаштуваннях!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Будь ласка, вкажіть коректне значення.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Налаштувати Veyon з командного рядка</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Команди для керування налаштуваннями Veyon</translation>
     </message>
 </context>
 <context>
@@ -1387,28 +1395,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Програми і сайти</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Попередньо визначені програми</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Назва</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Шлях</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Додати нову програму</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Вилучити позначену програму</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1423,20 +1415,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Адреса</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Нова програма</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Новий сайт</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Програми і сайти</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Попередньо визначені програми</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Додати нову програму</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Вилучити позначену програму</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Додати новий сайт</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Нова програма</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Виконати програму</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Відкрити сайт</translation>
@@ -1446,28 +1454,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Натисніть цю кнопку, щоб відкрити сайт на усіх комп’ютерах.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Запустити програми і служби на робочій станції користувача</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Виконати програму «%1»</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Нетипова програма</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Відкрити сайт «%1»</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Нетиповий сайт</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Запустити програму</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп&apos;ютерах.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Запустити програму «%1»</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Нетипова програма</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Запустити програми і відкрити сайти у сеансах користувачів</translation>
     </message>
 </context>
 <context>
@@ -1501,10 +1513,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Відтворити навчальне відео</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Нетипова програма</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Безкоштовний зразок</translation>
     </message>
@@ -1515,6 +1523,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>типовий-користувач-учень</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Нетипова програма</translation>
     </message>
 </context>
 <context>
@@ -1537,6 +1549,137 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Password:</source>
         <translation>Пароль:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation>Вивести список назв усіх доступних можливостей</translation>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation>Показати таблицю із подробицями щодо усіх доступних можливостей</translation>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation>Запустити можливість на віддаленому вузлі</translation>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation>Зупинити роботу можливості на віддаленому вузлі</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку.</translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation>Показати список із назвами усіх доступних можливостей</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>АДРЕСА ВУЗЛА</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation>МОЖЛИВІСТЬ</translation>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation>АРГУМЕНТИ</translation>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation>Запускає вказану можливість на вказаному вузлі шляхом з&apos;єднання із запущеним віддалено сервером Veyon. Можливість можна вказати за назвою або UID. Скористайтеся командою «show», щоб переглянути список усіх доступних можливостей. Залежно від можливості, може бути вказано додаткові аргументи (зокрема текстове повідомлення для показу), які має бути закодовано у один рядок JSON. Щоб дізнатися більше, зверніться до документації для розробників.</translation>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>Заблокувати екран</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation>Показати текстове повідомлення</translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation>Тестове повідомлення</translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation>Запустити програму</translation>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation>Зупиняє роботу вказаної можливості на вказанмоу вузлі шляхом з&apos;єднання із запущеним віддалено сервером Veyon. Можливість можна вказати за назвою або UID. Скористайтеся командою «show», щоб переглянути список усіх доступних можливостей.</translation>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation>Розблокувати екран</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Опис</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Основний</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Служба</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation>Обробник</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Додаток</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation>Вказано некоректну назву або UID можливості</translation>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation>Помилка під час спроби обробити закодовані у JSON аргументи: %1</translation>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation>Не вдалося ініціалізувати реєстраційні дані</translation>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation>Не вдалося встановити з&apos;єднання із вузлом %1</translation>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation>Не вдалося надіслати повідомлення керування можливістю на вузол %1</translation>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation>Пов&apos;язані із можливістю дії командного рядка</translation>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation>Команди для керування можливостями</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Показує таблицю із докладними відомостями щодо усіх доступних можливостей. Серед цих відомостей опис, UID, назва додатка, який забезпечує роботу можливості, та деякі інші пов&apos;язані із реалізацією подробиці.</translation>
     </message>
 </context>
 <context>
@@ -3043,6 +3186,41 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation>Вивести список назв усіх встановлених додатків</translation>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation>Показати таблицю із подробицями щодо усіх встановлених додатків</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Опис</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Версія</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation>Пов&apos;язані із додатком дії командного рядка</translation>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation>Команди для керування додатками</translation>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3282,34 +3460,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Будь ласка, вкажіть програми або команди, які слід виконати на позначених комп’ютерах. Ви можете вказати декілька програм або команд, записавши їх в окремих рядках.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Виконати програми</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>наприклад, «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Назва:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Запам&apos;ятати і додати до меню програм</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>наприклад VLC</translation>
+        <translation>Встановлюємо з&apos;єднання…</translation>
     </message>
 </context>
 <context>
@@ -3565,19 +3716,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Службу запущено</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Службу не запущено</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Налаштовування і керування службою Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Зареєструвати службу Veyon</translation>
@@ -3603,12 +3742,24 @@ Typically this is required to support terminal servers.</source>
         <translation>Визначити стан служби Veyon</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Службу запущено</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Службу не запущено</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Налаштовування і керування службою Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Команди для налаштовування і керування службою Veyon</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Виконати файл команди</translation>
@@ -3618,8 +3769,8 @@ Typically this is required to support terminal servers.</source>
         <translation>Файла «%1» не існує!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Інтерактивна оболонка і засіб виконання скриптів для Керування Veyon</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation>Інтерактивна оболонка і засіб виконання скриптів для командного рядка Veyon</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3674,6 +3825,33 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation>Додайте комп&apos;ютери клацанням середньої кнопки миші або натисканням першої кнопки нижче.</translation>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Запустити програму</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Назва:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>наприклад, «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Запам&apos;ятати і додати до меню програм</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>наприклад VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Будь ласка, вкажіть програми, які слід запустити на позначених комп&apos;ютерах. Ви можете вказати декілька програм, відокремивши записи символом розриву рядка.</translation>
     </message>
 </context>
 <context>

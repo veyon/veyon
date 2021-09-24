@@ -624,10 +624,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Este comando enumera todas las claves de autenticación disponibles en el directorio de claves configurado. Si se especifica la opción &quot;%1&quot;, se mostrará una tabla con los detalles de las claves. Es posible que falten algunos detalles si no se puede acceder a una clave, p. ej. debido a la falta de permisos de lectura.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Por favor, ¡especifique el comando sobre el cual mostrar ayuda!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TIPO</translation>
     </message>
@@ -658,6 +654,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation>Especifique el nombre de la clave (p. ej., &quot;teacher/public&quot;) como primer argumento.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -980,6 +984,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>MAC ADDRESS</source>
         <translation>DIRECCIÓN MAC</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1148,43 +1156,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Especifique un archivo de configuración existente para importar.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Especifique un nombre de archivo válido para la exportación de configuración.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Especifique una clave válida.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>¡La clave especificada no existe en la configuración actual!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Especifique un valor válido.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Configurar Veyon en la línea de comandos</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>¡El archivo de salida no puede escribirse!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>¡El directorio de salida no puede escribirse!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>¡El archivo de configuración no puede leerse!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Borrar la configuración de Veyon del sistema</translation>
@@ -1214,12 +1186,48 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Desactivar (quitar) la clave de configuración</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Comandos para gestionar la configuración de Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Actualizar y guardar la configuración del programa y los complementos</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Especifique un archivo de configuración existente para importar.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>¡El archivo de configuración no puede leerse!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Especifique un nombre de archivo válido para la exportación de configuración.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>¡El archivo de salida no puede escribirse!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>¡El directorio de salida no puede escribirse!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Especifique una clave válida.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>¡La clave especificada no existe en la configuración actual!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Especifique un valor válido.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Configurar Veyon en la línea de comandos</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Comandos para gestionar la configuración de Veyon</translation>
     </message>
 </context>
 <context>
@@ -1392,28 +1400,12 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programas y sitios web</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Programas predefinidos</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Ruta</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Añadir nuevo programa</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Eliminar el programa seleccionado</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1428,20 +1420,36 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nuevo programa</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nuevo sitio web</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Aplicaciones y sitios web</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Aplicaciones predefinidas</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Añadir nueva aplicación</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Eliminar la aplicación seleccionada</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Añadir nuevo sitio web</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Nueva aplicación</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Ejecutar programa</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Abrir sitio web</translation>
@@ -1451,28 +1459,32 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Haga clic en este botón para abrir un sitio web en todos los equipos.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Iniciar programas y servicios en el escritorio del usuario</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Haga clic en este botón para ejecutar un programa en todos los equipos.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Ejecutar el programa &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Programa personalizado</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Abrir sitio web &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Sitio web personalizado</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Iniciar aplicación</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Haga clic en este botón para iniciar una aplicación en todas las computadoras.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Iniciar aplicación &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Aplicación personalizada</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Iniciar aplicaciones y abrir sitios web en sesiones de usuario</translation>
     </message>
 </context>
 <context>
@@ -1506,10 +1518,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Reproducir video tutorial</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Programa personalizado</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Folleto</translation>
     </message>
@@ -1520,6 +1528,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>generic-student-user</source>
         <translation>usuario-estudiante-genérico</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Aplicación personalizada</translation>
     </message>
 </context>
 <context>
@@ -1542,6 +1554,137 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Password:</source>
         <translation>Contraseña:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>DIRECCIÓN DE EQUIPO</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nombre</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Descripción</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Maestro</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Servicio</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Complemento</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3046,6 +3189,41 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation>Lista de nombres de todos los complementos instalados</translation>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation>Mostrar tabla con detalles de todos los complementos instalados</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nombre</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Descripción</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Versión</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation>Operaciones CLI relacionadas con complementos</translation>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation>Comandos para administrar complementos</translation>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3286,33 +3464,6 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Introduzca los programas o comandos a ejecutar en el equipo/s seleccionado/s. Puede separar varios programas/comandos por línea.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Ejecutar programas</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>v.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Nombre:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Recordar y añadir al menú del programa</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>p.ej. VLC</translation>
     </message>
 </context>
 <context>
@@ -3568,19 +3719,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>El servicio esta ejecutándose</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>El servicio no está ejecutándose</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Configurar y controlar el Servicio de Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Registrar Servicio Veyon</translation>
@@ -3606,12 +3745,24 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Consultar estado de Servicio Veyon</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>El servicio esta ejecutándose</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>El servicio no está ejecutándose</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Configurar y controlar el Servicio de Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Comandos para configurar y controlar el Servicio Veyon</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Ejecutar archivo de comandos</translation>
@@ -3621,8 +3772,8 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>¡El archivo &quot;%1&quot; no existe!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Ejecución interactiva de shell y script para el Control de Veyon</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3677,6 +3828,33 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation>Añada computadoras haciendo clic con el botón central del ratón o haciendo clic en el primer botón a continuación.</translation>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Iniciar aplicación</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nombre:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>v.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Recordar y añadir al menú de la aplicación</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>p.ej. VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Por favor, introduzca las aplicaciones para iniciar en las computadoras seleccionadas. Puede separar varias aplicaciones por línea.</translation>
     </message>
 </context>
 <context>

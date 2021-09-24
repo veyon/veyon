@@ -623,10 +623,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>此命令列出配置的密钥目录中的所有可用身份验证密钥。 如果指定了选项 &quot;%1&quot; ，则会显示包含密钥详细信息的表格。 如果无法访问密钥，某些细节可能会丢失，例如，没有读取权限。</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>请指定需要显示用法命令！</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYPE</translation>
     </message>
@@ -656,6 +652,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -979,6 +983,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>MAC 地址(网卡物理地)</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1147,43 +1155,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>请指定要导入的配置文件。</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>请为导出的配置指定一个有效的文件名。</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>请指定一个有效的密钥。</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>指定的密钥在当前配置中不存在！</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>请指定一个有效的值。</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>在命令行配置 </translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>输出文件不可写！</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>输出目录不可写！</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>配置文件不可读！</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>清除系统级别 Veyon 配置</translation>
@@ -1213,12 +1185,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>取消设置(移除)给定的配置密钥</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>管理 Veyon 配置的命令</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>升级并保存程序和插件的配置</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>请指定要导入的配置文件。</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>配置文件不可读！</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>请为导出的配置指定一个有效的文件名。</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>输出文件不可写！</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>输出目录不可写！</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>请指定一个有效的密钥。</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>指定的密钥在当前配置中不存在！</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>请指定一个有效的值。</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>在命令行配置 </translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>管理 Veyon 配置的命令</translation>
     </message>
 </context>
 <context>
@@ -1391,28 +1399,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>程序和网站</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>预定义的程序</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>路径</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>添加新程序</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>移除选中的程序</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1427,20 +1419,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>新程序</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>新站点</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>运行程序</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>打开网站</translation>
@@ -1450,28 +1458,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>点击此按钮，将在所有计算机上打开一个网站</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>在用户桌面运行程序和服务</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>点击此按钮将在所有计算机上运行一个程序。</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>运行程序 &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>定制程序</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>打开站点 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>定制站点</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1505,10 +1517,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>播放教程视频</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>定制程序</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>讲义</translation>
     </message>
@@ -1519,6 +1527,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>一般学生用户</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1541,6 +1553,137 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Password:</source>
         <translation>密码:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>主机地址</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>介绍</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>主机</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>服务</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3045,6 +3188,41 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>介绍</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>版本</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3285,33 +3463,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>请输入要在所选计算机上运行的程序或命令。 您可以按行分隔多个程序/命令。</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>运行程序</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>例如 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>名称：</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>记住并添加到程序菜单</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>例如 VLC</translation>
     </message>
 </context>
 <context>
@@ -3567,19 +3718,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>服务正在运行</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>服务没有运行</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>配置和控制 Veyon 服务</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>注册 Veyon 服务</translation>
@@ -3605,12 +3744,24 @@ Typically this is required to support terminal servers.</source>
         <translation>查询 Veyon 服务状态</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>服务正在运行</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>服务没有运行</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>配置和控制 Veyon 服务</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>用于配置和控制Veyon服务的命令</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>运行命令文件</translation>
@@ -3620,8 +3771,8 @@ Typically this is required to support terminal servers.</source>
         <translation>文件 &quot;%1&quot; 不存在！</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Veyon 控制器的交互式 shell 和脚本运行</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3675,6 +3826,33 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>名称：</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>例如 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>例如 VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

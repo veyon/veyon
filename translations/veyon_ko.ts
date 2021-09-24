@@ -622,10 +622,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>이 명령어는 설정된 키폴더에 있는 모든 인증키를 리스트해 줍니다. 만일 옵션 &quot;%1&quot;가 지정되면 키 상세 테이블이 대신 표시됩니다. 키가 접근 불가할 경우엔 일부 내용이 누락될 수 있습니다. 즉 e.g. 읽기 권한이 없는 경우등.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>도움말을 표시할 명령어를 지정하세요</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYPE</translation>
     </message>
@@ -655,6 +651,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -978,6 +982,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>맥 어드레스</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1146,43 +1154,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>읽어 올 기존 설정 화일을 선택하세요.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>유효한 키를 선택하세요.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>현재 설정에 지정된 키가 존재하지 않습니다!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>유효한 값을 지정하세요</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>커맨드 라인에서 Veyon 설정</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>출력 화일에 쓸수 없습니다!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>출력 폴더에 저장할 수 없습니다!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>설정화일을 읽을 수 없습니다!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>시스템 상의 Veyon 설정 삭제</translation>
@@ -1212,12 +1184,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>해당 설정 키를 삭제(선택취소)함</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon 설정 관리 명령어들</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>프로그램과 플러그인의 설정을 업그레이드하고 저장</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>읽어 올 기존 설정 화일을 선택하세요.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>설정화일을 읽을 수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>출력 화일에 쓸수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>출력 폴더에 저장할 수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>유효한 키를 선택하세요.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>현재 설정에 지정된 키가 존재하지 않습니다!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>유효한 값을 지정하세요</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>커맨드 라인에서 Veyon 설정</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon 설정 관리 명령어들</translation>
     </message>
 </context>
 <context>
@@ -1390,28 +1398,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>프로그램과 웹사이트들</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>미리 지정된 프로그램들</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>경로</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>새 프로그램 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>선택한 프로그램 삭제</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1426,20 +1418,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>새 프로그램</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>새 웹사이트</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>프로그램 실행</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>웹사이트 열기</translation>
@@ -1449,28 +1457,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>클릭하면 모든 컴퓨터에서 같은 웹사이트를 오픈합니다.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>사용자 데스크탑에서 프로그램과 서비스를 시작</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 프로그램을 실행합니다.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>프로그램  &quot;%1&quot; 실행</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>사용자 프로그램</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>웹사이트 &quot;%1&quot; 열기</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>사용자 지정 웹사이트</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,10 +1516,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>튜토리얼 동영상 재생</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>사용자 프로그램</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>자료 배포 핸드아웃</translation>
     </message>
@@ -1518,6 +1526,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>일반-학생-사용자</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1540,6 +1552,137 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Password:</source>
         <translation>패스워드:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST ADDRESS</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>마스터</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>서비스</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3042,6 +3185,41 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3282,33 +3460,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>선택된 컴퓨터(들)에서 실행할 명령어 또는 프로그램을 입력하세요.  각각의 라인으로 다수의 프로그램/명령어를 구분할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>프로그램 실행</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>예. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>이름:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>기억하고 프로그램 메뉴에 추가하기</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>예: VLC</translation>
     </message>
 </context>
 <context>
@@ -3564,19 +3715,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>서비스 실행중</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>서비스 실행중이 아님</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Veyon 서비스 설정및 제어</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Veyon 서비스 등록</translation>
@@ -3602,12 +3741,24 @@ Typically this is required to support terminal servers.</source>
         <translation>Veyon 서비스 상태 조회</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>서비스 실행중</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>서비스 실행중이 아님</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyon 서비스 설정및 제어</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Veyon 서비스 설정 및 제어 명령어</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>명령어행 실행</translation>
@@ -3617,8 +3768,8 @@ Typically this is required to support terminal servers.</source>
         <translation>화일 &quot;%1&quot; 이 없음!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Veyon 제어용 대화형 쉘과 스크립트 실행</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3672,6 +3823,33 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>이름:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>예. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>예: VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -622,10 +622,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Ez a parancs a beállított kulcskönyvtárban lévő összes elérhető hitelesítési kulcsot felsorolja. Ha &quot;%1&quot; lehetőség meg van adva, egy, a kulcs részleteit tartalmazó táblázat fog megjelenni. Ha a kulcs nem érhető el, például olvasási jogosultságok hiánya miatt, néhány részlete hiányozhat.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TÍPUS</translation>
     </message>
@@ -655,6 +651,14 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -978,6 +982,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>MAC ADDRESS</source>
         <translation>FIZIKAI CÍM</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1146,43 +1154,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Létező konfigurációs fájlt adj meg importáláshoz.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Valós fájlnevet adj meg a konfiguráció exportálásához.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Valós kulcsot adj meg.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>A megadott kulcs nem létezik a jelenlegi konfigurációban!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Kérem, valós értéket adj meg.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Veyon konfigurálása parancssorból</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Kimeneti fájl nem írható!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Kimeneti könyvtár nem írható!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Konfigurációs fájl nem olvasható!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Az egész rendszerre kiterjedő Veyon konfiguráció törlése</translation>
@@ -1212,12 +1184,48 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Adott konfigurációs kulcs kikapcsolása (eltávolítása)</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon konfigurálásához parancsok</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>A program és bővítmények frissítése és konfigurációjuk mentése</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Létező konfigurációs fájlt adj meg importáláshoz.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Konfigurációs fájl nem olvasható!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Valós fájlnevet adj meg a konfiguráció exportálásához.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Kimeneti fájl nem írható!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Kimeneti könyvtár nem írható!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Valós kulcsot adj meg.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>A megadott kulcs nem létezik a jelenlegi konfigurációban!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Kérem, valós értéket adj meg.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Veyon konfigurálása parancssorból</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon konfigurálásához parancsok</translation>
     </message>
 </context>
 <context>
@@ -1390,28 +1398,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programok és weboldalak</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Előre definiált programok</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Megnevezés</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Útvonal</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Új program hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Kiválasztott program eltávolítása</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1426,20 +1418,36 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Új program</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Új weboldal</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Program futtatása</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Weboldal megnyitása</translation>
@@ -1449,28 +1457,32 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kattints erre a gombra, hogy az összes számítógépen megnyíljon egy weboldal.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Programok és szolgáltatások indítása a felhasználó asztalon</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Kattints erre a gombra, hogy egy programot futtass az összes számítógépen. </translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; program futtatása</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Egyéni program</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>&quot;%1&quot; weboldal megnyitása </translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Egyéni weboldal</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,10 +1516,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Bemutató videó lejátszása</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Egyéni program</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Kiosztás</translation>
     </message>
@@ -1518,6 +1526,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>generic-student-user</source>
         <translation>generic-student-user</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1540,6 +1552,137 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Password:</source>
         <translation>Jelszó:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST ADDRESS</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Mester</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Szolgáltatás</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3044,6 +3187,41 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3282,33 +3460,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Kérem, add meg a kiválasztott számítógép(ek)en futtatandó programokat vagy parancsokat. Több programot/parancsot soronként adj meg.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Programok futtatása</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>például &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Név:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Emlékezz és add a programmenühöz</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>pl. VLC</translation>
     </message>
 </context>
 <context>
@@ -3563,19 +3714,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Veyon szolgáltatás jelenleg fut</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Veyon szolgáltatás jelenleg nem fut</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Veyon szolgáltatás konfigurálása és felügyelete</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Regisztrált Veyon szolgáltatás</translation>
@@ -3601,12 +3740,24 @@ Typically this is required to support terminal servers.</source>
         <translation>Veyon Szolgáltatás állapotának lekérdezése</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Veyon szolgáltatás jelenleg fut</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Veyon szolgáltatás jelenleg nem fut</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyon szolgáltatás konfigurálása és felügyelete</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Veyon Szolgáltatás konfigurációs és felügyeleti parancsai</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Parancsfájl futtatása</translation>
@@ -3616,8 +3767,8 @@ Typically this is required to support terminal servers.</source>
         <translation>&quot;%1&quot; fájl nem létezik!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktív héj és szkriptfuttatás a Veyon vezérlésből</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3671,6 +3822,33 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Név:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>például &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>pl. VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

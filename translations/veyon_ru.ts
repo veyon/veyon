@@ -622,10 +622,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Эта команда выводит список всех ключей аутентификации в настроенном каталоге ключей. Если выбрана опция &quot;%1&quot;, то вместо списка будет выведена таблица с подробностями про ключи. Некоторые параметры ключа могут быть не показаны, если доступ к ключу ограничен, например из-за нехватки прав на чтение файла ключа.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Пожалуйста, укажите команду, для которой следует показать справку!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>ТИП</translation>
     </message>
@@ -655,6 +651,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -978,6 +982,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>MAC-АДРЕСА</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1146,43 +1154,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Пожалуйста, укажите существующий файл конфигурации для импорта.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Пожалуйста, укажите допустимое имя файла для экспорта конфигурации.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Пожалуйста, укажите действующий ключ.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Указанный ключ не существует в текущей конфигурации!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Укажите действительное значение.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Настройка Veyon в командной строке</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Выходной файл не доступен для записи!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Каталог вывода не доступен для записи!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Файл конфигурации не читается!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Очистка всей системы Veyon</translation>
@@ -1212,12 +1184,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Отменить (удалить) данный ключ конфигурации</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Команды для управления настройками Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Обновить и сохранить настройки программы и дополнений</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Пожалуйста, укажите существующий файл конфигурации для импорта.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Файл конфигурации не читается!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Пожалуйста, укажите допустимое имя файла для экспорта конфигурации.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Выходной файл не доступен для записи!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Каталог вывода не доступен для записи!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Пожалуйста, укажите действующий ключ.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Указанный ключ не существует в текущей конфигурации!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Укажите действительное значение.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Настройка Veyon в командной строке</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Команды для управления настройками Veyon</translation>
     </message>
 </context>
 <context>
@@ -1390,28 +1398,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Программы и сайты</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Предварительно определённые программы</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Путь</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Добавить новую программу</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Удалить выделенную программу</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1426,20 +1418,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Адрес</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Новая программа</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Новый сайт</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Запустить программу</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Открыть веб-сайт</translation>
@@ -1449,28 +1457,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Нажмите эту кнопку для открытия веб-сайта на всех компьютерах.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Запуск программ и сервисов на рабочем столе пользователя</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Нажмите эту кнопку для запуска программы на всех компьютерах.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Выполнить программу &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Необычная программа</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Открыть сайт &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Необычный сайт</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,10 +1516,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Воспроизвести обучающее видео</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Необычная программа</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Бесплатный образец</translation>
     </message>
@@ -1518,6 +1526,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>generic-student-user</source>
         <translation>типичный-ученик-пользователь</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1540,6 +1552,137 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Password:</source>
         <translation>Пароль:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>АДРЕСА ХОСТА</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Описание</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Мастер</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Сервис</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3044,6 +3187,41 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation>Список имен всех установленных плагинов</translation>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation>Показать таблицу с деталями всех установленных плагинов</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Описание</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Версия</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation>Связанные с плагином операции CLI</translation>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation>Команды для управления плагинами</translation>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3284,33 +3462,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Пожалуйста, введите программы или команды для их выполнения на выбранных компьютерах. Вы можете записать несколько программ/команд, по одной в строке.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Запустить программы</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>например, &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Имя:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Запомнить и добавить в меню программ</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>например VLC</translation>
     </message>
 </context>
 <context>
@@ -3566,19 +3717,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Сервис работает</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Сервис не работает</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Настройка и управление сервисом Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Регистрация сервиса Veyon</translation>
@@ -3604,12 +3743,24 @@ Typically this is required to support terminal servers.</source>
         <translation>Определить состояние сервиса Veyon</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Сервис работает</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Сервис не работает</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Настройка и управление сервисом Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Команды для настройки и управления сервисом Veyon</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Запустить командный файл</translation>
@@ -3619,8 +3770,8 @@ Typically this is required to support terminal servers.</source>
         <translation>Файла &quot;%1&quot; не существует!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Интерактивная оболочка и средство выполнения скриптов для Управления Veyon</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3675,6 +3826,33 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation>Добавьте компьютеры, щелкнув средней кнопкой мыши или нажав первую кнопку ниже.</translation>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Имя:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>например, &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>например VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -622,10 +622,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TIPE</translation>
     </message>
@@ -655,6 +651,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -978,6 +982,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>MAC ADDRESS</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1146,43 +1154,7 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Silakan tentukan berkas konfigurasi yang ada untuk diimpor.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Silakan tentukan nama berkas yang valid untuk ekspor konfigurasi.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Kunci yang ditentukan tidak ada dalam konfigurasi saat ini!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Berkas keluaran tidak dapat ditulisi!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Direktori keluaran tidak dapat ditulisi!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Berkas konfigurasi tidak terbaca!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Hapus konfigurasi Veyon di seluruh sistem</translation>
@@ -1212,12 +1184,48 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation>Batalkan (hapus) kunci konfigurasi yang diberikan</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Perintah untuk mengelola konfigurasi Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Tingkatkan dan simpan konfigurasi program dan pengaya</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Silakan tentukan berkas konfigurasi yang ada untuk diimpor.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Berkas konfigurasi tidak terbaca!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Silakan tentukan nama berkas yang valid untuk ekspor konfigurasi.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Berkas keluaran tidak dapat ditulisi!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Direktori keluaran tidak dapat ditulisi!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Kunci yang ditentukan tidak ada dalam konfigurasi saat ini!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Perintah untuk mengelola konfigurasi Veyon</translation>
     </message>
 </context>
 <context>
@@ -1390,27 +1398,11 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected program</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1426,20 +1418,36 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
+        <source>New website</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>New website</source>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Open website</source>
         <translation type="unfinished"/>
@@ -1449,27 +1457,31 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1504,10 +1516,6 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Handout</source>
         <translation type="unfinished"/>
     </message>
@@ -1517,6 +1525,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1539,6 +1551,137 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Password:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nama</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Layanan</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3025,6 +3168,41 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nama</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3262,33 +3440,6 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Jalankan program</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3544,19 +3695,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Layanan berjalan</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Layanan tidak berjalan</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Konfigurasi dan kontrol layanan Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Daftarkan Layanan Veyon</translation>
@@ -3582,12 +3721,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Layanan berjalan</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Layanan tidak berjalan</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Konfigurasi dan kontrol layanan Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation type="unfinished"/>
@@ -3597,7 +3748,7 @@ Typically this is required to support terminal servers.</source>
         <translation>Berkas &quot;%1&quot; tidak ada!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
+        <source>Interactive shell and script execution for Veyon CLI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3652,6 +3803,33 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -622,10 +622,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Tento příkaz vypíše všechny dostupné ověřovací klíče v nastavené složce s klíči. Pokud je zadaná volba „%1“, bude namísto toho zobrazena tabulka s podrobnostmi o klíči. Některé podrobnosti mohou chybět pokud klíč není dostupný například kvůli chybějícím právům na čtení.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Zadejte příkaz pro který chcete zobrazit nápovědu!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYP</translation>
     </message>
@@ -655,6 +651,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -978,6 +982,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>MAC ADDRESS</source>
         <translation>MAC ADRESA</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1146,43 +1154,7 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Zadejte existující soubor s nastaveními, který importovat.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Zadejte platný název souboru pro export nastavení.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Zadejte platný klíč.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Zadaný klíč ve stávajícím nastavení neexistuje!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Zadejte platnou hodnotu.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Nastavit Veyon na příkazovém řádku</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Výstupní soubor není přístupný pro zápis!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Výstupní složka není přístupná pro zápis!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Soubor s nastaveními není přístupný pro čtení!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Vyčistit nastavení Veyon týkající se celého systému</translation>
@@ -1212,12 +1184,48 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Zrušit nastavení (odebrat ze) zadané položky nastavení</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Příkazy pro správu nastavení Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Přejít na novější verzi a uložit nastavení aplikace a zásuvných modulů</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Zadejte existující soubor s nastaveními, který importovat.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Soubor s nastaveními není přístupný pro čtení!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Zadejte platný název souboru pro export nastavení.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Výstupní soubor není přístupný pro zápis!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Výstupní složka není přístupná pro zápis!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Zadejte platný klíč.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Zadaný klíč ve stávajícím nastavení neexistuje!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Zadejte platnou hodnotu.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Nastavit Veyon na příkazovém řádku</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Příkazy pro správu nastavení Veyon</translation>
     </message>
 </context>
 <context>
@@ -1390,28 +1398,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programy a webové stránky</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Přednastavené aplikace</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Umístění</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Přidat novou aplikaci</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Odebrat označenou aplikaci</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1426,20 +1418,36 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nová aplikace</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nová webová stránka</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Spustit aplikaci</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Otevřít webovou stránku</translation>
@@ -1449,28 +1457,32 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Kliknutím na toto tlačítko otevřete webovou stránku na všech počítačích.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Spustit aplikace a služby na počítači uživatele</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Kliknutím na toto tlačítko spustíte aplikaci na všech počítačích.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Spustit aplikaci „%1“</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Uživatelem určená aplikace</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Otevřít webovou stránku „%1“</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Uživatelsky určené webová stránka</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,10 +1516,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Přehrát výukové video</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Uživatelem určená aplikace</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Předání</translation>
     </message>
@@ -1518,6 +1526,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>generic-student-user</source>
         <translation>obecný student-uživatel</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1540,6 +1552,137 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Password:</source>
         <translation>Heslo:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>ADRESA STROJE</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Popis</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Řídící</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Služba</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Zásuvný modul</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3040,6 +3183,41 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation>Vypsat názvy všech nainstalovaných zásuvných modulů</translation>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation>Zobrazit tabulku s podrobnostmi o všech nainstalovaných zásuvných modulech</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Popis</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Verze</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation>Operace v příkazovém řádku související se zásuvným modulem</translation>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation>Příkazy pro správu zásuvných modulů</translation>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3280,33 +3458,6 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Zadejte aplikace nebo příkazy které mají být spuštěné na označených počítačích. Každou z aplikací/příkazů uvádějte na samostatný řádek</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Spustit aplikace</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>např.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Název:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Zapamatovat a přidat do nabídky programů</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>např. VLC</translation>
     </message>
 </context>
 <context>
@@ -3562,19 +3713,7 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Služba je spuštěná</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Služba není spuštěná</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Nastavit a ovládat službu Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Zaregistrovat službu Veyon</translation>
@@ -3600,12 +3739,24 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Dotázat se na stav služby Veyon</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Služba je spuštěná</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Služba není spuštěná</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Nastavit a ovládat službu Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Přikazy pro nastavování a ovládání služby Veyon</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Spustit příkazový soubor</translation>
@@ -3615,8 +3766,8 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Soubor „%1“ neexistuje!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktivní vykonávání shellu a skriptu pro ovládání Veyon</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3670,6 +3821,33 @@ Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Název:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>např.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>např. VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

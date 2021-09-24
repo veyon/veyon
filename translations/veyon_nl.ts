@@ -619,10 +619,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYPE</translation>
     </message>
@@ -652,6 +648,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -975,6 +979,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>MAC ADRES</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1143,43 +1151,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Geef alstublieft een bestaand configuratiebestand op om te importeren.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Geef alstublieft een geldige bestandsnaam op voor de configuratie export.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Geef alstublief een geldige sleutel op.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Opgegeven sleutel bestaat niet in de huidige configuratie!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Geef alstublief een geldige waarde op.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Configureer Veyon via opdrachtregel</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Uitvoerbestand is niet schrijfbaar!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Uitvoermap is niet schrijfbaar!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Configuratiebestand is niet leesbaar!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Veyon-configuratie helemaal wissen</translation>
@@ -1209,12 +1181,48 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ontkoppel (verwijder) de gegeven configuratiesleutel</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Commando&apos;s voor het beheren van de configuratie van Veyon</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Geef alstublieft een bestaand configuratiebestand op om te importeren.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Configuratiebestand is niet leesbaar!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Geef alstublieft een geldige bestandsnaam op voor de configuratie export.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Uitvoerbestand is niet schrijfbaar!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Uitvoermap is niet schrijfbaar!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Geef alstublief een geldige sleutel op.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Opgegeven sleutel bestaat niet in de huidige configuratie!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Geef alstublief een geldige waarde op.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Configureer Veyon via opdrachtregel</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Commando&apos;s voor het beheren van de configuratie van Veyon</translation>
     </message>
 </context>
 <context>
@@ -1387,28 +1395,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programma&apos;s &amp; websites</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Naam</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Pad</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Nieuw programma toevoegen</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Geselecteerd programma verwijderen</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1423,20 +1415,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Nieuw programma</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Nieuwe website</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Voer programma uit</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Open website</translation>
@@ -1446,28 +1454,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Klik op deze knop om een website op alle computers te openen.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Start programma&apos;s en services in de gebruikersdesktop</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Klik op deze knop om een programma op alle computers uit te voeren.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Programma &quot;%1&quot; uitvoeren</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Aangepast programma</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Open website &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Aangepaste website</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1501,10 +1513,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Aangepast programma</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation type="unfinished"/>
     </message>
@@ -1514,6 +1522,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>generic-student-user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1537,6 +1549,137 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Password:</source>
         <translation>Wachtwoord:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Master</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Service</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3029,6 +3172,41 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3266,33 +3444,6 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Voer alsjeblieft de programma&apos;s of commando&apos;s in om op de geselecteerde computer(s) te draaien. U kunt meerdere programma&apos;s / opdrachten per lijn scheiden.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Voer programma&apos;s uit</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>bv. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3548,19 +3699,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Service is actief</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Service is niet actief</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Configureer en beheer Veyon service</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Registreer Veyon Service</translation>
@@ -3586,12 +3725,24 @@ Typically this is required to support terminal servers.</source>
         <translation>Bevraag status van Veyon Service</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Service is actief</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Service is niet actief</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Configureer en beheer Veyon service</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Commando&apos;s voor het configureren en besturen van Veyon Service</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation type="unfinished"/>
@@ -3601,7 +3752,7 @@ Typically this is required to support terminal servers.</source>
         <translation>Bestand &quot;%1&quot; bestaat niet!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
+        <source>Interactive shell and script execution for Veyon CLI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3656,6 +3807,33 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>bv. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -622,10 +622,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Bu komut, yapılandırılmış anahtar dizinindeki tüm kullanılabilir kimlik doğrulama anahtarlarını listeler. &quot;%1&quot; seçeneği belirtilirse, bunun yerine anahtar ayrıntılarını içeren bir tablo görüntülenir. Bir anahtara erişilemiyorsa bazı ayrıntılar eksik olabilir; okuma izinlerinin olmaması nedeniyle.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Lütfen yardım görüntüleme komutunu belirtin!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TİP</translation>
     </message>
@@ -655,6 +651,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -978,6 +982,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>MAC ADDRESS</source>
         <translation>MAC ADRESİ</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1146,43 +1154,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Lütfen içe aktarmak için var olan yapılandırma dosyasını belirtin.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Lütfen yapılandırmayı dışarı aktarmak için geçerli bir ad belirtin.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Lütfen geçerli bir anahtar belirtin.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Belirtilen anahtar geçerli yapılandırmada bulunmuyor!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Lütfen geçerli bir değer belirtin.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Veyon&apos;u komut satırında yapılandır</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Çıktı dosyası yazılabilir değil!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Çıktı dizini yazılabilir değil!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Yapılandırma dosyası okunabilir değil!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Sistem geneli Veyon yapılandırmasını temizle</translation>
@@ -1212,12 +1184,48 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Verilen yapılandırma anahtarını kaldır</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyon&apos;un yapılandırmasını yönetmek için komutlar</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Program ve eklentilerin yapılandırmasını yükseltin ve kaydedin</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Lütfen içe aktarmak için var olan yapılandırma dosyasını belirtin.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Yapılandırma dosyası okunabilir değil!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Lütfen yapılandırmayı dışarı aktarmak için geçerli bir ad belirtin.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Çıktı dosyası yazılabilir değil!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Çıktı dizini yazılabilir değil!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Lütfen geçerli bir anahtar belirtin.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Belirtilen anahtar geçerli yapılandırmada bulunmuyor!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Lütfen geçerli bir değer belirtin.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Veyon&apos;u komut satırında yapılandır</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon&apos;un yapılandırmasını yönetmek için komutlar</translation>
     </message>
 </context>
 <context>
@@ -1390,28 +1398,12 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programlar ve web siteleri</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Önceden tanımlanmış programlar</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Yol</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Yeni program ekle</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Seçili programı kaldır</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1426,20 +1418,36 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>URL</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Yeni program</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Yeni web sitesi</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Program çalıştır</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Web sitesi aç</translation>
@@ -1449,28 +1457,32 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Kullanıcı masaüstünde program ve hizmetler başlat</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Tüm bilgisayarlarda bir program çalıştırmak için bu düğmeye tıklayın.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>&quot;%1&quot; programını çalıştır</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Özel program</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Web sitesini &quot;%1&quot; açın</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Özel web sitesi</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,10 +1516,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Eğitici videoyu oynat</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Özel program</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Elden çıkar</translation>
     </message>
@@ -1518,6 +1526,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>generic-student-user</source>
         <translation>Jenerik-öğrenci-kullanıcı</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1540,6 +1552,137 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Password:</source>
         <translation>Parola:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST ADRESİ</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ad</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Açıklama</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Usta</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Hizmet</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3036,6 +3179,41 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation>Yüklü tüm eklentilerin adlarını listele</translation>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation>Yüklü tüm eklentilerin ayrıntılarını içeren tabloyu göster</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ad</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Açıklama</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Sürüm</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation>Eklentiyle ilgili CLI işlemleri</translation>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation>Eklentileri yönetme komutları</translation>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3276,33 +3454,6 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     <message>
         <source>Connecting...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Lütfen seçilen bilgisayar(lar)da çalıştırılacak programları veya komutları girin. Birden çok program/komut satır ile ayrılabilir.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Program çalıştır</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>örnek. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>İsim:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Unutmayın ve program menüsüne ekleyin</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>örn. VLC</translation>
     </message>
 </context>
 <context>
@@ -3558,19 +3709,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Hizmet çalışıyor</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Hizmet çalışmıyor</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Veyon hizmetini ayarla ve denetle</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Veyon Hizmetini Kaydet</translation>
@@ -3596,12 +3735,24 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation>Veyon Hizmetinin sorgu durumu</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Hizmet çalışıyor</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Hizmet çalışmıyor</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyon hizmetini ayarla ve denetle</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Veyon Hizmetini yapılandırmak ve denetlemek için komutlar</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Komut dosyasını çalıştır</translation>
@@ -3611,8 +3762,8 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation>&quot;%1&quot; dosyası mevcut değil!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Veyon Kontrol için etkileşimli kabuk ve komut dosyası yürütme</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3666,6 +3817,33 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>İsim:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>örnek. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>örn. VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation type="unfinished"/>
     </message>
 </context>

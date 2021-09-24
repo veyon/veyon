@@ -622,10 +622,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>See käsk loetleb kõik saadaolevad autentimisvõtmed konfigureeritud võtmete kataloogis. Kui määratakse suvand &quot;%1&quot;, kuvatakse selle asemel võtme üksikasjadega tabel. Mõni detail võib puududa, kui võtmele pole juurdepääsu, nt. lugemisõiguste puudumise tõttu.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TÜÜP</translation>
     </message>
@@ -656,6 +652,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation>Palun määrake esimese argumendina võtme nimi (näiteks „õpetaja/avalik”).</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -978,6 +982,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>MAC ADDRESS</source>
         <translation>MAC AADRESS</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1049,7 +1057,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nimi: %1</translation>
     </message>
 </context>
 <context>
@@ -1146,43 +1154,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
-    <name>ConfigCommandLinePlugin</name>
-    <message>
-        <source>Please specify an existing configuration file to import.</source>
-        <translation>Palun määrake imporditav olemasolev konfiguratsioonifail.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Palun määrake konfiguratsiooni eksportimiseks kehtiv failinimi.</translation>
-    </message>
-    <message>
-        <source>Please specify a valid key.</source>
-        <translation>Palun määrake kehtiv võti.</translation>
-    </message>
-    <message>
-        <source>Specified key does not exist in current configuration!</source>
-        <translation>Määratud võtit pole praeguses konfiguratsioonis olemas!</translation>
-    </message>
-    <message>
-        <source>Please specify a valid value.</source>
-        <translation>Palun määrake kehtiv väärtus.</translation>
-    </message>
-    <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Seadistage Veyon käsureal</translation>
-    </message>
-    <message>
-        <source>Output file is not writable!</source>
-        <translation>Väljundfaili ei saa kirjutada!</translation>
-    </message>
-    <message>
-        <source>Output directory is not writable!</source>
-        <translation>Väljundkausta ei saa kirjutada!</translation>
-    </message>
-    <message>
-        <source>Configuration file is not readable!</source>
-        <translation>Konfiguratsioonifail pole loetav!</translation>
-    </message>
+    <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Tühi kogu süsteemi hõlmav Veyoni konfiguratsioon</translation>
@@ -1212,12 +1184,48 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Tühjendage (eemaldage) antud konfiguratsioonivõti</translation>
     </message>
     <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Käsud Veyoni konfiguratsiooni haldamiseks</translation>
-    </message>
-    <message>
         <source>Upgrade and save configuration of program and plugins</source>
         <translation>Uuendage ja salvestage programmi ja pistikprogrammide konfiguratsioon</translation>
+    </message>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Palun määrake imporditav olemasolev konfiguratsioonifail.</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Konfiguratsioonifail pole loetav!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Palun määrake konfiguratsiooni eksportimiseks kehtiv failinimi.</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Väljundfaili ei saa kirjutada!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Väljundkausta ei saa kirjutada!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Palun määrake kehtiv võti.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Määratud võtit pole praeguses konfiguratsioonis olemas!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Palun määrake kehtiv väärtus.</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Seadistage Veyon käsureal</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Käsud Veyoni konfiguratsiooni haldamiseks</translation>
     </message>
 </context>
 <context>
@@ -1390,28 +1398,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programmid ja veebisaidid</translation>
-    </message>
-    <message>
-        <source>Predefined programs</source>
-        <translation>Eelmääratud programmid</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
         <source>Path</source>
         <translation>Rada</translation>
-    </message>
-    <message>
-        <source>Add new program</source>
-        <translation>Lisa uus programm</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Eemalda valitud programm</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1426,20 +1418,36 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>URL aadress</translation>
     </message>
     <message>
-        <source>New program</source>
-        <translation>Uus programm</translation>
-    </message>
-    <message>
         <source>New website</source>
         <translation>Uus veebileht</translation>
+    </message>
+    <message>
+        <source>Applications &amp; websites</source>
+        <translation>Rakendused ja veebisaidid</translation>
+    </message>
+    <message>
+        <source>Predefined applications</source>
+        <translation>Eelmääratud rakendused</translation>
+    </message>
+    <message>
+        <source>Add new application</source>
+        <translation>Lisa uus rakendus</translation>
+    </message>
+    <message>
+        <source>Remove selected application</source>
+        <translation>Eemalda valitud rakendus</translation>
+    </message>
+    <message>
+        <source>Add new website</source>
+        <translation>Lisage uus veebisait</translation>
+    </message>
+    <message>
+        <source>New application</source>
+        <translation>Uus rakendus</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Run program</source>
-        <translation>Programmi käivitamine</translation>
-    </message>
     <message>
         <source>Open website</source>
         <translation>Weebilehe avamine</translation>
@@ -1449,28 +1457,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kõigil arvutitel veebisaidi avamiseks klõpsake seda nuppu.</translation>
     </message>
     <message>
-        <source>Start programs and services in user desktop</source>
-        <translation>Käivitage programmid ja teenused kasutaja töölaual</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on all computers.</source>
-        <translation>Programmi käivitamiseks kõigis arvutites klõpsake seda nuppu.</translation>
-    </message>
-    <message>
-        <source>Run program &quot;%1&quot;</source>
-        <translation>Käivitage programm &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom program</source>
-        <translation>Kohandatud programm</translation>
-    </message>
-    <message>
         <source>Open website &quot;%1&quot;</source>
         <translation>Avage veebileht &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
         <translation>Kohandatud veebileht</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Käivita rakendus</translation>
+    </message>
+    <message>
+        <source>Click this button to start an application on all computers.</source>
+        <translation>Rakenduse käivitamiseks kõikides arvutites klõpsake seda nuppu.</translation>
+    </message>
+    <message>
+        <source>Start application &quot;%1&quot;</source>
+        <translation>Käivitage rakendus &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Kohandatud rakendus</translation>
+    </message>
+    <message>
+        <source>Start apps and open websites in user sessions</source>
+        <translation>Käivitage rakendusi ja avage veebisaite kasutajaseanssidel</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1516,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Esitage õppevideot</translation>
     </message>
     <message>
-        <source>Custom program</source>
-        <translation>Kohandatud programm</translation>
-    </message>
-    <message>
         <source>Handout</source>
         <translation>Jaotusmaterjal</translation>
     </message>
@@ -1518,6 +1526,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>generic-student-user</source>
         <translation>üldine-õpilane-kasutaja</translation>
+    </message>
+    <message>
+        <source>Custom application</source>
+        <translation>Kohandatud rakendus</translation>
     </message>
 </context>
 <context>
@@ -1540,6 +1552,137 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Password:</source>
         <translation>Parool:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureCommands</name>
+    <message>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>IP AADRESS</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Kirjeldus</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Master</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Teenus</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Pistikprogramm</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3044,6 +3187,41 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
+    <name>PluginCommands</name>
+    <message>
+        <source>List names of all installed plugins</source>
+        <translation>Loetlege kõigi installitud pistikprogrammide nimed</translation>
+    </message>
+    <message>
+        <source>Show table with details of all installed plugins</source>
+        <translation>Kuva tabel kõigi installitud pistikprogrammide üksikasjadega</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Kirjeldus</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Versioon</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin-related CLI operations</source>
+        <translation>Pistikprogrammidega seotud CLI-toimingud</translation>
+    </message>
+    <message>
+        <source>Commands for managing plugins</source>
+        <translation>Pistikprogrammide haldamise käsud</translation>
+    </message>
+</context>
+<context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
@@ -3283,34 +3461,7 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>RunProgramDialog</name>
-    <message>
-        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Sisestage palun valitud arvutis (arvutites) käivitamiseks programmid või käsud. Eraldage programmid/ käskud uutel ridadel.</translation>
-    </message>
-    <message>
-        <source>Run programs</source>
-        <translation>Käivita programmid</translation>
-    </message>
-    <message>
-        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>näit. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation>Nimi:</translation>
-    </message>
-    <message>
-        <source>Remember and add to program menu</source>
-        <translation>Pea meeles ja lisa programmi menüüsse</translation>
-    </message>
-    <message>
-        <source>e.g. VLC</source>
-        <translation>näit. VLC</translation>
+        <translation>Ühendamine...</translation>
     </message>
 </context>
 <context>
@@ -3527,19 +3678,19 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Seansi režiim</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Kohaliku seansi režiim (ühe serveri eksemplar esmase kohaliku seansi jaoks)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivne seansirežiim (ühe serveri eksemplar aktiivse kohaliku või kaugseansi jaoks)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Mitme seansi režiim (iga kohaliku ja kaugtöölaua seansi jaoks eraldi serveri eksemplar)</translation>
     </message>
 </context>
 <context>
@@ -3566,19 +3717,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Teenus töötab</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Teenus on peatatud</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Veyoni teenuse konfigureerimine ja juhtimine</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Registreerige Veyoni teenus</translation>
@@ -3604,12 +3743,24 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Veyoni teenuse päringu olek</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Teenus töötab</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Teenus on peatatud</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyoni teenuse konfigureerimine ja juhtimine</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Käsud Veyon Service&apos;i konfigureerimiseks ja juhtimiseks</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Käivitage käsufail</translation>
@@ -3619,8 +3770,8 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Faili &quot;%1&quot; ei ole!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktiivne kesta ja skripti käivitamine Veyon-i juhtimisele</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3675,6 +3826,33 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.</translation>
+    </message>
+</context>
+<context>
+    <name>StartAppDialog</name>
+    <message>
+        <source>Start application</source>
+        <translation>Käivita rakendus</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Nimi:</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>näit. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+    <message>
+        <source>Remember and add to application menu</source>
+        <translation>Pidage meeles ja lisage rakendus menüüsse</translation>
+    </message>
+    <message>
+        <source>e.g. VLC</source>
+        <translation>näit. VLC</translation>
+    </message>
+    <message>
+        <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
+        <translation>Palun sisestage valitud arvutites käivitamiseks vajalikud rakendused. Saate eraldada mitu rakendust eri ridades.</translation>
     </message>
 </context>
 <context>
