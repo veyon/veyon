@@ -131,6 +131,11 @@ public:
 
 	void setFramebufferUpdateInterval( int interval );
 
+	void setSkipHostPing( bool on )
+	{
+		setControlFlag( ControlFlag::SkipHostPing, on );
+	}
+
 	void rescaleScreen();
 
 	static constexpr int VncConnectionTag = 0x590123;
