@@ -200,6 +200,15 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			const auto headers = request.headers();
 			const auto data = dataFromRequest<M>( request );
 
+			if( m_threadPool.activeThreadCount() >= m_threadPool.maxThreadCount() )
+			{
+				auto response = convertResponse( WebApiController::Error::ConnectionLimitReached );
+				QFutureInterface<QHttpServerResponse> fi;
+				fi.reportAndMoveResult( std::move(response) );
+				fi.reportFinished();
+				return QFuture<QHttpServerResponse>{ &fi };
+			}
+
 			return QtConcurrent::run( &m_threadPool, [=] {
 				return convertResponse( (m_controller->*controllerMethod)(
 					{ headers, data },
