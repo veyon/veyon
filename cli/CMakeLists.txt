@@ -17,6 +17,8 @@ set(cli_SOURCES
 
 build_veyon_application(veyon-cli ${cli_SOURCES})
 
+target_compile_options(veyon-cli PRIVATE -Wno-date-time)
+
 add_windows_resource(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
 make_console_app(veyon-cli)
 
