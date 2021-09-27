@@ -34,6 +34,7 @@ LocationDialog::LocationDialog( QAbstractItemModel* locationListModel, QWidget* 
 	ui->setupUi( this );
 
 	m_sortFilterProxyModel.setSourceModel( locationListModel );
+	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
 	m_sortFilterProxyModel.sort( 0 );
 
 	ui->listView->setModel( &m_sortFilterProxyModel );
@@ -55,12 +56,11 @@ LocationDialog::~LocationDialog()
 
 void LocationDialog::updateSearchFilter()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 1)
 	m_sortFilterProxyModel.setFilterRegularExpression( ui->filterLineEdit->text() );
 #else
 	m_sortFilterProxyModel.setFilterRegExp( ui->filterLineEdit->text() );
 #endif
-	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
 
 	ui->listView->selectionModel()->setCurrentIndex( m_sortFilterProxyModel.index( 0, 0 ),
 														 QItemSelectionModel::ClearAndSelect );
