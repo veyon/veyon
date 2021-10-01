@@ -24,8 +24,8 @@ if(LibVNCClient_FOUND)
 		int main()
 		{
 		rfbClient* client = rfbGetClient( 8, 3, 4 );
-		client->ReadFromSocketProc = nullptr;
-		client->WriteToSocketProc = nullptr;
+		client->ReadFromSocket = NULL;
+		client->WriteToSocket = NULL;
 		return 0;
 		}
 		"
