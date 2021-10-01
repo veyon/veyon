@@ -7,5 +7,6 @@ Terminal=false
 Name=Veyon Master
 Comment=Monitor and control remote computers
 Comment[de]=Entfernte Computer beobachten und steuern
+Comment[ru]=Наблюдение за удалёнными компьютерами и управление ими
 Categories=Qt;Education;Network;RemoteAccess;
 Keywords=classroom,control,computer,room,lab,monitoring,teacher,student
