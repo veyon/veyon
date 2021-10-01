@@ -15,7 +15,9 @@ set(core_RESOURCES
 
 find_package(LibVNCClient 0.9.13)
 
-if(NOT LibVNCClient_FOUND)
+if(LibVNCClient_FOUND)
+	set_property(GLOBAL PROPERTY HAVE_LIBVNCCLIENT TRUE)
+else()
 	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
 	include(LibVNCServerIntegration)
 	set(libvncclient_SOURCES
