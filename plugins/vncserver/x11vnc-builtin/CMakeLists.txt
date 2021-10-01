@@ -2,7 +2,13 @@ include(BuildVeyonPlugin)
 
 if(NOT VEYON_X11VNC_EXTERNAL)
 
-	find_package(LibVNCServer 0.9.8)
+	get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
+	if(HAVE_LIBVNCCLIENT)
+		find_package(LibVNCServer 0.9.8)
+	else()
+		message(WARNING "No suitable LibVNCClient library found therefore performing internal build of LibVNCServer as well to avoid binary compatibility issues")
+	endif()
+
 	if(NOT LibVNCServer_FOUND)
 		include(LibVNCServerIntegration)
 	endif()
