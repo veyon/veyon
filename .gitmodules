@@ -16,7 +16,7 @@
 	branch = master
 [submodule "3rdparty/libfakekey"]
 	path = 3rdparty/libfakekey
-	url = https://git.yoctoproject.org/git/libfakekey
+	url = https://github.com/veyon/libfakekey.git
 	branch = master
 [submodule "3rdparty/qthttpserver"]
 	path = 3rdparty/qthttpserver
