@@ -206,6 +206,18 @@ static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t*
 
 
 
+WindowsNetworkFunctions::WindowsNetworkFunctions() : PlatformNetworkFunctions()
+{
+	WSADATA wsadata;
+	const auto error = WSAStartup( MAKEWORD(2,0), &wsadata );
+	if( error != S_OK )
+	{
+		vCritical() << "failed to initialize WinSock:" << error;
+	}
+}
+
+
+
 bool WindowsNetworkFunctions::ping( const QString& hostAddress )
 {
 	QProcess pingProcess;
