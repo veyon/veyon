@@ -132,6 +132,7 @@ private:
 
 	QString m_userLoginNameAttribute;
 	QString m_groupMemberAttribute;
+	QString m_groupMemberFilterAttribute;
 	QString m_computerDisplayNameAttribute;
 	QString m_computerHostNameAttribute;
 	QString m_computerMacAddressAttribute;

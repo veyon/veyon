@@ -44,10 +44,11 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_userLoginNameAttribute = m_configuration.userLoginNameAttribute();
 	m_groupMemberAttribute = m_configuration.groupMemberAttribute();
 
+	m_groupMemberFilterAttribute = m_groupMemberAttribute;
 	if( m_configuration.queryNestedUserGroups() &&
-		m_groupMemberAttribute.contains( QLatin1Char(':') ) == false )
+		m_groupMemberFilterAttribute.contains( QLatin1Char(':') ) == false )
 	{
-		m_groupMemberAttribute.append( QLatin1String(":1.2.840.113556.1.4.1941:") );
+		m_groupMemberFilterAttribute.append( QLatin1String(":1.2.840.113556.1.4.1941:") );
 	}
 
 	m_computerDisplayNameAttribute = m_configuration.computerDisplayNameAttribute();
@@ -277,13 +278,13 @@ QStringList LdapDirectory::groupMembers( const QString& groupDn )
 QStringList LdapDirectory::groupsOfUser( const QString& userDn )
 {
 	const auto userId = groupMemberUserIdentification( userDn );
-	if( m_groupMemberAttribute.isEmpty() || userId.isEmpty() )
+	if( m_groupMemberFilterAttribute.isEmpty() || userId.isEmpty() )
 	{
 		return {};
 	}
 
 	return m_client.queryDistinguishedNames( groupsDn(),
-											 LdapClient::constructQueryFilter( m_groupMemberAttribute, userId, m_userGroupsFilter ),
+											 LdapClient::constructQueryFilter( m_groupMemberFilterAttribute, userId, m_userGroupsFilter ),
 											 m_defaultSearchScope );
 }
 
@@ -292,13 +293,13 @@ QStringList LdapDirectory::groupsOfUser( const QString& userDn )
 QStringList LdapDirectory::groupsOfComputer( const QString& computerDn )
 {
 	const auto computerId = groupMemberComputerIdentification( computerDn );
-	if( m_groupMemberAttribute.isEmpty() || computerId.isEmpty() )
+	if( m_groupMemberFilterAttribute.isEmpty() || computerId.isEmpty() )
 	{
 		return {};
 	}
 
 	return m_client.queryDistinguishedNames( computerGroupsDn(),
-											 LdapClient::constructQueryFilter( m_groupMemberAttribute, computerId, m_computerGroupsFilter ),
+											 LdapClient::constructQueryFilter( m_groupMemberFilterAttribute, computerId, m_computerGroupsFilter ),
 											 m_defaultSearchScope );
 }
 
@@ -317,14 +318,14 @@ QStringList LdapDirectory::locationsOfComputer( const QString& computerDn )
 	}
 
 	const auto computerId = groupMemberComputerIdentification( computerDn );
-	if( m_groupMemberAttribute.isEmpty() || computerId.isEmpty() )
+	if( m_groupMemberFilterAttribute.isEmpty() || computerId.isEmpty() )
 	{
 		return {};
 	}
 
 	return m_client.queryAttributeValues( computerGroupsDn(),
 										  m_locationNameAttribute,
-										  LdapClient::constructQueryFilter( m_groupMemberAttribute, computerId, m_computerGroupsFilter ),
+										  LdapClient::constructQueryFilter( m_groupMemberFilterAttribute, computerId, m_computerGroupsFilter ),
 										  m_defaultSearchScope );
 }
 
