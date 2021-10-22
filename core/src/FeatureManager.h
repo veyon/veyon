@@ -50,6 +50,8 @@ public:
 
 	const Feature& feature( Feature::Uid featureUid ) const;
 
+	const FeatureList& relatedFeatures( Feature::Uid featureUid ) const;
+
 	Feature::Uid metaFeatureUid( Feature::Uid featureUid ) const;
 
 	Plugin::Uid pluginUid( Feature::Uid featureUid ) const;
