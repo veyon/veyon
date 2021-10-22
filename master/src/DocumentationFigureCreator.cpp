@@ -105,7 +105,7 @@ void DocumentationFigureCreator::createFeatureFigures()
 	for( const auto& feature : features )
 	{
 		auto btn = toolbar->findChild<ToolButton *>( feature.name() );
-		const auto pluginUid = m_master.featureManager().pluginUid( feature );
+		const auto pluginUid = m_master.featureManager().pluginUid( feature.uid() );
 
 		if( previousPluginUid.isNull() )
 		{

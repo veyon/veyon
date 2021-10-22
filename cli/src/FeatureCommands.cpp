@@ -186,7 +186,7 @@ CommandLinePluginInterface::RunResult FeatureCommands::handle_show( const QStrin
 #else
 				VeyonCore::formattedUuid( feature.uid().toString() ),
 #endif
-				VeyonCore::pluginManager().pluginName( featureManager.pluginUid(feature) )
+				VeyonCore::pluginManager().pluginName( featureManager.pluginUid(feature.uid()) )
 			} );
 	}
 

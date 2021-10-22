@@ -202,7 +202,7 @@ void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterf
 			continue;
 		}
 
-		Plugin::Uid pluginUid = master()->featureManager().pluginUid( feature );
+		Plugin::Uid pluginUid = master()->featureManager().pluginUid( feature.uid() );
 
 		if( previousPluginUid.isNull() == false &&
 			pluginUid != previousPluginUid &&

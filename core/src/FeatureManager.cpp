@@ -116,7 +116,7 @@ Feature::Uid FeatureManager::metaFeatureUid( Feature::Uid featureUid ) const
 
 
 
-Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
+Plugin::Uid FeatureManager::pluginUid( Feature::Uid featureUid ) const
 {
 	for( auto pluginObject : m_pluginObjects )
 	{
@@ -124,7 +124,10 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
 
 		if( pluginInterface && featurePluginInterface &&
-				featurePluginInterface->featureList().contains( feature ) )
+			std::find_if( featurePluginInterface->featureList().begin(),
+						  featurePluginInterface->featureList().end(),
+						  [&featureUid]( const Feature& feature ) { return feature.uid() == featureUid; } )
+				!= featurePluginInterface->featureList().end() )
 		{
 			return pluginInterface->uid();
 		}
