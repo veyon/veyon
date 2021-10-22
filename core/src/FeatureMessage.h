@@ -111,3 +111,5 @@ private:
 	Arguments m_arguments;
 
 } ;
+
+VEYON_CORE_EXPORT QDebug operator<<(QDebug stream, const FeatureMessage& message);
