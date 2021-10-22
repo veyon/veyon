@@ -164,6 +164,14 @@ public:
 		return false;
 	}
 
+	virtual bool isFeatureActive( VeyonServerInterface& server, Feature::Uid featureUid ) const
+	{
+		Q_UNUSED(featureUid)
+		Q_UNUSED(server)
+
+		return false;
+	}
+
 protected:
 	void sendFeatureMessage( const FeatureMessage& message,
 							 const ComputerControlInterfaceList& computerControlInterfaces,
