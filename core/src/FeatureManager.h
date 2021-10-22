@@ -75,6 +75,8 @@ public:
 							   const FeatureMessage& message ) const;
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const;
 
+	FeatureUidList activeFeatures( VeyonServerInterface& server ) const;
+
 private:
 	FeatureList m_features;
 	const FeatureList m_emptyFeatureList;

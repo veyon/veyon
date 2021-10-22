@@ -24,9 +24,11 @@
 
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
+#include "FeatureWorkerManager.h"
 #include "PluginInterface.h"
 #include "PluginManager.h"
 #include "VeyonConfiguration.h"
+#include "VeyonServerInterface.h"
 
 Q_DECLARE_METATYPE(Feature)
 Q_DECLARE_METATYPE(FeatureMessage)
@@ -268,4 +270,25 @@ bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 	}
 
 	return handled;
+}
+
+
+
+FeatureUidList FeatureManager::activeFeatures( VeyonServerInterface& server ) const
+{
+	FeatureUidList features;
+
+	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	{
+		for( const auto& feature : featureInterface->featureList() )
+		{
+			if( featureInterface->isFeatureActive( server, feature.uid() ) ||
+				server.featureWorkerManager().isWorkerRunning( feature.uid() ) )
+			{
+				features.append( feature.uid() );
+			}
+		}
+	}
+
+	return features;
 }
