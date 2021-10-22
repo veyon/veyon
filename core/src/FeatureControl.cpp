@@ -23,7 +23,7 @@
  */
 
 #include "FeatureControl.h"
-#include "FeatureWorkerManager.h"
+#include "FeatureManager.h"
 #include "VeyonCore.h"
 #include "VeyonServerInterface.h"
 
@@ -80,7 +80,7 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server,
 {
 	if( m_featureControlFeature.uid() == message.featureUid() )
 	{
-		const auto featureUids = server.featureWorkerManager().runningWorkers();
+		const auto featureUids = server.featureManager().activeFeatures( server );
 
 		QStringList featureUidStrings;
 		featureUidStrings.reserve( featureUids.size() );
