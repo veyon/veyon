@@ -189,7 +189,7 @@ void ComputerMonitoringWidget::loadComputerPositions( const QJsonArray& position
 
 
 
-void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterfaceList& computerControlInterfaces )
+void ComputerMonitoringWidget::populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	Plugin::Uid previousPluginUid;
 
@@ -213,24 +213,22 @@ void ComputerMonitoringWidget::populateFeatureMenu(  const ComputerControlInterf
 
 		previousPluginUid = pluginUid;
 
-		auto active = false;
-
-		auto label = feature.displayName();
 		if( feature.displayNameActive().isEmpty() == false &&
 			isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
 		{
-			label = feature.displayNameActive();
-			active = true;
-		}
-
-		const auto subFeatures = master()->subFeatures( feature.uid() );
-		if( subFeatures.isEmpty() || active )
-		{
-			addFeatureToMenu( feature, label );
+			addFeatureToMenu( feature, feature.displayNameActive() );
 		}
 		else
 		{
-			addSubFeaturesToMenu( feature, subFeatures, label );
+			const auto subFeatures = master()->subFeatures( feature.uid() );
+			if( subFeatures.isEmpty() )
+			{
+				addFeatureToMenu( feature, feature.displayName() );
+			}
+			else
+			{
+				addSubFeaturesToMenu( feature, subFeatures, feature.displayName() );
+			}
 		}
 	}
 }
@@ -275,7 +273,7 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 {
 	const auto selectedInterfaces = selectedComputerControlInterfaces();
-	if ( !m_ignoreMousePressAndHoldEvent &&
+	if( !m_ignoreMousePressAndHoldEvent &&
 		selectedInterfaces.count() > 0 &&
 		selectedInterfaces.count() < 2 &&
 		selectedInterfaces.first()->state() == ComputerControlInterface::State::Connected &&
