@@ -52,7 +52,8 @@ public:
 
 	Feature::Uid metaFeatureUid( Feature::Uid featureUid ) const;
 
-	Plugin::Uid pluginUid( const Feature& feature ) const;
+	Plugin::Uid pluginUid( Feature::Uid featureUid ) const;
+
 
 	void controlFeature( Feature::Uid featureUid,
 						FeatureProviderInterface::Operation operation,
