@@ -371,3 +371,27 @@ void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& messa
 {
 	Q_EMIT featureMessageReceived( message, weakPointer() );
 }
+
+
+
+QDebug operator<<(QDebug stream, ComputerControlInterface::Pointer computerControlInterface)
+{
+	stream << qUtf8Printable(computerControlInterface->computer().hostAddress());
+	return stream;
+}
+
+
+
+QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	QStringList hostAddresses;
+	hostAddresses.reserve(computerControlInterfaces.size());
+	for(const auto& computerControlInterface : computerControlInterfaces)
+	{
+		hostAddresses.append(computerControlInterface->computer().hostAddress());
+	}
+
+	stream << QStringLiteral("[%1]").arg(hostAddresses.join(QLatin1Char(','))).toUtf8().constData();
+
+	return stream;
+}

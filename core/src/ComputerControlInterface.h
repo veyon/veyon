@@ -176,4 +176,7 @@ Q_SIGNALS:
 
 using ComputerControlInterfaceList = QVector<ComputerControlInterface::Pointer>;
 
+VEYON_CORE_EXPORT QDebug operator<<(QDebug stream, ComputerControlInterface::Pointer computerControlInterface);
+VEYON_CORE_EXPORT QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerControlInterfaces);
+
 Q_DECLARE_METATYPE(ComputerControlInterface::Pointer)
