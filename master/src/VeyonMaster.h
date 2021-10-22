@@ -106,6 +106,8 @@ public Q_SLOTS:
 	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 
 private:
+	void shutdown();
+
 	FeatureList featureList() const;
 
 	UserConfig* m_userConfig;
