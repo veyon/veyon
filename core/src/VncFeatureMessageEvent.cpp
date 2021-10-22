@@ -28,7 +28,7 @@
 
 
 VncFeatureMessageEvent::VncFeatureMessageEvent( const FeatureMessage& featureMessage ) :
-	m_featureMessage( featureMessage )
+    m_featureMessage( featureMessage )
 {
 }
 
@@ -36,9 +36,7 @@ VncFeatureMessageEvent::VncFeatureMessageEvent( const FeatureMessage& featureMes
 
 void VncFeatureMessageEvent::fire( rfbClient* client )
 {
-	vDebug() << "sending message" << m_featureMessage.featureUid()
-			 << "command" << m_featureMessage.command()
-			 << "arguments" << m_featureMessage.arguments();
+	vDebug() << m_featureMessage;
 
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	const char messageType = FeatureMessage::RfbMessageType;

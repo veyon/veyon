@@ -148,7 +148,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
 								   const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
-	vDebug() << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
+	vDebug() << feature.name() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -172,7 +172,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 								  const Feature& feature,
 								  const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
-	vDebug() << "feature" << feature.name() << feature.uid() << computerControlInterfaces;
+	vDebug() << feature.name() << computerControlInterfaces;
 
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -205,9 +205,7 @@ void FeatureManager::updateActiveFeatures( const ComputerControlInterfaceList& c
 bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 										  const FeatureMessage& message ) const
 {
-	vDebug() << "feature" << feature(message.featureUid()).name()
-			 << "command" << message.command()
-			 << "arguments" << message.arguments();
+	vDebug() << feature(message.featureUid()).name().toUtf8().constData() << message << computerControlInterface;
 
 	bool handled = false;
 
@@ -228,9 +226,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
 										   const FeatureMessage& message ) const
 {
-	vDebug() << "feature" << feature(message.featureUid()).name()
-			 << "command" << message.command()
-			 << "arguments" << message.arguments();
+	vDebug() << feature(message.featureUid()).name().toUtf8().constData() << message;
 
 	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
 	{
@@ -255,9 +251,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 
 bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const
 {
-	vDebug() << "feature" << feature(message.featureUid()).name()
-			 << "command" << message.command()
-			 << "arguments" << message.arguments();
+	vDebug() << feature(message.featureUid()).name().toUtf8().constData() << message;
 
 	bool handled = false;
 

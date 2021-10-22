@@ -110,8 +110,7 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 			return false;
 		}
 
-		vDebug() << "received feature message" << featureMessage.command()
-			   << "with arguments" << featureMessage.arguments();
+		vDebug() << featureMessage;
 
 		Q_EMIT featureMessageReceived( featureMessage );
 
