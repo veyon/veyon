@@ -366,37 +366,30 @@ FeatureList VeyonMaster::featureList() const
 	FeatureList features;
 
 	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
-	const auto pluginUids = VeyonCore::pluginManager().pluginUids();
+	auto pluginUids = VeyonCore::pluginManager().pluginUids();
 
-	for( const auto& pluginUid : pluginUids )
+	std::sort( pluginUids.begin(), pluginUids.end() );
+
+	const auto addFeatures = [&]( const std::function<bool(const Feature&)>& extraFilter )
 	{
-		for( const auto& feature : m_featureManager->features( pluginUid ) )
+		for( const auto& pluginUid : pluginUids )
 		{
-			if( feature.testFlag( Feature::Flag::Master ) &&
-				feature.testFlag( Feature::Flag::Mode ) &&
-				feature.testFlag( Feature::Flag::Meta ) == false &&
-				feature.parentUid().isNull() &&
-				disabledFeatures.contains( feature.uid().toString() ) == false )
+			for( const auto& feature : m_featureManager->features( pluginUid ) )
 			{
-				features += feature;
+				if( feature.testFlag( Feature::Flag::Master ) &&
+					feature.testFlag( Feature::Flag::Meta ) == false &&
+					feature.parentUid().isNull() &&
+					disabledFeatures.contains( feature.uid().toString() ) == false &&
+					extraFilter( feature ) )
+				{
+					features += feature;
+				}
 			}
 		}
-	}
+	};
 
-	for( const auto& pluginUid : pluginUids )
-	{
-		for( const auto& feature : m_featureManager->features( pluginUid ) )
-		{
-			if( feature.testFlag( Feature::Flag::Master ) &&
-				feature.testFlag( Feature::Flag::Mode ) == false &&
-				feature.testFlag( Feature::Flag::Meta ) == false &&
-				feature.parentUid().isNull() &&
-				disabledFeatures.contains( feature.uid().toString() ) == false )
-			{
-				features += feature;
-			}
-		}
-	}
+	addFeatures( []( const Feature& feature ) { return feature.testFlag( Feature::Flag::Mode ); } );
+	addFeatures( []( const Feature& feature ) { return feature.testFlag( Feature::Flag::Mode ) == false; } );
 
 	return features;
 }

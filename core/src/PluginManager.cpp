@@ -121,8 +121,6 @@ PluginUidList PluginManager::pluginUids() const
 		pluginUidList += pluginInterface->uid();
 	}
 
-	std::sort( pluginUidList.begin(), pluginUidList.end() );
-
 	return pluginUidList;
 }
 
