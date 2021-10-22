@@ -51,6 +51,6 @@ TextMessageDialog::~TextMessageDialog()
 
 void TextMessageDialog::accept()
 {
-	m_msgStr = ui->textEdit->toPlainText();
+	m_msgStr = ui->textEdit->toHtml();
 	QDialog::accept();
 }
