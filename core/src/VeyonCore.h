@@ -164,6 +164,7 @@ public:
 
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
+	static QString stringify( const QVariantMap& map );
 
 	static bool isAuthenticationKeyNameValid( const QString& authKeyName );
 

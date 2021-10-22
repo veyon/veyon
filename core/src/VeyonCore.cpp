@@ -29,6 +29,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QGroupBox>
+#include <QJsonDocument>
 #include <QLabel>
 #include <QLibraryInfo>
 #include <QProcessEnvironment>
@@ -472,6 +473,13 @@ QString VeyonCore::formattedUuid( QUuid uuid )
 #else
 	return uuid.toString().remove( QLatin1Char('{') ).remove( QLatin1Char('}') );
 #endif
+}
+
+
+
+QString VeyonCore::stringify( const QVariantMap& map )
+{
+	return QString::fromUtf8( QJsonDocument(QJsonObject::fromVariantMap(map)).toJson(QJsonDocument::Compact) );
 }
 
 
