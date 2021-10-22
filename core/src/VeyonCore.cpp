@@ -152,8 +152,6 @@ VeyonCore::~VeyonCore()
 
 VeyonCore* VeyonCore::instance()
 {
-	Q_ASSERT(s_instance != nullptr);
-
 	return s_instance;
 }
 
