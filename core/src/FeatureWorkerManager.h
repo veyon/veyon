@@ -56,7 +56,6 @@ public:
 	void sendMessageToUnmanagedSessionWorker( const FeatureMessage& message );
 
 	bool isWorkerRunning( Feature::Uid featureUid );
-	FeatureUidList runningWorkers();
 
 private:
 	void acceptConnection();

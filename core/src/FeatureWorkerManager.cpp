@@ -242,15 +242,6 @@ bool FeatureWorkerManager::isWorkerRunning( Feature::Uid featureUid )
 
 
 
-FeatureUidList FeatureWorkerManager::runningWorkers()
-{
-	QMutexLocker locker( &m_workersMutex );
-
-	return m_workers.keys();
-}
-
-
-
 void FeatureWorkerManager::acceptConnection()
 {
 	vDebug() << "accepting connection";
