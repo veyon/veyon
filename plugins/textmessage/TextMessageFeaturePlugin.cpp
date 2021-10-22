@@ -138,6 +138,7 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 		auto messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( Argument::Icon ).toInt() ),
 										   tr( "Message from teacher" ),
 										   message.argument( Argument::Text ).toString() );
+		messageBox->setTextInteractionFlags( Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard );
 		messageBox->show();
 
 		connect( messageBox, &QMessageBox::accepted, messageBox, &QMessageBox::deleteLater );
