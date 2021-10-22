@@ -82,7 +82,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 
 VeyonMaster::~VeyonMaster()
 {
-	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces() );
+	shutdown();
 
 	delete m_qmlAppEngine;
 	delete m_mainWindow;
@@ -357,6 +357,39 @@ void VeyonMaster::setAppContainer( QQuickItem* appContainer )
 		m_appContainer = appContainer;
 		Q_EMIT appContainerChanged();
 	}
+}
+
+
+
+void VeyonMaster::shutdown()
+{
+	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces() );
+
+	const auto allMessageQueuesEmpty = [&]() {
+		for( const auto& computerControlInterface : m_computerControlListModel->computerControlInterfaces() )
+		{
+			if( computerControlInterface->isMessageQueueEmpty() == false )
+			{
+				return false;
+			}
+		}
+
+		return true;
+	};
+
+	static constexpr auto MessageQueueWaitTimeout = 60 * 1000;
+	static constexpr auto MessageQueuePollInterval = 10;
+
+	QElapsedTimer messageQueueWaitTimer;
+	messageQueueWaitTimer.start();
+
+	while( allMessageQueuesEmpty() == false &&
+		   messageQueueWaitTimer.elapsed() < MessageQueueWaitTimeout )
+	{
+		QThread::msleep(MessageQueuePollInterval);
+	}
+
+	vDebug() << "finished in" << messageQueueWaitTimer.elapsed() << "ms";
 }
 
 

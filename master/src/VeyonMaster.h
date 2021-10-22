@@ -141,6 +141,8 @@ Q_SIGNALS:
 	void appContainerChanged();
 
 private:
+	void shutdown();
+
 	void initUserInterface();
 
 	void setAppWindow( QQuickWindow* appWindow );
