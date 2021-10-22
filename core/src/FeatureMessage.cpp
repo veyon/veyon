@@ -77,3 +77,14 @@ bool FeatureMessage::receive( QIODevice* ioDevice )
 
 	return false;
 }
+
+
+
+QDebug operator<<(QDebug stream, const FeatureMessage& message)
+{
+	stream << QStringLiteral("FeatureMessage(%1,%2,%3)")
+				  .arg(VeyonCore::formattedUuid(message.featureUid()))
+				  .arg(message.command())
+				  .arg(VeyonCore::stringify(message.arguments())).toUtf8().constData();
+	return stream;
+}
