@@ -65,6 +65,11 @@ public:
 
 	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
 
+	FeatureManager& featureManager() override
+	{
+		return m_featureManager;
+	}
+
 	FeatureWorkerManager& featureWorkerManager() override
 	{
 		return m_featureWorkerManager;
