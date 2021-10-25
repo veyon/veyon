@@ -577,10 +577,12 @@ QString ComputerControlListModel::loggedOnUserInformation( const ComputerControl
 QString ComputerControlListModel::activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	QStringList featureNames;
+	featureNames.reserve( controlInterface->activeFeatures().size() );
 
-	for( const auto& feature : m_master->features() )
+	for( const auto& feature : m_master->featureManager().features() )
 	{
-		if( controlInterface->activeFeatures().contains( feature.uid() ) )
+		if( feature.testFlag( Feature::Flag::Master ) &&
+			controlInterface->activeFeatures().contains( feature.uid() ) )
 		{
 			featureNames.append( feature.displayName() );
 		}
