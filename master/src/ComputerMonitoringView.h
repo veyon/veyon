@@ -93,8 +93,8 @@ protected:
 
 	void runFeature( const Feature& feature );
 
-	bool isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
-									 Feature::Uid featureUid ) const;
+	bool isFeatureOrRelatedFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
+										 Feature::Uid featureUid ) const;
 
 private:
 	VeyonMaster* m_master{nullptr};

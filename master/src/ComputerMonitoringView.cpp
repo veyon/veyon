@@ -221,20 +221,21 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 
 
 
-bool ComputerMonitoringView::isFeatureOrSubFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
-														 Feature::Uid featureUid ) const
+bool ComputerMonitoringView::isFeatureOrRelatedFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
+															 Feature::Uid featureUid ) const
 {
-	auto featureList = FeatureUidList{ featureUid } + m_master->subFeaturesUids( featureUid );
-	featureList.append( m_master->metaFeaturesUids( featureList ) );
+	const auto& relatedFeatures = m_master->featureManager().relatedFeatures( featureUid );
 
 	for( const auto& controlInterface : computerControlInterfaces )
 	{
-		for( const auto& activeFeature : controlInterface->activeFeatures() )
+		if( controlInterface->activeFeatures().contains( featureUid ) ||
+			std::find_if( relatedFeatures.begin(), relatedFeatures.end(),
+						  [&controlInterface](const auto& relatedFeature) {
+							  return controlInterface->activeFeatures().contains( relatedFeature.uid() );
+						  } )
+			!= relatedFeatures.end() )
 		{
-			if( featureList.contains( activeFeature ) )
-			{
-				return true;
-			}
+			return true;
 		}
 	}
 

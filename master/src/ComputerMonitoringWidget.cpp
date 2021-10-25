@@ -214,7 +214,7 @@ void ComputerMonitoringWidget::populateFeatureMenu( const ComputerControlInterfa
 		previousPluginUid = pluginUid;
 
 		if( feature.displayNameActive().isEmpty() == false &&
-			isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
+			isFeatureOrRelatedFeatureActive( computerControlInterfaces, feature.uid() ) )
 		{
 			addFeatureToMenu( feature, feature.displayNameActive() );
 		}
