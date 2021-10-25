@@ -538,5 +538,10 @@ QString ComputerControlListModel::activeFeatures( const ComputerControlInterface
 
 	featureNames.removeAll( {} );
 
+	if( featureNames.isEmpty() )
+	{
+		return tr("[none]");
+	}
+
 	return featureNames.join( QStringLiteral(", ") );
 }
