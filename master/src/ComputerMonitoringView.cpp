@@ -194,27 +194,29 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 		computerControlInterfaces = m_master->filteredComputerControlInterfaces();
 	}
 
-	// mode feature already active?
-	if( feature.testFlag( Feature::Flag::Mode ) &&
-		isFeatureOrSubFeatureActive( computerControlInterfaces, feature.uid() ) )
+	const auto alreadyActive = feature.testFlag( Feature::Flag::Mode ) &&
+							   isFeatureOrRelatedFeatureActive( computerControlInterfaces, feature.uid() );
+
+	if( feature.testFlag( Feature::Flag::Mode ) )
 	{
-		// then stop it
-		m_master->featureManager().stopFeature( *m_master, feature, computerControlInterfaces );
-	}
-	else
-	{
-		// stop all other active mode feature
-		if( feature.testFlag( Feature::Flag::Mode ) )
+		for( const auto& currentFeature : m_master->features() )
 		{
-			for( const auto& currentFeature : m_master->features() )
+			// stop already active or all other active mode features
+			if( currentFeature.testFlag( Feature::Flag::Mode ) && ( alreadyActive || currentFeature != feature ) )
 			{
-				if( currentFeature.testFlag( Feature::Flag::Mode ) && currentFeature != feature )
+				m_master->featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
+
+				const auto subFeatures = m_master->subFeatures( currentFeature.uid() );
+				for( const auto& subFeature : subFeatures )
 				{
-					m_master->featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
+					m_master->featureManager().stopFeature( *m_master, subFeature, computerControlInterfaces );
 				}
 			}
 		}
+	}
 
+	if( alreadyActive == false )
+	{
 		m_master->featureManager().startFeature( *m_master, feature, computerControlInterfaces );
 	}
 }
