@@ -99,26 +99,28 @@ VeyonMaster::~VeyonMaster()
 
 FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 {
-	FeatureList features;
-
 	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
-	const auto pluginUids = VeyonCore::pluginManager().pluginUids();
-
-	for( const auto& pluginUid : pluginUids )
+	if( disabledFeatures.contains( parentFeatureUid.toString() ) )
 	{
-		for( const auto& feature : m_featureManager->features( pluginUid ) )
+		return {};
+	}
+
+	const auto& relatedFeatures = m_featureManager->relatedFeatures( parentFeatureUid );
+
+	FeatureList subFeatures;
+	subFeatures.reserve( relatedFeatures.size() );
+
+	for( const auto& relatedFeature : relatedFeatures )
+	{
+		if( relatedFeature.testFlag( Feature::Flag::Master ) &&
+			relatedFeature.parentUid() == parentFeatureUid &&
+			disabledFeatures.contains( relatedFeature.uid().toString() ) == false )
 		{
-			if( feature.testFlag( Feature::Flag::Master ) &&
-				feature.parentUid() == parentFeatureUid &&
-				disabledFeatures.contains( parentFeatureUid.toString() ) == false &&
-				disabledFeatures.contains( feature.uid().toString() ) == false )
-			{
-				features += feature;
-			}
+			subFeatures += relatedFeature;
 		}
 	}
 
-	return features;
+	return subFeatures;
 }
 
 
