@@ -83,14 +83,12 @@ const NetworkObject& NetworkObjectDirectory::object( NetworkObject::ModelId pare
 	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
-		int index = 0;
 		for( const auto& entry : *it )
 		{
 			if( entry.modelId() == object )
 			{
 				return entry;
 			}
-			++index;
 		}
 	}
 
