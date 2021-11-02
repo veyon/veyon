@@ -55,6 +55,7 @@ QHash<int, QByteArray> ComputerListModel::roleNames() const
 	auto roles = QAbstractListModel::roleNames();
 	roles[UidRole] = "uid";
 	roles[StateRole] = "state";
+	roles[UserLoginNameRole] = "userLoginName";
 	roles[ImageIdRole] = "imageId";
 	roles[GroupsRole] = "groups";
 	return roles;
