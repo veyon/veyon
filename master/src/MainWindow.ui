@@ -145,7 +145,7 @@
       <widget class="QLineEdit" name="filterLineEdit">
        <property name="geometry">
         <rect>
-         <x>560</x>
+         <x>470</x>
          <y>570</y>
          <width>113</width>
          <height>38</height>
@@ -233,7 +233,7 @@
       <widget class="QToolButton" name="filterPoweredOnComputersButton">
        <property name="geometry">
         <rect>
-         <x>680</x>
+         <x>590</x>
          <y>570</y>
          <width>69</width>
          <height>37</height>
@@ -383,6 +383,32 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QToolButton" name="filterComputersWithLoggedOnUsersButton">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>570</y>
+         <width>69</width>
+         <height>37</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Only show computers with logged on users</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/user-group-new.png</normaloff>:/core/user-group-new.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
     </item>

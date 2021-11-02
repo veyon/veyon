@@ -70,6 +70,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->spacerLabel1 );
 	ui->statusBar->addWidget( ui->filterLineEdit, 2 );
 	ui->statusBar->addWidget( ui->filterPoweredOnComputersButton );
+	ui->statusBar->addWidget( ui->filterComputersWithLoggedOnUsersButton );
 	ui->statusBar->addWidget( ui->spacerLabel2, 1 );
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoAdjustComputerIconSizeButton );
@@ -196,10 +197,13 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	// initialize search filter
 	ui->filterPoweredOnComputersButton->setChecked( m_master.userConfig().filterPoweredOnComputers() );
+	ui->filterComputersWithLoggedOnUsersButton->setChecked( m_master.userConfig().filterComputersWithLoggedOnUsers() );
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
 			 this, [this]( const QString& filter ) { ui->computerMonitoringWidget->setSearchFilter( filter ); } );
 	connect( ui->filterPoweredOnComputersButton, &QToolButton::toggled,
 			 this, [this]( bool enabled ) { ui->computerMonitoringWidget->setFilterPoweredOnComputers( enabled ); } );
+	connect( ui->filterComputersWithLoggedOnUsersButton, &QToolButton::toggled,
+			 this, [this]( bool enabled ) { ui->computerMonitoringWidget->setFilterComputersWithLoggedOnUsers( enabled ); } );
 
 	// initialize monitoring screen size slider
 	ui->gridSizeSlider->setMinimum( ComputerMonitoringWidget::MinimumComputerScreenSize );
