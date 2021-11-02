@@ -42,4 +42,9 @@ public:
 
 	static constexpr auto WindowsFirewallServiceError = HRESULT(0x800706D9);
 
+private:
+	bool pingIPv4Address( const QString& hostAddress, bool* result );
+	bool pingIPv6Address( const QString& hostAddress, bool* result );
+	bool pingViaUtility( const QString& hostAddress );
+
 };
