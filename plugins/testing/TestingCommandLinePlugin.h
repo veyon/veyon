@@ -84,6 +84,7 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_authorizedgroups( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_accesscontrolrules( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_isaccessdeniedbylocalstate( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_ping( const QStringList& arguments );
 
 private:
 	QMap<QString, QString> m_commands;
