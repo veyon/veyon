@@ -70,6 +70,7 @@ void ComputerMonitoringView::initializeView( QObject* self )
 void ComputerMonitoringView::saveConfiguration()
 {
 	m_master->userConfig().setFilterPoweredOnComputers( dataModel()->stateFilter() != ComputerControlInterface::State::None );
+	m_master->userConfig().setFilterComputersWithLoggedOnUsers( dataModel()->filterNonEmptyUserLoginNames() );
 	m_master->userConfig().setComputerPositions( saveComputerPositions() );
 	m_master->userConfig().setUseCustomComputerPositions( useCustomComputerPositions() );
 }
@@ -109,6 +110,13 @@ void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
 {
 	dataModel()->setStateFilter( enabled ? ComputerControlInterface::State::Connected :
 										   ComputerControlInterface::State::None );
+}
+
+
+
+void ComputerMonitoringView::setFilterComputersWithLoggedOnUsers( bool enabled )
+{
+	dataModel()->setFilterNonEmptyUserLoginNames( enabled );
 }
 
 

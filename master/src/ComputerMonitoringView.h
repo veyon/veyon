@@ -59,6 +59,7 @@ public:
 	void setSearchFilter( const QString& searchFilter );
 
 	void setFilterPoweredOnComputers( bool enabled );
+	void setFilterComputersWithLoggedOnUsers( bool enabled );
 
 	QStringList groupFilter() const;
 	void setGroupFilter( const QStringList& groups );
