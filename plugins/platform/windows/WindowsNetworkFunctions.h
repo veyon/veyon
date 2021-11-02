@@ -38,4 +38,9 @@ public:
 
 	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
 
+private:
+	bool pingIPv4Address( const QString& hostAddress, bool* result );
+	bool pingIPv6Address( const QString& hostAddress, bool* result );
+	bool pingViaUtility( const QString& hostAddress );
+
 };

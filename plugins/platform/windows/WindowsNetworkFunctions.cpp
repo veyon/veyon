@@ -27,9 +27,15 @@
 #include <windows.h>
 #include <netfw.h>
 #include <mstcpip.h>
+#include <iphlpapi.h>
+#include <icmpapi.h>
+#include <ws2ipdef.h>
+#include <ws2tcpip.h>
 
+#include <QHostAddress>
 #include <QProcess>
 
+#include "HostAddress.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsNetworkFunctions.h"
 
@@ -220,11 +226,22 @@ WindowsNetworkFunctions::WindowsNetworkFunctions() : PlatformNetworkFunctions()
 
 bool WindowsNetworkFunctions::ping( const QString& hostAddress )
 {
-	QProcess pingProcess;
-	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-n"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout ), hostAddress } );
-	pingProcess.waitForFinished( PingProcessTimeout );
+	bool result;
 
-	return pingProcess.exitCode() == 0;
+	const auto convertedAddress = HostAddress(hostAddress).tryConvert(HostAddress::Type::IpAddress);
+	const auto addressProtocol = QHostAddress(convertedAddress).protocol();
+
+	if( addressProtocol == QAbstractSocket::IPv4Protocol && pingIPv4Address(convertedAddress, &result) )
+	{
+		return result;
+	}
+
+	if( addressProtocol == QAbstractSocket::IPv6Protocol && pingIPv6Address(convertedAddress, &result) )
+	{
+		return result;
+	}
+
+	return pingViaUtility(hostAddress);
 }
 
 
@@ -307,4 +324,142 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 	}
 
 	return true;
+}
+
+
+
+bool WindowsNetworkFunctions::pingIPv4Address( const QString& hostAddress, bool* result )
+{
+	if( result == nullptr )
+	{
+		return false;
+	}
+
+	*result = false;
+
+	const IPAddr ipAddress = inet_addr(hostAddress.toLatin1().constData());
+	if( ipAddress == INADDR_NONE )
+	{
+		return false;
+	}
+
+	const auto icmpHandle = IcmpCreateFile();
+	if( icmpHandle == INVALID_HANDLE_VALUE )
+	{
+		IcmpCloseHandle(icmpHandle);
+		return false;
+	}
+
+	std::array<char, 6> sendData{'V', 'e', 'y', 'o', 'n', 0};
+	std::array<char, sizeof(ICMP_ECHO_REPLY) + sendData.size()> replyBuffer;
+
+	const auto success = IcmpSendEcho(icmpHandle, ipAddress, sendData.data(), sendData.size(),
+									   nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
+						 reinterpret_cast<ICMP_ECHO_REPLY *>(replyBuffer.data())->Status == IP_SUCCESS;
+
+	const auto error = GetLastError();
+
+	IcmpCloseHandle(icmpHandle);
+
+	if( success )
+	{
+		*result = true;
+		return true;
+	}
+
+	return error == IP_REQ_TIMED_OUT;
+}
+
+
+
+bool WindowsNetworkFunctions::pingIPv6Address( const QString& hostAddress, bool* result )
+{
+	if( result == nullptr )
+	{
+		return false;
+	}
+
+	*result = false;
+
+	SOCKADDR_IN6 icmp6LocalAddr{};
+	icmp6LocalAddr.sin6_addr = in6addr_any;
+	icmp6LocalAddr.sin6_family = AF_INET6;
+
+	SOCKADDR_IN6 icmp6RemoteAddr{};
+	struct addrinfo hints{};
+	struct addrinfo *res = nullptr;
+
+	hints.ai_family = AF_INET6;
+	hints.ai_socktype = SOCK_STREAM;
+
+	if( getaddrinfo(hostAddress.toLatin1().constData(), nullptr, &hints, &res) != 0 )
+	{
+		return false;
+	}
+
+	auto resalloc = res;
+
+	while( res != nullptr )
+	{
+		if( res->ai_family == AF_INET6 )
+		{
+			memcpy( &icmp6RemoteAddr, res->ai_addr, res->ai_addrlen );
+			icmp6RemoteAddr.sin6_family = AF_INET6;
+			break;
+		}
+
+		res = res->ai_next;
+	}
+
+	freeaddrinfo(resalloc);
+
+	if( icmp6RemoteAddr.sin6_family != AF_INET6 )
+	{
+		return false;
+	}
+
+	const auto icmpFile = Icmp6CreateFile();
+	if( icmpFile == INVALID_HANDLE_VALUE )
+	{
+		return false;
+	}
+
+	using ICMPV6_ECHO_REPLY = struct {
+		IPV6_ADDRESS_EX Address;
+		ULONG Status;
+		unsigned int RoundTripTime;
+	};
+
+	std::array<char, 6> sendData{'V', 'e', 'y', 'o', 'n', 0};
+	std::array<char, sizeof(ICMPV6_ECHO_REPLY) + sendData.size()> replyBuffer;
+
+	const auto success = Icmp6SendEcho2(icmpFile, nullptr, nullptr, nullptr,
+										 &icmp6LocalAddr,
+										 &icmp6RemoteAddr,
+										 sendData.data(), sendData.size(),
+										 nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
+						 reinterpret_cast<ICMPV6_ECHO_REPLY *>(replyBuffer.data())->Status == IP_SUCCESS;
+
+	const auto error = GetLastError();
+
+	IcmpCloseHandle(icmpFile);
+
+	if( success )
+	{
+		*result = true;
+		return true;
+	}
+
+	return error == IP_REQ_TIMED_OUT;
+}
+
+
+
+bool WindowsNetworkFunctions::pingViaUtility( const QString& hostAddress )
+{
+	QProcess pingProcess;
+	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-n"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout ), hostAddress } );
+	pingProcess.waitForFinished( PingProcessTimeout );
+
+	return pingProcess.exitCode() == 0;
 }
