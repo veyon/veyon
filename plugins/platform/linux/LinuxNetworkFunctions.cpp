@@ -32,7 +32,7 @@
 bool LinuxNetworkFunctions::ping( const QString& hostAddress )
 {
 	QProcess pingProcess;
-	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-W"), QStringLiteral("1"), QStringLiteral("-c"), QString::number( PingTimeout / 1000 ), hostAddress } );
+	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-c"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout / 1000 ), hostAddress } );
 	pingProcess.waitForFinished( PingProcessTimeout );
 
 	return pingProcess.exitCode() == 0;
