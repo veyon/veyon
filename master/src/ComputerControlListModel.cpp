@@ -105,6 +105,9 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case StateRole:
 		return QVariant::fromValue( computerControl->state() );
 
+	case UserLoginNameRole:
+		return computerControl->userLoginName();
+
 	case ScreenRole:
 		return computerControl->screen();
 
