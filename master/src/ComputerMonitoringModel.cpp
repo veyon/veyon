@@ -22,6 +22,7 @@
  *
  */
 
+#include "ComputerControlListModel.h"
 #include "ComputerMonitoringModel.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
@@ -30,15 +31,14 @@
 
 
 ComputerMonitoringModel::ComputerMonitoringModel( QObject* parent ) :
-	QSortFilterProxyModel( parent ),
-	m_stateRole( -1 ),
-	m_stateFilter( ComputerControlInterface::State::None )
+	QSortFilterProxyModel( parent )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 
 	setFilterCaseSensitivity( Qt::CaseInsensitive );
+	setUserLoginNameRole( ComputerControlListModel::UserLoginNameRole );
 }
 
 
@@ -47,6 +47,15 @@ void ComputerMonitoringModel::setStateRole( int role )
 {
 	beginResetModel();
 	m_stateRole = role;
+	endResetModel();
+}
+
+
+
+void ComputerMonitoringModel::setUserLoginNameRole( int role )
+{
+	beginResetModel();
+	m_userLoginNameRole = role;
 	endResetModel();
 }
 
@@ -61,12 +70,32 @@ void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State st
 
 
 
+void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames( bool enabled )
+{
+	if( enabled != m_filterNonEmptyUserLoginNames )
+	{
+		beginResetModel();
+		m_filterNonEmptyUserLoginNames = enabled;
+		endResetModel();
+	}
+}
+
+
+
 bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	if( m_stateFilter != ComputerControlInterface::State::None &&
 		m_stateRole >= 0 &&
 		QVariantHelper<ComputerControlInterface::State>::value(
 			sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ), m_stateRole ) ) != m_stateFilter )
+	{
+		return false;
+	}
+
+	if( m_filterNonEmptyUserLoginNames &&
+		userLoginNameRole() >= 0 &&
+		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+							 m_userLoginNameRole ).toString().isEmpty() )
 	{
 		return false;
 	}
