@@ -107,6 +107,9 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case StateRole:
 		return QVariant::fromValue( computerControl->state() );
 
+	case UserLoginNameRole:
+		return computerControl->userLoginName();
+
 	case ImageIdRole:
 		return QStringLiteral("image://%1/%2/%3").arg( imageProvider()->id(),
 													   VeyonCore::formattedUuid( computerControl->computer().networkObjectUid() ),
