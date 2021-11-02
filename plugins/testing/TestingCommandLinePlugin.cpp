@@ -24,6 +24,7 @@
 
 #include "CommandLineIO.h"
 #include "AccessControlProvider.h"
+#include "PlatformNetworkFunctions.h"
 #include "TestingCommandLinePlugin.h"
 
 
@@ -119,4 +120,16 @@ CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_isaccessd
 	}
 
 	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_ping( const QStringList& arguments )
+{
+	if( arguments.count() < 1 )
+	{
+		return NotEnoughArguments;
+	}
+
+	return VeyonCore::platform().networkFunctions().ping( arguments.first() ) ? Successful : Failed;
 }
