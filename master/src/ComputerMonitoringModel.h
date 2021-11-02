@@ -43,6 +43,13 @@ public:
 
 	void setStateRole( int role );
 
+	int userLoginNameRole() const
+	{
+		return m_userLoginNameRole;
+	}
+
+	void setUserLoginNameRole( int role );
+
 	int groupsRole() const
 	{
 		return m_groupsRole;
@@ -57,6 +64,13 @@ public:
 
 	void setStateFilter( ComputerControlInterface::State state );
 
+	bool filterNonEmptyUserLoginNames() const
+	{
+		return m_filterNonEmptyUserLoginNames;
+	}
+
+	void setFilterNonEmptyUserLoginNames( bool enabled );
+
 	const QSet<QString>& groupsFilter() const
 	{
 		return m_groupsFilter;
@@ -69,8 +83,10 @@ protected:
 
 private:
 	int m_stateRole{-1};
+	int m_userLoginNameRole{-1};
 	int m_groupsRole{-1};
 	ComputerControlInterface::State m_stateFilter{ComputerControlInterface::State::None};
+	bool m_filterNonEmptyUserLoginNames{false};
 	QSet<QString> m_groupsFilter;
 
 };

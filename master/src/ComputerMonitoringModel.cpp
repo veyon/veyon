@@ -41,6 +41,7 @@ ComputerMonitoringModel::ComputerMonitoringModel( ComputerControlListModel* sour
 	setFilterCaseSensitivity( Qt::CaseInsensitive );
 	setSortRole( Qt::InitialSortOrderRole );
 	setStateRole( ComputerControlListModel::StateRole );
+	setUserLoginNameRole( ComputerControlListModel::UserLoginNameRole );
 	setGroupsRole( ComputerControlListModel::GroupsRole );
 	sort( 0 );
 }
@@ -51,6 +52,15 @@ void ComputerMonitoringModel::setStateRole( int role )
 {
 	beginResetModel();
 	m_stateRole = role;
+	endResetModel();
+}
+
+
+
+void ComputerMonitoringModel::setUserLoginNameRole( int role )
+{
+	beginResetModel();
+	m_userLoginNameRole = role;
 	endResetModel();
 }
 
@@ -74,6 +84,18 @@ void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State st
 
 
 
+void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames( bool enabled )
+{
+	if( enabled != m_filterNonEmptyUserLoginNames )
+	{
+		beginResetModel();
+		m_filterNonEmptyUserLoginNames = enabled;
+		endResetModel();
+	}
+}
+
+
+
 void ComputerMonitoringModel::setGroupsFilter( const QStringList& groups )
 {
 	beginResetModel();
@@ -93,6 +115,14 @@ bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex
 		stateRole() >= 0 &&
 		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
 							 m_stateRole ).value<ComputerControlInterface::State>() != m_stateFilter )
+	{
+		return false;
+	}
+
+	if( m_filterNonEmptyUserLoginNames &&
+		userLoginNameRole() >= 0 &&
+		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+							 m_userLoginNameRole ).toString().isEmpty() )
 	{
 		return false;
 	}
