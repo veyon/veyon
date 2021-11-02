@@ -41,12 +41,15 @@ WindowsServiceControl::WindowsServiceControl( const QString& name ) :
 									   SERVICE_ALL_ACCESS );
 		if( m_serviceHandle == nullptr )
 		{
-			vCritical() << "could not open service" << m_name;
+			const auto error = GetLastError();
+			vCritical() << qUtf8Printable( QStringLiteral("failed to open service \"%1\" (error %2)")
+											   .arg(m_name).arg(error) );
 		}
 	}
 	else
 	{
-		vCritical() << "the Service Control Manager could not be contacted - service " << m_name << "can't be controlled.";
+		const auto error = GetLastError();
+		vCritical() << qUtf8Printable( QStringLiteral("failed to contact the Service Control Manager (error %1)").arg(error) );
 	}
 }
 
@@ -191,7 +194,8 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 		}
 		else
 		{
-			vCritical() << qUtf8Printable( tr( "The service \"%1\" could not be installed." ).arg( m_name ) );
+			vCritical() << qUtf8Printable( tr("The service \"%1\" could not be installed (error %2).")
+											   .arg( m_name ).arg( error ) );
 		}
 
 		return false;
@@ -204,7 +208,13 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 	SERVICE_FAILURE_ACTIONS serviceFailureActions{};
 	serviceFailureActions.lpsaActions = &serviceActions;
 	serviceFailureActions.cActions = 1;
-	ChangeServiceConfig2( m_serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS, &serviceFailureActions );
+	if( ChangeServiceConfig2( m_serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS, &serviceFailureActions ) == false )
+	{
+		const auto error = GetLastError();
+		vCritical() << qUtf8Printable( tr("Could not change the failure actions config for service \"%1\" (error %2).")
+										   .arg( m_name ).arg( error ) );
+		return false;
+	}
 
 	// Everything went fine
 	vInfo() << qUtf8Printable( tr( "The service \"%1\" has been installed successfully." ).arg( m_name ) );
@@ -228,7 +238,9 @@ bool WindowsServiceControl::uninstall()
 
 	if( DeleteService( m_serviceHandle ) == false )
 	{
-		vCritical() << qUtf8Printable( tr( "The service \"%1\" could not be uninstalled." ).arg( m_name ) );
+		const auto error = GetLastError();
+		vCritical() << qUtf8Printable( tr( "The service \"%1\" could not be uninstalled (error %2)." )
+										   .arg( m_name ).arg( error ) );
 		return false;
 	}
 
@@ -259,7 +271,9 @@ bool WindowsServiceControl::setStartType( int startType )
 							 nullptr	// lpDisplayName
 							 ) == false )
 	{
-		vCritical() << qUtf8Printable( tr( "The start type of service \"%1\" could not be changed." ).arg( m_name ) );
+		const auto error = GetLastError();
+		vCritical() << qUtf8Printable( tr("The start type of service \"%1\" could not be changed (error %2).")
+										   .arg( m_name ).arg( error ) );
 		return false;
 	}
 
