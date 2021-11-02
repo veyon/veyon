@@ -133,8 +133,30 @@ bool WindowsServiceControl::stop()
 	}
 
 	SERVICE_STATUS status;
+	if( QueryServiceStatus( m_serviceHandle, &status ) &&
+		status.dwCurrentState == SERVICE_STOPPED )
+	{
+		return true;
+	}
 
-	// Try to stop the service
+	while( status.dwCurrentState == SERVICE_STOP_PENDING )
+	{
+		Sleep( 1000 );
+		if( QueryServiceStatus( m_serviceHandle, &status ) == false )
+		{
+			const auto error = GetLastError();
+			vWarning() << "failed to wait for stopping service" << m_name
+					   << qUtf8Printable(QStringLiteral("(error %1)").arg(error));
+
+			return false;
+		}
+
+		if( status.dwCurrentState == SERVICE_STOPPED )
+		{
+			return true;
+		}
+	}
+
 	if( ControlService( m_serviceHandle, SERVICE_CONTROL_STOP, &status ) )
 	{
 		while( QueryServiceStatus( m_serviceHandle, &status ) )
@@ -151,12 +173,18 @@ bool WindowsServiceControl::stop()
 
 		if( status.dwCurrentState != SERVICE_STOPPED )
 		{
-			vWarning() << "service" << m_name << "could not be stopped.";
+			vWarning() << "failed to stop service" << m_name;
 			return false;
 		}
+
+		return true;
 	}
 
-	return true;
+	const auto error = GetLastError();
+	vWarning() << "failed to stop service" << m_name
+			   << qUtf8Printable(QStringLiteral("(error %1)").arg(error));
+
+	return false;
 }
 
 
