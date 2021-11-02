@@ -59,6 +59,7 @@ public:
 	void setSearchFilter( const QString& searchFilter );
 
 	void setFilterPoweredOnComputers( bool enabled );
+	void setFilterComputersWithLoggedOnUsers( bool enabled );
 
 	void setComputerScreenSize( int size );
 	int computerScreenSize() const;
