@@ -128,7 +128,22 @@ private:
 
 	static QString connectionUidHeaderFieldName()
 	{
-		return QStringLiteral("Connection-Uid");
+		/*
+			@candiedoperation (https://github.com/candiedoperation)
+			https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2
+			https://www.rfc-editor.org/rfc/rfc7230#appendix-A.2
+
+			HTTP Headers are Case Insensitive. Maximum HTTP Libraries in
+			JavaScript (XHR, Axios, fetch) convert HTTP Headers' to Lowercase
+			and Veyon fails to authenticate as the below code (before this edit)
+			returns QStringLiteral("Connection-Uid") instead of all lowercase
+			QStringLiteral("connection-uid")
+
+			This issue in Veyon was discovered during development of an Android/iOS
+			Client for Veyon at https://github.com/candiedoperation/Monitoring-Center
+		*/
+
+		return QStringLiteral("connection-uid");
 	}
 
 	using WebApiConnectionPointer = QSharedPointer<WebApiConnection>;
