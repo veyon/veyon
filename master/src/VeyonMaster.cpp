@@ -167,6 +167,13 @@ void VeyonMaster::reloadSubFeatures()
 
 
 
+const ComputerControlInterfaceList& VeyonMaster::allComputerControlInterfaces() const
+{
+	return m_computerControlListModel->computerControlInterfaces();
+}
+
+
+
 ComputerControlInterfaceList VeyonMaster::selectedComputerControlInterfaces() const
 {
 	return m_mainWindow->selectedComputerControlInterfaces();
