@@ -127,7 +127,7 @@ public:
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces() const override;
 
-	ComputerControlInterfaceList filteredComputerControlInterfaces();
+	ComputerControlInterfaceList filteredComputerControlInterfaces() const override;
 
 public Q_SLOTS:
 	void runFeature( const Feature& feature );
