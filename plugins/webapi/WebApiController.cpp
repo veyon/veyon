@@ -263,7 +263,7 @@ WebApiController::Response WebApiController::closeConnection( const Request& req
 		return checkResponse;
 	}
 
-	removeConnection( QUuid( request.headers[connectionUidHeaderFieldName()].toString() ) );
+	removeConnection( lookupHeaderField(request.headers, connectionUidHeaderFieldName()).toUuid() );
 
 	return {};
 }
@@ -453,18 +453,38 @@ void WebApiController::removeConnection( QUuid connectionUuid )
 
 
 
+QVariant WebApiController::lookupHeaderField(const Request& request, const QString& fieldName)
+{
+	if( request.headers.contains(fieldName) )
+	{
+		return request.headers[fieldName];
+	}
+
+	for( auto it = request.headers.constBegin(), end = request.headers.constEnd(); it != end; ++it )
+	{
+		if( it.key().compare( fieldName, Qt::CaseInsensitive ) == 0 )
+		{
+			return it.value();
+		}
+	}
+
+	return {};
+}
+
+
+
 WebApiController::LockingConnectionPointer WebApiController::lookupConnection( const Request& request )
 {
 	QReadLocker connectionsReadLocker{&m_connectionsLock};
 
-	return m_connections.value( request.headers[connectionUidHeaderFieldName()].toUuid() );
+	return m_connections.value( lookupHeaderField(request.headers, connectionUidHeaderFieldName()).toUuid() );
 }
 
 
 
 WebApiController::Response WebApiController::checkConnection( const Request& request )
 {
-	const auto connectionUuid = QUuid( request.headers[connectionUidHeaderFieldName()].toString() );
+	const auto connectionUuid = lookupHeaderField(request.headers, connectionUidHeaderFieldName()).toUuid();
 
 	return runInMainThread<WebApiController::Response>( [=]() -> WebApiController::Response {
 		m_connectionsLock.lockForRead();

@@ -131,6 +131,8 @@ private:
 		return QStringLiteral("Connection-Uid");
 	}
 
+	static QVariant lookupHeaderField( const Request& request, const QString& fieldName );
+
 	using WebApiConnectionPointer = QSharedPointer<WebApiConnection>;
 	using LockingConnectionPointer = LockingPointer<WebApiConnectionPointer>;
 
