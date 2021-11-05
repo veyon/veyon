@@ -174,7 +174,7 @@ ComputerControlInterfaceList VeyonMaster::selectedComputerControlInterfaces() co
 
 
 
-ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
+ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces() const
 {
 	const auto rowCount = m_computerMonitoringModel->rowCount();
 

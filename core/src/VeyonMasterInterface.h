@@ -49,5 +49,6 @@ public:
 	virtual ComputerControlInterface& localSessionControlInterface() = 0;
 
 	virtual ComputerControlInterfaceList selectedComputerControlInterfaces() const = 0;
+	virtual ComputerControlInterfaceList filteredComputerControlInterfaces() const = 0;
 
 };
