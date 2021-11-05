@@ -124,20 +124,17 @@ FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 
 
 
-FeatureList VeyonMaster::modeFeatures() const
+FeatureList VeyonMaster::allFeatures() const
 {
 	FeatureList featureList;
 
 	for( const auto& feature : qAsConst( features() ) )
 	{
-		if( feature.testFlag( Feature::Flag::Mode ) )
+		featureList.append( feature );
+		const auto modeSubFeatures = subFeatures( feature.uid() );
+		for( const auto& subFeature : modeSubFeatures )
 		{
-			featureList.append( feature );
-			const auto modeSubFeatures = subFeatures( feature.uid() );
-			for( const auto& subFeature : modeSubFeatures )
-			{
-				featureList.append( subFeature );
-			}
+			featureList.append( subFeature );
 		}
 	}
 
@@ -206,7 +203,7 @@ void VeyonMaster::runFeature( const Feature& feature )
 
 	if( feature.testFlag( Feature::Flag::Mode ) )
 	{
-		stopAllModeFeatures( computerControlInterfaces );
+		stopAllFeatures( computerControlInterfaces );
 
 		if( m_currentMode == feature.uid() ||
 			subFeatures( feature.uid() ).contains( m_featureManager->feature( m_currentMode ) ) )
@@ -248,9 +245,9 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 
 
 
-void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
+void VeyonMaster::stopAllFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	const auto features = modeFeatures();
+	const auto features = allFeatures();
 
 	for( const auto& feature : features )
 	{
@@ -262,7 +259,7 @@ void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& compu
 
 void VeyonMaster::shutdown()
 {
-	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces() );
+	stopAllFeatures( m_computerControlListModel->computerControlInterfaces() );
 
 	const auto allMessageQueuesEmpty = [&]() {
 		for( const auto& computerControlInterface : m_computerControlListModel->computerControlInterfaces() )

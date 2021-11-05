@@ -317,7 +317,7 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 
 void ComputerControlListModel::stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface )
 {
-	m_master->stopAllModeFeatures( { controlInterface } );
+	m_master->stopAllFeatures( { controlInterface } );
 
 	controlInterface->disconnect( &m_master->computerManager() );
 
