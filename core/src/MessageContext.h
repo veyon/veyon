@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT MessageContext
 public:
 	using IODevice = QPointer<QIODevice>;
 
-	explicit MessageContext( QIODevice* ioDevice ) :
+	explicit MessageContext( QIODevice* ioDevice = nullptr ) :
 		m_ioDevice( ioDevice )
 	{
 	}
