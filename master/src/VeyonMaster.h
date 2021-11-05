@@ -98,7 +98,7 @@ public:
 
 	FeatureList subFeatures( Feature::Uid parentFeatureUid ) const;
 
-	FeatureList modeFeatures() const;
+	FeatureList allFeatures() const;
 
 	const Feature::Uid& currentMode() const
 	{
@@ -134,7 +134,7 @@ public:
 public Q_SLOTS:
 	void runFeature( const Feature& feature );
 	void enforceDesignatedMode( const QModelIndex& index );
-	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
+	void stopAllFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 
 Q_SIGNALS:
 	void appWindowChanged();
