@@ -125,6 +125,8 @@ public:
 		return m_localSessionControlInterface;
 	}
 
+	const ComputerControlInterfaceList& allComputerControlInterfaces() const override;
+
 	ComputerControlInterfaceList selectedComputerControlInterfaces() const override;
 
 	ComputerControlInterfaceList filteredComputerControlInterfaces() const override;
