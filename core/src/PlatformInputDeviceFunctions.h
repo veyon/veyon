@@ -33,15 +33,11 @@ class KeyboardShortcutTrapper;
 class PlatformInputDeviceFunctions
 {
 public:
-	using KeySym = uint32_t;
-
 	virtual ~PlatformInputDeviceFunctions() = default;
 
 	virtual void enableInputDevices() = 0;
 	virtual void disableInputDevices() = 0;
 
 	virtual KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) = 0;
-
-	virtual void synthesizeKeyEvent( KeySym keySym, bool down ) = 0;
 
 };

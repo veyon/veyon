@@ -22,7 +22,7 @@
  *
  */
 
-#include "vnckeymap.h"
+#include <windows.h>
 
 #include <QCoreApplication>
 #include <QProcess>
@@ -85,13 +85,6 @@ void WindowsInputDeviceFunctions::disableInputDevices()
 KeyboardShortcutTrapper* WindowsInputDeviceFunctions::createKeyboardShortcutTrapper( QObject* parent )
 {
 	return new WindowsKeyboardShortcutTrapper( parent );
-}
-
-
-
-void WindowsInputDeviceFunctions::synthesizeKeyEvent( KeySym key, bool down )
-{
-	vncKeymap::keyEvent( key, down, false, false );
 }
 
 

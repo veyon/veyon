@@ -26,22 +26,17 @@
 
 #include "PlatformInputDeviceFunctions.h"
 
-class LinuxKeyboardInput;
-
 // clazy:excludeall=copyable-polymorphic
 
 class LinuxInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
 	LinuxInputDeviceFunctions() = default;
-	~LinuxInputDeviceFunctions() override;
 
 	void enableInputDevices() override;
 	void disableInputDevices() override;
 
 	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
-
-	void synthesizeKeyEvent( KeySym keySym, bool down ) override;
 
 private:
 	void setEmptyKeyMapTable();
@@ -53,7 +48,5 @@ private:
 	int m_keyCodeMax{0};
 	int m_keyCodeCount{0};
 	int m_keySymsPerKeyCode{0};
-
-	LinuxKeyboardInput* m_keyboardInput{nullptr};
 
 };
