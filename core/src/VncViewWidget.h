@@ -52,7 +52,7 @@ protected:
 	QSize viewSize() const override;
 	void setViewCursor( const QCursor& cursor ) override;
 
-	void updateFramebufferSize( int w, int h ) override;
+	void updateGeometry() override;
 
 	bool event( QEvent* handleEvent ) override;
 	bool eventFilter( QObject* obj, QEvent* handleEvent ) override;

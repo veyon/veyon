@@ -146,10 +146,8 @@ void VncViewWidget::setViewCursor(const QCursor& cursor)
 
 
 
-void VncViewWidget::updateFramebufferSize( int w, int h )
+void VncViewWidget::updateGeometry()
 {
-	VncView::updateFramebufferSize( w, h );
-
 	resize( effectiveFramebufferSize() );
 
 	Q_EMIT sizeHintChanged();

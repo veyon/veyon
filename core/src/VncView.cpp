@@ -99,6 +99,18 @@ QSize VncView::effectiveFramebufferSize() const
 
 
 
+void VncView::setViewport(QRect viewport)
+{
+	if( m_viewport != viewport )
+	{
+		m_viewport = viewport;
+
+		updateGeometry();
+	}
+}
+
+
+
 void VncView::setViewOnly( bool viewOnly )
 {
 	if( viewOnly == m_viewOnly )
@@ -263,6 +275,8 @@ void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 void VncView::updateFramebufferSize( int w, int h )
 {
 	m_framebufferSize = QSize( w, h );
+
+	updateGeometry();
 }
 
 
