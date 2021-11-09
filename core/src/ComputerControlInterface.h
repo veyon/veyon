@@ -45,6 +45,19 @@ public:
 
 	using State = VncConnection::State;
 
+	struct DisplayProperties {
+		int index;
+		QString name;
+		QRect geometry;
+		bool operator==(const DisplayProperties& other)
+		{
+			return other.index == index &&
+				   other.name == name &&
+				   other.geometry == geometry;
+		}
+	};
+	using DisplayList = QList<DisplayProperties>;
+
 	explicit ComputerControlInterface( const Computer& computer, int port = -1, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
@@ -108,6 +121,15 @@ public:
 
 	void setUserInformation( const QString& userLoginName, const QString& userFullName, int sessionId );
 
+	void updateDisplays();
+
+	const DisplayList& displays() const
+	{
+		return m_displays;
+	}
+
+	void setDisplays( const DisplayList& displays );
+
 	const FeatureUidList& activeFeatures() const
 	{
 		return m_activeFeatures;
@@ -170,6 +192,7 @@ private:
 	QString m_userLoginName;
 	QString m_userFullName;
 	int m_userSessionId{0};
+	DisplayList m_displays;
 	FeatureUidList m_activeFeatures;
 	Feature::Uid m_designatedModeFeature;
 
@@ -189,6 +212,7 @@ Q_SIGNALS:
 	void screenUpdated( QRect rect );
 	void scaledScreenUpdated();
 	void userChanged();
+	void displaysChanged();
 	void stateChanged();
 	void activeFeaturesChanged();
 

@@ -204,6 +204,25 @@ void ComputerControlInterface::setUserInformation( const QString& userLoginName,
 
 
 
+void ComputerControlInterface::updateDisplays()
+{
+	VeyonCore::builtinFeatures().monitoringMode().queryDisplays( { weakPointer() } );
+}
+
+
+
+void ComputerControlInterface::setDisplays( const DisplayList& displays )
+{
+	if( displays != m_displays )
+	{
+		m_displays = displays;
+
+		Q_EMIT displaysChanged();
+	}
+}
+
+
+
 void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFeatures )
 {
 	if( activeFeatures != m_activeFeatures )

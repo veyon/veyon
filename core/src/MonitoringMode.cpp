@@ -23,6 +23,8 @@
  */
 
 #include <QtConcurrent>
+#include <QGuiApplication>
+#include <QScreen>
 
 #include "MonitoringMode.h"
 #include "PlatformSessionFunctions.h"
@@ -43,7 +45,11 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 									Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker | Feature::Flag::Builtin,
 									Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
 									Feature::Uid(), {}, {}, {} ),
-	m_features( { m_monitoringModeFeature, m_queryLoggedOnUserInfoFeature } )
+	m_queryDisplaysFeature( QStringLiteral("QueryDisplays"),
+						   Feature::Flag::Meta,
+						   Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
+						   Feature::Uid(), tr("Query properties of attached displays"), {}, {} ),
+	m_features( { m_monitoringModeFeature, m_queryLoggedOnUserInfoFeature, m_queryDisplaysFeature } )
 {
 }
 
@@ -53,6 +59,14 @@ void MonitoringMode::queryLoggedOnUserInfo( const ComputerControlInterfaceList& 
 {
 	sendFeatureMessage( FeatureMessage{ m_queryLoggedOnUserInfoFeature.uid(), FeatureMessage::DefaultCommand },
 						computerControlInterfaces, false );
+}
+
+
+
+void MonitoringMode::queryDisplays(const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	sendFeatureMessage( FeatureMessage{m_queryDisplaysFeature.uid(), FeatureMessage::DefaultCommand},
+						computerControlInterfaces );
 }
 
 
@@ -67,6 +81,26 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 													  message.argument( Argument::UserSessionId ).toInt() );
 
 		return true;
+	}
+
+	if( message.featureUid() == m_queryDisplaysFeature.uid() )
+	{
+		const auto displayInfoList = message.argument(Argument::DisplayInfoList).toList();
+
+		ComputerControlInterface::DisplayList displays;
+		displays.reserve(displayInfoList.size());
+
+		for(int i = 0; i < displayInfoList.size(); ++i)
+		{
+			const auto displayInfo = displayInfoList.at(i).toMap();
+			ComputerControlInterface::DisplayProperties displayProperties;
+			displayProperties.index = i + 1;
+			displayProperties.name = displayInfo.value(QStringLiteral("name")).toString();
+			displayProperties.geometry = displayInfo.value(QStringLiteral("geometry")).toRect();
+			displays.append(displayProperties);
+		}
+
+		computerControlInterface->setDisplays(displays);
 	}
 
 	return false;
@@ -99,6 +133,29 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 		m_userDataLock.unlock();
 
 		return server.sendFeatureMessageReply( messageContext, reply );
+	}
+
+	if( message.featureUid() == m_queryDisplaysFeature.uid() )
+	{
+		const auto screens = QGuiApplication::screens();
+
+		QVariantList displayInfoList;
+		displayInfoList.reserve(screens.size());
+
+		int index = 1;
+		for(const auto* screen : screens)
+		{
+			QVariantMap displayInfo;
+			displayInfo[QStringLiteral("index")] = index;
+			displayInfo[QStringLiteral("name")] = screen->name();
+			displayInfo[QStringLiteral("geometry")] = screen->geometry();
+			displayInfoList.append(displayInfo);
+			++index;
+		}
+
+		return server.sendFeatureMessageReply( messageContext,
+											   FeatureMessage(m_queryDisplaysFeature.uid())
+												   .addArgument(Argument::DisplayInfoList, displayInfoList) );
 	}
 
 	return false;
