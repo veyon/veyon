@@ -81,10 +81,7 @@ public:
 		return m_viewport;
 	}
 
-	void setViewport( QRect viewport )
-	{
-		m_viewport = viewport;
-	}
+	void setViewport( QRect viewport );
 
 	virtual void setViewOnly( bool viewOnly );
 	void sendShortcut( VncView::Shortcut shortcut );
@@ -105,10 +102,11 @@ protected:
 	virtual void updateView( int x, int y, int w, int h ) = 0;
 	virtual QSize viewSize() const = 0;
 	virtual void setViewCursor( const QCursor& cursor ) = 0;
+	virtual void updateGeometry() = 0;
 
-	virtual void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
-	virtual void updateFramebufferSize( int w, int h );
-	virtual void updateImage( int x, int y, int w, int h );
+	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
+	void updateFramebufferSize( int w, int h );
+	void updateImage( int x, int y, int w, int h );
 
 	void unpressModifiers();
 

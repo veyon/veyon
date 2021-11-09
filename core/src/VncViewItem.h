@@ -38,9 +38,10 @@ public:
 	QSGNode* updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData* updatePaintNodeData ) override;
 
 protected:
-	virtual void updateView( int x, int y, int w, int h ) override;
-	virtual QSize viewSize() const override;
-	virtual void setViewCursor( const QCursor& cursor ) override;
+	void updateView( int x, int y, int w, int h ) override;
+	QSize viewSize() const override;
+	void setViewCursor( const QCursor& cursor ) override;
+	void updateGeometry() override;
 
 	bool event( QEvent* event ) override;
 

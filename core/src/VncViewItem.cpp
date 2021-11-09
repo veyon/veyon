@@ -94,6 +94,12 @@ void VncViewItem::setViewCursor( const QCursor& cursor )
 
 
 
+void VncViewItem::updateGeometry()
+{
+}
+
+
+
 QSize VncViewItem::viewSize() const
 {
 	return { int(width()), int(height()) };
