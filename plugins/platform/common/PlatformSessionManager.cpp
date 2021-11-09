@@ -99,6 +99,8 @@ PlatformSessionManager::SessionId PlatformSessionManager::openSession( const Pla
 		}
 	}
 
+	vWarning() << "Failed to allocate session for platform session" << platformSessionId;
+
 	return PlatformSessionFunctions::InvalidSessionId;
 }
 
