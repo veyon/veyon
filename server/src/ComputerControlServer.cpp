@@ -28,6 +28,7 @@
 #include "BuiltinFeatures.h"
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"
+#include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "HostAddress.h"
 #include "VeyonConfiguration.h"
@@ -36,7 +37,7 @@
 
 ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	QObject( parent ),
-	m_featureWorkerManager( *this, m_featureManager ),
+	m_featureWorkerManager( *this ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),
 	m_vncProxyServer( VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
@@ -120,7 +121,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive( socket );
 
-	return m_featureManager.handleFeatureMessage( *this, MessageContext( socket ), featureMessage );
+	return VeyonCore::featureManager().handleFeatureMessage( *this, MessageContext{socket}, featureMessage );
 }
 
 

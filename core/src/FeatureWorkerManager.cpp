@@ -37,10 +37,9 @@
 
 // clazy:excludeall=detaching-member
 
-FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent ) :
+FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, QObject* parent ) :
 	QObject( parent ),
 	m_server( server ),
-	m_featureManager( featureManager ),
 	m_tcpServer( this )
 {
 	connect( &m_tcpServer, &QTcpServer::newConnection,
@@ -278,7 +277,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		if( message.command() >= 0 )
 		{
-			m_featureManager.handleFeatureMessage( m_server, MessageContext( socket ), message );
+			VeyonCore::featureManager().handleFeatureMessage( m_server, MessageContext( socket ), message );
 		}
 	}
 	else

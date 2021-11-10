@@ -31,12 +31,10 @@
 
 
 FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
-																FeatureManager& featureManager,
 																Feature::Uid featureUid,
 																QObject* parent ) :
 	QObject( parent ),
 	m_worker( worker ),
-	m_featureManager( featureManager ),
 	m_socket( this ),
 	m_featureUid( featureUid )
 {
@@ -97,7 +95,7 @@ void FeatureWorkerManagerConnection::receiveMessage()
 	{
 		if( featureMessage.receive( &m_socket ) )
 		{
-			m_featureManager.handleFeatureMessage( m_worker, featureMessage );
+			VeyonCore::featureManager().handleFeatureMessage( m_worker, featureMessage );
 		}
 	}
 }

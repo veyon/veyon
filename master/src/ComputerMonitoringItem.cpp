@@ -82,7 +82,7 @@ void ComputerMonitoringItem::alignComputers()
 
 void ComputerMonitoringItem::runFeature( QString uid )
 {
-	ComputerMonitoringView::runFeature( master()->featureManager().feature( Feature::Uid( uid ) ) );
+	ComputerMonitoringView::runFeature( VeyonCore::featureManager().feature( Feature::Uid( uid ) ) );
 }
 
 

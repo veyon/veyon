@@ -41,6 +41,7 @@
 #include "AuthenticationManager.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
+#include "FeatureManager.h"
 #include "Filesystem.h"
 #include "HostAddress.h"
 #include "Logger.h"
@@ -112,6 +113,9 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 VeyonCore::~VeyonCore()
 {
+	delete m_featureManager;
+	m_featureManager = nullptr;
+
 	delete m_userGroupsBackendManager;
 	m_userGroupsBackendManager = nullptr;
 
@@ -632,6 +636,7 @@ void VeyonCore::initPlugins()
 void VeyonCore::initManagers()
 {
 	m_authenticationManager = new AuthenticationManager( this );
+	m_featureManager = new FeatureManager(this);
 	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
 }

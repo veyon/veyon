@@ -44,7 +44,7 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent = nullptr );
+	FeatureWorkerManager( VeyonServerInterface& server, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
 	bool startManagedSystemWorker( Feature::Uid featureUid );
@@ -69,7 +69,6 @@ private:
 	static constexpr auto UnmanagedSessionProcessRetryInterval = 5000;
 
 	VeyonServerInterface& m_server;
-	FeatureManager& m_featureManager;
 	QTcpServer m_tcpServer;
 
 	struct Worker

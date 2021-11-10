@@ -381,7 +381,7 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 
 	connect( controlInterface, &ComputerControlInterface::featureMessageReceived, this,
 			 [=]( const FeatureMessage& featureMessage, const ComputerControlInterface::Pointer& computerControlInterface ) {
-				 m_master->featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
+				 VeyonCore::featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
 	} );
 
 	connect( controlInterface, &ComputerControlInterface::screenSizeChanged,
@@ -582,7 +582,7 @@ QString ComputerControlListModel::activeFeatures( const ComputerControlInterface
 	QStringList featureNames;
 	featureNames.reserve( controlInterface->activeFeatures().size() );
 
-	for( const auto& feature : m_master->featureManager().features() )
+	for( const auto& feature : VeyonCore::featureManager().features() )
 	{
 		if( feature.testFlag( Feature::Flag::Master ) &&
 			controlInterface->activeFeatures().contains( feature.uid() ) )

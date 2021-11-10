@@ -80,7 +80,7 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server,
 {
 	if( m_featureControlFeature.uid() == message.featureUid() )
 	{
-		const auto featureUids = server.featureManager().activeFeatures( server );
+		const auto featureUids = VeyonCore::featureManager().activeFeatures( server );
 
 		QStringList featureUidStrings;
 		featureUidStrings.reserve( featureUids.size() );

@@ -202,7 +202,7 @@ void ComputerMonitoringWidget::populateFeatureMenu( const ComputerControlInterfa
 			continue;
 		}
 
-		Plugin::Uid pluginUid = master()->featureManager().pluginUid( feature.uid() );
+		Plugin::Uid pluginUid = VeyonCore::featureManager().pluginUid( feature.uid() );
 
 		if( previousPluginUid.isNull() == false &&
 			pluginUid != previousPluginUid &&
@@ -259,7 +259,7 @@ void ComputerMonitoringWidget::addSubFeaturesToMenu( const Feature& parentFeatur
 
 void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 {
-	const Feature& feature = master()->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
+	const Feature& feature = VeyonCore::featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
 
 	if( index.isValid() && feature.isValid() )
 	{

@@ -212,12 +212,12 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 			// stop already active or all other active mode features
 			if( currentFeature.testFlag( Feature::Flag::Mode ) && ( alreadyActive || currentFeature != feature ) )
 			{
-				m_master->featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
+				VeyonCore::featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
 
 				const auto subFeatures = m_master->subFeatures( currentFeature.uid() );
 				for( const auto& subFeature : subFeatures )
 				{
-					m_master->featureManager().stopFeature( *m_master, subFeature, computerControlInterfaces );
+					VeyonCore::featureManager().stopFeature( *m_master, subFeature, computerControlInterfaces );
 				}
 			}
 		}
@@ -225,7 +225,7 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 
 	if( alreadyActive == false )
 	{
-		m_master->featureManager().startFeature( *m_master, feature, computerControlInterfaces );
+		VeyonCore::featureManager().startFeature( *m_master, feature, computerControlInterfaces );
 	}
 }
 
@@ -234,7 +234,7 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 bool ComputerMonitoringView::isFeatureOrRelatedFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
 															 Feature::Uid featureUid ) const
 {
-	const auto& relatedFeatures = m_master->featureManager().relatedFeatures( featureUid );
+	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures( featureUid );
 
 	for( const auto& controlInterface : computerControlInterfaces )
 	{

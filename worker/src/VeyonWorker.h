@@ -24,7 +24,6 @@
 
 #pragma once
 
-#include "FeatureManager.h"
 #include "VeyonWorkerInterface.h"
 
 class FeatureWorkerManagerConnection;
@@ -44,7 +43,6 @@ public:
 
 private:
 	VeyonCore m_core;
-	FeatureManager m_featureManager{};
 	FeatureWorkerManagerConnection* m_workerManagerConnection{nullptr};
 
 } ;
