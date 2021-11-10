@@ -379,11 +379,6 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 {
 	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
-	connect( controlInterface, &ComputerControlInterface::featureMessageReceived, this,
-			 [=]( const FeatureMessage& featureMessage, const ComputerControlInterface::Pointer& computerControlInterface ) {
-				 VeyonCore::featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
-	} );
-
 	connect( controlInterface, &ComputerControlInterface::screenSizeChanged,
 			 this, &ComputerControlListModel::updateComputerScreenSize );
 
