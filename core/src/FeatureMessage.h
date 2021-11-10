@@ -46,7 +46,9 @@ public:
 		InitCommand = -2,
 	};
 
-	explicit FeatureMessage( FeatureUid featureUid = {}, Command command = InvalidCommand ) :
+	FeatureMessage() = default;
+
+	explicit FeatureMessage( FeatureUid featureUid, Command command = DefaultCommand ) :
 		m_featureUid( featureUid ),
 		m_command( command ),
 		m_arguments()
@@ -106,9 +108,9 @@ public:
 	bool receive( QIODevice* ioDevice );
 
 private:
-	FeatureUid m_featureUid;
-	Command m_command;
-	Arguments m_arguments;
+	FeatureUid m_featureUid{};
+	Command m_command{InvalidCommand};
+	Arguments m_arguments{};
 
 } ;
 
