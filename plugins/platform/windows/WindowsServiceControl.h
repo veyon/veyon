@@ -43,7 +43,6 @@ public:
 	bool stop();
 	bool install( const QString& filePath, const QString& displayName );
 	bool uninstall();
-	int startType();
 	bool setStartType( int startType );
 
 private:
