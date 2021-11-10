@@ -22,6 +22,7 @@
  *
  */
 
+#include <QSslKey>
 #include <QSslSocket>
 
 #include "TlsServer.h"
@@ -37,7 +38,7 @@ TlsServer::TlsServer( const VeyonCore::TlsConfiguration& tlsConfig, QObject* par
 
 void TlsServer::incomingConnection( qintptr socketDescriptor )
 {
-	if( m_tlsConfig.isNull() )
+	if( m_tlsConfig.localCertificate().isNull() || m_tlsConfig.privateKey().isNull() )
 	{
 		auto socket = new QTcpSocket;
 		if( socket->setSocketDescriptor(socketDescriptor) )
