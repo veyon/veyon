@@ -27,7 +27,6 @@
 #include <QMutex>
 #include <QtConcurrent>
 
-#include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "RfbVeyonAuth.h"
 #include "ServerAuthenticationManager.h"
@@ -65,11 +64,6 @@ public:
 
 	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
 
-	FeatureManager& featureManager() override
-	{
-		return m_featureManager;
-	}
-
 	FeatureWorkerManager& featureWorkerManager() override
 	{
 		return m_featureWorkerManager;
@@ -96,7 +90,6 @@ private:
 	QStringList m_failedAuthHosts;
 	QStringList m_failedAccessControlHosts;
 
-	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
 
 	ServerAuthenticationManager m_serverAuthenticationManager;

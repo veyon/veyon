@@ -27,6 +27,7 @@
 #include <QImageWriter>
 
 #include "ComputerControlInterface.h"
+#include "FeatureManager.h"
 #include "PlatformSessionFunctions.h"
 #include "WebApiAuthenticationProxy.h"
 #include "WebApiConfiguration.h"
@@ -238,7 +239,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 				 [this]( const FeatureMessage& featureMessage,
 						 const ComputerControlInterface::Pointer& computerControlInterface ) {
 					 computerControlInterface->lock();
-					 m_featureManager.handleFeatureMessage( computerControlInterface, featureMessage );
+					 VeyonCore::featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
 					 computerControlInterface->unlock();
 				 } );
 
@@ -323,7 +324,7 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 		return checkResponse;
 	}
 
-	const auto& features = m_featureManager.features(); // clazy:exclude=inefficient-qlist
+	const auto& features = VeyonCore::featureManager().features(); // clazy:exclude=inefficient-qlist
 	const auto activeFeatures = lookupConnection( request )->controlInterface()->activeFeatures();
 
 	QVariantList featureList; // clazy:exclude=inefficient-qlist
@@ -363,7 +364,7 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 																	 : FeatureProviderInterface::Operation::Stop;
 	const auto arguments = request.data[k2s(Key::Arguments)].toMap();
 
-	m_featureManager.controlFeature( feature, operation, arguments, { connection->controlInterface() } );
+	VeyonCore::featureManager().controlFeature( feature, operation, arguments, { connection->controlInterface() } );
 
 	return {};
 }
@@ -513,7 +514,7 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 
 WebApiController::Response WebApiController::checkFeature( const QString& featureUid )
 {
-	if( m_featureManager.feature( featureUid ).isValid() == false )
+	if( VeyonCore::featureManager().feature( featureUid ).isValid() == false )
 	{
 		return Error::InvalidFeature;
 	}

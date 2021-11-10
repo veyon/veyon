@@ -47,6 +47,7 @@ class QWidget;
 class AuthenticationCredentials;
 class BuiltinFeatures;
 class CryptoCore;
+class FeatureManager;
 class Filesystem;
 class Logger;
 class NetworkObjectDirectoryManager;
@@ -131,6 +132,11 @@ public:
 		return *( instance()->m_builtinFeatures );
 	}
 
+	static FeatureManager& featureManager()
+	{
+		return *( instance()->m_featureManager );
+	}
+
 	static UserGroupsBackendManager& userGroupsBackendManager()
 	{
 		return *( instance()->m_userGroupsBackendManager );
@@ -203,6 +209,7 @@ private:
 	PlatformPluginManager* m_platformPluginManager;
 	PlatformPluginInterface* m_platformPlugin;
 	BuiltinFeatures* m_builtinFeatures;
+	FeatureManager* m_featureManager{nullptr};
 	UserGroupsBackendManager* m_userGroupsBackendManager;
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 

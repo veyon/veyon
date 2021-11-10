@@ -27,7 +27,6 @@
 #include <QReadWriteLock>
 
 #include "EnumHelper.h"
-#include "FeatureManager.h"
 #include "LockingPointer.h"
 #include "WebApiConnection.h"
 
@@ -144,7 +143,6 @@ private:
 	Response checkFeature( const QString& featureUid );
 
 	const WebApiConfiguration& m_configuration;
-	const FeatureManager m_featureManager;
 	QMap<QUuid, WebApiConnectionPointer> m_connections{};
 	QReadWriteLock m_connectionsLock;
 

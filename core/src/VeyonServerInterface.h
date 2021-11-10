@@ -25,7 +25,6 @@
 #pragma once
 
 class BuiltinFeatures;
-class FeatureManager;
 class FeatureMessage;
 class FeatureWorkerManager;
 class MessageContext;
@@ -35,7 +34,6 @@ class VeyonServerInterface
 public:
 	virtual ~VeyonServerInterface() = default;
 
-	virtual FeatureManager& featureManager() = 0;
 	virtual FeatureWorkerManager& featureWorkerManager() = 0;
 	virtual bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) = 0;
 

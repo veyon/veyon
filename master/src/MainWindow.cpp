@@ -338,7 +338,7 @@ void MainWindow::closeEvent( QCloseEvent* event )
 {
 	if( m_master.currentMode() != VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 	{
-		const Feature& activeFeature = m_master.featureManager().feature( m_master.currentMode() );
+		const Feature& activeFeature = VeyonCore::featureManager().feature( m_master.currentMode() );
 
 		QMessageBox::information( this, tr( "Feature active" ),
 								  tr( "The feature \"%1\" is still active. Please stop it before closing %2." ).

@@ -105,7 +105,7 @@ void DocumentationFigureCreator::createFeatureFigures()
 	for( const auto& feature : features )
 	{
 		auto btn = toolbar->findChild<ToolButton *>( feature.name() );
-		const auto pluginUid = m_master.featureManager().pluginUid( feature.uid() );
+		const auto pluginUid = VeyonCore::featureManager().pluginUid( feature.uid() );
 
 		if( previousPluginUid.isNull() )
 		{
@@ -287,7 +287,7 @@ void DocumentationFigureCreator::createPowerDownTimeInputDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("PowerDownTimeInputDialog.png") );
 	});
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "352de795-7fc4-4850-bc57-525bcb7033f5" ) ) );
 }
 
 
@@ -304,7 +304,7 @@ void DocumentationFigureCreator::createUserLoginDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("UserLoginDialog.png") );
 	});
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "7310707d-3918-460d-a949-65bd152cb958" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "7310707d-3918-460d-a949-65bd152cb958" ) ) );
 }
 
 
@@ -319,7 +319,7 @@ void DocumentationFigureCreator::createTextMessageDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("TextMessageDialog.png") );
 	});
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ) ) );
 }
 
 
@@ -334,7 +334,7 @@ void DocumentationFigureCreator::createOpenWebsiteDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("OpenWebsiteDialog.png") );
 	});
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ) ) );
 }
 
 
@@ -365,7 +365,7 @@ void DocumentationFigureCreator::createStartAppDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("StartAppDialog.png") );
 	});
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ) ) );
 }
 
 
@@ -396,7 +396,7 @@ void DocumentationFigureCreator::createRemoteAccessHostDialogFigure()
 		grabDialog( dialog, {}, QStringLiteral("RemoteAccessHostDialog.png") );
 	} );
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ) ) );
 }
 
 
@@ -441,7 +441,7 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 		} );
 	} );
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ) ) );
 	m_eventLoop.exec();
 }
 
@@ -476,7 +476,7 @@ void DocumentationFigureCreator::createFileTransferDialogFigure()
 		} );
 	} );
 
-	m_master.runFeature( m_master.featureManager().feature( Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ) ) );
+	m_master.runFeature( VeyonCore::featureManager().feature( Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ) ) );
 }
 
 

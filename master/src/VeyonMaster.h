@@ -35,7 +35,6 @@ class BuiltinFeatures;
 class ComputerControlListModel;
 class ComputerManager;
 class ComputerMonitoringModel;
-class FeatureManager;
 class MainWindow;
 class UserConfig;
 
@@ -45,11 +44,6 @@ class VeyonMaster : public VeyonMasterInterface
 public:
 	explicit VeyonMaster( QObject* parent = nullptr );
 	~VeyonMaster() override;
-
-	FeatureManager& featureManager()
-	{
-		return *m_featureManager;
-	}
 
 	UserConfig& userConfig()
 	{
@@ -111,7 +105,6 @@ private:
 	FeatureList featureList() const;
 
 	UserConfig* m_userConfig;
-	FeatureManager* m_featureManager;
 	const FeatureList m_features;
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;

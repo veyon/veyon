@@ -37,8 +37,7 @@
 
 MasterConfigurationPage::MasterConfigurationPage() :
 	ConfigurationPage(),
-	ui(new Ui::MasterConfigurationPage),
-	m_featureManager()
+	ui(new Ui::MasterConfigurationPage)
 {
 	ui->setupUi(this);
 
@@ -139,7 +138,7 @@ void MasterConfigurationPage::populateFeatureComboBox()
 	ui->computerDoubleClickFeature->addItem( QIcon(), tr( "<no feature>" ), QUuid() );
 	ui->computerDoubleClickFeature->insertSeparator( ui->computerDoubleClickFeature->count() );
 
-	for( const auto& feature : m_featureManager.features() )
+	for( const auto& feature : VeyonCore::featureManager().features() )
 	{
 		if( feature.testFlag( Feature::Flag::Master ) &&
 			feature.testFlag( Feature::Flag::Meta ) == false )
@@ -161,7 +160,7 @@ void MasterConfigurationPage::updateFeatureLists()
 	ui->allFeaturesListWidget->clear();
 	ui->disabledFeaturesListWidget->clear();
 
-	for( const auto& feature : qAsConst( m_featureManager.features() ) )
+	for( const auto& feature : qAsConst( VeyonCore::featureManager().features() ) )
 	{
 		if( feature.testFlag( Feature::Flag::Master ) == false ||
 			feature.testFlag( Feature::Flag::Meta ) ||

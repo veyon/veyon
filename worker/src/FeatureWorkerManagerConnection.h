@@ -38,7 +38,6 @@ class FeatureWorkerManagerConnection : public QObject
 	Q_OBJECT
 public:
 	FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
-									FeatureManager& featureManager,
 									Feature::Uid featureUid,
 									QObject* parent = nullptr );
 
@@ -53,7 +52,6 @@ private:
 	void receiveMessage();
 
 	VeyonWorkerInterface& m_worker;
-	FeatureManager& m_featureManager;
 	QTcpSocket m_socket;
 	Feature::Uid m_featureUid;
 	QTimer m_connectTimer{this};

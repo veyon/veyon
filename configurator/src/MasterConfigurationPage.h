@@ -25,9 +25,6 @@
 #pragma once
 
 #include "ConfigurationPage.h"
-#include "FeatureManager.h"
-
-class BuiltinFeatures;
 
 namespace Ui {
 class MasterConfigurationPage;
@@ -56,7 +53,6 @@ private:
 
 	Ui::MasterConfigurationPage *ui;
 
-	FeatureManager m_featureManager;
 	QStringList m_disabledFeatures;
 
 };
