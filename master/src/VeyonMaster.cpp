@@ -61,11 +61,6 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 				 this, &VeyonMaster::enforceDesignatedMode );
 	}
 
-	connect( &m_localSessionControlInterface, &ComputerControlInterface::featureMessageReceived,
-			 this, [=]( const FeatureMessage& featureMessage, const ComputerControlInterface::Pointer& computerControlInterface ) {
-				 VeyonCore::featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
-	} );
-
 	m_localSessionControlInterface.start();
 
 	// attach computer list model to proxy model

@@ -26,6 +26,7 @@
 #include "ComputerControlInterface.h"
 #include "Computer.h"
 #include "FeatureControl.h"
+#include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
@@ -388,7 +389,9 @@ void ComputerControlInterface::updateUser()
 
 void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
 {
-	Q_EMIT featureMessageReceived( message, weakPointer() );
+	lock();
+	VeyonCore::featureManager().handleFeatureMessage( weakPointer(), message );
+	unlock();
 }
 
 

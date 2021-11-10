@@ -188,7 +188,6 @@ private:
 	QTimer m_activeFeaturesUpdateTimer;
 
 Q_SIGNALS:
-	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
 	void screenSizeChanged();
 	void screenUpdated();
 	void userChanged();

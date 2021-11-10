@@ -235,14 +235,6 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 			lifetimeTimer->start( connectionLifetime );
 		} );
 
-		connect( connection->controlInterface().data(), &ComputerControlInterface::featureMessageReceived, this,
-				 [this]( const FeatureMessage& featureMessage,
-						 const ComputerControlInterface::Pointer& computerControlInterface ) {
-					 computerControlInterface->lock();
-					 VeyonCore::featureManager().handleFeatureMessage( computerControlInterface, featureMessage );
-					 computerControlInterface->unlock();
-				 } );
-
 		return QVariantMap{
 			{ connectionUidHeaderFieldName().toLower(), uuidToString( uuid ) },
 			{ k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + connectionLifetime / MillisecondsPerSecond }
