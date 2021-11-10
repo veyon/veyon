@@ -42,10 +42,12 @@ void TlsServer::incomingConnection( qintptr socketDescriptor )
 		auto socket = new QTcpSocket;
 		if( socket->setSocketDescriptor(socketDescriptor) )
 		{
+			vDebug() << "accepting unencrypted connection for socket" << socketDescriptor;
 			addPendingConnection( socket );
 		}
 		else
 		{
+			vCritical() << "failed to set socket descriptor for incoming non-TLS connection";
 			delete socket;
 		}
 	}
@@ -70,10 +72,12 @@ void TlsServer::incomingConnection( qintptr socketDescriptor )
 			socket->setSslConfiguration( m_tlsConfig );
 			socket->startServerEncryption();
 
+			vDebug() << "establishing TLS connection for socket" << socketDescriptor;
 			addPendingConnection( socket );
 		}
 		else
 		{
+			vCritical() << "failed to set socket descriptor for incoming TLS connection";
 			delete socket;
 		}
 	}
