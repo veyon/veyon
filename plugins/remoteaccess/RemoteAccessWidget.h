@@ -55,11 +55,13 @@ protected:
 private:
 	void updatePosition();
 	void updateConnectionState();
+	void updateDisplays();
 
-	RemoteAccessWidget * m_parent;
+	RemoteAccessWidget *m_parent;
 	QTimeLine m_showHideTimeLine;
 
 	ToolButton* m_viewOnlyButton;
+	ToolButton* m_selectDisplayButton;
 	ToolButton* m_sendShortcutButton;
 	ToolButton* m_screenshotButton;
 	ToolButton* m_fullScreenButton;

@@ -30,6 +30,7 @@
 #include "rfb/keysym.h"
 
 #include "RemoteAccessWidget.h"
+#include "RemoteAccessFeaturePlugin.h"
 #include "VncViewWidget.h"
 #include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
@@ -48,6 +49,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_parent( parent ),
 	m_showHideTimeLine( ShowHideAnimationDuration, this ),
 	m_viewOnlyButton( showViewOnlyToggleButton ? new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) : nullptr ),
+	m_selectDisplayButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-system-windows-effect-desktopgrid.png") ), tr( "Select display" ) ) ),
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
 	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
 	m_fullScreenButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/view-fullscreen.png") ), tr( "Fullscreen" ), tr( "Window" ) ) ),
@@ -79,6 +81,11 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	auto vncView = parent->vncView();
 	connect( vncView->connection(), &VncConnection::stateChanged, this, &RemoteAccessWidgetToolBar::updateConnectionState );
 
+	m_selectDisplayButton->hide();
+	m_selectDisplayButton->setMenu( new QMenu );
+	m_selectDisplayButton->setPopupMode( QToolButton::InstantPopup );
+	m_selectDisplayButton->setObjectName( QStringLiteral("displays") );
+
 	auto shortcutMenu = new QMenu();
 	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
 	shortcutMenu->addAction( tr( "Ctrl+Esc" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
@@ -97,6 +104,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->setContentsMargins( 1, 1, 1, 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
+	layout->addWidget( m_selectDisplayButton );
 	layout->addWidget( m_sendShortcutButton );
 	if( m_viewOnlyButton )
 	{
@@ -110,6 +118,9 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	setFixedHeight( m_exitButton->height() );
 
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
+
+	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::displaysChanged,
+			 this, &RemoteAccessWidgetToolBar::updateDisplays );
 }
 
 
@@ -195,10 +206,32 @@ void RemoteAccessWidgetToolBar::updateConnectionState()
 	if( m_parent->vncView()->connection()->state() == VncConnection::State::Connected )
 	{
 		disappear();
+
+		m_parent->vncView()->computerControlInterface()->updateDisplays();
 	}
 	else
 	{
 		appear();
+	}
+}
+
+
+
+void RemoteAccessWidgetToolBar::updateDisplays()
+{
+	const auto displays = m_parent->vncView()->computerControlInterface()->displays();
+	m_selectDisplayButton->setVisible(displays.size() > 1);
+	if(displays.size() > 1)
+	{
+		auto menu = m_selectDisplayButton->menu();
+		menu->clear();
+		menu->addAction( tr( "All displays" ), this, [=]() { m_parent->vncView()->setViewport({}); } );
+		menu->addSeparator();
+		for (const auto& display : displays)
+		{
+			menu->addAction( tr("Display %1 [%2]").arg(display.index).arg(display.name),
+							 this, [=]() { m_parent->vncView()->setViewport(display.geometry); });
+		}
 	}
 }
 
