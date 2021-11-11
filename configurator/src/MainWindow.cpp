@@ -31,6 +31,7 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QSettings>
+#include <QTimer>
 
 #include "Configuration/JsonStore.h"
 #include "Configuration/UiMapping.h"
