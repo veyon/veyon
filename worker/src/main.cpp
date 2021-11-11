@@ -23,7 +23,9 @@
  */
 
 #include <QApplication>
+#include <QIcon>
 
+#include "Feature.h"
 #include "VeyonWorker.h"
 
 

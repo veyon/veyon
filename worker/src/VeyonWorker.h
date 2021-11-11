@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include "VeyonCore.h"
 #include "VeyonWorkerInterface.h"
 
 class FeatureWorkerManagerConnection;
