@@ -21,6 +21,7 @@
  *  USA.
  */
 
+#include <QActionGroup>
 #include <QBitmap>
 #include <QLayout>
 #include <QMenu>
@@ -53,7 +54,8 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
 	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
 	m_fullScreenButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/view-fullscreen.png") ), tr( "Fullscreen" ), tr( "Window" ) ) ),
-	m_exitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Exit" ) ) )
+	m_exitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Exit" ) ) ),
+	m_displaySelectActions( new QActionGroup(this) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
@@ -225,12 +227,25 @@ void RemoteAccessWidgetToolBar::updateDisplays()
 	{
 		auto menu = m_selectDisplayButton->menu();
 		menu->clear();
-		menu->addAction( tr( "All displays" ), this, [=]() { m_parent->vncView()->setViewport({}); } );
+
+		const auto showAllDisplays = menu->addAction( tr( "All displays" ), this, [=]() {
+			m_parent->vncView()->setViewport({});
+		});
+
+		m_displaySelectActions->addAction(showAllDisplays);
+		showAllDisplays->setCheckable(true);
+		showAllDisplays->setChecked(true);
+
 		menu->addSeparator();
+
 		for (const auto& display : displays)
 		{
-			menu->addAction( tr("Display %1 [%2]").arg(display.index).arg(display.name),
-							 this, [=]() { m_parent->vncView()->setViewport(display.geometry); });
+			const auto action = menu->addAction( tr("Display %1 [%2]").arg(display.index).arg(display.name),
+												 this, [=]() {
+													 m_parent->vncView()->setViewport(display.geometry);
+												 });
+			action->setCheckable(true);
+			m_displaySelectActions->addAction(action);
 		}
 	}
 }
