@@ -1056,6 +1056,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Name: %1</source>
         <translation>Name: %1</translation>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation>[keine]</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2935,6 +2939,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Adjust size of computer icons automatically</source>
         <translation>Größe der Computer-Icons automatisch anpassen</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Nur Computer mit angemeldeten Benutzern anzeigen</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3120,6 +3128,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Dieser Modus erlaubt es Ihnen, alle Computer an einem oder mehreren Standorten zu beobachten.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation>Eigenschaften der angeschlossenen Anzeigen abfragen</translation>
     </message>
 </context>
 <context>
@@ -3459,6 +3471,18 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     <message>
         <source>Connecting...</source>
         <translation>Verbinde...</translation>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation>Anzeige auswählen</translation>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation>Alle Anzeigen</translation>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
+        <translation>Anzeige %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -4251,28 +4275,32 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Der Dienst &quot;%1&quot; ist bereits installiert.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Der Dienst &quot;%1&quot; konnte nicht installiert werden.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Der Dienst &quot;%1&quot; wurde erfolgreich installiert.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Der Dienst &quot;%1&quot; konnte nicht deinstalliert werden.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Der Dienst &quot;%1&quot; wurde erfolgreich deinstalliert.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Der Dienst &quot;%1&quot; wurde nicht gefunden.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Der Dienst &quot;%1&quot; konnte nicht installiert werden (Fehler %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>Die Konfiguration der Fehlermaßnahmen für den Dienst &quot;%1&quot; konnte nicht geändert werden (%2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Der Dienst &quot;%1&quot; konnte nicht deinstalliert werden (Fehler %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>Der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden (Fehler %2).</translation>
     </message>
 </context>
 <context>

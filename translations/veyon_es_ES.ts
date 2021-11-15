@@ -657,11 +657,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, especifique el comando para mostrar ayuda de el.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>El comando especificado no existe o no hay ayuda sobre el.</translation>
     </message>
 </context>
 <context>
@@ -986,7 +986,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>El comando especificado no existe o no hay ayuda sobre el.</translation>
     </message>
 </context>
 <context>
@@ -1059,7 +1059,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nombre: %1</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[ninguno/a]</translation>
     </message>
 </context>
 <context>
@@ -1560,27 +1564,27 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Lista de nombres de todas las funciones disponibles</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar tabla con detalles de todas las funciones disponibles</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar una función en un equipo remoto</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Detener una función en un equipo remoto</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, especifique el comando para mostrar ayuda de el.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Muestra una lista con los nombres de todas las funciones disponibles.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1588,43 +1592,43 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>FUNCIÓN</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGUMENTOS</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Inicia la función especificada en el equipo especificado conectándose al Veyon Server que se ejecuta de forma remota. La función se puede especificar por nombre o UID. Utilice el comando ``show`` para ver todas las funciones disponibles. Dependiendo de la función, se deben especificar argumentos adicionales (como el mensaje de texto que se mostrará) codificados como una sola cadena JSON. Consulte la documentación para desarrolladores para obtener más información.</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear la pantalla</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar un mensaje de texto</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Mensaje de prueba</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Empezar una aplicación</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Detiene la función especificada en el equipo especificado al conectarse al servidor Veyon que se ejecuta de forma remota. La función se puede especificar por nombre o UID. Utilice el comando ``show`` para ver todas las funciones disponibles.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Desbloquea la pantalla</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>El comando especificado no existe o no hay ayuda sobre el.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1644,7 +1648,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Trabajador</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1656,35 +1660,35 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Se ha especificado un nombre de función o UID no válido</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>Error al analizar los argumentos codificados en JSON: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Fallo al inicializar las credenciales</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo establecer una conexión con el equipo %1</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Error al enviar el mensaje de control de funciones al equipo %1</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Operaciones de CLI relacionadas con funciones</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para controlar funciones</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Muestra una tabla con información detallada sobre todas las funciones disponibles. Esta información incluye una descripción, el UID, el nombre del complemento que proporciona la función respectiva y algunos otros detalles relacionados con la implementación.</translation>
     </message>
 </context>
 <context>
@@ -2560,27 +2564,27 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Nombres de host almacenados como nombres de dominio completos (FQDN, p. ej. myhost.example.org)</translation>
+        <translation>Nombres de equipo almacenados como nombres de dominio completos (FQDN, p. ej. myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation>Atributo de nombre de host del equipo</translation>
+        <translation>Atributo de nombre de equipo</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>Por favor introduzca un nombre de host de equipo para consultar:</translation>
+        <translation>Por favor introduzca un nombre de equipo para consultar:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation>Nombre de host no válido</translation>
+        <translation>Nombre de equipo no válido</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Configuró los nombres de host de los equipos para que se almacenaran como nombres de dominio completos (FQDN) pero ingresó un nombre de host sin dominio.</translation>
+        <translation>Configuró los nombres de los equipos para que se almacenaran como nombres de dominio completos (FQDN) pero ingresó un nombre de host sin dominio.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Configuró los nombres de host de los equipos para ser almacenados como nombres de host simples sin un nombre de dominio, pero ingresó un nombre de host con una parte de nombre de dominio.</translation>
+        <translation>Configuró los nombres de los equipos para ser almacenados como nombres de equipo simples sin un nombre de dominio, pero ingresó un nombre de equipo con una parte de nombre de dominio.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -2588,23 +2592,23 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation>Introduzca el nombre de host</translation>
+        <translation>Introduzca el nombre de equipo</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Por favor introduzca un nombre de host de equipo cuyos miembros de grupo desee consultar:</translation>
+        <translation>Por favor introduzca un nombre de equipo cuyos miembros de grupo desee consultar:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>No se pudo encontrar un equipo con el nombre de host &quot;%1&quot;. Por favor, compruebe el nombre de host o el parámetro del árbol de equipos.</translation>
+        <translation>No se pudo encontrar un equipo con el nombre &quot;%1&quot;. Por favor, compruebe el nombre de equipo o el parámetro del árbol de equipos.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation>Error al buscar el nombre de host</translation>
+        <translation>Error al buscar el nombre de equipo</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>No se pudo buscar el nombre de host para la dirección IP %1. Por favor, compruebe la configuración de su servidor DNS.</translation>
+        <translation>No se pudo buscar el nombre de equipo para la dirección IP %1. Por favor, compruebe la configuración de su servidor DNS.</translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2612,7 +2616,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Atributo configurado para el nombre de inicio de sesión del usuario o el nombre de host de la computadora (OpenLDAP)</translation>
+        <translation>Atributo configurado para el nombre de inicio de sesión del usuario o el nombre de equipo de la computadora (OpenLDAP)</translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -2940,6 +2944,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Adjust size of computer icons automatically</source>
         <translation>Ajustar el tamaño de los iconos de la computadora automáticamente</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Mostrar solo equipos con usuarios registrados</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3125,6 +3133,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Este modo le permite monitorear todos los equipos en una o más ubicaciones.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3463,6 +3475,18 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation>Conectando ...</translation>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3680,19 +3704,19 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo de sesión</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Modo de sesión local (instancia de servidor único para sesión local principal)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Modo de sesión activa (instancia de servidor único para sesión local o remota activa)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Modo de sesión múltiple (instancia de servidor distinta para cada sesión de escritorio local y remota)</translation>
     </message>
 </context>
 <context>
@@ -3773,7 +3797,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Ejecución interactiva de shell y script para Veyon CLI</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4256,28 +4280,32 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>El servicio &quot;%1&quot; ya está instalado.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>No se pudo instalar el servicio &quot;%1&quot;.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>El servicio &quot;%1&quot; se ha instalado correctamente.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>El servicio &quot;%1&quot; no se pudo desinstalar.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>El servicio &quot;%1&quot; se ha desinstalado correctamente.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>El tipo de inicio de servicio &quot;%1&quot; no se pudo cambiar.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>No se pudo encontrar el servicio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>No se pudo instalar el servicio &quot;%1&quot; (error %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>No se pudo cambiar la configuración de acciones de fallo para el servicio &quot;%1&quot; (error %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>No se pudo desinstalar el servicio &quot;%1&quot; (error %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>No se pudo cambiar el tipo de inicio del servicio &quot;%1&quot; (error %2).</translation>
     </message>
 </context>
 <context>

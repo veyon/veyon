@@ -651,7 +651,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Proszę wybrać nazwę klucza (np. &quot;nauczyciel/publiczny&quot;) jako pierwszy argument</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
@@ -1053,10 +1053,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>nieprawidłowy</translation>
     </message>
     <message>
         <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[none]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1431,19 +1435,19 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj nową aplikacje</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Usuń wybraną aplikację</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj nową stronę</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Nowa aplikacja</translation>
     </message>
 </context>
 <context>
@@ -1578,7 +1582,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetla listę z nazwami wszystkich dostępnych funkcji.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1598,15 +1602,15 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Zablokuj ekran</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl wiadomość tekstową</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Wiadomość testowa</translation>
     </message>
     <message>
         <source>Start an application</source>
@@ -1618,7 +1622,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Odblokuj ekran</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1682,7 +1686,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetla tabelę ze szczegółowymi informacjami o wszystkich dostępnych funkcjach. Informacje te obejmują opis, identyfikator UID, nazwę wtyczki zapewniającej odpowiednią funkcję oraz kilka innych szczegółów związanych z implementacją. </translation>
     </message>
 </context>
 <context>
@@ -2346,7 +2350,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Filtruj według grup komputerów</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
@@ -2613,11 +2617,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Opcje zapytań</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>Zapytanie o zagnieżdżone grupy użytkowników (obsługiwane tylko przez AD)</translation>
     </message>
 </context>
 <context>
@@ -2691,7 +2695,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Sesja użytkownia</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -2933,6 +2937,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3118,6 +3126,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ten tryb umożliwia monitorowanie wszystkich komputerów w co najmniej jednej lokalizacji.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3458,6 +3470,18 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3649,7 +3673,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Numery portów sieciowych</translation>
     </message>
     <message>
         <source>Veyon server</source>
@@ -3812,15 +3836,15 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz co najmniej jeden komputer do dodania.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz co najmniej jeden komputer do usunięcia.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj komputery, klikając środkowym przyciskiem myszy lub klikając pierwszy przycisk poniżej.</translation>
     </message>
 </context>
 <context>
@@ -4002,7 +4026,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Czy na pewno chcesz wylogować WSZYSTKICH użytkowników?</translation>
     </message>
 </context>
 <context>
@@ -4103,7 +4127,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>Dożywotni</translation>
     </message>
     <message>
         <source> h</source>
@@ -4249,28 +4273,32 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>Usługa „%1” jest już zainstalowana.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Nie można zainstalować usługi „%1”.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Usługa „%1” została pomyślnie zainstalowana.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Nie można odinstalować usługi „%1”.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Usługa „%1” została pomyślnie odinstalowana.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Nie można zmienić typu usługi „%1”.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Nie można znaleźć usługi „%1”.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

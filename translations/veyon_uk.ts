@@ -1056,6 +1056,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name: %1</source>
         <translation>Назва: %1</translation>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation>[немає]</translation>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2937,6 +2941,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Adjust size of computer icons automatically</source>
         <translation>Автоматично коригувати розмір піктограм комп&apos;ютерів</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Показувати лише комп&apos;ютери із користувачами у системі</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3122,6 +3130,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>У цьому режимі ви можете спостерігати за усіма комп&apos;ютерами у одному або декількох місцях.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation>Опитати з&apos;єднані дисплеї щодо властивостей</translation>
     </message>
 </context>
 <context>
@@ -3461,6 +3473,18 @@ Please save your work and close all programs.</source>
     <message>
         <source>Connecting...</source>
         <translation>Встановлюємо з&apos;єднання…</translation>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation>Виберіть дисплей</translation>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation>Усі дисплеї</translation>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
+        <translation>Дисплей %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -4253,28 +4277,32 @@ Typically this is required to support terminal servers.</source>
         <translation>Службу «%1» вже встановлено.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Не вдалося встановити службу «%1».</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Службу «%1» було успішно встановлено.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Не вдалося вилучити службу «%1».</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Службу «%1» успішно вилучено.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Не вдалося змінити тип запуску служби «%1».</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Не вдалося знайти службу «%1».</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Не вдалося встановити службу «%1» (помилка %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>Не вдалося змінити налаштування дій у відповідь на помилки для служби «%1» (помилка %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Не вдалося вилучити службу «%1» (помилка %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>TНе вдалося змінити тип запуску служби «%1» (помилка %2).</translation>
     </message>
 </context>
 <context>

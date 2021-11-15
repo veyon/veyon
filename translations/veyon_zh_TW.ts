@@ -142,7 +142,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>找不到預設的使用者群組外掛件。 請檢查您的安裝!</translation>
+        <translation>找不到預設的使用者群組外掛程式。 請檢查您的安裝!</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
@@ -655,11 +655,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>請指定顯示說明的命令。</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定的命令不存在或沒有它的說明可以使用。</translation>
     </message>
 </context>
 <context>
@@ -984,7 +984,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定的命令不存在或沒有它的說明可以使用。</translation>
     </message>
 </context>
 <context>
@@ -1057,7 +1057,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>名稱: %1</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[無]</translation>
     </message>
 </context>
 <context>
@@ -1185,7 +1189,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation>升級並儲存程式及外掛的組態</translation>
+        <translation>升級並儲存程式及外掛程式的組態</translation>
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
@@ -1558,27 +1562,27 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>列出所有可用功能的名稱</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>顯示含所有可用功能的詳細資訊表格</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>啟動遠端主機功能</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>停止遠端主機功能</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>請指定顯示說明的命令。</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>顯示包含所有可用功能名稱的清單。</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1586,43 +1590,43 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>功能</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>引數</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>透過連線到遠端執行的 veyon 伺服器來啟動指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。 根據功能，必須指定編碼為單一 JSON 字串的附加引數 (比如顯示的文字訊息)。 請參閱開發人員文件取得更多資訊</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>鎖定畫面</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>顯示文字資訊</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>測試文字</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>啟動應用程式</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>透過連線到遠端執行的 veyon 伺服器來停止指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>解鎖畫面</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定的命令不存在或沒有它的說明可以使用。</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1642,7 +1646,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Worker</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1654,35 +1658,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>功能名稱或指定的 UID 無效</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>解析 JSON 編碼的參數時錯誤: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>初始化認證失敗</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>無法建立到主機 %1 的連線</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>向主機 %1 傳送功能控制訊息失敗</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>功能相關的 CLI 操作</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>用於控制功能的命令</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>顯示表格，其中包含有關所有可用功能的詳細資料。 這個資訊包含描述、UID、提供相應功能的外掛程式名稱以及其它一些與實現相關的詳細資料。</translation>
     </message>
 </context>
 <context>
@@ -2938,6 +2942,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Adjust size of computer icons automatically</source>
         <translation>自動調整電腦圖示的大小</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>只顯示已登入使用者的電腦</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3124,6 +3132,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>這個模式允許您監視在一個或數個位置的所有電腦。</translation>
     </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3194,7 +3206,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation>顯示包含所有已安裝外掛程式的詳細資訊表格</translation>
+        <translation>顯示含所有已安裝外掛程式的詳細資訊表格</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3214,7 +3226,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation>與外掛程式相關的 CLI 操作</translation>
+        <translation>外掛程式相關的 CLI 操作</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
@@ -3461,6 +3473,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation>正在連線...</translation>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3678,19 +3702,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>工作階段模式</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>本機工作階段模式 (主要本機工作階段的單一伺服器實例)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>使用中工作階段模式 (使用中本機或遠端工作階段的單ㄧ伺服器實例)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>多工作階段模式 (每個本機和遠端桌面工作階段的不同伺服器實例)</translation>
     </message>
 </context>
 <context>
@@ -3771,7 +3795,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Veyon CLI 的交互式殼層和指令碼執行</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4254,28 +4278,32 @@ Typically this is required to support terminal servers.</source>
         <translation>服務「%1」已經安裝。</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>無法安裝服務「%1」。</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>服務「%1」安裝成功。</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>無法解除安裝服務「%1」。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>服務「%1」解除安裝成功。</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>無法變更服務「%1」的啟動類型。</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>找不到服務「%1」。</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>無法安裝服務「%1」的啟動類型 (錯誤 %2)。</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>無法變更服務「%1」的失敗動作組態 (錯誤 %2)。</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>無法解除安裝服務「%1」的啟動類型 (錯誤 %2)。</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>無法變更服務「%1」的啟動類型 (錯誤 %2)。</translation>
     </message>
 </context>
 <context>

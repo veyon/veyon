@@ -1058,6 +1058,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2919,6 +2923,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3103,6 +3111,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3440,6 +3452,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4232,28 +4256,32 @@ Typically this is required to support terminal servers.</source>
         <translation>Tarnyba &quot;%1&quot; jau yra įdiegta.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Tarnyba &quot;%1&quot; negali būti įdiegta.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Tarnyba &quot;%1&quot; buvo sėkmingai įdiegta.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Tarnyba &quot;%1&quot; negali būti išdiegta.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Tarnyba &quot;%1&quot; buvo sėkmingai išdiegta.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Paleisties tipas tarnybai &quot;%1&quot; negali būti pakeistas.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Tarnyba &quot;%1&quot; nerasta.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -655,11 +655,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez spécifier la commande pour afficher l&apos;aide correspondante.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide à son propos.</translation>
     </message>
 </context>
 <context>
@@ -984,7 +984,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide à son propos.</translation>
     </message>
 </context>
 <context>
@@ -1058,6 +1058,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Name: %1</source>
         <translation>Nom: %1</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[Aucun]</translation>
     </message>
 </context>
 <context>
@@ -1517,7 +1521,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Handout</source>
-        <translation>don</translation>
+        <translation>Don</translation>
     </message>
     <message>
         <source>Texts to read</source>
@@ -1547,38 +1551,38 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation>Port :</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Mot de passe:</translation>
+        <translation>Mot de passe :</translation>
     </message>
 </context>
 <context>
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Lister les noms de toutes les fonctionnalités disponibles</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Afficher le tableau avec les détails de toutes les fonctionnalités disponibles</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Démarrer la fonctionnalité sur un hôte distant</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Arrêter la fonctionnalité sur un hôte distant</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez spécifier la commande pour afficher l&apos;aide correspondante.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Affiche une liste avec le nom de toutes les fonctionnalités disponibles.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1586,43 +1590,43 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>FONCTIONNALITÉS</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGUMENTS</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Démarre la fonctionnalité spécifiée sur l&apos;hôte spécifié en se connectant au serveur Veyon exécuté à distance. La fonctionnalité peut être spécifiée par nom ou UID. Utilisez la commande ``show`` pour voir toutes les fonctionnalités disponibles. Selon la fonctionnalité, des arguments supplémentaires (tels que le message texte à afficher) codés sous la forme d&apos;une chaîne JSON unique doivent être spécifiés. Veuillez vous référer à la documentation du développeur pour plus d&apos;informations</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Verrouiller l&apos;écran</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Afficher un message</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Message de test</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Démarrer une application</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Arrête la fonctionnalité spécifiée sur l&apos;hôte spécifié en se connectant au serveur Veyon exécuté à distance. La fonctionnalité peut être spécifiée par nom ou UID. Utilisez la commande ``show`` pour voir toutes les fonctionnalités disponibles.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Déverrouiller l&apos;écran</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1642,7 +1646,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Travailleur</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1654,35 +1658,35 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Nom de fonction ou UID spécifié non valide</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>Erreur lors de l&apos;analyse des arguments encodés en JSON : %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Échec de l&apos;initialisation des informations d&apos;identification</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;établir une connexion avec l&apos;hôte %1</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Échec de l&apos;envoi du message de contrôle des fonctionnalités à l&apos;hôte %1</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Opérations CLI liées aux fonctionnalités</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Commandes pour contrôler les fonctionnalités</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Affiche un tableau avec des informations détaillées sur toutes les fonctionnalités disponibles. Ces informations incluent une description, l&apos;UID, le nom du plugin fournissant la fonctionnalité respective et d&apos;autres détails liés à l&apos;implémentation.</translation>
     </message>
 </context>
 <context>
@@ -2938,6 +2942,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Adjust size of computer icons automatically</source>
         <translation>Ajuster automatiquement la taille des icônes d&apos;ordinateur</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Afficher uniquement les ordinateurs avec des utilisateurs connectés</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3123,6 +3131,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ce mode vous permet de surveiller tous les ordinateurs d&apos;un ou de plusieurs emplacements.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation>Propriétés de requête des affichages attachés</translation>
     </message>
 </context>
 <context>
@@ -3463,6 +3475,18 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <source>Connecting...</source>
         <translation>En cours de connexion</translation>
     </message>
+    <message>
+        <source>Select display</source>
+        <translation>Sélectionner l&apos;affichage</translation>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation>Tous les affichages</translation>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
+        <translation>Affichage %1 [%2]</translation>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3771,7 +3795,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Shell interactif et exécution de script pour Veyon CLI</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4254,28 +4278,32 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Le service &quot;%1&quot; est déjà installé.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Le service &quot;%1&quot; ne peut pas être installé.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Le service &quot;%1&quot; a été installé avec succès.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Le service &quot;%1&quot; ne peut pas être désinstallé.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Le service &quot;%1&quot; a été désinstallé avec succès.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Le type de démarrage du service &quot;%1&quot; ne peut pas être changé.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Service &quot;%1&quot; impossible à trouvé.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Le service &quot;%1&quot; n&apos;a pas pu être installé (erreur %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>Impossible de modifier la configuration des actions d&apos;échec pour le service &quot;%1&quot; (erreur %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Le service &quot;%1&quot; n&apos;a pas pu être désinstallé (erreur %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>Le type de démarrage du service &quot;%1&quot; n&apos;a pas pu être modifié (erreur %2).</translation>
     </message>
 </context>
 <context>

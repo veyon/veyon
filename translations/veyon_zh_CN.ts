@@ -1060,6 +1060,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2939,6 +2943,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3124,6 +3132,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>此模式允许您在一个或多个地点监控所有计算机。</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3462,6 +3474,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4255,28 +4279,32 @@ Typically this is required to support terminal servers.</source>
         <translation>服务 &quot;%1&quot; 已安装。</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>服务 &quot;%1&quot; 未能安装。</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>服务 &quot;%1&quot; 已成功安装。</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>服务 &quot;%1&quot; 未能卸载。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>服务 &quot;%1&quot; 已成功卸载。</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>服务 &quot;%1&quot; 的启动类型无法更改。</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>服务 &quot;%1&quot; 未找到。</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

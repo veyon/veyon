@@ -632,7 +632,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>認証キーを管理するためのコマンドラインのサポート</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -1060,6 +1060,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -1322,7 +1326,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>自分の画面、または選択したユーザーの画面を他のユーザーに共有します</translation>
     </message>
     <message>
         <source>Full screen demo</source>
@@ -1471,7 +1475,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>全てのコンピューターでアプリケーションを起動します</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
@@ -2858,7 +2862,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>ローカル設定をリセットし、すべての設定をデフォルトに戻して良いですか？</translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -2902,7 +2906,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
+        <translation>コンピュータの自由配置を使用する</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
@@ -2919,6 +2923,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>コンピューターアイコンのサイズを自動で調整する</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3106,6 +3114,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>このモードでは、全てのコンピューターを1つ以上の場所でモニターできるようになります。</translation>
     </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3126,7 +3138,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Webサイトのメニューに追加・記録する</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
@@ -3138,7 +3150,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name:</source>
-        <translation>例:</translation>
+        <translation>名前:</translation>
     </message>
 </context>
 <context>
@@ -3243,7 +3255,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>選択したコンピューターを再起動して良いですか？</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3298,15 +3310,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>全てのコンピューターを再起動しても良いですか？</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>全てのコンピューターをシャットダウンしても良いですか？</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>選択したコンピューターをシャットダウンしても良いですか？</translation>
     </message>
 </context>
 <context>
@@ -3317,15 +3329,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>選択されているコンピュータの電源を切るまでのタイムアウト時間を指定してください。</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>分</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>秒</translation>
     </message>
 </context>
 <context>
@@ -3344,7 +3356,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>リモート操作ウィンドウを開きます</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3356,7 +3368,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>アクセスするコンピュータのホスト名、またはIPアドレスを入力してください</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3444,6 +3456,18 @@ Please save your work and close all programs.</source>
         <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3507,15 +3531,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>スクリーンショット取得</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>%1 台のコンピューターのスクリーンショットを正常に取得しました</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>コンピューターのスクリーンショットを取得しローカルに保存しました</translation>
     </message>
 </context>
 <context>
@@ -3554,7 +3578,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>選択したスクリーンショットを削除しても良いですか？</translation>
     </message>
 </context>
 <context>
@@ -3797,15 +3821,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>追加するコンピューターを少なくとも１台は選択してください</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>削除するコンピューターを少なくとも１台は選択してください</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>マウスの中ボタンをクリックするか、下の１つ目のボタンをクリックして、コンピューターを追加します</translation>
     </message>
 </context>
 <context>
@@ -3816,7 +3840,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation>例:</translation>
+        <translation>名前:</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -3824,7 +3848,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>アプリケーションのメニューに追加・記録する</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -3832,7 +3856,8 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>選択したコンピューターで起動するアプリケーションを入力してください
+複数のアプリケーションを行ごとに分けることができます</translation>
     </message>
 </context>
 <context>
@@ -3872,7 +3897,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>下のフィールドを使用して、選択したすべてのユーザーに送信するメッセージを入力します</translation>
     </message>
 </context>
 <context>
@@ -3883,7 +3908,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>例えば新しい作業を指示するなど、この機能を使用してすべてのユーザーにテキストメッセージを送信できます</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3944,7 +3969,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>すべてのコンピュータで自動ログインする為にユーザー名とパスワードを入力してください。</translation>
     </message>
     <message>
         <source>Username</source>
@@ -3979,7 +4004,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>選択したユーザーをログオフしても良いですか？</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -3987,7 +4012,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>全てのユーザーをログオフしても良いですか？</translation>
     </message>
 </context>
 <context>
@@ -4234,15 +4259,7 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4250,12 +4267,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>サービス &quot;％1&quot;が見つかりませんでした。</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>サービス &quot;％1&quot;が見つかりませんでした。</translation>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

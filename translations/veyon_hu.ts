@@ -1059,6 +1059,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2938,6 +2942,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3123,6 +3131,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ez az alapértelmezett mód, ami lehetővé teszi, hogy monitorozd az egy vagy több helyszínen lévő összes számítógépet.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3459,6 +3471,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4251,28 +4275,32 @@ Typically this is required to support terminal servers.</source>
         <translation>&quot;%1&quot; szolgáltatás már telepítve van.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>&quot;%1&quot; szolgáltatás nem telepíthető.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>&quot;%1&quot; szolgáltatást sikeresen telepítette.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>&quot;%1&quot; szolgáltatás nem távolítható el.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>&quot;%1&quot; szolgáltatást sikeresen eltávolította.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>&quot;%1&quot; szolgáltatás indítási típusa nem módosítható. </translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>&quot;%1&quot; szolgáltatás nem található.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

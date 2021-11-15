@@ -1059,6 +1059,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2924,6 +2928,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3108,6 +3116,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3445,6 +3457,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4237,15 +4261,7 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4253,12 +4269,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Serviço &quot;%1&quot; não foi encontrado.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Serviço &quot;%1&quot; não foi encontrado.</translation>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

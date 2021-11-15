@@ -1059,6 +1059,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2934,6 +2938,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3119,6 +3127,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Tento režim umožňuje monitorovat veškeré počítače v jednom a více umístěních.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3457,6 +3469,18 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4250,28 +4274,32 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Služba „%1“ je už nainstalovaná.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Službu „%1“ se nepodařilo nainstalovat</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Služba „%1“ byla úspěšně nainstalována.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Službu „%1“ se nepodařilo odinstalovat.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Služba „%1“ byla úspěšně odinstalována.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Typ spouštění služby „%1“ nemůže být změněn.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Službu „%1“ se nedaří najít.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1059,6 +1059,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2930,6 +2934,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3115,6 +3123,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Bu mod, bir veya daha fazla konumdaki tüm bilgisayarları izlemenizi sağlar.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3453,6 +3465,18 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4246,28 +4270,32 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation>&quot;%1&quot; hizmeti zaten yüklü.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>&quot;%1&quot; hizmeti yüklenemedi.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>&quot;%1&quot; hizmeti başarıyla yüklendi.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>&quot;%1&quot; hizmeti kaldırılamadı.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>&quot;%1&quot; hizmeti başarıyla kaldırıldı.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>&quot;%1&quot; hizmetinin başlangıç ​​türü değiştirilemedi.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>&quot;%1&quot; hizmeti bulunamadı.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

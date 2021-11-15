@@ -1059,6 +1059,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Name: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2938,6 +2942,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3123,6 +3131,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ovaj način rada omogućuje vam praćenje svih računara na jednoj ili više lokacija.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3461,6 +3473,18 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4254,28 +4278,32 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Servis &quot;%1&quot; je već instaliran.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Servis &quot;%1&quot; ne može biti instaliran.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Servis &quot;%1&quot; je instaliran uspešno.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Servis &quot;%1&quot; ne može biti deinstalisan.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Servis &quot;%1&quot; je deinstalisan uspešno.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Tip startanja servisa &quot;%1&quot; ne može biti promenjen.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Servis &quot;%1&quot; ne može biti pronađen.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

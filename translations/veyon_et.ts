@@ -1059,6 +1059,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Name: %1</source>
         <translation>Nimi: %1</translation>
     </message>
+    <message>
+        <source>[none]</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
@@ -2938,6 +2942,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Adjust size of computer icons automatically</source>
         <translation>Kohandage arvuti ikoonide suurust automaatselt</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3123,6 +3131,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>See režiim võimaldab teil jälgida kõiki arvuteid ühes või mitmes kohas.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3462,6 +3474,18 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Connecting...</source>
         <translation>Ühendamine...</translation>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4254,28 +4278,32 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Teenus &quot;%1&quot; on juba installitud.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Teenust &quot;%1&quot; ei saanud installida.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Teenus &quot;%1&quot; installiti edukalt.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Teenust &quot;%1&quot; ei saanud desinstallida.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Teenuse &quot;%1&quot; desinstallimine õnnestus.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Teenuse algustüüpi &quot;%1&quot; ei saanud muuta.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Teenust &quot;%1&quot; ei leitud.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

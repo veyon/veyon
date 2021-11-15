@@ -651,15 +651,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Укажите имя ключа (например, &quot;teacher/public&quot;) в качестве первого аргумента.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Укажите команду, для которой следует показать справку.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Указанная команда не существует, или для неё недоступна справка.</translation>
     </message>
 </context>
 <context>
@@ -984,7 +984,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Указанная команда не существует, или для неё недоступна справка.</translation>
     </message>
 </context>
 <context>
@@ -1053,10 +1053,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>некорректно</translation>
     </message>
     <message>
         <source>Name: %1</source>
+        <translation>Имя: %1</translation>
+    </message>
+    <message>
+        <source>[none]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1423,27 +1427,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Приложения и веб-сайты</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Предопределённые приложения</translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Добавить новое приложение</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Удалить выбранное приложение</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Добавить новый веб-сайт</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Новое приложение</translation>
     </message>
 </context>
 <context>
@@ -1466,23 +1470,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Запустить приложение</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Нажмите эту кнопку, чтобы запустить приложение на всех компьютерах.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Запустить приложение &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Другое приложение</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Запустить программы и открыть веб-сайты в сеансах пользователей</translation>
     </message>
 </context>
 <context>
@@ -1529,7 +1533,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Другое приложение</translation>
     </message>
 </context>
 <context>
@@ -1558,27 +1562,27 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Показать названия всех доступных функций</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Показать таблицу с описанием всех доступных функций</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Запустить функцию на удалённом хосте</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Остановить функцию на удалённом хосте</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Укажите команду, для которой следует показать справку.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Показывает список с именами всех доступных функций.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1586,43 +1590,43 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>ФУНКЦИЯ</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>АРГУМЕНТЫ</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Запускает указанную функцию на указанном хосте путём соединения с запущенным удалённо сервером Veyon. Функцию можно указать по имени или UID. Воспользуйтесь командой &quot;show&quot; для просмотра списка всех доступных функций. В зависимости от функции, могут указываться дополнительные аргументы (например, текстовое сообщение для показа), которые должны быть закодированы в одну строку JSON. Чтобы узнать больше, обратитесь к документации для разработчиков.</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Заблокировать экран</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Показать текстовое сообщение</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Проверочное сообщение</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Запустить приложение</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Останавливает указанную функцию на указанном хосте путём соединения с запущенным удалённо сервером Veyon. Функцию можно указать по имени или UID. Воспользуйтесь командой &quot;show&quot; для просмотра списка всех доступных функций.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Разблокировать экран</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Указанная команда не существует, или для неё недоступна справка.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1642,7 +1646,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Рабочая станция</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1650,39 +1654,39 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Плагин</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Указано некорректное имя или UID функции</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>Ошибка при обработке аргументов в кодировке JSON: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось инициализировать регистрационные данные</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить подключение к хосту %1</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось отправить сообщение управления функциями хосту %1</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Связанные с функцией операции CLI</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Команды для управления функциями</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Показывает таблицу с подробной информацией обо всех доступных функциях. Эта информация включает описание, UID, имя плагина, предоставляющего соответствующую функцию, и некоторые другие сведения, которые относятся к реализации.</translation>
     </message>
 </context>
 <context>
@@ -2618,11 +2622,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Параметры запроса</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>Опросить вложенные группы пользователей (поддерживается только AD)</translation>
     </message>
 </context>
 <context>
@@ -2692,15 +2696,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Последовательность ключей для входа</translation>
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Сеансы пользователей</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Минимальная продолжительность сеанса перед запуском сервера</translation>
     </message>
 </context>
 <context>
@@ -2938,6 +2942,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Adjust size of computer icons automatically</source>
         <translation>Автоматическая регулировка размера значков компьютера</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3123,6 +3131,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>В этом режиме вы можете наблюдать за всеми компьютерами в одном или нескольких местах.</translation>
+    </message>
+    <message>
+        <source>Query properties of attached displays</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3317,15 +3329,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Действительно перезагрузить &lt;b&gt;ВСЕ&lt;/b&gt; компьютеры?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Действительно выключить &lt;b&gt;ВСЕ&lt;/b&gt; компьютеры?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Действительно выключить выбранные компьютеры?</translation>
     </message>
 </context>
 <context>
@@ -3461,6 +3473,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation>Подключение...</translation>
+    </message>
+    <message>
+        <source>Select display</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All displays</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display %1 [%2]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3678,19 +3702,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим сеанса</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Режим локального сеанса (один экземпляр сервера для основного локального сеанса)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Режим активного сеанса (один экземпляр сервера для активного локального или удалённого сеанса)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Режим мультисеанса (отдельный экземпляр сервера для каждого сеанса локального и удалённого рабочего стола)</translation>
     </message>
 </context>
 <context>
@@ -3771,7 +3795,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Интерактивная оболочка и способ выполнения сценариев для CLI Veyon</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3832,7 +3856,7 @@ Typically this is required to support terminal servers.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Запустить приложение</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3844,7 +3868,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Запомнить и добавить в меню приложений</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -3852,7 +3876,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Укажите приложения для запуска на выбранных компьютерах. Чтобы перечислить несколько приложений, укажите каждое в отдельной строке.</translation>
     </message>
 </context>
 <context>
@@ -4007,7 +4031,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Действительно выполнить выход из системы для &lt;b&gt;ВСЕХ&lt;/b&gt; пользователей?</translation>
     </message>
 </context>
 <context>
@@ -4254,28 +4278,32 @@ Typically this is required to support terminal servers.</source>
         <translation>Служба «%1» уже установлена.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Не удалось установить службу «%1».</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Служба «%1» была успешно установлена.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Не удалось деинсталлировать службу «%1».</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Служба «%1» была успешно деинсталирована.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Не удалось изменить тип запуска службы «%1».</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Не удалось найти службу «%1».</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
