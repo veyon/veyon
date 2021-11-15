@@ -4,9 +4,9 @@ jobs:
     strategy:
       matrix:
         dist:
-          - centos.8.3
+          - centos.8.4
           - debian.buster
-          - fedora.34
+          - fedora.35
           - opensuse.15.2
           - ubuntu.focal
     runs-on: ubuntu-latest
