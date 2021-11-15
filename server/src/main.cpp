@@ -22,7 +22,7 @@
  *
  */
 
-#include <QCoreApplication>
+#include <QGuiApplication>
 
 #include "ComputerControlServer.h"
 #include "VeyonConfiguration.h"
@@ -32,7 +32,7 @@ int main( int argc, char **argv )
 {
 	VeyonCore::setupApplicationParameters();
 
-	QCoreApplication app( argc, argv );
+	QGuiApplication app( argc, argv );
 
 	VeyonCore core( &app, VeyonCore::Component::Server, QStringLiteral("Server") );
 
