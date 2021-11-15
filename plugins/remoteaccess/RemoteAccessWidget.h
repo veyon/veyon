@@ -28,6 +28,8 @@
 #include <QTimeLine>
 #include <QWidget>
 
+class QActionGroup;
+
 class VncViewWidget;
 class RemoteAccessWidget;
 class ToolButton;
@@ -66,6 +68,8 @@ private:
 	ToolButton* m_screenshotButton;
 	ToolButton* m_fullScreenButton;
 	ToolButton* m_exitButton;
+
+	QActionGroup* m_displaySelectActions{nullptr};
 
 	static constexpr int ShowHideAnimationDuration = 300;
 	static constexpr int DisappearDelay = 500;
