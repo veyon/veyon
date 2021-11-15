@@ -123,6 +123,8 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::displaysChanged,
 			 this, &RemoteAccessWidgetToolBar::updateDisplays );
+
+	vncView->computerControlInterface()->updateDisplays();
 }
 
 
