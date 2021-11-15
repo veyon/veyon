@@ -11,7 +11,7 @@ build-linux:
     matrix:
       - DISTRO:
         - centos.7.9
-        - centos.8.3
+        - centos.8.4
         - debian.buster
         - debian.bullseye
         - fedora.34
