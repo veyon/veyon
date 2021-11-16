@@ -83,10 +83,11 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	auto vncView = parent->vncView();
 	connect( vncView->connection(), &VncConnection::stateChanged, this, &RemoteAccessWidgetToolBar::updateConnectionState );
 
-	m_selectDisplayButton->hide();
 	m_selectDisplayButton->setMenu( new QMenu );
 	m_selectDisplayButton->setPopupMode( QToolButton::InstantPopup );
 	m_selectDisplayButton->setObjectName( QStringLiteral("displays") );
+
+	updateDisplays();
 
 	auto shortcutMenu = new QMenu();
 #if QT_VERSION < 0x050600
@@ -239,32 +240,57 @@ void RemoteAccessWidgetToolBar::updateConnectionState()
 
 void RemoteAccessWidgetToolBar::updateDisplays()
 {
+	const auto checkedDisplayName = m_displaySelectActions->checkedAction() ?
+										m_displaySelectActions->checkedAction()->text() : QString{};
+
 	const auto displays = m_parent->vncView()->computerControlInterface()->displays();
 	m_selectDisplayButton->setVisible(displays.size() > 1);
+
+	const auto menu = m_selectDisplayButton->menu();
+	menu->clear();
+
 	if(displays.size() > 1)
 	{
-		auto menu = m_selectDisplayButton->menu();
-		menu->clear();
-
 		const auto showAllDisplays = menu->addAction( tr( "All displays" ), this, [=]() {
 			m_parent->vncView()->setViewport({});
 		});
 
 		m_displaySelectActions->addAction(showAllDisplays);
 		showAllDisplays->setCheckable(true);
-		showAllDisplays->setChecked(true);
+		showAllDisplays->setChecked(checkedDisplayName.isEmpty() ||
+									 checkedDisplayName == showAllDisplays->text());
 
 		menu->addSeparator();
 
 		for (const auto& display : displays)
 		{
-			const auto action = menu->addAction( tr("Display %1 [%2]").arg(display.index).arg(display.name),
+			const auto action = menu->addAction(
+				tr("Display %1").arg(display.index) + ( display.name.isEmpty() ? QString{} :
+																QStringLiteral(" (%1)").arg(display.name) ),
 												 this, [=]() {
 													 m_parent->vncView()->setViewport(display.geometry);
 												 });
 			action->setCheckable(true);
+			if(action->text() == checkedDisplayName)
+			{
+				action->setChecked(true);
+			}
 			m_displaySelectActions->addAction(action);
 		}
+
+		if(m_displaySelectActions->checkedAction())
+		{
+			m_displaySelectActions->checkedAction()->trigger();
+		}
+		else
+		{
+			showAllDisplays->setChecked(true);
+			showAllDisplays->trigger();
+		}
+	}
+	else
+	{
+		m_parent->vncView()->setViewport({});
 	}
 }
 
