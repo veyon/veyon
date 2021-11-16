@@ -96,6 +96,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateDisplays );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );

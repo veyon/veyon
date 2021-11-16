@@ -123,8 +123,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::displaysChanged,
 			 this, &RemoteAccessWidgetToolBar::updateDisplays );
-
-	vncView->computerControlInterface()->updateDisplays();
 }
 
 
@@ -210,8 +208,6 @@ void RemoteAccessWidgetToolBar::updateConnectionState()
 	if( m_parent->vncView()->connection()->state() == VncConnection::State::Connected )
 	{
 		disappear();
-
-		m_parent->vncView()->computerControlInterface()->updateDisplays();
 	}
 	else
 	{
