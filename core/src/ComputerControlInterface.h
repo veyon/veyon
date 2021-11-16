@@ -186,6 +186,7 @@ private:
 	QTimer m_connectionWatchdogTimer;
 	QTimer m_userUpdateTimer;
 	QTimer m_activeFeaturesUpdateTimer;
+	QTimer m_displaysUpdateTimer;
 
 Q_SIGNALS:
 	void screenSizeChanged();

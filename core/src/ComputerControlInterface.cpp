@@ -44,7 +44,8 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	m_connection( nullptr ),
 	m_connectionWatchdogTimer( this ),
 	m_userUpdateTimer( this ),
-	m_activeFeaturesUpdateTimer( this )
+	m_activeFeaturesUpdateTimer( this ),
+	m_displaysUpdateTimer( this )
 {
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
@@ -52,6 +53,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 
 	connect( &m_userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
 	connect( &m_activeFeaturesUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateActiveFeatures );
+	connect( &m_displaysUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateDisplays );
 }
 
 
@@ -118,6 +120,7 @@ void ComputerControlInterface::stop()
 		m_connection = nullptr;
 	}
 
+	m_displaysUpdateTimer.stop();
 	m_activeFeaturesUpdateTimer.stop();
 	m_userUpdateTimer.stop();
 	m_connectionWatchdogTimer.stop();
@@ -296,6 +299,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 		m_userUpdateTimer.stop();
 		m_activeFeaturesUpdateTimer.start( UpdateIntervalDisabled );
+		m_displaysUpdateTimer.stop();
 		break;
 
 	case UpdateMode::Basic:
@@ -310,6 +314,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 		m_userUpdateTimer.start( computerMonitoringUpdateInterval );
 		m_activeFeaturesUpdateTimer.start( computerMonitoringUpdateInterval );
+		m_displaysUpdateTimer.start( computerMonitoringUpdateInterval );
 		break;
 	}
 
