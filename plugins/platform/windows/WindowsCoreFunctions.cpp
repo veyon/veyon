@@ -23,6 +23,7 @@
  */
 
 #include <QGuiApplication>
+#include <QScreen>
 #include <QWidget>
 #include <qpa/qplatformnativeinterface.h>
 
@@ -32,6 +33,7 @@
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsPlatformConfiguration.h"
+#include "WindowsPlatformPlugin.h"
 #include "WtsSessionManager.h"
 #include "XEventLog.h"
 
@@ -323,6 +325,86 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 QString WindowsCoreFunctions::genericUrlHandler() const
 {
 	return QStringLiteral( "explorer" );
+}
+
+
+
+QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) const
+{
+	if(screen.name().isEmpty())
+	{
+		return {};
+	}
+
+	const auto screenDeviceName = toConstWCharArray(screen.name());
+
+	UINT32 requiredPaths, requiredModes;
+	GetDisplayConfigBufferSizes(QDC_ONLY_ACTIVE_PATHS, &requiredPaths, &requiredModes);
+	std::vector<DISPLAYCONFIG_PATH_INFO> paths(requiredPaths);
+	std::vector<DISPLAYCONFIG_MODE_INFO> modes(requiredModes);
+	QueryDisplayConfig(QDC_ONLY_ACTIVE_PATHS, &requiredPaths, paths.data(), &requiredModes, modes.data(), nullptr);
+
+	for(const auto& p : paths)
+	{
+		DISPLAYCONFIG_SOURCE_DEVICE_NAME sourceName{};
+		sourceName.header.type = DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME;
+		sourceName.header.size = sizeof(sourceName);
+		sourceName.header.adapterId = p.sourceInfo.adapterId;
+		sourceName.header.id = p.sourceInfo.id;
+		DisplayConfigGetDeviceInfo(&sourceName.header);
+
+		if(wcscmp(screenDeviceName, sourceName.viewGdiDeviceName) == 0)
+		{
+			DISPLAYCONFIG_TARGET_DEVICE_NAME name{};
+			name.header.type = DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME;
+			name.header.size = sizeof(name);
+			name.header.adapterId = p.sourceInfo.adapterId;
+			name.header.id = p.targetInfo.id;
+			DisplayConfigGetDeviceInfo(&name.header);
+
+			const auto monitorFriendlyDeviceName = QString::fromWCharArray(name.monitorFriendlyDeviceName);
+			if(monitorFriendlyDeviceName.isEmpty())
+			{
+				switch(name.outputTechnology)
+				{
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI:
+					return QStringLiteral("HDMI-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI:
+					return QStringLiteral("DVI-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED:
+					return QStringLiteral("eDP-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL:
+					return QStringLiteral("DP-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS:
+					return QStringLiteral("LVDS-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST:
+					return QStringLiteral("Miracast-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO:
+					return QStringLiteral("S-Video-%1").arg(name.connectorInstance);
+				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL:
+					return WindowsPlatformPlugin::tr("Internal display") +
+						   ( name.connectorInstance > 1 ?
+								 QStringLiteral(" %2").arg(name.connectorInstance) : QString{} );
+				default:
+					// use display device string as fallback
+					break;
+				}
+			}
+			else
+			{
+				return monitorFriendlyDeviceName;
+			}
+		}
+	}
+
+	DISPLAY_DEVICE displayDevice{};
+	displayDevice.cb = sizeof(displayDevice);
+	if(EnumDisplayDevices(screenDeviceName, 0, &displayDevice, 0))
+	{
+		return QString::fromWCharArray(displayDevice.DeviceString);
+	}
+
+	return {};
 }
 
 
