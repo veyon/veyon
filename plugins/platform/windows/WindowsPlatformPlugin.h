@@ -35,6 +35,8 @@
 #include "WindowsSessionFunctions.h"
 #include "WindowsUserFunctions.h"
 
+class QWindow;
+
 class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
@@ -124,5 +126,6 @@ private:
 	WindowsServiceFunctions m_windowsServiceFunctions{};
 	WindowsSessionFunctions m_windowsSessionFunctions{};
 	WindowsUserFunctions m_windowsUserFunctions{};
+	QWindow* m_dummyWindow{nullptr};
 
 };
