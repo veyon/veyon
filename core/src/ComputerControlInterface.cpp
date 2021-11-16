@@ -199,7 +199,18 @@ void ComputerControlInterface::setUserInformation( const QString& userLoginName,
 
 void ComputerControlInterface::updateDisplays()
 {
-	VeyonCore::builtinFeatures().monitoringMode().queryDisplays( { weakPointer() } );
+	lock();
+
+	if( vncConnection() && state() == State::Connected )
+	{
+		VeyonCore::builtinFeatures().monitoringMode().queryDisplays( { weakPointer() } );
+	}
+	else
+	{
+		setDisplays( {} );
+	}
+
+	unlock();
 }
 
 
