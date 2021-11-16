@@ -27,6 +27,7 @@
 #include <QScreen>
 
 #include "MonitoringMode.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonServerInterface.h"
@@ -147,7 +148,8 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 		{
 			QVariantMap displayInfo;
 			displayInfo[QStringLiteral("index")] = index;
-			displayInfo[QStringLiteral("name")] = screen->name();
+			displayInfo[QStringLiteral("name")] = VeyonCore::platform().coreFunctions().
+													queryDisplayDeviceName(*screen);
 			displayInfo[QStringLiteral("geometry")] = screen->geometry();
 			displayInfoList.append(displayInfo);
 			++index;
