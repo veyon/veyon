@@ -35,6 +35,7 @@
 #include "FeatureWorkerManager.h"
 #include "HostAddress.h"
 #include "Logger.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformSessionFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
@@ -512,15 +513,13 @@ void DemoFeaturePlugin::updateFeatures()
 		{
 			const auto name = QStringLiteral( "DemoScreen%1" ).arg( index );
 
-			auto displayName = tr( "Screen %1 [%2]" ).arg( index ).arg( screen->name() );
+			auto displayName = tr("Display %1").arg(index);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
-			if( screen->manufacturer().isEmpty() == false &&
-				screen->model().isEmpty() == false )
+			const auto displayDeviceName = VeyonCore::platform().coreFunctions().queryDisplayDeviceName(*screen);
+			if(displayDeviceName.isEmpty() == false)
 			{
-				displayName += QStringLiteral(" – %1 %2").arg( screen->manufacturer(), screen->model() );
+				displayName.append(QStringLiteral(" (%1)").arg(displayDeviceName));
 			}
-#endif
 
 			auto flags = Feature::Flag::Option | Feature::Flag::Master;
 			if( index == m_screenSelection )
