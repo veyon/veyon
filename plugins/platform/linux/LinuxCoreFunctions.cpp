@@ -27,6 +27,7 @@
 #include <QDBusPendingCall>
 #include <QProcess>
 #include <QProcessEnvironment>
+#include <QScreen>
 #include <QStandardPaths>
 #include <QWidget>
 
@@ -275,6 +276,24 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 QString LinuxCoreFunctions::genericUrlHandler() const
 {
 	return QStringLiteral( "xdg-open" );
+}
+
+
+
+QString LinuxCoreFunctions::queryDisplayDeviceName(const QScreen& screen) const
+{
+	QStringList nameParts;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
+	nameParts.append(screen.manufacturer());
+	nameParts.append(screen.model());
+#endif
+	nameParts.removeAll({});
+	if(nameParts.isEmpty())
+	{
+		return screen.name();
+	}
+
+	return QStringLiteral("%1 [%2]").arg(nameParts.join(QLatin1Char(' ')), screen.name());
 }
 
 

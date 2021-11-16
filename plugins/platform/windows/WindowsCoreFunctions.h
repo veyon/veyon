@@ -67,6 +67,8 @@ public:
 
 	QString genericUrlHandler() const override;
 
+	QString queryDisplayDeviceName(const QScreen& screen) const override;
+
 	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 
 	static QSharedPointer<wchar_t> toWCharArray( const QString& qstring );

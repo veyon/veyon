@@ -31,6 +31,8 @@
 
 // clazy:excludeall=copyable-polymorphic
 
+class QScreen;
+
 class PlatformCoreFunctions
 {
 public:
@@ -62,5 +64,7 @@ public:
 								   const QString& desktop ) = 0;
 
 	virtual QString genericUrlHandler() const = 0;
+
+	virtual QString queryDisplayDeviceName(const QScreen& screen) const = 0;
 
 };
