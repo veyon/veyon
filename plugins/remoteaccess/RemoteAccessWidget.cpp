@@ -50,12 +50,12 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_parent( parent ),
 	m_showHideTimeLine( ShowHideAnimationDuration, this ),
 	m_viewOnlyButton( showViewOnlyToggleButton ? new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) : nullptr ),
-	m_selectDisplayButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-system-windows-effect-desktopgrid.png") ), tr( "Select display" ) ) ),
+	m_selectScreenButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-system-windows-effect-desktopgrid.png") ), tr( "Select screen" ) ) ),
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
 	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
 	m_fullScreenButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/view-fullscreen.png") ), tr( "Fullscreen" ), tr( "Window" ) ) ),
 	m_exitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Exit" ) ) ),
-	m_displaySelectActions( new QActionGroup(this) )
+	m_screenSelectActions( new QActionGroup(this) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
@@ -83,11 +83,11 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	auto vncView = parent->vncView();
 	connect( vncView->connection(), &VncConnection::stateChanged, this, &RemoteAccessWidgetToolBar::updateConnectionState );
 
-	m_selectDisplayButton->setMenu( new QMenu );
-	m_selectDisplayButton->setPopupMode( QToolButton::InstantPopup );
-	m_selectDisplayButton->setObjectName( QStringLiteral("displays") );
+	m_selectScreenButton->setMenu( new QMenu );
+	m_selectScreenButton->setPopupMode( QToolButton::InstantPopup );
+	m_selectScreenButton->setObjectName( QStringLiteral("screens") );
 
-	updateDisplays();
+	updateScreens();
 
 	auto shortcutMenu = new QMenu();
 #if QT_VERSION < 0x050600
@@ -127,7 +127,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->setContentsMargins( 1, 1, 1, 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
-	layout->addWidget( m_selectDisplayButton );
+	layout->addWidget( m_selectScreenButton );
 	layout->addWidget( m_sendShortcutButton );
 	if( m_viewOnlyButton )
 	{
@@ -142,8 +142,8 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
 
-	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::displaysChanged,
-			 this, &RemoteAccessWidgetToolBar::updateDisplays );
+	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::screensChanged,
+			 this, &RemoteAccessWidgetToolBar::updateScreens );
 }
 
 
@@ -238,51 +238,51 @@ void RemoteAccessWidgetToolBar::updateConnectionState()
 
 
 
-void RemoteAccessWidgetToolBar::updateDisplays()
+void RemoteAccessWidgetToolBar::updateScreens()
 {
-	const auto checkedDisplayName = m_displaySelectActions->checkedAction() ?
-										m_displaySelectActions->checkedAction()->text() : QString{};
+	const auto checkedScreenName = m_screenSelectActions->checkedAction() ?
+										m_screenSelectActions->checkedAction()->text() : QString{};
 
-	const auto displays = m_parent->vncView()->computerControlInterface()->displays();
-	m_selectDisplayButton->setVisible(displays.size() > 1);
+	const auto screens = m_parent->vncView()->computerControlInterface()->screens();
+	m_selectScreenButton->setVisible(screens.size() > 1);
 
-	const auto menu = m_selectDisplayButton->menu();
+	const auto menu = m_selectScreenButton->menu();
 	menu->clear();
 
-	if(displays.size() > 1)
+	if(screens.size() > 1)
 	{
-		const auto showAllDisplays = menu->addAction( tr( "All displays" ), this, [=]() {
+		const auto showAllScreens = menu->addAction( tr( "All screens" ), this, [=]() {
 			m_parent->vncView()->setViewport({});
 		});
 
-		m_displaySelectActions->addAction(showAllDisplays);
-		showAllDisplays->setCheckable(true);
-		showAllDisplays->setChecked(checkedDisplayName.isEmpty() ||
-									 checkedDisplayName == showAllDisplays->text());
+		m_screenSelectActions->addAction(showAllScreens);
+		showAllScreens->setCheckable(true);
+		showAllScreens->setChecked(checkedScreenName.isEmpty() ||
+									 checkedScreenName == showAllScreens->text());
 
 		menu->addSeparator();
 
-		for (const auto& display : displays)
+		for (const auto& screen : screens)
 		{
-			const auto action = menu->addAction(display.name, this, [=]() {
-				m_parent->vncView()->setViewport(display.geometry);
+			const auto action = menu->addAction(screen.name, this, [=]() {
+				m_parent->vncView()->setViewport(screen.geometry);
 			});
 			action->setCheckable(true);
-			if(action->text() == checkedDisplayName)
+			if(action->text() == checkedScreenName)
 			{
 				action->setChecked(true);
 			}
-			m_displaySelectActions->addAction(action);
+			m_screenSelectActions->addAction(action);
 		}
 
-		if(m_displaySelectActions->checkedAction())
+		if(m_screenSelectActions->checkedAction())
 		{
-			m_displaySelectActions->checkedAction()->trigger();
+			m_screenSelectActions->checkedAction()->trigger();
 		}
 		else
 		{
-			showAllDisplays->setChecked(true);
-			showAllDisplays->trigger();
+			showAllScreens->setChecked(true);
+			showAllScreens->trigger();
 		}
 	}
 	else

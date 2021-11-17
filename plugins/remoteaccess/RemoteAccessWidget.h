@@ -57,19 +57,19 @@ protected:
 private:
 	void updatePosition();
 	void updateConnectionState();
-	void updateDisplays();
+	void updateScreens();
 
 	RemoteAccessWidget *m_parent;
 	QTimeLine m_showHideTimeLine;
 
 	ToolButton* m_viewOnlyButton;
-	ToolButton* m_selectDisplayButton;
+	ToolButton* m_selectScreenButton;
 	ToolButton* m_sendShortcutButton;
 	ToolButton* m_screenshotButton;
 	ToolButton* m_fullScreenButton;
 	ToolButton* m_exitButton;
 
-	QActionGroup* m_displaySelectActions{nullptr};
+	QActionGroup* m_screenSelectActions{nullptr};
 
 	static constexpr int ShowHideAnimationDuration = 300;
 	static constexpr int DisappearDelay = 500;
