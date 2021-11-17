@@ -45,7 +45,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	m_connectionWatchdogTimer( this ),
 	m_userUpdateTimer( this ),
 	m_activeFeaturesUpdateTimer( this ),
-	m_displaysUpdateTimer( this )
+	m_screensUpdateTimer( this )
 {
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
@@ -53,7 +53,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 
 	connect( &m_userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
 	connect( &m_activeFeaturesUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateActiveFeatures );
-	connect( &m_displaysUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateDisplays );
+	connect( &m_screensUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateScreens );
 }
 
 
@@ -98,7 +98,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateDisplays );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateScreens );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
@@ -124,7 +124,7 @@ void ComputerControlInterface::stop()
 		m_connection = nullptr;
 	}
 
-	m_displaysUpdateTimer.stop();
+	m_screensUpdateTimer.stop();
 	m_activeFeaturesUpdateTimer.stop();
 	m_userUpdateTimer.stop();
 	m_connectionWatchdogTimer.stop();
@@ -209,17 +209,17 @@ void ComputerControlInterface::setUserInformation( const QString& userLoginName,
 
 
 
-void ComputerControlInterface::updateDisplays()
+void ComputerControlInterface::updateScreens()
 {
 	lock();
 
 	if( vncConnection() && state() == State::Connected )
 	{
-		VeyonCore::builtinFeatures().monitoringMode().queryDisplays( { weakPointer() } );
+		VeyonCore::builtinFeatures().monitoringMode().queryScreens( { weakPointer() } );
 	}
 	else
 	{
-		setDisplays( {} );
+		setScreens({});
 	}
 
 	unlock();
@@ -227,13 +227,13 @@ void ComputerControlInterface::updateDisplays()
 
 
 
-void ComputerControlInterface::setDisplays( const DisplayList& displays )
+void ComputerControlInterface::setScreens(const ScreenList& screens)
 {
-	if( displays != m_displays )
+	if(screens != m_screens)
 	{
-		m_displays = displays;
+		m_screens = screens;
 
-		Q_EMIT displaysChanged();
+		Q_EMIT screensChanged();
 	}
 }
 
@@ -306,7 +306,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 		m_userUpdateTimer.stop();
 		m_activeFeaturesUpdateTimer.start( UpdateIntervalDisabled );
-		m_displaysUpdateTimer.stop();
+		m_screensUpdateTimer.stop();
 		break;
 
 	case UpdateMode::Basic:
@@ -321,7 +321,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 		m_userUpdateTimer.start( computerMonitoringUpdateInterval );
 		m_activeFeaturesUpdateTimer.start( computerMonitoringUpdateInterval );
-		m_displaysUpdateTimer.start( computerMonitoringUpdateInterval );
+		m_screensUpdateTimer.start( computerMonitoringUpdateInterval );
 		break;
 	}
 

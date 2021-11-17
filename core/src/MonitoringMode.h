@@ -36,7 +36,7 @@ public:
 		UserLoginName,
 		UserFullName,
 		UserSessionId,
-		DisplayInfoList,
+		ScreenInfoList,
 	};
 	Q_ENUM(Argument)
 
@@ -84,7 +84,7 @@ public:
 
 	void queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces );
 
-	void queryDisplays( const ComputerControlInterfaceList& computerControlInterfaces );
+	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
 
 	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						const ComputerControlInterfaceList& computerControlInterfaces ) override
@@ -104,13 +104,12 @@ public:
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
 
-
 private:
 	void queryUserInformation();
 
 	const Feature m_monitoringModeFeature;
 	const Feature m_queryLoggedOnUserInfoFeature;
-	const Feature m_queryDisplaysFeature;
+	const Feature m_queryScreensFeature;
 	const FeatureList m_features;
 
 	QReadWriteLock m_userDataLock;
