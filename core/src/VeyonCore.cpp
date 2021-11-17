@@ -486,6 +486,21 @@ QString VeyonCore::stringify( const QVariantMap& map )
 
 
 
+QString VeyonCore::screenName(const QScreen& screen, int index)
+{
+	auto screenName = tr("Screen %1").arg(index);
+
+	const auto displayDeviceName = platform().coreFunctions().queryDisplayDeviceName(screen);
+	if(displayDeviceName.isEmpty() == false)
+	{
+		screenName.append(QStringLiteral(" – %1").arg(displayDeviceName));
+	}
+
+	return screenName;
+}
+
+
+
 int VeyonCore::exec()
 {
 	Q_EMIT applicationLoaded();

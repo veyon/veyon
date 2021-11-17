@@ -42,6 +42,7 @@
 #endif
 
 class QCoreApplication;
+class QScreen;
 class QSslConfiguration;
 class QWidget;
 
@@ -188,6 +189,8 @@ public:
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
 	static QString stringify( const QVariantMap& map );
+
+	static QString screenName( const QScreen& screen, int index );
 
 	int exec();
 
