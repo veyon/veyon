@@ -35,7 +35,6 @@
 #include "FeatureWorkerManager.h"
 #include "HostAddress.h"
 #include "Logger.h"
-#include "PlatformCoreFunctions.h"
 #include "PlatformSessionFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
@@ -512,14 +511,7 @@ void DemoFeaturePlugin::updateFeatures()
 		for( auto screen : qAsConst(m_screens) )
 		{
 			const auto name = QStringLiteral( "DemoScreen%1" ).arg( index );
-
-			auto displayName = tr("Display %1").arg(index);
-
-			const auto displayDeviceName = VeyonCore::platform().coreFunctions().queryDisplayDeviceName(*screen);
-			if(displayDeviceName.isEmpty() == false)
-			{
-				displayName.append(QStringLiteral(" (%1)").arg(displayDeviceName));
-			}
+			const auto screenName = VeyonCore::screenName(*screen, index);
 
 			auto flags = Feature::Flag::Option | Feature::Flag::Master;
 			if( index == m_screenSelection )
@@ -529,7 +521,7 @@ void DemoFeaturePlugin::updateFeatures()
 
 			m_screenSelectionFeatures.append( Feature{ name, flags,
 													   Feature::Uid::createUuidV5( m_demoFeature.uid(), name ),
-													   m_demoFeature.uid(), displayName, {}, {}, {} } );
+													   m_demoFeature.uid(), screenName, {}, {}, {} } );
 			++index;
 		}
 	}
