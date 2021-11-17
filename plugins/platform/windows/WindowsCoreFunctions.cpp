@@ -363,8 +363,7 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 			DisplayConfigGetDeviceInfo(&name.header);
 
 			const auto monitorFriendlyDeviceName = QString::fromWCharArray(name.monitorFriendlyDeviceName);
-			if(monitorFriendlyDeviceName.isEmpty())
-			{
+			const auto outputName = [&]() -> QString {
 				switch(name.outputTechnology)
 				{
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI:
@@ -386,13 +385,22 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 						   ( name.connectorInstance > 1 ?
 								 QStringLiteral(" %2").arg(name.connectorInstance) : QString{} );
 				default:
-					// use display device string as fallback
 					break;
 				}
+				return {};
+			}();
+			if(monitorFriendlyDeviceName.isEmpty())
+			{
+				if(outputName.isEmpty() == false)
+				{
+					return outputName;
+				}
+				// use display device string as fallback
 			}
 			else
 			{
-				return monitorFriendlyDeviceName;
+				return monitorFriendlyDeviceName +
+					   ( outputName.isEmpty() ? QString {} : QStringLiteral(" [%1]").arg(outputName) );
 			}
 		}
 	}
