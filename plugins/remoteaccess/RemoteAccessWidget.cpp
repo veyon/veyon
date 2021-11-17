@@ -244,12 +244,9 @@ void RemoteAccessWidgetToolBar::updateDisplays()
 
 		for (const auto& display : displays)
 		{
-			const auto action = menu->addAction(
-				tr("Display %1").arg(display.index) + ( display.name.isEmpty() ? QString{} :
-																QStringLiteral(" (%1)").arg(display.name) ),
-												 this, [=]() {
-													 m_parent->vncView()->setViewport(display.geometry);
-												 });
+			const auto action = menu->addAction(display.name, this, [=]() {
+				m_parent->vncView()->setViewport(display.geometry);
+			});
 			action->setCheckable(true);
 			if(action->text() == checkedDisplayName)
 			{
