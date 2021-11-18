@@ -111,11 +111,10 @@ bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const
 	}
 	else if( feature == m_userLogoffFeature )
 	{
-		const auto selectionCount = master.selectedComputerControlInterfaces().size();
+		const auto executeOnAllComputers =
+			computerControlInterfaces.size() >= master.filteredComputerControlInterfaces().size();
 
-		if( confirmFeatureExecution( feature,
-									 selectionCount == 0 || selectionCount == computerControlInterfaces.size(),
-									 master.mainWindow() ) == false )
+		if (confirmFeatureExecution(feature, executeOnAllComputers, master.mainWindow()) == false)
 		{
 			return true;
 		}
