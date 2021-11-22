@@ -80,6 +80,7 @@ private:
 	void showAccessControlMessage( VncServerClient* client );
 	QFutureWatcher<void>* resolveFQDNs( const QStringList& hosts );
 
+	void sendAsyncFeatureMessages(VncProxyConnection* connection);
 	void updateTrayIconToolTip();
 
 	QMutex m_dataMutex;
