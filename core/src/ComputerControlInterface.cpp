@@ -37,6 +37,10 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	m_computer( computer ),
 	m_port( port )
 {
+	m_pingTimer.setInterval(ConnectionWatchdogPingDelay);
+	m_pingTimer.setSingleShot(true);
+	connect(&m_pingTimer, &QTimer::timeout, this, &ComputerControlInterface::ping);
+
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
 	connect( &m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection );
@@ -106,6 +110,7 @@ void ComputerControlInterface::stop()
 		m_connection = nullptr;
 	}
 
+	m_pingTimer.stop();
 	m_connectionWatchdogTimer.stop();
 
 	m_state = State::Disconnected;
@@ -308,10 +313,18 @@ ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 
 
 
+void ComputerControlInterface::ping()
+{
+	VeyonCore::builtinFeatures().monitoringMode().ping({weakPointer()});
+}
+
+
+
 void ComputerControlInterface::resetWatchdog()
 {
 	if( state() == State::Connected )
 	{
+		m_pingTimer.start();
 		m_connectionWatchdogTimer.start();
 	}
 }
