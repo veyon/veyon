@@ -25,6 +25,7 @@
 #include <QtConcurrent>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QTimer>
 
 #include "MonitoringMode.h"
 #include "PlatformSessionFunctions.h"
@@ -51,22 +52,28 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						   Feature::Uid(), tr("Query properties of remotely available screens"), {}, {} ),
 	m_features( { m_monitoringModeFeature, m_queryLoggedOnUserInfoFeature, m_queryScreensFeature } )
 {
+	if(VeyonCore::component() == VeyonCore::Component::Server)
+	{
+		updateUserData();
+		updateScreenInfoList();
+
+		connect(qGuiApp, &QGuiApplication::screenAdded, this, &MonitoringMode::updateScreenInfoList);
+		connect(qGuiApp, &QGuiApplication::screenRemoved, this, &MonitoringMode::updateScreenInfoList);
+	}
 }
 
 
 
 void MonitoringMode::queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	sendFeatureMessage( FeatureMessage{ m_queryLoggedOnUserInfoFeature.uid(), FeatureMessage::DefaultCommand },
-						computerControlInterfaces, false );
+	sendFeatureMessage(FeatureMessage{m_queryLoggedOnUserInfoFeature.uid()}, computerControlInterfaces);
 }
 
 
 
 void MonitoringMode::queryScreens(const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	sendFeatureMessage( FeatureMessage{m_queryScreensFeature.uid(), FeatureMessage::DefaultCommand},
-						computerControlInterfaces );
+	sendFeatureMessage(FeatureMessage{m_queryScreensFeature.uid()}, computerControlInterfaces);
 }
 
 
@@ -112,49 +119,19 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
 										   const FeatureMessage& message )
 {
-	if( m_queryLoggedOnUserInfoFeature.uid() == message.featureUid() )
+	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
-		FeatureMessage reply( message.featureUid(), message.command() );
-
-		m_userDataLock.lockForRead();
-		if( m_userLoginName.isEmpty() )
-		{
-			queryUserInformation();
-			reply.addArgument( Argument::UserLoginName, QString() );
-			reply.addArgument( Argument::UserFullName, QString() );
-			reply.addArgument( Argument::UserSessionId, -1 );
-		}
-		else
-		{
-			reply.addArgument( Argument::UserLoginName, m_userLoginName );
-			reply.addArgument( Argument::UserFullName, m_userFullName );
-			reply.addArgument( Argument::UserSessionId, m_userSessionId );
-		}
-		m_userDataLock.unlock();
-
-		return server.sendFeatureMessageReply( messageContext, reply );
+		return server.sendFeatureMessageReply(messageContext, message);
 	}
 
-	if( message.featureUid() == m_queryScreensFeature.uid() )
+	if (message.featureUid() == m_queryLoggedOnUserInfoFeature.uid())
 	{
-		const auto screens = QGuiApplication::screens();
+		return sendUserInformation(server, messageContext);
+	}
 
-		QVariantList screenInfoList;
-		screenInfoList.reserve(screens.size());
-
-		int index = 1;
-		for(const auto* screen : screens)
-		{
-			QVariantMap screenInfo;
-			screenInfo[QStringLiteral("name")] = VeyonCore::screenName(*screen, index);
-			screenInfo[QStringLiteral("geometry")] = screen->geometry();
-			screenInfoList.append(screenInfo);
-			++index;
-		}
-
-		return server.sendFeatureMessageReply( messageContext,
-											   FeatureMessage(m_queryScreensFeature.uid())
-												   .addArgument(Argument::ScreenInfoList, screenInfoList) );
+	if (message.featureUid() == m_queryScreensFeature.uid())
+	{
+		return sendScreenInfoList(server, messageContext);
 	}
 
 	return false;
@@ -162,18 +139,111 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 
 
 
-void MonitoringMode::queryUserInformation()
+void MonitoringMode::sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext)
+{
+	const auto currentUserInfoVersion = m_userInfoVersion.loadAcquire();
+	const auto contextUserInfoVersion = messageContext.ioDevice()->property(userInfoVersionProperty()).toInt();
+
+	if(contextUserInfoVersion  != currentUserInfoVersion)
+	{
+		sendUserInformation(server, messageContext);
+		messageContext.ioDevice()->setProperty(userInfoVersionProperty(), currentUserInfoVersion);
+	}
+
+	const auto screenInfoVersion = messageContext.ioDevice()->property(screenInfoListVersionProperty()).toInt();
+
+	if (screenInfoVersion  != m_screenInfoListVersion)
+	{
+		sendScreenInfoList(server, messageContext);
+		messageContext.ioDevice()->setProperty(screenInfoListVersionProperty(), m_screenInfoListVersion);
+	}
+}
+
+
+
+bool MonitoringMode::sendUserInformation(VeyonServerInterface& server, const MessageContext& messageContext)
+{
+	FeatureMessage message{m_queryLoggedOnUserInfoFeature.uid()};
+
+	m_userDataLock.lockForRead();
+	if (m_userLoginName.isEmpty())
+	{
+		updateUserData();
+		message.addArgument(Argument::UserLoginName, QString{});
+		message.addArgument(Argument::UserFullName, QString{});
+		message.addArgument(Argument::UserSessionId, -1);
+	}
+	else
+	{
+		message.addArgument(Argument::UserLoginName, m_userLoginName);
+		message.addArgument(Argument::UserFullName, m_userFullName);
+		message.addArgument(Argument::UserSessionId, m_userSessionId);
+	}
+	m_userDataLock.unlock();
+
+	return server.sendFeatureMessageReply(messageContext, message);
+}
+
+
+
+bool MonitoringMode::sendScreenInfoList(VeyonServerInterface& server, const MessageContext& messageContext)
+{
+	return server.sendFeatureMessageReply(messageContext,
+										   FeatureMessage{m_queryScreensFeature.uid()}
+											   .addArgument(Argument::ScreenInfoList, m_screenInfoList));
+}
+
+
+
+void MonitoringMode::updateUserData()
 {
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
 	(void) QtConcurrent::run( [=]() {
-		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
-		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
-		const auto userSessionId = VeyonCore::sessionId();
-		m_userDataLock.lockForWrite();
-		m_userLoginName = userLoginName;
-		m_userFullName = userFullName;
-		m_userSessionId = userSessionId;
-		m_userDataLock.unlock();
+		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() )
+		{
+			const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
+			const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
+			const auto userSessionId = VeyonCore::sessionId();
+			m_userDataLock.lockForWrite();
+			if(m_userLoginName != userLoginName ||
+				m_userFullName != userFullName ||
+				m_userSessionId != userSessionId )
+			{
+				m_userLoginName = userLoginName;
+				m_userFullName = userFullName;
+				m_userSessionId = userSessionId;
+				++m_userInfoVersion;
+			}
+			m_userDataLock.unlock();
+		}
 	} );
+}
+
+
+
+void MonitoringMode::updateScreenInfoList()
+{
+	const auto screens = QGuiApplication::screens();
+
+	QVariantList screenInfoList;
+	screenInfoList.reserve(screens.size());
+
+	int index = 1;
+	for(const auto* screen : screens)
+	{
+		QVariantMap screenInfo;
+		screenInfo[QStringLiteral("name")] = VeyonCore::screenName(*screen, index);
+		screenInfo[QStringLiteral("geometry")] = screen->geometry();
+		screenInfoList.append(screenInfo);
+		++index;
+
+		connect(screen, &QScreen::geometryChanged, this, &MonitoringMode::updateScreenInfoList, Qt::UniqueConnection);
+	}
+
+	if(screenInfoList != m_screenInfoList)
+	{
+		m_screenInfoList = screenInfoList;
+		++m_screenInfoListVersion;
+	}
 }
