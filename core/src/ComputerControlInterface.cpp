@@ -25,7 +25,6 @@
 #include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
 #include "Computer.h"
-#include "FeatureControl.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "VeyonConfiguration.h"
@@ -257,7 +256,7 @@ void ComputerControlInterface::updateActiveFeatures()
 
 	if( vncConnection() && state() == State::Connected )
 	{
-		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
+		VeyonCore::builtinFeatures().monitoringMode().queryActiveFeatures({weakPointer()});
 	}
 	else
 	{
