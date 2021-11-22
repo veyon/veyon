@@ -22,6 +22,7 @@
  *
  */
 
+#include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "VariantArrayMessage.h"
 
@@ -83,7 +84,7 @@ bool FeatureMessage::receive( QIODevice* ioDevice )
 QDebug operator<<(QDebug stream, const FeatureMessage& message)
 {
 	stream << QStringLiteral("FeatureMessage(%1,%2,%3)")
-				  .arg(VeyonCore::formattedUuid(message.featureUid()))
+				  .arg(VeyonCore::featureManager().feature(message.featureUid()).name())
 				  .arg(message.command())
 				  .arg(VeyonCore::stringify(message.arguments())).toUtf8().constData();
 	return stream;
