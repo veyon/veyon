@@ -290,7 +290,7 @@ QString LinuxSessionFunctions::currentSessionPath()
 	const auto xdgSessionPath = QProcessEnvironment::systemEnvironment().value( sessionPathEnvVarName() );
 	if( xdgSessionPath.isEmpty() )
 	{
-		return QStringLiteral("/org/freedesktop/login1/session/self");
+		return QStringLiteral("/org/freedesktop/login1/session/auto");
 	}
 
 	return xdgSessionPath;
