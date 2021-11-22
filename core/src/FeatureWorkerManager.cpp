@@ -90,7 +90,7 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 	connect( worker.process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
 			 worker.process, &QProcess::deleteLater );
 
-	vDebug() << "Starting managed system worker for feature" << featureUid;
+	vDebug() << "Starting managed system worker for feature" << VeyonCore::featureManager().feature(featureUid).name();
 	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_WORKERS") )
 	{
 		worker.process->start( QStringLiteral("valgrind"),
