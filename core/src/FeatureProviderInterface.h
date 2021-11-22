@@ -152,6 +152,15 @@ public:
 	}
 
 	/*!
+	 * \brief Send asynchronous messages (e.g. notifications or state updates) to client
+	 */
+	virtual void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext)
+	{
+		Q_UNUSED(server)
+		Q_UNUSED(messageContext)
+	}
+
+	/*!
 	 * \brief Handles a received feature message inside worker
 	 * \param worker a reference to a worker instance implementing the VeyonWorkerInterface
 	 * \param message the message which has been received and needs to be handled
