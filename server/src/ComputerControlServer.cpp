@@ -57,6 +57,8 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	connect( &m_serverAccessControlManager, &ServerAccessControlManager::finished,
 			 this, &ComputerControlServer::showAccessControlMessage );
 
+	connect(&m_vncProxyServer, &VncProxyServer::serverMessageProcessed,
+			 this, &ComputerControlServer::sendAsyncFeatureMessages, Qt::DirectConnection);
 	connect( &m_vncProxyServer, &VncProxyServer::connectionClosed, this, &ComputerControlServer::updateTrayIconToolTip );
 }
 
@@ -128,7 +130,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply )
 {
-	vDebug() << reply.featureUid() << reply.command() << reply.arguments();
+	vDebug() << reply;
 
 	if( context.ioDevice() )
 	{
@@ -251,6 +253,13 @@ QFutureWatcher<void>* ComputerControlServer::resolveFQDNs( const QStringList& ho
 	connect( watcher, &QFutureWatcher<void>::finished, watcher, &QObject::deleteLater );
 
 	return watcher;
+}
+
+
+
+void ComputerControlServer::sendAsyncFeatureMessages(VncProxyConnection* connection)
+{
+	VeyonCore::featureManager().sendAsyncFeatureMessages(*this, MessageContext{connection->proxyClientSocket()});
 }
 
 
