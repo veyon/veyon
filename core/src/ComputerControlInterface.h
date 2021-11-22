@@ -172,6 +172,7 @@ public:
 	Pointer weakPointer();
 
 private:
+	void ping();
 	void resetWatchdog();
 	void restartConnection();
 
@@ -180,7 +181,8 @@ private:
 
 	void handleFeatureMessage( const FeatureMessage& message );
 
-	static constexpr int ConnectionWatchdogTimeout = 10000;
+	static constexpr int ConnectionWatchdogPingDelay = 10000;
+	static constexpr int ConnectionWatchdogTimeout = ConnectionWatchdogPingDelay*2;
 	static constexpr int UpdateIntervalDisabled = 5000;
 
 	const Computer m_computer;
@@ -200,6 +202,7 @@ private:
 	int m_timestamp{0};
 
 	VeyonConnection* m_connection{nullptr};
+	QTimer m_pingTimer{this};
 	QTimer m_connectionWatchdogTimer{this};
 
 	QStringList m_groups;
