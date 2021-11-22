@@ -55,6 +55,7 @@ public:
 	}
 
 Q_SIGNALS:
+	void serverMessageProcessed(VncProxyConnection* connection);
 	void connectionClosed( VncProxyConnection* connection );
 
 private:
