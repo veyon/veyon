@@ -280,6 +280,18 @@ bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 
 
 
+void FeatureManager::sendAsyncFeatureMessages(VeyonServerInterface& server,
+												  const MessageContext& messageContext) const
+{
+
+	for (const auto& featureInterface : qAsConst(m_featurePluginInterfaces))
+	{
+		featureInterface->sendAsyncFeatureMessages(server, messageContext);
+	}
+}
+
+
+
 FeatureUidList FeatureManager::activeFeatures( VeyonServerInterface& server ) const
 {
 	FeatureUidList features;
