@@ -105,9 +105,9 @@ public:
 		return QStringLiteral("XDG_SESSION_ID");
 	}
 
-	static QString xdgSessionPathEnvVarName()
+	static QString sessionPathEnvVarName()
 	{
-		return QStringLiteral("XDG_SESSION_PATH");
+		return QStringLiteral("VEYON_SESSION_PATH");
 	}
 
 	static bool isOpen( const QString& session );
