@@ -82,6 +82,8 @@ public:
 		return m_features;
 	}
 
+	void ping(const ComputerControlInterfaceList& computerControlInterfaces);
+
 	void queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces );
 
 	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
