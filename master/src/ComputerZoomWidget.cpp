@@ -69,14 +69,18 @@ ComputerZoomWidget::~ComputerZoomWidget()
 
 void ComputerZoomWidget::updateComputerZoomWidgetTitle()
 {
-	if ( m_vncView->computerControlInterface()->userFullName().isEmpty() )
+	const auto username = m_vncView->computerControlInterface()->userFullName().isEmpty() ?
+							  m_vncView->computerControlInterface()->userLoginName() :
+							  m_vncView->computerControlInterface()->userFullName();
+
+	if (username.isEmpty())
 	{
 		setWindowTitle( QStringLiteral( "%1 - %2" ).arg( m_vncView->computerControlInterface()->computer().name(),
 														 VeyonCore::applicationName() ) );
 	}
 	else
 	{
-		setWindowTitle( QStringLiteral( "%1 - %2 - %3" ).arg( m_vncView->computerControlInterface()->userFullName(),
+		setWindowTitle( QStringLiteral( "%1 - %2 - %3" ).arg( username,
 															  m_vncView->computerControlInterface()->computer().name(),
 															  VeyonCore::applicationName() ) );
 	}
