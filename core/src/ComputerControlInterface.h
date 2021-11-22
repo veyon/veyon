@@ -71,7 +71,7 @@ public:
 		return m_connection ? m_connection->vncConnection() : nullptr;
 	}
 
-	void start( QSize scaledScreenSize = {}, UpdateMode updateMode = UpdateMode::Monitoring, AuthenticationProxy* authenticationProxy = nullptr );
+	void start( QSize scaledFramebufferSize = {}, UpdateMode updateMode = UpdateMode::Monitoring, AuthenticationProxy* authenticationProxy = nullptr );
 	void stop();
 
 	const Computer& computer() const
@@ -88,16 +88,16 @@ public:
 
 	QSize screenSize() const;
 
-	const QSize& scaledScreenSize() const
+	const QSize& scaledFramebufferSize() const
 	{
-		return m_scaledScreenSize;
+		return m_scaledFramebufferSize;
 	}
 
-	void setScaledScreenSize( QSize size );
+	void setScaledFramebufferSize( QSize size );
 
-	QImage scaledScreen() const;
+	QImage scaledFramebuffer() const;
 
-	QImage screen() const;
+	QImage framebuffer() const;
 
 	const QString& userLoginName() const
 	{
@@ -182,7 +182,7 @@ private:
 	FeatureUidList m_activeFeatures;
 	Feature::Uid m_designatedModeFeature;
 
-	QSize m_scaledScreenSize{};
+	QSize m_scaledFramebufferSize{};
 	int m_timestamp{0};
 
 	VeyonConnection* m_connection{nullptr};
@@ -190,8 +190,8 @@ private:
 	QTimer m_connectionWatchdogTimer{this};
 
 Q_SIGNALS:
-	void screenSizeChanged();
-	void screenUpdated();
+	void framebufferSizeChanged();
+	void framebufferUpdated();
 	void userChanged();
 	void screensChanged();
 	void stateChanged();

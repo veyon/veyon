@@ -105,7 +105,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 	const auto caption = QStringLiteral( "%1@%2 %3 %4" ).arg( user, host, date, time );
 
-	m_image = computerControlInterface->screen();
+	m_image = computerControlInterface->framebuffer();
 
 	QPixmap icon( QStringLiteral( ":/core/icon16.png" ) );
 

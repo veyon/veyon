@@ -55,12 +55,12 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateMode, AuthenticationProxy* authenticationProxy )
+void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode updateMode, AuthenticationProxy* authenticationProxy )
 {
 	// make sure we do not leak
 	stop();
 
-	m_scaledScreenSize = scaledScreenSize;
+	m_scaledFramebufferSize = scaledFramebufferSize;
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
@@ -74,12 +74,12 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UpdateMode updateM
 			vncConnection->setPort( m_port );
 		}
 		vncConnection->setQuality( VncConnection::Quality::Thumbnail );
-		vncConnection->setScaledSize( m_scaledScreenSize );
+		vncConnection->setScaledSize( m_scaledFramebufferSize );
 
 		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
-		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::screenUpdated );
+		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::framebufferUpdated );
 
-		connect( vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::screenSizeChanged );
+		connect( vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::framebufferSizeChanged );
 
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
@@ -137,23 +137,23 @@ QSize ComputerControlInterface::screenSize() const
 
 
 
-void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
+void ComputerControlInterface::setScaledFramebufferSize( QSize scaledFramebufferSize )
 {
-	m_scaledScreenSize = scaledScreenSize;
+	m_scaledFramebufferSize = scaledFramebufferSize;
 
 	if( vncConnection() )
 	{
-		vncConnection()->setScaledSize( m_scaledScreenSize );
+		vncConnection()->setScaledSize( m_scaledFramebufferSize );
 	}
 }
 
 
 
-QImage ComputerControlInterface::scaledScreen() const
+QImage ComputerControlInterface::scaledFramebuffer() const
 {
 	if( vncConnection() && vncConnection()->isConnected() )
 	{
-		return vncConnection()->scaledScreen();
+		return vncConnection()->scaledFramebuffer();
 	}
 
 	return {};
@@ -161,7 +161,7 @@ QImage ComputerControlInterface::scaledScreen() const
 
 
 
-QImage ComputerControlInterface::screen() const
+QImage ComputerControlInterface::framebuffer() const
 {
 	if( vncConnection() && vncConnection()->isConnected() )
 	{

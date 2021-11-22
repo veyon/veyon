@@ -90,13 +90,13 @@ QVariant SpotlightModel::data( const QModelIndex& index, int role ) const
 
 	if( role == Qt::DecorationRole )
 	{
-		auto screen = sourceModel()->data( sourceIndex, ComputerListModel::ScreenRole ).value<QImage>();
-		if( screen.isNull() )
+		auto framebuffer = sourceModel()->data(sourceIndex, ComputerListModel::FramebufferRole).value<QImage>();
+		if (framebuffer.isNull())
 		{
-			screen = sourceModel()->data( sourceIndex, Qt::DecorationRole ).value<QImage>();
+			framebuffer = sourceModel()->data(sourceIndex, Qt::DecorationRole).value<QImage>();
 		}
 
-		return screen.scaled( m_iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation );
+		return framebuffer.scaled(m_iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	}
 
 	return QSortFilterProxyModel::data( index, role );

@@ -52,7 +52,7 @@ WebApiConnection::~WebApiConnection()
 
 QSize WebApiConnection::scaledFramebufferSize( int width, int height ) const
 {
-	const auto screenSize = m_controlInterface->screen().size();
+	const auto framebufferSize = m_controlInterface->framebuffer().size();
 	QSize scaledSize{};
 
 	if( width > 0 && height > 0 )
@@ -61,11 +61,11 @@ QSize WebApiConnection::scaledFramebufferSize( int width, int height ) const
 	}
 	else if( width > 0 )
 	{
-		scaledSize = screenSize.scaled( width, screenSize.height(), Qt::KeepAspectRatio );
+		scaledSize = framebufferSize.scaled( width, framebufferSize.height(), Qt::KeepAspectRatio );
 	}
 	else if( height > 0 )
 	{
-		scaledSize = screenSize.scaled( screenSize.width(), height, Qt::KeepAspectRatio );
+		scaledSize = framebufferSize.scaled( framebufferSize.width(), height, Qt::KeepAspectRatio );
 	}
 
 	return scaledSize;
@@ -154,15 +154,15 @@ void WebApiConnection::runFramebufferEncoder()
 			imageWriter.setQuality( m_imageQuality );
 		}
 
-		if( m_imageSize != m_controlInterface->scaledScreenSize() )
+		if( m_imageSize != m_controlInterface->scaledFramebufferSize() )
 		{
-			m_controlInterface->setScaledScreenSize( m_imageSize );
+			m_controlInterface->setScaledFramebufferSize(m_imageSize);
 		}
 
 		const auto writeResult = imageWriter.write(
 			m_imageSize.isEmpty() ?
-								 controlInterface()->screen() :
-								 controlInterface()->scaledScreen() );
+								 controlInterface()->framebuffer() :
+								 controlInterface()->scaledFramebuffer() );
 
 		dataBuffer.close();
 
