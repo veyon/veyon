@@ -438,14 +438,18 @@ void RemoteAccessWidget::takeScreenshot()
 
 void RemoteAccessWidget::updateRemoteAccessTitle()
 {
-	if ( m_computerControlInterface->userFullName().isEmpty() )
+	const auto username = m_computerControlInterface->userFullName().isEmpty() ?
+							  m_computerControlInterface->userLoginName() : m_computerControlInterface->userFullName();
+
+	if (username.isEmpty() )
 	{
 		setWindowTitle( tr( "%1 - %2 Remote Access" ).arg( m_computerControlInterface->computer().name(),
 														   VeyonCore::applicationName() ) );
-	} else
+	}
+	else
 	{
-		setWindowTitle( tr( "%1 - %2 - %3 Remote Access" ).arg( m_computerControlInterface->userFullName(),
-																  m_computerControlInterface->computer().name(),
-																  VeyonCore::applicationName() ) );
+		setWindowTitle( tr( "%1 - %2 - %3 Remote Access" ).arg( username,
+																m_computerControlInterface->computer().name(),
+																VeyonCore::applicationName() ) );
 	}
 }
