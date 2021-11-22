@@ -104,8 +104,24 @@ public:
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
 
+	void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext) override;
+
 private:
-	void queryUserInformation();
+	bool sendUserInformation(VeyonServerInterface& server, const MessageContext& messageContext);
+	bool sendScreenInfoList(VeyonServerInterface& server, const MessageContext& messageContext);
+
+	static const char* userInfoVersionProperty()
+	{
+		return "userInfoVersion";
+	}
+
+	static const char* screenInfoListVersionProperty()
+	{
+		return "screenInfoListVersion";
+	}
+
+	void updateUserData();
+	void updateScreenInfoList();
 
 	const Feature m_monitoringModeFeature;
 	const Feature m_queryLoggedOnUserInfoFeature;
@@ -116,5 +132,9 @@ private:
 	QString m_userLoginName;
 	QString m_userFullName;
 	int m_userSessionId{0};
+	QAtomicInt m_userInfoVersion{0};
+
+	QVariantList m_screenInfoList;
+	int m_screenInfoListVersion{0};
 
 };
