@@ -217,7 +217,7 @@ void FeatureManager::updateActiveFeatures( const ComputerControlInterfaceList& c
 bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 										  const FeatureMessage& message ) const
 {
-	vDebug() << feature(message.featureUid()).name().toUtf8().constData() << message << computerControlInterface;
+	vDebug() << message << computerControlInterface;
 
 	bool handled = false;
 
@@ -238,7 +238,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
 										   const FeatureMessage& message ) const
 {
-	vDebug() << feature(message.featureUid()).name().toUtf8().constData() << message;
+	vDebug() << "[SERVER]" << message;
 
 	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
 	{
@@ -263,7 +263,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 
 bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const
 {
-	vDebug() << feature(message.featureUid()).name().toUtf8().constData() << message;
+	vDebug() << "[WORKER]" << message;
 
 	bool handled = false;
 
