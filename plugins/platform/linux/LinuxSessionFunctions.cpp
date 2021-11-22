@@ -161,7 +161,12 @@ qint64 LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
 
 LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass( const QString& session )
 {
-	const auto sessionClass = getSessionProperty( session, QStringLiteral("Class") ).toString();
+	auto sessionClass = getSessionProperty(session, QStringLiteral("Class")).toString();
+	if (sessionClass.isEmpty() && session == currentSessionPath())
+	{
+		sessionClass = QProcessEnvironment::systemEnvironment().value(LinuxSessionFunctions::xdgSessionClassEnvVarName());
+	}
+
 	if( sessionClass == QLatin1String("user") )
 	{
 		return Class::User;
