@@ -561,7 +561,7 @@ QString ComputerControlListModel::loggedOnUserInformation( const ComputerControl
 		auto user = controlInterface->userLoginName();
 		if( controlInterface->userFullName().isEmpty() == false )
 		{
-			user = QStringLiteral( "%1 (%2)" ).arg( user, controlInterface->userFullName() );
+			user = QStringLiteral("%1 (%2)").arg(controlInterface->userFullName(), user);
 		}
 
 		return tr( "Logged on user: %1" ).arg( user );
