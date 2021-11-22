@@ -118,8 +118,8 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case GroupsRole:
 		return computerControl->groups();
 
-	case ScreenRole:
-		return computerControl->screen();
+	case FramebufferRole:
+		return computerControl->framebuffer();
 
 	case ControlInterfaceRole:
 		return QVariant::fromValue( computerControl );
@@ -182,7 +182,7 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 	for( auto& controlInterface : m_computerControlInterfaces )
 	{
-		controlInterface->setScaledScreenSize( newSize );
+		controlInterface->setScaledFramebufferSize( newSize );
 	}
 
 	if( m_computerScreenSize != newSize )
@@ -233,26 +233,26 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 	{
 	case ComputerControlInterface::State::Connected:
 	{
-		const auto image = controlInterface->scaledScreen();
+		const auto image = controlInterface->scaledFramebuffer();
 		if( image.isNull() == false )
 		{
 			return image;
 		}
 
-		return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
+		return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledFramebufferSize() );
 	}
 
 	case ComputerControlInterface::State::ServerNotRunning:
-		return scaleAndAlignIcon( m_iconServerNotRunning, controlInterface->scaledScreenSize() );
+		return scaleAndAlignIcon( m_iconServerNotRunning, controlInterface->scaledFramebufferSize() );
 
 	case ComputerControlInterface::State::AuthenticationFailed:
-		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledScreenSize() );
+		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledFramebufferSize() );
 
 	default:
 		break;
 	}
 
-	return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledScreenSize() );
+	return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledFramebufferSize() );
 }
 
 
@@ -342,14 +342,14 @@ QModelIndex ComputerControlListModel::interfaceIndex( ComputerControlInterface* 
 
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
-	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole, ScreenRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole, FramebufferRole } );
 }
 
 
 
 void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
-	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, ImageIdRole, ScreenRole } );
+	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, ImageIdRole, FramebufferRole } );
 }
 
 
@@ -379,10 +379,10 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 {
 	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
-	connect( controlInterface, &ComputerControlInterface::screenSizeChanged,
+	connect( controlInterface, &ComputerControlInterface::framebufferSizeChanged,
 			 this, &ComputerControlListModel::updateComputerScreenSize );
 
-	connect( controlInterface, &ComputerControlInterface::scaledScreenUpdated,
+	connect( controlInterface, &ComputerControlInterface::scaledFramebufferUpdated,
 			 this, [=] () { updateScreen( interfaceIndex( controlInterface ) ); } );
 
 	connect( controlInterface, &ComputerControlInterface::activeFeaturesChanged,

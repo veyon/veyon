@@ -119,7 +119,7 @@ void VncConnection::stop()
 {
 	setClientData( VncConnectionTag, nullptr );
 
-	m_scaledScreen = {};
+	m_scaledFramebuffer = {};
 
 	setControlFlag( ControlFlag::TerminateThread, true );
 
@@ -244,16 +244,16 @@ void VncConnection::setScaledSize( QSize s )
 	if( m_scaledSize != s )
 	{
 		m_scaledSize = s;
-		setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
+		setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, true );
 	}
 }
 
 
 
-QImage VncConnection::scaledScreen()
+QImage VncConnection::scaledFramebuffer()
 {
-	rescaleScreen();
-	return m_scaledScreen;
+	rescaleFramebuffer();
+	return m_scaledFramebuffer;
 }
 
 
@@ -265,15 +265,15 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 
 
 
-void VncConnection::rescaleScreen()
+void VncConnection::rescaleFramebuffer()
 {
 	if( hasValidFramebuffer() == false || m_scaledSize.isNull() )
 	{
-		m_scaledScreen = {};
+		m_scaledFramebuffer = {};
 		return;
 	}
 
-	if( isControlFlagSet( ControlFlag::ScaledScreenNeedsUpdate ) == false )
+	if( isControlFlagSet( ControlFlag::ScaledFramebufferNeedsUpdate ) == false )
 	{
 		return;
 	}
@@ -285,9 +285,9 @@ void VncConnection::rescaleScreen()
 		return;
 	}
 
-	m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+	m_scaledFramebuffer = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
-	setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, false );
+	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, false );
 }
 
 
@@ -658,7 +658,7 @@ void VncConnection::finishFrameBufferUpdate()
 	m_framebufferUpdateWatchdog.restart();
 
 	m_framebufferState = FramebufferState::Valid;
-	setControlFlag( ControlFlag::ScaledScreenNeedsUpdate, true );
+	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, true );
 
 	Q_EMIT framebufferUpdateComplete();
 }

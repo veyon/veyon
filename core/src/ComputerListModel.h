@@ -38,7 +38,7 @@ public:
 		UserLoginNameRole,
 		ImageIdRole,
 		GroupsRole,
-		ScreenRole,
+		FramebufferRole,
 		ControlInterfaceRole
 	};
 

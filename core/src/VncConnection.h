@@ -127,7 +127,7 @@ public:
 
 	void setScaledSize( QSize s );
 
-	QImage scaledScreen();
+	QImage scaledFramebuffer();
 
 	void setFramebufferUpdateInterval( int interval );
 
@@ -136,7 +136,7 @@ public:
 		setControlFlag( ControlFlag::SkipHostPing, on );
 	}
 
-	void rescaleScreen();
+	void rescaleFramebuffer();
 
 	static constexpr int VncConnectionTag = 0x590123;
 
@@ -171,7 +171,7 @@ private:
 	static constexpr int RfbBytesPerPixel = sizeof(RfbPixel);
 
 	enum class ControlFlag {
-		ScaledScreenNeedsUpdate = 0x01,
+		ScaledFramebufferNeedsUpdate = 0x01,
 		ServerReachable = 0x02,
 		TerminateThread = 0x04,
 		RestartConnection = 0x08,
@@ -250,7 +250,7 @@ private:
 
 	// framebuffer data and thread synchronization objects
 	QImage m_image{};
-	QImage m_scaledScreen{};
+	QImage m_scaledFramebuffer{};
 	QSize m_scaledSize{};
 	QReadWriteLock m_imgLock{};
 

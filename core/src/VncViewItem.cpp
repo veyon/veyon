@@ -73,11 +73,11 @@ QSGNode* VncViewItem::updatePaintNode( QSGNode* oldNode, UpdatePaintNodeData* up
 
 	if( viewport().isValid() )
 	{
-		texture->setImage( computerControlInterface()->screen().copy( viewport() ) );
+		texture->setImage( computerControlInterface()->framebuffer().copy( viewport() ) );
 	}
 	else
 	{
-		texture->setImage( computerControlInterface()->screen() );
+		texture->setImage( computerControlInterface()->framebuffer() );
 	}
 	node->setRect( boundingRect() );
 
