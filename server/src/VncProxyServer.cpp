@@ -101,6 +101,9 @@ void VncProxyServer::acceptConnection()
 																	 m_vncServerPassword,
 																	 this );
 
+	connect(connection, &VncProxyConnection::serverMessageProcessed, this,
+		[=]() { Q_EMIT serverMessageProcessed(connection); }, Qt::DirectConnection );
+
 	connect( connection, &VncProxyConnection::clientConnectionClosed, this, [=]() { closeConnection( connection ); } );
 	connect( connection, &VncProxyConnection::serverConnectionClosed, this, [=]() { closeConnection( connection ); } );
 
