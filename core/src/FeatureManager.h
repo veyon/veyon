@@ -78,6 +78,8 @@ public:
 							   const FeatureMessage& message ) const;
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const;
 
+	void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext) const;
+
 	FeatureUidList activeFeatures( VeyonServerInterface& server ) const;
 
 private:
