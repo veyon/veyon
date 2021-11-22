@@ -36,7 +36,7 @@
 
 
 ComputerControlServer::ComputerControlServer( QObject* parent ) :
-	QObject( parent ),
+	VeyonServerInterface(parent),
 	m_featureWorkerManager( *this ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),

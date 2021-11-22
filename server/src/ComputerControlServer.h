@@ -35,7 +35,7 @@
 #include "VncProxyConnectionFactory.h"
 #include "VncServer.h"
 
-class ComputerControlServer : public QObject, VncProxyConnectionFactory, VeyonServerInterface
+class ComputerControlServer : public VeyonServerInterface, VncProxyConnectionFactory
 {
 	Q_OBJECT
 public:
