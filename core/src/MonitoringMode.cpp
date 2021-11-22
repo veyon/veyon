@@ -64,6 +64,13 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 
 
+void MonitoringMode::ping(const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid()}, computerControlInterfaces, true);
+}
+
+
+
 void MonitoringMode::queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	sendFeatureMessage(FeatureMessage{m_queryLoggedOnUserInfoFeature.uid()}, computerControlInterfaces);
@@ -81,6 +88,12 @@ void MonitoringMode::queryScreens(const ComputerControlInterfaceList& computerCo
 bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 										  const FeatureMessage& message )
 {
+	if (message.featureUid() == m_monitoringModeFeature.uid())
+	{
+		// successful ping reply implicitly handled through the featureMessageReceived() signal
+		return true;
+	}
+
 	if( message.featureUid() == m_queryLoggedOnUserInfoFeature.uid() )
 	{
 		computerControlInterface->setUserInformation( message.argument( Argument::UserLoginName ).toString(),
