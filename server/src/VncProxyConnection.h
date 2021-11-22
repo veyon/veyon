@@ -81,5 +81,6 @@ private:
 Q_SIGNALS:
 	void clientConnectionClosed();
 	void serverConnectionClosed();
+	void serverMessageProcessed();
 
 } ;

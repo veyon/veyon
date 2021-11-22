@@ -134,6 +134,7 @@ void VncProxyConnection::readFromServer()
 	{
 		while( receiveServerMessage() )
 		{
+			Q_EMIT serverMessageProcessed();
 		}
 	}
 	else
