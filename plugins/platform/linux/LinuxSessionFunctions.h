@@ -105,6 +105,11 @@ public:
 		return QStringLiteral("XDG_SESSION_ID");
 	}
 
+	static QString xdgSessionClassEnvVarName()
+	{
+		return QStringLiteral("XDG_SESSION_CLASS");
+	}
+
 	static QString sessionPathEnvVarName()
 	{
 		return QStringLiteral("VEYON_SESSION_PATH");
