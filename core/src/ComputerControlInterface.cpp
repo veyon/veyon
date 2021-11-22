@@ -35,24 +35,11 @@
 ComputerControlInterface::ComputerControlInterface( const Computer& computer, int port, QObject* parent ) :
 	QObject( parent ),
 	m_computer( computer ),
-	m_port( port ),
-	m_state( State::Disconnected ),
-	m_userLoginName(),
-	m_userFullName(),
-	m_scaledScreenSize(),
-	m_connection( nullptr ),
-	m_connectionWatchdogTimer( this ),
-	m_userUpdateTimer( this ),
-	m_activeFeaturesUpdateTimer( this ),
-	m_screensUpdateTimer( this )
+	m_port( port )
 {
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
 	connect( &m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection );
-
-	connect( &m_userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
-	connect( &m_activeFeaturesUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateActiveFeatures );
-	connect( &m_screensUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateScreens );
 }
 
 
@@ -119,9 +106,6 @@ void ComputerControlInterface::stop()
 		m_connection = nullptr;
 	}
 
-	m_screensUpdateTimer.stop();
-	m_activeFeaturesUpdateTimer.stop();
-	m_userUpdateTimer.stop();
 	m_connectionWatchdogTimer.stop();
 
 	m_state = State::Disconnected;
@@ -295,10 +279,6 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 		{
 			vncConnection()->setFramebufferUpdateInterval( UpdateIntervalDisabled );
 		}
-
-		m_userUpdateTimer.stop();
-		m_activeFeaturesUpdateTimer.start( UpdateIntervalDisabled );
-		m_screensUpdateTimer.stop();
 		break;
 
 	case UpdateMode::Basic:
@@ -310,10 +290,6 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 															 m_updateMode == UpdateMode::Monitoring ) ?
 															   computerMonitoringUpdateInterval : -1 );
 		}
-
-		m_userUpdateTimer.start( computerMonitoringUpdateInterval );
-		m_activeFeaturesUpdateTimer.start( computerMonitoringUpdateInterval );
-		m_screensUpdateTimer.start( computerMonitoringUpdateInterval );
 		break;
 	}
 

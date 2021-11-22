@@ -172,21 +172,19 @@ private:
 
 	UpdateMode m_updateMode{UpdateMode::Disabled};
 
-	State m_state;
-	QString m_userLoginName;
-	QString m_userFullName;
+	State m_state{State::Disconnected};
+	QString m_userLoginName{};
+	QString m_userFullName{};
 	int m_userSessionId{0};
 	ScreenList m_screens;
 	FeatureUidList m_activeFeatures;
 	Feature::Uid m_designatedModeFeature;
 
-	QSize m_scaledScreenSize;
+	QSize m_scaledScreenSize{};
+	int m_timestamp{0};
 
-	VeyonConnection* m_connection;
-	QTimer m_connectionWatchdogTimer;
-	QTimer m_userUpdateTimer;
-	QTimer m_activeFeaturesUpdateTimer;
-	QTimer m_screensUpdateTimer;
+	VeyonConnection* m_connection{nullptr};
+	QTimer m_connectionWatchdogTimer{this};
 
 Q_SIGNALS:
 	void screenSizeChanged();
