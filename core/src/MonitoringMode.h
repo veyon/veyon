@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "FeatureProviderInterface.h"
 
 class VEYON_CORE_EXPORT MonitoringMode : public QObject, FeatureProviderInterface, PluginInterface
@@ -37,6 +39,7 @@ public:
 		UserFullName,
 		UserSessionId,
 		ScreenInfoList,
+		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
 
@@ -84,6 +87,8 @@ public:
 
 	void ping(const ComputerControlInterfaceList& computerControlInterfaces);
 
+	void queryActiveFeatures(const ComputerControlInterfaceList& computerControlInterfaces);
+
 	void queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces );
 
 	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
@@ -109,8 +114,14 @@ public:
 	void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext) override;
 
 private:
+	bool sendActiveFeatures(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendUserInformation(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendScreenInfoList(VeyonServerInterface& server, const MessageContext& messageContext);
+
+	static const char* activeFeaturesVersionProperty()
+	{
+		return "activeFeaturesListVersion";
+	}
 
 	static const char* userInfoVersionProperty()
 	{
@@ -122,13 +133,22 @@ private:
 		return "screenInfoListVersion";
 	}
 
+	void updateActiveFeatures();
 	void updateUserData();
 	void updateScreenInfoList();
 
+	static constexpr int ActiveFeaturesUpdateInterval = 250;
+
 	const Feature m_monitoringModeFeature;
+	const Feature m_queryActiveFeatures;
 	const Feature m_queryLoggedOnUserInfoFeature;
 	const Feature m_queryScreensFeature;
 	const FeatureList m_features;
+
+
+	int m_activeFeaturesVersion{0};
+	QStringList m_activeFeatures;
+	QTimer m_activeFeaturesUpdateTimer;
 
 	QReadWriteLock m_userDataLock;
 	QString m_userLoginName;
