@@ -36,7 +36,7 @@
 
 
 ComputerControlServer::ComputerControlServer( QObject* parent ) :
-	QObject( parent ),
+	VeyonServerInterface(parent),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
 	m_featureWorkerManager( *this ),

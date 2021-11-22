@@ -24,14 +24,23 @@
 
 #pragma once
 
-class BuiltinFeatures;
+#include "VeyonCore.h"
+
 class FeatureMessage;
 class FeatureWorkerManager;
 class MessageContext;
 
-class VeyonServerInterface
+// clazy:excludeall=copyable-polymorphic
+
+class VEYON_CORE_EXPORT VeyonServerInterface : public QObject
 {
+	Q_OBJECT
 public:
+	explicit VeyonServerInterface(QObject* parent) :
+		QObject(parent)
+	{
+	}
+
 	virtual ~VeyonServerInterface() = default;
 
 	virtual FeatureWorkerManager& featureWorkerManager() = 0;
