@@ -1368,10 +1368,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation>Tutti gli schermi</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Schermo %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1559,7 +1555,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation>Elenca i nomi di tutte le funzioni disponibili</translation>
+        <translation>Elenca nomi di tutte le funzioni disponibili</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
@@ -1684,13 +1680,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation>Visualizza una tabella con informazioni dettagliate su tutte le funzioni disponibili. Queste informazioni includono una descrizione, l&apos;UID, il nome del plug-in che fornisce la rispettiva funzione e alcuni altri dettagli relativi all&apos;implementazione.</translation>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Controllo delle opzioni</translation>
     </message>
 </context>
 <context>
@@ -3120,8 +3109,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Questa modalità consente di monitorare tutti i computer in una o più posizioni.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
-        <translation>Proprietà di query dei display collegati</translation>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation>Interroga le funzionalità attive</translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Interroga le proprietà delle schermate disponibili in remoto</translation>
     </message>
 </context>
 <context>
@@ -3463,16 +3460,12 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <translation>Connessione in corso...</translation>
     </message>
     <message>
-        <source>Select display</source>
-        <translation>Seleziona display</translation>
+        <source>Select screen</source>
+        <translation>Seleziona lo schermo</translation>
     </message>
     <message>
-        <source>All displays</source>
-        <translation>Tutti i display</translation>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation>Display %1 [%2]</translation>
+        <source>All screens</source>
+        <translation>Tutti gli schermi</translation>
     </message>
 </context>
 <context>
@@ -4086,6 +4079,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>ATTENZIONE</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Schermo %1</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4255,6 +4252,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin che implementa funzioni astratte per la piattaforma Windows</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Schermo interno</translation>
     </message>
 </context>
 <context>

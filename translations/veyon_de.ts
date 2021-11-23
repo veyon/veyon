@@ -1368,10 +1368,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>All screens</source>
         <translation>Alle Bildschirme</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Bildschirm %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1684,13 +1680,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation>Zeigt eine Tabelle mit detaillierten Informationen über alle verfügbaren Funktionen an. Diese Informationen umfassen eine Beschreibung, die UID, den Namen des Plugins, das die jeweilige Funktion bereitstellt, sowie einige andere implementierungsbezogene Details.</translation>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Funktionssteuerung</translation>
     </message>
 </context>
 <context>
@@ -3130,8 +3119,16 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Dieser Modus erlaubt es Ihnen, alle Computer an einem oder mehreren Standorten zu beobachten.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
-        <translation>Eigenschaften der angeschlossenen Anzeigen abfragen</translation>
+        <source>Query application version of the server</source>
+        <translation>Anwendungsversion des Servers abfragen</translation>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation>Aktive Funktionen abfragen</translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Eigenschaften entfernt verfügbarer Bildschirme abfragen</translation>
     </message>
 </context>
 <context>
@@ -3473,16 +3470,12 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Verbinde...</translation>
     </message>
     <message>
-        <source>Select display</source>
-        <translation>Anzeige auswählen</translation>
+        <source>Select screen</source>
+        <translation>Bildschirm auswählen</translation>
     </message>
     <message>
-        <source>All displays</source>
-        <translation>Alle Anzeigen</translation>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation>Anzeige %1 [%2]</translation>
+        <source>All screens</source>
+        <translation>Alle Bildschirme</translation>
     </message>
 </context>
 <context>
@@ -4097,6 +4090,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>WARNING</source>
         <translation>WARNUNG</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Bildschirm %1</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4266,6 +4263,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Interne Anzeige</translation>
     </message>
 </context>
 <context>

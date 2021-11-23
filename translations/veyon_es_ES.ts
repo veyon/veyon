@@ -1373,10 +1373,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>All screens</source>
         <translation>Todas las pantallas</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Pantalla %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1689,13 +1685,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation>Muestra una tabla con información detallada sobre todas las funciones disponibles. Esta información incluye una descripción, el UID, el nombre del complemento que proporciona la función respectiva y algunos otros detalles relacionados con la implementación.</translation>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Control de funciones</translation>
     </message>
 </context>
 <context>
@@ -3135,7 +3124,15 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Este modo le permite monitorear todos los equipos en una o más ubicaciones.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3478,16 +3475,12 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <translation>Conectando ...</translation>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation type="unfinished"/>
+        <source>All screens</source>
+        <translation>Todas las pantallas</translation>
     </message>
 </context>
 <context>
@@ -4102,6 +4095,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <source>WARNING</source>
         <translation>ADVERTENCIA</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4271,6 +4268,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin implementando funciones abstractas para la plataforma Windows</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

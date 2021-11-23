@@ -1371,10 +1371,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1687,13 +1683,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Özellik denetimi</translation>
     </message>
 </context>
 <context>
@@ -3125,7 +3114,15 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Bu mod, bir veya daha fazla konumdaki tüm bilgisayarları izlemenizi sağlar.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3468,15 +3465,11 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
+        <source>All screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4092,6 +4085,10 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <source>WARNING</source>
         <translation>UYARI</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4261,6 +4258,10 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Eklenti, Windows platformu için soyut işlevleri yerine getirir</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

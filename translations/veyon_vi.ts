@@ -1371,10 +1371,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1686,13 +1682,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3114,7 +3103,15 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3455,15 +3452,11 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
+        <source>All screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4078,6 +4071,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4246,6 +4243,10 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Internal display</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>Version :</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Site Internet:</translation>
+        <translation>Site Internet :</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -110,7 +110,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Pour tester, veuillez entrer un identifiant qui possède des droits d&apos;accès:</translation>
+        <translation>Pour tester, veuillez entrer un identifiant qui possède des droits d&apos;accès :</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -134,7 +134,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan:</translation>
+        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan :</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -165,7 +165,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Nom de la règle:</translation>
+        <translation>Nom de la règle :</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
@@ -173,7 +173,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Description de la règle:</translation>
+        <translation>Description de la règle :</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -268,15 +268,15 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Utilisateur accédant:</translation>
+        <translation>Utilisateur accédant :</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Ordinateur local:</translation>
+        <translation>Ordinateur local :</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Ordinateur accédant:</translation>
+        <translation>Ordinateur accédant :</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -284,11 +284,11 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Utilisateur local:</translation>
+        <translation>Utilisateur local :</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Utilisateurs connectés</translation>
+        <translation>Utilisateurs connectés :</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -304,7 +304,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>ERREUR: Action inconnue</translation>
+        <translation>ERREUR : Action inconnue</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -367,7 +367,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Entrer le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait la création de la paire de clé d&apos;authentification:</translation>
+        <translation>Entrer le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait la création de la paire de clé d&apos;authentification :</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -379,7 +379,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Entrez le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait l&apos;import de la clé d&apos;authentification:</translation>
+        <translation>Entrez le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait l&apos;import de la clé d&apos;authentification :</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -387,7 +387,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Veuillez sélectionner un groupe d&apos;utilisateur pour lequel vous accordez l&apos;accès à la clé &quot;%1&quot;:</translation>
+        <translation>Veuillez sélectionner un groupe d&apos;utilisateur pour lequel vous accordez l&apos;accès à la clé &quot;%1&quot; :</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -395,7 +395,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Veuillez suivre les indications suivantes pour configurer la clé d&apos;authentification:</translation>
+        <translation>Veuillez suivre les indications suivantes pour configurer la clé d&apos;authentification :</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -659,7 +659,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide à son propos.</translation>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Ordinateur &quot;%1&quot; (adresse hôte: &quot;%2&quot; adresse MAC: &quot;%3&quot;)</translation>
+        <translation>Ordinateur &quot;%1&quot; (adresse hôte : &quot;%2&quot; adresse MAC : &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
@@ -896,7 +896,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Importe des objets à partir d&apos;un fichier texte spécifique utilisant la chaîne de caractères donnée ou une expression régulière contenant un ou plusieurs jokers. Les jokers valides sont: %1</translation>
+        <translation>Importe des objets à partir d&apos;un fichier texte spécifique utilisant la chaîne de caractères donnée ou une expression régulière contenant un ou plusieurs jokers. Les jokers valides sont : %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -916,7 +916,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Exporte les objets vers un fichier texte spécifique utilisant la chaîne de caractères donnée contenant un ou plusieurs jokers. Les jokers valides sont: %1</translation>
+        <translation>Exporte les objets vers un fichier texte spécifique utilisant la chaîne de caractères donnée contenant un ou plusieurs jokers. Les jokers valides sont : %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -984,7 +984,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide à son propos.</translation>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
     </message>
 </context>
 <context>
@@ -1005,11 +1005,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <name>ComputerControlListModel</name>
     <message>
         <source>Host/IP address: %1</source>
-        <translation>Adresse de l&apos;hôte / IP: %1</translation>
+        <translation>Adresse de l&apos;hôte / IP : %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation>Fonctionnalités activées: %1</translation>
+        <translation>Fonctionnalités activées : %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1037,11 +1037,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Connecté sur l&apos;utilisateur: %1</translation>
+        <translation>Connecté sur l&apos;utilisateur : %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation>Emplacement: %1</translation>
+        <translation>Emplacement : %1</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
@@ -1057,7 +1057,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Name: %1</source>
-        <translation>Nom: %1</translation>
+        <translation>Nom : %1</translation>
     </message>
     <message>
         <source>[none]</source>
@@ -1068,7 +1068,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>Service %1 %2 sur %3:%4</translation>
+        <translation>Service %1 %2 à %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1096,7 +1096,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Active connections:</source>
-        <translation>Connexions actives:</translation>
+        <translation>Connexions actives :</translation>
     </message>
 </context>
 <context>
@@ -1370,10 +1370,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>All screens</source>
         <translation>Tous les écrans</translation>
-    </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Écran %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1690,13 +1686,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Contrôle des fonctionnalités</translation>
-    </message>
-</context>
-<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
@@ -1808,7 +1797,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Language:</source>
-        <translation>Langue:</translation>
+        <translation>Langue :</translation>
     </message>
     <message>
         <source>Use system language setting</source>
@@ -1876,7 +1865,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Intervalle de rafraichissement:</translation>
+        <translation>Intervalle de rafraichissement :</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1973,7 +1962,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation>Description de l&apos;erreur LDAP: %1</translation>
+        <translation>Description de l&apos;erreur LDAP : %1</translation>
     </message>
 </context>
 <context>
@@ -2165,7 +2154,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>Le contexte de nommage LDAP à été interrogé avec succès. La base DN suivante à été trouvée:
+        <translation>Le contexte de nommage LDAP à été interrogé avec succès. La base DN suivante à été trouvée :
 %1</translation>
     </message>
     <message>
@@ -2186,7 +2175,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Veuillez entrer un identifiant utilisateur (jokers autorisé ? *) à rechercher:</translation>
+        <translation>Veuillez entrer un identifiant utilisateur (jokers autorisé ? *) à rechercher :</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2198,7 +2187,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Veuillez entrer le nom d&apos;un groupe dont vous recherchez les membres:</translation>
+        <translation>Veuillez entrer le nom d&apos;un groupe dont vous recherchez les membres :</translation>
     </message>
     <message>
         <source>group members</source>
@@ -2226,7 +2215,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>Veuillez entrer le DN d&apos;un ordinateur dont vous recherchez l&apos;adresse MAC:</translation>
+        <translation>Veuillez entrer le DN d&apos;un ordinateur dont vous recherchez l&apos;adresse MAC :</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -2246,7 +2235,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Veuillez entrer l&apos;identifiant dont vous recherchez les groupes d&apos;appartenance:</translation>
+        <translation>Veuillez entrer l&apos;identifiant dont vous recherchez les groupes d&apos;appartenance :</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -2270,7 +2259,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation>Veuillez entrer une adresse IP pour trouver un ordinateur:</translation>
+        <translation>Veuillez entrer une adresse IP pour trouver un ordinateur :</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2292,7 +2281,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%2 %1 a été interrogé avec succès:
+        <translation>%2 %1 a été interrogé avec succès :
 
 %3</translation>
     </message>
@@ -2420,7 +2409,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation>La base LDAP DN a été interrogée avec succès. Les entrées suivantes ont été trouvées:
+        <translation>La base LDAP DN a été interrogée avec succès. Les entrées suivantes ont été trouvées :
 
 %1</translation>
     </message>
@@ -2478,7 +2467,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Identifier des emplacements ordinateur (ex salles) via:</translation>
+        <translation>Identifier des emplacements ordinateur (ex salles) via :</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
@@ -2498,7 +2487,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation>Veuillez entrer un nom d&apos;affichage d&apos;ordinateur à interroger:</translation>
+        <translation>Veuillez entrer un nom d&apos;affichage d&apos;ordinateur à interroger :</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -2506,7 +2495,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Veuillez entrer le nom d&apos;un emplacement d&apos;ordinateur (jokers autorisés):</translation>
+        <translation>Veuillez entrer le nom d&apos;un emplacement d&apos;ordinateur (jokers autorisés) :</translation>
     </message>
     <message>
         <source>computer locations</source>
@@ -2518,7 +2507,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Veuillez entrer le nom d&apos;un emplacement dont les entrées sont à interroger.</translation>
+        <translation>Veuillez entrer le nom d&apos;un emplacement dont les entrées sont à interroger :</translation>
     </message>
     <message>
         <source>location entries</source>
@@ -2570,7 +2559,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>Veuillez entrer un nom d&apos;ordinateur hôte à rechercher:</translation>
+        <translation>Veuillez entrer un nom d&apos;ordinateur hôte à rechercher :</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
@@ -2594,7 +2583,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Veuillez entrer un nom d’hôte pour l’ordinateur appartenant au groupe à interroger</translation>
+        <translation>Veuillez entrer un nom d’hôte pour l’ordinateur appartenant au groupe à interroger :</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -2959,7 +2948,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>Action au double clique sur un ordinateur:</translation>
+        <translation>Action au double clique sur un ordinateur :</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3133,8 +3122,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Ce mode vous permet de surveiller tous les ordinateurs d&apos;un ou de plusieurs emplacements.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
-        <translation>Propriétés de requête des affichages attachés</translation>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Interroger les propriétés des écrans distants disponibles</translation>
     </message>
 </context>
 <context>
@@ -3164,11 +3161,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Veuillez entrer l&apos;URL du site internet à ouvrir:</translation>
+        <translation>Veuillez entrer l&apos;URL du site internet à ouvrir :</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nom:</translation>
+        <translation>Nom :</translation>
     </message>
 </context>
 <context>
@@ -3348,7 +3345,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation>Veuillez spécifier un délai d&apos;attente pour éteindre les ordinateurs sélectionnés:</translation>
+        <translation>Veuillez spécifier un délai d&apos;attente pour éteindre les ordinateurs sélectionnés :</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3387,7 +3384,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Pour accéder, veuillez entrer le nom de l&apos;hôte ou l&apos;adresse IP de l&apos;ordinateur:</translation>
+        <translation>Pour accéder, veuillez entrer le nom de l&apos;hôte ou l&apos;adresse IP de l&apos;ordinateur :</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3476,16 +3473,12 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>En cours de connexion</translation>
     </message>
     <message>
-        <source>Select display</source>
-        <translation>Sélectionner l&apos;affichage</translation>
+        <source>Select screen</source>
+        <translation>Sélectionner l&apos;écran</translation>
     </message>
     <message>
-        <source>All displays</source>
-        <translation>Tous les affichages</translation>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation>Affichage %1 [%2]</translation>
+        <source>All screens</source>
+        <translation>Tous les écrans</translation>
     </message>
 </context>
 <context>
@@ -3569,19 +3562,19 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>User:</source>
-        <translation>Utilisateur:</translation>
+        <translation>Utilisateur :</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>Ordinateur:</translation>
+        <translation>Ordinateur :</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Date:</translation>
+        <translation>Date :</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Heure:</translation>
+        <translation>Heure :</translation>
     </message>
     <message>
         <source>Show</source>
@@ -3644,7 +3637,7 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation>Extension:</translation>
+        <translation>Extension :</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
@@ -3818,7 +3811,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Durée:</translation>
+        <translation>Durée :</translation>
     </message>
 </context>
 <context>
@@ -3860,7 +3853,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nom:</translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4050,7 +4043,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>Commandes disponibles:</translation>
+        <translation>Commandes disponibles :</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -4066,11 +4059,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Available modules:</source>
-        <translation>Modules disponibles:</translation>
+        <translation>Modules disponibles :</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation>Aucun module spécifié ou module non trouvé - les modules disponibles sont:</translation>
+        <translation>Aucun module spécifié ou module non trouvé - les modules disponibles sont :</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4099,6 +4092,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>WARNING</source>
         <translation>ATTENTION</translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Écran %1</translation>
     </message>
 </context>
 <context>
@@ -4270,6 +4267,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Extension implémentant les fonctions abstraites pour le système Windows </translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Affichage interne</translation>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4314,7 +4315,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>Paramètres personnalisés x11vnc:</translation>
+        <translation>Paramètres personnalisés x11vnc :</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>

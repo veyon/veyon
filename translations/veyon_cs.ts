@@ -1371,10 +1371,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1687,13 +1683,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Ovládání funkce</translation>
     </message>
 </context>
 <context>
@@ -3129,7 +3118,15 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Tento režim umožňuje monitorovat veškeré počítače v jednom a více umístěních.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3472,15 +3469,11 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
+        <source>All screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4096,6 +4089,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>WARNING</source>
         <translation>VAROVÁNÍ</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4265,6 +4262,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Zásuvný modul implementující abstrahující funkce pro platformu Windows</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

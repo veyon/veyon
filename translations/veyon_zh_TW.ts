@@ -1371,10 +1371,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation>所有螢幕</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>螢幕 %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1687,13 +1683,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation>顯示表格，其中包含有關所有可用功能的詳細資料。 這個資訊包含描述、UID、提供相應功能的外掛程式名稱以及其它一些與實現相關的詳細資料。</translation>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>功能控制</translation>
     </message>
 </context>
 <context>
@@ -3133,7 +3122,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>這個模式允許您監視在一個或數個位置的所有電腦。</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3476,16 +3473,12 @@ Please save your work and close all programs.</source>
         <translation>正在連線...</translation>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation type="unfinished"/>
+        <source>All screens</source>
+        <translation>所有螢幕</translation>
     </message>
 </context>
 <context>
@@ -4100,6 +4093,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>警告</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4269,6 +4266,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>執行 Windows 平臺的抽象函數的外掛程式</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

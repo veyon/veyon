@@ -1371,10 +1371,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1687,13 +1683,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Kontrola funkcija</translation>
     </message>
 </context>
 <context>
@@ -3133,7 +3122,15 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Ovaj način rada omogućuje vam praćenje svih računara na jednoj ili više lokacija.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3476,15 +3473,11 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
+        <source>All screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4100,6 +4093,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <source>WARNING</source>
         <translation>UPOZORENJE</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4269,6 +4266,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin implementiranje apstraktnih funkcija za Windows platformu</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

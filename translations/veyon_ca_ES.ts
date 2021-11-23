@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Quant a Veyon</translation>
+        <translation>Quant al Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -35,7 +35,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>La llengua actual encara no s&apos;ha traduït (o anglès natiu).
 
-Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu millorar una traducció existent, poseu-vos en contacte amb un desenvolupador de Veyon!</translation>
+Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o voleu millorar una traducció existent, poseu-vos en contacte amb un desenvolupador del Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -70,7 +70,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Afegiu els grups els membres dels quals haurien d&apos;estar autoritzats per accedir als ordinadors de la vostra xarxa Veyon.</translation>
+        <translation>Afegiu els grups els membres dels quals haurien d&apos;estar autoritzats per a accedir als ordinadors de la vostra xarxa Veyon.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -118,7 +118,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>L&apos;usuari especificat té permís per accedir als ordinadors amb aquesta configuració.</translation>
+        <translation>L&apos;usuari especificat té permís per a accedir als ordinadors amb aquesta configuració.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -126,7 +126,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>L&apos;usuari especificat no té permís per accedir als ordinadors amb aquesta configuració.</translation>
+        <translation>L&apos;usuari especificat no té permís per a accedir als ordinadors amb aquesta configuració.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
@@ -134,11 +134,11 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Dorsal dels grups d&apos;usuaris:</translation>
+        <translation>Rerefons dels grups d&apos;usuaris:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Falta el dorsal de grups d&apos;usuaris</translation>
+        <translation>Falta el rerefonss de grups d&apos;usuaris</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
@@ -201,7 +201,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Si s&apos;activa més d&apos;una condició cada condició s&apos;ha de complir per tal que s&apos;apliqui la regla (lògica i). Si només s&apos;ha de complir una de les múltiples condicions (lògica O) creeu regles de control d&apos;accés múltiples.</translation>
+        <translation>Si s&apos;activa més d&apos;una condició cada condició s&apos;ha de complir per tal que s&apos;apliqui la regla (I lògic). Si només s&apos;ha de complir una de les múltiples condicions (O lògic) creeu regles de control d&apos;accés múltiples.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -272,7 +272,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Equip local:</translation>
+        <translation>Ordinador local:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -280,7 +280,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Introduïu la següent informació de l&apos;usuari i de l&apos;ordinador per provar el conjunt de regles configurat.</translation>
+        <translation>Introduïu la següent informació de l&apos;usuari i de l&apos;ordinador per a provar el conjunt de regles configurat.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -296,7 +296,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>Es nega l&apos;accés a l&apos;escenari indicat.</translation>
+        <translation>Es denega l&apos;accés a l&apos;escenari indicat.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
@@ -371,7 +371,7 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>Realment voleu suprimir la clau d&apos;autenticació &quot;%1/%2&quot;?</translation>
+        <translation>Esteu segur que voleu suprimir la clau d&apos;autenticació «%1/%2»?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
@@ -395,23 +395,23 @@ Si esteu interessat a traduir Veyon al vostre idioma local o un altre o voleu mi
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Si us plau realitzeu els passos següents per configurar l&apos;autenticació del fitxer de claus:</translation>
+        <translation>Realitzeu els passos següents per a configurar l&apos;autenticació del fitxer de claus:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Crea un parell de claus a l&apos;ordinador principal.</translation>
+        <translation>1) Creeu un parell de claus a l&apos;ordinador principal.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Estableix un grup d&apos;accés els membres del qual han de tenir permís per accedir a altres ordinadors.</translation>
+        <translation>2) Establiu un grup d&apos;accés els membres del qual han de tenir permís per accedir a altres ordinadors.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exporta la clau pública i la importa en tots els ordinadors de client amb el mateix nom.</translation>
+        <translation>3) Exporteu la clau pública i importeu en tots els ordinadors de client amb el mateix nom.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Consulteu  referlt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;.Manual de l&apos;administrador de Viatgesltlt;/a. per a més informació.</translation>
+        <translation>Consulteu &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de l&apos;administrador del Veyon&lt;/a&gt; per a més informació.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -440,11 +440,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>La clau especificada no existeix! Utilitzeu l&apos;ordre «llista» per llistar totes les claus instal·lades.</translation>
+        <translation>La clau especificada no existeix! Utilitzeu l&apos;ordre «list» per a llistar totes les claus instal·lades.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>Ja existeix un o més fitxers de claus! Si us plau suprimiu-les utilitzant l&apos;ordre «suprimeix».</translation>
+        <translation>Ja existeix un o més fitxers de claus! Suprimiu-les utilitzant l&apos;ordre «delete».</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
@@ -460,7 +460,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>No s&apos;ha pogut suprimir el fitxer de clau «%1»!</translation>
+        <translation>No s&apos;ha pogut suprimir el fitxer de claus «%1»!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -480,7 +480,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>La clau &quot;%1/%2&quot; s&apos;ha exportat a &quot;%3&quot; amb èxit.</translation>
+        <translation>La clau &quot;%1/%2&quot; s&apos;ha exportat a «%3» amb èxit.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
@@ -496,19 +496,19 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>No s&apos;ha pogut crear el directori per al fitxer de clau.</translation>
+        <translation>No s&apos;ha pogut crear el directori per al fitxer de claus.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>No s&apos;ha pogut escriure el fitxer de clau «%1».</translation>
+        <translation>No s&apos;ha pogut escriure el fitxer de claus «%1».</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>No s&apos;han pogut establir els permisos del fitxer de clau «%1»!</translation>
+        <translation>No s&apos;han pogut establir els permisos del fitxer de claus «%1»!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>La clau «%1/%2» s&apos;ha importat correctament. Si us plau comproveu els permisos del fitxer de «%3» per evitar els accessos no autoritzats.</translation>
+        <translation>La clau «%1/%2» s&apos;ha importat correctament. Comproveu els permisos del fitxer de «%3» per a evitar els accessos no autoritzats.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -516,7 +516,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>No s&apos;ha pogut crear el directori per al fitxer de clau privada «%1».</translation>
+        <translation>No s&apos;ha pogut crear el directori per al fitxer de claus privades «%1».</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -524,11 +524,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation>No s&apos;han pogut establir els permisos del fitxer de clau privada «%1»!</translation>
+        <translation>No s&apos;han pogut establir els permisos del fitxer de claus privades «%1»!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>No s&apos;ha pogut crear el directori per al fitxer de clau pública «%1».</translation>
+        <translation>No s&apos;ha pogut crear el directori per al fitxer de claus públiques «%1».</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
@@ -536,27 +536,27 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation>No s&apos;han pogut establir els permisos del fitxer de clau pública «%1»!</translation>
+        <translation>No s&apos;han pogut establir els permisos del fitxer de claus públiques «%1»!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>No s&apos;ha pogut establir el propietari del fitxer de clau «%1» a «%2».</translation>
+        <translation>No s&apos;ha pogut establir el propietari del fitxer de claus «%1» a «%2».</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation>No s&apos;han pogut establir els permisos del fitxer de clau «%1».</translation>
+        <translation>No s&apos;han pogut establir els permisos del fitxer de claus «%1».</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>La clau «%1» ara és accessible pel grup d&apos;usuaris «%2».</translation>
+        <translation>La clau «%1» ara és accessible per al grup d&apos;usuaris «%2».</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>ltlt;N/A/</translation>
+        <translation>&lt;N/D&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>No s&apos;ha pogut llegir el fitxer de clau.</translation>
+        <translation>No s&apos;ha pogut llegir el fitxer de claus.</translation>
     </message>
 </context>
 <context>
@@ -587,7 +587,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>Estableix el grup d&apos;usuaris permesos per accedir a una clau</translation>
+        <translation>Estableix el grup d&apos;usuaris permesos per a accedir a una clau</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -599,7 +599,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Aquesta ordre ajusta els permisos d&apos;accés als fitxers a .lt;KEY. de manera que només el grup d&apos;usuaris .lt;ACCESS GROUP. l&apos;ha llegit.</translation>
+        <translation>Aquesta ordre ajusta els permisos d&apos;accés als fitxers &lt;KEY&gt;de manera que només el grup d&apos;usuaris&lt;ACCESS GROUP&gt; hi té permís de lectura.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -611,15 +611,15 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Aquesta ordre exporta la clau d&apos;autenticació .lt;KEY. a .lt;FILE.. Si no s&apos;especifica .lt;FILE. es construirà un nom a partir del nom i el tipus de .lt;KEY..</translation>
+        <translation>Aquesta ordre exporta la clau d&apos;autenticació &lt;KEY&gt; a &lt;FILE&gt;. Si no s&apos;especifica &lt;FILE&gt;, es construirà un nom a partir del nom i el tipus de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Aquesta ordre importa la clau d&apos;autenticació .lt;KEY. de .lt;FILE.. Si no s&apos;especifica .lt;FILE. es construirà un nom a partir del nom i el tipus de .lt;KEY..</translation>
+        <translation>Aquesta ordre importa la clau d&apos;autenticació &lt;KEY&gt; de &lt;FILE&gt;. Si no s&apos;especifica &lt;FILE&gt;,. es construirà un nom a partir del nom i el tipus de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Aquesta ordre llista totes les claus d&apos;autenticació disponibles al directori de claus configurat. Si s&apos;especifica l&apos;opció &quot;%1&quot; es mostrarà una taula amb els detalls de la clau. Pot ser que faltin alguns detalls si una clau no és accessible p. ex. a causa de la manca de permisos de lectura.</translation>
+        <translation>Aquesta ordre llista totes les claus d&apos;autenticació disponibles al directori de claus configurat. Si s&apos;especifica l&apos;opció «%1» es mostrarà una taula amb els detalls de la clau. Pot ser que faltin alguns detalls si una clau no és accessible p. ex. a causa de la manca de permisos de lectura.</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -639,27 +639,27 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>Aquesta ordre crea un nou parell de claus d&apos;autenticació amb el nom .lt;NAME. i desa la clau privada i pública als directoris de claus configurats. El paràmetre ha de ser un nom per a la clau, que només pot contenir lletres.</translation>
+        <translation>Aquesta ordre crea un nou parell de claus d&apos;autenticació amb el nom &lt;NAME&gt; i desa la clau privada i pública als directoris de claus configurats. El paràmetre ha de ser un nom per a la clau, que només pot contenir lletres.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Aquesta ordre elimina la clau d&apos;autenticació .lt;KEY. del directori de claus configurat. Tingueu en compte que una clau no es pot recuperar una vegada s&apos;ha eliminat.</translation>
+        <translation>Aquesta ordre elimina la clau d&apos;autenticació &lt;KEY&gt; del directori de claus configurat. Tingueu en compte que una clau no es pot recuperar una vegada s&apos;ha eliminat.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>Aquesta ordre extreu la part de la clau pública de la clau privada .lt;KEY. i la desa com a clau pública corresponent. Per tant, quan es crea un altre ordinador mestre, n&apos;hi ha prou amb transferir la clau privada només. Llavors es pot extreure la clau pública.</translation>
+        <translation>Aquesta ordre extreu la part de la clau pública de la clau privada &lt;KEY&gt; i la desa com a clau pública corresponent. Per tant, quan es crea un altre ordinador mestre, n&apos;hi ha prou amb transferir la clau privada només. Llavors es pot extreure la clau pública.</translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>Si us plau especifiqueu el nom de la clau (p. ex. «teacher/public») com a primer argument.</translation>
+        <translation>Indiqueu el nom de la clau (p. ex. «professor/públic») com a primer argument.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation>Especifiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda.</translation>
+        <translation>Indiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>L&apos;ordre especificada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
+        <translation>L&apos;ordre indicada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
     </message>
 </context>
 <context>
@@ -808,7 +808,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Root</source>
-        <translation>Root</translation>
+        <translation>Arrel</translation>
     </message>
     <message>
         <source>Invalid</source>
@@ -824,7 +824,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation>Ordres per gestionar el directori d&apos;objectes de xarxa integrat</translation>
+        <translation>Ordres per a gestionar el directori d&apos;objectes de xarxa integrat</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
@@ -872,7 +872,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Builtin (ordinadors i ubicacions en la configuració local)</translation>
+        <translation>Integrat (ordinadors i ubicacions en la configuració local)</translation>
     </message>
     <message>
         <source>Location</source>
@@ -888,15 +888,15 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>FORMAT-CADENA-WITH-PLACEHOLDERS</translation>
+        <translation>FORMAT-CADENA-AMB-MARCADORS-DE-POSICIÓ</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation>REGULAR-EXPRESSION-WITH-PLACEHOLDER</translation>
+        <translation>EXPRESSIÓ-REGULAR-AMB-MARCADORS-DE-POSICIÓ</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Importa objectes del fitxer de text especificat utilitzant el format indicat cadena o expressió regular que conté un o diversos espais reservats. Els marcadors de posició vàlids són:%1</translation>
+        <translation>Importa objectes del fitxer de text indicat utilitzant el format indicat cadena o expressió regular que conté un o diversos espais reservats. Els marcadors de posició vàlids són: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
@@ -916,7 +916,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Exporta objectes al fitxer de text especificat utilitzant la cadena de format indicat que conté un o diversos espais reservats. Els marcadors de posició vàlids són:%1</translation>
+        <translation>Exporta objectes al fitxer de text especificat utilitzant la cadena de format indicat que conté un o diversos espais reservats. Els marcadors de posició vàlids són: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -940,7 +940,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>Afegeix un objecte on %1 pot ser un de &quot;%2&quot; o &quot;%3&quot;. %4 es pot especificar per nom o UUID.</translation>
+        <translation>Afegeix un objecte on %1 pot ser un de «%2» o «%3». %4 es pot especificar per nom o UUID.</translation>
     </message>
     <message>
         <source>Add a room</source>
@@ -968,11 +968,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>«Room 01»</translation>
+        <translation>«Sala 01»</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation>«Computer 01»</translation>
+        <translation>«Ordinadors 01»</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -984,7 +984,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>L&apos;ordre especificada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
+        <translation>L&apos;ordre indicada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
     </message>
 </context>
 <context>
@@ -1009,7 +1009,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation>Característiques actives:%1</translation>
+        <translation>Característiques actives: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1037,7 +1037,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Enregistrat a l&apos;usuari:%1</translation>
+        <translation>Usuari connectat: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1045,11 +1045,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation>El servidor Veyon no es pot accedir o no s&apos;està executant</translation>
+        <translation>No es pot accedir al servidor Veyon o no s&apos;està executant</translation>
     </message>
     <message>
         <source>[no user]</source>
-        <translation>usersense usuari]</translation>
+        <translation>[cap usuari]</translation>
     </message>
     <message>
         <source>invalid</source>
@@ -1057,7 +1057,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Name: %1</source>
-        <translation>Nom:%1</translation>
+        <translation>Nom: %1</translation>
     </message>
     <message>
         <source>[none]</source>
@@ -1080,11 +1080,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>L&apos;usuari &quot;%1&quot; a l&apos;amfitrió &quot;%2&quot; ara està accedint a aquest ordinador.</translation>
+        <translation>L&apos;usuari «%1» a l&apos;amfitrió «%2» ara està accedint a aquest ordinador.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>L&apos;usuari &quot;%1&quot; a l&apos;amfitrió &quot;%2&quot; ha intentat accedir a aquest ordinador però no s&apos;ha pogut autenticar correctament.</translation>
+        <translation>L&apos;usuari «%1» a l&apos;amfitrió «%2» ha intentat accedir a aquest ordinador, però no s&apos;ha pogut autenticar correctament.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1092,7 +1092,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>L&apos;usuari &quot;%1&quot; a l&apos;amfitrió &quot;%2&quot; va intentar accedir a aquest ordinador però s&apos;ha bloquejat a causa de la configuració del control d&apos;accés.</translation>
+        <translation>L&apos;usuari «%1» a l&apos;amfitrió «%2» ha intentat accedir a aquest ordinador, però s&apos;ha blocat a causa de la configuració del control d&apos;accés.</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1111,7 +1111,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>No s&apos;ha trobat cap connector de directori d&apos;objectes de xarxa per defecte. Si us plau comproveu la instal·lació o configureu un directori de directoris d&apos;objectes de xarxa diferent a través del configurador de %1.</translation>
+        <translation>No s&apos;ha trobat cap connector de directori d&apos;objectes de xarxa per defecte. Comproveu la instal·lació o configureu un rerefons de directoris d&apos;objectes de xarxa diferent a través del configurador de %1.</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1119,7 +1119,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>Nom de l&apos;ordinador;Hostname;User</translation>
+        <translation>Nom de l&apos;ordinador;Nom de l&apos;ordinador;Usuari</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
@@ -1138,7 +1138,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Desa la llista d&apos;ordinadors/usuaris</translation>
+        <translation>Desa la llista d&apos;ordinadors o usuaris</translation>
     </message>
     <message>
         <source>Select output filename</source>
@@ -1154,7 +1154,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>No s&apos;ha pogut escriure la llista d&apos;ordinadors i usuaris al 0%1! Comproveu els permisos d&apos;accés als fitxers.</translation>
+        <translation>No s&apos;ha pogut escriure la llista d&apos;ordinadors i usuaris a %1! Comproveu els permisos d&apos;accés als fitxers.</translation>
     </message>
 </context>
 <context>
@@ -1185,7 +1185,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Desfés (suprimeix) la clau de configuració donada</translation>
+        <translation>Desfa (suprimeix) la clau de configuració donada</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
@@ -1193,7 +1193,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Especifiqueu un fitxer de configuració existent per importar.</translation>
+        <translation>Indiqueu un fitxer de configuració existent per importar.</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -1201,27 +1201,27 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Especifiqueu un nom de fitxer vàlid per a l&apos;exportació de la configuració.</translation>
+        <translation>Indiqueu un nom de fitxer vàlid per a l&apos;exportació de la configuració.</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>El fitxer de sortida no és d&apos;escriptura!</translation>
+        <translation>No es pot escriure el fitxer de sortida!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>El directori de sortida no és d&apos;escriptura!</translation>
+        <translation>No es pot escriure en el directori de sortida!</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Especifiqueu una clau vàlida.</translation>
+        <translation>Indiqueu una clau vàlida.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>La clau especificada no existeix a la configuració actual!</translation>
+        <translation>La clau indicada no existeix a la configuració actual!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>Especifiqueu un valor vàlid.</translation>
+        <translation>Indiqueu un valor vàlid.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
@@ -1229,26 +1229,26 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Ordres per gestionar la configuració de Veyon</translation>
+        <translation>Ordres per a gestionar la configuració de Veyon</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>No s&apos;ha pogut modificar la propietat d&apos;inici automàtic per al servei del 0%1.</translation>
+        <translation>No s&apos;ha pogut modificar la propietat d&apos;inici automàtic per al servei %1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>No s&apos;ha pogut configurar la configuració del tallafoc per al servidor del 0%1.</translation>
+        <translation>No s&apos;ha pogut configurar la configuració del tallafoc per al servidor %1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>No s&apos;ha pogut configurar la configuració del tallafoc per a l&apos;operador de treball del 0%1.</translation>
+        <translation>No s&apos;ha pogut configurar la configuració del tallafoc per a l&apos;operador de treball %1.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>La configuració no és d&apos;escriptura. Comproveu els permisos!</translation>
+        <translation>No es pot escriure la configuració. Comproveu-ne els permisos!</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1266,11 +1266,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Servidor demo</translation>
+        <translation>Servidor de demostració</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Tunbles</translation>
+        <translation>Tunables</translation>
     </message>
     <message>
         <source> ms</source>
@@ -1278,7 +1278,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation>Interval del fotograma clau</translation>
+        <translation>Interval del marc de la clau</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1309,11 +1309,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Demo en finestra</translation>
+        <translation>Demostració en finestra</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Doneu una demostració per emissió de pantalla</translation>
+        <translation>Fa una demostració per emissió de pantalla</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1329,19 +1329,19 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>Demo de pantalla completa</translation>
+        <translation>Demostració en pantalla completa</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>Comparteix la vostra pròpia pantalla en mode de pantalla completa</translation>
+        <translation>Compartiu la vostra pantalla en mode de pantalla completa</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>En aquest mode la pantalla es mostra en mode de pantalla completa en tots els ordinadors mentre que els dispositius d&apos;entrada dels usuaris estan bloquejats.</translation>
+        <translation>En aquest mode la pantalla es mostra en mode de pantalla completa en tots els ordinadors mentre que els dispositius d&apos;entrada dels usuaris estan blocats.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>Comparteix la teva pròpia pantalla en una finestra</translation>
+        <translation>Compartiu la vostra pantalla en una finestra</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1349,7 +1349,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>En aquest mode la pantalla de l&apos;usuari seleccionat es mostra en mode de pantalla completa en tots els ordinadors mentre que els dispositius d&apos;entrada dels usuaris estan bloquejats.</translation>
+        <translation>En aquest mode la pantalla de l&apos;usuari seleccionat es mostra en mode de pantalla completa en tots els ordinadors mentre que els dispositius d&apos;entrada dels usuaris estan blocats.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
@@ -1361,19 +1361,15 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation>Seleccioneu una pantalla d&apos;usuari per compartir.</translation>
+        <translation>Seleccioneu una pantalla d&apos;usuari per a compartir.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation>Seleccioneu només una pantalla d&apos;usuari per compartir.</translation>
+        <translation>Seleccioneu només una pantalla d&apos;usuari per a compartir.</translation>
     </message>
     <message>
         <source>All screens</source>
         <translation>Totes les pantalles</translation>
-    </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Pantalla  %1 [%2]</translation>
     </message>
 </context>
 <context>
@@ -1396,7 +1392,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>L&apos;usuari %1  de l&apos;ordinador %2 vol accedir a l&apos;escriptori. Vols concedir accés?</translation>
+        <translation>L&apos;usuari %1 de l&apos;ordinador %2 vol accedir a l&apos;escriptori. Voleu concedir-hi accés?</translation>
     </message>
 </context>
 <context>
@@ -1447,7 +1443,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>New application</source>
-        <translation>Nova aplicació</translation>
+        <translation>Aplicació nova</translation>
     </message>
 </context>
 <context>
@@ -1458,11 +1454,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Feu clic en aquest botó per obrir un lloc web en tots els ordinadors.</translation>
+        <translation>Feu clic en aquest botó per a obrir un lloc web en tots els ordinadors.</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Obre el lloc web &quot;%1&quot;</translation>
+        <translation>Obre el lloc web «%1»</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1474,7 +1470,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation>Feu clic en aquest botó per iniciar una aplicació en tots els ordinadors.</translation>
+        <translation>Feu clic en aquest botó per a iniciar una aplicació en tots els ordinadors.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
@@ -1497,7 +1493,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Room %1</source>
-        <translation>Sala per %1</translation>
+        <translation>Sala %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1525,11 +1521,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Texts to read</source>
-        <translation>Textos a llegir</translation>
+        <translation>Textos per llegir</translation>
     </message>
     <message>
         <source>generic-student-user</source>
-        <translation>genèric-student-user</translation>
+        <translation>usuari-estudiant-genèric</translation>
     </message>
     <message>
         <source>Custom application</source>
@@ -1578,7 +1574,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation>Especifiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda.</translation>
+        <translation>Indiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
@@ -1598,11 +1594,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation>Inicia la característica especificada a l&apos;amfitrió especificat connectant-se al servidor Veyon executant-se remotament. La característica es pot especificar per nom o UID. Utilitzeu l&apos;ordre .show. per veure totes les característiques disponibles. Depenent de la característica, s&apos;han d&apos;especificar arguments addicionals (com el missatge de text a mostrar) codificats com una cadena JSON única. Consulteu la documentació del desenvolupador per a més informació</translation>
+        <translation>Inicia la característica especificada a l&apos;amfitrió especificat connectant-se al servidor Veyon que s&apos;executa remotament. La característica es pot especificar per nom o UID. Utilitzeu l&apos;ordre «show» per a veure totes les característiques disponibles. Depenent de la característica, s&apos;han d&apos;especificar arguments addicionals (com el missatge de text a mostrar) codificats com una cadena JSON única. Consulteu la documentació del desenvolupador per a més informació</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation>Bloqueja la pantalla</translation>
+        <translation>Bloca la pantalla</translation>
     </message>
     <message>
         <source>Display a text message</source>
@@ -1618,15 +1614,15 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation>Atura la característica especificada a l&apos;amfitrió especificat connectant-se al servidor Veyon executant-se remotament. La característica es pot especificar per nom o UID. Utilitzeu l&apos;ordre .show. per veure totes les característiques disponibles.</translation>
+        <translation>Atura la característica especificada a l&apos;amfitrió especificat connectant-se al servidor Veyon que s&apos;exectua remotament. La característica es pot especificar per nom o UID. Utilitzeu l&apos;ordre «show» per a veure totes les característiques disponibles.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation>Desbloqueja la pantalla</translation>
+        <translation>Desbloca la pantalla</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>L&apos;ordre especificada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
+        <translation>L&apos;ordre indicada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1662,7 +1658,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation>Error en analitzar els arguments codificats per JSON:%1</translation>
+        <translation>S&apos;ha produït un error en analitzar els arguments codificats per JSON: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
@@ -1674,7 +1670,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation>No s&apos;ha pogut enviar el missatge de control de característiques a l&apos;amfitrió per un 1%1</translation>
+        <translation>No s&apos;ha pogut enviar el missatge de control de característiques a l&apos;amfitrió %1</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
@@ -1690,13 +1686,6 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Control de característiques</translation>
-    </message>
-</context>
-<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
@@ -1704,7 +1693,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Directories</source>
-        <translation>Carpetes</translation>
+        <translation>Directoris</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1731,7 +1720,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>No s&apos;ha pogut obrir el fitxer «%1» per a la lectura! Comproveu els permisos!</translation>
+        <translation>No s&apos;ha pogut obrir el fitxer «%1» per a la lectura! Comproveu-ne els permisos!</translation>
     </message>
 </context>
 <context>
@@ -1777,7 +1766,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Feu clic en aquest botó per transferir fitxers des del vostre ordinador a tots els ordinadors.</translation>
+        <translation>Feu clic en aquest botó per a transferir fitxers des del vostre ordinador a tots els ordinadors.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1789,15 +1778,15 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation>Fitxer rebut «%1».</translation>
+        <translation>Fitxer «%1» rebut.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>No s&apos;ha pogut rebre el fitxer «%1» ja que ja existeix.</translation>
+        <translation>No s&apos;ha pogut rebre el fitxer «%1» perquè ja existeix.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>No s&apos;ha pogut rebre el fitxer «%1» ja que no s&apos;ha pogut obrir per escriure!</translation>
+        <translation>No s&apos;ha pogut rebre el fitxer «%1» perquè no s&apos;ha pogut obrir per escriure!</translation>
     </message>
 </context>
 <context>
@@ -1812,7 +1801,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>Utilitza la configuració de l&apos;idioma del sistema</translation>
+        <translation>Utilitza la configuració de llengua del sistema</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1856,7 +1845,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Límita la mida del fitxer de registre</translation>
+        <translation>Limita la mida del fitxer de registre</translation>
     </message>
     <message>
         <source>Clear all log files</source>
@@ -1864,7 +1853,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Registra en la sortida d&apos;error estàndard</translation>
+        <translation>Registra cap a la sortida d&apos;error estàndard</translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -1880,11 +1869,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>%1 service</source>
-        <translation>servei del 0%1</translation>
+        <translation>Servei %1</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Cal parar temporalment el servei del %1 per a eliminar els fitxers de registre. Continuar?</translation>
+        <translation>Cal parar temporalment el servei %1 per a eliminar els fitxers de registre. Voleu continuar?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1908,7 +1897,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation>Gira els fitxers de registre</translation>
+        <translation>Fes rotació dels fitxers de registre</translation>
     </message>
     <message>
         <source>x</source>
@@ -1916,7 +1905,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source> seconds</source>
-        <translation> segons</translation>
+        <translation> segonds</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1940,7 +1929,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Test</source>
-        <translation>Comprova</translation>
+        <translation>Prova</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
@@ -1966,14 +1955,14 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation>Navega per LDAP</translation>
+        <translation>Navega per l&apos;LDAP</translation>
     </message>
 </context>
 <context>
     <name>LdapClient</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation>Descripció de l&apos;error LDAP:%1</translation>
+        <translation>Descripció de l&apos;error LDAP: %1</translation>
     </message>
 </context>
 <context>
@@ -1992,11 +1981,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Bind DN</translation>
+        <translation>Enllaça DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Contrasenya</translation>
+        <translation>Contrasenya d&apos;enllaç</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
@@ -2004,7 +1993,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Utilitza les credencials</translation>
+        <translation>Utilitza les credencials d&apos;enllaç</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2128,7 +2117,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation>Obtenir objecte d&apos;ordinador per adreça IP</translation>
+        <translation>Obté l&apos;objecte d&apos;ordinador per adreça IP</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
@@ -2148,7 +2137,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>Ha fallat la prova DN base LDAP</translation>
+        <translation>Ha fallat la prova DN base de l&apos;LDAP</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
@@ -2165,7 +2154,8 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>El context de nomenclatura LDAP s&apos;ha consultat correctament. Es va trobar la base DN següent: %1</translation>
+        <translation>El context de nomenclatura LDAP s&apos;ha consultat correctament. Es va trobar la base DN següent:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
@@ -2185,7 +2175,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Si us plau introduïu un nom d&apos;usuari (permesos les targetes de connexió) que voleu consultar:</translation>
+        <translation>Introduïu un nom d&apos;usuari (es permeten els comodins) que voleu consultar:</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2209,7 +2199,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>No s&apos;ha pogut trobar un grup amb el nom &quot;%1&quot;. Comproveu el nom del grup o el paràmetre de l&apos;arbre de grups.</translation>
+        <translation>No s&apos;ha pogut trobar un grup amb el nom «%1». Comproveu el nom del grup o el paràmetre de l&apos;arbre de grups.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
@@ -2277,11 +2267,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>Ha fallat la prova LDAP%1</translation>
+        <translation>Ha fallat la prova LDAP %1</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>Prova LDAP%1 correcta</translation>
+        <translation>Prova LDAP %1 correcta</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
@@ -2411,19 +2401,25 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>No s&apos;ha pogut consultar el DN base configurat. Comproveu el paràmetre base DN. %1</translation>
+        <translation>No s&apos;ha pogut consultar el DN base configurat. Comproveu el paràmetre base DN.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation>El DN base LDAP s&apos;ha consultat correctament. Es van trobar les següents entrades: %1</translation>
+        <translation>El DN base LDAP s&apos;ha consultat correctament. Es van trobar les següents entrades:
+
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation>No s&apos;ha pogut consultar el DN base mitjançant contexts de nomenclatura. Comproveu el paràmetre de l&apos;atribut de context de noms. %1</translation>
+        <translation>No s&apos;ha pogut consultar el DN base mitjançant contexts de nomenclatura. Comproveu el paràmetre de l&apos;atribut de context de noms.
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2433,17 +2429,21 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation>No s&apos;ha pogut connectar al servidor LDAP. Comproveu els paràmetres del servidor. %1</translation>
+        <translation>No s&apos;ha pogut connectar al servidor LDAP. Comproveu els paràmetres del servidor.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation>No s&apos;ha pogut vincular al servidor LDAP. Comproveu els paràmetres del servidor i uniu les credencials. %1</translation>
+        <translation>No s&apos;ha pogut vincular al servidor LDAP. Comproveu els paràmetres del servidor i vinculeu-ne les credencials.
+
+%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation>Protocol d&apos;encriptatge</translation>
+        <translation>Protocol de xifratge</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
@@ -2495,7 +2495,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Introduïu el nom d&apos;una ubicació de l&apos;ordinador (es permeten targetes de temps):</translation>
+        <translation>Introduïu el nom d&apos;una ubicació de l&apos;ordinador (es permeten comodins):</translation>
     </message>
     <message>
         <source>computer locations</source>
@@ -2527,7 +2527,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>and</source>
-        <translation>and</translation>
+        <translation>i</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
@@ -2547,7 +2547,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Test</source>
-        <translation>Comprova</translation>
+        <translation>Prova</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2555,15 +2555,15 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation>L&apos;atribut nom de l&apos;ordinador</translation>
+        <translation>L&apos;atribut de nom de l&apos;ordinador</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation>Introduïu un nom d&apos;amfitrió per consultar:</translation>
+        <translation>Introduïu un nom d&apos;amfitrió per a consultar:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation>Nom d&apos;amfitrió no vàlid</translation>
+        <translation>El nom d&apos;amfitrió no és vàlid</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -2571,7 +2571,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Heu configurat els noms de host de l&apos;ordinador perquè s&apos;emmagatzemin com a noms d&apos;amfitrió senzills sense un nom de domini però heu introduït un nom d&apos;amfitrió amb una part del nom de domini.</translation>
+        <translation>Heu configurat els noms de host de l&apos;ordinador perquè s&apos;emmagatzemin com a noms d&apos;amfitrió senzills sense un nom de domini, però heu introduït un nom d&apos;amfitrió amb una part del nom de domini.</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -2599,7 +2599,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>L&apos;atribut nom d&apos;usuari</translation>
+        <translation>L&apos;atribut de nom d&apos;inici de sessió d&apos;usuari</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2615,7 +2615,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation>Consulta els grups d&apos;usuaris imbricats (només ad.)</translation>
+        <translation>Consulta els grups d&apos;usuaris imbricats (disponible només AD)</translation>
     </message>
 </context>
 <context>
@@ -2626,7 +2626,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation>Consulta objectes des del directori LDAP</translation>
+        <translation>Consulta objectes del directori LDAP</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -2634,7 +2634,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Ordres per configurar i provar la integració LDAP/AD</translation>
+        <translation>Ordres per a configurar i provar la integració LDAP/AD</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
@@ -2650,7 +2650,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation>Si us plau especifiqueu un URL LDAP vàlid seguint l&apos;esquema &quot;ldapss:://userusuari::password&quot;nomamfitrióhost:port&quot;&quot;</translation>
+        <translation>Indiqueu un URL LDAP vàlid seguint l&apos;esquema «ldap[s]://[usuar[:contrassenya]@nomamfitrió[:port]»</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
@@ -2681,7 +2681,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>User login</source>
-        <translation>Usuari</translation>
+        <translation>Inici de sesisó de l&apos;usuari</translation>
     </message>
     <message>
         <source>Login key sequence</source>
@@ -2711,7 +2711,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>introduïu el filtre de cerca...</translation>
+        <translation>introduïu un filtre de cerca...</translation>
     </message>
 </context>
 <context>
@@ -2781,11 +2781,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>La configuració no es pot escriure</translation>
+        <translation>No es pot escriure la configuració</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Carregar ajustaments des d&apos;un fitxer</translation>
+        <translation>Carrega ajustaments des d&apos;un fitxer</translation>
     </message>
     <message>
         <source>Save settings to file</source>
@@ -2797,7 +2797,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Hi ha ajustaments no desats. Voleu sortir de totes formes?</translation>
+        <translation>Hi ha ajustaments sense desar. Voleu sortir de totes formes?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -2817,11 +2817,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Quant a Veyon</translation>
+        <translation>Quant al Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation>Automàtic</translation>
     </message>
     <message>
         <source>About</source>
@@ -2837,7 +2837,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>El dorsal de configuració local va informar que la configuració no és d&apos;escriptura! Executeu el configurador de %1 amb privilegis més alts.</translation>
+        <translation>El rerefons de configuració local ha informat que no es pot escriure la configuració! Executeu el configurador de %1 amb privilegis més alts.</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2849,7 +2849,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>D&apos;acord amb la configuració local no teniu permís per accedir als ordinadors de la xarxa. Inicieu sessió amb un compte diferent o deixeu que l&apos;administrador del sistema comprovi la configuració local.</translation>
+        <translation>D&apos;acord amb la configuració local, no teniu permís per a accedir als ordinadors de la xarxa. Inicieu sessió amb un compte diferent o deixeu que l&apos;administrador del sistema comprovi la configuració local.</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2869,7 +2869,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Realment voleu restablir la configuració local i revertir tots els ajustaments als seus valors predeterminats?</translation>
+        <translation>Esteu segur que voleu restablir la configuració local i revertir tots els ajustaments als seus valors predeterminats?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -2881,7 +2881,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation>Configurador del 0%1</translation>
+        <translation>Configurador %1</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
@@ -2889,11 +2889,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>No s&apos;ha pogut començar amb els privilegis administratius. Assegureu-vos que hi ha instal·lat un programa semblant a sudo per al vostre entorn d&apos;escriptori! El programa s&apos;executarà amb privilegis d&apos;usuari normals.</translation>
+        <translation>No s&apos;ha pogut iniciar amb els privilegis administratius. Assegureu-vos que hi ha instal·lat un programa semblant a sudo per al vostre entorn d&apos;escriptori! El programa s&apos;executarà amb privilegis d&apos;usuari normals.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation>Mostra només en els ordinadors</translation>
+        <translation>Mostra només els ordinadors engegats</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
@@ -2917,7 +2917,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>Ubicacions  computersamp; computersamp; ordinadors</translation>
+        <translation>Ubicacions i ordinadors</translation>
     </message>
     <message>
         <source>Slideshow</source>
@@ -2925,7 +2925,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Spotlight</translation>
+        <translation>Focus</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
@@ -2940,7 +2940,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation>Carpetes</translation>
+        <translation>Directoris</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2948,7 +2948,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>Característica en doble clic:</translation>
+        <translation>Característica en fer doble clic a l&apos;ordinador:</translation>
     </message>
     <message>
         <source>Features</source>
@@ -2968,7 +2968,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation>ltlt;sense característica&gt;</translation>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2992,7 +2992,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>Accions com ara reiniciar o alimentar ordinadors</translation>
+        <translation>Accions com ara reiniciar o apagar ordinadors</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -3040,7 +3040,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Sort order</source>
-        <translation>Ordre</translation>
+        <translation>Ordenació</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3092,7 +3092,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation>Automàtic</translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3111,18 +3111,26 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>Seguiment</translation>
+        <translation>Monitoratge</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation>Mode de monitorització de l&apos;estil</translation>
+        <translation>Mode de monitoratge integrat</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Aquest mode us permet controlar tots els ordinadors en una o més ubicacions.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3153,7 +3161,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Introduïu l&apos;URL del lloc web per obrir:</translation>
+        <translation>Introduïu l&apos;URL del lloc web a obrir:</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3168,11 +3176,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Password</source>
-        <translation>Clau d&apos;accés</translation>
+        <translation>Contrasenya</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation>Logon</translation>
+        <translation>Inici de sessió Veyon</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -3184,7 +3192,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Introduïu el vostre nom d&apos;usuari i contrasenya per accedir als ordinadors.</translation>
+        <translation>Introduïu el vostre nom d&apos;usuari i contrasenya per a accedir als ordinadors.</translation>
     </message>
 </context>
 <context>
@@ -3219,7 +3227,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation>Ordres per gestionar connectors</translation>
+        <translation>Ordres per a gestionar connectors</translation>
     </message>
 </context>
 <context>
@@ -3230,7 +3238,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>Feu clic en aquest botó per activar tots els ordinadors. D&apos;aquesta manera no has d&apos;alimentar a cada ordinador a mà.</translation>
+        <translation>Feu clic en aquest botó per a activar tots els ordinadors. D&apos;aquesta manera no cal engegar cada ordinador a mà.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -3238,7 +3246,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Feu clic en aquest botó per reiniciar tots els ordinadors.</translation>
+        <translation>Feu clic en aquest botó per a reiniciar tots els ordinadors.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3246,11 +3254,11 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>Feu clic en aquest botó per activar tots els ordinadors. D&apos;aquesta manera no has de fer funcionar cada ordinador a mà.</translation>
+        <translation>Feu clic en aquest botó per activar tots els ordinadors. D&apos;aquesta manera no cal apagar cada ordinador a mà.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Engega/desactiva o reinicia un ordinador</translation>
+        <translation>Engega, apaga o reinicia un ordinador</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3262,7 +3270,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>Realment voleu reiniciar els ordinadors seleccionats?</translation>
+        <translation>Esteu segur que voleu reiniciar els ordinadors seleccionats?</translation>
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
@@ -3274,19 +3282,19 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Aquesta ordre emet un paquet Wake-on-LAN (WOL) a la xarxa per tal d&apos;alimentar l&apos;ordinador amb l&apos;adreça MAC indicada.</translation>
+        <translation>Aquesta ordre emet un paquet Wake-on-LAN (WOL) a la xarxa per tal d&apos;engegar l&apos;ordinador amb l&apos;adreça MAC indicada.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Especifiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda!</translation>
+        <translation>Indiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation>S&apos;ha especificat una adreça MAC no vàlida!</translation>
+        <translation>S&apos;ha indicat una adreça MAC no vàlida!</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation>Ordres per controlar l&apos;estat d&apos;energia dels ordinadors</translation>
+        <translation>Ordres per a controlar l&apos;estat d&apos;energia dels ordinadors</translation>
     </message>
     <message>
         <source>Power down now</source>
@@ -3306,7 +3314,7 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation>Es va demanar a l&apos;ordinador que s&apos;encarregués remotament. Vols apagar l&apos;ordinador ara?</translation>
+        <translation>Ja s&apos;ha demanat a l&apos;ordinador que s&apos;apagui remotament. Voleu apagar l&apos;ordinador ara?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
@@ -3318,15 +3326,15 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Realment voleu reiniciar els ordinadors  computerslt;b?ALL?lt;/b??</translation>
+        <translation>Esteu segur que voleu reiniciar &lt;b&gt;TOTS&lt;/b&gt; els ordinadors?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Esteu segur que voleu engegar els ordinadors ?lt;b?ALL?lt;/b??</translation>
+        <translation>Esteu segur que voleu engegar &lt;b&gt;TOTS&lt;/b&gt; els ordinadors?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation>Realment voleu apagar els ordinadors seleccionats?</translation>
+        <translation>Esteu segur que voleu apagar els ordinadors seleccionats?</translation>
     </message>
 </context>
 <context>
@@ -3337,7 +3345,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation>Si us plau especifiqueu un temps d&apos;espera per alimentar els ordinadors seleccionats:</translation>
+        <translation>Indiqueu un temps d&apos;espera per a apagar els ordinadors seleccionats:</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3352,11 +3360,11 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>Vista remota</translation>
+        <translation>Visualització remota</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>Obre una vista remota per a un ordinador sense interacció.</translation>
+        <translation>Obre una visualització remota per a un ordinador sense interacció.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -3372,11 +3380,11 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Visualització remota o controla un ordinador</translation>
+        <translation>Visualització remota o control remot a un ordinador</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Introduïu el nom d&apos;amfitrió o l&apos;adreça IP de l&apos;ordinador per accedir:</translation>
+        <translation>Introduïu el nom d&apos;amfitrió o l&apos;adreça IP de l&apos;ordinador on voleu accedir:</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3387,11 +3395,11 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>Accés remot del 0%1 -0%2</translation>
+        <translation>Accés remot %1 -%2</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation>Accés remot del 0%1 -0%2 - 3%</translation>
+        <translation>Accés remot %1 -%2 - 3%</translation>
     </message>
 </context>
 <context>
@@ -3462,50 +3470,46 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation>Connectant...</translation>
+        <translation>S&apos;està connectant...</translation>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation type="unfinished"/>
+        <source>All screens</source>
+        <translation>Totes les pantalles</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Bloqueja</translation>
+        <translation>Bloca</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Desbloqueja</translation>
+        <translation>Desbloca</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation>Bloqueja la pantalla i els dispositius d&apos;entrada d&apos;un ordinador</translation>
+        <translation>Bloca la pantalla i els dispositius d&apos;entrada d&apos;un ordinador</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>Per reclamar tota l&apos;atenció de l&apos;usuari podeu bloquejar els seus ordinadors utilitzant aquest botó. En aquest mode tots els dispositius d&apos;entrada estan bloquejats i les pantalles estan en negreta.</translation>
+        <translation>Per a reclamar tota l&apos;atenció de l&apos;usuari podeu blocar-li els ordinadors utilitzant aquest botó. En aquest mode es bloquen tots els dispositius d&apos;entrada i les pantalles es posen en negre.</translation>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation>Bloqueja els dispositius d&apos;entrada</translation>
+        <translation>Bloca els dispositius d&apos;entrada</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation>Desbloqueja els dispositius d&apos;entrada</translation>
+        <translation>Desbloca els dispositius d&apos;entrada</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation>Per reclamar tota l&apos;atenció de l&apos;usuari podeu bloquejar els seus ordinadors utilitzant aquest botó. En aquest mode tots els dispositius d&apos;entrada estan bloquejats mentre l&apos;escriptori encara és visible.</translation>
+        <translation>Per a reclamar tota l&apos;atenció de l&apos;usuari podeu blocar-li els ordinadors utilitzant aquest botó. En aquest mode es bloquen tots els dispositius d&apos;entrada mentre l&apos;escriptori encara és visible.</translation>
     </message>
 </context>
 <context>
@@ -3516,7 +3520,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>No s&apos;ha pogut prendre una captura de pantalla ja que el directori 0%1 no existeix i no s&apos;ha pogut crear.</translation>
+        <translation>No s&apos;ha pogut prendre una captura de pantalla, ja que el directori %1 no existeix i no s&apos;ha pogut crear.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3535,7 +3539,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>Utilitzeu aquesta funció per prendre una captura de pantalla dels ordinadors seleccionats.</translation>
+        <translation>Utilitzeu aquesta funció per a fer una captura de pantalla dels ordinadors seleccionats.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
@@ -3547,14 +3551,14 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation>Feu captures de pantalla dels ordinadors i deseu-los localment.</translation>
+        <translation>Fa captures de pantalla dels ordinadors i les desa localment.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Aquí es llisten totes les captures de pantalla que heu fet. Podeu fer captures de pantalla fent clic a l&apos;element «Screenshot» al menú contextual d&apos;un ordinador. Les captures de pantalla es poden gestionar utilitzant els botons següents.</translation>
+        <translation>Aquí es llisten totes les captures de pantalla que heu fet. Podeu fer captures de pantalla fent clic a l&apos;element «Captura de pantalla» del menú contextual d&apos;un ordinador. Les captures de pantalla es poden gestionar utilitzant els botons següents.</translation>
     </message>
     <message>
         <source>User:</source>
@@ -3586,7 +3590,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation>Realment voleu suprimir totes les captures de pantalla seleccionades?</translation>
+        <translation>Esteu segur que voleu suprimir totes les captures de pantalla seleccionades?</translation>
     </message>
 </context>
 <context>
@@ -3597,11 +3601,11 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Arranc automàtic</translation>
+        <translation>Inici automàtic</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Ocultar icona de la barra del sistema</translation>
+        <translation>Oculta la icona de la barra del sistema</translation>
     </message>
     <message>
         <source>Start service</source>
@@ -3621,7 +3625,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Activar excepció en el tallafocs</translation>
+        <translation>Activa una excepció en el tallafocs</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3650,8 +3654,8 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation>Si activeu aquesta opció el servei iniciarà un procés de servidor per a cada sessió interactiva en un ordinador.
-Normalment es requereix per donar suport als servidors de terminals.</translation>
+        <translation>Si activeu aquesta opció, el servei iniciarà un procés de servidor per a cada sessió interactiva en un ordinador.
+Normalment es requereix per a donar suport als servidors de terminals.</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
@@ -3659,7 +3663,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation>Mostra la notificació quan es bloqueja un accés no autoritzat</translation>
+        <translation>Mostra la notificació quan es bloca un accés no autoritzat</translation>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3679,11 +3683,11 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Feature manager</source>
-        <translation>Gestor de funcions</translation>
+        <translation>Gestor de característiques</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Servidor demo</translation>
+        <translation>Servidor de demostració</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
@@ -3753,7 +3757,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Estat de la consulta del servei Veyon</translation>
+        <translation>Consulta l&apos;estat del servei Veyon</translation>
     </message>
     <message>
         <source>Service is running</source>
@@ -3769,7 +3773,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation>Ordres per configurar i controlar el Servei Veyon</translation>
+        <translation>Ordres per a configurar i controlar el servei Veyon</translation>
     </message>
 </context>
 <context>
@@ -3784,7 +3788,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation>Execució interactiva de shell i script per a Veyon for</translation>
+        <translation>Execució interactiva de shell i script per a Veyon CLI</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3803,7 +3807,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Next</source>
-        <translation>Següent</translation>
+        <translation>Endavant</translation>
     </message>
     <message>
         <source>Duration:</source>
@@ -3826,11 +3830,11 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Spotlight</translation>
+        <translation>Focus</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation>Seleccioneu almenys un ordinador per afegir.</translation>
+        <translation>Seleccioneu almenys un ordinador per a afegir-lo.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
@@ -3853,7 +3857,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>per exemple &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation>p. ex. «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
@@ -3865,7 +3869,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation>Introduïu les aplicacions que voleu iniciar en els ordinadors seleccionats. Podeu separar múltiples aplicacions per línia.</translation>
+        <translation>Introduïu les aplicacions que voleu iniciar en els ordinadors seleccionats. Podeu separar múltiples aplicacions per línies.</translation>
     </message>
 </context>
 <context>
@@ -3879,7 +3883,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation>Dorsal de grups d&apos;usuari per a grups d&apos;usuaris del sistema</translation>
+        <translation>Rerefons de grups d&apos;usuari per a grups d&apos;usuaris del sistema</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
@@ -3890,11 +3894,11 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation>Prova els components i funcions de Veió interns</translation>
+        <translation>Prova els components i funcions interns de Veyon</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation>Ordres per provar components interns i funcions de Veyon</translation>
+        <translation>Ordres per a provar components i funcions interns de Veyon</translation>
     </message>
 </context>
 <context>
@@ -3916,7 +3920,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Utilitzeu aquesta funció per enviar un missatge de text a tots els usuaris p. ex. per assignar-los tasques noves.</translation>
+        <translation>Utilitzeu aquesta funció per a enviar un missatge de text a tots els usuaris p. ex. per assignar-los tasques noves.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3939,11 +3943,11 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Baixa precissió (mode turbo)</translation>
+        <translation>Baixa precisió (mode turbo)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>Configuració del servidor UltraVNC</translation>
+        <translation>Configuració del servidor UltraVNC integrat</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
@@ -3951,7 +3955,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>Habilita el motor de duplicació de l&apos;escriptori al Windows 8 i més recent</translation>
+        <translation>Habilita el motor de duplicació de l&apos;escriptori al Windows 8 i posterior</translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
@@ -3966,14 +3970,14 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>No s&apos;ha pogut desar la vostra configuració personal! Si us plau comproveu el camí del fitxer de configuració de l&apos;usuari utilitzant el configurador de %1.</translation>
+        <translation>No s&apos;ha pogut desar la vostra configuració personal! Comproveu el camí del fitxer de configuració de l&apos;usuari utilitzant el configurador de %1.</translation>
     </message>
 </context>
 <context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Usuari</translation>
+        <translation>Inici de sesisó de l&apos;usuari</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
@@ -3985,7 +3989,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Password</source>
-        <translation>Clau d&apos;accés</translation>
+        <translation>Contrasenya</translation>
     </message>
 </context>
 <context>
@@ -3996,15 +4000,15 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation>Feu clic en aquest botó per iniciar sessió en un usuari específic de tots els ordinadors.</translation>
+        <translation>Feu clic en aquest botó per a iniciar sessió en un usuari específic de tots els ordinadors.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation>Desconnecta</translation>
+        <translation>Tanca la sessió</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Feu clic en aquest botó per tancar la sessió als usuaris de tots els ordinadors.</translation>
+        <translation>Feu clic en aquest botó per a tancar la sessió als usuaris de tots els ordinadors.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
@@ -4012,7 +4016,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>Realment voleu tancar la sessió als usuaris seleccionats?</translation>
+        <translation>Esteu segur que voleu tancar la sessió als usuaris seleccionats?</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -4020,22 +4024,22 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>Realment voleu tancar la sessió als usuaris de ?lt;b?ALL?lt;/b??</translation>
+        <translation>Esteu segur que voleu tancar la sessió a &lt;b&gt;TOTS&lt;/b&gt; els usuaris?</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>OKOK]</translation>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>FAFAIL]</translation>
+        <translation>[FALLADA]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Ordre no vàlida!</translation>
+        <translation>L&apos;ordre no és vàlida!</translation>
     </message>
     <message>
         <source>Available commands:</source>
@@ -4059,11 +4063,11 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation>No s&apos;ha especificat cap mòdul o no s&apos;ha trobat - els mòduls disponibles són:</translation>
+        <translation>No s&apos;ha indicat cap mòdul o no s&apos;ha trobat - els mòduls disponibles són:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>Connector no autoritzat</translation>
+        <translation>Connector sense llicència</translation>
     </message>
     <message>
         <source>INFO</source>
@@ -4088,6 +4092,10 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     <message>
         <source>WARNING</source>
         <translation>AVÍS</translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4191,7 +4199,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>No s&apos;ha pogut canviar la configuració de la generació SAS per programari. Enviar Ctrl+Alt+Supr a través del control remot no funcionarà!</translation>
+        <translation>No s&apos;ha pogut canviar la configuració de la generació SAS per programari. L&apos;enviament de Ctrl+Alt+Supr a través del control remot no funcionarà!</translation>
     </message>
 </context>
 <context>
@@ -4234,7 +4242,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>User login</source>
-        <translation>Usuari</translation>
+        <translation>Inici de sesisó de l&apos;usuari</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -4242,11 +4250,11 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation>Interval de premses de tecla simulades</translation>
+        <translation>Interval de pulsació de tecles simulades</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation>Confirma l&apos;avís legal (message que es mostra abans d&apos;iniciar sessió de l&apos;usuari)</translation>
+        <translation>Avís legal de confirmació (missatge que es mostra abans que l&apos;usuari iniciï sessió)</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4259,12 +4267,16 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Connector implementant funcions abstractes per a la plataforma Windows</translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>El servei &quot;%1&quot; ja està instal·lat.</translation>
+        <translation>El servei «%1» ja està instal·lat.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
@@ -4276,7 +4288,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>No s&apos;ha trobat el servei &quot;%1&quot;.</translation>
+        <translation>No s&apos;ha trobat el servei «%1».</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4299,7 +4311,7 @@ Normalment es requereix per donar suport als servidors de terminals.</translatio
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation>Configuració del servidor x11vnc</translation>
+        <translation>Configuració del servidor x11vnc integrat</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>

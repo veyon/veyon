@@ -1371,10 +1371,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1687,13 +1683,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Funkcija nadzora</translation>
     </message>
 </context>
 <context>
@@ -3133,7 +3122,15 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Ta način omogoča nadzor vseh računalnikov na eni ali več lokacijah.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3474,15 +3471,11 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select display</source>
+        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All displays</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
+        <source>All screens</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4098,6 +4091,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
         <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4267,6 +4264,10 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Vtičnik izvajanja abstraktnih funkcij za platformo Windows</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

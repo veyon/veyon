@@ -1368,10 +1368,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation>Усі екрани</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Екран %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1684,13 +1680,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation>Показує таблицю із докладними відомостями щодо усіх доступних можливостей. Серед цих відомостей опис, UID, назва додатка, який забезпечує роботу можливості, та деякі інші пов&apos;язані із реалізацією подробиці.</translation>
-    </message>
-</context>
-<context>
-    <name>FeatureControl</name>
-    <message>
-        <source>Feature control</source>
-        <translation>Керування можливосями</translation>
     </message>
 </context>
 <context>
@@ -3132,8 +3121,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>У цьому режимі ви можете спостерігати за усіма комп&apos;ютерами у одному або декількох місцях.</translation>
     </message>
     <message>
-        <source>Query properties of attached displays</source>
-        <translation>Опитати з&apos;єднані дисплеї щодо властивостей</translation>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation>Опитати щодо активних можливостей</translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Опитати віддалені доступні екрани щодо властивостей</translation>
     </message>
 </context>
 <context>
@@ -3475,16 +3472,12 @@ Please save your work and close all programs.</source>
         <translation>Встановлюємо з&apos;єднання…</translation>
     </message>
     <message>
-        <source>Select display</source>
-        <translation>Виберіть дисплей</translation>
+        <source>Select screen</source>
+        <translation>Виберіть екран</translation>
     </message>
     <message>
-        <source>All displays</source>
-        <translation>Усі дисплеї</translation>
-    </message>
-    <message>
-        <source>Display %1 [%2]</source>
-        <translation>Дисплей %1 [%2]</translation>
+        <source>All screens</source>
+        <translation>Усі екрани</translation>
     </message>
 </context>
 <context>
@@ -4099,6 +4092,10 @@ Typically this is required to support terminal servers.</source>
         <source>WARNING</source>
         <translation>ПОПЕРЕДЖЕННЯ</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Екран %1</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4268,6 +4265,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Windows</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Внутрішній дисплей</translation>
     </message>
 </context>
 <context>
