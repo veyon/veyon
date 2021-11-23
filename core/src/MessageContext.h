@@ -34,9 +34,11 @@ class VEYON_CORE_EXPORT MessageContext
 {
 public:
 	using IODevice = QPointer<QIODevice>;
+	using Connection = QPointer<QObject>;
 
-	explicit MessageContext( QIODevice* ioDevice = nullptr ) :
-		m_ioDevice( ioDevice )
+	explicit MessageContext(QIODevice* ioDevice = nullptr, QObject* connection = nullptr) :
+		m_ioDevice( ioDevice ),
+		m_connection(connection)
 	{
 	}
 
@@ -47,7 +49,13 @@ public:
 		return m_ioDevice;
 	}
 
+	QObject* connection() const
+	{
+		return m_connection;
+	}
+
 private:
 	IODevice m_ioDevice;
+	Connection m_connection;
 
 } ;
