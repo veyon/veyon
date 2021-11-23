@@ -211,24 +211,6 @@ void ComputerControlInterface::setUserInformation( const QString& userLoginName,
 
 
 
-void ComputerControlInterface::updateScreens()
-{
-	lock();
-
-	if( vncConnection() && state() == State::Connected )
-	{
-		VeyonCore::builtinFeatures().monitoringMode().queryScreens( { weakPointer() } );
-	}
-	else
-	{
-		setScreens({});
-	}
-
-	unlock();
-}
-
-
-
 void ComputerControlInterface::setScreens(const ScreenList& screens)
 {
 	if(screens != m_screens)
@@ -249,24 +231,6 @@ void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFe
 
 		Q_EMIT activeFeaturesChanged();
 	}
-}
-
-
-
-void ComputerControlInterface::updateActiveFeatures()
-{
-	lock();
-
-	if( vncConnection() && state() == State::Connected )
-	{
-		VeyonCore::builtinFeatures().monitoringMode().queryActiveFeatures({weakPointer()});
-	}
-	else
-	{
-		setActiveFeatures( {} );
-	}
-
-	unlock();
 }
 
 
@@ -416,6 +380,24 @@ void ComputerControlInterface::updateServerVersion()
 
 
 
+void ComputerControlInterface::updateActiveFeatures()
+{
+	lock();
+
+	if (vncConnection() && state() == State::Connected)
+	{
+		VeyonCore::builtinFeatures().monitoringMode().queryActiveFeatures({weakPointer()});
+	}
+	else
+	{
+		setActiveFeatures({});
+	}
+
+	unlock();
+}
+
+
+
 void ComputerControlInterface::updateUser()
 {
 	lock();
@@ -430,6 +412,24 @@ void ComputerControlInterface::updateUser()
 	else
 	{
 		setUserInformation( {}, {}, -1 );
+	}
+
+	unlock();
+}
+
+
+
+void ComputerControlInterface::updateScreens()
+{
+	lock();
+
+	if (vncConnection() && state() == State::Connected)
+	{
+		VeyonCore::builtinFeatures().monitoringMode().queryScreens({weakPointer()});
+	}
+	else
+	{
+		setScreens({});
 	}
 
 	unlock();
