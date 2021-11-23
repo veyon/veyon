@@ -128,8 +128,6 @@ public:
 
 	void setUserInformation( const QString& userLoginName, const QString& userFullName, int sessionId );
 
-	void updateScreens();
-
 	const ScreenList& screens() const
 	{
 		return m_screens;
@@ -164,9 +162,6 @@ public:
 		m_groups = groups;
 	}
 
-
-	void updateActiveFeatures();
-
 	void sendFeatureMessage(const FeatureMessage& featureMessage);
 	bool isMessageQueueEmpty();
 
@@ -186,7 +181,9 @@ private:
 
 	void updateState();
 	void updateServerVersion();
+	void updateActiveFeatures();
 	void updateUser();
+	void updateScreens();
 
 	void handleFeatureMessage( const FeatureMessage& message );
 
