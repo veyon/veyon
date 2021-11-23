@@ -44,6 +44,12 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
 	m_connectionWatchdogTimer.setSingleShot( true );
 	connect( &m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection );
+
+	m_serverVersionQueryTimer.setInterval(ServerVersionQueryTimeout);
+	m_serverVersionQueryTimer.setSingleShot(true);
+	connect( &m_serverVersionQueryTimer, &QTimer::timeout, this, [this]() {
+		setServerVersion(VeyonCore::ApplicationVersion::Unknown);
+	});
 }
 
 
@@ -86,6 +92,7 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		} );
 
 		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::setMinimumFramebufferUpdateInterval);
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateServerVersion);
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
@@ -178,6 +185,20 @@ QImage ComputerControlInterface::framebuffer() const
 	}
 
 	return {};
+}
+
+
+
+void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion version)
+{
+	m_serverVersionQueryTimer.stop();
+
+	m_serverVersion = version;
+
+	if (vncConnection())
+	{
+		vncConnection()->setRequiresManualUpdateRateControl(m_serverVersion < VeyonCore::ApplicationVersion::Version_4_7);
+	}
 }
 
 
@@ -381,6 +402,21 @@ void ComputerControlInterface::updateState()
 	else
 	{
 		m_state = State::Disconnected;
+	}
+
+	unlock();
+}
+
+
+
+void ComputerControlInterface::updateServerVersion()
+{
+	lock();
+
+	if (vncConnection())
+	{
+		VeyonCore::builtinFeatures().monitoringMode().queryApplicationVersion({weakPointer()});
+		m_serverVersionQueryTimer.start();
 	}
 
 	unlock();

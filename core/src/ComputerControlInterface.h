@@ -104,6 +104,13 @@ public:
 		return m_timestamp;
 	}
 
+	VeyonCore::ApplicationVersion serverVersion() const
+	{
+		return m_serverVersion;
+	}
+
+	void setServerVersion(VeyonCore::ApplicationVersion version);
+
 	const QString& userLoginName() const
 	{
 		return m_userLoginName;
@@ -178,12 +185,14 @@ private:
 	void restartConnection();
 
 	void updateState();
+	void updateServerVersion();
 	void updateUser();
 
 	void handleFeatureMessage( const FeatureMessage& message );
 
 	static constexpr int ConnectionWatchdogPingDelay = 10000;
 	static constexpr int ConnectionWatchdogTimeout = ConnectionWatchdogPingDelay*2;
+	static constexpr int ServerVersionQueryTimeout = 5000;
 	static constexpr int UpdateIntervalDisabled = 5000;
 
 	const Computer m_computer;
@@ -205,6 +214,9 @@ private:
 	VeyonConnection* m_connection{nullptr};
 	QTimer m_pingTimer{this};
 	QTimer m_connectionWatchdogTimer{this};
+
+	VeyonCore::ApplicationVersion m_serverVersion{VeyonCore::ApplicationVersion::Unknown};
+	QTimer m_serverVersionQueryTimer{this};
 
 	QStringList m_groups;
 
