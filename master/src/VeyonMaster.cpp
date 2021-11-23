@@ -226,7 +226,8 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 	{
 		const auto designatedModeFeature = controlInterface->designatedModeFeature();
 
-		if( designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature().uid() &&
+		if( designatedModeFeature.isNull() == false &&
+			designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature().uid() &&
 			controlInterface->activeFeatures().contains( designatedModeFeature ) == false &&
 			controlInterface->activeFeatures().contains( VeyonCore::featureManager().metaFeatureUid(designatedModeFeature) ) == false )
 		{
