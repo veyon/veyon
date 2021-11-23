@@ -162,7 +162,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
 								   const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
-	vDebug() << feature.name() << computerControlInterfaces;
+	vDebug() << computerControlInterfaces << feature.name();
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -184,7 +184,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 								  const Feature& feature,
 								  const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
-	vDebug() << feature.name() << computerControlInterfaces;
+	vDebug() << computerControlInterfaces << feature.name();
 
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -205,7 +205,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
 										  const FeatureMessage& message ) const
 {
-	vDebug() << message << computerControlInterface;
+	vDebug() << computerControlInterface << message;
 
 	bool handled = false;
 
