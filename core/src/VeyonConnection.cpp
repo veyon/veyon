@@ -110,7 +110,8 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 			return false;
 		}
 
-		vDebug() << featureMessage;
+		vDebug() << qUtf8Printable(QStringLiteral("%1:%2").arg(QString::fromUtf8(client->serverHost)).arg(client->serverPort))
+				 << featureMessage;
 
 		Q_EMIT featureMessageReceived( featureMessage );
 
