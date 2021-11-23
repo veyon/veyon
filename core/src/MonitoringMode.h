@@ -40,6 +40,7 @@ public:
 		UserSessionId,
 		ScreenInfoList,
 		MinimumFramebufferUpdateInterval,
+		ApplicationVersion,
 		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
@@ -90,6 +91,8 @@ public:
 
 	void setMinimumFramebufferUpdateInterval(const ComputerControlInterfaceList& computerControlInterfaces,
 											 int interval);
+
+	void queryApplicationVersion(const ComputerControlInterfaceList& computerControlInterfaces);
 
 	void queryActiveFeatures(const ComputerControlInterfaceList& computerControlInterfaces);
 
@@ -150,6 +153,7 @@ private:
 	static constexpr int ActiveFeaturesUpdateInterval = 250;
 
 	const Feature m_monitoringModeFeature;
+	const Feature m_queryApplicationVersionFeature;
 	const Feature m_queryActiveFeatures;
 	const Feature m_queryLoggedOnUserInfoFeature;
 	const Feature m_queryScreensFeature;

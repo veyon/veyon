@@ -30,6 +30,7 @@
 #include "MonitoringMode.h"
 #include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
 
 
@@ -42,6 +43,10 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 							 tr( "Monitoring" ), tr( "Monitoring" ),
 							 tr( "This mode allows you to monitor all computers at one or more locations." ),
 							 QStringLiteral( ":/core/presentation-none.png" ) ),
+	m_queryApplicationVersionFeature( QStringLiteral("QueryApplicationVersion"),
+									  Feature::Flag::Service | Feature::Flag::Builtin,
+									  Feature::Uid{"58f5d5d5-9929-48f4-a995-f221c150ae26"}, {},
+									  tr("Query application version of the server"), {}, {} ),
 	m_queryActiveFeatures( QStringLiteral("QueryActiveFeatures"),
 						   Feature::Flag::Service | Feature::Flag::Builtin,
 						   Feature::Uid{"a0a96fba-425d-414a-aaf4-352b76d7c4f3"}, {},
@@ -54,7 +59,8 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						   Feature::Flag::Meta,
 						   Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
 						   Feature::Uid(), tr("Query properties of remotely available screens"), {}, {} ),
-	m_features( { m_monitoringModeFeature, m_queryActiveFeatures, m_queryLoggedOnUserInfoFeature, m_queryScreensFeature } )
+	m_features({ m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
+				  m_queryLoggedOnUserInfoFeature, m_queryScreensFeature })
 {
 	if(VeyonCore::component() == VeyonCore::Component::Server)
 	{
@@ -84,6 +90,13 @@ void MonitoringMode::setMinimumFramebufferUpdateInterval(const ComputerControlIn
 	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), Command::SetMinimumFramebufferUpdateInterval}
 							.addArgument(Argument::MinimumFramebufferUpdateInterval, interval),
 						computerControlInterfaces);
+}
+
+
+
+void MonitoringMode::queryApplicationVersion(const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	sendFeatureMessage(FeatureMessage{m_queryApplicationVersionFeature.uid()}, computerControlInterfaces);
 }
 
 
@@ -119,7 +132,13 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 			// successful ping reply implicitly handled through the featureMessageReceived() signal
 			return true;
 		}
+	}
 
+	if (message.featureUid() == m_queryApplicationVersionFeature.uid())
+	{
+		computerControlInterface->setServerVersion(message.argument(Argument::ApplicationVersion)
+														.value<VeyonCore::ApplicationVersion>());
+		return true;
 	}
 
 	if( message.featureUid() == m_queryActiveFeatures.uid() )
@@ -174,8 +193,8 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 
 
 bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
-										   const MessageContext& messageContext,
-										   const FeatureMessage& message )
+										  const MessageContext& messageContext,
+										  const FeatureMessage& message )
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
@@ -190,6 +209,13 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 														message.argument(Argument::MinimumFramebufferUpdateInterval).toInt());
 			return true;
 		}
+	}
+
+	if (message.featureUid() == m_queryApplicationVersionFeature.uid())
+	{
+		server.sendFeatureMessageReply(messageContext,
+										FeatureMessage{m_queryApplicationVersionFeature.uid()}
+											.addArgument(Argument::ApplicationVersion, int(VeyonCore::config().applicationVersion())));
 	}
 
 	if (m_queryActiveFeatures.uid() == message.featureUid())
