@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QElapsedTimer>
+
 #include "VncClientProtocol.h"
 #include "VncProxyConnection.h"
 #include "VncServerClient.h"
@@ -51,6 +53,8 @@ public:
 		return &m_serverClient;
 	}
 
+	void setMinimumFramebufferUpdateInterval(int interval);
+
 protected:
 	VncClientProtocol& clientProtocol() override
 	{
@@ -69,5 +73,8 @@ private:
 
 	VeyonServerProtocol m_serverProtocol;
 	VncClientProtocol m_clientProtocol;
+
+	int m_minimumFramebufferUpdateInterval{-1};
+	QElapsedTimer m_framebufferUpdateTimer;
 
 } ;

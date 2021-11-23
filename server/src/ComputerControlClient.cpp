@@ -43,6 +43,7 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 					  server->accessControlManager() ),
 	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
+	m_framebufferUpdateTimer.start();
 }
 
 
@@ -69,5 +70,35 @@ bool ComputerControlClient::receiveClientMessage()
 		return m_server->handleFeatureMessage( socket );
 	}
 
+	// filter framebuffer update requests when minimum framebuffer update interval is set
+	if (messageType == rfbFramebufferUpdateRequest && m_minimumFramebufferUpdateInterval > 0)
+	{
+		if (socket->bytesAvailable() < sz_rfbFramebufferUpdateRequestMsg)
+		{
+			return false;
+		}
+
+		const auto messageData = socket->read(sz_rfbFramebufferUpdateRequestMsg);
+		const auto updateRequestMessage = reinterpret_cast<const rfbFramebufferUpdateRequestMsg *>(messageData.constData());
+
+		if (updateRequestMessage->incremental &&
+			m_framebufferUpdateTimer.hasExpired(m_minimumFramebufferUpdateInterval) == false)
+		{
+			// discard update request
+			return true;
+		}
+
+		// forward request to server
+		m_framebufferUpdateTimer.restart();
+		return vncServerSocket()->write(messageData) == messageData.size();
+	}
+
 	return VncProxyConnection::receiveClientMessage();
+}
+
+
+
+void ComputerControlClient::setMinimumFramebufferUpdateInterval(int interval)
+{
+	m_minimumFramebufferUpdateInterval = interval;
 }
