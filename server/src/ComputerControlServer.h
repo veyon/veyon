@@ -35,6 +35,8 @@
 #include "VncProxyConnectionFactory.h"
 #include "VncServer.h"
 
+class ComputerControlClient;
+
 class ComputerControlServer : public VeyonServerInterface, VncProxyConnectionFactory
 {
 	Q_OBJECT
@@ -59,7 +61,7 @@ public:
 		return m_serverAccessControlManager;
 	}
 
-	bool handleFeatureMessage( QTcpSocket* socket );
+	bool handleFeatureMessage(ComputerControlClient* client);
 
 	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
 
@@ -72,6 +74,8 @@ public:
 	{
 		return m_vncServer.serverBasePort();
 	}
+
+	void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) override;
 
 private:
 	void checkForIncompleteAuthentication( VncServerClient* client );

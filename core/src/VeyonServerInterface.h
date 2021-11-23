@@ -48,4 +48,6 @@ public:
 
 	virtual int vncServerBasePort() const = 0;
 
+	virtual void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) = 0;
+
 };
