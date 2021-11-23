@@ -67,7 +67,7 @@ bool ComputerControlClient::receiveClientMessage()
 
 	if( messageType == FeatureMessage::RfbMessageType )
 	{
-		return m_server->handleFeatureMessage( socket );
+		return m_server->handleFeatureMessage(this);
 	}
 
 	// filter framebuffer update requests when minimum framebuffer update interval is set

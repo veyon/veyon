@@ -107,8 +107,10 @@ VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket*
 
 
 
-bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
+bool ComputerControlServer::handleFeatureMessage(ComputerControlClient* client)
 {
+	auto socket = client->proxyClientSocket();
+
 	char messageType;
 	if( socket->getChar( &messageType ) == false )
 	{
@@ -126,7 +128,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive( socket );
 
-	return VeyonCore::featureManager().handleFeatureMessage( *this, MessageContext{socket}, featureMessage );
+	return VeyonCore::featureManager().handleFeatureMessage( *this, MessageContext{socket, client}, featureMessage );
 }
 
 
@@ -144,6 +146,17 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 	}
 
 	return false;
+}
+
+
+
+void ComputerControlServer::setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval)
+{
+	auto client = qobject_cast<ComputerControlClient *>(context.connection());
+	if (client)
+	{
+		client->setMinimumFramebufferUpdateInterval(interval);
+	}
 }
 
 
