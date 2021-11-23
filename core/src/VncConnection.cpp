@@ -499,7 +499,8 @@ void VncConnection::handleConnection()
 	{
 		loopTimer.start();
 
-		const int i = WaitForMessage( m_client, m_messageWaitTimeout );
+		const int i = WaitForMessage(m_client, m_framebufferUpdateInterval > 0 ?
+													m_messageWaitTimeout * 100 : m_messageWaitTimeout);
 		if( isControlFlagSet( ControlFlag::TerminateThread ) || i < 0 )
 		{
 			break;
@@ -518,25 +519,24 @@ void VncConnection::handleConnection()
 				break;
 			}
 		}
-
-		sendEvents();
+		else if (m_framebufferUpdateWatchdog.elapsed() >=
+				 qMax<qint64>(2*m_framebufferUpdateInterval, m_framebufferUpdateWatchdogTimeout))
+		{
+			SendFramebufferUpdateRequest(m_client, 0, 0, m_client->width, m_client->height, false);
+			m_framebufferUpdateWatchdog.restart();
+		}
+		else if (m_framebufferUpdateInterval > 0 && m_framebufferUpdateWatchdog.elapsed() > m_framebufferUpdateInterval)
+		{
+			SendIncrementalFramebufferUpdateRequest(m_client);
+			m_framebufferUpdateWatchdog.restart();
+		}
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
-		if( m_framebufferState == FramebufferState::Initialized ||
-			m_framebufferUpdateWatchdog.elapsed() >= qMax<qint64>( 2*m_framebufferUpdateInterval, m_framebufferUpdateWatchdogTimeout ) )
-		{
-			SendFramebufferUpdateRequest( m_client, 0, 0, m_client->width, m_client->height, false );
-
-			const auto remainingFastUpdateInterval = m_fastFramebufferUpdateInterval - loopTimer.elapsed();
-
-			sleeperMutex.lock();
-			m_updateIntervalSleeper.wait( &sleeperMutex, remainingFastUpdateInterval );
-			sleeperMutex.unlock();
-		}
-		else if( m_framebufferState == FramebufferState::Valid &&
-			remainingUpdateInterval > 0 &&
-			isControlFlagSet( ControlFlag::TerminateThread ) == false )
+		// compat with Veyon Server < 4.7
+		if (remainingUpdateInterval > 0 &&
+			isControlFlagSet(ControlFlag::RequiresManualUpdateRateControl) &&
+			isControlFlagSet(ControlFlag::TerminateThread) == false)
 		{
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex, remainingUpdateInterval );
