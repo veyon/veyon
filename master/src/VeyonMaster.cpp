@@ -61,7 +61,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 				 this, &VeyonMaster::enforceDesignatedMode );
 	}
 
-	m_localSessionControlInterface.start();
+	m_localSessionControlInterface.start({}, ComputerControlInterface::UpdateMode::Disabled);
 
 	// attach computer list model to proxy model
 	m_computerMonitoringModel->setSourceModel( m_computerControlListModel );
