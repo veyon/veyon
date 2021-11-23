@@ -116,7 +116,7 @@ public:
 
 	void setServerReachable();
 
-	void enqueueEvent( VncEvent* event, bool wake );
+	void enqueueEvent(VncEvent* event);
 	bool isEventQueueEmpty();
 
 	/** \brief Returns whether framebuffer data is valid, i.e. at least one full FB update received */

@@ -182,13 +182,11 @@ public:
 	}
 
 protected:
-	void sendFeatureMessage( const FeatureMessage& message,
-							 const ComputerControlInterfaceList& computerControlInterfaces,
-							 bool wake = true )
+	void sendFeatureMessage(const FeatureMessage& message, const ComputerControlInterfaceList& computerControlInterfaces)
 	{
-		for( const auto& controlInterface : computerControlInterfaces )
+		for (const auto& controlInterface : computerControlInterfaces)
 		{
-			controlInterface->sendFeatureMessage( message, wake );
+			controlInterface->sendFeatureMessage(message);
 		}
 	}
 

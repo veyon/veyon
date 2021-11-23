@@ -167,7 +167,7 @@ public:
 
 	void updateActiveFeatures();
 
-	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
+	void sendFeatureMessage(const FeatureMessage& featureMessage);
 	bool isMessageQueueEmpty();
 
 	void setUpdateMode( UpdateMode updateMode );

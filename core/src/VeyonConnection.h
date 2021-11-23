@@ -64,7 +64,7 @@ public:
 		return m_userHomeDir;
 	}
 
-	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
+	void sendFeatureMessage(const FeatureMessage& featureMessage);
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 
