@@ -80,7 +80,7 @@ public:
 		m_authenticationProxy = authenticationProxy;
 	}
 
-	void sendFeatureMessage( const FeatureMessage& featureMessage, bool wake );
+	void sendFeatureMessage(const FeatureMessage& featureMessage);
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 

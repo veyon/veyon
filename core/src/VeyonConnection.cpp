@@ -101,11 +101,11 @@ void VeyonConnection::stopAndDeleteLater()
 
 
 
-void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage, bool wake )
+void VeyonConnection::sendFeatureMessage(const FeatureMessage& featureMessage)
 {
 	if( m_vncConnection )
 	{
-		m_vncConnection->enqueueEvent( new VncFeatureMessageEvent( featureMessage ), wake );
+		m_vncConnection->enqueueEvent(new VncFeatureMessageEvent(featureMessage));
 	}
 }
 

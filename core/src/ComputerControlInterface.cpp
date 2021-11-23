@@ -271,11 +271,11 @@ void ComputerControlInterface::updateActiveFeatures()
 
 
 
-void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage, bool wake )
+void ComputerControlInterface::sendFeatureMessage(const FeatureMessage& featureMessage)
 {
 	if( m_connection && m_connection->isConnected() )
 	{
-		m_connection->sendFeatureMessage( featureMessage, wake );
+		m_connection->sendFeatureMessage(featureMessage);
 	}
 }
 

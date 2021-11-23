@@ -327,7 +327,7 @@ void VncConnection::setUseRemoteCursor( bool enabled )
 	{
 		m_client->appData.useRemoteCursor = enabled ? TRUE : FALSE;
 
-		enqueueEvent( new VncUpdateFormatAndEncodingsEvent, true );
+		enqueueEvent(new VncUpdateFormatAndEncodingsEvent);
 	}
 }
 
@@ -768,7 +768,7 @@ void VncConnection::deleteLaterInMainThread()
 
 
 
-void VncConnection::enqueueEvent( VncEvent* event, bool wake )
+void VncConnection::enqueueEvent(VncEvent* event)
 {
 	if( state() != State::Connected )
 	{
@@ -779,10 +779,7 @@ void VncConnection::enqueueEvent( VncEvent* event, bool wake )
 	m_eventQueue.enqueue( event );
 	m_eventQueueMutex.unlock();
 
-	if( wake )
-	{
-		m_updateIntervalSleeper.wakeAll();
-	}
+	m_updateIntervalSleeper.wakeAll();
 }
 
 
@@ -797,21 +794,21 @@ bool VncConnection::isEventQueueEmpty()
 
 void VncConnection::mouseEvent( int x, int y, int buttonMask )
 {
-	enqueueEvent( new VncPointerEvent( x, y, buttonMask ), true );
+	enqueueEvent(new VncPointerEvent(x, y, buttonMask));
 }
 
 
 
 void VncConnection::keyEvent( unsigned int key, bool pressed )
 {
-	enqueueEvent( new VncKeyEvent( key, pressed ), true );
+	enqueueEvent(new VncKeyEvent(key, pressed));
 }
 
 
 
 void VncConnection::clientCut( const QString& text )
 {
-	enqueueEvent( new VncClientCutEvent( text ), true );
+	enqueueEvent(new VncClientCutEvent(text));
 }
 
 
