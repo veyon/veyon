@@ -73,7 +73,17 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 void MonitoringMode::ping(const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid()}, computerControlInterfaces, true);
+	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), Command::Ping}, computerControlInterfaces);
+}
+
+
+
+void MonitoringMode::setMinimumFramebufferUpdateInterval(const ComputerControlInterfaceList& computerControlInterfaces,
+														 int interval)
+{
+	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), Command::SetMinimumFramebufferUpdateInterval}
+							.addArgument(Argument::MinimumFramebufferUpdateInterval, interval),
+						computerControlInterfaces);
 }
 
 
@@ -104,8 +114,12 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
-		// successful ping reply implicitly handled through the featureMessageReceived() signal
-		return true;
+		if (message.command() == Command::Ping)
+		{
+			// successful ping reply implicitly handled through the featureMessageReceived() signal
+			return true;
+		}
+
 	}
 
 	if( message.featureUid() == m_queryActiveFeatures.uid() )
@@ -165,7 +179,17 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
-		return server.sendFeatureMessageReply(messageContext, message);
+		if (message.command() == Command::Ping)
+		{
+			return server.sendFeatureMessageReply(messageContext, message);
+		}
+
+		if (message.command() == Command::SetMinimumFramebufferUpdateInterval)
+		{
+			server.setMinimumFramebufferUpdateInterval(messageContext,
+														message.argument(Argument::MinimumFramebufferUpdateInterval).toInt());
+			return true;
+		}
 	}
 
 	if (m_queryActiveFeatures.uid() == message.featureUid())

@@ -39,6 +39,7 @@ public:
 		UserFullName,
 		UserSessionId,
 		ScreenInfoList,
+		MinimumFramebufferUpdateInterval,
 		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
@@ -86,6 +87,9 @@ public:
 	}
 
 	void ping(const ComputerControlInterfaceList& computerControlInterfaces);
+
+	void setMinimumFramebufferUpdateInterval(const ComputerControlInterfaceList& computerControlInterfaces,
+											 int interval);
 
 	void queryActiveFeatures(const ComputerControlInterfaceList& computerControlInterfaces);
 
@@ -137,6 +141,12 @@ private:
 	void updateUserData();
 	void updateScreenInfoList();
 
+	enum Command
+	{
+		Ping,
+		SetMinimumFramebufferUpdateInterval
+	};
+
 	static constexpr int ActiveFeaturesUpdateInterval = 250;
 
 	const Feature m_monitoringModeFeature;
@@ -144,7 +154,6 @@ private:
 	const Feature m_queryLoggedOnUserInfoFeature;
 	const Feature m_queryScreensFeature;
 	const FeatureList m_features;
-
 
 	int m_activeFeaturesVersion{0};
 	QStringList m_activeFeatures;
