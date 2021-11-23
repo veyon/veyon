@@ -85,6 +85,7 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 			Q_EMIT scaledFramebufferUpdated();
 		} );
 
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::setMinimumFramebufferUpdateInterval);
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
@@ -278,36 +279,16 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 }
 
 
+
 void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 {
 	m_updateMode = updateMode;
 
-	const auto computerMonitoringUpdateInterval = VeyonCore::config().computerMonitoringUpdateInterval();
+	setMinimumFramebufferUpdateInterval();
 
-	switch( m_updateMode )
+	if (vncConnection())
 	{
-	case UpdateMode::Disabled:
-		if( vncConnection() )
-		{
-			vncConnection()->setFramebufferUpdateInterval( UpdateIntervalDisabled );
-		}
-		break;
-
-	case UpdateMode::Basic:
-	case UpdateMode::Monitoring:
-	case UpdateMode::Live:
-		if( vncConnection() )
-		{
-			vncConnection()->setFramebufferUpdateInterval( ( m_updateMode == UpdateMode::Basic ||
-															 m_updateMode == UpdateMode::Monitoring ) ?
-															   computerMonitoringUpdateInterval : -1 );
-		}
-		break;
-	}
-
-	if( m_updateMode == UpdateMode::Basic )
-	{
-		vncConnection()->setSkipHostPing( true );
+		vncConnection()->setSkipHostPing(m_updateMode == UpdateMode::Basic);
 	}
 }
 
@@ -323,6 +304,35 @@ ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 void ComputerControlInterface::ping()
 {
 	VeyonCore::builtinFeatures().monitoringMode().ping({weakPointer()});
+}
+
+
+
+void ComputerControlInterface::setMinimumFramebufferUpdateInterval()
+{
+	auto updateInterval = -1;
+
+	switch (m_updateMode)
+	{
+	case UpdateMode::Disabled:
+		updateInterval = UpdateIntervalDisabled;
+		break;
+
+	case UpdateMode::Basic:
+	case UpdateMode::Monitoring:
+		updateInterval = VeyonCore::config().computerMonitoringUpdateInterval();
+		break;
+
+	case UpdateMode::Live:
+		break;
+	}
+
+	if (vncConnection())
+	{
+		vncConnection()->setFramebufferUpdateInterval(updateInterval);
+	}
+
+	VeyonCore::builtinFeatures().monitoringMode().setMinimumFramebufferUpdateInterval({weakPointer()}, updateInterval);
 }
 
 
