@@ -184,7 +184,8 @@ private:
 		TerminateThread = 0x04,
 		RestartConnection = 0x08,
 		DeleteAfterFinished = 0x10,
-		SkipHostPing = 0x20
+		SkipHostPing = 0x20,
+		RequiresManualUpdateRateControl = 0x40
 	};
 
 	~VncConnection() override;
