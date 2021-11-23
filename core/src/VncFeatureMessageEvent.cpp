@@ -22,13 +22,15 @@
  *
  */
 
+#include "rfb/rfbclient.h"
+
 #include "SocketDevice.h"
 #include "VncConnection.h"
 #include "VncFeatureMessageEvent.h"
 
 
 VncFeatureMessageEvent::VncFeatureMessageEvent( const FeatureMessage& featureMessage ) :
-    m_featureMessage( featureMessage )
+	m_featureMessage( featureMessage )
 {
 }
 
@@ -36,7 +38,8 @@ VncFeatureMessageEvent::VncFeatureMessageEvent( const FeatureMessage& featureMes
 
 void VncFeatureMessageEvent::fire( rfbClient* client )
 {
-	vDebug() << m_featureMessage;
+	vDebug() << qUtf8Printable(QStringLiteral("%1:%2").arg(QString::fromUtf8(client->serverHost)).arg(client->serverPort))
+			 << m_featureMessage;
 
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 	const char messageType = FeatureMessage::RfbMessageType;
