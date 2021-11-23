@@ -643,7 +643,8 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 		{
 			m_demoServerClients.removeAll( computerControlInterface );
 
-			if( enableUpdates )
+			if (enableUpdates &&
+				computerControlInterface->updateMode() == ComputerControlInterface::UpdateMode::Disabled)
 			{
 				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
 			}
