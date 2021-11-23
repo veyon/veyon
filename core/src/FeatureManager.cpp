@@ -202,68 +202,47 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 
 
 
-bool FeatureManager::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
-										  const FeatureMessage& message ) const
+void FeatureManager::handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+										  const FeatureMessage& message) const
 {
 	vDebug() << computerControlInterface << message;
 
-	bool handled = false;
-
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleFeatureMessage( computerControlInterface, message ) )
-		{
-			handled = true;
-		}
+		featureInterface->handleFeatureMessage(computerControlInterface, message);
 	}
-
-	return handled;
 }
 
 
 
-bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
-										   const MessageContext& messageContext,
-										   const FeatureMessage& message ) const
+void FeatureManager::handleFeatureMessage(VeyonServerInterface& server,
+										  const MessageContext& messageContext,
+										  const FeatureMessage& message) const
 {
 	vDebug() << "[SERVER]" << message;
 
 	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
 	{
 		vWarning() << "ignoring message as feature" << message.featureUid() << "is disabled by configuration!";
-		return false;
+		return;
 	}
-
-	bool handled = false;
 
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleFeatureMessage( server, messageContext, message ) )
-		{
-			handled = true;
-		}
+		featureInterface->handleFeatureMessage(server, messageContext, message);
 	}
-
-	return handled;
 }
 
 
 
-bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) const
+void FeatureManager::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) const
 {
 	vDebug() << "[WORKER]" << message;
 
-	bool handled = false;
-
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleFeatureMessage( worker, message ) )
-		{
-			handled = true;
-		}
+		featureInterface->handleFeatureMessage(worker, message);
 	}
-
-	return handled;
 }
 
 
