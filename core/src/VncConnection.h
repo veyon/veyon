@@ -182,7 +182,8 @@ private:
 		RestartConnection = 0x08,
 		DeleteAfterFinished = 0x10,
 		SkipHostPing = 0x20,
-		RequiresManualUpdateRateControl = 0x40
+		RequiresManualUpdateRateControl = 0x40,
+		TriggerFramebufferUpdate = 0x80
 	};
 
 	~VncConnection() override;

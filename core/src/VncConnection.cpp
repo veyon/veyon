@@ -261,6 +261,13 @@ QImage VncConnection::scaledFramebuffer()
 void VncConnection::setFramebufferUpdateInterval( int interval )
 {
 	m_framebufferUpdateInterval = interval;
+
+	if (m_framebufferUpdateInterval <= 0)
+	{
+		setControlFlag(ControlFlag::TriggerFramebufferUpdate, true);
+	}
+
+	m_updateIntervalSleeper.wakeAll();
 }
 
 
@@ -529,6 +536,11 @@ void VncConnection::handleConnection()
 		{
 			SendIncrementalFramebufferUpdateRequest(m_client);
 			m_framebufferUpdateWatchdog.restart();
+		}
+		else if (isControlFlagSet(ControlFlag::TriggerFramebufferUpdate))
+		{
+			setControlFlag(ControlFlag::TriggerFramebufferUpdate, false);
+			SendIncrementalFramebufferUpdateRequest(m_client);
 		}
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
