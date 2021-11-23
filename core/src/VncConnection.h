@@ -136,6 +136,11 @@ public:
 		setControlFlag( ControlFlag::SkipHostPing, on );
 	}
 
+	void setRequiresManualUpdateRateControl(bool on)
+	{
+		setControlFlag(ControlFlag::RequiresManualUpdateRateControl, on);
+	}
+
 	void rescaleFramebuffer();
 
 	static constexpr int VncConnectionTag = 0x590123;
