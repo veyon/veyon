@@ -67,7 +67,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 				 this, &VeyonMaster::enforceDesignatedMode );
 	}
 
-	m_localSessionControlInterface.start();
+	m_localSessionControlInterface.start({}, ComputerControlInterface::UpdateMode::Disabled);
 
 	initUserInterface();
 }
