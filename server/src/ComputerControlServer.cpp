@@ -126,9 +126,14 @@ bool ComputerControlServer::handleFeatureMessage(ComputerControlClient* client)
 		return false;
 	}
 
-	featureMessage.receive( socket );
+	if (featureMessage.receive(socket) == false)
+	{
+		return false;
+	}
 
-	return VeyonCore::featureManager().handleFeatureMessage( *this, MessageContext{socket, client}, featureMessage );
+	VeyonCore::featureManager().handleFeatureMessage( *this, MessageContext{socket, client}, featureMessage );
+
+	return true;
 }
 
 
