@@ -215,6 +215,8 @@ private:
 	VeyonCore::ApplicationVersion m_serverVersion{VeyonCore::ApplicationVersion::Unknown};
 	QTimer m_serverVersionQueryTimer{this};
 
+	QTimer m_compatPollingTimer{this};
+
 	QStringList m_groups;
 
 Q_SIGNALS:

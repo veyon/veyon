@@ -50,6 +50,11 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	connect( &m_serverVersionQueryTimer, &QTimer::timeout, this, [this]() {
 		setServerVersion(VeyonCore::ApplicationVersion::Unknown);
 	});
+
+	connect(&m_compatPollingTimer, &QTimer::timeout, this, [this]() {
+		updateUser();
+		updateActiveFeatures();
+	});
 }
 
 
@@ -195,9 +200,21 @@ void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion ve
 
 	m_serverVersion = version;
 
-	if (vncConnection())
+	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7)
 	{
-		vncConnection()->setRequiresManualUpdateRateControl(m_serverVersion < VeyonCore::ApplicationVersion::Version_4_7);
+		m_compatPollingTimer.stop();
+
+		updateScreens();
+		setMinimumFramebufferUpdateInterval();
+	}
+	else
+	{
+		if (vncConnection())
+		{
+			vncConnection()->setRequiresManualUpdateRateControl(true);
+		}
+
+		m_compatPollingTimer.start(VeyonCore::config().computerMonitoringUpdateInterval());
 	}
 }
 
@@ -288,7 +305,10 @@ ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 
 void ComputerControlInterface::ping()
 {
-	VeyonCore::builtinFeatures().monitoringMode().ping({weakPointer()});
+	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7)
+	{
+		VeyonCore::builtinFeatures().monitoringMode().ping({weakPointer()});
+	}
 }
 
 
@@ -317,7 +337,10 @@ void ComputerControlInterface::setMinimumFramebufferUpdateInterval()
 		vncConnection()->setFramebufferUpdateInterval(updateInterval);
 	}
 
-	VeyonCore::builtinFeatures().monitoringMode().setMinimumFramebufferUpdateInterval({weakPointer()}, updateInterval);
+	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7)
+	{
+		VeyonCore::builtinFeatures().monitoringMode().setMinimumFramebufferUpdateInterval({weakPointer()}, updateInterval);
+	}
 }
 
 
@@ -431,7 +454,8 @@ void ComputerControlInterface::updateScreens()
 {
 	lock();
 
-	if (vncConnection() && state() == State::Connected)
+	if (vncConnection() && state() == State::Connected &&
+		m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7)
 	{
 		VeyonCore::builtinFeatures().monitoringMode().queryScreens({weakPointer()});
 	}
