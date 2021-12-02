@@ -38,7 +38,6 @@
 #include "XEventLog.h"
 
 
-
 static bool configureSoftwareSAS( bool enabled )
 {
 	HKEY hkLocal;
@@ -376,7 +375,14 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 					return QStringLiteral("DP-%1").arg(name.connectorInstance);
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS:
 					return QStringLiteral("LVDS-%1").arg(name.connectorInstance);
+#if __MINGW64_VERSION_MAJOR < 8
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wswitch"
+				case 15:
+#pragma GCC diagnostic pop
+#else
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST:
+#endif
 					return QStringLiteral("Miracast-%1").arg(name.connectorInstance);
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO:
 					return QStringLiteral("S-Video-%1").arg(name.connectorInstance);
