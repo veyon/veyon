@@ -27,7 +27,7 @@ build-linux:
 
 build-windows:
   stage: build
-  image: $CI_REGISTRY/veyon/ci-mingw-w64:4.5
+  image: $CI_REGISTRY/veyon/ci-mingw-w64:4.7
   script:
     - .ci/windows/build.sh $BITS
   parallel:
