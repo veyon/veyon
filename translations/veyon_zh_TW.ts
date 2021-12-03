@@ -3123,15 +3123,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>查詢伺服器的應用程式版本</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>查詢使用中功能</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>查詢遠端可用螢幕的內容</translation>
     </message>
 </context>
 <context>
@@ -3474,7 +3474,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>選取螢幕</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -4095,7 +4095,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>螢幕 %1</translation>
     </message>
 </context>
 <context>
@@ -4269,7 +4269,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>內部顯示</translation>
     </message>
 </context>
 <context>

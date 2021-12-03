@@ -3122,7 +3122,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Опитати сервер щодо версії програми</translation>
     </message>
     <message>
         <source>Query active features</source>

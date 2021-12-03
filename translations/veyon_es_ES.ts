@@ -3125,15 +3125,15 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Consultar la versión de la aplicación del servidor</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Consultar funciones activas</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Consultar propiedades de pantallas disponibles de forma remota</translation>
     </message>
 </context>
 <context>
@@ -3476,7 +3476,7 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar pantalla</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -4097,7 +4097,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Pantalla %1</translation>
     </message>
 </context>
 <context>
@@ -4271,7 +4271,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Pantalla interna</translation>
     </message>
 </context>
 <context>

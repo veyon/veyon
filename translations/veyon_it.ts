@@ -3110,7 +3110,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Interroga la versione dell&apos;applicazione del server</translation>
     </message>
     <message>
         <source>Query active features</source>

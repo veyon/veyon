@@ -3123,11 +3123,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Interroger la version de l&apos;application du serveur</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Interroger les fonctionnalités actives</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>

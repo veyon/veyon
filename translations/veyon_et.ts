@@ -655,11 +655,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake käsk abi kuvamiseks.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
 </context>
 <context>
@@ -984,7 +984,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
 </context>
 <context>
@@ -1061,7 +1061,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[pole]</translation>
     </message>
 </context>
 <context>
@@ -1558,27 +1558,27 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Loetlege kõigi saadaolevate funktsioonide nimed</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Kuva tabel kõigi saadaolevate funktsioonide üksikasjadega</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage funktsioon kaughostis</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Funktsiooni peatamine kaughostis</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Palun määrake käsk abi kuvamiseks.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Kuvab loendi kõigi saadaolevate funktsioonide nimedega.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1586,43 +1586,43 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>Tunnusjoon</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGUMENTID</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Käivitab määratud funktsiooni määratud hostis, luues ühenduse kaugtöötava Veyoni serveriga. Funktsiooni saab määrata nime või UID-ga. Kõigi saadaolevate funktsioonide vaatamiseks kasutage käsku ``show``. Olenevalt funktsioonist tuleb määrata täiendavad argumendid (nt kuvatav tekstsõnum), mis on kodeeritud ühe JSON-stringina. Lisateabe saamiseks vaadake arendaja dokumentatsiooni</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Lukustage ekraan</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Tekstisõnumi kuvamine</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Testsõnum</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Käivitage rakendus</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Peatab määratud funktsiooni määratud hostis, luues ühenduse kaugtöötava Veyoni serveriga. Funktsiooni saab määrata nime või UID-ga. Kõigi saadaolevate funktsioonide vaatamiseks kasutage käsku ``show``.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Avage ekraan</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1642,7 +1642,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Tööline</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1654,35 +1654,35 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Määratud on kehtetu objekti nimi või UID</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>Viga JSON-kodeeritud argumentide sõelumisel: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Mandaatide lähtestamine ebaõnnestus</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Hostiga %1 ei õnnestunud ühendust luua</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Funktsiooni juhtsõnumi saatmine hostile %1 ebaõnnestus</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Funktsioonidega seotud CLI toimingud</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Funktsioonide juhtimise käsud</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Kuvab tabeli üksikasjaliku teabega kõigi saadaolevate funktsioonide kohta. See teave sisaldab kirjeldust, UID-d, vastavat funktsiooni pakkuva pistikprogrammi nime ja mõningaid muid juurutamisega seotud üksikasju.</translation>
     </message>
 </context>
 <context>
@@ -2933,7 +2933,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>Kuva ainult arvutid, mille kasutajad on sisse logitud</translation>
     </message>
 </context>
 <context>
@@ -3123,15 +3123,15 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Päring serveri rakenduse versioonist</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivsete funktsioonide päring</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Pärige kaugkasutatavate ekraanide atribuute</translation>
     </message>
 </context>
 <context>
@@ -3474,7 +3474,7 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Valige ekraan</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3788,7 +3788,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Interaktiivne kest ja skripti täitmine Veyon CLI jaoks</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4095,7 +4095,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Ekraan %1</translation>
     </message>
 </context>
 <context>
@@ -4269,7 +4269,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Sisemine ekraan</translation>
     </message>
 </context>
 <context>
@@ -4292,19 +4292,19 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Teenust &quot;%1&quot; ei saanud installida (viga %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Teenuse &quot;%1&quot; tõrketoimingute konfiguratsiooni ei saanud muuta (viga %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Teenust &quot;%1&quot; ei saanud desinstallida (viga %2).</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Teenuse algustüüpi &quot;%1&quot; ei saanud muuta (viga %2).</translation>
     </message>
 </context>
 <context>
