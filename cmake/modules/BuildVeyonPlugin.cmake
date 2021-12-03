@@ -6,7 +6,11 @@
 include(SetDefaultTargetProperties)
 
 macro(build_veyon_plugin PLUGIN_NAME)
-	add_library(${PLUGIN_NAME} MODULE ${ARGN})
+	set(LIBRARY_TYPE "MODULE")
+	if(WITH_TESTS)
+		set(LIBRARY_TYPE "SHARED")
+	endif()
+	add_library(${PLUGIN_NAME} ${LIBRARY_TYPE} ${ARGN})
 
 	target_include_directories(${PLUGIN_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 	target_link_libraries(${PLUGIN_NAME} veyon-core)
@@ -21,3 +25,10 @@ macro(build_veyon_plugin PLUGIN_NAME)
 	endif()
 endmacro()
 
+macro(test_veyon_plugin PLUGIN_NAME TEST_NAME)
+	if(WITH_TESTS)
+		add_executable(${TEST_NAME} ${TEST_NAME}.cpp)
+		add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+		target_link_libraries(${TEST_NAME} ${PLUGIN_NAME})
+	endif()
+endmacro()
