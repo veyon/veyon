@@ -22,6 +22,8 @@
  *
  */
 
+#include <veyonconfig.h>
+
 #include <QCoreApplication>
 #include <QDir>
 #include <QPluginLoader>
@@ -172,6 +174,9 @@ void PluginManager::initPluginSearchPath()
 		QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
 		QCoreApplication::addLibraryPath( pluginSearchPath );
 	}
+#if defined(VEYON_WITH_TESTS)
+	QDir::addSearchPath(QStringLiteral("plugins"), QStringLiteral(CMAKE_BINARY_DIR "/plugins/platform/linux"));
+#endif
 }
 
 
