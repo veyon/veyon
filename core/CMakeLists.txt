@@ -77,6 +77,9 @@ if(WITH_QT6)
 		Qt6::Network
 		Qt6::Widgets
 		Qt6::QuickControls2)
+	if(WITH_TESTS)
+		target_link_libraries(veyon-core Qt6::Test)
+	endif()
 else()
 	target_link_libraries(veyon-core
 		Qt5::Concurrent
@@ -84,11 +87,13 @@ else()
 		Qt5::Network
 		Qt5::Widgets
 		Qt5::QuickControls2)
+	if(WITH_TESTS)
+		target_link_libraries(veyon-core Qt5::Test)
+	endif()
 endif()
 
 target_link_libraries(veyon-core
 	OpenSSL::SSL
-	${VEYON_DEBUG_LIBRARIES}
 	${QCA_LIBRARY})
 
 if(LibVNCClient_FOUND)
