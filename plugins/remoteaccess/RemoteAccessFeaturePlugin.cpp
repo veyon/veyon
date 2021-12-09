@@ -176,7 +176,13 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( co
 		return InvalidCommand;
 	}
 
-	return remoteAccess( arguments.first(), true ) ? Successful : Failed;
+	if (remoteAccess(arguments.first(), true))
+	{
+		qApp->exec();
+		return Successful;
+	}
+
+	return Failed;
 }
 
 
@@ -193,7 +199,13 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 		return InvalidCommand;
 	}
 
-	return remoteAccess( arguments.first(), false ) ? Successful : Failed;
+	if (remoteAccess(arguments.first(), false))
+	{
+		qApp->exec();
+		return Successful;
+	}
+
+	return Failed;
 }
 
 
@@ -261,8 +273,6 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 	}
 
 	createRemoteAccessWindow(ComputerControlInterface::Pointer::create(remoteComputer), viewOnly);
-
-	qApp->exec();
 
 	return true;
 }
