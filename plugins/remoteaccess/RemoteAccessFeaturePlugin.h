@@ -106,6 +106,7 @@ private:
 	bool remoteControlEnabled() const;
 	bool initAuthentication();
 	bool remoteAccess( const QString& hostAddress, bool viewOnly );
+	void createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly);
 
 	const Feature m_remoteViewFeature;
 	const Feature m_remoteControlFeature;
