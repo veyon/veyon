@@ -110,19 +110,31 @@ bool RemoteAccessFeaturePlugin::controlFeature( Feature::Uid featureUid, Operati
 bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(computerControlInterfaces)
+
 	if( hasFeature( feature.uid() ) == false )
 	{
 		return false;
 	}
 
-	// determine which computer to access and ask if neccessary
-	ComputerControlInterface::Pointer remoteAccessComputer;
+	const auto viewOnly = feature.uid() == m_remoteViewFeature.uid() ||
+						  remoteControlEnabled() == false;
 
-	if( computerControlInterfaces.count() != 1 )
+	const auto selectedComputerControlInterfaces = master.selectedComputerControlInterfaces();
+
+	if (selectedComputerControlInterfaces.count() > 0)
 	{
-		QString hostName = QInputDialog::getText( master.mainWindow(),
-												  tr( "Remote access" ),
-												  tr( "Please enter the hostname or IP address of the computer to access:" ) );
+		for (const auto& computerControlInterface : selectedComputerControlInterfaces)
+		{
+			createRemoteAccessWindow(computerControlInterface, viewOnly, &master);
+		}
+	}
+	else
+	{
+		const auto hostName = QInputDialog::getText( master.mainWindow(),
+													 tr( "Remote access" ),
+													 tr( "No computer has been selected so you can enter a hostname "
+														 "or IP address of a computer for manual access:" ) );
 		if( hostName.isEmpty() )
 		{
 			return false;
@@ -131,32 +143,8 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		Computer customComputer;
 		customComputer.setHostAddress( hostName );
 		customComputer.setName( hostName );
-		remoteAccessComputer = ComputerControlInterface::Pointer::create( customComputer );
-	}
-	else
-	{
-		remoteAccessComputer = computerControlInterfaces.first();
-	}
 
-	if( remoteAccessComputer.isNull() )
-	{
-		return false;
-	}
-
-	auto viewOnly = feature.uid() == m_remoteViewFeature.uid();
-	if( remoteControlEnabled() == false )
-	{
-		viewOnly = true;
-	}
-
-	if( master.appContainer() )
-	{
-		new RemoteAccessPage( remoteAccessComputer, viewOnly, master.appContainer() );
-	}
-	else
-	{
-		new RemoteAccessWidget( remoteAccessComputer, viewOnly,
-								remoteViewEnabled() && remoteControlEnabled() );
+		createRemoteAccessWindow(ComputerControlInterface::Pointer::create(customComputer), viewOnly, &master);
 	}
 
 	return true;
@@ -270,10 +258,25 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 		viewOnly = true;
 	}
 
-	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), viewOnly,
-							remoteViewEnabled() && remoteControlEnabled() );
+	createRemoteAccessWindow(ComputerControlInterface::Pointer::create(remoteComputer), viewOnly, nullptr);
 
 	qApp->exec();
 
 	return true;
+}
+
+
+
+void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface,
+														 bool viewOnly, VeyonMasterInterface* master)
+{
+	if (master && master->appContainer())
+	{
+		new RemoteAccessPage(computerControlInterface, viewOnly, master->appContainer());
+	}
+	else
+	{
+		new RemoteAccessWidget(computerControlInterface, viewOnly, remoteViewEnabled() && remoteControlEnabled());
+	}
+
 }
