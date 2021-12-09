@@ -26,10 +26,12 @@
 #include <QInputDialog>
 
 #include "AuthenticationCredentials.h"
+#include "FeatureWorkerManager.h"
 #include "RemoteAccessFeaturePlugin.h"
 #include "RemoteAccessWidget.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
+#include "VeyonServerInterface.h"
 
 
 RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
@@ -66,41 +68,19 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 
 
 
-bool RemoteAccessFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-											   const ComputerControlInterfaceList& computerControlInterfaces )
+bool RemoteAccessFeaturePlugin::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+											   const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( hasFeature( featureUid ) == false ||
-		operation != Operation::Start )
+	if (hasFeature(featureUid) ||
+		operation != Operation::Start)
 	{
-		return false;
+		sendFeatureMessage(FeatureMessage{featureUid}
+								.addArgument(Argument::HostName, arguments.value(argToString(Argument::HostName))),
+							computerControlInterfaces);
+		return true;
 	}
 
-	auto viewOnly = featureUid == m_remoteViewFeature.uid();
-	if( remoteControlEnabled() == false )
-	{
-		viewOnly = true;
-	}
-
-	Computer computer;
-	computer.setHostAddress( arguments.value( argToString(Argument::HostName) ).toString() );
-	computer.setName( computer.hostAddress() );
-
-	if( computer.hostAddress().isEmpty() )
-	{
-		if( computerControlInterfaces.isEmpty() == false )
-		{
-			computer = computerControlInterfaces.first()->computer();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( computer ), viewOnly,
-							remoteViewEnabled() && remoteControlEnabled() );
-
-	return true;
+	return false;
 }
 
 
@@ -143,6 +123,44 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		customComputer.setName( hostName );
 
 		createRemoteAccessWindow(ComputerControlInterface::Pointer::create(customComputer), viewOnly);
+	}
+
+	return false;
+}
+
+
+bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface &server,
+													 const MessageContext &messageContext,
+													 const FeatureMessage &message)
+{
+	Q_UNUSED(messageContext)
+
+	if (message.featureUid() == m_remoteViewFeature.uid() ||
+		message.featureUid() == m_remoteControlFeature.uid())
+	{
+		// forward message to worker
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(message);
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface &worker, const FeatureMessage &message)
+{
+	Q_UNUSED(worker)
+
+	if (message.featureUid() == m_remoteViewFeature.uid() ||
+		message.featureUid() == m_remoteControlFeature.uid())
+	{
+		const auto viewOnly = message.featureUid() == m_remoteViewFeature.uid() ||
+							  remoteControlEnabled() == false;
+
+		remoteAccess(message.argument(Argument::HostName).toString(), viewOnly);
+
+		return true;
 	}
 
 	return false;

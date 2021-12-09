@@ -82,6 +82,12 @@ public:
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
+
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
+
 	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "remoteaccess" );
