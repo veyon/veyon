@@ -285,6 +285,7 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 
 void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 {
+	m_mousePressAndHold.stop();
 	const auto selectedInterfaces = selectedComputerControlInterfaces();
 	if( !m_ignoreMousePressAndHoldEvent &&
 		selectedInterfaces.count() > 0 &&
