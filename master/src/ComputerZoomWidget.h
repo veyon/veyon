@@ -38,15 +38,26 @@ public:
 	ComputerZoomWidget( const ComputerControlInterface::Pointer& computerControlInterface );
 	~ComputerZoomWidget() override;
 
+	VncViewWidget* vncView() const
+	{
+		return m_vncView;
+	}
+
 protected:
+	bool eventFilter( QObject* object, QEvent* event ) override;
+
 	void resizeEvent( QResizeEvent* event ) override;
+	void closeEvent( QCloseEvent* event ) override;
 
 private:
 	void updateSize();
 	void updateComputerZoomWidgetTitle();
 
-	void closeEvent( QCloseEvent* event ) override;
+	int currentScreen;
 
 	VncViewWidget* m_vncView;
+
+Q_SIGNALS:
+	void keypressInComputerZoomWidget( );
 
 } ;

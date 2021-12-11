@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QIcon>
+#include <QKeyEvent>
 
 #include "ComputerZoomWidget.h"
 #include "VeyonConfiguration.h"
@@ -37,6 +38,8 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	m_vncView( new VncViewWidget( computerControlInterface, {}, this ) )
 {
 	QApplication::setOverrideCursor(Qt::BlankCursor);
+
+	currentScreen = -1;
 
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
@@ -56,6 +59,7 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
+	m_vncView->installEventFilter( this );
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &ComputerZoomWidget::updateSize );
 
 	setWindowState(Qt::WindowMaximized);
@@ -69,6 +73,71 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 ComputerZoomWidget::~ComputerZoomWidget()
 {
 	delete m_vncView;
+}
+
+
+
+bool ComputerZoomWidget::eventFilter( QObject* object, QEvent* event )
+{
+	if( event->type() == QEvent::KeyPress )
+	{
+		vCritical() << "KeyPress Event fired!";
+		Q_EMIT keypressInComputerZoomWidget( );
+
+		const auto screens = m_vncView->computerControlInterface()->screens();
+		const auto key = dynamic_cast<QKeyEvent *>( event )->key();
+		if ( screens.size() > 1 && ( key == Qt::Key_Tab || key == Qt::Key_Backtab ) )
+		{
+			if( key == Qt::Key_Tab )
+			{
+				vCritical() << "Qt::Key_Tab";
+				if ( currentScreen < screens.size() - 1 )
+				{
+					currentScreen++;
+					vCritical() << "Switching to next Screen: " << currentScreen << screens[currentScreen].name << screens[currentScreen].geometry;
+				} else
+				{
+					currentScreen = -1;
+					vCritical() << "Switching to Allscreen View Tab";
+				}
+			}
+
+			if( key == Qt::Key_Backtab )
+			{
+				vCritical() << "Qt::Key_Backtab";
+				if ( currentScreen == -1 )
+				{
+					currentScreen = screens.size()-1;
+					vCritical() << "Switching to last Screen: " << currentScreen << screens[currentScreen].name << screens[currentScreen].geometry;
+				} else if ( currentScreen > 0 )
+				{
+					currentScreen--;
+					vCritical() << "Switching to previous Screen: " << currentScreen << screens[currentScreen].name << screens[currentScreen].geometry;
+				} else
+				{
+					currentScreen = -1;
+					vCritical() << "Switching to Allscreen View Backtab";
+				}
+			}
+
+			showNormal();
+			if ( currentScreen == -1)
+			{
+				m_vncView->setViewport( {} );
+			}
+			else
+			{
+				m_vncView->setViewport(screens[currentScreen].geometry);
+			}
+			setWindowState(Qt::WindowMaximized);
+			return true;
+		}
+
+		vCritical() << "KeyPress Event forwarded";
+		return false;
+	}
+
+	return QObject::eventFilter(object, event);
 }
 
 
@@ -116,5 +185,6 @@ void ComputerZoomWidget::updateSize()
 
 void ComputerZoomWidget::closeEvent( QCloseEvent* event )
 {
+	m_vncView->setViewport({});
 	QApplication::restoreOverrideCursor();
 }
