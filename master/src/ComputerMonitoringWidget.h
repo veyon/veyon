@@ -53,6 +53,8 @@ public:
 		m_ignoreWheelEvent = enabled;
 	}
 
+	void resetIgnoreNumberOfMouseEvents( );
+
 	QTimer m_mousePressAndHold;
 
 private:

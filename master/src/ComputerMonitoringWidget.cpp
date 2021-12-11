@@ -283,6 +283,13 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 
 
 
+void ComputerMonitoringWidget::resetIgnoreNumberOfMouseEvents( )
+{
+	m_ignoreNumberOfMouseEvents = IgnoredNumberOfMouseEventsWhileHold;
+}
+
+
+
 void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 {
 	m_mousePressAndHold.stop();
@@ -292,18 +299,20 @@ void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 		selectedInterfaces.count() < 2 &&
 		selectedInterfaces.first()->state() == ComputerControlInterface::State::Connected &&
 		selectedInterfaces.first()->hasValidFramebuffer() )
-   {
+	{
 		m_ignoreMousePressAndHoldEvent = true;
-		m_ignoreNumberOfMouseEvents = IgnoredNumberOfMouseEventsWhileHold;
+		resetIgnoreNumberOfMouseEvents();
 		delete m_computerZoomWidget;
 		m_computerZoomWidget = new ComputerZoomWidget( selectedInterfaces.first()  );
-   }
+		connect( m_computerZoomWidget, &ComputerZoomWidget::keypressInComputerZoomWidget, this, &ComputerMonitoringWidget::resetIgnoreNumberOfMouseEvents );
+	}
 }
 
 
 
 void ComputerMonitoringWidget::stopMousePressAndHoldFeature( )
 {
+	disconnect( m_computerZoomWidget, &ComputerZoomWidget::keypressInComputerZoomWidget, this, &ComputerMonitoringWidget::resetIgnoreNumberOfMouseEvents );
 	m_ignoreMousePressAndHoldEvent = false;
 	m_ignoreNumberOfMouseEvents = 0;
 	m_computerZoomWidget->close();
