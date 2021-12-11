@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QIcon>
+#include <QKeyEvent>
 
 #include "ComputerZoomWidget.h"
 #include "VeyonConfiguration.h"
@@ -56,6 +57,7 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
+	m_vncView->installEventFilter( this );
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &ComputerZoomWidget::updateSize );
 
 	setWindowState(Qt::WindowMaximized);
@@ -69,6 +71,62 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 ComputerZoomWidget::~ComputerZoomWidget()
 {
 	delete m_vncView;
+}
+
+
+
+bool ComputerZoomWidget::eventFilter( QObject* object, QEvent* event )
+{
+	if( event->type() == QEvent::KeyPress )
+	{
+		Q_EMIT keypressInComputerZoomWidget( );
+
+		const auto screens = m_vncView->computerControlInterface()->screens();
+		const auto key = static_cast<QKeyEvent *>( event )->key();
+		if ( screens.size() > 1 && ( key == Qt::Key_Tab || key == Qt::Key_Backtab ) )
+		{
+			if( key == Qt::Key_Tab )
+			{
+				if ( m_currentScreen < screens.size() - 1 )
+				{
+					m_currentScreen++;
+				} else
+				{
+					m_currentScreen = -1;
+				}
+			}
+
+			if( key == Qt::Key_Backtab )
+			{
+				if ( m_currentScreen == -1 )
+				{
+					m_currentScreen = screens.size()-1;
+				} else if ( m_currentScreen > 0 )
+				{
+					m_currentScreen--;
+				} else
+				{
+					m_currentScreen = -1;
+				}
+			}
+
+			showNormal();
+			if ( m_currentScreen == -1)
+			{
+				m_vncView->setViewport( {} );
+			}
+			else
+			{
+				m_vncView->setViewport(screens[m_currentScreen].geometry);
+			}
+			setWindowState(Qt::WindowMaximized);
+			return true;
+		}
+
+		return false;
+	}
+
+	return QObject::eventFilter(object, event);
 }
 
 
@@ -116,5 +174,6 @@ void ComputerZoomWidget::updateSize()
 
 void ComputerZoomWidget::closeEvent( QCloseEvent* event )
 {
+	m_vncView->setViewport({});
 	QApplication::restoreOverrideCursor();
 }
