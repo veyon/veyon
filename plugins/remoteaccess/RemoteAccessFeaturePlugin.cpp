@@ -72,8 +72,8 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 bool RemoteAccessFeaturePlugin::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 											   const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if (hasFeature(featureUid) ||
-		operation != Operation::Start)
+	if (hasFeature(featureUid) &&
+		operation == Operation::Start)
 	{
 		sendFeatureMessage(FeatureMessage{featureUid}
 								.addArgument(Argument::HostName, arguments.value(argToString(Argument::HostName))),
