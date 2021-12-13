@@ -2,8 +2,6 @@
     <qresource prefix="/configurator">
         <file>veyon-configurator.png</file>
         <file>help-about.png</file>
-        <file>media-playback-start.png</file>
-        <file>media-playback-stop.png</file>
         <file>network-vpn.png</file>
         <file>configure-shortcuts.png</file>
         <file>application-x-ms-dos-executable.png</file>

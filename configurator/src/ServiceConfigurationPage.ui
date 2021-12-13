@@ -87,8 +87,8 @@
            <string>Start service</string>
           </property>
           <property name="icon">
-           <iconset resource="../resources/configurator.qrc">
-            <normaloff>:/configurator/media-playback-start.png</normaloff>:/configurator/media-playback-start.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/media-playback-start.png</normaloff>:/core/media-playback-start.png</iconset>
           </property>
          </widget>
         </item>
@@ -98,8 +98,8 @@
            <string>Stop service</string>
           </property>
           <property name="icon">
-           <iconset resource="../resources/configurator.qrc">
-            <normaloff>:/configurator/media-playback-stop.png</normaloff>:/configurator/media-playback-stop.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/media-playback-stop.png</normaloff>:/core/media-playback-stop.png</iconset>
           </property>
          </widget>
         </item>
@@ -360,7 +360,7 @@ Typically this is required to support terminal servers.</string>
   <tabstop>vncServerPlugin</tabstop>
  </tabstops>
  <resources>
-  <include location="../resources/configurator.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
   <connection>

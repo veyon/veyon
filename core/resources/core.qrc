@@ -24,5 +24,9 @@
     <file>go-down.png</file>
     <file>go-previous.png</file>
     <file>go-next.png</file>
+    <file>media-playback-pause.png</file>
+    <file>media-playback-start.png</file>
+    <file>media-playback-stop.png</file>
+    <file>media-record.png</file>
   </qresource>
 </RCC>

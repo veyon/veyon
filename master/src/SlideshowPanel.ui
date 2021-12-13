@@ -59,9 +59,9 @@
          <string>Start/pause</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources/master.qrc">
-          <normaloff>:/master/media-playback-start.png</normaloff>
-          <normalon>:/master/media-playback-pause.png</normalon>:/master/media-playback-start.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/media-playback-start.png</normaloff>
+          <normalon>:/core/media-playback-pause.png</normalon>:/core/media-playback-start.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -158,7 +158,6 @@
  </customwidgets>
  <resources>
   <include location="../../core/resources/core.qrc"/>
-  <include location="../resources/master.qrc"/>
  </resources>
  <connections/>
 </ui>
