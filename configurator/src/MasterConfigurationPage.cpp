@@ -121,7 +121,7 @@ void MasterConfigurationPage::disableFeature()
 
 void MasterConfigurationPage::openUserConfigurationDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->userConfigurationDirectory );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory).exec(ui->userConfigurationDirectory);
 }
 
 
