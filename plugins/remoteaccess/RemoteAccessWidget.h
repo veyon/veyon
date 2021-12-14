@@ -47,6 +47,7 @@ public:
 	void appear();
 	void disappear();
 	void updateControls( bool viewOnly );
+	void updateScreenSelectActions( int newScreen );
 
 
 protected:
@@ -121,5 +122,10 @@ private:
 	RemoteAccessWidgetToolBar* m_toolBar;
 
 	static constexpr int AppearDelay = 500;
+
+	int m_currentScreen{-1};
+
+Q_SIGNALS:
+	void screenChangedInRemoteAccessWidget( int newScreen );
 
 } ;

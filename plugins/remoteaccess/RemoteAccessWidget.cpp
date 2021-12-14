@@ -144,6 +144,9 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::screensChanged,
 			 this, &RemoteAccessWidgetToolBar::updateScreens );
+
+	connect( m_parent, &RemoteAccessWidget::screenChangedInRemoteAccessWidget,
+			 this, &RemoteAccessWidgetToolBar::updateScreenSelectActions );
 }
 
 
@@ -178,6 +181,26 @@ void RemoteAccessWidgetToolBar::disappear()
 void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
 {
 	m_sendShortcutButton->setVisible( viewOnly == false );
+}
+
+
+
+void RemoteAccessWidgetToolBar::updateScreenSelectActions( int newScreen )
+{
+	const auto screens = m_parent->vncView()->computerControlInterface()->screens();
+	const auto m_screenSelectActions = m_selectScreenButton->menu()->actions();
+	for (const auto& screenSelectAction : m_screenSelectActions)
+	{
+		if ( newScreen == -1 )
+		{
+			screenSelectAction->setChecked(true);
+			break;
+		}
+		if ( screenSelectAction->text() == screens[newScreen].name )
+		{
+			screenSelectAction->setChecked(true);
+		}
+	}
 }
 
 
@@ -353,6 +376,52 @@ bool RemoteAccessWidget::eventFilter( QObject* object, QEvent* event )
 	if( object == m_vncView && event->type() == QEvent::FocusOut )
 	{
 		m_toolBar->disappear();
+	}
+
+	if( event->type() == QEvent::KeyPress && m_vncView->viewOnly() )
+	{
+		const auto screens = m_vncView->computerControlInterface()->screens();
+		const auto key = static_cast<QKeyEvent *>( event )->key();
+		if ( screens.size() > 1 && ( key == Qt::Key_Tab || key == Qt::Key_Backtab ) )
+		{
+			if( key == Qt::Key_Tab )
+			{
+				if ( m_currentScreen < screens.size() - 1 )
+				{
+					m_currentScreen++;
+				} else
+				{
+					m_currentScreen = -1;
+				}
+			}
+
+			if( key == Qt::Key_Backtab )
+			{
+				if ( m_currentScreen == -1 )
+				{
+					m_currentScreen = screens.size()-1;
+				} else if ( m_currentScreen > 0 )
+				{
+					m_currentScreen--;
+				} else
+				{
+					m_currentScreen = -1;
+				}
+			}
+
+			if ( m_currentScreen == -1)
+			{
+				m_vncView->setViewport( {} );
+			}
+			else
+			{
+				m_vncView->setViewport(screens[m_currentScreen].geometry);
+			}
+			Q_EMIT screenChangedInRemoteAccessWidget(m_currentScreen);
+			return true;
+		}
+
+		return false;
 	}
 
 	return QWidget::eventFilter( object, event );
