@@ -144,6 +144,9 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	connect( vncView->computerControlInterface().data(), &ComputerControlInterface::screensChanged,
 			 this, &RemoteAccessWidgetToolBar::updateScreens );
+
+	connect( m_parent, &RemoteAccessWidget::screenChangedInRemoteAccessWidget,
+			 this, &RemoteAccessWidgetToolBar::updateScreenSelectActions );
 }
 
 
@@ -178,6 +181,26 @@ void RemoteAccessWidgetToolBar::disappear()
 void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
 {
 	m_sendShortcutButton->setVisible( viewOnly == false );
+}
+
+
+
+void RemoteAccessWidgetToolBar::updateScreenSelectActions( int newScreen )
+{
+	const auto screens = m_parent->vncView()->computerControlInterface()->screens();
+	const auto m_screenSelectActions = m_selectScreenButton->menu()->actions();
+	for (const auto& screenSelectAction : m_screenSelectActions)
+	{
+		if ( newScreen == -1 )
+		{
+			screenSelectAction->setChecked(true);
+			break;
+		}
+		if ( screenSelectAction->text() == screens[newScreen].name )
+		{
+			screenSelectAction->setChecked(true);
+		}
+	}
 }
 
 
@@ -300,6 +323,8 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	m_vncView( new VncViewWidget( computerControlInterface, {}, this ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, startViewOnly, showViewOnlyToggleButton ) )
 {
+	currentScreen = -1;
+
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
 	if( master && openOnMasterScreen )
@@ -351,6 +376,64 @@ bool RemoteAccessWidget::eventFilter( QObject* object, QEvent* event )
 	if( object == m_vncView && event->type() == QEvent::FocusOut )
 	{
 		m_toolBar->disappear();
+	}
+
+	if( event->type() == QEvent::KeyPress && m_vncView->viewOnly() )
+	{
+		vCritical() << "KeyPress Event fired!";
+
+		const auto screens = m_vncView->computerControlInterface()->screens();
+		const auto key = dynamic_cast<QKeyEvent *>( event )->key();
+		if ( screens.size() > 1 && ( key == Qt::Key_Tab || key == Qt::Key_Backtab ) )
+		{
+			if( key == Qt::Key_Tab )
+			{
+				vCritical() << "Qt::Key_Tab";
+				if ( currentScreen < screens.size() - 1 )
+				{
+					currentScreen++;
+					vCritical() << "Switching to next Screen: " << currentScreen << screens[currentScreen].name << screens[currentScreen].geometry;
+				} else
+				{
+					currentScreen = -1;
+					vCritical() << "Switching to Allscreen View Tab";
+				}
+			}
+
+			if( key == Qt::Key_Backtab )
+			{
+				vCritical() << "Qt::Key_Backtab";
+				if ( currentScreen == -1 )
+				{
+					currentScreen = screens.size()-1;
+					vCritical() << "Switching to last Screen: " << currentScreen << screens[currentScreen].name << screens[currentScreen].geometry;
+				} else if ( currentScreen > 0 )
+				{
+					currentScreen--;
+					vCritical() << "Switching to previous Screen: " << currentScreen << screens[currentScreen].name << screens[currentScreen].geometry;
+				} else
+				{
+					currentScreen = -1;
+					vCritical() << "Switching to Allscreen View Backtab";
+				}
+			}
+
+			showNormal();
+			if ( currentScreen == -1)
+			{
+				m_vncView->setViewport( {} );
+			}
+			else
+			{
+				m_vncView->setViewport(screens[currentScreen].geometry);
+			}
+			setWindowState(Qt::WindowMaximized);
+			Q_EMIT screenChangedInRemoteAccessWidget(currentScreen);
+			return true;
+		}
+
+		vCritical() << "KeyPress Event forwarded";
+		return false;
 	}
 
 	return QWidget::eventFilter( object, event );
