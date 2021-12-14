@@ -127,7 +127,8 @@ private:
 
 
 template<class T>
-class VEYON_CORE_EXPORT TypedProperty : public Property {
+class TypedProperty : public Property
+{
 public:
 	using Type = typename CheapestType<T>::Type;
 
