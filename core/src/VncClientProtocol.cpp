@@ -634,7 +634,7 @@ bool VncClientProtocol::handleRectEncodingRRE( QBuffer& buffer, uint bytesPerPix
 	const auto rectDataSize = qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + sz_rfbRectangle );
 	const auto totalDataSize = static_cast<int>( bytesPerPixel + rectDataSize );
 
-	return buffer.read( totalDataSize ).size() == totalDataSize;
+	return totalDataSize < MaxMessageSize && buffer.read( totalDataSize ).size() == totalDataSize;
 }
 
 
@@ -651,7 +651,7 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, uint bytesPerP
 	const auto rectDataSize = qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + 4 );
 	const auto totalDataSize = static_cast<int>( bytesPerPixel + rectDataSize );
 
-	return buffer.read( totalDataSize ).size() == totalDataSize;
+	return totalDataSize < MaxMessageSize && buffer.read( totalDataSize ).size() == totalDataSize;
 
 }
 
@@ -757,7 +757,7 @@ bool VncClientProtocol::handleRectEncodingZlib( QBuffer& buffer )
 
 	const auto n = qFromBigEndian( hdr.nBytes );
 
-	return buffer.read( n ).size() == static_cast<int>( n );
+	return n < MaxMessageSize && uint32_t(buffer.read(n).size()) == n;
 }
 
 
@@ -773,7 +773,7 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 
 	const auto n = qFromBigEndian( hdr.length );
 
-	return buffer.read( n ).size() == static_cast<int>( n );
+	return n < MaxMessageSize && uint32_t(buffer.read(n).size()) == n;
 }
 
 
