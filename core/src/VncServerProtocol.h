@@ -27,7 +27,7 @@
 #include "VeyonCore.h"
 #include "Plugin.h"
 
-class QTcpSocket;
+class QIODevice;
 
 class VariantArrayMessage;
 class VncServerClient;
@@ -53,7 +53,7 @@ public:
 		StateCount
 	} ;
 
-	VncServerProtocol( QTcpSocket* socket,
+	VncServerProtocol( QIODevice* socket,
 					   VncServerClient* client );
 	virtual ~VncServerProtocol() = default;
 
@@ -72,7 +72,7 @@ protected:
 	virtual void processAuthenticationMessage( VariantArrayMessage& message ) = 0;
 	virtual void performAccessControl() = 0;
 
-	QTcpSocket* socket()
+	QIODevice* socket()
 	{
 		return m_socket;
 	}
@@ -98,7 +98,7 @@ private:
 	bool processFramebufferInit();
 
 private:
-	QTcpSocket* m_socket;
+	QIODevice* m_socket;
 	VncServerClient* m_client;
 
 	QByteArray m_serverInitMessage;

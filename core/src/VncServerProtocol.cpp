@@ -35,13 +35,17 @@
 
 
 
-VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
+VncServerProtocol::VncServerProtocol( QIODevice* socket,
 									  VncServerClient* client ) :
 	m_socket( socket ),
 	m_client( client ),
 	m_serverInitMessage()
 {
-	m_client->setHostAddress( m_socket->peerAddress().toString() );
+	auto qtcpSocket = qobject_cast<QTcpSocket *>(socket);
+	if (qtcpSocket)
+	{
+		m_client->setHostAddress(qtcpSocket->peerAddress().toString());
+	}
 	m_client->setAccessControlState( VncServerClient::AccessControlState::Init );
 }
 

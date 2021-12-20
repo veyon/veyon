@@ -31,7 +31,7 @@
 #include "CryptoCore.h"
 
 class QBuffer;
-class QTcpSocket;
+class QIODevice;
 
 class VEYON_CORE_EXPORT VncClientProtocol
 {
@@ -50,7 +50,7 @@ public:
 		StateCount
 	} ;
 
-	VncClientProtocol( QTcpSocket* socket, const Password& vncPassword );
+	VncClientProtocol( QIODevice* socket, const Password& vncPassword );
 
 	State state() const
 	{
@@ -126,7 +126,7 @@ private:
 
 	static constexpr auto MaximumMessageSize = 4096*4096*4;
 
-	QTcpSocket* m_socket{nullptr};
+	QIODevice* m_socket{nullptr};
 	State m_state{State::Disconnected};
 
 	Password m_vncPassword{};
