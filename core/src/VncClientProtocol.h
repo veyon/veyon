@@ -96,6 +96,12 @@ public:
 		return m_lastUpdatedRect;
 	}
 
+protected:
+	void setState(State state)
+	{
+		m_state = state;
+	}
+
 private:
 	bool readProtocol();
 	bool receiveSecurityTypes();
