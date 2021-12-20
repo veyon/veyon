@@ -67,7 +67,7 @@ vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 
 
 
-VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const Password& vncPassword ) :
+VncClientProtocol::VncClientProtocol( QIODevice* socket, const Password& vncPassword ) :
 	m_socket( socket ),
 	m_state( Disconnected ),
 	m_vncPassword( vncPassword ),
