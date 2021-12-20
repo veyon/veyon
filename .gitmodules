@@ -20,7 +20,7 @@
 	branch = master
 [submodule "3rdparty/qthttpserver"]
 	path = 3rdparty/qthttpserver
-	url = https://code.qt.io/qt-labs/qthttpserver.git
+	url = https://github.com/veyon/qthttpserver.git
 [submodule "3rdparty/kldap-qt-compat"]
 	path = 3rdparty/kldap-qt-compat
 	url = https://invent.kde.org/pim/kldap.git
