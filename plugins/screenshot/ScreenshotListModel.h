@@ -34,7 +34,7 @@ class ScreenshotListModel : public QStringListModel
 public:
 	explicit ScreenshotListModel( QObject *parent = nullptr );
 
-	QHash<int, QByteArray> roleNames() const;
+	QHash<int, QByteArray> roleNames() const override;
 
 	QVariant data( const QModelIndex &index, int role = Qt::DisplayRole ) const override;
 

@@ -49,7 +49,7 @@ public:
 		int index;
 		QString name;
 		QRect geometry;
-		bool operator==(const ScreenProperties& other)
+		bool operator==(const ScreenProperties& other) const
 		{
 			return other.index == index &&
 				   other.name == name &&

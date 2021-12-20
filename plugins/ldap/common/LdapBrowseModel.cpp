@@ -59,8 +59,12 @@ public:
 		qDeleteAll(m_childItems);
 	}
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	Q_DISABLE_COPY_MOVE(LdapBrowseModelNode)
+#else
 	Q_DISABLE_COPY(LdapBrowseModelNode)
 	Q_DISABLE_MOVE(LdapBrowseModelNode)
+#endif
 
 	Type type() const
 	{

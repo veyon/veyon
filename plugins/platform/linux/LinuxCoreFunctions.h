@@ -64,7 +64,7 @@ public:
 
 	QString genericUrlHandler() const override;
 
-	QString queryDisplayDeviceName(const QScreen& screen) const;
+	QString queryDisplayDeviceName(const QScreen& screen) const override;
 
 	using DBusInterfacePointer = QSharedPointer<QDBusInterface>;
 
