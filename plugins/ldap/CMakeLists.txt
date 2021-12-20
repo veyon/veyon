@@ -8,4 +8,4 @@ build_veyon_plugin(ldap
 	LdapPlugin.h
 	)
 
-target_link_libraries(ldap ldap-common)
+target_link_libraries(ldap PRIVATE ldap-common)

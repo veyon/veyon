@@ -65,20 +65,20 @@ target_include_directories(linux-platform PRIVATE
 
 if(WITH_QT6)
 	find_package(Qt6 COMPONENTS DBus REQUIRED)
-	target_link_libraries(linux-platform Qt6::DBus)
+	target_link_libraries(linux-platform PRIVATE Qt6::DBus)
 else()
 	find_package(Qt5DBus REQUIRED)
-	target_link_libraries(linux-platform Qt5::DBus)
+	target_link_libraries(linux-platform PRIVATE Qt5::DBus)
 endif()
 
-target_link_libraries(linux-platform
+target_link_libraries(linux-platform PRIVATE
 	${X11_LIBRARIES}
 	${procps_LDFLAGS})
 
 if(fakekey_FOUND)
 	target_include_directories(linux-platform PRIVATE ${fakekey_INCLUDE_DIRS})
-	target_link_libraries(linux-platform ${fakekey_LDFLAGS})
+	target_link_libraries(linux-platform PRIVATE ${fakekey_LDFLAGS})
 else()
 	target_include_directories(linux-platform PRIVATE ${libfakekey_DIR})
-	target_link_libraries(linux-platform ${X11_XTest_LIB})
+	target_link_libraries(linux-platform PRIVATE ${X11_XTest_LIB})
 endif()

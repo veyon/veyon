@@ -25,11 +25,11 @@ if(Qt5HttpServer_DIR OR (Qt5Core_VERSION VERSION_GREATER 5.12.0 AND TARGET Qt5::
 	set_source_files_properties(WebApiHttpServer.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)
 
 	if(Qt5HttpServer_DIR)
-		target_link_libraries(webapi Qt5::HttpServer)
+		target_link_libraries(webapi PRIVATE Qt5::HttpServer)
 	else()
 		add_subdirectory(qthttpserver)
 
-		target_link_libraries(webapi qthttpserver)
+		target_link_libraries(webapi PRIVATE qthttpserver)
 	endif()
 
 else()

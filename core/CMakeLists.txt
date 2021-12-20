@@ -49,31 +49,31 @@ target_include_directories(veyon-core PUBLIC
 	)
 
 if(WITH_QT6)
-	target_link_libraries(veyon-core
+	target_link_libraries(veyon-core PUBLIC
 		Qt6::Concurrent
 		Qt6::Gui
 		Qt6::Network
 		Qt6::Widgets)
 	if(WITH_TESTS)
-		target_link_libraries(veyon-core Qt6::Test)
+		target_link_libraries(veyon-core PUBLIC Qt6::Test)
 	endif()
 else()
-	target_link_libraries(veyon-core
+	target_link_libraries(veyon-core PUBLIC
 		Qt5::Concurrent
 		Qt5::Gui
 		Qt5::Network
 		Qt5::Widgets)
 	if(WITH_TESTS)
-		target_link_libraries(veyon-core Qt5::Test)
+		target_link_libraries(veyon-core PUBLIC Qt5::Test)
 	endif()
 endif()
 
-target_link_libraries(veyon-core
+target_link_libraries(veyon-core PUBLIC
 	OpenSSL::SSL
 	${QCA_LIBRARY})
 
 if(LibVNCClient_FOUND)
-	target_link_libraries(veyon-core LibVNC::LibVNCClient)
+	target_link_libraries(veyon-core PRIVATE LibVNC::LibVNCClient)
 else()
 	target_include_directories(veyon-core PRIVATE
 		${ZLIB_INCLUDE_DIR}
@@ -84,7 +84,7 @@ else()
 		${libvncserver_DIR}/common/
 		${libvncserver_DIR}
 		)
-	target_link_libraries(veyon-core
+	target_link_libraries(veyon-core PRIVATE
 		Threads::Threads
 		PNG::PNG
 		${ZLIB_LIBRARIES}
@@ -95,7 +95,7 @@ endif()
 
 if(VEYON_BUILD_WIN32)
 	# add Windows Socket library required by libvncclient
-	target_link_libraries(veyon-core -lws2_32)
+	target_link_libraries(veyon-core PRIVATE -lws2_32)
 	set_target_properties(veyon-core PROPERTIES PREFIX "")
 	if(NOT WITH_CORE_ONLY)
 		install(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
@@ -125,9 +125,9 @@ if(WITH_PCH)
 	target_compile_options(veyon-pch PRIVATE ${VEYON_COMPILE_OPTIONS})
 	set_default_target_properties(veyon-pch)
 	if(WITH_QT6)
-		target_link_libraries(veyon-pch Qt6::Core Qt6::Concurrent Qt6::Network Qt6::Widgets)
+		target_link_libraries(veyon-pch PUBLIC Qt6::Core Qt6::Concurrent Qt6::Network Qt6::Widgets)
 	else()
-		target_link_libraries(veyon-pch Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
+		target_link_libraries(veyon-pch PUBLIC Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
 	endif()
 	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
 	if(VEYON_BUILD_WIN32)

@@ -10,7 +10,7 @@ if(LibVNCServer_FOUND)
 		HeadlessVncConfiguration.h
 		)
 
-	target_link_libraries(headless-vnc-server LibVNC::LibVNCServer)
+	target_link_libraries(headless-vnc-server PRIVATE LibVNC::LibVNCServer)
 
 	target_compile_options(headless-vnc-server PRIVATE -Wno-parentheses)
 
