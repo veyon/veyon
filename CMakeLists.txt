@@ -4,6 +4,7 @@ project(veyon)
 
 option(WITH_CORE_ONLY "Build core library only" OFF)
 option(WITH_ADDONS "Build add-ons" OFF)
+option(WITH_TRANSLATIONS "Build translation files" ON)
 option(WITH_TESTS "Build tests and integrate runtime test extensions" OFF)
 option(WITH_LTO "Build with link-time optimization" ON)
 option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
@@ -165,8 +166,10 @@ if(WITH_QT6)
 		Gui
 		Widgets
 		Network
-		LinguistTools
 		REQUIRED)
+	if(WITH_TRANSLATIONS)
+		find_package(Qt6 COMPONENTS LinguistTools REQUIRED)
+	endif()
 else()
 	find_package(Qt5Core REQUIRED)
 	find_package(Qt5Concurrent REQUIRED)
@@ -174,6 +177,9 @@ else()
 	find_package(Qt5Widgets REQUIRED)
 	find_package(Qt5Network REQUIRED)
 	find_package(Qt5LinguistTools REQUIRED)
+	if(WITH_TRANSLATIONS)
+		find_package(Qt5LinguistTools REQUIRED)
+	endif()
 endif()
 
 # find required libraries
