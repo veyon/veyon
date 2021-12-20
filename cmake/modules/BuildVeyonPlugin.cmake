@@ -17,7 +17,6 @@ macro(build_veyon_plugin PLUGIN_NAME)
 
 	set_default_target_properties(${PLUGIN_NAME})
 	set_target_properties(${PLUGIN_NAME} PROPERTIES PREFIX "")
-	set_target_properties(${PLUGIN_NAME} PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
 	install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION ${VEYON_INSTALL_PLUGIN_DIR})
 	if(WITH_PCH)
 		target_precompile_headers(${PLUGIN_NAME} REUSE_FROM veyon-pch)
