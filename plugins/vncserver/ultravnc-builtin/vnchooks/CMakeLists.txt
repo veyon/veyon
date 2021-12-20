@@ -17,5 +17,5 @@ set_default_target_properties(vnchooks)
 set_target_properties(vnchooks PROPERTIES PREFIX "")
 set_target_properties(vnchooks PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unused-variable -Wno-unknown-pragmas -Wno-int-to-pointer-cast")
 set_target_properties(vnchooks PROPERTIES LINK_FLAGS -Wl,-export-all-symbols)
-target_link_libraries(vnchooks -ladvapi32)
+target_link_libraries(vnchooks PRIVATE -ladvapi32)
 

@@ -13,7 +13,7 @@ set(master_RESOURCES ${master_RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/qml/qml.qrc
 
 build_veyon_application(veyon-master ${master_SOURCES} ${master_RESOURCES})
 
-target_link_libraries(veyon-master KF5::ItemModels)
+target_link_libraries(veyon-master PRIVATE KF5::ItemModels)
 
 add_windows_resource(veyon-master)
 make_graphical_app(veyon-master)

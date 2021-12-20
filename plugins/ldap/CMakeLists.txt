@@ -17,4 +17,4 @@ build_veyon_plugin(ldap
 	AuthLdapDialog.ui
 	)
 
-target_link_libraries(ldap ldap-common)
+target_link_libraries(ldap PRIVATE ldap-common)

@@ -217,7 +217,12 @@ else()
 
 	target_include_directories(builtin-x11vnc-server PRIVATE ${x11vnc_DIR}/src)
 
-	target_link_libraries(builtin-x11vnc-server
+	target_link_libraries(builtin-x11vnc-server PRIVATE
+		Threads::Threads
+		PNG::PNG
+		${ZLIB_LIBRARIES}
+		${JPEG_LIBRARIES}
+		${LZO_LIBRARIES}
 		${X11_LIBRARIES}
 		${X11_XTest_LIB}
 		${X11_Xfixes_LIB}
@@ -227,25 +232,25 @@ else()
 		)
 
 	if(LibVNCServer_FOUND)
-		target_link_libraries(builtin-x11vnc-server LibVNC::LibVNCServer)
+		target_link_libraries(builtin-x11vnc-server PRIVATE LibVNC::LibVNCServer)
 	else()
 		target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common)
 	endif()
 
 	if(X11_XShm_FOUND)
-		target_link_libraries(builtin-x11vnc-server ${X11_XShm_LIB})
+		target_link_libraries(builtin-x11vnc-server PRIVATE ${X11_XShm_LIB})
 	endif()
 
 	if(X11_Xcomposite_FOUND)
-		target_link_libraries(builtin-x11vnc-server ${X11_Xcomposite_LIB})
+		target_link_libraries(builtin-x11vnc-server PRIVATE ${X11_Xcomposite_LIB})
 	endif()
 
 	if(X11_Xcursor_FOUND)
-		target_link_libraries(builtin-x11vnc-server ${X11_Xcursor_LIB})
+		target_link_libraries(builtin-x11vnc-server PRIVATE ${X11_Xcursor_LIB})
 	endif()
 
 	if(X11_Xinput_FOUND)
-		target_link_libraries(builtin-x11vnc-server ${X11_Xinput_LIB})
+		target_link_libraries(builtin-x11vnc-server PRIVATE ${X11_Xinput_LIB})
 	endif()
 
 endif()

@@ -56,7 +56,7 @@ target_include_directories(windows-platform PRIVATE
 	${ultravnc_DIR}
 	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
 	)
-target_link_libraries(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception -liphlpapi)
+target_link_libraries(windows-platform PRIVATE -lwtsapi32 -lnetapi32 -luserenv -linterception -liphlpapi)
 target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")
 set_source_files_properties(WindowsNetworkFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)
