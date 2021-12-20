@@ -61,7 +61,7 @@ target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
 
 set_default_target_properties(veyon-core)
 
-target_compile_options(veyon-core PRIVATE ${VEYON_COMPILE_OPTIONS} -Wno-parentheses)
+target_compile_options(veyon-core PRIVATE -Wno-parentheses)
 
 target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
@@ -150,7 +150,6 @@ if(WITH_PCH)
 		set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_AUTOGEN TRUE)
 		target_sources(veyon-pch PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/empty_pch.cxx)
 	endif()
-	target_compile_options(veyon-pch PRIVATE ${VEYON_COMPILE_OPTIONS})
 	set_default_target_properties(veyon-pch)
 	if(WITH_QT6)
 		target_link_libraries(veyon-pch PUBLIC Qt6::Core Qt6::Concurrent Qt6::Network Qt6::Widgets)

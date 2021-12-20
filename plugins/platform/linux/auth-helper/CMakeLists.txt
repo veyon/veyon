@@ -8,7 +8,6 @@ add_executable(veyon-auth-helper ${CMAKE_CURRENT_SOURCE_DIR}/VeyonAuthHelper.cpp
 
 set_default_target_properties(veyon-auth-helper)
 
-target_compile_options(veyon-auth-helper PRIVATE ${VEYON_COMPILE_OPTIONS})
 target_include_directories(veyon-auth-helper PRIVATE ${PAM_INCLUDE_DIR})
 if(WITH_QT6)
 	target_link_libraries(veyon-auth-helper PRIVATE Qt6::Core)

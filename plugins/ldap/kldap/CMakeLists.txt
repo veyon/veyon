@@ -39,7 +39,6 @@ set(kldap_SOURCES
 	)
 
 add_library(kldap-light SHARED ${kldap_SOURCES})
-target_compile_options(kldap-light PRIVATE ${VEYON_COMPILE_OPTIONS})
 if(WITH_QT6)
 	target_link_libraries(kldap-light PRIVATE Qt6::Core)
 else()
