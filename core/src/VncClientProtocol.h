@@ -104,6 +104,8 @@ protected:
 	}
 
 private:
+	static constexpr auto MaxMessageSize = 64*1024*1024;
+
 	bool readProtocol();
 	bool receiveSecurityTypes();
 	bool receiveSecurityChallenge();
