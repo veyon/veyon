@@ -190,8 +190,14 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 		${x11vnc_DIR}/src/uinput.c
 		)
 
-	set_source_files_properties(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-discarded-qualifiers -Wno-strict-aliasing -Wno-restrict -Wno-multistatement-macros -Wno-stringop-truncation -Wno-stringop-overflow -Wno-format-overflow")
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		set(COMPILER_WARN_DISABLE_FLAGS "-Wno-unused-but-set-variable -Wno-address -Wno-discarded-qualifiers -Wno-strict-aliasing -Wno-restrict -Wno-multistatement-macros -Wno-stringop-truncation -Wno-stringop-overflow -Wno-format-overflow")
+	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+		set(COMPILER_WARN_DISABLE_FLAGS "-Wno-sometimes-uninitialized -Wno-pointer-bool-conversion -Wno-tautological-pointer-compare -Wno-tautological-constant-out-of-range-compare -Wno-incompatible-pointer-types-discards-qualifiers")
+	endif()
 
+	set_source_files_properties(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES
+		COMPILE_FLAGS "${COMPILER_WARN_DISABLE_FLAGS} -Wno-deprecated-declarations -Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-misleading-indentation")
 endif()
 
 set(WITH_PCH OFF)

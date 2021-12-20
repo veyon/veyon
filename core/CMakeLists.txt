@@ -52,7 +52,9 @@ else()
 		${libvncserver_DIR}/common/crypto_openssl.c
 		${libvncserver_DIR}/common/turbojpeg.c)
 
-	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default")
+	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES
+		COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default"
+		SKIP_PRECOMPILE_HEADERS TRUE)
 endif()
 
 add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
