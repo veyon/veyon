@@ -2,6 +2,17 @@ cmake_minimum_required(VERSION 3.1.0)
 
 project(veyon)
 
+option(WITH_CORE_ONLY "Build core library only" OFF)
+option(WITH_ADDONS "Build add-ons" OFF)
+option(WITH_TESTS "Build tests and integrate runtime test extensions" OFF)
+option(WITH_LTO "Build with link-time optimization" ON)
+option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
+option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds (requires CMake >= 3.16)" ON)
+option(WITH_ADDRESS_SANITIZER "Build with address sanitizer" OFF)
+option(WITH_THREAD_SANITIZER "Build with thread sanitizer" OFF)
+option(WITH_UB_SANITIZER "Build with undefined behavior sanitizer" OFF)
+option(WITH_FUZZERS "Build LLVM fuzzer tests (implies WITH_TESTS=ON)" OFF)
+
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	set(VEYON_DEBUG TRUE)
@@ -180,14 +191,6 @@ if(VEYON_BUILD_LINUX)
 	include(XdgInstall)
 endif()
 
-option(WITH_LTO "Build with link-time optimization" ON)
-option(WITH_PCH "Reduce compile time by using precompiled headers (requires CMake >= 3.16)" ON)
-option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds (requires CMake >= 3.16)" ON)
-option(WITH_SANITIZERS "Build with thread and UB sanitizers" OFF)
-option(WITH_TESTS "Build tests and integrate runtime test extensions" OFF)
-option(WITH_CORE_ONLY "Build core library only" OFF)
-option(WITH_ADDONS "Build add-ons" OFF)
-
 if(${CMAKE_VERSION} VERSION_LESS "3.16.0")
 	set(WITH_PCH OFF)
 	set(WITH_UNITY_BUILD OFF)
@@ -205,9 +208,8 @@ if(WITH_LTO)
 	set(GCC_LTO_FLAGS "-flto=${CPU_COUNT} -fno-fat-lto-objects")
 endif()
 
-if(WITH_SANITIZERS)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
+if(WITH_FUZZERS)
+	set(WITH_TESTS ON)
 endif()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
@@ -322,5 +324,4 @@ message("\n"
 	"* Link-time optimization      : ${WITH_LTO}\n"
 	"* Use precompiled headers     : ${WITH_PCH}\n"
 	"* Use unity build             : ${WITH_UNITY_BUILD}\n"
-	"* Build with sanitizers       : ${WITH_SANITIZERS}\n"
 	)
