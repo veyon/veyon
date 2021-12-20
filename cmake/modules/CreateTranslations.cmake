@@ -5,6 +5,11 @@
 
 function(create_translations name ts_files source_files)
 
+	if(NOT WITH_TRANSLATIONS)
+		add_custom_target("${name}-translations")
+		return()
+	endif()
+
 	if(WITH_QT6)
 		set(LUPDATE Qt6::lupdate)
 		set(LRELEASE Qt6::lrelease)
