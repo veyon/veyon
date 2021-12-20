@@ -35,7 +35,7 @@ class LinuxSessionFunctions : public PlatformSessionFunctions
 {
 	Q_GADGET
 public:
-	using LoginDBusSession = struct {
+	using LoginDBusSession = struct LoginDBusSession {
 		QString id;
 		quint32 uid{0};
 		QString name;

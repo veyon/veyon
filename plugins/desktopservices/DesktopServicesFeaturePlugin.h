@@ -79,7 +79,7 @@ public:
 		return QStringLiteral("Tobias Junghans");
 	}
 
-	void upgrade( const QVersionNumber& oldVersion );
+	void upgrade( const QVersionNumber& oldVersion ) override;
 
 	const FeatureList& featureList() const override
 	{
