@@ -171,11 +171,19 @@ void PluginManager::initPluginSearchPath()
 		{
 			vDebug() << "Adding plugin search path" << pluginSearchPath;
 		}
-		QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
+		m_pluginSearchPaths.append(pluginSearchPath);
 		QCoreApplication::addLibraryPath( pluginSearchPath );
 	}
 #if defined(VEYON_WITH_TESTS)
-	QDir::addSearchPath(QStringLiteral("plugins"), QStringLiteral(CMAKE_BINARY_DIR "/plugins/platform/linux"));
+	for (const auto& baseDir : {QStringLiteral(CMAKE_BINARY_DIR "/plugins/platform"),
+								 QStringLiteral(CMAKE_BINARY_DIR "/plugins/vncserver"),
+								 QStringLiteral(CMAKE_BINARY_DIR "/plugins/")})
+	{
+		for (auto pluginDir : QDir(baseDir).entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot))
+		{
+			m_pluginSearchPaths.append(pluginDir.absoluteFilePath());
+		}
+	}
 #endif
 }
 
@@ -183,7 +191,12 @@ void PluginManager::initPluginSearchPath()
 
 void PluginManager::loadPlugins( const QString& nameFilter )
 {
-	const auto plugins = QDir( QStringLiteral( "plugins:" ) ).entryInfoList( { nameFilter } );
+	QFileInfoList plugins;
+	for (const auto& pluginSearchPath : m_pluginSearchPaths)
+	{
+		plugins.append(QDir(pluginSearchPath).entryInfoList({nameFilter}));
+	}
+
 	for( const auto& fileInfo : plugins )
 	{
 		const auto fileName = fileInfo.fileName();
