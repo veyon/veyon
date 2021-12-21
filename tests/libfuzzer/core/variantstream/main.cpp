@@ -1,14 +1,6 @@
 #include <QBuffer>
-#include <QGuiApplication>
 
 #include "VariantStream.h"
-
-extern "C" int LLVMFuzzerInitialize(int *argc, char ***argv)
-{
-	// QVariant requires GUI support to create types such as QPixmap
-	new QGuiApplication(*argc, *argv);
-	return 0;
-}
 
 extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
 {
