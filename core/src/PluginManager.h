@@ -77,6 +77,7 @@ private:
 	void initPluginSearchPath();
 	void loadPlugins( const QString& nameFilter );
 
+	QStringList m_pluginSearchPaths;
 	PluginInterfaceList m_pluginInterfaces{};
 	QObjectList m_pluginObjects{};
 	QList<QPluginLoader *> m_pluginLoaders{};
